@@ -17,6 +17,7 @@ export const zh: Catalog = {
     copied: '已复制',
     about: '关于',
     privacy: '隐私',
+    status: '状态',
     guides: '指南',
     rights: '文件不会离开你的设备。',
     clientSide: '100% 在本地处理',

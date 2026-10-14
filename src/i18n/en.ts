@@ -17,6 +17,7 @@ export const en: Shell = {
     copied: 'Copied',
     about: 'About',
     privacy: 'Privacy',
+    status: 'Status',
     guides: 'Guides',
     rights: 'No files leave your device.',
     clientSide: '100% client-side processing',

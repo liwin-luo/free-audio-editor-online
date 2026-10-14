@@ -17,6 +17,7 @@ export const ko: Catalog = {
     copied: '복사됨',
     about: '소개',
     privacy: '개인정보',
+    status: '상태',
     guides: '가이드',
     rights: '파일은 기기를 떠나지 않아요.',
     clientSide: '100% 브라우저에서 처리',

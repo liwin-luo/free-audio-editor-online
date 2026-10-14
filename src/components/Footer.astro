@@ -89,6 +89,10 @@ const shareOn = (name: string) => ui.shareOn.replace('{name}', name);
         <li><a href={localePath(locale, '/guides')} class="text-ink2 hover:text-accent">{ui.guides}</a></li>
         <li><a href={localePath(locale, '/about')} class="text-ink2 hover:text-accent">{ui.about}</a></li>
         <li><a href={localePath(locale, '/privacy')} class="text-ink2 hover:text-accent">{ui.privacy}</a></li>
+        <li>
+          <script is:inline src="https://openuptime.app/embed.js" data-slug="freeaudioeditor" async></script>
+          <noscript><a href="https://openuptime.app/status/freeaudioeditor" class="text-ink2 hover:text-accent">{ui.status}</a></noscript>
+        </li>
         <li><a href="/llms.txt" class="text-ink2 hover:text-accent">llms.txt</a></li>
       </ul>
     </nav>

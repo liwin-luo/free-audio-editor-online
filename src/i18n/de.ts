@@ -17,6 +17,7 @@ export const de: Catalog = {
     copied: 'Kopiert',
     about: 'Über uns',
     privacy: 'Datenschutz',
+    status: 'Status',
     guides: 'Anleitungen',
     rights: 'Keine Datei verlässt dein Gerät.',
     clientSide: '100 % Verarbeitung im Browser',

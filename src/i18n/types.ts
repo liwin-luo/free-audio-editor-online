@@ -102,6 +102,7 @@ export interface UiText {
   about: string;
   privacy: string;
   guides: string;
+  status: string;
   rights: string;
   clientSide: string;
   trustLocal: string;

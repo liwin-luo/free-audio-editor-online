@@ -17,6 +17,7 @@ export const id: Catalog = {
     copied: 'Tersalin',
     about: 'Tentang',
     privacy: 'Privasi',
+    status: 'Status',
     guides: 'Panduan',
     rights: 'Tidak ada file yang meninggalkan perangkat Anda.',
     clientSide: 'Pemrosesan 100% di perangkat',

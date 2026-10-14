@@ -17,6 +17,7 @@ export const ja: Catalog = {
     copied: 'コピーしました',
     about: '概要',
     privacy: 'プライバシー',
+    status: 'ステータス',
     guides: 'ガイド',
     rights: 'ファイルは端末の外に出ません。',
     clientSide: '処理は100%ブラウザ内',

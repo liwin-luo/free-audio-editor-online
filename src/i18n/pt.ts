@@ -17,6 +17,7 @@ export const pt: Catalog = {
     copied: 'Copiado',
     about: 'Sobre',
     privacy: 'Privacidade',
+    status: 'Status',
     guides: 'Guias',
     rights: 'Nenhum arquivo sai do seu aparelho.',
     clientSide: 'Processamento 100% no navegador',
