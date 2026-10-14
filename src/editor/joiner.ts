@@ -6,7 +6,7 @@
 import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, concatPeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { renderMerge } from './processor';
-import { encodeMp3, encodeWav, getFormat } from './encoders';
+import { encodeFor, getFormat } from './encoders';
 import { showToast, initEditors } from './index';
 import type { EditorConfig } from '../data/tools';
 
@@ -234,7 +234,7 @@ class Joiner {
       );
       const fmt = getFormat(this.q<HTMLSelectElement>('[data-format]').value);
       status.textContent = `Encoding ${fmt.ext.toUpperCase()}…`;
-      const blob = fmt.kind === 'wav' ? encodeWav(out) : await encodeMp3(out, fmt.kbps ?? 192);
+      const blob = await encodeFor(fmt, out);
 
       const filename = `merged.${fmt.ext}`;
       const url = URL.createObjectURL(blob);
@@ -254,7 +254,7 @@ class Joiner {
       showToast(
         this.toastRoot(),
         'error',
-        'Export failed — the MP3 encoder could not load (are you offline?). Try the WAV format instead.',
+        'Export failed — the encoder could not load (are you offline?). Try the WAV format instead.',
       );
     } finally {
       exportBtn.innerHTML = original;

@@ -4,12 +4,19 @@
  * Static markup; src/editor/joiner.ts wires the behavior.
  */
 import Icon from '../Icon.astro';
+import { EXPORT_FORMATS } from '../../editor/encoders';
 import type { EditorConfig } from '../../data/tools';
 
 interface Props {
   config: EditorConfig;
 }
 const { config } = Astro.props;
+// Registry-driven options. M4R only renders when a page explicitly opts in
+// via config.formats — merge-to-ringtone is not a joiner use case.
+const allowed = config.formats ?? EXPORT_FORMATS.filter((f) => f.kind !== 'm4r').map((f) => f.id);
+const formats = allowed
+  .map((id) => EXPORT_FORMATS.find((f) => f.id === id))
+  .filter((f) => f !== undefined);
 ---
 
 <div
@@ -78,10 +85,11 @@ const { config } = Astro.props;
       <label class="flex items-center gap-2 text-sm text-ink2">
         Format
         <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
-          <option value="mp3-320">MP3 · 320 kbps</option>
-          <option value="mp3-192" selected>MP3 · 192 kbps</option>
-          <option value="mp3-128">MP3 · 128 kbps</option>
-          <option value="wav">WAV · lossless</option>
+          {formats.map((f) => (
+            <option value={f.id} selected={f.id === config.defaultFormat}>
+              {f.label}
+            </option>
+          ))}
         </select>
       </label>
       <button type="button" class="btn btn-primary btn-lg ml-auto" data-export disabled>

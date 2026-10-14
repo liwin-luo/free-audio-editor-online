@@ -5,7 +5,7 @@
 import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { defaultEditState, renderEdit, computeNormalizeGain, type EditState } from './processor';
-import { encodeMp3, encodeWav, getFormat } from './encoders';
+import { encodeFor, getFormat, isM4rSupported } from './encoders';
 import type { EditorConfig } from '../data/tools';
 
 interface Elements {
@@ -116,6 +116,16 @@ export class Editor {
     };
 
     this.els.format.value = config.defaultFormat;
+    // The M4R option only renders on pages that opt in; remove it when the
+    // browser cannot encode AAC so export never dead-ends.
+    if (config.formats?.includes('m4r')) {
+      void isM4rSupported().then((ok) => {
+        if (!ok) {
+          this.els.format.querySelector<HTMLOptionElement>('option[value="m4r"]')?.remove();
+          if (this.els.format.value === 'm4r') this.els.format.value = 'mp3-192';
+        }
+      });
+    }
     this.bind();
     this.applyState(this.state, false);
   }
@@ -714,7 +724,7 @@ export class Editor {
       const out = await renderEdit(this.buffer, this.state);
       const fmt = getFormat(this.els.format.value);
       this.setStatus(`Encoding ${fmt.ext.toUpperCase()}…`);
-      const blob = fmt.kind === 'wav' ? encodeWav(out) : await encodeMp3(out, fmt.kbps ?? 192);
+      const blob = await encodeFor(fmt, out);
 
       const suffix = this.config.converter ? 'converted' : this.config.ringtone ? 'ringtone' : 'edited';
       const filename = `${this.fileName}-${suffix}.${fmt.ext}`;
@@ -735,7 +745,7 @@ export class Editor {
       showToast(
         this.toastRoot(),
         'error',
-        'Export failed — the MP3 encoder could not load (are you offline?). Try the WAV format instead.',
+        'Export failed — the encoder could not load (are you offline?). Try the WAV format instead.',
       );
     } finally {
       this.els.exportBtn.innerHTML = original;

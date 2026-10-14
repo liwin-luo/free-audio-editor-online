@@ -46,6 +46,8 @@ export interface EditorConfig {
   quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb')[];
   /** file input accept attribute (default: audio + common video containers) */
   accept?: string;
+  /** Export format ids offered in the select, in order. Default: everything except M4R. */
+  formats?: string[];
 }
 
 export interface ToolDef {
@@ -254,11 +256,11 @@ export const TOOLS: ToolDef[] = [
     category: 'Cut & Trim',
     title: 'Ringtone Maker — Make a Ringtone from Any Song Online',
     description:
-      'Turn any song into a ringtone in your browser. Pick the best 40 seconds, add a fade, and download — free, no signup, nothing uploaded.',
+      'Turn any song into a ringtone in your browser. Pick the best 40 seconds, add a fade, export M4R or MP3 — free, no signup, nothing uploaded.',
     h1: 'Ringtone Maker',
     subtitle: 'Pick the best part of any song and save it as a ringtone — in under a minute.',
     intro:
-      'Choose the hook, the drop or the intro of your favourite track and turn it into a ringtone. The maker keeps your selection within the classic 40-second ringtone length, adds a fade if you want one, and exports a clean MP3 you can move to any phone.',
+      'Choose the hook, the drop or the intro of your favourite track and turn it into a ringtone. The maker keeps your selection within the classic 40-second ringtone length, adds a fade if you want one, and exports straight to your phone — M4R for iPhone, MP3 for everything else.',
     howTo: [
       {
         name: 'Add a song',
@@ -270,7 +272,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         name: 'Export and transfer',
-        text: 'Add an optional fade, export the MP3, then move it to your phone. On iPhone, convert it to M4R with GarageBand or Finder — see the FAQ below.',
+        text: 'Add an optional fade, then export. Pick M4R for iPhone (Chrome, Edge or Safari) or MP3 for Android and any other phone.',
       },
     ],
     faqs: [
@@ -280,7 +282,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'How do I use the ringtone on iPhone?',
-        a: 'iPhones need ringtones in M4R format. Export your MP3 here, then open GarageBand on your iPhone, import the file and share it as a ringtone — or use Finder on a Mac: rename the file extension to .m4r and sync it to your device.',
+        a: 'Pick M4R in the format menu before you export — Chrome, Edge and Safari 17+ encode it right on your device, and the downloaded file syncs to your iPhone through Finder (or iTunes on Windows). On browsers without AAC encoding, such as Firefox, export MP3 instead and convert it with GarageBand: import the file, then share it as a ringtone.',
       },
       {
         q: 'How do I set it on Android?',
@@ -301,6 +303,7 @@ export const TOOLS: ToolDef[] = [
       showAdjust: true,
       ringtone: true,
       dropHint: 'Drop a song, or click to browse',
+      formats: ['m4r', 'mp3-320', 'mp3-192', 'mp3-128', 'wav'],
     },
   },
   {

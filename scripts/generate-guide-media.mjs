@@ -152,11 +152,11 @@ function slideHtml(article, slide, index, total, imageTag = '') {
       .join('')}</div>`;
   } else if (slide.kind === 'outro') {
     body = `<h1>Your turn — it's free</h1>
-      <div class="outro-links"><span>▸ free-audio-editor.online/${articleSlugToPath(article.slug)}</span><span>▸ No signup · no watermarks · nothing uploaded</span></div>`;
+      <div class="outro-links"><span>▸ freeaudioeditor.online/${articleSlugToPath(article.slug)}</span><span>▸ No signup · no watermarks · nothing uploaded</span></div>`;
   }
   return `<!doctype html><html><head><meta charset="utf-8"><style>${BRAND_CSS}</style></head>
     <body><div class="glow"></div><div class="frame">${kicker}${body}
-    <div class="footer-url">free-audio-editor.online</div><div class="progress">${index + 1} / ${total}</div></div></body></html>`;
+    <div class="footer-url">freeaudioeditor.online</div><div class="progress">${index + 1} / ${total}</div></div></body></html>`;
 }
 
 function articleSlugToPath(slug) {
@@ -362,8 +362,8 @@ async function buildArticleMedia(page, article) {
     article.videoTitle,
     '',
     'Step-by-step, using free browser tools that never upload your files.',
-    `Try it: https://free-audio-editor.online/${articleSlugToPath(article.slug)}`,
-    'All guides: https://free-audio-editor.online/guides',
+    `Try it: https://freeaudioeditor.online/${articleSlugToPath(article.slug)}`,
+    'All guides: https://freeaudioeditor.online/guides',
     '',
     'Timestamps:',
     ...article.slides.map((s, i) => {

@@ -142,6 +142,28 @@ try {
     } catch {}
   }
   check('mp4→mp3 file valid', mp4Mp3Ok);
+
+  // --- M4R export on /ringtone-maker (WebCodecs AAC + MP4 muxer) ---
+  await client.goto(`${BASE}/ringtone-maker`, { waitUntil: 'networkidle0' });
+  const ringInput = await client.$('[data-file-input]');
+  await ringInput.uploadFile(TEST_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  const m4rOffered = (await client.$('option[value="m4r"]')) !== null;
+  check('m4r option offered (Chrome)', m4rOffered);
+  await client.select('[data-format]', 'm4r');
+  await client.click('[data-export]');
+  const m4rStatus = await waitExported(client);
+  check('m4r export', /Exported test-tone-ringtone\.m4r/.test(m4rStatus), m4rStatus);
+  let m4rOk = false;
+  for (let i = 0; i < 20 && !m4rOk; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try {
+      // MP4 container: bytes 4–8 are the "ftyp" box type
+      const h = readFileSync(join(DOWNLOAD_DIR, 'test-tone-ringtone.m4r')).subarray(4, 8).toString('ascii');
+      m4rOk = h === 'ftyp';
+    } catch {}
+  }
+  check('m4r file valid (ftyp box)', m4rOk, m4rOk ? '' : '(missing or bad header)');
 } finally {
   await browser.close();
 }
