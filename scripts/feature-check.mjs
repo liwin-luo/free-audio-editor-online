@@ -122,8 +122,60 @@ try {
     Math.abs(out.duration - srcDataSize / 2 / srcChannels / src.readUInt32LE(24)) < 0.05,
     `${out.duration.toFixed(2)}s`,
   );
+
+  // --- Phase 2: MP4 → MP3 (native video-audio decoding) ---
+  await client.goto(`${BASE}/mp4-to-mp3`, { waitUntil: 'networkidle0' });
+  const videoInput = await client.$('[data-file-input]');
+  await videoInput.uploadFile('/tmp/fixtures/test-video.mp4');
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 15000 });
+  const videoMeta = await client.$eval('[data-file-meta]', (el) => el.textContent);
+  check('mp4 audio decoded', /00:04\.00/.test(videoMeta), videoMeta);
+  await client.click('[data-export]');
+  const mp4Status = await waitExported(client);
+  check('mp4→mp3 export', /Exported test-video-converted\.mp3/.test(mp4Status), mp4Status);
+  let mp4Mp3Ok = false;
+  for (let i = 0; i < 20 && !mp4Mp3Ok; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try {
+      const h = readFileSync(join(DOWNLOAD_DIR, 'test-video-converted.mp3')).subarray(0, 3);
+      mp4Mp3Ok = (h[0] === 0xff && (h[1] & 0xe0) === 0xe0) || h.toString().includes('ID3');
+    } catch {}
+  }
+  check('mp4→mp3 file valid', mp4Mp3Ok);
 } finally {
   await browser.close();
 }
+
+// --- Phase 2: voice recorder (fake microphone in a dedicated browser) ---
+const recBrowser = await puppeteer.launch({
+  executablePath: CHROME,
+  headless: true,
+  args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream', '--autoplay-policy=no-user-gesture-required'],
+});
+let recFailures = 0;
+try {
+  const page = await recBrowser.newPage();
+  await page.setViewport({ width: 1366, height: 900 });
+  await page.goto(`${BASE}/voice-recorder`, { waitUntil: 'networkidle0' });
+  check('recorder UI present', (await page.$('[data-recorder]')) !== null);
+  await page.click('[data-rec-toggle]');
+  await new Promise((r) => setTimeout(r, 2500));
+  const recState = await page.evaluate(() => document.querySelector('[data-rec-live]')?.classList.contains('hidden') === false);
+  check('recording started', recState);
+  await page.click('[data-rec-toggle]'); // stop
+  await page.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  const recName = await page.$eval('[data-file-name]', (el) => el.textContent);
+  check('recording loaded into editor', /^recording-\ds\.webm$/.test(recName), recName);
+  await page.select('[data-format]', 'wav');
+  await page.click('[data-export]');
+  const recExportStatus = await waitExported(page);
+  check('recording export', /Exported recording-\ds-edited\.wav/.test(recExportStatus), recExportStatus);
+} catch (e) {
+  check('voice recorder flow', false, e.message.slice(0, 120));
+  recFailures++;
+} finally {
+  await recBrowser.close();
+}
+failures += recFailures;
 console.log(failures === 0 ? '\nFEATURES: ALL PASS' : `\nFEATURES: ${failures} FAILURE(S)`);
 process.exit(failures === 0 ? 0 : 1);

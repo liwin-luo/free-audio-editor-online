@@ -37,14 +37,14 @@
 - 注：原计划的 extract-audio 指南因功能尚未上线（P2），替换为 merge-songs 指南
 - 验证：功能级 E2E（scripts/feature-check.mjs）8/8 —— MP3 经 CDN 编码导出、反转输出采样级比对、转换模式 UI；Lighthouse：wav-to-mp3 四项 100、guide 页四项 100
 
-## Phase 2 · 技术重活 + 国际化启动（第 2–3 个月）
+## Phase 2 · 技术重活 + 国际化启动（第 2–3 个月）✅ 核心项 2026-10-14 完成
 
 目标：攻下最大的单一机会词，并开始非英语市场试探。
 
-- [ ] **/mp4-to-mp3 + /extract-audio**（16.5 万 + 1.5 万月搜）：ffmpeg.wasm 懒加载（CDN 引入，不占 Vercel 带宽），先单线程版（无需 COOP/COEP 头），多线程版后续评估；页面顶部明确「首次转换需下载 ~30MB 引擎，仅一次」预期管理
-- [ ] /voice-recorder（5.4k）：MediaRecorder，录音即进现有编辑器
-- [ ] /volume-booster（18.1k，竞争 0.14）：+24dB 提升链（gain → compressor 限幅 → soft clip）
-- [ ] **国际化启动（数据触发：GSC 非英语国家展示 >20% 时执行）**：优先 ES/PT/ID/DE 四语言（铃声/剪辑类词的大盘子），子目录 /es/ 等 + hreflang；翻译工具页模板，FAQ 人工校对
+- [x] **/mp4-to-mp3 + /extract-audio**（16.5 万 + 1.5 万月搜）：~~ffmpeg.wasm~~ **改用浏览器原生解码方案**——decodeAudioData 直接解 MP4/AAC、WebM/Opus 音轨（Chrome/Firefox/Safari 实测通过），零 30MB 下载、移动端可用；仅极少数编解码器（AC3/DTS）不支持，FAQ 已如实说明。E2E：ffmpeg 生成真实 MP4 夹具 → 原生解码 → MP3 导出全链路通过
+- [x] /voice-recorder（5.4k）：MediaRecorder（Chrome/Firefox 用 WebM/Opus，Safari 用 MP4/AAC）→ 停止后经 editor-load-file 事件载入下方编辑器 → 裁剪/导出。E2E 用 Chrome 假麦克风跑通全链路
+- [x] /volume-booster（18.1k）：与 /increase-volume 同引擎不同定位（视频音轨 + 手机场景文案），400% 增益 + 限幅
+- [ ] **国际化启动（数据触发：GSC 非英语国家展示 >20% 时执行）**：优先 ES/PT/ID/DE 四语言
 - [ ] 深度内容每月 +2 篇
 
 数据检查点（第 3 个月末）：至少 3 个词进 TOP 10；日 UV 破 100。

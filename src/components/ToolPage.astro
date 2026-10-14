@@ -6,6 +6,7 @@
 import Base from '../layouts/Base.astro';
 import AudioEditor from './editor/AudioEditor.astro';
 import JoinerEditor from './editor/JoinerEditor.astro';
+import VoiceRecorder from './editor/VoiceRecorder.astro';
 import TrustBadge from './TrustBadge.astro';
 import HowTo from './HowTo.astro';
 import Faq from './Faq.astro';
@@ -42,6 +43,7 @@ const jsonLd = [
     </section>
 
     <section class="mt-6" aria-label={`${tool.name} tool`}>
+      {tool.recorder && <VoiceRecorder />}
       {tool.editor.multiple ? <JoinerEditor config={tool.editor} /> : <AudioEditor config={tool.editor} />}
     </section>
 

@@ -29,7 +29,7 @@ const { config } = Astro.props;
       <Icon name="shield-check" size={14} class="text-accent" />
       Processed locally — your file never leaves this tab
     </p>
-    <input type="file" class="hidden" accept="audio/*,video/mp4,.m4a,.opus" data-file-input {...(config.multiple ? { multiple: true } : {})} />
+    <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input {...(config.multiple ? { multiple: true } : {})} />
   </div>
 
   <!-- Workspace: visible after a file is loaded -->

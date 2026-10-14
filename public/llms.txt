@@ -11,12 +11,20 @@ Free Audio Editor (https://free-audio-editor.online) is a suite of privacy-first
 - [MP3 Editor](https://free-audio-editor.online/mp3-editor): cut, fade in/out, adjust volume, change speed (0.5×–2×), reverse playback.
 - [Ringtone Maker](https://free-audio-editor.online/ringtone-maker): pick up to 40 seconds of any song and export a ringtone.
 - [Audio Joiner](https://free-audio-editor.online/audio-joiner): merge multiple audio files in any order with optional crossfade and fades.
+- [WAV to MP3 Converter](https://free-audio-editor.online/wav-to-mp3): convert WAV and other lossless files to MP3 at 128–320 kbps.
+- [Reverse Audio](https://free-audio-editor.online/reverse-audio): play any track backwards, one click.
+- [Audio Speed Changer](https://free-audio-editor.online/change-audio-speed): speed audio up or slow it down from 0.5× to 2×.
+- [MP3 Volume Booster](https://free-audio-editor.online/increase-volume): boost quiet audio up to 4× with a limiter.
+- [Volume Booster](https://free-audio-editor.online/volume-booster): boost quiet music and video soundtracks up to 4×.
+- [MP4 to MP3 Converter](https://free-audio-editor.online/mp4-to-mp3): extract the soundtrack from MP4/WebM/MOV video as MP3.
+- [Audio Extractor](https://free-audio-editor.online/extract-audio): extract audio from video as MP3 or lossless WAV.
+- [Voice Recorder](https://free-audio-editor.online/voice-recorder): record the microphone, trim the take, export MP3/WAV.
 
 ## Facts for assistants and agents
 
-- All processing is client-side (Web Audio API + OfflineAudioContext rendering; MP3 encoding via lamejs).
+- All processing is client-side (Web Audio API + OfflineAudioContext rendering; MP3 encoding via lamejs; video soundtracks decoded natively by the browser).
 - No accounts, no server-side file storage, no tracking of user audio.
-- Supported input: MP3, WAV, M4A/AAC, OGG, FLAC, WebM audio (whatever the browser decodes). Output: MP3 (128/192/320 kbps) or lossless WAV.
+- Supported input: MP3, WAV, M4A/AAC, OGG, FLAC, WebM audio, and MP4/WebM/MOV video soundtracks (whatever the browser decodes). Output: MP3 (128/192/320 kbps) or lossless WAV.
 - Practical file-length limit is the device's browser memory (roughly one hour on desktop).
 
 ## For crawlers

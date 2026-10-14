@@ -162,6 +162,12 @@ export class Editor {
       if (file) void this.loadFile(file);
     });
 
+    // External loaders (voice recorder, tests) hand over a File via event
+    document.addEventListener('editor-load-file', (e) => {
+      const file = (e as CustomEvent<File>).detail;
+      if (file) void this.loadFile(file);
+    });
+
     els.zoomIn.addEventListener('click', () => this.setZoom(this.pps * 1.5));
     els.zoomOut.addEventListener('click', () => this.setZoom(this.pps / 1.5));
     els.reset.addEventListener('click', () => this.reset());

@@ -18,6 +18,7 @@ export type ToolIcon =
   | 'reverse'
   | 'volume'
   | 'mic'
+  | 'film'
   | 'clock-counter-clockwise';
 
 export interface EditorConfig {
@@ -39,6 +40,8 @@ export interface EditorConfig {
   maxGainPercent?: number;
   /** Headline controls surfaced outside the Adjust drawer */
   quickControls?: ('reverse' | 'speed' | 'gain')[];
+  /** file input accept attribute (default: audio + common video containers) */
+  accept?: string;
 }
 
 export interface ToolDef {
@@ -62,6 +65,8 @@ export interface ToolDef {
   /** Slugs of related tools shown at the bottom */
   related: string[];
   editor: EditorConfig;
+  /** Render a microphone recorder above the editor (voice-recorder) */
+  recorder?: boolean;
 }
 
 export const TOOLS: ToolDef[] = [
@@ -576,6 +581,239 @@ export const TOOLS: ToolDef[] = [
       defaultFormat: 'mp3-192',
       showAdjust: true,
       dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['gain'],
+      maxGainPercent: 400,
+    },
+  },
+  {
+    slug: 'mp4-to-mp3',
+    name: 'MP4 to MP3 Converter',
+    shortName: 'MP4 to MP3',
+    icon: 'film',
+    category: 'Merge & Convert',
+    title: 'MP4 to MP3 Converter — Convert Video to MP3 Online Free',
+    description:
+      'Convert MP4 video to MP3 in your browser — the soundtrack is extracted locally, never uploaded. Free, fast, no signup, works on mobile.',
+    h1: 'MP4 to MP3 Converter',
+    subtitle: 'Pull the soundtrack out of any video — right in your browser, nothing uploaded.',
+    intro:
+      'Turn MP4 videos into MP3 audio without installing anything or uploading gigabytes to a server. Your browser reads the file from your disk, decodes the soundtrack locally, and saves it as MP3 — a 500 MB video converts in seconds because only the audio track is processed.',
+    howTo: [
+      {
+        name: 'Drop your video',
+        text: 'Drag an MP4 onto the page or click to browse. WebM and MOV files with standard audio tracks work the same way.',
+      },
+      {
+        name: 'Pick a bitrate',
+        text: '320 kbps for music videos, 192 kbps for everyday listening, 128 kbps for interviews and lectures.',
+      },
+      {
+        name: 'Convert and download',
+        text: 'Click Convert to MP3. The audio track is decoded in your browser and the MP3 downloads straight away.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Does the video get uploaded anywhere?',
+        a: 'No — and this is the part worth repeating with video, because files are big. The browser reads the file from your disk, decodes only its audio track, and writes the MP3 locally. Video frames are never processed or transmitted.',
+      },
+      {
+        q: 'Which video formats are supported?',
+        a: 'MP4 files with AAC audio (the overwhelming majority, including phone recordings and standard downloads), plus WebM with Opus and most MOV files. Exotic codecs like AC3 or DTS soundtracks are not decodable by browsers and will be rejected with a clear message.',
+      },
+      {
+        q: 'How fast is it compared to online converters?',
+        a: 'Faster, typically. Upload-based converters must send the whole video to a server first — a 500 MB file can take many minutes. Here only the audio is decoded locally, so even long videos convert in seconds on a normal computer.',
+      },
+      {
+        q: 'Can I convert just part of the video?',
+        a: 'This page is a straight converter — it converts the whole soundtrack. If you want a section, convert the full audio first and trim it with the [audio trimmer](/audio-trimmer).',
+      },
+      {
+        q: 'Does 4K or 8K video slow it down?',
+        a: 'No. Video resolution is irrelevant — the video track is ignored entirely. A 4K file and a 240p file with the same soundtrack convert identically.',
+      },
+    ],
+    related: ['extract-audio', 'wav-to-mp3', 'volume-booster'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      dropHint: 'Drop an MP4 or video file, or click to browse',
+      accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
+      converter: true,
+      exportLabel: 'Convert to MP3',
+    },
+  },
+  {
+    slug: 'extract-audio',
+    name: 'Audio Extractor',
+    shortName: 'Audio Extractor',
+    icon: 'film',
+    category: 'Merge & Convert',
+    title: 'Extract Audio from Video — Save Sound as MP3 or WAV',
+    description:
+      'Extract the audio track from any video in your browser and save it as MP3 or lossless WAV. Free, private, no upload — even for large files.',
+    h1: 'Extract Audio from Video',
+    subtitle: 'Save the soundtrack of any video as MP3 or WAV — locally, in seconds.',
+    intro:
+      'Separate the sound from the pictures: pull interviews out of video calls, save a concert film as an album, or reuse a soundtrack in your own edit. The audio track is decoded on your device and can be saved losslessly as WAV or compactly as MP3.',
+    howTo: [
+      {
+        name: 'Drop the video',
+        text: 'Any MP4, WebM or MOV with a standard soundtrack works. The file never leaves your device.',
+      },
+      {
+        name: 'Choose the format',
+        text: 'MP3 192 kbps for listening and sharing; WAV for a lossless copy you can edit or archive.',
+      },
+      {
+        name: 'Extract and save',
+        text: 'Click Extract Audio. The soundtrack is decoded locally and downloads immediately.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'What is the difference between this and an MP4 to MP3 converter?',
+        a: 'Under the hood, the same local extraction engine — this page is set up for getting audio out of a video in whatever format you need, including lossless WAV, while the converter page is tuned for MP3 output.',
+      },
+      {
+        q: 'Can I get the original quality?',
+        a: 'Choose WAV: the decoded soundtrack is written losslessly, so the audio matches what the video contains. MP3 re-encodes once; at 320 kbps the difference is inaudible in practice.',
+      },
+      {
+        q: 'Which video formats work?',
+        a: 'MP4 with AAC audio, WebM with Opus, and most MOV files — the codecs browsers can decode natively. Soundtracks in AC3, DTS or other exotic codecs cannot be decoded locally and are rejected cleanly.',
+      },
+      {
+        q: 'Is there a file size limit?',
+        a: 'No artificial one. Only the audio track is processed, so even very large videos convert quickly — the limit is your device memory, not the file size on disk.',
+      },
+      {
+        q: 'Can I remove the audio from a video instead?',
+        a: 'That is the opposite operation — muting a video keeps the pictures and drops the sound. This tool keeps the sound and drops the pictures.',
+      },
+    ],
+    related: ['mp4-to-mp3', 'wav-to-mp3', 'audio-joiner'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      dropHint: 'Drop a video file, or click to browse',
+      accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
+      converter: true,
+      exportLabel: 'Extract Audio',
+    },
+  },
+  {
+    slug: 'voice-recorder',
+    name: 'Voice Recorder',
+    shortName: 'Voice Recorder',
+    icon: 'mic',
+    category: 'Effects & Studio',
+    title: 'Voice Recorder Online — Record, Trim & Save Audio Free',
+    description:
+      'Record your microphone in the browser, trim the take and save it as MP3 or WAV. Free, private — recordings are never uploaded.',
+    h1: 'Voice Recorder',
+    subtitle: 'Record your microphone, trim the take, save it as MP3 — nothing leaves your device.',
+    intro:
+      'A recorder with a trimming studio attached: capture voice memos, interviews, practice takes or meeting notes, then cut the dead air and export a clean file. Recording and editing both happen in your browser — the audio is never sent anywhere, which makes this comfortable even for confidential conversations.',
+    howTo: [
+      {
+        name: 'Allow the microphone',
+        text: 'Click Record and accept the browser permission prompt. Recording starts immediately; the timer shows the take length.',
+      },
+      {
+        name: 'Stop and review',
+        text: 'Click Stop when you are done. The recording loads into the editor below, where you can play it back and trim the ends.',
+      },
+      {
+        name: 'Export the take',
+        text: 'Save as MP3 or WAV. Recordings exist only in this tab until you export them — closing without exporting discards them.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Where do my recordings go?',
+        a: 'Nowhere. The microphone stream is captured by your browser and held in this tab\u2019s memory. Nothing is transmitted, and the recording disappears when you close the tab unless you export it first.',
+      },
+      {
+        q: 'What format is the recording?',
+        a: 'The browser decides the capture format — Chrome and Firefox record WebM/Opus, Safari records MP4/AAC. It does not matter: exports are converted to MP3 or WAV on your device either way.',
+      },
+      {
+        q: 'Can I trim the silence off the start and end?',
+        a: 'Yes, that is the point of the editor below the recorder. Drag across the part you want to keep, set the mode to Keep selection, and export — the dead air disappears.',
+      },
+      {
+        q: 'Which browsers support recording?',
+        a: 'Chrome, Edge, Firefox and Safari on desktop, plus Chrome on Android and Safari on iOS. If the Record button reports that recording is unavailable, the browser is missing the MediaRecorder API.',
+      },
+      {
+        q: 'How long can I record?',
+        a: 'As long as your device memory allows — minutes of speech take very little space (Opus compression is efficient). For multi-hour recordings, export in sections.',
+      },
+    ],
+    related: ['audio-trimmer', 'mp3-editor', 'extract-audio'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: true,
+      dropHint: 'Or drop an existing recording to edit',
+      recorder: true,
+    },
+    recorder: true,
+  },
+  {
+    slug: 'volume-booster',
+    name: 'Volume Booster',
+    shortName: 'Volume Booster',
+    icon: 'volume',
+    category: 'Effects & Studio',
+    title: 'Volume Booster — Make Videos & Music Louder Online Free',
+    description:
+      'Boost the volume of quiet music and video soundtracks up to 4× in your browser. A limiter keeps it clean — free, private, nothing uploaded.',
+    h1: 'Volume Booster',
+    subtitle: 'Boost quiet tracks and video soundtracks up to 4× — clean, not clipped.',
+    intro:
+      'For everything that plays too quietly: quiet phone videos, gentle acoustic recordings, podcasts mastered at whisper level. Load a file, push the volume up to 4×, and let the built-in limiter hold the peaks back so the loud parts stay clean. Works on audio and video files alike — only the soundtrack is processed.',
+    howTo: [
+      {
+        name: 'Drop your file',
+        text: 'Music, a voice memo, or a quiet video (MP4, WebM, MOV) — the soundtrack is extracted locally if it is a video.',
+      },
+      {
+        name: 'Choose the boost',
+        text: 'Drag the volume slider to 150–250% for most recordings. Preview as you go; the limiter engages automatically above 100%.',
+      },
+      {
+        name: 'Export the louder file',
+        text: 'Save as MP3 or WAV. If peaks sound squashed, step the boost back 10–20% and re-export.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'How much louder can it get?',
+        a: 'Up to 400% of the original (+12 dB). Boosting cannot create energy that was never recorded, so extremely quiet sources may also benefit from exporting to WAV and normalizing in a dedicated editor — but for most quiet files, a 2–3× boost is plenty.',
+      },
+      {
+        q: 'What does the limiter actually do?',
+        a: 'Above 100% volume, a dynamics compressor watches the output and holds back momentary peaks before they clip. The result is louder overall without the crackle of hard digital clipping. A soft-clip stage catches anything that still slips through.',
+      },
+      {
+        q: 'Can I boost the sound of a video?',
+        a: 'Yes. Drop an MP4 or WebM and the soundtrack is decoded locally, boosted, and exported as MP3 or WAV. The video track is ignored — see the [audio extractor](/extract-audio) if you only want the sound.',
+      },
+      {
+        q: 'Boosting on my phone — does that work?',
+        a: 'Yes. The booster runs in mobile Safari and Chrome; a 3-minute song exports in a second or two on a modern phone.',
+      },
+      {
+        q: 'Why not just turn my speakers up?',
+        a: 'Speaker volume only helps on your device. A boosted file plays louder everywhere — on other people\u2019s phones, in cheap earbuds, over a laptop\u2019s tiny speakers.',
+      },
+    ],
+    related: ['increase-volume', 'change-audio-speed', 'mp4-to-mp3'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: true,
+      dropHint: 'Drop an audio or video file, or click to browse',
+      accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
       quickControls: ['gain'],
       maxGainPercent: 400,
     },
