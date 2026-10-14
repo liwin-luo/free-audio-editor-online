@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://free-audio-editor.online',
+  site: 'https://freeaudioeditor.online',
   trailingSlash: 'never',
   integrations: [sitemap()],
   vite: {

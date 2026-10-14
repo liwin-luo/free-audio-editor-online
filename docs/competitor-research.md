@@ -1,4 +1,4 @@
-# free-audio-editor.online 竞品与关键词调研报告（美区）
+# freeaudioeditor.online 竞品与关键词调研报告（美区）
 
 日期：2026-10-14 · 数据源：seodata.dev（美区搜索量/CPC/竞争度）+ Bing 美区 SERP 抓取 + 竞品站点实测
 
@@ -80,7 +80,7 @@
 - "mp3 cutter" 第 1、"audio trimmer" 第 2、"mp3 editor" 第 1 —— 剪辑类词的现任霸主
 - 打法：**一个意图一个精确匹配域名**，每个站极简单页（工具+6 个卖点+7 篇 how-to 博客链）；15 种语言；4.4/5 分 2.7 万票社证
 - 变现：广告 + $6/月 Premium 打通 51 个 App（10GB 文件、去广告、AI 功能）；服务端处理（上传制）
-- 启示：精确匹配域名策略被验证有效（audiotrimmer.com 同理，"audio trimmer" 第 1，16 语言 + how-to 中心）→ **free-audio-editor.online 域名策略成立**
+- 启示：精确匹配域名策略被验证有效（audiotrimmer.com 同理，"audio trimmer" 第 1，16 语言 + how-to 中心）→ **freeaudioeditor.online 域名策略成立**
 
 **5. audio-joiner.com** —— "audio joiner" 第 1
 - 单一用途：合并 + crossfade + 淡入淡出，300+ 格式自动转 MP3，17 语言，19 万票评分

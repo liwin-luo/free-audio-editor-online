@@ -1,4 +1,4 @@
-# free-audio-editor.online
+# freeaudioeditor.online
 
 Free online audio tools that run entirely in the browser. Files are never uploaded —
 decoding, editing and exporting all happen locally with the Web Audio API.
@@ -29,7 +29,7 @@ node scripts/smoke-test.mjs   # E2E smoke test (auto-generates its test tone; ne
 1. Push this repo to GitHub.
 2. In Vercel: **Add New Project → Import** the repo. Astro is auto-detected — no build
    settings needed (`npm run build`, output `dist/`).
-3. Add the domain `free-audio-editor.online` (Project → Settings → Domains) and point
+3. Add the domain `freeaudioeditor.online` (Project → Settings → Domains) and point
    the DNS records Vercel shows you. Choose **www or apex as the single canonical
    host** and 301 the other.
 4. `vercel.json` already configures `cleanUrls`, `trailingSlash: false`, immutable

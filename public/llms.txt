@@ -2,23 +2,23 @@
 
 > Free online audio tools that run entirely in your browser. Files are never uploaded — all editing happens on the user's device with the Web Audio API.
 
-Free Audio Editor (https://free-audio-editor.online) is a suite of privacy-first audio utilities. Every tool is free, requires no signup, adds no watermarks, and processes audio locally in the browser.
+Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first audio utilities. Every tool is free, requires no signup, adds no watermarks, and processes audio locally in the browser.
 
 ## Tools
 
-- [Audio Trimmer](https://free-audio-editor.online/audio-trimmer): trim music, voice memos and podcasts with waveform selection. Export MP3 or WAV.
-- [MP3 Cutter](https://free-audio-editor.online/mp3-cutter): cut songs — keep the best part or delete an intro.
-- [MP3 Editor](https://free-audio-editor.online/mp3-editor): cut, fade in/out, adjust volume, change speed (0.5×–2×), reverse playback.
-- [Ringtone Maker](https://free-audio-editor.online/ringtone-maker): pick up to 40 seconds of any song and export a ringtone.
-- [Audio Joiner](https://free-audio-editor.online/audio-joiner): merge multiple audio files in any order with optional crossfade and fades.
-- [WAV to MP3 Converter](https://free-audio-editor.online/wav-to-mp3): convert WAV and other lossless files to MP3 at 128–320 kbps.
-- [Reverse Audio](https://free-audio-editor.online/reverse-audio): play any track backwards, one click.
-- [Audio Speed Changer](https://free-audio-editor.online/change-audio-speed): speed audio up or slow it down from 0.5× to 2×.
-- [MP3 Volume Booster](https://free-audio-editor.online/increase-volume): boost quiet audio up to 4× with a limiter.
-- [Volume Booster](https://free-audio-editor.online/volume-booster): boost quiet music and video soundtracks up to 4×.
-- [MP4 to MP3 Converter](https://free-audio-editor.online/mp4-to-mp3): extract the soundtrack from MP4/WebM/MOV video as MP3.
-- [Audio Extractor](https://free-audio-editor.online/extract-audio): extract audio from video as MP3 or lossless WAV.
-- [Voice Recorder](https://free-audio-editor.online/voice-recorder): record the microphone, trim the take, export MP3/WAV.
+- [Audio Trimmer](https://freeaudioeditor.online/audio-trimmer): trim music, voice memos and podcasts with waveform selection. Export MP3 or WAV.
+- [MP3 Cutter](https://freeaudioeditor.online/mp3-cutter): cut songs — keep the best part or delete an intro.
+- [MP3 Editor](https://freeaudioeditor.online/mp3-editor): cut, fade in/out, adjust volume, change speed (0.5×–2×), reverse playback.
+- [Ringtone Maker](https://freeaudioeditor.online/ringtone-maker): pick up to 40 seconds of any song and export a ringtone.
+- [Audio Joiner](https://freeaudioeditor.online/audio-joiner): merge multiple audio files in any order with optional crossfade and fades.
+- [WAV to MP3 Converter](https://freeaudioeditor.online/wav-to-mp3): convert WAV and other lossless files to MP3 at 128–320 kbps.
+- [Reverse Audio](https://freeaudioeditor.online/reverse-audio): play any track backwards, one click.
+- [Audio Speed Changer](https://freeaudioeditor.online/change-audio-speed): speed audio up or slow it down from 0.5× to 2×.
+- [MP3 Volume Booster](https://freeaudioeditor.online/increase-volume): boost quiet audio up to 4× with a limiter.
+- [Volume Booster](https://freeaudioeditor.online/volume-booster): boost quiet music and video soundtracks up to 4×.
+- [MP4 to MP3 Converter](https://freeaudioeditor.online/mp4-to-mp3): extract the soundtrack from MP4/WebM/MOV video as MP3.
+- [Audio Extractor](https://freeaudioeditor.online/extract-audio): extract audio from video as MP3 or lossless WAV.
+- [Voice Recorder](https://freeaudioeditor.online/voice-recorder): record the microphone, trim the take, export MP3/WAV.
 
 ## Facts for assistants and agents
 
@@ -29,5 +29,5 @@ Free Audio Editor (https://free-audio-editor.online) is a suite of privacy-first
 
 ## For crawlers
 
-- Sitemap: https://free-audio-editor.online/sitemap-index.xml
+- Sitemap: https://freeaudioeditor.online/sitemap-index.xml
 - Content may be quoted with attribution and a link.

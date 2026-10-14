@@ -14,6 +14,7 @@ interface Props {
     description: string;
     tool?: string;
     date?: string;
+    audio?: string;
   };
   /** Markdown file url, e.g. "/guides/how-to-cut-a-song" */
   file: string;
@@ -64,6 +65,15 @@ const jsonLd = [
           <time datetime={date}>{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
           · Free Audio Editor Guides
         </p>
+        {
+          frontmatter.audio && (
+            <div class="mt-5 flex items-center gap-3 rounded-xl border border-line bg-surface px-4 py-3">
+              <span class="text-sm font-medium text-ink2">Listen</span>
+              <audio controls preload="none" src={frontmatter.audio} class="h-10 w-full max-w-md" />
+              <span class="hidden text-xs text-ink3 sm:block">or watch the video version on YouTube</span>
+            </div>
+          )
+        }
       </header>
 
       <div class="guide-prose mt-8 max-w-[70ch]">

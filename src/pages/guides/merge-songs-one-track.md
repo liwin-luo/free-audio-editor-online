@@ -3,6 +3,7 @@ title: How to Merge Songs into One Track Online
 description: Combine songs into a single continuous file for DJ sets, workouts or podcasts — ordering, crossfade settings and export formats, all in your browser.
 tool: audio-joiner
 date: 2026-10-14
+audio: /guides-media/merge-songs-one-track/narration.m4a
 layout: ../../layouts/Guide.astro
 ---
 
@@ -25,6 +26,8 @@ is your device's memory, since everything happens locally.
 Drop two or more files onto the [joiner](/audio-joiner), or click to multi-select.
 Each track appears as a row with its duration. The combined length is shown at the
 top and updates as you edit the list.
+
+![The audio joiner with two tracks loaded and a combined waveform preview](/guides-media/merge-songs-one-track/01-joinerTracks.png)
 
 ## Step 2: Get the order right
 
@@ -54,6 +57,8 @@ This is the difference between a playlist-in-a-file and an actual mix:
   very beginning of the first track and the very end of the last, so the merged
   file does not start or stop with a click.
 
+![A crossfade: track A fades out while track B fades in over a 2–4 second overlap](/guides-media/merge-songs-one-track/03-crossfade.png)
+
 ## Step 4: Export
 
 Pick the format and click **Merge & export**:
@@ -65,6 +70,8 @@ Pick the format and click **Merge & export**:
 The merge renders on your device in about a second per track, and the download
 starts automatically. Nothing was uploaded at any point, which is why merging a
 two-hour set feels no different from merging two songs.
+
+![The merged file exporting — MP3 or WAV, downloaded directly](/guides-media/merge-songs-one-track/02-joinerExportToast.png)
 
 ## After the merge
 

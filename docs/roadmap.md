@@ -1,4 +1,4 @@
-# free-audio-editor.online 路线图
+# freeaudioeditor.online 路线图
 
 版本：2026-10-14 · 前置文档：[竞品调研](competitor-research.md) / [UI-UE 规范](ui-ue-spec.md)
 原则：先用低竞争词拿索引和首批排名 → 数据验证后加码 → 流量过门槛再变现。
@@ -9,7 +9,7 @@
 
 目标：站点可访问、被搜索引擎发现、有度量手段。
 
-- [ ] `git init` + 推 GitHub + Vercel Import + 绑定 free-audio-editor.online（选定唯一 canonical 主机，另一个 301）
+- [ ] `git init` + 推 GitHub + Vercel Import + 绑定 freeaudioeditor.online（选定唯一 canonical 主机，另一个 301）
 - [ ] Google Search Console 提交 sitemap-index.xml；Bing Webmaster Tools 同步提交（Bing 收录快，能提前验证关键词）
 - [ ] **补 OG 分享图**（1200×630，当前缺失——静态导出 PNG 或构建时生成 SVG 转 PNG）
 - [ ] 加一个轻量分析（自托管 Umami/Plausible 或 Vercel Web Analytics；规范约束：不收集个人数据，更新 /privacy 说明）

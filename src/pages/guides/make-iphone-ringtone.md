@@ -3,6 +3,7 @@ title: How to Make a Ringtone on iPhone (Free, No Computer Needed)
 description: Turn any song into an official iPhone ringtone. Build a 40-second clip in your browser, then convert it to M4R with GarageBand or Finder — no paid apps.
 tool: ringtone-maker
 date: 2026-10-14
+audio: /guides-media/make-iphone-ringtone/narration.m4a
 layout: ../../layouts/Guide.astro
 ---
 
@@ -25,6 +26,10 @@ whatever you have. Then:
 3. Add a short **fade-out** (0.5–1 s in the Adjust drawer). Ringtones loop, and a
    fade makes the jump back to the start sound natural instead of abrupt.
 4. Click **Export** and save the MP3 to your Files.
+
+![Exporting the ringtone clip — the MP3 downloads straight from the browser](/guides-media/make-iphone-ringtone/02-ringtoneExportToast.png)
+
+![The ringtone maker with a selection drawn on the waveform](/guides-media/make-iphone-ringtone/01-ringtoneSelection.png)
 
 Nothing was uploaded: the clip was made on your phone, in the browser.
 

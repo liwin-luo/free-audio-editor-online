@@ -2,6 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/google824e0769c16d7fbd\\.html",
+      "destination": "/google824e0769c16d7fbd.txt"
+    }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",

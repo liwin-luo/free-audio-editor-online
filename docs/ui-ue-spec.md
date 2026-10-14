@@ -1,4 +1,4 @@
-# free-audio-editor.online UI/UE 设计规范 v1.0
+# freeaudioeditor.online UI/UE 设计规范 v1.0
 
 日期：2026-10-14 · 依据：美区 26 词用户意图分析 + 前十竞品视觉审计 + design-taste 规则
 适用：全部工具落地页、Hub 首页、编辑器界面。技术栈假设：Astro 静态站 + Tailwind + 原生 TS 编辑器内核。
