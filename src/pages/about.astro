@@ -1,11 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'About Free Audio Editor',
+    url: 'https://freeaudioeditor.online/about',
+  },
+];
 ---
 
 <Base
-  title="About — Free Audio Editor"
+  title="About Free Audio Editor — Local-First Online Audio Tools"
   description="Free Audio Editor is a suite of privacy-first audio tools that run entirely in your browser — no uploads, no signup, no watermarks."
   path="/about"
+  jsonLd={jsonLd}
 >
   <article class="container-page py-14">
     <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">About</h1>

@@ -23,7 +23,9 @@ interface Props {
 }
 
 const { frontmatter, file } = Astro.props;
-const path = file.replace(/\.(md|mdx)$/, '');
+// `file` is a build-machine path on Vercel (e.g. /vercel/path0/src/pages/…);
+// reduce it to the page route so canonicals never leak build paths.
+const path = '/' + (file.replace(/\\/g, '/').split('/src/pages/')[1]?.replace(/\.(md|mdx)$/, '') ?? file.replace(/^\//, ''));
 const tool = frontmatter.tool ? getTool(frontmatter.tool) : undefined;
 const date = frontmatter.date ?? '2026-10-14';
 
@@ -67,7 +69,7 @@ const jsonLd = [
 ];
 ---
 
-<Base title={`${frontmatter.title} — Free Audio Editor`} description={frontmatter.description} path={path} jsonLd={jsonLd} ogType="article">
+<Base title={frontmatter.title} description={frontmatter.description} path={path} jsonLd={jsonLd} ogType="article">
   <div class="container-page">
     <nav aria-label="Breadcrumb" class="pt-5 text-xs">
       <a href="/" class="text-ink3 hover:text-accent">Home</a>

@@ -8,6 +8,10 @@ export interface HowToStep {
   text: string;
 }
 
+/** Category display order — drives the nav dropdown and footer columns. */
+export const TOOL_CATEGORIES = ['Cut & Trim', 'Merge & Convert', 'Record', 'Effects & Studio'] as const;
+export type ToolCategory = (typeof TOOL_CATEGORIES)[number];
+
 export type ToolIcon =
   | 'trimmer'
   | 'scissors'
@@ -50,7 +54,7 @@ export interface ToolDef {
   /** Short label used in nav / related tools */
   shortName: string;
   icon: ToolIcon;
-  category: 'Cut & Trim' | 'Merge & Convert' | 'Effects & Studio';
+  category: ToolCategory;
   /** <title> tag, <= 60 chars ideally */
   title: string;
   /** meta description, <= 155 chars */
@@ -706,7 +710,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Voice Recorder',
     shortName: 'Voice Recorder',
     icon: 'mic',
-    category: 'Effects & Studio',
+    category: 'Record',
     title: 'Voice Recorder Online — Record, Trim & Save Audio Free',
     description:
       'Record your microphone in the browser, trim the take and save it as MP3 or WAV. Free, private — recordings are never uploaded.',

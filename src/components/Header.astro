@@ -1,8 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { TOOLS } from '../data/tools';
-
-const categories = [...new Set(TOOLS.map((t) => t.category))];
+import { TOOLS, TOOL_CATEGORIES } from '../data/tools';
 ---
 
 <header class="sticky top-0 z-10 border-b border-line bg-bg/90 backdrop-blur">
@@ -27,7 +25,7 @@ const categories = [...new Set(TOOLS.map((t) => t.category))];
           class="absolute right-0 top-full z-30 mt-2 w-72 rounded-xl border border-line bg-surface p-2 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)]"
         >
           {
-            categories.map((cat) => (
+            TOOL_CATEGORIES.map((cat) => (
               <div class="mb-1 last:mb-0">
                 <p class="px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-ink3">{cat}</p>
                 {TOOLS.filter((t) => t.category === cat).map((t) => (
