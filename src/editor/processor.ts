@@ -77,6 +77,22 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
     rate,
   );
 
+  // Master bus: when boosting, a limiter catches peaks so the result gets
+  // louder without hard digital clipping.
+  const master = ctx.createGain();
+  if (state.gain > 1) {
+    const limiter = ctx.createDynamicsCompressor();
+    limiter.threshold.value = -2;
+    limiter.knee.value = 3;
+    limiter.ratio.value = 20;
+    limiter.attack.value = 0.002;
+    limiter.release.value = 0.15;
+    master.connect(limiter);
+    limiter.connect(ctx.destination);
+  } else {
+    master.connect(ctx.destination);
+  }
+
   let t = 0;
   ranges.forEach((range, i) => {
     const segDur = (range.to - range.from) / speed;
@@ -85,7 +101,7 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
     src.playbackRate.value = speed;
     const gain = ctx.createGain();
     src.connect(gain);
-    gain.connect(ctx.destination);
+    gain.connect(master);
 
     const isLast = i === ranges.length - 1;
     gain.gain.setValueAtTime(state.gain, t);
@@ -105,12 +121,32 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   });
 
   const rendered = await ctx.startRendering();
+  if (state.gain > 1) softClipGuard(rendered);
   if (state.reverse) {
     for (let c = 0; c < rendered.numberOfChannels; c++) {
       rendered.getChannelData(c).reverse();
     }
   }
   return rendered;
+}
+
+/** Soft-clip any overs so boosts never produce harsh digital clipping. */
+function softClipGuard(buffer: AudioBuffer): void {
+  let overs = false;
+  for (let c = 0; c < buffer.numberOfChannels && !overs; c++) {
+    const d = buffer.getChannelData(c);
+    for (let i = 0; i < d.length; i++) {
+      if (d[i] > 1 || d[i] < -1) {
+        overs = true;
+        break;
+      }
+    }
+  }
+  if (!overs) return;
+  for (let c = 0; c < buffer.numberOfChannels; c++) {
+    const d = buffer.getChannelData(c);
+    for (let i = 0; i < d.length; i++) d[i] = Math.tanh(d[i]);
+  }
 }
 
 export interface MergeOptions {

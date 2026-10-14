@@ -28,10 +28,11 @@ interface Elements {
   play: HTMLButtonElement;
   timecode: HTMLElement;
   status: HTMLElement;
-  modeKeep: HTMLButtonElement;
-  modeDelete: HTMLButtonElement;
-  preciseStart: HTMLInputElement;
-  preciseEnd: HTMLInputElement;
+  /** Absent on converter pages (no cut UI) */
+  modeKeep: HTMLButtonElement | null;
+  modeDelete: HTMLButtonElement | null;
+  preciseStart: HTMLInputElement | null;
+  preciseEnd: HTMLInputElement | null;
   format: HTMLSelectElement;
   exportBtn: HTMLButtonElement;
 }
@@ -105,10 +106,11 @@ export class Editor {
       play: requireEl<HTMLButtonElement>(root, '[data-play]'),
       timecode: requireEl(root, '[data-timecode]'),
       status: requireEl(root, '[data-status]'),
-      modeKeep: requireEl<HTMLButtonElement>(root, '[data-mode="keep"]'),
-      modeDelete: requireEl<HTMLButtonElement>(root, '[data-mode="delete"]'),
-      preciseStart: requireEl<HTMLInputElement>(root, '[data-precise-start]'),
-      preciseEnd: requireEl<HTMLInputElement>(root, '[data-precise-end]'),
+      // Cut-mode UI is absent on converter pages
+      modeKeep: root.querySelector<HTMLButtonElement>('[data-mode="keep"]'),
+      modeDelete: root.querySelector<HTMLButtonElement>('[data-mode="delete"]'),
+      preciseStart: root.querySelector<HTMLInputElement>('[data-precise-start]'),
+      preciseEnd: root.querySelector<HTMLInputElement>('[data-precise-end]'),
       format: requireEl<HTMLSelectElement>(root, '[data-format]'),
       exportBtn: requireEl<HTMLButtonElement>(root, '[data-export]'),
     };
@@ -172,36 +174,60 @@ export class Editor {
 
     els.play.addEventListener('click', () => this.togglePlay());
 
-    els.modeKeep.addEventListener('click', () => this.setMode('keep'));
-    els.modeDelete.addEventListener('click', () => this.setMode('delete'));
+    els.modeKeep?.addEventListener('click', () => this.setMode('keep'));
+    els.modeDelete?.addEventListener('click', () => this.setMode('delete'));
 
+    // Drawer controls (absent when showAdjust is false)
     const fadeToggle = (sel: string, labelSel: string, key: 'fadeIn' | 'fadeOut', suffix = 's') => {
-      const input = requireEl<HTMLInputElement>(this.els.root, sel);
-      const label = requireEl(this.els.root, labelSel);
+      const input = this.els.root.querySelector<HTMLInputElement>(sel);
+      const label = this.els.root.querySelector<HTMLElement>(labelSel);
+      if (!input || !label) return;
       input.addEventListener('input', () => (label.textContent = `${Number(input.value).toFixed(1)}${suffix}`));
       input.addEventListener('change', () => this.commit({ [key]: Number(input.value) } as Partial<EditState>));
     };
     fadeToggle('[data-fade-in]', '[data-fade-in-label]', 'fadeIn');
     fadeToggle('[data-fade-out]', '[data-fade-out-label]', 'fadeOut');
 
-    const gain = requireEl<HTMLInputElement>(this.els.root, '[data-gain]');
-    const gainLabel = requireEl(this.els.root, '[data-gain-label]');
-    gain.addEventListener('input', () => (gainLabel.textContent = `${gain.value}%`));
-    gain.addEventListener('change', () => this.commit({ gain: Number(gain.value) / 100 }));
+    const gain = this.els.root.querySelector<HTMLInputElement>('[data-gain]');
+    const gainLabel = this.els.root.querySelector<HTMLElement>('[data-gain-label]');
+    if (gain && gainLabel) {
+      gain.addEventListener('input', () => (gainLabel.textContent = `${gain.value}%`));
+      gain.addEventListener('change', () => this.commit({ gain: Number(gain.value) / 100 }));
+    }
 
-    const speed = requireEl<HTMLInputElement>(this.els.root, '[data-speed]');
-    const speedLabel = requireEl(this.els.root, '[data-speed-label]');
-    speed.addEventListener('input', () => (speedLabel.textContent = `${Number(speed.value).toFixed(2)}×`));
-    speed.addEventListener('change', () => this.commit({ speed: Number(speed.value) }));
+    const speed = this.els.root.querySelector<HTMLInputElement>('[data-speed]');
+    const speedLabel = this.els.root.querySelector<HTMLElement>('[data-speed-label]');
+    if (speed && speedLabel) {
+      speed.addEventListener('input', () => (speedLabel.textContent = `${Number(speed.value).toFixed(2)}×`));
+      speed.addEventListener('change', () => this.commit({ speed: Number(speed.value) }));
+    }
 
-    const reverse = requireEl<HTMLInputElement>(this.els.root, '[data-reverse]');
-    reverse.addEventListener('change', () => this.commit({ reverse: reverse.checked }));
+    const reverse = this.els.root.querySelector<HTMLInputElement>('[data-reverse]');
+    reverse?.addEventListener('change', () => this.commit({ reverse: reverse.checked }));
 
-    const undoBtn = requireEl<HTMLButtonElement>(this.els.root, '[data-undo]');
-    undoBtn.addEventListener('click', () => this.undo());
+    const undoBtn = this.els.root.querySelector<HTMLButtonElement>('[data-undo]');
+    undoBtn?.addEventListener('click', () => this.undo());
 
-    els.preciseStart.addEventListener('change', () => this.applyPrecise());
-    els.preciseEnd.addEventListener('change', () => this.applyPrecise());
+    // Optional headline controls (kept in sync with the Adjust drawer)
+    const quickReverse = this.els.root.querySelector<HTMLButtonElement>('[data-quick-reverse]');
+    quickReverse?.addEventListener('click', () => this.commit({ reverse: !this.state.reverse }));
+
+    const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
+    const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
+    if (quickSpeed && quickSpeedLabel) {
+      quickSpeed.addEventListener('input', () => (quickSpeedLabel.textContent = `${Number(quickSpeed.value).toFixed(2)}×`));
+      quickSpeed.addEventListener('change', () => this.commit({ speed: Number(quickSpeed.value) }));
+    }
+
+    const quickGain = this.els.root.querySelector<HTMLInputElement>('[data-quick-gain]');
+    const quickGainLabel = this.els.root.querySelector<HTMLElement>('[data-quick-gain-label]');
+    if (quickGain && quickGainLabel) {
+      quickGain.addEventListener('input', () => (quickGainLabel.textContent = `${quickGain.value}%`));
+      quickGain.addEventListener('change', () => this.commit({ gain: Number(quickGain.value) / 100 }));
+    }
+
+    els.preciseStart?.addEventListener('change', () => this.applyPrecise());
+    els.preciseEnd?.addEventListener('change', () => this.applyPrecise());
 
     els.exportBtn.addEventListener('click', () => void this.doExport());
 
@@ -259,6 +285,9 @@ export class Editor {
       );
     } finally {
       this.busy = false;
+      // Re-evaluate now that busy is false — the update inside loadFile ran
+      // while busy was still true and left the export button disabled.
+      this.updateExportState();
     }
   }
 
@@ -347,6 +376,7 @@ export class Editor {
 
   private onPointerDown(e: PointerEvent): void {
     if (!this.buffer || this.busy) return;
+    if (this.config.converter) return; // pure conversion: no selection UI
     const target = e.target as HTMLElement;
     const time = this.timeAtEvent(e);
     let kind: 'new' | 'start' | 'end' = 'new';
@@ -426,7 +456,7 @@ export class Editor {
   }
 
   private applyPrecise(): void {
-    if (!this.buffer) return;
+    if (!this.buffer || !this.els.preciseStart || !this.els.preciseEnd) return;
     const s = clamp(Number(this.els.preciseStart.value) || 0, 0, this.duration);
     const e = clamp(Number(this.els.preciseEnd.value) || 0, 0, this.duration);
     if (e - s < 0.05) {
@@ -453,17 +483,15 @@ export class Editor {
   }
 
   private updatePreciseInputs(): void {
-    if (this.state.sel) {
+    if (this.state.sel && this.els.preciseStart && this.els.preciseEnd) {
       this.els.preciseStart.value = this.state.sel.start.toFixed(2);
       this.els.preciseEnd.value = this.state.sel.end.toFixed(2);
     }
   }
 
   private updateExportState(): void {
-    const hasContent = Boolean(this.buffer);
-    const needsSelection = this.state.mode === 'keep' || this.state.mode === 'delete';
-    const ready = hasContent && (!needsSelection || Boolean(this.state.sel));
-    this.els.exportBtn.disabled = !ready || this.busy;
+    // Selection is optional — with none, the whole file is rendered
+    this.els.exportBtn.disabled = !this.buffer || this.busy;
   }
 
   // ---------- Edit state ----------
@@ -496,20 +524,41 @@ export class Editor {
     this.state = state;
     this.updateModeButtons();
     if (syncInputs) {
-      const fadeIn = requireEl<HTMLInputElement>(this.els.root, '[data-fade-in]');
-      const fadeOut = requireEl<HTMLInputElement>(this.els.root, '[data-fade-out]');
-      const gain = requireEl<HTMLInputElement>(this.els.root, '[data-gain]');
-      const speed = requireEl<HTMLInputElement>(this.els.root, '[data-speed]');
-      const reverse = requireEl<HTMLInputElement>(this.els.root, '[data-reverse]');
-      fadeIn.value = String(state.fadeIn);
-      fadeOut.value = String(state.fadeOut);
-      gain.value = String(Math.round(state.gain * 100));
-      speed.value = String(state.speed);
-      reverse.checked = state.reverse;
-      requireEl(this.els.root, '[data-fade-in-label]').textContent = `${state.fadeIn.toFixed(1)}s`;
-      requireEl(this.els.root, '[data-fade-out-label]').textContent = `${state.fadeOut.toFixed(1)}s`;
-      requireEl(this.els.root, '[data-gain-label]').textContent = `${Math.round(state.gain * 100)}%`;
-      requireEl(this.els.root, '[data-speed-label]').textContent = `${state.speed.toFixed(2)}×`;
+      const fadeIn = this.els.root.querySelector<HTMLInputElement>('[data-fade-in]');
+      const fadeOut = this.els.root.querySelector<HTMLInputElement>('[data-fade-out]');
+      const gain = this.els.root.querySelector<HTMLInputElement>('[data-gain]');
+      const speed = this.els.root.querySelector<HTMLInputElement>('[data-speed]');
+      const reverse = this.els.root.querySelector<HTMLInputElement>('[data-reverse]');
+      if (fadeIn) fadeIn.value = String(state.fadeIn);
+      if (fadeOut) fadeOut.value = String(state.fadeOut);
+      if (gain) gain.value = String(Math.round(state.gain * 100));
+      if (speed) speed.value = String(state.speed);
+      if (reverse) reverse.checked = state.reverse;
+      const fadeInLabel = this.els.root.querySelector<HTMLElement>('[data-fade-in-label]');
+      const fadeOutLabel = this.els.root.querySelector<HTMLElement>('[data-fade-out-label]');
+      const gainLabel = this.els.root.querySelector<HTMLElement>('[data-gain-label]');
+      const speedLabel = this.els.root.querySelector<HTMLElement>('[data-speed-label]');
+      if (fadeInLabel) fadeInLabel.textContent = `${state.fadeIn.toFixed(1)}s`;
+      if (fadeOutLabel) fadeOutLabel.textContent = `${state.fadeOut.toFixed(1)}s`;
+      if (gainLabel) gainLabel.textContent = `${Math.round(state.gain * 100)}%`;
+      if (speedLabel) speedLabel.textContent = `${state.speed.toFixed(2)}×`;
+
+      // Mirror onto the headline quick controls when present
+      const quickReverse = this.els.root.querySelector<HTMLButtonElement>('[data-quick-reverse]');
+      if (quickReverse) {
+        quickReverse.setAttribute('aria-pressed', String(state.reverse));
+        quickReverse.classList.toggle('border-accent', state.reverse);
+        quickReverse.classList.toggle('bg-accent-soft', state.reverse);
+        quickReverse.classList.toggle('text-accent', state.reverse);
+      }
+      const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
+      const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
+      if (quickSpeed) quickSpeed.value = String(state.speed);
+      if (quickSpeedLabel) quickSpeedLabel.textContent = `${state.speed.toFixed(2)}×`;
+      const quickGain = this.els.root.querySelector<HTMLInputElement>('[data-quick-gain]');
+      const quickGainLabel = this.els.root.querySelector<HTMLElement>('[data-quick-gain-label]');
+      if (quickGain) quickGain.value = String(Math.round(state.gain * 100));
+      if (quickGainLabel) quickGainLabel.textContent = `${Math.round(state.gain * 100)}%`;
     }
     this.updateSelectionOverlay();
     this.updatePreciseInputs();
@@ -517,6 +566,7 @@ export class Editor {
   }
 
   private updateModeButtons(): void {
+    if (!this.els.modeKeep || !this.els.modeDelete) return;
     const active = 'bg-accent text-white';
     const idle = 'text-ink2 hover:text-ink';
     const keepActive = this.state.mode === 'keep';
@@ -616,7 +666,7 @@ export class Editor {
       this.setStatus(`Encoding ${fmt.ext.toUpperCase()}…`);
       const blob = fmt.kind === 'wav' ? encodeWav(out) : await encodeMp3(out, fmt.kbps ?? 192);
 
-      const suffix = this.config.ringtone ? 'ringtone' : 'edited';
+      const suffix = this.config.converter ? 'converted' : this.config.ringtone ? 'ringtone' : 'edited';
       const filename = `${this.fileName}-${suffix}.${fmt.ext}`;
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');

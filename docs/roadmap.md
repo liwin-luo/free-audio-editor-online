@@ -18,7 +18,7 @@
 
 退出条件：GSC 显示页面已被收录（通常 3–10 天）。
 
-## Phase 1 · P1 内容扩张（第 2–4 周）
+## Phase 1 · P1 内容扩张（第 2–4 周）✅ 2026-10-14 完成
 
 目标：把现有引擎能力覆盖到的词全部铺上页面，成本低、全是文案工作。
 
@@ -26,16 +26,16 @@
 
 | 页面 | 目标词（美区月搜） | 引擎支持 |
 |---|---|---|
-| /wav-to-mp3 | wav to mp3（33.1k，竞争 0） | 现有转换能力，默认导出 MP3 |
-| /reverse-audio | reverse audio（2.4k，$4.95 CPC） | reverse 已实现 |
-| /change-audio-speed | change audio speed（2.4k） | speed 0.5–2× 已实现 |
-| /increase-volume | increase mp3 volume（2.9k） | gain 上限提到 400% + DynamicsCompressor 限幅 |
+| /wav-to-mp3 | wav to mp3（33.1k，竞争 0） | ✅ 已上线（converter 模式） |
+| /reverse-audio | reverse audio（2.4k，$4.95 CPC） | ✅ 已上线（快捷反转控件） |
+| /change-audio-speed | change audio speed（2.4k） | ✅ 已上线（快捷变速滑杆） |
+| /increase-volume | increase mp3 volume（2.9k） | ✅ 已上线（增益上限 400% + 限幅器 + soft clip） |
 
-- [ ] 4 页上线，每页独立文案/FAQ/HowTo（禁模板化雷同，过 >30% 差异）
-- [ ] Hub 与全部页面交叉内链更新
-- [ ] 新增 /guides/ 深度内容 2–3 篇（打长尾 + 内链枢纽）：《How to cut a song online》《How to make a ringtone on iPhone》《How to extract audio from video without uploading it》
-
-数据检查点（第 4 周末）：GSC 展示量曲线是否抬头；哪个页面先进入 TOP 50。
+- [x] 4 页上线，每页独立文案/FAQ/HowTo
+- [x] Hub 与全部页面交叉内链更新（导航/页脚/related 由 TOOLS 注册表自动生成）
+- [x] /guides/ 深度内容 3 篇：《How to Cut a Song Online》《How to Make a Ringtone on iPhone》《How to Merge Songs into One Track》+ guides 索引页 + Article/Breadcrumb schema
+- 注：原计划的 extract-audio 指南因功能尚未上线（P2），替换为 merge-songs 指南
+- 验证：功能级 E2E（scripts/feature-check.mjs）8/8 —— MP3 经 CDN 编码导出、反转输出采样级比对、转换模式 UI；Lighthouse：wav-to-mp3 四项 100、guide 页四项 100
 
 ## Phase 2 · 技术重活 + 国际化启动（第 2–3 个月）
 

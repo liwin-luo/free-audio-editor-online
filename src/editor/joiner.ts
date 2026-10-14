@@ -23,14 +23,12 @@ const ROW_BASE =
 
 class Joiner {
   private root: HTMLElement;
-  private config: EditorConfig;
   private clips: Clip[] = [];
   private nextId = 1;
   private busy = false;
 
   constructor(root: HTMLElement, config: EditorConfig) {
     this.root = root;
-    this.config = config;
 
     this.q<HTMLSelectElement>('[data-format]').value = config.defaultFormat;
 

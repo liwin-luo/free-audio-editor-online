@@ -17,7 +17,8 @@ export type ToolIcon =
   | 'convert'
   | 'reverse'
   | 'volume'
-  | 'mic';
+  | 'mic'
+  | 'clock-counter-clockwise';
 
 export interface EditorConfig {
   /** Accept multiple files and merge them (audio-joiner) */
@@ -30,6 +31,14 @@ export interface EditorConfig {
   ringtone?: boolean;
   /** Headline shown inside the empty dropzone */
   dropHint: string;
+  /** Pure conversion page: hide cut/selection UI, treat export as a convert */
+  converter?: boolean;
+  /** Export button label (default "Export") */
+  exportLabel?: string;
+  /** Max gain slider percent (default 200) */
+  maxGainPercent?: number;
+  /** Headline controls surfaced outside the Adjust drawer */
+  quickControls?: ('reverse' | 'speed' | 'gain')[];
 }
 
 export interface ToolDef {
@@ -38,7 +47,7 @@ export interface ToolDef {
   /** Short label used in nav / related tools */
   shortName: string;
   icon: ToolIcon;
-  category: 'Cut & Trim' | 'Merge & Convert' | 'Studio';
+  category: 'Cut & Trim' | 'Merge & Convert' | 'Effects & Studio';
   /** <title> tag, <= 60 chars ideally */
   title: string;
   /** meta description, <= 155 chars */
@@ -177,7 +186,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP3 Editor',
     shortName: 'MP3 Editor',
     icon: 'waveform',
-    category: 'Studio',
+    category: 'Effects & Studio',
     title: 'MP3 Editor — Cut, Fade, Reverse & Speed Up MP3 Online',
     description:
       'Edit MP3 and other audio online: cut, trim, fade in and out, change volume and speed, reverse playback. Free and private — everything runs in your browser.',
@@ -340,6 +349,235 @@ export const TOOLS: ToolDef[] = [
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop two or more audio files, or click to browse',
+    },
+  },
+  {
+    slug: 'wav-to-mp3',
+    name: 'WAV to MP3 Converter',
+    shortName: 'WAV to MP3',
+    icon: 'convert',
+    category: 'Merge & Convert',
+    title: 'WAV to MP3 Converter — Convert WAV Files Online Free',
+    description:
+      'Convert WAV to MP3 in your browser — 128, 192 or 320 kbps. Free, no signup: your audio is converted locally and never uploaded to a server.',
+    h1: 'WAV to MP3 Converter',
+    subtitle: 'Convert WAV files to MP3 in seconds — right in your browser, nothing uploaded.',
+    intro:
+      'Turn heavy WAV recordings into compact MP3s without installing anything or sending your audio to a server. Drop the file, pick a bitrate — 320 kbps for music, 128 kbps for voice — and the conversion happens on your own device, usually in a couple of seconds.',
+    howTo: [
+      {
+        name: 'Drop your WAV',
+        text: 'Drag a .wav file onto the page or click to browse. Other audio formats (M4A, FLAC, OGG) convert the same way.',
+      },
+      {
+        name: 'Pick a bitrate',
+        text: '320 kbps is indistinguishable from the original for almost everyone; 192 kbps is a good balance; 128 kbps keeps voice recordings small.',
+      },
+      {
+        name: 'Convert and download',
+        text: 'Click Convert to MP3. The encoder runs in your browser and the MP3 downloads straight to your device.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Will converting WAV to MP3 lose quality?',
+        a: 'MP3 is lossy, so some information is discarded — but at 320 kbps virtually nobody can tell the difference from the WAV in a blind test. If you need zero loss, keep the WAV; this converter exists to save space and play everywhere.',
+      },
+      {
+        q: 'Which bitrate should I choose?',
+        a: 'Use 320 kbps for music you keep, 192 kbps for everyday listening and sharing, and 128 kbps for voice memos, podcasts and lecture recordings — speech needs far less than music.',
+      },
+      {
+        q: 'How much smaller is the MP3?',
+        a: 'Roughly a tenth of the size: a 50 MB WAV becomes about 4–5 MB at 192 kbps, and around 11 MB at 320 kbps. Exact numbers depend on the length and sample rate.',
+      },
+      {
+        q: 'Are my WAV tags and artwork kept?',
+        a: 'Not currently — the MP3 is written without metadata, so song title, artist and cover art are not carried over. You can re-add tags afterwards with any tag editor.',
+      },
+      {
+        q: 'Does the WAV file get uploaded anywhere?',
+        a: 'No. The file is decoded in your browser, encoded to MP3 by a small library loaded from a CDN, and saved back to your disk. The audio itself never leaves your device.',
+      },
+    ],
+    related: ['audio-joiner', 'mp3-editor', 'increase-volume'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      dropHint: 'Drop a WAV file, or click to browse',
+      converter: true,
+      exportLabel: 'Convert to MP3',
+    },
+  },
+  {
+    slug: 'reverse-audio',
+    name: 'Reverse Audio',
+    shortName: 'Reverse Audio',
+    icon: 'reverse',
+    category: 'Effects & Studio',
+    title: 'Reverse Audio — Play Music & Songs Backwards Online Free',
+    description:
+      'Play any song or recording backwards in your browser. One click to reverse, preview instantly, save as MP3 or WAV — free and nothing uploaded.',
+    h1: 'Reverse Audio',
+    subtitle: 'Play any song or recording backwards — one click, right in your browser.',
+    intro:
+      'Flip any track so it plays from the end to the start: hunt for hidden messages in songs, build backwards-cymbal effects for a mix, or just hear what your voice sounds like in reverse. The whole file is reversed on your device and only written out when you export.',
+    howTo: [
+      {
+        name: 'Add your audio',
+        text: 'Drop an MP3, WAV, M4A or other file onto the page — it never leaves your device.',
+      },
+      {
+        name: 'Reverse it',
+        text: 'Click the Reverse button and press play to hear the track backwards. Click again to flip it back.',
+      },
+      {
+        name: 'Save the result',
+        text: 'Export the reversed audio as MP3 or lossless WAV. The download starts automatically.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Why would I play a song backwards?',
+        a: 'Musicians use reversed audio for creative effects — reversed cymbal swells, backwards guitar solos, ambient textures. It is also the classic way to check a track for backmasking, and honestly, hearing your own voice reversed is just fun.',
+      },
+      {
+        q: 'Does reversing change the quality?',
+        a: 'No. Exporting to WAV only reorders the samples — the audio is bit-identical to the original, just backwards. MP3 export re-encodes once at your chosen bitrate.',
+      },
+      {
+        q: 'Can I reverse only part of a song?',
+        a: 'Yes. Select the part you want on the waveform, set the mode to Keep selection, then hit Reverse — only that section is exported, backwards.',
+      },
+      {
+        q: 'Does it work on my phone?',
+        a: 'Yes. The reverse button and the waveform both support touch, and the export downloads directly on iOS and Android.',
+      },
+      {
+        q: 'Is reversing really free and private?',
+        a: 'Yes — no signup, no watermark, no limits. The reversal happens in your browser with the Web Audio API, so the file is never uploaded anywhere.',
+      },
+    ],
+    related: ['change-audio-speed', 'mp3-editor', 'audio-trimmer'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['reverse'],
+    },
+  },
+  {
+    slug: 'change-audio-speed',
+    name: 'Audio Speed Changer',
+    shortName: 'Speed Changer',
+    icon: 'clock-counter-clockwise',
+    category: 'Effects & Studio',
+    title: 'Change Audio Speed Online — Speed Up or Slow Down Audio',
+    description:
+      'Speed up or slow down any audio from 0.5× to 2× in your browser. Preview instantly, export MP3 or WAV — free, private, nothing uploaded.',
+    h1: 'Audio Speed Changer',
+    subtitle: 'Speed up or slow down any audio from 0.5× to 2× — right in your browser.',
+    intro:
+      'Turn a 40-minute lecture into 20 fast minutes, slow a guitar solo down to half speed for practice, or fit a track into a shorter video slot. Drag the speed slider, hear the change instantly, and export — the audio is resampled on your device and never uploaded.',
+    howTo: [
+      {
+        name: 'Drop your file',
+        text: 'Add an MP3, WAV, M4A or other audio file — it stays on your device the whole time.',
+      },
+      {
+        name: 'Set the speed',
+        text: 'Drag the speed slider between 0.5× and 2×. Use the waveform to select just a section if you only want part of the file changed.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Play the result to check the pace, then save it as MP3 or WAV. A 10-minute file at 2× exports in about a second.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Does changing speed change the pitch?',
+        a: 'Yes — speed and pitch move together, like a record played faster or slower: 2× sounds about an octave higher, 0.5× about an octave lower. That is the classic effect; keeping pitch while changing tempo needs a dedicated time-stretch algorithm we may add later.',
+      },
+      {
+        q: 'What speeds can I choose?',
+        a: 'Anything from 0.5× to 2× in 0.05 steps. Half speed is the sweet spot for transcribing fast speech or learning solos; 1.25–1.5× is comfortable for skimming lectures and podcasts.',
+      },
+      {
+        q: 'How fast is the export?',
+        a: 'The speed change is rendered offline by your browser at native speed — a 10-minute track takes a second or two regardless of the factor you choose.',
+      },
+      {
+        q: 'Can I speed up only part of a track?',
+        a: 'Yes. Select the section on the waveform, set the mode to Keep selection, then choose your speed — the export contains just that part, faster or slower.',
+      },
+      {
+        q: 'Is there a file length limit?',
+        a: 'No artificial one. The practical ceiling is your device memory — roughly an hour of audio on a typical computer.',
+      },
+    ],
+    related: ['reverse-audio', 'mp3-editor', 'increase-volume'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['speed'],
+    },
+  },
+  {
+    slug: 'increase-volume',
+    name: 'MP3 Volume Booster',
+    shortName: 'Volume Booster',
+    icon: 'volume',
+    category: 'Effects & Studio',
+    title: 'Increase MP3 Volume — Make Audio Louder Online Free',
+    description:
+      'Make quiet audio louder — boost MP3 and other files up to 4× in your browser. A built-in limiter keeps the sound clean, free and nothing uploaded.',
+    h1: 'Increase MP3 Volume',
+    subtitle: 'Boost quiet recordings up to 4× — with a limiter, so nothing clips.',
+    intro:
+      'Fix recordings that are too quiet: phone voice memos, lectures recorded from the back row, video soundtracks ripped at low level. Push the volume up to 4× (12 dB) and a built-in limiter catches the peaks, so the result gets louder without turning into distortion.',
+    howTo: [
+      {
+        name: 'Add your audio',
+        text: 'Drop a quiet MP3, WAV, M4A or other file onto the page — it is processed on your device only.',
+      },
+      {
+        name: 'Boost the volume',
+        text: 'Drag the volume slider up to 400%. Preview as you go; the limiter automatically holds back the loudest peaks.',
+      },
+      {
+        name: 'Export the louder file',
+        text: 'Save as MP3 or WAV. If it still sounds strained, back off 10–20% — clean loudness beats maximum loudness.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Will boosting the volume cause distortion?',
+        a: 'Some, if you push too far — that is physics, not software. The built-in limiter catches peaks above the threshold so moderate boosts (150–250%) usually sound clean. Above 300% the quiet parts get loud but the peaks start to pump; use your ears.',
+      },
+      {
+        q: 'How loud can I make it?',
+        a: 'Up to 400% of the original, which is about +12 dB. That covers most quiet recordings; a 3-minute file exports in a second or two either way.',
+      },
+      {
+        q: 'Is this the same as normalizing?',
+        a: 'No. Normalizing raises the whole file so its loudest peak hits a target level. Boosting here multiplies the level you choose, which is more predictable when you know a recording is uniformly quiet.',
+      },
+      {
+        q: 'Can I boost just part of a file?',
+        a: 'Yes. Select the quiet section on the waveform, set the mode to Keep selection, and export — you get just that part at the new volume.',
+      },
+      {
+        q: 'Does it work on video files?',
+        a: 'Often, yes — browsers can usually decode the audio track of MP4 files dropped onto the page. If your browser refuses the file, extract the audio first and try again.',
+      },
+    ],
+    related: ['change-audio-speed', 'reverse-audio', 'mp3-editor'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['gain'],
+      maxGainPercent: 400,
     },
   },
 ];
