@@ -6,6 +6,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE } from '../data/site';
 import { getShell } from '../i18n';
+import { localesWithGuides } from '../data/guides';
 import { LOCALES, hasAlternates, localeMeta, localePath, type Locale } from '../i18n/locales';
 
 interface Props {
@@ -26,7 +27,9 @@ const { title, description, path, locale = 'en', jsonLd = [], ogType = 'website'
 const { ui } = getShell(locale);
 const meta = localeMeta(locale);
 const canonical = new URL(localePath(locale, path), SITE.url).href;
-const alternates = hasAlternates(path);
+const guideLocales = new Set(localesWithGuides());
+const alternateList = path === '/guides' ? LOCALES.filter((l) => guideLocales.has(l.id)) : LOCALES;
+const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
 ---
 
 <!doctype html>
@@ -39,7 +42,7 @@ const alternates = hasAlternates(path);
     <link rel="canonical" href={canonical} />
     {
       alternates &&
-        LOCALES.map((l) => (
+        alternateList.map((l) => (
           <link rel="alternate" hreflang={l.hreflang} href={new URL(localePath(l.id, path), SITE.url).href} />
         ))
     }
@@ -57,7 +60,7 @@ const alternates = hasAlternates(path);
     <meta property="og:locale" content={meta.og} />
     {
       alternates &&
-        LOCALES.filter((l) => l.id !== locale).map((l) => (
+        alternateList.filter((l) => l.id !== locale).map((l) => (
           <meta property="og:locale:alternate" content={l.og} />
         ))
     }
@@ -99,7 +102,7 @@ const alternates = hasAlternates(path);
     <main id="main">
       <slot />
     </main>
-    <Footer locale={locale} />
+    <Footer locale={locale} shareUrl={canonical} shareTitle={title} />
     <script>
       // Vercel Web Analytics — cookieless, aggregate-only. Only inject on the
       // production host so local previews and staging deploys stay clean.

@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { localesWithGuides } from './src/data/guides.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,8 +15,20 @@ export default defineConfig({
       redirectToDefaultLocale: false,
     },
   },
+  redirects: {
+    '/es/guias': '/es/guides',
+    '/es/guias/ogg-a-mp3': '/es/guides/ogg-a-mp3',
+    '/es/guias/opus-a-mp3': '/es/guides/opus-a-mp3',
+  },
   integrations: [
     sitemap({
+      filter: (page) => {
+        const path = new URL(page).pathname.replace(/\/$/, '');
+        const match = path.match(/^\/(?:([a-z]{2})\/)?guides$/);
+        if (!match) return true;
+        const locale = match[1] ?? 'en';
+        return localesWithGuides().includes(locale);
+      },
       i18n: {
         defaultLocale: 'en',
         locales: {

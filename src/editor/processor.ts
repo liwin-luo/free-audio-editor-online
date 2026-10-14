@@ -3,6 +3,7 @@
  * every export is rendered into a fresh buffer via OfflineAudioContext.
  */
 import { clamp } from '../lib/format';
+import { pitchShiftChannel } from './pitch';
 
 export interface EditState {
   /** keep = export only the selection; delete = remove the selection */
@@ -12,6 +13,8 @@ export interface EditState {
   gain: number;
   /** playback rate, 1 = unchanged */
   speed: number;
+  /** semitones, 0 = unchanged. Applied after the edit so length follows speed, not pitch. */
+  pitch: number;
   /** fade-in seconds (applied at output start) */
   fadeIn: number;
   /** fade-out seconds (applied at output end) */
@@ -29,6 +32,7 @@ export function defaultEditState(): EditState {
     sel: null,
     gain: 1,
     speed: 1,
+    pitch: 0,
     fadeIn: 0,
     fadeOut: 0,
     reverse: false,
@@ -186,6 +190,26 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   if (state.reverse) {
     for (let c = 0; c < rendered.numberOfChannels; c++) {
       rendered.getChannelData(c).reverse();
+    }
+  }
+  const semis = Math.round(clamp(state.pitch, -12, 12));
+  if (semis !== 0) {
+    for (let c = 0; c < rendered.numberOfChannels; c++) {
+      const shifted = pitchShiftChannel(rendered.getChannelData(c), semis, rendered.sampleRate);
+      rendered.getChannelData(c).set(shifted);
+    }
+    // The phase vocoder gain wobbles a little with the shift. Pull only the overs down.
+    let peak = 0;
+    for (let c = 0; c < rendered.numberOfChannels; c++) {
+      const d = rendered.getChannelData(c);
+      for (let i = 0; i < d.length; i++) peak = Math.max(peak, Math.abs(d[i]!));
+    }
+    if (peak > 0.98) {
+      const g = 0.98 / peak;
+      for (let c = 0; c < rendered.numberOfChannels; c++) {
+        const d = rendered.getChannelData(c);
+        for (let i = 0; i < d.length; i++) d[i] = d[i]! * g;
+      }
     }
   }
   return rendered;

@@ -6,6 +6,8 @@ export interface ToolCopy {
   h1: string;
   subtitle: string;
   intro: string;
+  usesHeading: string;
+  uses: [string, string, string];
   howTo: { name: string; text: string }[];
   faqs: { q: string; a: string }[];
   dropHint: string;
@@ -27,6 +29,7 @@ export interface EditorText {
   reverse: string;
   normalize: string;
   speed: string;
+  pitch: string;
   volume: string;
   reverb: string;
   adjust: string;
@@ -91,6 +94,11 @@ export interface UiText {
   navMain: string;
   navAbout: string;
   footerBlurb: string;
+  share: string;
+  /** Accessible name for a network button. Include {name}. */
+  shareOn: string;
+  copyLink: string;
+  copied: string;
   about: string;
   privacy: string;
   guides: string;
@@ -100,6 +108,8 @@ export interface UiText {
   trustFree: string;
   trustClean: string;
   faqHeading: string;
+  /** Tool-page FAQ H2. Placeholder: {name} */
+  toolFaq: string;
   related: string;
   openTool: string;
   allTools: string;

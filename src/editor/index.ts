@@ -82,8 +82,12 @@ export class Editor {
   private playing = false;
   private playStartedAt = 0;
   private playOffset = 0;
+  private playEnd = 0;
+  private playRate = 1;
   private playheadTime = 0;
   private raf = 0;
+  private pitchPreview: AudioBuffer | null = null;
+  private pitchPreviewKey = '';
 
   private busy = false;
   private drag: { kind: 'new' | 'start' | 'end'; x0: number; anchor: number; sel: { start: number; end: number } } | null = null;
@@ -257,6 +261,13 @@ export class Editor {
       quickSpeed.addEventListener('change', () => this.commit({ speed: Number(quickSpeed.value) }));
     }
 
+    const quickPitch = this.els.root.querySelector<HTMLInputElement>('[data-quick-pitch]');
+    const quickPitchLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pitch-label]');
+    if (quickPitch && quickPitchLabel) {
+      quickPitch.addEventListener('input', () => (quickPitchLabel.textContent = formatSemitones(Number(quickPitch.value))));
+      quickPitch.addEventListener('change', () => this.commit({ pitch: Number(quickPitch.value) }));
+    }
+
     const quickGain = this.els.root.querySelector<HTMLInputElement>('[data-quick-gain]');
     const quickGainLabel = this.els.root.querySelector<HTMLElement>('[data-quick-gain-label]');
     if (quickGain && quickGainLabel) {
@@ -292,6 +303,7 @@ export class Editor {
       await ctx.close();
 
       this.buffer = buffer;
+      this.pitchPreview = null;
       this.duration = buffer.duration;
       this.fileName = file.name.replace(/\.[^.]+$/, '');
       this.history = [];
@@ -328,6 +340,7 @@ export class Editor {
   private reset(): void {
     this.stopPlayback();
     this.buffer = null;
+    this.pitchPreview = null;
     this.peaks = null;
     this.state = defaultEditState();
     this.history = [];
@@ -613,6 +626,10 @@ export class Editor {
       const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
       if (quickSpeed) quickSpeed.value = String(state.speed);
       if (quickSpeedLabel) quickSpeedLabel.textContent = `${state.speed.toFixed(2)}×`;
+      const quickPitch = this.els.root.querySelector<HTMLInputElement>('[data-quick-pitch]');
+      const quickPitchLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pitch-label]');
+      if (quickPitch) quickPitch.value = String(state.pitch);
+      if (quickPitchLabel) quickPitchLabel.textContent = formatSemitones(state.pitch);
       const quickGain = this.els.root.querySelector<HTMLInputElement>('[data-quick-gain]');
       const quickGainLabel = this.els.root.querySelector<HTMLElement>('[data-quick-gain-label]');
       if (quickGain) quickGain.value = String(Math.round(state.gain * 100));
@@ -634,6 +651,23 @@ export class Editor {
 
   // ---------- Playback ----------
 
+  private pitchPreviewKeyOf(): string {
+    const sel = this.state.sel;
+    return [
+      this.state.pitch,
+      this.state.speed,
+      this.state.gain,
+      this.state.reverse ? 1 : 0,
+      this.state.reverb,
+      this.state.fadeIn,
+      this.state.fadeOut,
+      this.state.normalize ? 1 : 0,
+      this.state.mode,
+      sel ? `${sel.start.toFixed(3)}-${sel.end.toFixed(3)}` : '',
+      this.buffer?.length ?? 0,
+    ].join('|');
+  }
+
   private async togglePlay(): Promise<void> {
     if (this.playing) {
       this.stopPlayback();
@@ -652,18 +686,52 @@ export class Editor {
       from = 0;
     }
 
+    let playBuffer: AudioBuffer = this.buffer;
+    let rate = this.state.speed;
+    let headFrom = from;
+    if (this.state.pitch !== 0) {
+      const key = this.pitchPreviewKeyOf();
+      if (!this.pitchPreview || this.pitchPreviewKey !== key) {
+        this.busy = true;
+        this.updateExportState();
+        this.setStatus(this.text.renderingStatus);
+        try {
+          const rendered = await renderEdit(this.buffer, this.state);
+          if (this.pitchPreviewKeyOf() !== key) return;
+          this.pitchPreview = rendered;
+          this.pitchPreviewKey = key;
+        } catch {
+          this.setStatus(this.text.exportFail);
+          return;
+        } finally {
+          this.busy = false;
+          this.updateExportState();
+        }
+        this.setStatus(this.text.ready);
+      }
+      playBuffer = this.pitchPreview;
+      rate = 1;
+      const keepSel = this.state.mode === 'keep' && this.state.sel;
+      headFrom = keepSel ? this.state.sel!.start : 0;
+      from = 0;
+      to = playBuffer.duration;
+    }
+
     const src = this.audioCtx.createBufferSource();
-    src.buffer = this.buffer;
+    src.buffer = playBuffer;
     src.connect(this.audioCtx.destination);
-    src.playbackRate.value = this.state.speed;
+    src.playbackRate.value = rate;
+    const endAt = headFrom + (to - from) * rate;
     src.onended = () => {
-      if (this.playSource === src) this.stopPlayback(to);
+      if (this.playSource === src) this.stopPlayback(endAt);
     };
     // offset/duration are buffer-time units — playbackRate must not scale them
-    src.start(0, from, to - from);
+    src.start(0, from, Math.max(0.001, to - from));
     this.playSource = src;
     this.playing = true;
-    this.playOffset = from;
+    this.playRate = rate;
+    this.playOffset = headFrom;
+    this.playEnd = endAt;
     this.playStartedAt = this.audioCtx.currentTime;
 
     this.els.play.setAttribute('aria-label', this.text.pause);
@@ -672,8 +740,8 @@ export class Editor {
 
     const tick = () => {
       if (!this.playing || !this.audioCtx) return;
-      this.playheadTime = this.playOffset + (this.audioCtx.currentTime - this.playStartedAt) * this.state.speed;
-      this.playheadTime = Math.min(this.playheadTime, to);
+      this.playheadTime = this.playOffset + (this.audioCtx.currentTime - this.playStartedAt) * this.playRate;
+      this.playheadTime = Math.min(this.playheadTime, this.playEnd);
       this.updatePlayhead();
       this.updateTimecode();
       this.raf = requestAnimationFrame(tick);
@@ -777,6 +845,13 @@ export class Editor {
       this.undo();
     }
   }
+}
+
+function formatSemitones(n: number): string {
+  const v = Math.round(n);
+  if (v > 0) return `+${v} st`;
+  if (v < 0) return `−${Math.abs(v)} st`;
+  return '0 st';
 }
 
 export function initEditors(): void {

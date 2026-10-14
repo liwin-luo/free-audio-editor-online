@@ -125,6 +125,15 @@ const formats = allowed
               </span>
             </label>
           )}
+          {config.quickControls!.includes('pitch') && (
+            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+              {t.pitch}
+              <input type="range" data-quick-pitch min="-12" max="12" step="1" value="0" class="flex-1 accent-(--color-accent)" />
+              <span class="w-14 font-mono text-xs tabular-nums" data-quick-pitch-label>
+                0 st
+              </span>
+            </label>
+          )}
           {config.quickControls!.includes('gain') && (
             <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
               {t.volume}

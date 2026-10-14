@@ -1,0 +1,66 @@
+---
+import { GUIDE_INDEX, guidesFor } from '../data/guides';
+import { SITE } from '../data/site';
+import { getShell } from '../i18n';
+import { localePath, type Locale } from '../i18n/locales';
+import Base from '../layouts/Base.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const guides = guidesFor(locale);
+const copy = GUIDE_INDEX[locale];
+const { ui } = getShell(locale);
+const indexUrl = new URL(localePath(locale, '/guides'), SITE.url).href;
+---
+
+<Base
+  title={copy.title}
+  description={copy.description}
+  path="/guides"
+  locale={locale}
+  noindex={guides.length === 0}
+  jsonLd={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: copy.h1,
+      url: indexUrl,
+    },
+  ]}
+>
+  <section class="container-page py-14">
+    <nav aria-label="Breadcrumb" class="text-xs">
+      <a href={localePath(locale, '/')} class="text-ink3 hover:text-accent">{ui.home}</a>
+      <span class="mx-1.5 text-ink3">/</span>
+      <span class="text-ink2" aria-current="page">{ui.guides}</span>
+    </nav>
+    <h1 class="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">{copy.h1}</h1>
+    <p class="mt-3 max-w-[60ch] text-ink2">{copy.intro}</p>
+
+    {
+      guides.length === 0 ? (
+        <p class="mt-10 text-ink2">{copy.empty}</p>
+      ) : (
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {guides.map((g) => (
+            <a
+              href={g.href}
+              class="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent"
+            >
+              <h2 class="font-medium leading-snug group-hover:text-accent">{g.title}</h2>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-ink2">{g.description}</p>
+              <p class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                {g.minutes} {copy.minutes}
+                <Icon name="convert" size={15} class="transition-transform group-hover:translate-x-0.5" />
+              </p>
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </section>
+</Base>

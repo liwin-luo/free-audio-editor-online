@@ -11,6 +11,10 @@ export const id: Catalog = {
     navAbout: 'Tentang',
     footerBlurb:
       'Alat audio online gratis yang berjalan sepenuhnya di browser Anda. File tidak pernah diunggah — penyuntingan audio yang menjaga privasi sejak awal.',
+    share: 'Bagikan',
+    shareOn: 'Bagikan ke {name}',
+    copyLink: 'Salin tautan',
+    copied: 'Tersalin',
     about: 'Tentang',
     privacy: 'Privasi',
     guides: 'Panduan',
@@ -20,6 +24,7 @@ export const id: Catalog = {
     trustFree: 'Gratis, tanpa daftar',
     trustClean: 'Tanpa watermark',
     faqHeading: 'Pertanyaan yang sering diajukan',
+    toolFaq: 'Pertanyaan tentang {name}',
     related: 'Alat terkait',
     openTool: 'Buka {name}',
     allTools: 'Semua alat audio',
@@ -65,6 +70,7 @@ export const id: Catalog = {
     reverse: 'Putar balik',
     normalize: 'Normalisasi puncak',
     speed: 'Kecepatan',
+    pitch: 'Nada',
     volume: 'Volume',
     reverb: 'Reverb',
     adjust: 'Sesuaikan — fade, volume, kecepatan, putar balik',
@@ -220,6 +226,12 @@ export const id: Catalog = {
       subtitle: 'Pangkas audio online — gratis, langsung di browser. Tidak ada yang diunggah.',
       intro:
         'Ambil persis bagian yang dibutuhkan dari lagu, memo suara, podcast, atau rekaman apa pun. Seret di gelombang audio untuk memilih, dengarkan kembali, lalu simpan — pemangkasan seluruhnya terjadi di perangkat Anda, jadi rekaman yang panjang pun tetap privat dan langsung bisa dikerjakan.',
+      usesHeading: 'Potongan yang menyelesaikan edit',
+      uses: [
+        'Ambil jawaban podcast dan tinggalkan “ehm” di kedua sisinya.',
+        'Angkat chorus atau loop dari lagu utuh, tanpa editor desktop.',
+        'Pendekkan memo suara sebelum dikirim, supaya file hanya berisi intinya.',
+      ],
       howTo: [
         {
           name: 'Jatuhkan file Anda',
@@ -265,13 +277,19 @@ export const id: Catalog = {
     'mp3-cutter': {
       name: 'Potong Lagu',
       shortName: 'Potong Lagu',
-      title: 'Potong Lagu — Potong MP3 Online Gratis',
+      title: 'Potong MP3 online gratis',
       description:
         'Potong file MP3 online dalam beberapa klik. Simpan bagian terbaik atau hapus intro dalam hitungan detik — gratis, tanpa mendaftar, dan file tidak pernah meninggalkan perangkat.',
-      h1: 'Potong Lagu',
+      h1: 'Potong MP3',
       subtitle: 'Potong lagu dan file MP3 online — simpan bagian yang diinginkan, hapus sisanya.',
       intro:
         'Potong lagu sampai tersisa reff-nya, buang intro yang panjang, atau pisahkan bagian yang ingin ditonjolkan — langsung di browser. Pilih apakah bagian yang ditandai dipertahankan atau dihapus, dengarkan hasilnya, lalu simpan MP3 baru dalam hitungan detik.',
+      usesHeading: 'Potongan yang biasa dibuat di MP3',
+      uses: [
+        'Hapus intro, iklan, atau sunyi yang panjang dari lagu atau episode.',
+        'Simpan satu bagian dan buang sisanya, jangan hanya menutupinya dengan fade.',
+        'Potong klipnya dulu jika langkah berikutnya adalah nada dering.',
+      ],
       howTo: [
         {
           name: 'Tambahkan MP3 Anda',
@@ -320,6 +338,12 @@ export const id: Catalog = {
       subtitle: 'Potong, fade, putar balik, dan percepat audio — semua dalam satu tab browser.',
       intro:
         'Editor audio yang ringkas untuk pekerjaan cepat: potong bagian, beri fade in dan fade out, naikkan atau turunkan volume, percepat atau perlambat trek, dan putar balik. Setiap suntingan diterapkan di perangkat Anda saat diekspor — file asli di disk selalu tetap utuh.',
+      usesHeading: 'Edit yang tetap di satu tab',
+      uses: [
+        'Potong file, lalu fade tepi yang baru supaya potongannya tidak klik.',
+        'Percepat atau balik satu bagian tanpa mengekspor antar alat.',
+        'Naikkan MP3 yang pelan di proses yang sama, dengan volume atau normalisasi.',
+      ],
       howTo: [
         {
           name: 'Buka file Anda',
@@ -368,6 +392,12 @@ export const id: Catalog = {
       subtitle: 'Pilih bagian terbaik dari lagu apa pun dan simpan sebagai nada dering — kurang dari semenit.',
       intro:
         'Pilih hook, drop, atau intro dari lagu favorit Anda, lalu jadikan nada dering. Alat ini menahan pilihan pada panjang nada dering klasik, yaitu 40 detik, menambahkan fade jika Anda menginginkannya, dan mengekspor langsung untuk ponsel — M4R untuk iPhone, MP3 untuk ponsel lain.',
+      usesHeading: 'Nada dering yang benar-benar dipasang',
+      uses: [
+        'Ambil hook sebuah lagu dan berhenti di dalam batas 40 detik.',
+        'Fade bagian akhir supaya nada tidak terputus di tengah frasa.',
+        'Ekspor M4R untuk iPhone, atau MP3 jika Anda hanya butuh klipnya.',
+      ],
       howTo: [
         {
           name: 'Tambahkan lagu',
@@ -409,13 +439,19 @@ export const id: Catalog = {
     'audio-joiner': {
       name: 'Gabung Audio',
       shortName: 'Gabung Audio',
-      title: 'Gabung Audio — Gabungkan Lagu Online Gratis',
+      title: 'Gabung lagu MP3 online gratis',
       description:
         'Gabungkan lagu dan file audio menjadi satu trek, dalam urutan apa pun, langsung di browser. Fade antar trek bersifat opsional — gratis, privat, tanpa unggah.',
-      h1: 'Gabung Audio',
+      h1: 'Gabung lagu',
       subtitle: 'Gabungkan lagu dan file audio menjadi satu trek — urutan apa pun, dalam hitungan detik.',
       intro:
         'Gabungkan beberapa lagu, episode podcast, atau rekaman suara menjadi satu file. Tambahkan trek sebanyak yang Anda mau, atur urutannya, dan pudarkan awal serta akhir bila perlu. Penggabungan terjadi di perangkat Anda — koleksi yang besar pun langsung tergabung dan tetap privat.',
+      usesHeading: 'Trek yang layak digabung',
+      uses: [
+        'Letakkan memo suara di depan sebuah lagu, dalam urutan yang Anda pilih.',
+        'Gabungkan rekaman per bab menjadi satu file, untuk pemutar tanpa playlist.',
+        'Crossfade di sambungan supaya klip yang berurutan tidak meletup.',
+      ],
       howTo: [
         {
           name: 'Tambahkan trek',
@@ -464,6 +500,12 @@ export const id: Catalog = {
       subtitle: 'Konversi file WAV ke MP3 dalam hitungan detik — langsung di browser, tidak ada yang diunggah.',
       intro:
         'Ubah rekaman WAV yang berat menjadi MP3 yang ringkas, tanpa menginstal apa pun dan tanpa mengirim audio ke server. Jatuhkan file, pilih bitrate — 320 kbps untuk musik, 128 kbps untuk suara — dan konversi terjadi di perangkat Anda sendiri, biasanya dalam beberapa detik.',
+      usesHeading: 'WAV yang layak dikonversi',
+      uses: [
+        'Kecilkan rekaman studio atau lapangan sampai cukup kecil untuk dikirim.',
+        'Ubah ekspor lossless menjadi MP3 192 atau 320 kbps untuk didengar sehari-hari.',
+        'Konversi dulu, baru potong. WAV terlalu besar untuk diseret dua kali.',
+      ],
       howTo: [
         {
           name: 'Jatuhkan WAV Anda',
@@ -513,6 +555,12 @@ export const id: Catalog = {
       subtitle: 'Putar lagu atau rekaman apa pun secara terbalik — satu klik, langsung di browser.',
       intro:
         'Balik trek apa pun agar diputar dari akhir ke awal: cari pesan tersembunyi dalam lagu, buat efek simbal terbalik untuk campuran musik, atau dengarkan seperti apa suara Anda saat diputar balik. Seluruh file dibalik di perangkat Anda, dan baru ditulis saat Anda mengekspor.',
+      usesHeading: 'Alasan membalik sebuah file',
+      uses: [
+        'Dengarkan campuran atau kalimat yang tersembunyi dengan memutarnya mundur.',
+        'Buat swell terbalik dari pukulan simbal atau vokal.',
+        'Balik hanya bagian yang dipilih dan biarkan sisa file tetap.',
+      ],
       howTo: [
         {
           name: 'Tambahkan audio',
@@ -554,13 +602,19 @@ export const id: Catalog = {
     'change-audio-speed': {
       name: 'Ubah Kecepatan Audio',
       shortName: 'Ubah Kecepatan',
-      title: 'Ubah Kecepatan Audio — Percepat atau Perlambat Online',
+      title: 'Percepat lagu online — atau perlambat',
       description:
         'Percepat atau perlambat audio apa pun dari 0.5× hingga 2× di browser. Dengarkan langsung, ekspor MP3 atau WAV — gratis, privat, tidak ada yang diunggah.',
-      h1: 'Ubah Kecepatan Audio',
+      h1: 'Percepat lagu',
       subtitle: 'Percepat atau perlambat audio apa pun dari 0.5× hingga 2× — langsung di browser.',
       intro:
         'Ubah kuliah 40 menit menjadi 20 menit yang lebih cepat, perlambat solo gitar hingga setengah kecepatan untuk latihan, atau sesuaikan trek agar muat di slot video yang lebih pendek. Geser pengatur kecepatan, dengarkan perubahannya langsung, lalu ekspor — audio diolah di perangkat Anda dan tidak pernah diunggah.',
+      usesHeading: 'Kecepatan yang cocok dengan pekerjaannya',
+      uses: [
+        'Pelankan ucapan atau solo sampai setengahnya saat Anda perlu setiap suku kata atau nada.',
+        'Lewati podcast atau kuliah pada 1,25× sampai 1,5× saat 1× terlalu lambat untuk diselesaikan.',
+        'Nada naik dan turun bersama tempo. Untuk menggeser nada dan mempertahankan durasi, pakai pengubah nada.',
+      ],
       howTo: [
         {
           name: 'Jatuhkan file Anda',
@@ -578,7 +632,7 @@ export const id: Catalog = {
       faqs: [
         {
           q: 'Apakah mengubah kecepatan juga mengubah nada?',
-          a: 'Ya — kecepatan dan nada bergerak bersama, seperti piringan yang diputar lebih cepat atau lebih lambat: 2× terdengar sekitar satu oktaf lebih tinggi, 0.5× sekitar satu oktaf lebih rendah. Itulah efek klasiknya; mengubah tempo sambil mempertahankan nada asli membutuhkan algoritma time-stretch khusus, yang mungkin kami tambahkan nanti.',
+          a: 'Ya — kecepatan dan nada bergerak bersama, seperti piringan yang diputar lebih cepat atau lebih lambat: 2× terdengar sekitar satu oktaf lebih tinggi, 0.5× sekitar satu oktaf lebih rendah. Itulah efek klasiknya; mengubah tempo sambil mempertahankan nada asli membutuhkan algoritma time-stretch khusus, yang mungkin kami tambahkan nanti. Untuk mengubah nada tanpa mengubah durasi, gunakan pengubah nada.',
         },
         {
           q: 'Kecepatan apa saja yang bisa dipilih?',
@@ -609,6 +663,12 @@ export const id: Catalog = {
       subtitle: 'Perbesar rekaman yang pelan hingga 4× — dengan limiter, jadi tidak ada yang clipping.',
       intro:
         'Perbaiki rekaman yang terlalu pelan: memo suara dari ponsel, kuliah yang direkam dari barisan belakang, soundtrack video yang tersimpan pada level rendah. Naikkan volume hingga 4× (12 dB), dan limiter bawaan menahan puncaknya, sehingga hasilnya lebih keras tanpa berubah menjadi distorsi.',
+      usesHeading: 'Rekaman yang perlu diangkat',
+      uses: [
+        'Naikkan memo suara yang direkam terlalu jauh dari mikrofon.',
+        'Perbesar kuliah yang direkam dari belakang ruangan, dan biarkan limiter menahan puncaknya.',
+        'Buat MP3 yang pelan cukup keras untuk diletakkan di bawah video, tanpa memotong seluruh file.',
+      ],
       howTo: [
         {
           name: 'Tambahkan audio',
@@ -650,13 +710,19 @@ export const id: Catalog = {
     'mp4-to-mp3': {
       name: 'Konversi MP4 ke MP3',
       shortName: 'MP4 ke MP3',
-      title: 'Konversi MP4 ke MP3 — Video ke MP3 Online Gratis',
+      title: 'MP4 ke MP3 online gratis',
       description:
         'Konversi video MP4 ke MP3 di browser — soundtrack diekstrak secara lokal, tidak pernah diunggah. Gratis, cepat, tanpa mendaftar, dan berjalan di ponsel.',
-      h1: 'Konversi MP4 ke MP3',
+      h1: 'MP4 ke MP3',
       subtitle: 'Ambil soundtrack dari video apa pun — langsung di browser, tidak ada yang diunggah.',
       intro:
         'Ubah video MP4 menjadi audio MP3 tanpa menginstal apa pun dan tanpa mengunggah ukuran gigabyte ke server. Browser membaca file dari disk, mendekode soundtrack secara lokal, lalu menyimpannya sebagai MP3 — video 500 MB selesai dalam hitungan detik karena yang diproses hanya trek audionya.',
+      usesHeading: 'Video yang dikonversi demi suaranya',
+      uses: [
+        'Simpan kuliah, konser, atau wawancara sebagai audio yang bisa diputar dengan layar mati.',
+        'Tidak perlu mengunggah video yang besar. Soundtrack didekode di perangkat ini.',
+        'Konversi seluruh trek, lalu potong jika Anda hanya butuh satu bagian.',
+      ],
       howTo: [
         {
           name: 'Jatuhkan video',
@@ -706,6 +772,12 @@ export const id: Catalog = {
       subtitle: 'Simpan soundtrack video apa pun sebagai MP3 atau WAV — secara lokal, dalam hitungan detik.',
       intro:
         'Pisahkan suara dari gambarnya: ambil wawancara dari panggilan video, simpan film konser sebagai album, atau pakai ulang soundtrack di suntingan Anda sendiri. Trek audio didekode di perangkat Anda, lalu bisa disimpan sebagai WAV lossless atau sebagai MP3 yang ringkas.',
+      usesHeading: 'Soundtrack yang layak ditarik keluar',
+      uses: [
+        'Ambil audio dari rekaman layar atau video ponsel.',
+        'Simpan WAV jika masih akan diedit, atau MP3 jika sudah selesai.',
+        'Serahkan file yang panjang ke pemotong saat yang penting hanya satu menit.',
+      ],
       howTo: [
         {
           name: 'Jatuhkan videonya',
@@ -755,6 +827,12 @@ export const id: Catalog = {
       subtitle: 'Rekam mikrofon, pangkas hasilnya, simpan sebagai MP3 — tidak ada yang meninggalkan perangkat.',
       intro:
         'Perekam yang sekaligus bisa memangkas: rekam memo suara, wawancara, latihan, atau catatan rapat, lalu buang bagian hening dan ekspor file yang bersih. Perekaman maupun penyuntingan terjadi di browser Anda — audio tidak pernah dikirim ke mana pun, sehingga tetap nyaman untuk percakapan yang bersifat rahasia.',
+      usesHeading: 'Take yang layak direkam di sini',
+      uses: [
+        'Rekam memo suara, latihan bahasa, atau narasi kasar tanpa memasang aplikasi.',
+        'Potong awal dan akhir sebelum ekspor, supaya take hanya berisi kata-katanya.',
+        'Simpan MP3 untuk dikirim, atau WAV jika take masih akan diedit.',
+      ],
       howTo: [
         {
           name: 'Izinkan mikrofon',
@@ -803,6 +881,12 @@ export const id: Catalog = {
       subtitle: 'Perbesar trek dan soundtrack video yang pelan hingga 4× — bersih, tidak clipping.',
       intro:
         'Untuk semua yang terdengar terlalu pelan: video ponsel yang sunyi, rekaman akustik yang lembut, podcast yang hasil mastering-nya nyaris berbisik. Muat file, naikkan volume hingga 4×, dan biarkan limiter bawaan menahan puncak agar bagian yang keras tetap bersih. Berlaku untuk file audio maupun video — yang diproses hanya soundtrack-nya.',
+      usesHeading: 'File pelan yang halaman ini tangani',
+      uses: [
+        'Angkat soundtrack video yang keluar lebih pelan daripada gambarnya.',
+        'Perbesar musik yang diekspor atau di-rip pada level rendah.',
+        'Tetap di sekitar 150% sampai 250% jika Anda ingin lebih keras tanpa limiter yang memompa.',
+      ],
       howTo: [
         {
           name: 'Jatuhkan file Anda',
@@ -851,6 +935,12 @@ export const id: Catalog = {
       subtitle: 'Satu klik untuk menaikkan file yang pelan ke level yang konsisten dan sehat — dianalisis di perangkat Anda.',
       intro:
         'Normalisasi memindai file untuk menemukan puncak paling keras, lalu menaikkan seluruh file tepat sebesar yang dibutuhkan agar puncak itu berada tepat di bawah clipping. Hasilnya: file memakai seluruh rentang volume yang tersedia, tanpa tebakan manual. Ini perbaikan yang tepat ketika rekaman memang pelan secara merata — memo suara, rekaman lapangan, atau hasil ekspor dari aplikasi lain yang keluar di −18 dB.',
+      usesHeading: 'Saat satu level harus pas',
+      uses: [
+        'Naikkan file yang pelan sampai puncak terkerasnya mencapai level yang wajar.',
+        'Samakan klip yang akan digabung, supaya satu bab tidak setengah sekeras bab berikutnya.',
+        'Pakai ini, bukan boost membabi buta, saat Anda tidak tahu harus mendorong seberapa jauh.',
+      ],
       howTo: [
         {
           name: 'Jatuhkan audio Anda',
@@ -899,6 +989,12 @@ export const id: Catalog = {
       subtitle: 'Suara larut malam: perlambat trek ke sekitar 85%, tambahkan ruang, lalu ekspor — tanpa aplikasi, tanpa unggah.',
       intro:
         'Slowed + reverb adalah gaya yang menurunkan lagu ke sekitar 80–90% kecepatan sehingga nadanya ikut turun, lalu menambahkan ekor gema yang lembut sampai semuanya terdengar seperti diputar dari dua ruangan jauhnya. Muat sebuah lagu, geser kecepatan ke sekitar 85%, naikkan reverb sampai terasa pas, lalu ekspor — seluruh suntingan terjadi di perangkat Anda, jadi trek sepanjang lagu penuh pun selesai dalam hitungan detik. Naikkan kecepatan di atas 100%, dan yang Anda dapatkan adalah nightcore.',
+      usesHeading: 'Suara slowed dan reverb',
+      uses: [
+        'Turunkan trek ke sekitar 85% dan tambahkan ruang. Itu campuran malam yang biasa.',
+        'Mulai dari lagu yang kering. Efeknya adalah pelan dan reverb sekaligus.',
+        'Potong ke bagian yang Anda inginkan sebelum ekspor, supaya wash bukan seluruh album.',
+      ],
       howTo: [
         {
           name: 'Jatuhkan lagu Anda',
@@ -936,6 +1032,121 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Jatuhkan lagu, atau klik untuk memilih',
+    },
+    'pitch-changer': {
+      name: 'Pengubah nada',
+      shortName: 'Nada',
+      title: 'Pengubah nada — Ubah nada tanpa mengubah durasi',
+      description: 'Naikkan atau turunkan nada lagu atau suara hingga 12 seminada, tanpa mengubah durasinya. Gratis, di browser, tidak ada yang diunggah.',
+      h1: 'Pengubah nada',
+      subtitle: 'Geser nada naik atau turun per seminada. Durasi file tetap sama.',
+      intro: 'Jatuhkan lagu atau rekaman, lalu geser pengatur nada. Nada berubah, posisinya di waktu tetap. Ini bukan pengubah kecepatan: file tidak menjadi lebih pendek atau lebih panjang. Prosesnya berjalan di perangkat Anda.',
+      usesHeading: 'Nada bergerak, waktunya tidak',
+      uses: [
+        'Pindahkan lagu ke kunci yang lebih nyaman untuk dinyanyikan. Panjang file tetap.',
+        'Geser suara beberapa seminada untuk sebuah karakter, tanpa mempercepat kalimatnya.',
+        'Efek lebih cepat dan lebih tinggi ada di pengubah kecepatan. Halaman ini tidak memperpendek audio.',
+      ],
+      howTo: [
+        { name: 'Jatuhkan file', text: 'Tambahkan MP3, WAV, M4A, atau audio lain. File tetap di perangkat Anda.' },
+        { name: 'Atur nadanya', text: 'Geser dari −12 sampai +12 seminada. +12 satu oktaf lebih tinggi, −12 satu oktaf lebih rendah. 0 membiarkan file seperti semula.' },
+        { name: 'Dengarkan dan ekspor', text: 'Putar untuk mendengar nada baru dengan durasi asli, lalu simpan sebagai MP3 atau WAV.' },
+      ],
+      faqs: [
+        { q: 'Apakah durasi file berubah?', a: 'Tidak. Pengatur nada menggeser nada dan membiarkan durasi tetap. Untuk membuat file lebih cepat atau lebih lambat — yang juga menggeser nada — gunakan pengubah kecepatan.' },
+        { q: 'Seberapa jauh nadanya bisa digeser?', a: 'Dari −12 sampai +12 seminada, satu per satu. Itu satu oktaf ke masing-masing arah. Suara dan satu instrumen lebih tahan geseran besar daripada campuran yang padat.' },
+        { q: 'Geseran besar terdengar alami?', a: 'Beberapa seminada masih dekat dengan aslinya. Lewat kira-kira 7 seminada, suaranya menipis dan terdengar metalik. Itu batas pengubah ini, bukan pengaturan yang bisa dimatikan.' },
+        { q: 'Apa ini sama dengan mengubah kecepatan?', a: 'Tidak. Pengubah kecepatan memutar file lebih cepat atau lebih lambat, jadi nada ikut berubah dan durasinya juga berubah. Halaman ini hanya menggeser nada.' },
+        { q: 'Apakah file diunggah?', a: 'Tidak. Pergeseran dihitung di browser dan hasil ekspor disimpan di perangkat Anda.' },
+      ],
+      dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+    },
+    'm4a-to-mp3': {
+      name: 'M4A ke MP3',
+      shortName: 'M4A ke MP3',
+      title: 'M4A ke MP3 — Ubah M4A dan AAC online gratis',
+      description: 'Ubah audio M4A dan AAC menjadi MP3 di browser. Gratis, tanpa akun, tidak ada yang diunggah. Pilih 128, 192, atau 320 kbps.',
+      h1: 'M4A ke MP3',
+      subtitle: 'Ubah file M4A dan AAC menjadi MP3, di browser, tanpa unggahan.',
+      intro: 'Memo suara dan rekaman AAC sering berupa M4A. Jatuhkan filenya, pilih bitrate, dan browser mendekode lalu menyimpan MP3. Audionya tidak dikirim ke server.',
+      usesHeading: 'M4A yang orang konversi',
+      uses: [
+        'Ubah memo suara iPhone atau unduhan AAC menjadi MP3 yang lebih banyak pemutar bisa buka.',
+        '128 kbps untuk ucapan dan 320 kbps untuk musik.',
+        'M4A tetap di perangkat ini. Tidak ada yang diunggah untuk menyelesaikan konversi.',
+      ],
+      howTo: [
+        { name: 'Jatuhkan M4A', text: 'Seret file .m4a atau .aac ke halaman, atau klik untuk memilih. Video MP4 ada di halaman MP4 ke MP3.' },
+        { name: 'Pilih bitrate', text: '320 kbps untuk musik, 192 kbps untuk dengar sehari-hari, 128 kbps untuk memo suara.' },
+        { name: 'Konversi dan unduh', text: 'Klik Konversi ke MP3. Dekode dan enkode terjadi di perangkat Anda, lalu file terunduh.' },
+      ],
+      faqs: [
+        { q: 'File M4A yang mana yang bisa?', a: 'Audio AAC di dalam M4A, yang dipakai memo suara dan sebagian besar unduhan AAC. Apple Lossless (ALAC) di dalam M4A sering gagal didekode di browser. Ubah dulu ke AAC atau WAV, lalu bawa ke sini.' },
+        { q: 'Bagaimana dengan video MP4?', a: 'Pakai konverter MP4 ke MP3 untuk video. Halaman ini untuk audio: M4A dan AAC.' },
+        { q: 'Mengubah ke MP3 mengurangi kualitas?', a: 'MP3 bersifat lossy. Pada 320 kbps, bedanya dengan AAC asli kecil bagi hampir semua orang. Simpan M4A jika Anda perlu file asli yang utuh.' },
+        { q: 'Tag dan sampul ikut tersimpan?', a: 'Tidak. MP3 ditulis tanpa metadata, sama seperti konverter WAV. Judul, artis, dan sampul tidak disalin.' },
+        { q: 'Apakah file diunggah?', a: 'Tidak. Browser mendekode M4A dan mengkodekan MP3 di perangkat Anda. Audionya tetap di situ.' },
+      ],
+      dropHint: 'Jatuhkan file M4A atau AAC, atau klik untuk memilih',
+      exportLabel: 'Konversi ke MP3',
+    },
+    'ogg-to-mp3': {
+      name: 'Konversi OGG ke MP3',
+      shortName: 'OGG ke MP3',
+      title: 'Konversi OGG ke MP3 — gratis di browser',
+      description: 'Konversi file OGG ke MP3 di browser. Gratis, tanpa akun, tidak ada yang diunggah. Vorbis atau Opus di dalam OGG, pada 128, 192, atau 320 kbps.',
+      h1: 'Konversi OGG ke MP3',
+      subtitle: 'Ubah audio OGG menjadi MP3 — di browser, tidak ada yang diunggah.',
+      intro: 'OGG adalah wadah, biasanya Vorbis, kadang Opus. Jatuhkan file, pilih bitrate, dan browser mendekode lalu menyimpan MP3. Audio tidak dikirim ke server.',
+      usesHeading: 'OGG yang orang konversi',
+      uses: [
+        'Buka rip permainan, unduhan, atau rekaman browser yang datang sebagai OGG.',
+        'Simpan MP3 untuk ponsel, mobil, atau editor yang tidak menerima OGG.',
+        'Biarkan ucapan di 128 kbps dan musik lebih tinggi. Mencoba lagi dilakukan lokal, dan gratis.',
+      ],
+      howTo: [
+        { name: 'Jatuhkan OGG', text: 'Seret file .ogg atau .oga ke halaman, atau klik untuk memilih.' },
+        { name: 'Pilih bitrate', text: '320 kbps untuk musik, 192 kbps untuk dengar sehari-hari, 128 kbps untuk suara.' },
+        { name: 'Konversi dan unduh', text: 'Klik Konversi ke MP3. Dekode dan kode terjadi di perangkat Anda, lalu MP3 terunduh.' },
+      ],
+      faqs: [
+        { q: 'Apa itu file OGG?', a: 'OGG adalah wadah. Musik di dalamnya biasanya Vorbis. Beberapa file suara memakai Opus. Jika browser bisa mendekode, halaman ini mengubahnya menjadi MP3.' },
+        { q: 'Browser mana yang bisa mengonversi OGG?', a: 'Chrome dan Firefox mendekode Vorbis dan Opus di dalam OGG. Safari mendekode Opus dan sering menolak Vorbis. Jika file tidak berbunyi di tab browser biasa, halaman ini juga tidak bisa mengonversinya.' },
+        { q: 'Konversi OGG ke MP3 mengurangi kualitas?', a: 'MP3 berlossy. Pada 320 kbps perbedaannya kecil bagi hampir semua orang. Simpan OGG jika Anda perlu file asli.' },
+        { q: 'Tag dan sampul tetap ada?', a: 'Tidak. MP3 ditulis tanpa metadata. Judul, artis, dan sampul tidak disalin.' },
+        { q: 'Apakah file diunggah?', a: 'Tidak. Browser mendekode OGG dan mengkode MP3 secara lokal. Audio tetap di perangkat Anda.' },
+      ],
+      dropHint: 'Jatuhkan file OGG, atau klik untuk memilih',
+      exportLabel: 'Konversi ke MP3',
+    },
+    'opus-to-mp3': {
+      name: 'Konversi Opus ke MP3',
+      shortName: 'Opus ke MP3',
+      title: 'Konversi Opus ke MP3 — gratis di browser',
+      description: 'Konversi audio Opus ke MP3 di browser. Gratis, tanpa akun, tidak ada yang diunggah. Untuk file .opus dan Opus di dalam OGG atau WebM.',
+      h1: 'Konversi Opus ke MP3',
+      subtitle: 'Ubah audio Opus menjadi MP3 — di browser, tidak ada yang diunggah.',
+      intro: 'Pesan suara dan beberapa unduhan adalah Opus: file .opus, atau Opus di dalam OGG atau WebM. Jatuhkan file, pilih bitrate, dan browser mendekode lalu menyimpan MP3. Audio tidak dikirim ke server.',
+      usesHeading: 'Opus yang orang konversi',
+      uses: [
+        'Ubah pesan suara atau ekspor Opus menjadi MP3 untuk pemutar yang tidak bisa membuka Opus.',
+        'Ucapan cukup di 128 kbps. Yang diubah adalah format yang orang bisa putar, bukan durasinya.',
+        'Konversi di sini, lalu potong jika pesan punya sunyi panjang di salah satu ujung.',
+      ],
+      howTo: [
+        { name: 'Jatuhkan Opus', text: 'Seret file .opus ke halaman, atau klik untuk memilih. OGG dan WebM yang berisi Opus bekerja dengan cara yang sama.' },
+        { name: 'Pilih bitrate', text: '128 kbps cukup untuk pesan suara. Jika Opus-nya musik, pakai 192 atau 320 kbps.' },
+        { name: 'Konversi dan unduh', text: 'Klik Konversi ke MP3. Dekode dan kode terjadi di perangkat Anda, lalu MP3 terunduh.' },
+      ],
+      faqs: [
+        { q: 'Apa itu format Opus?', a: 'Opus adalah codec audio. Pesan suara WhatsApp dan Telegram sering berupa .opus. Opus juga ada di dalam OGG dan WebM. Halaman ini mengubahnya menjadi MP3 yang bisa diputar di mana saja.' },
+        { q: 'File Opus mana yang berhasil?', a: 'File yang browser sudah bisa putar: .opus, OGG dengan Opus, dan WebM dengan Opus, di Chrome, Firefox, dan Safari terbaru. Jika tab biasa tetap senyap, halaman ini juga tidak bisa mendekode file itu.' },
+        { q: 'Konversi Opus ke MP3 mengurangi kualitas?', a: 'MP3 berlossy, Opus juga. Pada 320 kbps, MP3 sudah di batas formatnya. Pesan suara cukup di 128 kbps. Simpan file Opus jika Anda perlu yang asli.' },
+        { q: 'Apakah tag tetap ada?', a: 'Tidak. MP3 ditulis tanpa metadata. Judul dan artis tidak disalin.' },
+        { q: 'Apakah file diunggah?', a: 'Tidak. Browser mendekode audio Opus dan mengkode MP3 secara lokal. Audio tetap di perangkat Anda.' },
+      ],
+      dropHint: 'Jatuhkan file Opus, atau klik untuk memilih',
+      exportLabel: 'Konversi ke MP3',
     },
   },
 };

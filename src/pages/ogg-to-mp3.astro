@@ -1,0 +1,8 @@
+---
+import ToolPage from '../components/ToolPage.astro';
+import { getTool } from '../data/tools';
+
+const tool = getTool('ogg-to-mp3')!;
+---
+
+<ToolPage tool={tool} />

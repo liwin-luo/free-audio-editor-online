@@ -6,11 +6,23 @@ import { localePath, type Locale } from '../i18n/locales';
 
 interface Props {
   locale?: Locale;
+  /** Canonical URL of the current page. */
+  shareUrl: string;
+  /** Page title sent as the share text. */
+  shareTitle: string;
 }
-const { locale = 'en' } = Astro.props;
+const { locale = 'en', shareUrl, shareTitle } = Astro.props;
 const { ui } = getShell(locale);
 const year = new Date().getFullYear();
 const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
+const q = encodeURIComponent;
+const shares = [
+  { name: 'X', href: `https://x.com/intent/post?url=${q(shareUrl)}&text=${q(shareTitle)}` },
+  { name: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${q(shareUrl)}` },
+  { name: 'Reddit', href: `https://www.reddit.com/submit?url=${q(shareUrl)}&title=${q(shareTitle)}` },
+  { name: 'WhatsApp', href: `https://wa.me/?text=${q(`${shareTitle} ${shareUrl}`)}` },
+];
+const shareOn = (name: string) => ui.shareOn.replace('{name}', name);
 ---
 
 <footer class="mt-20 border-t border-line bg-surface">
@@ -25,6 +37,33 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
       <p class="mt-3 max-w-[38ch] text-sm leading-relaxed text-ink2">
         {ui.footerBlurb}
       </p>
+      <div class="mt-5">
+        <p class="text-[11px] font-medium uppercase tracking-wider text-ink3">{ui.share}</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {
+            shares.map((item) => (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={shareOn(item.name)}
+                class="inline-flex h-8 items-center rounded-full border border-line px-3 text-xs text-ink2 hover:border-ink3 hover:text-ink"
+              >
+                {item.name}
+              </a>
+            ))
+          }
+          <button
+            type="button"
+            data-copy-link
+            data-url={shareUrl}
+            data-copied={ui.copied}
+            class="inline-flex h-8 items-center rounded-full border border-line px-3 text-xs text-ink2 hover:border-ink3 hover:text-ink"
+          >
+            <span data-copy-label aria-live="polite">{ui.copyLink}</span>
+          </button>
+        </div>
+      </div>
     </div>
 
     {
@@ -47,7 +86,7 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
     <nav aria-label={ui.navAbout}>
       <p class="text-[11px] font-medium uppercase tracking-wider text-ink3">{ui.about}</p>
       <ul class="mt-3 space-y-2 text-sm">
-        {locale === 'en' && <li><a href="/guides" class="text-ink2 hover:text-accent">{ui.guides}</a></li>}
+        <li><a href={localePath(locale, '/guides')} class="text-ink2 hover:text-accent">{ui.guides}</a></li>
         <li><a href={localePath(locale, '/about')} class="text-ink2 hover:text-accent">{ui.about}</a></li>
         <li><a href={localePath(locale, '/privacy')} class="text-ink2 hover:text-accent">{ui.privacy}</a></li>
         <li><a href="/llms.txt" class="text-ink2 hover:text-accent">llms.txt</a></li>
@@ -65,3 +104,38 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
     </div>
   </div>
 </footer>
+<script>
+  for (const btn of document.querySelectorAll('[data-copy-link]')) {
+    if (!(btn instanceof HTMLButtonElement) || btn.dataset.bound) continue;
+    btn.dataset.bound = '1';
+    btn.addEventListener('click', async () => {
+      const url = btn.dataset.url ?? '';
+      const label = btn.querySelector('[data-copy-label]');
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(url);
+        ok = true;
+      } catch {
+        try {
+          const input = document.createElement('textarea');
+          input.value = url;
+          input.setAttribute('readonly', '');
+          input.style.position = 'fixed';
+          input.style.opacity = '0';
+          document.body.append(input);
+          input.select();
+          ok = document.execCommand('copy');
+          input.remove();
+        } catch {
+          ok = false;
+        }
+      }
+      if (!ok || !label) return;
+      const previous = label.textContent;
+      label.textContent = btn.dataset.copied ?? previous;
+      window.setTimeout(() => {
+        label.textContent = previous;
+      }, 2000);
+    });
+  }
+</script>

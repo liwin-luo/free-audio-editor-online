@@ -1,6 +1,6 @@
 ---
-title: Convert Video to MP3 in Your Browser (Nothing Uploaded)
-description: Turn MP4, WebM or MOV into MP3 without uploading the video. Which bitrate to pick, and the AC3/DTS files a browser cannot decode.
+title: MP4 to MP3 — convert a video in your browser
+description: Turn an MP4, WebM or MOV into MP3 without uploading the video. Which bitrate to pick, and the AC3/DTS files a browser cannot decode.
 tool: mp4-to-mp3
 date: 2026-10-14
 layout: ../../layouts/Guide.astro
@@ -21,10 +21,15 @@ retention policy says. Many of these sites also cap the free tier at a few
 hundred megabytes, add a queue, or wrap the MP3 in a second page of ads.
 
 A local conversion never sends the video. The tab decodes the audio track with
-the same media engine that plays the file, then encodes MP3 on the device. A
-three-minute clip finishes in a second or two on a recent phone, because there
-is no upload. A long file is limited by memory, not by a host's quota: if the
-video plays in the browser, the soundtrack can usually be extracted.
+the same media engine that plays the file, then encodes MP3 on the device. The
+first MP3 export loads the encoder, lamejs, from jsDelivr. That request is the
+library. The video is not in it. A three-minute clip finishes in a second or two
+on a recent phone, because there is no upload. A long file is limited by memory,
+not by a host's quota: if the video plays in the browser, the soundtrack can
+usually be extracted.
+
+This page converts a file you already have. It does not fetch a video from
+YouTube, TikTok, or any other site.
 
 Use an upload site, or ffmpeg on your own computer, only when the browser cannot
 decode the audio. That case is specific, and it is the next section but one.
@@ -34,28 +39,37 @@ decode the audio. That case is specific, and it is the next section but one.
 1. Open the [MP4 to MP3 converter](/mp4-to-mp3).
 2. Drop the video, or click to browse. MP4, WebM and MOV are the containers
    people actually have. M4A audio files work too — there is no picture to drop.
-3. Pick a bitrate (below) and export. The MP3 downloads straight to your device.
-   The video stays where it was.
+3. The format menu opens on **MP3 · 320 kbps**. Change it if you want, then
+   click **Convert to MP3**. The file downloads to your device. The video stays
+   where it was.
 
-If you want a lossless copy of the soundtrack instead of an MP3, use the
-[audio extractor](/extract-audio) and export WAV. That is the right intermediate
-when you plan to trim or normalize the result and export MP3 only at the end.
-Encoding MP3 twice is the step that loses detail; the conversion itself does not.
+![The MP4 to MP3 page before a file is opened. The drop zone is the only step on screen.](/guides-media/convert-video-to-mp3/en/drop.webp)
+
+![After the video is open, the format menu is on MP3 · 320 kbps and the button reads Convert to MP3.](/guides-media/convert-video-to-mp3/en/ready.webp)
+
+The line under the drop zone lists ordinary audio formats and says “up to about
+an hour.” That sentence is shared with the other tools. Here a long video is
+limited by the device’s memory, not by that line.
+
+The same menu includes **WAV · lossless**. Pick that when you still plan to trim
+or normalize and only want one MP3 encode at the end. Encoding MP3 twice is the
+step that loses detail. The [audio extractor](/extract-audio) is the same engine
+with WAV already selected.
 
 ## Which bitrate
 
-The converter offers the three rates that cover real use. Bigger is not
-automatically better once you are past what you can hear.
+The menu has three MP3 rates. Bigger is not automatically better once you are
+past what you can hear.
 
 - **128 kbps** is the right rate for speech: a lecture, a meeting, a voice memo
   someone filmed. Music at 128 kbps is listenable and slightly dull. Use it when
   the file has to be small.
-- **192 kbps** is the default and the sensible middle for music you will actually
-  listen to. Most people cannot pick it from a higher rate on ordinary headphones.
-- **320 kbps** is the top of MP3. Use it when the source is a clean recording and
-  you want the smallest compromise, or when you are handing the file to someone
-  who asked for "the best MP3." It is still lossy. If the next step is more
-  editing, export WAV instead and encode once, later.
+- **192 kbps** is the sensible middle for music you will actually listen to.
+  Most people cannot pick it from a higher rate on ordinary headphones.
+- **320 kbps** is what this page selects when the file opens, and it is the top
+  of MP3. Leave it when the source is a clean recording, or when someone asked
+  for "the best MP3." It is still lossy. If the next step is more editing,
+  export WAV instead and encode once, later.
 
 A phone video of a concert does not become a studio master at 320 kbps. The
 bitrate only describes the MP3. It cannot put back what the camera microphone

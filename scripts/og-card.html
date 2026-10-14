@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", system-ui, sans-serif;
+    background: #09090b;
+    color: #fafafa;
+    position: relative;
+  }
+  .glow {
+    position: absolute;
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(13,148,136,0.22) 0%, rgba(13,148,136,0) 65%);
+    top: -280px; right: -200px;
+  }
+  .glow2 {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,212,191,0.10) 0%, rgba(45,212,191,0) 60%);
+    bottom: -300px; left: -150px;
+  }
+  .frame { position: absolute; inset: 0; padding: 72px 80px; display: flex; flex-direction: column; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 20px; }
+  .logo {
+    width: 64px; height: 64px; border-radius: 16px; background: #0d9488;
+    display: grid; place-items: center;
+  }
+  .name { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; color: #e4e4e7; }
+  h1 {
+    font-size: 88px; font-weight: 700; letter-spacing: -0.045em; line-height: 1.02;
+    max-width: 15ch;
+  }
+  h1 .accent { color: #2dd4bf; }
+  .tagline {
+    margin-top: 28px; font-size: 30px; font-weight: 400; color: #a1a1aa;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .tagline .dot { width: 8px; height: 8px; border-radius: 50%; background: #2dd4bf; }
+  .wave { display: flex; align-items: flex-end; gap: 14px; height: 96px; }
+  .wave span { width: 10px; border-radius: 6px; background: #2dd4bf; display: block; }
+  .wave .dim { background: #3f3f46; }
+  .tools {
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+  .chip {
+    font-size: 21px; color: #d4d4d8; padding: 10px 22px;
+    border: 1px solid #27272a; border-radius: 999px; background: rgba(24,24,27,0.7);
+  }
+  .url { position: absolute; top: 88px; right: 80px; font-size: 24px; color: #71717a; font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="glow2"></div>
+  <div class="frame">
+    <div class="brand">
+      <div class="logo">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round">
+          <path d="M3 12h2M7 8v8M11 4v16M15 7v10M19 10v4M21 11v2"/>
+        </svg>
+      </div>
+      <div class="name">Free Audio Editor</div>
+    </div>
+
+    <div>
+      <h1>Edit audio online.<br><span class="accent">Nothing ever uploaded.</span></h1>
+      <div class="tagline"><span class="dot"></span>100% browser-based · free · no signup</div>
+    </div>
+
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:40px;">
+      <div class="tools">
+        <span class="chip">Trim</span>
+        <span class="chip">Cut</span>
+        <span class="chip">Merge</span>
+        <span class="chip">Reverse</span>
+        <span class="chip">Speed</span>
+        <span class="chip">MP3 · WAV</span>
+      </div>
+      <div class="wave">
+        <span class="dim" style="height:34%"></span>
+        <span style="height:72%"></span>
+        <span style="height:100%"></span>
+        <span style="height:58%"></span>
+        <span class="dim" style="height:24%"></span>
+        <span style="height:88%"></span>
+        <span style="height:44%"></span>
+        <span class="dim" style="height:62%"></span>
+        <span style="height:30%"></span>
+      </div>
+    </div>
+  </div>
+  <div class="url">freeaudioeditor.online</div>
+</body>
+</html>

@@ -11,6 +11,10 @@ export const pt: Catalog = {
     navAbout: 'Sobre',
     footerBlurb:
       'Ferramentas de áudio online e grátis que rodam inteiramente no seu navegador. Seus arquivos nunca são enviados — edição de áudio feita para respeitar sua privacidade.',
+    share: 'Compartilhar',
+    shareOn: 'Compartilhar no {name}',
+    copyLink: 'Copiar link',
+    copied: 'Copiado',
     about: 'Sobre',
     privacy: 'Privacidade',
     guides: 'Guias',
@@ -20,6 +24,7 @@ export const pt: Catalog = {
     trustFree: 'Grátis, sem cadastro',
     trustClean: 'Sem marca d\'água',
     faqHeading: 'Perguntas frequentes',
+    toolFaq: 'Perguntas sobre {name}',
     related: 'Ferramentas relacionadas',
     openTool: 'Abrir {name}',
     allTools: 'Todas as ferramentas de áudio',
@@ -65,6 +70,7 @@ export const pt: Catalog = {
     reverse: 'Reverter reprodução',
     normalize: 'Normalizar pico',
     speed: 'Velocidade',
+    pitch: 'Tom',
     volume: 'Volume',
     reverb: 'Reverb',
     adjust: 'Ajustar — fade, volume, velocidade, reverso',
@@ -219,6 +225,12 @@ export const pt: Catalog = {
       subtitle: 'Recorte áudio online — grátis, direto no navegador. Nada é enviado.',
       intro:
         'Corte exatamente o trecho que você precisa de qualquer música, recado de voz, podcast ou gravação. Arraste na forma de onda para selecionar, ouça de volta e salve — o recorte inteiro acontece no seu aparelho, então até gravações longas ficam privadas e começam na hora.',
+      usesHeading: 'Cortes que terminam a edição',
+      uses: [
+        'Tire a resposta de um podcast e deixe os “ahn” dos dois lados de fora.',
+        'Tire um refrão ou um loop da música inteira, sem um editor de desktop.',
+        'Encurte um recado de voz antes de enviar, para o arquivo ser só o que importa.',
+      ],
       howTo: [
         {
           name: 'Solte o arquivo',
@@ -271,6 +283,12 @@ export const pt: Catalog = {
       subtitle: 'Corte músicas e arquivos MP3 online — fique com o trecho que você quer e apague o resto.',
       intro:
         'Encurte uma música até o refrão, tire uma intro longa ou separe um destaque — direto no navegador. Escolha manter o trecho selecionado ou apagá-lo, ouça o resultado e salve um MP3 novo em segundos.',
+      usesHeading: 'Cortes que as pessoas fazem num MP3',
+      uses: [
+        'Tire uma intro, um anúncio ou um silêncio longo de uma música ou episódio.',
+        'Fique com um trecho e descarte o resto, em vez de cobrir com um fade.',
+        'Corte o clipe primeiro se o próximo passo for um toque.',
+      ],
       howTo: [
         {
           name: 'Adicione o MP3',
@@ -319,6 +337,12 @@ export const pt: Catalog = {
       subtitle: 'Corte, fade, reverta e acelere o áudio — tudo numa aba do navegador.',
       intro:
         'Um editor de áudio compacto para trabalhos rápidos: recorte trechos, aplique fade de entrada e de saída, aumente ou baixe o volume, acelere ou desacelere faixas e reproduza ao contrário. Cada edição é aplicada no seu aparelho na hora de exportar — o arquivo original permanece intacto no disco.',
+      usesHeading: 'Edições que ficam numa aba',
+      uses: [
+        'Corte o arquivo e faça fade nas bordas novas, para o corte não estalar.',
+        'Acelere ou inverta um trecho sem exportar entre ferramentas.',
+        'Aumente um MP3 baixo na mesma passagem, com volume ou normalização.',
+      ],
       howTo: [
         {
           name: 'Abra o arquivo',
@@ -367,6 +391,12 @@ export const pt: Catalog = {
       subtitle: 'Escolha a melhor parte de qualquer música e salve como toque — em menos de um minuto.',
       intro:
         'Escolha o gancho, o drop ou a intro da sua faixa favorita e transforme em toque. A ferramenta mantém a seleção dentro dos 40 segundos clássicos de um toque, adiciona um fade se você quiser e exporta direto para o celular — M4R para iPhone, MP3 para o resto.',
+      usesHeading: 'Toques que você realmente vai usar',
+      uses: [
+        'Pegue o gancho de uma música e pare dentro do limite de 40 segundos.',
+        'Faça fade no fim para o toque não cortar no meio da frase.',
+        'Exporte M4R para iPhone, ou MP3 se você só precisa do clipe.',
+      ],
       howTo: [
         {
           name: 'Adicione uma música',
@@ -408,13 +438,19 @@ export const pt: Catalog = {
     'audio-joiner': {
       name: 'Juntar áudios',
       shortName: 'Juntar áudios',
-      title: 'Juntar áudios — Una músicas e arquivos online grátis',
+      title: 'Juntar MP3 online grátis',
       description:
         'Junte músicas e arquivos de áudio numa faixa só, na ordem que quiser, direto no navegador. Fades opcionais entre as faixas — grátis, privado, sem envio.',
-      h1: 'Juntar áudios',
+      h1: 'Juntar MP3',
       subtitle: 'Una músicas e arquivos de áudio numa faixa só — em qualquer ordem, em segundos.',
       intro:
         'Combine várias músicas, episódios de podcast ou gravações de voz num único arquivo. Adicione quantas faixas quiser, reordene e, se quiser, aplique fade no começo e no fim. A junção acontece no seu aparelho — até bibliotecas grandes se unem na hora e continuam privadas.',
+      usesHeading: 'Faixas que vale a pena juntar',
+      uses: [
+        'Ponha um recado de voz na frente de uma música, na ordem que você escolher.',
+        'Junte gravações por capítulo num arquivo, para um player sem playlists.',
+        'Faça crossfade nas emendas para os clipes seguidos não estalarem.',
+      ],
       howTo: [
         {
           name: 'Adicione as faixas',
@@ -463,6 +499,12 @@ export const pt: Catalog = {
       subtitle: 'Converta arquivos WAV para MP3 em segundos — direto no navegador, nada enviado.',
       intro:
         'Transforme gravações WAV pesadas em MP3 compactos sem instalar nada e sem mandar o áudio para um servidor. Solte o arquivo, escolha o bitrate — 320 kbps para música, 128 kbps para voz — e a conversão acontece no seu aparelho, em geral em alguns segundos.',
+      usesHeading: 'WAV que vale a pena converter',
+      uses: [
+        'Encolha uma gravação de estúdio ou de campo até dar para enviar.',
+        'Passe uma exportação sem perda para um MP3 de 192 ou 320 kbps, para ouvir no dia a dia.',
+        'Converta primeiro e corte depois. Um WAV é grande demais para arrastar duas vezes.',
+      ],
       howTo: [
         {
           name: 'Solte o WAV',
@@ -512,6 +554,12 @@ export const pt: Catalog = {
       subtitle: 'Toque qualquer música ou gravação de trás para frente — um clique, direto no navegador.',
       intro:
         'Vire qualquer faixa para tocar do fim ao começo: procure mensagens escondidas em músicas, monte efeitos de prato ao contrário para um mix, ou só ouça como sua voz fica invertida. O arquivo inteiro é revertido no aparelho e só é gravado quando você exporta.',
+      usesHeading: 'Motivos para inverter um arquivo',
+      uses: [
+        'Ouça uma mix ou uma frase escondida de trás para a frente.',
+        'Monte um swell invertido a partir de um ataque de prato ou de uma voz.',
+        'Inverta só a seleção e deixe o resto do arquivo quieto.',
+      ],
       howTo: [
         {
           name: 'Adicione o áudio',
@@ -553,13 +601,19 @@ export const pt: Catalog = {
     'change-audio-speed': {
       name: 'Alterar velocidade do áudio',
       shortName: 'Velocidade',
-      title: 'Alterar velocidade do áudio — Acelere ou desacelere',
+      title: 'Acelerar áudio online — ou desacelerar',
       description:
         'Acelere ou desacelere qualquer áudio de 0,5× a 2× no navegador. Ouça na hora e exporte MP3 ou WAV — grátis, privado, nada enviado.',
-      h1: 'Alterar velocidade do áudio',
+      h1: 'Acelerar áudio',
       subtitle: 'Acelere ou desacelere qualquer áudio de 0,5× a 2× — direto no navegador.',
       intro:
         'Transforme uma aula de 40 minutos em 20 minutos rápidos, desacelere um solo de guitarra até a metade para praticar, ou encaixe uma faixa num vídeo mais curto. Arraste o controle de velocidade, ouça a mudança na hora e exporte — o áudio é reamostrado no aparelho e nunca enviado.',
+      usesHeading: 'Velocidades que combinam com a tarefa',
+      uses: [
+        'Desacelere a fala ou um solo até a metade quando você precisa de cada sílaba ou nota.',
+        'Passe um podcast ou uma aula em 1,25× a 1,5× quando 1× é lento demais para terminar.',
+        'O tom sobe e desce com o tempo. Para mudar o tom e manter a duração, use o trocador de tom.',
+      ],
       howTo: [
         {
           name: 'Solte o arquivo',
@@ -577,7 +631,7 @@ export const pt: Catalog = {
       faqs: [
         {
           q: 'Mudar a velocidade muda o tom?',
-          a: 'Sim — velocidade e tom andam juntos, como um disco tocado mais rápido ou mais devagar: 2× soa cerca de uma oitava acima, 0,5× cerca de uma oitava abaixo. Esse é o efeito clássico; manter o tom e mudar o tempo exige um algoritmo dedicado de time-stretch, que podemos adicionar depois.',
+          a: 'Sim — velocidade e tom andam juntos, como um disco tocado mais rápido ou mais devagar: 2× soa cerca de uma oitava acima, 0,5× cerca de uma oitava abaixo. Esse é o efeito clássico; manter o tom e mudar o tempo exige um algoritmo dedicado de time-stretch, que podemos adicionar depois. Para mudar o tom sem mudar a duração, use o alterador de tom.',
         },
         {
           q: 'Quais velocidades posso escolher?',
@@ -608,6 +662,12 @@ export const pt: Catalog = {
       subtitle: 'Aumente gravações baixas em até 4× — com limiter, para nada clipar.',
       intro:
         'Corrija gravações baixas demais: recados de voz do celular, aulas gravadas do fundo da sala, trilhas de vídeo extraídas em volume baixo. Suba o volume até 4× (+12 dB) e um limiter embutido segura os picos, então o resultado fica mais alto sem virar distorção.',
+      usesHeading: 'Gravações que precisam de um empurrão',
+      uses: [
+        'Aumente um recado de voz gravado longe demais do microfone.',
+        'Reforce uma aula gravada do fundo da sala e deixe o limitador segurar os picos.',
+        'Deixe um MP3 baixo alto o bastante para ficar sob um vídeo, sem clipar o arquivo inteiro.',
+      ],
       howTo: [
         {
           name: 'Adicione o áudio',
@@ -656,6 +716,12 @@ export const pt: Catalog = {
       subtitle: 'Tire a trilha sonora de qualquer vídeo — direto no navegador, nada enviado.',
       intro:
         'Transforme vídeos MP4 em áudio MP3 sem instalar nada e sem enviar gigabytes para um servidor. O navegador lê o arquivo do disco, decodifica a trilha no aparelho e salva como MP3 — um vídeo de 500 MB converte em segundos porque só a faixa de áudio é processada.',
+      usesHeading: 'Vídeos que se convertem pelo som',
+      uses: [
+        'Salve uma aula, um show ou uma entrevista como áudio que toca com a tela apagada.',
+        'Não precisa enviar um vídeo enorme. A trilha é decodificada neste aparelho.',
+        'Converta a faixa inteira e corte depois, se você só precisa de um trecho.',
+      ],
       howTo: [
         {
           name: 'Solte o vídeo',
@@ -705,6 +771,12 @@ export const pt: Catalog = {
       subtitle: 'Salve a trilha sonora de qualquer vídeo em MP3 ou WAV — no aparelho, em segundos.',
       intro:
         'Separe o som da imagem: tire entrevistas de videochamadas, salve um filme de show como álbum ou reaproveite uma trilha na sua própria edição. A faixa de áudio é decodificada no aparelho e pode ser salva sem perdas em WAV ou de forma compacta em MP3.',
+      usesHeading: 'Trilhas que vale a pena extrair',
+      uses: [
+        'Tire o áudio de uma gravação de tela ou de um vídeo do celular.',
+        'Fique com WAV se ainda vai editar, ou com MP3 se já terminou.',
+        'Passe um arquivo longo para o cortador quando só um minuto importa.',
+      ],
       howTo: [
         {
           name: 'Solte o vídeo',
@@ -754,6 +826,12 @@ export const pt: Catalog = {
       subtitle: 'Grave o microfone, recorte a gravação e salve em MP3 — nada sai do aparelho.',
       intro:
         'Um gravador com estúdio de recorte junto: capture recados de voz, entrevistas, ensaios ou notas de reunião, corte o silêncio e exporte um arquivo limpo. Gravar e editar acontecem no navegador — o áudio nunca é enviado para lugar nenhum, o que deixa confortável até para conversas confidenciais.',
+      usesHeading: 'Takes que vale a pena gravar aqui',
+      uses: [
+        'Grave um recado, um exercício de idioma ou uma narração bruta, sem instalar um app.',
+        'Corte o começo e o fim antes de exportar, para o take ser só as palavras.',
+        'Salve MP3 para enviar, ou WAV se ainda vai editar o take.',
+      ],
       howTo: [
         {
           name: 'Permita o microfone',
@@ -802,6 +880,12 @@ export const pt: Catalog = {
       subtitle: 'Aumente faixas baixas e trilhas de vídeo em até 4× — limpo, sem clipar.',
       intro:
         'Para tudo que toca baixo demais: vídeos de celular baixos, gravações acústicas suaves, podcasts masterizados no volume de um sussurro. Carregue um arquivo, suba o volume até 4× e deixe o limiter embutido segurar os picos para as partes altas continuarem limpas. Funciona com arquivos de áudio e de vídeo — só a trilha sonora é processada.',
+      usesHeading: 'Arquivos baixos para os quais esta página serve',
+      uses: [
+        'Aumente uma trilha de vídeo que saiu mais baixa que a imagem.',
+        'Reforce música exportada ou ripada num nível baixo.',
+        'Fique perto de 150% a 250% se quiser mais alto sem o limitador bombeando.',
+      ],
       howTo: [
         {
           name: 'Solte o arquivo',
@@ -850,6 +934,12 @@ export const pt: Catalog = {
       subtitle: 'Um clique para levar arquivos baixos a um nível consistente e saudável — analisado no seu aparelho.',
       intro:
         'Normalizar varre o arquivo para achar o pico mais alto e sobe o arquivo inteiro exatamente o quanto falta para esse pico ficar logo abaixo do clipping. O resultado: um arquivo que usa toda a faixa de volume que recebeu, sem chute manual. É o ajuste certo quando a gravação está baixa o tempo todo — recados de voz, gravações de campo, exportações de outros apps que saíram em −18 dB.',
+      usesHeading: 'Quando um nível precisa caber',
+      uses: [
+        'Suba um arquivo baixo até o pico mais forte chegar a um nível normal.',
+        'Iguale clipes que você vai juntar, para um capítulo não ficar com metade do volume do próximo.',
+        'Use isto em vez de um boost no escuro, quando você não sabe até onde empurrar.',
+      ],
       howTo: [
         {
           name: 'Solte o áudio',
@@ -898,6 +988,12 @@ export const pt: Catalog = {
       subtitle: 'O som da madrugada: desacelere a faixa para ~85%, dê espaço e exporte — sem app, sem envio.',
       intro:
         'O slowed + reverb é aquele som de madrugada, lento e com eco: a faixa cai para cerca de 80–90% da velocidade, o tom desce junto, e uma cauda suave faz tudo soar como se tocasse dois cômodos mais longe. Carregue a música, arraste a velocidade para uns 85%, suba o reverb até ficar no ponto e exporte — a edição inteira acontece no seu aparelho, então até faixas completas ficam prontas em segundos. Suba a velocidade acima de 100% e o resultado é nightcore.',
+      usesHeading: 'O som de slowed e reverb',
+      uses: [
+        'Baixe uma faixa para cerca de 85% e acrescente espaço. É a mistura noturna de sempre.',
+        'Comece com uma música seca. O efeito é a desaceleração e o reverb juntos.',
+        'Corte o trecho que você quer antes de exportar, para o wash não ser o álbum inteiro.',
+      ],
       howTo: [
         {
           name: 'Solte a música',
@@ -935,6 +1031,121 @@ export const pt: Catalog = {
         },
       ],
       dropHint: 'Solte uma música ou clique para procurar',
+    },
+    'pitch-changer': {
+      name: 'Alterador de tom',
+      shortName: 'Tom',
+      title: 'Alterador de tom — Mude o tom sem mudar a duração',
+      description: 'Suba ou desça o tom de uma música ou voz em até 12 semitons, sem mudar a duração. Grátis, no navegador, sem enviar nada.',
+      h1: 'Alterador de tom',
+      subtitle: 'Suba ou desça o tom em semitons. A duração do arquivo continua a mesma.',
+      intro: 'Solte uma música ou uma gravação e arraste o controle de tom. O tom muda e o tempo fica no lugar. Não é o alterador de velocidade: aqui o arquivo não encolhe nem estica. A mudança roda no seu aparelho.',
+      usesHeading: 'O tom se move, o tempo não',
+      uses: [
+        'Passe uma música para um tom mais fácil de cantar junto. O arquivo continua do mesmo tamanho.',
+        'Mova uma voz alguns semitons para um personagem, sem acelerar a fala.',
+        'O efeito de mais rápido e mais agudo é o trocador de velocidade. Esta página não encurta o áudio.',
+      ],
+      howTo: [
+        { name: 'Solte o arquivo', text: 'Adicione um MP3, WAV, M4A ou outro áudio. Ele fica no seu aparelho.' },
+        { name: 'Defina o tom', text: 'Arraste de −12 a +12 semitons. +12 é uma oitava acima, −12 uma oitava abaixo. 0 deixa o arquivo como está.' },
+        { name: 'Ouça e exporte', text: 'Reproduza para ouvir o novo tom na duração original e salve em MP3 ou WAV.' },
+      ],
+      faqs: [
+        { q: 'A duração do arquivo muda?', a: 'Não. O controle de tom muda a tonalidade e deixa a duração quieta. Para deixar o arquivo mais rápido ou mais lento — o que também muda o tom — use o alterador de velocidade.' },
+        { q: 'Até onde dá para mudar o tom?', a: 'De −12 a +12 semitons, de um em um. É uma oitava para cada lado. Voz e um instrumento solo aguentam melhor um deslocamento grande do que uma mix densa.' },
+        { q: 'Um deslocamento grande soa natural?', a: 'Alguns semitons ficam perto do original. Passando de uns 7 semitons o som fica mais fino e metálico. É o limite deste alterador, não uma opção que dá para desligar.' },
+        { q: 'É a mesma coisa que mudar a velocidade?', a: 'Não. O alterador de velocidade toca o arquivo mais rápido ou mais devagar, então o tom vai junto e a duração muda. Esta página só mexe no tom.' },
+        { q: 'O arquivo é enviado?', a: 'Não. A mudança é calculada no navegador e a exportação é salva no seu aparelho.' },
+      ],
+      dropHint: 'Solte um arquivo de áudio ou clique para procurar',
+    },
+    'm4a-to-mp3': {
+      name: 'M4A para MP3',
+      shortName: 'M4A para MP3',
+      title: 'M4A para MP3 — Converta M4A e AAC online grátis',
+      description: 'Converta áudio M4A e AAC para MP3 no navegador. Grátis, sem cadastro e sem enviar nada. Escolha 128, 192 ou 320 kbps.',
+      h1: 'M4A para MP3',
+      subtitle: 'Transforme arquivos M4A e AAC em MP3, no navegador, sem enviar nada.',
+      intro: 'Recados de voz e gravações AAC costumam ser M4A. Solte o arquivo, escolha um bitrate e o navegador decodifica e salva um MP3. O áudio não vai para um servidor.',
+      usesHeading: 'M4A que as pessoas convertem',
+      uses: [
+        'Passe um recado de voz do iPhone ou um download AAC para um MP3 que mais players abrem.',
+        '128 kbps para fala e 320 kbps para música.',
+        'O M4A fica neste aparelho. Nada é enviado para terminar a conversão.',
+      ],
+      howTo: [
+        { name: 'Solte o M4A', text: 'Arraste um .m4a ou .aac para a página, ou clique para procurar. Um MP4 de vídeo fica na página de MP4 para MP3.' },
+        { name: 'Escolha o bitrate', text: '320 kbps para música, 192 kbps para o dia a dia, 128 kbps para recados de voz.' },
+        { name: 'Converta e baixe', text: 'Clique em Converter para MP3. A decodificação e a codificação acontecem no seu aparelho, e o arquivo baixa em seguida.' },
+      ],
+      faqs: [
+        { q: 'Quais arquivos M4A funcionam?', a: 'Áudio AAC dentro de um M4A, que é o formato dos recados de voz e da maioria dos downloads AAC. Apple Lossless (ALAC) dentro de um M4A muitas vezes não decodifica no navegador. Converta antes para AAC ou WAV e traga o arquivo para cá.' },
+        { q: 'E um vídeo MP4?', a: 'Use o conversor de MP4 para MP3 para vídeos. Esta página é de áudio: M4A e AAC.' },
+        { q: 'Converter para MP3 perde qualidade?', a: 'MP3 tem perda. A 320 kbps a diferença para o AAC original é pequena para quase todo mundo. Fique com o M4A se precisar do arquivo original intacto.' },
+        { q: 'As tags e a capa são mantidas?', a: 'Não. O MP3 sai sem metadados, como no conversor de WAV. Título, artista e capa não são copiados.' },
+        { q: 'O arquivo é enviado?', a: 'Não. O navegador decodifica o M4A e codifica o MP3 localmente. O áudio fica no seu aparelho.' },
+      ],
+      dropHint: 'Solte um M4A ou AAC, ou clique para procurar',
+      exportLabel: 'Converter para MP3',
+    },
+    'ogg-to-mp3': {
+      name: 'Converter OGG para MP3',
+      shortName: 'OGG para MP3',
+      title: 'Converter OGG para MP3 — online e grátis',
+      description: 'Converta arquivos OGG para MP3 no navegador. Grátis, sem cadastro e sem enviar nada. Vorbis ou Opus dentro do OGG, em 128, 192 ou 320 kbps.',
+      h1: 'Converter OGG para MP3',
+      subtitle: 'Transforme áudio OGG em MP3, no navegador, sem enviar nada.',
+      intro: 'OGG é um contêiner: em geral Vorbis, às vezes Opus. Solte o arquivo, escolha um bitrate e o navegador decodifica e salva um MP3. O áudio não vai para um servidor.',
+      usesHeading: 'OGG que as pessoas convertem',
+      uses: [
+        'Abra um rip de jogo, um download ou uma gravação do navegador que chegou em OGG.',
+        'Salve um MP3 para o celular, o carro ou um editor que não aceita OGG.',
+        'Deixe a fala em 128 kbps e a música mais alta. Tentar de novo é local e grátis.',
+      ],
+      howTo: [
+        { name: 'Solte o OGG', text: 'Arraste um .ogg ou .oga para a página, ou clique para procurar.' },
+        { name: 'Escolha o bitrate', text: '320 kbps para música, 192 kbps para o dia a dia, 128 kbps para voz.' },
+        { name: 'Converta e baixe', text: 'Clique em Converter para MP3. A decodificação e a codificação acontecem no seu aparelho, e o arquivo baixa em seguida.' },
+      ],
+      faqs: [
+        { q: 'O que é um arquivo OGG?', a: 'OGG é um contêiner. A música dentro dele costuma ser Vorbis. Alguns áudios de voz usam Opus. Se o navegador decodifica, esta página converte para MP3.' },
+        { q: 'Quais navegadores convertem OGG?', a: 'Chrome e Firefox decodificam Vorbis e Opus dentro de OGG. O Safari decodifica Opus e muitas vezes recusa Vorbis. Se o arquivo não toca numa aba comum, esta página também não converte.' },
+        { q: 'Converter OGG para MP3 perde qualidade?', a: 'MP3 tem perda. Em 320 kbps a diferença é pequena para quase todo mundo. Fique com o OGG se precisar do arquivo original.' },
+        { q: 'As tags e a capa são mantidas?', a: 'Não. O MP3 sai sem metadados. Título, artista e capa não são copiados.' },
+        { q: 'O arquivo é enviado?', a: 'Não. O navegador decodifica o OGG e codifica o MP3 localmente. O áudio fica no seu aparelho.' },
+      ],
+      dropHint: 'Solte um arquivo OGG ou clique para procurar',
+      exportLabel: 'Converter para MP3',
+    },
+    'opus-to-mp3': {
+      name: 'Converter Opus para MP3',
+      shortName: 'Opus para MP3',
+      title: 'Converter Opus para MP3 — online e grátis',
+      description: 'Converta áudio Opus para MP3 no navegador. Grátis, sem cadastro e sem enviar nada. Serve para .opus e para Opus dentro de OGG ou WebM.',
+      h1: 'Converter Opus para MP3',
+      subtitle: 'Transforme áudio Opus em MP3, no navegador, sem enviar nada.',
+      intro: 'Recados de voz e alguns downloads são Opus: um arquivo .opus, ou Opus dentro de OGG ou WebM. Solte o arquivo, escolha um bitrate e o navegador decodifica e salva um MP3. O áudio não vai para um servidor.',
+      usesHeading: 'Opus que as pessoas convertem',
+      uses: [
+        'Passe uma mensagem de voz ou uma exportação Opus para MP3, num player que não abre Opus.',
+        'Fala fica bem em 128 kbps. Você muda o formato que as pessoas conseguem tocar, não a duração.',
+        'Converta aqui e corte se a mensagem tiver um silêncio longo numa das pontas.',
+      ],
+      howTo: [
+        { name: 'Solte o Opus', text: 'Arraste um .opus para a página, ou clique para procurar. OGG e WebM com Opus funcionam do mesmo jeito.' },
+        { name: 'Escolha o bitrate', text: '128 kbps basta para um recado de voz. Se o Opus for música, use 192 ou 320 kbps.' },
+        { name: 'Converta e baixe', text: 'Clique em Converter para MP3. A decodificação e a codificação acontecem no seu aparelho, e o arquivo baixa em seguida.' },
+      ],
+      faqs: [
+        { q: 'O que é o formato Opus?', a: 'Opus é um codec de áudio. Recados de voz do WhatsApp e do Telegram costumam ser .opus. Ele também fica dentro de OGG e WebM. Esta página transforma isso num MP3 que toca em qualquer lugar.' },
+        { q: 'Quais arquivos Opus funcionam?', a: 'Os que o navegador já consegue tocar: .opus, OGG com Opus e WebM com Opus, no Chrome, no Firefox e no Safari atual. Se uma aba comum fica em silêncio, esta página também não decodifica esse arquivo.' },
+        { q: 'Converter Opus para MP3 perde qualidade?', a: 'MP3 tem perda, e Opus também. Em 320 kbps o MP3 está no limite do formato. Um recado de voz fica bem em 128 kbps. Guarde o Opus se precisar do original.' },
+        { q: 'As tags são mantidas?', a: 'Não. O MP3 sai sem metadados. Título e artista não são copiados.' },
+        { q: 'O arquivo é enviado?', a: 'Não. O navegador decodifica o Opus e codifica o MP3 localmente. O áudio fica no seu aparelho.' },
+      ],
+      dropHint: 'Solte um arquivo Opus ou clique para procurar',
+      exportLabel: 'Converter para MP3',
     },
   },
 };

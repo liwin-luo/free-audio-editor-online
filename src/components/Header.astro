@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 import { CATEGORY_IDS, TOOLS } from '../data/tools';
 import { getShell, localizeTool } from '../i18n';
-import { LOCALES, localePath, hasAlternates, type Locale } from '../i18n/locales';
+import { LOCALES, isTranslatedGuide, localePath, type Locale } from '../i18n/locales';
 
 interface Props {
   locale?: Locale;
@@ -10,7 +10,10 @@ interface Props {
 }
 const { locale = 'en', path = '/' } = Astro.props;
 const { ui } = getShell(locale);
-const showLang = hasAlternates(path);
+const guidesHref = localePath(locale, '/guides');
+const onGuide = path === '/guides' || path.startsWith('/guides/') || path === '/guias' || path.startsWith('/guias/');
+const langHref = (target: Locale) =>
+  localePath(target, onGuide && !isTranslatedGuide(path) ? '/guides' : path);
 const current = LOCALES.find((l) => l.id === locale)!;
 const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
 ---
@@ -25,6 +28,11 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
     </a>
 
     <nav class="flex items-center gap-1" aria-label={ui.navMain}>
+      {
+        <a href={guidesHref} class="btn btn-ghost" aria-current={path === '/guides' ? 'page' : undefined}>
+          {ui.guides}
+        </a>
+      }
       <details class="group relative" data-nav-dropdown>
         <summary
           class="btn btn-ghost list-none aria-expanded:bg-surface2"
@@ -34,7 +42,7 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
           <Icon name="caret-down" size={16} class="transition-transform group-open:rotate-180" />
         </summary>
         <div
-          class="absolute right-0 top-full z-30 mt-2 w-72 rounded-xl border border-line bg-surface p-2 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)]"
+          class="absolute right-0 top-full z-30 mt-2 max-h-[calc(100dvh-5.5rem)] w-72 overflow-y-auto overscroll-contain rounded-xl border border-line bg-surface p-2 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)]"
         >
           {
             CATEGORY_IDS.map((cat) => (
@@ -55,17 +63,16 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
         </div>
       </details>
 
-      {
-        showLang && (
-          <details class="group relative" data-nav-dropdown>
-            <summary class="btn btn-ghost list-none px-2.5 font-mono text-xs uppercase aria-expanded:bg-surface2" aria-label={ui.language}>
-              {current.id}
+      <details class="group relative" data-nav-dropdown>
+            <summary class="btn btn-ghost list-none gap-1.5 px-2.5 text-sm font-normal text-ink2 aria-expanded:bg-surface2" aria-label={ui.language}>
+              <Icon name="globe" size={18} />
+              <span class="hidden sm:inline">{current.label}</span>
               <Icon name="caret-down" size={14} class="transition-transform group-open:rotate-180" />
             </summary>
             <div class="absolute right-0 top-full z-30 mt-2 w-44 rounded-xl border border-line bg-surface p-1.5 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)]">
               {LOCALES.map((l) => (
                 <a
-                  href={localePath(l.id, path)}
+                  href={langHref(l.id)}
                   hrefLang={l.hreflang}
                   class:list={[
                     'block rounded-lg px-3 py-2 text-sm hover:bg-surface2',
@@ -78,8 +85,6 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
               ))}
             </div>
           </details>
-        )
-      }
 
       <button
         type="button"

@@ -27,6 +27,8 @@ export function localizeTool(slug: string, locale: Locale): ToolDef | undefined 
     h1: copy.h1,
     subtitle: copy.subtitle,
     intro: copy.intro,
+    usesHeading: copy.usesHeading,
+    uses: copy.uses,
     howTo: copy.howTo,
     faqs: copy.faqs,
     editor: {
@@ -53,6 +55,11 @@ export function assertCatalogs(): void {
     for (const tool of TOOLS) {
       const copy = cat.tools[tool.slug];
       if (!copy) throw new Error(`${locale}: missing ${tool.slug}`);
+      if (tool.uses.length !== 3) throw new Error(`${tool.slug}: uses must be 3`);
+      if (!copy.usesHeading.trim()) throw new Error(`${locale}/${tool.slug}: empty usesHeading`);
+      if (copy.uses.length !== tool.uses.length) {
+        throw new Error(`${locale}/${tool.slug}: uses ${copy.uses.length} != ${tool.uses.length}`);
+      }
       if (copy.howTo.length !== tool.howTo.length) {
         throw new Error(`${locale}/${tool.slug}: howTo ${copy.howTo.length} != ${tool.howTo.length}`);
       }

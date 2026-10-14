@@ -11,6 +11,10 @@ export const de: Catalog = {
     navAbout: 'Über',
     footerBlurb:
       'Kostenlose Audio-Tools, die komplett in deinem Browser laufen. Deine Dateien werden nie hochgeladen — Audiobearbeitung, die Privatsphäre von Anfang an mitdenkt.',
+    share: 'Teilen',
+    shareOn: 'Auf {name} teilen',
+    copyLink: 'Link kopieren',
+    copied: 'Kopiert',
     about: 'Über uns',
     privacy: 'Datenschutz',
     guides: 'Anleitungen',
@@ -20,6 +24,7 @@ export const de: Catalog = {
     trustFree: 'Kostenlos, ohne Anmeldung',
     trustClean: 'Ohne Wasserzeichen',
     faqHeading: 'Häufige Fragen',
+    toolFaq: 'Fragen zu {name}',
     related: 'Ähnliche Tools',
     openTool: '{name} öffnen',
     allTools: 'Alle Audio-Tools',
@@ -31,7 +36,7 @@ export const de: Catalog = {
     schemaBrowser: 'Braucht einen modernen Browser mit Web Audio API',
     features: [
       'Audio schneiden, kürzen und zusammenfügen',
-      'Lautstärke, Normalisieren, Tempo und Hall',
+      'Lautstärke, Normalisieren, Geschwindigkeit und Hall',
       'Rückwärts abspielen und Sprache aufnehmen',
       'Tonspuren aus Videos als MP3 oder WAV speichern',
       'Als MP3, WAV und iPhone-M4R exportieren',
@@ -64,10 +69,11 @@ export const de: Catalog = {
     hintConvert: 'Leertaste zum Abspielen · nichts wird hochgeladen',
     reverse: 'Rückwärts abspielen',
     normalize: 'Peak normalisieren',
-    speed: 'Tempo',
+    speed: 'Geschwindigkeit',
+    pitch: 'Tonhöhe',
     volume: 'Lautstärke',
     reverb: 'Hall',
-    adjust: 'Anpassen — Ein- und Ausblenden, Lautstärke, Tempo, Rückwärts',
+    adjust: 'Anpassen — Ein- und Ausblenden, Lautstärke, Geschwindigkeit, Rückwärts',
     fadeIn: 'Einblenden',
     fadeOut: 'Ausblenden',
     normalizeOverrides: 'Peak normalisieren (überschreibt die Lautstärke)',
@@ -221,6 +227,12 @@ export const de: Catalog = {
       subtitle: 'Audio online kürzen — kostenlos, direkt im Browser. Nichts wird hochgeladen.',
       intro:
         'Schneide genau den Teil heraus, den du brauchst, aus jedem Song, jeder Sprachnotiz, jedem Podcast oder jeder Aufnahme. Ziehe auf der Wellenform, um auszuwählen, höre ihn an und speichere. Das Kürzen passiert komplett auf deinem Gerät, deshalb bleiben auch lange Aufnahmen privat und starten sofort.',
+      usesHeading: 'Schnitte, die den Edit erledigen',
+      uses: [
+        'Schneide die Antwort aus einem Podcast und lass das Äh-Äh links und rechts weg.',
+        'Hol einen Refrain oder einen Loop aus dem ganzen Song, ohne Desktop-Editor.',
+        'Kürze eine Sprachnotiz vor dem Senden, damit die Datei nur den Punkt enthält.',
+      ],
       howTo: [
         {
           name: 'Datei ablegen',
@@ -266,13 +278,19 @@ export const de: Catalog = {
     'mp3-cutter': {
       name: 'MP3-Cutter',
       shortName: 'MP3-Cutter',
-      title: 'MP3-Cutter — Songs und MP3 online kostenlos schneiden',
+      title: 'MP3 schneiden — online kostenlos',
       description:
         'Schneide MP3-Dateien online in wenigen Klicks. Behalte den besten Teil oder lösche ein Intro in Sekunden — kostenlos, ohne Anmeldung, und die Datei verlässt dein Gerät nie.',
-      h1: 'MP3-Cutter',
+      h1: 'MP3 schneiden',
       subtitle: 'Songs und MP3-Dateien online schneiden — behalte den Teil, den du willst, und lösche den Rest.',
       intro:
         'Kürze einen Song auf den Refrain, entferne ein langes Intro oder schneide einen Höhepunkt heraus — direkt im Browser. Wähle, ob der markierte Teil bleiben oder gelöscht werden soll, höre das Ergebnis an und speichere in Sekunden eine frische MP3.',
+      usesHeading: 'Schnitte, die Leute in einer MP3 machen',
+      uses: [
+        'Entferne Intro, Werbedurchsage oder eine lange Stille aus Song oder Folge.',
+        'Behalte einen Abschnitt und wirf den Rest weg, statt ihn mit einem Fade zu überdecken.',
+        'Schneide den Clip zuerst, wenn der nächste Schritt ein Klingelton ist.',
+      ],
       howTo: [
         {
           name: 'MP3 hinzufügen',
@@ -314,13 +332,19 @@ export const de: Catalog = {
     'mp3-editor': {
       name: 'MP3-Editor',
       shortName: 'MP3-Editor',
-      title: 'MP3-Editor — Schneiden, Blenden, Tempo und Rückwärts',
+      title: 'MP3-Editor — Schneiden, Blenden, Geschwindigkeit und Rückwärts',
       description:
-        'Bearbeite MP3 und anderes Audio online: schneiden, kürzen, ein- und ausblenden, Lautstärke und Tempo ändern, rückwärts abspielen. Kostenlos und privat — alles läuft in deinem Browser.',
+        'Bearbeite MP3 und anderes Audio online: schneiden, kürzen, ein- und ausblenden, Lautstärke und Geschwindigkeit ändern, rückwärts abspielen. Kostenlos und privat — alles läuft in deinem Browser.',
       h1: 'MP3-Editor',
-      subtitle: 'Schneiden, blenden, rückwärts abspielen und das Tempo ändern — alles in einem Browser-Tab.',
+      subtitle: 'Schneiden, blenden, rückwärts abspielen und die Geschwindigkeit ändern — alles in einem Browser-Tab.',
       intro:
-        'Ein kompakter Audio-Editor für kurze Bearbeitungen: Abschnitte herausschneiden, ein- und ausblenden, lauter oder leiser machen, das Tempo hoch- oder runtersetzen und rückwärts abspielen. Jede Bearbeitung wird beim Export auf deinem Gerät angewendet — die Originaldatei auf der Festplatte bleibt unangetastet.',
+        'Ein kompakter Audio-Editor für kurze Bearbeitungen: Abschnitte herausschneiden, ein- und ausblenden, lauter oder leiser machen, die Geschwindigkeit hoch- oder runtersetzen und rückwärts abspielen. Jede Bearbeitung wird beim Export auf deinem Gerät angewendet — die Originaldatei auf der Festplatte bleibt unangetastet.',
+      usesHeading: 'Edits, die in einem Tab bleiben',
+      uses: [
+        'Schneide die Datei und blende die neuen Kanten ein, damit der Schnitt nicht klickt.',
+        'Beschleunige oder kehre einen Abschnitt um, ohne zwischen Tools zu exportieren.',
+        'Heb eine leise MP3 im selben Durchgang an, mit Lautstärke oder Normalisieren.',
+      ],
       howTo: [
         {
           name: 'Datei öffnen',
@@ -328,7 +352,7 @@ export const de: Catalog = {
         },
         {
           name: 'Bearbeiten',
-          text: 'Wähle einen Bereich zum Behalten oder Löschen und öffne dann Anpassen, um Blenden hinzuzufügen, die Lautstärke zu ändern, das Tempo von 0,5× bis 2× zu stellen oder den Titel rückwärts abzuspielen.',
+          text: 'Wähle einen Bereich zum Behalten oder Löschen und öffne dann Anpassen, um Blenden hinzuzufügen, die Lautstärke zu ändern, die Geschwindigkeit von 0,5× bis 2× zu stellen oder den Titel rückwärts abzuspielen.',
         },
         {
           name: 'Ergebnis exportieren',
@@ -338,15 +362,15 @@ export const de: Catalog = {
       faqs: [
         {
           q: 'Was kann dieser MP3-Editor?',
-          a: 'Er deckt die häufigsten schnellen Bearbeitungen ab: Kürzen und Schneiden, Ein- und Ausblenden, Lautstärke, Tempo von 0,5× bis 2× und Rückwärts. Für Mehrspuraufnahmen oder aufwendige Produktion ist eine DAW wie Audacity immer noch das bessere Werkzeug — dieses hier ist für schnelle, private Bearbeitungen im Browser.',
+          a: 'Er deckt die häufigsten schnellen Bearbeitungen ab: Kürzen und Schneiden, Ein- und Ausblenden, Lautstärke, Geschwindigkeit von 0,5× bis 2× und Rückwärts. Für Mehrspuraufnahmen oder aufwendige Produktion ist eine DAW wie Audacity immer noch das bessere Werkzeug — dieses hier ist für schnelle, private Bearbeitungen im Browser.',
         },
         {
           q: 'Sind meine Bearbeitungen destruktiv?',
           a: 'Nein. Deine Originaldatei bleibt auf der Festplatte genau so, wie sie ist. Alle Bearbeitungen liegen als Einstellungen im Editor und werden erst beim Export in eine neue Datei gerendert.',
         },
         {
-          q: 'Wie wirkt sich die Tempoveränderung auf die Tonhöhe aus?',
-          a: 'Tempo und Tonhöhe bewegen sich zusammen, wie eine Schallplatte, die schneller oder langsamer läuft: bei 2× spielt das Audio etwa eine Oktave höher, bei 0,5× etwa eine Oktave tiefer. Nimm kleine Schritte für feine Änderungen. Wenn du das Tempo ändern und die ursprüngliche Tonhöhe behalten willst, exportiere zuerst und lass die Datei durch ein spezielles Time-Stretch-Tool laufen.',
+          q: 'Wie wirkt sich die Geschwindigkeitsänderung auf die Tonhöhe aus?',
+          a: 'Geschwindigkeit und Tonhöhe bewegen sich zusammen, wie eine Schallplatte, die schneller oder langsamer läuft: bei 2× spielt das Audio etwa eine Oktave höher, bei 0,5× etwa eine Oktave tiefer. Nimm kleine Schritte für feine Änderungen. Wenn du die Geschwindigkeit ändern und die ursprüngliche Tonhöhe behalten willst, exportiere zuerst und lass die Datei durch ein spezielles Time-Stretch-Tool laufen.',
         },
         {
           q: 'Kann ich eine Änderung rückgängig machen?',
@@ -369,6 +393,12 @@ export const de: Catalog = {
       subtitle: 'Nimm den besten Teil eines Songs und speichere ihn als Klingelton — in unter einer Minute.',
       intro:
         'Wähle den Hook, den Drop oder das Intro deines Lieblingstitels und mach daraus einen Klingelton. Deine Auswahl bleibt innerhalb der klassischen Klingeltonlänge von 40 Sekunden, auf Wunsch kommt eine Blende dazu, und der Export geht direkt aufs Handy — M4R fürs iPhone, MP3 für alles andere.',
+      usesHeading: 'Klingeltöne, die man wirklich setzt',
+      uses: [
+        'Nimm den Hook eines Songs und bleib innerhalb der 40-Sekunden-Grenze.',
+        'Blende das Ende aus, damit der Ton nicht mitten in der Phrase abbricht.',
+        'Exportiere M4R fürs iPhone, oder MP3, wenn du nur den Clip brauchst.',
+      ],
       howTo: [
         {
           name: 'Song hinzufügen',
@@ -410,13 +440,19 @@ export const de: Catalog = {
     'audio-joiner': {
       name: 'Audio-Joiner',
       shortName: 'Audio-Joiner',
-      title: 'Audio-Joiner — Songs und Audiodateien kostenlos zusammenfügen',
+      title: 'MP3 zusammenfügen — online kostenlos',
       description:
         'Füge Songs und Audiodateien in beliebiger Reihenfolge zu einem Titel zusammen, direkt im Browser. Optionale Blenden zwischen den Tracks — kostenlos, privat, kein Upload.',
-      h1: 'Audio-Joiner',
+      h1: 'MP3 zusammenfügen',
       subtitle: 'Füge Songs und Audiodateien zu einem Titel zusammen — in beliebiger Reihenfolge, in Sekunden.',
       intro:
         'Kombiniere mehrere Songs, Podcast-Folgen oder Sprachaufnahmen zu einer einzigen Datei. Nimm so viele Titel, wie du willst, sortiere sie um und blende auf Wunsch Anfang und Ende. Das Zusammenfügen passiert auf deinem Gerät — auch große Sammlungen sind sofort fertig und bleiben privat.',
+      usesHeading: 'Spuren, die sich zu verbinden lohnen',
+      uses: [
+        'Setze eine Sprachnotiz vor einen Song, in der Reihenfolge, die du willst.',
+        'Füge Kapitelaufnahmen zu einer Datei, für einen Player ohne Playlists.',
+        'Crossfade an den Stößen, damit aufeinanderfolgende Clips nicht knallen.',
+      ],
       howTo: [
         {
           name: 'Titel hinzufügen',
@@ -465,6 +501,12 @@ export const de: Catalog = {
       subtitle: 'Wandle WAV-Dateien in Sekunden in MP3 um — direkt im Browser, nichts wird hochgeladen.',
       intro:
         'Mach aus schweren WAV-Aufnahmen kompakte MP3s, ohne etwas zu installieren oder dein Audio an einen Server zu schicken. Lege die Datei ab, wähle eine Bitrate — 320 kbps für Musik, 128 kbps für Sprache — und die Umwandlung läuft auf deinem eigenen Gerät, meist in ein paar Sekunden.',
+      usesHeading: 'WAV-Dateien, die sich zu konvertieren lohnen',
+      uses: [
+        'Schrumpf eine Studio- oder Field-Aufnahme, bis sie klein genug zum Senden ist.',
+        'Mach aus einem verlustfreien Export eine 192- oder 320-kbps-MP3 fürs Alltagshören.',
+        'Erst konvertieren, dann schneiden. Eine WAV ist zu groß, um sie zweimal herumzuschieben.',
+      ],
       howTo: [
         {
           name: 'WAV ablegen',
@@ -514,6 +556,12 @@ export const de: Catalog = {
       subtitle: 'Spiele jeden Song oder jede Aufnahme rückwärts ab — ein Klick, direkt im Browser.',
       intro:
         'Dreh einen Titel um, sodass er vom Ende zum Anfang spielt: such nach versteckten Botschaften in Songs, bau rückwärts anschwellende Becken für einen Mix, oder hör einfach, wie deine Stimme rückwärts klingt. Die ganze Datei wird auf deinem Gerät umgekehrt und erst beim Export geschrieben.',
+      usesHeading: 'Gründe, eine Datei umzudrehen',
+      uses: [
+        'Hör einen Mix oder einen vergrabenen Satz rückwärts.',
+        'Bau ein Reverse-Swell aus einem Beckenanschlag oder einer Stimme.',
+        'Kehr nur die Auswahl um und lass den Rest der Datei in Ruhe.',
+      ],
       howTo: [
         {
           name: 'Audio hinzufügen',
@@ -553,45 +601,51 @@ export const de: Catalog = {
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
     },
     'change-audio-speed': {
-      name: 'Audio-Tempo ändern',
-      shortName: 'Tempo',
-      title: 'Audio-Tempo ändern — schneller oder langsamer online',
+      name: 'Audio-Geschwindigkeit ändern',
+      shortName: 'Geschwindigkeit',
+      title: 'Audio schneller machen — online kostenlos',
       description:
         'Mach jedes Audio von 0,5× bis 2× schneller oder langsamer, direkt im Browser. Sofortige Vorschau, Export als MP3 oder WAV — kostenlos, privat, nichts wird hochgeladen.',
-      h1: 'Audio-Tempo ändern',
+      h1: 'Audio schneller machen',
       subtitle: 'Mach jedes Audio von 0,5× bis 2× schneller oder langsamer — direkt im Browser.',
       intro:
-        'Mach aus einer 40-Minuten-Vorlesung 20 schnelle Minuten, verlangsame ein Gitarrensolo auf halbes Tempo zum Üben oder pass einen Titel in einen kürzeren Videoslot ein. Ziehe den Tempo-Regler, hör die Änderung sofort und exportiere — das Audio wird auf deinem Gerät neu berechnet und nie hochgeladen.',
+        'Mach aus einer 40-Minuten-Vorlesung 20 schnelle Minuten, verlangsame ein Gitarrensolo auf halbe Geschwindigkeit zum Üben oder pass einen Titel in einen kürzeren Videoslot ein. Ziehe den Geschwindigkeitsregler, hör die Änderung sofort und exportiere — das Audio wird auf deinem Gerät neu berechnet und nie hochgeladen.',
+      usesHeading: 'Geschwindigkeiten, die zur Aufgabe passen',
+      uses: [
+        'Verlangsame Sprache oder ein Solo auf halbe Geschwindigkeit, wenn du jede Silbe oder Note brauchst.',
+        'Überfliege Podcast oder Vorlesung mit 1,25× bis 1,5×, wenn 1× zu langsam zum Durchhören ist.',
+        'Die Tonhöhe geht mit dem Tempo. Tonhöhe ändern und die Länge behalten: dafür ist der Pitch-Wechsler.',
+      ],
       howTo: [
         {
           name: 'Datei ablegen',
           text: 'Füge eine MP3, WAV, M4A oder eine andere Audiodatei hinzu — sie bleibt die ganze Zeit auf deinem Gerät.',
         },
         {
-          name: 'Tempo einstellen',
-          text: 'Ziehe den Tempo-Regler zwischen 0,5× und 2×. Nutze die Wellenform, um nur einen Abschnitt zu wählen, wenn nur ein Teil der Datei geändert werden soll.',
+          name: 'Geschwindigkeit einstellen',
+          text: 'Ziehe den Geschwindigkeitsregler zwischen 0,5× und 2×. Nutze die Wellenform, um nur einen Abschnitt zu wählen, wenn nur ein Teil der Datei geändert werden soll.',
         },
         {
           name: 'Anhören und exportieren',
-          text: 'Spiel das Ergebnis ab, um das Tempo zu prüfen, und speichere es als MP3 oder WAV. Eine 10-Minuten-Datei bei 2× ist in etwa einer Sekunde exportiert.',
+          text: 'Spiel das Ergebnis ab, um die Geschwindigkeit zu prüfen, und speichere es als MP3 oder WAV. Eine 10-Minuten-Datei bei 2× ist in etwa einer Sekunde exportiert.',
         },
       ],
       faqs: [
         {
-          q: 'Ändert ein anderes Tempo auch die Tonhöhe?',
-          a: 'Ja — Tempo und Tonhöhe bewegen sich zusammen, wie eine Schallplatte, die schneller oder langsamer läuft: 2× klingt etwa eine Oktave höher, 0,5× etwa eine Oktave tiefer. Das ist der klassische Effekt; die Tonhöhe zu halten und nur das Tempo zu ändern braucht einen eigenen Time-Stretch-Algorithmus, den wir später ergänzen können.',
+          q: 'Ändert die Geschwindigkeit auch die Tonhöhe?',
+          a: 'Ja — Geschwindigkeit und Tonhöhe bewegen sich zusammen, wie eine Schallplatte, die schneller oder langsamer läuft: 2× klingt etwa eine Oktave höher, 0,5× etwa eine Oktave tiefer. Das ist der klassische Effekt; die Tonhöhe zu halten und nur die Geschwindigkeit zu ändern braucht einen eigenen Time-Stretch-Algorithmus, den wir später ergänzen können. Um die Tonhöhe zu ändern, ohne die Länge zu ändern, nimm den Tonhöhen-Regler.',
         },
         {
-          q: 'Welche Tempi kann ich wählen?',
-          a: 'Alles von 0,5× bis 2× in Schritten von 0,05. Halbes Tempo sitzt am besten, wenn du schnelle Sprache mitschreiben oder Soli lernen willst; 1,25–1,5× ist angenehm, um Vorlesungen und Podcasts zu überfliegen.',
+          q: 'Welche Geschwindigkeiten kann ich wählen?',
+          a: 'Alles von 0,5× bis 2× in Schritten von 0,05. Halbe Geschwindigkeit sitzt am besten, wenn du schnelle Sprache mitschreiben oder Soli lernen willst; 1,25–1,5× ist angenehm, um Vorlesungen und Podcasts zu überfliegen.',
         },
         {
           q: 'Wie schnell ist der Export?',
-          a: 'Die Tempoveränderung rendert dein Browser offline in normaler Rechengeschwindigkeit — ein 10-Minuten-Titel dauert ein bis zwei Sekunden, egal welchen Faktor du wählst.',
+          a: 'Die Geschwindigkeitsänderung rendert dein Browser offline in normaler Rechengeschwindigkeit — ein 10-Minuten-Titel dauert ein bis zwei Sekunden, egal welchen Faktor du wählst.',
         },
         {
           q: 'Kann ich nur einen Teil eines Titels beschleunigen?',
-          a: 'Ja. Markiere den Abschnitt auf der Wellenform, stelle den Modus auf „Auswahl behalten“ und wähle dann dein Tempo — der Export enthält nur diesen Teil, schneller oder langsamer.',
+          a: 'Ja. Markiere den Abschnitt auf der Wellenform, stelle den Modus auf „Auswahl behalten“ und wähle dann deine Geschwindigkeit — der Export enthält nur diesen Teil, schneller oder langsamer.',
         },
         {
           q: 'Gibt es eine Längenbegrenzung?',
@@ -610,6 +664,12 @@ export const de: Catalog = {
       subtitle: 'Verstärke leise Aufnahmen bis auf das 4-Fache — mit Limiter, damit nichts übersteuert.',
       intro:
         'Mach Aufnahmen lauter, die zu leise sind: Sprachnotizen vom Handy, Vorlesungen aus der letzten Reihe, Videotonspuren mit niedrigem Pegel. Schieb die Lautstärke bis auf das 4-Fache (+12 dB), und ein eingebauter Limiter fängt die Peaks ab, damit es lauter wird, ohne in Verzerrung zu kippen.',
+      usesHeading: 'Aufnahmen, die einen Schub brauchen',
+      uses: [
+        'Heb eine Sprachnotiz an, die zu weit vom Mikrofon aufgenommen wurde.',
+        'Verstärke eine Vorlesung aus der hinteren Reihe und lass den Limiter die Spitzen halten.',
+        'Mach eine leise MP3 laut genug für unter einem Video, ohne die ganze Datei zu übersteuern.',
+      ],
       howTo: [
         {
           name: 'Audio hinzufügen',
@@ -654,10 +714,16 @@ export const de: Catalog = {
       title: 'MP4 in MP3 — Video online kostenlos in MP3 umwandeln',
       description:
         'Wandle MP4-Video im Browser in MP3 um — die Tonspur wird lokal extrahiert und nie hochgeladen. Kostenlos, schnell, ohne Anmeldung, auch auf dem Handy.',
-      h1: 'MP4-zu-MP3-Konverter',
+      h1: 'MP4 in MP3 umwandeln',
       subtitle: 'Hol die Tonspur aus jedem Video — direkt im Browser, nichts wird hochgeladen.',
       intro:
         'Mach aus MP4-Videos MP3-Audio, ohne etwas zu installieren oder Gigabytes auf einen Server zu laden. Dein Browser liest die Datei von der Festplatte, dekodiert die Tonspur lokal und speichert sie als MP3 — ein 500-MB-Video ist in Sekunden umgewandelt, weil nur die Audiospur verarbeitet wird.',
+      usesHeading: 'Videos, die man wegen des Tons konvertiert',
+      uses: [
+        'Speichere Vorlesung, Konzert oder Interview als Audio, das bei ausgeschaltetem Bildschirm läuft.',
+        'Ein riesiges Video musst du nicht hochladen. Der Ton wird auf diesem Gerät dekodiert.',
+        'Konvertiere die ganze Spur, und schneide danach, wenn du nur einen Abschnitt brauchst.',
+      ],
       howTo: [
         {
           name: 'Video ablegen',
@@ -707,6 +773,12 @@ export const de: Catalog = {
       subtitle: 'Speichere die Tonspur jedes Videos als MP3 oder WAV — lokal, in Sekunden.',
       intro:
         'Trenn den Ton vom Bild: hol Interviews aus Videoanrufen, speichere einen Konzertfilm als Album oder nutze eine Tonspur in deinem eigenen Schnitt. Die Audiospur wird auf deinem Gerät dekodiert und lässt sich verlustfrei als WAV oder kompakt als MP3 speichern.',
+      usesHeading: 'Tonspuren, die sich zu ziehen lohnen',
+      uses: [
+        'Hol den Ton aus einer Bildschirmaufnahme oder einem Handyvideo.',
+        'Behalte WAV, wenn du weiter editierst, oder MP3, wenn du fertig bist.',
+        'Gib eine lange Datei an den Trimmer, wenn nur eine Minute davon zählt.',
+      ],
       howTo: [
         {
           name: 'Video ablegen',
@@ -756,6 +828,12 @@ export const de: Catalog = {
       subtitle: 'Nimm dein Mikrofon auf, kürze die Aufnahme und speichere sie als MP3 — nichts verlässt dein Gerät.',
       intro:
         'Ein Rekorder mit Schneideplatz: nimm Sprachnotizen, Interviews, Übungsaufnahmen oder Besprechungsnotizen auf, schneide die Stille weg und exportiere eine saubere Datei. Aufnahme und Bearbeitung passieren beide in deinem Browser — das Audio wird nie irgendwohin geschickt, deshalb ist das auch bei vertraulichen Gesprächen entspannt.',
+      usesHeading: 'Takes, die sich hier aufzunehmen lohnen',
+      uses: [
+        'Nimm Sprachnotiz, Sprachübung oder eine grobe Erzählung auf, ohne eine App zu installieren.',
+        'Schneide Anfang und Ende vor dem Export, damit der Take nur die Worte enthält.',
+        'Speichere MP3 zum Senden, oder WAV, wenn du den Take noch editierst.',
+      ],
       howTo: [
         {
           name: 'Mikrofon erlauben',
@@ -804,6 +882,12 @@ export const de: Catalog = {
       subtitle: 'Verstärke leise Titel und Videotonspuren bis auf das 4-Fache — sauber, ohne Übersteuern.',
       intro:
         'Für alles, was zu leise spielt: leise Handyvideos, zurückhaltende Akustikaufnahmen, Podcasts, die auf Flüsterlautstärke gemastert sind. Lade eine Datei, schieb die Lautstärke bis auf das 4-Fache und lass den eingebauten Limiter die Peaks zurückhalten, damit die lauten Stellen sauber bleiben. Das gilt für Audio- und Videodateien gleichermaßen — verarbeitet wird nur die Tonspur.',
+      usesHeading: 'Leise Dateien, für die diese Seite da ist',
+      uses: [
+        'Heb eine Videotonspur an, die leiser herausgekommen ist als das Bild.',
+        'Verstärke Musik, die beim Export oder Rippen zu leise war.',
+        'Bleib bei etwa 150% bis 250%, wenn es lauter werden soll, ohne dass der Limiter pumpt.',
+      ],
       howTo: [
         {
           name: 'Datei ablegen',
@@ -852,6 +936,12 @@ export const de: Catalog = {
       subtitle: 'Ein Klick, und leise Dateien liegen auf einem einheitlichen, gesunden Pegel — ausgewertet auf deinem Gerät.',
       intro:
         'Normalisieren sucht den lautesten Peak in deiner Datei und hebt dann die gesamte Datei um genau den Betrag an, der diesen Peak knapp unter die Übersteuerung bringt. Ergebnis: Die Datei nutzt den Lautstärkebereich, den sie hat, ohne dass du den Wert schätzen musst. Das ist die richtige Korrektur, wenn eine Aufnahme durchgehend zu leise ist — Sprachnotizen, Feldaufnahmen, Exporte aus anderen Apps, die bei −18 dB herausgekommen sind.',
+      usesHeading: 'Wenn ein Pegel passen soll',
+      uses: [
+        'Heb eine leise Datei an, bis die lauteste Spitze ein normales Niveau trifft.',
+        'Gleiche Clips an, die du verbinden willst, damit ein Kapitel nicht halb so laut ist wie das nächste.',
+        'Nimm das statt eines blinden Boosts, wenn du nicht weißt, wie weit du schieben sollst.',
+      ],
       howTo: [
         {
           name: 'Audio ablegen',
@@ -899,7 +989,13 @@ export const de: Catalog = {
       h1: 'Slowed + Reverb',
       subtitle: 'Der Sound für nachts: Titel auf etwa 85 % verlangsamen, Raum dazugeben, exportieren — keine App, kein Upload.',
       intro:
-        'Slowed + Reverb nimmt einen Titel auf etwa 80–90 % Tempo herunter, die Tonhöhe sinkt mit, und ein weicher Hallschweif lässt alles klingen, als liefe es zwei Räume weiter. Lade einen Song, zieh das Tempo auf etwa 85 %, dreh den Hall hoch, bis es sitzt, und exportiere — die ganze Bearbeitung passiert auf deinem Gerät, deshalb sind auch Songs in voller Länge in Sekunden fertig. Schiebst du das Tempo stattdessen über 100 %, kommt nightcore dabei heraus.',
+        'Slowed + Reverb nimmt einen Titel auf etwa 80–90 % Geschwindigkeit herunter, die Tonhöhe sinkt mit, und ein weicher Hallschweif lässt alles klingen, als liefe es zwei Räume weiter. Lade einen Song, zieh die Geschwindigkeit auf etwa 85 %, dreh den Hall hoch, bis es sitzt, und exportiere — die ganze Bearbeitung passiert auf deinem Gerät, deshalb sind auch Songs in voller Länge in Sekunden fertig. Schiebst du die Geschwindigkeit stattdessen über 100 %, kommt nightcore dabei heraus.',
+      usesHeading: 'Der Slowed-and-Reverb-Klang',
+      uses: [
+        'Senk einen Track auf etwa 85% und gib ihm Raum. Das ist der übliche späte Mix.',
+        'Starte mit einem trockenen Song. Der Effekt ist Verlangsamung und Hall zusammen.',
+        'Schneide vor dem Export auf den Abschnitt, damit der Hall nicht das ganze Album füllt.',
+      ],
       howTo: [
         {
           name: 'Song ablegen',
@@ -907,7 +1003,7 @@ export const de: Catalog = {
         },
         {
           name: 'Verlangsamen und Raum geben',
-          text: 'Zieh das Tempo auf etwa 85 % (die klassische Stelle) und den Hall auf 20–30 %. Hör die Vorschau an und vertrau deinen Ohren.',
+          text: 'Zieh die Geschwindigkeit auf etwa 85 % (die klassische Stelle) und den Hall auf 20–30 %. Hör die Vorschau an und vertrau deinen Ohren.',
         },
         {
           name: 'Edit exportieren',
@@ -916,12 +1012,12 @@ export const de: Catalog = {
       ],
       faqs: [
         {
-          q: 'Welches Tempo nehme ich für Slowed + Reverb?',
+          q: 'Welche Geschwindigkeit nehme ich für Slowed + Reverb?',
           a: 'Die meisten Edits landen zwischen 80 % und 90 %, und 85 % ist die Stelle, die meistens sitzt — langsam genug, dass die Tonhöhe klar absinkt, nicht so langsam, dass der Rhythmus auseinanderfällt. Songs mit viel Hi-Hat überstehen das Verlangsamen besser als dichte, schnelle Tracks.',
         },
         {
           q: 'Wie mache ich stattdessen eine nightcore-Version?',
-          a: 'Schieb den Tempo-Regler über 100 % — typischerweise auf 120–130 %. Höheres Tempo hebt die Tonhöhe mit an, und genau das ist der nightcore-Sound. Lass den Hall nahe null, wenn du einen klassischen nightcore-Edit willst.',
+          a: 'Schieb den Geschwindigkeitsregler über 100 % — typischerweise auf 120–130 %. Höhere Geschwindigkeit hebt die Tonhöhe mit an, und genau das ist der nightcore-Sound. Lass den Hall nahe null, wenn du einen klassischen nightcore-Edit willst.',
         },
         {
           q: 'Ändert Verlangsamen die Tonhöhe?',
@@ -937,6 +1033,121 @@ export const de: Catalog = {
         },
       ],
       dropHint: 'Song ablegen oder klicken zum Auswählen',
+    },
+    'pitch-changer': {
+      name: 'Tonhöhen-Regler',
+      shortName: 'Tonhöhe',
+      title: 'Tonhöhe ändern — Tonhöhe verschieben, Länge bleibt',
+      description: 'Verschiebe die Tonhöhe eines Songs oder einer Stimme um bis zu 12 Halbtöne, ohne die Länge zu ändern. Kostenlos, im Browser, nichts wird hochgeladen.',
+      h1: 'Tonhöhe ändern',
+      subtitle: 'Tonhöhe in Halbtönen nach oben oder unten. Die Länge der Datei bleibt gleich.',
+      intro: 'Leg einen Song oder eine Aufnahme ab und zieh den Tonhöhen-Regler. Die Tonart ändert sich, der Takt bleibt liegen. Das ist nicht der Geschwindigkeitsregler: die Datei wird hier weder kürzer noch länger. Die Verschiebung läuft auf deinem Gerät.',
+      usesHeading: 'Die Tonhöhe bewegt sich, die Zeit nicht',
+      uses: [
+        'Schieb einen Song in eine bequemere Tonart zum Mitsingen. Die Datei bleibt gleich lang.',
+        'Verschieb eine Stimme um ein paar Halbtöne für eine Figur, ohne die Zeile zu beschleunigen.',
+        'Der schneller-und-höher-Effekt ist der Geschwindigkeitswechsler. Diese Seite kürzt das Audio nicht.',
+      ],
+      howTo: [
+        { name: 'Datei ablegen', text: 'Füg eine MP3-, WAV-, M4A- oder andere Audiodatei hinzu. Sie bleibt auf deinem Gerät.' },
+        { name: 'Tonhöhe einstellen', text: 'Zieh von −12 bis +12 Halbtöne. +12 ist eine Oktave höher, −12 eine Oktave tiefer. 0 lässt die Datei, wie sie ist.' },
+        { name: 'Anhören und exportieren', text: 'Spiel ab, um die neue Tonart in der ursprünglichen Länge zu hören, und speichere als MP3 oder WAV.' },
+      ],
+      faqs: [
+        { q: 'Ändert sich die Länge der Datei?', a: 'Nein. Der Tonhöhen-Regler verschiebt die Tonart und lässt die Dauer in Ruhe. Um eine Datei schneller oder langsamer zu machen — dabei wandert auch die Tonhöhe — nimm den Geschwindigkeitsregler.' },
+        { q: 'Wie weit kann ich die Tonhöhe verschieben?', a: 'Von −12 bis +12 Halbtöne, in Einzelschritten. Das ist eine Oktave in jede Richtung. Sprache und ein einzelnes Instrument halten eine große Verschiebung besser aus als ein dichter Mix.' },
+        { q: 'Klingt eine große Verschiebung natürlich?', a: 'Ein paar Halbtöne bleiben nah am Original. Ab etwa 7 Halbtönen wird der Klang dünner und metallischer. Das ist die Grenze dieses Reglers, keine Option, die du abschalten kannst.' },
+        { q: 'Ist das dasselbe wie die Geschwindigkeit ändern?', a: 'Nein. Der Geschwindigkeitsregler spielt die Datei schneller oder langsamer, die Tonhöhe geht mit und die Länge ändert sich. Diese Seite verschiebt nur die Tonhöhe.' },
+        { q: 'Wird die Datei hochgeladen?', a: 'Nein. Die Verschiebung wird in deinem Browser berechnet und der Export landet auf deinem Gerät.' },
+      ],
+      dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
+    },
+    'm4a-to-mp3': {
+      name: 'M4A in MP3',
+      shortName: 'M4A in MP3',
+      title: 'M4A in MP3 — M4A und AAC online kostenlos umwandeln',
+      description: 'Wandle M4A- und AAC-Audio im Browser in MP3 um. Kostenlos, ohne Konto, nichts wird hochgeladen. Wähl 128, 192 oder 320 kbps.',
+      h1: 'M4A in MP3',
+      subtitle: 'Mach aus M4A- und AAC-Dateien MP3 — im Browser, nichts wird hochgeladen.',
+      intro: 'Sprachmemos und AAC-Aufnahmen sind oft M4A. Leg die Datei ab, wähl eine Bitrate, und dein Browser dekodiert sie und speichert ein MP3. Das Audio geht an keinen Server.',
+      usesHeading: 'M4A-Dateien, die Leute konvertieren',
+      uses: [
+        'Mach aus einer iPhone-Sprachnotiz oder einem AAC-Download eine MP3, die mehr Player öffnen.',
+        '128 kbps für Sprache, 320 kbps für Musik.',
+        'Die M4A bleibt auf diesem Gerät. Für die Konvertierung wird nichts hochgeladen.',
+      ],
+      howTo: [
+        { name: 'M4A ablegen', text: 'Zieh eine .m4a- oder .aac-Datei auf die Seite oder klick zum Auswählen. Ein Video-MP4 gehört auf die Seite MP4 in MP3.' },
+        { name: 'Bitrate wählen', text: '320 kbps für Musik, 192 kbps fürs tägliche Hören, 128 kbps für Sprachmemos.' },
+        { name: 'Umwandeln und laden', text: 'Klick auf In MP3 umwandeln. Dekodieren und Kodieren passiert auf deinem Gerät, danach startet der Download.' },
+      ],
+      faqs: [
+        { q: 'Welche M4A-Dateien gehen?', a: 'AAC-Audio in einer M4A, so wie Sprachmemos und die meisten AAC-Downloads. Apple Lossless (ALAC) in einer M4A dekodiert der Browser oft nicht. Wandle die Datei zuerst in AAC oder WAV um und bring sie dann hierher.' },
+        { q: 'Was ist mit MP4-Video?', a: 'Für Videos nimm den MP4-in-MP3-Wandler. Diese Seite ist für Audio: M4A und AAC.' },
+        { q: 'Verliert die Umwandlung in MP3 Qualität?', a: 'MP3 ist verlustbehaftet. Bei 320 kbps ist der Unterschied zum AAC-Original für fast alle klein. Behalt die M4A, wenn du die Originaldatei unangetastet brauchst.' },
+        { q: 'Bleiben Tags und Cover erhalten?', a: 'Nein. Das MP3 wird ohne Metadaten geschrieben, wie beim WAV-Wandler. Titel, Interpret und Cover werden nicht übernommen.' },
+        { q: 'Wird die Datei hochgeladen?', a: 'Nein. Dein Browser dekodiert die M4A und kodiert das MP3 lokal. Das Audio bleibt auf deinem Gerät.' },
+      ],
+      dropHint: 'M4A- oder AAC-Datei ablegen oder klicken zum Auswählen',
+      exportLabel: 'In MP3 umwandeln',
+    },
+    'ogg-to-mp3': {
+      name: 'OGG in MP3 umwandeln',
+      shortName: 'OGG zu MP3',
+      title: 'OGG in MP3 umwandeln — kostenlos im Browser',
+      description: 'Wandle OGG-Dateien im Browser in MP3 um. Kostenlos, ohne Konto, nichts wird hochgeladen. Vorbis oder Opus in OGG, mit 128, 192 oder 320 kbps.',
+      h1: 'OGG in MP3 umwandeln',
+      subtitle: 'Mach aus OGG-Audio eine MP3 — im Browser, nichts wird hochgeladen.',
+      intro: 'OGG ist ein Container, meist mit Vorbis, manchmal mit Opus. Leg die Datei ab, wähl eine Bitrate, und dein Browser dekodiert sie und speichert eine MP3. Die Audiodatei geht an keinen Server.',
+      usesHeading: 'OGG-Dateien, die Leute konvertieren',
+      uses: [
+        'Öffne einen Game-Rip, einen Download oder eine Browseraufnahme, die als OGG kam.',
+        'Speichere eine MP3 fürs Handy, ins Auto oder in einen Editor, der kein OGG nimmt.',
+        'Sprache bei 128 kbps, Musik höher. Nochmal versuchen ist lokal und kostenlos.',
+      ],
+      howTo: [
+        { name: 'OGG ablegen', text: 'Zieh eine .ogg- oder .oga-Datei auf die Seite oder klick zum Auswählen.' },
+        { name: 'Bitrate wählen', text: '320 kbps für Musik, 192 kbps fürs tägliche Hören, 128 kbps für Sprache.' },
+        { name: 'Umwandeln und laden', text: 'Klick auf In MP3 umwandeln. Dekodieren und Kodieren passieren auf deinem Gerät, dann lädt die MP3 herunter.' },
+      ],
+      faqs: [
+        { q: 'Was ist eine OGG-Datei?', a: 'OGG ist ein Container. Musik darin nutzt meist Vorbis. Manche Sprachdateien nutzen Opus. Wenn dein Browser die Datei dekodieren kann, macht diese Seite eine MP3 daraus.' },
+        { q: 'Welche Browser wandeln OGG um?', a: 'Chrome und Firefox dekodieren Vorbis und Opus in OGG. Safari dekodiert Opus und lehnt Vorbis oft ab. Wenn die Datei in einem normalen Tab nicht abspielt, kann diese Seite sie auch nicht umwandeln.' },
+        { q: 'Verliert OGG zu MP3 an Qualität?', a: 'MP3 ist verlustbehaftet. Bei 320 kbps ist der Unterschied für fast alle klein. Behalt die OGG, wenn du die Originaldatei brauchst.' },
+        { q: 'Bleiben Tags und Cover erhalten?', a: 'Nein. Die MP3 wird ohne Metadaten geschrieben. Titel, Künstler und Cover werden nicht kopiert.' },
+        { q: 'Wird die Datei hochgeladen?', a: 'Nein. Dein Browser dekodiert die OGG und kodiert die MP3 lokal. Die Audiodatei bleibt auf deinem Gerät.' },
+      ],
+      dropHint: 'OGG-Datei ablegen oder klicken zum Auswählen',
+      exportLabel: 'In MP3 umwandeln',
+    },
+    'opus-to-mp3': {
+      name: 'Opus in MP3 umwandeln',
+      shortName: 'Opus zu MP3',
+      title: 'Opus in MP3 umwandeln — kostenlos im Browser',
+      description: 'Wandle Opus-Audio im Browser in MP3 um. Kostenlos, ohne Konto, nichts wird hochgeladen. Für .opus und für Opus in OGG oder WebM.',
+      h1: 'Opus in MP3 umwandeln',
+      subtitle: 'Mach aus Opus-Audio eine MP3 — im Browser, nichts wird hochgeladen.',
+      intro: 'Sprachnachrichten und manche Downloads sind Opus: eine .opus-Datei, oder Opus in OGG oder WebM. Leg die Datei ab, wähl eine Bitrate, und dein Browser dekodiert sie und speichert eine MP3. Die Audiodatei geht an keinen Server.',
+      usesHeading: 'Opus-Dateien, die Leute konvertieren',
+      uses: [
+        'Mach aus einer Sprachnachricht oder einem Opus-Export eine MP3 für einen Player, der Opus nicht öffnet.',
+        'Sprache ist bei 128 kbps in Ordnung. Du wechselst das Format, das Leute abspielen können, nicht die Länge.',
+        'Hier konvertieren, dann schneiden, wenn die Nachricht an einem Ende lange Stille hat.',
+      ],
+      howTo: [
+        { name: 'Opus ablegen', text: 'Zieh eine .opus-Datei auf die Seite oder klick zum Auswählen. OGG und WebM mit Opus funktionieren genauso.' },
+        { name: 'Bitrate wählen', text: '128 kbps reichen für eine Sprachnachricht. Ist die Opus-Datei Musik, nimm 192 oder 320 kbps.' },
+        { name: 'Umwandeln und laden', text: 'Klick auf In MP3 umwandeln. Dekodieren und Kodieren passieren auf deinem Gerät, dann lädt die MP3 herunter.' },
+      ],
+      faqs: [
+        { q: 'Was ist das Opus-Format?', a: 'Opus ist ein Audio-Codec. WhatsApp- und Telegram-Sprachnachrichten sind oft .opus. Opus steckt auch in OGG und WebM. Diese Seite macht daraus eine MP3, die überall abspielt.' },
+        { q: 'Welche Opus-Dateien funktionieren?', a: 'Dateien, die dein Browser schon abspielen kann: .opus, OGG mit Opus und WebM mit Opus, in Chrome, Firefox und aktuellem Safari. Bleibt ein normaler Tab stumm, kann diese Seite die Datei auch nicht dekodieren.' },
+        { q: 'Verliert Opus zu MP3 an Qualität?', a: 'MP3 ist verlustbehaftet, Opus auch. Bei 320 kbps ist die MP3 so klar, wie MP3 wird. Sprachnachrichten sind bei 128 kbps in Ordnung. Behalt die Opus-Datei, wenn du das Original brauchst.' },
+        { q: 'Bleiben Tags erhalten?', a: 'Nein. Die MP3 wird ohne Metadaten geschrieben. Titel und Künstler werden nicht kopiert.' },
+        { q: 'Wird die Datei hochgeladen?', a: 'Nein. Dein Browser dekodiert das Opus-Audio und kodiert die MP3 lokal. Die Audiodatei bleibt auf deinem Gerät.' },
+      ],
+      dropHint: 'Opus-Datei ablegen oder klicken zum Auswählen',
+      exportLabel: 'In MP3 umwandeln',
     },
   },
 };

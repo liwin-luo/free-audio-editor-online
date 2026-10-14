@@ -12,6 +12,8 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Ringtone Maker](https://freeaudioeditor.online/ringtone-maker): pick up to 40 seconds of any song and export M4R (Chrome, Edge, Safari) or MP3.
 - [Audio Joiner](https://freeaudioeditor.online/audio-joiner): merge multiple audio files in any order with optional crossfade and fades.
 - [WAV to MP3 Converter](https://freeaudioeditor.online/wav-to-mp3): convert WAV and other lossless files to MP3 at 128–320 kbps.
+- [OGG to MP3 Converter](https://freeaudioeditor.online/ogg-to-mp3): convert OGG (Vorbis or Opus) to MP3. Safari often cannot decode Vorbis.
+- [Opus to MP3 Converter](https://freeaudioeditor.online/opus-to-mp3): convert .opus files and Opus inside OGG or WebM to MP3.
 - [Reverse Audio](https://freeaudioeditor.online/reverse-audio): play any track backwards, one click.
 - [Audio Speed Changer](https://freeaudioeditor.online/change-audio-speed): speed audio up or slow it down from 0.5× to 2×.
 - [MP3 Volume Booster](https://freeaudioeditor.online/increase-volume): boost quiet audio up to 4× with a limiter.
@@ -32,5 +34,5 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 ## For crawlers
 
 - Sitemap: https://freeaudioeditor.online/sitemap-index.xml
-- Languages: English at `/`, plus `/es/` `/pt/` `/id/` `/de/` `/ko/` `/ja/` `/zh/` for the same tools (guides stay English).
+- Languages: English at `/`, plus `/es/` `/pt/` `/id/` `/de/` `/ko/` `/ja/` `/zh/` for the same tools. Guides live at `/guides` in each language and list only articles written in that language. English has the main set; Spanish OGG and Opus guides are at `/es/guides`.
 - Content may be quoted with attribution and a link.

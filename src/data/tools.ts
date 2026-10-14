@@ -25,7 +25,10 @@ export type ToolIcon =
   | 'film'
   | 'clock-counter-clockwise'
   | 'moon'
-  | 'trending-up';
+  | 'trending-up'
+  | 'note'
+  | 'file'
+  | 'voice';
 
 export interface EditorConfig {
   /** Accept multiple files and merge them (audio-joiner) */
@@ -45,7 +48,7 @@ export interface EditorConfig {
   /** Max gain slider percent (default 200) */
   maxGainPercent?: number;
   /** Headline controls surfaced outside the Adjust drawer */
-  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb')[];
+  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb' | 'pitch')[];
   /** file input accept attribute (default: audio + common video containers) */
   accept?: string;
   /** Export format ids offered in the select, in order. Default: everything except M4R. */
@@ -68,6 +71,9 @@ export interface ToolDef {
   subtitle: string;
   /** Intro paragraph block (1–2 sentences, keyword-rich but honest) */
   intro: string;
+  /** H2 plus three concrete jobs. Sits under the intro, not a second how-to. */
+  usesHeading: string;
+  uses: [string, string, string];
   howTo: HowToStep[];
   faqs: FaqItem[];
   /** Slugs of related tools shown at the bottom */
@@ -91,6 +97,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Trim audio online — free, right in your browser. Nothing is uploaded.',
     intro:
       'Cut the exact part you need from any song, voice memo, podcast or recording. Drag on the waveform to select, listen back, and save — the whole trim happens on your device, so even long recordings stay private and start instantly.',
+    usesHeading: 'Jobs a trim actually finishes',
+    uses: [
+      'Cut a podcast answer out and leave the ums on either side behind.',
+      'Lift a chorus or a loop out of a full song without a desktop editor.',
+      'Shorten a voice memo before you send it, so the file is only the point.',
+    ],
     howTo: [
       {
         name: 'Drop your file',
@@ -151,6 +163,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Cut songs and MP3 files online — keep the part you want, delete the rest.',
     intro:
       'Cut a song down to the chorus, remove a long intro, or split out a highlight — right in your browser. Choose to keep the selected part or delete it, preview the result, and save a fresh MP3 in seconds.',
+    usesHeading: 'Cuts people make in an MP3',
+    uses: [
+      'Remove an intro, an ad read, or a long silence from a song or episode.',
+      'Keep one section and discard the rest, instead of fading over it.',
+      'Cut the clip first if the next step is a ringtone.',
+    ],
     howTo: [
       {
         name: 'Add your MP3',
@@ -187,7 +205,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Nowhere. The file is read from your disk by your browser and cut in memory. No upload, no cloud copy, no retention.',
       },
     ],
-    related: ['audio-trimmer', 'ringtone-maker', 'mp3-editor'],
+    related: ['ringtone-maker', 'audio-trimmer', 'audio-joiner'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -207,6 +225,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Cut, fade, reverse and speed up audio — all in one browser tab.',
     intro:
       'A compact audio editor for quick jobs: cut sections out, apply fade in and fade out, boost or lower volume, speed tracks up or down, and reverse playback. Every edit is applied on your device when you export — the original file always stays untouched on your disk.',
+    usesHeading: 'Edits that stay in one tab',
+    uses: [
+      'Trim a file, then fade the new edges so the cut does not click.',
+      'Speed or reverse a section without exporting between tools.',
+      'Raise a quiet MP3 in the same pass, with volume or normalize.',
+    ],
     howTo: [
       {
         name: 'Open your file',
@@ -243,7 +267,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Audio is decoded and rendered locally with the Web Audio API — it is never transmitted over the network, which makes it suitable for interviews and other confidential material.',
       },
     ],
-    related: ['audio-trimmer', 'normalize-audio', 'reverse-audio'],
+    related: ['audio-trimmer', 'change-audio-speed', 'normalize-audio'],
     editor: {
       defaultFormat: 'mp3-320',
       showAdjust: true,
@@ -263,6 +287,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Pick the best part of any song and save it as a ringtone — in under a minute.',
     intro:
       'Choose the hook, the drop or the intro of your favourite track and turn it into a ringtone. The maker keeps your selection within the classic 40-second ringtone length, adds a fade if you want one, and exports straight to your phone — M4R for iPhone, MP3 for everything else.',
+    usesHeading: 'Ringtones worth setting',
+    uses: [
+      'Take the hook of a song and stop inside the 40-second phone limit.',
+      'Fade the end so the ringtone does not stop mid-phrase.',
+      'Export M4R for iPhone, or MP3 if you only need the clip.',
+    ],
     howTo: [
       {
         name: 'Add a song',
@@ -321,6 +351,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Merge songs and audio files into one track — in any order, in seconds.',
     intro:
       'Combine multiple songs, podcast episodes or voice recordings into a single file. Add as many tracks as you like, reorder them, and optionally fade the beginning and end. Merging happens on your device — even large libraries join instantly and stay private.',
+    usesHeading: 'Tracks worth joining',
+    uses: [
+      'Put a voice memo in front of a song, in the order you choose.',
+      'Combine chapter recordings into one file for a player without playlists.',
+      'Crossfade the joins so back-to-back clips do not pop.',
+    ],
     howTo: [
       {
         name: 'Add your tracks',
@@ -357,7 +393,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Joining to WAV is lossless — the audio is not re-compressed. MP3 export re-encodes once at up to 320 kbps, which is transparent for nearly all listeners.',
       },
     ],
-    related: ['audio-trimmer', 'mp3-cutter', 'mp3-editor'],
+    related: ['audio-trimmer', 'normalize-audio', 'mp3-cutter'],
     editor: {
       multiple: true,
       defaultFormat: 'mp3-192',
@@ -378,6 +414,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Convert WAV files to MP3 in seconds — right in your browser, nothing uploaded.',
     intro:
       'Turn heavy WAV recordings into compact MP3s without installing anything or sending your audio to a server. Drop the file, pick a bitrate — 320 kbps for music, 128 kbps for voice — and the conversion happens on your own device, usually in a couple of seconds.',
+    usesHeading: 'WAV files worth converting',
+    uses: [
+      'Shrink a studio or field recording until it is small enough to send.',
+      'Turn a lossless export into a 192 or 320 kbps MP3 for everyday listening.',
+      'Convert first, then trim. A WAV is too large to drag around twice.',
+    ],
     howTo: [
       {
         name: 'Drop your WAV',
@@ -414,7 +456,7 @@ export const TOOLS: ToolDef[] = [
         a: 'No. The file is decoded in your browser, encoded to MP3 by a small library loaded from a CDN, and saved back to your disk. The audio itself never leaves your device.',
       },
     ],
-    related: ['audio-joiner', 'mp3-editor', 'increase-volume'],
+    related: ['m4a-to-mp3', 'ogg-to-mp3', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-320',
       dropHint: 'Drop a WAV file, or click to browse',
@@ -435,6 +477,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Play any song or recording backwards — one click, right in your browser.',
     intro:
       'Flip any track so it plays from the end to the start: hunt for hidden messages in songs, build backwards-cymbal effects for a mix, or just hear what your voice sounds like in reverse. The whole file is reversed on your device and only written out when you export.',
+    usesHeading: 'Reasons to flip a file',
+    uses: [
+      'Hear a mix or a buried phrase by playing it backwards.',
+      'Build a reverse swell from a cymbal hit or a vocal.',
+      'Reverse only the selection and leave the rest of the file alone.',
+    ],
     howTo: [
       {
         name: 'Add your audio',
@@ -471,7 +519,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes — no signup, no watermark, no limits. The reversal happens in your browser with the Web Audio API, so the file is never uploaded anywhere.',
       },
     ],
-    related: ['change-audio-speed', 'slowed-reverb', 'mp3-editor'],
+    related: ['change-audio-speed', 'pitch-changer', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -487,11 +535,17 @@ export const TOOLS: ToolDef[] = [
     category: 'effects',
     title: 'Change Audio Speed Online — Speed Up or Slow Down Audio',
     description:
-      'Speed up or slow down any audio from 0.5× to 2× in your browser. Preview instantly, export MP3 or WAV — free, private, nothing uploaded.',
-    h1: 'Audio Speed Changer',
+      'Speed up a lecture or slow a song for practice, from 0.5× to 2×. Preview in your browser, export MP3 or WAV. Pitch moves with the tempo.',
+    h1: 'Change Audio Speed',
     subtitle: 'Speed up or slow down any audio from 0.5× to 2× — right in your browser.',
     intro:
       'Turn a 40-minute lecture into 20 fast minutes, slow a guitar solo down to half speed for practice, or fit a track into a shorter video slot. Drag the speed slider, hear the change instantly, and export — the audio is resampled on your device and never uploaded.',
+    usesHeading: 'Speeds that match the job',
+    uses: [
+      'Slow speech or a solo to half speed when you need each syllable or note.',
+      'Skim a podcast or lecture at 1.25× to 1.5× when 1× is too slow to finish.',
+      'Pitch rises and falls with the tempo. To move pitch and keep the length, use the pitch changer.',
+    ],
     howTo: [
       {
         name: 'Drop your file',
@@ -509,7 +563,7 @@ export const TOOLS: ToolDef[] = [
     faqs: [
       {
         q: 'Does changing speed change the pitch?',
-        a: 'Yes — speed and pitch move together, like a record played faster or slower: 2× sounds about an octave higher, 0.5× about an octave lower. That is the classic effect; keeping pitch while changing tempo needs a dedicated time-stretch algorithm we may add later.',
+        a: 'Yes — speed and pitch move together, like a record played faster or slower: 2× sounds about an octave higher, 0.5× about an octave lower. That is the classic effect; keeping pitch while changing tempo needs a dedicated time-stretch algorithm we may add later. To change pitch without changing the length, use the pitch changer.',
       },
       {
         q: 'What speeds can I choose?',
@@ -528,7 +582,7 @@ export const TOOLS: ToolDef[] = [
         a: 'No artificial one. The practical ceiling is your device memory — roughly an hour of audio on a typical computer.',
       },
     ],
-    related: ['slowed-reverb', 'reverse-audio', 'mp3-editor'],
+    related: ['pitch-changer', 'slowed-reverb', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -549,6 +603,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Boost quiet recordings up to 4× — with a limiter, so nothing clips.',
     intro:
       'Fix recordings that are too quiet: phone voice memos, lectures recorded from the back row, video soundtracks ripped at low level. Push the volume up to 4× (12 dB) and a built-in limiter catches the peaks, so the result gets louder without turning into distortion.',
+    usesHeading: 'Recordings that need a lift',
+    uses: [
+      'Raise a phone voice memo that was recorded too far from the mic.',
+      'Boost a lecture from the back of the room and let the limiter hold the peaks.',
+      'Make a quiet MP3 loud enough to sit under video without clipping the whole file.',
+    ],
     howTo: [
       {
         name: 'Add your audio',
@@ -607,6 +667,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Pull the soundtrack out of any video — right in your browser, nothing uploaded.',
     intro:
       'Turn MP4 videos into MP3 audio without installing anything or uploading gigabytes to a server. Your browser reads the file from your disk, decodes the soundtrack locally, and saves it as MP3 — a 500 MB video converts in seconds because only the audio track is processed.',
+    usesHeading: 'Videos people convert for the sound',
+    uses: [
+      'Save a lecture, concert, or interview as audio you can play with the screen off.',
+      'Skip uploading a huge video. The soundtrack is decoded on this device.',
+      'Convert the whole track, then trim it if you only need a section.',
+    ],
     howTo: [
       {
         name: 'Drop your video',
@@ -643,7 +709,7 @@ export const TOOLS: ToolDef[] = [
         a: 'No. Video resolution is irrelevant — the video track is ignored entirely. A 4K file and a 240p file with the same soundtrack convert identically.',
       },
     ],
-    related: ['extract-audio', 'wav-to-mp3', 'volume-booster'],
+    related: ['extract-audio', 'audio-trimmer', 'volume-booster'],
     editor: {
       defaultFormat: 'mp3-320',
       dropHint: 'Drop an MP4 or video file, or click to browse',
@@ -665,6 +731,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Save the soundtrack of any video as MP3 or WAV — locally, in seconds.',
     intro:
       'Separate the sound from the pictures: pull interviews out of video calls, save a concert film as an album, or reuse a soundtrack in your own edit. The audio track is decoded on your device and can be saved losslessly as WAV or compactly as MP3.',
+    usesHeading: 'Soundtracks worth pulling out',
+    uses: [
+      'Grab the audio from a screen recording or a phone video.',
+      'Keep WAV if you will edit again, or MP3 if you are done.',
+      'Hand a long file to the trimmer when only a minute of it matters.',
+    ],
     howTo: [
       {
         name: 'Drop the video',
@@ -701,7 +773,7 @@ export const TOOLS: ToolDef[] = [
         a: 'That is the opposite operation — muting a video keeps the pictures and drops the sound. This tool keeps the sound and drops the pictures.',
       },
     ],
-    related: ['mp4-to-mp3', 'wav-to-mp3', 'audio-joiner'],
+    related: ['mp4-to-mp3', 'audio-trimmer', 'volume-booster'],
     editor: {
       defaultFormat: 'mp3-192',
       dropHint: 'Drop a video file, or click to browse',
@@ -723,6 +795,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Record your microphone, trim the take, save it as MP3 — nothing leaves your device.',
     intro:
       'A recorder with a trimming studio attached: capture voice memos, interviews, practice takes or meeting notes, then cut the dead air and export a clean file. Recording and editing both happen in your browser — the audio is never sent anywhere, which makes this comfortable even for confidential conversations.',
+    usesHeading: 'Takes worth recording here',
+    uses: [
+      'Record a voice memo, a language drill, or a rough narration without installing an app.',
+      'Trim the start and the tail before export, so the take is only the words.',
+      'Save MP3 to send it, or WAV if you will edit the take again.',
+    ],
     howTo: [
       {
         name: 'Allow the microphone',
@@ -759,7 +837,7 @@ export const TOOLS: ToolDef[] = [
         a: 'As long as your device memory allows — minutes of speech take very little space (Opus compression is efficient). For multi-hour recordings, export in sections.',
       },
     ],
-    related: ['audio-trimmer', 'mp3-editor', 'extract-audio'],
+    related: ['audio-trimmer', 'increase-volume', 'mp3-editor'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -780,6 +858,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Boost quiet tracks and video soundtracks up to 4× — clean, not clipped.',
     intro:
       'For everything that plays too quietly: quiet phone videos, gentle acoustic recordings, podcasts mastered at whisper level. Load a file, push the volume up to 4×, and let the built-in limiter hold the peaks back so the loud parts stay clean. Works on audio and video files alike — only the soundtrack is processed.',
+    usesHeading: 'Quiet files this page is for',
+    uses: [
+      'Lift a video soundtrack that came out quieter than the picture.',
+      'Boost music that was exported or ripped at a low level.',
+      'Stay near 150% to 250% when you want louder without the limiter pumping.',
+    ],
     howTo: [
       {
         name: 'Drop your file',
@@ -839,6 +923,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'One click to bring quiet files up to a consistent, healthy level — analyzed on your device.',
     intro:
       'Normalizing scans your file to find its loudest peak, then raises the entire file by exactly the amount needed to bring that peak just below clipping. The result: a file that uses the full volume range it was given, with no manual guesswork. It is the right fix when a recording is consistently too quiet — voice memos, field recordings, exports from other apps that came out at −18 dB.',
+    usesHeading: 'When one level should fit',
+    uses: [
+      'Bring a quiet file up so its loudest peak hits a normal level.',
+      'Even out clips you will join, so one chapter is not half as loud as the next.',
+      'Use this instead of a blind boost when you do not know how far to push.',
+    ],
     howTo: [
       {
         name: 'Drop your audio',
@@ -875,7 +965,7 @@ export const TOOLS: ToolDef[] = [
         a: 'The level change itself is mathematically clean and inaudible. The only quality question is the export format: WAV is bit-perfect for the gain change, while MP3 re-encodes once. Export WAV if the file will be edited further.',
       },
     ],
-    related: ['increase-volume', 'volume-booster', 'mp3-editor'],
+    related: ['increase-volume', 'volume-booster', 'audio-joiner'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -896,6 +986,12 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'The late-night sound: slow a track to ~85%, add space, export — no app, no upload.',
     intro:
       'The slowed + reverb treatment drops a track to roughly 80–90% speed so the pitch sinks with it, then adds a soft echo tail that makes everything sound like it is playing two rooms away. Load a song, drag the speed to about 85%, raise the reverb until it sits right, and export — the whole edit happens on your device, so even full-length tracks process in seconds. Push the speed above 100% instead and you get nightcore.',
+    usesHeading: 'The slowed and reverb sound',
+    uses: [
+      'Drop a track to about 85% and add space. That is the usual late-night mix.',
+      'Start from a dry song. The effect is the slowdown and the reverb together.',
+      'Trim to the section you want before export, so the wash is not the whole album.',
+    ],
     howTo: [
       {
         name: 'Drop your song',
@@ -932,12 +1028,267 @@ export const TOOLS: ToolDef[] = [
         a: 'Slowing a track does not change its copyright. For YouTube or TikTok uploads you still need rights to the original song — many creators use the platform\u2019s licensed music library instead and reserve slowed edits for their own recordings.',
       },
     ],
-    related: ['change-audio-speed', 'reverse-audio', 'audio-trimmer'],
+    related: ['change-audio-speed', 'pitch-changer', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
       dropHint: 'Drop a song, or click to browse',
       quickControls: ['speed', 'reverb'],
+    },
+  },
+  {
+    slug: 'pitch-changer',
+    name: 'Pitch Changer',
+    shortName: 'Pitch Changer',
+    icon: 'clock-counter-clockwise',
+    category: 'effects',
+    title: 'Pitch Changer — Change Audio Pitch without Changing Speed',
+    description:
+      'Shift the pitch of any song or voice by up to 12 semitones without changing its length. Free, in your browser, nothing uploaded.',
+    h1: 'Change Audio Pitch',
+    subtitle: 'Move the pitch up or down by semitones — the length of the file stays the same.',
+    intro:
+      'Drop a song or a voice recording and drag the pitch slider. The key changes and the timing stays put. Unlike the speed changer, this does not make the file shorter or longer. The shift runs on your device.',
+    usesHeading: 'Pitch moves, the timeline does not',
+    uses: [
+      'Shift a song into an easier key for singing along. The file stays the same length.',
+      'Move a voice a few semitones for a character, without speeding the line up.',
+      'The faster-and-higher effect is the speed changer. This page does not shorten the audio.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your file',
+        text: 'Add an MP3, WAV, M4A or other audio file. It stays on your device.',
+      },
+      {
+        name: 'Set the pitch',
+        text: 'Drag from −12 to +12 semitones. +12 is one octave up, −12 is one octave down. 0 leaves the file as it is.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Play to hear the new key at the original length, then save as MP3 or WAV.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Does this change how long the file is?',
+        a: 'No. The pitch slider moves the key and leaves the duration alone. To make a file faster or slower — which also moves the pitch — use the speed changer.',
+      },
+      {
+        q: 'How far can I shift the pitch?',
+        a: 'From −12 to +12 semitones, in steps of 1. That is one octave in either direction. Speech and a single instrument stay usable further than a dense mix does.',
+      },
+      {
+        q: 'Will a big shift sound natural?',
+        a: 'Small moves, a few semitones, stay close to the original. Shifts past about 7 semitones get thinner and more metallic. That is the limit of this pitch shifter, not a setting you can turn off.',
+      },
+      {
+        q: 'Is this the same as changing the speed?',
+        a: 'No. The speed changer plays the file faster or slower, so the pitch rides along and the length changes. This page only moves the pitch.',
+      },
+      {
+        q: 'Is the file uploaded?',
+        a: 'No. The shift is calculated in your browser and the export is saved to your device.',
+      },
+    ],
+    related: ['change-audio-speed', 'slowed-reverb', 'mp3-editor'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['pitch'],
+    },
+  },
+  {
+    slug: 'm4a-to-mp3',
+    name: 'M4A to MP3 Converter',
+    shortName: 'M4A to MP3',
+    icon: 'note',
+    category: 'merge',
+    title: 'M4A to MP3 Converter — Convert M4A & AAC Online Free',
+    description:
+      'Convert M4A and AAC audio to MP3 in your browser. Free, no signup, nothing uploaded. Pick 128, 192 or 320 kbps.',
+    h1: 'M4A to MP3 Converter',
+    subtitle: 'Turn M4A and AAC files into MP3 — in your browser, nothing uploaded.',
+    intro:
+      'Voice memos and AAC recordings are often M4A. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
+    usesHeading: 'M4A files people convert',
+    uses: [
+      'Turn an iPhone voice memo or an AAC download into an MP3 more players accept.',
+      'Use 128 kbps for speech and 320 kbps for music.',
+      'The M4A stays on this device. Nothing is uploaded to finish the conversion.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your M4A',
+        text: 'Drag an .m4a or .aac file onto the page, or click to browse. A video MP4 belongs on the MP4 to MP3 page instead.',
+      },
+      {
+        name: 'Pick a bitrate',
+        text: '320 kbps for music, 192 kbps for everyday listening, 128 kbps for voice memos.',
+      },
+      {
+        name: 'Convert and download',
+        text: 'Click Convert to MP3. The file is decoded and encoded on your device, then downloaded.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Which M4A files work?',
+        a: 'AAC audio inside an M4A, which is what voice memos and most AAC downloads use. Apple Lossless (ALAC) stored in an M4A often will not decode in the browser. Convert that file to AAC or WAV first, then bring it here.',
+      },
+      {
+        q: 'What about MP4 video?',
+        a: 'Use the MP4 to MP3 converter for video files. This page is for audio: M4A and AAC.',
+      },
+      {
+        q: 'Will converting to MP3 lose quality?',
+        a: 'MP3 is lossy. At 320 kbps the difference from the AAC original is small for almost everyone. Keep the M4A if you need the original file untouched.',
+      },
+      {
+        q: 'Are tags and artwork kept?',
+        a: 'No. The MP3 is written without metadata, same as the WAV converter. Title, artist and cover art are not copied.',
+      },
+      {
+        q: 'Does the file get uploaded?',
+        a: 'No. Your browser decodes the M4A and encodes the MP3 locally. The audio stays on your device.',
+      },
+    ],
+    related: ['wav-to-mp3', 'ogg-to-mp3', 'audio-trimmer'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      dropHint: 'Drop an M4A or AAC file, or click to browse',
+      converter: true,
+      exportLabel: 'Convert to MP3',
+      accept: 'audio/mp4,audio/x-m4a,audio/aac,.m4a,.aac,.mp4',
+    },
+  },
+  {
+    slug: 'ogg-to-mp3',
+    name: 'OGG to MP3 Converter',
+    shortName: 'OGG to MP3',
+    icon: 'file',
+    category: 'merge',
+    title: 'Convert OGG to MP3 — Free Online Converter',
+    description:
+      'Convert OGG files to MP3 in your browser. Free, no signup, nothing uploaded. Vorbis or Opus inside OGG, at 128, 192 or 320 kbps.',
+    h1: 'Convert OGG to MP3',
+    subtitle: 'Turn OGG audio into MP3 — in your browser, nothing uploaded.',
+    intro:
+      'OGG is a container, usually Vorbis, sometimes Opus. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
+    usesHeading: 'OGG files people convert',
+    uses: [
+      'Open a game rip, a download, or a browser recording that arrived as OGG.',
+      'Save an MP3 for a phone, a car, or an editor that does not take OGG.',
+      'Leave speech at 128 kbps and music higher. Retrying is local and free.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your OGG',
+        text: 'Drag an .ogg or .oga file onto the page, or click to browse.',
+      },
+      {
+        name: 'Pick a bitrate',
+        text: '320 kbps for music, 192 kbps for everyday listening, 128 kbps for voice.',
+      },
+      {
+        name: 'Convert and download',
+        text: 'Click Convert to MP3. Decoding and encoding happen on your device, then the MP3 downloads.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'What is an OGG file?',
+        a: 'OGG is a container. Music files in it usually use Vorbis. Some voice files use Opus. This page converts either one when your browser can decode it.',
+      },
+      {
+        q: 'Which browsers can convert OGG?',
+        a: 'Chrome and Firefox decode Vorbis and Opus in OGG. Safari decodes Opus and often refuses Vorbis. If the file will not play in a plain browser tab, this page cannot convert it either.',
+      },
+      {
+        q: 'Will converting OGG to MP3 lose quality?',
+        a: 'MP3 is lossy. At 320 kbps the difference is small for almost everyone. Keep the OGG if you need the original file.',
+      },
+      {
+        q: 'Are tags and artwork kept?',
+        a: 'No. The MP3 is written without metadata. Title, artist and cover art are not copied.',
+      },
+      {
+        q: 'Does the file get uploaded?',
+        a: 'No. Your browser decodes the OGG and encodes the MP3 locally. The audio stays on your device.',
+      },
+    ],
+    related: ['opus-to-mp3', 'wav-to-mp3', 'm4a-to-mp3'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      dropHint: 'Drop an OGG file, or click to browse',
+      converter: true,
+      exportLabel: 'Convert to MP3',
+      accept: 'audio/ogg,audio/vorbis,.ogg,.oga',
+    },
+  },
+  {
+    slug: 'opus-to-mp3',
+    name: 'Opus to MP3 Converter',
+    shortName: 'Opus to MP3',
+    icon: 'voice',
+    category: 'merge',
+    title: 'Opus to MP3 Converter — Convert Opus Audio Online Free',
+    description:
+      'Convert Opus audio to MP3 in your browser. Free, no signup, nothing uploaded. Works on .opus files and Opus inside OGG or WebM.',
+    h1: 'Opus to MP3 Converter',
+    subtitle: 'Turn Opus audio into MP3 — in your browser, nothing uploaded.',
+    intro:
+      'Voice notes and some downloads are Opus: a .opus file, or Opus inside OGG or WebM. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
+    usesHeading: 'Opus files people convert',
+    uses: [
+      'Turn a voice message or an Opus export into MP3 for a player that cannot open Opus.',
+      'Speech is fine at 128 kbps. You are changing the format people can play, not the length.',
+      'Convert here, then trim if the message has a long silence at either end.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your Opus file',
+        text: 'Drag a .opus file onto the page, or click to browse. OGG and WebM files that contain Opus work the same way.',
+      },
+      {
+        name: 'Pick a bitrate',
+        text: '128 kbps is enough for voice notes. Use 192 or 320 kbps when the Opus file is music.',
+      },
+      {
+        name: 'Convert and download',
+        text: 'Click Convert to MP3. Decoding and encoding happen on your device, then the MP3 downloads.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'What is the Opus format?',
+        a: 'Opus is an audio codec. WhatsApp and Telegram voice notes are often .opus. It also sits inside OGG and WebM. This page turns that audio into an MP3 you can play anywhere.',
+      },
+      {
+        q: 'Which Opus files work?',
+        a: 'Files your browser can already play: .opus, OGG with Opus, and WebM with Opus, in Chrome, Firefox and current Safari. If a plain browser tab stays silent, this page cannot decode that file either.',
+      },
+      {
+        q: 'Will converting Opus to MP3 lose quality?',
+        a: 'MP3 is lossy, and so is Opus. At 320 kbps the MP3 is as clear as MP3 gets. Voice notes are fine at 128 kbps. Keep the Opus file if you need the original.',
+      },
+      {
+        q: 'Are tags kept?',
+        a: 'No. The MP3 is written without metadata. Title and artist are not copied.',
+      },
+      {
+        q: 'Does the file get uploaded?',
+        a: 'No. Your browser decodes the Opus audio and encodes the MP3 locally. The audio stays on your device.',
+      },
+    ],
+    related: ['ogg-to-mp3', 'wav-to-mp3', 'm4a-to-mp3'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      dropHint: 'Drop an Opus file, or click to browse',
+      converter: true,
+      exportLabel: 'Convert to MP3',
+      accept: 'audio/ogg,audio/opus,.opus,.ogg,.webm',
     },
   },
 ];
