@@ -12,27 +12,41 @@ import HowTo from './HowTo.astro';
 import Faq from './Faq.astro';
 import RelatedTools from './RelatedTools.astro';
 import { webAppSchema, faqSchema, howToSchema, breadcrumbSchema } from '../lib/jsonld';
+import { getShell } from '../i18n';
+import { fill } from '../i18n/inline';
+import { localeMeta, localePath, type Locale } from '../i18n/locales';
+import { SITE } from '../data/site';
 import type { ToolDef } from '../data/tools';
 
 interface Props {
   tool: ToolDef;
+  locale?: Locale;
 }
-const { tool } = Astro.props;
+const { tool, locale = 'en' } = Astro.props;
+const { ui } = getShell(locale);
+const pageUrl = new URL(localePath(locale, `/${tool.slug}`), SITE.url).href;
+const lang = localeMeta(locale).hreflang;
 const jsonLd = [
-  webAppSchema(tool.name, tool.description),
-  howToSchema(`How to use the ${tool.name}`, tool.howTo),
-  faqSchema(tool.faqs),
+  webAppSchema(tool.name, tool.description, {
+    url: pageUrl,
+    inLanguage: lang,
+    os: ui.schemaOs,
+    browser: ui.schemaBrowser,
+    features: ui.features,
+  }),
+  howToSchema(fill(ui.howTo, { name: tool.name }), tool.howTo, lang),
+  faqSchema(tool.faqs, lang),
   breadcrumbSchema([
-    { name: 'Home', path: '/' },
-    { name: tool.name, path: `/${tool.slug}` },
+    { name: ui.home, path: localePath(locale, '/') },
+    { name: tool.name, path: localePath(locale, `/${tool.slug}`) },
   ]),
 ];
 ---
 
-<Base title={tool.title} description={tool.description} path={`/${tool.slug}`} jsonLd={jsonLd}>
+<Base title={tool.title} description={tool.description} path={`/${tool.slug}`} locale={locale} jsonLd={jsonLd}>
   <div class="container-page">
     <nav aria-label="Breadcrumb" class="pt-5 text-xs">
-      <a href="/" class="text-ink3 hover:text-accent">Home</a>
+      <a href={localePath(locale, '/')} class="text-ink3 hover:text-accent">{ui.home}</a>
       <span class="mx-1.5 text-ink3">/</span>
       <span class="text-ink2" aria-current="page">{tool.name}</span>
     </nav>
@@ -42,13 +56,13 @@ const jsonLd = [
       <p class="mt-2 text-[15px] text-ink2 md:text-base">{tool.subtitle}</p>
     </section>
 
-    <section class="mt-6" aria-label={`${tool.name} tool`}>
-      {tool.recorder && <VoiceRecorder />}
-      {tool.editor.multiple ? <JoinerEditor config={tool.editor} /> : <AudioEditor config={tool.editor} />}
+    <section class="mt-6" aria-label={`${tool.name}`}>
+      {tool.recorder && <VoiceRecorder locale={locale} />}
+      {tool.editor.multiple ? <JoinerEditor config={tool.editor} locale={locale} /> : <AudioEditor config={tool.editor} locale={locale} />}
     </section>
 
     <div class="mt-5">
-      <TrustBadge />
+      <TrustBadge locale={locale} />
     </div>
 
     <section class="py-14">
@@ -56,7 +70,7 @@ const jsonLd = [
     </section>
   </div>
 
-  <HowTo title={`How to use the ${tool.name}`} steps={tool.howTo} />
-  <Faq faqs={tool.faqs} />
-  <RelatedTools current={tool} />
+  <HowTo title={fill(ui.howTo, { name: tool.name })} steps={tool.howTo} />
+  <Faq faqs={tool.faqs} locale={locale} />
+  <RelatedTools current={tool} locale={locale} />
 </Base>

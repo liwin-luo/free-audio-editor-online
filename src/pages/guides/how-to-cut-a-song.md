@@ -4,7 +4,7 @@ description: Keep the chorus, lose the intro. A practical walkthrough of cutting
 tool: mp3-cutter
 date: 2026-10-14
 audio: /guides-media/how-to-cut-a-song/narration.m4a
-poster: /guides-media/how-to-cut-a-song/poster.png
+poster: /guides-media/how-to-cut-a-song/poster.webp
 youtube: j7BmUJedDJo
 layout: ../../layouts/Guide.astro
 ---
@@ -27,7 +27,7 @@ waveform appears immediately — no upload progress bar, because there is no upl
 This matters more than it sounds: it means the tool works on unreleased tracks,
 private recordings and anything else you would rather not send to a stranger's server.
 
-![The MP3 cutter dropzone — drop a file or click to browse](/guides-media/how-to-cut-a-song/01-dropzone.png)
+![The MP3 cutter dropzone — drop a file or click to browse](/guides-media/how-to-cut-a-song/01-dropzone.webp)
 
 ## Step 2: Choose what happens to the selection
 
@@ -39,13 +39,13 @@ Drag across the waveform to mark a section. Then pick one of two modes:
   part. Use this to remove a long silence at the start, an announcement, or a bad
   final chorus.
 
-![Keep selection keeps only the highlighted part; Delete selection removes it](/guides-media/how-to-cut-a-song/03-keep-vs-delete.png)
+![Keep selection keeps only the highlighted part; Delete selection removes it](/guides-media/how-to-cut-a-song/04-keep-vs-delete.webp)
 
 If dragging feels imprecise, open **Precise times** and type the start and end
 seconds directly. The timecode under the waveform shows your position to a
 hundredth of a second while you drag.
 
-![A selection drawn on the waveform, with the Keep selection mode active](/guides-media/how-to-cut-a-song/02-selection.png)
+![A selection drawn on the waveform, with the Keep selection mode active](/guides-media/how-to-cut-a-song/02-selection.webp)
 
 ## Step 3: Preview, then export
 
@@ -59,7 +59,7 @@ obvious and invisible. Then click **Export**:
   size. Use it for sharing and listening.
 - **MP3 128 kbps** is fine for spoken content, wasteful for music.
 
-![A finished cut exported — the download starts automatically](/guides-media/how-to-cut-a-song/04-exportToast.png)
+![A finished cut exported — the download starts automatically](/guides-media/how-to-cut-a-song/03-exportToast.webp)
 
 ## Two tricks that make cuts sound professional
 

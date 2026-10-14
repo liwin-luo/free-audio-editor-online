@@ -1,5 +1,13 @@
 ---
 import Icon from './Icon.astro';
+import { getShell } from '../i18n';
+import type { Locale } from '../i18n/locales';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const { ui } = getShell(locale);
 ---
 
 <div
@@ -7,16 +15,16 @@ import Icon from './Icon.astro';
 >
   <span class="inline-flex items-center gap-2">
     <Icon name="shield-check" size={18} class="text-accent" />
-    Processed locally — nothing uploaded
+    {ui.trustLocal}
   </span>
   <span class="hidden h-4 w-px bg-line sm:block" aria-hidden="true"></span>
   <span class="inline-flex items-center gap-2">
     <Icon name="check" size={18} class="text-accent" />
-    Free, no signup
+    {ui.trustFree}
   </span>
   <span class="hidden h-4 w-px bg-line sm:block" aria-hidden="true"></span>
   <span class="inline-flex items-center gap-2">
     <Icon name="clock-counter-clockwise" size={18} class="text-accent" />
-    No watermarks
+    {ui.trustClean}
   </span>
 </div>

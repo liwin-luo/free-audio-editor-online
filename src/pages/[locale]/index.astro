@@ -1,0 +1,16 @@
+---
+import '../../i18n/catalogs';
+import HomePage from '../../components/HomePage.astro';
+import { assertCatalogs } from '../../i18n';
+import { TRANSLATED_LOCALES, isLocale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  assertCatalogs();
+  return TRANSLATED_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale;
+if (!isLocale(locale) || locale === 'en') throw new Error(`bad locale: ${locale}`);
+---
+
+<HomePage locale={locale} />

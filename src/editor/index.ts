@@ -6,6 +6,9 @@ import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { defaultEditState, renderEdit, computeNormalizeGain, type EditState } from './processor';
 import { encodeFor, getFormat, isM4rSupported } from './encoders';
+import { readEditorText } from './messages';
+import { fill } from '../i18n/inline';
+import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
 
 interface Elements {
@@ -60,6 +63,7 @@ let activeEditor: Editor | null = null;
 export class Editor {
   private els: Elements;
   private config: EditorConfig;
+  private text: EditorText;
 
   private buffer: AudioBuffer | null = null;
   private peaks: Peaks | null = null;
@@ -86,6 +90,7 @@ export class Editor {
 
   constructor(root: HTMLElement, config: EditorConfig) {
     this.config = config;
+    this.text = readEditorText(root);
     this.els = {
       root,
       dropzone: requireEl(root, '[data-dropzone]'),
@@ -275,11 +280,11 @@ export class Editor {
   private async loadFile(file: File): Promise<void> {
     if (this.busy) return;
     if (file.size > 300 * 1024 * 1024) {
-      showToast(this.toastRoot(), 'error', 'That file is over 300 MB — try a shorter or compressed file.');
+      showToast(this.toastRoot(), 'error', this.text.tooBig);
       return;
     }
     this.busy = true;
-    this.setStatus('Decoding file…');
+    this.setStatus(this.text.decoding);
     try {
       const data = await file.arrayBuffer();
       const ctx = new AudioContext();
@@ -304,18 +309,14 @@ export class Editor {
 
       this.refit(true);
       this.applyState(this.state, false);
-      this.setStatus('Ready. Drag on the waveform to select a range.');
+      this.setStatus(this.text.ready);
 
       if (this.duration > 3600) {
-        showToast(this.toastRoot(), 'info', 'Files over an hour may exhaust browser memory on some devices.');
+        showToast(this.toastRoot(), 'info', this.text.hourWarning);
       }
     } catch {
       this.setStatus('');
-      showToast(
-        this.toastRoot(),
-        'error',
-        'This file could not be decoded — it may be corrupted, or its codec is not supported by your browser.',
-      );
+      showToast(this.toastRoot(), 'error', this.text.decodeFail);
     } finally {
       this.busy = false;
       // Re-evaluate now that busy is false — the update inside loadFile ran
@@ -476,16 +477,13 @@ export class Editor {
     }
     if (this.config.ringtone && this.state.sel.end - this.state.sel.start > 40) {
       this.state.sel.end = this.state.sel.start + 40;
-      showToast(this.toastRoot(), 'info', 'Selection capped at 40 seconds — the classic ringtone length.');
+      showToast(this.toastRoot(), 'info', this.text.ringtoneCap);
     }
     this.updateSelectionOverlay();
     this.updatePreciseInputs();
     this.updateExportState();
-    this.setStatus(
-      this.state.mode === 'keep'
-        ? `Selection kept: ${formatTime(this.state.sel.start, true)} – ${formatTime(this.state.sel.end, true)}`
-        : `Selection marked for deletion: ${formatTime(this.state.sel.start, true)} – ${formatTime(this.state.sel.end, true)}`,
-    );
+    const range = `${formatTime(this.state.sel.start, true)} – ${formatTime(this.state.sel.end, true)}`;
+    this.setStatus(fill(this.state.mode === 'keep' ? this.text.kept : this.text.markedDelete, { range }));
   }
 
   private applyPrecise(): void {
@@ -493,7 +491,7 @@ export class Editor {
     const s = clamp(Number(this.els.preciseStart.value) || 0, 0, this.duration);
     const e = clamp(Number(this.els.preciseEnd.value) || 0, 0, this.duration);
     if (e - s < 0.05) {
-      showToast(this.toastRoot(), 'error', 'End time must be at least 0.05s after the start time.');
+      showToast(this.toastRoot(), 'error', this.text.endTime);
       return;
     }
     this.pushHistory();
@@ -546,11 +544,11 @@ export class Editor {
   private undo(): void {
     const prev = this.history.pop();
     if (!prev) {
-      showToast(this.toastRoot(), 'info', 'Nothing left to undo.');
+      showToast(this.toastRoot(), 'info', this.text.nothingUndo);
       return;
     }
     this.applyState(prev, true);
-    this.setStatus('Reverted the last change.');
+    this.setStatus(this.text.reverted);
   }
 
   private toggleNormalize(): void {
@@ -559,7 +557,7 @@ export class Editor {
     if (next && this.buffer) {
       const g = computeNormalizeGain(this.buffer, this.state);
       const db = g > 0 ? (20 * Math.log10(g)).toFixed(1) : '0';
-      showToast(this.toastRoot(), 'info', `Normalize on — the peak will rise about ${db} dB (capped at +12 dB).`);
+      showToast(this.toastRoot(), 'info', fill(this.text.normalizeOn, { db }));
     }
   }
 
@@ -668,7 +666,7 @@ export class Editor {
     this.playOffset = from;
     this.playStartedAt = this.audioCtx.currentTime;
 
-    this.els.play.setAttribute('aria-label', 'Pause');
+    this.els.play.setAttribute('aria-label', this.text.pause);
     this.els.play.innerHTML =
       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 5v14M16 5v14"/></svg>';
 
@@ -696,7 +694,7 @@ export class Editor {
     if (playheadTo !== undefined) this.playheadTime = playheadTo;
     this.updatePlayhead();
     this.updateTimecode();
-    this.els.play.setAttribute('aria-label', 'Play selection');
+    this.els.play.setAttribute('aria-label', this.text.play);
     this.els.play.innerHTML =
       '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>';
   }
@@ -717,13 +715,13 @@ export class Editor {
     this.busy = true;
     this.updateExportState();
     const original = this.els.exportBtn.innerHTML;
-    this.els.exportBtn.textContent = 'Rendering…';
-    this.setStatus('Rendering your edit locally…');
+    this.els.exportBtn.textContent = this.text.rendering;
+    this.setStatus(this.text.renderingStatus);
 
     try {
       const out = await renderEdit(this.buffer, this.state);
       const fmt = getFormat(this.els.format.value);
-      this.setStatus(`Encoding ${fmt.ext.toUpperCase()}…`);
+      this.setStatus(fill(this.text.encoding, { ext: fmt.ext.toUpperCase() }));
       const blob = await encodeFor(fmt, out);
 
       const suffix = this.config.converter ? 'converted' : this.config.ringtone ? 'ringtone' : 'edited';
@@ -737,16 +735,12 @@ export class Editor {
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 5000);
 
-      this.setStatus(`Exported ${filename}.`);
-      showToast(this.toastRoot(), 'success', `Saved as ${filename} — nothing was uploaded.`);
+      this.setStatus(fill(this.text.exported, { file: filename }));
+      showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: filename }));
     } catch (err) {
       console.error(err);
       this.setStatus('');
-      showToast(
-        this.toastRoot(),
-        'error',
-        'Export failed — the encoder could not load (are you offline?). Try the WAV format instead.',
-      );
+      showToast(this.toastRoot(), 'error', this.text.exportFail);
     } finally {
       this.els.exportBtn.innerHTML = original;
       this.busy = false;

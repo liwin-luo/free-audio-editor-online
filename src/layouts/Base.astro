@@ -5,32 +5,45 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE } from '../data/site';
+import { getShell } from '../i18n';
+import { LOCALES, hasAlternates, localeMeta, localePath, type Locale } from '../i18n/locales';
 
 interface Props {
   /** <title> tag content */
   title: string;
   /** meta description, <= 155 chars */
   description: string;
-  /** Canonical path starting with "/", e.g. "/audio-trimmer" */
+  /** Unprefixed canonical path starting with "/", e.g. "/audio-trimmer" */
   path: string;
+  locale?: Locale;
   /** JSON-LD structured data objects */
   jsonLd?: object[];
   ogType?: 'website' | 'article';
   noindex?: boolean;
 }
 
-const { title, description, path, jsonLd = [], ogType = 'website', noindex = false } = Astro.props;
-const canonical = new URL(path, SITE.url).href;
+const { title, description, path, locale = 'en', jsonLd = [], ogType = 'website', noindex = false } = Astro.props;
+const { ui } = getShell(locale);
+const meta = localeMeta(locale);
+const canonical = new URL(localePath(locale, path), SITE.url).href;
+const alternates = hasAlternates(path);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={meta.html}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {
+      alternates &&
+        LOCALES.map((l) => (
+          <link rel="alternate" hreflang={l.hreflang} href={new URL(localePath(l.id, path), SITE.url).href} />
+        ))
+    }
+    {alternates && <link rel="alternate" hreflang="x-default" href={new URL(path, SITE.url).href} />}
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0d9488" />
@@ -41,11 +54,17 @@ const canonical = new URL(path, SITE.url).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:locale" content={meta.og} />
+    {
+      alternates &&
+        LOCALES.filter((l) => l.id !== locale).map((l) => (
+          <meta property="og:locale:alternate" content={l.og} />
+        ))
+    }
     <meta property="og:image" content={new URL('/og.jpg', SITE.url).href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Free Audio Editor — edit audio online, nothing ever uploaded" />
+    <meta property="og:image:alt" content={ui.ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -75,12 +94,12 @@ const canonical = new URL(path, SITE.url).href;
     {jsonLd.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}
   </head>
   <body class="min-h-[100dvh] bg-bg font-sans text-ink antialiased">
-    <a href="#main" class="skip-link">Skip to content</a>
-    <Header />
+    <a href="#main" class="skip-link">{ui.skip}</a>
+    <Header locale={locale} path={path} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
     <script>
       // Vercel Web Analytics — cookieless, aggregate-only. Only inject on the
       // production host so local previews and staging deploys stay clean.

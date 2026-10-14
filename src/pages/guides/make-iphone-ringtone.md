@@ -4,7 +4,7 @@ description: Turn any song into an official iPhone ringtone. Build a 40-second c
 tool: ringtone-maker
 date: 2026-10-14
 audio: /guides-media/make-iphone-ringtone/narration.m4a
-poster: /guides-media/make-iphone-ringtone/poster.png
+poster: /guides-media/make-iphone-ringtone/poster.webp
 youtube: 5Gt0fMdXHwk
 layout: ../../layouts/Guide.astro
 ---
@@ -31,9 +31,9 @@ whatever you have. Then:
    Chrome, Edge and Safari 17+ encode the M4R on your device and the download
    starts immediately.
 
-![Exporting the ringtone clip — the M4R downloads straight from the browser](/guides-media/make-iphone-ringtone/02-ringtoneExportToast.png)
+![Exporting the ringtone clip — the M4R downloads straight from the browser](/guides-media/make-iphone-ringtone/02-ringtoneExportToast.webp)
 
-![The ringtone maker with a selection drawn on the waveform](/guides-media/make-iphone-ringtone/01-ringtoneSelection.png)
+![The ringtone maker with a selection drawn on the waveform](/guides-media/make-iphone-ringtone/01-ringtoneSelection.webp)
 
 Nothing was uploaded: the clip was made on your phone, in the browser. If the
 format menu does not list M4R, your browser cannot encode AAC (Firefox and

@@ -8,6 +8,9 @@ import { computePeaks, concatPeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks }
 import { renderMerge } from './processor';
 import { encodeFor, getFormat } from './encoders';
 import { showToast, initEditors } from './index';
+import { readEditorText } from './messages';
+import { fill } from '../i18n/inline';
+import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
 
 interface Clip {
@@ -23,12 +26,14 @@ const ROW_BASE =
 
 class Joiner {
   private root: HTMLElement;
+  private text: EditorText;
   private clips: Clip[] = [];
   private nextId = 1;
   private busy = false;
 
   constructor(root: HTMLElement, config: EditorConfig) {
     this.root = root;
+    this.text = readEditorText(root);
 
     this.q<HTMLSelectElement>('[data-format]').value = config.defaultFormat;
 
@@ -138,15 +143,16 @@ class Joiner {
     const list = this.q<HTMLElement>('[data-tracks]');
     const workspace = this.q<HTMLElement>('[data-workspace]');
     const dropzone = this.q<HTMLElement>('[data-dropzone]');
-    const count = this.q<HTMLElement>('[data-count]');
-    const total = this.q<HTMLElement>('[data-total]');
+    const summary = this.q<HTMLElement>('[data-summary]');
     const exportBtn = this.q<HTMLButtonElement>('[data-export]');
 
     list.innerHTML = '';
     workspace.classList.toggle('hidden', this.clips.length === 0);
     dropzone.hidden = this.clips.length > 0;
-    count.textContent = String(this.clips.length);
-    total.textContent = formatTime(this.totalDuration(), true);
+    summary.textContent = fill(this.text.trackSummary, {
+      n: this.clips.length,
+      time: formatTime(this.totalDuration(), true),
+    });
     exportBtn.disabled = this.clips.length === 0 || this.busy;
 
     this.clips.forEach((clip, i) => {
@@ -177,9 +183,9 @@ class Joiner {
       const svg = (d: string) =>
         `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 
-      const up = btn(svg('<path d="M12 19V5M6 11l6-6 6 6"/>'), 'Move up', () => this.move(i, -1));
-      const down = btn(svg('<path d="M12 5v14M6 13l6 6 6-6"/>'), 'Move down', () => this.move(i, 1));
-      const del = btn(svg('<path d="M6 6l12 12M18 6 6 18"/>'), 'Remove', () => this.remove(clip.id));
+      const up = btn(svg('<path d="M12 19V5M6 11l6-6 6 6"/>'), this.text.moveUp, () => this.move(i, -1));
+      const down = btn(svg('<path d="M12 5v14M6 13l6 6 6-6"/>'), this.text.moveDown, () => this.move(i, 1));
+      const del = btn(svg('<path d="M6 6l12 12M18 6 6 18"/>'), this.text.remove, () => this.remove(clip.id));
       up.disabled = i === 0;
       down.disabled = i === this.clips.length - 1;
 
@@ -218,9 +224,9 @@ class Joiner {
     const exportBtn = this.q<HTMLButtonElement>('[data-export]');
     exportBtn.disabled = true;
     const original = exportBtn.innerHTML;
-    exportBtn.textContent = 'Merging…';
+    exportBtn.textContent = this.text.merging;
     const status = this.q<HTMLElement>('[data-status]');
-    status.textContent = 'Merging tracks locally…';
+    status.textContent = this.text.mergingStatus;
 
     try {
       const out = await renderMerge(
@@ -233,7 +239,7 @@ class Joiner {
         },
       );
       const fmt = getFormat(this.q<HTMLSelectElement>('[data-format]').value);
-      status.textContent = `Encoding ${fmt.ext.toUpperCase()}…`;
+      status.textContent = fill(this.text.encoding, { ext: fmt.ext.toUpperCase() });
       const blob = await encodeFor(fmt, out);
 
       const filename = `merged.${fmt.ext}`;
@@ -246,16 +252,12 @@ class Joiner {
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 5000);
 
-      status.textContent = `Exported ${filename}.`;
-      showToast(this.toastRoot(), 'success', `Saved as ${filename} — nothing was uploaded.`);
+      status.textContent = fill(this.text.exported, { file: filename });
+      showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: filename }));
     } catch (err) {
       console.error(err);
       status.textContent = '';
-      showToast(
-        this.toastRoot(),
-        'error',
-        'Export failed — the encoder could not load (are you offline?). Try the WAV format instead.',
-      );
+      showToast(this.toastRoot(), 'error', this.text.exportFail);
     } finally {
       exportBtn.innerHTML = original;
       this.busy = false;

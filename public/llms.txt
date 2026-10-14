@@ -9,7 +9,7 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Audio Trimmer](https://freeaudioeditor.online/audio-trimmer): trim music, voice memos and podcasts with waveform selection. Export MP3 or WAV.
 - [MP3 Cutter](https://freeaudioeditor.online/mp3-cutter): cut songs — keep the best part or delete an intro.
 - [MP3 Editor](https://freeaudioeditor.online/mp3-editor): cut, fade in/out, adjust volume, change speed (0.5×–2×), reverse playback.
-- [Ringtone Maker](https://freeaudioeditor.online/ringtone-maker): pick up to 40 seconds of any song and export a ringtone.
+- [Ringtone Maker](https://freeaudioeditor.online/ringtone-maker): pick up to 40 seconds of any song and export M4R (Chrome, Edge, Safari) or MP3.
 - [Audio Joiner](https://freeaudioeditor.online/audio-joiner): merge multiple audio files in any order with optional crossfade and fades.
 - [WAV to MP3 Converter](https://freeaudioeditor.online/wav-to-mp3): convert WAV and other lossless files to MP3 at 128–320 kbps.
 - [Reverse Audio](https://freeaudioeditor.online/reverse-audio): play any track backwards, one click.
@@ -19,15 +19,18 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [MP4 to MP3 Converter](https://freeaudioeditor.online/mp4-to-mp3): extract the soundtrack from MP4/WebM/MOV video as MP3.
 - [Audio Extractor](https://freeaudioeditor.online/extract-audio): extract audio from video as MP3 or lossless WAV.
 - [Voice Recorder](https://freeaudioeditor.online/voice-recorder): record the microphone, trim the take, export MP3/WAV.
+- [Audio Normalizer](https://freeaudioeditor.online/normalize-audio): raise a quiet file so its peak sits just below clipping.
+- [Slowed + Reverb](https://freeaudioeditor.online/slowed-reverb): slow a song (pitch drops with it) and add a reverb tail; speed above 1× is nightcore.
 
 ## Facts for assistants and agents
 
 - All processing is client-side (Web Audio API + OfflineAudioContext rendering; MP3 encoding via lamejs; video soundtracks decoded natively by the browser).
 - No accounts, no server-side file storage, no tracking of user audio.
-- Supported input: MP3, WAV, M4A/AAC, OGG, FLAC, WebM audio, and MP4/WebM/MOV video soundtracks (whatever the browser decodes). Output: MP3 (128/192/320 kbps) or lossless WAV.
+- Supported input: MP3, WAV, M4A/AAC, OGG, FLAC, WebM audio, and MP4/WebM/MOV video soundtracks (whatever the browser decodes). Output: MP3 (128/192/320 kbps), lossless WAV, or M4R on the ringtone maker (Chrome, Edge, Safari 17+).
 - Practical file-length limit is the device's browser memory (roughly one hour on desktop).
 
 ## For crawlers
 
 - Sitemap: https://freeaudioeditor.online/sitemap-index.xml
+- Languages: English at `/`, plus `/es/` `/pt/` `/id/` `/de/` `/ko/` `/ja/` `/zh/` for the same tools (guides stay English).
 - Content may be quoted with attribution and a link.

@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from './Icon.astro';
+import Faq from './Faq.astro';
+import { TOOLS } from '../data/tools';
+import { websiteSchema, webAppSchema, faqSchema } from '../lib/jsonld';
+import { getShell, localizeTool } from '../i18n';
+import { fill } from '../i18n/inline';
+import { localeMeta, localePath, type Locale } from '../i18n/locales';
+import { SITE } from '../data/site';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const { ui, home } = getShell(locale);
+const lang = localeMeta(locale).hreflang;
+const tools = TOOLS.map((t) => localizeTool(t.slug, locale)!);
+
+const jsonLd = [
+  websiteSchema({ description: home.description, inLanguage: lang }),
+  webAppSchema(SITE.name, home.appBlurb, {
+    url: new URL(localePath(locale, '/'), SITE.url).href,
+    inLanguage: lang,
+    os: ui.schemaOs,
+    browser: ui.schemaBrowser,
+    features: ui.features,
+  }),
+  faqSchema(home.faqs, lang),
+];
+
+const FEATURED_SLUGS = ['mp4-to-mp3', 'audio-trimmer'];
+const featured = FEATURED_SLUGS.map((slug) => tools.find((t) => t.slug === slug)!);
+const rest = tools.filter((t) => !FEATURED_SLUGS.includes(t.slug));
+---
+
+<Base title={home.title} description={home.description} path="/" locale={locale} jsonLd={jsonLd}>
+  <section class="container-page pb-12 pt-14 md:pb-16 md:pt-20">
+    <p class="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs font-medium text-ink2">
+      <Icon name="shield-check" size={14} class="text-accent" />
+      {home.badge}
+    </p>
+    <h1 class="mt-5 max-w-[16ch] text-4xl font-semibold leading-[1.05] tracking-tighter md:text-6xl">
+      {home.h1}
+    </h1>
+    <p class="mt-5 max-w-[55ch] text-lg leading-relaxed text-ink2">
+      {home.lede}
+    </p>
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href={localePath(locale, '/audio-trimmer')} class="btn btn-primary btn-lg">
+        {home.ctaTrim}
+        <Icon name="convert" size={18} />
+      </a>
+      <a href={localePath(locale, '/audio-joiner')} class="btn btn-secondary btn-lg">{home.ctaMerge}</a>
+    </div>
+  </section>
+
+  <section id="tools" class="container-wide pb-16" aria-labelledby="tools-heading">
+    <h2 id="tools-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">{home.toolsHeading}</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+      {
+        featured.map((tool) => (
+          <a
+            href={localePath(locale, `/${tool.slug}`)}
+            class="group relative flex flex-col rounded-xl border border-accent/60 bg-surface p-6 transition-colors hover:border-accent sm:col-span-2 lg:col-span-3"
+          >
+            <span class="absolute right-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-medium text-accent">
+              <Icon name="trending-up" size={12} />
+              {home.mostUsed}
+            </span>
+            <span class="grid size-12 place-items-center rounded-xl bg-accent-soft text-accent">
+              <Icon name={tool.icon} size={24} />
+            </span>
+            <h3 class="mt-5 text-lg font-medium group-hover:text-accent">{tool.name}</h3>
+            <p class="mt-1.5 flex-1 text-sm leading-relaxed text-ink2">{tool.subtitle}</p>
+            <p class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+              {fill(ui.openTool, { name: tool.name })}
+              <Icon name="convert" size={15} class="transition-transform group-hover:translate-x-0.5" />
+            </p>
+          </a>
+        ))
+      }
+      {
+        rest.map((tool) => (
+          <a
+            href={localePath(locale, `/${tool.slug}`)}
+            class="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent lg:col-span-2"
+          >
+            <span class="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent">
+              <Icon name={tool.icon} size={22} />
+            </span>
+            <h3 class="mt-5 font-medium group-hover:text-accent">{tool.name}</h3>
+            <p class="mt-1.5 flex-1 text-sm leading-relaxed text-ink2">{tool.subtitle}</p>
+            <p class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+              {fill(ui.openTool, { name: tool.name })}
+              <Icon name="convert" size={15} class="transition-transform group-hover:translate-x-0.5" />
+            </p>
+          </a>
+        ))
+      }
+      <div class="flex flex-col justify-center rounded-xl border border-dashed border-line p-6 lg:col-span-2">
+        <h3 class="font-medium text-ink2">{home.comingTitle}</h3>
+        <p class="mt-1.5 text-sm leading-relaxed text-ink2">{home.comingBody}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-line bg-surface py-16" aria-labelledby="why-heading">
+    <div class="container-page">
+      <h2 id="why-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+        {home.whyHeading}
+      </h2>
+      <div class="mt-8 grid gap-8 md:grid-cols-[2fr_1fr_1fr]">
+        {
+          home.why.map((item, i) => (
+            <div>
+              <span class="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent">
+                <Icon name={i === 0 ? 'lock-simple' : i === 1 ? 'clock-counter-clockwise' : 'check'} size={22} />
+              </span>
+              <h3 class="mt-5 font-medium">{item.title}</h3>
+              <p class:list={['mt-2 text-sm leading-relaxed text-ink2', i === 0 && 'max-w-[45ch]']}>{item.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Faq faqs={home.faqs} locale={locale} />
+</Base>

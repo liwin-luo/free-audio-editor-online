@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { getShell } from '../i18n';
+import { splitSlots } from '../i18n/inline';
+import { localeMeta, localePath, type Locale } from '../i18n/locales';
+import { SITE } from '../data/site';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const { about } = getShell(locale);
+const links: Record<string, { href: string; label: string }> = {
+  trimmer: { href: localePath(locale, '/audio-trimmer'), label: about.linkTrimmer },
+  cutter: { href: localePath(locale, '/mp3-cutter'), label: about.linkCutter },
+  joiner: { href: localePath(locale, '/audio-joiner'), label: about.linkJoiner },
+};
+const lead = splitSlots(about.p1);
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: about.h1,
+    url: new URL(localePath(locale, '/about'), SITE.url).href,
+    inLanguage: localeMeta(locale).hreflang,
+  },
+];
+---
+
+<Base title={about.title} description={about.description} path="/about" locale={locale} jsonLd={jsonLd}>
+  <article class="container-page py-14">
+    <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{about.h1}</h1>
+    <div class="mt-8 max-w-[70ch] space-y-6 text-[15px] leading-relaxed text-ink2">
+      <p>
+        {
+          lead.map((part) =>
+            part.type === 'text' ? (
+              part.value
+            ) : (
+              <a href={links[part.key].href} class="text-accent hover:underline">
+                {links[part.key].label}
+              </a>
+            )
+          )
+        }
+      </p>
+      <p>{about.p2}</p>
+      <p>{about.p3}</p>
+    </div>
+  </article>
+</Base>

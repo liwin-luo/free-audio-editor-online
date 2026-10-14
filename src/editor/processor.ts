@@ -94,8 +94,11 @@ export function computeNormalizeGain(buffer: AudioBuffer, state: EditState): num
   return Math.min(0.98 / peak, 4);
 }
 
+/** Synthesized room length. The offline render must include this tail. */
+const REVERB_SECONDS = 2.2;
+
 /** Synthesized room impulse response — exponentially decaying stereo noise. */
-function createReverbIR(ctx: BaseAudioContext, seconds = 2.2): AudioBuffer {
+function createReverbIR(ctx: BaseAudioContext, seconds = REVERB_SECONDS): AudioBuffer {
   const rate = ctx.sampleRate;
   const len = Math.max(1, Math.floor(seconds * rate));
   const ir = ctx.createBuffer(2, len, rate);
@@ -118,18 +121,19 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   const gain = state.normalize ? computeNormalizeGain(buffer, state) : state.gain;
   const wet = clamp(state.reverb, 0, 1);
 
+  // Convolution past the dry end is discarded unless the context is long enough.
+  const tail = wet > 0 ? REVERB_SECONDS : 0;
   const ctx = new OfflineAudioContext(
     Math.min(buffer.numberOfChannels, 2),
-    Math.max(1, Math.ceil(outDuration * rate) + 1),
+    Math.max(1, Math.ceil((outDuration + tail) * rate) + 1),
     rate,
   );
 
-  // Master bus: when boosting, a limiter catches peaks so the result gets
-  // louder without hard digital clipping. Reverb taps the bus after gain and
-  // limiting as a parallel wet send.
+  // Master bus: a manual boost can exceed 0 dBFS, so a limiter catches peaks.
+  // Peak-normalize already targets 0.98 and must not be pulled down by that limiter.
   const master = ctx.createGain();
   let bus: AudioNode = master;
-  if (gain > 1) {
+  if (!state.normalize && gain > 1) {
     const limiter = ctx.createDynamicsCompressor();
     limiter.threshold.value = -2;
     limiter.knee.value = 3;

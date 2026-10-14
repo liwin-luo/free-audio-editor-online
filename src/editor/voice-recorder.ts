@@ -3,6 +3,8 @@
  * File and dispatched as `editor-load-file` so the page's editor picks it up.
  */
 
+import { readEditorText } from './messages';
+
 const MIMES = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'];
 
 function pickMime(): string {
@@ -21,6 +23,7 @@ function fmt(seconds: number): string {
 
 class Recorder {
   private root: HTMLElement;
+  private text: ReturnType<typeof readEditorText>;
   private toggle: HTMLButtonElement;
   private status: HTMLElement;
   private timer: HTMLElement;
@@ -36,6 +39,7 @@ class Recorder {
 
   constructor(root: HTMLElement) {
     this.root = root;
+    this.text = readEditorText(root);
     this.toggle = root.querySelector<HTMLButtonElement>('[data-rec-toggle]')!;
     this.status = root.querySelector<HTMLElement>('[data-rec-status]')!;
     this.timer = root.querySelector<HTMLElement>('[data-rec-meta]')!;
@@ -56,13 +60,13 @@ class Recorder {
       return;
     }
     if (typeof MediaRecorder === 'undefined' || !navigator.mediaDevices?.getUserMedia) {
-      this.showError('Recording is not available in this browser. Try Chrome, Edge, Firefox or Safari.');
+      this.showError(this.text.recUnavailable);
       return;
     }
     try {
       this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch {
-      this.showError('Microphone access was blocked. Allow it in your browser settings, then try again.');
+      this.showError(this.text.micBlocked);
       return;
     }
 
@@ -80,9 +84,9 @@ class Recorder {
     this.timerId = window.setInterval(() => {
       this.timer.textContent = fmt((Date.now() - this.startedAt) / 1000);
     }, 250);
-    this.status.textContent = 'Recording… click Stop when you are finished.';
+    this.status.textContent = this.text.recording;
     this.live.classList.remove('hidden');
-    this.toggle.textContent = 'Stop';
+    this.toggle.textContent = this.text.stop;
   }
 
   private stop(): void {
@@ -90,7 +94,7 @@ class Recorder {
     this.recorder?.stop();
     window.clearInterval(this.timerId);
     this.live.classList.add('hidden');
-    this.toggle.textContent = 'Record again';
+    this.toggle.textContent = this.text.recordAgain;
   }
 
   private finish(): void {
@@ -103,7 +107,7 @@ class Recorder {
     const blob = new Blob(this.chunks, { type });
     const file = new File([blob], `recording-${seconds}s.${ext}`, { type });
 
-    this.status.textContent = 'Recording loaded into the editor below.';
+    this.status.textContent = this.text.recordingLoaded;
     document.dispatchEvent(new CustomEvent('editor-load-file', { detail: file }));
   }
 }

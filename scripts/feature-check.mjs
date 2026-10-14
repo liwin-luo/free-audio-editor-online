@@ -43,6 +43,24 @@ const wavStats = (file) => {
   return { channels, rate, duration: dataSize / 2 / channels / rate, peak };
 };
 
+/** RMS of one channel from `fromSec` to the end. 0 if the file is shorter. */
+const tailRms = (file, fromSec) => {
+  const b = readFileSync(file);
+  const channels = b.readUInt16LE(22);
+  const rate = b.readUInt32LE(24);
+  const dataSize = b.readUInt32LE(40);
+  const start = 44 + Math.floor(fromSec * rate) * 2 * channels;
+  const end = 44 + dataSize;
+  let acc = 0;
+  let n = 0;
+  for (let i = start; i + 1 < end; i += 2 * channels) {
+    const v = b.readInt16LE(i) / 32768;
+    acc += v * v;
+    n++;
+  }
+  return n ? Math.sqrt(acc / n) : 0;
+};
+
 const browser = await puppeteer.launch({
   executablePath: CHROME,
   headless: true,
@@ -164,6 +182,64 @@ try {
     } catch {}
   }
   check('m4r file valid (ftyp box)', m4rOk, m4rOk ? '' : '(missing or bad header)');
+
+  // --- Normalize: peak lands near 0.98 (−0.2 dBFS), under the +12 dB cap ---
+  const editedWav = join(DOWNLOAD_DIR, 'test-tone-edited.wav');
+  await client.goto(`${BASE}/normalize-audio`, { waitUntil: 'networkidle0' });
+  const normInput = await client.$('[data-file-input]');
+  await normInput.uploadFile(TEST_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.click('[data-quick-normalize]');
+  const normPressed = await client.$eval('[data-quick-normalize]', (el) => el.getAttribute('aria-pressed'));
+  check('normalize toggled', normPressed === 'true', normPressed);
+  await client.select('[data-format]', 'wav');
+  rmSync(editedWav, { force: true });
+  await client.click('[data-export]');
+  const normStatus = await waitExported(client);
+  check('normalize export', /Exported test-tone-edited\.wav/.test(normStatus), normStatus);
+  let normStats = null;
+  for (let i = 0; i < 20 && !normStats; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try {
+      normStats = wavStats(editedWav);
+    } catch {}
+  }
+  check(
+    'normalize peak ≈ 0.98',
+    normStats !== null && normStats.peak > 0.95 && normStats.peak < 0.995,
+    normStats ? normStats.peak.toFixed(3) : '(missing wav)',
+  );
+
+  // --- Reverb: output continues after the source so the tail is audible ---
+  await client.goto(`${BASE}/slowed-reverb`, { waitUntil: 'networkidle0' });
+  const revbInput = await client.$('[data-file-input]');
+  await revbInput.uploadFile(TEST_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.$eval('[data-quick-reverb]', (el) => {
+    el.value = '1';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  const revbValue = await client.$eval('[data-quick-reverb]', (el) => el.value);
+  check('reverb set', revbValue === '1', revbValue);
+  await client.select('[data-format]', 'wav');
+  rmSync(editedWav, { force: true });
+  await client.click('[data-export]');
+  const revbStatus = await waitExported(client);
+  check('reverb export', /Exported test-tone-edited\.wav/.test(revbStatus), revbStatus);
+  let revbStats = null;
+  for (let i = 0; i < 20 && !revbStats; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try {
+      revbStats = wavStats(editedWav);
+    } catch {}
+  }
+  const srcDur = 10;
+  const rms = revbStats ? tailRms(editedWav, srcDur + 0.4) : 0;
+  check(
+    'reverb tail after the tone',
+    revbStats !== null && revbStats.duration > srcDur + 1.5 && rms > 0.002,
+    revbStats ? `${revbStats.duration.toFixed(2)}s tailRms=${rms.toFixed(4)}` : '(missing wav)',
+  );
 } finally {
   await browser.close();
 }

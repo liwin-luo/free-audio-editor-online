@@ -8,9 +8,9 @@ export interface HowToStep {
   text: string;
 }
 
-/** Category display order — drives the nav dropdown and footer columns. */
-export const TOOL_CATEGORIES = ['Cut & Trim', 'Merge & Convert', 'Record', 'Effects & Studio'] as const;
-export type ToolCategory = (typeof TOOL_CATEGORIES)[number];
+/** Category order — drives the nav dropdown and footer columns. Labels live in i18n. */
+export const CATEGORY_IDS = ['cut', 'merge', 'record', 'effects'] as const;
+export type ToolCategory = (typeof CATEGORY_IDS)[number];
 
 export type ToolIcon =
   | 'trimmer'
@@ -23,7 +23,9 @@ export type ToolIcon =
   | 'volume'
   | 'mic'
   | 'film'
-  | 'clock-counter-clockwise';
+  | 'clock-counter-clockwise'
+  | 'moon'
+  | 'trending-up';
 
 export interface EditorConfig {
   /** Accept multiple files and merge them (audio-joiner) */
@@ -81,7 +83,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Trimmer',
     shortName: 'Audio Trimmer',
     icon: 'trimmer',
-    category: 'Cut & Trim',
+    category: 'cut',
     title: 'Audio Trimmer — Trim Audio & Music Online Free',
     description:
       'Trim music, voice memos and podcasts in your browser. Select, preview and save in seconds — free, no signup, and your audio never leaves your device.',
@@ -141,7 +143,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP3 Cutter',
     shortName: 'MP3 Cutter',
     icon: 'scissors',
-    category: 'Cut & Trim',
+    category: 'cut',
     title: 'MP3 Cutter — Cut Songs & Make Cuts Online Free',
     description:
       'Cut MP3 files online in a couple of clicks. Keep the best part or delete an intro in seconds — free, no signup, and the file never leaves your device.',
@@ -197,7 +199,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP3 Editor',
     shortName: 'MP3 Editor',
     icon: 'waveform',
-    category: 'Effects & Studio',
+    category: 'effects',
     title: 'MP3 Editor — Cut, Fade, Reverse & Speed Up MP3 Online',
     description:
       'Edit MP3 and other audio online: cut, trim, fade in and out, change volume and speed, reverse playback. Free and private — everything runs in your browser.',
@@ -241,7 +243,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Audio is decoded and rendered locally with the Web Audio API — it is never transmitted over the network, which makes it suitable for interviews and other confidential material.',
       },
     ],
-    related: ['audio-trimmer', 'mp3-cutter', 'reverse-audio'],
+    related: ['audio-trimmer', 'normalize-audio', 'reverse-audio'],
     editor: {
       defaultFormat: 'mp3-320',
       showAdjust: true,
@@ -253,7 +255,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Ringtone Maker',
     shortName: 'Ringtone Maker',
     icon: 'bell',
-    category: 'Cut & Trim',
+    category: 'cut',
     title: 'Ringtone Maker — Make a Ringtone from Any Song Online',
     description:
       'Turn any song into a ringtone in your browser. Pick the best 40 seconds, add a fade, export M4R or MP3 — free, no signup, nothing uploaded.',
@@ -311,7 +313,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Joiner',
     shortName: 'Audio Joiner',
     icon: 'layers',
-    category: 'Merge & Convert',
+    category: 'merge',
     title: 'Audio Joiner — Merge Songs & Audio Files Online Free',
     description:
       'Merge songs and audio files into one track, in any order, right in your browser. Optional fades between tracks — free, private, no upload.',
@@ -368,7 +370,7 @@ export const TOOLS: ToolDef[] = [
     name: 'WAV to MP3 Converter',
     shortName: 'WAV to MP3',
     icon: 'convert',
-    category: 'Merge & Convert',
+    category: 'merge',
     title: 'WAV to MP3 Converter — Convert WAV Files Online Free',
     description:
       'Convert WAV to MP3 in your browser — 128, 192 or 320 kbps. Free, no signup: your audio is converted locally and never uploaded to a server.',
@@ -425,7 +427,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Reverse Audio',
     shortName: 'Reverse Audio',
     icon: 'reverse',
-    category: 'Effects & Studio',
+    category: 'effects',
     title: 'Reverse Audio — Play Music & Songs Backwards Online Free',
     description:
       'Play any song or recording backwards in your browser. One click to reverse, preview instantly, save as MP3 or WAV — free and nothing uploaded.',
@@ -469,7 +471,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes — no signup, no watermark, no limits. The reversal happens in your browser with the Web Audio API, so the file is never uploaded anywhere.',
       },
     ],
-    related: ['change-audio-speed', 'mp3-editor', 'audio-trimmer'],
+    related: ['change-audio-speed', 'slowed-reverb', 'mp3-editor'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -482,7 +484,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Speed Changer',
     shortName: 'Speed Changer',
     icon: 'clock-counter-clockwise',
-    category: 'Effects & Studio',
+    category: 'effects',
     title: 'Change Audio Speed Online — Speed Up or Slow Down Audio',
     description:
       'Speed up or slow down any audio from 0.5× to 2× in your browser. Preview instantly, export MP3 or WAV — free, private, nothing uploaded.',
@@ -526,7 +528,7 @@ export const TOOLS: ToolDef[] = [
         a: 'No artificial one. The practical ceiling is your device memory — roughly an hour of audio on a typical computer.',
       },
     ],
-    related: ['reverse-audio', 'mp3-editor', 'increase-volume'],
+    related: ['slowed-reverb', 'reverse-audio', 'mp3-editor'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -539,7 +541,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP3 Volume Booster',
     shortName: 'Volume Booster',
     icon: 'volume',
-    category: 'Effects & Studio',
+    category: 'effects',
     title: 'Increase MP3 Volume — Make Audio Louder Online Free',
     description:
       'Make quiet audio louder — boost MP3 and other files up to 4× in your browser. A built-in limiter keeps the sound clean, free and nothing uploaded.',
@@ -583,7 +585,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Often, yes — browsers can usually decode the audio track of MP4 files dropped onto the page. If your browser refuses the file, extract the audio first and try again.',
       },
     ],
-    related: ['change-audio-speed', 'reverse-audio', 'mp3-editor'],
+    related: ['normalize-audio', 'change-audio-speed', 'reverse-audio'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -597,7 +599,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP4 to MP3 Converter',
     shortName: 'MP4 to MP3',
     icon: 'film',
-    category: 'Merge & Convert',
+    category: 'merge',
     title: 'MP4 to MP3 Converter — Convert Video to MP3 Online Free',
     description:
       'Convert MP4 video to MP3 in your browser — the soundtrack is extracted locally, never uploaded. Free, fast, no signup, works on mobile.',
@@ -634,7 +636,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Can I convert just part of the video?',
-        a: 'This page is a straight converter — it converts the whole soundtrack. If you want a section, convert the full audio first and trim it with the [audio trimmer](/audio-trimmer).',
+        a: 'This page is a straight converter — it converts the whole soundtrack. If you want a section, convert the full audio first, then trim it with the audio trimmer.',
       },
       {
         q: 'Does 4K or 8K video slow it down?',
@@ -655,7 +657,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Extractor',
     shortName: 'Audio Extractor',
     icon: 'film',
-    category: 'Merge & Convert',
+    category: 'merge',
     title: 'Extract Audio from Video — Save Sound as MP3 or WAV',
     description:
       'Extract the audio track from any video in your browser and save it as MP3 or lossless WAV. Free, private, no upload — even for large files.',
@@ -713,7 +715,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Voice Recorder',
     shortName: 'Voice Recorder',
     icon: 'mic',
-    category: 'Record',
+    category: 'record',
     title: 'Voice Recorder Online — Record, Trim & Save Audio Free',
     description:
       'Record your microphone in the browser, trim the take and save it as MP3 or WAV. Free, private — recordings are never uploaded.',
@@ -770,7 +772,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Volume Booster',
     shortName: 'Volume Booster',
     icon: 'volume',
-    category: 'Effects & Studio',
+    category: 'effects',
     title: 'Volume Booster — Make Videos & Music Louder Online Free',
     description:
       'Boost the volume of quiet music and video soundtracks up to 4× in your browser. A limiter keeps it clean — free, private, nothing uploaded.',
@@ -803,7 +805,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Can I boost the sound of a video?',
-        a: 'Yes. Drop an MP4 or WebM and the soundtrack is decoded locally, boosted, and exported as MP3 or WAV. The video track is ignored — see the [audio extractor](/extract-audio) if you only want the sound.',
+        a: 'Yes. Drop an MP4 or WebM and the soundtrack is decoded locally, boosted, and exported as MP3 or WAV. The video track is ignored — use the audio extractor if you only want the sound.',
       },
       {
         q: 'Boosting on my phone — does that work?',
@@ -814,7 +816,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Speaker volume only helps on your device. A boosted file plays louder everywhere — on other people\u2019s phones, in cheap earbuds, over a laptop\u2019s tiny speakers.',
       },
     ],
-    related: ['increase-volume', 'change-audio-speed', 'mp4-to-mp3'],
+    related: ['increase-volume', 'normalize-audio', 'change-audio-speed'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -822,6 +824,120 @@ export const TOOLS: ToolDef[] = [
       accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
       quickControls: ['gain'],
       maxGainPercent: 400,
+    },
+  },
+  {
+    slug: 'normalize-audio',
+    name: 'Audio Normalizer',
+    shortName: 'Normalizer',
+    icon: 'trending-up',
+    category: 'effects',
+    title: 'Audio Normalizer — Normalize Audio Level Online Free',
+    description:
+      'Normalize audio to a consistent peak level in your browser — MP3, WAV, M4A and more. One click, free, nothing uploaded.',
+    h1: 'Normalize Audio',
+    subtitle: 'One click to bring quiet files up to a consistent, healthy level — analyzed on your device.',
+    intro:
+      'Normalizing scans your file to find its loudest peak, then raises the entire file by exactly the amount needed to bring that peak just below clipping. The result: a file that uses the full volume range it was given, with no manual guesswork. It is the right fix when a recording is consistently too quiet — voice memos, field recordings, exports from other apps that came out at −18 dB.',
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A or other audio file. It is decoded and analyzed locally — nothing leaves your device.',
+      },
+      {
+        name: 'Click Normalize',
+        text: 'The file is scanned for its peak and raised so that peak lands just below full scale. Preview to hear the difference.',
+      },
+      {
+        name: 'Export',
+        text: 'Save as MP3 or WAV. WAV avoids an extra lossy encoding pass if you plan to keep editing the file.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'What does normalizing actually do?',
+        a: 'It applies one fixed amount of gain to the whole file so that the loudest single sample ends up just below the digital ceiling (about −0.2 dB here). If a file\u2019s peak sits at 50% volume, normalizing roughly doubles every sample — quiet parts and loud parts alike.',
+      },
+      {
+        q: 'Is normalizing the same as boosting the volume?',
+        a: 'They overlap, but normalizing is measured rather than guessed. The volume booster applies whatever multiplier you drag the slider to; normalize finds the largest safe multiplier automatically. If you know a file is uniformly quiet, boosting is fine. If you just want it as loud as it can cleanly be, normalize.',
+      },
+      {
+        q: 'Will it make quiet and loud parts equally loud?',
+        a: 'No — and be skeptical of any tool claiming one click does that. Raising quiet passages independently is dynamic range compression, a different and more destructive process. Normalizing shifts the whole recording up by the same amount and leaves the dynamics untouched.',
+      },
+      {
+        q: 'Does it use LUFS loudness targets like streaming platforms?',
+        a: 'No. This is peak normalization — instant and predictable. Streaming services match tracks by integrated loudness (LUFS), a longer-average measure that belongs to mastering. Peak-normalizing is still the right quick fix for consistent playback level.',
+      },
+      {
+        q: 'Does normalizing reduce quality?',
+        a: 'The level change itself is mathematically clean and inaudible. The only quality question is the export format: WAV is bit-perfect for the gain change, while MP3 re-encodes once. Export WAV if the file will be edited further.',
+      },
+    ],
+    related: ['increase-volume', 'volume-booster', 'mp3-editor'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['gain', 'normalize'],
+    },
+  },
+  {
+    slug: 'slowed-reverb',
+    name: 'Slowed + Reverb',
+    shortName: 'Slowed + Reverb',
+    icon: 'moon',
+    category: 'effects',
+    title: 'Slowed + Reverb — Make Slowed and Reverb Songs Online Free',
+    description:
+      'Turn any song into a slowed + reverb edit in your browser — slow it down, wash it in reverb, export MP3. Free, nothing uploaded.',
+    h1: 'Slowed + Reverb Maker',
+    subtitle: 'The late-night sound: slow a track to ~85%, add space, export — no app, no upload.',
+    intro:
+      'The slowed + reverb treatment drops a track to roughly 80–90% speed so the pitch sinks with it, then adds a soft echo tail that makes everything sound like it is playing two rooms away. Load a song, drag the speed to about 85%, raise the reverb until it sits right, and export — the whole edit happens on your device, so even full-length tracks process in seconds. Push the speed above 100% instead and you get nightcore.',
+    howTo: [
+      {
+        name: 'Drop your song',
+        text: 'Any MP3, WAV, M4A or other audio file — a full album track works fine, processing stays local.',
+      },
+      {
+        name: 'Slow it and add space',
+        text: 'Drag speed to about 85% (the classic spot) and raise reverb to 20–30%. Preview and trust your ears.',
+      },
+      {
+        name: 'Export the edit',
+        text: 'Save as MP3 320 kbps for posting, or WAV if you will edit it further in another app.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'What speed should I use for slowed + reverb?',
+        a: 'Most edits land between 80% and 90%, with 85% as the usual sweet spot — slow enough that the pitch clearly sinks, not so slow that the rhythm falls apart. Songs with busy hi-hats survive slowing better than dense, fast tracks.',
+      },
+      {
+        q: 'How do I make a nightcore version instead?',
+        a: 'Push the speed slider above 100% — typically 120–130%. Raising the speed raises the pitch with it, which is exactly the nightcore sound. Keep the reverb near zero for a classic nightcore edit.',
+      },
+      {
+        q: 'Does slowing change the pitch?',
+        a: 'Yes, deliberately — like a vinyl record at the wrong speed. Vocals get deeper and the key drops by the same ratio. That pitch drop is the signature of the style; slowed without pitch change needs a time-stretch editor, which is a different (and heavier) tool.',
+      },
+      {
+        q: 'How much reverb should I add?',
+        a: 'Start around 20–30% and listen. The reverb is a synthesized decay tail — past about 50% the track starts sounding like a cathedral and vocals lose their words.',
+      },
+      {
+        q: 'Can I use slowed songs in my videos?',
+        a: 'Slowing a track does not change its copyright. For YouTube or TikTok uploads you still need rights to the original song — many creators use the platform\u2019s licensed music library instead and reserve slowed edits for their own recordings.',
+      },
+    ],
+    related: ['change-audio-speed', 'reverse-audio', 'audio-trimmer'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: true,
+      dropHint: 'Drop a song, or click to browse',
+      quickControls: ['speed', 'reverb'],
     },
   },
 ];

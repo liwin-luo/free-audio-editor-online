@@ -4,16 +4,25 @@
  * On stop, hands the recording to the page's editor via the
  * `editor-load-file` CustomEvent — nothing is uploaded anywhere.
  */
+import { getShell } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const { editor: t } = getShell(locale);
 ---
 
 <div
   data-recorder
+  data-i18n={JSON.stringify(t)}
   class="mb-4 rounded-(--radius-tool) border border-line bg-surface px-5 py-4"
 >
   <div class="flex items-center gap-4">
-    <button type="button" class="btn btn-primary shrink-0" data-rec-toggle>Record</button>
+    <button type="button" class="btn btn-primary shrink-0" data-rec-toggle>{t.record}</button>
     <div class="min-w-0">
-      <p data-rec-status class="text-sm font-medium">Record from your microphone</p>
+      <p data-rec-status class="text-sm font-medium">{t.recordHint}</p>
       <p data-rec-meta class="font-mono text-xs tabular-nums text-ink3">00:00</p>
     </div>
     <span data-rec-live class="ml-auto hidden items-center gap-2 text-sm font-medium text-danger">

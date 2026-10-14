@@ -1,0 +1,16 @@
+import { catalogs } from './index';
+import { es } from './es';
+import { pt } from './pt';
+import { id } from './id';
+import { de } from './de';
+import { ko } from './ko';
+import { ja } from './ja';
+import { zh } from './zh';
+
+catalogs.es = es;
+catalogs.pt = pt;
+catalogs.id = id;
+catalogs.de = de;
+catalogs.ko = ko;
+catalogs.ja = ja;
+catalogs.zh = zh;

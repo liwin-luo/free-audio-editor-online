@@ -1,34 +1,41 @@
 ---
 import Icon from './Icon.astro';
-import { TOOLS, TOOL_CATEGORIES } from '../data/tools';
+import { CATEGORY_IDS, TOOLS } from '../data/tools';
+import { getShell, localizeTool } from '../i18n';
+import { localePath, type Locale } from '../i18n/locales';
 
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const { ui } = getShell(locale);
 const year = new Date().getFullYear();
+const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
 ---
 
 <footer class="mt-20 border-t border-line bg-surface">
   <div class="container-wide grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
     <div>
-      <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight">
+      <a href={localePath(locale, '/')} class="flex items-center gap-2.5 font-semibold tracking-tight">
         <span class="grid size-8 place-items-center rounded-lg bg-accent text-white">
           <Icon name="waveform" size={18} />
         </span>
         Free Audio Editor
       </a>
       <p class="mt-3 max-w-[38ch] text-sm leading-relaxed text-ink2">
-        Free online audio tools that run entirely in your browser. Your files are never
-        uploaded — audio editing that respects your privacy by design.
+        {ui.footerBlurb}
       </p>
     </div>
 
     {
-      TOOL_CATEGORIES.map((cat) => (
-        <nav aria-label={cat}>
-          <p class="text-[11px] font-medium uppercase tracking-wider text-ink3">{cat}</p>
+      CATEGORY_IDS.map((cat) => (
+        <nav aria-label={ui.categories[cat]}>
+          <p class="text-[11px] font-medium uppercase tracking-wider text-ink3">{ui.categories[cat]}</p>
           <ul class="mt-3 space-y-2 text-sm">
             {TOOLS.filter((t) => t.category === cat).map((t) => (
               <li>
-                <a href={`/${t.slug}`} class="text-ink2 hover:text-accent">
-                  {t.name}
+                <a href={localePath(locale, `/${t.slug}`)} class="text-ink2 hover:text-accent">
+                  {toolName(t.slug)}
                 </a>
               </li>
             ))}
@@ -37,12 +44,12 @@ const year = new Date().getFullYear();
       ))
     }
 
-    <nav aria-label="About">
-      <p class="text-[11px] font-medium uppercase tracking-wider text-ink3">About</p>
+    <nav aria-label={ui.navAbout}>
+      <p class="text-[11px] font-medium uppercase tracking-wider text-ink3">{ui.about}</p>
       <ul class="mt-3 space-y-2 text-sm">
-        <li><a href="/guides" class="text-ink2 hover:text-accent">Guides</a></li>
-        <li><a href="/about" class="text-ink2 hover:text-accent">About</a></li>
-        <li><a href="/privacy" class="text-ink2 hover:text-accent">Privacy</a></li>
+        {locale === 'en' && <li><a href="/guides" class="text-ink2 hover:text-accent">{ui.guides}</a></li>}
+        <li><a href={localePath(locale, '/about')} class="text-ink2 hover:text-accent">{ui.about}</a></li>
+        <li><a href={localePath(locale, '/privacy')} class="text-ink2 hover:text-accent">{ui.privacy}</a></li>
         <li><a href="/llms.txt" class="text-ink2 hover:text-accent">llms.txt</a></li>
       </ul>
     </nav>
@@ -50,10 +57,10 @@ const year = new Date().getFullYear();
 
   <div class="border-t border-line">
     <div class="container-wide flex flex-wrap items-center justify-between gap-2 py-4 text-xs text-ink3">
-      <p>© {year} Free Audio Editor. No files leave your device.</p>
+      <p>© {year} Free Audio Editor. {ui.rights}</p>
       <p class="inline-flex items-center gap-1.5">
         <Icon name="shield-check" size={14} />
-        100% client-side processing
+        {ui.clientSide}
       </p>
     </div>
   </div>

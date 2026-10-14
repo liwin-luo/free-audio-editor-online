@@ -1,0 +1,23 @@
+---
+import '../../i18n/catalogs';
+import ToolPage from '../../components/ToolPage.astro';
+import AboutPage from '../../components/AboutPage.astro';
+import PrivacyPage from '../../components/PrivacyPage.astro';
+import { TOOLS } from '../../data/tools';
+import { localizeTool } from '../../i18n';
+import { TRANSLATED_LOCALES, isLocale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  const slugs = ['about', 'privacy', ...TOOLS.map((t) => t.slug)];
+  return TRANSLATED_LOCALES.flatMap((locale) => slugs.map((slug) => ({ params: { locale, slug } })));
+}
+
+const { locale, slug } = Astro.params;
+if (!isLocale(locale) || locale === 'en' || !slug) throw new Error('bad locale path');
+const tool = slug === 'about' || slug === 'privacy' ? undefined : localizeTool(slug, locale);
+if (slug !== 'about' && slug !== 'privacy' && !tool) throw new Error(`unknown tool ${slug}`);
+---
+
+{slug === 'about' && <AboutPage locale={locale} />}
+{slug === 'privacy' && <PrivacyPage locale={locale} />}
+{tool && <ToolPage tool={tool} locale={locale} />}

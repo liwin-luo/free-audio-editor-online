@@ -1,40 +1,52 @@
 ---
 import Icon from './Icon.astro';
-import { TOOLS, TOOL_CATEGORIES } from '../data/tools';
+import { CATEGORY_IDS, TOOLS } from '../data/tools';
+import { getShell, localizeTool } from '../i18n';
+import { LOCALES, localePath, hasAlternates, type Locale } from '../i18n/locales';
+
+interface Props {
+  locale?: Locale;
+  path?: string;
+}
+const { locale = 'en', path = '/' } = Astro.props;
+const { ui } = getShell(locale);
+const showLang = hasAlternates(path);
+const current = LOCALES.find((l) => l.id === locale)!;
+const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
 ---
 
 <header class="sticky top-0 z-10 border-b border-line bg-bg/90 backdrop-blur">
   <div class="container-wide flex h-16 items-center justify-between gap-4">
-    <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight" aria-label="Free Audio Editor — home">
+    <a href={localePath(locale, '/')} class="flex items-center gap-2.5 font-semibold tracking-tight" aria-label={ui.logoHome}>
       <span class="grid size-8 place-items-center rounded-lg bg-accent text-white">
         <Icon name="waveform" size={18} />
       </span>
       <span class="hidden sm:block">Free Audio Editor</span>
     </a>
 
-    <nav class="flex items-center gap-1" aria-label="Main">
+    <nav class="flex items-center gap-1" aria-label={ui.navMain}>
       <details class="group relative" data-nav-dropdown>
         <summary
           class="btn btn-ghost list-none aria-expanded:bg-surface2"
           aria-haspopup="true"
         >
-          Tools
+          {ui.tools}
           <Icon name="caret-down" size={16} class="transition-transform group-open:rotate-180" />
         </summary>
         <div
           class="absolute right-0 top-full z-30 mt-2 w-72 rounded-xl border border-line bg-surface p-2 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)]"
         >
           {
-            TOOL_CATEGORIES.map((cat) => (
+            CATEGORY_IDS.map((cat) => (
               <div class="mb-1 last:mb-0">
-                <p class="px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-ink3">{cat}</p>
+                <p class="px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-ink3">{ui.categories[cat]}</p>
                 {TOOLS.filter((t) => t.category === cat).map((t) => (
                   <a
-                    href={`/${t.slug}`}
+                    href={localePath(locale, `/${t.slug}`)}
                     class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-ink2 hover:bg-surface2 hover:text-ink"
                   >
                     <Icon name={t.icon} size={18} class="text-ink3" />
-                    {t.name}
+                    {toolName(t.slug)}
                   </a>
                 ))}
               </div>
@@ -43,11 +55,37 @@ import { TOOLS, TOOL_CATEGORIES } from '../data/tools';
         </div>
       </details>
 
+      {
+        showLang && (
+          <details class="group relative" data-nav-dropdown>
+            <summary class="btn btn-ghost list-none px-2.5 font-mono text-xs uppercase aria-expanded:bg-surface2" aria-label={ui.language}>
+              {current.id}
+              <Icon name="caret-down" size={14} class="transition-transform group-open:rotate-180" />
+            </summary>
+            <div class="absolute right-0 top-full z-30 mt-2 w-44 rounded-xl border border-line bg-surface p-1.5 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)]">
+              {LOCALES.map((l) => (
+                <a
+                  href={localePath(l.id, path)}
+                  hrefLang={l.hreflang}
+                  class:list={[
+                    'block rounded-lg px-3 py-2 text-sm hover:bg-surface2',
+                    l.id === locale ? 'font-medium text-ink' : 'text-ink2',
+                  ]}
+                  aria-current={l.id === locale ? 'true' : undefined}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </details>
+        )
+      }
+
       <button
         type="button"
         class="btn btn-ghost size-10 p-0"
         data-theme-toggle
-        aria-label="Toggle dark mode"
+        aria-label={ui.theme}
       >
         <span class="hidden dark:block"><Icon name="sun" size={18} /></span>
         <span class="dark:hidden"><Icon name="moon" size={18} /></span>

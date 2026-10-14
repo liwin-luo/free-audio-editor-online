@@ -17,10 +17,14 @@ const pages = [
   { path: '/extract-audio', island: true },
   { path: '/voice-recorder', island: true, recorder: true },
   { path: '/volume-booster', island: true },
+  { path: '/normalize-audio', island: true },
+  { path: '/slowed-reverb', island: true },
   { path: '/guides', island: false },
   { path: '/guides/how-to-cut-a-song', island: false },
   { path: '/guides/make-iphone-ringtone', island: false },
   { path: '/guides/merge-songs-one-track', island: false },
+  { path: '/guides/audacity-alternative', island: false },
+  { path: '/guides/convert-video-to-mp3', island: false },
 ];
 
 let failures = 0;

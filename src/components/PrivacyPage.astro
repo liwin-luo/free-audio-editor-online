@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { getShell } from '../i18n';
+import { splitSlots } from '../i18n/inline';
+import { localeMeta, localePath, type Locale } from '../i18n/locales';
+import { SITE } from '../data/site';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const { privacy } = getShell(locale);
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: privacy.h1,
+    url: new URL(localePath(locale, '/privacy'), SITE.url).href,
+    inLanguage: localeMeta(locale).hreflang,
+  },
+];
+---
+
+<Base title={privacy.title} description={privacy.description} path="/privacy" locale={locale} jsonLd={jsonLd}>
+  <article class="container-page py-14">
+    <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{privacy.h1}</h1>
+    <p class="mt-2 text-sm text-ink3">{privacy.updated}</p>
+
+    <div class="mt-8 max-w-[70ch] space-y-8 text-[15px] leading-relaxed text-ink2">
+      {
+        privacy.sections.map((section) => (
+          <section>
+            <h2 class="text-lg font-semibold text-ink">{section.h}</h2>
+            <p class="mt-2">
+              {section.em
+                ? splitSlots(section.body).map((part) =>
+                    part.type === 'slot' ? <strong>{section.em}</strong> : part.value
+                  )
+                : section.body}
+            </p>
+          </section>
+        ))
+      }
+      <section>
+        <h2 class="text-lg font-semibold text-ink">{privacy.contactHeading}</h2>
+        <p class="mt-2">
+          {
+            splitSlots(privacy.contactBefore).map((part) =>
+              part.type === 'slot' ? (
+                <a href="mailto:privacy@freeaudioeditor.online" class="text-accent hover:underline">
+                  privacy@freeaudioeditor.online
+                </a>
+              ) : (
+                part.value
+              )
+            )
+          }
+        </p>
+      </section>
+    </div>
+  </article>
+</Base>

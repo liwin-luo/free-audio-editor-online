@@ -12,7 +12,7 @@
  */
 import puppeteer from 'puppeteer-core';
 import { execSync } from 'node:child_process';
-import { mkdirSync, writeFileSync, existsSync, statSync, cpSync } from 'node:fs';
+import { mkdirSync, writeFileSync, existsSync, statSync, cpSync, readdirSync, unlinkSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -310,13 +310,15 @@ async function buildArticleMedia(page, article) {
   }
 
   // article diagram images
+  // Number diagrams after the screenshots. A fixed "03-" collides once a guide has 3 shots.
+  const diagramIndex = String(shotIndex + 1).padStart(2, '0');
   if (article.slug === 'how-to-cut-a-song') {
     const d = DIAGRAMS.keepVsDelete;
-    await renderHtml(page, diagramHtml(d), `${dir}/03-keep-vs-delete.png`, 1200, 750);
+    await renderHtml(page, diagramHtml(d), `${dir}/${diagramIndex}-keep-vs-delete.png`, 1200, 750);
   }
   if (article.slug === 'merge-songs-one-track') {
     const d = DIAGRAMS.crossfade;
-    await renderHtml(page, diagramHtml(d), `${dir}/03-crossfade.png`, 1200, 750);
+    await renderHtml(page, diagramHtml(d), `${dir}/${diagramIndex}-crossfade.png`, 1200, 750);
   }
 
   // narration + video slides
@@ -350,6 +352,14 @@ async function buildArticleMedia(page, article) {
 
   // poster: the branded title slide doubles as the YouTube facade cover
   cpSync(join(slideDir, 'slide-01.png'), join(dir, 'poster.png'));
+  // Article images ship as WebP. Slide PNGs stay PNG — ffmpeg's slideshow input.
+  for (const name of readdirSync(dir)) {
+    if (!name.endsWith('.png')) continue;
+    const png = join(dir, name);
+    const webp = png.replace(/\.png$/, '.webp');
+    sh(`ffmpeg -y -loglevel error -i "${png}" -c:v libwebp -quality 82 "${webp}"`);
+    unlinkSync(png);
+  }
 
   // video
   const slidesTxt = durations.map((d, i) => `file '${slideDir}/slide-${String(i + 1).padStart(2, '0')}.png'\nduration ${d.toFixed(2)}`).join('\n') + `\nfile '${slideDir}/slide-${String(article.slides.length).padStart(2, '0')}.png'`;
