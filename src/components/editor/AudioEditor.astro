@@ -180,6 +180,17 @@ const { config } = Astro.props;
               </span>
               <input type="range" data-speed min="0.5" max="2" step="0.05" value="1" class="w-full accent-(--color-accent)" />
             </label>
+            <label class="block">
+              <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+                Reverb
+                <span class="font-mono text-xs tabular-nums" data-reverb-label>0%</span>
+              </span>
+              <input type="range" data-reverb min="0" max="1" step="0.05" value="0" class="w-full accent-(--color-accent)" />
+            </label>
+            <label class="flex items-center gap-3 text-sm text-ink2">
+              <input type="checkbox" data-normalize class="size-4 accent-(--color-accent)" />
+              Normalize peak (overrides volume)
+            </label>
             <label class="flex items-center gap-3 text-sm text-ink2">
               <input type="checkbox" data-reverse class="size-4 accent-(--color-accent)" />
               Reverse playback

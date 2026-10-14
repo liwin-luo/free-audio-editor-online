@@ -43,7 +43,7 @@ export interface EditorConfig {
   /** Max gain slider percent (default 200) */
   maxGainPercent?: number;
   /** Headline controls surfaced outside the Adjust drawer */
-  quickControls?: ('reverse' | 'speed' | 'gain')[];
+  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb')[];
   /** file input accept attribute (default: audio + common video containers) */
   accept?: string;
 }
@@ -759,7 +759,6 @@ export const TOOLS: ToolDef[] = [
       defaultFormat: 'mp3-192',
       showAdjust: true,
       dropHint: 'Or drop an existing recording to edit',
-      recorder: true,
     },
     recorder: true,
   },
