@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro';
+import { TOOLS } from '../data/tools';
+
+const year = new Date().getFullYear();
+const categories = [...new Set(TOOLS.map((t) => t.category))];
+---
+
+<footer class="mt-20 border-t border-line bg-surface">
+  <div class="container-wide grid gap-10 py-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
+    <div>
+      <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight">
+        <span class="grid size-8 place-items-center rounded-lg bg-accent text-white">
+          <Icon name="waveform" size={18} />
+        </span>
+        Free Audio Editor
+      </a>
+      <p class="mt-3 max-w-[38ch] text-sm leading-relaxed text-ink2">
+        Free online audio tools that run entirely in your browser. Your files are never
+        uploaded — audio editing that respects your privacy by design.
+      </p>
+    </div>
+
+    {
+      categories.map((cat) => (
+        <nav aria-label={cat}>
+          <p class="text-[11px] font-medium uppercase tracking-wider text-ink3">{cat}</p>
+          <ul class="mt-3 space-y-2 text-sm">
+            {TOOLS.filter((t) => t.category === cat).map((t) => (
+              <li>
+                <a href={`/${t.slug}`} class="text-ink2 hover:text-accent">
+                  {t.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+
+    <nav aria-label="About">
+      <p class="text-[11px] font-medium uppercase tracking-wider text-ink3">About</p>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="/about" class="text-ink2 hover:text-accent">About</a></li>
+        <li><a href="/privacy" class="text-ink2 hover:text-accent">Privacy</a></li>
+        <li><a href="/llms.txt" class="text-ink2 hover:text-accent">llms.txt</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="border-t border-line">
+    <div class="container-wide flex flex-wrap items-center justify-between gap-2 py-4 text-xs text-ink3">
+      <p>© {year} Free Audio Editor. No files leave your device.</p>
+      <p class="inline-flex items-center gap-1.5">
+        <Icon name="shield-check" size={14} />
+        100% client-side processing
+      </p>
+    </div>
+  </div>
+</footer>

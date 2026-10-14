@@ -1,0 +1,60 @@
+---
+/**
+ * Shared template for tool landing pages. Content uniqueness comes from the
+ * ToolDef data (title, intro, how-to, FAQs) — structure stays consistent.
+ */
+import Base from '../layouts/Base.astro';
+import AudioEditor from './editor/AudioEditor.astro';
+import JoinerEditor from './editor/JoinerEditor.astro';
+import TrustBadge from './TrustBadge.astro';
+import HowTo from './HowTo.astro';
+import Faq from './Faq.astro';
+import RelatedTools from './RelatedTools.astro';
+import { webAppSchema, faqSchema, howToSchema, breadcrumbSchema } from '../lib/jsonld';
+import type { ToolDef } from '../data/tools';
+
+interface Props {
+  tool: ToolDef;
+}
+const { tool } = Astro.props;
+const jsonLd = [
+  webAppSchema(tool.name, tool.description),
+  howToSchema(`How to use the ${tool.name}`, tool.howTo),
+  faqSchema(tool.faqs),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: tool.name, path: `/${tool.slug}` },
+  ]),
+];
+---
+
+<Base title={tool.title} description={tool.description} path={`/${tool.slug}`} jsonLd={jsonLd}>
+  <div class="container-page">
+    <nav aria-label="Breadcrumb" class="pt-5 text-xs">
+      <a href="/" class="text-ink3 hover:text-accent">Home</a>
+      <span class="mx-1.5 text-ink3">/</span>
+      <span class="text-ink2" aria-current="page">{tool.name}</span>
+    </nav>
+
+    <section class="pt-4">
+      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{tool.h1}</h1>
+      <p class="mt-2 text-[15px] text-ink2 md:text-base">{tool.subtitle}</p>
+    </section>
+
+    <section class="mt-6" aria-label={`${tool.name} tool`}>
+      {tool.editor.multiple ? <JoinerEditor config={tool.editor} /> : <AudioEditor config={tool.editor} />}
+    </section>
+
+    <div class="mt-5">
+      <TrustBadge />
+    </div>
+
+    <section class="py-14">
+      <p class="max-w-[70ch] text-[17px] leading-relaxed text-ink2">{tool.intro}</p>
+    </section>
+  </div>
+
+  <HowTo title={`How to use the ${tool.name}`} steps={tool.howTo} />
+  <Faq faqs={tool.faqs} />
+  <RelatedTools current={tool} />
+</Base>

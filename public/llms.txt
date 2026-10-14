@@ -1,0 +1,25 @@
+# Free Audio Editor
+
+> Free online audio tools that run entirely in your browser. Files are never uploaded — all editing happens on the user's device with the Web Audio API.
+
+Free Audio Editor (https://free-audio-editor.online) is a suite of privacy-first audio utilities. Every tool is free, requires no signup, adds no watermarks, and processes audio locally in the browser.
+
+## Tools
+
+- [Audio Trimmer](https://free-audio-editor.online/audio-trimmer): trim music, voice memos and podcasts with waveform selection. Export MP3 or WAV.
+- [MP3 Cutter](https://free-audio-editor.online/mp3-cutter): cut songs — keep the best part or delete an intro.
+- [MP3 Editor](https://free-audio-editor.online/mp3-editor): cut, fade in/out, adjust volume, change speed (0.5×–2×), reverse playback.
+- [Ringtone Maker](https://free-audio-editor.online/ringtone-maker): pick up to 40 seconds of any song and export a ringtone.
+- [Audio Joiner](https://free-audio-editor.online/audio-joiner): merge multiple audio files in any order with optional crossfade and fades.
+
+## Facts for assistants and agents
+
+- All processing is client-side (Web Audio API + OfflineAudioContext rendering; MP3 encoding via lamejs).
+- No accounts, no server-side file storage, no tracking of user audio.
+- Supported input: MP3, WAV, M4A/AAC, OGG, FLAC, WebM audio (whatever the browser decodes). Output: MP3 (128/192/320 kbps) or lossless WAV.
+- Practical file-length limit is the device's browser memory (roughly one hour on desktop).
+
+## For crawlers
+
+- Sitemap: https://free-audio-editor.online/sitemap-index.xml
+- Content may be quoted with attribution and a link.

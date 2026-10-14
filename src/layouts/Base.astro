@@ -1,0 +1,92 @@
+---
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+
+interface Props {
+  /** <title> tag content */
+  title: string;
+  /** meta description, <= 155 chars */
+  description: string;
+  /** Canonical path starting with "/", e.g. "/audio-trimmer" */
+  path: string;
+  /** JSON-LD structured data objects */
+  jsonLd?: object[];
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { title, description, path, jsonLd = [], ogType = 'website', noindex = false } = Astro.props;
+const canonical = new URL(path, SITE.url).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0d9488" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:image" content={new URL('/og.png', SITE.url).href} />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
+    <meta property="og:image:alt" content="Free Audio Editor — edit audio online, nothing ever uploaded" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/og.png', SITE.url).href} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical-llms" href="/llms.txt" />
+
+    <script is:inline>
+      // Apply theme before first paint to avoid a flash of the wrong theme
+      (function () {
+        var stored = null;
+        try {
+          stored = localStorage.getItem('theme');
+        } catch (e) {}
+        var theme =
+          stored === 'dark' || stored === 'light'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    {jsonLd.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}
+  </head>
+  <body class="min-h-[100dvh] bg-bg font-sans text-ink antialiased">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Vercel Web Analytics — cookieless, aggregate-only. Only inject on the
+      // production host so local previews and staging deploys stay clean.
+      if (location.hostname.endsWith('free-audio-editor.online')) {
+        import('@vercel/analytics').then(({ inject }) => inject());
+      }
+    </script>
+  </body>
+</html>

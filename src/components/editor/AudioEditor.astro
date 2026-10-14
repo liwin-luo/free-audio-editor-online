@@ -1,0 +1,191 @@
+---
+/**
+ * The single-file audio editor island.
+ * Renders static, SEO-friendly markup; src/editor/index.ts progressively
+ * wires it into a full waveform editor. All processing is client-side.
+ */
+import Icon from '../Icon.astro';
+import type { EditorConfig } from '../../data/tools';
+
+interface Props {
+  config: EditorConfig;
+}
+const { config } = Astro.props;
+---
+
+<div
+  data-audio-editor
+  data-config={JSON.stringify(config)}
+  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+>
+  <!-- Empty state / dropzone -->
+  <div data-dropzone class="cursor-pointer px-6 py-12 text-center md:py-16" tabindex="0" role="button" aria-label={config.dropHint}>
+    <span class="mx-auto grid size-14 place-items-center rounded-2xl bg-accent-soft text-accent">
+      <Icon name="upload-simple" size={28} />
+    </span>
+    <p class="mt-5 text-lg font-medium">{config.dropHint}</p>
+    <p class="mt-1.5 text-sm text-ink2">MP3, WAV, M4A, OGG, FLAC, AAC — up to about an hour</p>
+    <p class="mt-6 inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
+      <Icon name="shield-check" size={14} class="text-accent" />
+      Processed locally — your file never leaves this tab
+    </p>
+    <input type="file" class="hidden" accept="audio/*,video/mp4,.m4a,.opus" data-file-input {...(config.multiple ? { multiple: true } : {})} />
+  </div>
+
+  <!-- Workspace: visible after a file is loaded -->
+  <div data-workspace class="hidden">
+    <!-- File bar -->
+    <div class="flex items-center justify-between gap-3 border-b border-line px-4 py-2.5 md:px-5">
+      <div class="flex min-w-0 items-center gap-3">
+        <span class="grid size-8 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">
+          <Icon name="waveform" size={16} />
+        </span>
+        <div class="min-w-0">
+          <p data-file-name class="truncate text-sm font-medium"></p>
+          <p data-file-meta class="font-mono text-xs text-ink3"></p>
+        </div>
+      </div>
+      <div class="flex shrink-0 items-center gap-1">
+        <button type="button" class="btn btn-ghost size-9 p-0" data-zoom-out aria-label="Zoom out" title="Zoom out">
+          <Icon name="minus" size={16} />
+        </button>
+        <button type="button" class="btn btn-ghost size-9 p-0" data-zoom-in aria-label="Zoom in" title="Zoom in">
+          <Icon name="plus" size={16} />
+        </button>
+        <button type="button" class="btn btn-ghost size-9 p-0" data-reset aria-label="Load a different file" title="Start over">
+          <Icon name="arrow-arc-left" size={16} />
+        </button>
+      </div>
+    </div>
+
+    <!-- Waveform stage -->
+    <div data-stage class="relative h-[200px] touch-pan-y overflow-x-auto overflow-y-hidden md:h-[220px]" aria-label="Waveform. Drag to select a range.">
+      <div data-stage-content class="relative h-full select-none">
+        <canvas data-wave class="absolute inset-0 h-full w-full text-ink3" aria-hidden="true"></canvas>
+        <div
+          data-selection
+          class="pointer-events-none absolute inset-y-0 hidden border-x-2 border-accent bg-accent-soft"
+        >
+          <span data-handle-start class="pointer-events-auto absolute -left-2 inset-y-0 w-4 cursor-ew-resize" aria-hidden="true"></span>
+          <span data-handle-end class="pointer-events-auto absolute -right-2 inset-y-0 w-4 cursor-ew-resize" aria-hidden="true"></span>
+        </div>
+        <div data-playhead class="pointer-events-none absolute inset-y-0 w-0.5 bg-ink opacity-0" aria-hidden="true">
+          <span class="absolute -top-0 -left-[5px] size-0 border-x-[6px] border-t-[8px] border-x-transparent border-t-ink"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transport -->
+    <div class="flex items-center gap-3 border-y border-line bg-surface2/60 px-4 py-2.5 md:px-5">
+      <button type="button" class="btn btn-primary size-10 rounded-full p-0" data-play aria-label="Play selection" disabled>
+        <Icon name="play" size={18} />
+      </button>
+      <p data-timecode class="font-mono text-sm tabular-nums text-ink2">
+        00:00.00 / 00:00.00
+      </p>
+      <p data-hint class="ml-auto hidden text-xs text-ink3 md:block">
+        Drag on the waveform to select · Space to play
+      </p>
+    </div>
+
+    <!-- Adjust drawer (optional per tool) -->
+    {
+      config.showAdjust && (
+        <details class="border-b border-line" data-adjust>
+          <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-medium md:px-5">
+            Adjust — fades, volume, speed, reverse
+            <Icon name="caret-down" size={16} class="text-ink3" />
+          </summary>
+          <div class="grid gap-5 px-4 pb-5 md:grid-cols-2 md:px-5">
+            <label class="block">
+              <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+                Fade in
+                <span class="font-mono text-xs tabular-nums" data-fade-in-label>0.0s</span>
+              </span>
+              <input type="range" data-fade-in min="0" max="5" step="0.1" value="0" class="w-full accent-(--color-accent)" />
+            </label>
+            <label class="block">
+              <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+                Fade out
+                <span class="font-mono text-xs tabular-nums" data-fade-out-label>0.0s</span>
+              </span>
+              <input type="range" data-fade-out min="0" max="5" step="0.1" value="0" class="w-full accent-(--color-accent)" />
+            </label>
+            <label class="block">
+              <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+                Volume
+                <span class="font-mono text-xs tabular-nums" data-gain-label>100%</span>
+              </span>
+              <input type="range" data-gain min="10" max="200" step="5" value="100" class="w-full accent-(--color-accent)" />
+            </label>
+            <label class="block">
+              <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+                Speed
+                <span class="font-mono text-xs tabular-nums" data-speed-label>1.00×</span>
+              </span>
+              <input type="range" data-speed min="0.5" max="2" step="0.05" value="1" class="w-full accent-(--color-accent)" />
+            </label>
+            <label class="flex items-center gap-3 text-sm text-ink2">
+              <input type="checkbox" data-reverse class="size-4 accent-(--color-accent)" />
+              Reverse playback
+            </label>
+            <button type="button" class="btn btn-secondary h-9 self-end" data-undo>
+              <Icon name="clock-counter-clockwise" size={15} />
+              Undo last change
+            </button>
+          </div>
+        </details>
+      )
+    }
+
+    <!-- Mode + precise times -->
+    <div class="flex flex-wrap items-center gap-3 px-4 py-3 md:px-5" data-modes-row>
+      <div class="inline-flex rounded-lg border border-line p-0.5" role="group" aria-label="Cut mode">
+        <button type="button" class="rounded-md px-3 py-1.5 text-sm font-medium" data-mode="keep">Keep selection</button>
+        <button type="button" class="rounded-md px-3 py-1.5 text-sm font-medium" data-mode="delete">Delete selection</button>
+      </div>
+      <details class="min-w-0 flex-1" data-precise>
+        <summary class="inline-flex cursor-pointer list-none items-center gap-1.5 text-sm text-ink2 hover:text-ink">
+          <Icon name="cursor-click" size={15} />
+          Precise times
+        </summary>
+        <div class="mt-2 flex items-center gap-2">
+          <label class="text-xs text-ink2">
+            Start (s)
+            <input type="number" data-precise-start class="ml-1 w-24 rounded-md border border-line bg-bg px-2 py-1 font-mono text-sm tabular-nums" min="0" step="0.1" />
+          </label>
+          <label class="text-xs text-ink2">
+            End (s)
+            <input type="number" data-precise-end class="ml-1 w-24 rounded-md border border-line bg-bg px-2 py-1 font-mono text-sm tabular-nums" min="0" step="0.1" />
+          </label>
+        </div>
+      </details>
+    </div>
+
+    <!-- Export bar -->
+    <div data-export-bar class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+      <label class="flex items-center gap-2 text-sm text-ink2">
+        Format
+        <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" disabled>
+          <option value="mp3-320">MP3 · 320 kbps</option>
+          <option value="mp3-192" selected>MP3 · 192 kbps</option>
+          <option value="mp3-128">MP3 · 128 kbps</option>
+          <option value="wav">WAV · lossless</option>
+        </select>
+      </label>
+      <button type="button" class="btn btn-primary btn-lg ml-auto" data-export disabled>
+        <Icon name="download-simple" size={18} />
+        Export
+      </button>
+    </div>
+  </div>
+
+  <p data-status class="sr-only" role="status" aria-live="polite"></p>
+</div>
+
+<div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+
+<script>
+  import { initEditors } from '../../editor/index';
+  initEditors();
+</script>

@@ -1,0 +1,102 @@
+---
+/**
+ * Multi-file audio joiner island (audio-joiner page).
+ * Static markup; src/editor/joiner.ts wires the behavior.
+ */
+import Icon from '../Icon.astro';
+import type { EditorConfig } from '../../data/tools';
+
+interface Props {
+  config: EditorConfig;
+}
+const { config } = Astro.props;
+---
+
+<div
+  data-audio-joiner
+  data-config={JSON.stringify(config)}
+  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+>
+  <!-- Dropzone -->
+  <div data-dropzone class="cursor-pointer px-6 py-12 text-center md:py-16" tabindex="0" role="button" aria-label={config.dropHint}>
+    <span class="mx-auto grid size-14 place-items-center rounded-2xl bg-accent-soft text-accent">
+      <Icon name="layers" size={28} />
+    </span>
+    <p class="mt-5 text-lg font-medium">{config.dropHint}</p>
+    <p class="mt-1.5 text-sm text-ink2">MP3, WAV, M4A, OGG, FLAC — mixed formats are fine</p>
+    <p class="mt-6 inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
+      <Icon name="shield-check" size={14} class="text-accent" />
+      Processed locally — your files never leave this tab
+    </p>
+    <input type="file" class="hidden" multiple accept="audio/*,video/mp4,.m4a,.opus" data-file-input />
+  </div>
+
+  <!-- Workspace -->
+  <div data-workspace class="hidden">
+    <div class="flex items-center justify-between gap-3 border-b border-line px-4 py-2.5 md:px-5">
+      <p class="text-sm font-medium">
+        <span data-count>0</span> tracks · <span data-total class="font-mono tabular-nums">00:00.00</span>
+      </p>
+      <button type="button" class="btn btn-ghost h-9" data-clear>Start over</button>
+    </div>
+
+    <!-- Combined preview waveform -->
+    <div data-stage class="h-[140px] overflow-hidden px-1 md:h-[160px]" aria-hidden="true">
+      <canvas data-wave class="h-full w-full text-accent"></canvas>
+    </div>
+
+    <!-- Track list -->
+    <ul data-tracks class="space-y-2 border-t border-line px-4 py-4 md:px-5"></ul>
+
+    <!-- Controls -->
+    <div class="grid gap-5 border-t border-line px-4 py-4 md:grid-cols-3 md:px-5">
+      <label class="block">
+        <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+          Crossfade
+          <span class="font-mono text-xs tabular-nums" data-crossfade-label>0.0s</span>
+        </span>
+        <input type="range" data-crossfade min="0" max="5" step="0.5" value="0" class="w-full accent-(--color-accent)" />
+      </label>
+      <label class="block">
+        <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+          Fade in (first track)
+          <span class="font-mono text-xs tabular-nums" data-fade-in-label>0.0s</span>
+        </span>
+        <input type="range" data-fade-in min="0" max="5" step="0.1" value="0" class="w-full accent-(--color-accent)" />
+      </label>
+      <label class="block">
+        <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+          Fade out (last track)
+          <span class="font-mono text-xs tabular-nums" data-fade-out-label>0.0s</span>
+        </span>
+        <input type="range" data-fade-out min="0" max="5" step="0.1" value="0" class="w-full accent-(--color-accent)" />
+      </label>
+    </div>
+
+    <!-- Export bar -->
+    <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+      <label class="flex items-center gap-2 text-sm text-ink2">
+        Format
+        <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+          <option value="mp3-320">MP3 · 320 kbps</option>
+          <option value="mp3-192" selected>MP3 · 192 kbps</option>
+          <option value="mp3-128">MP3 · 128 kbps</option>
+          <option value="wav">WAV · lossless</option>
+        </select>
+      </label>
+      <button type="button" class="btn btn-primary btn-lg ml-auto" data-export disabled>
+        <Icon name="download-simple" size={18} />
+        Merge &amp; export
+      </button>
+    </div>
+  </div>
+
+  <p data-status class="sr-only" role="status" aria-live="polite"></p>
+</div>
+
+<div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2"></div>
+
+<script>
+  import { initJoiners } from '../../editor/joiner';
+  initJoiners();
+</script>

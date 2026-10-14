@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="About — Free Audio Editor"
+  description="Free Audio Editor is a suite of privacy-first audio tools that run entirely in your browser — no uploads, no signup, no watermarks."
+  path="/about"
+>
+  <article class="container-page py-14">
+    <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">About</h1>
+    <div class="mt-8 max-w-[70ch] space-y-6 text-[15px] leading-relaxed text-ink2">
+      <p>
+        Free Audio Editor exists because editing a voice memo should not mean uploading
+        it to somebody else's server. Every tool here — the
+        <a href="/audio-trimmer" class="text-accent hover:underline">trimmer</a>,
+        <a href="/mp3-cutter" class="text-accent hover:underline">cutter</a>,
+        <a href="/audio-joiner" class="text-accent hover:underline">joiner</a> and the
+        rest — runs the same way: your browser reads the file, edits it in memory, and
+        writes the result straight back to your disk.
+      </p>
+      <p>
+        That architecture is also why the tools are fast and free. There is no upload
+        queue, no processing farm, and no storage bill — just your device doing the work
+        it is already good at.
+      </p>
+      <p>
+        The site is built as a static web app with the Web Audio API. It is actively
+        developed, with converters, a voice recorder and more editing tools on the way.
+      </p>
+    </div>
+  </article>
+</Base>

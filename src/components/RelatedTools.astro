@@ -1,0 +1,46 @@
+---
+import Icon from './Icon.astro';
+import { TOOLS, type ToolDef } from '../data/tools';
+
+interface Props {
+  current: ToolDef;
+}
+const { current } = Astro.props;
+const related = current.related
+  .map((slug) => TOOLS.find((t) => t.slug === slug))
+  .filter((t): t is ToolDef => Boolean(t));
+---
+
+<section class="py-16" aria-labelledby="related-heading">
+  <div class="container-page">
+    <h2 id="related-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+      Related tools
+    </h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        related.map((tool) => (
+          <a
+            href={`/${tool.slug}`}
+            class="group rounded-xl border border-line bg-surface p-5 transition-colors hover:border-accent"
+          >
+            <span class="grid size-10 place-items-center rounded-lg bg-accent-soft text-accent">
+              <Icon name={tool.icon} size={20} />
+            </span>
+            <h3 class="mt-4 font-medium group-hover:text-accent">{tool.name}</h3>
+            <p class="mt-1.5 text-sm leading-relaxed text-ink2">{tool.subtitle}</p>
+          </a>
+        ))
+      }
+      <a
+        href="/"
+        class="group flex flex-col justify-center rounded-xl border border-dashed border-line p-5 text-ink2 transition-colors hover:border-accent hover:text-accent"
+      >
+        <span class="font-medium">All audio tools</span>
+        <span class="mt-1.5 inline-flex items-center gap-1.5 text-sm">
+          Browse the full toolkit
+          <Icon name="convert" size={16} />
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

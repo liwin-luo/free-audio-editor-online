@@ -1,0 +1,80 @@
+---
+import Icon from './Icon.astro';
+import { TOOLS } from '../data/tools';
+
+const categories = [...new Set(TOOLS.map((t) => t.category))];
+---
+
+<header class="sticky top-0 z-10 border-b border-line bg-bg/90 backdrop-blur">
+  <div class="container-wide flex h-16 items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight" aria-label="Free Audio Editor — home">
+      <span class="grid size-8 place-items-center rounded-lg bg-accent text-white">
+        <Icon name="waveform" size={18} />
+      </span>
+      <span class="hidden sm:block">Free Audio Editor</span>
+    </a>
+
+    <nav class="flex items-center gap-1" aria-label="Main">
+      <details class="group relative" data-nav-dropdown>
+        <summary
+          class="btn btn-ghost list-none aria-expanded:bg-surface2"
+          aria-haspopup="true"
+        >
+          Tools
+          <Icon name="caret-down" size={16} class="transition-transform group-open:rotate-180" />
+        </summary>
+        <div
+          class="absolute right-0 top-full z-30 mt-2 w-72 rounded-xl border border-line bg-surface p-2 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)]"
+        >
+          {
+            categories.map((cat) => (
+              <div class="mb-1 last:mb-0">
+                <p class="px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-ink3">{cat}</p>
+                {TOOLS.filter((t) => t.category === cat).map((t) => (
+                  <a
+                    href={`/${t.slug}`}
+                    class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-ink2 hover:bg-surface2 hover:text-ink"
+                  >
+                    <Icon name={t.icon} size={18} class="text-ink3" />
+                    {t.name}
+                  </a>
+                ))}
+              </div>
+            ))
+          }
+        </div>
+      </details>
+
+      <button
+        type="button"
+        class="btn btn-ghost size-10 p-0"
+        data-theme-toggle
+        aria-label="Toggle dark mode"
+      >
+        <span class="hidden dark:block"><Icon name="sun" size={18} /></span>
+        <span class="dark:hidden"><Icon name="moon" size={18} /></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  // Close the tools dropdown when clicking outside of it
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('[data-nav-dropdown][open]').forEach((d) => {
+      if (!d.contains(e.target)) d.removeAttribute('open');
+    });
+  });
+
+  // Theme toggle
+  document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* private mode */
+    }
+    window.dispatchEvent(new CustomEvent('themechange'));
+  });
+</script>
