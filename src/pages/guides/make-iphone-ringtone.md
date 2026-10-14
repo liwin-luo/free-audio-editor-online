@@ -4,6 +4,8 @@ description: Turn any song into an official iPhone ringtone. Build a 40-second c
 tool: ringtone-maker
 date: 2026-10-14
 audio: /guides-media/make-iphone-ringtone/narration.m4a
+poster: /guides-media/make-iphone-ringtone/poster.png
+youtube: 5Gt0fMdXHwk
 layout: ../../layouts/Guide.astro
 ---
 

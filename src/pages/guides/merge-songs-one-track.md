@@ -4,6 +4,8 @@ description: Combine songs into a single continuous file for DJ sets, workouts o
 tool: audio-joiner
 date: 2026-10-14
 audio: /guides-media/merge-songs-one-track/narration.m4a
+poster: /guides-media/merge-songs-one-track/poster.png
+youtube: RceLdI_b6_o
 layout: ../../layouts/Guide.astro
 ---
 

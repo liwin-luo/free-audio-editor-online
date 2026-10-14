@@ -4,6 +4,8 @@ description: Keep the chorus, lose the intro. A practical walkthrough of cutting
 tool: mp3-cutter
 date: 2026-10-14
 audio: /guides-media/how-to-cut-a-song/narration.m4a
+poster: /guides-media/how-to-cut-a-song/poster.png
+youtube: j7BmUJedDJo
 layout: ../../layouts/Guide.astro
 ---
 
