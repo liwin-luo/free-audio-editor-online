@@ -8,7 +8,7 @@ export interface EditState {
   /** keep = export only the selection; delete = remove the selection */
   mode: 'keep' | 'delete';
   sel: { start: number; end: number } | null;
-  /** linear gain, 1 = unchanged */
+  /** linear gain, 1 = unchanged (ignored when normalize is on) */
   gain: number;
   /** playback rate, 1 = unchanged */
   speed: number;
@@ -17,6 +17,10 @@ export interface EditState {
   /** fade-out seconds (applied at output end) */
   fadeOut: number;
   reverse: boolean;
+  /** raise the surviving audio so its peak hits −0.2 dBFS (capped at +12 dB) */
+  normalize: boolean;
+  /** reverb wet mix, 0 = dry, 1 = full synthesized-room send */
+  reverb: number;
 }
 
 export function defaultEditState(): EditState {
@@ -28,6 +32,8 @@ export function defaultEditState(): EditState {
     fadeIn: 0,
     fadeOut: 0,
     reverse: false,
+    normalize: false,
+    reverb: 0,
   };
 }
 
@@ -64,12 +70,53 @@ export function survivingRanges(duration: number, state: EditState): RenderRange
   return ranges;
 }
 
+/**
+ * Linear gain that brings the surviving audio's peak to −0.2 dBFS, capped at
+ * +12 dB so near-silence is not amplified into noise. Normalize takes
+ * precedence over the manual volume slider.
+ */
+export function computeNormalizeGain(buffer: AudioBuffer, state: EditState): number {
+  const ranges = survivingRanges(buffer.duration, state);
+  const rate = buffer.sampleRate;
+  let peak = 0;
+  for (const r of ranges) {
+    const from = Math.max(0, Math.floor(r.from * rate));
+    const to = Math.min(buffer.length, Math.ceil(r.to * rate));
+    for (let c = 0; c < buffer.numberOfChannels; c++) {
+      const d = buffer.getChannelData(c);
+      for (let i = from; i < to; i++) {
+        const a = Math.abs(d[i]);
+        if (a > peak) peak = a;
+      }
+    }
+  }
+  if (peak < 1e-6) return 1;
+  return Math.min(0.98 / peak, 4);
+}
+
+/** Synthesized room impulse response — exponentially decaying stereo noise. */
+function createReverbIR(ctx: BaseAudioContext, seconds = 2.2): AudioBuffer {
+  const rate = ctx.sampleRate;
+  const len = Math.max(1, Math.floor(seconds * rate));
+  const ir = ctx.createBuffer(2, len, rate);
+  for (let c = 0; c < 2; c++) {
+    const d = ir.getChannelData(c);
+    for (let i = 0; i < len; i++) {
+      const t = i / len;
+      d[i] = (Math.random() * 2 - 1) * Math.exp(-3.2 * t) * (1 - t) * (1 - t);
+    }
+  }
+  return ir;
+}
+
 export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise<AudioBuffer> {
   const rate = buffer.sampleRate;
   const speed = clamp(state.speed, 0.25, 4);
   const ranges = survivingRanges(buffer.duration, state);
   const outDuration =
     ranges.reduce((acc, r) => acc + (r.to - r.from) / speed, 0) || 0.001;
+  const gain = state.normalize ? computeNormalizeGain(buffer, state) : state.gain;
+  const wet = clamp(state.reverb, 0, 1);
 
   const ctx = new OfflineAudioContext(
     Math.min(buffer.numberOfChannels, 2),
@@ -78,9 +125,11 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   );
 
   // Master bus: when boosting, a limiter catches peaks so the result gets
-  // louder without hard digital clipping.
+  // louder without hard digital clipping. Reverb taps the bus after gain and
+  // limiting as a parallel wet send.
   const master = ctx.createGain();
-  if (state.gain > 1) {
+  let bus: AudioNode = master;
+  if (gain > 1) {
     const limiter = ctx.createDynamicsCompressor();
     limiter.threshold.value = -2;
     limiter.knee.value = 3;
@@ -88,9 +137,17 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
     limiter.attack.value = 0.002;
     limiter.release.value = 0.15;
     master.connect(limiter);
-    limiter.connect(ctx.destination);
-  } else {
-    master.connect(ctx.destination);
+    bus = limiter;
+  }
+  bus.connect(ctx.destination);
+  if (wet > 0) {
+    const convolver = ctx.createConvolver();
+    convolver.buffer = createReverbIR(ctx);
+    const wetGain = ctx.createGain();
+    wetGain.gain.value = wet;
+    bus.connect(convolver);
+    convolver.connect(wetGain);
+    wetGain.connect(ctx.destination);
   }
 
   let t = 0;
@@ -99,20 +156,20 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
     const src = ctx.createBufferSource();
     src.buffer = buffer;
     src.playbackRate.value = speed;
-    const gain = ctx.createGain();
-    src.connect(gain);
-    gain.connect(master);
+    const seg = ctx.createGain();
+    src.connect(seg);
+    seg.connect(master);
 
     const isLast = i === ranges.length - 1;
-    gain.gain.setValueAtTime(state.gain, t);
+    seg.gain.setValueAtTime(gain, t);
     if (state.fadeIn > 0 && i === 0) {
-      gain.gain.setValueAtTime(0.0001, t);
-      gain.gain.linearRampToValueAtTime(state.gain, t + Math.min(state.fadeIn, segDur));
+      seg.gain.setValueAtTime(0.0001, t);
+      seg.gain.linearRampToValueAtTime(gain, t + Math.min(state.fadeIn, segDur));
     }
     if (state.fadeOut > 0 && isLast) {
       const fs = Math.min(state.fadeOut, segDur);
-      gain.gain.setValueAtTime(state.gain, t + segDur - fs);
-      gain.gain.linearRampToValueAtTime(0.0001, t + segDur);
+      seg.gain.setValueAtTime(gain, t + segDur - fs);
+      seg.gain.linearRampToValueAtTime(0.0001, t + segDur);
     }
 
     // offset/duration are buffer-time units — playbackRate must not scale them
@@ -121,7 +178,7 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   });
 
   const rendered = await ctx.startRendering();
-  if (state.gain > 1) softClipGuard(rendered);
+  if (gain > 1) softClipGuard(rendered);
   if (state.reverse) {
     for (let c = 0; c < rendered.numberOfChannels; c++) {
       rendered.getChannelData(c).reverse();

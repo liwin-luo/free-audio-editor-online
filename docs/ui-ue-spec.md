@@ -52,7 +52,7 @@
 5. **性能即美学**：LCP<2.0s、CLS<0.05 是设计约束不是工程指标。动效只许 transform/opacity，禁止动画库进关键路径。
 
 **风格参数**（相对 taste 基线的调整与理由）：
-- DESIGN_VARIANCE：5（工具区必须规整居中——这是转化最优解；内容区允许不对称编辑感）
+- DESIGN_VARIANCE：5（工具编辑器区必须规整居中——这是转化最优解；Hub 工具矩阵允许 bento 混排（featured 大卡 ≤ 2 张）；内容区允许不对称编辑感）
 - MOTION_INTENSITY：3.5（纯 CSS，150–400ms，不引入 Framer Motion——CWV 优先于炫技）
 - VISUAL_DENSITY：4（呼吸感，但时间码区允许高密度等宽数字）
 
@@ -189,7 +189,7 @@
 - **Modal**：仅用于「更换文件确认」等破坏性确认，居中，ESC/遮罩可关
 - **FAQ 手风琴**：`<details>` 原生实现（零 JS），FAQPage schema 必配
 - **TrustBadge**：盾形图标 + 一句话，出现在 dropzone 底部和页脚
-- **Related Tools 卡**：Phosphor 图标 + 工具名 + 一行描述，grid 不对称布局
+- **Related Tools 卡**：不对称 grid `2fr 1fr 1fr`——首张 feature 卡（大图标 + 完整副标题 + CTA 行），其余紧凑卡（图标 + 名 + 一行描述 line-clamp-2），末尾全宽「All tools」横条；禁三等分
 
 ---
 
@@ -223,7 +223,7 @@
 ```
 
 - **广告位（后期）**：只允许出现在 how-to 与 FAQ 之间、related 之后，且**预留固定尺寸容器防 CLS**；工具区 600px 范围内永不放广告
-- **Hub 首页**：H1 "Free Online Audio Editor" + 一句定位 + 工具矩阵（按 Cut / Convert / Effects / Record 分组的 bento 网格，每个工具卡=图标+名+一行）+ 1 段「为什么本地处理」+ FAQ
+- **Hub 首页**：H1 "Free Online Audio Editor" + 一句定位 + 工具矩阵（bento 混排：featured 大卡 ≤ 2——accent 描边 + "Most used" chip + 完整副标题，按流量潜力选定；其余工具紧凑卡三列流）+ 1 段「为什么本地处理」+ FAQ。分类语义由导航下拉与页脚承担（Cut & Trim / Merge & Convert / Record / Effects & Studio）
 
 ---
 
@@ -308,7 +308,7 @@
 1. 禁 emoji（UI、代码、alt 全部；用 Phosphor）
 2. 禁 Inter 字体、禁衬线体（软件界面）
 3. 禁紫色/蓝紫渐变/霓虹 glow/渐变文字/纯黑
-4. 禁三等分卡片行、禁居中 hero 大字报
+4. 内容区禁三等分卡片行（Hub 工具矩阵的 bento/规整网格除外）、禁居中 hero 大字报
 5. 禁注册墙、禁 cookie 横幅挡工具、禁工具区附近广告
 6. 禁假数据假评分
 7. 禁 h-screen、禁 calc 布局减法、禁动画 left/top/width/height

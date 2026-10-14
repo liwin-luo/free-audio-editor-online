@@ -98,6 +98,12 @@ const { config } = Astro.props;
               Reverse playback
             </button>
           )}
+          {config.quickControls!.includes('normalize') && (
+            <button type="button" class="btn btn-secondary" data-quick-normalize aria-pressed="false">
+              <Icon name="trending-up" size={16} />
+              Normalize peak
+            </button>
+          )}
           {config.quickControls!.includes('speed') && (
             <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
               Speed
@@ -121,6 +127,15 @@ const { config } = Astro.props;
               />
               <span class="w-12 font-mono text-xs tabular-nums" data-quick-gain-label>
                 100%
+              </span>
+            </label>
+          )}
+          {config.quickControls!.includes('reverb') && (
+            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+              Reverb
+              <input type="range" data-quick-reverb min="0" max="1" step="0.05" value="0" class="flex-1 accent-(--color-accent)" />
+              <span class="w-12 font-mono text-xs tabular-nums" data-quick-reverb-label>
+                0%
               </span>
             </label>
           )}

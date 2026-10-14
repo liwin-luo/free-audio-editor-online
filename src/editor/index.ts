@@ -4,7 +4,7 @@
  */
 import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
-import { defaultEditState, renderEdit, type EditState } from './processor';
+import { defaultEditState, renderEdit, computeNormalizeGain, type EditState } from './processor';
 import { encodeMp3, encodeWav, getFormat } from './encoders';
 import type { EditorConfig } from '../data/tools';
 
@@ -211,12 +211,29 @@ export class Editor {
     const reverse = this.els.root.querySelector<HTMLInputElement>('[data-reverse]');
     reverse?.addEventListener('change', () => this.commit({ reverse: reverse.checked }));
 
+    const reverbBind = (sel: string, labelSel: string) => {
+      const input = this.els.root.querySelector<HTMLInputElement>(sel);
+      const label = this.els.root.querySelector<HTMLElement>(labelSel);
+      if (!input || !label) return;
+      input.addEventListener('input', () => (label.textContent = `${Math.round(Number(input.value) * 100)}%`));
+      input.addEventListener('change', () => this.commit({ reverb: Number(input.value) }));
+    };
+    reverbBind('[data-reverb]', '[data-reverb-label]');
+
+    const drawerNormalize = this.els.root.querySelector<HTMLInputElement>('[data-normalize]');
+    drawerNormalize?.addEventListener('change', () => this.toggleNormalize());
+
     const undoBtn = this.els.root.querySelector<HTMLButtonElement>('[data-undo]');
     undoBtn?.addEventListener('click', () => this.undo());
 
     // Optional headline controls (kept in sync with the Adjust drawer)
     const quickReverse = this.els.root.querySelector<HTMLButtonElement>('[data-quick-reverse]');
     quickReverse?.addEventListener('click', () => this.commit({ reverse: !this.state.reverse }));
+
+    const quickNormalize = this.els.root.querySelector<HTMLButtonElement>('[data-quick-normalize]');
+    quickNormalize?.addEventListener('click', () => this.toggleNormalize());
+
+    reverbBind('[data-quick-reverb]', '[data-quick-reverb-label]');
 
     const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
     const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
@@ -526,6 +543,16 @@ export class Editor {
     this.setStatus('Reverted the last change.');
   }
 
+  private toggleNormalize(): void {
+    const next = !this.state.normalize;
+    this.commit({ normalize: next });
+    if (next && this.buffer) {
+      const g = computeNormalizeGain(this.buffer, this.state);
+      const db = g > 0 ? (20 * Math.log10(g)).toFixed(1) : '0';
+      showToast(this.toastRoot(), 'info', `Normalize on — the peak will rise about ${db} dB (capped at +12 dB).`);
+    }
+  }
+
   private applyState(state: EditState, syncInputs: boolean): void {
     this.state = state;
     this.updateModeButtons();
@@ -535,19 +562,25 @@ export class Editor {
       const gain = this.els.root.querySelector<HTMLInputElement>('[data-gain]');
       const speed = this.els.root.querySelector<HTMLInputElement>('[data-speed]');
       const reverse = this.els.root.querySelector<HTMLInputElement>('[data-reverse]');
+      const reverb = this.els.root.querySelector<HTMLInputElement>('[data-reverb]');
+      const normalize = this.els.root.querySelector<HTMLInputElement>('[data-normalize]');
       if (fadeIn) fadeIn.value = String(state.fadeIn);
       if (fadeOut) fadeOut.value = String(state.fadeOut);
       if (gain) gain.value = String(Math.round(state.gain * 100));
       if (speed) speed.value = String(state.speed);
       if (reverse) reverse.checked = state.reverse;
+      if (reverb) reverb.value = String(state.reverb);
+      if (normalize) normalize.checked = state.normalize;
       const fadeInLabel = this.els.root.querySelector<HTMLElement>('[data-fade-in-label]');
       const fadeOutLabel = this.els.root.querySelector<HTMLElement>('[data-fade-out-label]');
       const gainLabel = this.els.root.querySelector<HTMLElement>('[data-gain-label]');
       const speedLabel = this.els.root.querySelector<HTMLElement>('[data-speed-label]');
+      const reverbLabel = this.els.root.querySelector<HTMLElement>('[data-reverb-label]');
       if (fadeInLabel) fadeInLabel.textContent = `${state.fadeIn.toFixed(1)}s`;
       if (fadeOutLabel) fadeOutLabel.textContent = `${state.fadeOut.toFixed(1)}s`;
       if (gainLabel) gainLabel.textContent = `${Math.round(state.gain * 100)}%`;
       if (speedLabel) speedLabel.textContent = `${state.speed.toFixed(2)}×`;
+      if (reverbLabel) reverbLabel.textContent = `${Math.round(state.reverb * 100)}%`;
 
       // Mirror onto the headline quick controls when present
       const quickReverse = this.els.root.querySelector<HTMLButtonElement>('[data-quick-reverse]');
@@ -557,6 +590,17 @@ export class Editor {
         quickReverse.classList.toggle('bg-accent-soft', state.reverse);
         quickReverse.classList.toggle('text-accent', state.reverse);
       }
+      const quickNormalize = this.els.root.querySelector<HTMLButtonElement>('[data-quick-normalize]');
+      if (quickNormalize) {
+        quickNormalize.setAttribute('aria-pressed', String(state.normalize));
+        quickNormalize.classList.toggle('border-accent', state.normalize);
+        quickNormalize.classList.toggle('bg-accent-soft', state.normalize);
+        quickNormalize.classList.toggle('text-accent', state.normalize);
+      }
+      const quickReverb = this.els.root.querySelector<HTMLInputElement>('[data-quick-reverb]');
+      const quickReverbLabel = this.els.root.querySelector<HTMLElement>('[data-quick-reverb-label]');
+      if (quickReverb) quickReverb.value = String(state.reverb);
+      if (quickReverbLabel) quickReverbLabel.textContent = `${Math.round(state.reverb * 100)}%`;
       const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
       const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
       if (quickSpeed) quickSpeed.value = String(state.speed);
