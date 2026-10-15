@@ -24,6 +24,8 @@ export interface EditState {
   normalize: boolean;
   /** reverb wet mix, 0 = dry, 1 = full synthesized-room send */
   reverb: number;
+  /** low-shelf boost in dB, 0 = unchanged (150 Hz corner, 0…+15) */
+  bass: number;
 }
 
 export function defaultEditState(): EditState {
@@ -38,6 +40,7 @@ export function defaultEditState(): EditState {
     reverse: false,
     normalize: false,
     reverb: 0,
+    bass: 0,
   };
 }
 
@@ -135,16 +138,25 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
 
   // Master bus: a manual boost can exceed 0 dBFS, so a limiter catches peaks.
   // Peak-normalize already targets 0.98 and must not be pulled down by that limiter.
+  const bassDb = clamp(state.bass, 0, 15);
   const master = ctx.createGain();
   let bus: AudioNode = master;
-  if (!state.normalize && gain > 1) {
+  if (bassDb > 0) {
+    const shelf = ctx.createBiquadFilter();
+    shelf.type = 'lowshelf';
+    shelf.frequency.value = 150;
+    shelf.gain.value = bassDb;
+    master.connect(shelf);
+    bus = shelf;
+  }
+  if ((!state.normalize && gain > 1) || bassDb > 0) {
     const limiter = ctx.createDynamicsCompressor();
     limiter.threshold.value = -2;
     limiter.knee.value = 3;
     limiter.ratio.value = 20;
     limiter.attack.value = 0.002;
     limiter.release.value = 0.15;
-    master.connect(limiter);
+    bus.connect(limiter);
     bus = limiter;
   }
   bus.connect(ctx.destination);
@@ -186,7 +198,23 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   });
 
   const rendered = await ctx.startRendering();
-  if (gain > 1) softClipGuard(rendered);
+  if (!state.normalize && (gain > 1 || bassDb > 0)) softClipGuard(rendered);
+  if (state.normalize && bassDb > 0) {
+    // the shelf raises lows after peak-normalize measured the source — pull
+    // the render back to the normalize target instead of letting it clip
+    let peak = 0;
+    for (let c = 0; c < rendered.numberOfChannels; c++) {
+      const d = rendered.getChannelData(c);
+      for (let i = 0; i < d.length; i++) peak = Math.max(peak, Math.abs(d[i]!));
+    }
+    if (peak > 0.98) {
+      const g = 0.98 / peak;
+      for (let c = 0; c < rendered.numberOfChannels; c++) {
+        const d = rendered.getChannelData(c);
+        for (let i = 0; i < d.length; i++) d[i] = d[i]! * g;
+      }
+    }
+  }
   if (state.reverse) {
     for (let c = 0; c < rendered.numberOfChannels; c++) {
       rendered.getChannelData(c).reverse();

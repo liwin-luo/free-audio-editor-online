@@ -72,6 +72,7 @@ export const pt: Catalog = {
     normalize: 'Normalizar pico',
     speed: 'Velocidade',
     pitch: 'Tom',
+    bass: 'Graves',
     volume: 'Volume',
     reverb: 'Reverb',
     adjust: 'Ajustar — fade, volume, velocidade, reverso',
@@ -224,6 +225,64 @@ export const pt: Catalog = {
     contactBefore: 'Dúvidas sobre esta política? Escreva para {email}.',
   },
   tools: {
+    'bass-booster': {
+      name: 'Realce de graves',
+      shortName: 'Graves',
+      title: 'Realce de graves — Mais peso no áudio online grátis',
+      description:
+        'Adicione até +15 dB de graves com um shelf real abaixo de 150 Hz, no navegador e sem truques de volume. Exporte em MP3 ou WAV. Grátis, sem enviar arquivos.',
+      h1: 'Realce de graves',
+      subtitle: 'Um shelf de verdade: até +15 dB abaixo de 150 Hz, ouça e exporte. Nada sai do seu aparelho.',
+      intro:
+        'Grave fraco é o motivo mais comum de uma gravação soar pequena. O realce de graves aplica um shelf autêntico — até +15 dB abaixo de 150 Hz, o mesmo movimento de um engenheiro de masterização — não um truque que sobra tudo. Carregue um arquivo, suba o controle até o grave assentar e exporte. Tudo roda no seu navegador: o arquivo nunca é enviado.',
+      usesHeading: 'Quando realçar os graves',
+      uses: [
+        'Dar corpo a áudios de voz e entrevistas gravados no celular, que soam finos.',
+        'Trazer bateria e baixo para a frente em uma faixa que é só médios.',
+        'Dar peso à vinheta de um podcast sem tocar nas vozes.',
+      ],
+      howTo: [
+        {
+          name: 'Carregue o áudio',
+          text: 'MP3, WAV, M4A, OGG ou FLAC. O processamento acontece no seu aparelho.',
+        },
+        {
+          name: 'Suba o controle de graves',
+          text: 'Até +15 dB abaixo de 150 Hz. +3–6 dB resolve o som fino; acima disso, é efeito proposital.',
+        },
+        {
+          name: 'Ouça e exporte',
+          text: 'Ouça em volume normal — grave demais esconde vozes. Exporte em MP3 ou WAV sem perda.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Meu áudio é enviado?',
+          a: 'Não. O realce é um filtro shelf da Web Audio API na sua aba — não existe etapa de envio. Depois que a página carrega, você pode ficar offline e a ferramenta continua funcionando.',
+        },
+        {
+          q: 'Realçar os graves reduz a qualidade?',
+          a: 'Não há reamostragem nem mudança de tom. Se o realce empurra os graves além do máximo, um limitador controla os picos para a exportação nunca distorcer de forma agressiva; ajustes muito altos podem suavizar esses picos.',
+        },
+        {
+          q: 'Adiciona subgraves que não existem?',
+          a: 'Não — o shelf só amplifica as frequências baixas que o arquivo já tem. Caixas de celular não reproduzem subgraves; para julgar o resultado, use fones ou caixas de verdade.',
+        },
+        {
+          q: 'Qual a diferença para o volume booster?',
+          a: 'O booster sobe tudo por igual; o realce de graves levanta só o grave abaixo de 150 Hz. Arquivo inteiro baixo demais? Booster. Soa fino? Graves aqui.',
+        },
+        {
+          q: 'Quanto de grave devo adicionar?',
+          a: '+3–6 dB resolve gravações finas. Acima de +9 dB vira efeito estilístico: confira se as vozes continuam inteligíveis antes de exportar.',
+        },
+        {
+          q: 'Funciona no celular?',
+          a: 'Sim. O editor é feito para toque — arraste, mexa no controle e exporte. Funciona no Chrome, Edge, Firefox e Safari atuais, no computador e no celular.',
+        },
+      ],
+      dropHint: 'Solte um arquivo de áudio ou clique para escolher',
+    },
     'fade-audio': {
       name: 'Fade de áudio',
       shortName: 'Fade',

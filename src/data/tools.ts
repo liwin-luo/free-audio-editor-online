@@ -645,7 +645,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Often, yes — browsers can usually decode the audio track of MP4 files dropped onto the page. If your browser refuses the file, extract the audio first and try again.',
       },
     ],
-    related: ['normalize-audio', 'change-audio-speed', 'reverse-audio'],
+    related: ['volume-booster', 'normalize-audio', 'bass-booster'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -900,7 +900,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Speaker volume only helps on your device. A boosted file plays louder everywhere — on other people\u2019s phones, in cheap earbuds, over a laptop\u2019s tiny speakers.',
       },
     ],
-    related: ['increase-volume', 'normalize-audio', 'fade-audio'],
+    related: ['increase-volume', 'bass-booster', 'fade-audio'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -1034,6 +1034,73 @@ export const TOOLS: ToolDef[] = [
       showAdjust: true,
       dropHint: 'Drop a song, or click to browse',
       quickControls: ['speed', 'reverb'],
+    },
+  },
+  {
+    slug: 'bass-booster',
+    name: 'Bass Booster',
+    shortName: 'Bass Boost',
+    icon: 'volume',
+    category: 'effects',
+    title: 'Bass Booster — Boost Low End of Audio Online Free',
+    description:
+      'Add up to +15 dB of clean low end to music or voice in your browser — a true low-shelf, not a loudness trick. Export MP3 or WAV. Free, no upload.',
+    h1: 'Bass Booster',
+    subtitle: 'A real low-shelf EQ: up to +15 dB below 150 Hz, preview and export — nothing leaves your device.',
+    intro:
+      'Thin, weak low end is the most common reason a track sounds small. The bass booster applies a true low-shelf EQ — up to +15 dB below 150 Hz, the same move a mastering engineer makes — not a loudness trick that just turns everything up. Drop a file, raise the slider until the low end sits right, and export. Everything runs in your browser: the file is never uploaded.',
+    usesHeading: 'When to boost the bass',
+    uses: [
+      'Give phone-recorded voice memos and interviews some body so they stop sounding thin.',
+      'Bring drums and basslines forward in a track that is all midrange.',
+      'Add weight to a podcast intro or jingle without touching the voices.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. Processing stays on your device.',
+      },
+      {
+        name: 'Raise the bass slider',
+        text: 'Up to +15 dB below 150 Hz. +3–6 dB usually fixes thin audio; go higher for a deliberate low-end effect.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Listen at normal volume — heavy bass can hide vocals. Export as MP3 or lossless WAV.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The boost is a Web Audio low-shelf filter inside your browser tab — there is no upload step. You can go offline after the page loads and the tool keeps working.',
+      },
+      {
+        q: 'Will boosting the bass reduce quality?',
+        a: 'No resampling or pitch change happens. If the boost pushes the low end past full scale, a limiter catches the peaks so the export never clips harshly — very hot settings can slightly soften those peaks.',
+      },
+      {
+        q: "Can it add sub-bass that isn't there?",
+        a: 'No — a shelf only amplifies low frequencies the file already contains. Phone speakers cannot reproduce deep bass; to judge the result, use headphones or real speakers.',
+      },
+      {
+        q: 'How is this different from the volume booster?',
+        a: 'The volume booster raises everything equally; the bass booster lifts only the low end below 150 Hz. If the whole file is too quiet, use the volume booster; if it sounds thin, boost the bass here.',
+      },
+      {
+        q: 'How much bass should I add?',
+        a: '+3–6 dB fixes thin-sounding recordings. Beyond +9 dB you are making a stylistic effect — check that vocals and podcast dialogue stay intelligible before exporting.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The editor is built for touch — drag to select, set the slider, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    related: ['volume-booster', 'increase-volume', 'mp3-editor'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['bass'],
     },
   },
   {

@@ -72,6 +72,7 @@ export const id: Catalog = {
     normalize: 'Normalisasi puncak',
     speed: 'Kecepatan',
     pitch: 'Nada',
+    bass: 'Bass',
     volume: 'Volume',
     reverb: 'Reverb',
     adjust: 'Sesuaikan — fade, volume, kecepatan, putar balik',
@@ -225,6 +226,64 @@ export const id: Catalog = {
     contactBefore: 'Ada pertanyaan tentang kebijakan ini? Tulis ke {email}.',
   },
   tools: {
+    'bass-booster': {
+      name: 'Penguat bass',
+      shortName: 'Bass',
+      title: 'Penguat bass — Tambah bass audio online gratis',
+      description:
+        'Tambahkan hingga +15 dB bass dengan low-shelf asli di bawah 150 Hz, langsung di browser tanpa trik kenyaringan. Ekspor MP3 atau WAV. Gratis, tanpa unggah.',
+      h1: 'Penguat bass',
+      subtitle: 'Low-shelf sungguhan: hingga +15 dB di bawah 150 Hz, dengar, lalu ekspor. Tidak ada yang meninggalkan perangkat Anda.',
+      intro:
+        'Bass yang lemah adalah alasan paling umum rekaman terdengar kecil. Penguat bass memakai low-shelf EQ asli — hingga +15 dB di bawah 150 Hz, langkah yang sama dengan teknisi mastering — bukan trik yang menaikkan segalanya. Muat berkas, naikkan slidernya sampai bass terdengar pas, lalu ekspor. Semuanya berjalan di browser Anda: berkas tidak pernah diunggah.',
+      usesHeading: 'Kapan bass perlu ditingkatkan',
+      uses: [
+        'Memberi tubuh pada memo suara dan wawancara hasil ponsel agar tidak terdengar tipis.',
+        'Memajukan drum dan bassline pada lagu yang isinya nada tengah semua.',
+        'Menambah bobot jingle podcast tanpa menyentuh suara pembicara.',
+      ],
+      howTo: [
+        {
+          name: 'Muat audio Anda',
+          text: 'MP3, WAV, M4A, OGG, atau FLAC. Pemrosesan tetap di perangkat Anda.',
+        },
+        {
+          name: 'Naikkan slider bass',
+          text: 'Hingga +15 dB di bawah 150 Hz. +3–6 dB biasanya mengatasi suara tipis; lebih tinggi untuk efek yang disengaja.',
+        },
+        {
+          name: 'Dengar dan ekspor',
+          text: 'Dengar pada volume normal — bass berlebih menutupi vokal. Ekspor sebagai MP3 atau WAV lossless.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Apakah audio saya diunggah?',
+          a: 'Tidak. Penguatan ini adalah filter low-shelf Web Audio API di dalam tab browser Anda — tidak ada langkah unggah. Setelah halaman termuat, Anda bisa offline dan alatnya tetap bekerja.',
+        },
+        {
+          q: 'Apakah menaikkan bass menurunkan kualitas?',
+          a: 'Tidak ada resampling atau perubahan nada. Jika penguatan mendorong bass melewati batas penuh, limiter menjaga puncaknya agar ekspor tidak fasih terdistorsi; pengaturan yang terlalu tinggi bisa sedikit melembutkan puncak tersebut.',
+        },
+        {
+          q: 'Bisakah menambah sub-bass yang tidak ada?',
+          a: 'Tidak — shelf hanya memperkuat frekuensi rendah yang sudah ada di berkas. Speaker ponsel tidak mampu memutar sub-bass; untuk menilai hasilnya, gunakan headphone atau speaker sungguhan.',
+        },
+        {
+          q: 'Apa bedanya dengan volume booster?',
+          a: 'Volume booster menaikkan semuanya secara merata; penguat bass hanya mengangkat frekuensi rendah di bawah 150 Hz. Jika seluruh berkas terlalu pelan, pakai booster; jika terdengar tipis, tambah bass di sini.',
+        },
+        {
+          q: 'Berapa banyak bass yang perlu ditambah?',
+          a: '+3–6 dB mengatasi rekaman yang tipis. Di atas +9 dB Anda membuat efek bergaya — pastikan vokal tetap jelas sebelum mengekspor.',
+        },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Editornya dirancang untuk sentuhan — seret untuk memilih, atur slider, ekspor. Bekerja di Chrome, Edge, Firefox, dan Safari terbaru, di desktop maupun ponsel.',
+        },
+      ],
+      dropHint: 'Letakkan file audio atau klik untuk memilih',
+    },
     'fade-audio': {
       name: 'Fade audio',
       shortName: 'Fade',

@@ -72,6 +72,7 @@ export const fr: Catalog = {
     normalize: 'Normaliser les crêtes',
     speed: 'Vitesse',
     pitch: 'Hauteur tonale',
+    bass: 'Basses',
     volume: 'Volume',
     reverb: 'Réverbe',
     adjust: 'Ajuster — fondus, volume, vitesse, inversion',
@@ -225,6 +226,64 @@ export const fr: Catalog = {
     contactBefore: 'Des questions sur cette politique ? Écrivez à {email}.',
   },
   tools: {
+    'bass-booster': {
+      name: 'Boost des basses',
+      shortName: 'Basses',
+      title: 'Boost des basses — Renforcer les basses en ligne',
+      description:
+        'Jusqu’à +15 dB de basses avec un vrai shelf sous 150 Hz, dans votre navigateur — pas un artifice de loudness. Export MP3 ou WAV. Gratuit, sans téléversement.',
+      h1: 'Boost des basses',
+      subtitle: 'Un vrai shelf : jusqu’à +15 dB sous 150 Hz, écoutez puis exportez. Rien ne quitte votre appareil.',
+      intro:
+        'Des basses faibles, c’est la raison la plus courante pour laquelle un enregistrement sonne petit. Le boost des basses applique un vrai shelf — jusqu’à +15 dB sous 150 Hz, le geste du mastering — pas un artifice qui monte tout. Chargez un fichier, montez le curseur jusqu’à ce que les basses s’asseyent, exportez. Tout se passe dans votre navigateur : le fichier n’est jamais téléversé.',
+      usesHeading: 'Quand booster les basses',
+      uses: [
+        'Donner du corps à des mémos vocaux et interviews filmés au téléphone qui sonnent fins.',
+        'Faire ressortir batterie et basse d’un morceau tout en médiums.',
+        'Ajouter du poids à un jingle de podcast sans toucher aux voix.',
+      ],
+      howTo: [
+        {
+          name: 'Chargez votre audio',
+          text: 'MP3, WAV, M4A, OGG ou FLAC. Le traitement reste sur votre appareil.',
+        },
+        {
+          name: 'Montez le curseur des basses',
+          text: 'Jusqu’à +15 dB sous 150 Hz. +3–6 dB répare un son fin ; au-delà, c’est un effet recherché.',
+        },
+        {
+          name: 'Écoutez et exportez',
+          text: 'Écoutez à volume normal — trop de basses masquent les voix. Exportez en MP3 ou WAV sans perte.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Mon audio est-il téléversé ?',
+          a: 'Non. Le boost est un filtre shelf Web Audio dans votre onglet — aucune étape de téléversement. Après le chargement de la page, vous pouvez passer hors ligne : l’outil continue de fonctionner.',
+        },
+        {
+          q: 'Booster les basses dégrade-t-il la qualité ?',
+          a: 'Aucun rééchantillonnage, aucun changement de tonalité. Si le boost pousse les basses au-delà du maximum, un limiteur contient les crêtes : l’export ne sature jamais brutalement — un réglage très chaud peut adoucir ces crêtes.',
+        },
+        {
+          q: 'Peut-il créer du sub-bass absent ?',
+          a: 'Non — un shelf amplifie seulement les basses fréquences que le fichier contient déjà. Les haut-parleurs de téléphone ne reproduisent pas le sub ; jugez le résultat au casque ou sur de vraies enceintes.',
+        },
+        {
+          q: 'Différence avec le volume booster ?',
+          a: 'Le volume booster monte tout uniformément ; le boost des basses ne soulève que le grave sous 150 Hz. Fichier entier trop faible ? Le booster. Son fin ? Les basses, ici.',
+        },
+        {
+          q: 'Combien de basses ajouter ?',
+          a: '+3–6 dB réparent un enregistrement fin. Au-delà de +9 dB, vous faites un effet stylistique — vérifiez que les voix restent intelligibles avant d’exporter.',
+        },
+        {
+          q: 'Cela fonctionne-t-il sur mobile ?',
+          a: 'Oui. L’éditeur est pensé pour le tactile — glissez, réglez, exportez. Fonctionne sur Chrome, Edge, Firefox et Safari à jour, ordinateur et mobile.',
+        },
+      ],
+      dropHint: 'Déposez un fichier audio ou cliquez pour le choisir',
+    },
     'audio-trimmer': {
       name: 'Rogneur audio',
       shortName: 'Rogneur',

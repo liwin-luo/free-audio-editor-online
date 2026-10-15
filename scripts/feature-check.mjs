@@ -7,6 +7,7 @@
 import puppeteer from 'puppeteer-core';
 import { readFileSync, mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
+import { generateTestWav } from './make-test-tone.mjs';
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const BASE = process.env.BASE_URL ?? 'http://localhost:4321';
@@ -239,6 +240,57 @@ try {
     'reverb tail after the tone',
     revbStats !== null && revbStats.duration > srcDur + 1.5 && rms > 0.002,
     revbStats ? `${revbStats.duration.toFixed(2)}s tailRms=${rms.toFixed(4)}` : '(missing wav)',
+  );
+
+  // --- Bass boost on /bass-booster ---
+  // Control: an 80 Hz tone at amp 0.5 exports at ~0.5 peak with the slider at 0.
+  // Boosted: +15 dB low-shelf @150 Hz drives the tone into the limiter, so the
+  // export peak must land near full scale — proves filter, limiter and guard.
+  const LOW_WAV = '/tmp/test-low.wav';
+  const bassWav = join(DOWNLOAD_DIR, 'test-low-edited.wav');
+  generateTestWav(LOW_WAV, 3, 48000, 80, 0.5, true);
+  await client.goto(`${BASE}/bass-booster`, { waitUntil: 'networkidle0' });
+  const bassInput = await client.$('[data-file-input]');
+  await bassInput.uploadFile(LOW_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.select('[data-format]', 'wav');
+  rmSync(bassWav, { force: true });
+  await client.click('[data-export]');
+  const bassDryStatus = await waitExported(client);
+  check('bass dry export', /Exported test-low-edited\.wav/.test(bassDryStatus), bassDryStatus || '(timeout)');
+  let dryStats = null;
+  for (let i = 0; i < 20 && !dryStats; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try {
+      dryStats = wavStats(bassWav);
+    } catch {}
+  }
+  check(
+    'bass dry peak ~0.5',
+    dryStats !== null && Math.abs(dryStats.peak - 0.5) < 0.06,
+    dryStats ? `peak=${dryStats.peak.toFixed(3)}` : '(missing wav)',
+  );
+  await client.$eval('[data-quick-bass]', (el) => {
+    el.value = '15';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  const bassVal = await client.$eval('[data-quick-bass]', (el) => el.value);
+  check('bass set', bassVal === '15', bassVal);
+  rmSync(bassWav, { force: true });
+  await client.click('[data-export]');
+  const bassBoostedStatus = await waitExported(client);
+  check('bass boosted export', /Exported test-low-edited\.wav/.test(bassBoostedStatus), bassBoostedStatus || '(timeout)');
+  let boostedStats = null;
+  for (let i = 0; i < 20 && !boostedStats; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try {
+      boostedStats = wavStats(bassWav);
+    } catch {}
+  }
+  check(
+    'bass +15 dB reaches limiter ceiling',
+    boostedStats !== null && boostedStats.peak > 0.75,
+    boostedStats ? `peak=${boostedStats.peak.toFixed(3)}` : '(missing wav)',
   );
 } finally {
   await browser.close();

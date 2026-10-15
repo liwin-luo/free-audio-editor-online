@@ -48,6 +48,11 @@ export function assertCatalogs(): void {
     for (const key of shellKeys) {
       if (!cat[key]) throw new Error(`${locale}: missing ${key}`);
     }
+    for (const section of ['ui', 'editor'] as const) {
+      const enKeys = Object.keys(en[section]).sort().join();
+      const catKeys = Object.keys(cat[section]).sort().join();
+      if (enKeys !== catKeys) throw new Error(`${locale}: ${section} key mismatch`);
+    }
     if (cat.ui.features.length !== en.ui.features.length) throw new Error(`${locale}: features`);
     if (cat.home.why.length !== en.home.why.length) throw new Error(`${locale}: why`);
     if (cat.home.faqs.length !== en.home.faqs.length) throw new Error(`${locale}: home faqs`);

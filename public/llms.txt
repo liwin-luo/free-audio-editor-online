@@ -15,6 +15,7 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [OGG to MP3 Converter](https://freeaudioeditor.online/ogg-to-mp3): convert OGG (Vorbis or Opus) to MP3. Safari often cannot decode Vorbis.
 - [Opus to MP3 Converter](https://freeaudioeditor.online/opus-to-mp3): convert .opus files and Opus inside OGG or WebM to MP3.
 - [Pitch Changer](https://freeaudioeditor.online/pitch-changer): shift audio pitch ±12 semitones while keeping the duration unchanged.
+- [Bass Booster](https://freeaudioeditor.online/bass-booster): add up to +15 dB of low end below 150 Hz with a true low-shelf EQ.
 - [M4A to MP3 Converter](https://freeaudioeditor.online/m4a-to-mp3): convert M4A/AAC files to MP3 in the browser; tags and artwork are not copied.
 - [Audio Fade In / Fade Out](https://freeaudioeditor.online/fade-audio): add a smooth fade in and fade out to any recording, 0.1 s precision, export MP3 or WAV.
 - [Reverse Audio](https://freeaudioeditor.online/reverse-audio): play any track backwards, one click.

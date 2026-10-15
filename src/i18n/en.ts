@@ -72,6 +72,7 @@ export const en: Shell = {
     normalize: 'Normalize peak',
     speed: 'Speed',
     pitch: 'Pitch',
+    bass: 'Bass',
     volume: 'Volume',
     reverb: 'Reverb',
     adjust: 'Adjust — fades, volume, speed, reverse',

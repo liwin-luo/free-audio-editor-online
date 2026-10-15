@@ -72,6 +72,7 @@ export const de: Catalog = {
     normalize: 'Peak normalisieren',
     speed: 'Geschwindigkeit',
     pitch: 'Tonhöhe',
+    bass: 'Bass',
     volume: 'Lautstärke',
     reverb: 'Hall',
     adjust: 'Anpassen — Ein- und Ausblenden, Lautstärke, Geschwindigkeit, Rückwärts',
@@ -226,6 +227,64 @@ export const de: Catalog = {
     contactBefore: 'Fragen zu dieser Erklärung? Schreib an {email}.',
   },
   tools: {
+    'bass-booster': {
+      name: 'Bass-Booster',
+      shortName: 'Bass',
+      title: 'Bass-Booster — Bass online verstärken, kostenlos',
+      description:
+        'Bis zu +15 dB sauberen Bass nachschieben — ein echter Low-Shelf unter 150 Hz, im Browser, ohne Loudness-Trick. Export als MP3 oder WAV. Kostenlos, ohne Upload.',
+      h1: 'Bass-Booster',
+      subtitle: 'Ein echter Low-Shelf: bis zu +15 dB unter 150 Hz, erst hören, dann exportieren — nichts verlässt dein Gerät.',
+      intro:
+        'Dünner Bass ist der häufigste Grund, warum eine Aufnahme klein klingt. Der Bass-Booster setzt einen echten Low-Shelf ein — bis zu +15 dB unter 150 Hz, derselbe Move wie beim Mastering — kein Trick, der einfach alles lauter macht. Datei laden, Regler aufziehen, bis der Bass sitzt, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
+      usesHeading: 'Wann Bass-Boost hilft',
+      uses: [
+        'Handy-aufgenommenen Sprachmemos und Interviews Körper geben, damit sie nicht mehr dünn klingen.',
+        'Drums und Bässe in einem Track nach vorn holen, der nur aus Mitten besteht.',
+        'Einem Podcast-Jingle Gewicht geben, ohne die Stimmen anzutasten.',
+      ],
+      howTo: [
+        {
+          name: 'Audio laden',
+          text: 'MP3, WAV, M4A, OGG oder FLAC. Die Verarbeitung bleibt auf deinem Gerät.',
+        },
+        {
+          name: 'Bass-Regler aufziehen',
+          text: 'Bis zu +15 dB unter 150 Hz. +3–6 dB reparieren dünnes Audio; mehr ist ein bewusster Effekt.',
+        },
+        {
+          name: 'Hören und exportieren',
+          text: 'Bei normaler Lautstärke prüfen — zu viel Bass verdeckt Stimmen. Als MP3 oder verlustfreies WAV exportieren.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Wird meine Audio hochgeladen?',
+          a: 'Nein. Der Boost ist ein Web-Audio-Low-Shelf in deinem Browser-Tab — einen Upload-Schritt gibt es nicht. Nach dem Laden der Seite funktioniert das Tool auch offline.',
+        },
+        {
+          q: 'Mindert der Bass-Boost die Qualität?',
+          a: 'Es gibt kein Resampling und keine Tonhöhenänderung. Treibt der Boost den Bass über die Vollaussteuerung, fängt ein Limiter die Peaks, damit der Export nie hart clippt — sehr heiße Einstellungen können diese Peaks leicht weichzeichnen.',
+        },
+        {
+          q: 'Kann er Sub-Bass hinzufügen, der fehlt?',
+          a: 'Nein — ein Shelf verstärkt nur tiefe Frequenzen, die die Datei schon enthält. Handylautsprecher können tiefen Bass nicht wiedergeben; beurteile das Ergebnis mit Kopfhörern oder echten Boxen.',
+        },
+        {
+          q: 'Unterschied zum Volume Booster?',
+          a: 'Der Volume Booster hebt alles gleich an; der Bass-Booster lifft nur das Tiefe unter 150 Hz. Ist die ganze Datei zu leise, nimm den Booster; klingt sie dünn, hier Bass nachschieben.',
+        },
+        {
+          q: 'Wie viel Bass ist richtig?',
+          a: '+3–6 dB reparieren dünne Aufnahmen. Über +9 dB machst du einen Stileffekt — prüfe, ob Stimmen verständlich bleiben, bevor du exportierst.',
+        },
+        {
+          q: 'Funktioniert das auf dem Handy?',
+          a: 'Ja. Der Editor ist für Touch gebaut — ziehen, Regler setzen, exportieren. Läuft in aktuellen Chrome-, Edge-, Firefox- und Safari-Versionen, auf Desktop und Mobilgeräten.',
+        },
+      ],
+      dropHint: 'Audiodatei hierher ziehen oder klicken',
+    },
     'fade-audio': {
       name: 'Audio ein-/ausblenden',
       shortName: 'Blenden',

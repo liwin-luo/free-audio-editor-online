@@ -30,6 +30,7 @@ export interface EditorText {
   normalize: string;
   speed: string;
   pitch: string;
+  bass: string;
   volume: string;
   reverb: string;
   adjust: string;

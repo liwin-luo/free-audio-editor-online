@@ -268,6 +268,13 @@ export class Editor {
       quickPitch.addEventListener('change', () => this.commit({ pitch: Number(quickPitch.value) }));
     }
 
+    const quickBass = this.els.root.querySelector<HTMLInputElement>('[data-quick-bass]');
+    const quickBassLabel = this.els.root.querySelector<HTMLElement>('[data-quick-bass-label]');
+    if (quickBass && quickBassLabel) {
+      quickBass.addEventListener('input', () => (quickBassLabel.textContent = `+${quickBass.value} dB`));
+      quickBass.addEventListener('change', () => this.commit({ bass: Number(quickBass.value) }));
+    }
+
     const quickGain = this.els.root.querySelector<HTMLInputElement>('[data-quick-gain]');
     const quickGainLabel = this.els.root.querySelector<HTMLElement>('[data-quick-gain-label]');
     if (quickGain && quickGainLabel) {
@@ -630,6 +637,10 @@ export class Editor {
       const quickPitchLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pitch-label]');
       if (quickPitch) quickPitch.value = String(state.pitch);
       if (quickPitchLabel) quickPitchLabel.textContent = formatSemitones(state.pitch);
+      const quickBass = this.els.root.querySelector<HTMLInputElement>('[data-quick-bass]');
+      const quickBassLabel = this.els.root.querySelector<HTMLElement>('[data-quick-bass-label]');
+      if (quickBass) quickBass.value = String(state.bass);
+      if (quickBassLabel) quickBassLabel.textContent = `+${state.bass} dB`;
       const quickGain = this.els.root.querySelector<HTMLInputElement>('[data-quick-gain]');
       const quickGainLabel = this.els.root.querySelector<HTMLElement>('[data-quick-gain-label]');
       if (quickGain) quickGain.value = String(Math.round(state.gain * 100));
@@ -655,6 +666,7 @@ export class Editor {
     const sel = this.state.sel;
     return [
       this.state.pitch,
+      this.state.bass,
       this.state.speed,
       this.state.gain,
       this.state.reverse ? 1 : 0,
@@ -689,7 +701,7 @@ export class Editor {
     let playBuffer: AudioBuffer = this.buffer;
     let rate = this.state.speed;
     let headFrom = from;
-    if (this.state.pitch !== 0) {
+    if (this.state.pitch !== 0 || this.state.bass > 0) {
       const key = this.pitchPreviewKeyOf();
       if (!this.pitchPreview || this.pitchPreviewKey !== key) {
         this.busy = true;

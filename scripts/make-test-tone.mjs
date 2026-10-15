@@ -8,12 +8,31 @@
  */
 import { writeFileSync } from 'node:fs';
 
-export function generateTestWav(path, seconds = 10, rate = 48000) {
+if (process.argv[1] && process.argv[1].endsWith('make-test-tone.mjs')) {
+  const out = process.argv[2] ?? '/tmp/test-tone.wav';
+  const freq = Number(process.argv[3] ?? 1000);
+  const seconds = Number(process.argv[4] ?? 10);
+  const amp = Number(process.argv[5] ?? 0.9);
+  generateTestWav(out, seconds, 48000, freq, amp, true);
+  console.log(`Test tone written: ${out} (${freq} Hz, ${seconds}s, amp ${amp})`);
+}
+
+export function generateTestWav(
+  path,
+  seconds = 10,
+  rate = 48000,
+  /** sine frequency in Hz */
+  freq = 1000,
+  /** peak amplitude 0…1 */
+  amp = 0.9,
+  /** true = tone for the whole file (no silent first half) */
+  full = false,
+) {
   const frames = seconds * rate;
   const pcm = Buffer.alloc(frames * 2);
   for (let i = 0; i < frames; i++) {
     const t = i / rate;
-    const v = t >= 5 ? Math.round(Math.sin(2 * Math.PI * 1000 * t) * 0.9 * 32767) : 0;
+    const v = full || t >= 5 ? Math.round(Math.sin(2 * Math.PI * freq * t) * amp * 32767) : 0;
     pcm.writeInt16LE(v, i * 2);
   }
   const header = Buffer.alloc(44);
