@@ -131,7 +131,7 @@ export const id: Catalog = {
   home: {
     title: 'Free Audio Editor — Edit Audio Online, Tidak Ada yang Diunggah',
     description:
-      'Editor audio online gratis: pangkas, potong, gabung, putar balik, dan konversi audio langsung di browser. Tanpa mendaftar, tanpa unggah — file Anda tidak pernah meninggalkan perangkat.',
+      'Editor audio online gratis: pangkas, potong, gabung, putar balik, dan konversi audio di browser. Tanpa daftar, tanpa unggah — file tetap di perangkat.',
     appBlurb: 'Editor audio online gratis — potong, pangkas, gabung, dan edit audio di browser Anda.',
     badge: 'Pemrosesan 100% lokal · tidak ada yang diunggah',
     h1: 'Editor audio online gratis',
@@ -185,7 +185,7 @@ export const id: Catalog = {
       'Semua alat di situs ini, dikelompokkan sesuai tugas. Pilih satu dan mulai — semuanya berjalan di browser Anda, tanpa daftar dan tanpa unggah.',
   },
   about: {
-    title: 'Tentang Free Audio Editor — Alat Audio Online yang Mengutamakan Perangkat',
+    title: 'Tentang Free Audio Editor — alat audio online tanpa unggah',
     description:
       'Free Audio Editor adalah rangkaian alat audio yang mengutamakan privasi dan berjalan sepenuhnya di browser Anda — tanpa unggah, tanpa mendaftar, tanpa watermark.',
     h1: 'Tentang',
@@ -199,7 +199,7 @@ export const id: Catalog = {
   privacy: {
     title: 'Kebijakan Privasi — Free Audio Editor',
     description:
-      'Kebijakan privasi freeaudioeditor.online: file audio diproses secara lokal di browser Anda dan tidak pernah diunggah. Tanpa akun, tanpa pelacakan terhadap audio Anda.',
+      'Kebijakan privasi freeaudioeditor.online: audio diproses lokal di browser Anda dan tidak pernah diunggah. Tanpa akun, tanpa pelacakan audio.',
     h1: 'Kebijakan Privasi',
     updated: 'Terakhir diperbarui: 14 Oktober 2026',
     sections: [
@@ -288,7 +288,7 @@ export const id: Catalog = {
       shortName: 'Pemangkas Audio',
       title: 'Pemangkas Audio — Pangkas Musik Online Gratis',
       description:
-        'Pangkas musik, memo suara, dan podcast di browser. Pilih, dengarkan, lalu simpan dalam hitungan detik — gratis, tanpa mendaftar, dan audio tidak pernah meninggalkan perangkat.',
+        'Pangkas musik, memo suara, dan podcast di browser. Pilih, dengarkan, simpan dalam hitungan detik — gratis, tanpa mendaftar, tanpa unggah.',
       h1: 'Pemangkas Audio',
       subtitle: 'Pangkas audio online — gratis, langsung di browser. Tidak ada yang diunggah.',
       intro:
@@ -346,7 +346,7 @@ export const id: Catalog = {
       shortName: 'Potong Lagu',
       title: 'Potong MP3 online gratis',
       description:
-        'Potong file MP3 online dalam beberapa klik. Simpan bagian terbaik atau hapus intro dalam hitungan detik — gratis, tanpa mendaftar, dan file tidak pernah meninggalkan perangkat.',
+        'Potong file MP3 online dalam beberapa klik: simpan bagian terbaik atau hapus intro. Gratis, tanpa mendaftar, file tidak meninggalkan perangkat.',
       h1: 'Potong MP3',
       subtitle: 'Potong lagu dan file MP3 online — simpan bagian yang diinginkan, hapus sisanya.',
       intro:
@@ -400,7 +400,7 @@ export const id: Catalog = {
       shortName: 'Editor MP3',
       title: 'Editor MP3 — Potong, Fade, Putar Balik, dan Percepat Online',
       description:
-        'Edit MP3 dan audio lain secara online: potong, pangkas, fade in dan fade out, ubah volume serta kecepatan, putar balik. Gratis dan privat — semuanya berjalan di browser.',
+        'Edit MP3 dan audio lain online: potong, pangkas, fade, volume, kecepatan, putar balik. Gratis dan privat — semuanya berjalan di browser.',
       h1: 'Editor MP3',
       subtitle: 'Potong, fade, putar balik, dan percepat audio — semua dalam satu tab browser.',
       intro:
@@ -617,7 +617,7 @@ export const id: Catalog = {
       shortName: 'Putar Balik',
       title: 'Putar Balik Audio — Putar Lagu Terbalik Online Gratis',
       description:
-        'Putar lagu atau rekaman apa pun secara terbalik di browser. Satu klik untuk membalik, dengarkan langsung, simpan sebagai MP3 atau WAV — gratis, dan tidak ada yang diunggah.',
+        'Putar lagu atau rekaman secara terbalik di browser. Satu klik untuk membalik, dengarkan, simpan sebagai MP3 atau WAV — gratis, tanpa unggah.',
       h1: 'Putar Balik Audio',
       subtitle: 'Putar lagu atau rekaman apa pun secara terbalik — satu klik, langsung di browser.',
       intro:
@@ -725,7 +725,7 @@ export const id: Catalog = {
       shortName: 'Perbesar Volume',
       title: 'Perbesar Volume MP3 — Buat Audio Lebih Keras, Gratis',
       description:
-        'Buat audio yang pelan menjadi lebih keras — perbesar volume MP3 dan file lain hingga 4× di browser. Limiter bawaan menjaga suara tetap bersih, gratis, dan tidak ada yang diunggah.',
+        'Perbesar audio yang pelan hingga 4× di browser. Limiter bawaan menjaga suara tetap bersih — gratis, dan tidak ada yang diunggah.',
       h1: 'Perbesar Volume MP3',
       subtitle: 'Perbesar rekaman yang pelan hingga 4× — dengan limiter, jadi tidak ada yang clipping.',
       intro:

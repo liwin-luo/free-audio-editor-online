@@ -130,9 +130,9 @@ export const de: Catalog = {
     recordingLoaded: 'Aufnahme wurde in den Editor darunter geladen.',
   },
   home: {
-    title: 'Free Audio Editor — Audio online bearbeiten, nichts wird hochgeladen',
+    title: 'Free Audio Editor — Audio online bearbeiten, ohne Upload',
     description:
-      'Kostenloser Audio-Editor online: kürzen, schneiden, zusammenfügen, rückwärts abspielen und umwandeln, direkt im Browser. Ohne Anmeldung, ohne Upload — deine Dateien verlassen dein Gerät nie.',
+      'Kostenloser Online-Audio-Editor: kürzen, schneiden, zusammenfügen, umwandeln — direkt im Browser, ohne Anmeldung. Deine Dateien verlassen dein Gerät nie.',
     appBlurb: 'Kostenloser Audio-Editor online — Audio im Browser schneiden, kürzen, zusammenfügen und bearbeiten.',
     badge: '100 % lokal verarbeitet · nichts wird hochgeladen',
     h1: 'Kostenloser Audio-Editor online',
@@ -200,7 +200,7 @@ export const de: Catalog = {
   privacy: {
     title: 'Datenschutzerklärung — Free Audio Editor',
     description:
-      'Datenschutzerklärung für freeaudioeditor.online: Audiodateien werden lokal in deinem Browser verarbeitet und nie hochgeladen. Keine Konten, kein Tracking deines Audios.',
+      'Datenschutzerklärung für freeaudioeditor.online: Audio wird lokal in deinem Browser verarbeitet und nie hochgeladen. Keine Konten, kein Audio-Tracking.',
     h1: 'Datenschutzerklärung',
     updated: 'Zuletzt aktualisiert: 14. Oktober 2026',
     sections: [
@@ -347,7 +347,7 @@ export const de: Catalog = {
       shortName: 'MP3-Cutter',
       title: 'MP3 schneiden — online kostenlos',
       description:
-        'Schneide MP3-Dateien online in wenigen Klicks. Behalte den besten Teil oder lösche ein Intro in Sekunden — kostenlos, ohne Anmeldung, und die Datei verlässt dein Gerät nie.',
+        'MP3 online in wenigen Klicks schneiden: den besten Teil behalten oder das Intro löschen — kostenlos, ohne Anmeldung, ohne Upload.',
       h1: 'MP3 schneiden',
       subtitle: 'Songs und MP3-Dateien online schneiden — behalte den Teil, den du willst, und lösche den Rest.',
       intro:
@@ -401,7 +401,7 @@ export const de: Catalog = {
       shortName: 'MP3-Editor',
       title: 'MP3-Editor — Schneiden, Blenden, Geschwindigkeit und Rückwärts',
       description:
-        'Bearbeite MP3 und anderes Audio online: schneiden, kürzen, ein- und ausblenden, Lautstärke und Geschwindigkeit ändern, rückwärts abspielen. Kostenlos und privat — alles läuft in deinem Browser.',
+        'MP3 online bearbeiten: schneiden, blenden, Lautstärke und Tempo ändern, rückwärts abspielen. Kostenlos und privat — alles läuft in deinem Browser.',
       h1: 'MP3-Editor',
       subtitle: 'Schneiden, blenden, rückwärts abspielen und die Geschwindigkeit ändern — alles in einem Browser-Tab.',
       intro:
@@ -455,7 +455,7 @@ export const de: Catalog = {
       shortName: 'Klingelton',
       title: 'Klingelton-Maker — Klingelton aus jedem Song online',
       description:
-        'Mach aus jedem Song einen Klingelton im Browser. Wähle die besten 40 Sekunden, füge eine Blende hinzu, exportiere M4R oder MP3 — kostenlos, ohne Anmeldung, nichts wird hochgeladen.',
+        'Aus jedem Song ein Klingelton: die besten 40 Sekunden wählen, Blende dazu, als M4R oder MP3 exportieren — kostenlos, ohne Anmeldung.',
       h1: 'Klingelton-Maker',
       subtitle: 'Nimm den besten Teil eines Songs und speichere ihn als Klingelton — in unter einer Minute.',
       intro:
@@ -509,7 +509,7 @@ export const de: Catalog = {
       shortName: 'Audio-Joiner',
       title: 'MP3 zusammenfügen — online kostenlos',
       description:
-        'Füge Songs und Audiodateien in beliebiger Reihenfolge zu einem Titel zusammen, direkt im Browser. Optionale Blenden zwischen den Tracks — kostenlos, privat, kein Upload.',
+        'Songs und Audiodateien in beliebiger Reihenfolge zu einem Titel verbinden — direkt im Browser. Optionale Blenden, kostenlos, ohne Upload.',
       h1: 'MP3 zusammenfügen',
       subtitle: 'Füge Songs und Audiodateien zu einem Titel zusammen — in beliebiger Reihenfolge, in Sekunden.',
       intro:
@@ -618,7 +618,7 @@ export const de: Catalog = {
       shortName: 'Rückwärts',
       title: 'Audio rückwärts — Songs rückwärts abspielen, kostenlos',
       description:
-        'Spiele jeden Song oder jede Aufnahme rückwärts im Browser ab. Ein Klick zum Umdrehen, sofortige Vorschau, speichern als MP3 oder WAV — kostenlos, und nichts wird hochgeladen.',
+        'Jeden Song rückwärts im Browser abspielen: ein Klick, sofortige Vorschau, speichern als MP3 oder WAV — kostenlos, nichts wird hochgeladen.',
       h1: 'Audio rückwärts',
       subtitle: 'Spiele jeden Song oder jede Aufnahme rückwärts ab — ein Klick, direkt im Browser.',
       intro:
@@ -672,7 +672,7 @@ export const de: Catalog = {
       shortName: 'Geschwindigkeit',
       title: 'Audio schneller machen — online kostenlos',
       description:
-        'Mach jedes Audio von 0,5× bis 2× schneller oder langsamer, direkt im Browser. Sofortige Vorschau, Export als MP3 oder WAV — kostenlos, privat, nichts wird hochgeladen.',
+        'Audio von 0,5× bis 2× schneller oder langsamer, direkt im Browser. Sofortige Vorschau, Export als MP3 oder WAV — kostenlos, nichts wird hochgeladen.',
       h1: 'Audio schneller machen',
       subtitle: 'Mach jedes Audio von 0,5× bis 2× schneller oder langsamer — direkt im Browser.',
       intro:
@@ -726,7 +726,7 @@ export const de: Catalog = {
       shortName: 'MP3 lauter',
       title: 'MP3 lauter machen — Lautstärke online kostenlos erhöhen',
       description:
-        'Mach leises Audio lauter — verstärke MP3 und andere Dateien bis auf das 4-Fache im Browser. Ein eingebauter Limiter hält den Klang sauber. Kostenlos, und nichts wird hochgeladen.',
+        'Leises Audio bis auf das 4-Fache lauter machen, direkt im Browser. Der eingebaute Limiter hält den Klang sauber — kostenlos, nichts wird hochgeladen.',
       h1: 'MP3 lauter machen',
       subtitle: 'Verstärke leise Aufnahmen bis auf das 4-Fache — mit Limiter, damit nichts übersteuert.',
       intro:

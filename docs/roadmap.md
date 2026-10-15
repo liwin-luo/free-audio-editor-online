@@ -73,8 +73,11 @@
 - [x] **audit 基线**(production,2026-10-15):**HIGH 0**;MED 25(全部是 title/description
   长度类);LOW 103(多为 CJK 标题天然短于拉丁阈值)。sitemap 簇 8×192 完整 + 7 个 per-market
   指南无 alternates(设计如此)
-- 遗留(下次内容批次):de 语区 6 条 description 166–193 字符有 SERP 截断风险,按
-  i18n-translation-guide.md §3 预算重写;audit 的标题/描述阈值可按语区预算(CJK 减半)细化
+- [x] ~~遗留:de 语区 description 截断风险~~ **已修复(同日)**:51 条 MED 长度超标全部重写
+  (7 条 title + 44 条 description,fr 最多),按 i18n-translation-guide.md §3 预算压到 ≤60/≤155,
+  事实逐字保留;同时 ru 工具标题统一去掉品牌后缀(与其余 10 语一致)、404 页切换器死链修复、
+  llms.txt 补齐 pitch-changer 与 m4a-to-mp3(20/20)。**audit 终值:HIGH 0 / MED 0**,LOW 111
+  为 CJK 标题阈值噪音(待按语区预算细化,见下)
 
 ## 2026-10-15 语言补齐(11 语)
 

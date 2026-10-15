@@ -17,6 +17,7 @@ const onGuide = path === '/guides' || path.startsWith('/guides/') || path === '/
 // translated article) falls back to its guides index instead of a 404
 const guideLocales = new Set(localesWithGuides());
 const langHref = (target: Locale) => {
+  if (path === '/404') return localePath(target, '/');
   if (!onGuide) return localePath(target, path);
   const fallback = isTranslatedGuide(path) && guideLocales.has(target) ? path : '/guides';
   return localePath(target, fallback);

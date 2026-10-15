@@ -131,7 +131,7 @@ export const fr: Catalog = {
   home: {
     title: 'Free Audio Editor — Montage audio en ligne, aucun téléversement',
     description:
-      'Éditeur audio en ligne gratuit : coupez, fusionnez, inversez et convertissez l’audio dans votre navigateur. Sans inscription, sans téléversement — vos fichiers ne quittent jamais votre appareil.',
+      'Éditeur audio en ligne gratuit : coupez, fusionnez, inversez et convertissez dans votre navigateur. Sans inscription, sans téléversement.',
     appBlurb: 'Éditeur audio en ligne gratuit — coupez, rognez, fusionnez et montez l’audio dans votre navigateur.',
     badge: 'Traitement 100 % local · aucun téléversement',
     h1: 'Éditeur audio en ligne gratuit',
@@ -177,7 +177,7 @@ export const fr: Catalog = {
     ],
   },
   hub: {
-    title: 'Tous les outils audio — Montage audio en ligne, sans téléversement',
+    title: 'Tous les outils audio — montage en ligne, sans téléversement',
     description:
       'Coupez, fusionnez, convertissez ou enregistrez l’audio dans votre navigateur : tous les outils au même endroit. Sans téléversement, sans inscription — gratuit.',
     h1: 'Tous les outils audio',
@@ -187,7 +187,7 @@ export const fr: Catalog = {
   about: {
     title: 'À propos de Free Audio Editor — Outils audio 100 % locaux',
     description:
-      'Free Audio Editor est une suite d’outils audio centrés sur la vie privée, qui fonctionnent entièrement dans votre navigateur — aucun téléversement, aucune inscription, aucun filigrane.',
+      'Free Audio Editor : des outils audio respectueux de la vie privée, entièrement dans votre navigateur — aucun téléversement, ni inscription, ni filigrane.',
     h1: 'À propos',
     p1: 'Free Audio Editor existe parce que monter un mémo vocal ne devrait pas signifier le téléverser sur le serveur de quelqu’un d’autre. Chaque outil du site — {trimmer}, {cutter}, {joiner} et les autres — fonctionne de la même manière : votre navigateur lit le fichier, le modifie en mémoire et écrit le résultat directement sur votre disque.',
     linkTrimmer: 'le rogneur',
@@ -199,7 +199,7 @@ export const fr: Catalog = {
   privacy: {
     title: 'Politique de confidentialité — Free Audio Editor',
     description:
-      'Politique de confidentialité de freeaudioeditor.online : les fichiers audio sont traités localement dans votre navigateur et jamais téléversés. Aucun compte, aucun suivi de votre audio.',
+      'Confidentialité sur freeaudioeditor.online : l’audio est traité localement dans votre navigateur, jamais téléversé. Aucun compte, aucun suivi.',
     h1: 'Politique de confidentialité',
     updated: 'Dernière mise à jour : 14 octobre 2026',
     sections: [
@@ -230,7 +230,7 @@ export const fr: Catalog = {
       shortName: 'Rogneur',
       title: 'Rogneur audio — rogner musique et audio en ligne, gratuit',
       description:
-        'Rognez musiques, mémos vocaux et podcasts dans votre navigateur. Sélectionnez, écoutez, enregistrez en quelques secondes : gratuit, sans inscription, votre audio ne quitte jamais votre appareil.',
+        'Rognez musiques, mémos vocaux et podcasts dans votre navigateur. Sélectionnez, écoutez, enregistrez en quelques secondes — gratuit, sans inscription.',
       h1: 'Rogneur audio',
       subtitle: 'Rognez l’audio en ligne, gratuitement, dans votre navigateur. Rien n’est téléversé.',
       intro:
@@ -288,7 +288,7 @@ export const fr: Catalog = {
       shortName: 'Coupeur MP3',
       title: 'Couper MP3 — couper une chanson en ligne gratuitement',
       description:
-        'Coupez vos fichiers MP3 en ligne en quelques clics. Gardez le meilleur passage ou supprimez une intro en quelques secondes : gratuit, sans inscription, le fichier ne quitte jamais votre appareil.',
+        'Coupez vos MP3 en ligne en quelques clics : gardez le meilleur passage ou supprimez une intro. Gratuit, sans inscription, sans téléversement.',
       h1: 'Couper MP3',
       subtitle: 'Coupez chansons et fichiers MP3 en ligne : gardez le passage voulu, supprimez le reste.',
       intro:
@@ -342,7 +342,7 @@ export const fr: Catalog = {
       shortName: 'Éditeur MP3',
       title: 'Éditeur MP3 — couper, fondus, inverser et accélérer en ligne',
       description:
-        'Modifiez l’audio MP3 et plus en ligne : couper, rogner, fondus d’entrée et de sortie, volume, vitesse, lecture à l’envers. Gratuit et privé — tout se passe dans votre navigateur.',
+        'Modifiez l’audio en ligne : couper, rogner, fondus, volume, vitesse, lecture à l’envers. Gratuit et privé — tout se passe dans votre navigateur.',
       h1: 'Éditeur MP3',
       subtitle: 'Coupez, appliquez des fondus, inversez et accélérez l’audio — tout dans un seul onglet.',
       intro:
@@ -396,7 +396,7 @@ export const fr: Catalog = {
       shortName: 'Sonneries',
       title: 'Sonnerie iPhone — créez une sonnerie avec vos chansons',
       description:
-        'Transformez n’importe quelle chanson en sonnerie dans votre navigateur. Choisissez les 40 meilleures secondes, ajoutez un fondu, exportez en M4R ou MP3 : gratuit, sans inscription, rien n’est téléversé.',
+        'Transformez une chanson en sonnerie : les 40 meilleures secondes, un fondu, export M4R ou MP3. Gratuit, sans inscription, rien n’est téléversé.',
       h1: 'Créateur de sonneries',
       subtitle: 'Choisissez le meilleur passage de n’importe quelle chanson et enregistrez-le comme sonnerie — en moins d’une minute.',
       intro:
@@ -450,7 +450,7 @@ export const fr: Catalog = {
       shortName: 'Fusion audio',
       title: 'Fusion audio — fusionner des MP3 en ligne gratuitement',
       description:
-        'Fusionnez chansons et fichiers audio en une seule piste, dans l’ordre voulu, dans votre navigateur. Fondus facultatifs entre pistes : gratuit, privé, sans téléversement.',
+        'Fusionnez chansons et fichiers audio en une piste, dans l’ordre voulu, dans votre navigateur. Fondus facultatifs : gratuit, sans téléversement.',
       h1: 'Fusion audio',
       subtitle: 'Fusionnez chansons et fichiers audio en une seule piste — dans l’ordre voulu, en quelques secondes.',
       intro:
@@ -504,7 +504,7 @@ export const fr: Catalog = {
       shortName: 'WAV vers MP3',
       title: 'Convertir WAV en MP3 — dans votre navigateur, gratuitement',
       description:
-        'Convertissez WAV en MP3 dans votre navigateur : 128, 192 ou 320 kbps. Gratuit, sans inscription : votre audio est converti en local et jamais téléversé sur un serveur.',
+        'Convertissez WAV en MP3 dans votre navigateur : 128, 192 ou 320 kbps. Gratuit, sans inscription — conversion locale, jamais téléversée.',
       h1: 'Convertisseur WAV vers MP3',
       subtitle: 'Convertissez vos fichiers WAV en MP3 en quelques secondes — dans votre navigateur, sans téléversement.',
       intro:
@@ -559,7 +559,7 @@ export const fr: Catalog = {
       shortName: 'Inverser l’audio',
       title: 'Audio à l’envers — écouter une chanson à l’envers, gratuit',
       description:
-        'Écoutez n’importe quelle chanson ou enregistrement à l’envers dans votre navigateur. Un clic pour inverser, aperçu immédiat, enregistrement en MP3 ou WAV — gratuit, rien n’est téléversé.',
+        'Écoutez une chanson à l’envers dans votre navigateur : un clic pour inverser, aperçu immédiat, export MP3 ou WAV — gratuit, rien n’est téléversé.',
       h1: 'Audio à l’envers',
       subtitle: 'Écoutez n’importe quelle chanson ou enregistrement à l’envers — un clic, dans votre navigateur.',
       intro:
@@ -667,7 +667,7 @@ export const fr: Catalog = {
       shortName: 'Volume MP3',
       title: 'Augmenter le volume MP3 — audio plus fort, gratuitement',
       description:
-        'Rendez l’audio trop faible plus puissant : augmentez MP3 et autres fichiers jusqu’à 4× dans votre navigateur. Un limiteur intégré garde un son propre. Gratuit, rien n’est téléversé.',
+        'Audio trop faible ? Montez jusqu’à 4× dans votre navigateur. Un limiteur intégré garde un son propre — gratuit, rien n’est téléversé.',
       h1: 'Augmenter le volume MP3',
       subtitle: 'Amplifiez les enregistrements trop faibles jusqu’à 4× — avec un limiteur, pour éviter toute saturation.',
       intro:
@@ -721,7 +721,7 @@ export const fr: Catalog = {
       shortName: 'MP4 vers MP3',
       title: 'MP4 vers MP3 — convertir une vidéo en MP3 gratuitement',
       description:
-        'Convertissez des vidéos MP4 en MP3 dans votre navigateur. La bande-son est extraite en local et jamais téléversée. Gratuit, rapide, sans inscription, fonctionne sur mobile.',
+        'Convertissez MP4 en MP3 dans votre navigateur. La bande-son est extraite en local, jamais téléversée. Gratuit, rapide, sans inscription.',
       h1: 'Convertisseur MP4 vers MP3',
       subtitle: 'Sortez la bande-son de n’importe quelle vidéo — dans votre navigateur, sans téléversement.',
       intro:
@@ -776,7 +776,7 @@ export const fr: Catalog = {
       shortName: 'Extracteur audio',
       title: 'Extraire l’audio d’une vidéo — l’enregistrer en MP3 ou WAV',
       description:
-        'Extrayez la piste audio de n’importe quelle vidéo dans votre navigateur et enregistrez-la en MP3 ou WAV sans perte. Gratuit, privé, sans téléversement — même pour les gros fichiers.',
+        'Extrayez la piste audio d’une vidéo dans votre navigateur, en MP3 ou WAV sans perte. Gratuit, sans téléversement, même pour les gros fichiers.',
       h1: 'Extraire l’audio d’une vidéo',
       subtitle: 'Enregistrez la bande-son de n’importe quelle vidéo en MP3 ou WAV — en local, en quelques secondes.',
       intro:
@@ -885,7 +885,7 @@ export const fr: Catalog = {
       shortName: 'Amplifier le volume',
       title: 'Amplifier le volume — vidéos et musique plus fortes, gratuit',
       description:
-        'Augmentez le volume de musiques trop faibles et de bandes-son vidéo jusqu’à 4× dans votre navigateur. Un limiteur garde le son propre — gratuit, privé, sans téléversement.',
+        'Musiques trop faibles et bandes-son jusqu’à 4× plus puissantes, dans votre navigateur. Un limiteur garde le son propre — gratuit, sans téléversement.',
       h1: 'Amplificateur de volume',
       subtitle: 'Amplifiez morceaux faibles et bandes-son vidéo jusqu’à 4× — puissant, sans saturation.',
       intro:
@@ -993,7 +993,7 @@ export const fr: Catalog = {
       shortName: 'Slowed + reverb',
       title: 'Slowed + reverb — créez un slowed reverb en ligne, gratuit',
       description:
-        'Transformez n’importe quelle chanson en édition slowed + reverb dans votre navigateur : ralentissez, ajoutez de la réverbe, exportez en MP3. Gratuit, rien n’est téléversé.',
+        'Créez une édition slowed + reverb dans votre navigateur : ralentissez, ajoutez de la réverbe, exportez en MP3. Gratuit, rien n’est téléversé.',
       h1: 'Créateur de slowed + reverb',
       subtitle: 'Le son de fin de nuit : ralentissez un morceau à ~85 %, ajoutez de l’espace, exportez — sans application, sans téléversement.',
       intro:
@@ -1047,7 +1047,7 @@ export const fr: Catalog = {
       shortName: 'Fondu',
       title: 'Fondu audio — ajouter un fondu d’entrée et de sortie en ligne',
       description:
-        'Ajoutez un fondu d’entrée et de sortie à vos chansons ou enregistrements dans votre navigateur. Durée réglable au dixième de seconde, export MP3 ou WAV. Gratuit, sans téléversement.',
+        'Ajoutez fondu d’entrée et de sortie à vos chansons dans votre navigateur. Durée au dixième de seconde, export MP3 ou WAV. Gratuit, sans téléversement.',
       h1: 'Fondu d’entrée et de sortie audio',
       subtitle: 'Des bords doux en quelques secondes : réglez les deux fondus au dixième de seconde, écoutez et exportez. Rien ne quitte votre appareil.',
       intro:
@@ -1269,7 +1269,7 @@ export const fr: Catalog = {
       shortName: 'Opus vers MP3',
       title: 'Opus vers MP3 — convertisseur Opus en ligne gratuit',
       description:
-        'Convertissez l’audio Opus en MP3 dans votre navigateur. Gratuit, sans inscription, sans téléversement. Fonctionne avec les fichiers .opus et l’Opus dans l’OGG ou le WebM.',
+        'Convertissez l’audio Opus en MP3 dans votre navigateur. Fichiers .opus et Opus dans OGG ou WebM. Gratuit, sans inscription ni téléversement.',
       h1: 'Convertisseur Opus vers MP3',
       subtitle: 'Passez l’audio Opus en MP3 — dans votre navigateur, sans téléversement.',
       intro:

@@ -184,7 +184,7 @@ export const pt: Catalog = {
       'Todas as ferramentas do site, agrupadas por tarefa. Escolha uma e comece: tudo roda no seu navegador, sem cadastro e sem enviar arquivos.',
   },
   about: {
-    title: 'Sobre o Free Audio Editor — ferramentas de áudio online, no seu aparelho',
+    title: 'Sobre o Free Audio Editor — ferramentas de áudio online',
     description:
       'O Free Audio Editor é um conjunto de ferramentas de áudio que priorizam a privacidade e rodam inteiramente no navegador — sem envio, sem cadastro, sem marca d\'água.',
     h1: 'Sobre',

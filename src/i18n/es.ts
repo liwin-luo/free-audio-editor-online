@@ -185,9 +185,9 @@ export const es: Catalog = {
       'Todas las herramientas del sitio, agrupadas por tarea. Elige una y empieza: todo funciona en tu navegador, sin registro y sin subir archivos.',
   },
   about: {
-    title: 'Acerca de Free Audio Editor — Herramientas de audio en línea, en tu dispositivo',
+    title: 'Acerca de Free Audio Editor — audio online, sin subidas',
     description:
-      'Free Audio Editor es un conjunto de herramientas de audio que cuidan tu privacidad y funcionan por completo en tu navegador: sin subir archivos, sin registro y sin marcas de agua.',
+      'Free Audio Editor: herramientas de audio que respetan tu privacidad y funcionan en tu navegador. Sin subidas, sin registro, sin marcas de agua.',
     h1: 'Acerca de',
     p1: 'Free Audio Editor existe porque editar una nota de voz no debería obligarte a subirla al servidor de otra persona. Cada herramienta de aquí — el {trimmer}, el {cutter}, el {joiner} y las demás — funciona igual: tu navegador lee el archivo, lo edita en memoria y escribe el resultado directo en tu disco.',
     linkTrimmer: 'recortador',
@@ -346,7 +346,7 @@ export const es: Catalog = {
       shortName: 'Cortador de MP3',
       title: 'Cortar MP3 online gratis',
       description:
-        'Corta archivos MP3 en línea en un par de clics. Conserva la mejor parte o quita una intro en segundos: gratis, sin registro, y el archivo nunca sale de tu dispositivo.',
+        'Corta archivos MP3 online en un par de clics: quédate la mejor parte o quita la intro. Gratis, sin registro, el archivo nunca sale de tu equipo.',
       h1: 'Cortar MP3',
       subtitle: 'Corta canciones y archivos MP3 en línea: quédate con la parte que quieres y borra el resto.',
       intro:
@@ -400,7 +400,7 @@ export const es: Catalog = {
       shortName: 'Editor de MP3',
       title: 'Editor de MP3 — Corta, funde, invierte y acelera en línea',
       description:
-        'Edita MP3 y otro audio en línea: corta, recorta, fundido de entrada y de salida, cambia el volumen y la velocidad, reproduce al revés. Gratis y privado: todo ocurre en tu navegador.',
+        'Edita MP3 online: cortar, recortar, fundidos, volumen, velocidad y reproducción inversa. Gratis y privado: todo ocurre en tu navegador.',
       h1: 'Editor de MP3',
       subtitle: 'Corta, funde, invierte y acelera audio, todo en una pestaña del navegador.',
       intro:
@@ -454,7 +454,7 @@ export const es: Catalog = {
       shortName: 'Tono de llamada',
       title: 'Tono de llamada — Haz un tono con cualquier canción',
       description:
-        'Convierte cualquier canción en un tono de llamada en tu navegador. Elige los mejores 40 segundos, agrega un fundido y exporta M4R o MP3: gratis, sin registro, nada se sube.',
+        'Convierte una canción en tono de llamada: elige los mejores 40 segundos, añade un fundido y exporta M4R o MP3. Gratis, sin registro, nada se sube.',
       h1: 'Creador de tonos de llamada',
       subtitle: 'Elige la mejor parte de cualquier canción y guárdala como tono de llamada, en menos de un minuto.',
       intro:
@@ -834,7 +834,7 @@ export const es: Catalog = {
       shortName: 'Extraer audio',
       title: 'Extraer audio de un video — Guárdalo como MP3 o WAV',
       description:
-        'Extrae la pista de audio de cualquier video en tu navegador y guárdala como MP3 o WAV sin pérdida. Gratis, privado y sin subir archivos, incluso si el video es grande.',
+        'Extrae el audio de cualquier video en tu navegador y guárdalo en MP3 o WAV sin pérdida. Gratis, sin subir archivos, aunque el video sea grande.',
       h1: 'Extraer audio de un video',
       subtitle: 'Guarda la pista de audio de cualquier video como MP3 o WAV, en local y en segundos.',
       intro:
