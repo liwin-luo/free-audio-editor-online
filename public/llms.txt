@@ -16,6 +16,13 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Opus to MP3 Converter](https://freeaudioeditor.online/opus-to-mp3): convert .opus files and Opus inside OGG or WebM to MP3.
 - [Pitch Changer](https://freeaudioeditor.online/pitch-changer): shift audio pitch ±12 semitones while keeping the duration unchanged.
 - [Bass Booster](https://freeaudioeditor.online/bass-booster): add up to +15 dB of low end below 150 Hz with a true low-shelf EQ.
+- [Treble Booster](https://freeaudioeditor.online/treble-booster): add up to +15 dB of highs above 3 kHz with a true high-shelf EQ.
+- [Audio Equalizer](https://freeaudioeditor.online/equalizer): shape low, mid and high with a 3-band EQ, ±15 dB per band.
+- [Low Pass Filter](https://freeaudioeditor.online/low-pass-filter): remove hiss and harshness above a 300 Hz–20 kHz cutoff.
+- [High Pass Filter](https://freeaudioeditor.online/high-pass-filter): remove rumble and hum below a 20 Hz–5 kHz cutoff.
+- [Waveform Generator](https://freeaudioeditor.online/waveform-generator): turn audio into a waveform PNG — look templates, several drawing styles, colors, transparent background, a time range, preset sizes at 2×.
+- [Spectrogram Generator](https://freeaudioeditor.online/spectrogram-generator): turn audio into a spectrogram PNG — log or linear frequency, colormaps, dB range, a time range.
+- [Image to Audio](https://freeaudioeditor.online/image-to-audio): paint a picture or a short line of text into a WAV so a spectrogram shows it.
 - [M4A to MP3 Converter](https://freeaudioeditor.online/m4a-to-mp3): convert M4A/AAC files to MP3 in the browser; tags and artwork are not copied.
 - [Audio Fade In / Fade Out](https://freeaudioeditor.online/fade-audio): add a smooth fade in and fade out to any recording, 0.1 s precision, export MP3 or WAV.
 - [Reverse Audio](https://freeaudioeditor.online/reverse-audio): play any track backwards, one click.

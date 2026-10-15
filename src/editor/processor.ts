@@ -24,8 +24,16 @@ export interface EditState {
   normalize: boolean;
   /** reverb wet mix, 0 = dry, 1 = full synthesized-room send */
   reverb: number;
-  /** low-shelf boost in dB, 0 = unchanged (150 Hz corner, 0…+15) */
+  /** low-shelf gain in dB (150 Hz corner, −15…+15); booster page exposes 0…+15 */
   bass: number;
+  /** high-shelf gain in dB (3 kHz corner, −15…+15) */
+  treble: number;
+  /** peaking gain in dB (1 kHz, Q 1, −15…+15) */
+  mid: number;
+  /** high-pass cutoff in Hz; 20 ≈ transparent */
+  hpf: number;
+  /** low-pass cutoff in Hz; 20000 ≈ transparent */
+  lpf: number;
 }
 
 export function defaultEditState(): EditState {
@@ -41,6 +49,10 @@ export function defaultEditState(): EditState {
     normalize: false,
     reverb: 0,
     bass: 0,
+    treble: 0,
+    mid: 0,
+    hpf: 20,
+    lpf: 20000,
   };
 }
 
@@ -138,18 +150,32 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
 
   // Master bus: a manual boost can exceed 0 dBFS, so a limiter catches peaks.
   // Peak-normalize already targets 0.98 and must not be pulled down by that limiter.
-  const bassDb = clamp(state.bass, 0, 15);
+  const bassDb = clamp(state.bass, -15, 15);
+  const trebleDb = clamp(state.treble, -15, 15);
+  const midDb = clamp(state.mid, -15, 15);
+  const hpfHz = clamp(state.hpf, 20, 5000);
+  const lpfHz = clamp(state.lpf, 300, 20000);
+  // only gain-adding stages can push samples past full scale
+  const boosts = bassDb > 0 || trebleDb > 0 || midDb > 0;
   const master = ctx.createGain();
   let bus: AudioNode = master;
-  if (bassDb > 0) {
-    const shelf = ctx.createBiquadFilter();
-    shelf.type = 'lowshelf';
-    shelf.frequency.value = 150;
-    shelf.gain.value = bassDb;
-    master.connect(shelf);
-    bus = shelf;
+  const shelf = (type: BiquadFilterType, freq: number, gainDb: number) => {
+    const f = ctx.createBiquadFilter();
+    f.type = type;
+    f.frequency.value = freq;
+    f.gain.value = gainDb;
+    bus.connect(f);
+    bus = f;
+  };
+  if (bassDb !== 0) shelf('lowshelf', 150, bassDb);
+  if (midDb !== 0) {
+    shelf('peaking', 1000, midDb);
+    bus && ((bus as BiquadFilterNode).Q.value = 1);
   }
-  if ((!state.normalize && gain > 1) || bassDb > 0) {
+  if (trebleDb !== 0) shelf('highshelf', 3000, trebleDb);
+  if (hpfHz > 25) shelf('highpass', hpfHz, 0);
+  if (lpfHz < 19000) shelf('lowpass', lpfHz, 0);
+  if ((!state.normalize && gain > 1) || boosts) {
     const limiter = ctx.createDynamicsCompressor();
     limiter.threshold.value = -2;
     limiter.knee.value = 3;
@@ -198,8 +224,8 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   });
 
   const rendered = await ctx.startRendering();
-  if (!state.normalize && (gain > 1 || bassDb > 0)) softClipGuard(rendered);
-  if (state.normalize && bassDb > 0) {
+  if (!state.normalize && (gain > 1 || boosts)) softClipGuard(rendered);
+  if (state.normalize && boosts) {
     // the shelf raises lows after peak-normalize measured the source — pull
     // the render back to the normalize target instead of letting it clip
     let peak = 0;

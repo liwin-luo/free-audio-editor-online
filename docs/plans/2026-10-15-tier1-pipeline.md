@@ -50,11 +50,11 @@
 | # | Tool | Batch | Status |
 |---|---|---|---|
 | 0 | fade-audio | — | ✅ ec0adcf |
-| 1 | bass-booster | A | 🚧 this commit |
-| 2 | treble-booster | A | ⏳ |
-| 3 | equalizer | A | ⏳ |
-| 4 | low-pass-filter | A | ⏳ |
-| 5 | high-pass-filter | A | ⏳ |
+| 1 | bass-booster | A | ✅ 41f0059 |
+| 2 | treble-booster | A | ✅ working tree (with 3–5) |
+| 3 | equalizer | A | ✅ working tree (with 2, 4–5) |
+| 4 | low-pass-filter | A | ✅ working tree (with 2–3, 5) |
+| 5 | high-pass-filter | A | ✅ working tree (with 2–4) |
 | 6 | mono-converter | B | ⏳ |
 | 7 | polarity-inverter | B | ⏳ |
 | 8 | dc-offset-remover | B | ⏳ |
@@ -62,7 +62,7 @@
 | 10 | echo | C | ⏳ |
 | 11 | crossfade-joiner | D | ⏳ |
 
-Cadence: 1 tool per working session until Batch A is done, then re-evaluate
+Cadence: Batch A is in the working tree (not committed). Next session starts Batch B, then re-evaluate
 (GSC data may promote/demote Batch C/D). Cannibalization watch per roadmap:
 bass-booster must stay "shape the low end" vs volume-booster/increase-volume
 "make the whole file louder" — disambiguation FAQ is mandatory in all three.

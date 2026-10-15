@@ -28,13 +28,21 @@ export type ToolIcon =
   | 'trending-up'
   | 'note'
   | 'file'
-  | 'voice';
+  | 'voice'
+  | 'sun'
+  | 'plus'
+  | 'minus'
+  | 'image';
 
 export interface EditorConfig {
   /** Accept multiple files and merge them (audio-joiner) */
   multiple?: boolean;
-  /** Default export format id */
-  defaultFormat: string;
+  /** Default export format id. Omitted on image-output tools. */
+  defaultFormat?: string;
+  /** Image-output editor instead of the audio editor */
+  visualizer?: 'waveform' | 'spectrogram';
+  /** Paint a picture or text into a WAV spectrogram */
+  paint?: boolean;
   /** Show the Adjust drawer (gain, speed, reverse, fades) */
   showAdjust?: boolean;
   /** Ringtone mode: clamp selection to 40 seconds */
@@ -48,7 +56,7 @@ export interface EditorConfig {
   /** Max gain slider percent (default 200) */
   maxGainPercent?: number;
   /** Headline controls surfaced outside the Adjust drawer */
-  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb' | 'pitch')[];
+  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf')[];
   /** file input accept attribute (default: audio + common video containers) */
   accept?: string;
   /** Export format ids offered in the select, in order. Default: everything except M4R. */
@@ -143,7 +151,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Recordings up to about an hour work comfortably on a modern computer. The practical limit is your device memory, not an artificial cap.',
       },
     ],
-    related: ['mp3-cutter', 'audio-joiner', 'ringtone-maker'],
+    related: ['mp3-cutter', 'audio-joiner', 'waveform-generator'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -267,7 +275,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Audio is decoded and rendered locally with the Web Audio API — it is never transmitted over the network, which makes it suitable for interviews and other confidential material.',
       },
     ],
-    related: ['audio-trimmer', 'change-audio-speed', 'normalize-audio'],
+    related: ['audio-trimmer', 'change-audio-speed', 'waveform-generator'],
     editor: {
       defaultFormat: 'mp3-320',
       showAdjust: true,
@@ -837,7 +845,7 @@ export const TOOLS: ToolDef[] = [
         a: 'As long as your device memory allows — minutes of speech take very little space (Opus compression is efficient). For multi-hour recordings, export in sections.',
       },
     ],
-    related: ['audio-trimmer', 'increase-volume', 'mp3-editor'],
+    related: ['audio-trimmer', 'high-pass-filter', 'increase-volume'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -900,7 +908,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Speaker volume only helps on your device. A boosted file plays louder everywhere — on other people\u2019s phones, in cheap earbuds, over a laptop\u2019s tiny speakers.',
       },
     ],
-    related: ['increase-volume', 'bass-booster', 'fade-audio'],
+    related: ['increase-volume', 'treble-booster', 'bass-booster'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -1037,6 +1045,472 @@ export const TOOLS: ToolDef[] = [
     },
   },
   {
+    slug: 'treble-booster',
+    name: 'Treble Booster',
+    shortName: 'Treble',
+    icon: 'sun',
+    category: 'effects',
+    title: 'Treble Booster — Boost Highs of Audio Online Free',
+    description:
+      'Add up to +15 dB of airy highs above 3 kHz in your browser — a true high-shelf, not a loudness trick. Export MP3 or WAV. Free, no upload.',
+    h1: 'Treble Booster',
+    subtitle: 'A real high-shelf EQ: up to +15 dB above 3 kHz, preview and export — nothing leaves your device.',
+    intro:
+      'Muffled, dull audio usually lacks one thing: energy above 3 kHz. The treble booster applies a true high-shelf EQ — up to +15 dB above 3 kHz, the same move a mastering engineer makes to open a track up — not a loudness trick that lifts everything. Drop a file, raise the slider until the detail comes back, and export. Everything runs in your browser: the file is never uploaded.',
+    usesHeading: 'When to boost the treble',
+    uses: [
+      'Open up a dull recording that sounds like it was made under a blanket.',
+      'Bring consonants and breath back into voices so speech stays intelligible.',
+      'Add sparkle to cymbals and acoustic instruments in a flat-sounding mix.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. Processing stays on your device.',
+      },
+      {
+        name: 'Raise the treble slider',
+        text: 'Up to +15 dB above 3 kHz. +3–6 dB de-muddies most recordings; go higher for a bright, aggressive edge.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Listen for harshness on sibilants (s, t sounds) — export as MP3 or lossless WAV.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The boost is a Web Audio high-shelf filter inside your browser tab — there is no upload step. You can go offline after the page loads and the tool keeps working.',
+      },
+      {
+        q: 'Will boosting the treble reduce quality?',
+        a: 'No resampling or pitch change happens. A big boost also lifts hiss and sibilance that was always in the file — if it gets harsh, back the slider off. A limiter catches peaks so the export never clips harshly.',
+      },
+      {
+        q: 'Can it restore detail that was never recorded?',
+        a: 'No — a shelf only amplifies high frequencies the file already contains. Audio compressed at a low bitrate loses highs permanently; no EQ brings them back.',
+      },
+      {
+        q: 'How is this different from the bass booster?',
+        a: 'They are opposites on the spectrum: the bass booster lifts the low end below 150 Hz, the treble booster lifts the highs above 3 kHz. Dull and muffled? Treble. Thin and small? Bass.',
+      },
+      {
+        q: 'How much treble should I add?',
+        a: '+3–6 dB opens up most dull recordings. Above +9 dB, sibilant sounds (s, sh, t) can get piercing — listen once on headphones before exporting.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The editor is built for touch — drag to select, set the slider, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    related: ['bass-booster', 'equalizer', 'volume-booster'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['treble'],
+    },
+  },
+  {
+    slug: 'equalizer',
+    name: 'Audio Equalizer',
+    shortName: 'Equalizer',
+    icon: 'waveform',
+    category: 'effects',
+    title: 'Audio Equalizer — 3-Band EQ Online Free',
+    description:
+      'Shape low, mid and high with a real 3-band EQ (shelf–peak–shelf) in your browser. ±15 dB per band, export MP3 or WAV. Free, nothing uploaded.',
+    h1: '3-Band Audio Equalizer',
+    subtitle: 'Low, mid and high shelves with ±15 dB per band — the honest three-knob EQ.',
+    intro:
+      'Three knobs cover most of what an EQ is for: lows below 150 Hz, mids around 1 kHz where voices live, and highs above 3 kHz. This equalizer uses real filter bands — low shelf, peaking, high shelf — with ±15 dB each, so you can thin out boom, pull muddiness down or add air. Drop a file, shape the sound, export. Everything runs in your browser: the file is never uploaded.',
+    usesHeading: 'What the three bands do',
+    uses: [
+      'Cut mud: −3 to −6 dB in the mids cleans up crowded voice recordings.',
+      'Tame boom: pull the low band down on recordings made near a wall.',
+      'Add presence: lift highs for air, lows for weight — both at once if the mix needs it.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. Processing stays on your device.',
+      },
+      {
+        name: 'Shape the three bands',
+        text: 'Low below 150 Hz, mid around 1 kHz, highs above 3 kHz — ±15 dB each. Small cuts beat big boosts.',
+      },
+      {
+        name: 'A/B and export',
+        text: 'Reset a band to 0 dB to compare with the original, then export as MP3 or lossless WAV.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The bands are Web Audio filters (low shelf, peaking, high shelf) inside your browser tab — there is no upload step. You can go offline after the page loads and the tool keeps working.',
+      },
+      {
+        q: 'Is boosting or cutting better?',
+        a: 'Cutting. Big boosts push the signal toward the limiter and can soften peaks; a −4 dB cut in the muddy band often achieves more than a +6 dB boost anywhere.',
+      },
+      {
+        q: 'How is this different from the bass and treble boosters?',
+        a: 'The boosters are single-purpose shelves with boost-only ranges. The equalizer gives you all three bands with cut and boost in one place — use the boosters when you know exactly which end you need.',
+      },
+      {
+        q: 'What are the exact band frequencies?',
+        a: 'Low shelf at 150 Hz, peaking at 1 kHz (unit width), high shelf at 3 kHz — the standard three-band layout. Bands at 0 dB are bypassed, so an untouched band never colors the sound.',
+      },
+      {
+        q: 'Why do voices get strange when I cut the mids?',
+        a: 'Speech intelligibility lives around 1 kHz. Cut the mid band gently (−3 to −6 dB) and listen to a sentence you know well — deep mid cuts make voices sound distant or hollow.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The editor is built for touch — drag to select, set the sliders, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    related: ['bass-booster', 'treble-booster', 'low-pass-filter'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['bass', 'mid', 'treble'],
+    },
+  },
+  {
+    slug: 'low-pass-filter',
+    name: 'Low Pass Filter',
+    shortName: 'Low Pass',
+    icon: 'minus',
+    category: 'effects',
+    title: 'Low Pass Filter — Remove High Frequency Noise Online',
+    description:
+      'Cut hiss, harshness and high-frequency noise with a real low-pass filter, cutoff 300 Hz–20 kHz, in your browser. Export MP3 or WAV. Free, no upload.',
+    h1: 'Low Pass Filter',
+    subtitle: 'Sweep the cutoff from 20 kHz down to 300 Hz and keep only the frequencies you want.',
+    intro:
+      'A low-pass filter keeps the low end and rolls off everything above the cutoff — the honest way to remove hiss, sharp sibilance, squeaks and harsh digital edge. Unlike a noise remover, it never guesses what is noise: everything above your cutoff simply goes. Drop a file, sweep the cutoff down until the annoyance disappears, export. Everything runs in your browser: the file is never uploaded.',
+    usesHeading: 'When to low-pass audio',
+    uses: [
+      'Remove constant hiss and air conditioning whine from voice recordings.',
+      'Soften harsh, spitty cymbals or sibilance in a rough mix.',
+      'Make one sample sit behind another by dulling its top end.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. Processing stays on your device.',
+      },
+      {
+        name: 'Lower the cutoff',
+        text: 'Sweep from 20 kHz down until the noise disappears — 8–12 kHz is a common resting point for voice.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Check that voices still sound natural, then export as MP3 or lossless WAV.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The filter is a Web Audio low-pass biquad inside your browser tab — there is no upload step. You can go offline after the page loads and the tool keeps working.',
+      },
+      {
+        q: 'Is a low-pass filter the same as noise removal?',
+        a: 'No — and that is its strength. A noise remover separates noise from signal intelligently; a low pass blindly cuts everything above the cutoff. For constant, wideband hiss it is more reliable than any algorithm.',
+      },
+      {
+        q: 'Why do voices sound muffled at low cutoffs?',
+        a: 'Consonant clarity lives between 3 and 8 kHz. Below about 5 kHz speech starts to sound muffled; below 2 kHz it sounds like a telephone. For voice, try 8–12 kHz first.',
+      },
+      {
+        q: 'How is this different from the high-pass filter?',
+        a: 'Opposite directions: the high pass removes rumble, hum and low-end boom below your cutoff; the low pass removes hiss and harshness above it. Using both leaves only a chosen band.',
+      },
+      {
+        q: 'What cutoff should I use for music?',
+        a: 'For a soft lo-fi effect try 4–8 kHz. To clean sharp cymbals, 12–16 kHz usually suffices. Below 3 kHz music sounds distinctly muffled — trust your ears over numbers.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The editor is built for touch — drag to select, sweep the cutoff, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    related: ['high-pass-filter', 'equalizer', 'voice-recorder'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['lpf'],
+    },
+  },
+  {
+    slug: 'high-pass-filter',
+    name: 'High Pass Filter',
+    shortName: 'High Pass',
+    icon: 'plus',
+    category: 'effects',
+    title: 'High Pass Filter — Remove Low Rumble Online Free',
+    description:
+      'Cut rumble, hum and low-end boom with a real high-pass filter, cutoff 20 Hz–5 kHz, in your browser. Export MP3 or WAV. Free, no upload.',
+    h1: 'High Pass Filter',
+    subtitle: 'Sweep the cutoff from 20 Hz up to 5 kHz and strip everything below it.',
+    intro:
+      'Rumble, traffic, handling noise, desk thumps — unwanted low end is baked into most real-world recordings. A high-pass filter keeps everything above your cutoff and rolls off everything below: the honest fix that never guesses. Drop a file, sweep the cutoff up until the rumble disappears and the voice stays full, export. Everything runs in your browser: the file is never uploaded.',
+    usesHeading: 'When to high-pass audio',
+    uses: [
+      'Clean traffic rumble and desk thumps out of podcast and voice recordings.',
+      'Remove wind and handling noise that survived a windy outdoor take.',
+      'Tighten a mix by clearing sub-bass mud out of every non-bass track.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. Processing stays on your device.',
+      },
+      {
+        name: 'Raise the cutoff',
+        text: 'Sweep up from 20 Hz until the rumble is gone — 80–120 Hz suits most voices.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Check the voice does not sound thin, then export as MP3 or lossless WAV.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The filter is a Web Audio high-pass biquad inside your browser tab — there is no upload step. You can go offline after the page loads and the tool keeps working.',
+      },
+      {
+        q: 'Will it remove hum from a bad cable?',
+        a: 'Mains hum sits at 50 or 60 Hz, with harmonics above. A high pass at 80–120 Hz removes the fundamental and much of the ring — for stubborn harmonics, pair it with the low-pass filter to narrow the band further.',
+      },
+      {
+        q: 'How high can the cutoff go before voices thin out?',
+        a: 'Male voices keep their body down to about 100 Hz, female voices to about 150–200 Hz. Push past 300 Hz and speech starts sounding telephone-like — that can be a style, but listen first.',
+      },
+      {
+        q: 'How is this different from the low-pass filter?',
+        a: 'Opposite directions: the high pass removes low-frequency rumble below your cutoff; the low pass removes hiss and harshness above it. Chain them and only your chosen band survives.',
+      },
+      {
+        q: 'Does filtering reduce the file quality?',
+        a: 'No resampling or pitch change happens — the cutoff only decides which frequencies survive. Export re-encodes once, as always: MP3 at 128–320 kbps or bit-perfect WAV.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The editor is built for touch — drag to select, sweep the cutoff, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    related: ['low-pass-filter', 'voice-recorder', 'mp3-editor'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['hpf'],
+    },
+  },
+  {
+    slug: 'waveform-generator',
+    name: 'Waveform Generator',
+    shortName: 'Waveform',
+    icon: 'image',
+    category: 'effects',
+    title: 'Audio Waveform Generator — Waveform Image Online Free',
+    description:
+      'Turn any song or recording into a clean waveform image. Pick colors, style and size, download a hi-res PNG — free in your browser, no upload.',
+    h1: 'Audio Waveform Generator',
+    subtitle: 'A waveform picture of your audio — colors, size and a transparent PNG, drawn on your device.',
+    intro:
+      'Drop a song, a voice memo or a podcast and get a waveform image you can use as a cover, a video background or a social post. Pick mirrored bars or a filled shape, set the colors, and download a PNG at video, square or banner size. The picture is drawn in your browser from the file you opened — nothing is uploaded.',
+    usesHeading: 'What people make with it',
+    uses: [
+      'A podcast or song cover with a waveform instead of a blank square.',
+      'A transparent PNG to lay over video or a thumbnail.',
+      'A wide banner for a site header or a video end card.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. Decoding stays on your device.',
+      },
+      {
+        name: 'Set the look',
+        text: 'Pick a template, or set the style and colors yourself. Set the start and end if you only want part of the file. Presets cover 1920×1080, square, social and banner sizes.',
+      },
+      {
+        name: 'Download the PNG',
+        text: 'The preview matches the export. Preset sizes download at double resolution so the image stays sharp.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The browser decodes the file and draws the picture on a canvas. There is no upload step. After the page loads you can go offline and it still works.',
+      },
+      {
+        q: 'Will the PNG look sharp?',
+        a: 'Preset sizes export at twice the listed pixels — a 1920×1080 cover downloads as 3840×2160. PNG is lossless. Custom sizes above about two million pixels export at 1× so the tab does not run out of memory.',
+      },
+      {
+        q: 'Can I edit the audio here?',
+        a: 'No. This page only draws a picture. To cut or trim the file, use the audio trimmer, then come back if you still want the image.',
+      },
+      {
+        q: 'Is this the same as a spectrogram?',
+        a: 'No. A waveform shows loudness over time — the shape you see on a music player. A spectrogram shows which frequencies are present. For that picture, use the spectrogram generator.',
+      },
+      {
+        q: 'Can I get a transparent background?',
+        a: 'Yes. Leave Transparent background on and the PNG has no backdrop, so you can place it on video or another image. Turn it off to paint a solid background color.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The controls stack on a narrow screen and the download button stays within reach. It works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    related: ['spectrogram-generator', 'image-to-audio', 'audio-trimmer'],
+    editor: {
+      visualizer: 'waveform',
+      dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Download PNG',
+    },
+  },
+  {
+    slug: 'spectrogram-generator',
+    name: 'Spectrogram Generator',
+    shortName: 'Spectrogram',
+    icon: 'waveform',
+    category: 'effects',
+    title: 'Spectrogram Generator — Audio to Image Online Free',
+    description:
+      'Generate a spectrogram from any audio file and download it as PNG. Log or linear frequency axis, colormaps, dB control — free, nothing uploaded.',
+    h1: 'Spectrogram Generator',
+    subtitle: 'See the frequencies in a song or a recording, then download the picture — drawn on your device.',
+    intro:
+      'A spectrogram shows which frequencies are present as time moves across the picture: speech, bass, and anything drawn into the sound. Drop a file, pick a log or linear axis, and download a PNG. The browser computes the FFT locally — nothing is uploaded.',
+    usesHeading: 'What people look for in it',
+    uses: [
+      'Check where the bass, voice and hiss sit before you EQ a track.',
+      'Find a picture or a word someone hid in the frequencies.',
+      'Export a still of a song for a post, a lesson or a lab note.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. Decoding stays on your device.',
+      },
+      {
+        name: 'Set the view',
+        text: 'Log frequency is the usual music view. Narrow the top frequency, and move the dB floor and ceiling if a hidden picture is too dim or too bright. Limit the time range if you only want a section.',
+      },
+      {
+        name: 'Download the PNG',
+        text: 'Preset sizes download at double resolution. The picture is not audio — you cannot play the PNG back into the song.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The browser decodes the file and runs an FFT on it in this tab. There is no upload. After the page loads you can go offline and it still works.',
+      },
+      {
+        q: 'What do the colors mean?',
+        a: 'Each column is one moment. Height is frequency, high notes at the top. Brighter color means more energy. Viridis, inferno and gray are the same data with a different scale. The dB floor and ceiling decide what counts as quiet and loud.',
+      },
+      {
+        q: 'Can I turn the picture back into audio?',
+        a: 'No. The PNG is a drawing of levels, not the waveform. To hear the file, keep the original. To put a picture into audio, use Image to Audio, then open that WAV here.',
+      },
+      {
+        q: 'How is this different from the waveform generator?',
+        a: 'A waveform is loudness over time — the shape on a music player. A spectrogram is which frequencies are there. Use the waveform page for a cover image. Use this page to inspect or reveal frequencies.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The controls stack on a narrow screen and the download stays in reach. It works in current Chrome, Edge, Firefox and Safari, on desktop and mobile. A long file takes a moment because each column is an FFT.',
+      },
+      {
+        q: 'Why do some songs hide a picture?',
+        a: 'A few tracks, famously Aphex Twin, draw an image by putting energy on chosen frequencies. Raise the dB ceiling if the picture is faint, and keep the log axis. This page only shows it. It does not create one — that is Image to Audio.',
+      },
+    ],
+    related: ['waveform-generator', 'image-to-audio', 'bass-booster'],
+    editor: {
+      visualizer: 'spectrogram',
+      dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Download PNG',
+    },
+  },
+  {
+    slug: 'image-to-audio',
+    name: 'Image to Audio',
+    shortName: 'Image to Audio',
+    icon: 'image',
+    category: 'effects',
+    title: 'Image to Audio — Hide a Picture in Sound Free',
+    description:
+      'Turn a picture or a short line of text into a WAV a spectrogram can show. Free in your browser — the file is written on your device.',
+    h1: 'Image to Audio',
+    subtitle: 'Paint a picture or a line of text into a WAV. A spectrogram shows it back.',
+    intro:
+      'Type a short line or drop an image. This page writes that shape into the frequencies of a WAV, the same trick as a picture hidden in a song. It is not a song and it is not speech. Open the WAV in the spectrogram generator to see it. Nothing is uploaded.',
+    usesHeading: 'What people make with it',
+    uses: [
+      'Hide a name or a one-line message where a spectrogram can read it.',
+      'Turn a simple logo or drawing into a short tone painting.',
+      'Make a file you can drop straight into the spectrogram generator.',
+    ],
+    howTo: [
+      {
+        name: 'Type or drop',
+        text: 'Type up to 32 characters, or drop a PNG, JPG or WebP. The preview is the picture that will be written, bright pixels as louder frequencies.',
+      },
+      {
+        name: 'Download the WAV',
+        text: 'You get a 44.1 kHz 16-bit WAV. It sounds like chirps and noise, not like the picture spoken aloud.',
+      },
+      {
+        name: 'Look at the spectrum',
+        text: 'Open the WAV in the spectrogram generator. Log frequency, ceiling around −20 dB. The shape sits between about 400 Hz and 12 kHz.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my image uploaded?',
+        a: 'No. The browser draws the text or the image and builds the WAV in this tab. There is no upload step. After the page loads you can go offline and it still works.',
+      },
+      {
+        q: 'What file do I get?',
+        a: 'A mono WAV at 44.1 kHz, 16-bit PCM, a few seconds long. It is not MP3. The picture lives in the frequencies, so converting it to a low-bitrate MP3 can smear the shape.',
+      },
+      {
+        q: 'Will it sound like the picture or the words?',
+        a: 'No. There is no speech synthesis and no music generator. You hear tones stacked where the pixels are bright. To read it, look at a spectrogram.',
+      },
+      {
+        q: 'How is this different from the spectrogram generator?',
+        a: 'The spectrogram generator draws a picture of audio you already have. This page does the reverse: it builds audio so that a spectrogram shows your picture or your line of text. The waveform generator only shows loudness, so the hidden shape will not be obvious there.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. Type, pick a photo, download. It works in current Chrome, Edge, Firefox and Safari, on desktop and mobile. A very detailed photo is shrunk so the file stays short.',
+      },
+      {
+        q: 'Is this a secret code?',
+        a: 'No. Anyone who opens a spectrogram of the WAV can see the picture. It is a visible drawing in the sound, not encryption.',
+      },
+    ],
+    related: ['spectrogram-generator', 'waveform-generator', 'voice-recorder'],
+    editor: {
+      paint: true,
+      dropHint: 'Or drop an image',
+      exportLabel: 'Download WAV',
+    },
+  },
+  {
     slug: 'bass-booster',
     name: 'Bass Booster',
     shortName: 'Bass Boost',
@@ -1095,7 +1569,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. The editor is built for touch — drag to select, set the slider, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
       },
     ],
-    related: ['volume-booster', 'increase-volume', 'mp3-editor'],
+    related: ['spectrogram-generator', 'equalizer', 'treble-booster'],
     editor: {
       defaultFormat: 'mp3-320',
       showAdjust: true,

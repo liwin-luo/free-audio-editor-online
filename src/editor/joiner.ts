@@ -7,8 +7,8 @@ import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, concatPeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { renderMerge } from './processor';
 import { encodeFor, getFormat } from './encoders';
-import { showToast, initEditors } from './index';
-import { readEditorText } from './messages';
+import { initEditors } from './index';
+import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
@@ -35,7 +35,8 @@ class Joiner {
     this.root = root;
     this.text = readEditorText(root);
 
-    this.q<HTMLSelectElement>('[data-format]').value = config.defaultFormat;
+    const format = this.q<HTMLSelectElement>('[data-format]');
+    if (config.defaultFormat) format.value = config.defaultFormat;
 
     const dropzone = this.q<HTMLElement>('[data-dropzone]');
     const input = this.q<HTMLInputElement>('[data-file-input]');

@@ -1,0 +1,64 @@
+---
+/**
+ * Island for hiding a picture or a line of text in a WAV spectrogram.
+ */
+import Icon from '../Icon.astro';
+import { getShell } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { EditorConfig } from '../../data/tools';
+
+interface Props {
+  config: EditorConfig;
+  locale?: Locale;
+}
+const { config, locale = 'en' } = Astro.props;
+const { editor: t } = getShell(locale);
+---
+
+<div
+  data-spec-paint
+  data-i18n={JSON.stringify(t)}
+  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+>
+  <div class="grid gap-4 px-4 py-4 md:px-5">
+    <label class="block text-sm text-ink2">
+      {t.paintText}
+      <textarea
+        data-paint-text
+        rows="2"
+        maxlength="32"
+        placeholder={t.paintPlaceholder}
+        class="mt-1.5 w-full resize-none rounded-lg border border-line bg-bg px-3 py-2 text-base text-ink"
+      ></textarea>
+    </label>
+    <div
+      data-paint-drop
+      class="cursor-pointer rounded-xl border border-dashed border-line px-4 py-6 text-center"
+      tabindex="0"
+      role="button"
+      aria-label={config.dropHint}
+    >
+      <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
+        <Icon name="image" size={18} />
+      </span>
+      <p class="mt-3 text-sm font-medium">{config.dropHint}</p>
+      <p class="mt-1 text-xs text-ink3">{t.paintImage}</p>
+      <input type="file" class="hidden" accept="image/png,image/jpeg,image/webp,image/gif" data-paint-file />
+    </div>
+    <canvas data-paint-preview class="hidden max-h-40 w-full rounded-lg bg-black" aria-label={t.paintPreview}></canvas>
+  </div>
+  <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+    <p class="text-xs text-ink3">{t.dropLocal}</p>
+    <button type="button" class="btn btn-primary btn-lg ml-auto" data-export disabled>
+      <Icon name="download-simple" size={18} />
+      <span data-export-label>{config.exportLabel ?? t.export}</span>
+    </button>
+  </div>
+  <p data-status class="sr-only" role="status" aria-live="polite"></p>
+  <div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+</div>
+
+<script>
+  import { initSpecPaint } from '../../editor/spectrogram-paint-ui';
+  initSpecPaint();
+</script>

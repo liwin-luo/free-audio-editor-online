@@ -13,6 +13,7 @@ const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const BASE = process.env.BASE_URL ?? 'http://localhost:4321';
 const TEST_WAV = '/tmp/test-tone.wav';
 const DOWNLOAD_DIR = '/tmp/feature-downloads';
+generateTestWav(TEST_WAV);
 rmSync(DOWNLOAD_DIR, { recursive: true, force: true });
 mkdirSync(DOWNLOAD_DIR, { recursive: true });
 
@@ -60,6 +61,16 @@ const tailRms = (file, fromSec) => {
     n++;
   }
   return n ? Math.sqrt(acc / n) : 0;
+};
+
+const waitForStats = async (file) => {
+  for (let i = 0; i < 20; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try {
+      return wavStats(file);
+    } catch {}
+  }
+  return null;
 };
 
 const browser = await puppeteer.launch({
@@ -249,6 +260,15 @@ try {
   const LOW_WAV = '/tmp/test-low.wav';
   const bassWav = join(DOWNLOAD_DIR, 'test-low-edited.wav');
   generateTestWav(LOW_WAV, 3, 48000, 80, 0.5, true);
+  const waitForStats = async (file) => {
+    for (let i = 0; i < 20; i++) {
+      await new Promise((r) => setTimeout(r, 250));
+      try {
+        return wavStats(file);
+      } catch {}
+    }
+    return null;
+  };
   await client.goto(`${BASE}/bass-booster`, { waitUntil: 'networkidle0' });
   const bassInput = await client.$('[data-file-input]');
   await bassInput.uploadFile(LOW_WAV);
@@ -291,6 +311,134 @@ try {
     'bass +15 dB reaches limiter ceiling',
     boostedStats !== null && boostedStats.peak > 0.75,
     boostedStats ? `peak=${boostedStats.peak.toFixed(3)}` : '(missing wav)',
+  );
+
+  // --- Treble boost on /treble-booster ---
+  // 6 kHz tone at 0.5 stays put dry; +15 dB high-shelf @3 kHz drives it into
+  // the limiter ceiling.
+  const TREBLE_WAV = '/tmp/test-high.wav';
+  const trebleOut = join(DOWNLOAD_DIR, 'test-high-edited.wav');
+  generateTestWav(TREBLE_WAV, 3, 48000, 6000, 0.5, true);
+  await client.goto(`${BASE}/treble-booster`, { waitUntil: 'networkidle0' });
+  await (await client.$('[data-file-input]')).uploadFile(TREBLE_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.select('[data-format]', 'wav');
+  rmSync(trebleOut, { force: true });
+  await client.click('[data-export]');
+  await waitExported(client);
+  const trebleDry = await waitForStats(trebleOut);
+  await client.$eval('[data-quick-treble]', (el) => {
+    el.value = '15';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  rmSync(trebleOut, { force: true });
+  await client.click('[data-export]');
+  await waitExported(client);
+  const trebleBoosted = await waitForStats(trebleOut);
+  check(
+    'treble +15 dB reaches limiter ceiling',
+    trebleDry !== null && trebleBoosted !== null && Math.abs(trebleDry.peak - 0.5) < 0.06 && trebleBoosted.peak > 0.75,
+    trebleDry && trebleBoosted ? `dry=${trebleDry.peak.toFixed(3)} boosted=${trebleBoosted.peak.toFixed(3)}` : '(missing wav)',
+  );
+
+  // --- Equalizer on /equalizer: mid band cut and boost both provable on a 1 kHz tone ---
+  await client.goto(`${BASE}/equalizer`, { waitUntil: 'networkidle0' });
+  await (await client.$('[data-file-input]')).uploadFile(TEST_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.select('[data-format]', 'wav');
+  const setMid = async (v) =>
+    client.$eval('[data-quick-mid]', (el, val) => {
+      el.value = String(val);
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    }, v);
+  const exportAndStats = async () => {
+    rmSync(editedWav, { force: true });
+    await client.click('[data-export]');
+    await waitExported(client);
+    const s = await waitForStats(editedWav);
+    return { rms: tailRms(editedWav, 5.2), peak: s ? s.peak : 0, ok: s !== null };
+  };
+  await setMid(-15);
+  const midCut = await exportAndStats();
+  await setMid(15);
+  const midBoost = await exportAndStats();
+  check(
+    'equalizer mid cut and boost act on a 1 kHz tone',
+    midCut.ok && midBoost.ok && midCut.rms < 0.2 && midBoost.peak > 0.7,
+    `cutRms=${midCut.rms.toFixed(3)} boostPeak=${midBoost.peak.toFixed(3)}`,
+  );
+
+  // --- Low pass on /low-pass-filter: 1 kHz tone loses energy at a 500 Hz cutoff ---
+  await client.goto(`${BASE}/low-pass-filter`, { waitUntil: 'networkidle0' });
+  await (await client.$('[data-file-input]')).uploadFile(TEST_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.select('[data-format]', 'wav');
+  const dryLpf = await exportAndStats();
+  await client.$eval('[data-quick-lpf]', (el) => {
+    el.value = '500';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  const wetLpf = await exportAndStats();
+  check(
+    'low-pass 500 Hz attenuates a 1 kHz tone',
+    dryLpf.ok && wetLpf.ok && dryLpf.rms > 0.5 && wetLpf.rms < 0.25 && wetLpf.rms > 0.02,
+    `dry=${dryLpf.rms.toFixed(3)} wet=${wetLpf.rms.toFixed(3)}`,
+  );
+
+  // --- High pass on /high-pass-filter: 80 Hz tone loses energy at a 300 Hz cutoff ---
+  await client.goto(`${BASE}/high-pass-filter`, { waitUntil: 'networkidle0' });
+  await (await client.$('[data-file-input]')).uploadFile(LOW_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.select('[data-format]', 'wav');
+  rmSync(bassWav, { force: true });
+  await client.click('[data-export]');
+  await waitExported(client);
+  const dryHpf = await waitForStats(bassWav);
+  const dryHpfRms = dryHpf ? tailRms(bassWav, 0.2) : 0;
+  await client.$eval('[data-quick-hpf]', (el) => {
+    el.value = '300';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  rmSync(bassWav, { force: true });
+  await client.click('[data-export]');
+  await waitExported(client);
+  const wetHpfStats = await waitForStats(bassWav);
+  const wetHpfRms = wetHpfStats ? tailRms(bassWav, 0.2) : 0;
+  check(
+    'high-pass 300 Hz strips an 80 Hz tone',
+    dryHpf !== null && wetHpfStats !== null && dryHpfRms > 0.3 && wetHpfRms < 0.1,
+    `dry=${dryHpfRms.toFixed(3)} wet=${wetHpfRms.toFixed(3)}`,
+  );
+
+  // --- Waveform image: default social preset exports a 2× PNG ---
+  const pngFile = join(DOWNLOAD_DIR, 'test-tone-waveform.png');
+  await client.goto(`${BASE}/waveform-generator`, { waitUntil: 'networkidle0' });
+  const pngLabel = await client.$eval('[data-export-label]', (el) => el.textContent.trim());
+  check('waveform export label', pngLabel === 'Download PNG', pngLabel);
+  const styleN = await client.$$eval('[data-viz-style] option', (els) => els.length);
+  const tplN = await client.$$eval('[data-viz-template] option', (els) => els.length);
+  check('waveform styles and templates', styleN === 6 && tplN === 8, `styles=${styleN} templates=${tplN}`);
+  check('waveform time range', (await client.$('[data-viz-start]')) !== null && (await client.$('[data-viz-end]')) !== null);
+  await (await client.$('[data-file-input]')).uploadFile(TEST_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  rmSync(pngFile, { force: true });
+  await client.click('[data-export]');
+  const pngStatus = await waitExported(client);
+  check('waveform png export', /Exported test-tone-waveform\.png/.test(pngStatus), pngStatus || '(timeout)');
+  let png = null;
+  for (let i = 0; i < 20 && !png; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try {
+      png = readFileSync(pngFile);
+    } catch {}
+  }
+  const pngW = png && png.length > 24 ? png.readUInt32BE(16) : 0;
+  const pngH = png && png.length > 24 ? png.readUInt32BE(20) : 0;
+  const pngSig = png && png.subarray(0, 8).toString('hex') === '89504e470d0a1a0a';
+  check(
+    'waveform png is 2400×1260',
+    pngSig && pngW === 2400 && pngH === 1260 && png.length > 2000,
+    png ? `${pngW}×${pngH} ${png.length}B` : '(missing png)',
   );
 } finally {
   await browser.close();

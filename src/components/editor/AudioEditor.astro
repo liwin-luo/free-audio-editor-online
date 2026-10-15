@@ -22,6 +22,8 @@ const allowed = config.formats ?? EXPORT_FORMATS.filter((f) => f.kind !== 'm4r')
 const formats = allowed
   .map((id) => EXPORT_FORMATS.find((f) => f.id === id))
   .filter((f) => f !== undefined);
+// Equalizer exposes cut and boost. Booster pages stay 0…+15.
+const bipolarShelf = config.quickControls?.includes('mid') ?? false;
 ---
 
 <div
@@ -163,9 +165,45 @@ const formats = allowed
           {config.quickControls!.includes('bass') && (
             <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
               {t.bass}
-              <input type="range" data-quick-bass min="0" max="15" step="1" value="0" class="flex-1 accent-(--color-accent)" />
-              <span class="w-12 font-mono text-xs tabular-nums" data-quick-bass-label>
-                +0 dB
+              <input type="range" data-quick-bass min={bipolarShelf ? -15 : 0} max="15" step="1" value="0" class="flex-1 accent-(--color-accent)" />
+              <span class="w-14 font-mono text-xs tabular-nums" data-quick-bass-label>
+                {bipolarShelf ? '0 dB' : '+0 dB'}
+              </span>
+            </label>
+          )}
+          {config.quickControls!.includes('treble') && (
+            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+              {t.treble}
+              <input type="range" data-quick-treble min={bipolarShelf ? -15 : 0} max="15" step="1" value="0" class="flex-1 accent-(--color-accent)" />
+              <span class="w-14 font-mono text-xs tabular-nums" data-quick-treble-label>
+                {bipolarShelf ? '0 dB' : '+0 dB'}
+              </span>
+            </label>
+          )}
+          {config.quickControls!.includes('mid') && (
+            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+              {t.mid}
+              <input type="range" data-quick-mid min="-15" max="15" step="1" value="0" class="flex-1 accent-(--color-accent)" />
+              <span class="w-14 font-mono text-xs tabular-nums" data-quick-mid-label>
+                0 dB
+              </span>
+            </label>
+          )}
+          {config.quickControls!.includes('lpf') && (
+            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+              {t.cutoff}
+              <input type="range" data-quick-lpf min="300" max="20000" step="100" value="20000" class="flex-1 accent-(--color-accent)" />
+              <span class="w-16 font-mono text-xs tabular-nums" data-quick-lpf-label>
+                20.0 kHz
+              </span>
+            </label>
+          )}
+          {config.quickControls!.includes('hpf') && (
+            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+              {t.cutoff}
+              <input type="range" data-quick-hpf min="20" max="5000" step="10" value="20" class="flex-1 accent-(--color-accent)" />
+              <span class="w-16 font-mono text-xs tabular-nums" data-quick-hpf-label>
+                20 Hz
               </span>
             </label>
           )}

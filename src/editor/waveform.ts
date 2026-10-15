@@ -12,19 +12,32 @@ export interface Peaks {
 /** Maximum canvas width we allow (browser canvases break beyond ~32k px). */
 export const MAX_CANVAS_WIDTH = 16000;
 
-export function computePeaks(buffer: AudioBuffer, width: number): Peaks {
+/** `start` / `end` are seconds. Omitted range walks the whole buffer. */
+export function computePeaks(
+  buffer: AudioBuffer,
+  width: number,
+  range?: { start: number; end: number },
+): Peaks {
   width = Math.max(1, Math.floor(width));
   const channels = Math.min(buffer.numberOfChannels, 2);
   const length = buffer.length;
   const min = new Float32Array(width);
   const max = new Float32Array(width);
+  if (length === 0 || channels === 0) return { min, max, width };
   const data: Float32Array[] = [];
   for (let c = 0; c < channels; c++) data.push(buffer.getChannelData(c));
 
-  const step = length / width;
+  const sr = buffer.sampleRate || 1;
+  let from = 0;
+  let to = length;
+  if (range && Number.isFinite(range.start) && Number.isFinite(range.end) && range.end > range.start) {
+    from = Math.min(length - 1, Math.max(0, Math.floor(range.start * sr)));
+    to = Math.min(length, Math.max(from + 1, Math.ceil(range.end * sr)));
+  }
+  const step = (to - from) / width;
   for (let i = 0; i < width; i++) {
-    const start = Math.floor(i * step);
-    const end = Math.min(Math.floor((i + 1) * step), length);
+    const start = Math.min(to - 1, from + Math.floor(i * step));
+    const end = Math.min(to, Math.max(start + 1, from + Math.floor((i + 1) * step)));
     let lo = start < length ? data[0][start] : 0;
     let hi = lo;
     for (let c = 0; c < channels; c++) {

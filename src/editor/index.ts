@@ -6,10 +6,15 @@ import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { defaultEditState, renderEdit, computeNormalizeGain, type EditState } from './processor';
 import { encodeFor, getFormat, isM4rSupported } from './encoders';
-import { readEditorText } from './messages';
+import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
+
+/** Boost-only shelves keep the "+" at 0. Bipolar shelves (equalizer) show "0 dB" / "−3 dB". */
+function dbLabel(value: number, bipolar: boolean): string {
+  return `${bipolar && value <= 0 ? '' : '+'}${value} dB`;
+}
 
 interface Elements {
   root: HTMLElement;
@@ -44,18 +49,6 @@ function requireEl<T extends Element>(root: ParentNode, selector: string): T {
   const el = root.querySelector<T>(selector);
   if (!el) throw new Error(`Editor markup missing: ${selector}`);
   return el;
-}
-
-export function showToast(root: HTMLElement | null, kind: 'info' | 'success' | 'error', message: string): void {
-  if (!root) return;
-  const border = kind === 'error' ? 'border-l-danger' : kind === 'success' ? 'border-l-success' : 'border-l-accent';
-  const el = document.createElement('div');
-  el.setAttribute('role', kind === 'error' ? 'alert' : 'status');
-  el.className = `pointer-events-auto w-full max-w-md cursor-pointer rounded-lg border border-line ${border} border-l-4 bg-surface px-4 py-3 text-sm text-ink shadow-[0_8px_24px_-8px_rgba(9,9,11,0.25)]`;
-  el.textContent = message;
-  el.addEventListener('click', () => el.remove());
-  root.appendChild(el);
-  setTimeout(() => el.remove(), 4500);
 }
 
 let activeEditor: Editor | null = null;
@@ -124,7 +117,7 @@ export class Editor {
       exportBtn: requireEl<HTMLButtonElement>(root, '[data-export]'),
     };
 
-    this.els.format.value = config.defaultFormat;
+    if (config.defaultFormat) this.els.format.value = config.defaultFormat;
     // The M4R option only renders on pages that opt in; remove it when the
     // browser cannot encode AAC so export never dead-ends.
     if (config.formats?.includes('m4r')) {
@@ -271,8 +264,43 @@ export class Editor {
     const quickBass = this.els.root.querySelector<HTMLInputElement>('[data-quick-bass]');
     const quickBassLabel = this.els.root.querySelector<HTMLElement>('[data-quick-bass-label]');
     if (quickBass && quickBassLabel) {
-      quickBass.addEventListener('input', () => (quickBassLabel.textContent = `+${quickBass.value} dB`));
+      const bipolar = Number(quickBass.min) < 0;
+      quickBass.addEventListener('input', () => (quickBassLabel.textContent = dbLabel(Number(quickBass.value), bipolar)));
       quickBass.addEventListener('change', () => this.commit({ bass: Number(quickBass.value) }));
+    }
+
+    const fmtHz = (v: number) => (v >= 1000 ? `${(v / 1000).toFixed(1)} kHz` : `${v} Hz`);
+
+    const quickTreble = this.els.root.querySelector<HTMLInputElement>('[data-quick-treble]');
+    const quickTrebleLabel = this.els.root.querySelector<HTMLElement>('[data-quick-treble-label]');
+    if (quickTreble && quickTrebleLabel) {
+      const bipolar = Number(quickTreble.min) < 0;
+      quickTreble.addEventListener('input', () => (quickTrebleLabel.textContent = dbLabel(Number(quickTreble.value), bipolar)));
+      quickTreble.addEventListener('change', () => this.commit({ treble: Number(quickTreble.value) }));
+    }
+
+    const quickMid = this.els.root.querySelector<HTMLInputElement>('[data-quick-mid]');
+    const quickMidLabel = this.els.root.querySelector<HTMLElement>('[data-quick-mid-label]');
+    if (quickMid && quickMidLabel) {
+      quickMid.addEventListener('input', () => {
+        const v = Number(quickMid.value);
+        quickMidLabel.textContent = `${v > 0 ? '+' : ''}${v} dB`;
+      });
+      quickMid.addEventListener('change', () => this.commit({ mid: Number(quickMid.value) }));
+    }
+
+    const quickLpf = this.els.root.querySelector<HTMLInputElement>('[data-quick-lpf]');
+    const quickLpfLabel = this.els.root.querySelector<HTMLElement>('[data-quick-lpf-label]');
+    if (quickLpf && quickLpfLabel) {
+      quickLpf.addEventListener('input', () => (quickLpfLabel.textContent = fmtHz(Number(quickLpf.value))));
+      quickLpf.addEventListener('change', () => this.commit({ lpf: Number(quickLpf.value) }));
+    }
+
+    const quickHpf = this.els.root.querySelector<HTMLInputElement>('[data-quick-hpf]');
+    const quickHpfLabel = this.els.root.querySelector<HTMLElement>('[data-quick-hpf-label]');
+    if (quickHpf && quickHpfLabel) {
+      quickHpf.addEventListener('input', () => (quickHpfLabel.textContent = fmtHz(Number(quickHpf.value))));
+      quickHpf.addEventListener('change', () => this.commit({ hpf: Number(quickHpf.value) }));
     }
 
     const quickGain = this.els.root.querySelector<HTMLInputElement>('[data-quick-gain]');
@@ -640,7 +668,23 @@ export class Editor {
       const quickBass = this.els.root.querySelector<HTMLInputElement>('[data-quick-bass]');
       const quickBassLabel = this.els.root.querySelector<HTMLElement>('[data-quick-bass-label]');
       if (quickBass) quickBass.value = String(state.bass);
-      if (quickBassLabel) quickBassLabel.textContent = `+${state.bass} dB`;
+      if (quickBassLabel && quickBass) quickBassLabel.textContent = dbLabel(state.bass, Number(quickBass.min) < 0);
+      const quickTreble = this.els.root.querySelector<HTMLInputElement>('[data-quick-treble]');
+      const quickTrebleLabel = this.els.root.querySelector<HTMLElement>('[data-quick-treble-label]');
+      if (quickTreble) quickTreble.value = String(state.treble);
+      if (quickTrebleLabel) quickTrebleLabel.textContent = dbLabel(state.treble, Number(quickTreble.min) < 0);
+      const quickMid = this.els.root.querySelector<HTMLInputElement>('[data-quick-mid]');
+      const quickMidLabel = this.els.root.querySelector<HTMLElement>('[data-quick-mid-label]');
+      if (quickMid) quickMid.value = String(state.mid);
+      if (quickMidLabel) quickMidLabel.textContent = `${state.mid > 0 ? '+' : ''}${state.mid} dB`;
+      const quickLpf = this.els.root.querySelector<HTMLInputElement>('[data-quick-lpf]');
+      const quickLpfLabel = this.els.root.querySelector<HTMLElement>('[data-quick-lpf-label]');
+      if (quickLpf) quickLpf.value = String(state.lpf);
+      if (quickLpfLabel) quickLpfLabel.textContent = state.lpf >= 1000 ? `${(state.lpf / 1000).toFixed(1)} kHz` : `${state.lpf} Hz`;
+      const quickHpf = this.els.root.querySelector<HTMLInputElement>('[data-quick-hpf]');
+      const quickHpfLabel = this.els.root.querySelector<HTMLElement>('[data-quick-hpf-label]');
+      if (quickHpf) quickHpf.value = String(state.hpf);
+      if (quickHpfLabel) quickHpfLabel.textContent = state.hpf >= 1000 ? `${(state.hpf / 1000).toFixed(1)} kHz` : `${state.hpf} Hz`;
       const quickGain = this.els.root.querySelector<HTMLInputElement>('[data-quick-gain]');
       const quickGainLabel = this.els.root.querySelector<HTMLElement>('[data-quick-gain-label]');
       if (quickGain) quickGain.value = String(Math.round(state.gain * 100));
@@ -667,6 +711,10 @@ export class Editor {
     return [
       this.state.pitch,
       this.state.bass,
+      this.state.treble,
+      this.state.mid,
+      this.state.hpf,
+      this.state.lpf,
       this.state.speed,
       this.state.gain,
       this.state.reverse ? 1 : 0,
@@ -701,7 +749,14 @@ export class Editor {
     let playBuffer: AudioBuffer = this.buffer;
     let rate = this.state.speed;
     let headFrom = from;
-    if (this.state.pitch !== 0 || this.state.bass > 0) {
+    if (
+      this.state.pitch !== 0 ||
+      this.state.bass !== 0 ||
+      this.state.treble !== 0 ||
+      this.state.mid !== 0 ||
+      this.state.hpf > 25 ||
+      this.state.lpf < 19000
+    ) {
       const key = this.pitchPreviewKeyOf();
       if (!this.pitchPreview || this.pitchPreviewKey !== key) {
         this.busy = true;

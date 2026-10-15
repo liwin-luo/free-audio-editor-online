@@ -12,7 +12,9 @@
     "check:pages": "node scripts/pages-check.mjs",
     "check:features": "node scripts/feature-check.mjs",
     "check:smoke": "node scripts/smoke-test.mjs",
-    "check:pitch": "node_modules/.bin/esbuild scripts/pitch-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/pitch-check.mjs && node /tmp/pitch-check.mjs"
+    "check:pitch": "node_modules/.bin/esbuild scripts/pitch-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/pitch-check.mjs && node /tmp/pitch-check.mjs",
+    "check:waveform": "node_modules/.bin/esbuild scripts/waveform-range-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/waveform-range-check.mjs && node /tmp/waveform-range-check.mjs",
+    "check:spectrogram": "node_modules/.bin/esbuild scripts/spectrogram-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/spectrogram-check.mjs && node /tmp/spectrogram-check.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",
