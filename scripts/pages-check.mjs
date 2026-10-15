@@ -23,6 +23,7 @@ const pages = [
   { path: '/m4a-to-mp3', island: true },
   { path: '/ogg-to-mp3', island: true },
   { path: '/opus-to-mp3', island: true },
+  { path: '/fade-audio', island: true },
   { path: '/es/ogg-to-mp3', island: true },
   { path: '/es/opus-to-mp3', island: true },
   { path: '/guides', island: false },

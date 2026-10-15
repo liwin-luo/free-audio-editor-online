@@ -226,6 +226,64 @@ export const de: Catalog = {
     contactBefore: 'Fragen zu dieser Erklärung? Schreib an {email}.',
   },
   tools: {
+    'fade-audio': {
+      name: 'Audio ein-/ausblenden',
+      shortName: 'Blenden',
+      title: 'Audio ein- und ausblenden — Fade online kostenlos',
+      description:
+        'Sanftes Ein- und Ausblenden für Songs und Aufnahmen, direkt im Browser. Länge auf 0,1 s genau, Export als MP3 oder WAV. Kostenlos, ohne Upload.',
+      h1: 'Audio ein- und ausblenden',
+      subtitle: 'In Sekunden saubere Kanten: beide Fade-Längen auf 0,1 s genau, erst hören, dann exportieren — nichts verlässt dein Gerät.',
+      intro:
+        'Ein Fade-in lässt einen Track aus der Stille beginnen, ein Fade-out beendet ihn mit Ausklang statt mit einem harten Schnitt. Datei hier laden, beide Längen auf ein Zehntel genau setzen, vor dem Export reinhören. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
+      usesHeading: 'Wann ein Fade die Lösung ist',
+      uses: [
+        'Mixtape-, DJ-Set- oder Kompilations-Enden sauber ausklingen lassen statt mitten in der Note zu schneiden.',
+        'Podcasts und Sprachmemos weich anfangen lassen, damit das erste Wort nicht erschreckt.',
+        'Loops und Samples an den Nähten entschärfen, damit die Wiederholung ohne Klicken läuft.',
+      ],
+      howTo: [
+        {
+          name: 'Audio laden',
+          text: 'MP3, WAV, M4A, OGG oder FLAC — alles möglich. Die Verarbeitung bleibt auf deinem Gerät.',
+        },
+        {
+          name: 'Fade-Längen setzen',
+          text: 'Öffne „Anpassen“ und stelle Fade-In und Fade-Out — bei Songs sind 1–3 Sekunden natürlich, bei Loops 0,2–0,5.',
+        },
+        {
+          name: 'Hören und exportieren',
+          text: 'Anfang und Ende anspielen, dann als MP3 oder verlustfreies WAV exportieren.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Wird meine Audio hochgeladen?',
+          a: 'Nein. Die Fades werden mit der Web Audio API in deinem Browser-Tab gerendert — einen Upload-Schritt gibt es nicht. Nach dem Laden der Seite funktioniert das Tool auch offline.',
+        },
+        {
+          q: 'Beeinträchtigt der Fade die Qualität?',
+          a: 'Nein. Ein Fade formt nur die Lautheit über die Zeit — kein Reverb, keine Tonhöhenänderung. Beim Export wird einmal neu kodiert: MP3 mit 128–320 kbps (Standard 320) oder bitgenaues WAV. Deine Datei selbst bleibt unverändert.',
+        },
+        {
+          q: 'Kann ich zwei Songs überblenden?',
+          a: 'Hier nicht — diese Seite blendet eine Datei ein und aus. Das weiche Überblenden vom Ende eines Tracks in den Anfang des nächsten ist ein Crossfade; das macht der Audio-Joiner.',
+        },
+        {
+          q: 'Was ist der Unterschied zum Volume Booster?',
+          a: 'Der Volume Booster hebt die ganze Datei um einen festen Faktor an; ein Fade formt die Lautheit über die Zeit — leise an den Rändern, unberührt in der Mitte. Für Enden der Fade, für Gesamtlautheit der Booster.',
+        },
+        {
+          q: 'Wie lang sollte ein Fade-out sein?',
+          a: 'Bei Songs wirken 1–3 Sekunden meist natürlich, Live-Aufnahmen vertragen 4–5. Bei Loops und Klingeltönen 0,2–0,5 Sekunden, damit der Attack erhalten bleibt. Es gibt nicht die eine richtige Antwort — reinhören und den Ohren vertrauen.',
+        },
+        {
+          q: 'Funktioniert das auf dem Handy?',
+          a: 'Ja. Der Editor ist für Touch gebaut — ziehen, Regler setzen, exportieren. Läuft in aktuellen Chrome-, Edge-, Firefox- und Safari-Versionen, auf Desktop und Mobilgeräten.',
+        },
+      ],
+      dropHint: 'Audiodatei hierher ziehen oder klicken',
+    },
     'audio-trimmer': {
       name: 'Audio-Trimmer',
       shortName: 'Audio-Trimmer',

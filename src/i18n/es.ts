@@ -225,6 +225,64 @@ export const es: Catalog = {
     contactBefore: '¿Preguntas sobre esta política? Escribe a {email}.',
   },
   tools: {
+    'fade-audio': {
+      name: 'Fundido de audio',
+      shortName: 'Fundido',
+      title: 'Fundido de entrada y salida — Añadir fade online gratis',
+      description:
+        'Añade un fundido de entrada y de salida a canciones o grabaciones en tu navegador. Duración al décimo, exporta en MP3 o WAV. Gratis y sin subidas.',
+      h1: 'Fundido de entrada y salida de audio',
+      subtitle: 'Bordes suaves en segundos: fija ambos fundidos al décimo, escucha y exporta. Nada sale de tu dispositivo.',
+      intro:
+        'Un fundido de entrada hace que una pista empiece desde el silencio; uno de salida la cierra con suavidad. Ahí está la diferencia entre un corte brusco y un final redondo. Carga un archivo, fija cada duración al décimo de segundo y escucha antes de exportar. Todo ocurre en tu navegador: el archivo nunca se sube.',
+      usesHeading: 'Cuándo un fundido es la solución',
+      uses: [
+        'Cerrar con limpieza un mixtape, una sesión de DJ o una compilación en vez de cortarla a mitad de nota.',
+        'Suavizar la entrada de un podcast o una nota de voz para que la primera palabra no sobresalte.',
+        'Quitar el clic de la costura a un loop o sample para que se repita sin chirridos.',
+      ],
+      howTo: [
+        {
+          name: 'Carga tu audio',
+          text: 'MP3, WAV, M4A, OGG o FLAC. El procesamiento ocurre en tu dispositivo.',
+        },
+        {
+          name: 'Fija las duraciones',
+          text: 'Abre "Ajustar" y define fundido de entrada y de salida: 1–3 segundos suena natural en canciones, 0,2–0,5 en loops.',
+        },
+        {
+          name: 'Escucha y exporta',
+          text: 'Reproduce el inicio y el final para oír los fundidos y exporta en MP3 o WAV sin pérdida.',
+        },
+      ],
+      faqs: [
+        {
+          q: '¿Se sube mi audio?',
+          a: 'No. Los fundidos se renderizan con la Web Audio API dentro de tu pestaña: no hay paso de subida. Tras cargar la página puedes desconectarte y la herramienta sigue funcionando.',
+        },
+        {
+          q: '¿El fundido afecta a la calidad?',
+          a: 'No. Un fundido solo moldea el volumen en el tiempo: sin reverb ni cambio de tono. La exportación recodifica una vez: MP3 a 128–320 kbps (320 por defecto) o WAV bit a bit idéntico. Tu archivo original no se toca.',
+        },
+        {
+          q: '¿Puedo hacer un crossfade entre dos canciones?',
+          a: 'Aquí no: esta página funde un solo archivo de entrada y de salida. Fundir el final de una pista con el inicio de otra es una unión con crossfade, y de eso se encarga el creador de uniones.',
+        },
+        {
+          q: '¿En qué se diferencia del potenciador de volumen?',
+          a: 'El potenciador sube el archivo entero una cantidad fija; el fundido moldea el volumen en el tiempo: suave en los bordes, intacto en el centro. Para finales, fundido; para volumen general, potenciador.',
+        },
+        {
+          q: '¿Cuánto debe durar un fundido de salida?',
+          a: 'En canciones, 1–3 segundos suele sonar natural; una grabación en directo aguanta 4–5. En loops y tonos, 0,2–0,5 segundos para conservar el ataque. No hay respuesta única: escucha y decide con tus oídos.',
+        },
+        {
+          q: '¿Funciona en el móvil?',
+          a: 'Sí. El editor está pensado para táctil: arrastra para seleccionar, mueve los controles y exporta. Funciona en Chrome, Edge, Firefox y Safari actuales, en escritorio y móvil.',
+        },
+      ],
+      dropHint: 'Arrastra un archivo de audio o haz clic para elegirlo',
+    },
     'audio-trimmer': {
       name: 'Recortador de audio',
       shortName: 'Recortador de audio',

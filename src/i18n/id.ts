@@ -225,6 +225,64 @@ export const id: Catalog = {
     contactBefore: 'Ada pertanyaan tentang kebijakan ini? Tulis ke {email}.',
   },
   tools: {
+    'fade-audio': {
+      name: 'Fade audio',
+      shortName: 'Fade',
+      title: 'Fade in / fade out audio — online gratis',
+      description:
+        'Tambahkan fade in dan fade out yang halus ke lagu atau rekaman langsung di browser. Atur panjangnya hingga 0,1 detik, ekspor MP3 atau WAV. Gratis, tanpa unggah.',
+      h1: 'Fade in / fade out audio',
+      subtitle: 'Tepi yang halus dalam hitungan detik: atur kedua fade sampai 0,1 detik, dengar, lalu ekspor. Tidak ada yang meninggalkan perangkat Anda.',
+      intro:
+        'Fade in membiarkan lagu tumbuh dari hening; fade out menutupnya dengan lembut — di situlah bedanya potongan kasar dengan akhir yang rapi. Muat berkas, atur panjang tiap fade sampai 0,1 detik, dan dengar sebelum mengekspor. Semuanya berjalan di browser Anda: berkas tidak pernah diunggah.',
+      usesHeading: 'Kapan fade jadi solusi',
+      uses: [
+        'Menutup mixtape, set DJ, atau kompilasi dengan rapi, bukan memotong di tengah nada.',
+        'Melembutkan awal podcast atau memo suara agar kata pertama tidak mengejutkan pendengar.',
+        'Menghaluskan sambungan loop atau sample agar berulang tanpa bunyi klik.',
+      ],
+      howTo: [
+        {
+          name: 'Muat audio Anda',
+          text: 'MP3, WAV, M4A, OGG, atau FLAC — semuanya bisa. Pemrosesan tetap di perangkat Anda.',
+        },
+        {
+          name: 'Atur panjang fade',
+          text: 'Buka "Sesuaikan" dan tetapkan fade in serta fade out — 1–3 detik alami untuk lagu, 0,2–0,5 untuk loop.',
+        },
+        {
+          name: 'Dengar dan ekspor',
+          text: 'Putar bagian awal dan akhir untuk mendengar fadenya, lalu ekspor sebagai MP3 atau WAV lossless.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Apakah audio saya diunggah?',
+          a: 'Tidak. Fade dirender dengan Web Audio API di dalam tab browser Anda — tidak ada langkah unggah. Setelah halaman termuat, Anda bisa offline dan alatnya tetap bekerja.',
+        },
+        {
+          q: 'Apakah fade mengubah kualitas audio?',
+          a: 'Tidak. Fade hanya membentuk volume sepanjang waktu — tanpa reverb, tanpa perubahan nada. Ekspor mengodekan ulang satu kali: MP3 128–320 kbps (bawaan 320) atau WAV yang bit-per-bit sama. Berkas asli Anda tidak diubah.',
+        },
+        {
+          q: 'Bisakah crossfade antara dua lagu?',
+          a: 'Tidak di sini — halaman ini memberi fade in dan out pada satu berkas. Mencampur akhir satu lagu ke awal lagu lain adalah crossfade, dan itu tugas penggabung audio.',
+        },
+        {
+          q: 'Apa bedanya dengan volume booster?',
+          a: 'Volume booster mengangkat seluruh berkas dengan faktor tetap; fade membentuk volume sepanjang waktu — pelan di tepi, tak tersentuh di tengah. Untuk akhiran pakai fade, untuk kenyaringan keseluruhan pakai booster.',
+        },
+        {
+          q: 'Berapa panjang fade out yang pas?',
+          a: 'Untuk lagu, 1–3 detik biasanya terdengar alami; rekaman live sanggup 4–5. Untuk loop dan nada dering, jaga 0,2–0,5 detik agar attack tetap ada. Tidak ada jawaban tunggal — dengar dan percayakan pada telinga Anda.',
+        },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Editornya dirancang untuk sentuhan — seret untuk memilih, atur slider, ekspor. Bekerja di Chrome, Edge, Firefox, dan Safari terbaru, di desktop maupun ponsel.',
+        },
+      ],
+      dropHint: 'Letakkan file audio atau klik untuk memilih',
+    },
     'audio-trimmer': {
       name: 'Pemangkas Audio',
       shortName: 'Pemangkas Audio',

@@ -224,6 +224,64 @@ export const pt: Catalog = {
     contactBefore: 'Dúvidas sobre esta política? Escreva para {email}.',
   },
   tools: {
+    'fade-audio': {
+      name: 'Fade de áudio',
+      shortName: 'Fade',
+      title: 'Fade de entrada e saída — Adicionar fade online grátis',
+      description:
+        'Adicione fade de entrada e de saída a músicas ou gravações no navegador. Duração em décimos de segundo, exporte em MP3 ou WAV. Grátis, sem enviar arquivos.',
+      h1: 'Fade de entrada e saída de áudio',
+      subtitle: 'Bordas suaves em segundos: ajuste os dois fades em décimos de segundo, ouça e exporte. Nada sai do seu aparelho.',
+      intro:
+        'O fade de entrada faz a música nascer do silêncio; o de saída a encerra com suavidade — é a diferença entre um corte seco e um final redondo. Carregue um arquivo, ajuste cada duração em décimos de segundo e ouça antes de exportar. Tudo roda no seu navegador: o arquivo nunca é enviado.',
+      usesHeading: 'Quando o fade resolve',
+      uses: [
+        'Fechar um mixtape, um set de DJ ou uma compilação com elegância, em vez de cortar no meio da nota.',
+        'Suavizar o começo de um podcast ou áudio de voz para a primeira frase não assustar.',
+        'Tirar o estalo da emenda de um loop ou sample para repetir sem ruído.',
+      ],
+      howTo: [
+        {
+          name: 'Carregue o áudio',
+          text: 'MP3, WAV, M4A, OGG ou FLAC. O processamento acontece no seu aparelho.',
+        },
+        {
+          name: 'Ajuste as durações',
+          text: 'Abra "Ajustar" e defina fade de entrada e de saída: 1–3 segundos soam naturais em músicas, 0,2–0,5 em loops.',
+        },
+        {
+          name: 'Ouça e exporte',
+          text: 'Toque o começo e o fim para ouvir os fades e exporte em MP3 ou WAV sem perda.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Meu áudio é enviado?',
+          a: 'Não. Os fades são renderizados com a Web Audio API na sua aba — não existe etapa de envio. Depois que a página carrega, você pode ficar offline e a ferramenta continua funcionando.',
+        },
+        {
+          q: 'O fade muda a qualidade do áudio?',
+          a: 'Não. O fade só modela o volume ao longo do tempo: sem reverb, sem mudança de tom. A exportação recodifica uma vez: MP3 a 128–320 kbps (320 por padrão) ou WAV bit a bit idêntico. Seu arquivo original não é alterado.',
+        },
+        {
+          q: 'Dá para fazer crossfade entre duas músicas?',
+          a: 'Aqui não — esta página aplica fade de entrada e saída em um arquivo só. Misturar o fim de uma faixa com o começo de outra é crossfade, e o criador de junções faz isso.',
+        },
+        {
+          q: 'Qual a diferença para o volume booster?',
+          a: 'O booster levanta o arquivo inteiro por um fator fixo; o fade modela o volume no tempo — suave nas bordas, intacto no meio. Para finais, fade; para volume geral, booster.',
+        },
+        {
+          q: 'Quanto deve durar o fade de saída?',
+          a: 'Em músicas, 1–3 segundos costumam soar naturais; gravações ao vivo aguentam 4–5. Em loops e toques, 0,2–0,5 segundos para manter o ataque. Não existe resposta única: ouça e confie nos seus ouvidos.',
+        },
+        {
+          q: 'Funciona no celular?',
+          a: 'Sim. O editor é feito para toque — arraste para selecionar, mexa nos controles e exporte. Funciona no Chrome, Edge, Firefox e Safari atuais, no computador e no celular.',
+        },
+      ],
+      dropHint: 'Solte um arquivo de áudio ou clique para escolher',
+    },
     'audio-trimmer': {
       name: 'Cortar áudio',
       shortName: 'Cortar áudio',

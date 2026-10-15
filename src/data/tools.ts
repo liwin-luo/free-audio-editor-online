@@ -393,7 +393,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Joining to WAV is lossless — the audio is not re-compressed. MP3 export re-encodes once at up to 320 kbps, which is transparent for nearly all listeners.',
       },
     ],
-    related: ['audio-trimmer', 'normalize-audio', 'mp3-cutter'],
+    related: ['audio-trimmer', 'normalize-audio', 'fade-audio'],
     editor: {
       multiple: true,
       defaultFormat: 'mp3-192',
@@ -900,7 +900,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Speaker volume only helps on your device. A boosted file plays louder everywhere — on other people\u2019s phones, in cheap earbuds, over a laptop\u2019s tiny speakers.',
       },
     ],
-    related: ['increase-volume', 'normalize-audio', 'change-audio-speed'],
+    related: ['increase-volume', 'normalize-audio', 'fade-audio'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -1034,6 +1034,72 @@ export const TOOLS: ToolDef[] = [
       showAdjust: true,
       dropHint: 'Drop a song, or click to browse',
       quickControls: ['speed', 'reverb'],
+    },
+  },
+  {
+    slug: 'fade-audio',
+    name: 'Audio Fade In / Fade Out',
+    shortName: 'Fade Audio',
+    icon: 'trending-up',
+    category: 'effects',
+    title: 'Audio Fade In / Fade Out — Add Fades Online Free',
+    description:
+      'Add a smooth fade in and fade out to any song or recording right in your browser. Set the length to 0.1 s, export MP3 or WAV. Free, no upload.',
+    h1: 'Fade In / Fade Out Audio',
+    subtitle: 'Smooth edges in seconds: set both fade lengths to a tenth of a second, preview, export — nothing leaves your device.',
+    intro:
+      'A fade in eases a track in from silence; a fade out eases it back out — the difference between an abrupt cut and an ending that sounds finished. Load a file here, set each fade length to a tenth of a second, and listen before you export. Everything runs in your browser: the file is never uploaded.',
+    usesHeading: 'When a fade is the fix',
+    uses: [
+      'End a mixtape, DJ set or compilation track cleanly instead of cutting it mid-note.',
+      'Ease a podcast or voice memo in so the first word does not startle the listener.',
+      'Soften a loop or sample so it repeats without a click at the seam.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. Processing stays on your device.',
+      },
+      {
+        name: 'Set the fade lengths',
+        text: 'Open the Adjust drawer and set Fade In and Fade Out — 1–3 seconds is natural for songs, 0.2–0.5 for loops.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Play the start and end to hear the fades, then export as MP3 or lossless WAV.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The fades are rendered with the Web Audio API inside your browser tab — there is no upload step. You can go offline after the page loads and the tool keeps working.',
+      },
+      {
+        q: 'Does fading change the audio quality?',
+        a: 'No. A fade only reshapes volume over time — no reverb, no pitch change. The export re-encodes once: MP3 at 128–320 kbps (320 is the default) or bit-perfect WAV. Your source file is never modified.',
+      },
+      {
+        q: 'Can it crossfade between two songs?',
+        a: 'Not here — this page fades one file in and out. Blending the end of one track into the start of another is a crossfade join, and the audio joiner does that job.',
+      },
+      {
+        q: 'How is this different from the volume booster?',
+        a: 'The volume booster lifts the whole file by a constant amount; a fade shapes volume over time — quiet at the edges, untouched in the middle. Use the fade for endings, the booster for overall loudness.',
+      },
+      {
+        q: 'How long should a fade out be?',
+        a: 'For songs, 1–3 seconds usually sounds natural; live recordings can take 4–5. For loops and ringtones, keep it 0.2–0.5 seconds so the track keeps its attack. There is no single right answer — preview and trust your ears.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The editor is built for touch — drag to select, set the sliders, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    related: ['audio-joiner', 'volume-booster', 'mp3-cutter'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      showAdjust: true,
+      dropHint: 'Drop an audio file, or click to browse',
     },
   },
   {
