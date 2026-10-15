@@ -6,6 +6,9 @@ import { de } from './de';
 import { ko } from './ko';
 import { ja } from './ja';
 import { zh } from './zh';
+import { fr } from './fr';
+import { ru } from './ru';
+import { ar } from './ar';
 
 catalogs.es = es;
 catalogs.pt = pt;
@@ -14,3 +17,6 @@ catalogs.de = de;
 catalogs.ko = ko;
 catalogs.ja = ja;
 catalogs.zh = zh;
+catalogs.fr = fr;
+catalogs.ru = ru;
+catalogs.ar = ar;

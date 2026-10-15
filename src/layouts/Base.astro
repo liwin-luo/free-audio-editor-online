@@ -7,7 +7,7 @@ import Footer from '../components/Footer.astro';
 import { SITE } from '../data/site';
 import { getShell } from '../i18n';
 import { localesWithGuides } from '../data/guides';
-import { LOCALES, hasAlternates, localeMeta, localePath, type Locale } from '../i18n/locales';
+import { LOCALES, hasAlternates, isTranslatedGuide, localeMeta, localePath, type Locale } from '../i18n/locales';
 
 interface Props {
   /** <title> tag content */
@@ -28,12 +28,15 @@ const { ui } = getShell(locale);
 const meta = localeMeta(locale);
 const canonical = new URL(localePath(locale, path), SITE.url).href;
 const guideLocales = new Set(localesWithGuides());
-const alternateList = path === '/guides' ? LOCALES.filter((l) => guideLocales.has(l.id)) : LOCALES;
+// guides exist per market: both the index and the one translated article
+// must only alternate between locales that actually have the page
+const guideGated = path === '/guides' || isTranslatedGuide(path);
+const alternateList = guideGated ? LOCALES.filter((l) => guideLocales.has(l.id)) : LOCALES;
 const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
 ---
 
 <!doctype html>
-<html lang={meta.html}>
+<html lang={meta.html} dir={meta.dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -109,6 +112,18 @@ const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
       if (location.hostname.endsWith('freeaudioeditor.online')) {
         import('@vercel/analytics').then(({ inject }) => inject());
       }
+    </script>
+    <script is:inline>
+      // Userback feedback widget — loads in all environments, including local
+      // dev. No user_data: the site has no login, so visitors stay anonymous.
+      window.Userback = window.Userback || {};
+      Userback.access_token = 'A-cawCPZd8Mqr5Qea3QzjeqN8lP';
+      (function (d) {
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = 'https://static.userback.io/widget/v1.js';
+        (d.head || d.body).appendChild(s);
+      })(document);
     </script>
   </body>
 </html>

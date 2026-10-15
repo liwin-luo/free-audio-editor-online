@@ -52,8 +52,9 @@ not (§2).
    must be a natural short form in that language (e.g. ja 音声トリマー → トリマー),
    not an abbreviation of the English.
 7. **Register is fixed per locale** (§3 — the catalog is the source of truth; current
-   registers: zh 你, ja です・ます, ko 해요체, de du, es tú, pt você, id Anda). Never mix
-   你/您, du/Sie, tú/usted, 해요체/합니다체 within a locale.
+   registers: zh 你, ja です・ます, ko 해요체, de du, es tú, pt você, id Anda, fr vous,
+   ru вы, ar أنت). Never mix 你/您, du/Sie, tú/usted, 해요체/합니다체, tu/vous, ты/вы
+   within a locale.
 8. **Metadata budgets per locale** (see §3 sheets): title and description have
    different visual limits in CJK vs Latin scripts. Oversized titles truncate in
    SERPs — that's wasted ranking surface.
@@ -179,19 +180,69 @@ pattern → traps. When translating for locale X, paste sheet X into the prompt.
 - **What locals search:** potong audio online / potong lagu / gabung lagu / konversi
   mp3 / nada dering.
 
-### Planned locales (add the sheet before adding the locale)
+### fr (`fr.ts`) — Français
+
+- **Register:** vous, everywhere. Sentence case in titles (French convention).
+- **Glossary:** fichier audio · couper (cut) · rogner/découpe (trim) · fusionner (merge) ·
+  convertir · navigateur · téléverser (upload — «aucun téléversement», «vos fichiers ne
+  sont jamais téléversés»; télécharger = download — do not swap them) · gratuit ·
+  sans inscription · sans filigrane · fondu d'entrée / fondu de sortie (fades) ·
+  normaliser · exporter · sonnerie (sonnerie iPhone) · enregistrer (record) · hauteur
+  tonale (pitch) / demi-ton (semitone) · vitesse · lecture à l'envers (reverse) ·
+  réduction du bruit · réverbe (reverb)
+- **Metadata:** title ≤ 60 chars, keyword first («Couper MP3», «fusionner audio»),
+  sentence case, NBSP before ? ! : ; in prose. description ≤ 155 chars.
+- **Traps:** ① téléverser/télécharger confusion — the audit's ru trap has a French twin.
+  ② English calques («effectuer une découpe» → «couper»). ③ Typographic apostrophe '
+  everywhere; no ASCII quotes.
+- **What locals search:** couper mp3 / montage audio en ligne / fusionner audio /
+  convertir en mp3 / sonnerie iphone / augmenter le volume / supprimer la voix.
+
+### ru (`ru.ts`) — Русский
+
+- **Register:** вы (lowercase), friendly-professional, no канцелярит, short sentences.
+- **Glossary:** аудиофайл · обрезать (trim/cut) · соединить/объединить (merge) ·
+  конвертировать · браузер · бесплатно · без регистрации · без водяных знаков ·
+  плавное нарастание и затухание (fade in/out) · нормализация · экспортировать ·
+  рингтон (рингтон для iPhone) · запись (record) · громкость · скорость · высота тона
+  (pitch) / полутон (semitone) · обратное воспроизведение (reverse) · шумоподавление ·
+  реверберация (reverb)
+- **Metadata:** title ≤ 60 chars, keyword first («Обрезать mp3», «Соединить музыку»).
+  Use «е», not «ё», consistently. Numbers/units ASCII («320 kbps»).
+- **Traps:** ① **Never «без загрузки»** for "no download" — it reads as "no upload"
+  (загрузка covers both); use «без скачивания» and phrase uploads as «файлы не
+  загружаются на сервер». This exact ambiguity shipped on audioeditor.org. ② Bare
+  `{n}` can't inflect Russian plurals — phrase counters so the numeral sits in a
+  neutral slot («Треков: {n}»). ③ No anglicisms in running copy (фейд/трим only as
+  tool-name shorthand if at all).
+- **What locals search:** обрезать аудио онлайн / обрезать mp3 / соединить музыку /
+  конвертировать в mp3 / рингтон на айфон / сделать громче / удалить вокал.
+
+### ar (`ar.ts`) — العربية (RTL)
+
+- **Register:** simplified Modern Standard Arabic (فصحى مبسطة), أنت for the user,
+  short UI-like sentences — no stiff machine-MSA nominal chains.
+- **Glossary:** ملف صوتي (audio file) · قصّ (cut/trim) · دمج (merge) · تحويل (convert) ·
+  المتصفح (browser) · رفع (upload — «ملفاتك لا تُرفع أبدًا») · تنزيل (download) · مجاني
+  (free) · بدون تسجيل (no signup) · ظهور تدريجي / تلاشٍ تدريجي (fade in/out) · توحيد
+  مستوى الصوت (normalize) · تصدير (export) · نغمة رنين (ringtone) · تسجيل (record) ·
+  مستوى الصوت (volume) · السرعة (speed) · درجة الصوت (pitch) / نصف درجة (semitone) ·
+  تشغيل عكسي (reverse) · تقليل الضوضاء (noise reduction)
+- **Metadata:** title ≤ 60 chars, keyword first («قص MP3», «محرر الصوت أون لاين»).
+  Arabic punctuation (، ؟) in prose; ASCII digits and Latin format names stay as-is
+  (bidi renders them LTR inline — never add directional marks).
+- **RTL notes:** `<html dir="rtl">` comes from `LOCALES` (`dir: 'rtl'` for ar) — layout
+  mirrors via CSS logical properties; the few physical positions use `end-0`-style
+  utilities. Menu-path FAQ copy is rewritten as prose («افتح الإعدادات، ثم الصوت…»)
+  because → arrows read backwards in RTL.
+- **What locals search:** قص mp3 / تحرير الصوت أون لاين / دمج الصوتيات / تحويل فيديو
+  إلى mp3 / نغمة رنين / رفع مستوى الصوت.
+
+### Remaining planned locale
 
 - **zh-Hant:** 台灣用語， glossary shifts wholesale: 音訊（not 音频）/ 檔案（not 文件）/
   線上（not 在线）/ 影片 / 儲存 / 網路； trim = 剪輯 or 裁切, **never 剪切**； 你 (TW consumer
   copy standard). Search: 音檔剪輯 / mp3 剪輯 / 去人聲.
-- **ru:** вы-form. аудио · обрезать · соединить/объединить · конвертировать · браузер ·
-  **без скачивания и регистрации** («без загрузки» is the audit's ambiguity trap —
-  загрузка also means upload) · бесплатно. Search: обрезать аудио онлайн / mp3
-  редактор / нарезать музыку.
-- **fr:** vous-form. éditeur audio en ligne · couper · fusionner · convertir ·
-  navigateur · sans téléchargement · gratuit. French typography: non-breaking space
-  before ; : ! ? — check rendering. Search: couper mp3 / montage audio en ligne /
-  découper musique.
 
 ## 4. Metadata formula (all locales)
 

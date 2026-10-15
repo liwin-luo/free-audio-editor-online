@@ -1,13 +1,16 @@
 /** URL prefix is `id`. English stays unprefixed. hreflang can be more specific than the prefix. */
 export const LOCALES = [
-  { id: 'en', html: 'en', og: 'en_US', hreflang: 'en', label: 'English' },
-  { id: 'es', html: 'es', og: 'es_ES', hreflang: 'es', label: 'Español' },
-  { id: 'pt', html: 'pt-BR', og: 'pt_BR', hreflang: 'pt-BR', label: 'Português' },
-  { id: 'id', html: 'id', og: 'id_ID', hreflang: 'id', label: 'Indonesia' },
-  { id: 'de', html: 'de', og: 'de_DE', hreflang: 'de', label: 'Deutsch' },
-  { id: 'ko', html: 'ko', og: 'ko_KR', hreflang: 'ko', label: '한국어' },
-  { id: 'ja', html: 'ja', og: 'ja_JP', hreflang: 'ja', label: '日本語' },
-  { id: 'zh', html: 'zh-Hans', og: 'zh_CN', hreflang: 'zh-Hans', label: '简体中文' },
+  { id: 'en', html: 'en', og: 'en_US', hreflang: 'en', label: 'English', dir: 'ltr' },
+  { id: 'es', html: 'es', og: 'es_ES', hreflang: 'es', label: 'Español', dir: 'ltr' },
+  { id: 'pt', html: 'pt-BR', og: 'pt_BR', hreflang: 'pt-BR', label: 'Português', dir: 'ltr' },
+  { id: 'id', html: 'id', og: 'id_ID', hreflang: 'id', label: 'Indonesia', dir: 'ltr' },
+  { id: 'de', html: 'de', og: 'de_DE', hreflang: 'de', label: 'Deutsch', dir: 'ltr' },
+  { id: 'ko', html: 'ko', og: 'ko_KR', hreflang: 'ko', label: '한국어', dir: 'ltr' },
+  { id: 'ja', html: 'ja', og: 'ja_JP', hreflang: 'ja', label: '日本語', dir: 'ltr' },
+  { id: 'zh', html: 'zh-Hans', og: 'zh_CN', hreflang: 'zh-Hans', label: '简体中文', dir: 'ltr' },
+  { id: 'fr', html: 'fr', og: 'fr_FR', hreflang: 'fr', label: 'Français', dir: 'ltr' },
+  { id: 'ru', html: 'ru', og: 'ru_RU', hreflang: 'ru', label: 'Русский', dir: 'ltr' },
+  { id: 'ar', html: 'ar', og: 'ar_SA', hreflang: 'ar', label: 'العربية', dir: 'rtl' },
 ] as const;
 
 export type Locale = (typeof LOCALES)[number]['id'];

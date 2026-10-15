@@ -216,4 +216,31 @@ export const GUIDE_INDEX: Record<Locale, IndexCopy> = {
     empty: '还没有中文指南。',
     minutes: '分钟',
   },
+  fr: {
+    title: 'Guides audio — Montage et conversion dans le navigateur',
+    description:
+      'Guides en français pour couper, convertir et éditer l’audio dans le navigateur, sans téléverser vos fichiers.',
+    h1: 'Guides audio',
+    intro: 'Des étapes courtes pour ce que l’on fait vraiment avec l’audio — dans des outils qui ne téléversent rien.',
+    empty: 'Pas encore de guides en français.',
+    minutes: 'min de lecture',
+  },
+  ru: {
+    title: 'Аудио-гайды — обрезка и конвертация в браузере',
+    description:
+      'Инструкции на русском: обрезать, конвертировать и редактировать аудио в браузере, без отправки на сервер.',
+    h1: 'Аудио-гайды',
+    intro: 'Короткие пошаговые инструкции для задач, которые решаются прямо в браузере. Файлы не покидают устройство.',
+    empty: 'Русских гайдов пока нет.',
+    minutes: 'мин чтения',
+  },
+  ar: {
+    title: 'أدلة الصوت — القص والتحويل في المتصفح',
+    description:
+      'أدلة بالعربية لقص الصوت وتحويله وتحريره في المتصفح، دون رفع ملفاتك إلى أي خادم.',
+    h1: 'أدلة الصوت',
+    intro: 'خطوات قصيرة للمهام التي تُنجز مباشرة في المتصفح. ملفاتك لا تترك جهازك.',
+    empty: 'لا توجد أدلة عربية بعد.',
+    minutes: 'دقائق القراءة',
+  },
 };

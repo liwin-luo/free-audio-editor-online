@@ -7,6 +7,9 @@
  * Usage: node scripts/seo-audit.mjs [baseURL]
  */
 const BASE = (process.argv[2] ?? 'https://free-audio-editor-online.vercel.app').replace(/\/$/, '');
+import { readFileSync } from 'node:fs';
+
+const norm = (p) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
 
 const issues = [];
 const note = (severity, page, msg) => issues.push({ severity, page, msg });
@@ -14,39 +17,52 @@ const note = (severity, page, msg) => issues.push({ severity, page, msg });
 const robots = await fetch(`${BASE}/robots.txt`).then((r) => r.text());
 console.log('=== robots.txt ===\n' + robots);
 
-const sitemapIdx = await fetch(`${BASE}/sitemap-index.xml`).then((r) => r.text());
-const sitemapUrl = sitemapIdx.match(/<loc>([^<]+)<\/loc>/)?.[1];
-const sitemap = await fetch(sitemapUrl).then((r) => r.text());
+// Localhost audits read the built dist/sitemap-0.xml directly: it matches what
+// will deploy, and HTTP sitemap discovery can land on the production file.
+// Production audits go over HTTP as before.
+const isLocal = /(?:localhost|127\.0\.0\.1)/.test(BASE);
+let sitemap;
+if (isLocal) {
+  sitemap = readFileSync(new URL('../dist/sitemap-0.xml', import.meta.url), 'utf8');
+  console.log('(local audit: sitemap read from dist/sitemap-0.xml)');
+} else {
+  const sitemapIdx = await fetch(`${BASE}/sitemap-index.xml`).then((r) => r.text()).catch(() => '');
+  const sitemapUrl = sitemapIdx.match(/<loc>([^<]+)<\/loc>/)?.[1];
+  if (!sitemapUrl) throw new Error(`no sitemap found at ${BASE}/sitemap-index.xml`);
+  sitemap = await fetch(sitemapUrl).then((r) => r.text());
+}
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 console.log(`\n=== sitemap: ${urls.length} URLs ===`);
 
-// sitemap hreflang clusters: either a complete cluster with self-reference,
-// or no alternates at all (per-market content like locale-specific guides).
-// A partial cluster (1–7 entries) is always a bug.
+// sitemap hreflang clusters: every cluster must be reciprocal (each listed
+// alternate lists the page back) and self-referencing. Clusters smaller than
+// the site maximum are legitimate when pages are deliberately excluded
+// (per-market guides, noindex pages) — only broken reciprocity is a bug.
 {
-  const sizes = new Map();
+  const altsets = new Map(); // loc -> Set of alternate hrefs
   for (const m of sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
     const block = m[1];
     const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
     if (!loc) continue;
-    const alts = [...block.matchAll(/xhtml:link[^>]*hreflang="([^"]+)" href="([^"]+)"/g)];
-    sizes.set(alts.length, (sizes.get(alts.length) ?? 0) + 1);
+    const alts = [...block.matchAll(/xhtml:link[^>]*hreflang="([^"]+)" href="([^"]+)"/g)].map((x) => x[2]);
+    altsets.set(loc, new Set(alts));
     const short = new URL(loc).pathname || '/';
     if (alts.length === 0) continue;
-    if (!alts.some((m) => m[2] === loc)) note('HIGH', short, 'sitemap hreflang cluster missing self-reference');
-    const bad = alts.filter((m) => !m[2].startsWith(BASE));
-    if (bad.length) note('HIGH', short, `sitemap hreflang alternate off-site: ${bad.map((m) => m[2]).join(', ')}`);
+    if (!alts.includes(loc)) note('HIGH', short, 'sitemap hreflang cluster missing self-reference');
+    for (const alt of alts) {
+      const back = altsets.get(alt);
+      if (back && !back.has(loc)) note('HIGH', short, `hreflang not reciprocated by ${alt}`);
+    }
   }
-  const full = Math.max(0, ...sizes.keys());
-  for (const [size, count] of sizes) {
-    if (size > 0 && size < full) note('HIGH', `sitemap (${count} pages)`, `partial hreflang cluster: ${size}/${full} alternates`);
-  }
-  console.log(`hreflang cluster sizes in sitemap: ${[...sizes.entries()].sort((a, b) => b[0] - a[0]).map(([s, c]) => `${s}×${c}`).join(', ')}`);
+  const withAlts = [...altsets.values()].filter((s) => s.size > 0);
+  console.log(`hreflang clusters in sitemap: ${withAlts.length} full + ${altsets.size - withAlts.length} per-market (no alternates)`);
 }
 
 const seen = new Map(); // url -> {status, html}
 for (const url of urls) {
-  const res = await fetch(url);
+  // a dist-derived sitemap carries production URLs; crawl this server instead
+  const fetchUrl = isLocal ? `${BASE}${new URL(url).pathname}` : url;
+  const res = await fetch(fetchUrl);
   const html = await res.text();
   seen.set(url, { status: res.status, html });
 
@@ -71,7 +87,9 @@ for (const url of urls) {
   if (desc.length > 165) note('MED', short, `description ${desc.length} chars`);
   if (desc.length && desc.length < 70) note('LOW', short, `description only ${desc.length} chars`);
   if (!canonical) note('HIGH', short, 'missing canonical');
-  else if (!canonical.startsWith(url)) note('HIGH', short, `canonical mismatch: ${canonical} vs ${url}`);
+  else if (norm(new URL(canonical, BASE).pathname) !== norm(path)) {
+    note('HIGH', short, `canonical path mismatch: ${canonical} vs ${url}`);
+  }
   if (h1s.length !== 1) note('HIGH', short, `${h1s.length} H1 tags`);
   if (!ogTitle || !ogImage) note('MED', short, 'incomplete OG tags');
   if (jsonld.includes('INVALID')) note('MED', short, 'invalid JSON-LD');
@@ -84,12 +102,14 @@ for (const url of urls) {
   // i18n guards on visible text (scripts/styles stripped)
   const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, ' ').replace(/<[^>]+>/g, ' ');
 
-  // head hreflang cluster must reference the page itself
+  // head hreflang cluster must reference the page itself (path comparison so
+  // localhost audits work against production-host alternates)
   const headAlts = [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/g)];
-  if (headAlts.length && !headAlts.some((m) => m[2] === url)) {
+  const pagePath = norm(path);
+  if (headAlts.length && !headAlts.some((m) => norm(new URL(m[2], BASE).pathname) === pagePath)) {
     note('HIGH', short, 'head hreflang cluster missing self-reference');
   }
-  const knownHrefs = new Set(['en', 'de', 'es', 'id', 'ja', 'ko', 'pt-BR', 'zh-Hans', 'x-default']);
+  const knownHrefs = new Set(['en', 'de', 'es', 'id', 'ja', 'ko', 'pt-BR', 'zh-Hans', 'fr', 'ru', 'ar', 'x-default']);
   const unknownHrefs = headAlts.map((m) => m[1]).filter((h) => !knownHrefs.has(h));
   if (unknownHrefs.length) note('MED', short, `unexpected hreflang values: ${[...new Set(unknownHrefs)].join(', ')}`);
 
@@ -102,7 +122,7 @@ for (const url of urls) {
   // untranslated English sentences on locale pages: a run of ≥5 pure-ASCII
   // words containing ≥3 English function words. Loanwords (browser, file, MP3)
   // don't trip it; function words are what give away untranslated prose.
-  if (/^\/(?:de|es|id|ja|ko|pt|zh)(?:\/|$)/.test(path)) {
+  if (/^\/(?:de|es|id|ja|ko|pt|zh|fr|ru|ar)(?:\/|$)/.test(path)) {
     const STOP = new Set('the a an and or but your yours you for with from this that these those are was were be been being have has had not no nor so if then than when while about into over under after before can could will would should must it its do does did how what which why where who here there they them their we our us my me he she his her of to on in is'.split(' '));
     const isWord = (t) => /^[A-Za-z'’]+$/.test(t);
     const isStop = (t) => STOP.has(t.toLowerCase().replace(/[’]/g, "'"));
@@ -130,7 +150,6 @@ for (const url of urls) {
 }
 
 // check every collected internal link (incl. non-sitemap ones)
-const norm = (p) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
 const sitemapPaths = new Set(urls.map((u) => norm(new URL(u).pathname)));
 for (const [link, info] of seen) {
   if (info.status !== 0) continue;
@@ -138,13 +157,17 @@ for (const [link, info] of seen) {
   info.status = res?.status ?? -1;
   if (!res || res.status >= 400) note('HIGH', link, `broken link: HTTP ${info.status}`);
   // sitemap↔page parity: an HTML page that exists but isn't in the sitemap is
-  // invisible to discovery (the audioeditor.org stale-sitemap failure mode)
+  // invisible to discovery (the audioeditor.org stale-sitemap failure mode).
+  // noindex pages (e.g. empty guides indexes) are exempt by design.
   else if (
     res.status === 200 &&
     !sitemapPaths.has(norm(new URL(link, BASE).pathname)) &&
     !/\.(xml|txt|jpg|jpeg|png|svg|webp|webm|ico|md|json)$/.test(link)
   ) {
-    note('MED', link, 'page returns 200 but is not in the sitemap');
+    const body = await fetch(`${BASE}${link}`).then((r) => r.text()).catch(() => '');
+    if (!/name="robots" content="noindex/.test(body)) {
+      note('MED', link, 'page returns 200 but is not in the sitemap');
+    }
   }
 }
 

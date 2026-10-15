@@ -76,6 +76,22 @@
 - 遗留(下次内容批次):de 语区 6 条 description 166–193 字符有 SERP 截断风险,按
   i18n-translation-guide.md §3 预算重写;audit 的标题/描述阈值可按语区预算(CJK 减半)细化
 
+## 2026-10-15 语言补齐(11 语)
+
+按既定语言清单补齐 Arabic / French / Russian,站点现为 **11 语**(en + 10 译语,韩语保留):
+
+- [x] **fr / ru / ar 全量词典**:每语 20 个工具 + 全站 UI/Home/Hub/About/Privacy/Guide 索引,
+  assertCatalogs 强制对齐;语域按规范(fr vous / ru вы / ar أنت);ru 规避 «без загрузки» 歧义
+- [x] **RTL 支持**:`LOCALES` 增加 `dir`,`<html dir>` 按语区输出;物理定位改逻辑属性(end-0);
+  简中/阿语截图抽查通过
+- [x] **连带修复两个真 bug**:①互译指南(`/guides/convert-video-to-mp3`)的 hreflang 簇和
+  语言切换器向无此指南的语言输出 404 链接——现在 guides 类路径只在有指南的语言间互指/切换;
+  ②seo-audit 本地模式语义修复(dist sitemap + BASE 改写爬取 URL + canonical/pathname 比较 +
+  noindex 豁免)——此前"本地审计"实际上没审任何页面或爬的是 production
+- [x] **audit 终值**(本地,291 页构建 / 287 条 sitemap):**HIGH 0**;MED 51(全部长度类);
+  LOW 111;hreflang 簇 280 全互惠 + 7 个 per-market 页无 alternates(设计如此)
+- 注:fr/ru/ar 无指南(工具页先行,规范 §9.4),`/{locale}/guides` 索引 noindex;
+
 ## Phase 3 · 增长与变现（第 4 个月起，流量触发制）
 
 - [ ] **AdSense（触发：稳定日 UV ≥ 300）**：广告位只放 how-to 与 FAQ 之间、related 之后；工具区 600px 内永不放广告（规范铁律）；ads.txt
