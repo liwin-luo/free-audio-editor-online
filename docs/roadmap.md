@@ -11,9 +11,10 @@
 
 - [ ] `git init` + 推 GitHub + Vercel Import + 绑定 freeaudioeditor.online（选定唯一 canonical 主机，另一个 301）
 - [ ] Google Search Console 提交 sitemap-index.xml；Bing Webmaster Tools 同步提交（Bing 收录快，能提前验证关键词）
-- [ ] **补 OG 分享图**（1200×630，当前缺失——静态导出 PNG 或构建时生成 SVG 转 PNG）
-- [ ] 加一个轻量分析（自托管 Umami/Plausible 或 Vercel Web Analytics；规范约束：不收集个人数据，更新 /privacy 说明）
-- [ ] PageSpeed Insights / Lighthouse 基线记录（LCP、CLS、INP），上线首周复测
+  （GSC 验证文件 `public/google824e0769c16d7fbd.html` 已部署；提交动作线上确认后勾选）
+- [x] **补 OG 分享图**（`public/og.jpg` 1200×630，`Base.astro` 全站引用）✅ 2026-10-15
+- [x] 加一个轻量分析（Vercel Web Analytics，cookieless 仅聚合页览，`Base.astro` 按生产域名注入；/privacy 已写明）✅ 2026-10-15
+- [x] PageSpeed Insights / Lighthouse 基线记录（见 lighthouse-baseline.md：4 页全 100）✅ 2026-10-14
 - [ ] 手工回归：5 个工具页各跑一遍 smoke 流程 + 手机 Safari 真机测试
 
 退出条件：GSC 显示页面已被收录（通常 3–10 天）。
@@ -44,7 +45,7 @@
 - [x] **/mp4-to-mp3 + /extract-audio**（16.5 万 + 1.5 万月搜）：~~ffmpeg.wasm~~ **改用浏览器原生解码方案**——decodeAudioData 直接解 MP4/AAC、WebM/Opus 音轨（Chrome/Firefox/Safari 实测通过），零 30MB 下载、移动端可用；仅极少数编解码器（AC3/DTS）不支持，FAQ 已如实说明。E2E：ffmpeg 生成真实 MP4 夹具 → 原生解码 → MP3 导出全链路通过
 - [x] /voice-recorder（5.4k）：MediaRecorder（Chrome/Firefox 用 WebM/Opus，Safari 用 MP4/AAC）→ 停止后经 editor-load-file 事件载入下方编辑器 → 裁剪/导出。E2E 用 Chrome 假麦克风跑通全链路
 - [x] /volume-booster（18.1k）：与 /increase-volume 同引擎不同定位（视频音轨 + 手机场景文案），400% 增益 + 限幅
-- [ ] **国际化启动（数据触发：GSC 非英语国家展示 >20% 时执行）**：优先 ES/PT/ID/DE 四语言
+- [x] **国际化启动**：✅ 已超额完成（2026-10-14）——8 语言全部上线（es/pt/id/de/ko/ja/zh + en），超出原计划 4 语言。剩余 zh-Hant/ru/fr 按 `i18n-translation-guide.md` §3 预案表执行，触发条件不变（GSC 非英语展示 >20%）
 - [ ] 深度内容每月 +2 篇
 
 数据检查点（第 3 个月末）：至少 3 个词进 TOP 10；日 UV 破 100。
@@ -57,6 +58,23 @@
 - [x] **/slowed-reverb**：变速（音高跟着变）加合成混响尾音。速度高于 1× 即 nightcore。依据是年轻创作者的 slowed + reverb 用法，不是关键词表里的长尾补洞。
 - [x] 铃声页 Chrome / Edge / Safari 17+ 直接导出 M4R；不支持的浏览器仍走 MP3 + GarageBand。
 - [x] 两篇文字指南：`/guides/audacity-alternative`、`/guides/convert-video-to-mp3`。截图和旁白留到下一次媒体管线。
+
+## 2026-10-15 结构补齐
+
+对照 audioeditor.org 竞品分析（competitive-analysis-audioeditor.md）的 P0 缺口,当天落地:
+
+- [x] **`/tools` hub 页**:全部 19 个工具按分类分组,8 语言本地化(新增 `hub` 词典段),
+  CollectionPage + ItemList schema,进 sitemap 且 hreflang 全簇自引用;导航下拉与页脚均入口
+- [x] **seo-audit.mjs 增 4 项 i18n 检查**(竞品分析 §7.3):翻译键名泄漏(HIGH)、
+  非英文页英文残留(MED,停用词窗口法,防误报已按去重计数)、sitemap↔页面双向对齐(MED)、
+  hreflang 簇完整性——head 自引用 + sitemap 簇(残簇 1–7 条判 HIGH)
+- [x] **规范文档入库**:竞品分析、i18n 翻译规范、new-tool-spec、执行计划全部提交;
+  翻译规范三处语域修正为与词典一致(de du / ko 해요체 / id Anda)
+- [x] **audit 基线**(production,2026-10-15):**HIGH 0**;MED 25(全部是 title/description
+  长度类);LOW 103(多为 CJK 标题天然短于拉丁阈值)。sitemap 簇 8×192 完整 + 7 个 per-market
+  指南无 alternates(设计如此)
+- 遗留(下次内容批次):de 语区 6 条 description 166–193 字符有 SERP 截断风险,按
+  i18n-translation-guide.md §3 预算重写;audit 的标题/描述阈值可按语区预算(CJK 减半)细化
 
 ## Phase 3 · 增长与变现（第 4 个月起，流量触发制）
 

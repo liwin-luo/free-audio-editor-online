@@ -72,7 +72,7 @@ Where they are **weak** (our openings):
 |---|---|---|---|
 | Tools | 58 | 19 | **Their lead.** But ~12 of their 58 are one-liner Web Audio graphs; see backlog in `new-tool-spec.md` |
 | Languages | 10 | 8 (we have `id`, they don't; we lack zh-Hant, ru, fr) | **Their lead**, cheap to close — their i18n execution is sloppy, see §7 |
-| /tools hub page | Yes (58-link hub) | No (nav dropdown only) | **Gap — build it** |
+| /tools hub page | Yes (58-link hub) | Yes (2026-10-15, `/tools` + 7 locales, bento-free regular grid) | Parity |
 | Schema per tool page | 4 types | Same 4 (`src/lib/jsonld.ts`) | Parity |
 | hreflang | sitemap + head, 10 locales | sitemap i18n + head + x-default, 8 locales | Parity |
 | Canonical/URL hygiene | fixed 2026-06 | cleanUrls, canonical, trailingSlash policy | Parity |
@@ -114,7 +114,7 @@ Not by copying their template — by beating them on the axes they don't defend:
 ## 5. Prioritized roadmap
 
 **P0 — structural parity (do first)**
-- Build `/tools` hub page, localized, linked from nav; footer already lists all tools.
+- [x] Build `/tools` hub page, localized, linked from nav + footer (done 2026-10-15; in sitemap with full hreflang clusters).
 - Benchmark engagement now (Vercel Analytics is already wired): pages/visit, bounce,
   top landing→next-tool flows. Decide the 2027 target: pages/visit ≥ 2.5, bounce ≤ 50%.
 - Extend `scripts/seo-audit.mjs`: fail builds when a tool page has < 5 FAQs, missing
