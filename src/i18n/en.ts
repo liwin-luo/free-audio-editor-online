@@ -175,6 +175,14 @@ export const en: Shell = {
       },
     ],
   },
+  hub: {
+    title: 'All Audio Tools — Free Online Audio Editing, Nothing Uploaded',
+    description:
+      'Every tool in one place: trim, cut, merge, convert, record and boost audio right in your browser. No upload, no signup — free.',
+    h1: 'All audio tools',
+    intro:
+      'Every tool on this site, grouped by the job it does. Pick one and start — everything runs locally in your browser. No signup, nothing uploaded.',
+  },
   about: {
     title: 'About Free Audio Editor — Local-First Online Audio Tools',
     description:

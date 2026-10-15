@@ -1,0 +1,14 @@
+---
+import '../../i18n/catalogs';
+import ToolsHub from '../../components/ToolsHub.astro';
+import { TRANSLATED_LOCALES, isLocale, type Locale } from '../../i18n/locales';
+
+export function getStaticPaths() {
+  return TRANSLATED_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale;
+if (!isLocale(locale) || locale === 'en') throw new Error(`bad locale: ${locale}`);
+---
+
+<ToolsHub locale={locale as Locale} />

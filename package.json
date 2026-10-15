@@ -6,7 +6,13 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "audit": "node scripts/seo-audit.mjs https://freeaudioeditor.online",
+    "audit:preview": "node scripts/seo-audit.mjs http://localhost:4321",
+    "check:pages": "node scripts/pages-check.mjs",
+    "check:features": "node scripts/feature-check.mjs",
+    "check:smoke": "node scripts/smoke-test.mjs",
+    "check:pitch": "node_modules/.bin/esbuild scripts/pitch-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/pitch-check.mjs && node /tmp/pitch-check.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",

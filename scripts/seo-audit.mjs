@@ -1,6 +1,9 @@
 /**
  * Full-site SEO audit: crawls every page from the sitemap, checks
- * titles/descriptions/H1/canonical/OG/JSON-LD/alt text/internal links.
+ * titles/descriptions/H1/canonical/OG/JSON-LD/alt text/internal links,
+ * plus i18n guards: raw key leakage, untranslated English on locale pages,
+ * sitemap↔page parity, hreflang cluster integrity (head + sitemap).
+ * See docs/competitive-analysis-audioeditor.md §7.3.
  * Usage: node scripts/seo-audit.mjs [baseURL]
  */
 const BASE = (process.argv[2] ?? 'https://free-audio-editor-online.vercel.app').replace(/\/$/, '');
@@ -16,6 +19,30 @@ const sitemapUrl = sitemapIdx.match(/<loc>([^<]+)<\/loc>/)?.[1];
 const sitemap = await fetch(sitemapUrl).then((r) => r.text());
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 console.log(`\n=== sitemap: ${urls.length} URLs ===`);
+
+// sitemap hreflang clusters: either a complete cluster with self-reference,
+// or no alternates at all (per-market content like locale-specific guides).
+// A partial cluster (1–7 entries) is always a bug.
+{
+  const sizes = new Map();
+  for (const m of sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+    const block = m[1];
+    const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
+    if (!loc) continue;
+    const alts = [...block.matchAll(/xhtml:link[^>]*hreflang="([^"]+)" href="([^"]+)"/g)];
+    sizes.set(alts.length, (sizes.get(alts.length) ?? 0) + 1);
+    const short = new URL(loc).pathname || '/';
+    if (alts.length === 0) continue;
+    if (!alts.some((m) => m[2] === loc)) note('HIGH', short, 'sitemap hreflang cluster missing self-reference');
+    const bad = alts.filter((m) => !m[2].startsWith(BASE));
+    if (bad.length) note('HIGH', short, `sitemap hreflang alternate off-site: ${bad.map((m) => m[2]).join(', ')}`);
+  }
+  const full = Math.max(0, ...sizes.keys());
+  for (const [size, count] of sizes) {
+    if (size > 0 && size < full) note('HIGH', `sitemap (${count} pages)`, `partial hreflang cluster: ${size}/${full} alternates`);
+  }
+  console.log(`hreflang cluster sizes in sitemap: ${[...sizes.entries()].sort((a, b) => b[0] - a[0]).map(([s, c]) => `${s}×${c}`).join(', ')}`);
+}
 
 const seen = new Map(); // url -> {status, html}
 for (const url of urls) {
@@ -54,6 +81,47 @@ for (const url of urls) {
   const noAlt = imgs.filter((m) => !/alt="[^"]+"/.test(m[0]) && !/alt\s+/.test(m[0]));
   if (noAlt.length) note('MED', short, `${noAlt.length} img without alt`);
 
+  // i18n guards on visible text (scripts/styles stripped)
+  const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, ' ').replace(/<[^>]+>/g, ' ');
+
+  // head hreflang cluster must reference the page itself
+  const headAlts = [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/g)];
+  if (headAlts.length && !headAlts.some((m) => m[2] === url)) {
+    note('HIGH', short, 'head hreflang cluster missing self-reference');
+  }
+  const knownHrefs = new Set(['en', 'de', 'es', 'id', 'ja', 'ko', 'pt-BR', 'zh-Hans', 'x-default']);
+  const unknownHrefs = headAlts.map((m) => m[1]).filter((h) => !knownHrefs.has(h));
+  if (unknownHrefs.length) note('MED', short, `unexpected hreflang values: ${[...new Set(unknownHrefs)].join(', ')}`);
+
+  // raw i18n keys leaking into rendered text (the audioeditor.org failure mode)
+  const KEY_RE = /\b[a-z][a-z0-9]{1,24}(?:\.[a-z][A-Za-z0-9_]{1,30}){1,3}\b/g;
+  const KEY_OK = /\.(?:com|org|net|io|dev|online|co|js|ts|mjs|jpg|jpeg|png|svg|webp|webm|mp3|mp4|ogg|wav|flac|m4a|m4r|aac|txt|xml|md|ms|hz|khz|db|kb|mb|gb)$/i;
+  const keyHits = [...new Set(visible.match(KEY_RE) ?? [])].filter((t) => !KEY_OK.test(t)).slice(0, 3);
+  for (const t of keyHits) note('HIGH', short, `possible raw i18n key in visible text: "${t}"`);
+
+  // untranslated English sentences on locale pages: a run of ≥5 pure-ASCII
+  // words containing ≥3 English function words. Loanwords (browser, file, MP3)
+  // don't trip it; function words are what give away untranslated prose.
+  if (/^\/(?:de|es|id|ja|ko|pt|zh)(?:\/|$)/.test(path)) {
+    const STOP = new Set('the a an and or but your yours you for with from this that these those are was were be been being have has had not no nor so if then than when while about into over under after before can could will would should must it its do does did how what which why where who here there they them their we our us my me he she his her of to on in is'.split(' '));
+    const isWord = (t) => /^[A-Za-z'’]+$/.test(t);
+    const isStop = (t) => STOP.has(t.toLowerCase().replace(/[’]/g, "'"));
+    let run = [];
+    let flagged = 0;
+    for (const t of [...visible.split(/\s+/), '']) {
+      if (isWord(t)) { run.push(t); continue; }
+      for (let i = 0; flagged < 1 && i + 5 <= run.length; i++) {
+        const win = run.slice(i, i + 5);
+        // distinct stopwords only: German "so oder so in" repeats one word
+        if (new Set(win.filter(isStop)).size >= 3) {
+          note('MED', short, `possible untranslated English: "…${win.join(' ')}…"`);
+          flagged++;
+        }
+      }
+      run = [];
+    }
+  }
+
   // collect internal links
   for (const m of html.matchAll(/href="(\/[^"#]*)"/g)) {
     const link = m[1];
@@ -62,11 +130,22 @@ for (const url of urls) {
 }
 
 // check every collected internal link (incl. non-sitemap ones)
+const norm = (p) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
+const sitemapPaths = new Set(urls.map((u) => norm(new URL(u).pathname)));
 for (const [link, info] of seen) {
   if (info.status !== 0) continue;
   const res = await fetch(`${BASE}${link}`, { method: link.endsWith('.xml') || link.endsWith('.txt') ? 'GET' : 'HEAD' }).catch(() => null);
   info.status = res?.status ?? -1;
   if (!res || res.status >= 400) note('HIGH', link, `broken link: HTTP ${info.status}`);
+  // sitemap↔page parity: an HTML page that exists but isn't in the sitemap is
+  // invisible to discovery (the audioeditor.org stale-sitemap failure mode)
+  else if (
+    res.status === 200 &&
+    !sitemapPaths.has(norm(new URL(link, BASE).pathname)) &&
+    !/\.(xml|txt|jpg|jpeg|png|svg|webp|webm|ico|md|json)$/.test(link)
+  ) {
+    note('MED', link, 'page returns 200 but is not in the sitemap');
+  }
 }
 
 // domain consistency: what domain do canonicals/sitemap reference?

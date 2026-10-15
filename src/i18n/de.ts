@@ -177,6 +177,14 @@ export const de: Catalog = {
       },
     ],
   },
+  hub: {
+    title: 'Alle Audio-Tools — Kostenlos online schneiden & verbinden',
+    description:
+      'Alle Tools im Überblick: Audio schneiden, zusammenfügen, konvertieren und aufnehmen — direkt in deinem Browser. Ohne Upload und ohne Anmeldung.',
+    h1: 'Alle Audio-Tools',
+    intro:
+      'Alle Tools dieser Website, sortiert nach Aufgabe. Eines auswählen und loslegen — alles läuft lokal in deinem Browser, ohne Anmeldung und ohne Upload.',
+  },
   about: {
     title: 'Über Free Audio Editor — lokale Online-Audio-Tools',
     description:

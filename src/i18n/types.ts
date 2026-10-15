@@ -179,10 +179,18 @@ export interface PrivacyCopy {
   contactBefore: string;
 }
 
+export interface HubCopy {
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+}
+
 export interface Shell {
   ui: UiText;
   editor: EditorText;
   home: HomeCopy;
+  hub: HubCopy;
   about: AboutCopy;
   privacy: PrivacyCopy;
 }

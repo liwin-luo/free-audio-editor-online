@@ -86,13 +86,10 @@ const shareOn = (name: string) => ui.shareOn.replace('{name}', name);
     <nav aria-label={ui.navAbout}>
       <p class="text-[11px] font-medium uppercase tracking-wider text-ink3">{ui.about}</p>
       <ul class="mt-3 space-y-2 text-sm">
+        <li><a href={localePath(locale, '/tools')} class="text-ink2 hover:text-accent">{ui.allTools}</a></li>
         <li><a href={localePath(locale, '/guides')} class="text-ink2 hover:text-accent">{ui.guides}</a></li>
         <li><a href={localePath(locale, '/about')} class="text-ink2 hover:text-accent">{ui.about}</a></li>
         <li><a href={localePath(locale, '/privacy')} class="text-ink2 hover:text-accent">{ui.privacy}</a></li>
-        <li>
-          <script is:inline src="https://openuptime.app/embed.js" data-slug="freeaudioeditor" async></script>
-          <noscript><a href="https://openuptime.app/status/freeaudioeditor" class="text-ink2 hover:text-accent">{ui.status}</a></noscript>
-        </li>
         <li><a href="/llms.txt" class="text-ink2 hover:text-accent">llms.txt</a></li>
       </ul>
     </nav>
@@ -101,10 +98,21 @@ const shareOn = (name: string) => ui.shareOn.replace('{name}', name);
   <div class="border-t border-line">
     <div class="container-wide flex flex-wrap items-center justify-between gap-2 py-4 text-xs text-ink3">
       <p>© {year} Free Audio Editor. {ui.rights}</p>
-      <p class="inline-flex items-center gap-1.5">
-        <Icon name="shield-check" size={14} />
-        {ui.clientSide}
-      </p>
+      <div class="flex flex-wrap items-center gap-4">
+        <p class="inline-flex items-center gap-1.5">
+          <Icon name="shield-check" size={14} />
+          {ui.clientSide}
+        </p>
+        <a
+          href="https://stats.uptimerobot.com/jeUgIH7UTe"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 hover:text-ink"
+        >
+          {ui.status}
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </div>
   </div>
 </footer>

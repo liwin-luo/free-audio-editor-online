@@ -175,6 +175,14 @@ export const pt: Catalog = {
       },
     ],
   },
+  hub: {
+    title: 'Todas as ferramentas — Editar áudio online grátis',
+    description:
+      'Corte, junte, converta, grave e melhore áudio com todas as ferramentas em um só lugar. Tudo no navegador: sem enviar arquivos e sem cadastro.',
+    h1: 'Todas as ferramentas de áudio',
+    intro:
+      'Todas as ferramentas do site, agrupadas por tarefa. Escolha uma e comece: tudo roda no seu navegador, sem cadastro e sem enviar arquivos.',
+  },
   about: {
     title: 'Sobre o Free Audio Editor — ferramentas de áudio online, no seu aparelho',
     description:

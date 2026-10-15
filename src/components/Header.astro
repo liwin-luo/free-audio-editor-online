@@ -60,6 +60,13 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
               </div>
             ))
           }
+          <a
+            href={localePath(locale, '/tools')}
+            class="mt-1 flex items-center gap-3 rounded-lg border-t border-line px-3 py-2 text-sm font-medium text-ink2 hover:bg-surface2 hover:text-ink"
+          >
+            <Icon name="layers" size={18} class="text-ink3" />
+            {ui.allTools}
+          </a>
         </div>
       </details>
 

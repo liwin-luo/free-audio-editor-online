@@ -1,0 +1,79 @@
+---
+import { CATEGORY_IDS, TOOLS } from '../data/tools';
+import { SITE } from '../data/site';
+import { getShell, localizeTool } from '../i18n';
+import { localePath, type Locale } from '../i18n/locales';
+import Base from '../layouts/Base.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { ui, hub } = getShell(locale);
+const byCategory = CATEGORY_IDS.map((cat) => ({
+  cat,
+  tools: TOOLS.filter((t) => t.category === cat).map((t) => localizeTool(t.slug, locale)!),
+}));
+const hubUrl = new URL(localePath(locale, '/tools'), SITE.url).href;
+---
+
+<Base
+  title={hub.title}
+  description={hub.description}
+  path="/tools"
+  locale={locale}
+  jsonLd={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: hub.h1,
+      url: hubUrl,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: TOOLS.map((t, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: localizeTool(t.slug, locale)!.name,
+        url: new URL(localePath(locale, `/${t.slug}`), SITE.url).href,
+      })),
+    },
+  ]}
+>
+  <section class="container-page py-14">
+    <nav aria-label="Breadcrumb" class="text-xs">
+      <a href={localePath(locale, '/')} class="text-ink3 hover:text-accent">{ui.home}</a>
+      <span class="mx-1.5 text-ink3">/</span>
+      <span class="text-ink2" aria-current="page">{ui.tools}</span>
+    </nav>
+    <h1 class="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">{hub.h1}</h1>
+    <p class="mt-3 max-w-[60ch] text-ink2">{hub.intro}</p>
+
+    {
+      byCategory.map(({ cat, tools }) => (
+        <section class="mt-10" aria-labelledby={`hub-${cat}`}>
+          <h2 id={`hub-${cat}`} class="text-xl font-semibold tracking-tight">
+            {ui.categories[cat]}
+          </h2>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {tools.map((t) => (
+              <a
+                href={localePath(locale, `/${t.slug}`)}
+                class="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent"
+              >
+                <span class="flex items-center gap-2.5 font-medium leading-snug group-hover:text-accent">
+                  <Icon name={t.icon} size={18} class="shrink-0 text-ink3" />
+                  {t.name}
+                </span>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-ink2">{t.subtitle}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </section>
+</Base>

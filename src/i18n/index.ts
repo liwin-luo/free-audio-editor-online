@@ -41,7 +41,7 @@ export function localizeTool(slug: string, locale: Locale): ToolDef | undefined 
 
 /** Build fails if a translated tool is missing fields. ponytail: one check, no test runner. */
 export function assertCatalogs(): void {
-  const shellKeys = ['ui', 'editor', 'home', 'about', 'privacy'] as const;
+  const shellKeys = ['ui', 'editor', 'home', 'hub', 'about', 'privacy'] as const;
   for (const locale of TRANSLATED_LOCALES) {
     const cat = catalogs[locale];
     if (!cat) throw new Error(`Missing i18n catalog: ${locale}`);

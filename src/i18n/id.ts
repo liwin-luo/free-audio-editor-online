@@ -176,6 +176,14 @@ export const id: Catalog = {
       },
     ],
   },
+  hub: {
+    title: 'Semua alat audio — Edit audio online gratis',
+    description:
+      'Potong, gabung, konversi, rekam dan tingkatkan audio dengan semua alat di satu tempat. Semua di browser: tanpa unggah dan tanpa daftar.',
+    h1: 'Semua alat audio',
+    intro:
+      'Semua alat di situs ini, dikelompokkan sesuai tugas. Pilih satu dan mulai — semuanya berjalan di browser Anda, tanpa daftar dan tanpa unggah.',
+  },
   about: {
     title: 'Tentang Free Audio Editor — Alat Audio Online yang Mengutamakan Perangkat',
     description:
