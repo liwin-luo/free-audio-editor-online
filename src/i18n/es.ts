@@ -1769,6 +1769,7 @@ export const es: Catalog = {
         { q: '¿Un cambio grande suena natural?', a: 'Unos pocos semitonos se quedan cerca del original. Pasados unos 7 semitonos el sonido se adelgaza y se pone metálico. Es el límite de este cambiador, no una opción que se pueda apagar.' },
         { q: '¿Es lo mismo que cambiar la velocidad?', a: 'No. El cambiador de velocidad reproduce el archivo más rápido o más lento, así que el tono se va con él y la duración cambia. Esta página solo mueve el tono.' },
         { q: '¿El archivo se sube a algún lado?', a: 'No. El cambio se calcula en tu navegador y la exportación se guarda en tu dispositivo.' },
+        { q: '¿Puedo cambiar el tono de una canción para evitar el copyright?', a: 'No — cambiar el tono no elimina los derechos de una grabación. Una subida con el tono modificado sigue siendo reclamable y puede bajarse. Cambia la tonalidad para cantar o para karaoke, y usa música con los derechos adecuados cuando publiques.' },
       ],
       dropHint: 'Suelta un archivo de audio o haz clic para elegirlo',
     },
@@ -1793,7 +1794,7 @@ export const es: Catalog = {
         { name: 'Convierte y descarga', text: 'Haz clic en Convertir a MP3. Se decodifica y se codifica en tu dispositivo, y luego se descarga.' },
       ],
       faqs: [
-        { q: '¿Qué archivos M4A funcionan?', a: 'Audio AAC dentro de un M4A, que es lo que usan las notas de voz y la mayoría de las descargas AAC. Apple Lossless (ALAC) guardado en un M4A muchas veces no se decodifica en el navegador. Conviértelo primero a AAC o WAV y tráelo aquí.' },
+        { q: '¿Puedo convertir M4A a MP3 en iPhone, Android o Mac?', a: 'Sí: el conversor funciona en cualquier navegador, así que el dispositivo da igual. Audio AAC dentro de un M4A, que es lo que usan las notas de voz y la mayoría de las descargas AAC. Apple Lossless (ALAC) guardado en un M4A muchas veces no se decodifica en el navegador. Conviértelo primero a AAC o WAV y tráelo aquí.' },
         { q: '¿Y un video MP4?', a: 'Usa el convertidor de MP4 a MP3 para videos. Esta página es para audio: M4A y AAC.' },
         { q: '¿Convertir a MP3 pierde calidad?', a: 'El MP3 tiene pérdida. A 320 kbps casi nadie nota la diferencia con el AAC original. Quédate con el M4A si necesitas el archivo original intacto.' },
         { q: '¿Se conservan las etiquetas y la portada?', a: 'No. El MP3 se escribe sin metadatos, igual que el convertidor de WAV. El título, el artista y la portada no se copian.' },
@@ -1808,7 +1809,7 @@ export const es: Catalog = {
       shortName: 'OGG a MP3',
       title: 'Convertir archivos OGG a MP3 — gratis en el navegador',
       description:
-        'Convierte archivos OGG a MP3 en tu navegador. Gratis, sin cuenta y sin subir nada. Vorbis u Opus dentro del OGG, a 128, 192 o 320 kbps.',
+        'Convierte archivos OGG a MP3 en tu navegador, sin límite de tamaño. Gratis, sin cuenta y sin subir nada. Vorbis u Opus dentro del OGG, a 128, 192 o 320 kbps.',
       h1: 'Convertir archivos OGG a MP3',
       subtitle: 'Pasa audio OGG a MP3, en tu navegador y sin subir nada.',
       intro:

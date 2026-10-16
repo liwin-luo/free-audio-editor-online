@@ -1989,6 +1989,10 @@ export const TOOLS: ToolDef[] = [
         q: 'Is the file uploaded?',
         a: 'No. The shift is calculated in your browser and the export is saved to your device.',
       },
+      {
+        q: 'Can I change a song’s pitch to avoid copyright?',
+        a: 'No — a pitch shift does not remove the rights attached to a recording. A pitched-up upload can still be claimed or taken down. Change the key to suit your voice for singing or karaoke, and publish music you have the rights to.',
+      },
     ],
     related: ['change-audio-speed', 'slowed-reverb', 'mp3-editor'],
     editor: {
@@ -2034,8 +2038,8 @@ export const TOOLS: ToolDef[] = [
     ],
     faqs: [
       {
-        q: 'Which M4A files work?',
-        a: 'AAC audio inside an M4A, which is what voice memos and most AAC downloads use. Apple Lossless (ALAC) stored in an M4A often will not decode in the browser. Convert that file to AAC or WAV first, then bring it here.',
+        q: 'Can I convert M4A to MP3 on iPhone, Android or Mac?',
+        a: 'Yes — the converter runs in your browser, so iPhone, Android, Mac, Windows or Linux all work the same way: open the page and drop the file. Inside the M4A you need AAC audio, which is what voice memos and most AAC downloads use. Apple Lossless (ALAC) stored in an M4A often will not decode in a browser — convert that file to AAC or WAV first, then bring it here.',
       },
       {
         q: 'What about MP4 video?',
@@ -2072,7 +2076,7 @@ export const TOOLS: ToolDef[] = [
     category: 'merge',
     title: 'OGG to MP3 Converter — Vorbis & Opus in OGG Online Free',
     description:
-      'Convert OGG files to MP3 in your browser. Free, no signup, nothing uploaded. Vorbis or Opus inside OGG, at 128, 192 or 320 kbps.',
+      'Convert OGG files to MP3 in your browser — no file size limit. Free, no signup, nothing uploaded. Vorbis or Opus inside OGG, at 128, 192 or 320 kbps.',
     h1: 'Convert OGG to MP3',
     subtitle: 'Turn OGG audio into MP3 — in your browser, nothing uploaded.',
     intro:

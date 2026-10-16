@@ -1795,6 +1795,10 @@ export const fr: Catalog = {
           q: 'Le fichier est-il téléversé ?',
           a: 'Non. Le décalage est calculé dans votre navigateur et l’export est enregistré sur votre appareil.',
         },
+        {
+          q: 'Puis-je changer la tonalité d’une chanson pour éviter le copyright ?',
+          a: 'Non — changer la tonalité ne supprime pas les droits liés à un enregistrement. Un téléversement transposé peut toujours être revendiqué et retiré. Changez la tonalité pour chanter ou pour le karaoké, et publiez de la musique dont vous détenez les droits.',
+        },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
     },
@@ -1831,8 +1835,8 @@ export const fr: Catalog = {
       ],
       faqs: [
         {
-          q: 'Quels fichiers M4A fonctionnent ?',
-          a: 'De l’audio AAC dans un conteneur M4A — ce qu’utilisent les mémos vocaux et la plupart des téléchargements AAC. L’Apple Lossless (ALAC) stocké en M4A ne se décode souvent pas dans le navigateur. Convertissez d’abord ce fichier en AAC ou WAV, puis revenez ici.',
+          q: 'Peut-on convertir M4A en MP3 sur iPhone, Android ou Mac ?',
+          a: 'Oui — le convertisseur tourne dans n’importe quel navigateur, l’appareil n’a pas d’importance. De l’audio AAC dans un conteneur M4A — ce qu’utilisent les mémos vocaux et la plupart des téléchargements AAC. L’Apple Lossless (ALAC) stocké en M4A ne se décode souvent pas dans le navigateur. Convertissez d’abord ce fichier en AAC ou WAV, puis revenez ici.',
         },
         {
           q: 'Et une vidéo MP4 ?',
