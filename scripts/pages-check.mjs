@@ -90,7 +90,7 @@ try {
     try {
       await page.goto(BASE + path, { waitUntil: 'networkidle0', timeout: 20000 });
       const h1 = await page.$eval('h1', (el) => el.textContent.trim());
-      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-visualizer], [data-spec-paint]') !== null;
+      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-visualizer], [data-spec-paint], [data-tag-editor]') !== null;
       let recorderOk = true;
       if (recorder) recorderOk = (await page.$('[data-recorder]')) !== null;
       check(
