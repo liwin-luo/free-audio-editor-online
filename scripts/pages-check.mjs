@@ -65,6 +65,8 @@ const pages = [
   { path: '/zh/guides/convert-video-to-mp3', island: false },
   { path: '/guides/convert-ogg-to-mp3', island: false },
   { path: '/guides/how-to-trim-audio', island: false },
+  { path: '/guides/fix-quiet-voice-recording', island: false },
+  { path: '/de/guides/sprachnachricht-als-mp3', island: false },
   { path: '/guides/change-pitch-without-changing-speed', island: false },
   { path: '/guides/how-to-edit-an-mp3', island: false },
   { path: '/guides/how-to-edit-a-wav-file', island: false },

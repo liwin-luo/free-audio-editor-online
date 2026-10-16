@@ -12,6 +12,14 @@ export type GuideCard = {
 export const GUIDES: GuideCard[] = [
   {
     locale: 'en',
+    href: '/guides/fix-quiet-voice-recording',
+    title: 'Fix a Quiet Voice Recording Without Distortion',
+    description:
+      'High-pass the rumble, peak-normalize, then boost with a limiter. The order for a quiet voice memo, and where each step stops helping.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
     href: '/guides/how-to-cut-a-song',
     title: 'How to Cut a Song Online (Free, Nothing Uploaded)',
     description:
@@ -228,6 +236,14 @@ export const GUIDES: GuideCard[] = [
   },
   {
     locale: 'de',
+    href: '/de/guides/sprachnachricht-als-mp3',
+    title: 'WhatsApp-Sprachnachricht als MP3 verschicken',
+    description:
+      'Opus-Sprachnachricht oder iPhone-M4A in MP3 wandeln, die Stelle schneiden und weiterleiten. Nichts wird hochgeladen.',
+    minutes: 4,
+  },
+  {
+    locale: 'de',
     href: '/de/guides/convert-video-to-mp3',
     title: 'MP4 in MP3 umwandeln — im Browser',
     description:
@@ -334,7 +350,7 @@ export const GUIDE_INDEX: Record<Locale, IndexCopy> = {
   en: {
     title: 'Audio Guides — Cut, Convert and Edit | Free Audio Editor',
     description:
-      'Guides for browser audio: trim a recording, edit an MP3 or WAV, change pitch without changing speed, cut a song, or convert video to MP3.',
+      'Guides for browser audio: trim a recording, fix a quiet voice memo, edit an MP3 or WAV, change pitch, or convert video to MP3.',
     h1: 'Audio guides',
     intro:
       'Short, practical walkthroughs for the things people actually do with audio — written for browser tools that never upload your files.',
@@ -369,8 +385,9 @@ export const GUIDE_INDEX: Record<Locale, IndexCopy> = {
     minutes: 'mnt',
   },
   de: {
-    title: 'Audio-Anleitungen — MP4 in MP3 umwandeln',
-    description: 'Anleitung auf Deutsch: MP4 im Browser in MP3 umwandeln, ohne das Video hochzuladen.',
+    title: 'Audio-Anleitungen — MP3 umwandeln und schneiden',
+    description:
+      'Anleitungen auf Deutsch: eine Sprachnachricht oder ein Video in MP3 umwandeln, ohne die Datei hochzuladen.',
     h1: 'Audio-Anleitungen',
     intro: 'Kurze Schritte für das, was im Browser geht. Die Datei wird nicht hochgeladen.',
     empty: 'Noch keine Anleitungen auf Deutsch.',

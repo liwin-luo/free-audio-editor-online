@@ -76,7 +76,10 @@ gain that still avoids clipping. Use it when you do not know how far to push.
 [Increase volume](/increase-volume) is a multiplier you choose, up to 400%,
 with a limiter on the peaks. The editor's own volume slider stops at 200%.
 Use the dedicated page when 200% is not enough. Back off if the loud parts
-start to pump. Clean loud is better than maximum loud.
+start to pump. Clean loud is better than maximum loud. A quiet voice memo
+usually needs more than one of these. The order is
+[fix a quiet voice recording](/guides/fix-quiet-voice-recording): high-pass,
+then normalize, then a limited boost.
 
 Neither one is loudness matching for streaming platforms. That is a longer
 average, measured in LUFS, and it belongs in a mastering session.
