@@ -26,6 +26,7 @@ export function localizeTool(slug: string, locale: Locale): ToolDef | undefined 
     description: copy.description,
     h1: copy.h1,
     subtitle: copy.subtitle,
+    cardLine: copy.cardLine ?? tool.cardLine,
     intro: copy.intro,
     usesHeading: copy.usesHeading,
     uses: copy.uses,

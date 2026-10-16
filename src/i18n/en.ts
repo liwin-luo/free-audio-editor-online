@@ -222,6 +222,13 @@ export const en: Shell = {
     mostUsed: 'Most used',
     comingTitle: 'Coming next',
     comingBody: 'Crossfade mixer, silence remover and more — same privacy-first approach.',
+    useCasesHeading: 'What will you edit today?',
+    useCases: [
+      { title: 'Podcasting', body: 'Record episodes, cut the rough bits, join segments and walk away with a transcript for your show notes.', tools: ['voice-recorder', 'mp3-editor', 'audio-to-text'] },
+      { title: 'Music', body: 'Slow riffs down to learn them, shift keys for covers and add weight or sparkle to your demos.', tools: ['change-audio-speed', 'pitch-changer', 'bass-booster'] },
+      { title: 'Voice-over', body: 'Deliver clean takes: strip rumble, even out levels and lift quiet recordings without clipping.', tools: ['high-pass-filter', 'normalize-audio', 'increase-volume'] },
+      { title: 'Study and work', body: 'Speed through lectures, turn recordings into text and smooth the joins between clips.', tools: ['audio-to-text', 'fade-audio', 'audio-joiner'] },
+    ],
     whyHeading: 'Why audio editing belongs on your device',
     why: [
       {
@@ -257,6 +264,22 @@ export const en: Shell = {
     ],
   },
   hub: {
+    categoryIntro: {
+      cut: 'Shorten a song, keep only the best part, or make a ringtone — select the range on the waveform and save it.',
+      merge: 'Join tracks into one file, pull the audio out of any video, and switch between MP3, WAV, M4A, OGG and more.',
+      record: 'Capture your microphone straight in the browser — trim the take and save it as MP3, nothing leaves your device.',
+      effects: 'Boost volume, change speed or pitch, add reverb and fades, EQ the lows and highs — and visualize sound as a waveform or spectrogram.',
+    },
+    tasksTitle: 'What do you want to do?',
+    tasks: [
+    { task: 'Make a ringtone for my phone', tool: 'ringtone-maker' },
+    { task: 'Pull the audio out of a video', tool: 'extract-audio' },
+    { task: 'Make a quiet recording louder', tool: 'increase-volume' },
+    { task: 'Join two songs into one file', tool: 'audio-joiner' },
+    { task: 'Convert a WAV file to MP3', tool: 'wav-to-mp3' },
+    { task: 'Slow down a song and add reverb', tool: 'slowed-reverb' },
+    { task: 'Change the pitch but keep the speed', tool: 'pitch-changer' },
+    ],
     title: 'Free Online Audio Tools — Trim, Merge, Convert & More',
     description:
       'Every tool in one place: trim, cut, merge, convert, record and boost audio right in your browser. No upload, no signup — free.',

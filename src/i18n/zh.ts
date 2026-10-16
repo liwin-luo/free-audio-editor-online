@@ -219,6 +219,13 @@ export const zh: Catalog = {
     mostUsed: '用得最多',
     comingTitle: '接下来',
     comingBody: '交叉淡化混音、静音删除，还有更多。做法同样是隐私优先。',
+    useCasesHeading: '今天要编辑什么？',
+    useCases: [
+      { title: '播客', body: '录制节目、剪掉瑕疵、拼接段落，还能顺手拿到节目笔记的文字稿。', tools: ['voice-recorder', 'mp3-editor', 'audio-to-text'] },
+      { title: '音乐', body: '把 riff 放慢来学，为翻唱变调，给小样增加分量或明亮度。', tools: ['change-audio-speed', 'pitch-changer', 'bass-booster'] },
+      { title: '配音', body: '交付干净的成品：切掉隆隆声、拉平音量、提升偏小录音而不过载。', tools: ['high-pass-filter', 'normalize-audio', 'increase-volume'] },
+      { title: '学习和工作', body: '加速听完课程、把录音转成文字，并让片段之间的衔接更自然。', tools: ['audio-to-text', 'fade-audio', 'audio-joiner'] },
+    ],
     whyHeading: '为什么音频该在你自己的设备上编辑',
     why: [
       {
@@ -254,6 +261,22 @@ export const zh: Catalog = {
     ],
   },
   hub: {
+    categoryIntro: {
+      cut: '剪短歌曲、只保留最精彩的部分，或制作铃声——在波形上选出范围直接保存。',
+      merge: '把多段音频合并成一个文件、从视频中提取音轨，并在 MP3、WAV、M4A、OGG 等格式之间自由转换。',
+      record: '直接在浏览器里录制麦克风——修剪后存成 MP3，数据不离开设备。',
+      effects: '增大音量、变速变调、加混响和淡入淡出、均衡高低频——还能把声音可视化为波形或频谱图。',
+    },
+    tasksTitle: '你想做什么？',
+    tasks: [
+    { task: '给手机做一段铃声', tool: 'ringtone-maker' },
+    { task: '从视频里提取音频', tool: 'extract-audio' },
+    { task: '把偏小的录音变响', tool: 'increase-volume' },
+    { task: '把两首歌合成一个文件', tool: 'audio-joiner' },
+    { task: '把 WAV 转成 MP3', tool: 'wav-to-mp3' },
+    { task: '把歌放慢并加混响', tool: 'slowed-reverb' },
+    { task: '变调但不变速', tool: 'pitch-changer' },
+    ],
     title: '免费在线音频工具大全 — 剪辑、合并、转换，无需上传',
     description:
       '裁剪、合并、格式转换、录音等所有工具集中在一处,直接在浏览器里运行。不用上传、不用注册,完全免费。',
@@ -303,6 +326,7 @@ export const zh: Catalog = {
   },
   tools: {
     'audio-to-text': {
+      cardLine: '在本机把访谈和语音备忘转成文字或 SRT 字幕。',
       name: '录音转文字',
       shortName: '录音转文字',
       title: '录音转文字 — 在线免费，音频一键转文字',
@@ -362,6 +386,7 @@ export const zh: Catalog = {
       exportLabel: '开始转写',
     },
     'bass-booster': {
+      cardLine: '150 Hz 以下低搁架最多 +15 dB，增加分量和冲击感。',
       name: '低音增强',
       shortName: '低音',
       title: '低音增强 - 在线加强音频低频',
@@ -420,6 +445,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件,或点击选择',
     },
     'treble-booster': {
+      cardLine: '提升 3 kHz 以上高频最多 +15 dB，增加明亮感和清晰度。',
       name: '高音增强',
       shortName: '高音',
       title: '高音增强 - 在线提升音频高频',
@@ -478,6 +504,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件,或点击选择',
     },
     'equalizer': {
+      cardLine: '用直观的三旋钮 ±15 dB 均衡器塑造低、中、高频。',
       name: '音频均衡器',
       shortName: '均衡器',
       title: '音频均衡器 - 三段 EQ 在线调节',
@@ -536,6 +563,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件,或点击选择',
     },
     'low-pass-filter': {
+      cardLine: '只保留截止频率以下的温暖感——做 lo-fi 音色很合适。',
       name: '低通滤波器',
       shortName: '低通滤波',
       title: '低通滤波器 - 在线去除高频噪声',
@@ -594,6 +622,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件,或点击选择',
     },
     'high-pass-filter': {
+      cardLine: '切掉截止频率以下的隆隆声和嗡嗡声，人声更干净。',
       name: '高通滤波器',
       shortName: '高通滤波',
       title: '高通滤波器 - 在线去除低频轰鸣',
@@ -652,6 +681,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件,或点击选择',
     },
     'fade-audio': {
+      cardLine: '用精确的淡入淡出时长，柔化歌曲结尾和播客开头。',
       name: '音频淡入淡出',
       shortName: '淡入淡出',
       title: '音频淡入淡出 - 在线给音乐加淡入淡出',
@@ -710,6 +740,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件,或点击选择',
     },
     'audio-trimmer': {
+      cardLine: '拖动手柄精确保留需要的部分——播客、语音备忘、任何音频都行。',
       name: '音频剪辑',
       shortName: '音频剪辑',
       title: '音频剪辑 — 在线免费裁剪音频和音乐',
@@ -768,6 +799,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件，或点击浏览',
     },
     'mp3-cutter': {
+      cardLine: '把歌切到副歌、高潮或任意片段，不重新编码。',
       name: 'MP3 剪辑',
       shortName: 'MP3 剪辑',
       title: 'MP3 剪辑 — 在线免费剪切歌曲',
@@ -822,6 +854,7 @@ export const zh: Catalog = {
       dropHint: '拖入 MP3，或点击浏览',
     },
     'mp3-editor': {
+      cardLine: '一个标签页搞定快速剪辑：剪切、淡入淡出、倒放、变速、标准化。',
       name: 'MP3 编辑器',
       shortName: 'MP3 编辑器',
       title: 'MP3 编辑器 — 在线剪切、淡化、倒放和变速',
@@ -876,6 +909,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件，或点击浏览',
     },
     'ringtone-maker': {
+      cardLine: '把歌里最抓耳的 30 秒做成 iPhone 或安卓铃声。',
       name: '铃声制作',
       shortName: '铃声制作',
       title: '铃声制作 — 在线把任意歌曲做成铃声',
@@ -930,6 +964,7 @@ export const zh: Catalog = {
       dropHint: '拖入一首歌，或点击浏览',
     },
     'audio-joiner': {
+      cardLine: '把语音备忘、歌曲或播客各集拼接成一个完整文件。',
       name: '音频合并',
       shortName: '音频合并',
       title: '音频合并 — 在线免费合并歌曲和音频',
@@ -984,6 +1019,7 @@ export const zh: Catalog = {
       dropHint: '拖入两个或更多音频文件，或点击浏览',
     },
     'wav-to-mp3': {
+      cardLine: '把大体积 WAV 录音压成便于分享的 MP3，码率自选。',
       name: 'WAV 转 MP3',
       shortName: 'WAV 转 MP3',
       title: 'WAV 转 MP3 — 在线免费把 WAV 转成 MP3',
@@ -1039,6 +1075,7 @@ export const zh: Catalog = {
       exportLabel: '转为 MP3',
     },
     'flac-to-mp3': {
+      cardLine: '把无损 FLAC 转成 MP3，让不支持 FLAC 的设备和应用也能播。',
       name: 'FLAC 转 MP3',
       shortName: 'FLAC 转 MP3',
       title: 'FLAC 转 MP3 — 在线免费把 FLAC 转成 MP3',
@@ -1094,6 +1131,7 @@ export const zh: Catalog = {
       exportLabel: '转为 MP3',
     },
     'mp3-to-wav': {
+      cardLine: '把 MP3 解压成 WAV，方便剪辑、转写或精细听审。',
       name: 'MP3 转 WAV',
       shortName: 'MP3 转 WAV',
       title: 'MP3 转 WAV — 在线免费把 MP3 转成 WAV',
@@ -1149,6 +1187,7 @@ export const zh: Catalog = {
       exportLabel: '转为 WAV',
     },
     'compress-audio': {
+      cardLine: '把大音频文件压到目标大小或码率，听感依然清晰。',
       name: '音频压缩',
       shortName: '音频压缩',
       title: '音频压缩 — 在线免费减小 MP3 和 WAV 体积',
@@ -1204,6 +1243,7 @@ export const zh: Catalog = {
       exportLabel: '压缩',
     },
     'reverse-audio': {
+      cardLine: '把音频倒着放：做特效、检查混音，或者纯粹好玩。',
       name: '音频倒放',
       shortName: '倒放',
       title: '音频倒放 — 在线免费把歌曲倒着放',
@@ -1258,6 +1298,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件，或点击浏览',
     },
     'change-audio-speed': {
+      cardLine: '把课程加速到 2×，或把吉他 riff 放慢来学——音高保持不变。',
       name: '音频变速',
       shortName: '变速',
       title: '在线音频变速 — 加快或放慢音频',
@@ -1312,6 +1353,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件，或点击浏览',
     },
     'increase-volume': {
+      cardLine: '用限幅器把偏小的语音备忘提升到 4×，绝不过载。',
       name: 'MP3 音量加大',
       shortName: '音量加大',
       title: '音量放大 — 在线免费把 MP3 调响',
@@ -1366,6 +1408,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件，或点击浏览',
     },
     'mp4-to-mp3': {
+      cardLine: '把视频片段、屏幕录制或相机文件的音轨存成 MP3。',
       name: 'MP4 转 MP3',
       shortName: 'MP4 转 MP3',
       title: 'MP4 转 MP3 — 在线免费把视频转成 MP3',
@@ -1421,6 +1464,7 @@ export const zh: Catalog = {
       exportLabel: '转为 MP3',
     },
     'extract-audio': {
+      cardLine: '从任何视频中提取干净音频，用于剪辑、转写或采样。',
       name: '提取音轨',
       shortName: '提取音轨',
       title: '从视频提取音频 — 把声音存成 MP3 或 WAV',
@@ -1476,6 +1520,7 @@ export const zh: Catalog = {
       exportLabel: '提取音轨',
     },
     'voice-recorder': {
+      cardLine: '直接在浏览器里录会议、课程和灵感——无需安装应用。',
       name: '录音',
       shortName: '录音',
       title: '在线录音 — 免费录音、裁剪并保存',
@@ -1529,6 +1574,7 @@ export const zh: Catalog = {
       dropHint: '或拖入已有的录音来编辑',
     },
     'volume-booster': {
+      cardLine: '让安静的音乐和视频音轨变响变干净，最高 4×。',
       name: '音量加大',
       shortName: '音量加大',
       title: '音量加大 — 在线免费把视频和音乐调响',
@@ -1583,6 +1629,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频或视频文件，或点击浏览',
     },
     'normalize-audio': {
+      cardLine: '把一整批录音拉到统一、健康的音量水平。',
       name: '音频归一化',
       shortName: '归一化',
       title: '音频归一化 — 在线免费把音量拉齐',
@@ -1637,6 +1684,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件，或点击浏览',
     },
     'slowed-reverb': {
+      cardLine: '一键给任何歌加上深夜放慢加混响的味道。',
       name: '慢放 + 混响',
       shortName: '慢放 + 混响',
       title: '慢放 + 混响 — 在线免费做 slowed + reverb',
@@ -1691,6 +1739,7 @@ export const zh: Catalog = {
       dropHint: '拖入一首歌，或点击浏览',
     },
     'pitch-changer': {
+      cardLine: '按半音升降调，做翻唱和混搭——时长保持不变。',
       name: '变调',
       shortName: '变调',
       title: '变调 — 在线改音高，时长不变',
@@ -1719,6 +1768,7 @@ export const zh: Catalog = {
       dropHint: '拖入音频文件，或点击浏览',
     },
     'm4a-to-mp3': {
+      cardLine: '把 iPhone 语音备忘和 AAC 文件转成随处可播的 MP3。',
       name: 'M4A 转 MP3',
       shortName: 'M4A 转 MP3',
       title: 'M4A 转 MP3 — 在线免费把 M4A 和 AAC 转成 MP3',
@@ -1748,6 +1798,7 @@ export const zh: Catalog = {
       exportLabel: '转为 MP3',
     },
     'ogg-to-mp3': {
+      cardLine: '让游戏片段或 Linux 录制的 OGG 文件在任何应用里都能播。',
       name: 'OGG 转 MP3',
       shortName: 'OGG 转 MP3',
       title: 'OGG 转 MP3 — 在线免费把 OGG 转成 MP3',
@@ -1777,9 +1828,10 @@ export const zh: Catalog = {
       exportLabel: '转为 MP3',
     },
     'opus-to-mp3': {
+      cardLine: '把 Opus 通话和下载文件转成所有播放器都支持的 MP3。',
       name: 'Opus 转 MP3',
       shortName: 'Opus 转 MP3',
-      title: 'Opus 转 MP3 — 在线免费把 Opus 转成 MP3',
+      title: 'Opus 转 MP3 — 在线转换 WhatsApp 语音',
       description: '在浏览器里把 Opus 转成 MP3。免费，不用注册，不会上传。支持 .opus，以及 OGG 或 WebM 里的 Opus。',
       h1: 'Opus 转 MP3',
       subtitle: '把 Opus 转成 MP3。就在浏览器里，不会上传。',
@@ -1806,6 +1858,7 @@ export const zh: Catalog = {
       exportLabel: '转为 MP3',
     },
     'waveform-generator': {
+      cardLine: '把任何音轨变成可分享的波形图，颜色自己定。',
       name: '波形图生成器',
       shortName: '波形图',
       title: '音频波形图生成器 — 在线免费导出波形 PNG',
@@ -1836,6 +1889,7 @@ export const zh: Catalog = {
       exportLabel: '下载 PNG',
     },
     'spectrogram-generator': {
+      cardLine: '看到歌曲、录音或鸟叫里的频率成分。',
       name: '频谱图生成器',
       shortName: '频谱图',
       title: '频谱图生成器 — 在线把音频转成频谱图',
@@ -1866,9 +1920,10 @@ export const zh: Catalog = {
       exportLabel: '下载 PNG',
     },
     'image-to-audio': {
+      cardLine: '把一张图片或一行文字藏进 WAV 频谱里。',
       name: '图片转音频',
       shortName: '藏图',
-      title: '图片转音频 — 把图片或文字藏进频谱',
+      title: '图片转音频 — 在线做频谱图，图或文字都行',
       description: '把一张图或一行字写成 WAV，用频谱图就能看出来。免费，在浏览器里完成，文件不会上传。',
       h1: '图片转音频',
       subtitle: '把一张图或一行字写进 WAV 的频率里。频谱图会把它显示出来。',

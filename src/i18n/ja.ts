@@ -223,6 +223,13 @@ export const ja: Catalog = {
     mostUsed: 'よく使われる',
     comingTitle: '次に追加',
     comingBody: 'クロスフェードのミキサー、無音の除去、ほかにも続きます。プライバシー優先は同じです。',
+    useCasesHeading: '今日は何を編集しますか？',
+    useCases: [
+      { title: 'ポッドキャスト', body: '収録して、ざっとカットして、セグメントをつなげて、番組ノート用の文字起こしまで。', tools: ['voice-recorder', 'mp3-editor', 'audio-to-text'] },
+      { title: '音楽', body: 'リフをスローで学習、カバーのキー変更、デモに重さやきらめきを追加。', tools: ['change-audio-speed', 'pitch-changer', 'bass-booster'] },
+      { title: 'ナレーション', body: 'クリーンなテイクに：低域ノイズを除き、レベルを整え、小さな録音をクリップなしで持ち上げる。', tools: ['high-pass-filter', 'normalize-audio', 'increase-volume'] },
+      { title: '勉強と仕事', body: '講義を早聞きし、録音をテキストにし、クリップのつなぎ目をなめらかに。', tools: ['audio-to-text', 'fade-audio', 'audio-joiner'] },
+    ],
     whyHeading: '音声編集は、自分の端末で',
     why: [
       {
@@ -258,6 +265,22 @@ export const ja: Catalog = {
     ],
   },
   hub: {
+    categoryIntro: {
+      cut: '曲を短くする、ベストな部分だけ残す、着信音を作る——波形で範囲を選んでそのまま保存できます。',
+      merge: '複数の音声を 1 つのファイルに結合、動画から音声を取り出し、MP3・WAV・M4A・OGG などの形式を自由に変換。',
+      record: 'マイクをブラウザでそのまま録音。カットして MP3 で保存——データは端末の外に出ません。',
+      effects: '音量ブースト、速度・ピッチ変更、リバーブやフェード、低域・高域のイコライズ——波形やスペクトログラムでの可視化も。',
+    },
+    tasksTitle: '何をしたいですか？',
+    tasks: [
+    { task: 'スマホの着信音を作る', tool: 'ringtone-maker' },
+    { task: '動画から音声を取り出す', tool: 'extract-audio' },
+    { task: '小さな録音を大きくする', tool: 'increase-volume' },
+    { task: '2 つの曲を 1 つのファイルに結合', tool: 'audio-joiner' },
+    { task: 'WAV を MP3 に変換する', tool: 'wav-to-mp3' },
+    { task: '曲をスローにしてリバーブをかける', tool: 'slowed-reverb' },
+    { task: '速度を変えずにピッチを変更', tool: 'pitch-changer' },
+    ],
     title: '無料のオンライン音声ツール｜カット・結合・変換をブラウザで',
     description:
       'トリミング、結合、形式変換、録音など、すべてのツールをブラウザで直接実行。アップロード不要・登録不要・完全無料。',
@@ -307,6 +330,7 @@ export const ja: Catalog = {
   },
   tools: {
     'audio-to-text': {
+      cardLine: 'インタビューやボイスメモを端末内でテキストや SRT 字幕に文字起こし。',
       name: '音声文字起こし',
       shortName: '文字起こし',
       title: '音声文字起こし — オンラインで無料のテキスト変換',
@@ -366,6 +390,7 @@ export const ja: Catalog = {
       exportLabel: '文字起こし',
     },
     'bass-booster': {
+      cardLine: '150 Hz 以下を最大 +15 dB 強化して、重さとパンチを追加。',
       name: 'ベースブースター',
       shortName: 'ベース',
       title: 'ベースブースター｜低域を最大+15dB 強調',
@@ -424,6 +449,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップ、またはクリックして選択',
     },
     'treble-booster': {
+      cardLine: '3 kHz 以上を最大 +15 dB ブーストして、きらめきと明瞭感を追加。',
       name: 'トレブルブースター',
       shortName: 'トレブル',
       title: 'トレブルブースター｜高域を最大+15dB 強調',
@@ -482,6 +508,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップ、またはクリックして選択',
     },
     'equalizer': {
+      cardLine: '3 つのツマミだけの素直な ±15 dB イコライザーで低・中・高域を整形。',
       name: 'オーディオイコライザー',
       shortName: 'イコライザー',
       title: 'オーディオイコライザー｜3バンド EQ を無料で',
@@ -540,6 +567,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップ、またはクリックして選択',
     },
     'low-pass-filter': {
+      cardLine: 'カットオフ以下の温かさだけを残す——ローファイな質感に最適。',
       name: 'ローパスフィルター',
       shortName: 'ローパス',
       title: 'ローパスフィルター｜高域ノイズをカット',
@@ -598,6 +626,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップ、またはクリックして選択',
     },
     'high-pass-filter': {
+      cardLine: 'カットオフ以下の低域ノイズを取り除いて、声の録音をクリアに。',
       name: 'ハイパスフィルター',
       shortName: 'ハイパス',
       title: 'ハイパスフィルター｜低域のゴボつきをカット',
@@ -656,6 +685,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップ、またはクリックして選択',
     },
     'fade-audio': {
+      cardLine: '正確なフェード時間で、曲の終わりや番組の冒頭をなめらかに。',
       name: 'フェードイン/アウト',
       shortName: 'フェード',
       title: 'フェードイン・フェードアウト｜音声にフェードを付けて無料保存',
@@ -714,6 +744,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップ、またはクリックして選択',
     },
     'audio-trimmer': {
+      cardLine: 'ハンドルをドラッグして、必要な部分だけ正確に残せます。ポッドキャストやボイスメモも。',
       name: '音声トリミング',
       shortName: '音声トリミング',
       title: '音声トリミング — 音声・音楽をオンラインで無料カット',
@@ -772,6 +803,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップするか、クリックして選ぶ',
     },
     'mp3-cutter': {
+      cardLine: '再エンコードなしで、曲をサビや好きなクリップまでカット。',
       name: 'MP3 カッター',
       shortName: 'MP3 カッター',
       title: 'MP3 カット — オンライン無料',
@@ -826,6 +858,7 @@ export const ja: Catalog = {
       dropHint: 'MP3 ファイルをドロップするか、クリックして選ぶ',
     },
     'mp3-editor': {
+      cardLine: 'トリミング、フェード、逆再生、速度変更、ノーマライズを 1 つのタブで。',
       name: 'MP3 エディター',
       shortName: 'MP3 エディター',
       title: 'MP3 エディター — カット、フェード、逆再生、速度変更',
@@ -880,6 +913,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップするか、クリックして選ぶ',
     },
     'ringtone-maker': {
+      cardLine: '曲の一番キャッチーな 30 秒を iPhone・Android の着信音に。',
       name: '着信音メーカー',
       shortName: '着信音メーカー',
       title: '着信音 作成 — 好きな曲をオンラインで着信音に',
@@ -934,6 +968,7 @@ export const ja: Catalog = {
       dropHint: '曲をドロップするか、クリックして選ぶ',
     },
     'audio-joiner': {
+      cardLine: 'ボイスメモ、曲、ポッドキャストのエピソードを 1 つのファイルに連結。',
       name: '音声結合',
       shortName: '音声結合',
       title: 'MP3 結合 — オンライン無料',
@@ -988,6 +1023,7 @@ export const ja: Catalog = {
       dropHint: '2つ以上の音声ファイルをドロップするか、クリックして選ぶ',
     },
     'wav-to-mp3': {
+      cardLine: '重い WAV 録音を、ビットレートを選んで共有しやすい MP3 に。',
       name: 'WAV から MP3 コンバーター',
       shortName: 'WAV から MP3',
       title: 'WAV から MP3 — WAV ファイルをオンラインで無料変換',
@@ -1043,6 +1079,7 @@ export const ja: Catalog = {
       exportLabel: 'MP3 に変換',
     },
     'flac-to-mp3': {
+      cardLine: 'FLAC 対応のないプレーヤーやアプリのために、ロスレス FLAC を MP3 に変換。',
       name: 'FLAC から MP3 コンバーター',
       shortName: 'FLAC から MP3',
       title: 'FLAC から MP3 — オンラインで無料変換',
@@ -1098,6 +1135,7 @@ export const ja: Catalog = {
       exportLabel: 'MP3 に変換',
     },
     'mp3-to-wav': {
+      cardLine: 'MP3 を WAV に展開——編集・文字起こし・詳細なリスニングに。',
       name: 'MP3 から WAV コンバーター',
       shortName: 'MP3 から WAV',
       title: 'MP3 から WAV — オンラインで無料変換',
@@ -1153,6 +1191,7 @@ export const ja: Catalog = {
       exportLabel: 'WAV に変換',
     },
     'compress-audio': {
+      cardLine: '大きな音声ファイルを聞き取りやすいまま、目標サイズやビットレートへ圧縮。',
       name: 'オーディオ圧縮',
       shortName: 'オーディオ圧縮',
       title: '音声 圧縮 — MP3・WAV をオンラインで軽量化',
@@ -1208,6 +1247,7 @@ export const ja: Catalog = {
       exportLabel: '圧縮',
     },
     'reverse-audio': {
+      cardLine: '曲を逆再生して効果音作りやミックスのチェック、純粋な楽しみに。',
       name: '逆再生',
       shortName: '逆再生',
       title: '逆再生 — 音楽と曲をオンラインで無料で逆から再生',
@@ -1262,6 +1302,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップするか、クリックして選ぶ',
     },
     'change-audio-speed': {
+      cardLine: '講義を 2 倍速に、リフをスローで学習——ピッチはそのまま。',
       name: '音声の速度変更',
       shortName: '速度変更',
       title: '音声 速度変更 — 曲をオンラインで速く・遅く、無料',
@@ -1316,8 +1357,9 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップするか、クリックして選ぶ',
     },
     'increase-volume': {
+      cardLine: '小さなボイスメモをリミッター付きで最大 4 倍まで、クリップなしで増幅。',
       name: 'MP3 音量ブースター',
-      shortName: '音量ブースター',
+      shortName: 'MP3 音量',
       title: 'MP3 の音量を上げる — 音声をオンラインで無料で大きく',
       description:
         '小さい音声を大きく。ブラウザで MP3 などを最大 400%（+12 dB）まで音量を上げます。内蔵のリミッターが音をきれいに保ちます。無料、アップロードなし。',
@@ -1370,6 +1412,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップするか、クリックして選ぶ',
     },
     'mp4-to-mp3': {
+      cardLine: '動画クリップやスクリーン録画、カメラファイルの音声を MP3 で保存。',
       name: 'MP4 から MP3 コンバーター',
       shortName: 'MP4 から MP3',
       title: 'MP4 MP3 変換 — オンライン無料',
@@ -1425,6 +1468,7 @@ export const ja: Catalog = {
       exportLabel: 'MP3 に変換',
     },
     'extract-audio': {
+      cardLine: 'どんな動画からもクリーンな音声を取り出し、編集・文字起こし・サンプリングに。',
       name: '音声抽出',
       shortName: '音声抽出',
       title: '動画から音声を切り出す — MP3 または WAV で保存',
@@ -1480,6 +1524,7 @@ export const ja: Catalog = {
       exportLabel: '音声を切り出す',
     },
     'voice-recorder': {
+      cardLine: '会議・講義・ひらめきをブラウザでそのまま録音。アプリのインストールは不要。',
       name: 'オンライン録音',
       shortName: 'オンライン録音',
       title: 'オンライン録音 — ブラウザで録音して MP3 保存',
@@ -1534,6 +1579,7 @@ export const ja: Catalog = {
       dropHint: 'または、すでにある録音をドロップして編集',
     },
     'volume-booster': {
+      cardLine: '静かな音楽や動画の音声を、最大 4 倍で大きくクリアに。',
       name: '音量ブースター',
       shortName: '音量ブースター',
       title: '音量ブースター — 動画と音楽をオンラインで無料で大きく',
@@ -1588,6 +1634,7 @@ export const ja: Catalog = {
       dropHint: '音声または動画ファイルをドロップするか、クリックして選ぶ',
     },
     'normalize-audio': {
+      cardLine: '大量の録音をまとめて一貫した適正レベルに。',
       name: '音声ノーマライザー',
       shortName: 'ノーマライザー',
       title: '音声ノーマライザー — 音声レベルをオンラインで無料ノーマライズ',
@@ -1642,6 +1689,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップするか、クリックして選ぶ',
     },
     'slowed-reverb': {
+      cardLine: 'どんな曲もワンクリックで slowed + reverb の夜更かしサウンドに。',
       name: 'スロウリバーブ',
       shortName: 'スロウリバーブ',
       title: 'スロウリバーブ — 曲を遅くして残響を足す、無料',
@@ -1696,6 +1744,7 @@ export const ja: Catalog = {
       dropHint: '曲をドロップするか、クリックして選ぶ',
     },
     'pitch-changer': {
+      cardLine: '半音単位でピッチを移動——長さはそのままでカバーやマッシュアップに。',
       name: 'ピッチチェンジャー',
       shortName: '音程',
       title: 'ピッチチェンジャー — 長さはそのまま音程だけ変える',
@@ -1724,6 +1773,7 @@ export const ja: Catalog = {
       dropHint: '音声ファイルをドロップするか、クリックして選ぶ',
     },
     'm4a-to-mp3': {
+      cardLine: 'iPhone のボイスメモや AAC ファイルを、どこでも再生できる MP3 に変換。',
       name: 'M4A を MP3 に',
       shortName: 'M4A を MP3 に',
       title: 'M4A を MP3 に — M4A と AAC をオンラインで無料変換',
@@ -1753,6 +1803,7 @@ export const ja: Catalog = {
       exportLabel: 'MP3 に変換',
     },
     'ogg-to-mp3': {
+      cardLine: 'ゲーム映像や Linux 録音の OGG ファイルをどんなアプリでも再生可能に。',
       name: 'OGG を MP3 に',
       shortName: 'OGG を MP3 に',
       title: 'OGG を MP3 に — ブラウザで無料変換',
@@ -1782,9 +1833,10 @@ export const ja: Catalog = {
       exportLabel: 'MP3 に変換',
     },
     'opus-to-mp3': {
+      cardLine: 'Opus 通話やダウンロードを、あらゆるプレーヤーが対応する MP3 に変換。',
       name: 'Opus を MP3 に',
       shortName: 'Opus を MP3 に',
-      title: 'Opus を MP3 に — ブラウザで無料変換',
+      title: 'Opus を MP3 に — WhatsApp のボイスメモを変換',
       description: 'ブラウザで Opus の音声を MP3 に変換します。無料、登録なし、アップロードなし。.opus と、OGG または WebM 内の Opus に使えます。',
       h1: 'Opus を MP3 に',
       subtitle: 'Opus の音声を MP3 にします。ブラウザの中で、アップロードはありません。',
@@ -1811,6 +1863,7 @@ export const ja: Catalog = {
       exportLabel: 'MP3 に変換',
     },
     'waveform-generator': {
+      cardLine: 'どんな曲も自分好みの色でシェアできる波形画像に。',
       name: '波形ジェネレーター',
       shortName: '波形',
       title: '波形ジェネレーター — 音声を波形画像にして無料ダウンロード',
@@ -1841,6 +1894,7 @@ export const ja: Catalog = {
       exportLabel: 'PNG を保存',
     },
     'spectrogram-generator': {
+      cardLine: '曲や録音、鳥の声の中の周波数が見えてくる。',
       name: 'スペクトログラム作成',
       shortName: 'スペクトログラム',
       title: 'スペクトログラム作成 — 音声を画像に、無料',
@@ -1871,9 +1925,10 @@ export const ja: Catalog = {
       exportLabel: 'PNG を保存',
     },
     'image-to-audio': {
+      cardLine: '画像や一行のテキストを WAV のスペクトログラムに隠そう。',
       name: '画像を音声に',
       shortName: '画像を音声',
-      title: '画像を音声に — 絵や文字をスペクトルへ',
+      title: '画像を音声に — スペクトログラムを作成',
       description: '画像か短い一行を、スペクトログラムに映る WAV にします。ブラウザ内で無料。ファイルはアップロードしません。',
       h1: '画像を音声に',
       subtitle: '絵か一行の文字を WAV の周波数に描きます。スペクトログラムで読めます。',

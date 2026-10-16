@@ -79,6 +79,8 @@ export interface ToolDef {
   h1: string;
   /** One-line subtitle under the H1 */
   subtitle: string;
+  /** Scenario line for home/hub cards; locales may override via ToolCopy.cardLine, else falls back to subtitle */
+  cardLine?: string;
   /** Intro paragraph block (1–2 sentences, keyword-rich but honest) */
   intro: string;
   /** H2 plus three concrete jobs. Sits under the intro, not a second how-to. */
@@ -96,6 +98,7 @@ export interface ToolDef {
 export const TOOLS: ToolDef[] = [
   {
     slug: 'audio-trimmer',
+    cardLine: 'Drag the handles to keep exactly the part you need — podcasts, voice memos, any track.',
     name: 'Audio Trimmer',
     shortName: 'Audio Trimmer',
     icon: 'trimmer',
@@ -162,6 +165,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'mp3-cutter',
+    cardLine: 'Cut a song down to the chorus, the drop or any clip without re-encoding.',
     name: 'MP3 Cutter',
     shortName: 'MP3 Cutter',
     icon: 'scissors',
@@ -224,6 +228,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'mp3-editor',
+    cardLine: 'One tab for quick edits: trim, fade, reverse, speed up and normalize any track.',
     name: 'MP3 Editor',
     shortName: 'MP3 Editor',
     icon: 'waveform',
@@ -286,6 +291,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'ringtone-maker',
+    cardLine: 'Turn the catchiest 30 seconds of a song into an iPhone or Android ringtone.',
     name: 'Ringtone Maker',
     shortName: 'Ringtone Maker',
     icon: 'bell',
@@ -350,6 +356,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'audio-joiner',
+    cardLine: 'Stitch voice memos, songs or podcast episodes into one continuous file.',
     name: 'Audio Joiner',
     shortName: 'Audio Joiner',
     icon: 'layers',
@@ -413,6 +420,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'wav-to-mp3',
+    cardLine: 'Shrink heavy WAV recordings into shareable MP3s at the bitrate you pick.',
     name: 'WAV to MP3 Converter',
     shortName: 'WAV to MP3',
     icon: 'convert',
@@ -476,6 +484,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'flac-to-mp3',
+    cardLine: 'Convert lossless FLAC files to MP3 for players and apps that don’t speak FLAC.',
     name: 'FLAC to MP3 Converter',
     shortName: 'FLAC to MP3',
     icon: 'convert',
@@ -540,6 +549,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'mp3-to-wav',
+    cardLine: 'Uncompress MP3 to WAV for editing, transcribing or detailed listening.',
     name: 'MP3 to WAV Converter',
     shortName: 'MP3 to WAV',
     icon: 'convert',
@@ -604,6 +614,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'compress-audio',
+    cardLine: 'Shrink big audio files to a target size or bitrate while keeping them easy to hear.',
     name: 'Audio Compressor',
     shortName: 'Compressor',
     icon: 'file',
@@ -668,6 +679,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'reverse-audio',
+    cardLine: 'Play a track backwards to make effects, check a mix or just for fun.',
     name: 'Reverse Audio',
     shortName: 'Reverse Audio',
     icon: 'reverse',
@@ -702,7 +714,7 @@ export const TOOLS: ToolDef[] = [
     faqs: [
       {
         q: 'Why would I play a song backwards?',
-        a: 'Musicians use reversed audio for creative effects — reversed cymbal swells, backwards guitar solos, ambient textures. It is also the classic way to check a track for backmasking, and honestly, hearing your own voice reversed is just fun.',
+        a: 'Musicians use reversed audio for creative effects — reversed cymbal swells, backwards guitar solos, ambient textures. It is also the classic way to check a track for backmasking, it powers the guess-the-reversed-song party game, and honestly, hearing your own voice reversed is just fun.',
       },
       {
         q: 'Does reversing change the quality?',
@@ -731,6 +743,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'change-audio-speed',
+    cardLine: 'Speed up lectures to 2× or slow down riffs to learn them — pitch stays true.',
     name: 'Audio Speed Changer',
     shortName: 'Speed Changer',
     icon: 'clock-counter-clockwise',
@@ -764,8 +777,8 @@ export const TOOLS: ToolDef[] = [
     ],
     faqs: [
       {
-        q: 'Does changing speed change the pitch?',
-        a: 'Yes — speed and pitch move together, like a record played faster or slower: 2× sounds about an octave higher, 0.5× about an octave lower. That is the classic effect; keeping pitch while changing tempo needs a dedicated time-stretch algorithm we may add later. To change pitch without changing the length, use the pitch changer.',
+        q: 'Can I speed up audio without changing the pitch?',
+        a: 'No — here speed and pitch move together, like a record played faster or slower: 2× sounds about an octave higher, 0.5× about an octave lower. Keeping pitch while changing tempo needs a dedicated time-stretch algorithm we may add later. To change pitch without changing the length, use the pitch changer.',
       },
       {
         q: 'What speeds can I choose?',
@@ -794,13 +807,14 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'increase-volume',
+    cardLine: 'Lift quiet voice memos up to 4× with a limiter so nothing clips.',
     name: 'MP3 Volume Booster',
-    shortName: 'Volume Booster',
+    shortName: 'MP3 Volume',
     icon: 'volume',
     category: 'effects',
     title: 'Increase MP3 Volume — Make Audio Louder Online Free',
     description:
-      'Make quiet audio louder — boost MP3 and other files up to 4× in your browser. A built-in limiter keeps the sound clean, free and nothing uploaded.',
+      'Make quiet audio louder — a volume increaser that boosts MP3 up to 4× without distortion. A limiter keeps it clean; free, nothing uploaded.',
     h1: 'Increase MP3 Volume',
     subtitle: 'Boost quiet recordings up to 4× — with a limiter, so nothing clips.',
     intro:
@@ -858,6 +872,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'mp4-to-mp3',
+    cardLine: 'Save the soundtrack of a video clip, screen recording or camera file as MP3.',
     name: 'MP4 to MP3 Converter',
     shortName: 'MP4 to MP3',
     icon: 'film',
@@ -922,6 +937,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'extract-audio',
+    cardLine: 'Pull clean audio out of any video for editing, transcription or sampling.',
     name: 'Audio Extractor',
     shortName: 'Audio Extractor',
     icon: 'film',
@@ -986,6 +1002,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'voice-recorder',
+    cardLine: 'Record meetings, lectures and ideas right in the browser — no app install.',
     name: 'Voice Recorder',
     shortName: 'Voice Recorder',
     icon: 'mic',
@@ -1049,6 +1066,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'audio-to-text',
+    cardLine: 'Transcribe interviews and voice notes to text or SRT subtitles, right on your device.',
     name: 'Audio to Text',
     shortName: 'Audio to Text',
     icon: 'voice',
@@ -1116,6 +1134,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'volume-booster',
+    cardLine: 'Make quiet music and video soundtracks loud and clean, up to 4×.',
     name: 'Volume Booster',
     shortName: 'Volume Booster',
     icon: 'volume',
@@ -1181,11 +1200,12 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'normalize-audio',
+    cardLine: 'Bring a whole batch of recordings to one consistent, healthy level.',
     name: 'Audio Normalizer',
     shortName: 'Normalizer',
     icon: 'trending-up',
     category: 'effects',
-    title: 'Audio Normalizer — Normalize Audio Level Online Free',
+    title: 'Audio Normalizer — Normalize MP3 Volume Online Free',
     description:
       'Normalize audio to a consistent peak level in your browser — MP3, WAV, M4A and more. One click, free, nothing uploaded.',
     h1: 'Normalize Audio',
@@ -1244,6 +1264,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'slowed-reverb',
+    cardLine: 'Give any track the late-night slowed + reverb treatment in one click.',
     name: 'Slowed + Reverb',
     shortName: 'Slowed + Reverb',
     icon: 'moon',
@@ -1307,11 +1328,12 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'treble-booster',
+    cardLine: 'Add sparkle and clarity by lifting the highs up to +15 dB above 3 kHz.',
     name: 'Treble Booster',
     shortName: 'Treble',
     icon: 'sun',
     category: 'effects',
-    title: 'Treble Booster — Boost Highs of Audio Online Free',
+    title: 'Treble Booster — Make Audio Clearer Online Free',
     description:
       'Add up to +15 dB of airy highs above 3 kHz in your browser — a true high-shelf, not a loudness trick. Export MP3 or WAV. Free, no upload.',
     h1: 'Treble Booster',
@@ -1320,7 +1342,7 @@ export const TOOLS: ToolDef[] = [
       'Muffled, dull audio usually lacks one thing: energy above 3 kHz. The treble booster applies a true high-shelf EQ — up to +15 dB above 3 kHz, the same move a mastering engineer makes to open a track up — not a loudness trick that lifts everything. Drop a file, raise the slider until the detail comes back, and export. Everything runs in your browser: the file is never uploaded.',
     usesHeading: 'When to boost the treble',
     uses: [
-      'Open up a dull recording that sounds like it was made under a blanket.',
+      'Make a muffled video or voice recording clearer and crisper.',
       'Bring consonants and breath back into voices so speech stays intelligible.',
       'Add sparkle to cymbals and acoustic instruments in a flat-sounding mix.',
     ],
@@ -1374,6 +1396,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'equalizer',
+    cardLine: 'Shape low, mid and high shelves with a straightforward three-knob ±15 dB EQ.',
     name: 'Audio Equalizer',
     shortName: 'Equalizer',
     icon: 'waveform',
@@ -1441,11 +1464,12 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'low-pass-filter',
+    cardLine: 'Keep only the warmth below the cutoff — great for lo-fi textures and mutes.',
     name: 'Low Pass Filter',
     shortName: 'Low Pass',
     icon: 'minus',
     category: 'effects',
-    title: 'Low Pass Filter — Remove High Frequency Noise Online',
+    title: 'Low Pass Filter — Remove High Frequency Noise Online Free',
     description:
       'Cut hiss, harshness and high-frequency noise with a real low-pass filter, cutoff 300 Hz–20 kHz, in your browser. Export MP3 or WAV. Free, no upload.',
     h1: 'Low Pass Filter',
@@ -1456,7 +1480,7 @@ export const TOOLS: ToolDef[] = [
     uses: [
       'Remove constant hiss and air conditioning whine from voice recordings.',
       'Soften harsh, spitty cymbals or sibilance in a rough mix.',
-      'Make one sample sit behind another by dulling its top end.',
+      'Make audio sound muffled on purpose — behind a wall, phone-voice, lo-fi or meme.',
     ],
     howTo: [
       {
@@ -1508,13 +1532,14 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'high-pass-filter',
+    cardLine: 'Strip rumble and hum below the cutoff for cleaner voice recordings.',
     name: 'High Pass Filter',
     shortName: 'High Pass',
     icon: 'plus',
     category: 'effects',
-    title: 'High Pass Filter — Remove Low Rumble Online Free',
+    title: 'High Pass Filter — Remove Wind, Rumble & Hum Online',
     description:
-      'Cut rumble, hum and low-end boom with a real high-pass filter, cutoff 20 Hz–5 kHz, in your browser. Export MP3 or WAV. Free, no upload.',
+      'Cut rumble, hum, wind and low-end boom with a real high-pass filter, cutoff 20 Hz–5 kHz, in your browser. Export MP3 or WAV. Free, no upload.',
     h1: 'High Pass Filter',
     subtitle: 'Sweep the cutoff from 20 Hz up to 5 kHz and strip everything below it.',
     intro:
@@ -1575,6 +1600,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'waveform-generator',
+    cardLine: 'Turn any track into a shareable waveform picture with your own colors.',
     name: 'Waveform Generator',
     shortName: 'Waveform',
     icon: 'image',
@@ -1641,11 +1667,12 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'spectrogram-generator',
+    cardLine: 'See the frequencies inside a song, a recording or a bird call.',
     name: 'Spectrogram Generator',
     shortName: 'Spectrogram',
     icon: 'waveform',
     category: 'effects',
-    title: 'Spectrogram Generator — Audio to Image Online Free',
+    title: 'Spectrogram Generator — Turn Audio into a Spectrogram PNG',
     description:
       'Generate a spectrogram from any audio file and download it as PNG. Log or linear frequency axis, colormaps, dB control — free, nothing uploaded.',
     h1: 'Spectrogram Generator',
@@ -1707,11 +1734,12 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'image-to-audio',
+    cardLine: 'Hide a picture or a line of text inside a WAV spectrogram.',
     name: 'Image to Audio',
     shortName: 'Image to Audio',
     icon: 'image',
     category: 'effects',
-    title: 'Image to Audio — Hide a Picture in Sound Free',
+    title: 'Image to Audio Spectrogram Maker — Paint a WAV Online',
     description:
       'Turn a picture or a short line of text into a WAV a spectrogram can show. Free in your browser — the file is written on your device.',
     h1: 'Image to Audio',
@@ -1720,8 +1748,8 @@ export const TOOLS: ToolDef[] = [
       'Type a short line or drop an image. This page writes that shape into the frequencies of a WAV, the same trick as a picture hidden in a song. It is not a song and it is not speech. Open the WAV in the spectrogram generator to see it. Nothing is uploaded.',
     usesHeading: 'What people make with it',
     uses: [
-      'Hide a name or a one-line message where a spectrogram can read it.',
-      'Turn a simple logo or drawing into a short tone painting.',
+      'Hide a spectrogram message — a name or one line only a spectrogram shows.',
+      'Turn a simple logo or drawing into spectrogram art.',
       'Make a file you can drop straight into the spectrogram generator.',
     ],
     howTo: [
@@ -1773,11 +1801,12 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'bass-booster',
+    cardLine: 'Add weight and punch with up to +15 dB of low shelf below 150 Hz.',
     name: 'Bass Booster',
     shortName: 'Bass Boost',
     icon: 'volume',
     category: 'effects',
-    title: 'Bass Booster — Boost Low End of Audio Online Free',
+    title: 'Bass Booster — Boost Bass in Audio Online Free',
     description:
       'Add up to +15 dB of clean low end to music or voice in your browser — a true low-shelf, not a loudness trick. Export MP3 or WAV. Free, no upload.',
     h1: 'Bass Booster',
@@ -1840,11 +1869,12 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'fade-audio',
+    cardLine: 'Smooth song endings and podcast intros with exact fade in/out times.',
     name: 'Audio Fade In / Fade Out',
     shortName: 'Fade Audio',
     icon: 'trending-up',
     category: 'effects',
-    title: 'Audio Fade In / Fade Out — Add Fades Online Free',
+    title: 'Fade Out Music — Audio Fade In / Fade Out Online Free',
     description:
       'Add a smooth fade in and fade out to any song or recording right in your browser. Set the length to 0.1 s, export MP3 or WAV. Free, no upload.',
     h1: 'Fade In / Fade Out Audio',
@@ -1906,6 +1936,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'pitch-changer',
+    cardLine: 'Shift a song up or down in semitones for covers and mashups — same length.',
     name: 'Pitch Changer',
     shortName: 'Pitch Changer',
     icon: 'clock-counter-clockwise',
@@ -1969,6 +2000,7 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'm4a-to-mp3',
+    cardLine: 'Convert iPhone voice memos and AAC downloads to play-anywhere MP3.',
     name: 'M4A to MP3 Converter',
     shortName: 'M4A to MP3',
     icon: 'note',
@@ -2033,11 +2065,12 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'ogg-to-mp3',
+    cardLine: 'Make OGG files from game clips or Linux recordings play in any app.',
     name: 'OGG to MP3 Converter',
     shortName: 'OGG to MP3',
     icon: 'file',
     category: 'merge',
-    title: 'Convert OGG to MP3 — Free Online Converter',
+    title: 'OGG to MP3 Converter — Vorbis & Opus in OGG Online Free',
     description:
       'Convert OGG files to MP3 in your browser. Free, no signup, nothing uploaded. Vorbis or Opus inside OGG, at 128, 192 or 320 kbps.',
     h1: 'Convert OGG to MP3',
@@ -2097,20 +2130,21 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'opus-to-mp3',
+    cardLine: 'Convert Opus calls and downloads to MP3 that every player accepts.',
     name: 'Opus to MP3 Converter',
     shortName: 'Opus to MP3',
     icon: 'voice',
     category: 'merge',
-    title: 'Opus to MP3 Converter — Convert Opus Audio Online Free',
+    title: 'Opus to MP3 Converter — WhatsApp Voice Notes to MP3',
     description:
-      'Convert Opus audio to MP3 in your browser. Free, no signup, nothing uploaded. Works on .opus files and Opus inside OGG or WebM.',
+      'Convert WhatsApp & Telegram Opus voice notes to MP3 in your browser. Free, no signup, nothing uploaded. Works on .opus, OGG and WebM.',
     h1: 'Opus to MP3 Converter',
     subtitle: 'Turn Opus audio into MP3 — in your browser, nothing uploaded.',
     intro:
       'Voice notes and some downloads are Opus: a .opus file, or Opus inside OGG or WebM. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
     usesHeading: 'Opus files people convert',
     uses: [
-      'Turn a voice message or an Opus export into MP3 for a player that cannot open Opus.',
+      'Turn a WhatsApp voice note or an Opus export into an MP3 any player can open.',
       'Speech is fine at 128 kbps. You are changing the format people can play, not the length.',
       'Convert here, then trim if the message has a long silence at either end.',
     ],
@@ -2135,7 +2169,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Which Opus files work?',
-        a: 'Files your browser can already play: .opus, OGG with Opus, and WebM with Opus, in Chrome, Firefox and current Safari. If a plain browser tab stays silent, this page cannot decode that file either.',
+        a: 'Files your browser can already play: .opus, OGG with Opus, and WebM with Opus, in Chrome, Firefox and current Safari. If a plain browser tab stays silent, this page cannot decode that file either. WhatsApp voice notes saved on Android are .opus files, and they convert the same way.',
       },
       {
         q: 'Will converting Opus to MP3 lose quality?',

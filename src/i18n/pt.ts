@@ -222,6 +222,13 @@ export const pt: Catalog = {
     mostUsed: 'Mais usadas',
     comingTitle: 'Em breve',
     comingBody: 'Mixer com crossfade, removedor de silêncio e mais — a mesma lógica de privacidade em primeiro lugar.',
+    useCasesHeading: 'O que você vai editar hoje?',
+    useCases: [
+      { title: 'Podcast', body: 'Grave episódios, corte as falhas, junte segmentos e saia com a transcrição para as notas do programa.', tools: ['voice-recorder', 'mp3-editor', 'audio-to-text'] },
+      { title: 'Música', body: 'Desacelere riffs para aprender, mude o tom nos covers e dê peso ou brilho às suas demos.', tools: ['change-audio-speed', 'pitch-changer', 'bass-booster'] },
+      { title: 'Locução', body: 'Entregue takes limpos: remova o ruflo, iguale os níveis e eleve gravações baixas sem distorcer.', tools: ['high-pass-filter', 'normalize-audio', 'increase-volume'] },
+      { title: 'Estudo e trabalho', body: 'Ouça aulas aceleradas, transforme gravações em texto e suavize as emendas entre clipes.', tools: ['audio-to-text', 'fade-audio', 'audio-joiner'] },
+    ],
     whyHeading: 'Por que editar áudio no seu aparelho',
     why: [
       {
@@ -257,6 +264,22 @@ export const pt: Catalog = {
     ],
   },
   hub: {
+    categoryIntro: {
+      cut: 'Encurte uma música, guarde a melhor parte ou crie um toque: selecione o trecho na onda e salve.',
+      merge: 'Junte faixas num só arquivo, extraia o áudio de qualquer vídeo e alterne entre MP3, WAV, M4A, OGG e mais.',
+      record: 'Grave seu microfone direto no navegador: apare a gravação e salve como MP3, nada sai do seu aparelho.',
+      effects: 'Aumente o volume, mude velocidade ou tom, adicione reverb e fades, ajuste graves e agudos — e visualize o som como onda ou espectrograma.',
+    },
+    tasksTitle: 'O que você quer fazer?',
+    tasks: [
+    { task: 'Criar um toque para meu celular', tool: 'ringtone-maker' },
+    { task: 'Extrair o áudio de um vídeo', tool: 'extract-audio' },
+    { task: 'Deixar uma gravação baixa mais alta', tool: 'increase-volume' },
+    { task: 'Juntar duas músicas em um arquivo', tool: 'audio-joiner' },
+    { task: 'Converter WAV para MP3', tool: 'wav-to-mp3' },
+    { task: 'Desacelerar uma música e adicionar reverb', tool: 'slowed-reverb' },
+    { task: 'Mudar o tom mantendo a velocidade', tool: 'pitch-changer' },
+    ],
     title: 'Ferramentas de áudio grátis — Cortar, juntar e converter',
     description:
       'Corte, junte, converta, grave e melhore áudio com todas as ferramentas em um só lugar. Tudo no navegador: sem enviar arquivos e sem cadastro.',
@@ -306,6 +329,7 @@ export const pt: Catalog = {
   },
   tools: {
     'audio-to-text': {
+      cardLine: 'Transcreva entrevistas e áudios de voz em texto ou legendas SRT, no seu aparelho.',
       name: 'Áudio para texto',
       shortName: 'Áudio para texto',
       title: 'Transcrever áudio em texto online grátis — TXT e SRT',
@@ -365,6 +389,7 @@ export const pt: Catalog = {
       exportLabel: 'Transcrever',
     },
     'bass-booster': {
+      cardLine: 'Adicione peso e impacto com até +15 dB de graves abaixo de 150 Hz.',
       name: 'Realce de graves',
       shortName: 'Graves',
       title: 'Realce de graves — Mais peso no áudio online grátis',
@@ -423,6 +448,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
     },
     'treble-booster': {
+      cardLine: 'Adicione brilho e clareza subindo os agudos até +15 dB acima de 3 kHz.',
       name: 'Realce de agudos',
       shortName: 'Agudos',
       title: 'Realce de agudos — Mais agudos no áudio online grátis',
@@ -481,6 +507,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
     },
     'equalizer': {
+      cardLine: 'Modele graves, médios e agudos com um EQ direto de três botões ±15 dB.',
       name: 'Equalizador de áudio',
       shortName: 'Equalizador',
       title: 'Equalizador de áudio — EQ de 3 bandas online grátis',
@@ -539,6 +566,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
     },
     'low-pass-filter': {
+      cardLine: 'Guarde só o calor abaixo do corte — ótimo para texturas lo-fi e mutes.',
       name: 'Filtro passa-baixa',
       shortName: 'Passa-baixa',
       title: 'Filtro passa-baixa — Remover ruído de agudos online',
@@ -597,6 +625,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
     },
     'high-pass-filter': {
+      cardLine: 'Remova ruflos e zumbidos abaixo do corte para gravações de voz mais limpas.',
       name: 'Filtro passa-alta',
       shortName: 'Passa-alta',
       title: 'Filtro passa-alta — Remover rumble e zumbido online',
@@ -655,6 +684,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
     },
     'fade-audio': {
+      cardLine: 'Suavize finais de músicas e introduções de podcast com fades exatos.',
       name: 'Fade de áudio',
       shortName: 'Fade',
       title: 'Fade de entrada e saída — Adicionar fade online grátis',
@@ -713,6 +743,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
     },
     'audio-trimmer': {
+      cardLine: 'Arraste as alças para guardar exatamente o trecho que precisa — podcasts, áudios de voz, qualquer faixa.',
       name: 'Cortar áudio',
       shortName: 'Cortar áudio',
       title: 'Cortar áudio — Recorte música online grátis',
@@ -771,6 +802,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
     },
     'mp3-cutter': {
+      cardLine: 'Corte uma música até o refrão, o drop ou qualquer trecho sem recodificar.',
       name: 'Cortar MP3',
       shortName: 'Cortar MP3',
       title: 'Cortar MP3 — Corte músicas online grátis',
@@ -825,6 +857,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo MP3 ou clique para procurar',
     },
     'mp3-editor': {
+      cardLine: 'Edições rápidas numa aba: cortar, fade, reverter, acelerar e normalizar.',
       name: 'Editor de MP3',
       shortName: 'Editor de MP3',
       title: 'Editor de MP3 — Corte, fade, reverta e acelere online',
@@ -879,6 +912,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
     },
     'ringtone-maker': {
+      cardLine: 'Transforme os 30 segundos mais marcantes de uma música em toque de iPhone ou Android.',
       name: 'Criar toque',
       shortName: 'Toque',
       title: 'Criar toque de celular — Use qualquer música, grátis',
@@ -933,6 +967,7 @@ export const pt: Catalog = {
       dropHint: 'Solte uma música ou clique para procurar',
     },
     'audio-joiner': {
+      cardLine: 'Junte áudios de voz, músicas ou episódios de podcast num único arquivo contínuo.',
       name: 'Juntar músicas',
       shortName: 'Juntar músicas',
       title: 'Juntar músicas online grátis — Una MP3 e áudio',
@@ -987,6 +1022,7 @@ export const pt: Catalog = {
       dropHint: 'Solte dois ou mais arquivos de áudio, ou clique para procurar',
     },
     'wav-to-mp3': {
+      cardLine: 'Reduza gravações WAV pesadas em MP3s fáceis de compartilhar, no bitrate que escolher.',
       name: 'Converter WAV para MP3',
       shortName: 'WAV para MP3',
       title: 'Converter WAV para MP3 — Online e grátis',
@@ -1042,6 +1078,7 @@ export const pt: Catalog = {
       exportLabel: 'Converter para MP3',
     },
     'flac-to-mp3': {
+      cardLine: 'Converta arquivos FLAC sem perda em MP3 para players e apps que não aceitam FLAC.',
       name: 'Converter FLAC para MP3',
       shortName: 'FLAC para MP3',
       title: 'Converter FLAC em MP3 online grátis — 320 kbps',
@@ -1097,6 +1134,7 @@ export const pt: Catalog = {
       exportLabel: 'Converter para MP3',
     },
     'mp3-to-wav': {
+      cardLine: 'Descompacte MP3 para WAV para editar, transcrever ou ouvir em detalhe.',
       name: 'Converter MP3 para WAV',
       shortName: 'MP3 para WAV',
       title: 'Converter MP3 em WAV online grátis',
@@ -1152,6 +1190,7 @@ export const pt: Catalog = {
       exportLabel: 'Converter para WAV',
     },
     'compress-audio': {
+      cardLine: 'Reduza arquivos de áudio grandes para o tamanho ou bitrate desejado sem perder a clareza.',
       name: 'Compressor de áudio',
       shortName: 'Compressor',
       title: 'Comprimir áudio online grátis — reduza o tamanho',
@@ -1207,6 +1246,7 @@ export const pt: Catalog = {
       exportLabel: 'Comprimir',
     },
     'reverse-audio': {
+      cardLine: 'Toque uma faixa ao contrário para criar efeitos, conferir a mixagem ou se divertir.',
       name: 'Reverter áudio',
       shortName: 'Reverter áudio',
       title: 'Reverter áudio — Toque músicas de trás para frente',
@@ -1261,6 +1301,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
     },
     'change-audio-speed': {
+      cardLine: 'Acelere aulas a 2× ou desacelere riffs para aprender — o tom permanece.',
       name: 'Alterar velocidade do áudio',
       shortName: 'Velocidade',
       title: 'Acelerar áudio online — ou desacelerar',
@@ -1315,6 +1356,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
     },
     'increase-volume': {
+      cardLine: 'Eleve áudios de voz baixos até 4× com limitador, sem distorcer nada.',
       name: 'Aumentar volume do MP3',
       shortName: 'Aumentar volume',
       title: 'Aumentar volume do MP3 — Deixe o áudio mais alto grátis',
@@ -1369,6 +1411,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
     },
     'mp4-to-mp3': {
+      cardLine: 'Salve a trilha de um vídeo, gravação de tela ou arquivo de câmera como MP3.',
       name: 'Converter MP4 para MP3',
       shortName: 'MP4 para MP3',
       title: 'Converter vídeo em MP3 online grátis — MP4 para MP3',
@@ -1424,6 +1467,7 @@ export const pt: Catalog = {
       exportLabel: 'Converter para MP3',
     },
     'extract-audio': {
+      cardLine: 'Extraia áudio limpo de qualquer vídeo para editar, transcrever ou amostrar.',
       name: 'Extrair áudio',
       shortName: 'Extrair áudio',
       title: 'Extrair áudio de vídeo — Salve o som em MP3 ou WAV',
@@ -1479,6 +1523,7 @@ export const pt: Catalog = {
       exportLabel: 'Extrair áudio',
     },
     'voice-recorder': {
+      cardLine: 'Grave reuniões, aulas e ideias direto no navegador — sem instalar app.',
       name: 'Gravador de voz',
       shortName: 'Gravador de voz',
       title: 'Gravador de voz online — Grave, recorte e salve grátis',
@@ -1533,6 +1578,7 @@ export const pt: Catalog = {
       dropHint: 'Ou solte uma gravação existente para editar',
     },
     'volume-booster': {
+      cardLine: 'Deixe músicas e trilhas de vídeo baixas altas e limpas, até 4×.',
       name: 'Aumentar volume',
       shortName: 'Aumentar volume',
       title: 'Aumentar volume do áudio online grátis — até 4×',
@@ -1587,6 +1633,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou vídeo, ou clique para procurar',
     },
     'normalize-audio': {
+      cardLine: 'Traga um lote inteiro de gravações para um nível uniforme e saudável.',
       name: 'Normalizar áudio',
       shortName: 'Normalizar',
       title: 'Normalizar áudio — Nivele o volume online grátis',
@@ -1641,6 +1688,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
     },
     'slowed-reverb': {
+      cardLine: 'Dê a qualquer música o som noturno de slowed + reverb num clique.',
       name: 'Slowed + Reverb',
       shortName: 'Slowed + Reverb',
       title: 'Slowed + Reverb online grátis — Crie a sua versão',
@@ -1695,6 +1743,7 @@ export const pt: Catalog = {
       dropHint: 'Solte uma música ou clique para procurar',
     },
     'pitch-changer': {
+      cardLine: 'Mude o tom em semitons para covers e mashups — com o mesmo comprimento.',
       name: 'Alterador de tom',
       shortName: 'Tom',
       title: 'Alterador de tom — Mude o tom sem mudar a duração',
@@ -1723,6 +1772,7 @@ export const pt: Catalog = {
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
     },
     'm4a-to-mp3': {
+      cardLine: 'Converta áudios de voz do iPhone e arquivos AAC em MP3 que tocam em qualquer lugar.',
       name: 'M4A para MP3',
       shortName: 'M4A para MP3',
       title: 'M4A para MP3 — Converta M4A e AAC online grátis',
@@ -1752,6 +1802,7 @@ export const pt: Catalog = {
       exportLabel: 'Converter para MP3',
     },
     'ogg-to-mp3': {
+      cardLine: 'Faça arquivos OGG de clipes de jogo ou gravações do Linux tocarem em qualquer app.',
       name: 'Converter OGG para MP3',
       shortName: 'OGG para MP3',
       title: 'Converter OGG para MP3 — online e grátis',
@@ -1781,9 +1832,10 @@ export const pt: Catalog = {
       exportLabel: 'Converter para MP3',
     },
     'opus-to-mp3': {
+      cardLine: 'Converta chamadas e downloads Opus em MP3 que qualquer player aceita.',
       name: 'Converter Opus para MP3',
       shortName: 'Opus para MP3',
-      title: 'Converter Opus para MP3 — online e grátis',
+      title: 'Converter Opus para MP3 — áudios do WhatsApp',
       description: 'Converta áudio Opus para MP3 no navegador. Grátis, sem cadastro e sem enviar nada. Serve para .opus e para Opus dentro de OGG ou WebM.',
       h1: 'Converter Opus para MP3',
       subtitle: 'Transforme áudio Opus em MP3, no navegador, sem enviar nada.',
@@ -1810,6 +1862,7 @@ export const pt: Catalog = {
       exportLabel: 'Converter para MP3',
     },
     'waveform-generator': {
+      cardLine: 'Transforme qualquer faixa numa imagem de onda compartilhável com suas cores.',
       name: 'Gerador de forma de onda',
       shortName: 'Forma de onda',
       title: 'Gerador de forma de onda — imagem de áudio em PNG grátis',
@@ -1840,6 +1893,7 @@ export const pt: Catalog = {
       exportLabel: 'Baixar PNG',
     },
     'spectrogram-generator': {
+      cardLine: 'Veja as frequências dentro de uma música, gravação ou canto de pássaro.',
       name: 'Espectrograma online',
       shortName: 'Espectrograma',
       title: 'Espectrograma online — áudio em imagem, grátis',
@@ -1870,9 +1924,10 @@ export const pt: Catalog = {
       exportLabel: 'Baixar PNG',
     },
     'image-to-audio': {
+      cardLine: 'Esconda uma imagem ou uma linha de texto no espectrograma de um WAV.',
       name: 'Imagem para áudio',
       shortName: 'Imagem para áudio',
-      title: 'Imagem para áudio — esconda uma imagem no som',
+      title: 'Imagem para áudio — faça um espectrograma da imagem',
       description: 'Transforme uma imagem ou uma linha curta num WAV que um espectrograma mostra. Grátis no navegador, nada é enviado.',
       h1: 'Imagem para áudio',
       subtitle: 'Pinte uma imagem ou uma linha de texto num WAV. O espectrograma mostra de volta.',

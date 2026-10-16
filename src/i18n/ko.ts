@@ -223,6 +223,13 @@ export const ko: Catalog = {
     mostUsed: '많이 쓰는 도구',
     comingTitle: '다음에 올 기능',
     comingBody: '크로스페이드 믹서, 무음 제거 등. 프라이버시 우선은 그대로예요.',
+    useCasesHeading: '오늘은 무엇을 편집할까요?',
+    useCases: [
+      { title: '팟캐스트', body: '에피소드를 녹음하고, 어색한 부분을 잘라내고, 세그먼트를 이어 붙이고, 쇼노트용 전사본까지 받으세요.', tools: ['voice-recorder', 'mp3-editor', 'audio-to-text'] },
+      { title: '음악', body: '리프는 슬로우로 학습하고, 커버는 키를 바꾸고, 데모에 무게나 반짝임을 더하세요.', tools: ['change-audio-speed', 'pitch-changer', 'bass-booster'] },
+      { title: '내레이션', body: '깨끗한 테이크를 납품하세요. 험을 제거하고 레벨을 맞추고, 조용한 녹음을 클리핑 없이 키웁니다.', tools: ['high-pass-filter', 'normalize-audio', 'increase-volume'] },
+      { title: '공부와 업무', body: '강의는 배속으로 듣고, 녹음을 텍스트로 바꾸고, 클립 사이 이음새를 부드럽게 하세요.', tools: ['audio-to-text', 'fade-audio', 'audio-joiner'] },
+    ],
     whyHeading: '오디오 편집은 내 기기에서 하는 일이에요',
     why: [
       {
@@ -258,6 +265,22 @@ export const ko: Catalog = {
     ],
   },
   hub: {
+    categoryIntro: {
+      cut: '노래를 줄이거나, 가장 좋은 부분만 남기거나, 벨소리를 만들어 보세요. 파형에서 범위를 선택해 바로 저장합니다.',
+      merge: '여러 트랙을 하나로 합치고, 동영상에서 오디오를 추출하고, MP3·WAV·M4A·OGG 등 형식을 자유롭게 변환합니다.',
+      record: '마이크를 브라우저에서 바로 녹음합니다. 다듬어 MP3로 저장하고, 데이터는 기기를 벗어나지 않습니다.',
+      effects: '볼륨을 높이고 속도·피치를 바꾸고, 리버브와 페이드를 더하고, 저역·고역을 이퀄라이즈하세요. 파형·스펙트로그램 시각화도 가능합니다.',
+    },
+    tasksTitle: '뭐를 하고 싶으세요?',
+    tasks: [
+    { task: '휴대폰 벨소리 만들기', tool: 'ringtone-maker' },
+    { task: '동영상에서 오디오 추출하기', tool: 'extract-audio' },
+    { task: '작게 녹음된 파일 크게 만들기', tool: 'increase-volume' },
+    { task: '두 노래를 하나의 파일로 합치기', tool: 'audio-joiner' },
+    { task: 'WAV를 MP3로 변환하기', tool: 'wav-to-mp3' },
+    { task: '노래를 슬로우하고 리버브 넣기', tool: 'slowed-reverb' },
+    { task: '속도는 그대로 두고 피치 바꾸기', tool: 'pitch-changer' },
+    ],
     title: '무료 온라인 오디오 도구 - 자르기, 합치기, 변환',
     description:
       '오디오 자르기, 합치기, 변환, 녹음 등 모든 도구를 한곳에서, 브라우저에서 바로 실행해요. 업로드 없이, 가입 없이, 완전 무료로.',
@@ -307,6 +330,7 @@ export const ko: Catalog = {
   },
   tools: {
     'audio-to-text': {
+      cardLine: '인터뷰와 음성 메모를 기기 안에서 텍스트나 SRT 자막으로 전사합니다.',
       name: '녹음 파일 문자 변환',
       shortName: '텍스트 변환',
       title: '녹음 파일 문자 변환 — 온라인 무료 음성 인식',
@@ -366,6 +390,7 @@ export const ko: Catalog = {
       exportLabel: '변환 시작',
     },
     'bass-booster': {
+      cardLine: '150 Hz 이하를 최대 +15 dB 더해 무게와 펀치를 더합니다.',
       name: '베이스 부스터',
       shortName: '베이스',
       title: '베이스 부스터 - 오디오 저음 강화 온라인 무료',
@@ -424,6 +449,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 끌어다 놓거나 클릭해서 선택하세요',
     },
     'treble-booster': {
+      cardLine: '3 kHz 이상을 최대 +15 dB 올려 반짝임과 선명함을 더합니다.',
       name: '트레블 부스터',
       shortName: '트레블',
       title: '트레블 부스터 - 오디오 고음 강화 온라인 무료',
@@ -482,6 +508,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 끌어다 놓거나 클릭해서 선택하세요',
     },
     'equalizer': {
+      cardLine: '3노브 ±15 dB 이퀄라이저로 저역·중역·고역을 손질합니다.',
       name: '오디오 이퀄라이저',
       shortName: '이퀄라이저',
       title: '오디오 이퀄라이저 - 3밴드 EQ 온라인 무료',
@@ -540,6 +567,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 끌어다 놓거나 클릭해서 선택하세요',
     },
     'low-pass-filter': {
+      cardLine: '컷오프 아래의 따뜻함만 남기세요 — 로파이 텍스처와 뮤트에 딱입니다.',
       name: '로우패스 필터',
       shortName: '로우패스',
       title: '로우패스 필터 - 고주파 노이즈 제거 온라인',
@@ -598,6 +626,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 끌어다 놓거나 클릭해서 선택하세요',
     },
     'high-pass-filter': {
+      cardLine: '컷오프 아래의 웅웅거림과 험을 제거해 목소리 녹음을 더 깨끗하게.',
       name: '하이패스 필터',
       shortName: '하이패스',
       title: '하이패스 필터 - 저음 럼블 제거 온라인 무료',
@@ -656,6 +685,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 끌어다 놓거나 클릭해서 선택하세요',
     },
     'fade-audio': {
+      cardLine: '정확한 페이드 인/아웃으로 곡의 끝과 팟캐스트 인트로를 부드럽게.',
       name: '페이드 인/아웃',
       shortName: '페이드',
       title: '오디오 페이드 인/아웃 - 온라인 무료 페이드 효과',
@@ -714,6 +744,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 끌어다 놓거나 클릭해서 선택하세요',
     },
     'audio-trimmer': {
+      cardLine: '핸들을 드래그해 필요한 부분만 정확히 남기세요. 팟캐스트, 음성 메모, 어떤 트랙이든.',
       name: '오디오 트림',
       shortName: '오디오 트림',
       title: '오디오 트림 — 음악·음성 온라인 무료 자르기',
@@ -772,6 +803,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 놓거나, 클릭해서 찾아요',
     },
     'mp3-cutter': {
+      cardLine: '다시 인코딩하지 않고 곡을 후렴, 드롭 또는 원하는 구간으로 자릅니다.',
       name: 'MP3 커터',
       shortName: 'MP3 커터',
       title: 'MP3 자르기 — 온라인 무료',
@@ -826,6 +858,7 @@ export const ko: Catalog = {
       dropHint: 'MP3 파일을 놓거나, 클릭해서 찾아요',
     },
     'mp3-editor': {
+      cardLine: '한 탭에서 빠른 편집: 자르기, 페이드, 역재생, 배속, 노멀라이즈.',
       name: 'MP3 편집기',
       shortName: 'MP3 편집기',
       title: 'MP3 편집기 — 자르기, 페이드, 거꾸로, 속도',
@@ -880,6 +913,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 놓거나, 클릭해서 찾아요',
     },
     'ringtone-maker': {
+      cardLine: '곡의 가장 인상적인 30초를 iPhone·안드로이드 벨소리로 만들어 보세요.',
       name: '벨소리 만들기',
       shortName: '벨소리 만들기',
       title: '벨소리 만들기 — 어떤 노래든 온라인으로',
@@ -934,6 +968,7 @@ export const ko: Catalog = {
       dropHint: '노래를 놓거나, 클릭해서 찾아요',
     },
     'audio-joiner': {
+      cardLine: '음성 메모, 노래, 팟캐스트 에피소드를 하나의 연속 파일로 이어 붙입니다.',
       name: '오디오 합치기',
       shortName: '오디오 합치기',
       title: 'MP3 합치기 — 온라인 무료',
@@ -988,6 +1023,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 두 개 이상 놓거나, 클릭해서 찾아요',
     },
     'wav-to-mp3': {
+      cardLine: '무거운 WAV 녹음을 원하는 비트레이트의 공유하기 좋은 MP3로 줄입니다.',
       name: 'WAV to MP3 변환',
       shortName: 'WAV to MP3',
       title: 'WAV to MP3 변환 — 브라우저에서 무료로',
@@ -1043,6 +1079,7 @@ export const ko: Catalog = {
       exportLabel: 'MP3로 변환',
     },
     'flac-to-mp3': {
+      cardLine: 'FLAC를 지원하지 않는 플레이어와 앱을 위해 무손실 FLAC를 MP3로 변환합니다.',
       name: 'FLAC to MP3 변환',
       shortName: 'FLAC to MP3',
       title: 'FLAC to MP3 변환 — 온라인 무료',
@@ -1098,6 +1135,7 @@ export const ko: Catalog = {
       exportLabel: 'MP3로 변환',
     },
     'mp3-to-wav': {
+      cardLine: 'MP3를 WAV로 풀어 편집·전사·세부 청취에 활용하세요.',
       name: 'MP3 to WAV 변환',
       shortName: 'MP3 to WAV',
       title: 'MP3 to WAV 변환 — 온라인 무료',
@@ -1153,6 +1191,7 @@ export const ko: Catalog = {
       exportLabel: 'WAV로 변환',
     },
     'compress-audio': {
+      cardLine: '큰 오디오 파일을 목표 크기나 비트레이트로, 듣기 편하게 압축합니다.',
       name: '오디오 압축',
       shortName: '오디오 압축',
       title: '오디오 압축 — 온라인으로 파일 크기 줄이기',
@@ -1208,6 +1247,7 @@ export const ko: Catalog = {
       exportLabel: '압축',
     },
     'reverse-audio': {
+      cardLine: '트랙을 거꾸로 재생해 효과음을 만들거나 믹스를 확인하거나 그냥 즐기세요.',
       name: '거꾸로 재생',
       shortName: '거꾸로 재생',
       title: '거꾸로 재생 — 음악·노래를 거꾸로, 무료',
@@ -1262,6 +1302,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 놓거나, 클릭해서 찾아요',
     },
     'change-audio-speed': {
+      cardLine: '강의는 2배속으로, 리프는 슬로우로 학습 — 피치는 그대로 유지됩니다.',
       name: '노래 배속',
       shortName: '속도 바꾸기',
       title: '노래 배속 — 온라인에서 빠르게·느리게 무료',
@@ -1316,6 +1357,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 놓거나, 클릭해서 찾아요',
     },
     'increase-volume': {
+      cardLine: '작은 음성 메모를 리미터로 4×까지, 절대 클리핑 없이 키웁니다.',
       name: 'MP3 음량 키우기',
       shortName: '음량 키우기',
       title: 'MP3 볼륨 키우기 — 온라인 무료',
@@ -1370,6 +1412,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 놓거나, 클릭해서 찾아요',
     },
     'mp4-to-mp3': {
+      cardLine: '동영상 클립, 화면 녹화, 카메라 파일의 사운드트랙을 MP3로 저장합니다.',
       name: '영상 MP3 변환',
       shortName: 'MP4 to MP3',
       title: '영상 MP3 변환 — MP4를 MP3로 온라인 무료',
@@ -1425,6 +1468,7 @@ export const ko: Catalog = {
       exportLabel: 'MP3로 변환',
     },
     'extract-audio': {
+      cardLine: '어떤 동영상에서든 깨끗한 오디오를 추출해 편집·전사·샘플링에 쓰세요.',
       name: '오디오 추출',
       shortName: '오디오 추출',
       title: '영상에서 오디오 추출 — MP3·WAV로 저장',
@@ -1480,6 +1524,7 @@ export const ko: Catalog = {
       exportLabel: '오디오 추출',
     },
     'voice-recorder': {
+      cardLine: '회의, 강의, 아이디어를 브라우저에서 바로 녹음 — 앱 설치가 필요 없습니다.',
       name: '음성 녹음',
       shortName: '음성 녹음',
       title: '음성 녹음 — 녹음, 트림, 무료 저장',
@@ -1534,6 +1579,7 @@ export const ko: Catalog = {
       dropHint: '이미 있는 녹음을 놓아서 편집할 수도 있어요',
     },
     'volume-booster': {
+      cardLine: '조용한 음악과 영상 사운드트랙을 최대 4×까지 크고 깨끗하게.',
       name: '음량 키우기',
       shortName: '음량 키우기',
       title: '음량 키우기 — 영상·음악을 더 크게, 무료',
@@ -1588,6 +1634,7 @@ export const ko: Catalog = {
       dropHint: '오디오나 영상 파일을 놓거나, 클릭해서 찾아요',
     },
     'normalize-audio': {
+      cardLine: '대량의 녹음을 하나의 일관된 적정 레벨로 맞춥니다.',
       name: '오디오 정규화',
       shortName: '정규화',
       title: '오디오 정규화 — 음량을 일정하게, 무료',
@@ -1642,6 +1689,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 놓거나, 클릭해서 찾아요',
     },
     'slowed-reverb': {
+      cardLine: '어떤 곡이든 한 번의 클릭으로 늦은 밤 감성의 slowed + reverb 사운드로.',
       name: 'Slowed + Reverb',
       shortName: 'Slowed + Reverb',
       title: '슬로우 리버브 (Slowed+Reverb) — 온라인 무료',
@@ -1696,6 +1744,7 @@ export const ko: Catalog = {
       dropHint: '노래를 놓거나, 클릭해서 찾아요',
     },
     'pitch-changer': {
+      cardLine: '반음 단위로 피치를 옮겨 커버와 매시업에 — 길이는 그대로.',
       name: '음정 바꾸기',
       shortName: '음정',
       title: '음정 바꾸기 — 길이는 그대로, 음높이만 변경',
@@ -1724,6 +1773,7 @@ export const ko: Catalog = {
       dropHint: '오디오 파일을 놓거나, 클릭해서 찾아요',
     },
     'm4a-to-mp3': {
+      cardLine: 'iPhone 음성 메모와 AAC 파일을 어디서든 재생되는 MP3로 변환합니다.',
       name: 'M4A를 MP3로',
       shortName: 'M4A를 MP3로',
       title: 'M4A를 MP3로 — M4A와 AAC를 온라인에서 무료 변환',
@@ -1753,6 +1803,7 @@ export const ko: Catalog = {
       exportLabel: 'MP3로 변환',
     },
     'ogg-to-mp3': {
+      cardLine: '게임 클립이나 Linux 녹음의 OGG 파일을 어떤 앱에서도 재생 가능하게.',
       name: 'OGG를 MP3로',
       shortName: 'OGG를 MP3로',
       title: 'OGG를 MP3로 — 브라우저에서 무료 변환',
@@ -1782,9 +1833,10 @@ export const ko: Catalog = {
       exportLabel: 'MP3로 변환',
     },
     'opus-to-mp3': {
+      cardLine: 'Opus 통화와 다운로드 파일을 모든 플레이어가 받는 MP3로 변환합니다.',
       name: 'Opus를 MP3로',
       shortName: 'Opus를 MP3로',
-      title: 'Opus를 MP3로 — 브라우저에서 무료 변환',
+      title: 'Opus를 MP3로 — WhatsApp 음성 메시지 변환',
       description: '브라우저에서 Opus 오디오를 MP3로 바꿔요. 무료이고, 가입도 업로드도 없어요. .opus와 OGG·WebM 안의 Opus에 써요.',
       h1: 'Opus를 MP3로',
       subtitle: 'Opus 오디오를 MP3로 바꿔요. 브라우저에서 하고, 업로드는 없어요.',
@@ -1811,6 +1863,7 @@ export const ko: Catalog = {
       exportLabel: 'MP3로 변환',
     },
     'waveform-generator': {
+      cardLine: '어떤 트랙이든 내가 고른 색으로 공유용 파형 이미지로 바꿉니다.',
       name: '파형 생성기',
       shortName: '파형',
       title: '오디오 파형 생성기 — 온라인에서 파형 PNG 무료',
@@ -1841,6 +1894,7 @@ export const ko: Catalog = {
       exportLabel: 'PNG 저장',
     },
     'spectrogram-generator': {
+      cardLine: '노래, 녹음, 새소리 속 주파수를 눈으로 확인하세요.',
       name: '스펙트로그램 생성기',
       shortName: '스펙트로그램',
       title: '스펙트로그램 생성기 — 오디오를 이미지로, 무료',
@@ -1871,9 +1925,10 @@ export const ko: Catalog = {
       exportLabel: 'PNG 저장',
     },
     'image-to-audio': {
+      cardLine: '그림이나 한 줄의 텍스트를 WAV 스펙트로그램 안에 숨겨 보세요.',
       name: '이미지를 오디오로',
       shortName: '숨긴 그림',
-      title: '이미지를 오디오로 — 그림·글을 스펙트럼에',
+      title: '이미지를 오디오로 — 스펙트로그램 만들기',
       description: '그림이나 짧은 한 줄을, 스펙트로그램에 보이는 WAV로 만듭니다. 브라우저에서 무료, 업로드하지 않습니다.',
       h1: '이미지를 오디오로',
       subtitle: '그림이나 한 줄 글을 WAV의 주파수에 그립니다. 스펙트로그램에서 다시 보입니다.',

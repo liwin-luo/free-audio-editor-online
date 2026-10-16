@@ -223,6 +223,13 @@ export const id: Catalog = {
     mostUsed: 'Paling sering dipakai',
     comingTitle: 'Yang akan datang',
     comingBody: 'Mixer crossfade, penghapus keheningan, dan lainnya — dengan pendekatan yang sama: privasi diutamakan.',
+    useCasesHeading: 'Apa yang akan kamu sunting hari ini?',
+    useCases: [
+      { title: 'Podcast', body: 'Rekam episode, potong bagian kasarnya, sambungkan segmen, dan dapatkan transkripsi untuk catatan acaramu.', tools: ['voice-recorder', 'mp3-editor', 'audio-to-text'] },
+      { title: 'Musik', body: 'Perlambat riff untuk dipelajari, ubah kunci untuk cover, dan tambahkan bobot atau kilau pada demo.', tools: ['change-audio-speed', 'pitch-changer', 'bass-booster'] },
+      { title: 'Sulih suara', body: 'Hasilkan take yang bersih: buang gemuruh, ratakan level, dan angkat rekaman pelan tanpa clipping.', tools: ['high-pass-filter', 'normalize-audio', 'increase-volume'] },
+      { title: 'Belajar dan kerja', body: 'Dengarkan kuliah dengan cepat, ubah rekaman jadi teks, dan haluskan sambungan antarklip.', tools: ['audio-to-text', 'fade-audio', 'audio-joiner'] },
+    ],
     whyHeading: 'Mengapa edit audio sebaiknya di perangkat Anda',
     why: [
       {
@@ -258,6 +265,22 @@ export const id: Catalog = {
     ],
   },
   hub: {
+    categoryIntro: {
+      cut: 'Persingkat lagu, simpan bagian terbaiknya, atau buat nada dering — pilih rentangnya di waveform dan simpan.',
+      merge: 'Gabungkan beberapa trek jadi satu file, ekstrak audio dari video apa pun, dan konversi antara MP3, WAV, M4A, OGG, dan lainnya.',
+      record: 'Rekam mikrofon langsung di browser — potong rekamannya dan simpan sebagai MP3, tidak ada data yang meninggalkan perangkat.',
+      effects: 'Perbesar volume, ubah kecepatan atau nada, tambahkan reverb dan fade, atur lows dan highs — dan visualisasikan suara sebagai waveform atau spektrogram.',
+    },
+    tasksTitle: 'Apa yang ingin Anda lakukan?',
+    tasks: [
+    { task: 'Buat nada dering untuk ponselku', tool: 'ringtone-maker' },
+    { task: 'Ekstrak audio dari sebuah video', tool: 'extract-audio' },
+    { task: 'Membuat rekaman yang pelan menjadi lebih keras', tool: 'increase-volume' },
+    { task: 'Menggabungkan dua lagu jadi satu file', tool: 'audio-joiner' },
+    { task: 'Konversi file WAV ke MP3', tool: 'wav-to-mp3' },
+    { task: 'Memperlambat lagu dan menambah reverb', tool: 'slowed-reverb' },
+    { task: 'Ubah nada tanpa mengubah kecepatan', tool: 'pitch-changer' },
+    ],
     title: 'Alat audio online gratis — Potong, gabung, dan konversi',
     description:
       'Potong, gabung, konversi, rekam dan tingkatkan audio dengan semua alat di satu tempat. Semua di browser: tanpa unggah dan tanpa daftar.',
@@ -307,6 +330,7 @@ export const id: Catalog = {
   },
   tools: {
     'audio-to-text': {
+      cardLine: 'Transkripsi wawancara dan memo suara jadi teks atau subtitle SRT, di perangkatmu sendiri.',
       name: 'Audio ke Teks',
       shortName: 'Audio ke Teks',
       title: 'Ubah Audio ke Teks Online Gratis — TXT & SRT',
@@ -366,6 +390,7 @@ export const id: Catalog = {
       exportLabel: 'Mulai transkripsi',
     },
     'bass-booster': {
+      cardLine: 'Tambahkan bobot dan pukulan dengan hingga +15 dB lows di bawah 150 Hz.',
       name: 'Penguat bass',
       shortName: 'Bass',
       title: 'Penguat bass — Tambah bass audio online gratis',
@@ -424,6 +449,7 @@ export const id: Catalog = {
       dropHint: 'Letakkan file audio atau klik untuk memilih',
     },
     'treble-booster': {
+      cardLine: 'Tambahkan kilau dan kejernihan dengan menaikkan highs hingga +15 dB di atas 3 kHz.',
       name: 'Penguat treble',
       shortName: 'Treble',
       title: 'Penguat treble — Tambah nada tinggi audio online',
@@ -482,6 +508,7 @@ export const id: Catalog = {
       dropHint: 'Letakkan file audio atau klik untuk memilih',
     },
     'equalizer': {
+      cardLine: 'Bentuk lows, mids, dan highs dengan EQ tiga tombol ±15 dB yang lugas.',
       name: 'Equalizer audio',
       shortName: 'Equalizer',
       title: 'Equalizer audio — EQ 3 band online gratis',
@@ -540,6 +567,7 @@ export const id: Catalog = {
       dropHint: 'Letakkan file audio atau klik untuk memilih',
     },
     'low-pass-filter': {
+      cardLine: 'Simpan hanya kehangatan di bawah cutoff — pas untuk tekstur lo-fi dan mute.',
       name: 'Filter low-pass',
       shortName: 'Low-pass',
       title: 'Filter low-pass — Hilangkan noise nada tinggi',
@@ -598,6 +626,7 @@ export const id: Catalog = {
       dropHint: 'Letakkan file audio atau klik untuk memilih',
     },
     'high-pass-filter': {
+      cardLine: 'Buang gemuruh dan dengung di bawah cutoff agar rekaman suara lebih bersih.',
       name: 'Filter high-pass',
       shortName: 'High-pass',
       title: 'Filter high-pass — Hilangkan rumble online gratis',
@@ -656,6 +685,7 @@ export const id: Catalog = {
       dropHint: 'Letakkan file audio atau klik untuk memilih',
     },
     'fade-audio': {
+      cardLine: 'Haluskan akhir lagu dan intro podcast dengan waktu fade yang presisi.',
       name: 'Fade audio',
       shortName: 'Fade',
       title: 'Fade in / fade out audio — online gratis',
@@ -714,6 +744,7 @@ export const id: Catalog = {
       dropHint: 'Letakkan file audio atau klik untuk memilih',
     },
     'audio-trimmer': {
+      cardLine: 'Tarik pegangan untuk menyimpan tepat bagian yang kamu butuhkan — podcast, memo suara, trek apa pun.',
       name: 'Potong Audio',
       shortName: 'Potong Audio',
       title: 'Potong Audio Online Gratis — Pangkas Musik & MP3',
@@ -772,6 +803,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
     'mp3-cutter': {
+      cardLine: 'Potong lagu sampai reff, drop, atau klip apa pun tanpa menyandikan ulang.',
       name: 'Potong Lagu',
       shortName: 'Potong Lagu',
       title: 'Potong Lagu & MP3 Online Gratis',
@@ -826,6 +858,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan file MP3, atau klik untuk memilih',
     },
     'mp3-editor': {
+      cardLine: 'Sunting cepat dalam satu tab: potong, fade, balik, ubah tempo, dan normalisasi.',
       name: 'Editor MP3',
       shortName: 'Editor MP3',
       title: 'Editor MP3 — Potong, Fade, Putar Balik, dan Percepat Online',
@@ -880,6 +913,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
     'ringtone-maker': {
+      cardLine: 'Ubah 30 detik paling menarik dari sebuah lagu jadi nada dering iPhone atau Android.',
       name: 'Nada Dering',
       shortName: 'Nada Dering',
       title: 'Nada Dering — Buat Nada Dering dari Lagu Apa Pun',
@@ -934,6 +968,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan lagu, atau klik untuk memilih',
     },
     'audio-joiner': {
+      cardLine: 'Jahit memo suara, lagu, atau episode podcast menjadi satu file utuh.',
       name: 'Gabung Audio',
       shortName: 'Gabung Audio',
       title: 'Gabung lagu MP3 online gratis',
@@ -988,6 +1023,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan dua file audio atau lebih, atau klik untuk memilih',
     },
     'wav-to-mp3': {
+      cardLine: 'Perkecil rekaman WAV besar jadi MP3 mudah dibagikan pada bitrate pilihanmu.',
       name: 'Konversi WAV ke MP3',
       shortName: 'WAV ke MP3',
       title: 'Konversi WAV ke MP3 — Online dan Gratis',
@@ -1043,6 +1079,7 @@ export const id: Catalog = {
       exportLabel: 'Konversi ke MP3',
     },
     'flac-to-mp3': {
+      cardLine: 'Konversi file FLAC lossless ke MP3 untuk pemutar dan aplikasi yang tak mendukung FLAC.',
       name: 'Konversi FLAC ke MP3',
       shortName: 'FLAC ke MP3',
       title: 'Ubah FLAC ke MP3 Online Gratis — 320 kbps',
@@ -1098,6 +1135,7 @@ export const id: Catalog = {
       exportLabel: 'Konversi ke MP3',
     },
     'mp3-to-wav': {
+      cardLine: 'Buka kompresi MP3 ke WAV untuk mengedit, mentranskripsi, atau mendengar detail.',
       name: 'Konversi MP3 ke WAV',
       shortName: 'MP3 ke WAV',
       title: 'Ubah MP3 ke WAV Online Gratis',
@@ -1153,6 +1191,7 @@ export const id: Catalog = {
       exportLabel: 'Konversi ke WAV',
     },
     'compress-audio': {
+      cardLine: 'Kecilkan file audio besar ke ukuran atau bitrate target tanpa mengurangi kejelasan.',
       name: 'Kompresor Audio',
       shortName: 'Kompresor',
       title: 'Kompres Audio Online Gratis — Perkecil Ukuran File',
@@ -1208,6 +1247,7 @@ export const id: Catalog = {
       exportLabel: 'Kompres',
     },
     'reverse-audio': {
+      cardLine: 'Putar trek secara terbalik untuk efek, memeriksa mix, atau sekadar seru.',
       name: 'Putar Balik Audio',
       shortName: 'Putar Balik',
       title: 'Putar Balik Audio — Putar Lagu Terbalik Online Gratis',
@@ -1262,6 +1302,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
     'change-audio-speed': {
+      cardLine: 'Percepat kuliah ke 2× atau perlambat riff untuk dipelajari — nadanya tetap.',
       name: 'Ubah Kecepatan Audio',
       shortName: 'Ubah Kecepatan',
       title: 'Percepat lagu online — atau perlambat',
@@ -1316,6 +1357,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
     'increase-volume': {
+      cardLine: 'Angkat memo suara yang pelan hingga 4× dengan limiter, tanpa clipping.',
       name: 'Perbesar Volume MP3',
       shortName: 'Perbesar Volume',
       title: 'Perbesar Volume MP3 — Buat Audio Lebih Keras, Gratis',
@@ -1370,6 +1412,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
     'mp4-to-mp3': {
+      cardLine: 'Simpan trek suara klip video, rekaman layar, atau file kamera sebagai MP3.',
       name: 'Konversi MP4 ke MP3',
       shortName: 'MP4 ke MP3',
       title: 'Ubah Video Menjadi MP3 Online Gratis — MP4 ke MP3',
@@ -1425,6 +1468,7 @@ export const id: Catalog = {
       exportLabel: 'Konversi ke MP3',
     },
     'extract-audio': {
+      cardLine: 'Ekstrak audio bersih dari video apa pun untuk mengedit, mentranskripsi, atau sampling.',
       name: 'Ekstrak Audio',
       shortName: 'Ekstrak Audio',
       title: 'Ekstrak Audio dari Video — Simpan Suara sebagai MP3 atau WAV',
@@ -1480,6 +1524,7 @@ export const id: Catalog = {
       exportLabel: 'Ekstrak Audio',
     },
     'voice-recorder': {
+      cardLine: 'Rekam rapat, kuliah, dan ide langsung di browser — tanpa memasang aplikasi.',
       name: 'Perekam Suara',
       shortName: 'Perekam Suara',
       title: 'Perekam Suara Online — Rekam, Pangkas, dan Simpan Gratis',
@@ -1534,6 +1579,7 @@ export const id: Catalog = {
       dropHint: 'Atau jatuhkan rekaman yang sudah ada untuk diedit',
     },
     'volume-booster': {
+      cardLine: 'Buat musik dan trek suara video yang pelan jadi keras dan bersih, hingga 4×.',
       name: 'Perbesar Volume',
       shortName: 'Perbesar Volume',
       title: 'Perbesar Volume Audio Online Gratis — Sampai 4×',
@@ -1588,6 +1634,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan file audio atau video, atau klik untuk memilih',
     },
     'normalize-audio': {
+      cardLine: 'Bawa seluruh tumpukan rekaman ke level yang konsisten dan sehat.',
       name: 'Normalisasi Audio',
       shortName: 'Normalisasi',
       title: 'Normalisasi Audio — Samakan Level Online Gratis',
@@ -1642,6 +1689,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
     'slowed-reverb': {
+      cardLine: 'Beri lagu apa pun nuansa malam slowed + reverb dalam satu klik.',
       name: 'Slowed + Reverb',
       shortName: 'Slowed + Reverb',
       title: 'Slowed + Reverb — Buat Lagu Slowed + Reverb Online Gratis',
@@ -1696,6 +1744,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan lagu, atau klik untuk memilih',
     },
     'pitch-changer': {
+      cardLine: 'Geser nada per semiton untuk cover dan mashup — durasinya tetap.',
       name: 'Pengubah nada',
       shortName: 'Nada',
       title: 'Pengubah nada — Ubah nada tanpa mengubah durasi',
@@ -1724,6 +1773,7 @@ export const id: Catalog = {
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
     'm4a-to-mp3': {
+      cardLine: 'Konversi memo suara iPhone dan file AAC jadi MP3 yang bisa diputar di mana saja.',
       name: 'M4A ke MP3',
       shortName: 'M4A ke MP3',
       title: 'M4A ke MP3 — Ubah M4A dan AAC online gratis',
@@ -1753,6 +1803,7 @@ export const id: Catalog = {
       exportLabel: 'Konversi ke MP3',
     },
     'ogg-to-mp3': {
+      cardLine: 'Buat file OGG dari klip game atau rekaman Linux bisa diputar di aplikasi mana pun.',
       name: 'Konversi OGG ke MP3',
       shortName: 'OGG ke MP3',
       title: 'Konversi OGG ke MP3 — gratis di browser',
@@ -1782,9 +1833,10 @@ export const id: Catalog = {
       exportLabel: 'Konversi ke MP3',
     },
     'opus-to-mp3': {
+      cardLine: 'Konversi panggilan dan unduhan Opus ke MP3 yang diterima semua pemutar.',
       name: 'Konversi Opus ke MP3',
       shortName: 'Opus ke MP3',
-      title: 'Konversi Opus ke MP3 — gratis di browser',
+      title: 'Konversi Opus ke MP3 — suara WhatsApp jadi MP3',
       description: 'Konversi audio Opus ke MP3 di browser. Gratis, tanpa akun, tidak ada yang diunggah. Untuk file .opus dan Opus di dalam OGG atau WebM.',
       h1: 'Konversi Opus ke MP3',
       subtitle: 'Ubah audio Opus menjadi MP3 — di browser, tidak ada yang diunggah.',
@@ -1811,6 +1863,7 @@ export const id: Catalog = {
       exportLabel: 'Konversi ke MP3',
     },
     'waveform-generator': {
+      cardLine: 'Ubah trek apa pun jadi gambar waveform yang bisa dibagikan dengan warnamu sendiri.',
       name: 'Generator gelombang audio',
       shortName: 'Gelombang',
       title: 'Generator gelombang audio — gambar gelombang, PNG gratis',
@@ -1841,6 +1894,7 @@ export const id: Catalog = {
       exportLabel: 'Unduh PNG',
     },
     'spectrogram-generator': {
+      cardLine: 'Lihat frekuensi di dalam lagu, rekaman, atau kicau burung.',
       name: 'Spektrogram online',
       shortName: 'Spektrogram',
       title: 'Spektrogram online — audio jadi gambar, gratis',
@@ -1871,9 +1925,10 @@ export const id: Catalog = {
       exportLabel: 'Unduh PNG',
     },
     'image-to-audio': {
+      cardLine: 'Sembunyikan gambar atau sebaris teks di dalam spektrogram WAV.',
       name: 'Gambar ke audio',
       shortName: 'Gambar ke audio',
-      title: 'Gambar ke audio — sembunyikan gambar dalam suara',
+      title: 'Gambar ke audio — buat spektrogram dari gambar',
       description: 'Ubah gambar atau satu baris pendek menjadi WAV yang terlihat di spektrogram. Gratis di browser, tidak ada yang diunggah.',
       h1: 'Gambar ke audio',
       subtitle: 'Gambar sebuah gambar atau satu baris teks ke dalam WAV. Spektrogram menampilkannya kembali.',

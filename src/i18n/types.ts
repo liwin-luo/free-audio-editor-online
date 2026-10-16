@@ -5,6 +5,8 @@ export interface ToolCopy {
   description: string;
   h1: string;
   subtitle: string;
+  /** Scenario line for hub/home cards. Falls back to subtitle when a locale omits it. */
+  cardLine?: string;
   intro: string;
   usesHeading: string;
   uses: [string, string, string];
@@ -233,6 +235,9 @@ export interface HomeCopy {
   mostUsed: string;
   comingTitle: string;
   comingBody: string;
+  useCasesHeading: string;
+  /** Persona cards; tools are slugs from TOOLS */
+  useCases: { title: string; body: string; tools: string[] }[];
   whyHeading: string;
   why: { title: string; body: string }[];
   faqs: { q: string; a: string }[];
@@ -268,6 +273,12 @@ export interface HubCopy {
   description: string;
   h1: string;
   intro: string;
+  /** One-liner under each category heading on /tools */
+  categoryIntro: { cut: string; merge: string; record: string; effects: string };
+  /** "What do you want to do?" task router */
+  tasksTitle: string;
+  /** tool is a slug from TOOLS — the label renders the localized tool name */
+  tasks: { task: string; tool: string }[];
 }
 
 export interface Shell {
