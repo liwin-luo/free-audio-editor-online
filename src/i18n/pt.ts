@@ -46,6 +46,8 @@ export const pt: Catalog = {
       'mp3-320': 'MP3 · 320 kbps',
       'mp3-192': 'MP3 · 192 kbps',
       'mp3-128': 'MP3 · 128 kbps',
+    'mp3-96': 'MP3 · 96 kbps',
+    'mp3-64': 'MP3 · 64 kbps',
       wav: 'WAV · sem perdas',
       m4r: 'M4R · toque de iPhone',
     },
@@ -1038,6 +1040,171 @@ export const pt: Catalog = {
       ],
       dropHint: 'Solte um arquivo WAV ou clique para procurar',
       exportLabel: 'Converter para MP3',
+    },
+    'flac-to-mp3': {
+      name: 'Converter FLAC para MP3',
+      shortName: 'FLAC para MP3',
+      title: 'Converter FLAC em MP3 online grátis — 320 kbps',
+      description:
+        'Converta FLAC em MP3 no navegador: 128, 192 ou 320 kbps. Grátis, sem cadastro: sua música é convertida no aparelho e nunca enviada.',
+      h1: 'Converter FLAC para MP3',
+      subtitle: 'Converta arquivos FLAC em MP3 em segundos — direto no navegador, sem enviar nada.',
+      intro:
+        'O FLAC soa perfeito e gasta meio disco duro para provar isso. Transforme sua biblioteca sem perdas em MP3s compactos que tocam no som do carro, caixas Bluetooth e aparelhos mais antigos — solte os arquivos, escolha o bitrate e a conversão acontece no seu próprio aparelho. Uma faixa FLAC de 25 MB vira um MP3 de 12 MB a 320 kbps em poucos segundos.',
+      usesHeading: 'FLAC que valem a conversão',
+      uses: [
+        'Fazer a biblioteca sem perdas tocar no som do carro e em aparelhos antigos.',
+        'Encolher um álbum antes de uma viagem sem Wi-Fi ou de compartilhar uma pasta.',
+        'Converter primeiro e recortar depois as músicas que você realmente repete.',
+      ],
+      howTo: [
+        {
+          name: 'Solte o FLAC',
+          text: 'Arraste um arquivo .flac até a página ou clique para procurar. Outros formatos sem perdas são convertidos do mesmo jeito.',
+        },
+        {
+          name: 'Escolha o bitrate',
+          text: '320 kbps é transparente para quase todo mundo; 192 kbps é o equilíbrio do dia a dia; 128 kbps deixa audiolivros e podcasts pequenos.',
+        },
+        {
+          name: 'Converta e baixe',
+          text: 'Clique em Converter para MP3. O codificador roda no seu navegador e o MP3 baixa direto no aparelho.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Converter FLAC para MP3 perde qualidade?',
+          a: 'O MP3 é com perdas, então alguma informação é descartada — mas a 320 kbps praticamente ninguém distingue o MP3 do FLAC num teste cego. Guarde o FLAC como cópia de arquivo e trate o MP3 como a cópia portátil.',
+        },
+        {
+          q: 'Qual bitrate escolher?',
+          a: '320 kbps para a música que você guarda, 192 kbps para o dia a dia e compartilhar, 128 kbps para audiolivros, podcasts e aulas — a voz precisa de muito menos que a música.',
+        },
+        {
+          q: 'Quanto menor fica o MP3?',
+          a: 'Uma música típica de cinco minutos cai de uns 25 MB em FLAC para cerca de 12 MB a 320 kbps, 7 MB a 192 e 5 MB a 128. Os números exatos dependem da duração e da taxa de amostragem.',
+        },
+        {
+          q: 'As tags e capas do FLAC são mantidas?',
+          a: 'Por enquanto não — o MP3 é escrito sem metadados, então título, artista e capa não vêm junto. Você pode readicionar depois com qualquer editor de tags.',
+        },
+        {
+          q: 'Meu FLAC é enviado para algum lugar?',
+          a: 'Não. O arquivo é decodificado no seu navegador e codificado em MP3 por uma pequena biblioteca carregada de uma CDN. O áudio nunca sai do seu aparelho.',
+        },
+      ],
+      dropHint: 'Solte um arquivo FLAC ou clique para procurar',
+      exportLabel: 'Converter para MP3',
+    },
+    'mp3-to-wav': {
+      name: 'Converter MP3 para WAV',
+      shortName: 'MP3 para WAV',
+      title: 'Converter MP3 em WAV online grátis',
+      description:
+        'Converta MP3 em WAV sem perdas no navegador, para editar, arquivar e apps que pedem PCM. Grátis, sem cadastro, sem envio.',
+      h1: 'Converter MP3 para WAV',
+      subtitle: 'Decodifique MP3 em áudio PCM limpo em segundos — direto no navegador, sem enviar nada.',
+      intro:
+        'Converter MP3 para WAV não devolve o que a compressão removeu — nenhum app faz isso. O que ele entrega é o áudio decodificado como PCM limpio de 16 bits, sem novas perdas: a entrada certa para editores de áudio, samplers e qualquer coisa que peça WAV, e o ponto de partida mais seguro se o arquivo ainda vai ser editado. A decodificação acontece no seu aparelho, normalmente num segundo.',
+      usesHeading: 'Motivos para ir para o WAV',
+      uses: [
+        'Entregar um MP3 a um editor, DAW ou app que só aceita WAV.',
+        'Cortar a perda de geração: edite em WAV e comprima de volta para MP3 só no final.',
+        'Arquivar uma cópia decodificada junto do original antes de novas edições.',
+      ],
+      howTo: [
+        {
+          name: 'Solte o MP3',
+          text: 'Arraste um arquivo .mp3 até a página ou clique para procurar. Outros formatos comprimidos são decodificados do mesmo jeito.',
+        },
+        {
+          name: 'Deixe WAV selecionado',
+          text: 'O formato de saída fica fixado em WAV sem perdas — PCM de 16 bits na taxa de amostragem original do arquivo.',
+        },
+        {
+          name: 'Converta e baixe',
+          text: 'Clique em Converter para WAV. O áudio decodificado é gravado localmente e o download começa na hora.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Converter MP3 para WAV melhora a qualidade?',
+          a: 'Não — e desconfie de qualquer conversor que prometa isso. Os dados que o codificador descartou já se foram. O WAV contém exatamente o que o MP3 decodifica, e é justamente por isso que ele é o formato certo para seguir editando: não adiciona outra geração com perdas.',
+        },
+        {
+          q: 'Então por que converter para WAV?',
+          a: 'Para editar e arquivar. WAV é o formato que editores de áudio, samplers e ferramentas de gravação de CD esperam, e um master sem perdas evita acumular artefatos a cada processamento. O fluxo honesto: converta para WAV, edite e exporte para MP3 uma única vez no final.',
+        },
+        {
+          q: 'Qualquer bitrate de MP3 funciona?',
+          a: 'Todos — a decodificação é exata para qualquer MP3 válido, de 64 a 320 kbps. O WAV simplesmente vai conter o que o MP3 tem, na taxa de amostragem original.',
+        },
+        {
+          q: 'Quanto fica o tamanho do WAV?',
+          a: 'Cerca de dez vezes o MP3. Uma música de três minutos a 44,1 kHz estéreo vira uns 30 MB em PCM de 16 bits — esse é o tamanho real do áudio não comprimido, não uma ineficiência do conversor.',
+        },
+        {
+          q: 'Meu MP3 é enviado para algum lugar?',
+          a: 'Não. O arquivo é decodificado no seu navegador e gravado como WAV localmente. Nada sai do seu aparelho.',
+        },
+      ],
+      dropHint: 'Solte um arquivo MP3 ou clique para procurar',
+      exportLabel: 'Converter para WAV',
+    },
+    'compress-audio': {
+      name: 'Compressor de áudio',
+      shortName: 'Compressor',
+      title: 'Comprimir áudio online grátis — reduza o tamanho',
+      description:
+        'Encolha arquivos MP3, WAV e outros áudios no navegador — escolha um bitrate menor, ouça e baixe. Grátis, sem envio.',
+      h1: 'Compressor de áudio',
+      subtitle: 'Abaixe o bitrate e o arquivo continua tocando — reduza o áudio em até 90% no navegador.',
+      intro:
+        'Arquivos de áudio pesam por causa do bitrate, e o jeito honesto de encolher um deles é recodificá-lo num bitrate menor: um MP3 de 320 kbps vira 128 kbps com cerca de 40% do tamanho, e um WAV pesado vira MP3 num décimo do tamanho. Escolha o alvo, ouça a prévia e exporte — a codificação acontece no seu aparelho, então até gravações longas terminam em segundos.',
+      usesHeading: 'Arquivos que valem um aperto',
+      uses: [
+        'Colocar uma aula ou um áudio de voz dentro do limite de e-mail ou app de mensagem.',
+        'Transformar uma exportação em WAV em MP3s pequenos para um link de revisão rápida.',
+        'Baixar uma biblioteca de 320 kbps para 128 kbps num celular que ouve música com dados móveis.',
+      ],
+      howTo: [
+        {
+          name: 'Solte o arquivo',
+          text: 'Adicione um MP3, WAV, M4A ou outro áudio. Ele é decodificado no seu aparelho e nunca enviado.',
+        },
+        {
+          name: 'Escolha o tamanho-alvo',
+          text: 'Menos bitrate, menos peso: 192 kbps para música do dia a dia, 128 kbps ainda soa bem para a maioria, 64–96 kbps é ideal para a voz.',
+        },
+        {
+          name: 'Ouça e exporte',
+          text: 'Ouça a prévia comprimida e salve. Confira se as vozes e os pratos continuam limpos no bitrate escolhido.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Como funciona a compressão de áudio aqui?',
+          a: 'O arquivo é decodificado e recodificado como MP3 no bitrate que você escolher. O tamanho cresce na proporção do bitrate: um minuto de estéreo fica em torno de 2,4 MB a 320 kbps, 1 MB a 128 e 0,5 MB a 64.',
+        },
+        {
+          q: 'Qual bitrate mantém a boa qualidade?',
+          a: '192 ou 320 kbps para a música que você liga; 128 kbps para ouvir sem frescura — a maioria não distingue de 320 num teste cego. Voz e podcast seguem claros até 64–96 kbps.',
+        },
+        {
+          q: 'Comprimir pode piorar a qualidade?',
+          a: 'Sim, num caso específico: recodificar um MP3 já comprimido num bitrate bem menor empilha uma segunda geração com perdas sobre a primeira. Comprimir a partir de WAV ou FLAC é mais limpo — guardando o original, você pode tentar outro bitrate quando quiser.',
+        },
+        {
+          q: 'Quão pequeno dá para ir?',
+          a: '64 kbps é o piso prático: uns 0,5 MB por minuto. A voz continua perfeitamente clara; a música começa a soar abafada e com chiado. Abaixo disso, codecs dedicados como o Opus se saem melhor que o MP3.',
+        },
+        {
+          q: 'Meu arquivo é enviado para algum lugar?',
+          a: 'Não. Decodificação e codificação acontecem dentro da aba do navegador — você pode desconectar a internet depois que a página carregar e a compressão continua funcionando.',
+        },
+      ],
+      dropHint: 'Solte um arquivo de áudio ou clique para procurar',
+      exportLabel: 'Comprimir',
     },
     'reverse-audio': {
       name: 'Reverter áudio',

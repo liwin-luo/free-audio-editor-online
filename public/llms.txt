@@ -12,6 +12,9 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Ringtone Maker](https://freeaudioeditor.online/ringtone-maker): pick up to 40 seconds of any song and export M4R (Chrome, Edge, Safari) or MP3.
 - [Audio Joiner](https://freeaudioeditor.online/audio-joiner): merge multiple audio files in any order with optional crossfade and fades.
 - [WAV to MP3 Converter](https://freeaudioeditor.online/wav-to-mp3): convert WAV and other lossless files to MP3 at 128–320 kbps.
+- [FLAC to MP3 Converter](https://freeaudioeditor.online/flac-to-mp3): convert FLAC to MP3 at 128–320 kbps; tags and artwork are not copied.
+- [MP3 to WAV Converter](https://freeaudioeditor.online/mp3-to-wav): decode MP3 to lossless 16-bit PCM WAV for editing — no quality restoration, honest copy.
+- [Audio Compressor](https://freeaudioeditor.online/compress-audio): shrink MP3, WAV and other audio by re-encoding at 64–320 kbps.
 - [OGG to MP3 Converter](https://freeaudioeditor.online/ogg-to-mp3): convert OGG (Vorbis or Opus) to MP3. Safari often cannot decode Vorbis.
 - [Opus to MP3 Converter](https://freeaudioeditor.online/opus-to-mp3): convert .opus files and Opus inside OGG or WebM to MP3.
 - [Pitch Changer](https://freeaudioeditor.online/pitch-changer): shift audio pitch ±12 semitones while keeping the duration unchanged.
@@ -40,7 +43,7 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 
 - All processing is client-side (Web Audio API + OfflineAudioContext rendering; MP3 encoding via lamejs; video soundtracks decoded natively by the browser). The audio-to-text page additionally runs an OpenAI Whisper model locally via WebAssembly/WebGPU (transformers.js); its only network request is the one-time model download from the HuggingFace CDN, cached by the browser afterwards.
 - No accounts, no server-side file storage, no tracking of user audio.
-- Supported input: MP3, WAV, M4A/AAC, OGG, FLAC, WebM audio, and MP4/WebM/MOV video soundtracks (whatever the browser decodes). Output: MP3 (128/192/320 kbps), lossless WAV, M4R on the ringtone maker (Chrome, Edge, Safari 17+), or transcript text as TXT/SRT on audio-to-text.
+- Supported input: MP3, WAV, M4A/AAC, OGG, FLAC, WebM audio, and MP4/WebM/MOV video soundtracks (whatever the browser decodes). Output: MP3 (64–320 kbps), lossless WAV, M4R on the ringtone maker (Chrome, Edge, Safari 17+), or transcript text as TXT/SRT on audio-to-text.
 - Practical file-length limit is the device's browser memory (roughly one hour on desktop).
 
 ## For crawlers

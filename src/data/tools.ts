@@ -475,6 +475,198 @@ export const TOOLS: ToolDef[] = [
     },
   },
   {
+    slug: 'flac-to-mp3',
+    name: 'FLAC to MP3 Converter',
+    shortName: 'FLAC to MP3',
+    icon: 'convert',
+    category: 'merge',
+    title: 'FLAC to MP3 Converter — Convert FLAC Files Online Free',
+    description:
+      'Convert FLAC to MP3 in your browser — 128, 192 or 320 kbps. Free, no signup: your music is converted locally and never uploaded.',
+    h1: 'FLAC to MP3 Converter',
+    subtitle: 'Convert FLAC files to MP3 in seconds — right in your browser, nothing uploaded.',
+    intro:
+      'FLAC sounds perfect and takes up half a hard drive to prove it. Turn your lossless library into compact MP3s that play on car stereos, Bluetooth speakers and older gear — drop the files, pick a bitrate, and the conversion runs on your own device. A 25 MB FLAC album track becomes a 12 MB MP3 at 320 kbps in a couple of seconds.',
+    usesHeading: 'FLAC files worth converting',
+    uses: [
+      'Make a lossless library playable on car stereos and older devices.',
+      'Shrink an album before a long trip off Wi-Fi or a shared folder.',
+      'Convert first, then trim the songs you actually replay.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your FLAC',
+        text: 'Drag a .flac file onto the page or click to browse. Other lossless formats convert the same way.',
+      },
+      {
+        name: 'Pick a bitrate',
+        text: '320 kbps is transparent for almost everyone; 192 kbps is the everyday balance; 128 kbps keeps speech and podcasts small.',
+      },
+      {
+        name: 'Convert and download',
+        text: 'Click Convert to MP3. The encoder runs in your browser and the MP3 downloads straight to your device.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Does converting FLAC to MP3 lose quality?',
+        a: 'MP3 is lossy, so some information is discarded — but at 320 kbps virtually nobody can tell the difference from the FLAC in a blind test. Keep the FLAC as your archive copy and treat the MP3 as the portable one.',
+      },
+      {
+        q: 'Which bitrate should I choose?',
+        a: '320 kbps for music you keep, 192 kbps for everyday listening and sharing, 128 kbps for audiobooks, podcasts and lecture recordings — speech needs far less than music.',
+      },
+      {
+        q: 'How much smaller is the MP3?',
+        a: 'A typical five-minute song drops from about 25 MB as FLAC to roughly 12 MB at 320 kbps, 7 MB at 192 and 5 MB at 128. Exact numbers depend on the length and sample rate.',
+      },
+      {
+        q: 'Are FLAC tags and album art kept?',
+        a: 'Not currently — the MP3 is written without metadata, so titles, artist and cover art do not carry over. You can re-add them afterwards with any tag editor.',
+      },
+      {
+        q: 'Is my FLAC uploaded anywhere?',
+        a: 'No. The file is decoded in your browser and encoded to MP3 by a small library loaded from a CDN. The audio itself never leaves your device.',
+      },
+    ],
+    related: ['wav-to-mp3', 'm4a-to-mp3', 'audio-trimmer'],
+    editor: {
+      defaultFormat: 'mp3-320',
+      dropHint: 'Drop a FLAC file, or click to browse',
+      converter: true,
+      exportLabel: 'Convert to MP3',
+      formats: ['mp3-320', 'mp3-192', 'mp3-128'],
+    },
+  },
+  {
+    slug: 'mp3-to-wav',
+    name: 'MP3 to WAV Converter',
+    shortName: 'MP3 to WAV',
+    icon: 'convert',
+    category: 'merge',
+    title: 'MP3 to WAV Converter — Convert MP3 to WAV Online Free',
+    description:
+      'Convert MP3 to lossless WAV in your browser — for editing, archiving and apps that want PCM. Free, no signup, nothing uploaded.',
+    h1: 'MP3 to WAV Converter',
+    subtitle: 'Decode MP3 to clean PCM audio in seconds — right in your browser, nothing uploaded.',
+    intro:
+      'Converting MP3 to WAV cannot restore what compression removed — nothing can. What it does give you is the decoded audio as clean 16-bit PCM with no further loss: the right input for audio editors, samplers and anything that asks for WAV, and the safest starting point if the file will be edited again. Decode happens on your device, usually in a second.',
+    usesHeading: 'Reasons to decode to WAV',
+    uses: [
+      'Hand an MP3 to an editor, DAW or app that only accepts WAV.',
+      'Stop generation loss: edit in WAV, compress back to MP3 once at the end.',
+      'Archive a decoded copy alongside the original before further edits.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your MP3',
+        text: 'Drag an .mp3 file onto the page or click to browse. Other compressed formats decode the same way.',
+      },
+      {
+        name: 'Keep WAV selected',
+        text: 'The export format is fixed to lossless WAV — 16-bit PCM at the file\u2019s original sample rate.',
+      },
+      {
+        name: 'Convert and download',
+        text: 'Click Convert to WAV. The decoded audio is written locally and downloads immediately.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Does converting MP3 to WAV improve the quality?',
+        a: 'No — and be skeptical of any converter claiming otherwise. The data the encoder discarded is gone. WAV gives you exactly what the MP3 decodes to, which is why it is the right format for further editing: it never adds another lossy generation.',
+      },
+      {
+        q: 'Why convert to WAV at all, then?',
+        a: 'Editing and archiving. WAV is the format audio editors, samplers and CD-burning tools expect, and a lossless master avoids stacking compression artifacts every time you process the file. The honest workflow: decode to WAV, edit, export to MP3 once at the end.',
+      },
+      {
+        q: 'Which MP3 bitrate works best?',
+        a: 'All of them — decoding is exact for any valid MP3, from 64 to 320 kbps. The WAV will simply contain whatever the MP3 actually holds, at its original sample rate.',
+      },
+      {
+        q: 'How big will the WAV be?',
+        a: 'Roughly ten times the MP3. A three-minute song at 44.1 kHz stereo becomes about 30 MB as 16-bit PCM — that is the size of uncompressed audio, not a converter inefficiency.',
+      },
+      {
+        q: 'Is my MP3 uploaded anywhere?',
+        a: 'No. The file is decoded in your browser and written to WAV locally. Nothing leaves your device.',
+      },
+    ],
+    related: ['wav-to-mp3', 'extract-audio', 'fade-audio'],
+    editor: {
+      defaultFormat: 'wav',
+      dropHint: 'Drop an MP3 file, or click to browse',
+      converter: true,
+      exportLabel: 'Convert to WAV',
+      formats: ['wav'],
+    },
+  },
+  {
+    slug: 'compress-audio',
+    name: 'Audio Compressor',
+    shortName: 'Compressor',
+    icon: 'file',
+    category: 'merge',
+    title: 'Compress Audio — Reduce MP3 & WAV File Size Online',
+    description:
+      'Shrink MP3, WAV and other audio files to a smaller size in your browser — pick a lower bitrate, listen, download. Free, nothing uploaded.',
+    h1: 'Audio Compressor',
+    subtitle: 'Drop the bitrate, keep the file playable — shrink audio by up to 90% in your browser.',
+    intro:
+      'Audio files are big because of their bitrate, and the honest way to shrink one is to re-encode it at a lower bitrate: a 320 kbps MP3 becomes a 128 kbps MP3 at about 40% of the size, and a heavy WAV becomes an MP3 at a tenth of its size. Pick the target, listen to the preview, and export — the encoding runs on your own device, so even long recordings finish in seconds.',
+    usesHeading: 'Files worth shrinking',
+    uses: [
+      'Fit a lecture or voice memo under an email or chat-app size cap.',
+      'Turn a WAV export into small MP3s for a quick review link.',
+      'Take a 320 kbps library down to 128 kbps for a phone on mobile data.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your file',
+        text: 'Add an MP3, WAV, M4A or other audio file. It is decoded on your device and never uploaded.',
+      },
+      {
+        name: 'Pick the target size',
+        text: 'Lower bitrate, smaller file: 192 kbps for everyday music, 128 kbps still sounds fine to most ears, 64–96 kbps is ideal for speech.',
+      },
+      {
+        name: 'Listen and export',
+        text: 'Preview the compressed result, then save it. Check that voices and cymbals still sound clean at the bitrate you chose.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'How does audio compression work here?',
+        a: 'The file is decoded and re-encoded as MP3 at the bitrate you pick. Size scales linearly with bitrate: one minute of stereo audio is about 2.4 MB at 320 kbps, 1 MB at 128 and 0.5 MB at 64.',
+      },
+      {
+        q: 'Which bitrate keeps good quality?',
+        a: '192 kbps or 320 kbps for music you care about, 128 kbps for casual listening — most listeners cannot reliably tell it from 320 in a blind test. Speech and podcasts stay clear all the way down to 64–96 kbps.',
+      },
+      {
+        q: 'Can compressing make the quality worse?',
+        a: 'Yes, in one specific case: re-encoding an already-compressed MP3 at a much lower bitrate stacks a second lossy generation on the first. Compressing a WAV or FLAC source is cleaner — if you keep the original, you can always try a different bitrate again.',
+      },
+      {
+        q: 'How small can I go?',
+        a: '64 kbps is the practical floor: about 0.5 MB per minute. Speech remains perfectly clear; music starts to sound dull and swishy. Below that, dedicated codecs like Opus do better than MP3.',
+      },
+      {
+        q: 'Is my file uploaded anywhere?',
+        a: 'No. Decoding and encoding both run inside your browser tab — you could disconnect from the internet after the page loads and compression would still work.',
+      },
+    ],
+    related: ['wav-to-mp3', 'flac-to-mp3', 'mp3-editor'],
+    editor: {
+      defaultFormat: 'mp3-128',
+      dropHint: 'Drop an audio file, or click to browse',
+      converter: true,
+      exportLabel: 'Compress',
+      formats: ['mp3-320', 'mp3-192', 'mp3-128', 'mp3-96', 'mp3-64'],
+    },
+  },
+  {
     slug: 'reverse-audio',
     name: 'Reverse Audio',
     shortName: 'Reverse Audio',

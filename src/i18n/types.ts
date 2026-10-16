@@ -203,6 +203,8 @@ export interface UiText {
     'mp3-320': string;
     'mp3-192': string;
     'mp3-128': string;
+    'mp3-96': string;
+    'mp3-64': string;
     wav: string;
     m4r: string;
   };

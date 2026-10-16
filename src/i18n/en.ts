@@ -46,6 +46,8 @@ export const en: Shell = {
       'mp3-320': 'MP3 · 320 kbps',
       'mp3-192': 'MP3 · 192 kbps',
       'mp3-128': 'MP3 · 128 kbps',
+    'mp3-96': 'MP3 · 96 kbps',
+    'mp3-64': 'MP3 · 64 kbps',
       wav: 'WAV · lossless',
       m4r: 'M4R · iPhone ringtone',
     },

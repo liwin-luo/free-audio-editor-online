@@ -46,6 +46,8 @@ export const id: Catalog = {
       'mp3-320': 'MP3 · 320 kbps',
       'mp3-192': 'MP3 · 192 kbps',
       'mp3-128': 'MP3 · 128 kbps',
+    'mp3-96': 'MP3 · 96 kbps',
+    'mp3-64': 'MP3 · 64 kbps',
       wav: 'WAV · lossless',
       m4r: 'M4R · nada dering iPhone',
     },
@@ -1039,6 +1041,171 @@ export const id: Catalog = {
       ],
       dropHint: 'Jatuhkan file WAV, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
+    },
+    'flac-to-mp3': {
+      name: 'Konversi FLAC ke MP3',
+      shortName: 'FLAC ke MP3',
+      title: 'Ubah FLAC ke MP3 Online Gratis — 320 kbps',
+      description:
+        'Konversi FLAC ke MP3 di browser — 128, 192, atau 320 kbps. Gratis, tanpa mendaftar: musik dikonversi secara lokal dan tidak pernah diunggah.',
+      h1: 'Konversi FLAC ke MP3',
+      subtitle: 'Ubah file FLAC jadi MP3 dalam hitungan detik — langsung di browser, tanpa unggah.',
+      intro:
+        'FLAC terdengar sempurna dan menghabiskan setengah hard disk untuk membuktikannya. Ubah pustaka lossless kamu jadi MP3 ringkas yang bisa diputar di head unit mobil, speaker Bluetooth, dan perangkat lama — jatuhkan filenya, pilih bitrate, dan konversi berjalan di perangkatmu sendiri. Satu lagu FLAC 25 MB jadi MP3 12 MB di 320 kbps dalam beberapa detik.',
+      usesHeading: 'FLAC yang layak dikonversi',
+      uses: [
+        'Agar pustaka lossless bisa diputar di mobil dan perangkat lama.',
+        'Mengecilkan album sebelum perjalanan tanpa Wi-Fi atau sebelum membagikan folder.',
+        'Konversi dulu, lalu potong lagu yang benar-benar kamu putar ulang.',
+      ],
+      howTo: [
+        {
+          name: 'Jatuhkan FLAC kamu',
+          text: 'Seret file .flac ke halaman, atau klik untuk memilih. Format lossless lain dikonversi dengan cara yang sama.',
+        },
+        {
+          name: 'Pilih bitrate',
+          text: '320 kbps tidak bisa dibedakan hampir oleh siapa pun; 192 kbps adalah keseimbangan sehari-hari; 128 kbps menjaga audiobook dan podcast tetap kecil.',
+        },
+        {
+          name: 'Konversi dan unduh',
+          text: 'Klik Konversi ke MP3. Encoder berjalan di browser kamu dan MP3 langsung terunduh ke perangkat.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Apakah konversi FLAC ke MP3 menurunkan kualitas?',
+          a: 'MP3 itu lossy, jadi sebagian informasi dibuang — tapi di 320 kbps hampir tidak ada yang bisa membedakannya dari FLAC dalam tes buta. Simpan FLAC sebagai arsip dan anggap MP3 sebagai versi portabelnya.',
+        },
+        {
+          q: 'Bitrate mana yang sebaiknya dipilih?',
+          a: '320 kbps untuk musik yang kamu simpan, 192 kbps untuk dengar sehari-hari dan berbagi, 128 kbps untuk audiobook, podcast, dan rekaman kuliah — suara butuh jauh lebih sedikit dari musik.',
+        },
+        {
+          q: 'Berapa lebih kecil ukuran MP3-nya?',
+          a: 'Lagu lima menit biasanya turun dari sekitar 25 MB (FLAC) ke kira-kira 12 MB di 320 kbps, 7 MB di 192, dan 5 MB di 128. Angka pastinya tergantung durasi dan sample rate.',
+        },
+        {
+          q: 'Apakah tag dan cover FLAC ikut terbawa?',
+          a: 'Belum — MP3 ditulis tanpa metadata, jadi judul, artis, dan cover art tidak ikut. Kamu bisa menambahkannya lagi dengan editor tag apa pun.',
+        },
+        {
+          q: 'Apakah FLAC saya diunggah ke mana pun?',
+          a: 'Tidak. File didekode di browser kamu dan dienkode ke MP3 oleh pustaka kecil yang dimuat dari CDN. Audionya sendiri tidak pernah meninggalkan perangkatmu.',
+        },
+      ],
+      dropHint: 'Jatuhkan file FLAC, atau klik untuk memilih',
+      exportLabel: 'Konversi ke MP3',
+    },
+    'mp3-to-wav': {
+      name: 'Konversi MP3 ke WAV',
+      shortName: 'MP3 ke WAV',
+      title: 'Ubah MP3 ke WAV Online Gratis',
+      description:
+        'Konversi MP3 ke WAV lossless di browser, untuk mengedit, mengarsipkan, dan aplikasi yang minta PCM. Gratis, tanpa daftar, tanpa unggah.',
+      h1: 'Konversi MP3 ke WAV',
+      subtitle: 'Dekode MP3 jadi audio PCM bersih dalam hitungan detik — langsung di browser, tanpa unggah.',
+      intro:
+        'Mengubah MP3 ke WAV tidak mengembalikan apa yang dibuang saat kompresi — tidak ada alat yang bisa. Yang didapat adalah audio hasil dekode sebagai PCM 16-bit yang bersih tanpa kehilangan baru: input yang tepat untuk editor audio, sampler, dan apa pun yang meminta WAV, sekaligus titik awal teraman kalau file masih akan diolah. Dekode berjalan di perangkatmu, biasanya dalam satu detik.',
+      usesHeading: 'Alasan pindah ke WAV',
+      uses: [
+        'Menyerahkan MP3 ke editor, DAW, atau aplikasi yang hanya menerima WAV.',
+        'Menghentikan kerugian turunan: edit di WAV, kompres balik ke MP3 sekali di akhir.',
+        'Mengarsipkan salinan hasil dekode di samping aslinya sebelum diedit lagi.',
+      ],
+      howTo: [
+        {
+          name: 'Jatuhkan MP3 kamu',
+          text: 'Seret file .mp3 ke halaman, atau klik untuk memilih. Format terkompresi lain didekode dengan cara yang sama.',
+        },
+        {
+          name: 'Biarkan WAV terpilih',
+          text: 'Format ekspor dikunci ke WAV lossless — PCM 16-bit pada sample rate asli file.',
+        },
+        {
+          name: 'Konversi dan unduh',
+          text: 'Klik Konversi ke WAV. Audio hasil dekode ditulis secara lokal dan unduhan langsung dimulai.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Apakah mengubah MP3 ke WAV menaikkan kualitas?',
+          a: 'Tidak — dan waspadai konverter yang mengklaim sebaliknya. Data yang dibuang encoder sudah hilang. WAV berisi persis apa yang dihasilkan dekode MP3, dan justru karena itulah ia format yang tepat untuk mengedit lagi: tidak menambah generasi lossy baru.',
+        },
+        {
+          q: 'Lalu untuk apa dikonversi ke WAV?',
+          a: 'Untuk mengedit dan mengarsipkan. WAV adalah format yang diharapkan editor audio, sampler, dan alat burn CD, dan master lossless menghindari penumpukan artefak setiap kali file diproses. Alur yang jujur: dekode ke WAV, edit, ekspor ke MP3 sekali di akhir.',
+        },
+        {
+          q: 'Bitrate MP3 berapa pun bisa?',
+          a: 'Semua bisa — dekode itu presisi untuk MP3 valid apa pun, dari 64 sampai 320 kbps. WAV akan berisi apa yang benar-benar ada di MP3 itu, pada sample rate aslinya.',
+        },
+        {
+          q: 'Seberapa besar ukuran WAV-nya?',
+          a: 'Kira-kira sepuluh kali MP3. Lagu tiga menit 44,1 kHz stereo jadi sekitar 30 MB sebagai PCM 16-bit — itu ukuran wajar audio tanpa kompresi, bukan kelambanan konverter.',
+        },
+        {
+          q: 'Apakah MP3 saya diunggah ke mana pun?',
+          a: 'Tidak. File didekode di browser kamu dan ditulis sebagai WAV secara lokal. Tidak ada yang meninggalkan perangkatmu.',
+        },
+      ],
+      dropHint: 'Jatuhkan file MP3, atau klik untuk memilih',
+      exportLabel: 'Konversi ke WAV',
+    },
+    'compress-audio': {
+      name: 'Kompresor Audio',
+      shortName: 'Kompresor',
+      title: 'Kompres Audio Online Gratis — Perkecil Ukuran File',
+      description:
+        'Perkecil file MP3, WAV, dan audio lain di browser — pilih bitrate lebih rendah, dengar, unduh. Gratis, tanpa unggah.',
+      h1: 'Kompresor Audio',
+      subtitle: 'Turunkan bitrate, file tetap bisa diputar — perkecil audio sampai 90% di browser.',
+      intro:
+        'File audio besar karena bitrate-nya, dan cara jujur mengecilkan satu file adalah mengenkode ulang di bitrate lebih rendah: MP3 320 kbps jadi 128 kbps dengan sekitar 40% ukurannya, dan WAV yang berat jadi MP3 sepersepuluhnya. Pilih target, dengarkan pratinjaunya, lalu ekspor — pengodean berjalan di perangkatmu sendiri, jadi rekaman panjang pun selesai dalam hitungan detik.',
+      usesHeading: 'File yang layak dikecilkan',
+      uses: [
+        'Memuat kuliah atau memo suara di bawah batas ukuran surel atau aplikasi chat.',
+        'Mengubah hasil ekspor WAV jadi MP3 kecil untuk tautan review cepat.',
+        'Menurunkan pustaka 320 kbps ke 128 kbps untuk ponsel yang streaming pakai data.',
+      ],
+      howTo: [
+        {
+          name: 'Jatuhkan file kamu',
+          text: 'Tambahkan MP3, WAV, M4A, atau audio lain. Ia didekode di perangkatmu dan tidak pernah diunggah.',
+        },
+        {
+          name: 'Pilih ukuran target',
+          text: 'Bitrate lebih rendah, file lebih kecil: 192 kbps untuk musik sehari-hari, 128 kbps masih terdengar baik bagi kebanyakan orang, 64–96 kbps ideal untuk suara.',
+        },
+        {
+          name: 'Dengar dan ekspor',
+          text: 'Dengarkan pratinjau hasil kompresi, lalu simpan. Pastikan vokal dan simbal masih bersih di bitrate pilihanmu.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Bagaimana kompresi audio di sini bekerja?',
+          a: 'File didekode lalu dienkode ulang sebagai MP3 di bitrate pilihanmu. Ukuran sebanding dengan bitrate: satu menit stereo sekitar 2,4 MB di 320 kbps, 1 MB di 128, dan 0,5 MB di 64.',
+        },
+        {
+          q: 'Bitrate mana yang menjaga kualitas?',
+          a: '192 atau 320 kbps untuk musik yang kamu sayang; 128 kbps untuk dengar santai — kebanyakan orang tidak bisa membedakannya dari 320 dalam tes buta. Suara dan podcast tetap jernih sampai 64–96 kbps.',
+        },
+        {
+          q: 'Bisakah kompresi menurunkan kualitas?',
+          a: 'Bisa, dalam satu kasus: mengenkode ulang MP3 yang sudah terkompresi di bitrate jauh lebih rendah menumpuk generasi lossy kedua di atas yang pertama. Mengompres dari WAV atau FLAC lebih bersih — simpan aslinya, dan kamu bisa mencoba bitrate lain kapan saja.',
+        },
+        {
+          q: 'Seberapa kecil bisa dikompres?',
+          a: '64 kbps adalah batas praktisnya: sekitar 0,5 MB per menit. Suara tetap sangat jernih; musik mulai terdengar tumpul dan berdesis. Di bawah itu, codec khusus seperti Opus bekerja lebih baik daripada MP3.',
+        },
+        {
+          q: 'Apakah file saya diunggah ke mana pun?',
+          a: 'Tidak. Dekode dan enkode berjalan di dalam tab browser — kamu bisa memutus internet setelah halaman termuat dan kompresi tetap bekerja.',
+        },
+      ],
+      dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+      exportLabel: 'Kompres',
     },
     'reverse-audio': {
       name: 'Putar Balik Audio',
