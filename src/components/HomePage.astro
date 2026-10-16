@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from './Icon.astro';
 import Faq from './Faq.astro';
-import { TOOLS } from '../data/tools';
+import { CATEGORY_IDS, TOOLS } from '../data/tools';
 import { websiteSchema, webAppSchema, faqSchema } from '../lib/jsonld';
 import { getShell, localizeTool } from '../i18n';
 import { fill } from '../i18n/inline';
@@ -30,8 +30,13 @@ const jsonLd = [
 ];
 
 const FEATURED_SLUGS = ['mp4-to-mp3', 'audio-trimmer'];
+const POPULAR_SLUGS = ['audio-joiner', 'mp3-cutter', 'voice-recorder', 'increase-volume'];
 const featured = FEATURED_SLUGS.map((slug) => tools.find((t) => t.slug === slug)!);
-const rest = tools.filter((t) => !FEATURED_SLUGS.includes(t.slug));
+const popular = POPULAR_SLUGS.map((slug) => tools.find((t) => t.slug === slug)!);
+const categoryIcon = { cut: 'scissors', merge: 'layers', record: 'mic', effects: 'waveform' } as const;
+// Decorative hero waveform: deterministic heights, selection highlighted in accent
+const heroBars = Array.from({ length: 75 }, (_, i) => 14 + Math.abs(Math.sin(i * 1.7)) * 46 + (i % 5) * 3);
+const heroSel = [21, 47] as const;
 ---
 
 <Base title={home.title} description={home.description} path="/" locale={locale} jsonLd={jsonLd}>
@@ -53,16 +58,45 @@ const rest = tools.filter((t) => !FEATURED_SLUGS.includes(t.slug));
       </a>
       <a href={localePath(locale, '/audio-joiner')} class="btn btn-secondary btn-lg">{home.ctaMerge}</a>
     </div>
+    <div class="mt-10 max-w-2xl rounded-2xl border border-line bg-surface p-5 shadow-sm">
+      <div class="flex items-center justify-between gap-3 text-xs text-ink3">
+        <span class="inline-flex items-center gap-2 font-medium text-ink2">
+          <Icon name="waveform" size={14} class="text-accent" />
+          interview-raw.wav · 3:42
+        </span>
+        <span>MP3 · WAV · M4A · OGG · FLAC</span>
+      </div>
+      <svg viewBox="0 0 600 96" class="mt-4 h-20 w-full" preserveAspectRatio="none" aria-hidden="true">
+        <rect
+          x={heroSel[0] * 8 - 2}
+          y="2"
+          width={(heroSel[1] - heroSel[0] + 1) * 8 + 4}
+          height="92"
+          rx="8"
+          class="fill-accent-soft"
+        />
+        {heroBars.map((h, i) => (
+          <rect
+            x={i * 8}
+            y={48 - h / 2}
+            width={5}
+            height={h}
+            rx={2.5}
+            class:list={[i >= heroSel[0] && i <= heroSel[1] ? 'fill-accent' : 'fill-line']}
+          />
+        ))}
+      </svg>
+    </div>
   </section>
 
   <section id="tools" class="container-wide pb-16" aria-labelledby="tools-heading">
     <h2 id="tools-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">{home.toolsHeading}</h2>
-    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
       {
         featured.map((tool) => (
           <a
             href={localePath(locale, `/${tool.slug}`)}
-            class="group relative flex flex-col rounded-xl border border-accent/60 bg-surface p-6 transition-colors hover:border-accent sm:col-span-2 lg:col-span-3"
+            class="group relative flex flex-col rounded-xl border border-accent/60 bg-surface p-6 transition-colors hover:border-accent"
           >
             <span class="absolute right-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-medium text-accent">
               <Icon name="trending-up" size={12} />
@@ -80,28 +114,53 @@ const rest = tools.filter((t) => !FEATURED_SLUGS.includes(t.slug));
           </a>
         ))
       }
+    </div>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {
-        rest.map((tool) => (
+        popular.map((tool) => (
           <a
             href={localePath(locale, `/${tool.slug}`)}
-            class="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent lg:col-span-2"
+            class="group flex flex-col rounded-xl border border-line bg-surface p-5 transition-colors hover:border-accent"
           >
-            <span class="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent">
-              <Icon name={tool.icon} size={22} />
+            <span class="grid size-10 place-items-center rounded-lg bg-accent-soft text-accent">
+              <Icon name={tool.icon} size={20} />
             </span>
-            <h3 class="mt-5 font-medium group-hover:text-accent">{tool.name}</h3>
-            <p class="mt-1.5 flex-1 text-sm leading-relaxed text-ink2">{tool.subtitle}</p>
-            <p class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
-              {fill(ui.openTool, { name: tool.name })}
-              <Icon name="convert" size={15} class="transition-transform group-hover:translate-x-0.5" />
-            </p>
+            <h3 class="mt-4 font-medium group-hover:text-accent">{tool.name}</h3>
+            <p class="mt-1.5 line-clamp-2 flex-1 text-sm leading-relaxed text-ink2">{tool.cardLine ?? tool.subtitle}</p>
           </a>
         ))
       }
-      <div class="flex flex-col justify-center rounded-xl border border-dashed border-line p-6 lg:col-span-2">
-        <h3 class="font-medium text-ink2">{home.comingTitle}</h3>
-        <p class="mt-1.5 text-sm leading-relaxed text-ink2">{home.comingBody}</p>
-      </div>
+    </div>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        CATEGORY_IDS.map((cat) => {
+          const count = TOOLS.filter((t) => t.category === cat).length;
+          return (
+            <a
+              href={`${localePath(locale, '/tools')}#hub-${cat}`}
+              class="group flex items-center gap-3 rounded-xl border border-line bg-surface p-5 transition-colors hover:border-accent"
+            >
+              <span class="grid size-10 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">
+                <Icon name={categoryIcon[cat]} size={20} />
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block font-medium group-hover:text-accent">{ui.categories[cat]}</span>
+                <span class="block text-sm text-ink3">{fill(home.toolsCount, { count })}</span>
+              </span>
+              <Icon name="convert" size={15} class="shrink-0 text-ink3 transition-transform group-hover:translate-x-0.5 group-hover:text-accent" />
+            </a>
+          );
+        })
+      }
+    </div>
+    <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2">
+      <a href={localePath(locale, '/tools')} class="btn btn-secondary">
+        {fill(home.allToolsCta, { count: TOOLS.length })}
+        <Icon name="convert" size={16} />
+      </a>
+      <p class="text-sm text-ink3">
+        <span class="font-medium text-ink2">{home.comingTitle}:</span> {home.comingBody}
+      </p>
     </div>
   </section>
 

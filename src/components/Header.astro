@@ -50,29 +50,31 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
           <Icon name="caret-down" size={16} class="transition-transform group-open:rotate-180" />
         </summary>
         <div
-          class="absolute end-0 top-full z-30 mt-2 max-h-[calc(100dvh-5.5rem)] w-72 overflow-y-auto overscroll-contain rounded-xl border border-line bg-surface p-2 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)]"
+          class="fixed inset-x-3 top-[4.25rem] z-30 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain rounded-xl border border-line bg-surface p-2 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)] sm:absolute sm:inset-x-auto sm:end-0 sm:top-full sm:mt-2 sm:w-[32rem] lg:w-[40rem]"
         >
           {
             CATEGORY_IDS.map((cat) => (
               <div class="mb-1 last:mb-0">
                 <p class="px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-ink3">{ui.categories[cat]}</p>
-                {TOOLS.filter((t) => t.category === cat).map((t) => (
-                  <a
-                    href={localePath(locale, `/${t.slug}`)}
-                    class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-ink2 hover:bg-surface2 hover:text-ink"
-                  >
-                    <Icon name={t.icon} size={18} class="text-ink3" />
-                    {toolName(t.slug)}
-                  </a>
-                ))}
+                <div class="grid grid-cols-2 gap-x-1 lg:grid-cols-3 lg:gap-x-2">
+                  {TOOLS.filter((t) => t.category === cat).map((t) => (
+                    <a
+                      href={localePath(locale, `/${t.slug}`)}
+                      class="flex items-center gap-2.5 rounded-lg px-3 py-1.5 text-sm leading-snug text-ink2 hover:bg-surface2 hover:text-ink"
+                    >
+                      <Icon name={t.icon} size={18} class="shrink-0 text-ink3" />
+                      <span class="min-w-0">{toolName(t.slug)}</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             ))
           }
           <a
             href={localePath(locale, '/tools')}
-            class="mt-1 flex items-center gap-3 rounded-lg border-t border-line px-3 py-2 text-sm font-medium text-ink2 hover:bg-surface2 hover:text-ink"
+            class="mt-1 flex items-center gap-2.5 rounded-lg border-t border-line px-3 py-2 text-sm font-medium text-ink2 hover:bg-surface2 hover:text-ink"
           >
-            <Icon name="layers" size={18} class="text-ink3" />
+            <Icon name="layers" size={18} class="shrink-0 text-ink3" />
             {ui.allTools}
           </a>
         </div>
@@ -119,6 +121,21 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
   document.addEventListener('click', (e) => {
     document.querySelectorAll('[data-nav-dropdown][open]').forEach((d) => {
       if (!d.contains(e.target)) d.removeAttribute('open');
+    });
+  });
+
+  // Escape closes; opening one dropdown closes the other
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('[data-nav-dropdown][open]').forEach((d) => d.removeAttribute('open'));
+    }
+  });
+  document.querySelectorAll('[data-nav-dropdown]').forEach((d) => {
+    d.addEventListener('toggle', () => {
+      if (!d.open) return;
+      document.querySelectorAll('[data-nav-dropdown][open]').forEach((o) => {
+        if (o !== d) o.removeAttribute('open');
+      });
     });
   });
 
