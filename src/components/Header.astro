@@ -1,9 +1,9 @@
 ---
 import Icon from './Icon.astro';
 import { CATEGORY_IDS, TOOLS } from '../data/tools';
-import { localesWithGuides } from '../data/guides';
+import { guideAlternates } from '../data/guides';
 import { getShell, localizeTool } from '../i18n';
-import { LOCALES, isTranslatedGuide, localePath, type Locale } from '../i18n/locales';
+import { LOCALES, localePath, type Locale } from '../i18n/locales';
 
 interface Props {
   locale?: Locale;
@@ -15,12 +15,10 @@ const guidesHref = localePath(locale, '/guides');
 const onGuide = path === '/guides' || path.startsWith('/guides/') || path === '/guias' || path.startsWith('/guias/');
 // a locale without this guide (per-market guides; locales without the
 // translated article) falls back to its guides index instead of a 404
-const guideLocales = new Set(localesWithGuides());
 const langHref = (target: Locale) => {
   if (path === '/404') return localePath(target, '/');
   if (!onGuide) return localePath(target, path);
-  const fallback = isTranslatedGuide(path) && guideLocales.has(target) ? path : '/guides';
-  return localePath(target, fallback);
+  return guideAlternates(path).find((a) => a.locale === target)?.href ?? localePath(target, '/guides');
 };
 const current = LOCALES.find((l) => l.id === locale)!;
 const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;

@@ -37,6 +37,10 @@ Un archivo que se llama `.opus` es otro trabajo. Para eso está el
 3. Elige un bitrate (abajo) y exporta. El MP3 se descarga en tu dispositivo. El
    OGG se queda donde estaba.
 
+![La página de OGG a MP3 antes de abrir un archivo. La zona dice «Suelta un archivo OGG o haz clic para elegirlo», y el archivo se procesa en el dispositivo.](/guides-media/convert-ogg-to-mp3/es-01-drop.webp)
+
+![clip.ogg abierto en el convertidor. El formato es MP3 · 320 kbps y el botón dice Convertir a MP3.](/guides-media/convert-ogg-to-mp3/es-02-ready.webp)
+
 ## Qué bitrate
 
 Las tres tasas cubren el uso real. Pasado lo que se oye, un número más alto

@@ -57,6 +57,8 @@ Those jobs do not get better because the waveform lives in a desktop window. The
 get worse, because the install, the export dialog, and the "where did it save"
 step are the whole task.
 
+![song-demo.mp3 in the MP3 editor. Keep selection is on, one region is highlighted, and the format is MP3 · 320 kbps. One file, one export.](/guides-media/audacity-alternative/01-editor.webp)
+
 ## Task, then tool
 
 | You want to… | Use |
@@ -69,6 +71,7 @@ step are the whole task.
 | Turn a WAV (or other lossless file) into an MP3 | [WAV to MP3](/wav-to-mp3) |
 | Play a track backwards | [Reverse audio](/reverse-audio) |
 | Slow a song down or speed it up, pitch included | [Change audio speed](/change-audio-speed) |
+| Change the key and keep the length | [Pitch changer](/pitch-changer) |
 | Make a slowed + reverb edit, or a nightcore edit | [Slowed + reverb](/slowed-reverb) |
 | Raise a uniformly quiet file to a safe peak | [Audio normalizer](/normalize-audio) |
 | Push a quiet file louder by a chosen amount | [Increase volume](/increase-volume) |
@@ -79,7 +82,10 @@ step are the whole task.
 
 Each of those pages is the same engine with the controls and the copy pointed at
 one job. If you are not sure, the [MP3 editor](/mp3-editor) is the general case:
-selection, fades, volume, speed, reverse, then export.
+selection, fades, volume, speed, reverse, then export. The
+[MP3 editing guide](/guides/how-to-edit-an-mp3) maps those jobs, including
+[trim](/guides/how-to-trim-audio), [pitch](/guides/change-pitch-without-changing-speed)
+and [WAV](/guides/how-to-edit-a-wav-file).
 
 ## What you give up
 
@@ -94,9 +100,12 @@ Audacity, which streams from disk, is the more reliable machine.
 crossfade the overlap. It does not let you hear two clips at the same time on
 separate faders. If "merge" means a mix, you want Audacity.
 
+![The audio joiner with two tracks in a list, song-demo.mp3 then voice-memo-b.wav. Crossfade is 0.0s. They play one after another, not on separate faders.](/guides-media/audacity-alternative/02-joiner.webp)
+
 **Effects are the short list.** Reverse, speed (pitch moves with it — this is
-not time-stretch), gain with a limiter, peak normalize, and a single synthesized
-reverb. There is no EQ, no noise print, no de-esser, no third-party plugin.
+not time-stretch), a separate pitch shift that keeps the length, gain with a
+limiter, peak normalize, a 3-band EQ, high-pass and low-pass, and a single
+synthesized reverb. There is no noise print, no de-esser, no third-party plugin.
 Peak normalize raises the whole file by one amount so the loudest sample sits
 just under clipping. It does not make the quiet parts as loud as the loud parts.
 That second thing is compression, and it is the kind of processing that belongs

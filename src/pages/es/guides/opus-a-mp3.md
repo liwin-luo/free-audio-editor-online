@@ -37,6 +37,10 @@ Opus, no.
 2. Suelta el `.opus`, o el OGG o WebM que traiga Opus.
 3. Elige un bitrate y exporta. El MP3 se descarga solo.
 
+![La página de Opus a MP3 antes de abrir un archivo. La zona dice «Suelta un archivo Opus o haz clic para elegirlo».](/guides-media/opus-a-mp3/es-01-drop.webp)
+
+![note.opus abierto en el convertidor. El formato es MP3 · 192 kbps y el botón dice Convertir a MP3.](/guides-media/opus-a-mp3/es-02-ready.webp)
+
 ## Qué bitrate
 
 Opus ya es un formato con pérdida. El MP3 no recupera lo que la nota de voz

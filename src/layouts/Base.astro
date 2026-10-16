@@ -9,7 +9,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE } from '../data/site';
 import { getShell } from '../i18n';
-import { localesWithGuides } from '../data/guides';
+import { guideAlternates, localesWithGuides } from '../data/guides';
 import { LOCALES, hasAlternates, isTranslatedGuide, localeMeta, localePath, type Locale } from '../i18n/locales';
 
 interface Props {
@@ -31,10 +31,17 @@ const { ui } = getShell(locale);
 const meta = localeMeta(locale);
 const canonical = new URL(localePath(locale, path), SITE.url).href;
 const guideLocales = new Set(localesWithGuides());
-// guides exist per market: both the index and the one translated article
-// must only alternate between locales that actually have the page
-const guideGated = path === '/guides' || isTranslatedGuide(path);
-const alternateList = guideGated ? LOCALES.filter((l) => guideLocales.has(l.id)) : LOCALES;
+// The index alternates across locales that have any guide. A translated
+// article alternates only across locales that actually have that article.
+// A cluster can use a different slug per language (OGG).
+const cluster = isTranslatedGuide(path) ? guideAlternates(path) : [];
+const alternateList =
+  path === '/guides'
+    ? LOCALES.filter((l) => guideLocales.has(l.id))
+    : cluster.length > 1
+      ? LOCALES.filter((l) => cluster.some((a) => a.locale === l.id))
+      : LOCALES;
+const hrefFor = (id: Locale) => cluster.find((a) => a.locale === id)?.href ?? localePath(id, path);
 const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
 ---
 
@@ -49,10 +56,10 @@ const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
     {
       alternates &&
         alternateList.map((l) => (
-          <link rel="alternate" hreflang={l.hreflang} href={new URL(localePath(l.id, path), SITE.url).href} />
+          <link rel="alternate" hreflang={l.hreflang} href={new URL(hrefFor(l.id), SITE.url).href} />
         ))
     }
-    {alternates && <link rel="alternate" hreflang="x-default" href={new URL(path, SITE.url).href} />}
+    {alternates && <link rel="alternate" hreflang="x-default" href={new URL(hrefFor('en'), SITE.url).href} />}
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0d9488" />

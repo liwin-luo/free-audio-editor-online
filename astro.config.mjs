@@ -3,7 +3,8 @@ import { readFileSync } from 'node:fs';
 import { imageSize } from 'image-size';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-import { localesWithGuides } from './src/data/guides.ts';
+import { guideAlternates, localesWithGuides } from './src/data/guides.ts';
+import { localeMeta } from './src/i18n/locales.ts';
 
 /**
  * Guide markdown images are static files under public/, so Astro won't touch
@@ -91,6 +92,17 @@ export default defineConfig({
         // The HTML head declares x-default; keep sitemap hreflang clusters
         // consistent by appending the same entry to every URL's alternates.
         let links = item.links;
+        if (!links) {
+          const bare = path.replace(/\/$/, '') || '/';
+          const unprefixed = bare.replace(/^\/(?:es|pt|id|de|ko|ja|zh|fr|ru|ar)(?=\/)/, '') || '/';
+          const cluster = guideAlternates(unprefixed);
+          if (cluster.length > 1) {
+            links = cluster.map((alt) => ({
+              lang: localeMeta(alt.locale).hreflang,
+              url: new URL(alt.href, item.url).href,
+            }));
+          }
+        }
         if (links) {
           const en = links.find((l) => l.lang === 'en');
           if (en && !links.some((l) => l.lang === 'x-default')) {

@@ -40,6 +40,20 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Slowed + Reverb](https://freeaudioeditor.online/slowed-reverb): slow a song (pitch drops with it) and add a reverb tail; speed above 1× is nightcore.
 - [MP3 Tag Editor](https://freeaudioeditor.online/mp3-tag-editor): edit ID3 tags and cover art on MP3 files in the browser; audio bytes untouched, nothing uploaded.
 
+## Guides
+
+English walkthroughs, plus Spanish, Brazilian Portuguese, and Indonesian for the four editing guides. French, Russian, and Arabic have the pitch guide. Other languages list only the articles written in that language.
+
+- [How to Trim Audio Online](https://freeaudioeditor.online/guides/how-to-trim-audio): crop a voice memo or podcast. Keep one region or delete a gap. One export is one file. Also in [español](https://freeaudioeditor.online/es/guides/how-to-trim-audio), [português](https://freeaudioeditor.online/pt/guides/how-to-trim-audio), and [Indonesia](https://freeaudioeditor.online/id/guides/how-to-trim-audio).
+- [How to Change Pitch Without Changing Speed](https://freeaudioeditor.online/guides/change-pitch-without-changing-speed): ±12 semitones, duration unchanged. Speed is a separate control and moves the pitch with the tempo. Also in [español](https://freeaudioeditor.online/es/guides/change-pitch-without-changing-speed), [português](https://freeaudioeditor.online/pt/guides/change-pitch-without-changing-speed), [Indonesia](https://freeaudioeditor.online/id/guides/change-pitch-without-changing-speed), [français](https://freeaudioeditor.online/fr/guides/change-pitch-without-changing-speed), [русский](https://freeaudioeditor.online/ru/guides/change-pitch-without-changing-speed), and [العربية](https://freeaudioeditor.online/ar/guides/change-pitch-without-changing-speed).
+- [How to Edit an MP3 File](https://freeaudioeditor.online/guides/how-to-edit-an-mp3): which edit belongs on which page, and why to export once. Also in [español](https://freeaudioeditor.online/es/guides/how-to-edit-an-mp3), [português](https://freeaudioeditor.online/pt/guides/how-to-edit-an-mp3), and [Indonesia](https://freeaudioeditor.online/id/guides/how-to-edit-an-mp3).
+- [How to Edit a WAV File](https://freeaudioeditor.online/guides/how-to-edit-a-wav-file): edit the WAV first. Export is 16-bit PCM. MP3 to WAV does not restore lost detail. Also in [español](https://freeaudioeditor.online/es/guides/how-to-edit-a-wav-file), [português](https://freeaudioeditor.online/pt/guides/how-to-edit-a-wav-file), and [Indonesia](https://freeaudioeditor.online/id/guides/how-to-edit-a-wav-file).
+- [How to Cut a Song](https://freeaudioeditor.online/guides/how-to-cut-a-song): keep or delete a selection in a song.
+- [How to Merge Audio Files](https://freeaudioeditor.online/guides/merge-songs-one-track): order songs, voice memos or podcast clips and crossfade them into one track.
+- [Audacity Alternative](https://freeaudioeditor.online/guides/audacity-alternative): when a browser tool is enough, and when a desktop editor still is.
+- [MP4 to MP3](https://freeaudioeditor.online/guides/convert-video-to-mp3): extract a video soundtrack in the browser. AC3 and DTS are not decoded.
+- [OGG to MP3](https://freeaudioeditor.online/guides/convert-ogg-to-mp3): Vorbis versus Opus, and the Safari case that cannot decode Vorbis.
+
 ## Facts for assistants and agents
 
 - All processing is client-side (Web Audio API + OfflineAudioContext rendering; MP3 encoding via lamejs; video soundtracks decoded natively by the browser). The audio-to-text page additionally runs an OpenAI Whisper model locally via WebAssembly/WebGPU (transformers.js); its only network request is the one-time model download from the HuggingFace CDN, cached by the browser afterwards.
@@ -50,5 +64,5 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 ## For crawlers
 
 - Sitemap: https://freeaudioeditor.online/sitemap-index.xml
-- Languages: English at `/`, plus `/es/` `/pt/` `/id/` `/de/` `/fr/` `/ko/` `/ja/` `/zh/` `/ru/` `/ar/` for the same tools. Guides live at `/guides` in each language and list only articles written in that language. English has the main set; Spanish OGG and Opus guides are at `/es/guides`; French, Russian and Arabic currently have no guides.
+- Languages: English at `/`, plus `/es/` `/pt/` `/id/` `/de/` `/fr/` `/ko/` `/ja/` `/zh/` `/ru/` `/ar/` for the same tools. Guides live at `/guides` in each language and list only articles written in that language. The trim, pitch, MP3, and WAV guides are in English, Spanish, Brazilian Portuguese, and Indonesian. The pitch guide is also in French, Russian, and Arabic. Spanish also has OGG and Opus guides.
 - Content may be quoted with attribution and a link.

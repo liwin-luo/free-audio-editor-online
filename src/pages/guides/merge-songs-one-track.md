@@ -1,6 +1,6 @@
 ---
-title: How to Merge Songs into One Track Online
-description: Combine songs into a single continuous file for DJ sets, workouts or podcasts — ordering, crossfade settings and export formats, all in your browser.
+title: How to Merge Audio Files into One Track Online
+description: Combine songs, voice memos or podcast clips into one file. Set the order, add a crossfade, and export MP3 or WAV. Nothing is uploaded.
 tool: audio-joiner
 date: 2026-10-14
 audio: /guides-media/merge-songs-one-track/narration.m4a
@@ -9,9 +9,9 @@ youtube: RceLdI_b6_o
 layout: ../../layouts/Guide.astro
 ---
 
-One audio file is easier to play, share and sync than a folder of twenty. Whether
-you are building a continuous gym mix, prepping a DJ set, or stitching podcast
-episodes into an archive file, the workflow is the same: load the tracks, put them
+One audio file is easier to play, share and sync than a folder of clips. Whether
+you are joining songs for a gym mix, stitching voice memos, or combining podcast
+chapters into an archive, the workflow is the same: load the tracks, put them
 in order, pick how they meet, export. Here is how to do it in the browser without
 uploading a megabyte.
 

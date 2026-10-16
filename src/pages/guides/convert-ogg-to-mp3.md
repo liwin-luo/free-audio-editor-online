@@ -36,6 +36,10 @@ A file named `.opus` is a different job. Use the
 3. Pick a bitrate (below) and export. The MP3 downloads to your device. The
    OGG stays where it was.
 
+![The OGG to MP3 page before a file is open. The drop zone says “Drop an OGG file, or click to browse,” and the file is processed locally.](/guides-media/convert-ogg-to-mp3/01-drop.webp)
+
+![clip.ogg open in the converter. The format is MP3 · 320 kbps, and the button says Convert to MP3.](/guides-media/convert-ogg-to-mp3/02-ready.webp)
+
 ## Which bitrate
 
 The three rates cover real use. Past what you can hear, a bigger number only

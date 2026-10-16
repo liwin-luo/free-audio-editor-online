@@ -14,6 +14,9 @@ uploading your music to a random website. Neither is necessary: your browser can
 audio on its own, and the file never has to leave your computer. Here is the quick
 version, then the details.
 
+If the file is a voice memo or a podcast and the job is dropping silence, use
+[how to trim audio](/guides/how-to-trim-audio). This page is about cutting a song.
+
 ## What you need
 
 - The song file (MP3, WAV, M4A, FLAC, OGG — whatever you have)
