@@ -185,6 +185,25 @@ export const es: Catalog = {
     paintReady: 'Listo. Descarga el WAV y ábrelo en el generador de espectrogramas.',
     paintWorking: 'Escribiendo el audio…',
     paintFail: 'No se pudo leer esa imagen. Prueba un PNG o un JPG.',
+    trLang: 'Idioma',
+    trLangAuto: 'Detección automática',
+    trModel: 'Modelo',
+    trModelBase: 'Base — más preciso',
+    trModelTiny: 'Tiny — descarga más rápida',
+    trPreparing: 'Preparando el modelo…',
+    trDownloading: 'Descargando el modelo… {percent}%',
+    trWorking: 'Transcribiendo… {percent}%',
+    trDone: 'Transcripción terminada — {count} caracteres',
+    trFirstRun:
+      'La primera ejecución descarga el modelo una vez (Tiny ≈ 40 MB, Base ≈ 80 MB) y tu navegador lo guarda en caché: las siguientes funcionan sin conexión.',
+    trResultPlaceholder: 'La transcripción aparece aquí — edítala antes de descargar si quieres.',
+    trCopy: 'Copiar',
+    trCopied: 'Copiado al portapapeles',
+    trTxt: 'Descargar TXT',
+    trSrt: 'Descargar SRT',
+    trTooLong:
+      'Este archivo pasa de 10 minutos. Recórtalo antes — el recortador de audio funciona igual de en privado — y vuelve a transcribir aquí.',
+    trFail: 'La transcripción falló. Prueba el modelo Tiny, un archivo más claro o un navegador reciente.',
   },
   home: {
     title: 'Free Audio Editor — Edita audio en línea, nada se sube',
@@ -196,7 +215,9 @@ export const es: Catalog = {
     lede: 'Recorta, corta, une y edita audio en tu navegador. Sin registro, sin marcas de agua y sin subir archivos: nunca salen de tu dispositivo.',
     ctaTrim: 'Recortar un archivo de audio',
     ctaMerge: 'Unir canciones',
-    toolsHeading: 'Todas las herramientas de audio',
+    toolsHeading: 'Herramientas de audio populares',
+    allToolsCta: 'Ver las {count} herramientas',
+    toolsCount: '{count} herramientas',
     mostUsed: 'Las más usadas',
     comingTitle: 'Próximamente',
     comingBody: 'Mezclador con crossfade, quitar silencios y más — con la misma prioridad: tu privacidad.',
@@ -235,7 +256,7 @@ export const es: Catalog = {
     ],
   },
   hub: {
-    title: 'Todas las herramientas — Editar audio online gratis',
+    title: 'Herramientas de audio gratis — Recortar, unir y convertir',
     description:
       'Corta, une, convierte, graba y mejora audio con todas las herramientas en un solo lugar. Todo en tu navegador: sin subir archivos y sin registro.',
     h1: 'Todas las herramientas de audio',
@@ -283,6 +304,65 @@ export const es: Catalog = {
     contactBefore: '¿Preguntas sobre esta política? Escribe a {email}.',
   },
   tools: {
+    'audio-to-text': {
+      name: 'Audio a texto',
+      shortName: 'Audio a texto',
+      title: 'Audio a Texto — Transcribir Audio Online Gratis',
+      description:
+        'Transcribe audio a texto en tu navegador: MP3, WAV, M4A y vídeo, más de 90 idiomas con detección automática, exporta TXT o SRT. Gratis, sin registro.',
+      h1: 'Audio a texto',
+      subtitle: 'Convierte grabaciones en texto en más de 90 idiomas y con marcas de tiempo — todo en tu navegador.',
+      intro:
+        'Suelta una grabación y saca sus palabras: notas de voz, entrevistas, clases, pódcast — en unos 90 idiomas, detectados automáticamente cuando no sabes cuál es. Un modelo de IA Whisper se ejecuta dentro de tu navegador, en tu propio dispositivo, así que el audio nunca se sube, y la transcripción sale como texto editable o como un archivo SRT con marcas de tiempo.',
+      usesHeading: 'Transcripciones que de verdad hacen falta',
+      uses: [
+        'Convertir una clase, una reunión o una entrevista en notas que puedes buscar y citar.',
+        'Subtitular un vídeo o un episodio de pódcast exportando un SRT con marcas de tiempo.',
+        'Sacar las palabras de una nota de voz sin enviar la grabación a ningún sitio.',
+      ],
+      howTo: [
+        {
+          name: 'Suelta tu archivo',
+          text: 'Añade un MP3, WAV, M4A, un archivo de vídeo u otra grabación. Se descodifica en tu dispositivo y nunca se sube.',
+        },
+        {
+          name: 'Elige idioma y modelo',
+          text: 'La detección automática sirve para casi todo. Elige Tiny para ir más rápido en grabaciones largas o dispositivos modestos, Base para la mejor precisión.',
+        },
+        {
+          name: 'Transcribe y descarga',
+          text: 'La primera ejecución descarga el modelo una vez y lo guarda en caché. Edita la transcripción si quieres y guárdala como TXT o SRT.',
+        },
+      ],
+      faqs: [
+        {
+          q: '¿Se sube mi audio?',
+          a: 'No. El archivo se descodifica en tu navegador y lo transcribe un modelo Whisper que se ejecuta localmente mediante WebAssembly o WebGPU. La única petición de red es la descarga única del modelo desde una CDN pública: después, la transcripción funciona sin conexión. Nada de tu audio llega nunca a un servidor.',
+        },
+        {
+          q: '¿Cómo de precisa es la transcripción?',
+          a: 'Usa los modelos Whisper de OpenAI, que rozan el nivel humano con voz clara. El ruido de fondo fuerte, los acentos marcados, varios hablantes a la vez o la música alta la empeoran. Con audio difícil, Base es bastante mejor que Tiny; y en cualquier caso el resultado cae en un cuadro editable, así que puedes corregir nombres y puntuación antes de descargar.',
+        },
+        {
+          q: '¿Cuáles son los límites?',
+          a: 'Un archivo cada vez y hasta 10 minutos por pasada: recorta antes las grabaciones largas (el recortador de audio funciona igual de en privado). No distingue hablantes: un diálogo sale como un texto único sin nombres. Y esta página trabaja con archivos, no con el micrófono en directo.',
+        },
+        {
+          q: '¿En qué se diferencia de la grabadora de voz?',
+          a: 'La grabadora capta tu micrófono y lo convierte en un archivo de audio; esta página lee un archivo ya existente y escribe sus palabras. Combinan bien: graba allí, transcribe aquí. Todo se ejecuta en tu navegador.',
+        },
+        {
+          q: '¿Qué idiomas admite?',
+          a: 'Whisper se entrenó con unos 90 idiomas, del inglés, chino, español y árabe al vietnamita, ucraniano y suajili. Deja el idioma en Detección automática y el modelo lo averigua a partir del audio, o fija un idioma para ganar algo de precisión.',
+        },
+        {
+          q: '¿Funciona en el móvil?',
+          a: 'Sí: Chrome, Edge, Firefox y Safari recientes, en escritorio y móvil. Los navegadores con WebGPU (Chrome, Edge) transcriben mucho más rápido; en los demás va por CPU, así que elige Tiny para archivos largos y espera unos minutos por cada diez minutos de audio. La descarga única del modelo también es más pequeña con Tiny.',
+        },
+      ],
+      dropHint: 'Suelta un archivo de audio o vídeo, o haz clic para buscar',
+      exportLabel: 'Transcribir',
+    },
     'bass-booster': {
       name: 'Realce de graves',
       shortName: 'Graves',

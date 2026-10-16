@@ -185,6 +185,25 @@ export const id: Catalog = {
     paintReady: 'Siap. Unduh WAV, lalu buka di generator spektrogram.',
     paintWorking: 'Menulis audio…',
     paintFail: 'Gambar ini tidak terbaca. Coba PNG atau JPG.',
+    trLang: 'Bahasa',
+    trLangAuto: 'Deteksi otomatis',
+    trModel: 'Model',
+    trModelBase: 'Base — lebih akurat',
+    trModelTiny: 'Tiny — unduhan lebih cepat',
+    trPreparing: 'Menyiapkan model…',
+    trDownloading: 'Mengunduh model… {percent}%',
+    trWorking: 'Mentranskripsi… {percent}%',
+    trDone: 'Transkripsi selesai — {count} karakter',
+    trFirstRun:
+      'Pertama kali dijalankan, model diunduh sekali (Tiny ≈ 40 MB, Base ≈ 80 MB) dan disimpan browser — pemakaian berikutnya bisa offline.',
+    trResultPlaceholder: 'Transkrip muncul di sini — sunting sebelum mengunduh jika mau.',
+    trCopy: 'Salin',
+    trCopied: 'Tersalin ke papan klip',
+    trTxt: 'Unduh TXT',
+    trSrt: 'Unduh SRT',
+    trTooLong:
+      'File ini lebih dari 10 menit. Potong dulu — pemotong audio sama privasinya — lalu kembali transkripsi di sini.',
+    trFail: 'Transkripsi gagal. Coba model Tiny, file yang lebih jelas, atau browser terbaru.',
   },
   home: {
     title: 'Free Audio Editor — Edit Audio Online, Tidak Ada yang Diunggah',
@@ -196,7 +215,9 @@ export const id: Catalog = {
     lede: 'Pangkas, potong, gabung, dan edit audio langsung di browser. Tanpa mendaftar, tanpa watermark, tanpa unggah — file Anda tidak pernah meninggalkan perangkat.',
     ctaTrim: 'Pangkas file audio',
     ctaMerge: 'Gabungkan lagu',
-    toolsHeading: 'Semua alat audio',
+    toolsHeading: 'Alat audio populer',
+    allToolsCta: 'Lihat semua {count} alat',
+    toolsCount: '{count} alat',
     mostUsed: 'Paling sering dipakai',
     comingTitle: 'Yang akan datang',
     comingBody: 'Mixer crossfade, penghapus keheningan, dan lainnya — dengan pendekatan yang sama: privasi diutamakan.',
@@ -235,7 +256,7 @@ export const id: Catalog = {
     ],
   },
   hub: {
-    title: 'Semua alat audio — Edit audio online gratis',
+    title: 'Alat audio online gratis — Potong, gabung, dan konversi',
     description:
       'Potong, gabung, konversi, rekam dan tingkatkan audio dengan semua alat di satu tempat. Semua di browser: tanpa unggah dan tanpa daftar.',
     h1: 'Semua alat audio',
@@ -283,6 +304,65 @@ export const id: Catalog = {
     contactBefore: 'Ada pertanyaan tentang kebijakan ini? Tulis ke {email}.',
   },
   tools: {
+    'audio-to-text': {
+      name: 'Audio ke Teks',
+      shortName: 'Audio ke Teks',
+      title: 'Audio ke Teks — Transkripsi Audio Online Gratis',
+      description:
+        'Ubah audio menjadi teks di browser — MP3, WAV, M4A dan video, 90+ bahasa dengan deteksi otomatis, ekspor TXT atau SRT. Gratis, tanpa daftar, tanpa unggah.',
+      h1: 'Audio ke teks',
+      subtitle: 'Ubah rekaman menjadi teks dalam 90+ bahasa, dengan penanda waktu — langsung di browser Anda.',
+      intro:
+        'Letakkan rekaman dan ambil kata-katanya: memo suara, wawancara, kuliah, podcast — dalam sekitar 90 bahasa, terdeteksi otomatis saat Anda tidak yakin bahasanya. Model AI Whisper berjalan di dalam tab browser Anda, di perangkat Anda sendiri, jadi audio tidak pernah diunggah, dan hasilnya berupa teks yang bisa disunting atau file SRT dengan penanda waktu.',
+      usesHeading: 'Transkripsi yang benar-benar dibutuhkan',
+      uses: [
+        'Ubah kuliah, rapat, atau wawancara menjadi catatan yang bisa dicari dan dikutip.',
+        'Buat subtitle video atau episode podcast dengan mengekspor SRT berpenanda waktu.',
+        'Ambil kata-kata dari memo suara tanpa mengirim rekaman ke mana pun.',
+      ],
+      howTo: [
+        {
+          name: 'Letakkan file',
+          text: 'Tambahkan MP3, WAV, M4A, file video, atau rekaman lain. Dekode terjadi di perangkat Anda dan tidak diunggah.',
+        },
+        {
+          name: 'Pilih bahasa dan model',
+          text: 'Deteksi otomatis menangani sebagian besar file. Pilih Tiny untuk kecepatan pada rekaman panjang atau perangkat kelas bawah, Base untuk akurasi terbaik.',
+        },
+        {
+          name: 'Transkripsi dan unduh',
+          text: 'Pertama kali dijalankan, model diunduh sekali lalu disimpan. Sunting transkrip jika perlu, lalu simpan sebagai TXT atau SRT.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Apakah audio saya diunggah?',
+          a: 'Tidak. File didekode di browser Anda dan ditranskripsi oleh model Whisper yang berjalan lokal melalui WebAssembly atau WebGPU. Satu-satunya permintaan jaringan adalah unduhan model sekali dari CDN publik — setelah itu transkripsi bisa berjalan offline. Audio Anda tidak pernah sampai ke server.',
+        },
+        {
+          q: 'Seberapa akurat transkripsinya?',
+          a: 'Menggunakan model Whisper dari OpenAI yang mendekati level manusia pada ucapan yang jernih. Akurasi turun karena derau latar belakang, aksen kental, beberapa pembicara bersahutan, atau musik keras. Untuk audio sulit, Base jelas lebih baik dari Tiny — dan bagaimanapun hasilnya ada di kotak yang bisa disunting, jadi Anda bisa memperbaiki nama dan tanda baca sebelum mengunduh.',
+        },
+        {
+          q: 'Apa saja batasannya?',
+          a: 'Satu file sekaligus, maksimal 10 menit per proses — potong dulu rekaman yang lebih panjang (pemotong audio sama privatnya). Tidak ada label pembicara: dialog keluar sebagai satu teks tanpa nama. Dan halaman ini bekerja pada file, bukan mikrofon langsung.',
+        },
+        {
+          q: 'Apa bedanya dengan perekam suara?',
+          a: 'Perekam suara merekam mikrofon Anda menjadi file audio; halaman ini membaca file yang sudah ada dan menuliskan kata-katanya. Keduanya cocok dipasangkan: rekam di sana, transkripsi di sini. Semuanya berjalan di browser Anda.',
+        },
+        {
+          q: 'Bahasa apa saja yang didukung?',
+          a: 'Whisper dilatih dengan sekitar 90 bahasa, dari Inggris, Mandarin, Spanyol, dan Arab hingga Vietnam, Ukraina, dan Swahili. Biarkan pada Deteksi otomatis dan modelnya menebak dari audionya, atau tetapkan bahasa untuk sedikit penambahan akurasi.',
+        },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa — Chrome, Edge, Firefox, dan Safari terbaru, di desktop maupun ponsel. Browser dengan WebGPU (Chrome, Edge) mentranskripsi jauh lebih cepat; lainnya berjalan di CPU, jadi pilih Tiny untuk file panjang dan siapkan beberapa menit untuk sepuluh menit audio. Unduhan model Tiny juga lebih kecil.',
+        },
+      ],
+      dropHint: 'Letakkan file audio atau video, atau klik untuk memilih',
+      exportLabel: 'Mulai transkripsi',
+    },
     'bass-booster': {
       name: 'Penguat bass',
       shortName: 'Bass',

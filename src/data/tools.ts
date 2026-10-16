@@ -43,6 +43,8 @@ export interface EditorConfig {
   visualizer?: 'waveform' | 'spectrogram';
   /** Paint a picture or text into a WAV spectrogram */
   paint?: boolean;
+  /** Speech-to-text island instead of an audio editor */
+  transcribe?: boolean;
   /** Show the Adjust drawer (gain, speed, reverse, fades) */
   showAdjust?: boolean;
   /** Ringtone mode: clamp selection to 40 seconds */
@@ -845,13 +847,80 @@ export const TOOLS: ToolDef[] = [
         a: 'As long as your device memory allows — minutes of speech take very little space (Opus compression is efficient). For multi-hour recordings, export in sections.',
       },
     ],
-    related: ['audio-trimmer', 'high-pass-filter', 'increase-volume'],
+    related: ['audio-trimmer', 'audio-to-text', 'high-pass-filter'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
       dropHint: 'Or drop an existing recording to edit',
     },
     recorder: true,
+  },
+  {
+    slug: 'audio-to-text',
+    name: 'Audio to Text',
+    shortName: 'Audio to Text',
+    icon: 'voice',
+    category: 'record',
+    title: 'Audio to Text — Transcribe Audio Online Free',
+    description:
+      'Transcribe audio to text in your browser — MP3, WAV, M4A and video, 90+ languages with auto-detect, export TXT or SRT. Free, no signup, nothing uploaded.',
+    h1: 'Audio to Text',
+    subtitle: 'Turn recordings into text in 90+ languages, with timestamps — right in your browser.',
+    intro:
+      'Drop in a recording and get the words out of it: voice memos, interviews, lectures, podcasts — in about 90 languages, detected automatically when you are not sure which one it is. A Whisper AI model runs inside your browser tab on your own device, so the audio is never uploaded, and the transcript comes out as editable text or an SRT file with timestamps.',
+    usesHeading: 'Transcripts people actually need',
+    uses: [
+      'Turn a lecture, meeting or interview into notes you can search and quote.',
+      'Caption a video or podcast episode by exporting an SRT with timestamps.',
+      'Pull the words out of a voice memo without sending the recording anywhere.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your file',
+        text: 'Add an MP3, WAV, M4A, video file or other recording. It is decoded on your device and never uploaded.',
+      },
+      {
+        name: 'Pick a language and model',
+        text: 'Auto-detect handles most files. Choose Tiny for speed on long recordings or low-end devices, Base for the best accuracy.',
+      },
+      {
+        name: 'Transcribe and download',
+        text: 'The first run downloads the model once and caches it. Edit the transcript if you like, then save it as TXT or SRT.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The file is decoded in your browser and transcribed by a Whisper model that runs locally through WebAssembly or WebGPU. The only network request is the one-time model download from a public CDN — after that, transcription itself works offline. Nothing about your audio ever reaches a server.',
+      },
+      {
+        q: 'How accurate is the transcription?',
+        a: 'It uses OpenAI\u2019s Whisper models, which score near human level on clear speech. Accuracy drops with heavy background noise, strong accents, overlapping speakers or loud music. The Base model is noticeably better than Tiny on difficult audio — and either way the transcript lands in an editable box, so you can fix names and punctuation before downloading.',
+      },
+      {
+        q: 'What are the limits?',
+        a: 'One file at a time, up to 10 minutes per pass — trim longer recordings first (the audio trimmer works the same private way). It does not label speakers: a dialogue comes out as one flowing text without names. And this page works on files, not the live microphone.',
+      },
+      {
+        q: 'How is this different from the voice recorder?',
+        a: 'The voice recorder captures your microphone into an audio file; this page reads an existing file and writes out the words. They pair well: record there, transcribe here. Both run entirely in your browser.',
+      },
+      {
+        q: 'Which languages does it support?',
+        a: 'Whisper was trained on about 90 languages, from English, Chinese, Spanish and Arabic to Vietnamese, Ukrainian and Swahili. Leave the language on Auto-detect and the model works it out from the audio, or pin a language for a small accuracy boost.',
+      },
+      {
+        q: 'Does it work on my phone?',
+        a: 'Yes — recent Chrome, Edge, Firefox and Safari, desktop or mobile. Browsers with WebGPU (Chrome, Edge) transcribe much faster; elsewhere it runs on the CPU, so pick the Tiny model for long files and expect a wait of a few minutes on ten minutes of audio. The one-time model download is smaller for Tiny.',
+      },
+    ],
+    related: ['voice-recorder', 'extract-audio', 'audio-trimmer'],
+    editor: {
+      transcribe: true,
+      dropHint: 'Drop an audio or video file, or click to browse',
+      accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
+      exportLabel: 'Transcribe',
+    },
   },
   {
     slug: 'volume-booster',

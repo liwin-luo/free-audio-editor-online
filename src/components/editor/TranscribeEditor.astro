@@ -1,0 +1,117 @@
+---
+/**
+ * Transcription island for the audio-to-text tool. Static, SEO-friendly
+ * markup; src/editor/transcribe.ts wires it up. The product is text —
+ * no waveform and no audio export, unlike the other islands.
+ */
+import Icon from '../Icon.astro';
+import { getShell } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { EditorConfig } from '../../data/tools';
+
+interface Props {
+  config: EditorConfig;
+  locale?: Locale;
+}
+const { config, locale = 'en' } = Astro.props;
+const { editor: t } = getShell(locale);
+---
+
+<div
+  data-transcribe
+  data-config={JSON.stringify(config)}
+  data-i18n={JSON.stringify(t)}
+  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+>
+  <!-- Empty state / dropzone -->
+  <div data-dropzone class="cursor-pointer px-6 py-12 text-center md:py-16" tabindex="0" role="button" aria-label={config.dropHint}>
+    <span class="mx-auto grid size-14 place-items-center rounded-2xl bg-accent-soft text-accent">
+      <Icon name="voice" size={28} />
+    </span>
+    <p class="mt-5 text-lg font-medium">{config.dropHint}</p>
+    <p class="mt-1.5 text-sm text-ink2">{t.dropHour}</p>
+    <p class="mt-6 inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
+      <Icon name="shield-check" size={14} class="text-accent" />
+      {t.dropLocal}
+    </p>
+    <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input />
+  </div>
+
+  <!-- Workspace: visible after a file is loaded -->
+  <div data-workspace class="hidden">
+    <!-- File bar -->
+    <div class="flex items-center justify-between gap-3 border-b border-line px-4 py-2.5 md:px-5">
+      <div class="flex min-w-0 items-center gap-3">
+        <span class="grid size-8 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">
+          <Icon name="voice" size={16} />
+        </span>
+        <div class="min-w-0">
+          <p data-file-name class="truncate text-sm font-medium"></p>
+          <p data-file-meta class="font-mono text-xs text-ink3"></p>
+        </div>
+      </div>
+      <button type="button" class="btn btn-ghost size-9 shrink-0 p-0" data-reset aria-label={t.loadDifferent} title={t.startOver}>
+        <Icon name="arrow-arc-left" size={16} />
+      </button>
+    </div>
+
+    <!-- Controls -->
+    <div class="grid gap-x-6 gap-y-4 border-b border-line px-4 py-3.5 sm:grid-cols-2 md:px-5">
+      <label class="block text-sm text-ink2">
+        {t.trLang}
+        <select data-language class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+          <option value="" selected>{t.trLangAuto}</option>
+        </select>
+      </label>
+      <label class="block text-sm text-ink2">
+        {t.trModel}
+        <select data-model class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+          <option value="base">{t.trModelBase}</option>
+          <option value="tiny">{t.trModelTiny}</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Progress -->
+    <div data-progress-row class="hidden border-b border-line px-4 py-3 md:px-5">
+      <div class="h-1.5 w-full overflow-hidden rounded-full bg-surface2">
+        <div data-progress-bar class="h-full w-0 rounded-full bg-accent transition-[width] duration-300"></div>
+      </div>
+    </div>
+
+    <!-- Output -->
+    <div class="px-4 py-3.5 md:px-5">
+      <textarea
+        data-transcript
+        rows={9}
+        disabled
+        placeholder={t.trResultPlaceholder}
+        class="w-full resize-y rounded-lg border border-line bg-bg px-3 py-2.5 text-sm leading-relaxed text-ink placeholder:text-ink3 disabled:cursor-not-allowed"
+      ></textarea>
+      <p class="mt-2 text-xs text-ink3">{t.trFirstRun}</p>
+    </div>
+
+    <!-- Action bar -->
+    <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+      <p class="text-xs text-ink3">{t.dropLocal}</p>
+      <div class="ml-auto flex flex-wrap items-center gap-2">
+        <button type="button" class="btn btn-ghost" data-copy disabled>{t.trCopy}</button>
+        <button type="button" class="btn btn-ghost" data-download-txt disabled>{t.trTxt}</button>
+        <button type="button" class="btn btn-ghost" data-download-srt disabled>{t.trSrt}</button>
+        <button type="button" class="btn btn-primary btn-lg" data-transcribe-btn disabled>
+          <Icon name="voice" size={18} />
+          <span>{config.exportLabel ?? t.export}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <p data-status class="sr-only" role="status" aria-live="polite"></p>
+
+  <div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+</div>
+
+<script>
+  import { initTranscribers } from '../../editor/transcribe';
+  initTranscribers();
+</script>

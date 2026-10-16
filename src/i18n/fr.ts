@@ -185,6 +185,25 @@ export const fr: Catalog = {
     paintReady: 'Prêt. Téléchargez le WAV, puis ouvrez-le dans le générateur de spectrogramme.',
     paintWorking: 'Écriture de l’audio…',
     paintFail: 'Impossible de lire cette image. Essayez un PNG ou un JPG.',
+    trLang: 'Langue',
+    trLangAuto: 'Détection automatique',
+    trModel: 'Modèle',
+    trModelBase: 'Base — plus précis',
+    trModelTiny: 'Tiny — téléchargement plus rapide',
+    trPreparing: 'Préparation du modèle…',
+    trDownloading: 'Téléchargement du modèle… {percent}%',
+    trWorking: 'Transcription… {percent}%',
+    trDone: 'Transcription terminée — {count} caractères',
+    trFirstRun:
+      'Le premier lancement télécharge le modèle une fois (Tiny ≈ 40 Mo, Base ≈ 80 Mo) et votre navigateur le met en cache — les fois suivantes fonctionnent hors ligne.',
+    trResultPlaceholder: 'La transcription apparaît ici — modifiez-la avant de télécharger si vous voulez.',
+    trCopy: 'Copier',
+    trCopied: 'Copié dans le presse-papiers',
+    trTxt: 'Télécharger TXT',
+    trSrt: 'Télécharger SRT',
+    trTooLong:
+      'Ce fichier dépasse 10 minutes. Coupez-le d’abord — le découpeur audio est tout aussi privé — puis revenez transcrire ici.',
+    trFail: 'La transcription a échoué. Essayez le modèle Tiny, un fichier plus net ou un navigateur récent.',
   },
   home: {
     title: 'Free Audio Editor — Montage audio en ligne, aucun téléversement',
@@ -196,7 +215,9 @@ export const fr: Catalog = {
     lede: 'Rognez, coupez, fusionnez et montez l’audio directement dans votre navigateur. Sans inscription, sans filigrane, sans téléversement — vos fichiers ne quittent jamais votre appareil.',
     ctaTrim: 'Rogner un fichier audio',
     ctaMerge: 'Fusionner des chansons',
-    toolsHeading: 'Tous les outils audio',
+    toolsHeading: 'Outils audio populaires',
+    allToolsCta: 'Voir les {count} outils',
+    toolsCount: '{count} outils',
     mostUsed: 'Les plus utilisés',
     comingTitle: 'Bientôt disponible',
     comingBody: 'Mixeur à fondu enchaîné, suppression des silences et plus encore — même approche axée sur la vie privée.',
@@ -235,7 +256,7 @@ export const fr: Catalog = {
     ],
   },
   hub: {
-    title: 'Tous les outils audio — montage en ligne, sans téléversement',
+    title: 'Outils audio gratuits — Couper, fusionner, convertir',
     description:
       'Coupez, fusionnez, convertissez ou enregistrez l’audio dans votre navigateur : tous les outils au même endroit. Sans téléversement, sans inscription — gratuit.',
     h1: 'Tous les outils audio',
@@ -283,6 +304,65 @@ export const fr: Catalog = {
     contactBefore: 'Des questions sur cette politique ? Écrivez à {email}.',
   },
   tools: {
+    'audio-to-text': {
+      name: 'Audio en texte',
+      shortName: 'Audio en texte',
+      title: 'Audio en Texte — Transcrire un Audio en Ligne Gratuit',
+      description:
+        'Transcrivez l’audio en texte dans votre navigateur — MP3, WAV, M4A et vidéo, plus de 90 langues avec détection automatique, export TXT ou SRT. Gratuit, sans inscription.',
+      h1: 'Audio en texte',
+      subtitle: 'Transformez un enregistrement en texte dans plus de 90 langues, avec horodatage — directement dans votre navigateur.',
+      intro:
+        'Déposez un enregistrement et récupérez les mots : mémos vocaux, interviews, cours, podcasts — dans une quatre-vingt-dixaine de langues, détectées automatiquement quand vous ne savez pas laquelle c’est. Un modèle d’IA Whisper tourne dans votre onglet, sur votre propre appareil : l’audio n’est jamais envoyé, et la transcription sort en texte modifiable ou en fichier SRT avec horodatage.',
+      usesHeading: 'Les transcriptions dont on a vraiment besoin',
+      uses: [
+        'Transformer un cours, une réunion ou une interview en notes cherchables et citables.',
+        'Sous-titrer une vidéo ou un épisode de podcast en exportant un SRT horodaté.',
+        'Sortir les mots d’un mémo vocal sans envoyer l’enregistrement nulle part.',
+      ],
+      howTo: [
+        {
+          name: 'Déposez le fichier',
+          text: 'Ajoutez un MP3, WAV, M4A, une vidéo ou un autre enregistrement. Le décodage se fait sur votre appareil, rien n’est envoyé.',
+        },
+        {
+          name: 'Choisissez langue et modèle',
+          text: 'La détection automatique suffit pour la plupart des fichiers. Tiny va plus vite sur les longs enregistrements ou les machines modestes ; Base offre la meilleure précision.',
+        },
+        {
+          name: 'Transcrivez et téléchargez',
+          text: 'Le premier lancement télécharge le modèle une fois et le met en cache. Modifiez la transcription si besoin, puis enregistrez en TXT ou SRT.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Mon audio est-il envoyé ?',
+          a: 'Non. Le fichier est décodé dans votre navigateur et transcrit par un modèle Whisper qui tourne localement via WebAssembly ou WebGPU. La seule requête réseau est le téléchargement unique du modèle depuis un CDN public — ensuite, la transcription fonctionne hors ligne. Votre audio ne parvient jamais à un serveur.',
+        },
+        {
+          q: 'Quelle est la précision de la transcription ?',
+          a: 'Elle repose sur les modèles Whisper d’OpenAI, qui approchent le niveau humain sur une parole claire. Le bruit de fond, les accents marqués, les voix qui se chevauchent ou la musique forte la font baisser. Sur un audio difficile, Base est nettement meilleure que Tiny — et dans tous les cas le résultat arrive dans une zone modifiable : vous pouvez corriger noms et ponctuation avant de télécharger.',
+        },
+        {
+          q: 'Quelles sont les limites ?',
+          a: 'Un fichier à la fois, 10 minutes maximum par passage — coupez d’abord les enregistrements longs (le découpeur audio est tout aussi privé). Les locuteurs ne sont pas identifiés : un dialogue sort en un seul texte sans noms. Et cette page traite des fichiers, pas le micro en direct.',
+        },
+        {
+          q: 'Quelle différence avec l’enregistreur vocal ?',
+          a: 'L’enregistreur capte votre micro pour en faire un fichier audio ; cette page lit un fichier existant et en écrit les mots. Ils vont bien ensemble : on enregistre là-bas, on transcrit ici. Tout tourne dans votre navigateur.',
+        },
+        {
+          q: 'Quelles langues sont prises en charge ?',
+          a: 'Whisper a été entraîné sur une quatre-vingt-dixaine de langues, de l’anglais, du chinois, de l’espagnol et de l’arabe au vietnamien, à l’ukrainien et au swahili. Laissez la langue sur Détection automatique et le modèle la devine dans l’audio, ou fixez une langue pour gagner un peu de précision.',
+        },
+        {
+          q: 'Ça marche sur téléphone ?',
+          a: 'Oui — Chrome, Edge, Firefox et Safari récents, sur ordinateur comme sur mobile. Les navigateurs avec WebGPU (Chrome, Edge) transcrivent bien plus vite ; ailleurs, cela tourne sur le CPU : choisissez Tiny pour les fichiers longs et comptez quelques minutes pour dix minutes d’audio. Le téléchargement unique du modèle est aussi plus léger avec Tiny.',
+        },
+      ],
+      dropHint: 'Déposez un fichier audio ou vidéo, ou cliquez pour parcourir',
+      exportLabel: 'Transcrire',
+    },
     'bass-booster': {
       name: 'Boost des basses',
       shortName: 'Basses',

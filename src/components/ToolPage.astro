@@ -8,6 +8,7 @@ import AudioEditor from './editor/AudioEditor.astro';
 import JoinerEditor from './editor/JoinerEditor.astro';
 import VisualizerEditor from './editor/VisualizerEditor.astro';
 import SpecPaintEditor from './editor/SpecPaintEditor.astro';
+import TranscribeEditor from './editor/TranscribeEditor.astro';
 import VoiceRecorder from './editor/VoiceRecorder.astro';
 import TrustBadge from './TrustBadge.astro';
 import HowTo from './HowTo.astro';
@@ -64,6 +65,8 @@ const jsonLd = [
         <SpecPaintEditor config={tool.editor} locale={locale} />
       ) : tool.editor.visualizer ? (
         <VisualizerEditor config={tool.editor} locale={locale} />
+      ) : tool.editor.transcribe ? (
+        <TranscribeEditor config={tool.editor} locale={locale} />
       ) : tool.editor.multiple ? (
         <JoinerEditor config={tool.editor} locale={locale} />
       ) : (

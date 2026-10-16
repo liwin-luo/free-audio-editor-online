@@ -141,6 +141,26 @@ export interface EditorText {
   paintReady: string;
   paintWorking: string;
   paintFail: string;
+  trLang: string;
+  trLangAuto: string;
+  trModel: string;
+  trModelBase: string;
+  trModelTiny: string;
+  trPreparing: string;
+  /** Placeholder: {percent} */
+  trDownloading: string;
+  /** Placeholder: {percent} */
+  trWorking: string;
+  /** Placeholder: {count} */
+  trDone: string;
+  trFirstRun: string;
+  trResultPlaceholder: string;
+  trCopy: string;
+  trCopied: string;
+  trTxt: string;
+  trSrt: string;
+  trTooLong: string;
+  trFail: string;
 }
 
 export interface UiText {
@@ -204,6 +224,10 @@ export interface HomeCopy {
   ctaTrim: string;
   ctaMerge: string;
   toolsHeading: string;
+  /** Link to the /tools hub. Placeholder: {count} */
+  allToolsCta: string;
+  /** Category-card label. Placeholder: {count} */
+  toolsCount: string;
   mostUsed: string;
   comingTitle: string;
   comingBody: string;

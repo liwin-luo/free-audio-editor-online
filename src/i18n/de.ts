@@ -186,6 +186,25 @@ export const de: Catalog = {
     paintReady: 'Bereit. WAV laden, dann im Spektrogramm-Generator öffnen.',
     paintWorking: 'Audio wird geschrieben…',
     paintFail: 'Dieses Bild ließ sich nicht lesen. PNG oder JPG versuchen.',
+    trLang: 'Sprache',
+    trLangAuto: 'Automatisch erkennen',
+    trModel: 'Modell',
+    trModelBase: 'Base — genauer',
+    trModelTiny: 'Tiny — schnellerer Download',
+    trPreparing: 'Modell wird vorbereitet…',
+    trDownloading: 'Modell wird geladen… {percent}%',
+    trWorking: 'Wird transkribiert… {percent}%',
+    trDone: 'Transkription abgeschlossen — {count} Zeichen',
+    trFirstRun:
+      'Beim ersten Lauf wird das Modell einmal heruntergeladen (Tiny ≈ 40 MB, Base ≈ 80 MB) und vom Browser gespeichert — weitere Läufe funktionieren offline.',
+    trResultPlaceholder: 'Hier erscheint die Transkription — vor dem Download beliebig bearbeitbar.',
+    trCopy: 'Kopieren',
+    trCopied: 'In die Zwischenablage kopiert',
+    trTxt: 'TXT herunterladen',
+    trSrt: 'SRT herunterladen',
+    trTooLong:
+      'Diese Datei dauert über 10 Minuten. Schneide sie erst zurecht — der Audio-Trimmer arbeitet genauso privat — und transkribiere sie dann hier.',
+    trFail: 'Transkription fehlgeschlagen. Versuche das Tiny-Modell, eine klarere Datei oder einen aktuellen Browser.',
   },
   home: {
     title: 'Free Audio Editor — Audio online bearbeiten, ohne Upload',
@@ -197,7 +216,9 @@ export const de: Catalog = {
     lede: 'Kürze, schneide, füge zusammen und bearbeite Audio direkt im Browser. Ohne Anmeldung, ohne Wasserzeichen, ohne Upload — deine Dateien verlassen dein Gerät nie.',
     ctaTrim: 'Audiodatei kürzen',
     ctaMerge: 'Songs zusammenfügen',
-    toolsHeading: 'Alle Audio-Tools',
+    toolsHeading: 'Beliebte Audio-Tools',
+    allToolsCta: 'Alle {count} Tools ansehen',
+    toolsCount: '{count} Tools',
     mostUsed: 'Am häufigsten genutzt',
     comingTitle: 'Als Nächstes',
     comingBody: 'Überblendungs-Mixer, Stille entfernen und mehr — wieder mit Privatsphäre zuerst.',
@@ -236,7 +257,7 @@ export const de: Catalog = {
     ],
   },
   hub: {
-    title: 'Alle Audio-Tools — Kostenlos online schneiden & verbinden',
+    title: 'Kostenlose Online-Audio-Tools — Schneiden & Konvertieren',
     description:
       'Alle Tools im Überblick: Audio schneiden, zusammenfügen, konvertieren und aufnehmen — direkt in deinem Browser. Ohne Upload und ohne Anmeldung.',
     h1: 'Alle Audio-Tools',
@@ -284,6 +305,65 @@ export const de: Catalog = {
     contactBefore: 'Fragen zu dieser Erklärung? Schreib an {email}.',
   },
   tools: {
+    'audio-to-text': {
+      name: 'Audio zu Text',
+      shortName: 'Audio zu Text',
+      title: 'Audio zu Text — Audio online kostenlos transkribieren',
+      description:
+        'Audio im Browser in Text umwandeln — MP3, WAV, M4A und Video, über 90 Sprachen mit automatischer Erkennung, TXT- oder SRT-Export. Kostenlos, ohne Anmeldung.',
+      h1: 'Audio zu Text',
+      subtitle: 'Aufnahmen in über 90 Sprachen in Text umwandeln, mit Zeitstempeln — direkt im Browser.',
+      intro:
+        'Eine Aufnahme hier ablegen und die Wörter herausholen: Sprachmemos, Interviews, Vorlesungen, Podcasts — in rund 90 Sprachen, automatisch erkannt, wenn du nicht sicher bist, welche es ist. Ein Whisper-KI-Modell läuft in deinem Browser-Tab auf deinem eigenen Gerät, die Audiodatei wird nie hochgeladen, und die Transkription entsteht als bearbeitbarer Text oder als SRT-Datei mit Zeitstempeln.',
+      usesHeading: 'Transkripte, die wirklich gebraucht werden',
+      uses: [
+        'Eine Vorlesung, ein Meeting oder ein Interview in durchsuchbare, zitierfähige Notizen verwandeln.',
+        'Ein Video oder eine Podcast-Folge untertiteln, indem man ein SRT mit Zeitstempeln exportiert.',
+        'Die Wörter aus einem Sprachmemo holen, ohne die Aufnahme irgendwohin zu schicken.',
+      ],
+      howTo: [
+        {
+          name: 'Datei ablegen',
+          text: 'MP3, WAV, M4A, eine Videodatei oder eine andere Aufnahme hinzufügen. Das Dekodieren passiert auf deinem Gerät, nichts wird hochgeladen.',
+        },
+        {
+          name: 'Sprache und Modell wählen',
+          text: 'Automatische Erkennung reicht für die meisten Dateien. Wähle Tiny für Tempo bei langen Aufnahmen oder schwächeren Geräten, Base für die beste Genauigkeit.',
+        },
+        {
+          name: 'Transkribieren und speichern',
+          text: 'Der erste Lauf lädt das Modell einmal herunter und speichert es. Transkription bei Bedarf bearbeiten, dann als TXT oder SRT sichern.',
+        },
+      ],
+      faqs: [
+        {
+          q: 'Wird mein Audio hochgeladen?',
+          a: 'Nein. Die Datei wird im Browser dekodiert und von einem Whisper-Modell transkribiert, das lokal über WebAssembly oder WebGPU läuft. Die einzige Netzwerkanfrage ist der einmalige Modell-Download von einem öffentlichen CDN — danach funktioniert die Transkription offline. Von deinem Audio erreicht niemals etwas einen Server.',
+        },
+        {
+          q: 'Wie genau ist die Transkription?',
+          a: 'Sie nutzt die Whisper-Modelle von OpenAI, die bei klarer Sprache nahe an menschlichem Niveau liegen. Lauter Hintergrundlärm, starke Akzente, sich überlappende Sprecher oder laute Musik senken die Genauigkeit. Bei schwierigem Audio ist Base deutlich besser als Tiny — und sowieso landet das Ergebnis in einem bearbeitbaren Feld, sodass du Namen und Zeichensetzung vor dem Download korrigieren kannst.',
+        },
+        {
+          q: 'Welche Grenzen gibt es?',
+          a: 'Eine Datei nach der anderen, bis zu 10 Minuten pro Durchlauf — längere Aufnahmen vorher zurechtschneiden (der Audio-Trimmer arbeitet genauso privat). Sprecher werden nicht benannt: Ein Dialog erscheint als ein Fließtext ohne Namen. Und diese Seite arbeitet mit Dateien, nicht mit dem Live-Mikrofon.',
+        },
+        {
+          q: 'Was ist der Unterschied zum Sprachrekorder?',
+          a: 'Der Sprachrekorder nimmt dein Mikrofon als Audiodatei auf; diese Seite liest eine vorhandene Datei und schreibt die Wörter auf. Sie passen gut zusammen: dort aufnehmen, hier transkribieren. Beides läuft in deinem Browser.',
+        },
+        {
+          q: 'Welche Sprachen werden unterstützt?',
+          a: 'Whisper wurde mit rund 90 Sprachen trainiert, von Englisch, Chinesisch, Spanisch und Arabisch bis Vietnamesisch, Ukrainisch und Swahili. Lass die Sprache auf Automatisch erkennen und das Modell findet sie aus dem Audio heraus — oder lege eine Sprache fest für etwas mehr Genauigkeit.',
+        },
+        {
+          q: 'Funktioniert es auf dem Handy?',
+          a: 'Ja — aktuelle Chrome-, Edge-, Firefox- und Safari-Versionen, auf Desktop und Mobilgeräten. Browser mit WebGPU (Chrome, Edge) transkribieren viel schneller; sonst läuft es auf der CPU — wähle also Tiny für lange Dateien und rechne mit einigen Minuten bei zehn Minuten Audio. Der einmalige Modell-Download fällt bei Tiny ebenfalls kleiner aus.',
+        },
+      ],
+      dropHint: 'Audio- oder Videodatei hierher ziehen oder zum Auswählen klicken',
+      exportLabel: 'Transkribieren',
+    },
     'bass-booster': {
       name: 'Bass-Booster',
       shortName: 'Bass',
