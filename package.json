@@ -14,12 +14,14 @@
     "check:smoke": "node scripts/smoke-test.mjs",
     "check:pitch": "node_modules/.bin/esbuild scripts/pitch-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/pitch-check.mjs && node /tmp/pitch-check.mjs",
     "check:waveform": "node_modules/.bin/esbuild scripts/waveform-range-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/waveform-range-check.mjs && node /tmp/waveform-range-check.mjs",
-    "check:spectrogram": "node_modules/.bin/esbuild scripts/spectrogram-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/spectrogram-check.mjs && node /tmp/spectrogram-check.mjs"
+    "check:spectrogram": "node_modules/.bin/esbuild scripts/spectrogram-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/spectrogram-check.mjs && node /tmp/spectrogram-check.mjs",
+    "check:srt": "node_modules/.bin/esbuild scripts/srt-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/srt-check.mjs && node /tmp/srt-check.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",
     "@fontsource-variable/geist": "^5.1.0",
     "@fontsource-variable/geist-mono": "^5.1.0",
+    "@huggingface/transformers": "^3.8.1",
     "@vercel/analytics": "^2.0.1",
     "astro": "^5.1.0"
   },

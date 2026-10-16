@@ -49,6 +49,11 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    // The transcription worker dynamically imports @huggingface/transformers,
+    // which code-splits — only ES worker output supports that.
+    worker: {
+      format: 'es',
+    },
   },
   build: {
     inlineStylesheets: 'auto',
