@@ -89,8 +89,7 @@ or make a quiet take loud by itself. Volume in **Adjust** runs from 10% to
 200%. A recording that is quiet all the way through wants the
 [volume control](/increase-volume), which goes to 400% with a limiter, or
 [normalize](/normalize-audio), which raises the file until its loudest peak
-sits just under clipping. Which of those to use, and in what order, is
-[fix a quiet voice recording](/guides/fix-quiet-voice-recording).
+sits just under clipping.
 
 If the next step is a song edit rather than a recording edit, switch to the
 [MP3 cutter](/mp3-cutter) and follow
