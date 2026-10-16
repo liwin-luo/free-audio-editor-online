@@ -13,7 +13,7 @@ export const catalogs: Partial<Record<Locale, Catalog>> = {};
  * same PR. That task MUST empty this set — the parity gate then enforces
  * full coverage again. Keep it empty on main.
  */
-const PENDING_I18N = new Set<string>(['mp3-tag-editor']);
+const PENDING_I18N = new Set<string>();
 
 export function getShell(locale: Locale): Shell {
   if (locale === 'en') return en;
