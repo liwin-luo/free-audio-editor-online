@@ -15,7 +15,8 @@
     "check:pitch": "node_modules/.bin/esbuild scripts/pitch-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/pitch-check.mjs && node /tmp/pitch-check.mjs",
     "check:waveform": "node_modules/.bin/esbuild scripts/waveform-range-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/waveform-range-check.mjs && node /tmp/waveform-range-check.mjs",
     "check:spectrogram": "node_modules/.bin/esbuild scripts/spectrogram-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/spectrogram-check.mjs && node /tmp/spectrogram-check.mjs",
-    "check:srt": "node_modules/.bin/esbuild scripts/srt-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/srt-check.mjs && node /tmp/srt-check.mjs"
+    "check:srt": "node_modules/.bin/esbuild scripts/srt-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/srt-check.mjs && node /tmp/srt-check.mjs",
+    "check:tags": "node_modules/.bin/esbuild scripts/tags-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/tags-check.mjs && node /tmp/tags-check.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",
@@ -23,7 +24,8 @@
     "@fontsource-variable/geist-mono": "^5.1.0",
     "@huggingface/transformers": "^3.8.1",
     "@vercel/analytics": "^2.0.1",
-    "astro": "^5.1.0"
+    "astro": "^5.1.0",
+    "browser-id3-writer": "^6.4.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
