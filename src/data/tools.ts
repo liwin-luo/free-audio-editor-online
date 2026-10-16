@@ -32,7 +32,8 @@ export type ToolIcon =
   | 'sun'
   | 'plus'
   | 'minus'
-  | 'image';
+  | 'image'
+  | 'tag';
 
 export interface EditorConfig {
   /** Accept multiple files and merge them (audio-joiner) */
@@ -45,6 +46,8 @@ export interface EditorConfig {
   paint?: boolean;
   /** Speech-to-text island instead of an audio editor */
   transcribe?: boolean;
+  /** MP3 tag editor island instead of an audio editor */
+  tagEditor?: boolean;
   /** Show the Adjust drawer (gain, speed, reverse, fades) */
   showAdjust?: boolean;
   /** Ringtone mode: clamp selection to 40 seconds */
@@ -282,7 +285,7 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Audio is decoded and rendered locally with the Web Audio API — it is never transmitted over the network, which makes it suitable for interviews and other confidential material.',
       },
     ],
-    related: ['audio-trimmer', 'change-audio-speed', 'waveform-generator'],
+    related: ['audio-trimmer', 'change-audio-speed', 'mp3-tag-editor'],
     editor: {
       defaultFormat: 'mp3-320',
       showAdjust: true,
@@ -926,7 +929,7 @@ export const TOOLS: ToolDef[] = [
         a: 'No. Video resolution is irrelevant — the video track is ignored entirely. A 4K file and a 240p file with the same soundtrack convert identically.',
       },
     ],
-    related: ['extract-audio', 'audio-trimmer', 'volume-booster'],
+    related: ['extract-audio', 'audio-trimmer', 'mp3-tag-editor'],
     editor: {
       defaultFormat: 'mp3-320',
       dropHint: 'Drop an MP4 or video file, or click to browse',
@@ -1056,7 +1059,7 @@ export const TOOLS: ToolDef[] = [
         a: 'As long as your device memory allows — minutes of speech take very little space (Opus compression is efficient). For multi-hour recordings, export in sections.',
       },
     ],
-    related: ['audio-trimmer', 'audio-to-text', 'high-pass-filter'],
+    related: ['audio-trimmer', 'audio-to-text', 'mp3-tag-editor'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -2195,6 +2198,77 @@ export const TOOLS: ToolDef[] = [
       converter: true,
       exportLabel: 'Convert to MP3',
       accept: 'audio/ogg,audio/opus,.opus,.ogg,.webm',
+    },
+  },
+  {
+    slug: 'mp3-tag-editor',
+    name: 'MP3 Tag Editor',
+    shortName: 'Tag Editor',
+    icon: 'tag',
+    category: 'merge',
+    title: 'MP3 Tag Editor — Edit ID3 Tags & Cover Art Online Free',
+    description:
+      'Edit MP3 tags online: title, artist, album, year, track and cover art. The file is edited in your browser and never uploaded. Free, no signup.',
+    h1: 'MP3 Tag Editor',
+    subtitle: 'Fix the title, artist, album and cover art of an MP3 in under a minute — right in your browser, nothing uploaded.',
+    intro:
+      'An MP3 carries two things: the music, and the card of information players show next to it — title, artist, album, year, cover art. When that card is wrong or missing, everything from your phone to the car stereo falls back to Unknown Artist or Track 01. Drop a file here, fix the fields and save: the audio is copied over byte for byte, untouched, and never leaves your device.',
+    usesHeading: 'Tags people actually need to fix',
+    uses: [
+      'Clean up downloads that show "Unknown Artist" or no cover in your music player.',
+      'Give a podcast episode or demo track a proper title, cover and credits before publishing.',
+      'Strip leftover device and location metadata from a recording before you share it.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your MP3',
+        text: 'Drop the file in or click to browse. The current tags and cover art are read on your device and shown in the form.',
+      },
+      {
+        name: 'Edit the fields',
+        text: 'Type the correct title, artist, album, year and track number, and add or replace the cover art with a JPG or PNG.',
+      },
+      {
+        name: 'Save the MP3',
+        text: 'Hit Save MP3 to download the tagged file. The audio is copied unchanged — only the information card around it is rewritten.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my MP3 uploaded to a server?',
+        a: 'No. The file is opened with the browser\u2019s own FileReader API and rewritten right in your tab. You can load this page, switch off Wi-Fi, and the editor still works. There is no upload step at all.',
+      },
+      {
+        q: 'Will editing the tags change the audio quality?',
+        a: 'No. Tag data lives in a separate block at the front of the file, and the MPEG audio frames are copied byte for byte, so the sound is bit-identical. The saved file can even be slightly smaller, because the old tag block and its padding are not carried over.',
+      },
+      {
+        q: 'How is this different from the MP3 editor?',
+        a: 'The MP3 editor cuts, trims and joins the audio itself, which means decoding and re-encoding the sound. This page never touches the sound — it rewrites the information card around it. Use that one to edit music, this one to label it.',
+      },
+      {
+        q: 'What can\u2019t it do?',
+        a: 'It edits MP3 files only — FLAC, M4A and WAV use different tag formats this page does not write yet. It works on one file at a time rather than a whole album in batch. And saving rewrites the whole tag block, so podcast chapters or unusual custom fields stored in the original tag are not carried over — the common fields are.',
+      },
+      {
+        q: 'Why does my car stereo still show "Track 01"?',
+        a: 'Many head units ignore tags and fall back to the file name, and most cache the old information until you re-import the USB stick or rescan. Save here (the file is written as ID3v2.3, the version car stereos read most reliably), rename the file to something like "01 - Song Title.mp3", then rescan.',
+      },
+      {
+        q: 'My Chinese, Japanese, Korean or Arabic tags show as garbage. Can this fix it?',
+        a: 'Yes — that usually means the old tag was saved in a single-byte encoding instead of Unicode. Retype the correct text here and save: the file is rewritten as ID3v2.3 with UTF-16 text, which modern players display correctly, including Chinese, Japanese, Korean, Arabic, Cyrillic and Hindi titles.',
+      },
+      {
+        q: 'Does it work on my phone?',
+        a: 'Yes — recent Chrome, Safari, Firefox and Edge, desktop or mobile. Saving hands the file to the browser like any download; on iPhone, Safari saves it to the Files app. Everything runs locally, so it also works on a slow connection once the page is open.',
+      },
+    ],
+    related: ['mp3-editor', 'voice-recorder', 'mp4-to-mp3'],
+    editor: {
+      tagEditor: true,
+      accept: 'audio/mpeg,.mp3',
+      dropHint: 'Drop an MP3 file here, or click to browse',
+      exportLabel: 'Save MP3',
     },
   },
 ];

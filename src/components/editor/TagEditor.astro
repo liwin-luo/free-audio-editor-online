@@ -1,0 +1,157 @@
+---
+/**
+ * MP3 tag editor island: form over ID3 tags + cover art. All strings are
+ * server-rendered; the client script only moves file bytes. Config + runtime
+ * strings ride in as JSON on data attributes (TranscribeEditor pattern).
+ * The audio stream is never decoded — only the tag block is rewritten.
+ */
+import Icon from '../Icon.astro';
+import { getShell } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { EditorConfig } from '../../data/tools';
+
+interface Props {
+  config: EditorConfig;
+  locale?: Locale;
+}
+const { config, locale = 'en' } = Astro.props;
+const { editor: t } = getShell(locale);
+const runtime = {
+  readFail: t.tgReadFail,
+  coverFail: t.tgCoverFail,
+  saving: t.tgSaving,
+  saved: t.tgSaved,
+  writeFail: t.tgWriteFail,
+};
+---
+
+<div
+  data-tag-editor
+  data-config={JSON.stringify(config)}
+  data-i18n={JSON.stringify(runtime)}
+  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+>
+  <!-- Empty state / dropzone -->
+  <div data-dropzone class="cursor-pointer px-6 py-12 text-center md:py-16" tabindex="0" role="button" aria-label={config.dropHint}>
+    <span class="mx-auto grid size-14 place-items-center rounded-2xl bg-accent-soft text-accent">
+      <Icon name="tag" size={28} />
+    </span>
+    <p class="mt-5 text-lg font-medium">{config.dropHint}</p>
+    <p class="mt-6 inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
+      <Icon name="shield-check" size={14} class="text-accent" />
+      {t.dropLocal}
+    </p>
+    <input type="file" class="hidden" accept={config.accept ?? 'audio/mpeg,.mp3'} data-file-input />
+  </div>
+
+  <!-- Workspace: visible after a file is loaded -->
+  <div data-workspace class="hidden">
+    <!-- File bar -->
+    <div class="flex items-center justify-between gap-3 border-b border-line px-4 py-2.5 md:px-5">
+      <div class="flex min-w-0 items-center gap-3">
+        <span class="grid size-8 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">
+          <Icon name="tag" size={16} />
+        </span>
+        <div class="min-w-0">
+          <p data-file-name class="truncate text-sm font-medium"></p>
+          <p data-file-meta class="font-mono text-xs text-ink3"></p>
+        </div>
+      </div>
+      <button type="button" class="btn btn-ghost size-9 shrink-0 p-0" data-eject aria-label={t.loadDifferent} title={t.startOver}>
+        <Icon name="arrow-arc-left" size={16} />
+      </button>
+    </div>
+
+    <p data-notags class="hidden border-b border-line px-4 py-3 text-sm text-ink2 md:px-5">{t.tgNoTags}</p>
+
+    <!-- Tag fields -->
+    <fieldset data-fields class="grid gap-x-6 gap-y-4 border-b border-line px-4 py-3.5 sm:grid-cols-2 md:px-5">
+      <label class="block text-sm text-ink2 sm:col-span-2">
+        {t.tgTitle}
+        <input data-field="title" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <label class="block text-sm text-ink2">
+        {t.tgArtist}
+        <input data-field="artist" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <label class="block text-sm text-ink2">
+        {t.tgAlbum}
+        <input data-field="album" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <label class="block text-sm text-ink2">
+        {t.tgAlbumArtist}
+        <input data-field="albumArtist" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <label class="block text-sm text-ink2">
+        {t.tgYear}
+        <input data-field="year" type="text" inputmode="numeric" maxlength="4" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <label class="block text-sm text-ink2">
+        {t.tgGenre}
+        <input data-field="genre" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <label class="block text-sm text-ink2">
+        {t.tgTrack}
+        <input data-field="track" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <label class="block text-sm text-ink2">
+        {t.tgDisc}
+        <input data-field="disc" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <label class="block text-sm text-ink2">
+        {t.tgComposer}
+        <input data-field="composer" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <label class="block text-sm text-ink2 sm:col-span-2">
+        {t.tgComment}
+        <textarea data-field="comment" rows="2" class="mt-1.5 w-full resize-y rounded-lg border border-line bg-bg px-3 py-2.5 text-sm leading-relaxed text-ink"></textarea>
+      </label>
+    </fieldset>
+
+    <!-- Cover art -->
+    <section class="border-b border-line px-4 py-3.5 md:px-5">
+      <h3 class="text-sm font-medium text-ink2">{t.tgCover}</h3>
+      <div class="mt-2 flex items-start gap-4">
+        <img data-cover-img alt="" class="size-24 shrink-0 rounded-lg border border-line object-cover" hidden />
+        <div class="flex min-w-0 flex-col gap-2 text-sm">
+          <div class="flex flex-wrap gap-2">
+            <label class="btn btn-secondary cursor-pointer">
+              {t.tgReplaceCover}
+              <input type="file" accept="image/jpeg,image/png" class="hidden" data-cover-input />
+            </label>
+            <button type="button" class="btn btn-secondary" data-cover-remove>{t.tgRemoveCover}</button>
+            <button type="button" class="btn btn-secondary" data-cover-save hidden>{t.tgSaveCover}</button>
+          </div>
+          <p class="text-xs text-ink3">{t.tgCoverHint}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Remove-all mode -->
+    <label class="flex items-center gap-3 border-b border-line px-4 py-3.5 text-sm text-ink2 md:px-5">
+      <input type="checkbox" class="size-4 accent-(--color-accent)" data-remove-all />
+      {t.tgRemoveAll}
+    </label>
+
+    <!-- Action bar -->
+    <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+      <p class="text-xs text-ink3">{t.dropLocal}</p>
+      <div class="ml-auto flex flex-wrap items-center gap-3">
+        <p data-status class="text-sm text-ink2" aria-live="polite"></p>
+        <button type="button" class="btn btn-ghost" data-reset>{t.tgReset}</button>
+        <button type="button" class="btn btn-primary btn-lg" data-save disabled>
+          <Icon name="download-simple" size={18} />
+          <span>{config.exportLabel ?? t.export}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+</div>
+
+<script>
+  import { initTagEditors } from '../../editor/tag-ui';
+
+  initTagEditors();
+</script>

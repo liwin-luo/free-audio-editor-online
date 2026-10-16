@@ -32,7 +32,9 @@ const pages = [
   { path: '/waveform-generator', island: true },
   { path: '/spectrogram-generator', island: true },
   { path: '/image-to-audio', island: true },
+  { path: '/mp3-tag-editor', island: true },
   { path: '/zh/spectrogram-generator', island: true },
+  { path: '/zh/mp3-tag-editor', island: true },
   { path: '/ja/image-to-audio', island: true },
   { path: '/es/ogg-to-mp3', island: true },
   { path: '/es/opus-to-mp3', island: true },
@@ -88,7 +90,7 @@ try {
     try {
       await page.goto(BASE + path, { waitUntil: 'networkidle0', timeout: 20000 });
       const h1 = await page.$eval('h1', (el) => el.textContent.trim());
-      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-visualizer], [data-spec-paint]') !== null;
+      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-visualizer], [data-spec-paint], [data-tag-editor]') !== null;
       let recorderOk = true;
       if (recorder) recorderOk = (await page.$('[data-recorder]')) !== null;
       check(

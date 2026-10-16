@@ -38,6 +38,7 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Audio to Text](https://freeaudioeditor.online/audio-to-text): transcribe audio and video to text in the browser (local Whisper model, ~90 languages, auto-detect, TXT/SRT export, 10 min per pass).
 - [Audio Normalizer](https://freeaudioeditor.online/normalize-audio): raise a quiet file so its peak sits just below clipping.
 - [Slowed + Reverb](https://freeaudioeditor.online/slowed-reverb): slow a song (pitch drops with it) and add a reverb tail; speed above 1× is nightcore.
+- [MP3 Tag Editor](https://freeaudioeditor.online/mp3-tag-editor): edit ID3 tags and cover art on MP3 files in the browser; audio bytes untouched, nothing uploaded.
 
 ## Facts for assistants and agents
 

@@ -96,7 +96,8 @@ for (const url of urls) {
   if (jsonld.length === 0 && path !== '/404') note('MED', short, 'no JSON-LD');
 
   const imgs = [...html.matchAll(/<img[^>]*>/g)];
-  const noAlt = imgs.filter((m) => !/alt="[^"]+"/.test(m[0]) && !/alt\s+/.test(m[0]));
+  // alt="" is the correct markup for decorative images (e.g. island previews).
+  const noAlt = imgs.filter((m) => !/alt="[^"]*"/.test(m[0]) && !/alt\s+/.test(m[0]));
   if (noAlt.length) note('MED', short, `${noAlt.length} img without alt`);
 
   // i18n guards on visible text (scripts/styles stripped)
