@@ -13,7 +13,7 @@ export function getStaticPaths() {
 }
 
 const { locale, slug } = Astro.params;
-if (!isLocale(locale) || locale === 'en' || !slug) throw new Error('bad locale path');
+if (!isLocale(locale) || !slug) throw new Error('bad locale path');
 const tool = slug === 'about' || slug === 'privacy' ? undefined : localizeTool(slug, locale);
 if (slug !== 'about' && slug !== 'privacy' && !tool) throw new Error(`unknown tool ${slug}`);
 ---

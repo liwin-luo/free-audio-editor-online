@@ -327,7 +327,7 @@ export const en: Shell = {
     description:
       'Privacy policy for freeaudioeditor.online: audio files are processed locally in your browser and never uploaded. No accounts, no tracking of your audio.',
     h1: 'Privacy Policy',
-    updated: 'Last updated: October 14, 2026',
+    updated: 'Last updated: October 16, 2026',
     sections: [
       {
         h: 'Your audio files',
@@ -340,7 +340,7 @@ export const en: Shell = {
       },
       {
         h: 'Third parties',
-        body: 'The MP3 encoder (lamejs) is loaded on demand from a public content delivery network (jsdelivr) when you first export an MP3. The CDN sees a standard library request; it does not receive your audio or any information about it. Fonts are served from this site\u2019s own domain.',
+        body: 'The MP3 encoder (lamejs) ships with this site and loads only when you export an MP3. It is not fetched from a third-party network, and it does not receive your audio. Fonts are served from this site\u2019s own domain.',
       },
       {
         h: 'Analytics and advertising',

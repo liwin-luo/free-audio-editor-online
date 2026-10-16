@@ -328,7 +328,7 @@ export const es: Catalog = {
     description:
       'Política de privacidad de freeaudioeditor.online: los archivos de audio se procesan en tu navegador y nunca se suben. Sin cuentas y sin rastrear tu audio.',
     h1: 'Política de privacidad',
-    updated: 'Última actualización: 14 de octubre de 2026',
+    updated: 'Última actualización: 16 de octubre de 2026',
     sections: [
       {
         h: 'Tus archivos de audio',
@@ -341,7 +341,7 @@ export const es: Catalog = {
       },
       {
         h: 'Terceros',
-        body: 'El codificador de MP3 (lamejs) se carga bajo demanda desde una red pública de distribución de contenido (jsdelivr) la primera vez que exportas un MP3. Esa CDN ve una solicitud normal de una biblioteca; no recibe tu audio ni ningún dato sobre él. Las tipografías se sirven desde el propio dominio de este sitio.',
+        body: 'El codificador de MP3 (lamejs) viene con este sitio y solo se carga cuando exportas un MP3. No se descarga de una red de terceros y no recibe tu audio. Las tipografías se sirven desde el propio dominio de este sitio.',
       },
       {
         h: 'Analítica y publicidad',
@@ -1095,7 +1095,7 @@ export const es: Catalog = {
         },
         {
           q: '¿El archivo WAV se sube a algún lado?',
-          a: 'No. El archivo se decodifica en tu navegador, se codifica a MP3 con una biblioteca pequeña que se carga desde una CDN y se guarda de vuelta en tu disco. El audio en sí nunca sale de tu dispositivo.',
+          a: 'No. El archivo se decodifica en tu navegador, se codifica a MP3 con una biblioteca que viene con este sitio y se guarda de vuelta en tu disco. El audio en sí nunca sale de tu dispositivo.',
         },
       ],
       dropHint: 'Suelta un archivo WAV o haz clic para elegirlo',
@@ -1151,7 +1151,7 @@ export const es: Catalog = {
         },
         {
           q: '¿Mi FLAC se sube a algún sitio?',
-          a: 'No. El archivo se decodifica en tu navegador y se codifica a MP3 con una pequeña librería cargada desde una CDN. El audio nunca sale de tu dispositivo.',
+          a: 'No. El archivo se decodifica en tu navegador y se codifica a MP3 con una biblioteca que viene con este sitio. El audio nunca sale de tu dispositivo.',
         },
       ],
       dropHint: 'Suelta un archivo FLAC o haz clic para elegirlo',

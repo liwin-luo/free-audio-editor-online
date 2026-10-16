@@ -166,7 +166,7 @@ class TagForm {
     els.coverSave.addEventListener('click', () => {
       if (!this.picture) return;
       const ext = this.picture.mime === 'image/png' ? 'png' : 'jpg';
-      download(new Blob([this.picture.data], { type: this.picture.mime }), `${this.baseName}.${ext}`);
+      download(new Blob([new Uint8Array(this.picture.data)], { type: this.picture.mime }), `${this.baseName}.${ext}`);
     });
 
     // Remove-all mode disables the tag fields; cover keeps working
@@ -226,7 +226,7 @@ class TagForm {
       this.coverUrl = null;
     }
     if (this.picture) {
-      this.coverUrl = URL.createObjectURL(new Blob([this.picture.data], { type: this.picture.mime }));
+      this.coverUrl = URL.createObjectURL(new Blob([new Uint8Array(this.picture.data)], { type: this.picture.mime }));
       els.coverImg.src = this.coverUrl;
       els.coverImg.hidden = false;
       els.coverSave.hidden = false;

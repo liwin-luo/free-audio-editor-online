@@ -25,9 +25,8 @@ primeiro e depois leve o MP3 ao [cortador de áudio](/pt/audio-trimmer).
 A página também não busca vídeo no YouTube, no TikTok nem em outro site. O
 arquivo precisa já estar no celular ou no computador.
 
-O vídeo não é enviado. Na primeira exportação de MP3, a página carrega o
-codificador (lamejs) do jsDelivr. Esse pedido é a biblioteca, não o seu
-arquivo.
+O vídeo não é enviado. O codificador (lamejs) vem com este site e só é
+carregado ao exportar um MP3. Seu arquivo não sai do aparelho.
 
 ## Os passos
 

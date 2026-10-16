@@ -328,7 +328,7 @@ export const fr: Catalog = {
     description:
       'Confidentialité sur freeaudioeditor.online : l’audio est traité localement dans votre navigateur, jamais téléversé. Aucun compte, aucun suivi.',
     h1: 'Politique de confidentialité',
-    updated: 'Dernière mise à jour : 14 octobre 2026',
+    updated: 'Dernière mise à jour : 16 octobre 2026',
     sections: [
       {
         h: 'Vos fichiers audio',
@@ -341,7 +341,7 @@ export const fr: Catalog = {
       },
       {
         h: 'Les tiers',
-        body: 'L’encodeur MP3 (lamejs) est chargé à la demande depuis un réseau public de diffusion de contenu (jsdelivr) lors de votre premier export MP3. Le CDN voit une requête de bibliothèque standard ; il ne reçoit ni votre audio, ni la moindre information à son sujet. Les polices sont servies depuis le propre domaine de ce site.',
+        body: 'L’encodeur MP3 (lamejs) est livré avec ce site et ne se charge que lorsque vous exportez un MP3. Il n’est pas téléchargé depuis un réseau tiers et ne reçoit pas votre audio. Les polices sont servies depuis le propre domaine de ce site.',
       },
       {
         h: 'Statistiques et publicité',
@@ -1036,7 +1036,7 @@ export const fr: Catalog = {
         },
         {
           q: 'Le fichier WAV est-il téléversé quelque part ?',
-          a: 'Non. Le fichier est décodé dans votre navigateur, encodé en MP3 par une petite bibliothèque chargée depuis un CDN, puis sauvegardé sur votre disque. L’audio lui-même ne quitte jamais votre appareil.',
+          a: 'Non. Le fichier est décodé dans votre navigateur, encodé en MP3 par une bibliothèque livrée avec ce site, puis sauvegardé sur votre disque. L’audio lui-même ne quitte jamais votre appareil.',
         },
       ],
       dropHint: 'Déposez un fichier WAV ou cliquez pour le parcourir',
@@ -1092,7 +1092,7 @@ export const fr: Catalog = {
         },
         {
           q: 'Mon FLAC est-il téléversé quelque part ?',
-          a: 'Non. Le fichier est décodé dans votre navigateur et encodé en MP3 par une petite bibliothèque chargée depuis un CDN. L’audio ne quitte jamais votre appareil.',
+          a: 'Non. Le fichier est décodé dans votre navigateur et encodé en MP3 par une bibliothèque livrée avec ce site. L’audio ne quitte jamais votre appareil.',
         },
       ],
       dropHint: 'Déposez un fichier FLAC ou cliquez pour le parcourir',

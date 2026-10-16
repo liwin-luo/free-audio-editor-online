@@ -329,7 +329,7 @@ export const de: Catalog = {
     description:
       'Datenschutzerklärung für freeaudioeditor.online: Audio wird lokal in deinem Browser verarbeitet und nie hochgeladen. Keine Konten, kein Audio-Tracking.',
     h1: 'Datenschutzerklärung',
-    updated: 'Zuletzt aktualisiert: 14. Oktober 2026',
+    updated: 'Zuletzt aktualisiert: 16. Oktober 2026',
     sections: [
       {
         h: 'Deine Audiodateien',
@@ -342,7 +342,7 @@ export const de: Catalog = {
       },
       {
         h: 'Drittanbieter',
-        body: 'Der MP3-Encoder (lamejs) wird beim ersten MP3-Export bei Bedarf von einem öffentlichen Content Delivery Network (jsdelivr) geladen. Das CDN sieht eine gewöhnliche Bibliotheksanfrage; es bekommt weder dein Audio noch irgendeine Information darüber. Schriften kommen von der eigenen Domain dieser Seite.',
+        body: 'Der MP3-Encoder (lamejs) wird mit dieser Seite ausgeliefert und erst geladen, wenn du ein MP3 exportierst. Er kommt nicht von einem Fremdnetzwerk und bekommt dein Audio nicht. Schriften kommen von der eigenen Domain dieser Seite.',
       },
       {
         h: 'Analyse und Werbung',
@@ -1096,7 +1096,7 @@ export const de: Catalog = {
         },
         {
           q: 'Wird die WAV-Datei irgendwo hochgeladen?',
-          a: 'Nein. Die Datei wird in deinem Browser dekodiert, von einer kleinen Bibliothek, die von einem CDN geladen wird, nach MP3 kodiert und zurück auf deine Festplatte gespeichert. Das Audio selbst verlässt dein Gerät nie.',
+          a: 'Nein. Die Datei wird in deinem Browser dekodiert, von einer Bibliothek, die mit dieser Seite ausgeliefert wird, nach MP3 kodiert und zurück auf deine Festplatte gespeichert. Das Audio selbst verlässt dein Gerät nie.',
         },
       ],
       dropHint: 'WAV-Datei ablegen oder klicken zum Auswählen',
@@ -1152,7 +1152,7 @@ export const de: Catalog = {
         },
         {
           q: 'Wird mein FLAC irgendwo hochgeladen?',
-          a: 'Nein. Die Datei wird in deinem Browser dekodiert und von einer kleinen Bibliothek aus dem CDN zu MP3 encodiert. Das Audio verlässt dein Gerät nie.',
+          a: 'Nein. Die Datei wird in deinem Browser dekodiert und von einer Bibliothek, die mit dieser Seite ausgeliefert wird, zu MP3 encodiert. Das Audio verlässt dein Gerät nie.',
         },
       ],
       dropHint: 'FLAC-Datei ablegen oder klicken zum Auswählen',

@@ -26,9 +26,8 @@ después pasas el MP3 al [recortador de audio](/es/audio-trimmer).
 Tampoco baja videos de YouTube, TikTok ni de ninguna otra web. El archivo tiene
 que estar ya en tu celular o en tu computadora.
 
-El video no se sube. La primera vez que exportas un MP3, la página carga el
-codificador (lamejs) desde jsDelivr. Esa petición es la biblioteca, no tu
-archivo.
+El video no se sube. El codificador (lamejs) viene con este sitio y solo se
+carga al exportar un MP3. Tu archivo no sale del dispositivo.
 
 ## Los pasos
 

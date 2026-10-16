@@ -334,8 +334,13 @@ export class Editor {
     try {
       const data = await file.arrayBuffer();
       const ctx = new AudioContext();
-      const buffer = await ctx.decodeAudioData(data);
-      await ctx.close();
+      let buffer: AudioBuffer;
+      try {
+        buffer = await ctx.decodeAudioData(data);
+      } finally {
+        // Browsers cap concurrent AudioContexts; a failed decode must not leak one.
+        await ctx.close();
+      }
 
       this.buffer = buffer;
       this.pitchPreview = null;
@@ -672,7 +677,7 @@ export class Editor {
       const quickTreble = this.els.root.querySelector<HTMLInputElement>('[data-quick-treble]');
       const quickTrebleLabel = this.els.root.querySelector<HTMLElement>('[data-quick-treble-label]');
       if (quickTreble) quickTreble.value = String(state.treble);
-      if (quickTrebleLabel) quickTrebleLabel.textContent = dbLabel(state.treble, Number(quickTreble.min) < 0);
+      if (quickTrebleLabel && quickTreble) quickTrebleLabel.textContent = dbLabel(state.treble, Number(quickTreble.min) < 0);
       const quickMid = this.els.root.querySelector<HTMLInputElement>('[data-quick-mid]');
       const quickMidLabel = this.els.root.querySelector<HTMLElement>('[data-quick-mid-label]');
       if (quickMid) quickMid.value = String(state.mid);

@@ -7,8 +7,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
     "audit": "node scripts/seo-audit.mjs https://freeaudioeditor.online",
     "audit:preview": "node scripts/seo-audit.mjs http://localhost:4321",
+    "check:serp": "node scripts/serp-check.mjs",
     "check:pages": "node scripts/pages-check.mjs",
     "check:features": "node scripts/feature-check.mjs",
     "check:smoke": "node scripts/smoke-test.mjs",
@@ -20,16 +22,19 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",
+    "@breezystack/lamejs": "^1.2.7",
     "@fontsource-variable/geist": "^5.1.0",
     "@fontsource-variable/geist-mono": "^5.1.0",
     "@huggingface/transformers": "^3.8.1",
     "@vercel/analytics": "^2.0.1",
     "astro": "^5.1.0",
-    "browser-id3-writer": "^6.4.0"
+    "browser-id3-writer": "^6.4.0",
+    "mp4-muxer": "^5.2.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@tailwindcss/vite": "^4.0.0",
+    "image-size": "^2.0.4",
     "puppeteer-core": "^24.43.1",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.6.0"

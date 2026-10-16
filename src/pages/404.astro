@@ -34,7 +34,7 @@ import { LOCALES, localePath } from '../i18n/locales';
     <p class="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-ink3">
       {
         LOCALES.filter((l) => l.id !== 'en').map((l) => (
-          <a href={localePath(l.id, '/')} hrefLang={l.hreflang} class="hover:text-accent">
+          <a href={localePath(l.id, '/')} hreflang={l.hreflang} class="hover:text-accent">
             {l.label}
           </a>
         ))

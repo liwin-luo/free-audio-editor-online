@@ -474,7 +474,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Does the WAV file get uploaded anywhere?',
-        a: 'No. The file is decoded in your browser, encoded to MP3 by a small library loaded from a CDN, and saved back to your disk. The audio itself never leaves your device.',
+        a: 'No. The file is decoded in your browser, encoded to MP3 by a library that ships with this site, and saved back to your disk. The audio itself never leaves your device.',
       },
     ],
     related: ['m4a-to-mp3', 'ogg-to-mp3', 'audio-trimmer'],
@@ -538,7 +538,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Is my FLAC uploaded anywhere?',
-        a: 'No. The file is decoded in your browser and encoded to MP3 by a small library loaded from a CDN. The audio itself never leaves your device.',
+        a: 'No. The file is decoded in your browser and encoded to MP3 by a library that ships with this site. The audio itself never leaves your device.',
       },
     ],
     related: ['wav-to-mp3', 'm4a-to-mp3', 'audio-trimmer'],

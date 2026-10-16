@@ -165,7 +165,7 @@ export class SpecPaintApp {
       const samples = encodeBitmap(this.bitmap);
       const bytes = wavBytes(samples, 44100);
       const filename = 'image-to-audio.wav';
-      const blob = new Blob([bytes], { type: 'audio/wav' });
+      const blob = new Blob([new Uint8Array(bytes)], { type: 'audio/wav' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

@@ -155,6 +155,9 @@ class Transcriber {
     });
 
     document.addEventListener('paste', (e) => {
+      // Never hijack pastes aimed at form fields (e.g. the transcript itself).
+      const target = e.target as HTMLElement | null;
+      if (target?.closest('input, textarea, select, [contenteditable]')) return;
       const file = Array.from(e.clipboardData?.files ?? [])[0];
       if (file) void this.loadFile(file);
     });
@@ -176,8 +179,13 @@ class Transcriber {
     try {
       const data = await file.arrayBuffer();
       const ctx = new AudioContext();
-      const buffer = await ctx.decodeAudioData(data);
-      await ctx.close();
+      let buffer: AudioBuffer;
+      try {
+        buffer = await ctx.decodeAudioData(data);
+      } finally {
+        // Browsers cap concurrent AudioContexts; a failed decode must not leak one.
+        await ctx.close();
+      }
 
       if (buffer.duration > MAX_DURATION_S) {
         this.setStatus('');
@@ -228,7 +236,17 @@ class Transcriber {
       this.worker = new Worker(new URL('./transcribe-worker.ts', import.meta.url), { type: 'module' });
       this.worker.addEventListener('message', (e: MessageEvent<WorkerResponse>) => this.onMessage(e.data));
     }
-    const pcm = await toMono16k(this.buffer);
+    let pcm: Float32Array;
+    try {
+      pcm = await toMono16k(this.buffer);
+    } catch (err) {
+      console.error('transcribe prep:', err);
+      this.busy = false;
+      this.els.runBtn.disabled = false;
+      this.els.progressRow.classList.add('hidden');
+      showToast(this.toastRoot(), 'error', this.text.trFail);
+      return;
+    }
     // postMessage clones the PCM, so re-runs keep the original.
     this.worker.postMessage({
       type: 'transcribe',

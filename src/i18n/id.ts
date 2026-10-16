@@ -328,7 +328,7 @@ export const id: Catalog = {
     description:
       'Kebijakan privasi freeaudioeditor.online: audio diproses lokal di browser Anda dan tidak pernah diunggah. Tanpa akun, tanpa pelacakan audio.',
     h1: 'Kebijakan Privasi',
-    updated: 'Terakhir diperbarui: 14 Oktober 2026',
+    updated: 'Terakhir diperbarui: 16 Oktober 2026',
     sections: [
       {
         h: 'File audio Anda',
@@ -341,7 +341,7 @@ export const id: Catalog = {
       },
       {
         h: 'Pihak ketiga',
-        body: 'Encoder MP3 (lamejs) dimuat saat dibutuhkan dari jaringan pengiriman konten publik (jsdelivr) ketika Anda pertama kali mengekspor MP3. Jaringan itu hanya melihat permintaan pustaka biasa; audio Anda, atau informasi apa pun tentangnya, tidak ikut terkirim. Font disajikan dari domain situs ini sendiri.',
+        body: 'Encoder MP3 (lamejs) ikut terpasang bersama situs ini dan hanya dimuat saat Anda mengekspor MP3. Encoder itu tidak diunduh dari jaringan pihak ketiga, dan tidak menerima audio Anda. Font disajikan dari domain situs ini sendiri.',
       },
       {
         h: 'Analitik dan iklan',
@@ -1095,7 +1095,7 @@ export const id: Catalog = {
         },
         {
           q: 'Apakah file WAV diunggah ke suatu tempat?',
-          a: 'Tidak. File didekode di browser Anda, dikodekan ke MP3 oleh pustaka kecil yang dimuat dari CDN, lalu disimpan kembali ke disk. Audionya sendiri tidak pernah meninggalkan perangkat Anda.',
+          a: 'Tidak. File didekode di browser Anda, dikodekan ke MP3 oleh pustaka yang ikut terpasang bersama situs ini, lalu disimpan kembali ke disk. Audionya sendiri tidak pernah meninggalkan perangkat Anda.',
         },
       ],
       dropHint: 'Jatuhkan file WAV, atau klik untuk memilih',
@@ -1151,7 +1151,7 @@ export const id: Catalog = {
         },
         {
           q: 'Apakah FLAC saya diunggah ke mana pun?',
-          a: 'Tidak. File didekode di browser kamu dan dienkode ke MP3 oleh pustaka kecil yang dimuat dari CDN. Audionya sendiri tidak pernah meninggalkan perangkatmu.',
+          a: 'Tidak. File didekode di browser kamu dan dienkode ke MP3 oleh pustaka yang ikut terpasang bersama situs ini. Audionya sendiri tidak pernah meninggalkan perangkatmu.',
         },
       ],
       dropHint: 'Jatuhkan file FLAC, atau klik untuk memilih',

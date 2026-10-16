@@ -68,5 +68,5 @@ update automatically.
 ## Privacy posture
 
 No accounts, no analytics, no ad code yet; theme preference in localStorage only.
-See `/privacy`. The MP3 encoder is the only third-party request (jsdelivr, on first
-MP3 export).
+See `/privacy`. MP3 encoding (lamejs) is bundled with this site and is not a
+third-party request.

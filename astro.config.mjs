@@ -1,7 +1,38 @@
 import { defineConfig } from 'astro/config';
+import { readFileSync } from 'node:fs';
+import { imageSize } from 'image-size';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { localesWithGuides } from './src/data/guides.ts';
+
+/**
+ * Guide markdown images are static files under public/, so Astro won't touch
+ * them. Give each one intrinsic dimensions (space reserved before decode, no
+ * CLS) and lazy loading so offscreen screenshots aren't fetched eagerly.
+ */
+function markdownImageAttrs() {
+  const visit = (node) => {
+    if (node.type === 'element' && node.tagName === 'img') {
+      const props = (node.properties ??= {});
+      props.loading ??= 'lazy';
+      props.decoding ??= 'async';
+      const src = typeof props.src === 'string' ? props.src : '';
+      if (src.startsWith('/')) {
+        try {
+          const { width, height } = imageSize(readFileSync(new URL(`./public${src}`, import.meta.url)));
+          props.width = width;
+          props.height = height;
+        } catch {
+          // Unknown dimensions — leave unset rather than fail the build.
+        }
+      }
+    }
+    if (Array.isArray(node.children)) for (const child of node.children) visit(child);
+  };
+  return (tree) => {
+    for (const child of tree.children ?? []) visit(child);
+  };
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,6 +50,9 @@ export default defineConfig({
     '/es/guias': '/es/guides',
     '/es/guias/ogg-a-mp3': '/es/guides/ogg-a-mp3',
     '/es/guias/opus-a-mp3': '/es/guides/opus-a-mp3',
+  },
+  markdown: {
+    rehypePlugins: [markdownImageAttrs],
   },
   integrations: [
     sitemap({

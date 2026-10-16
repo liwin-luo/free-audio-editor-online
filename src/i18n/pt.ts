@@ -327,7 +327,7 @@ export const pt: Catalog = {
     description:
       'Política de privacidade do freeaudioeditor.online: os arquivos de áudio são processados no navegador e nunca enviados. Sem contas, sem rastrear seu áudio.',
     h1: 'Política de privacidade',
-    updated: 'Última atualização: 14 de outubro de 2026',
+    updated: 'Última atualização: 16 de outubro de 2026',
     sections: [
       {
         h: 'Seus arquivos de áudio',
@@ -340,7 +340,7 @@ export const pt: Catalog = {
       },
       {
         h: 'Terceiros',
-        body: 'O codificador de MP3 (lamejs) é carregado sob demanda de uma rede pública de distribuição de conteúdo (jsdelivr) na primeira vez que você exporta um MP3. A CDN vê um pedido comum de biblioteca; ela não recebe seu áudio nem nenhuma informação sobre ele. As fontes são servidas pelo próprio domínio deste site.',
+        body: 'O codificador de MP3 (lamejs) vem com este site e só é carregado quando você exporta um MP3. Ele não é baixado de uma rede de terceiros e não recebe seu áudio. As fontes são servidas pelo próprio domínio deste site.',
       },
       {
         h: 'Análises e publicidade',
@@ -1094,7 +1094,7 @@ export const pt: Catalog = {
         },
         {
           q: 'O arquivo WAV é enviado para algum lugar?',
-          a: 'Não. O arquivo é decodificado no navegador, codificado para MP3 por uma biblioteca pequena carregada de uma CDN e salvo de volta no disco. O áudio em si nunca sai do aparelho.',
+          a: 'Não. O arquivo é decodificado no navegador, codificado para MP3 por uma biblioteca que vem com este site e salvo de volta no disco. O áudio em si nunca sai do aparelho.',
         },
       ],
       dropHint: 'Solte um arquivo WAV ou clique para procurar',
@@ -1150,7 +1150,7 @@ export const pt: Catalog = {
         },
         {
           q: 'Meu FLAC é enviado para algum lugar?',
-          a: 'Não. O arquivo é decodificado no seu navegador e codificado em MP3 por uma pequena biblioteca carregada de uma CDN. O áudio nunca sai do seu aparelho.',
+          a: 'Não. O arquivo é decodificado no seu navegador e codificado em MP3 por uma biblioteca que vem com este site. O áudio nunca sai do seu aparelho.',
         },
       ],
       dropHint: 'Solte um arquivo FLAC ou clique para procurar',

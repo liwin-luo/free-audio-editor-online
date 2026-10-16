@@ -90,7 +90,7 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
               {LOCALES.map((l) => (
                 <a
                   href={langHref(l.id)}
-                  hrefLang={l.hreflang}
+                  hreflang={l.hreflang}
                   class:list={[
                     'block rounded-lg px-3 py-2 text-sm hover:bg-surface2',
                     l.id === locale ? 'font-medium text-ink' : 'text-ink2',

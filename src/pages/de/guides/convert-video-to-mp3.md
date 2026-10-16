@@ -26,9 +26,9 @@ wandle zuerst um und bring die MP3 danach zum [Audio-Trimmer](/de/audio-trimmer)
 Die Seite holt auch kein Video von YouTube, TikTok oder einer anderen Website.
 Die Datei muss schon auf deinem Handy oder Rechner liegen.
 
-Das Video wird nicht hochgeladen. Beim ersten MP3-Export lädt die Seite den
-Encoder (lamejs) von jsDelivr. Diese Anfrage ist die Bibliothek, nicht deine
-Datei.
+Das Video wird nicht hochgeladen. Der Encoder (lamejs) wird mit dieser Seite
+ausgeliefert und erst beim MP3-Export geladen. Deine Datei verlässt das Gerät
+nicht.
 
 ## Die Schritte
 

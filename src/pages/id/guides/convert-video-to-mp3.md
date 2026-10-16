@@ -26,8 +26,8 @@ konversi dulu, lalu bawa MP3 itu ke [pemangkas audio](/id/audio-trimmer).
 Halaman ini juga tidak mengambil video dari YouTube, TikTok, atau situs lain.
 File-nya harus sudah ada di ponsel atau komputer Anda.
 
-Video tidak diunggah. Saat MP3 pertama kali diekspor, halaman memuat encoder
-(lamejs) dari jsDelivr. Permintaan itu adalah pustakanya, bukan file Anda.
+Video tidak diunggah. Encoder (lamejs) ikut terpasang bersama situs ini dan
+hanya dimuat saat mengekspor MP3. File Anda tidak meninggalkan perangkat.
 
 ## Langkahnya
 

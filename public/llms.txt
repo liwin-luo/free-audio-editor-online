@@ -50,5 +50,5 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 ## For crawlers
 
 - Sitemap: https://freeaudioeditor.online/sitemap-index.xml
-- Languages: English at `/`, plus `/es/` `/pt/` `/id/` `/de/` `/ko/` `/ja/` `/zh/` for the same tools. Guides live at `/guides` in each language and list only articles written in that language. English has the main set; Spanish OGG and Opus guides are at `/es/guides`.
+- Languages: English at `/`, plus `/es/` `/pt/` `/id/` `/de/` `/fr/` `/ko/` `/ja/` `/zh/` `/ru/` `/ar/` for the same tools. Guides live at `/guides` in each language and list only articles written in that language. English has the main set; Spanish OGG and Opus guides are at `/es/guides`; French, Russian and Arabic currently have no guides.
 - Content may be quoted with attribution and a link.

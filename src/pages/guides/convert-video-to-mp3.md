@@ -22,8 +22,8 @@ hundred megabytes, add a queue, or wrap the MP3 in a second page of ads.
 
 A local conversion never sends the video. The tab decodes the audio track with
 the same media engine that plays the file, then encodes MP3 on the device. The
-first MP3 export loads the encoder, lamejs, from jsDelivr. That request is the
-library. The video is not in it. A three-minute clip finishes in a second or two
+encoder, lamejs, ships with this site and loads only for that export. A
+three-minute clip finishes in a second or two
 on a recent phone, because there is no upload. A long file is limited by memory,
 not by a host's quota: if the video plays in the browser, the soundtrack can
 usually be extracted.

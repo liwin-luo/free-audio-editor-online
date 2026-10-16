@@ -186,8 +186,13 @@ export class VisualizerApp {
     try {
       const data = await file.arrayBuffer();
       const ctx = new AudioContext();
-      const buffer = await ctx.decodeAudioData(data);
-      await ctx.close();
+      let buffer: AudioBuffer;
+      try {
+        buffer = await ctx.decodeAudioData(data);
+      } finally {
+        // Browsers cap concurrent AudioContexts; a failed decode must not leak one.
+        await ctx.close();
+      }
 
       this.buffer = buffer;
       this.fileName = file.name.replace(/\.[^.]+$/, '') || 'audio';

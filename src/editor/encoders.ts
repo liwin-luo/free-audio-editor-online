@@ -1,8 +1,9 @@
 /**
  * Export encoders. WAV is encoded natively (lossless, zero dependencies);
- * MP3 uses lamejs and M4R uses WebCodecs + an MP4 muxer, both loaded lazily
- * from public CDNs so the encoder cost is only paid by users who actually
- * export those formats.
+ * MP3 uses lamejs and M4R uses WebCodecs + an MP4 muxer. Both encoder
+ * libraries are bundled locally as lazy dynamic-import chunks — the cost is
+ * only paid by users who actually export those formats, and exports keep
+ * working offline and when third-party CDNs are unreachable.
  */
 import { clamp } from '../lib/format';
 
@@ -48,12 +49,7 @@ export function encodeWav(buffer: AudioBuffer): Blob {
   return new Blob([out], { type: 'audio/wav' });
 }
 
-const LAME_CDN = 'https://cdn.jsdelivr.net/npm/@breezystack/lamejs@1.2.7/+esm';
-
-type LameEncoder = {
-  encodeBuffer: (left: Int16Array, right?: Int16Array) => Int8Array;
-  flush: () => Int8Array;
-};
+type LameModule = typeof import('@breezystack/lamejs');
 
 function toInt16(samples: Float32Array): Int16Array {
   const out = new Int16Array(samples.length);
@@ -64,31 +60,16 @@ function toInt16(samples: Float32Array): Int16Array {
   return out;
 }
 
-async function loadLame(): Promise<typeof lamejsNamespace.Mp3Encoder> {
-  const mod = (await import(/* @vite-ignore */ LAME_CDN)) as Record<string, unknown>;
-  const enc =
-    (mod.Mp3Encoder as typeof lamejsNamespace.Mp3Encoder | undefined) ??
-    ((mod.default as Record<string, unknown> | undefined)?.Mp3Encoder as
-      | typeof lamejsNamespace.Mp3Encoder
-      | undefined) ??
-    (mod.default as typeof lamejsNamespace.Mp3Encoder | undefined);
-  if (typeof enc !== 'function') throw new Error('lamejs failed to load');
-  return enc;
-}
-
-// Structural placeholder so the type above reads clearly
-declare namespace lamejsNamespace {
-  class Mp3Encoder {
-    constructor(channels: number, sampleRate: number, kbps: number);
-    encodeBuffer(left: Int16Array, right?: Int16Array): Int8Array;
-    flush(): Int8Array;
-  }
+async function loadLame(): Promise<LameModule['Mp3Encoder']> {
+  const mod = await import('@breezystack/lamejs');
+  if (typeof mod.Mp3Encoder !== 'function') throw new Error('lamejs failed to load');
+  return mod.Mp3Encoder;
 }
 
 export async function encodeMp3(buffer: AudioBuffer, kbps: number): Promise<Blob> {
   const Mp3Encoder = await loadLame();
   const channels = Math.min(buffer.numberOfChannels, 2);
-  const encoder: LameEncoder = new Mp3Encoder(channels, buffer.sampleRate, kbps);
+  const encoder = new Mp3Encoder(channels, buffer.sampleRate, kbps);
 
   const left = toInt16(buffer.getChannelData(0));
   const right = channels > 1 ? toInt16(buffer.getChannelData(1)) : undefined;
@@ -137,8 +118,6 @@ export async function encodeFor(fmt: ExportFormat, buffer: AudioBuffer): Promise
 
 // ---------- M4R (AAC-LC in MP4) ----------
 
-const MUXER_CDN = 'https://cdn.jsdelivr.net/npm/mp4-muxer@5/+esm';
-
 /**
  * True when this browser can encode AAC via WebCodecs — the only native path
  * to M4R. Checked once per page load; unsupported browsers never see the
@@ -175,13 +154,7 @@ export async function encodeM4r(buffer: AudioBuffer, kbps = 192): Promise<Blob> 
   const support = await AudioEncoder.isConfigSupported(config);
   if (!support.supported) throw new Error('AAC encoding is not supported in this browser');
 
-  const muxerModule = (await import(/* @vite-ignore */ MUXER_CDN)) as {
-    Muxer: new (opts: Record<string, unknown>) => {
-      addAudioChunk: (chunk: EncodedAudioChunk, meta?: EncodedAudioChunkMetadata) => void;
-      finalize: () => void;
-    };
-    ArrayBufferTarget: new () => { buffer: ArrayBuffer };
-  };
+  const muxerModule = await import('mp4-muxer');
   const target = new muxerModule.ArrayBufferTarget();
   const muxer = new muxerModule.Muxer({
     target,

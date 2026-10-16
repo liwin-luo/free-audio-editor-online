@@ -105,8 +105,13 @@ class Joiner {
       try {
         const data = await file.arrayBuffer();
         const ctx = new AudioContext();
-        const buffer = await ctx.decodeAudioData(data);
-        await ctx.close();
+        let buffer: AudioBuffer;
+        try {
+          buffer = await ctx.decodeAudioData(data);
+        } finally {
+          // Browsers cap concurrent AudioContexts; a failed decode must not leak one.
+          await ctx.close();
+        }
         const peaks = computePeaks(buffer, Math.max(60, Math.round(buffer.duration * 40)));
         this.clips.push({
           id: this.nextId++,
