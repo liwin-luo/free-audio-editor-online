@@ -166,9 +166,9 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP3 Cutter',
     icon: 'scissors',
     category: 'cut',
-    title: 'MP3 Cutter — Cut Songs & Make Cuts Online Free',
+    title: 'MP3 Cutter — Cut Songs & Trim MP3 Online Free, No Upload',
     description:
-      'Cut MP3 files online in a couple of clicks. Keep the best part or delete an intro in seconds — free, no signup, and the file never leaves your device.',
+      'Cut any MP3 down to the part you want — keep or delete the selection, preview, then save. Free in your browser, no signup, nothing uploaded.',
     h1: 'MP3 Cutter',
     subtitle: 'Cut songs and MP3 files online — keep the part you want, delete the rest.',
     intro:
@@ -290,7 +290,7 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Ringtone Maker',
     icon: 'bell',
     category: 'cut',
-    title: 'Ringtone Maker — Make a Ringtone from Any Song Online',
+    title: 'Ringtone Maker — Make Ringtones from Songs (iPhone M4R)',
     description:
       'Turn any song into a ringtone in your browser. Pick the best 40 seconds, add a fade, export M4R or MP3 — free, no signup, nothing uploaded.',
     h1: 'Ringtone Maker',
@@ -734,7 +734,7 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Audio Extractor',
     icon: 'film',
     category: 'merge',
-    title: 'Extract Audio from Video — Save Sound as MP3 or WAV',
+    title: 'Audio Extractor — Extract Audio from Video Online Free',
     description:
       'Extract the audio track from any video in your browser and save it as MP3 or lossless WAV. Free, private, no upload — even for large files.',
     h1: 'Extract Audio from Video',
@@ -861,7 +861,7 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Audio to Text',
     icon: 'voice',
     category: 'record',
-    title: 'Audio to Text — Transcribe Audio Online Free',
+    title: 'Audio to Text — Transcribe Audio & Video Online Free',
     description:
       'Transcribe audio to text in your browser — MP3, WAV, M4A and video, 90+ languages with auto-detect, export TXT or SRT. Free, no signup, nothing uploaded.',
     h1: 'Audio to Text',
@@ -1056,7 +1056,7 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Slowed + Reverb',
     icon: 'moon',
     category: 'effects',
-    title: 'Slowed + Reverb — Make Slowed and Reverb Songs Online Free',
+    title: 'Slowed Reverb Maker — Make Slowed + Reverb Songs Online',
     description:
       'Turn any song into a slowed + reverb edit in your browser — slow it down, wash it in reverb, export MP3. Free, nothing uploaded.',
     h1: 'Slowed + Reverb Maker',

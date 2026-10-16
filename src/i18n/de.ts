@@ -207,7 +207,7 @@ export const de: Catalog = {
     trFail: 'Transkription fehlgeschlagen. Versuche das Tiny-Modell, eine klarere Datei oder einen aktuellen Browser.',
   },
   home: {
-    title: 'Free Audio Editor — Audio online bearbeiten, ohne Upload',
+    title: 'Audio online bearbeiten — kostenloser Audio-Editor',
     description:
       'Kostenloser Online-Audio-Editor: kürzen, schneiden, zusammenfügen, umwandeln — direkt im Browser, ohne Anmeldung. Deine Dateien verlassen dein Gerät nie.',
     appBlurb: 'Kostenloser Audio-Editor online — Audio im Browser schneiden, kürzen, zusammenfügen und bearbeiten.',
@@ -252,7 +252,7 @@ export const de: Catalog = {
       },
       {
         q: 'Welche Audioformate werden unterstützt?',
-        a: 'Du kannst MP3, WAV, M4A/AAC, OGG, FLAC und WebM-Audio öffnen und das Ergebnis als MP3 (128–320 kbps) oder verlustfreies WAV speichern. Der Klingelton-Maker exportiert außerdem M4R in Chrome, Edge und Safari.',
+        a: 'Du kannst MP3, WAV, M4A/AAC, OGG, FLAC und WebM-Audio öffnen und das Ergebnis als MP3 (128–320 kbps) oder verlustfreies WAV speichern. Der Klingelton erstellen exportiert außerdem M4R in Chrome, Edge und Safari.',
       },
     ],
   },
@@ -306,12 +306,12 @@ export const de: Catalog = {
   },
   tools: {
     'audio-to-text': {
-      name: 'Audio zu Text',
-      shortName: 'Audio zu Text',
-      title: 'Audio zu Text — Audio online kostenlos transkribieren',
+      name: 'Audio in Text',
+      shortName: 'Audio in Text',
+      title: 'Audio in Text umwandeln — transkribieren, kostenlos',
       description:
-        'Audio im Browser in Text umwandeln — MP3, WAV, M4A und Video, über 90 Sprachen mit automatischer Erkennung, TXT- oder SRT-Export. Kostenlos, ohne Anmeldung.',
-      h1: 'Audio zu Text',
+        'Audio im Browser in Text umwandeln: MP3, WAV, M4A und Video, über 90 Sprachen, TXT- oder SRT-Export. Kostenlos, ohne Anmeldung.',
+      h1: 'Audio in Text',
       subtitle: 'Aufnahmen in über 90 Sprachen in Text umwandeln, mit Zeitstempeln — direkt im Browser.',
       intro:
         'Eine Aufnahme hier ablegen und die Wörter herausholen: Sprachmemos, Interviews, Vorlesungen, Podcasts — in rund 90 Sprachen, automatisch erkannt, wenn du nicht sicher bist, welche es ist. Ein Whisper-KI-Modell läuft in deinem Browser-Tab auf deinem eigenen Gerät, die Audiodatei wird nie hochgeladen, und die Transkription entsteht als bearbeitbarer Text oder als SRT-Datei mit Zeitstempeln.',
@@ -715,9 +715,9 @@ export const de: Catalog = {
     'audio-trimmer': {
       name: 'Audio-Trimmer',
       shortName: 'Audio-Trimmer',
-      title: 'Audio-Trimmer — Audio und Musik online kostenlos kürzen',
+      title: 'Audio schneiden & kürzen — Audio-Trimmer online kostenlos',
       description:
-        'Kürze Musik, Sprachnotizen und Podcasts im Browser. Auswählen, anhören und in Sekunden speichern — kostenlos, ohne Anmeldung, und dein Audio verlässt dein Gerät nie.',
+        'Musik, Sprachnotizen und Podcasts online schneiden und kürzen — direkt im Browser, kostenlos, ohne Anmeldung. Dein Audio verlässt dein Gerät nie.',
       h1: 'Audio-Trimmer',
       subtitle: 'Audio online kürzen — kostenlos, direkt im Browser. Nichts wird hochgeladen.',
       intro:
@@ -879,12 +879,12 @@ export const de: Catalog = {
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
     },
     'ringtone-maker': {
-      name: 'Klingelton-Maker',
+      name: 'Klingelton erstellen',
       shortName: 'Klingelton',
-      title: 'Klingelton-Maker — Klingelton aus jedem Song online',
+      title: 'Klingelton erstellen online — aus jedem Song, kostenlos',
       description:
         'Aus jedem Song ein Klingelton: die besten 40 Sekunden wählen, Blende dazu, als M4R oder MP3 exportieren — kostenlos, ohne Anmeldung.',
-      h1: 'Klingelton-Maker',
+      h1: 'Klingelton erstellen',
       subtitle: 'Nimm den besten Teil eines Songs und speichere ihn als Klingelton — in unter einer Minute.',
       intro:
         'Wähle den Hook, den Drop oder das Intro deines Lieblingstitels und mach daraus einen Klingelton. Deine Auswahl bleibt innerhalb der klassischen Klingeltonlänge von 40 Sekunden, auf Wunsch kommt eine Blende dazu, und der Export geht direkt aufs Handy — M4R fürs iPhone, MP3 für alles andere.',
@@ -989,9 +989,9 @@ export const de: Catalog = {
     'wav-to-mp3': {
       name: 'WAV-zu-MP3-Konverter',
       shortName: 'WAV in MP3',
-      title: 'WAV in MP3 — WAV-Dateien online kostenlos umwandeln',
+      title: 'WAV in MP3 umwandeln — online kostenlos, 320 kbps',
       description:
-        'Wandle WAV im Browser in MP3 um — 128, 192 oder 320 kbps. Kostenlos, ohne Anmeldung: dein Audio wird lokal umgewandelt und nie auf einen Server hochgeladen.',
+        'Wandle WAV im Browser in MP3 um — 128, 192 oder 320 kbps. Kostenlos, ohne Anmeldung; dein Audio wird lokal umgewandelt, nie hochgeladen.',
       h1: 'WAV-zu-MP3-Konverter',
       subtitle: 'Wandle WAV-Dateien in Sekunden in MP3 um — direkt im Browser, nichts wird hochgeladen.',
       intro:
@@ -1206,7 +1206,7 @@ export const de: Catalog = {
     'mp4-to-mp3': {
       name: 'MP4-zu-MP3-Konverter',
       shortName: 'MP4 in MP3',
-      title: 'MP4 in MP3 — Video online kostenlos in MP3 umwandeln',
+      title: 'MP4 in MP3 umwandeln online — kostenlos, ohne Upload',
       description:
         'Wandle MP4-Video im Browser in MP3 um — die Tonspur wird lokal extrahiert und nie hochgeladen. Kostenlos, schnell, ohne Anmeldung, auch auf dem Handy.',
       h1: 'MP4 in MP3 umwandeln',
@@ -1316,7 +1316,7 @@ export const de: Catalog = {
     'voice-recorder': {
       name: 'Sprachrekorder',
       shortName: 'Sprachrekorder',
-      title: 'Sprachrekorder online — aufnehmen, kürzen, kostenlos speichern',
+      title: 'Sprachrekorder online — Audio aufnehmen, MP3/WAV',
       description:
         'Nimm dein Mikrofon im Browser auf, kürze die Aufnahme und speichere sie als MP3 oder WAV. Kostenlos und privat — Aufnahmen werden nie hochgeladen.',
       h1: 'Sprachrekorder',

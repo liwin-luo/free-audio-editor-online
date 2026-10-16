@@ -206,7 +206,7 @@ export const id: Catalog = {
     trFail: 'Transkripsi gagal. Coba model Tiny, file yang lebih jelas, atau browser terbaru.',
   },
   home: {
-    title: 'Free Audio Editor — Edit Audio Online, Tidak Ada yang Diunggah',
+    title: 'Edit Audio Online Gratis — Potong, Gabung, Konversi',
     description:
       'Editor audio online gratis: pangkas, potong, gabung, putar balik, dan konversi audio di browser. Tanpa daftar, tanpa unggah — file tetap di perangkat.',
     appBlurb: 'Editor audio online gratis — potong, pangkas, gabung, dan edit audio di browser Anda.',
@@ -307,7 +307,7 @@ export const id: Catalog = {
     'audio-to-text': {
       name: 'Audio ke Teks',
       shortName: 'Audio ke Teks',
-      title: 'Audio ke Teks — Transkripsi Audio Online Gratis',
+      title: 'Ubah Audio ke Teks Online Gratis — TXT & SRT',
       description:
         'Ubah audio menjadi teks di browser — MP3, WAV, M4A dan video, 90+ bahasa dengan deteksi otomatis, ekspor TXT atau SRT. Gratis, tanpa daftar, tanpa unggah.',
       h1: 'Audio ke teks',
@@ -712,12 +712,12 @@ export const id: Catalog = {
       dropHint: 'Letakkan file audio atau klik untuk memilih',
     },
     'audio-trimmer': {
-      name: 'Pemangkas Audio',
-      shortName: 'Pemangkas Audio',
-      title: 'Pemangkas Audio — Pangkas Musik Online Gratis',
+      name: 'Potong Audio',
+      shortName: 'Potong Audio',
+      title: 'Potong Audio Online Gratis — Pangkas Musik & MP3',
       description:
         'Pangkas musik, memo suara, dan podcast di browser. Pilih, dengarkan, simpan dalam hitungan detik — gratis, tanpa mendaftar, tanpa unggah.',
-      h1: 'Pemangkas Audio',
+      h1: 'Potong Audio',
       subtitle: 'Pangkas audio online — gratis, langsung di browser. Tidak ada yang diunggah.',
       intro:
         'Ambil persis bagian yang dibutuhkan dari lagu, memo suara, podcast, atau rekaman apa pun. Seret di gelombang audio untuk memilih, dengarkan kembali, lalu simpan — pemangkasan seluruhnya terjadi di perangkat Anda, jadi rekaman yang panjang pun tetap privat dan langsung bisa dikerjakan.',
@@ -772,7 +772,7 @@ export const id: Catalog = {
     'mp3-cutter': {
       name: 'Potong Lagu',
       shortName: 'Potong Lagu',
-      title: 'Potong MP3 online gratis',
+      title: 'Potong Lagu & MP3 Online Gratis',
       description:
         'Potong file MP3 online dalam beberapa klik: simpan bagian terbaik atau hapus intro. Gratis, tanpa mendaftar, file tidak meninggalkan perangkat.',
       h1: 'Potong MP3',
@@ -882,7 +882,7 @@ export const id: Catalog = {
       shortName: 'Nada Dering',
       title: 'Nada Dering — Buat Nada Dering dari Lagu Apa Pun',
       description:
-        'Jadikan lagu apa pun nada dering di browser. Pilih 40 detik terbaik, tambahkan fade, ekspor M4R atau MP3 — gratis, tanpa mendaftar, tidak ada yang diunggah.',
+        'Jadikan lagu apa pun nada dering di browser: pilih 40 detik terbaik, tambah fade, ekspor M4R atau MP3 — gratis, tanpa unggah.',
       h1: 'Nada Dering',
       subtitle: 'Pilih bagian terbaik dari lagu apa pun dan simpan sebagai nada dering — kurang dari semenit.',
       intro:
@@ -936,7 +936,7 @@ export const id: Catalog = {
       shortName: 'Gabung Audio',
       title: 'Gabung lagu MP3 online gratis',
       description:
-        'Gabungkan lagu dan file audio menjadi satu trek, dalam urutan apa pun, langsung di browser. Fade antar trek bersifat opsional — gratis, privat, tanpa unggah.',
+        'Gabungkan lagu dan file audio jadi satu trek, urutan apa pun, langsung di browser. Fade opsional — gratis, privat, tanpa unggah.',
       h1: 'Gabung lagu',
       subtitle: 'Gabungkan lagu dan file audio menjadi satu trek — urutan apa pun, dalam hitungan detik.',
       intro:
@@ -1205,7 +1205,7 @@ export const id: Catalog = {
     'mp4-to-mp3': {
       name: 'Konversi MP4 ke MP3',
       shortName: 'MP4 ke MP3',
-      title: 'MP4 ke MP3 online gratis',
+      title: 'Ubah Video Menjadi MP3 Online Gratis — MP4 ke MP3',
       description:
         'Konversi video MP4 ke MP3 di browser — soundtrack diekstrak secara lokal, tidak pernah diunggah. Gratis, cepat, tanpa mendaftar, dan berjalan di ponsel.',
       h1: 'MP4 ke MP3',
@@ -1367,12 +1367,12 @@ export const id: Catalog = {
       dropHint: 'Atau jatuhkan rekaman yang sudah ada untuk diedit',
     },
     'volume-booster': {
-      name: 'Penguat Volume',
-      shortName: 'Penguat Volume',
-      title: 'Penguat Volume — Buat Video dan Musik Lebih Keras, Gratis',
+      name: 'Perbesar Volume',
+      shortName: 'Perbesar Volume',
+      title: 'Perbesar Volume Audio Online Gratis — Sampai 4×',
       description:
         'Perbesar volume musik dan soundtrack video yang pelan hingga 4× di browser. Limiter menjaganya tetap bersih — gratis, privat, tidak ada yang diunggah.',
-      h1: 'Penguat Volume',
+      h1: 'Perbesar Volume',
       subtitle: 'Perbesar trek dan soundtrack video yang pelan hingga 4× — bersih, tidak clipping.',
       intro:
         'Untuk semua yang terdengar terlalu pelan: video ponsel yang sunyi, rekaman akustik yang lembut, podcast yang hasil mastering-nya nyaris berbisik. Muat file, naikkan volume hingga 4×, dan biarkan limiter bawaan menahan puncak agar bagian yang keras tetap bersih. Berlaku untuk file audio maupun video — yang diproses hanya soundtrack-nya.',

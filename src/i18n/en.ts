@@ -205,7 +205,7 @@ export const en: Shell = {
     trFail: 'Transcription failed. Try the Tiny model, a clearer file, or a recent browser.',
   },
   home: {
-    title: 'Free Audio Editor — Edit Audio Online, Nothing Uploaded',
+    title: 'Free Online Audio Editor — Cut, Convert & Edit, No Upload',
     description:
       'Free online audio editor: trim, cut, merge, reverse and convert audio right in your browser. No signup, no upload — your files never leave your device.',
     appBlurb: 'Free online audio editor — cut, trim, merge and edit audio in your browser.',

@@ -45,6 +45,26 @@ export default defineConfig({
           ar: 'ar',
         },
       },
+      serialize(item) {
+        // Home pages first, tool hub second, everything else default
+        const path = new URL(item.url).pathname;
+        const priority =
+          path === '/' || /^\/[a-z]{2}\/?$/.test(path)
+            ? 1.0
+            : /^\/(?:[a-z]{2}\/)?tools\/?$/.test(path)
+              ? 0.8
+              : item.priority;
+        // The HTML head declares x-default; keep sitemap hreflang clusters
+        // consistent by appending the same entry to every URL's alternates.
+        let links = item.links;
+        if (links) {
+          const en = links.find((l) => l.lang === 'en');
+          if (en && !links.some((l) => l.lang === 'x-default')) {
+            links = [...links, { url: en.url, lang: 'x-default' }];
+          }
+        }
+        return { ...item, priority, links };
+      },
     }),
   ],
   vite: {

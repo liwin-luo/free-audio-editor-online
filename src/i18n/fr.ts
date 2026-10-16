@@ -206,7 +206,7 @@ export const fr: Catalog = {
     trFail: 'La transcription a échoué. Essayez le modèle Tiny, un fichier plus net ou un navigateur récent.',
   },
   home: {
-    title: 'Free Audio Editor — Montage audio en ligne, aucun téléversement',
+    title: 'Éditeur audio en ligne — montage audio gratuit sans upload',
     description:
       'Éditeur audio en ligne gratuit : coupez, fusionnez, inversez et convertissez dans votre navigateur. Sans inscription, sans téléversement.',
     appBlurb: 'Éditeur audio en ligne gratuit — coupez, rognez, fusionnez et montez l’audio dans votre navigateur.',
@@ -307,9 +307,9 @@ export const fr: Catalog = {
     'audio-to-text': {
       name: 'Audio en texte',
       shortName: 'Audio en texte',
-      title: 'Audio en Texte — Transcrire un Audio en Ligne Gratuit',
+      title: 'Transcrire un audio en texte — gratuit, en ligne',
       description:
-        'Transcrivez l’audio en texte dans votre navigateur — MP3, WAV, M4A et vidéo, plus de 90 langues avec détection automatique, export TXT ou SRT. Gratuit, sans inscription.',
+        'Transcrivez l’audio en texte dans votre navigateur — MP3, WAV, M4A et vidéo, 90+ langues, export TXT ou SRT. Gratuit, sans inscription.',
       h1: 'Audio en texte',
       subtitle: 'Transformez un enregistrement en texte dans plus de 90 langues, avec horodatage — directement dans votre navigateur.',
       intro:
@@ -366,9 +366,9 @@ export const fr: Catalog = {
     'bass-booster': {
       name: 'Boost des basses',
       shortName: 'Basses',
-      title: 'Boost des basses — Renforcer les basses en ligne',
+      title: 'Augmenter les basses — boost de basses en ligne',
       description:
-        'Jusqu’à +15 dB de basses avec un vrai shelf sous 150 Hz, dans votre navigateur — pas un artifice de loudness. Export MP3 ou WAV. Gratuit, sans téléversement.',
+        'Jusqu’à +15 dB de basses avec un vrai shelf sous 150 Hz, dans votre navigateur. Export MP3 ou WAV. Gratuit, sans téléversement.',
       h1: 'Boost des basses',
       subtitle: 'Un vrai shelf : jusqu’à +15 dB sous 150 Hz, écoutez puis exportez. Rien ne quitte votre appareil.',
       intro:
@@ -654,12 +654,12 @@ export const fr: Catalog = {
       dropHint: 'Déposez un fichier audio ou cliquez pour le choisir',
     },
     'audio-trimmer': {
-      name: 'Rogneur audio',
+      name: 'Coupeur audio',
       shortName: 'Rogneur',
-      title: 'Rogneur audio — rogner musique et audio en ligne, gratuit',
+      title: 'Couper une musique en ligne — coupeur audio gratuit',
       description:
         'Rognez musiques, mémos vocaux et podcasts dans votre navigateur. Sélectionnez, écoutez, enregistrez en quelques secondes — gratuit, sans inscription.',
-      h1: 'Rogneur audio',
+      h1: 'Coupeur audio',
       subtitle: 'Rognez l’audio en ligne, gratuitement, dans votre navigateur. Rien n’est téléversé.',
       intro:
         'Coupez le passage exact dont vous avez besoin dans n’importe quelle chanson, mémo vocal, podcast ou enregistrement. Glissez sur la forme d’onde pour sélectionner, écoutez, enregistrez : le rognage se déroule entièrement sur votre appareil, si bien que même les longs enregistrements restent privés et démarrent instantanément.',
@@ -822,7 +822,7 @@ export const fr: Catalog = {
     'ringtone-maker': {
       name: 'Créateur de sonneries',
       shortName: 'Sonneries',
-      title: 'Sonnerie iPhone — créez une sonnerie avec vos chansons',
+      title: 'Créer une sonnerie iPhone en ligne — M4R gratuit',
       description:
         'Transformez une chanson en sonnerie : les 40 meilleures secondes, un fondu, export M4R ou MP3. Gratuit, sans inscription, rien n’est téléversé.',
       h1: 'Créateur de sonneries',
@@ -1147,7 +1147,7 @@ export const fr: Catalog = {
     'mp4-to-mp3': {
       name: 'Convertisseur MP4 vers MP3',
       shortName: 'MP4 vers MP3',
-      title: 'MP4 vers MP3 — convertir une vidéo en MP3 gratuitement',
+      title: 'Convertir MP4 en MP3 — extraire l’audio d’une vidéo',
       description:
         'Convertissez MP4 en MP3 dans votre navigateur. La bande-son est extraite en local, jamais téléversée. Gratuit, rapide, sans inscription.',
       h1: 'Convertisseur MP4 vers MP3',
@@ -1257,9 +1257,9 @@ export const fr: Catalog = {
     'voice-recorder': {
       name: 'Enregistreur vocal',
       shortName: 'Enregistreur vocal',
-      title: 'Enregistreur vocal en ligne — enregistrer et rogner, gratuit',
+      title: 'Dictaphone en ligne — enregistrer sa voix en MP3',
       description:
-        'Enregistrez votre micro dans le navigateur, rognez la prise et sauvegardez-la en MP3 ou WAV. Gratuit, privé — les enregistrements ne sont jamais téléversés.',
+        'Enregistrez votre micro dans le navigateur, rognez et sauvegardez en MP3 ou WAV. Gratuit, privé — rien n’est téléversé.',
       h1: 'Enregistreur vocal',
       subtitle: 'Enregistrez votre micro, rognez la prise, sauvegardez en MP3 — rien ne quitte votre appareil.',
       intro:

@@ -206,9 +206,9 @@ export const es: Catalog = {
     trFail: 'La transcripción falló. Prueba el modelo Tiny, un archivo más claro o un navegador reciente.',
   },
   home: {
-    title: 'Free Audio Editor — Edita audio en línea, nada se sube',
+    title: 'Editor de audio online gratis — Corta, une y convierte',
     description:
-      'Editor de audio en línea gratis: recorta, corta, une, invierte y convierte audio en tu navegador. Sin registro y sin subir archivos: nunca salen de tu dispositivo.',
+      'Editor de audio online gratis: recorta, corta, une, invierte y convierte audio en tu navegador. Sin registro, sin subir archivos.',
     appBlurb: 'Editor de audio en línea gratis: corta, recorta, une y edita audio en tu navegador.',
     badge: 'Procesamiento 100% local · nada se sube',
     h1: 'Editor de audio en línea gratis',
@@ -307,7 +307,7 @@ export const es: Catalog = {
     'audio-to-text': {
       name: 'Audio a texto',
       shortName: 'Audio a texto',
-      title: 'Audio a Texto — Transcribir Audio Online Gratis',
+      title: 'Transcribir audio a texto online gratis — TXT y SRT',
       description:
         'Transcribe audio a texto en tu navegador: MP3, WAV, M4A y vídeo, más de 90 idiomas con detección automática, exporta TXT o SRT. Gratis, sin registro.',
       h1: 'Audio a texto',
@@ -712,12 +712,12 @@ export const es: Catalog = {
       dropHint: 'Arrastra un archivo de audio o haz clic para elegirlo',
     },
     'audio-trimmer': {
-      name: 'Recortador de audio',
-      shortName: 'Recortador de audio',
-      title: 'Recortador de audio — Recorta música en línea gratis',
+      name: 'Recortar audio',
+      shortName: 'Recortar audio',
+      title: 'Recortar audio online gratis — Corta canciones y MP3',
       description:
-        'Recorta música, notas de voz y podcasts en tu navegador. Selecciona, escucha y guarda en segundos: gratis, sin registro, y tu audio nunca sale de tu dispositivo.',
-      h1: 'Recortador de audio',
+        'Recorta música, notas de voz y podcasts en tu navegador. Selecciona, escucha y guarda en segundos: gratis, sin registro y sin subir nada.',
+      h1: 'Recortar audio',
       subtitle: 'Recorta audio en línea, gratis, en tu navegador. Nada se sube.',
       intro:
         'Corta el tramo exacto que necesitas de cualquier canción, nota de voz, podcast o grabación. Arrastra sobre la forma de onda, escucha la selección y guarda: todo el recorte ocurre en tu dispositivo, así que hasta las grabaciones largas se quedan privadas y empiezan al instante.',
@@ -772,7 +772,7 @@ export const es: Catalog = {
     'mp3-cutter': {
       name: 'Cortador de MP3',
       shortName: 'Cortador de MP3',
-      title: 'Cortar MP3 online gratis',
+      title: 'Cortar MP3 y canciones online gratis',
       description:
         'Corta archivos MP3 online en un par de clics: quédate la mejor parte o quita la intro. Gratis, sin registro, el archivo nunca sale de tu equipo.',
       h1: 'Cortar MP3',
@@ -880,7 +880,7 @@ export const es: Catalog = {
     'ringtone-maker': {
       name: 'Creador de tonos de llamada',
       shortName: 'Tono de llamada',
-      title: 'Tono de llamada — Haz un tono con cualquier canción',
+      title: 'Crear tono de llamada online — Con cualquier canción',
       description:
         'Convierte una canción en tono de llamada: elige los mejores 40 segundos, añade un fundido y exporta M4R o MP3. Gratis, sin registro, nada se sube.',
       h1: 'Creador de tonos de llamada',
@@ -932,12 +932,12 @@ export const es: Catalog = {
       dropHint: 'Suelta una canción o haz clic para elegirla',
     },
     'audio-joiner': {
-      name: 'Unir audio',
-      shortName: 'Unir audio',
-      title: 'Unir MP3 online gratis',
+      name: 'Unir canciones',
+      shortName: 'Unir canciones',
+      title: 'Unir canciones online gratis — Une MP3 y audio',
       description:
-        'Une canciones y archivos de audio en una sola pista, en el orden que quieras, en tu navegador. Fundidos opcionales entre pistas: gratis, privado, sin subir archivos.',
-      h1: 'Unir MP3',
+        'Une canciones y archivos de audio en una pista, en el orden que quieras. Fundidos opcionales entre pistas: gratis, privado, sin subir archivos.',
+      h1: 'Unir canciones online',
       subtitle: 'Une canciones y archivos de audio en una sola pista, en el orden que quieras, en segundos.',
       intro:
         'Combina varias canciones, episodios de podcast o grabaciones de voz en un solo archivo. Agrega todas las pistas que quieras, cambia el orden y, si quieres, funde el inicio y el final. La unión ocurre en tu dispositivo: hasta las colecciones grandes se unen al instante y se quedan privadas.',
@@ -988,7 +988,7 @@ export const es: Catalog = {
     'wav-to-mp3': {
       name: 'Convertidor de WAV a MP3',
       shortName: 'WAV a MP3',
-      title: 'WAV a MP3 — Convierte archivos WAV en línea gratis',
+      title: 'Convertir WAV a MP3 online gratis — 320 kbps',
       description:
         'Convierte WAV a MP3 en tu navegador: 128, 192 o 320 kbps. Gratis y sin registro. Tu audio se convierte en local y nunca se sube a un servidor.',
       h1: 'Convertidor de WAV a MP3',
@@ -1205,7 +1205,7 @@ export const es: Catalog = {
     'mp4-to-mp3': {
       name: 'Convertidor de MP4 a MP3',
       shortName: 'MP4 a MP3',
-      title: 'MP4 a MP3 — Convierte video a MP3 en línea gratis',
+      title: 'Convertir video a MP3 online gratis — MP4 a MP3',
       description:
         'Convierte video MP4 a MP3 en tu navegador. La pista de audio se extrae en local y nunca se sube. Gratis, rápido, sin registro, y funciona en el celular.',
       h1: 'Convertidor de MP4 a MP3',
@@ -1315,7 +1315,7 @@ export const es: Catalog = {
     'voice-recorder': {
       name: 'Grabadora de voz',
       shortName: 'Grabadora de voz',
-      title: 'Grabadora de voz en línea — Graba, recorta y guarda gratis',
+      title: 'Grabadora de voz online gratis — Graba y recorta MP3',
       description:
         'Graba el micrófono en el navegador, recorta la toma y guárdala como MP3 o WAV. Gratis y privado: las grabaciones nunca se suben.',
       h1: 'Grabadora de voz',
@@ -1369,7 +1369,7 @@ export const es: Catalog = {
     'volume-booster': {
       name: 'Subir el volumen',
       shortName: 'Subir volumen',
-      title: 'Subir volumen — Haz videos y música más fuertes, gratis',
+      title: 'Subir volumen a un audio online gratis — hasta 4×',
       description:
         'Sube el volumen de música baja y pistas de video hasta 4× en tu navegador. Un limitador lo mantiene limpio. Gratis, privado, y nada se sube.',
       h1: 'Subir el volumen',
@@ -1477,7 +1477,7 @@ export const es: Catalog = {
     'slowed-reverb': {
       name: 'Slowed + reverb',
       shortName: 'Slowed + reverb',
-      title: 'Slowed + reverb — Haz canciones slowed y reverb en línea',
+      title: 'Slowed + reverb online — Hazlo con cualquier canción',
       description:
         'Convierte cualquier canción en una edición slowed + reverb en tu navegador: bájala de velocidad, métele reverb y exporta a MP3. Gratis, y nada se sube.',
       h1: 'Creador de slowed + reverb',

@@ -205,7 +205,7 @@ export const pt: Catalog = {
     trFail: 'A transcrição falhou. Tente o modelo Tiny, um arquivo mais limpo ou um navegador recente.',
   },
   home: {
-    title: 'Free Audio Editor — Edite áudio online, nada é enviado',
+    title: 'Editor de áudio online grátis — Corte, junte, converta',
     description:
       'Editor de áudio online e grátis: corte, recorte, junte, reverta e converta no navegador. Sem cadastro, sem envio — seus arquivos não saem do aparelho.',
     appBlurb: 'Editor de áudio online e grátis — corte, recorte, junte e edite áudio no navegador.',
@@ -265,7 +265,7 @@ export const pt: Catalog = {
   about: {
     title: 'Sobre o Free Audio Editor — ferramentas de áudio online',
     description:
-      'O Free Audio Editor é um conjunto de ferramentas de áudio que priorizam a privacidade e rodam inteiramente no navegador — sem envio, sem cadastro, sem marca d\'água.',
+      'Ferramentas de áudio que priorizam a privacidade e rodam inteiramente no navegador — sem envio, sem cadastro, sem marca d\'água.',
     h1: 'Sobre',
     p1: 'O Free Audio Editor existe porque editar um recado de voz não deveria significar enviar o arquivo para o servidor de outra pessoa. Cada ferramenta daqui — o {trimmer}, o {cutter}, o {joiner} e as demais — funciona do mesmo jeito: o navegador lê o arquivo, edita na memória e grava o resultado direto no seu disco.',
     linkTrimmer: 'cortador de áudio',
@@ -306,7 +306,7 @@ export const pt: Catalog = {
     'audio-to-text': {
       name: 'Áudio para texto',
       shortName: 'Áudio para texto',
-      title: 'Áudio para Texto — Transcrever Áudio Online Grátis',
+      title: 'Transcrever áudio em texto online grátis — TXT e SRT',
       description:
         'Transcreva áudio para texto no navegador — MP3, WAV, M4A e vídeo, mais de 90 idiomas com detecção automática, exporte TXT ou SRT. Grátis, sem cadastro.',
       h1: 'Áudio para texto',
@@ -773,7 +773,7 @@ export const pt: Catalog = {
       shortName: 'Cortar MP3',
       title: 'Cortar MP3 — Corte músicas online grátis',
       description:
-        'Corte arquivos MP3 online em poucos cliques. Fique com a melhor parte ou apague uma intro em segundos — grátis, sem cadastro, e o arquivo não sai do aparelho.',
+        'Corte arquivos MP3 online em poucos cliques. Fique com a melhor parte ou apague uma intro — grátis, sem cadastro, sem enviar nada.',
       h1: 'Cortar MP3',
       subtitle: 'Corte músicas e arquivos MP3 online — fique com o trecho que você quer e apague o resto.',
       intro:
@@ -827,7 +827,7 @@ export const pt: Catalog = {
       shortName: 'Editor de MP3',
       title: 'Editor de MP3 — Corte, fade, reverta e acelere online',
       description:
-        'Edite MP3 e outros áudios online: corte, recorte, fade de entrada e saída, volume, velocidade e reprodução ao contrário. Grátis e privado — tudo roda no navegador.',
+        'Edite MP3 online: corte, recorte, fade de entrada e saída, volume, velocidade e reprodução ao contrário. Grátis e privado, no navegador.',
       h1: 'Editor de MP3',
       subtitle: 'Corte, fade, reverta e acelere o áudio — tudo numa aba do navegador.',
       intro:
@@ -879,9 +879,9 @@ export const pt: Catalog = {
     'ringtone-maker': {
       name: 'Criar toque',
       shortName: 'Toque',
-      title: 'Criar toque — Faça um toque de qualquer música online',
+      title: 'Criar toque de celular — Use qualquer música, grátis',
       description:
-        'Transforme qualquer música em toque no navegador. Escolha os melhores 40 segundos, coloque um fade e exporte M4R ou MP3 — grátis, sem cadastro, nada enviado.',
+        'Transforme qualquer música em toque no navegador: 40 segundos, fade e exporte M4R ou MP3 — grátis, sem cadastro, nada enviado.',
       h1: 'Criar toque',
       subtitle: 'Escolha a melhor parte de qualquer música e salve como toque — em menos de um minuto.',
       intro:
@@ -931,12 +931,12 @@ export const pt: Catalog = {
       dropHint: 'Solte uma música ou clique para procurar',
     },
     'audio-joiner': {
-      name: 'Juntar áudios',
-      shortName: 'Juntar áudios',
-      title: 'Juntar MP3 online grátis',
+      name: 'Juntar músicas',
+      shortName: 'Juntar músicas',
+      title: 'Juntar músicas online grátis — Una MP3 e áudio',
       description:
         'Junte músicas e arquivos de áudio numa faixa só, na ordem que quiser, direto no navegador. Fades opcionais entre as faixas — grátis, privado, sem envio.',
-      h1: 'Juntar MP3',
+      h1: 'Juntar músicas online',
       subtitle: 'Una músicas e arquivos de áudio numa faixa só — em qualquer ordem, em segundos.',
       intro:
         'Combine várias músicas, episódios de podcast ou gravações de voz num único arquivo. Adicione quantas faixas quiser, reordene e, se quiser, aplique fade no começo e no fim. A junção acontece no seu aparelho — até bibliotecas grandes se unem na hora e continuam privadas.',
@@ -1152,7 +1152,7 @@ export const pt: Catalog = {
       shortName: 'Aumentar volume',
       title: 'Aumentar volume do MP3 — Deixe o áudio mais alto grátis',
       description:
-        'Deixe áudios baixos mais altos — aumente MP3 e outros arquivos em até 4× no navegador. Um limiter mantém o som limpo. Grátis, e nada é enviado.',
+        'Deixe áudios baixos mais altos — aumente MP3 e outros arquivos em até 4× no navegador. Um limitador mantém o som limpo. Grátis, e nada é enviado.',
       h1: 'Aumentar volume do MP3',
       subtitle: 'Aumente gravações baixas em até 4× — com limiter, para nada clipar.',
       intro:
@@ -1204,7 +1204,7 @@ export const pt: Catalog = {
     'mp4-to-mp3': {
       name: 'Converter MP4 para MP3',
       shortName: 'MP4 para MP3',
-      title: 'Converter MP4 para MP3 — Vídeo para MP3 online grátis',
+      title: 'Converter vídeo em MP3 online grátis — MP4 para MP3',
       description:
         'Converta vídeo MP4 para MP3 no navegador — a trilha é extraída no aparelho e nunca enviada. Grátis, rápido, sem cadastro, funciona no celular.',
       h1: 'Converter MP4 para MP3',
@@ -1368,9 +1368,9 @@ export const pt: Catalog = {
     'volume-booster': {
       name: 'Aumentar volume',
       shortName: 'Aumentar volume',
-      title: 'Aumentar volume — Deixe vídeos e músicas mais altos grátis',
+      title: 'Aumentar volume do áudio online grátis — até 4×',
       description:
-        'Aumente o volume de músicas baixas e trilhas de vídeo em até 4× no navegador. Um limiter mantém o som limpo — grátis, privado, nada enviado.',
+        'Aumente o volume de músicas baixas e trilhas de vídeo em até 4× no navegador. Um limitador mantém o som limpo — grátis, privado, nada enviado.',
       h1: 'Aumentar volume',
       subtitle: 'Aumente faixas baixas e trilhas de vídeo em até 4× — limpo, sem clipar.',
       intro:
@@ -1476,7 +1476,7 @@ export const pt: Catalog = {
     'slowed-reverb': {
       name: 'Slowed + Reverb',
       shortName: 'Slowed + Reverb',
-      title: 'Slowed + Reverb — Crie versões slowed e reverb online grátis',
+      title: 'Slowed + Reverb online grátis — Crie a sua versão',
       description:
         'Transforme qualquer música em slowed + reverb no navegador: desacelere, coloque reverb e exporte MP3. Grátis, e nada é enviado.',
       h1: 'Slowed + Reverb',
