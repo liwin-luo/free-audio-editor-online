@@ -190,6 +190,7 @@ export const en: Shell = {
     tgComment: 'Comment',
     tgComposer: 'Composer',
     tgCover: 'Cover art',
+    tgCoverFail: 'Cover art must be a JPG or PNG image.',
     tgCoverHint: 'Square JPG or PNG between 500 and 1400 px displays best in most players.',
     tgDisc: 'Disc',
     tgGenre: 'Genre',

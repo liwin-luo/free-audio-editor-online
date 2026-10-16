@@ -147,6 +147,7 @@ export interface EditorText {
   tgComment: string;
   tgComposer: string;
   tgCover: string;
+  tgCoverFail: string;
   tgCoverHint: string;
   tgDisc: string;
   tgGenre: string;
