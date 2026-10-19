@@ -3,6 +3,13 @@ export interface FaqItem {
   a: string;
 }
 
+/** Extra H2 blocks under the intro. Omitted on locales that keep the short page. */
+export interface ToolSection {
+  heading: string;
+  paragraphs?: string[];
+  bullets?: string[];
+}
+
 export interface HowToStep {
   name: string;
   text: string;
@@ -99,6 +106,8 @@ export interface ToolDef {
   uses: [string, string, string];
   howTo: HowToStep[];
   faqs: FaqItem[];
+  /** Long-form blocks for the few pages aimed at head terms. Locales opt in. */
+  sections?: ToolSection[];
   /** Slugs of related tools shown at the bottom */
   related: string[];
   editor: EditorConfig;
@@ -114,10 +123,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Audio Trimmer',
     icon: 'trimmer',
     category: 'cut',
-    title: 'Audio Trimmer — Trim Audio & Music Online Free',
+    title: 'Audio Trimmer — Trim Audio Online Free',
     description:
-      'Trim music, voice memos and podcasts in your browser. Select, preview and save in seconds — free, no signup, and your audio never leaves your device.',
-    h1: 'Audio Trimmer — Cut Audio Files, Online Free',
+      'Trim audio online: voice memos, podcasts and recordings. Select the part you keep, preview, and save. Free, nothing uploaded.',
+    h1: 'Audio Trimmer — Trim a Recording, Online Free',
     hero: {
       src: '/audio-trimmer.svg',
       alt: 'Trim an MP3 or a podcast down to the part you need',
@@ -173,6 +182,44 @@ export const TOOLS: ToolDef[] = [
         a: 'Recordings up to about an hour work comfortably on a modern computer. The practical limit is your device memory, not an artificial cap.',
       },
     ],
+    sections: [
+      {
+        heading: 'Mark the part you want to keep',
+        paragraphs: [
+          'Drag across the waveform. The start and end update as you drag, and you can type both times when a finger or a mouse is not exact enough. Press play to hear only that span before you save.',
+          'Export WAV if you will trim again or edit further. Export MP3 when the clip is finished. A trim to WAV keeps the samples you selected. A trim to MP3 encodes once, at the bitrate you pick.',
+        ],
+      },
+      {
+        heading: 'Trim a recording, or cut a song',
+        paragraphs: [
+          'This page is for a recording you need to shorten: a podcast answer, a voice memo, a lecture, the middle of a long file.',
+        ],
+        bullets: [
+          'Audio trimmer, this page: keep one span of any audio or video soundtrack and save it as MP3 or WAV.',
+          'MP3 cutter: the same kind of selection, written for a song. That page walks through keeping a chorus or deleting an intro.',
+          'Silence remover: drops long gaps on its own. Use it when the problem is dead air, not a span you have to mark by hand.',
+        ],
+      },
+      {
+        heading: 'What the trim does to the sound',
+        paragraphs: [
+          'The file is decoded, the span is taken, and the export is written again. WAV is the clean copy of the part you kept. MP3 at 192 kbps or above is enough for speech, and 320 kbps is the setting when the source is music.',
+          'Trimming does not make a quiet recording louder. Raise it with the volume booster after the clip is the right length.',
+        ],
+      },
+      {
+        heading: 'How long a file can be',
+        paragraphs: [
+          'About an hour is comfortable on a current computer. The limit is the memory in the tab, not a cap we set. A phone handles a few minutes easily and gets less steady as the file gets long.',
+        ],
+        bullets: [
+          'A voice memo or a podcast answer: trim it here, on the phone if you want.',
+          'A full episode: a computer is the steadier place to preview and export.',
+          'A video: the soundtrack is what gets trimmed. The picture is not saved.',
+        ],
+      },
+    ],
     related: ['silence-remover', 'mp3-cutter', 'audio-joiner'],
     editor: {
       defaultFormat: 'mp3-192',
@@ -187,10 +234,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP3 Cutter',
     icon: 'scissors',
     category: 'cut',
-    title: 'MP3 Cutter — Cut Songs & Trim MP3 Online Free, No Upload',
+    title: 'MP3 Cutter — Cut MP3 Files Online Free, No Upload',
     description:
-      'Cut any MP3 down to the part you want — keep or delete the selection, preview, then save. Free in your browser, no signup, nothing uploaded.',
-    h1: 'Free MP3 Cutter Online',
+      'Cut an MP3 online: keep the chorus or delete the intro, preview, then save. Free in your browser, no signup, nothing uploaded.',
+    h1: 'MP3 Cutter — Cut an MP3 Online, Free',
     hero: {
       src: '/mp3-cutter.svg',
       alt: 'Free MP3 cutter online to cut and trim an MP3',
@@ -244,6 +291,44 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on my phone?',
         a: 'Yes. Drag the waveform with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Keep the part you marked, or delete it',
+        paragraphs: [
+          'Drag across the waveform to mark a span. The times update as you drag, and you can type a start and an end when the pointer is not precise enough.',
+          'The two modes do opposite jobs.',
+        ],
+        bullets: [
+          'Keep selection: the file you save is only the span you marked. That is the chorus, the drop, or the one answer you want from a longer recording.',
+          'Delete selection: the file you save is everything except that span. That is how you remove the first 30 seconds, an intro, or an ad read.',
+        ],
+      },
+      {
+        heading: 'Cut an MP3, or trim a recording',
+        paragraphs: [
+          'This page is for cutting a song or an MP3 down to one span. The editor also accepts most other audio and video files, and the result is a new MP3 or a WAV.',
+          'The audio trimmer is the same kind of cut, aimed at podcasts and voice memos, where you keep a middle section and leave the rest. Use this page to cut an MP3. Use the trimmer when the file is not a song.',
+        ],
+      },
+      {
+        heading: 'What the cut does to the sound',
+        paragraphs: [
+          'Saving as WAV keeps the samples you selected, with no extra lossy pass. Saving as MP3 encodes once, at the bitrate you pick. 320 kbps is the setting when the cut should be hard to tell from the source. 192 kbps is enough for voice.',
+          'The file is decoded, the span is taken, and the export is encoded again. One encode at a high bitrate is the practical version of a clean cut for a song you will listen to. If you will edit the file again, export WAV.',
+        ],
+      },
+      {
+        heading: 'What this cutter will not do',
+        paragraphs: [
+          'It cuts one file. It does not crossfade a playlist or stack several tracks on top of each other.',
+        ],
+        bullets: [
+          'Joining several songs into one file is the audio joiner.',
+          'A clip under 40 seconds, saved as an iPhone ringtone, is the ringtone maker.',
+          'Title, artist, and cover art are the MP3 tag editor, after you have the cut.',
+        ],
       },
     ],
     related: ['silence-remover', 'audio-trimmer', 'audio-joiner'],
@@ -319,6 +404,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Drag the waveform with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
     ],
+    sections: [
+      {
+        heading: 'What this editor actually changes',
+        paragraphs: [
+          'This page is the general MP3 editor: cut a span, fade the ends, change volume or speed, or reverse the file, then export a new MP3. The file you dropped is never overwritten.',
+          'Speed here moves the pitch with the tempo. If you only want a higher or lower voice at the same length, use the pitch changer. If you only want the file smaller, use the audio compressor instead of re-editing.',
+        ],
+      },
+      {
+        heading: 'When to open a specialist page instead',
+        paragraphs: [
+          'The editor is the right start when the job is a mix of small cuts and level changes. Single jobs have a shorter path:',
+        ],
+        bullets: [
+          'One song, keep one chorus: the MP3 cutter is written for that.',
+          'A podcast or voice memo, trim the ends: the audio trimmer.',
+          'Song title, artist, or cover art only: the MP3 tag editor copies the audio bytes unchanged.',
+        ],
+      },
+      {
+        heading: 'Export and undo',
+        paragraphs: [
+          'Export writes a new MP3. WAV is also in the format menu when you want a lossless copy of the edit for another program.',
+          'Ctrl+Z (Cmd+Z on Mac) steps back through recent edits. Reset reloads the file you dropped. Closing the tab drops the session, because nothing is stored on a server.',
+        ],
+      },
+    ],
     related: ['audio-trimmer', 'change-audio-speed', 'mp3-tag-editor'],
     editor: {
       defaultFormat: 'mp3-320',
@@ -386,6 +498,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Is there a watermark or limit?',
         a: 'No watermark, no signup, no daily cap. The ringtone is rendered on your own device and downloaded straight from the browser.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'How a song becomes a ringtone',
+        paragraphs: [
+          'A phone ringtone is a short clip, not the whole track. Select the part you want, and the export is clamped to 40 seconds so it still fits a ringtone slot.',
+          'Add a short fade at the start and end if the cut would otherwise click. The fade only shapes those edges. It does not raise the volume of a quiet song.',
+        ],
+      },
+      {
+        heading: 'Which file the phone accepts',
+        paragraphs: [
+          'Pick the format before you export. The menu is built around what phones actually install:',
+        ],
+        bullets: [
+          'M4R for iPhone. Chrome, Edge, and Safari 17+ encode it on the device. Sync the file with Finder, or iTunes on Windows.',
+          'Firefox cannot encode AAC. Export MP3 there, then make the ringtone in GarageBand.',
+          'MP3 at 320, 192, or 128 kbps, or WAV, when the phone or app takes those instead of M4R.',
+        ],
+      },
+      {
+        heading: 'What this page does not do',
+        paragraphs: [
+          'It does not upload the song, and it does not install the tone on the phone for you. You download a file and move it the way that phone already expects.',
+          'Cutting a long song down for listening, rather than for a ringtone, belongs on the MP3 cutter. That page is not limited to 40 seconds.',
+        ],
       },
     ],
     related: ['mp3-cutter', 'audio-trimmer', 'mp3-editor'],
@@ -463,6 +602,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Add files, then move them up or down. Those buttons work with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. Several long files use more memory, so a desktop is steadier when the stack is long.',
       },
     ],
+    sections: [
+      {
+        heading: 'Join means one file after another',
+        paragraphs: [
+          'The joiner places whole files in a row: song, then voice memo, then the next chapter. You can reorder the list and set a crossfade so the end of one overlaps the start of the next.',
+          'Set the crossfade to zero for a hard cut with no gap. Mixed formats are decoded and written into one export. This is not a mixer: tracks do not play at the same time.',
+        ],
+      },
+      {
+        heading: 'Jobs this page fits',
+        paragraphs: [
+          'Use it when the result should be a single file a player can open without a playlist:',
+        ],
+        bullets: [
+          'A voice memo in front of a song, in the order you choose.',
+          'Chapter recordings combined for a player that has no playlist.',
+          'Back-to-back clips with a short crossfade so the joins do not pop.',
+        ],
+      },
+      {
+        heading: 'When you need layers instead',
+        paragraphs: [
+          'Voice over music, a level and a pan per clip, mute and solo: that is the multi-track editor, up to eight tracks. The joiner cannot duck music under speech.',
+          'There is no fixed file count. The ceiling is the memory of the device, because the merge stays in the browser. Nothing is uploaded.',
+        ],
+      },
+    ],
     related: ['multi-track-audio-editor', 'normalize-audio', 'fade-audio'],
     editor: {
       multiple: true,
@@ -537,6 +703,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Each track is decoded into memory before you press play. Eight stereo files is already a lot for a phone tab. A 16-track production with plugins is a different tool.',
       },
     ],
+    sections: [
+      {
+        heading: 'A small mixer, not a DAW',
+        paragraphs: [
+          'Each file is one clip on its own track. You set level, pan, mute, solo, and where that clip starts. Up to eight tracks play together and export as one file.',
+          'One clip per track. No MIDI, no instruments, no volume curve, and no automatic ducking of music under speech. Plugins and a project you reopen tomorrow belong in Audacity or a browser DAW.',
+        ],
+      },
+      {
+        heading: 'What to use it for',
+        paragraphs: [
+          'It fits short stacks you would otherwise bounce in a larger program:',
+        ],
+        bullets: [
+          'A voice track over a music bed, with the voice louder.',
+          'Two takes lined up by start time, one soloed while you compare.',
+          'A stereo image nudged with pan, then one export.',
+        ],
+      },
+      {
+        heading: 'The session ends with the tab',
+        paragraphs: [
+          'Nothing is uploaded, and there is no project file. If you close the tab before export, the mix is gone.',
+          'Files that should play one after another, not on top of each other, belong on the audio joiner. That page crossfades neighbours. This one stacks them.',
+        ],
+      },
+    ],
     related: ['audio-joiner', 'voice-recorder', 'fade-audio'],
     editor: {
       mixer: true,
@@ -551,10 +744,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'WAV to MP3',
     icon: 'convert',
     category: 'merge',
-    title: 'WAV to MP3 Converter — Convert WAV Files Online Free',
+    title: 'Convert WAV to MP3 Online Free — 320 kbps',
     description:
-      'Convert WAV to MP3 in your browser — 128, 192 or 320 kbps. Free, no signup: your audio is converted locally and never uploaded to a server.',
-    h1: 'WAV to MP3 Converter — Convert WAV to MP3, Online Free',
+      'Convert WAV to MP3 in your browser at 128, 192 or 320 kbps. Free, no signup. The file is converted on your device and never uploaded.',
+    h1: 'Convert WAV to MP3 — Online, Free',
     hero: {
       src: '/wav-to-mp3.svg',
       alt: 'Convert a WAV file to 320 kbps MP3',
@@ -608,6 +801,44 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on my phone?',
         a: 'Yes. Pick the file and the conversion stays in the tab. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Which bitrate to pick',
+        paragraphs: [
+          'MP3 throws away some of the WAV. The bitrate is how much it keeps.',
+        ],
+        bullets: [
+          '320 kbps: music you want to keep. At this rate most people cannot tell the MP3 from the WAV.',
+          '192 kbps: everyday listening and files you will send.',
+          '128 kbps: voice memos, podcasts and lectures. Speech needs less than music.',
+        ],
+      },
+      {
+        heading: 'How much smaller the MP3 is',
+        paragraphs: [
+          'A WAV stores every sample. An MP3 stores a compressed version of what you can hear. A 50 MB WAV lands around 4–5 MB at 192 kbps, and around 11 MB at 320 kbps. The exact size follows the length and the sample rate.',
+          'If you still need the original, keep the WAV. This page exists so the copy you share plays on a phone, a car, and an old speaker, and so the file is small enough to send.',
+        ],
+      },
+      {
+        heading: 'Title, artist and cover are not copied',
+        paragraphs: [
+          'The MP3 is written without the WAV’s metadata. Song title, artist and cover art do not come across. Add them afterwards in the MP3 tag editor if the player would otherwise show a blank name.',
+          'M4A, FLAC and OGG files dropped here convert the same way. FLAC has its own page if that is the format you are starting from. This page is the one for WAV.',
+        ],
+      },
+      {
+        heading: 'Convert first, then trim',
+        paragraphs: [
+          'This page converts the whole file. It does not cut a span out of the WAV.',
+        ],
+        bullets: [
+          'Need only a minute of a long recording: convert, then open the audio trimmer.',
+          'The file is already an MP3 and you only need it smaller: use compress audio, not this page.',
+          'You will edit again after the conversion: 320 kbps, or keep the WAV and edit that.',
+        ],
       },
     ],
     related: ['m4a-to-mp3', 'ogg-to-mp3', 'audio-trimmer'],
@@ -684,6 +915,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Pick the file and the conversion stays in the tab. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
     ],
+    sections: [
+      {
+        heading: 'Why convert FLAC to MP3',
+        paragraphs: [
+          'FLAC is lossless and large. MP3 is what most phones, cars, and older players actually open. A 25 MB FLAC often lands near 12 MB at 320 kbps, and smaller at 192 or 128.',
+          'The conversion decodes the FLAC and encodes a new MP3. It does not keep the bit-perfect file. If you still need the lossless master, keep the FLAC.',
+        ],
+      },
+      {
+        heading: 'Bitrate and what is dropped',
+        paragraphs: [
+          'The format menu is MP3 only, at three bitrates:',
+        ],
+        bullets: [
+          '320 kbps when the file should stay close to the FLAC for listening.',
+          '192 kbps for speech or a smaller copy you will stream.',
+          '128 kbps when size matters more than the top octave.',
+        ],
+      },
+      {
+        heading: 'Tags, art, and the next edit',
+        paragraphs: [
+          'Title, artist, and cover art are not copied. The MP3 is written without metadata. Put them back with the MP3 tag editor after export.',
+          'Trim or cut after the conversion, not before, if you want the edit on the smaller file. WAV to MP3 is the sibling page when the source is WAV, not FLAC.',
+        ],
+      },
+    ],
     related: ['wav-to-mp3', 'm4a-to-mp3', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-320',
@@ -757,6 +1015,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on my phone?',
         a: 'Yes. Pick the file and the conversion stays in the tab. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'MP3 to WAV does not restore what MP3 threw away',
+        paragraphs: [
+          'The page decodes the MP3 into 16-bit PCM WAV. Editors and DAWs that refuse MP3 can open that WAV. The missing highs from the original encode do not come back.',
+          'Use it when the next step must not add another MP3 generation: cut, fade, or mix the WAV, then encode once at the end.',
+        ],
+      },
+      {
+        heading: 'When the conversion is worth it',
+        paragraphs: [
+          'The format menu exports WAV only. It is the right move in a few concrete cases:',
+        ],
+        bullets: [
+          'A program or hardware recorder that only accepts WAV.',
+          'An edit you will encode once later, so you do not stack MP3 on MP3.',
+          'A handoff to someone who asked for PCM, not a smaller MP3.',
+        ],
+      },
+      {
+        heading: 'Size and the other direction',
+        paragraphs: [
+          'The WAV is much larger than the MP3. That size is the uncompressed PCM, not new detail.',
+          'Going the other way, WAV to MP3, is a different page, and it chooses a bitrate. Making an MP3 smaller without changing it to WAV is the audio compressor.',
+        ],
       },
     ],
     related: ['wav-to-mp3', 'extract-audio', 'fade-audio'],
@@ -838,6 +1123,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Pick the file and the conversion stays in the tab. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
     ],
+    sections: [
+      {
+        heading: 'This compressor shrinks the file, not the dynamics',
+        paragraphs: [
+          'Compress audio re-encodes at a lower MP3 bitrate. A 320 kbps file at 128 kbps is about 40 percent of the size. The quiet and loud parts stay in the same relationship.',
+          'Evening out a loud voice and a quiet one is the level compressor, a different page. That one does not make the file smaller.',
+        ],
+      },
+      {
+        heading: 'Which bitrate to pick',
+        paragraphs: [
+          'The menu runs from 320 down to 64 kbps. Pick by what the file is:',
+        ],
+        bullets: [
+          '192 or 320 kbps for music you will still listen to closely.',
+          '128 kbps for speech, a voice memo, or a copy you need to send.',
+          '64 or 96 kbps only when the destination is tiny and speech is enough.',
+        ],
+      },
+      {
+        heading: 'What a second encode costs',
+        paragraphs: [
+          'Every pass throws away a little more. If the file is already 128 kbps, encoding it to 128 again does not help, and encoding it lower makes it duller.',
+          'Tags and artwork are not part of this shrink. If the MP3 is already small and you only need a new title or cover, use the MP3 tag editor, which copies the audio bytes unchanged.',
+        ],
+      },
+    ],
     related: ['wav-to-mp3', 'flac-to-mp3', 'compressor'],
     editor: {
       defaultFormat: 'mp3-128',
@@ -907,6 +1219,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Is reversing really free and private?',
         a: 'Yes — no signup, no watermark, no limits. The reversal happens in your browser with the Web Audio API, so the file is never uploaded anywhere.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Reverse plays the samples backward',
+        paragraphs: [
+          'The page flips the selected audio so the end plays first. You can reverse the whole file or only the selection. Reverse itself does not change loudness or pitch.',
+          'The export is still an encode. WAV keeps the reversed PCM without an MP3 generation. MP3 writes a new file of the reversed audio.',
+        ],
+      },
+      {
+        heading: 'What people use it for',
+        paragraphs: [
+          'It is a straight reverse, not a hidden-message decoder and not a stem splitter:',
+        ],
+        bullets: [
+          'A reversed cymbal or hit as a lead-in.',
+          'Checking a phrase by ear, selection only, then undo.',
+          'A whole file flipped for a sound-design pass.',
+        ],
+      },
+      {
+        heading: 'What stays the same',
+        paragraphs: [
+          'Undo steps back. Reset reloads the file you dropped. The original file on disk is not overwritten.',
+          'If the goal is a slower song or a lower voice, reverse is the wrong control. Speed changes pitch with tempo. The pitch changer keeps the length.',
+        ],
       },
     ],
     related: ['change-audio-speed', 'pitch-changer', 'audio-trimmer'],
@@ -983,6 +1322,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Drag the waveform with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
     ],
+    sections: [
+      {
+        heading: 'Speed and pitch move together',
+        paragraphs: [
+          'This control plays the file faster or slower the way a tape would, from 0.5× to 2×. Faster means a shorter file and a higher pitch. Slower means a longer file and a lower pitch. 2× sits about an octave higher, 0.5× about an octave lower.',
+          'It cannot speed the audio up and keep the original pitch. That would need time-stretch, which this page does not do. A higher or lower voice at the same length is the pitch changer, up to 12 semitones.',
+        ],
+      },
+      {
+        heading: 'Where the control is useful',
+        paragraphs: [
+          'Use it when the pitch change is acceptable or even the point:',
+        ],
+        bullets: [
+          'A lecture or voice memo you want to get through faster, chipmunk pitch included.',
+          'A slower pass so you can transcribe, with the voice dropping.',
+          'A quick preview of a clip at another tempo before you export.',
+        ],
+      },
+      {
+        heading: 'Slowed songs are the other page',
+        paragraphs: [
+          'A slowed-and-reverb edit also drops the pitch, because it drops the speed, and it adds reverb on top. That page starts around 85 percent. This page is only the speed control.',
+          'Above 100 percent on the slowed page is the nightcore direction. Do that there if you also want the reverb knob. Export here if you only want the new length.',
+        ],
+      },
+    ],
     related: ['pitch-changer', 'slowed-reverb', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-192',
@@ -998,10 +1364,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP3 Volume',
     icon: 'volume',
     category: 'effects',
-    title: 'Increase MP3 Volume — Make Audio Louder Online Free',
+    title: 'Increase MP3 Volume — Quiet MP3 Files Online Free',
     description:
-      'Make quiet audio louder — a volume increaser that boosts MP3 up to 4× without distortion. A limiter keeps it clean; free, nothing uploaded.',
-    h1: 'MP3 Volume Booster — Make an MP3 Louder, Online Free',
+      'Raise a quiet MP3 up to 4× in your browser. A limiter keeps the peaks clean. Free, nothing uploaded.',
+    h1: 'Increase MP3 Volume — Up to 4×, Online Free',
     hero: {
       src: '/increase-volume.svg',
       alt: 'Increase MP3 volume without clipping',
@@ -1061,6 +1427,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Drag the waveform with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
     ],
+    sections: [
+      {
+        heading: 'An MP3 that is too quiet',
+        paragraphs: [
+          'Increase MP3 volume multiplies the file, up to 400 percent, about +12 dB. Above 100 percent a limiter keeps the peaks from clipping hard.',
+          'The same kind of gain for a video soundtrack or any other format is the volume booster. This page is the MP3-shaped one. Video files often still decode here.',
+        ],
+      },
+      {
+        heading: 'What the multiplier does not do',
+        paragraphs: [
+          'It is one gain for the whole file. It is not a loudness standard and it does not even out dynamics:',
+        ],
+        bullets: [
+          'A podcast that should land near −16 LUFS: measure it on the loudness meter, then apply only the gain that meter allows.',
+          'One peak already near full scale, and the rest too quiet: normalize sets that peak near −0.2 dB. It will not lift the quiet parts further.',
+          'Loud and quiet passages that should move closer: the level compressor, not this slider.',
+        ],
+      },
+      {
+        heading: 'Export',
+        paragraphs: [
+          'You get a new file. The MP3 you dropped stays where it was. Pushing a file that is already loud mostly hits the limiter and can sound flat.',
+          'If the MP3 is quiet because it is a long silence with a short phrase, trim or cut first, then raise what is left.',
+        ],
+      },
+    ],
     related: ['loudness-meter', 'normalize-audio', 'volume-booster'],
     editor: {
       defaultFormat: 'mp3-192',
@@ -1077,10 +1470,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP4 to MP3',
     icon: 'film',
     category: 'merge',
-    title: 'MP4 to MP3 Converter — Convert Video to MP3 Online Free',
+    title: 'MP4 to MP3 — Convert Video to MP3 Online Free',
     description:
-      'Convert MP4 video to MP3 in your browser — the soundtrack is extracted locally, never uploaded. Free, fast, no signup, works on mobile.',
-    h1: 'MP4 to MP3 Converter — Convert a Video to MP3, Online Free',
+      'Convert MP4 to MP3 in your browser. The soundtrack is extracted on your device and the video is never uploaded. Free, no signup.',
+    h1: 'MP4 to MP3 — Convert a Video to MP3, Online Free',
     hero: {
       src: '/mp4-to-mp3.svg',
       alt: 'Convert an MP4, MOV, or WebM soundtrack to MP3',
@@ -1132,6 +1525,40 @@ export const TOOLS: ToolDef[] = [
         a: 'No. Video resolution is irrelevant — the video track is ignored entirely. A 4K file and a 240p file with the same soundtrack convert identically.',
       },
     ],
+    sections: [
+      {
+        heading: 'Only the soundtrack is converted',
+        paragraphs: [
+          'An MP4 is a container. The picture and the sound are separate tracks. This page decodes the sound and writes an MP3. The picture is never encoded, uploaded, or saved.',
+          'That is why a 500 MB video can finish in seconds, and why 4K is no slower than 240p when the soundtrack is the same. Upload-based converters wait on the whole file. This one never sends it.',
+        ],
+      },
+      {
+        heading: 'Which MP3 bitrate to use',
+        paragraphs: [
+          'The soundtrack is encoded once, at the rate you pick.',
+        ],
+        bullets: [
+          '320 kbps: music videos and concerts.',
+          '192 kbps: everyday listening.',
+          '128 kbps: interviews, lectures and voice.',
+        ],
+      },
+      {
+        heading: 'MP4 to MP3, or extract the audio',
+        paragraphs: [
+          'The export starts as MP3. WebM and MOV with a normal soundtrack work the same way. The usual phone MP4, AAC audio, is the file this page is built for.',
+          'Switch the format to WAV if you need a lossless copy of the soundtrack. The audio extractor is the page written for that choice, and for editing the sound next. If you only need one minute, convert the whole soundtrack here and then trim it. This page does not cut a span out of the video.',
+        ],
+      },
+      {
+        heading: 'Files the browser cannot read',
+        paragraphs: [
+          'AC3 and DTS soundtracks are not decoded by the browser. Those files stop with a clear error instead of a silent MP3. A standard MP4 from a phone, a screen recording, or a normal download is AAC, and that works.',
+          'The MP3 does not keep a video title or thumbnail. Set the track name afterwards in the MP3 tag editor if you need it to show up in a player.',
+        ],
+      },
+    ],
     related: ['extract-audio', 'audio-trimmer', 'mp3-tag-editor'],
     editor: {
       defaultFormat: 'mp3-320',
@@ -1151,7 +1578,7 @@ export const TOOLS: ToolDef[] = [
     title: 'Audio Extractor — Extract Audio from Video Online Free',
     description:
       'Extract the audio track from any video in your browser and save it as MP3 or lossless WAV. Free, private, no upload — even for large files.',
-    h1: 'Audio Extractor — Extract MP3 from a Video, Online Free',
+    h1: 'Extract Audio from Video — Soundtrack as WAV or MP3',
     hero: {
       src: '/extract-audio.svg',
       alt: 'Save a video soundtrack as MP3 or WAV',
@@ -1205,6 +1632,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on my phone?',
         a: 'Yes. Pick the file and the conversion stays in the tab. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Pull the soundtrack off a video',
+        paragraphs: [
+          'Extract audio decodes the soundtrack and drops the picture. The export starts as MP3, and the format menu also offers WAV when the next step is an edit or a lossless handoff.',
+          'MP4 to MP3 is the sibling written for that exact conversion. Open this page when the source is any video and you may want WAV, not only an MP3 from an MP4.',
+        ],
+      },
+      {
+        heading: 'What comes out, and what does not',
+        paragraphs: [
+          'Only the audio track is decoded. The video frames are discarded:',
+        ],
+        bullets: [
+          'A phone video or a screen recording becomes a file you can trim, join, or tag.',
+          'Switch to WAV if you will edit next and want to encode once at the end.',
+          'AC3 and DTS soundtracks often fail in the browser. A stereo AAC or PCM track is the one that decodes.',
+        ],
+      },
+      {
+        heading: 'It does not mute the video',
+        paragraphs: [
+          'Removing audio from a video, and keeping the picture, is the opposite job. This page keeps the sound and drops the pictures. It does not write a new video.',
+          'There is no size cap beyond the memory of the device. A 4K picture does not make the audio decode slower, because the frames are not used. Nothing is uploaded.',
+        ],
       },
     ],
     related: ['mp4-to-mp3', 'audio-trimmer', 'volume-booster'],
@@ -1276,6 +1730,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'How long can I record?',
         a: 'As long as your device memory allows — minutes of speech take very little space (Opus compression is efficient). For multi-hour recordings, export in sections.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'The microphone stays in the browser',
+        paragraphs: [
+          'Voice recorder uses the MediaRecorder in this tab. The take is not uploaded. If you close the tab before you export, the recording is gone.',
+          'The capture format depends on the browser. Export chooses MP3 or WAV, so the file you keep is the one you picked, not whatever the browser recorded internally.',
+        ],
+      },
+      {
+        heading: 'After the take',
+        paragraphs: [
+          'You can trim by keeping a selection, then export that span:',
+        ],
+        bullets: [
+          'Cut the breath before the first word and the silence after the last.',
+          'Export WAV if you will edit the take again and want to encode once.',
+          'Export MP3 if the memo only needs to be sent or stored small.',
+        ],
+      },
+      {
+        heading: 'What it will not do',
+        paragraphs: [
+          'It needs a browser that implements MediaRecorder and permission to use the microphone. It does not transcribe. Speech to text is the audio-to-text page, and that one takes a file, not a live mic.',
+          'A recording that is too quiet is still quiet after export. Raise it with the volume booster, or check the level on the loudness meter if the destination is a podcast target.',
+        ],
       },
     ],
     related: ['multi-track-audio-editor', 'audio-trimmer', 'audio-to-text'],
@@ -1352,6 +1833,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes — recent Chrome, Edge, Firefox and Safari, desktop or mobile. Browsers with WebGPU (Chrome, Edge) transcribe much faster; elsewhere it runs on the CPU, so pick the Tiny model for long files and expect a wait of a few minutes on ten minutes of audio. The one-time model download is smaller for Tiny.',
       },
     ],
+    sections: [
+      {
+        heading: 'A local transcript, not a live caption',
+        paragraphs: [
+          'Audio to text runs a Whisper model in the browser. The model downloads once from a CDN, then the file is transcribed on the device. The audio is not uploaded for the transcript.',
+          'The cap is about 10 minutes. There are no speaker labels. It does not listen to the microphone live. Record first on the voice recorder, export, then drop that file here.',
+        ],
+      },
+      {
+        heading: 'Model and language',
+        paragraphs: [
+          'About 90 languages. Pick the one you spoke, or leave detection on if you are not sure:',
+        ],
+        bullets: [
+          'Tiny is the smaller download and enough for clear speech.',
+          'Base is slower and a bit more accurate on noisy or accented speech.',
+          'WebGPU is faster on machines that have it. Otherwise it falls back to the CPU.',
+        ],
+      },
+      {
+        heading: 'What the text will get wrong',
+        paragraphs: [
+          'Names, overlapping talk, and music under a voice come out messy. It will not mark who spoke. Clean the file first if the ends are long silence: trim, or run the silence remover, then transcribe the shorter file.',
+          'You can edit the words before download, as plain text or as an SRT with timestamps. It does not translate them into another language.',
+        ],
+      },
+    ],
     related: ['voice-recorder', 'extract-audio', 'audio-trimmer'],
     editor: {
       transcribe: true,
@@ -1367,10 +1875,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Volume Booster',
     icon: 'volume',
     category: 'effects',
-    title: 'Volume Booster — Make Videos & Music Louder Online Free',
+    title: 'Audio Volume Booster — Make Audio Louder Online Free',
     description:
-      'Boost the volume of quiet music and video soundtracks up to 4× in your browser. A limiter keeps it clean — free, private, nothing uploaded.',
-    h1: 'Volume Booster — Make Audio and Video Louder, Online Free',
+      'Make audio louder online, up to 4×, for quiet music and video soundtracks. A limiter holds the peaks. Free, and nothing is uploaded.',
+    h1: 'Audio Volume Booster — Make Audio Louder, Online Free',
     hero: {
       src: '/volume-booster.svg',
       alt: 'Boost a quiet video soundtrack',
@@ -1428,6 +1936,46 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'How is this different from the loudness meter?',
         a: 'Dragging this slider multiplies every sample. The loudness meter measures integrated LUFS and offers podcast −16, streaming −14, and broadcast −23. If the sample peak would pass −1 dBFS, the gain stops. It is not a room meter.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Make audio louder without the crackle',
+        paragraphs: [
+          'A file clips when a sample tries to pass the digital ceiling, 0 dBFS. Boosting multiplies every sample. If the loudest moment was already near that ceiling, a big boost chops the top off and you hear crackle.',
+          'Above 100% this page runs a limiter on the output, then a soft clip on anything that still gets through. Start at 150% and preview. Most quiet voice memos and low exports only need 150–250%. 400% is about +12 dB, and it is for files that were recorded very low, not for tracks that are already hot.',
+        ],
+        bullets: [
+          '150–200%: a quiet memo or a video that is a bit soft. Usually clean.',
+          '250%: a lecture from the back of the room. Listen to the loudest second before you save.',
+          '300–400%: only if the whole file is far too quiet. If it pumps or crackles, come back down.',
+          'Already loud: leave the slider at 100%, or send the file to the normalizer.',
+        ],
+      },
+      {
+        heading: 'A higher peak is not a louder file',
+        paragraphs: [
+          'Peak level is the single loudest sample. A whispered interview with one cough can peak near full scale and still sound quiet, because the rest of the file is low. Multiplying the file raises the whisper and the cough together.',
+          'How loud a file feels over its whole length is what LUFS measures. This page does not target a LUFS number. The loudness meter does: it reads integrated LUFS and can land a file near −16 for podcasts, −14 for streaming, or −23 for broadcast, and it stops if the sample peak would pass −1 dBFS.',
+        ],
+      },
+      {
+        heading: 'Boost, normalize, or compress',
+        paragraphs: [
+          'Three pages on this site change level, and they are not substitutes.',
+        ],
+        bullets: [
+          'Volume booster, this page: you pick the multiplier, up to 4×, and a limiter holds peaks. Use it when you already know the file is too quiet, including a video soundtrack.',
+          'Normalize audio: one measured gain so the loudest peak sits just under the ceiling. Use it when you do not want to guess the slider.',
+          'Level compressor: pulls loud moments down and quiet words up, then puts the peak back. Use it when some parts shout and others disappear. A boost will not do that.',
+        ],
+      },
+      {
+        heading: 'Video soundtracks and phone recordings',
+        paragraphs: [
+          'Drop an MP4, WebM, or MOV and only the soundtrack is decoded, boosted, and saved as MP3 or WAV. The picture is ignored. If the browser cannot read the audio codec, extract the audio first.',
+          'A boosted file is louder on every device that plays it. Speaker volume only helps the device in front of you. Export WAV if you will edit again. MP3 encodes once. Boosting cannot invent detail a quiet phone mic never captured, and it also raises the hiss that was already there.',
+        ],
       },
     ],
     related: ['loudness-meter', 'increase-volume', 'normalize-audio'],
@@ -1506,6 +2054,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Drag the waveform with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
     ],
+    sections: [
+      {
+        heading: 'One gain, aimed at the peak',
+        paragraphs: [
+          'Normalize finds the loudest sample and applies one gain so that peak lands near −0.2 dB. Every other sample moves by the same amount. Quiet parts do not get a separate lift.',
+          'It is not LUFS. A podcast target of −16 LUFS, a stream near −14, or broadcast near −23 is the loudness meter. That meter also stops the suggested gain if the sample peak would pass −1 dBFS.',
+        ],
+      },
+      {
+        heading: 'When normalizing is the right move',
+        paragraphs: [
+          'Use it when the whole file is simply too quiet and nothing is already peaking:',
+        ],
+        bullets: [
+          'A voice memo recorded far from the mic, with headroom left.',
+          'A track that should sit near full scale before you send it on.',
+          'A file you will compress or boost next, so the peak is a known ceiling.',
+        ],
+      },
+      {
+        heading: 'When it will disappoint you',
+        paragraphs: [
+          'If one click or breath is already near full scale, normalize does almost nothing, because that peak sets the gain. The level compressor is what pulls loud and quiet closer, then matches the peak.',
+          'Making a file louder by a factor you choose, including past 100 percent with a limiter, is the volume booster. Normalize does not offer that multiplier.',
+        ],
+      },
+    ],
     related: ['loudness-meter', 'compressor', 'volume-booster'],
     editor: {
       defaultFormat: 'mp3-192',
@@ -1524,7 +2099,7 @@ export const TOOLS: ToolDef[] = [
     title: 'Level Compressor — Even Out Volume Online Free',
     description:
       'Even out loud and quiet parts of a recording in your browser. Peaks stay put. Not a file-size shrink. Free, nothing uploaded.',
-    h1: 'Audio Compressor — Even Out Loud and Quiet, Online Free',
+    h1: 'Level Compressor — Even Out Loud and Quiet, Online Free',
     hero: {
       src: '/compressor.svg',
       alt: 'Tame the peaks in a voice recording so the quiet words come up',
@@ -1578,6 +2153,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on a phone?',
         a: 'Yes. The slider and export work with touch in current Chrome, Edge, Firefox and Safari. A few minutes of speech exports in a second or two on a recent phone.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Dynamics, not file size',
+        paragraphs: [
+          'The level compressor is one broadband compressor. Threshold runs from −18 dB down to −36 dB, and the ratio from just over 1:1 up to 8:1. Loud moments come down, quiet moments come up relative to them.',
+          'There is no makeup gain inside the compressor. Afterward the export is scaled so its peak matches the source peak, or −0.2 dBFS if the source was already hotter than that. It does not shrink the file. A smaller MP3 is the audio compressor page.',
+        ],
+      },
+      {
+        heading: 'What it will and will not fix',
+        paragraphs: [
+          'It narrows the gap between loud and quiet. It is one band, not a vocal chain:',
+        ],
+        bullets: [
+          'A voice memo that shouts one sentence and whispers the next.',
+          'A mix where the loud hits bury the quiet phrases, and you want them closer.',
+          'Not a noise remover. Lifting the quiet parts also lifts hiss and room tone.',
+        ],
+      },
+      {
+        heading: 'How it differs from a volume knob',
+        paragraphs: [
+          'The volume booster multiplies the whole file. Normalize raises everything until the loudest sample hits a peak. Both leave the gap between loud and quiet the same. This page narrows that gap.',
+          'WAV keeps the level change without another lossy generation. MP3 re-encodes once. If the problem is only that the file is quiet, and the dynamics are fine, use the volume booster instead.',
+        ],
       },
     ],
     related: ['compress-audio', 'volume-booster', 'normalize-audio'],
@@ -1654,6 +2256,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Both sliders and the export button work with touch in current Chrome, Edge, Firefox and Safari.',
       },
     ],
+    sections: [
+      {
+        heading: 'Separate copies, not a wash',
+        paragraphs: [
+          'Echo delays a copy of the signal by the time you set, from a few hundredths of a second up to 0.8 seconds, and mixes that copy back at 45 percent. Each copy feeds the delay again at the repeat level you set.',
+          'Feedback is capped at 0.55 and the rendered tail at 4 seconds, so the repeats get quieter instead of howling. Delay at zero leaves the file untouched. Speed and pitch stay as they were.',
+        ],
+      },
+      {
+        heading: 'How to use the two sliders',
+        paragraphs: [
+          'Delay is the gap before the first copy. Repeats is how much of each copy goes back in:',
+        ],
+        bullets: [
+          'A short delay for a slap you can still hear as a second hit.',
+          'A longer delay, still under 0.8 seconds, when you want the copies counted one by one.',
+          'A selection only, if the echo should sit on one phrase and not the rest of the file.',
+        ],
+      },
+      {
+        heading: 'Echo is not slowed + reverb',
+        paragraphs: [
+          'Slowed + reverb drops the pitch with the speed and smears the tail into a room. This page keeps the original timing and adds copies you can hear separately.',
+          'Fading the start or end of one file is the fade page. Overlapping two songs is the audio joiner. Neither of those is an echo.',
+        ],
+      },
+    ],
     related: ['slowed-reverb', 'fade-audio', 'pitch-changer'],
     editor: {
       defaultFormat: 'mp3-192',
@@ -1726,6 +2355,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on a phone?',
         a: 'Yes. Both sliders and the export button work with touch in current Chrome, Edge, Firefox and Safari.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'It cuts long quiet stretches, not breaths',
+        paragraphs: [
+          'A stretch is removed only when it is quieter than the threshold and longer than the minimum gap. The default is −40 dBFS and 0.35 seconds. Each cut keeps 0.08 seconds at both ends so the join does not click.',
+          'Shorter gaps, including most breaths, stay. What remains is not made louder, slower, or higher. If the whole file sits under the threshold, nothing is cut and the export is the original file.',
+        ],
+      },
+      {
+        heading: 'Speech, not a quiet song',
+        paragraphs: [
+          '−40 dBFS is aimed at speech. Music will lose the parts you meant to keep if they sit that low:',
+        ],
+        bullets: [
+          'A voice memo or interview with long pauses between answers.',
+          'Raise the threshold toward −20 dBFS if you only want near-digital silence gone.',
+          'A fade, a quiet bed, or room tone in a mix: leave this page and trim by hand.',
+        ],
+      },
+      {
+        heading: 'Trimmer versus this page',
+        paragraphs: [
+          'The audio trimmer and the MP3 cutter keep a region you draw. This page finds every long quiet stretch by level and removes them in one export.',
+          'Use the trimmer when the quiet part is something you still want, or when you need to keep one span and drop the rest by ear. Use this page when the pauses are the problem and they are long enough to measure.',
+        ],
       },
     ],
     related: ['audio-trimmer', 'mp3-cutter', 'voice-recorder'],
@@ -1802,6 +2458,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. The three targets and the export button work with touch in current Chrome, Edge, Firefox and Safari.',
       },
     ],
+    sections: [
+      {
+        heading: 'A file reading, not a room meter',
+        paragraphs: [
+          'The number is integrated LUFS: how loud the file is over its length, after the K-weighting in ITU-R BS.1770. It is a property of the file. It is not a reading of the room, and it is not an A-weighted sound-pressure level.',
+          'The page also shows sample peak. That peak is not true peak. Inter-sample peaks can still poke past the ceiling on some playback paths.',
+        ],
+      },
+      {
+        heading: 'Targets people actually use',
+        paragraphs: [
+          'The usual reference points are conventions, not legal limits:',
+        ],
+        bullets: [
+          'About −16 LUFS for a spoken podcast.',
+          'About −14 LUFS for a lot of music streaming.',
+          'About −23 LUFS for broadcast-style program loudness.',
+        ],
+      },
+      {
+        heading: 'The gain stops at the peak',
+        paragraphs: [
+          'If you apply the suggested gain, it stops when the sample peak would pass −1 dBFS. A file can already be peak-normalized and still sit far from −16 LUFS, because one cough sets the peak while the rest stays quiet.',
+          'Normalize only chases that peak, to about −0.2 dB. The level compressor is what narrows the gap between loud and quiet. This page measures. It does not pretend a single number makes a master.',
+        ],
+      },
+    ],
     related: ['normalize-audio', 'volume-booster', 'increase-volume'],
     editor: {
       defaultFormat: 'wav',
@@ -1874,6 +2557,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on my phone?',
         a: 'Yes. Drag the waveform with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'The pitch sinks because the speed does',
+        paragraphs: [
+          'Slowed + reverb drops the speed, usually to somewhere between 80 and 90 percent, with 85 percent as the common starting point. The pitch sinks by the same ratio, the way a record does at the wrong speed. There is no time-stretch that would keep the key.',
+          'The reverb is a synthesized decay tail. Start around 20 to 30 percent. Past about 50 percent the track turns into a wash and words get hard to hear.',
+        ],
+      },
+      {
+        heading: 'Nightcore is the same page, the other direction',
+        paragraphs: [
+          'Push the speed above 100 percent and the pitch rises with it:',
+        ],
+        bullets: [
+          '120 to 130 percent is the usual nightcore range.',
+          'Keep the reverb near zero for a classic nightcore edit.',
+          'Busy hi-hats survive slowing better than a dense, fast arrangement.',
+        ],
+      },
+      {
+        heading: 'Copyright and the neighbouring tools',
+        paragraphs: [
+          'Slowing a track does not change who owns it. A video upload still needs rights to the original song.',
+          'Speed alone, from 0.5× to 2× and without the reverb knob, is the speed changer. A higher or lower key at the same length is the pitch changer. A counted echo that does not change speed is the echo page.',
+        ],
       },
     ],
     related: ['echo', 'change-audio-speed', 'pitch-changer'],
@@ -1950,6 +2660,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. The editor is built for touch — drag to select, set the slider, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
       },
     ],
+    sections: [
+      {
+        heading: 'A high shelf above 3 kHz',
+        paragraphs: [
+          'The treble booster is a high-shelf filter, up to +15 dB above 3 kHz. It amplifies highs the file already has. It does not invent detail that a low-bitrate encode threw away.',
+          'A limiter catches peaks so a large boost does not clip hard. The boost also lifts hiss and sibilance that were already in the file.',
+        ],
+      },
+      {
+        heading: 'How far to push it',
+        paragraphs: [
+          'Listen once on headphones before you export:',
+        ],
+        bullets: [
+          '+3 to +6 dB opens up most dull recordings.',
+          'Above +9 dB, s, sh, and t sounds can turn piercing.',
+          'If the file was encoded at a low bitrate, no shelf brings the missing highs back.',
+        ],
+      },
+      {
+        heading: 'Treble, bass, and the equalizer',
+        paragraphs: [
+          'The bass booster lifts below 150 Hz. This page lifts above 3 kHz. Dull and muffled points here. Thin and small points at bass.',
+          'The equalizer is the same three regions with cut as well as boost: low shelf at 150 Hz, a peak at 1 kHz, and this high shelf at 3 kHz. Use the booster when you already know you only want more treble.',
+        ],
+      },
+    ],
     related: ['bass-booster', 'equalizer', 'volume-booster'],
     editor: {
       defaultFormat: 'mp3-320',
@@ -2024,6 +2761,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. The editor is built for touch — drag to select, set the sliders, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
       },
     ],
+    sections: [
+      {
+        heading: 'Three bands, cut or boost',
+        paragraphs: [
+          'The equalizer is a low shelf at 150 Hz, a peak at 1 kHz, and a high shelf at 3 kHz. Each band runs about ±15 dB. A band left at 0 dB is bypassed, so it does not color the sound.',
+          'Cutting is the safer move. A −4 dB cut in a muddy band often does more than a +6 dB boost somewhere else. Big boosts push the signal toward the limiter and can soften peaks.',
+        ],
+      },
+      {
+        heading: 'What each band is for',
+        paragraphs: [
+          'The three bands are the usual split, not a surgical EQ:',
+        ],
+        bullets: [
+          '150 Hz: weight and mud. Cut if the file is boomy. The bass booster only lifts this region, up to +15 dB, and cannot cut.',
+          '1 kHz: presence. Cutting the mids makes voices sound distant.',
+          '3 kHz: air and edge. The treble booster only lifts above this point.',
+        ],
+      },
+      {
+        heading: 'When a single booster is enough',
+        paragraphs: [
+          'If you already know you only want more bass or more treble, the bass booster and the treble booster are the shorter pages. They do not cut.',
+          'A low-pass or high-pass filter is a cutoff sweep, not these shelves. Use a filter when you want everything above or below a frequency gone, not a few decibels moved.',
+        ],
+      },
+    ],
     related: ['bass-booster', 'treble-booster', 'low-pass-filter'],
     editor: {
       defaultFormat: 'mp3-320',
@@ -2039,9 +2803,9 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Low Pass',
     icon: 'minus',
     category: 'effects',
-    title: 'Low Pass Filter — Remove High Frequency Noise Online Free',
+    title: 'Low Pass Filter — Cut High Frequencies Online Free',
     description:
-      'Cut hiss, harshness and high-frequency noise with a real low-pass filter, cutoff 300 Hz–20 kHz, in your browser. Export MP3 or WAV. Free, no upload.',
+      'Roll off everything above a cutoff from 300 Hz to 20 kHz. A low-pass filter in your browser. Export MP3 or WAV. Free, no upload.',
     h1: 'Low Pass Filter — Cut High Frequencies in Audio, Online Free',
     hero: {
       src: '/low-pass-filter.svg',
@@ -2096,6 +2860,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on a phone?',
         a: 'Yes. The editor is built for touch — drag to select, sweep the cutoff, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Everything above the cutoff goes',
+        paragraphs: [
+          'A low-pass filter rolls off what is above the cutoff. It is not a noise remover. It does not separate hiss from the signal. It turns down every frequency past the point you set, including consonants and cymbals if you set it too low.',
+          'There is no resampling and no pitch change. The export still encodes once: MP3, or WAV if you want the filtered audio without another lossy generation.',
+        ],
+      },
+      {
+        heading: 'Cutoffs that match the job',
+        paragraphs: [
+          'The number is a starting point. Listen, because the same cutoff muffles one file and only softens another:',
+        ],
+        bullets: [
+          'Voice: try 8–12 kHz first. Below about 5 kHz speech sounds muffled. Below 2 kHz it sounds like a telephone.',
+          'A soft lo-fi music effect: 4–8 kHz.',
+          'Sharp cymbals you only want tamed: 12–16 kHz. Below 3 kHz music sounds distinctly dull.',
+        ],
+      },
+      {
+        heading: 'The high-pass is the other direction',
+        paragraphs: [
+          'The high-pass filter removes rumble and low-end boom below its cutoff. This page removes hiss and harshness above its cutoff. Using both leaves a band in the middle.',
+          'A few decibels of treble, rather than removing the top outright, is the treble booster or the equalizer. Those shelves do not sweep a hard cutoff.',
+        ],
       },
     ],
     related: ['high-pass-filter', 'equalizer', 'voice-recorder'],
@@ -2172,6 +2963,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. The editor is built for touch — drag to select, sweep the cutoff, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
       },
     ],
+    sections: [
+      {
+        heading: 'Everything below the cutoff goes',
+        paragraphs: [
+          'A high-pass filter rolls off what is below the cutoff: rumble, wind, handling thumps, and the low end of a boomy room. It does not change pitch, and it does not resample.',
+          'Mains hum sits at 50 or 60 Hz, with harmonics above that. A high pass around 80–120 Hz removes the fundamental and much of the ring. Stubborn harmonics are still there. Pair it with the low-pass filter if you need to narrow the band further.',
+        ],
+      },
+      {
+        heading: 'How high before a voice thins out',
+        paragraphs: [
+          'Speech has body in the low mids. Push the cutoff too far and the voice turns thin:',
+        ],
+        bullets: [
+          'Male voices keep their body down to about 100 Hz.',
+          'Female voices down to about 150–200 Hz.',
+          'Past 300 Hz, speech starts to sound like a telephone. That can be a style, so listen before you export.',
+        ],
+      },
+      {
+        heading: 'Not the bass booster, and not a cut shelf',
+        paragraphs: [
+          'The bass booster adds level below 150 Hz. This page removes level below a cutoff you sweep. They solve opposite problems.',
+          'The equalizer can cut a few decibels at 150 Hz and leave the rest of the low end. Use that when the file is a bit muddy and you still want the weight. Use this page when the rumble should be gone.',
+        ],
+      },
+    ],
     related: ['low-pass-filter', 'voice-recorder', 'mp3-editor'],
     editor: {
       defaultFormat: 'mp3-320',
@@ -2244,6 +3062,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on a phone?',
         a: 'Yes. The controls stack on a narrow screen and the download button stays within reach. It works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'A picture of loudness, not an edit',
+        paragraphs: [
+          'The waveform generator draws loudness over time: mirrored bars or a filled shape, in the colors you pick. The download is a PNG. Preset sizes export at twice the listed pixels, so a 1920×1080 cover comes down as 3840×2160.',
+          'Custom sizes above about two million pixels export at 1× so the tab does not run out of memory. PNG is lossless. This page does not cut, fade, or boost the audio.',
+        ],
+      },
+      {
+        heading: 'Shapes people download',
+        paragraphs: [
+          'Pick the frame for where the picture will sit:',
+        ],
+        bullets: [
+          'Video size for a background or an end card.',
+          'Square for a podcast or song cover.',
+          'A wide banner for a header. Leave the background transparent if you will lay the PNG over video or another image.',
+        ],
+      },
+      {
+        heading: 'It is not a spectrogram',
+        paragraphs: [
+          'A waveform is the shape a music player draws. A spectrogram shows which frequencies are present. For that picture, use the spectrogram generator.',
+          'To cut the file first, use the audio trimmer, then come back for the image. You cannot play the PNG back into the song. Putting a picture into a WAV is image to audio, the other direction.',
+        ],
       },
     ],
     related: ['spectrogram-generator', 'image-to-audio', 'audio-trimmer'],
@@ -2319,6 +3164,33 @@ export const TOOLS: ToolDef[] = [
         a: 'A few tracks, famously Aphex Twin, draw an image by putting energy on chosen frequencies. Raise the dB ceiling if the picture is faint, and keep the log axis. This page only shows it. It does not create one — that is Image to Audio.',
       },
     ],
+    sections: [
+      {
+        heading: 'Frequency over time, as a PNG',
+        paragraphs: [
+          'Each column is one moment. Height is frequency, high notes at the top. Brighter color means more energy. Viridis, inferno, and gray are the same data with a different scale. The dB floor and ceiling decide what counts as quiet and loud.',
+          'The picture is an FFT of the file, drawn in this tab. It is not audio. You cannot play the PNG back into the song.',
+        ],
+      },
+      {
+        heading: 'How to read a hidden picture',
+        paragraphs: [
+          'A few tracks draw an image by putting energy on chosen frequencies. This page can show that. It does not create one:',
+        ],
+        bullets: [
+          'Keep the log axis for the usual music view. It stretches the low end.',
+          'Raise the dB ceiling if a hidden picture is faint.',
+          'Shorten the time range if you only want one span of the file.',
+        ],
+      },
+      {
+        heading: 'Waveform, and the reverse trick',
+        paragraphs: [
+          'The waveform generator is loudness over time, the shape for a cover image. This page is which frequencies are there.',
+          'To build a WAV so a spectrogram shows your picture or a short line of text, use image to audio, then open that WAV here. Log frequency, ceiling around −20 dB. The shape sits between about 400 Hz and 12 kHz. This page only displays.',
+        ],
+      },
+    ],
     related: ['waveform-generator', 'image-to-audio', 'bass-booster'],
     editor: {
       visualizer: 'spectrogram',
@@ -2392,6 +3264,33 @@ export const TOOLS: ToolDef[] = [
         a: 'No. Anyone who opens a spectrogram of the WAV can see the picture. It is a visible drawing in the sound, not encryption.',
       },
     ],
+    sections: [
+      {
+        heading: 'A picture written into frequencies',
+        paragraphs: [
+          'Type up to 32 characters, or drop a PNG, JPG, or WebP. The page writes that shape into the frequencies of a mono WAV at 44.1 kHz, 16-bit, a few seconds long. Bright pixels become louder frequencies.',
+          'It is not a song and it is not speech. You hear chirps and noise, not the words spoken aloud. A very detailed photo is shrunk so the file stays short.',
+        ],
+      },
+      {
+        heading: 'How to see what you wrote',
+        paragraphs: [
+          'The shape is invisible on a normal waveform. Open the WAV in the spectrogram generator:',
+        ],
+        bullets: [
+          'Log frequency, ceiling around −20 dB.',
+          'The drawing sits between about 400 Hz and 12 kHz.',
+          'Keep the WAV. A low-bitrate MP3 can smear the shape.',
+        ],
+      },
+      {
+        heading: 'Not a code, and not the spectrogram page',
+        paragraphs: [
+          'Anyone who opens a spectrogram of the WAV can see the picture. It is a drawing in the sound, not encryption.',
+          'The spectrogram generator draws a picture of audio you already have. This page builds audio so that picture shows your image or your line. The waveform generator only shows loudness, so the hidden shape will not be obvious there.',
+        ],
+      },
+    ],
     related: ['spectrogram-generator', 'waveform-generator', 'voice-recorder'],
     editor: {
       paint: true,
@@ -2406,10 +3305,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Bass Boost',
     icon: 'volume',
     category: 'effects',
-    title: 'Bass Booster — Boost Bass in Audio Online Free',
+    title: 'Bass Booster — Add Deep Bass to Music Online Free',
     description:
-      'Add up to +15 dB of clean low end to music or voice in your browser — a true low-shelf, not a loudness trick. Export MP3 or WAV. Free, no upload.',
-    h1: 'Bass Booster — Boost the Bass of a Song, Online Free',
+      'Add up to +15 dB of deep bass below 150 Hz. A low-shelf, not a louder-everything trick. Free in your browser, nothing uploaded.',
+    h1: 'Bass Booster — Add Deep Bass to a Song, Online Free',
     hero: {
       src: '/bass-booster.svg',
       alt: 'Add low end to an MP3',
@@ -2463,6 +3362,45 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on a phone?',
         a: 'Yes. The editor is built for touch — drag to select, set the slider, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'What the bass control actually turns up',
+        paragraphs: [
+          'This is a low-shelf filter. It raises frequencies below 150 Hz by the amount you set, up to +15 dB. Mids and highs stay where they were. It is not a volume knob.',
+          'A shelf can only amplify bass the file already has. A phone recording of a voice has very little energy under 80 Hz, so a big boost will not produce a sub drop. Judge the result on headphones or real speakers. A phone speaker cannot play that range, so a heavy boost can sound like nothing, or like mud.',
+        ],
+      },
+      {
+        heading: 'How much bass to add',
+        paragraphs: [
+          'The useful range is small. Past it, you are making an effect.',
+        ],
+        bullets: [
+          '+3 to +6 dB: thin voice memos, interviews, and tracks that are all midrange.',
+          '+6 to +9 dB: drums and bass that need to sit forward. Check that voices still cut through.',
+          '+9 to +15 dB: a deliberate low-end effect. Speech often becomes hard to follow here.',
+          'If the low end crackles, the shelf has run out of headroom. Back the slider off.',
+        ],
+      },
+      {
+        heading: 'Bass boost, volume boost, and the equalizer',
+        paragraphs: [
+          'Pick the page that matches the problem.',
+        ],
+        bullets: [
+          'Bass booster, this page: only the low end under 150 Hz. The file sounds thin, not quiet.',
+          'Volume booster: the whole file, up to 4×, with a limiter. The file is quiet at every frequency.',
+          'Equalizer: lows, mids, and highs as separate shelves. Use it when 150 Hz is the wrong cutoff.',
+        ],
+      },
+      {
+        heading: 'Where a bass boost goes wrong',
+        paragraphs: [
+          'Heavy bass hides speech. Preview at a normal listening level, not with the speakers already turned down, or you will save something that booms in a car and buries the voice.',
+          'Export WAV if you will keep editing. MP3 at 320 kbps is the right choice when the file is finished. The filter does not resample or change pitch. If the boost would push peaks over full scale, a limiter softens those peaks so the export does not hard-clip.',
+        ],
       },
     ],
     related: ['spectrogram-generator', 'equalizer', 'treble-booster'],
@@ -2537,6 +3475,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on a phone?',
         a: 'Yes. The editor is built for touch — drag to select, set the sliders, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'The edges get quiet, the middle stays',
+        paragraphs: [
+          'Fade audio shapes volume over time on one file: a fade in at the start, a fade out at the end, or both. The middle is untouched. There is no reverb and no pitch change.',
+          'For songs, 1–3 seconds usually sounds natural. Live recordings can take 4–5 seconds. Loops and ringtones want 0.2–0.5 seconds so the attack stays. Preview the start and the end before you export.',
+        ],
+      },
+      {
+        heading: 'What a fade is for',
+        paragraphs: [
+          'Use it when the cut itself is already done and the edge clicks or stops dead:',
+        ],
+        bullets: [
+          'A ringtone or a loop that should not pop when it repeats.',
+          'The end of a song or a voice memo that stops too hard.',
+          'The start of a recording that begins at full level.',
+        ],
+      },
+      {
+        heading: 'Not a crossfade, and not a volume boost',
+        paragraphs: [
+          'Blending the end of one track into the start of another is a crossfade, and the audio joiner does that. This page fades a single file in and out.',
+          'The volume booster lifts the whole file by a constant amount. A fade is quiet at the edges and full in the middle. Export is MP3, 320 kbps by default, or WAV. The file you dropped is not modified.',
+        ],
       },
     ],
     related: ['multi-track-audio-editor', 'audio-joiner', 'mp3-cutter'],
@@ -2616,6 +3581,33 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Drag the waveform with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
     ],
+    sections: [
+      {
+        heading: 'The key moves, the length stays',
+        paragraphs: [
+          'The pitch changer shifts the key from −12 to +12 semitones, one step at a time. That is one octave either way. The file stays the same length.',
+          'Speech and a single instrument stay usable further than a dense mix. A large shift sounds unnatural. It is not a copyright workaround: the recording is still the same recording.',
+        ],
+      },
+      {
+        heading: 'When to use the slider',
+        paragraphs: [
+          'The length staying put is the whole point:',
+        ],
+        bullets: [
+          'A karaoke track moved into a key you can sing.',
+          'A voice nudged a semitone or two so it sits with another take.',
+          'A sound-design shift where the timing of the clip must not change.',
+        ],
+      },
+      {
+        heading: 'Speed is the other control',
+        paragraphs: [
+          'The speed changer runs from 0.5× to 2× and moves the pitch with the tempo, the way a record does. 2× is about an octave up and half the length. This page does not do that.',
+          'Slowed + reverb also sinks the pitch by slowing the file, and it adds a tail. If you want the nightcore or slowed sound, that is the page. If you want the same duration and a new key, stay here.',
+        ],
+      },
+    ],
     related: ['change-audio-speed', 'slowed-reverb', 'mp3-editor'],
     editor: {
       defaultFormat: 'mp3-192',
@@ -2684,6 +3676,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does the file get uploaded?',
         a: 'No. Your browser decodes the M4A and encodes the MP3 locally. The audio stays on your device.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Voice memos and AAC, not a video',
+        paragraphs: [
+          'This page converts M4A and AAC audio into MP3. Voice memos and most AAC downloads are AAC inside the M4A, and those decode in the browser. Apple Lossless (ALAC) stored in an M4A often will not. Convert that file to AAC or WAV first, then bring it here.',
+          'An MP4 video belongs on MP4 to MP3. That page takes the soundtrack off the picture. This page is audio only.',
+        ],
+      },
+      {
+        heading: 'What the MP3 keeps',
+        paragraphs: [
+          'MP3 is lossy. The menu is the usual bitrate choice:',
+        ],
+        bullets: [
+          '320 kbps when the memo or the song should stay close to the AAC.',
+          '192 kbps for speech you will still listen to.',
+          '128 kbps when the file mainly needs to be small enough to send.',
+        ],
+      },
+      {
+        heading: 'Tags are not copied',
+        paragraphs: [
+          'Title, artist, and cover art are not carried over. The MP3 is written without metadata. Put them back with the MP3 tag editor if the player needs a name.',
+          'Keep the M4A if you still need the original. The conversion does not upload the file. Trim or cut after you have the MP3, on the trimmer or the cutter, if the memo has silence at the ends.',
+        ],
       },
     ],
     related: ['wav-to-mp3', 'ogg-to-mp3', 'audio-trimmer'],
@@ -2757,6 +3776,33 @@ export const TOOLS: ToolDef[] = [
         a: 'No. Your browser decodes the OGG and encodes the MP3 locally. The audio stays on your device.',
       },
     ],
+    sections: [
+      {
+        heading: 'Vorbis or Opus inside an OGG',
+        paragraphs: [
+          'OGG is a container. Music files in it usually use Vorbis. Some voice files use Opus. This page converts either one when the browser can decode it.',
+          'Chrome and Firefox decode Vorbis and Opus in OGG. Safari decodes Opus and often refuses Vorbis. If a plain browser tab stays silent, this page cannot convert that file either.',
+        ],
+      },
+      {
+        heading: 'Bitrate, and what you give up',
+        paragraphs: [
+          'MP3 is lossy. At 320 kbps the difference is small for most listening. Keep the OGG if you need the original:',
+        ],
+        bullets: [
+          '320 kbps for music you will keep.',
+          '192 kbps for a voice file or a smaller copy.',
+          '128 kbps when the destination only needs speech intelligibility.',
+        ],
+      },
+      {
+        heading: 'A .opus file is the other page',
+        paragraphs: [
+          'WhatsApp and Telegram voice notes are often a .opus file, or Opus inside WebM. Those belong on Opus to MP3. This page is the OGG container.',
+          'Title, artist, and cover art are not copied. The MP3 is written without metadata. Nothing is uploaded.',
+        ],
+      },
+    ],
     related: ['opus-to-mp3', 'wav-to-mp3', 'm4a-to-mp3'],
     editor: {
       defaultFormat: 'mp3-320',
@@ -2826,6 +3872,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does the file get uploaded?',
         a: 'No. Your browser decodes the Opus audio and encodes the MP3 locally. The audio stays on your device.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Voice notes that only some players open',
+        paragraphs: [
+          'Opus is the codec inside many WhatsApp and Telegram voice notes, saved as .opus. It also sits inside OGG and WebM. This page turns that audio into an MP3 a car, a phone, or an older player will open.',
+          'The browser has to be able to play the file already. Chrome, Firefox, and current Safari handle .opus, Opus in OGG, and Opus in WebM. If a plain tab stays silent, this page cannot decode it either.',
+        ],
+      },
+      {
+        heading: 'Speech does not need 320',
+        paragraphs: [
+          'A voice note is speech. Pick the bitrate for that:',
+        ],
+        bullets: [
+          '128 kbps is enough for a voice note you will send or keep.',
+          '192 kbps if the note has music under the voice and you care.',
+          '320 kbps only when the Opus file is music and you want the MP3 close to it.',
+        ],
+      },
+      {
+        heading: 'Tags, and the OGG page',
+        paragraphs: [
+          'Title and artist are not copied. The MP3 is written without metadata. An OGG that is really Vorbis music belongs on OGG to MP3, which is the page named for that container.',
+          'Nothing is uploaded. If the note has a long silence at the ends, convert first, then trim. The silence remover is the wrong tool on a quiet music bed, but it fits a voice note with long pauses.',
+        ],
       },
     ],
     related: ['ogg-to-mp3', 'wav-to-mp3', 'm4a-to-mp3'],
@@ -2904,6 +3977,33 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Does it work on my phone?',
         a: 'Yes — recent Chrome, Safari, Firefox and Edge, desktop or mobile. Saving hands the file to the browser like any download; on iPhone, Safari saves it to the Files app. Everything runs locally, so it also works on a slow connection once the page is open.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'The label changes, the audio does not',
+        paragraphs: [
+          'The tag editor rewrites the ID3 block and copies the MPEG frames byte for byte. The sound is bit-identical. The saved file can even be slightly smaller, because the old tag block and its padding are not carried over.',
+          'It writes ID3v2.3 with UTF-16 text, which is the version car stereos read most reliably, and which fixes titles that were saved in a single-byte encoding and show up as garbage.',
+        ],
+      },
+      {
+        heading: 'What you can set, and what you cannot',
+        paragraphs: [
+          'One MP3 at a time. Common fields only:',
+        ],
+        bullets: [
+          'Title, artist, album, and the other everyday fields, plus cover art.',
+          'Not FLAC, M4A, or WAV. Those tag formats are not written here.',
+          'Not podcast chapters or unusual custom frames. Saving rewrites the tag block, and those frames are not carried over.',
+        ],
+      },
+      {
+        heading: 'Why the car still says Track 01',
+        paragraphs: [
+          'Many head units ignore tags and fall back to the file name, and most cache the old information until you re-import the USB stick or rescan. Rename the file to something like 01 - Song Title.mp3, then rescan.',
+          'Cutting, fading, or changing speed is the MP3 editor, which decodes and re-encodes. This page never touches the sound. Use that one to edit the music. Use this one to label it.',
+        ],
       },
     ],
     related: ['mp3-editor', 'voice-recorder', 'mp4-to-mp3'],

@@ -1,3 +1,5 @@
+import type { ToolSection } from '../data/tools';
+
 export interface ToolCopy {
   name: string;
   shortName: string;
@@ -14,6 +16,8 @@ export interface ToolCopy {
   uses: [string, string, string];
   howTo: { name: string; text: string }[];
   faqs: { q: string; a: string }[];
+  /** Present only on locales that carry the long page. Same shape as English. */
+  sections?: ToolSection[];
   dropHint: string;
   exportLabel?: string;
 }

@@ -48,6 +48,7 @@ export function localizeTool(slug: string, locale: Locale): ToolDef | undefined 
     uses: copy.uses,
     howTo: copy.howTo,
     faqs: copy.faqs,
+    sections: copy.sections,
     editor: {
       ...tool.editor,
       dropHint: copy.dropHint,
@@ -97,6 +98,16 @@ export function assertCatalogs(): void {
       }
       if (copy.faqs.length !== tool.faqs.length) {
         throw new Error(`${locale}/${tool.slug}: faqs ${copy.faqs.length} != ${tool.faqs.length}`);
+      }
+      if (tool.sections && (locale === 'es' || locale === 'de')) {
+        const shape = (sections?: { paragraphs?: string[]; bullets?: string[] }[]) =>
+          (sections ?? []).map((s) => `${s.paragraphs?.length ?? 0},${s.bullets?.length ?? 0}`).join(';');
+        if (shape(copy.sections) !== shape(tool.sections)) {
+          throw new Error(`${locale}/${tool.slug}: sections shape`);
+        }
+        for (const section of copy.sections ?? []) {
+          if (!section.heading.trim()) throw new Error(`${locale}/${tool.slug}: empty section heading`);
+        }
       }
       if (tool.editor.exportLabel && !copy.exportLabel) {
         throw new Error(`${locale}/${tool.slug}: missing exportLabel`);

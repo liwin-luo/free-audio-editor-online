@@ -101,7 +101,7 @@ const jsonLd = [
       <TrustBadge locale={locale} />
     </div>
 
-    <section class="py-14">
+    <section class="pt-14">
       <p class="max-w-[70ch] text-[17px] leading-relaxed text-ink2">{tool.intro}</p>
       <div class="mt-8 max-w-[70ch]">
         <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">{tool.usesHeading}</h2>
@@ -120,6 +120,33 @@ const jsonLd = [
   </div>
 
   <HowTo title={fill(ui.howTo, { name: tool.name })} steps={tool.howTo} />
+
+  {
+    tool.sections && tool.sections.length > 0 && (
+      <div class="container-page">
+        <section class="pb-16">
+          {tool.sections.map((section, i) => (
+            <div class:list={['max-w-[70ch]', i === 0 ? 'mt-0' : 'mt-10']}>
+              <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">{section.heading}</h2>
+              {section.paragraphs?.map((paragraph) => (
+                <p class="mt-3 text-[15px] leading-relaxed text-ink2">{paragraph}</p>
+              ))}
+              {section.bullets && (
+                <ul class="mt-3 space-y-2.5 text-[15px] leading-relaxed text-ink2">
+                  {section.bullets.map((item) => (
+                    <li class="flex gap-3">
+                      <span class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </section>
+      </div>
+    )
+  }
   <Faq faqs={tool.faqs} locale={locale} heading={fill(ui.toolFaq, { name: tool.name })} />
   <RelatedTools current={tool} locale={locale} />
 </Base>
