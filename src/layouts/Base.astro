@@ -30,6 +30,16 @@ const { title, description, path, locale = 'en', jsonLd = [], ogType = 'website'
 const { ui } = getShell(locale);
 const meta = localeMeta(locale);
 const canonical = new URL(localePath(locale, path), SITE.url).href;
+const ogImage =
+  {
+    '/audio-trimmer': '/og-trim.jpg',
+    '/mp3-cutter': '/og-cut.jpg',
+    '/mp3-editor': '/og-cut.jpg',
+    '/audio-joiner': '/og-join.jpg',
+    '/mp4-to-mp3': '/og-mp4.jpg',
+    '/extract-audio': '/og-mp4.jpg',
+    '/ringtone-maker': '/og-ring.jpg',
+  }[path] ?? '/og.jpg';
 const guideLocales = new Set(localesWithGuides());
 // The index alternates across locales that have any guide. A translated
 // article alternates only across locales that actually have that article.
@@ -77,14 +87,14 @@ const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
           <meta property="og:locale:alternate" content={l.og} />
         ))
     }
-    <meta property="og:image" content={new URL('/og.jpg', SITE.url).href} />
+    <meta property="og:image" content={new URL(ogImage, SITE.url).href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ui.ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL('/og.jpg', SITE.url).href} />
+    <meta name="twitter:image" content={new URL(ogImage, SITE.url).href} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />

@@ -298,6 +298,225 @@ export const GUIDES: GuideCard[] = [
       'انقل أغنية أو صوتًا بعدد من أنصاف الدرجات وأبقِ المدة كما هي. السرعة عنصر تحكم آخر — تغيّر طول الملف، وتتحرك درجة الصوت معها.',
     minutes: 6,
   },
+  {
+    locale: 'de',
+    href: '/de/guides/how-to-trim-audio',
+    title: 'Audio schneiden — eine Stelle behalten',
+    description:
+      'Behalte ein Stück einer Sprachnotiz oder eines Podcasts und wirf den Rest weg. Eine Datei pro Export. Nichts wird hochgeladen.',
+    minutes: 4,
+  },
+  {
+    locale: 'de',
+    href: '/de/guides/how-to-edit-an-mp3',
+    title: 'MP3 bearbeiten, einmal exportieren',
+    description:
+      'Schneiden, blenden oder lauter machen, dann einmal speichern. Welche Seite welchen Job macht, und wann WAV die bessere Zwischenstufe ist.',
+    minutes: 5,
+  },
+  {
+    locale: 'de',
+    href: '/de/guides/merge-songs-one-track',
+    title: 'Audiodateien zu einer Spur zusammenfügen',
+    description:
+      'Songs, Sprachnotizen oder Podcast-Teile in eine Datei. Reihenfolge, Crossfade, Export als MP3 oder WAV. Nichts wird hochgeladen.',
+    minutes: 4,
+  },
+  {
+    locale: 'de',
+    href: '/de/guides/make-iphone-ringtone',
+    title: 'Klingelton fürs iPhone erstellen',
+    description:
+      'Bis zu 40 Sekunden eines Songs als M4R. Chrome, Edge und Safari 17 kodieren auf dem Gerät. Firefox exportiert MP3, GarageBand macht den Rest.',
+    minutes: 5,
+  },
+  {
+    locale: 'ja',
+    href: '/ja/guides/how-to-trim-audio',
+    title: '音声をトリミングする',
+    description:
+      'ボイスメモやポッドキャストの必要な区間だけ残します。書き出しは1回につき1ファイル。アップロードしません。',
+    minutes: 4,
+  },
+  {
+    locale: 'ja',
+    href: '/ja/guides/how-to-edit-an-mp3',
+    title: 'MP3をブラウザで編集する',
+    description:
+      'カット、フェード、音量をまとめてから一度だけ書き出します。どのページがどの作業か、次も編集するなら WAV にする理由。',
+    minutes: 5,
+  },
+  {
+    locale: 'ja',
+    href: '/ja/guides/merge-songs-one-track',
+    title: '音声ファイルを1本に結合する',
+    description:
+      '曲、ボイスメモ、ポッドキャストを1ファイルにします。順番とクロスフェードを決めて、MP3 か WAV で書き出します。アップロードしません。',
+    minutes: 4,
+  },
+  {
+    locale: 'ja',
+    href: '/ja/guides/make-iphone-ringtone',
+    title: 'iPhoneの着信音を作る',
+    description:
+      '曲から40秒以内をM4Rにします。Chrome、Edge、Safari 17は端末上で書き出します。FirefoxはMP3にしてGarageBandで着信音にします。',
+    minutes: 5,
+  },
+  {
+    locale: 'ko',
+    href: '/ko/guides/how-to-trim-audio',
+    title: '오디오 자르기, 브라우저에서',
+    description:
+      '음성 메모나 팟캐스트에서 필요한 구간만 남겨요. 내보내기는 한 번에 파일 하나. 업로드는 없어요.',
+    minutes: 4,
+  },
+  {
+    locale: 'ko',
+    href: '/ko/guides/how-to-edit-an-mp3',
+    title: 'MP3 파일 편집하는 법',
+    description:
+      '자르고, 페이드하고, 키운 다음 한 번만 내보내요. 어떤 페이지가 무슨 일인지, 다시 편집할 거면 WAV인 이유.',
+    minutes: 5,
+  },
+  {
+    locale: 'ko',
+    href: '/ko/guides/merge-songs-one-track',
+    title: '오디오 파일 하나로 합치기',
+    description:
+      '노래, 음성 메모, 팟캐스트를 한 파일로 붙여요. 순서와 크로스페이드를 정하고 MP3나 WAV로 내보내요. 업로드는 없어요.',
+    minutes: 4,
+  },
+  {
+    locale: 'ko',
+    href: '/ko/guides/make-iphone-ringtone',
+    title: '아이폰 벨소리 만들기',
+    description:
+      '노래에서 40초 이내를 M4R로 만들어요. Chrome, Edge, Safari 17은 기기에서 인코딩해요. Firefox는 MP3로 보내고 GarageBand가 벨소리로 바꿔요.',
+    minutes: 5,
+  },
+  {
+    locale: 'zh',
+    href: '/zh/guides/how-to-trim-audio',
+    title: '在线裁剪音频',
+    description: '语音备忘或播客只留需要的一段。一次导出一个文件。文件不会上传。',
+    minutes: 4,
+  },
+  {
+    locale: 'zh',
+    href: '/zh/guides/how-to-edit-an-mp3',
+    title: '在浏览器里编辑 MP3',
+    description: '剪切、淡化、加大音量，然后只导出一次。哪一页做哪件事，以及还要再剪时为什么先存 WAV。',
+    minutes: 5,
+  },
+  {
+    locale: 'zh',
+    href: '/zh/guides/merge-songs-one-track',
+    title: '把几段音频合成一条',
+    description: '歌曲、语音备忘或播客片段合成一个文件。排好顺序，加上交叉淡化，导出 MP3 或 WAV。文件不会上传。',
+    minutes: 4,
+  },
+  {
+    locale: 'zh',
+    href: '/zh/guides/make-iphone-ringtone',
+    title: '用一首歌做 iPhone 铃声',
+    description: '从歌里截最多 40 秒，存成 M4R。Chrome、Edge 和 Safari 17 在设备上编码。Firefox 先导出 MP3，再用 GarageBand 做成铃声。',
+    minutes: 5,
+  },
+  {
+    locale: 'fr',
+    href: '/fr/guides/how-to-trim-audio',
+    title: 'Rogner un enregistrement dans le navigateur',
+    description:
+      'Gardez un passage d’une note vocale ou d’un podcast. Un export, un fichier. Rien n’est téléversé.',
+    minutes: 4,
+  },
+  {
+    locale: 'fr',
+    href: '/fr/guides/how-to-edit-an-mp3',
+    title: 'Modifier un MP3 dans le navigateur',
+    description:
+      'Coupez, fondez ou montez le volume, puis exportez une seule fois. Quelle page fait quel travail, et quand le WAV évite un second encodage.',
+    minutes: 5,
+  },
+  {
+    locale: 'fr',
+    href: '/fr/guides/merge-songs-one-track',
+    title: 'Fusionner plusieurs fichiers audio',
+    description:
+      'Chansons, notes vocales ou chapitres de podcast en un seul fichier. Ordre, fondu enchaîné, export MP3 ou WAV. Rien n’est téléversé.',
+    minutes: 4,
+  },
+  {
+    locale: 'fr',
+    href: '/fr/guides/make-iphone-ringtone',
+    title: 'Créer une sonnerie iPhone',
+    description:
+      'Jusqu’à 40 secondes d’une chanson en M4R. Chrome, Edge et Safari 17 encodent sur l’appareil. Firefox exporte un MP3, GarageBand fait la sonnerie.',
+    minutes: 5,
+  },
+  {
+    locale: 'ru',
+    href: '/ru/guides/how-to-trim-audio',
+    title: 'Как обрезать аудио в браузере',
+    description:
+      'Оставьте нужный кусок голосовой заметки или подкаста. Один экспорт — один файл. На сервер ничего не уходит.',
+    minutes: 4,
+  },
+  {
+    locale: 'ru',
+    href: '/ru/guides/how-to-edit-an-mp3',
+    title: 'Как отредактировать MP3 в браузере',
+    description:
+      'Обрежьте, сделайте затухание или поднимите громкость и экспортируйте один раз. Какая страница за какую задачу, и когда промежуточный файл лучше в WAV.',
+    minutes: 5,
+  },
+  {
+    locale: 'ru',
+    href: '/ru/guides/merge-songs-one-track',
+    title: 'Как соединить аудио в один файл',
+    description:
+      'Песни, голосовые заметки или главы подкаста в один файл. Порядок, перекрестное затухание, экспорт MP3 или WAV. На сервер ничего не уходит.',
+    minutes: 4,
+  },
+  {
+    locale: 'ru',
+    href: '/ru/guides/make-iphone-ringtone',
+    title: 'Как сделать рингтон для iPhone',
+    description:
+      'До 40 секунд песни в M4R. Chrome, Edge и Safari 17 кодируют на устройстве. Firefox сохраняет MP3, рингтон делает GarageBand.',
+    minutes: 5,
+  },
+  {
+    locale: 'ar',
+    href: '/ar/guides/how-to-trim-audio',
+    title: 'قصّ تسجيل صوتي في المتصفح',
+    description: 'أبقِ مقطعًا من رسالة صوتية أو بودكاست. كل تصدير ملف واحد. الملف لا يُرفع.',
+    minutes: 4,
+  },
+  {
+    locale: 'ar',
+    href: '/ar/guides/how-to-edit-an-mp3',
+    title: 'تحرير ملف MP3 في المتصفح',
+    description:
+      'قصّ أو أضف تلاشيًا أو ارفع الصوت، ثم صدّر مرة واحدة. أي صفحة لأي مهمة، ومتى يكون WAV أفضل إذا بقي تحرير لاحق.',
+    minutes: 5,
+  },
+  {
+    locale: 'ar',
+    href: '/ar/guides/merge-songs-one-track',
+    title: 'دمج ملفات صوتية في ملف واحد',
+    description:
+      'أغاني أو رسائل صوتية أو فصول بودكاست في ملف واحد. الترتيب، التلاشي المتقاطع، ثم MP3 أو WAV. الملف لا يُرفع.',
+    minutes: 4,
+  },
+  {
+    locale: 'ar',
+    href: '/ar/guides/make-iphone-ringtone',
+    title: 'صنع نغمة رنين للآيفون',
+    description:
+      'حتى 40 ثانية من أغنية بصيغة M4R. يرمّز Chrome وEdge وSafari 17 على الجهاز. Firefox يصدّر MP3 وGarageBand يصنع النغمة.',
+    minutes: 5,
+  },
 ];
 
 export function guidesFor(locale: Locale): GuideCard[] {
@@ -385,59 +604,60 @@ export const GUIDE_INDEX: Record<Locale, IndexCopy> = {
     minutes: 'mnt',
   },
   de: {
-    title: 'Audio-Anleitungen — MP4 in MP3 umwandeln',
-    description: 'Anleitung auf Deutsch: MP4 im Browser in MP3 umwandeln, ohne das Video hochzuladen.',
+    title: 'Audio-Anleitungen — schneiden, MP3, Klingelton',
+    description:
+      'Auf Deutsch: Audio schneiden, eine MP3 einmal exportieren, Dateien zusammenfügen, einen Klingelton bauen, MP4 in MP3 umwandeln.',
     h1: 'Audio-Anleitungen',
     intro: 'Kurze Schritte für das, was im Browser geht. Die Datei wird nicht hochgeladen.',
     empty: 'Noch keine Anleitungen auf Deutsch.',
     minutes: 'Min.',
   },
   ko: {
-    title: '오디오 가이드 — Free Audio Editor',
-    description: '브라우저에서 MP4를 MP3로 바꾸는 한국어 가이드. 파일은 업로드되지 않아요.',
+    title: '오디오 가이드 — 자르기, MP3, 벨소리',
+    description: '오디오 자르기, MP3 편집, 파일 합치기, 아이폰 벨소리, MP4를 MP3로. 파일은 업로드되지 않아요.',
     h1: '오디오 가이드',
     intro: '브라우저에서 끝낼 수 있는 작업의 짧은 설명이에요. 파일은 업로드되지 않아요.',
     empty: '아직 한국어 가이드가 없습니다.',
     minutes: '분',
   },
   ja: {
-    title: 'オーディオガイド — MP4 MP3 変換',
-    description: 'ブラウザで MP4 を MP3 にする日本語ガイド。ファイルはアップロードしません。',
+    title: 'オーディオガイド — トリミングと着信音',
+    description: '音声のトリミング、MP3の編集、結合、iPhoneの着信音、MP4の変換。ファイルはアップロードしません。',
     h1: 'オーディオガイド',
     intro: 'ブラウザで済ませられる作業の短い手順です。ファイルはアップロードしません。',
     empty: '日本語のガイドはまだありません。',
     minutes: '分',
   },
   zh: {
-    title: '音频指南 — MP4 转 MP3',
-    description: '在浏览器里把 MP4 转成 MP3 的中文说明。文件不会上传。',
+    title: '音频指南 — 裁剪、MP3、铃声',
+    description: '裁剪音频、编辑 MP3、合成一条、做 iPhone 铃声，以及 MP4 转 MP3。文件不会上传。',
     h1: '音频指南',
     intro: '针对在浏览器里就能做完的事，写成短步骤。文件不会上传。',
     empty: '还没有中文指南。',
     minutes: '分钟',
   },
   fr: {
-    title: 'Guides audio — changer la tonalité sans la vitesse',
+    title: 'Guides audio — rogner, MP3, sonnerie',
     description:
-      'Guide en français pour décaler une chanson ou une voix par demi-tons, sans changer la durée. Le fichier reste sur l’appareil.',
+      'Rogner un enregistrement, modifier un MP3, fusionner des fichiers, créer une sonnerie iPhone, changer la hauteur. Rien n’est téléversé.',
     h1: 'Guides audio',
     intro: 'Des étapes courtes pour ce que l’on fait vraiment avec l’audio — dans des outils qui ne téléversent rien.',
     empty: 'Pas encore de guides en français.',
     minutes: 'min de lecture',
   },
   ru: {
-    title: 'Аудио-гайды — тональность без изменения скорости',
+    title: 'Аудио-гайды — обрезка, MP3, рингтон',
     description:
-      'Инструкция на русском: сдвинуть песню или голос на полутона и сохранить длительность. Файл не уходит с устройства.',
+      'Обрезать аудио, отредактировать MP3, соединить файлы, сделать рингтон и сдвинуть тон. На сервер ничего не уходит.',
     h1: 'Аудио-гайды',
     intro: 'Короткие пошаговые инструкции для задач, которые решаются прямо в браузере. Файлы не покидают устройство.',
     empty: 'Русских гайдов пока нет.',
     minutes: 'мин чтения',
   },
   ar: {
-    title: 'أدلة الصوت — تغيير الدرجة دون تغيير السرعة',
+    title: 'أدلة الصوت — القصّ وMP3 ونغمة الرنين',
     description:
-      'دليل بالعربية لنقل أغنية أو صوت بأنصاف الدرجات دون تغيير المدة. يبقى الملف على جهازك.',
+      'قصّ تسجيل، تحرير MP3، دمج الملفات، صنع نغمة للآيفون، وتغيير الدرجة. الملف لا يُرفع.',
     h1: 'أدلة الصوت',
     intro: 'خطوات قصيرة للمهام التي تُنجز مباشرة في المتصفح. ملفاتك لا تترك جهازك.',
     empty: 'لا توجد أدلة عربية بعد.',

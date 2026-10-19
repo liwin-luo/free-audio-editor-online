@@ -34,6 +34,8 @@ const TRANSLATED_GUIDES = new Set([
   '/guides/how-to-edit-a-wav-file',
   '/guides/convert-ogg-to-mp3',
   '/guides/ogg-a-mp3',
+  '/guides/merge-songs-one-track',
+  '/guides/make-iphone-ringtone',
 ]);
 
 export function isTranslatedGuide(path: string): boolean {

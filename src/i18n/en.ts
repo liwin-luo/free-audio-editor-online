@@ -267,11 +267,11 @@ export const en: Shell = {
   home: {
     title: 'Free Online Audio Editor — Cut, Convert & Edit, No Upload',
     description:
-      'Free online audio editor: trim, cut, merge, reverse and convert audio right in your browser. No signup, no upload — your files never leave your device.',
-    appBlurb: 'Free online audio editor — cut, trim, merge and edit audio in your browser.',
+      'Free online audio editor: trim, cut, merge, reverse and convert audio in your browser. No signup and no upload. The file stays on your device.',
+    appBlurb: 'Free online audio editor. Cut, trim, merge and edit audio in your browser.',
     badge: '100% local processing · nothing uploaded',
     h1: 'Free online audio editor',
-    lede: 'Trim, cut, merge and edit audio right in your browser. No signup, no watermarks, no uploads — your files never leave your device.',
+    lede: 'Trim, cut, merge and edit audio in the browser. No signup, no watermark, no upload. The file stays on your device.',
     ctaTrim: 'Trim an audio file',
     ctaMerge: 'Merge songs together',
     highlightsLabel: 'Why it works this way',
@@ -281,7 +281,7 @@ export const en: Shell = {
     highlights: [
       {
         title: 'Nothing is uploaded',
-        body: 'The file is decoded in this browser tab. Close it and the audio is gone — no server ever receives it.',
+        body: 'The file is decoded in this browser tab. Close the tab and the audio is gone. No server receives it.',
       },
       {
         title: 'Free, because your device does the work',
@@ -296,16 +296,16 @@ export const en: Shell = {
     allToolsCta: 'Browse all {count} tools',
     toolsCount: '{count} tools',
     mostUsed: 'Most used',
-    comingTitle: 'Coming next',
-    comingBody: 'Crossfade mixer, silence remover and more — same privacy-first approach.',
-    useCasesHeading: 'What will you edit today?',
+    comingTitle: 'On this site',
+    comingBody: 'Mix up to 8 tracks, cut long silences, or crossfade a join. The file stays on the device.',
+    useCasesHeading: 'Jobs people open the tools for',
     useCases: [
       { title: 'Podcasting', body: 'Record episodes, cut the rough bits, join segments and walk away with a transcript for your show notes.', tools: ['voice-recorder', 'mp3-editor', 'audio-to-text'] },
       { title: 'Music', body: 'Slow riffs down to learn them, shift keys for covers and add weight or sparkle to your demos.', tools: ['change-audio-speed', 'pitch-changer', 'bass-booster'] },
       { title: 'Voice-over', body: 'Deliver clean takes: strip rumble, even out levels and lift quiet recordings without clipping.', tools: ['high-pass-filter', 'normalize-audio', 'increase-volume'] },
       { title: 'Study and work', body: 'Speed through lectures, turn recordings into text and smooth the joins between clips.', tools: ['audio-to-text', 'fade-audio', 'audio-joiner'] },
     ],
-    whyHeading: 'Why audio editing belongs on your device',
+    whyHeading: 'Why the editing happens on your device',
     why: [
       {
         title: 'Private by design',

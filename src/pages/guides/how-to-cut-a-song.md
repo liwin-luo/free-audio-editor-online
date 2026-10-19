@@ -1,6 +1,6 @@
 ---
 title: How to Cut a Song Online (Free, Nothing Uploaded)
-description: Keep the chorus, lose the intro. A practical walkthrough of cutting songs in your browser — keep vs delete modes, fade tricks and the right export format.
+description: Keep the chorus, lose the intro. Keep versus delete, a short fade, and which export format to pick. The file is never uploaded.
 tool: mp3-cutter
 date: 2026-10-14
 audio: /guides-media/how-to-cut-a-song/narration.m4a
@@ -9,38 +9,36 @@ youtube: j7BmUJedDJo
 layout: ../../layouts/Guide.astro
 ---
 
-Cutting a song is one of those tasks that used to mean installing sketchy software or
-uploading your music to a random website. Neither is necessary: your browser can cut
-audio on its own, and the file never has to leave your computer. Here is the quick
-version, then the details.
+Cutting a song means marking a stretch of the waveform and exporting either that
+stretch or everything except it. The browser does the cut. The file stays on the
+computer.
 
 If the file is a voice memo or a podcast and the job is dropping silence, use
 [how to trim audio](/guides/how-to-trim-audio). This page is about cutting a song.
 
 ## What you need
 
-- The song file (MP3, WAV, M4A, FLAC, OGG — whatever you have)
+- The song file (MP3, WAV, M4A, FLAC, OGG, whatever the browser already plays)
 - A browser: [the MP3 cutter](/mp3-cutter) runs entirely on your device
 - About one minute
 
 ## Step 1: Open the song
 
 Drop the file onto the [MP3 cutter](/mp3-cutter) page or click to browse it. The
-waveform appears immediately — no upload progress bar, because there is no upload.
-This matters more than it sounds: it means the tool works on unreleased tracks,
-private recordings and anything else you would rather not send to a stranger's server.
+waveform appears immediately. There is no upload bar, because the file never leaves
+the device. That includes unreleased tracks and anything you would rather not send
+to someone else's server.
 
-![The MP3 cutter dropzone — drop a file or click to browse](/guides-media/how-to-cut-a-song/01-dropzone.webp)
+![The MP3 cutter before a file is open. The only step on screen is the drop zone.](/guides-media/how-to-cut-a-song/01-dropzone.webp)
 
 ## Step 2: Choose what happens to the selection
 
 Drag across the waveform to mark a section. Then pick one of two modes:
 
-- **Keep selection** — the export contains *only* the highlighted part. Use this to
-  extract a chorus or a highlight.
-- **Delete selection** — the export contains everything *except* the highlighted
-  part. Use this to remove a long silence at the start, an announcement, or a bad
-  final chorus.
+- **Keep selection.** The export contains only the highlighted part. Use this to
+  pull out a chorus.
+- **Delete selection.** The export contains everything except the highlighted
+  part. Use this to remove a long intro, an announcement, or a bad final chorus.
 
 ![Keep selection keeps only the highlighted part; Delete selection removes it](/guides-media/how-to-cut-a-song/04-keep-vs-delete.webp)
 
@@ -52,7 +50,7 @@ hundredth of a second while you drag.
 
 ## Step 3: Preview, then export
 
-Press play — it plays just your selection. If the cut lands mid-word or mid-beat,
+Press play. It plays just your selection. If the cut lands mid-word or mid-beat,
 nudge the handles a few times; ten seconds of adjusting makes the difference between
 obvious and invisible. Then click **Export**:
 
@@ -62,13 +60,12 @@ obvious and invisible. Then click **Export**:
   size. Use it for sharing and listening.
 - **MP3 128 kbps** is fine for spoken content, wasteful for music.
 
-![A finished cut exported — the download starts automatically](/guides-media/how-to-cut-a-song/03-exportToast.webp)
+![A finished cut exported. The download starts in the browser.](/guides-media/how-to-cut-a-song/03-exportToast.webp)
 
-## Two tricks that make cuts sound professional
+## Two things that keep a cut from sounding chopped
 
-**Cut on the beat.** Endings that stop exactly on a downbeat sound intentional;
-endings that stop between beats sound like mistakes. Zoom in (the + button) and
-watch where transients land.
+**Cut on the beat.** An ending on a downbeat sounds deliberate. An ending between
+beats sounds like a mistake. Zoom in with the + button and watch where the hits land.
 
 **Fade the edge.** A 0.2–0.5 second fade-out in the Adjust drawer hides an abrupt
 ending. This is also exactly how to make the cut loop cleanly as a
@@ -83,15 +80,13 @@ and iPhone-specific instructions.
 
 ## Common questions
 
-**Is it legal to cut a song?** For personal use — ringtones, practice, edits of
-your own recordings — yes, in most places. Distributing or publishing the cut of
-someone else's copyrighted track is a different matter; that is about the sharing,
-not the cutting.
+**Is it legal to cut a song?** For personal use (a ringtone, practice, an edit of
+your own recording) yes, in most places. Publishing someone else's copyrighted
+track is a separate question. That is about the sharing, not the cut.
 
-**Why does the site not need an account?** Because there is nothing to store. The
-cut happens in your browser's memory and the result downloads straight to your
-disk. See [about our local-first approach](/about) for how that works.
+**Why is there no account?** There is nothing to store. The cut happens in the
+browser's memory and the result downloads to disk. [About](/about) explains the
+local processing.
 
-**I need the parts glued back together differently.** Cut the sections you need
-into separate files, then combine them in order with the
-[audio joiner](/audio-joiner) — it can even crossfade between them.
+**I need the parts in a different order.** Cut them into separate files, then
+combine them in the [audio joiner](/audio-joiner). It can crossfade the joins.
