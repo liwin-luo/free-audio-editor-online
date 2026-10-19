@@ -3,6 +3,7 @@
  * Island for hiding a picture or a line of text in a WAV spectrogram.
  */
 import Icon from '../Icon.astro';
+import DropPromise from './DropPromise.astro';
 import { getShell } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import type { EditorConfig } from '../../data/tools';
@@ -41,8 +42,9 @@ const { editor: t } = getShell(locale);
       <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
         <Icon name="image" size={18} />
       </span>
-      <p class="mt-3 text-sm font-medium">{config.dropHint}</p>
-      <p class="mt-1 text-xs text-ink3">{t.paintImage}</p>
+      <p class="mt-3 text-sm font-semibold">{config.dropHint}</p>
+      <DropPromise config={config} locale={locale} plain />
+      <p class="mt-3 text-xs text-ink3">{t.paintImage}</p>
       <input type="file" class="hidden" accept="image/png,image/jpeg,image/webp,image/gif" data-paint-file />
     </div>
     <canvas data-paint-preview class="hidden max-h-40 w-full rounded-lg bg-black" aria-label={t.paintPreview}></canvas>

@@ -24,6 +24,12 @@ export interface EditState {
   normalize: boolean;
   /** reverb wet mix, 0 = dry, 1 = full synthesized-room send */
   reverb: number;
+  /** dynamics compress amount, 0 = bypass, 1 = full. Makeup restores the source peak. */
+  compress: number;
+  /** echo delay in seconds. 0 = dry; feedback is ignored. */
+  echoDelay: number;
+  /** echo feedback gain, 0…0.55 */
+  echoFeedback: number;
   /** low-shelf gain in dB (150 Hz corner, −15…+15); booster page exposes 0…+15 */
   bass: number;
   /** high-shelf gain in dB (3 kHz corner, −15…+15) */
@@ -48,6 +54,9 @@ export function defaultEditState(): EditState {
     reverse: false,
     normalize: false,
     reverb: 0,
+    compress: 0,
+    echoDelay: 0,
+    echoFeedback: 0.35,
     bass: 0,
     treble: 0,
     mid: 0,
@@ -139,9 +148,12 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
     ranges.reduce((acc, r) => acc + (r.to - r.from) / speed, 0) || 0.001;
   const gain = state.normalize ? computeNormalizeGain(buffer, state) : state.gain;
   const wet = clamp(state.reverb, 0, 1);
+  const echoDelay = clamp(state.echoDelay, 0, 0.8);
+  const echoFeedback = clamp(state.echoFeedback, 0, 0.55);
+  const echoTail = echoDelay > 0 ? Math.min(4, echoDelay * (1 + echoFeedback * 12)) : 0;
 
-  // Convolution past the dry end is discarded unless the context is long enough.
-  const tail = wet > 0 ? REVERB_SECONDS : 0;
+  // Convolution or repeats past the dry end are discarded unless the context is long enough.
+  const tail = Math.max(wet > 0 ? REVERB_SECONDS : 0, echoTail);
   const ctx = new OfflineAudioContext(
     Math.min(buffer.numberOfChannels, 2),
     Math.max(1, Math.ceil((outDuration + tail) * rate) + 1),
@@ -175,6 +187,17 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   if (trebleDb !== 0) shelf('highshelf', 3000, trebleDb);
   if (hpfHz > 25) shelf('highpass', hpfHz, 0);
   if (lpfHz < 19000) shelf('lowpass', lpfHz, 0);
+  const compressAmt = clamp(state.compress, 0, 1);
+  if (compressAmt > 0) {
+    const comp = ctx.createDynamicsCompressor();
+    comp.threshold.value = -18 - compressAmt * 18;
+    comp.knee.value = 6;
+    comp.ratio.value = 1 + compressAmt * 7;
+    comp.attack.value = 0.005;
+    comp.release.value = 0.12;
+    bus.connect(comp);
+    bus = comp;
+  }
   if ((!state.normalize && gain > 1) || boosts) {
     const limiter = ctx.createDynamicsCompressor();
     limiter.threshold.value = -2;
@@ -186,6 +209,19 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
     bus = limiter;
   }
   bus.connect(ctx.destination);
+  if (echoDelay > 0) {
+    const delay = ctx.createDelay(1);
+    delay.delayTime.value = echoDelay;
+    const feedback = ctx.createGain();
+    feedback.gain.value = echoFeedback;
+    const echoWet = ctx.createGain();
+    echoWet.gain.value = 0.45;
+    bus.connect(delay);
+    delay.connect(echoWet);
+    echoWet.connect(ctx.destination);
+    delay.connect(feedback);
+    feedback.connect(delay);
+  }
   if (wet > 0) {
     const convolver = ctx.createConvolver();
     convolver.buffer = createReverbIR(ctx);
@@ -224,6 +260,7 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   });
 
   const rendered = await ctx.startRendering();
+  if (compressAmt > 0) matchPeak(rendered, Math.min(rangePeak(buffer, state), 0.98));
   if (!state.normalize && (gain > 1 || boosts)) softClipGuard(rendered);
   if (state.normalize && boosts) {
     // the shelf raises lows after peak-normalize measured the source — pull
@@ -267,6 +304,39 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
     }
   }
   return rendered;
+}
+
+/** Peak of the samples that survive the cut. */
+function rangePeak(buffer: AudioBuffer, state: EditState): number {
+  const ranges = survivingRanges(buffer.duration, state);
+  const rate = buffer.sampleRate;
+  let peak = 0;
+  for (const r of ranges) {
+    const from = Math.max(0, Math.floor(r.from * rate));
+    const to = Math.min(buffer.length, Math.ceil(r.to * rate));
+    for (let c = 0; c < buffer.numberOfChannels; c++) {
+      const d = buffer.getChannelData(c);
+      for (let i = from; i < to; i++) peak = Math.max(peak, Math.abs(d[i]!));
+    }
+  }
+  return peak;
+}
+
+/** Scale a rendered buffer so its peak matches `target`. No-op on silence. */
+function matchPeak(buffer: AudioBuffer, target: number): void {
+  if (target < 1e-6) return;
+  let peak = 0;
+  for (let c = 0; c < buffer.numberOfChannels; c++) {
+    const d = buffer.getChannelData(c);
+    for (let i = 0; i < d.length; i++) peak = Math.max(peak, Math.abs(d[i]!));
+  }
+  if (peak < 1e-6) return;
+  const g = target / peak;
+  if (Math.abs(g - 1) < 0.001) return;
+  for (let c = 0; c < buffer.numberOfChannels; c++) {
+    const d = buffer.getChannelData(c);
+    for (let i = 0; i < d.length; i++) d[i] = d[i]! * g;
+  }
 }
 
 /** Soft-clip any overs so boosts never produce harsh digital clipping. */

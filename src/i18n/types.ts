@@ -4,6 +4,8 @@ export interface ToolCopy {
   title: string;
   description: string;
   h1: string;
+  /** Alt for ToolDef.hero. Required when the English tool has a hero image. */
+  heroAlt?: string;
   subtitle: string;
   /** Scenario line for hub/home cards. Falls back to subtitle when a locale omits it. */
   cardLine?: string;
@@ -19,6 +21,16 @@ export interface ToolCopy {
 export interface EditorText {
   dropHour: string;
   dropLocal: string;
+  /** Suffix on the broad format line, separator included. e.g. ", and more". */
+  formatsMore: string;
+  /** Empty-state note for transcription, including the first model download. */
+  etaModel: string;
+  /** Hard cap on the transcribe promise line. */
+  limitTenMin: string;
+  /** Ringtone selection cap on the promise line. */
+  limitRingtone: string;
+  /** Short label for the transcribe "text" chip. */
+  chipText: string;
   zoomOut: string;
   zoomIn: string;
   loadDifferent: string;
@@ -28,6 +40,7 @@ export interface EditorText {
   pause: string;
   hintSelect: string;
   hintConvert: string;
+  hintSilence: string;
   reverse: string;
   normalize: string;
   speed: string;
@@ -38,6 +51,21 @@ export interface EditorText {
   cutoff: string;
   volume: string;
   reverb: string;
+  compress: string;
+  echoDelay: string;
+  echoFeedback: string;
+  silenceThreshold: string;
+  silenceGap: string;
+  silenceRemove: string;
+  silenceKeepFile: string;
+  lufsIntegrated: string;
+  lufsPeak: string;
+  lufsPodcast: string;
+  lufsStreaming: string;
+  lufsBroadcast: string;
+  lufsLimited: string;
+  lufsWill: string;
+  lufsSilent: string;
   adjust: string;
   fadeIn: string;
   fadeOut: string;
@@ -186,6 +214,23 @@ export interface EditorText {
   trSrt: string;
   trTooLong: string;
   trFail: string;
+  mixMute: string;
+  mixSolo: string;
+  mixPan: string;
+  mixOffset: string;
+  mixTrimIn: string;
+  mixTrimOut: string;
+  mixGain: string;
+  mixMaster: string;
+  mixPlay: string;
+  mixStop: string;
+  mixAdd: string;
+  mixLimit: string;
+  /** Placeholder: {db} */
+  mixPulled: string;
+  mixExport: string;
+  /** Placeholder: {name} */
+  mixDecode: string;
 }
 
 export interface UiText {
@@ -208,7 +253,6 @@ export interface UiText {
   status: string;
   rights: string;
   clientSide: string;
-  trustLocal: string;
   trustFree: string;
   trustClean: string;
   faqHeading: string;
@@ -250,6 +294,16 @@ export interface HomeCopy {
   lede: string;
   ctaTrim: string;
   ctaMerge: string;
+  /** Screen-reader name for the hero proof points. */
+  highlightsLabel: string;
+  /** Small currency mark beside the hero price. */
+  priceSymbol: string;
+  /** The zero, rendered much larger than the symbol. */
+  priceAmount: string;
+  /** Localized word under the price, e.g. Free. */
+  priceWord: string;
+  /** Short answers beside the hero: why nothing is uploaded, why it is free. */
+  highlights: { title: string; body: string }[];
   toolsHeading: string;
   /** Link to the /tools hub. Placeholder: {count} */
   allToolsCta: string;

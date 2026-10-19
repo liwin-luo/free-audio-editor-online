@@ -21,7 +21,6 @@ export const id: Catalog = {
     guides: 'Panduan',
     rights: 'Tidak ada file yang meninggalkan perangkat Anda.',
     clientSide: 'Pemrosesan 100% di perangkat',
-    trustLocal: 'Diproses secara lokal — tidak ada yang diunggah',
     trustFree: 'Gratis, tanpa daftar',
     trustClean: 'Tanpa watermark',
     faqHeading: 'Pertanyaan yang sering diajukan',
@@ -61,6 +60,11 @@ export const id: Catalog = {
   editor: {
     dropHour: 'MP3, WAV, M4A, OGG, FLAC, AAC — hingga sekitar satu jam',
     dropLocal: 'Diproses secara lokal — file Anda tidak pernah meninggalkan tab ini',
+    formatsMore: ', dan lainnya',
+    etaModel: 'pertama kali mengunduh model, setelahnya kira-kira sepanjang audionya',
+    limitTenMin: 'paling lama 10 menit',
+    limitRingtone: 'paling lama 40 detik',
+    chipText: 'Teks',
     zoomOut: 'Perkecil',
     zoomIn: 'Perbesar',
     loadDifferent: 'Muat file lain',
@@ -70,6 +74,7 @@ export const id: Catalog = {
     pause: 'Jeda',
     hintSelect: 'Seret di gelombang untuk memilih · Spasi untuk memutar',
     hintConvert: 'Spasi untuk memutar · tidak ada yang diunggah',
+    hintSilence: 'Celah yang lebih panjang dari minimum dipotong saat ekspor. Napas pendek tetap ada.',
     reverse: 'Putar balik',
     normalize: 'Normalisasi puncak',
     speed: 'Kecepatan',
@@ -80,6 +85,21 @@ export const id: Catalog = {
     cutoff: 'Cutoff',
     volume: 'Volume',
     reverb: 'Reverb',
+    compress: 'Kompres',
+    echoDelay: 'Tunda',
+    echoFeedback: 'Ulangan',
+    silenceThreshold: 'Ambang',
+    silenceGap: 'Jeda minimum',
+    silenceRemove: 'Akan menghapus sekitar {time} senyap',
+    silenceKeepFile: 'Tidak ada yang di atas ambang, jadi ekspor menyimpan seluruh berkas',
+    lufsIntegrated: 'Terintegrasi',
+    lufsPeak: 'Puncak sampel',
+    lufsPodcast: 'Podcast',
+    lufsStreaming: 'Streaming',
+    lufsBroadcast: 'Siaran',
+    lufsLimited: 'Puncak ditahan di −1 dBFS. Hasilnya {lufs} LUFS.',
+    lufsWill: 'Ekspor akan jatuh di {lufs} LUFS.',
+    lufsSilent: 'Berkas ini senyap, tidak ada kenyaringan untuk disamakan.',
     adjust: 'Sesuaikan — fade, volume, kecepatan, putar balik',
     fadeIn: 'Fade in',
     fadeOut: 'Fade out',
@@ -229,6 +249,21 @@ export const id: Catalog = {
     trTooLong:
       'File ini lebih dari 10 menit. Potong dulu — pemotong audio sama privasinya — lalu kembali transkripsi di sini.',
     trFail: 'Transkripsi gagal. Coba model Tiny, file yang lebih jelas, atau browser terbaru.',
+    mixMute: 'Bisukan',
+    mixSolo: 'Solo',
+    mixPan: 'Pan',
+    mixOffset: 'Mulai',
+    mixTrimIn: 'Potong awal',
+    mixTrimOut: 'Potong akhir',
+    mixGain: 'Level',
+    mixMaster: 'Master',
+    mixPlay: 'Putar mix',
+    mixStop: 'Stop',
+    mixAdd: 'Tambah trek',
+    mixLimit: 'Halaman ini maksimal 8 trek. Ekspor mix ini, atau pakai editor desktop untuk sesi yang lebih besar.',
+    mixPulled: 'Mix diturunkan {db} dB agar puncaknya tidak pecah.',
+    mixExport: 'Ekspor mix',
+    mixDecode: '{name} tidak bisa didekode.',
   },
   home: {
     title: 'Edit Audio Online Gratis — Potong, Gabung, Konversi',
@@ -240,6 +275,24 @@ export const id: Catalog = {
     lede: 'Pangkas, potong, gabung, dan edit audio langsung di browser. Tanpa mendaftar, tanpa watermark, tanpa unggah — file Anda tidak pernah meninggalkan perangkat.',
     ctaTrim: 'Pangkas file audio',
     ctaMerge: 'Gabungkan lagu',
+    highlightsLabel: 'Mengapa cara kerjanya seperti ini',
+    priceSymbol: '$',
+    priceAmount: '0',
+    priceWord: 'Gratis',
+    highlights: [
+      {
+        title: 'Tidak ada yang diunggah',
+        body: 'File didekode di tab browser ini. Tutup tabnya, audionya hilang — tidak ada server yang pernah menerimanya.',
+      },
+      {
+        title: 'Gratis, karena perangkat Anda yang bekerja',
+        body: 'Tidak ada server yang harus dibayar, jadi tidak ada watermark, tidak perlu mendaftar, dan tidak ada batas ekspor.',
+      },
+      {
+        title: 'Jatuhkan file dan mulai',
+        body: 'Tanpa instalasi dan tanpa antrean. Trek yang panjang tidak pernah meninggalkan perangkat, jadi penyuntingan langsung dimulai.',
+      },
+    ],
     toolsHeading: 'Alat audio populer',
     allToolsCta: 'Lihat semua {count} alat',
     toolsCount: '{count} alat',
@@ -359,7 +412,8 @@ export const id: Catalog = {
       title: 'Ubah Audio ke Teks Online Gratis — TXT & SRT',
       description:
         'Ubah audio menjadi teks di browser — MP3, WAV, M4A dan video, 90+ bahasa dengan deteksi otomatis, ekspor TXT atau SRT. Gratis, tanpa daftar, tanpa unggah.',
-      h1: 'Audio ke teks',
+      h1: 'Audio ke teks online gratis — Ubah rekaman menjadi teks',
+      heroAlt: 'Jadikan catatan suara atau wawancara menjadi tulisan yang bisa disalin',
       subtitle: 'Ubah rekaman menjadi teks dalam 90+ bahasa, dengan penanda waktu — langsung di browser Anda.',
       intro:
         'Letakkan rekaman dan ambil kata-katanya: memo suara, wawancara, kuliah, podcast — dalam sekitar 90 bahasa, terdeteksi otomatis saat Anda tidak yakin bahasanya. Model AI Whisper berjalan di dalam tab browser Anda, di perangkat Anda sendiri, jadi audio tidak pernah diunggah, dan hasilnya berupa teks yang bisa disunting atau file SRT dengan penanda waktu.',
@@ -419,7 +473,8 @@ export const id: Catalog = {
       title: 'Penguat bass — Tambah bass audio online gratis',
       description:
         'Tambahkan hingga +15 dB bass dengan low-shelf asli di bawah 150 Hz, langsung di browser tanpa trik kenyaringan. Ekspor MP3 atau WAV. Gratis, tanpa unggah.',
-      h1: 'Penguat bass',
+      h1: 'Penguat bass online gratis — Kuatkan bass sebuah lagu',
+      heroAlt: 'Tambahkan low end ke MP3',
       subtitle: 'Low-shelf sungguhan: hingga +15 dB di bawah 150 Hz, dengar, lalu ekspor. Tidak ada yang meninggalkan perangkat Anda.',
       intro:
         'Bass yang lemah adalah alasan paling umum rekaman terdengar kecil. Penguat bass memakai low-shelf EQ asli — hingga +15 dB di bawah 150 Hz, langkah yang sama dengan teknisi mastering — bukan trik yang menaikkan segalanya. Muat berkas, naikkan slidernya sampai bass terdengar pas, lalu ekspor. Semuanya berjalan di browser Anda: berkas tidak pernah diunggah.',
@@ -478,7 +533,8 @@ export const id: Catalog = {
       title: 'Penguat treble — Tambah nada tinggi audio online',
       description:
         'Tambahkan hingga +15 dB nada tinggi di atas 3 kHz dengan high-shelf asli di browser, tanpa trik kenyaringan. Ekspor MP3 atau WAV. Gratis, tanpa unggah.',
-      h1: 'Penguat treble',
+      h1: 'Penguat treble online gratis — Naikkan tinggi sebuah lagu',
+      heroAlt: 'Buat audio yang pekak lebih jelas',
       subtitle: 'High-shelf EQ sungguhan: hingga +15 dB di atas 3 kHz, dengar, lalu ekspor. Tidak ada yang meninggalkan perangkat Anda.',
       intro:
         'Audio yang teredam dan kusam hampir selalu kekurangan satu hal: energi di atas 3 kHz. Penguat treble memakai high-shelf EQ asli — hingga +15 dB di atas 3 kHz, langkah yang sama dengan teknisi mastering untuk membuka lagu — bukan trik yang menaikkan segalanya. Muat berkas, naikkan slidernya sampai detailnya kembali, lalu ekspor. Semuanya berjalan di browser Anda: berkas tidak pernah diunggah.',
@@ -537,7 +593,8 @@ export const id: Catalog = {
       title: 'Equalizer audio — EQ 3 band online gratis',
       description:
         'Bentuk nada rendah, tengah, dan tinggi dengan EQ 3 band asli (shelf–puncak–shelf) di browser. ±15 dB per band, ekspor MP3 atau WAV. Gratis, tanpa unggah.',
-      h1: 'Equalizer audio 3 band',
+      h1: 'Equalizer audio online gratis — Atur bass, mid, dan treble',
+      heroAlt: 'Bentuk warna suara sebuah lagu atau rekaman suara',
       subtitle: 'Shelf rendah, tengah, dan tinggi dengan ±15 dB per band — EQ tiga knob yang jujur.',
       intro:
         'Tiga knob mencakup hampir semua fungsi EQ: nada rendah di bawah 150 Hz, nada tengah di sekitar 1 kHz tempat suara bicara hidup, dan nada tinggi di atas 3 kHz. Equalizer ini memakai band filter asli — low shelf, peaking, high shelf — masing-masing ±15 dB, untuk menipukan dengung, menurunkan kekacauan, atau menambah keterbukaan. Muat berkas, bentuk suaranya, lalu ekspor. Semuanya berjalan di browser Anda: berkas tidak pernah diunggah.',
@@ -596,7 +653,8 @@ export const id: Catalog = {
       title: 'Filter low-pass — Hilangkan noise nada tinggi',
       description:
         'Potong desis, kekasaran, dan noise frekuensi tinggi dengan low-pass filter asli, cutoff 300 Hz–20 kHz, di browser. Ekspor MP3 atau WAV. Gratis, tanpa unggah.',
-      h1: 'Filter low-pass',
+      h1: 'Filter low-pass online gratis — Potong frekuensi tinggi di audio',
+      heroAlt: 'Lunakkan tinggi yang tajam di sebuah rekaman',
       subtitle: 'Geser cutoff dari 20 kHz turun ke 300 Hz dan simpan hanya frekuensi yang Anda mau.',
       intro:
         'Filter low-pass menyimpan frekuensi rendah dan meredam semuanya di atas cutoff — cara jujur menghilangkan desis, sibilan tajam, cicitan, dan tepi digital yang kasar. Berbeda dari penghapus noise, ia tidak pernah menebak mana noise: semua di atas cutoff Anda hilang begitu saja. Muat berkas, geser cutoff ke bawah sampai gangguannya lenyap, lalu ekspor. Semuanya berjalan di browser Anda: berkas tidak pernah diunggah.',
@@ -655,7 +713,8 @@ export const id: Catalog = {
       title: 'Filter high-pass — Hilangkan rumble online gratis',
       description:
         'Potong rumble, dengung, dan boom frekuensi rendah dengan high-pass filter asli, cutoff 20 Hz–5 kHz, di browser. Ekspor MP3 atau WAV. Gratis, tanpa unggah.',
-      h1: 'Filter high-pass',
+      h1: 'Filter high-pass online gratis — Hilangkan gemuruh dari rekaman',
+      heroAlt: 'Potong angin dan dengung rendah dari rekaman suara',
       subtitle: 'Geser cutoff dari 20 Hz naik ke 5 kHz dan buang semua yang ada di bawahnya.',
       intro:
         'Rumble, lalu lintas, suara genggaman, benturan meja — frekuensi rendah yang tak diinginkan sudah menyatu dalam sebagian besar rekaman nyata. Filter high-pass menyimpan semua di atas cutoff Anda dan meredam semuanya di bawahnya: perbaikan jujur yang tak pernah menebak. Muat berkas, geser cutoff ke atas sampai rumble lenyap dan suara tetap penuh, lalu ekspor. Semuanya berjalan di browser Anda: berkas tidak pernah diunggah.',
@@ -714,7 +773,8 @@ export const id: Catalog = {
       title: 'Fade in / fade out audio — online gratis',
       description:
         'Tambahkan fade in dan fade out yang halus ke lagu atau rekaman langsung di browser. Atur panjangnya hingga 0,1 detik, ekspor MP3 atau WAV. Gratis, tanpa unggah.',
-      h1: 'Fade in / fade out audio',
+      h1: 'Fade audio online gratis — Padamkan musik secara perlahan',
+      heroAlt: 'Buat fade in pada sebuah lagu, lalu fade out',
       subtitle: 'Tepi yang halus dalam hitungan detik: atur kedua fade sampai 0,1 detik, dengar, lalu ekspor. Tidak ada yang meninggalkan perangkat Anda.',
       intro:
         'Fade in membiarkan lagu tumbuh dari hening; fade out menutupnya dengan lembut — di situlah bedanya potongan kasar dengan akhir yang rapi. Muat berkas, atur panjang tiap fade sampai 0,1 detik, dan dengar sebelum mengekspor. Semuanya berjalan di browser Anda: berkas tidak pernah diunggah.',
@@ -773,7 +833,8 @@ export const id: Catalog = {
       title: 'Potong Audio Online Gratis — Pangkas Musik & MP3',
       description:
         'Pangkas musik, memo suara, dan podcast di browser. Pilih, dengarkan, simpan dalam hitungan detik — gratis, tanpa mendaftar, tanpa unggah.',
-      h1: 'Potong Audio',
+      h1: 'Potong audio online gratis — Pangkas file audio',
+      heroAlt: 'Potong MP3 atau podcast sampai tersisa bagian yang Anda butuhkan',
       subtitle: 'Pangkas audio online — gratis, langsung di browser. Tidak ada yang diunggah.',
       intro:
         'Ambil persis bagian yang dibutuhkan dari lagu, memo suara, podcast, atau rekaman apa pun. Seret di gelombang audio untuk memilih, dengarkan kembali, lalu simpan — pemangkasan seluruhnya terjadi di perangkat Anda, jadi rekaman yang panjang pun tetap privat dan langsung bisa dikerjakan.',
@@ -832,7 +893,8 @@ export const id: Catalog = {
       title: 'Potong Lagu & MP3 Online Gratis',
       description:
         'Potong file MP3 online dalam beberapa klik: simpan bagian terbaik atau hapus intro. Gratis, tanpa mendaftar, file tidak meninggalkan perangkat.',
-      h1: 'Potong MP3',
+      h1: 'Potong MP3 online gratis',
+      heroAlt: 'Potong MP3 online gratis',
       subtitle: 'Potong lagu dan file MP3 online — simpan bagian yang diinginkan, hapus sisanya.',
       intro:
         'Potong lagu sampai tersisa reff-nya, buang intro yang panjang, atau pisahkan bagian yang ingin ditonjolkan — langsung di browser. Pilih apakah bagian yang ditandai dipertahankan atau dihapus, dengarkan hasilnya, lalu simpan MP3 baru dalam hitungan detik.',
@@ -877,6 +939,10 @@ export const id: Catalog = {
           q: 'Ke mana file Anda pergi?',
           a: 'Tidak ke mana-mana. File dibaca dari disk oleh browser Anda dan dipotong di memori. Tidak ada unggahan, tidak ada salinan cloud, dan tidak ada yang disimpan.',
         },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file MP3, atau klik untuk memilih',
     },
@@ -887,7 +953,8 @@ export const id: Catalog = {
       title: 'Editor MP3 — Potong, Fade, Putar Balik, dan Percepat Online',
       description:
         'Edit MP3 dan audio lain online: potong, pangkas, fade, volume, kecepatan, putar balik. Gratis dan privat — semuanya berjalan di browser.',
-      h1: 'Editor MP3',
+      h1: 'Editor MP3 online gratis — Ubah panjang sebuah MP3',
+      heroAlt: 'Potong, fade, putar balik, dan ubah kecepatan MP3',
       subtitle: 'Potong, fade, putar balik, dan percepat audio — semua dalam satu tab browser.',
       intro:
         'Editor audio yang ringkas untuk pekerjaan cepat: potong bagian, beri fade in dan fade out, naikkan atau turunkan volume, percepat atau perlambat trek, dan putar balik. Setiap suntingan diterapkan di perangkat Anda saat diekspor — file asli di disk selalu tetap utuh.',
@@ -932,6 +999,10 @@ export const id: Catalog = {
           q: 'Apakah aman untuk rekaman yang bersifat rahasia?',
           a: 'Ya. Audio didekode dan di-render secara lokal dengan Web Audio API — tidak pernah dikirim lewat jaringan, sehingga cocok untuk wawancara dan materi rahasia lainnya.',
         },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
@@ -942,7 +1013,8 @@ export const id: Catalog = {
       title: 'Nada Dering — Buat Nada Dering dari Lagu Apa Pun',
       description:
         'Jadikan lagu apa pun nada dering di browser: pilih 40 detik terbaik, tambah fade, ekspor M4R atau MP3 — gratis, tanpa unggah.',
-      h1: 'Nada Dering',
+      h1: 'Nada dering online gratis — Buat nada dering iPhone dari sebuah lagu',
+      heroAlt: 'Simpan hingga 40 detik lagu sebagai M4R atau MP3',
       subtitle: 'Pilih bagian terbaik dari lagu apa pun dan simpan sebagai nada dering — kurang dari semenit.',
       intro:
         'Pilih hook, drop, atau intro dari lagu favorit Anda, lalu jadikan nada dering. Alat ini menahan pilihan pada panjang nada dering klasik, yaitu 40 detik, menambahkan fade jika Anda menginginkannya, dan mengekspor langsung untuk ponsel — M4R untuk iPhone, MP3 untuk ponsel lain.',
@@ -997,7 +1069,8 @@ export const id: Catalog = {
       title: 'Gabung lagu MP3 online gratis',
       description:
         'Gabungkan lagu dan file audio jadi satu trek, urutan apa pun, langsung di browser. Fade opsional — gratis, privat, tanpa unggah.',
-      h1: 'Gabung lagu',
+      h1: 'Gabung lagu online gratis — Satukan beberapa MP3 jadi satu',
+      heroAlt: 'Susun lagu dan catatan suara berurutan',
       subtitle: 'Gabungkan lagu dan file audio menjadi satu trek — urutan apa pun, dalam hitungan detik.',
       intro:
         'Gabungkan beberapa lagu, episode podcast, atau rekaman suara menjadi satu file. Tambahkan trek sebanyak yang Anda mau, atur urutannya, dan pudarkan awal serta akhir bila perlu. Penggabungan terjadi di perangkat Anda — koleksi yang besar pun langsung tergabung dan tetap privat.',
@@ -1042,6 +1115,10 @@ export const id: Catalog = {
           q: 'Apakah kualitas file yang digabung baik?',
           a: 'Menggabungkan ke WAV bersifat lossless — audio tidak dikompres ulang. Ekspor MP3 mengodekan ulang satu kali hingga 320 kbps, dan bedanya praktis tidak terdengar bagi hampir semua pendengar.',
         },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Tambah file, lalu naikkan atau turunkan dengan tombol. Tombolnya ditekan dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. Beberapa file panjang memakai lebih banyak memori, jadi tumpukan yang panjang lebih stabil di komputer.',
+        },
       ],
       dropHint: 'Jatuhkan dua file audio atau lebih, atau klik untuk memilih',
     },
@@ -1052,7 +1129,8 @@ export const id: Catalog = {
       title: 'Konversi WAV ke MP3 — Online dan Gratis',
       description:
         'Konversi WAV ke MP3 di browser — 128, 192, atau 320 kbps. Gratis, tanpa mendaftar: audio dikonversi secara lokal dan tidak pernah diunggah ke server.',
-      h1: 'Konversi WAV ke MP3',
+      h1: 'WAV ke MP3 online gratis — Ubah WAV menjadi MP3',
+      heroAlt: 'Ubah file WAV menjadi MP3 320 kbps',
       subtitle: 'Konversi file WAV ke MP3 dalam hitungan detik — langsung di browser, tidak ada yang diunggah.',
       intro:
         'Ubah rekaman WAV yang berat menjadi MP3 yang ringkas, tanpa menginstal apa pun dan tanpa mengirim audio ke server. Jatuhkan file, pilih bitrate — 320 kbps untuk musik, 128 kbps untuk suara — dan konversi terjadi di perangkat Anda sendiri, biasanya dalam beberapa detik.',
@@ -1097,6 +1175,10 @@ export const id: Catalog = {
           q: 'Apakah file WAV diunggah ke suatu tempat?',
           a: 'Tidak. File didekode di browser Anda, dikodekan ke MP3 oleh pustaka yang ikut terpasang bersama situs ini, lalu disimpan kembali ke disk. Audionya sendiri tidak pernah meninggalkan perangkat Anda.',
         },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file WAV, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
@@ -1108,7 +1190,8 @@ export const id: Catalog = {
       title: 'Ubah FLAC ke MP3 Online Gratis — 320 kbps',
       description:
         'Konversi FLAC ke MP3 di browser — 128, 192, atau 320 kbps. Gratis, tanpa mendaftar: musik dikonversi secara lokal dan tidak pernah diunggah.',
-      h1: 'Konversi FLAC ke MP3',
+      h1: 'FLAC ke MP3 online gratis — Ubah FLAC menjadi MP3',
+      heroAlt: 'Ubah file FLAC menjadi MP3 320 kbps',
       subtitle: 'Ubah file FLAC jadi MP3 dalam hitungan detik — langsung di browser, tanpa unggah.',
       intro:
         'FLAC terdengar sempurna dan menghabiskan setengah hard disk untuk membuktikannya. Ubah pustaka lossless kamu jadi MP3 ringkas yang bisa diputar di head unit mobil, speaker Bluetooth, dan perangkat lama — jatuhkan filenya, pilih bitrate, dan konversi berjalan di perangkatmu sendiri. Satu lagu FLAC 25 MB jadi MP3 12 MB di 320 kbps dalam beberapa detik.',
@@ -1153,6 +1236,10 @@ export const id: Catalog = {
           q: 'Apakah FLAC saya diunggah ke mana pun?',
           a: 'Tidak. File didekode di browser kamu dan dienkode ke MP3 oleh pustaka yang ikut terpasang bersama situs ini. Audionya sendiri tidak pernah meninggalkan perangkatmu.',
         },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file FLAC, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
@@ -1164,7 +1251,8 @@ export const id: Catalog = {
       title: 'Ubah MP3 ke WAV Online Gratis',
       description:
         'Konversi MP3 ke WAV lossless di browser, untuk mengedit, mengarsipkan, dan aplikasi yang minta PCM. Gratis, tanpa daftar, tanpa unggah.',
-      h1: 'Konversi MP3 ke WAV',
+      h1: 'MP3 ke WAV online gratis — Ubah MP3 menjadi file WAV',
+      heroAlt: 'Dekode MP3 menjadi WAV tanpa kompresi',
       subtitle: 'Dekode MP3 jadi audio PCM bersih dalam hitungan detik — langsung di browser, tanpa unggah.',
       intro:
         'Mengubah MP3 ke WAV tidak mengembalikan apa yang dibuang saat kompresi — tidak ada alat yang bisa. Yang didapat adalah audio hasil dekode sebagai PCM 16-bit yang bersih tanpa kehilangan baru: input yang tepat untuk editor audio, sampler, dan apa pun yang meminta WAV, sekaligus titik awal teraman kalau file masih akan diolah. Dekode berjalan di perangkatmu, biasanya dalam satu detik.',
@@ -1209,6 +1297,10 @@ export const id: Catalog = {
           q: 'Apakah MP3 saya diunggah ke mana pun?',
           a: 'Tidak. File didekode di browser kamu dan ditulis sebagai WAV secara lokal. Tidak ada yang meninggalkan perangkatmu.',
         },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file MP3, atau klik untuk memilih',
       exportLabel: 'Konversi ke WAV',
@@ -1220,7 +1312,8 @@ export const id: Catalog = {
       title: 'Kompres Audio Online Gratis — Perkecil Ukuran File',
       description:
         'Perkecil file MP3, WAV, dan audio lain di browser — pilih bitrate lebih rendah, dengar, unduh. Gratis, tanpa unggah.',
-      h1: 'Kompresor Audio',
+      h1: 'Kompresor MP3 online gratis — Kecilkan ukuran file MP3',
+      heroAlt: 'Encode ulang WAV atau MP3 yang besar dengan bitrate lebih rendah',
       subtitle: 'Turunkan bitrate, file tetap bisa diputar — perkecil audio sampai 90% di browser.',
       intro:
         'File audio besar karena bitrate-nya, dan cara jujur mengecilkan satu file adalah mengenkode ulang di bitrate lebih rendah: MP3 320 kbps jadi 128 kbps dengan sekitar 40% ukurannya, dan WAV yang berat jadi MP3 sepersepuluhnya. Pilih target, dengarkan pratinjaunya, lalu ekspor — pengodean berjalan di perangkatmu sendiri, jadi rekaman panjang pun selesai dalam hitungan detik.',
@@ -1265,6 +1358,14 @@ export const id: Catalog = {
           q: 'Apakah file saya diunggah ke mana pun?',
           a: 'Tidak. Dekode dan enkode berjalan di dalam tab browser — kamu bisa memutus internet setelah halaman termuat dan kompresi tetap bekerja.',
         },
+        {
+          q: 'Apakah ini meratakan bagian keras dan pelan?',
+          a: 'Tidak. Halaman ini hanya mengode ulang pada bitrate lebih rendah agar file lebih kecil. Untuk menurunkan puncak dan mengangkat kata yang pelan, gunakan kompresor level. Bitrate ekspor tetap pilihan Anda.',
+        },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
       exportLabel: 'Kompres',
@@ -1276,7 +1377,8 @@ export const id: Catalog = {
       title: 'Putar Balik Audio — Putar Lagu Terbalik Online Gratis',
       description:
         'Putar lagu atau rekaman secara terbalik di browser. Satu klik untuk membalik, dengarkan, simpan sebagai MP3 atau WAV — gratis, tanpa unggah.',
-      h1: 'Putar Balik Audio',
+      h1: 'Putar balik audio online gratis — Putar lagu dari belakang',
+      heroAlt: 'Balik catatan suara supaya dimulai dari akhir',
       subtitle: 'Putar lagu atau rekaman apa pun secara terbalik — satu klik, langsung di browser.',
       intro:
         'Balik trek apa pun agar diputar dari akhir ke awal: cari pesan tersembunyi dalam lagu, buat efek simbal terbalik untuk campuran musik, atau dengarkan seperti apa suara Anda saat diputar balik. Seluruh file dibalik di perangkat Anda, dan baru ditulis saat Anda mengekspor.',
@@ -1331,7 +1433,8 @@ export const id: Catalog = {
       title: 'Percepat lagu online — atau perlambat',
       description:
         'Percepat atau perlambat audio apa pun dari 0.5× hingga 2× di browser. Dengarkan langsung, ekspor MP3 atau WAV — gratis, privat, tidak ada yang diunggah.',
-      h1: 'Percepat lagu',
+      h1: 'Ubah kecepatan audio online gratis — Percepat atau perlambat audio',
+      heroAlt: 'Pelankan lagu untuk latihan, atau percepat sebuah kuliah',
       subtitle: 'Percepat atau perlambat audio apa pun dari 0.5× hingga 2× — langsung di browser.',
       intro:
         'Ubah kuliah 40 menit menjadi 20 menit yang lebih cepat, perlambat solo gitar hingga setengah kecepatan untuk latihan, atau sesuaikan trek agar muat di slot video yang lebih pendek. Geser pengatur kecepatan, dengarkan perubahannya langsung, lalu ekspor — audio diolah di perangkat Anda dan tidak pernah diunggah.',
@@ -1376,6 +1479,10 @@ export const id: Catalog = {
           q: 'Apakah ada batas panjang file?',
           a: 'Tidak ada batas buatan. Batas praktisnya adalah memori perangkat Anda — kira-kira satu jam audio di komputer pada umumnya.',
         },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
@@ -1386,7 +1493,8 @@ export const id: Catalog = {
       title: 'Perbesar Volume MP3 — Buat Audio Lebih Keras, Gratis',
       description:
         'Perbesar audio yang pelan hingga 4× di browser. Limiter bawaan menjaga suara tetap bersih — gratis, dan tidak ada yang diunggah.',
-      h1: 'Perbesar Volume MP3',
+      h1: 'Perbesar volume MP3 online gratis — Buat file MP3 lebih keras',
+      heroAlt: 'Naikkan volume MP3 tanpa pecah',
       subtitle: 'Perbesar rekaman yang pelan hingga 4× — dengan limiter, jadi tidak ada yang clipping.',
       intro:
         'Perbaiki rekaman yang terlalu pelan: memo suara dari ponsel, kuliah yang direkam dari barisan belakang, soundtrack video yang tersimpan pada level rendah. Naikkan volume hingga 4× (12 dB), dan limiter bawaan menahan puncaknya, sehingga hasilnya lebih keras tanpa berubah menjadi distorsi.',
@@ -1431,6 +1539,11 @@ export const id: Catalog = {
           q: 'Apakah ini berjalan pada file video?',
           a: 'Sering kali ya — browser biasanya bisa mendekode trek audio dari file MP4 yang dijatuhkan ke halaman. Jika browser menolak file itu, ekstrak audionya lebih dulu, lalu coba lagi.',
         },
+        { q: "Apa bedanya dengan pengukur kenyaringan?", a: "Halaman ini mengalikan seluruh berkas dengan jumlah yang Anda pilih. Pengukur kenyaringan membaca LUFS terintegrasi — seberapa nyaring berkasnya, bukan ruangannya — dan bisa menyamakan −16, −14, atau −23 tanpa mendorong puncak sampel melewati −1 dBFS. Keduanya tidak meratakan bagian nyaring dan pelan." },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
@@ -1441,7 +1554,8 @@ export const id: Catalog = {
       title: 'Ubah Video Menjadi MP3 Online Gratis — MP4 ke MP3',
       description:
         'Konversi video MP4 ke MP3 di browser — soundtrack diekstrak secara lokal, tidak pernah diunggah. Gratis, cepat, tanpa mendaftar, dan berjalan di ponsel.',
-      h1: 'MP4 ke MP3',
+      h1: 'MP4 ke MP3 online gratis — Ubah video menjadi MP3',
+      heroAlt: 'Ubah trek audio MP4, MOV, atau WebM menjadi MP3',
       subtitle: 'Ambil soundtrack dari video apa pun — langsung di browser, tidak ada yang diunggah.',
       intro:
         'Ubah video MP4 menjadi audio MP3 tanpa menginstal apa pun dan tanpa mengunggah ukuran gigabyte ke server. Browser membaca file dari disk, mendekode soundtrack secara lokal, lalu menyimpannya sebagai MP3 — video 500 MB selesai dalam hitungan detik karena yang diproses hanya trek audionya.',
@@ -1497,7 +1611,8 @@ export const id: Catalog = {
       title: 'Ekstrak Audio dari Video — Simpan Suara sebagai MP3 atau WAV',
       description:
         'Ekstrak trek audio dari video apa pun di browser, lalu simpan sebagai MP3 atau WAV lossless. Gratis, privat, tanpa unggah — juga untuk file yang besar.',
-      h1: 'Ekstrak Audio dari Video',
+      h1: 'Ekstrak audio online gratis — Ekstrak MP3 dari video',
+      heroAlt: 'Simpan trek video sebagai MP3 atau WAV',
       subtitle: 'Simpan soundtrack video apa pun sebagai MP3 atau WAV — secara lokal, dalam hitungan detik.',
       intro:
         'Pisahkan suara dari gambarnya: ambil wawancara dari panggilan video, simpan film konser sebagai album, atau pakai ulang soundtrack di suntingan Anda sendiri. Trek audio didekode di perangkat Anda, lalu bisa disimpan sebagai WAV lossless atau sebagai MP3 yang ringkas.',
@@ -1542,6 +1657,10 @@ export const id: Catalog = {
           q: 'Bisakah audionya dihapus dari video saja?',
           a: 'Itu operasi yang sebaliknya — membisukan video mempertahankan gambar dan membuang suara. Alat ini mempertahankan suara dan membuang gambar.',
         },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file video, atau klik untuk memilih',
       exportLabel: 'Ekstrak Audio',
@@ -1553,7 +1672,8 @@ export const id: Catalog = {
       title: 'Perekam Suara Online — Rekam, Pangkas, dan Simpan Gratis',
       description:
         'Rekam mikrofon di browser, pangkas hasilnya, lalu simpan sebagai MP3 atau WAV. Gratis dan privat — rekaman tidak pernah diunggah.',
-      h1: 'Perekam Suara',
+      h1: 'Perekam suara online gratis — Rekam mikrofon ke MP3',
+      heroAlt: 'Simpan catatan suara sebagai MP3 atau WAV',
       subtitle: 'Rekam mikrofon, pangkas hasilnya, simpan sebagai MP3 — tidak ada yang meninggalkan perangkat.',
       intro:
         'Perekam yang sekaligus bisa memangkas: rekam memo suara, wawancara, latihan, atau catatan rapat, lalu buang bagian hening dan ekspor file yang bersih. Perekaman maupun penyuntingan terjadi di browser Anda — audio tidak pernah dikirim ke mana pun, sehingga tetap nyaman untuk percakapan yang bersifat rahasia.',
@@ -1608,7 +1728,8 @@ export const id: Catalog = {
       title: 'Perbesar Volume Audio Online Gratis — Sampai 4×',
       description:
         'Perbesar volume musik dan soundtrack video yang pelan hingga 4× di browser. Limiter menjaganya tetap bersih — gratis, privat, tidak ada yang diunggah.',
-      h1: 'Perbesar Volume',
+      h1: 'Perbesar volume online gratis — Buat audio dan video lebih keras',
+      heroAlt: 'Keraskan trek video yang terlalu pelan',
       subtitle: 'Perbesar trek dan soundtrack video yang pelan hingga 4× — bersih, tidak clipping.',
       intro:
         'Untuk semua yang terdengar terlalu pelan: video ponsel yang sunyi, rekaman akustik yang lembut, podcast yang hasil mastering-nya nyaris berbisik. Muat file, naikkan volume hingga 4×, dan biarkan limiter bawaan menahan puncak agar bagian yang keras tetap bersih. Berlaku untuk file audio maupun video — yang diproses hanya soundtrack-nya.',
@@ -1653,6 +1774,11 @@ export const id: Catalog = {
           q: 'Mengapa tidak cukup menaikkan volume speaker?',
           a: 'Volume speaker hanya membantu di perangkat Anda. File yang sudah diperbesar terdengar lebih keras di mana pun — di ponsel orang lain, di earphone yang murah, lewat speaker kecil laptop.',
         },
+        {
+          q: 'Apa bedanya dengan kompresor level?',
+          a: 'Halaman ini mengalikan seluruh file, jadi jarak antara keras dan pelan tetap. Kompresor level mempersempit jarak itu, lalu mengembalikan puncak. Pakai halaman ini jika semuanya terlalu pelan. Pakai kompresor jika ada bagian yang berteriak dan ada yang hampir tak terdengar.',
+        },
+        { q: "Apa bedanya dengan pengukur kenyaringan?", a: "Menggeser kontrol ini mengalikan setiap sampel. Pengukur kenyaringan mengukur LUFS terintegrasi dan menawarkan podcast −16, streaming −14, dan siaran −23. Jika puncak sampel akan melewati −1 dBFS, gain berhenti. Ini bukan pengukur ruangan." },
       ],
       dropHint: 'Jatuhkan file audio atau video, atau klik untuk memilih',
     },
@@ -1663,7 +1789,8 @@ export const id: Catalog = {
       title: 'Normalisasi Audio — Samakan Level Online Gratis',
       description:
         'Normalisasi audio ke level puncak yang konsisten di browser — MP3, WAV, M4A, dan lainnya. Satu klik, gratis, tidak ada yang diunggah.',
-      h1: 'Normalisasi Audio',
+      h1: 'Normalisasi audio online gratis — Samakan volume MP3',
+      heroAlt: 'Naikkan file yang pelan ke satu level yang sama',
       subtitle: 'Satu klik untuk menaikkan file yang pelan ke level yang konsisten dan sehat — dianalisis di perangkat Anda.',
       intro:
         'Normalisasi memindai file untuk menemukan puncak paling keras, lalu menaikkan seluruh file tepat sebesar yang dibutuhkan agar puncak itu berada tepat di bawah clipping. Hasilnya: file memakai seluruh rentang volume yang tersedia, tanpa tebakan manual. Ini perbaikan yang tepat ketika rekaman memang pelan secara merata — memo suara, rekaman lapangan, atau hasil ekspor dari aplikasi lain yang keluar di −18 dB.',
@@ -1702,11 +1829,15 @@ export const id: Catalog = {
         },
         {
           q: 'Apakah ini memakai target kenyaringan LUFS seperti layanan streaming?',
-          a: 'Tidak. Ini normalisasi puncak — langsung dan bisa diperkirakan. Layanan streaming menyamakan trek berdasarkan kenyaringan terintegrasi (LUFS), ukuran rata-rata yang lebih panjang dan termasuk ranah mastering. Normalisasi puncak tetap perbaikan cepat yang tepat untuk menyamakan level pemutaran.',
+          a: 'Tidak. Halaman ini menggeser puncak, bukan kenyaringan terintegrasi. Pengukur kenyaringan mengukur LUFS berbobot K dan bisa menempatkan berkas di −16, −14, atau −23. Itu target serah yang umum, bukan batas hukum, dan bukan bacaan ruangan.',
         },
         {
           q: 'Apakah normalisasi mengurangi kualitas?',
           a: 'Perubahan levelnya sendiri bersih secara matematis dan tidak terdengar. Satu-satunya soal kualitas adalah format ekspor: WAV tetap utuh bit demi bit untuk perubahan gain ini, sedangkan MP3 dikodekan ulang satu kali. Ekspor WAV jika file masih akan disunting lagi.',
+        },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
         },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
@@ -1718,7 +1849,8 @@ export const id: Catalog = {
       title: 'Slowed + Reverb — Buat Lagu Slowed + Reverb Online Gratis',
       description:
         'Jadikan lagu apa pun suntingan slowed + reverb di browser — perlambat, beri reverb, ekspor MP3. Gratis, tidak ada yang diunggah.',
-      h1: 'Pembuat Slowed + Reverb',
+      h1: 'Pembuat slowed reverb online gratis — Pelankan lagu dan tambah reverb',
+      heroAlt: 'Turunkan lagu ke sekitar 85% dan tambahkan ekor gema yang lembut',
       subtitle: 'Suara larut malam: perlambat trek ke sekitar 85%, tambahkan ruang, lalu ekspor — tanpa aplikasi, tanpa unggah.',
       intro:
         'Slowed + reverb adalah gaya yang menurunkan lagu ke sekitar 80–90% kecepatan sehingga nadanya ikut turun, lalu menambahkan ekor gema yang lembut sampai semuanya terdengar seperti diputar dari dua ruangan jauhnya. Muat sebuah lagu, geser kecepatan ke sekitar 85%, naikkan reverb sampai terasa pas, lalu ekspor — seluruh suntingan terjadi di perangkat Anda, jadi trek sepanjang lagu penuh pun selesai dalam hitungan detik. Naikkan kecepatan di atas 100%, dan yang Anda dapatkan adalah nightcore.',
@@ -1763,6 +1895,10 @@ export const id: Catalog = {
           q: 'Bisakah lagu slowed dipakai di video?',
           a: 'Memperlambat trek tidak mengubah hak ciptanya. Untuk unggahan YouTube atau TikTok, Anda tetap membutuhkan hak atas lagu aslinya — banyak kreator memakai pustaka musik berlisensi di platform itu, dan menyimpan suntingan slowed untuk rekaman mereka sendiri.',
         },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan lagu, atau klik untuk memilih',
     },
@@ -1772,7 +1908,8 @@ export const id: Catalog = {
       shortName: 'Nada',
       title: 'Pengubah nada — Ubah nada tanpa mengubah durasi',
       description: 'Naikkan atau turunkan nada lagu atau suara hingga 12 seminada, tanpa mengubah durasinya. Gratis, di browser, tidak ada yang diunggah.',
-      h1: 'Pengubah nada',
+      h1: 'Pengubah nada online gratis — Ubah nada sebuah lagu',
+      heroAlt: 'Pindahkan nada MP3 sementara kecepatannya tetap',
       subtitle: 'Geser nada naik atau turun per seminada. Durasi file tetap sama.',
       intro: 'Jatuhkan lagu atau rekaman, lalu geser pengatur nada. Nada berubah, posisinya di waktu tetap. Ini bukan pengubah kecepatan: file tidak menjadi lebih pendek atau lebih panjang. Prosesnya berjalan di perangkat Anda.',
       usesHeading: 'Nada bergerak, waktunya tidak',
@@ -1793,6 +1930,10 @@ export const id: Catalog = {
         { q: 'Apa ini sama dengan mengubah kecepatan?', a: 'Tidak. Pengubah kecepatan memutar file lebih cepat atau lebih lambat, jadi nada ikut berubah dan durasinya juga berubah. Halaman ini hanya menggeser nada.' },
         { q: 'Apakah file diunggah?', a: 'Tidak. Pergeseran dihitung di browser dan hasil ekspor disimpan di perangkat Anda.' },
         { q: 'Bisakah mengubah nada lagu untuk menghindari hak cipta?', a: 'Tidak — mengubah nada tidak menghapus hak atas rekaman. Unggahan yang dinaikkan nadanya tetap bisa diklaim atau dihapus. Ubah kunci untuk bernyanyi atau karaoke, dan gunakan musik yang benar-benar kamu punya haknya saat mempublikasikan.' },
+        {
+          q: 'Apakah bisa di ponsel?',
+          a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+        },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
     },
@@ -1802,7 +1943,8 @@ export const id: Catalog = {
       shortName: 'M4A ke MP3',
       title: 'M4A ke MP3 — Ubah M4A dan AAC online gratis',
       description: 'Ubah audio M4A dan AAC menjadi MP3 di browser. Gratis, tanpa akun, tidak ada yang diunggah. Pilih 128, 192, atau 320 kbps.',
-      h1: 'M4A ke MP3',
+      h1: 'M4A ke MP3 online gratis — Ubah M4A menjadi MP3',
+      heroAlt: 'Ubah catatan suara iPhone atau file AAC menjadi MP3',
       subtitle: 'Ubah file M4A dan AAC menjadi MP3, di browser, tanpa unggahan.',
       intro: 'Memo suara dan rekaman AAC sering berupa M4A. Jatuhkan filenya, pilih bitrate, dan browser mendekode lalu menyimpan MP3. Audionya tidak dikirim ke server.',
       usesHeading: 'M4A yang orang konversi',
@@ -1832,7 +1974,8 @@ export const id: Catalog = {
       shortName: 'OGG ke MP3',
       title: 'Konversi OGG ke MP3 — gratis di browser',
       description: 'Konversi file OGG ke MP3 di browser, tanpa batas ukuran. Gratis, tanpa akun, tidak ada yang diunggah. Vorbis atau Opus di dalam OGG, pada 128, 192, atau 320 kbps.',
-      h1: 'Konversi OGG ke MP3',
+      h1: 'OGG ke MP3 online gratis — Ubah OGG menjadi MP3',
+      heroAlt: 'Ubah Vorbis atau Opus di dalam file OGG menjadi MP3',
       subtitle: 'Ubah audio OGG menjadi MP3 — di browser, tidak ada yang diunggah.',
       intro: 'OGG adalah wadah, biasanya Vorbis, kadang Opus. Jatuhkan file, pilih bitrate, dan browser mendekode lalu menyimpan MP3. Audio tidak dikirim ke server.',
       usesHeading: 'OGG yang orang konversi',
@@ -1862,7 +2005,8 @@ export const id: Catalog = {
       shortName: 'Opus ke MP3',
       title: 'Konversi Opus ke MP3 — suara WhatsApp jadi MP3',
       description: 'Konversi audio Opus ke MP3 di browser. Gratis, tanpa akun, tidak ada yang diunggah. Untuk file .opus dan Opus di dalam OGG atau WebM.',
-      h1: 'Konversi Opus ke MP3',
+      h1: 'Opus ke MP3 online gratis — Ubah Opus menjadi MP3',
+      heroAlt: 'Ubah pesan suara WhatsApp atau Telegram menjadi MP3',
       subtitle: 'Ubah audio Opus menjadi MP3 — di browser, tidak ada yang diunggah.',
       intro: 'Pesan suara dan beberapa unduhan adalah Opus: file .opus, atau Opus di dalam OGG atau WebM. Jatuhkan file, pilih bitrate, dan browser mendekode lalu menyimpan MP3. Audio tidak dikirim ke server.',
       usesHeading: 'Opus yang orang konversi',
@@ -1892,7 +2036,8 @@ export const id: Catalog = {
       shortName: 'Gelombang',
       title: 'Generator gelombang audio — gambar gelombang, PNG gratis',
       description: 'Ubah lagu atau rekaman jadi gambar gelombang yang bersih. Pilih warna, gaya, dan ukuran, lalu unduh PNG tajam. Gratis di browser, tidak ada unggahan.',
-      h1: 'Generator gelombang audio',
+      h1: 'Generator gelombang audio online gratis — Buat gambar gelombang',
+      heroAlt: 'Simpan gelombang sebuah lagu sebagai PNG',
       subtitle: 'Gambar gelombang dari audionya — warna, ukuran, dan PNG transparan, digambar di perangkat Anda.',
       intro: 'Jatuhkan lagu, memo suara, atau podcast dan dapatkan gambar gelombang untuk sampul, latar video, atau unggahan. Batang atau isi, warna, lalu PNG ukuran video, persegi, atau spanduk. Browser menggambar dari file yang Anda buka — tidak ada yang diunggah.',
       usesHeading: 'Gambar ini dipakai untuk',
@@ -1923,7 +2068,8 @@ export const id: Catalog = {
       shortName: 'Spektrogram',
       title: 'Spektrogram online — audio jadi gambar, gratis',
       description: 'Buat spektrogram dari file audio dan unduh PNG. Sumbu log atau linear, warna, rentang dB. Gratis di browser, tidak ada yang diunggah.',
-      h1: 'Generator spektrogram',
+      h1: 'Spektrogram audio online gratis — Lihat frekuensi dalam rekaman',
+      heroAlt: 'Unduh gambar frekuensi sebuah lagu sebagai PNG',
       subtitle: 'Lihat frekuensi dalam lagu atau rekaman, lalu unduh gambarnya. Perhitungan di perangkat Anda.',
       intro: 'Spektrogram menunjukkan frekuensi apa yang ada seiring waktu: suara, bass, dan apa pun yang digambar ke dalam bunyi. Jatuhkan file, pilih sumbu log atau linear, unduh PNG. FFT berjalan di browser — tidak ada yang diunggah.',
       usesHeading: 'Apa yang dicari orang',
@@ -1954,7 +2100,8 @@ export const id: Catalog = {
       shortName: 'Gambar ke audio',
       title: 'Gambar ke audio — buat spektrogram dari gambar',
       description: 'Ubah gambar atau satu baris pendek menjadi WAV yang terlihat di spektrogram. Gratis di browser, tidak ada yang diunggah.',
-      h1: 'Gambar ke audio',
+      h1: 'Gambar ke audio online gratis — Ubah gambar menjadi suara',
+      heroAlt: 'Ubah gambar spektrogram kembali menjadi WAV',
       subtitle: 'Gambar sebuah gambar atau satu baris teks ke dalam WAV. Spektrogram menampilkannya kembali.',
       intro: 'Ketik satu baris pendek atau jatuhkan gambar. Halaman ini menulis bentuk itu ke frekuensi WAV, trik yang sama dengan gambar tersembunyi dalam lagu. Ini bukan lagu dan bukan ucapan. Buka WAV di generator spektrogram. Tidak ada yang diunggah.',
       usesHeading: 'Untuk apa orang memakainya',
@@ -1985,7 +2132,8 @@ export const id: Catalog = {
       title: 'Editor Tag MP3 Online — Edit Tag dan Cover Gratis',
       description:
         'Edit tag MP3 langsung di browser: judul, artis, album, tahun, trek, dan cover. File tidak pernah diunggah. Gratis, tanpa daftar.',
-      h1: 'Editor Tag MP3',
+      h1: 'Editor tag MP3 online gratis — Edit tag ID3',
+      heroAlt: 'Ubah judul, artis, dan sampul sebuah MP3',
       subtitle: 'Perbaiki judul, artis, album, dan cover MP3 dalam kurang dari satu menit — langsung di browser, tanpa diunggah.',
       intro:
         'Satu file MP3 membawa dua hal: musiknya, dan kartu informasi yang ditampilkan pemutar di sebelahnya — judul, artis, album, tahun, cover. Saat kartu itu salah atau hilang, semua perangkat, dari ponsel sampai head unit mobil, hanya menampilkan Artis tidak dikenal atau Track 01. Letakkan file di sini, perbaiki kolomnya, lalu simpan: audio disalin byte demi byte tanpa disentuh, dan tidak pernah meninggalkan perangkat Anda.',
@@ -2011,6 +2159,151 @@ export const id: Catalog = {
       ],
       dropHint: 'Letakkan file MP3 di sini, atau klik untuk memilih',
       exportLabel: 'Simpan MP3',
+    },
+    compressor: {
+      cardLine: 'Turunkan puncak yang keras dan angkat kata yang pelan, tanpa membuat seluruh file lebih keras.',
+      name: 'Kompresor level',
+      shortName: 'Kompresor',
+      title: 'Kompresor level — Ratakan volume online',
+      description:
+        'Ratakan bagian keras dan pelan dari rekaman di browser. Puncak tetap. Ini bukan memperkecil file. Gratis, tanpa unggah.',
+      h1: 'Kompresor audio online gratis — Ratakan bagian keras dan pelan',
+      heroAlt: 'Tahan puncak rekaman suara supaya kata yang pelan ikut terdengar',
+      subtitle: 'Kompresor pita lebar yang menahan lonjakan level. Puncak file tetap di tempat semula.',
+      intro:
+        'Memo suara yang berteriak di satu kalimat dan berbisik di kalimat berikutnya butuh kompresi, bukan kenop volume. Halaman ini menjalankan satu kompresor pita lebar: bagian keras diturunkan, bagian pelan diangkat, lalu ekspor diskalakan agar puncaknya sama dengan file awal. Semuanya di browser. File tidak diunggah.',
+      usesHeading: 'Pekerjaan yang diselesaikan kompresor',
+      uses: [
+        'Ratakan memo suara yang direkam dekat lalu jauh dari ponsel.',
+        'Tahan tamu podcast yang jauh lebih keras daripada pembawa acara.',
+        'Dudukkan vokal di depan saat refrain melonjak dari bait.',
+      ],
+      howTo: [
+        { name: 'Letakkan audio', text: 'MP3, WAV, M4A, OGG, atau FLAC. Dekode tetap di perangkat Anda.' },
+        { name: 'Atur jumlahnya', text: 'Geser Kompres. 30–50% cukup untuk sebagian besar ucapan. 100% menekan keras: ambang −36 dB, rasio 8:1.' },
+        { name: 'Dengar dan ekspor', text: 'Putar hasilnya, lalu ekspor MP3 atau WAV. Puncak dikembalikan ke puncak asli, tepat di bawah skala penuh.' },
+      ],
+      faqs: [
+        { q: 'Apakah audio saya diunggah?', a: 'Tidak. Kompresor adalah prosesor dinamika Web Audio di dalam tab browser. Setelah halaman termuat, Anda bisa offline dan tetap mengekspor.' },
+        { q: 'Apa yang terjadi pada audio?', a: 'Satu kompresor pita lebar (ambang dari −18 dB sampai −36 dB, rasio dari sedikit di atas 1:1 sampai 8:1). Kompresor tidak punya penguatan kompensasi, jadi halaman ini menskalakan ekspor sampai puncak sumber, atau sekitar −0.2 dBFS jika sumber sudah lebih panas. WAV menjaga perubahan level itu. MP3 dikode ulang sekali.' },
+        { q: 'Apakah ini memperkecil file?', a: 'Tidak. Memperkecil file berarti mengode ulang pada bitrate lebih rendah, yaitu halaman kompresor audio. Halaman ini mengubah dinamika dan menyerahkan bitrate pada format ekspor.' },
+        { q: 'Apa bedanya dengan penguat volume dan normalisasi?', a: 'Penguat volume mengalikan seluruh file. Normalisasi menaikkan semuanya sampai sampel terkeras mencapai target. Keduanya membiarkan jarak keras–pelan tetap. Halaman ini mempersempit jarak itu. Satu pita, bukan rantai multiband, dan tidak menghapus derau.' },
+        { q: 'Bisakah menghilangkan derau ruangan?', a: 'Tidak. Mengangkat bagian pelan juga mengangkat desis dan derau ruangan. Jika masalahnya derau, kompresi membuatnya lebih jelas. Potong bagian senyap, atau rekam ulang.' },
+        { q: 'Apakah berfungsi di ponsel?', a: 'Ya. Slider dan ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari saat ini. Beberapa menit ucapan diekspor dalam satu atau dua detik di ponsel yang baru.' },
+      ],
+      dropHint: 'Letakkan file audio di sini, atau klik untuk memilih',
+    },
+    echo: {
+      cardLine: 'Tambahkan pengulangan yang bisa dihitung: satu tepukan pendek, bukan kabut reverb.',
+      name: 'Gema',
+      shortName: 'Gema',
+      title: 'Tambah gema ke audio — efek gema online',
+      description: 'Tambahkan gema berwaktu ke audio apa pun di browser. Anda yang mengatur tunda dan pengulangan. Gratis, tanpa unggah.',
+      h1: 'Gema online gratis — Tambah gema ke audio',
+      heroAlt: 'Tambahkan delay dan pengulangan ke sebuah rekaman',
+      subtitle: 'Pengulangan yang terpisah, pada tunda yang Anda pilih: dari tepukan pendek sampai 0,8 d.',
+      intro: 'Gema adalah salinan yang kembali setelah jeda yang bisa dihitung. Tunda berjalan dari beberapa perseratus detik sampai 0,8 detik, dan pengulangan menentukan seberapa banyak setiap salinan masuk lagi. Campuran basah tetap 45%. Tunda nol membuat file tidak berubah. Prosesnya tetap di browser.',
+      usesHeading: 'Gema yang memang dicari',
+      uses: ['Beri vokal tepukan pendek agar punya ruang tanpa menjadi bubur.', 'Buat pukulan gitar atau drum kembali tepat pada ketukan.', 'Dengar satu kalimat kembali sekali, jelas, bukan kabut reverb.'],
+      howTo: [
+        { name: 'Letakkan audio', text: 'MP3, WAV, M4A, OGG, atau FLAC. Dekode tetap di perangkat Anda.' },
+        { name: 'Atur tunda dan ulangan', text: 'Tunda adalah jeda sebelum salinan pertama, sampai 0,8 d. Ulangan adalah umpan balik, paling tinggi 55% agar tidak lari.' },
+        { name: 'Dengar dan ekspor', text: 'Putar, lalu ekspor MP3 atau WAV. File bertambah dengan ekor pengulangan, paling lama 4 detik.' },
+      ],
+      faqs: [
+        { q: 'Apakah audio saya diunggah?', a: 'Tidak. Gema adalah tunda Web Audio di dalam tab. Setelah halaman termuat, Anda bisa offline dan tetap mengekspor.' },
+        { q: 'Apa yang sebenarnya dilakukan efek ini?', a: 'Salinan sinyal ditunda sesuai waktu yang Anda atur dan dicampur pada 45%. Setiap salinan masuk lagi ke tunda pada tingkat ulangan, sampai 0,55, jadi semakin pelan, bukan melengking. WAV menjaga campuran itu. MP3 dikode ulang sekali.' },
+        { q: 'Apa bedanya dengan slowed + reverb?', a: 'Slowed + reverb adalah kabut: nada turun bersama kecepatan dan ekornya adalah pantulan yang melebur. Halaman ini menjaga tempo asli dan menambah salinan yang terdengar satu per satu. Kecepatan dan nada tidak berubah.' },
+        { q: 'Mengapa pengulangan tidak makin keras?', a: 'Umpan balik dibatasi 55% dan ekor yang dirender dibatasi 4 detik. Cukup untuk mendengar beberapa salinan. Ini tidak menjadi derau yang berosilasi sendiri.' },
+        { q: 'Bisakah menggema hanya sebagian lagu?', a: 'Bisa. Pilih bagian pada gelombang dan pertahankan pilihan itu. Pengulangan ditambahkan pada yang Anda ekspor, bukan pada sisa file.' },
+        { q: 'Apakah berfungsi di ponsel?', a: 'Ya. Kedua slider dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari saat ini.' },
+      ],
+      dropHint: 'Letakkan file audio di sini, atau klik untuk memilih',
+    },
+    'silence-remover': {
+      cardLine: "Potong senyap yang panjang dan biarkan napas pendek tetap di tempatnya.",
+      name: "Hapus senyap",
+      shortName: "Senyap",
+      title: "Hapus senyap dari audio — Potong jeda online gratis",
+      description: "Hapus senyap panjang dari audio apa pun di peramban. Anda yang menentukan seberapa pelan dan seberapa lama. Gratis, tidak ada yang diunggah.",
+      h1: 'Hapus senyap online gratis — Hapus senyap dari audio',
+      heroAlt: 'Potong jeda panjang dari rekaman suara',
+      subtitle: "Buang udara mati. Jeda yang lebih pendek dari batas yang Anda set tetap ada.",
+      intro: "Alat ini mencari bagian yang lebih pelan dari ambang dan lebih lama dari jeda minimum, lalu memotongnya. Ambang bawaan −40 dBFS cocok untuk ucapan dan memo suara. Setiap potongan menyisakan 0,08 detik di kedua tepi supaya awal atau akhir kata tidak terpotong. Jeda yang lebih pendek dari batas tetap ada. Musik pelan dan ekor yang menghilang juga berada di bawah −40 dBFS dan ikut terpotong. Kalau Anda ingin memilih dengan tangan, pakai pemotong audio. Jika seluruh berkas di bawah ambang, ekspor adalah berkas asli. Pemrosesan tetap di peramban Anda.",
+      usesHeading: "Di mana udara mati itu ada",
+      uses: ["Rapatkan memo suara atau rekaman podcast yang jedanya panjang antar kalimat.", "Buang senyap dari kuliah tanpa memotong setiap jeda dengan tangan.", "Bersihkan rekaman sebelum ekspor, dan biarkan napas pendek tetap ada."],
+      howTo: [
+        { name: "Letakkan audio", text: "MP3, WAV, M4A, OGG, atau FLAC apa pun. Berkas didekode di perangkat Anda." },
+        { name: "Atur ambang dan jeda", text: "Ambang adalah seberapa pelan sebuah bagian, dari −60 sampai −20 dBFS. Jeda minimum adalah berapa lama bagian itu harus bertahan sebelum dihapus, dari 0,1 sampai 2 detik. Baris status menulis kira-kira berapa detik yang akan hilang." },
+        { name: "Ekspor", text: "Putar berkas asli untuk memeriksa, lalu ekspor MP3 atau WAV. Berkasnya adalah bagian yang bersuara digabung, dengan 0,08 detik tersisa di setiap potongan." },
+      ],
+      faqs: [
+        { q: "Apakah audio saya diunggah?", a: "Tidak. Level diukur di peramban dan bagian pelan dipotong di memori. Setelah halaman termuat Anda bisa offline dan ekspor tetap jalan." },
+        { q: "Apa yang benar-benar dihapus?", a: "Sebuah bagian dihapus hanya jika lebih pelan dari ambang dan lebih lama dari jeda minimum. Bawaan adalah −40 dBFS dan 0,35 detik. Setiap bagian menyisakan 0,08 detik di kedua ujung. Jeda yang lebih pendek, termasuk sebagian besar napas, tetap ada." },
+        { q: "Apakah musik pelan ikut terpotong?", a: "Ya, jika musik itu tetap di bawah ambang lebih lama dari jeda. −40 dBFS untuk ucapan. Alas pelan, fade, atau derau ruang dalam campuran musik dianggap senyap. Naikkan ambang ke arah −20 jika Anda hanya ingin nol digital yang hampir hening, atau pakai pemotong audio dan pilih dengan tangan." },
+        { q: "Bagaimana jika seluruh berkas pelan?", a: "Tidak ada yang dipotong. Baris status mengatakannya, dan ekspor adalah berkas asli." },
+        { q: "Apa bedanya dengan pemotong?", a: "Pemotong audio dan pemotong MP3 menyimpan wilayah yang Anda gambar di gelombang. Halaman ini menemukan senyap panjang dari level dan menghapus semuanya dalam satu ekspor. Kecepatan, nada, dan kenyaringan yang tersisa tidak berubah." },
+        { q: "Apakah ini jalan di ponsel?", a: "Ya. Kedua penggeser dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari yang sekarang." },
+      ],
+      dropHint: "Letakkan berkas audio, atau klik untuk menelusuri",
+    },
+    'loudness-meter': {
+      cardLine: "Baca seberapa nyaring sebuah berkas dalam LUFS, lalu samakan ke target podcast, streaming, atau siaran.",
+      name: "Pengukur kenyaringan",
+      shortName: "Kenyaringan",
+      title: "Pengukur kenyaringan — Lihat LUFS audio online gratis",
+      description: "Ukur LUFS terintegrasi sebuah audio di peramban, lalu samakan ke −16, −14, atau −23. Puncak sampel tidak melewati −1 dBFS. Gratis, tidak ada yang diunggah.",
+      h1: 'Pengukur LUFS online gratis — Cek LUFS sebuah lagu',
+      heroAlt: 'Lihat apakah file cocok dengan target kenyaringan podcast atau streaming',
+      subtitle: "LUFS terintegrasi dari berkas yang Anda letakkan, bukan kenyaringan ruangan.",
+      intro: "Letakkan berkas dan baca kenyaringan terintegrasinya dalam LUFS, plus puncak sampel. Lalu samakan ke satu target serah: podcast −16, streaming −14, atau siaran −23. Gain adalah satu angka untuk seluruh berkas. Jika gain itu mendorong sampel paling nyaring melewati −1 dBFS, gain berhenti di situ dan halaman memberi tahu LUFS yang benar-benar tercapai. Ini bukan pengukur SPL ruangan, dan bukan normalisasi puncak. −16, −14, dan −23 adalah target serah yang umum, bukan batas hukum. Pemrosesan tetap di peramban Anda.",
+      usesHeading: "Untuk apa angka ini",
+      uses: ["Lihat apakah memo suara atau campuran sudah dekat target podcast sebelum Anda kirim.", "Angkat berkas yang pelan ke arah −16 atau −14 tanpa membiarkan puncak sampel melewati −1 dBFS.", "Baca stereo sebagai stereo. Dua kanal tidak dicampur dulu sebelum pengukuran."],
+      howTo: [
+        { name: "Letakkan audio", text: "MP3, WAV, M4A, OGG, atau FLAC apa pun. Berkas didekode dan diukur di perangkat Anda." },
+        { name: "Baca pengukur", text: "Terintegrasi adalah kenyaringan berkas dengan bobot K, dalam LUFS. Puncak sampel adalah sampel terbesar, dalam dBFS. Berkas yang senyap tidak punya kenyaringan untuk disamakan." },
+        { name: "Pilih target dan ekspor", text: "Podcast −16, streaming −14, siaran −23. Ekspor MP3 atau WAV. Jika puncak akan melewati −1 dBFS, gain berhenti dan catatan menunjukkan LUFS yang Anda dapat." },
+      ],
+      faqs: [
+        { q: "Apakah audio saya diunggah?", a: "Tidak. Berkas didekode dan diukur di peramban. Setelah halaman termuat Anda bisa offline dan ekspor tetap jalan." },
+        { q: "Apa arti angkanya?", a: "LUFS terintegrasi adalah seberapa nyaring berkas sepanjang durasinya, setelah bobot K dari ITU-R BS.1770. Itu sifat berkas. Bukan bacaan ruangan, dan bukan tingkat tekanan suara berbobot A." },
+        { q: "Apa bedanya dengan normalisasi?", a: "Normalisasi menaikkan berkas sampai sampel paling nyaring menyentuh sebuah puncak. Halaman ini menyamakan kenyaringan terintegrasi. Berkas bisa sudah dinormalisasi puncaknya dan tetap jauh dari −16 LUFS. Bagian nyaring dan pelan tetap berjarak sama. Kompresor level adalah halaman yang mempersempit jarak itu." },
+        { q: "Apakah −16, −14, dan −23 batas hukum?", a: "Bukan. Itu target serah yang umum: podcast sering minta sekitar −16 LUFS, streaming musik sekitar −14, dan siaran sekitar −23. Halaman ini tidak menjanjikan berkas Anda lolos pemeriksaan platform atau lembaga siaran." },
+        { q: "Apakah puncak ini puncak sejati?", a: "Bukan. Puncak sampel adalah sampel terbesar dalam berkas. Puncak sejati butuh oversampling dan bisa sedikit lebih tinggi di antara sampel. Halaman ini menahan puncak sampel di −1 dBFS dan tidak melaporkan dBTP." },
+        { q: "Apakah ini jalan di ponsel?", a: "Ya. Tiga target dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari yang sekarang." },
+      ],
+      dropHint: "Letakkan berkas audio, atau klik untuk menelusuri",
+    },
+    'multi-track-audio-editor': {
+      cardLine: 'Tumpuk vokal, narasi, dan musik di satu linimasa, lalu ekspor satu mix.',
+      name: 'Editor audio multi-track',
+      shortName: 'Multi-track',
+      title: 'Editor audio multi-track online gratis',
+      description: 'Tumpuk file di satu linimasa, atur level dan pan tiap trek, lalu ekspor satu mix. Gratis, di browser, tidak diunggah.',
+      h1: 'Editor audio multi-track online gratis — Tumpuk trek jadi satu mix',
+      heroAlt: 'Atur level dan pan vokal di atas beat',
+      subtitle: 'Tumpuk sampai 8 file, seimbangkan masing-masing, ekspor satu mix.',
+      intro: 'Letakkan vokal di atas beat, atau narasi di atas musik, lalu dengarkan bersama. Setiap file adalah satu trek: level, pan, bisu, solo, dan kapan mulai. Penjumlahannya di browser Anda. Tidak ada yang diunggah. Menutup tab mengakhiri sesi.',
+      usesHeading: 'Mix untuk halaman ini',
+      uses: [
+        'Taruh memo suara di bawah musik dan geser supaya suara masuk setelah intro.',
+        'Seimbangkan stem yang sudah ada — vokal, drum, gitar — lalu ekspor satu file.',
+        'Dengarkan satu trek sendirian, lalu kembalikan yang lain, tanpa memasang DAW.',
+      ],
+      howTo: [
+        { name: 'Tambahkan file', text: 'Letakkan dua audio atau lebih, atau klik untuk memilih. Setiap file jadi satu trek. Halaman ini berhenti di 8.' },
+        { name: 'Atur posisi dan balance', text: 'Seret klip untuk menentukan kapan masuk. Seret kedua tepi untuk memotong. Atur level dan pan di baris itu, atau ketik waktunya. Bisukan dan Solo ada di baris yang sama.' },
+        { name: 'Putar, lalu ekspor', text: 'Tekan Putar mix. Ekspor MP3 atau WAV. Jika jumlahnya akan pecah, seluruh mix diturunkan dengan faktor yang sama dan halaman menulis berapa dB.' },
+      ],
+      faqs: [
+        { q: 'Apakah audio saya diunggah?', a: 'Tidak. Browser mendekode setiap file dengan decodeAudioData dan menjumlahkan sampel di memori. Setelah halaman termuat, ekspor tidak butuh server. Menutup tab membuang sesi: tidak ada akun dan tidak ada proyek tersimpan.' },
+        { q: 'Apa yang terjadi pada suaranya?', a: 'Trek di-resample ke sample rate tertinggi di antara mereka, minimal 44,1 kHz, dengan interpolasi linear. Ekspor WAV adalah PCM 16-bit dari mix stereo itu. MP3 dikode sekali, pada bitrate yang Anda pilih, sampai 320 kbps. Jika puncak jumlah melewati 0,98, seluruh mix diskalakan supaya puncaknya jatuh di 0,98. Itu satu perubahan gain, bukan kompresor, dan tidak menambah encode kedua.' },
+        { q: 'Apa yang tidak bisa dilakukan?', a: 'Tidak merekam MIDI, tidak memuat instrumen atau sampel, tidak menggambar kurva volume, dan tidak otomatis mengecilkan musik di bawah suara. Satu klip per trek, delapan trek, tanpa file proyek. Plugin, otomasi, dan sesi yang dibuka lagi besok ada di Audacity atau DAW browser seperti BandLab.' },
+        { q: 'Bedanya dengan menggabungkan audio?', a: 'Penggabung meletakkan file berurutan: satu selesai, berikutnya mulai, dengan crossfade opsional. Halaman ini memutarnya bersamaan. Daftar putar dalam satu file adalah penggabung. Vokal di atas beat adalah halaman ini.' },
+        { q: 'Apakah jalan di ponsel?', a: 'Ya. Linimasa digeser ke samping. Level, pan, awal, dan potongan adalah slider dan angka, tanpa seretan yang presisi. Chrome, Edge, Firefox, dan Safari sekarang mendekode format yang umum. File yang tidak bisa didekode dilewati, trek lain tetap ada.' },
+        { q: 'Mengapa hanya 8 trek?', a: 'Setiap trek didekode ke memori sebelum diputar. Delapan file stereo sudah banyak untuk tab ponsel. Produksi 16 trek dengan plugin adalah alat lain.' },
+      ],
+      dropHint: 'Letakkan dua audio atau lebih untuk menumpuknya',
     },
   },
 };

@@ -6,6 +6,7 @@
  */
 import { formatBytes, formatTime } from '../lib/format';
 import { readEditorText, showToast } from './messages';
+import { bindDeliveryChips, bindFileOpen } from './delivery';
 import { TRANSCRIBE_LANGUAGES, languageName } from './transcribe-langs';
 import { chunksToSrt, type TranscriptChunk } from './srt';
 import { fill } from '../i18n/inline';
@@ -124,13 +125,8 @@ class Transcriber {
   private bind(): void {
     const { els } = this;
 
-    els.dropzone.addEventListener('click', () => els.fileInput.click());
-    els.dropzone.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        els.fileInput.click();
-      }
-    });
+    bindDeliveryChips(els.root);
+    bindFileOpen(els.dropzone, () => els.fileInput.click());
     els.fileInput.addEventListener('change', () => {
       const file = els.fileInput.files?.[0];
       if (file) void this.loadFile(file);

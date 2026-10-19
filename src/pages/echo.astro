@@ -1,0 +1,8 @@
+---
+import ToolPage from '../components/ToolPage.astro';
+import { getTool } from '../data/tools';
+
+const tool = getTool('echo')!;
+---
+
+<ToolPage tool={tool} />

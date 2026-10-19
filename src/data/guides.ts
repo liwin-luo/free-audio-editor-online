@@ -39,7 +39,7 @@ export const GUIDES: GuideCard[] = [
     href: '/guides/audacity-alternative',
     title: 'Audacity Alternative: When a Browser Tool Is Enough',
     description:
-      'Audacity is still the right tool for multitrack work. For a single cut, conversion or ringtone, a browser tool is faster and never uploads the file.',
+      'Audacity keeps sessions, plugins and projects you reopen. The browser stacks files you already have, and nothing is uploaded.',
     minutes: 8,
   },
   {
@@ -89,6 +89,22 @@ export const GUIDES: GuideCard[] = [
     description:
       'Trim and edit a WAV before you convert it. When to stay 16-bit PCM, when a 320 kbps MP3 is enough, and why MP3 to WAV does not restore quality.',
     minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/remove-silence-from-podcast',
+    title: 'How to Remove Silence from a Podcast',
+    description:
+      'Cut pauses longer than the gap you set. Breaths shorter than that stay. Quiet music and fading tails belong on the trimmer, not the silence remover.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/podcast-loudness-lufs',
+    title: 'What LUFS Should a Podcast Be?',
+    description:
+      '−16 LUFS is the usual podcast target, −14 is streaming, −23 is broadcast. The meter reads the file, and the sample peak stops at −1 dBFS.',
+    minutes: 5,
   },
   {
     locale: 'es',

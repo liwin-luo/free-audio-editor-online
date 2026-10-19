@@ -18,7 +18,13 @@
     "check:waveform": "node_modules/.bin/esbuild scripts/waveform-range-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/waveform-range-check.mjs && node /tmp/waveform-range-check.mjs",
     "check:spectrogram": "node_modules/.bin/esbuild scripts/spectrogram-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/spectrogram-check.mjs && node /tmp/spectrogram-check.mjs",
     "check:srt": "node_modules/.bin/esbuild scripts/srt-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/srt-check.mjs && node /tmp/srt-check.mjs",
-    "check:tags": "node_modules/.bin/esbuild scripts/tags-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/tags-check.mjs && node /tmp/tags-check.mjs"
+    "check:tags": "node_modules/.bin/esbuild scripts/tags-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/tags-check.mjs && node /tmp/tags-check.mjs",
+    "check:silence": "node_modules/.bin/esbuild scripts/silence-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/silence-check.mjs && node /tmp/silence-check.mjs",
+    "check:loudness": "node_modules/.bin/esbuild scripts/loudness-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/loudness-check.mjs && node /tmp/loudness-check.mjs",
+    "check:mixer": "node_modules/.bin/esbuild scripts/mixer-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/mixer-check.mjs && node /tmp/mixer-check.mjs",
+    "check:delivery": "node_modules/.bin/esbuild scripts/delivery-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/delivery-check.mjs && node /tmp/delivery-check.mjs",
+    "desktop": "tauri dev",
+    "desktop:build": "tauri build"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",
@@ -26,6 +32,8 @@
     "@fontsource-variable/geist": "^5.1.0",
     "@fontsource-variable/geist-mono": "^5.1.0",
     "@huggingface/transformers": "^3.8.1",
+    "@tauri-apps/plugin-dialog": "^2.8.3",
+    "@tauri-apps/plugin-fs": "^2.7.1",
     "@vercel/analytics": "^2.0.1",
     "astro": "^5.1.0",
     "browser-id3-writer": "^6.4.0",
@@ -34,6 +42,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@tailwindcss/vite": "^4.0.0",
+    "@tauri-apps/cli": "^2.12.3",
     "image-size": "^2.0.4",
     "puppeteer-core": "^24.43.1",
     "tailwindcss": "^4.0.0",

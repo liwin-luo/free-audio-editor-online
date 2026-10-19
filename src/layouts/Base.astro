@@ -130,16 +130,33 @@ const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
         import('@vercel/analytics').then(({ inject }) => inject());
       }
     </script>
+    <script>
+      import { installDesktopSave } from '../desktop/save';
+      installDesktopSave();
+    </script>
     <script is:inline>
-      // Userback feedback widget — loads in all environments, including local
-      // dev. No user_data: the site has no login, so visitors stay anonymous.
-      window.Userback = window.Userback || {};
-      Userback.access_token = 'A-cawCPZd8Mqr5Qea3QzjeqN8lP';
+      // Feedback widget, anonymous (no login). Load on the first tap or key,
+      // otherwise after the page has been up for 8s, so it stays off first paint.
       (function (d) {
-        var s = d.createElement('script');
-        s.async = true;
-        s.src = 'https://static.userback.io/widget/v1.js';
-        (d.head || d.body).appendChild(s);
+        var w = d.defaultView;
+        var loaded = false;
+        function load() {
+          if (loaded) return;
+          loaded = true;
+          w.Userback = w.Userback || {};
+          w.Userback.access_token = 'A-cawCPZd8Mqr5Qea3QzjeqN8lP';
+          var s = d.createElement('script');
+          s.async = true;
+          s.src = 'https://static.userback.io/widget/v1.js';
+          (d.head || d.body).appendChild(s);
+        }
+        d.addEventListener('pointerdown', load, { once: true, passive: true });
+        d.addEventListener('keydown', load, { once: true });
+        w.setTimeout(function () {
+          var idle = w.requestIdleCallback;
+          if (idle) idle(load, { timeout: 2000 });
+          else load();
+        }, 8000);
       })(document);
     </script>
   </body>

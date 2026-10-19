@@ -1,0 +1,101 @@
+---
+/**
+ * Multi-track mixer island. Markup shell; src/editor/mixer-ui.ts wires it.
+ */
+import Icon from '../Icon.astro';
+import DropPromise from './DropPromise.astro';
+import { EXPORT_FORMATS } from '../../editor/encoders';
+import { getShell } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { EditorConfig } from '../../data/tools';
+
+interface Props {
+  config: EditorConfig;
+  locale?: Locale;
+}
+const { config, locale = 'en' } = Astro.props;
+const { editor: t, ui } = getShell(locale);
+const allowed = config.formats ?? EXPORT_FORMATS.filter((f) => f.kind !== 'm4r').map((f) => f.id);
+const formats = allowed
+  .map((id) => EXPORT_FORMATS.find((f) => f.id === id))
+  .filter((f) => f !== undefined);
+---
+
+<div
+  data-audio-mixer
+  data-config={JSON.stringify(config)}
+  data-i18n={JSON.stringify(t)}
+  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+>
+  <DropPromise config={config} locale={locale}>
+    <div data-open tabindex="0" role="button" aria-label={config.dropHint}>
+      <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
+        <Icon name="layers" size={20} />
+      </span>
+      <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
+    </div>
+  </DropPromise>
+  <div class="mb-5 mt-4 text-center">
+    <p class="inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
+      <Icon name="shield-check" size={14} class="text-accent" />
+      {t.joinerLocal}
+    </p>
+  </div>
+  <input type="file" class="hidden" multiple accept="audio/*,video/mp4,.m4a,.opus" data-file-input />
+
+  <div data-workspace class="hidden">
+    <div class="flex flex-wrap items-center gap-2 border-b border-line px-4 py-2.5 md:px-5">
+      <p class="text-sm font-medium" data-summary></p>
+      <div class="ml-auto flex flex-wrap items-center gap-2">
+        <button type="button" class="btn btn-ghost h-9" data-add>{t.mixAdd}</button>
+        <button type="button" class="btn btn-ghost h-9" data-play>{t.mixPlay}</button>
+        <button type="button" class="btn btn-ghost h-9" data-stop>{t.mixStop}</button>
+        <button type="button" class="btn btn-ghost h-9" data-clear>{t.startOver}</button>
+      </div>
+    </div>
+
+    <div class="border-b border-line px-4 py-3 md:px-5">
+      <label class="block max-w-xs">
+        <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+          {t.mixMaster}
+          <span class="font-mono text-xs tabular-nums" data-master-label>100%</span>
+        </span>
+        <input type="range" data-master min="0" max="100" step="1" value="100" class="w-full accent-(--color-accent)" />
+      </label>
+    </div>
+
+    <div data-scroll class="overflow-x-auto">
+      <div data-inner class="relative min-w-full">
+        <div data-ruler class="h-6 cursor-pointer border-b border-line" aria-hidden="true"></div>
+        <div data-playhead class="pointer-events-none absolute top-0 bottom-0 z-20 w-px bg-accent"></div>
+        <div data-rows></div>
+      </div>
+    </div>
+
+    <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+      <label class="flex items-center gap-2 text-sm text-ink2">
+        {t.format}
+        <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+          {formats.map((f) => (
+            <option value={f.id} selected={f.id === config.defaultFormat}>
+              {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
+            </option>
+          ))}
+        </select>
+      </label>
+      <button type="button" class="btn btn-primary btn-lg ml-auto" data-export disabled>
+        <Icon name="download-simple" size={18} />
+        {t.mixExport}
+      </button>
+    </div>
+  </div>
+
+  <p data-status class="sr-only" role="status" aria-live="polite"></p>
+</div>
+
+<div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2"></div>
+
+<script>
+  import { initMixers } from '../../editor/mixer-ui';
+  initMixers();
+</script>

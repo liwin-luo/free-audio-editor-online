@@ -21,7 +21,6 @@ export const de: Catalog = {
     guides: 'Anleitungen',
     rights: 'Keine Datei verlässt dein Gerät.',
     clientSide: '100 % Verarbeitung im Browser',
-    trustLocal: 'Lokal verarbeitet — nichts wird hochgeladen',
     trustFree: 'Kostenlos, ohne Anmeldung',
     trustClean: 'Ohne Wasserzeichen',
     faqHeading: 'Häufige Fragen',
@@ -61,6 +60,11 @@ export const de: Catalog = {
   editor: {
     dropHour: 'MP3, WAV, M4A, OGG, FLAC, AAC — bis etwa eine Stunde',
     dropLocal: 'Lokal verarbeitet — deine Datei verlässt diesen Tab nie',
+    formatsMore: ' und mehr',
+    etaModel: 'beim ersten Mal wird das Modell geladen, danach etwa so lange wie die Aufnahme',
+    limitTenMin: 'höchstens 10 Minuten',
+    limitRingtone: 'höchstens 40 Sekunden',
+    chipText: 'Text',
     zoomOut: 'Verkleinern',
     zoomIn: 'Vergrößern',
     loadDifferent: 'Andere Datei laden',
@@ -70,6 +74,7 @@ export const de: Catalog = {
     pause: 'Pause',
     hintSelect: 'Auf der Wellenform ziehen, um auszuwählen · Leertaste zum Abspielen',
     hintConvert: 'Leertaste zum Abspielen · nichts wird hochgeladen',
+    hintSilence: 'Pausen länger als das Minimum fallen beim Export weg. Kurzes Atemholen bleibt.',
     reverse: 'Rückwärts abspielen',
     normalize: 'Peak normalisieren',
     speed: 'Geschwindigkeit',
@@ -80,6 +85,21 @@ export const de: Catalog = {
     cutoff: 'Grenzfrequenz',
     volume: 'Lautstärke',
     reverb: 'Hall',
+    compress: 'Kompressor',
+    echoDelay: 'Delay',
+    echoFeedback: 'Wiederholungen',
+    silenceThreshold: 'Schwelle',
+    silenceGap: 'Mindestpause',
+    silenceRemove: 'Entfernt etwa {time} Stille',
+    silenceKeepFile: 'Nichts liegt über der Schwelle, der Export behält die ganze Datei',
+    lufsIntegrated: 'Integriert',
+    lufsPeak: 'Sample-Peak',
+    lufsPodcast: 'Podcast',
+    lufsStreaming: 'Streaming',
+    lufsBroadcast: 'Broadcast',
+    lufsLimited: 'Peak bleibt bei −1 dBFS. Ergebnis: {lufs} LUFS.',
+    lufsWill: 'Der Export landet bei {lufs} LUFS.',
+    lufsSilent: 'Diese Datei ist stumm, es gibt keine Lautheit zum Angleichen.',
     adjust: 'Anpassen — Ein- und Ausblenden, Lautstärke, Geschwindigkeit, Rückwärts',
     fadeIn: 'Einblenden',
     fadeOut: 'Ausblenden',
@@ -230,6 +250,21 @@ export const de: Catalog = {
     trTooLong:
       'Diese Datei dauert über 10 Minuten. Schneide sie erst zurecht — der Audio-Trimmer arbeitet genauso privat — und transkribiere sie dann hier.',
     trFail: 'Transkription fehlgeschlagen. Versuche das Tiny-Modell, eine klarere Datei oder einen aktuellen Browser.',
+    mixMute: 'Stumm',
+    mixSolo: 'Solo',
+    mixPan: 'Pan',
+    mixOffset: 'Start',
+    mixTrimIn: 'Anfang kürzen',
+    mixTrimOut: 'Ende kürzen',
+    mixGain: 'Pegel',
+    mixMaster: 'Master',
+    mixPlay: 'Mix abspielen',
+    mixStop: 'Stopp',
+    mixAdd: 'Spuren hinzufügen',
+    mixLimit: 'Diese Seite nimmt 8 Spuren. Exportiere diesen Mix, oder nimm einen Desktop-Editor für eine größere Session.',
+    mixPulled: 'Mix um {db} dB abgesenkt, damit die Spitze nicht übersteuert.',
+    mixExport: 'Mix exportieren',
+    mixDecode: '{name} konnte nicht dekodiert werden.',
   },
   home: {
     title: 'Audio online bearbeiten — kostenloser Audio-Editor',
@@ -241,6 +276,24 @@ export const de: Catalog = {
     lede: 'Kürze, schneide, füge zusammen und bearbeite Audio direkt im Browser. Ohne Anmeldung, ohne Wasserzeichen, ohne Upload — deine Dateien verlassen dein Gerät nie.',
     ctaTrim: 'Audiodatei kürzen',
     ctaMerge: 'Songs zusammenfügen',
+    highlightsLabel: 'Warum es so funktioniert',
+    priceSymbol: '$',
+    priceAmount: '0',
+    priceWord: 'Kostenlos',
+    highlights: [
+      {
+        title: 'Nichts wird hochgeladen',
+        body: 'Die Datei wird in diesem Browser-Tab dekodiert. Schließt du ihn, ist das Audio weg — kein Server hat es je erhalten.',
+      },
+      {
+        title: 'Kostenlos, weil dein Gerät die Arbeit macht',
+        body: 'Es gibt keine Serverfarm, die jemand bezahlen müsste — deshalb kein Wasserzeichen, keine Anmeldung und kein Exportlimit.',
+      },
+      {
+        title: 'Datei ablegen und loslegen',
+        body: 'Keine Installation und keine Warteschlange. Ein langer Titel verlässt das Gerät nie, die Bearbeitung beginnt sofort.',
+      },
+    ],
     toolsHeading: 'Beliebte Audio-Tools',
     allToolsCta: 'Alle {count} Tools ansehen',
     toolsCount: '{count} Tools',
@@ -360,7 +413,8 @@ export const de: Catalog = {
       title: 'Audio in Text umwandeln — transkribieren, kostenlos',
       description:
         'Audio im Browser in Text umwandeln: MP3, WAV, M4A und Video, über 90 Sprachen, TXT- oder SRT-Export. Kostenlos, ohne Anmeldung.',
-      h1: 'Audio in Text',
+      h1: 'Kostenloses Online-Audio-zu-Text — Eine Aufnahme transkribieren',
+      heroAlt: 'Aus einer Sprachnotiz oder einem Interview einen Text machen',
       subtitle: 'Aufnahmen in über 90 Sprachen in Text umwandeln, mit Zeitstempeln — direkt im Browser.',
       intro:
         'Eine Aufnahme hier ablegen und die Wörter herausholen: Sprachmemos, Interviews, Vorlesungen, Podcasts — in rund 90 Sprachen, automatisch erkannt, wenn du nicht sicher bist, welche es ist. Ein Whisper-KI-Modell läuft in deinem Browser-Tab auf deinem eigenen Gerät, die Audiodatei wird nie hochgeladen, und die Transkription entsteht als bearbeitbarer Text oder als SRT-Datei mit Zeitstempeln.',
@@ -420,7 +474,8 @@ export const de: Catalog = {
       title: 'Bass-Booster — Bass online verstärken, kostenlos',
       description:
         'Bis zu +15 dB sauberen Bass nachschieben — ein echter Low-Shelf unter 150 Hz, im Browser, ohne Loudness-Trick. Export als MP3 oder WAV. Kostenlos, ohne Upload.',
-      h1: 'Bass-Booster',
+      h1: 'Kostenloser Online-Bass-Booster — Den Bass eines Songs verstärken',
+      heroAlt: 'Einer MP3 mehr Tiefbass geben',
       subtitle: 'Ein echter Low-Shelf: bis zu +15 dB unter 150 Hz, erst hören, dann exportieren — nichts verlässt dein Gerät.',
       intro:
         'Dünner Bass ist der häufigste Grund, warum eine Aufnahme klein klingt. Der Bass-Booster setzt einen echten Low-Shelf ein — bis zu +15 dB unter 150 Hz, derselbe Move wie beim Mastering — kein Trick, der einfach alles lauter macht. Datei laden, Regler aufziehen, bis der Bass sitzt, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
@@ -479,7 +534,8 @@ export const de: Catalog = {
       title: 'Höhen-Booster — Höhen online verstärken, kostenlos',
       description:
         'Bis zu +15 dB luftige Höhen über 3 kHz — ein echter High-Shelf im Browser, ohne Loudness-Trick. Export als MP3 oder WAV. Kostenlos, ohne Upload.',
-      h1: 'Höhen-Booster',
+      h1: 'Kostenloser Online-Höhen-Booster — Die Höhen eines Songs anheben',
+      heroAlt: 'Dumpfes Audio klarer machen',
       subtitle: 'Ein echter High-Shelf: bis zu +15 dB über 3 kHz, erst hören, dann exportieren — nichts verlässt dein Gerät.',
       intro:
         'Muffiges, mattes Audio fehlt meist eins: Energie über 3 kHz. Der Höhen-Booster setzt einen echten High-Shelf ein — bis zu +15 dB über 3 kHz, derselbe Move wie beim Mastering, um einen Track zu öffnen — kein Trick, der einfach alles anhebt. Datei laden, Regler aufziehen, bis das Detail zurück ist, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
@@ -538,7 +594,8 @@ export const de: Catalog = {
       title: 'Audio-Equalizer — 3-Band-EQ online, kostenlos',
       description:
         'Forme Bässe, Mitten und Höhen mit einem echten 3-Band-EQ (Shelf–Peak–Shelf) im Browser. ±15 dB pro Band, Export als MP3 oder WAV. Kostenlos, ohne Upload.',
-      h1: '3-Band-Audio-Equalizer',
+      h1: 'Kostenloser Online-Audio-Equalizer — Bass, Mitten und Höhen einstellen',
+      heroAlt: 'Den Klang eines Songs oder einer Sprachaufnahme formen',
       subtitle: 'Bass-, Mitten- und Höhen-Shelf mit ±15 dB pro Band — der ehrliche Drei-Knopf-EQ.',
       intro:
         'Drei Knöpfe decken das meiste ab, wofür es einen EQ gibt: Bässe unter 150 Hz, Mitten um 1 kHz, wo die Stimmen wohnen, und Höhen über 3 kHz. Dieser Equalizer nutzt echte Filterbänder — Low Shelf, Peaking, High Shelf — mit je ±15 dB, um Grollen zu entschärfen, Matsch herauszunehmen oder Luft zu geben. Datei laden, Klang formen, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
@@ -597,7 +654,8 @@ export const de: Catalog = {
       title: 'Tiefpassfilter — Hochfrequenzrauschen entfernen',
       description:
         'Zischen und Rauschen mit einem echten Tiefpass kappen, Grenzfrequenz 300 Hz–20 kHz, im Browser. Export als MP3 oder WAV. Kostenlos, ohne Upload.',
-      h1: 'Tiefpassfilter',
+      h1: 'Kostenloser Online-Tiefpassfilter — Hohe Frequenzen im Audio abschneiden',
+      heroAlt: 'Harte Höhen in einer Aufnahme weicher machen',
       subtitle: 'Die Grenzfrequenz von 20 kHz bis 300 Hz durchziehen und nur die Frequenzen behalten, die du willst.',
       intro:
         'Ein Tiefpass behält das Tiefe und rollt alles über der Grenzfrequenz ab — der ehrliche Weg, Zischen, scharfe Sibilanten, Quietschen und die harte digitale Kante zu entfernen. Anders als ein Rauschentferner rät er nie, was Rauschen ist: Alles über deiner Grenzfrequenz geht einfach. Datei laden, die Grenzfrequenz nach unten ziehen, bis die Störung verschwindet, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
@@ -656,7 +714,8 @@ export const de: Catalog = {
       title: 'Hochpassfilter — Bassrumble online entfernen',
       description:
         'Rumble, Brummen und Grollen mit einem echten Hochpass kappen, Grenzfrequenz 20 Hz–5 kHz, im Browser. Export als MP3 oder WAV. Kostenlos, ohne Upload.',
-      h1: 'Hochpassfilter',
+      h1: 'Kostenloser Online-Hochpassfilter — Rumpeln aus einer Aufnahme entfernen',
+      heroAlt: 'Wind und tiefes Brummen aus einer Sprachaufnahme schneiden',
       subtitle: 'Die Grenzfrequenz von 20 Hz bis 5 kHz hochziehen und alles darunter entfernen.',
       intro:
         'Rumble, Verkehr, Handling-Geräusche, Schläge auf den Tisch — ungewolltes Tiefe steckt in den meisten echten Aufnahmen. Ein Hochpass behält alles über deiner Grenzfrequenz und rollt alles darunter ab: die ehrliche Reparatur, die nie rät. Datei laden, die Grenzfrequenz nach oben ziehen, bis das Rumble verschwunden ist und die Stimme voll bleibt, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
@@ -715,7 +774,8 @@ export const de: Catalog = {
       title: 'Audio ein- und ausblenden — Fade online kostenlos',
       description:
         'Sanftes Ein- und Ausblenden für Songs und Aufnahmen, direkt im Browser. Länge auf 0,1 s genau, Export als MP3 oder WAV. Kostenlos, ohne Upload.',
-      h1: 'Audio ein- und ausblenden',
+      h1: 'Kostenloser Online-Audio-Fade — Musik ausblenden',
+      heroAlt: 'Einen Track einblenden und wieder ausblenden',
       subtitle: 'In Sekunden saubere Kanten: beide Fade-Längen auf 0,1 s genau, erst hören, dann exportieren — nichts verlässt dein Gerät.',
       intro:
         'Ein Fade-in lässt einen Track aus der Stille beginnen, ein Fade-out beendet ihn mit Ausklang statt mit einem harten Schnitt. Datei hier laden, beide Längen auf ein Zehntel genau setzen, vor dem Export reinhören. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
@@ -774,7 +834,8 @@ export const de: Catalog = {
       title: 'Audio schneiden & kürzen — Audio-Trimmer online kostenlos',
       description:
         'Musik, Sprachnotizen und Podcasts online schneiden und kürzen — direkt im Browser, kostenlos, ohne Anmeldung. Dein Audio verlässt dein Gerät nie.',
-      h1: 'Audio-Trimmer',
+      h1: 'Kostenloser Online-Audio-Trimmer — Audiodateien schneiden',
+      heroAlt: 'Eine MP3 oder einen Podcast auf die passende Stelle schneiden',
       subtitle: 'Audio online kürzen — kostenlos, direkt im Browser. Nichts wird hochgeladen.',
       intro:
         'Schneide genau den Teil heraus, den du brauchst, aus jedem Song, jeder Sprachnotiz, jedem Podcast oder jeder Aufnahme. Ziehe auf der Wellenform, um auszuwählen, höre ihn an und speichere. Das Kürzen passiert komplett auf deinem Gerät, deshalb bleiben auch lange Aufnahmen privat und starten sofort.',
@@ -833,7 +894,8 @@ export const de: Catalog = {
       title: 'MP3 schneiden — online kostenlos',
       description:
         'MP3 online in wenigen Klicks schneiden: den besten Teil behalten oder das Intro löschen — kostenlos, ohne Anmeldung, ohne Upload.',
-      h1: 'MP3 schneiden',
+      h1: 'MP3 kostenlos online schneiden',
+      heroAlt: 'MP3 kostenlos online schneiden',
       subtitle: 'Songs und MP3-Dateien online schneiden — behalte den Teil, den du willst, und lösche den Rest.',
       intro:
         'Kürze einen Song auf den Refrain, entferne ein langes Intro oder schneide einen Höhepunkt heraus — direkt im Browser. Wähle, ob der markierte Teil bleiben oder gelöscht werden soll, höre das Ergebnis an und speichere in Sekunden eine frische MP3.',
@@ -878,6 +940,10 @@ export const de: Catalog = {
           q: 'Wohin gehen meine Dateien?',
           a: 'Nirgendwohin. Die Datei wird von deinem Browser von der Festplatte gelesen und im Speicher geschnitten. Kein Upload, keine Cloud-Kopie, keine Aufbewahrung.',
         },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'MP3-Datei ablegen oder klicken zum Auswählen',
     },
@@ -888,7 +954,8 @@ export const de: Catalog = {
       title: 'MP3-Editor — Schneiden, Blenden, Geschwindigkeit und Rückwärts',
       description:
         'MP3 online bearbeiten: schneiden, blenden, Lautstärke und Tempo ändern, rückwärts abspielen. Kostenlos und privat — alles läuft in deinem Browser.',
-      h1: 'MP3-Editor',
+      h1: 'Kostenloser Online-MP3-Editor — Die Länge einer MP3 bearbeiten',
+      heroAlt: 'Eine MP3 schneiden, ein- und ausblenden, rückwärts abspielen und das Tempo ändern',
       subtitle: 'Schneiden, blenden, rückwärts abspielen und die Geschwindigkeit ändern — alles in einem Browser-Tab.',
       intro:
         'Ein kompakter Audio-Editor für kurze Bearbeitungen: Abschnitte herausschneiden, ein- und ausblenden, lauter oder leiser machen, die Geschwindigkeit hoch- oder runtersetzen und rückwärts abspielen. Jede Bearbeitung wird beim Export auf deinem Gerät angewendet — die Originaldatei auf der Festplatte bleibt unangetastet.',
@@ -933,6 +1000,10 @@ export const de: Catalog = {
           q: 'Ist es sicher für vertrauliche Aufnahmen?',
           a: 'Ja. Audio wird lokal mit der Web Audio API dekodiert und gerendert — es wird nie über das Netzwerk übertragen. Damit eignet es sich für Interviews und anderes vertrauliches Material.',
         },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
     },
@@ -943,7 +1014,8 @@ export const de: Catalog = {
       title: 'Klingelton erstellen online — aus jedem Song, kostenlos',
       description:
         'Aus jedem Song ein Klingelton: die besten 40 Sekunden wählen, Blende dazu, als M4R oder MP3 exportieren — kostenlos, ohne Anmeldung.',
-      h1: 'Klingelton erstellen',
+      h1: 'Kostenloser Online-Klingelton-Ersteller — Aus einem Song einen iPhone-Klingelton machen',
+      heroAlt: 'Bis zu 40 Sekunden eines Songs als M4R oder MP3 speichern',
       subtitle: 'Nimm den besten Teil eines Songs und speichere ihn als Klingelton — in unter einer Minute.',
       intro:
         'Wähle den Hook, den Drop oder das Intro deines Lieblingstitels und mach daraus einen Klingelton. Deine Auswahl bleibt innerhalb der klassischen Klingeltonlänge von 40 Sekunden, auf Wunsch kommt eine Blende dazu, und der Export geht direkt aufs Handy — M4R fürs iPhone, MP3 für alles andere.',
@@ -998,7 +1070,8 @@ export const de: Catalog = {
       title: 'MP3 zusammenfügen — online kostenlos',
       description:
         'Songs und Audiodateien in beliebiger Reihenfolge zu einem Titel verbinden — direkt im Browser. Optionale Blenden, kostenlos, ohne Upload.',
-      h1: 'MP3 zusammenfügen',
+      h1: 'Kostenloser Online-Audio-Joiner — Mehrere MP3-Dateien zusammenfügen',
+      heroAlt: 'Songs und Sprachnotizen nacheinander aneinanderfügen',
       subtitle: 'Füge Songs und Audiodateien zu einem Titel zusammen — in beliebiger Reihenfolge, in Sekunden.',
       intro:
         'Kombiniere mehrere Songs, Podcast-Folgen oder Sprachaufnahmen zu einer einzigen Datei. Nimm so viele Titel, wie du willst, sortiere sie um und blende auf Wunsch Anfang und Ende. Das Zusammenfügen passiert auf deinem Gerät — auch große Sammlungen sind sofort fertig und bleiben privat.',
@@ -1043,6 +1116,10 @@ export const de: Catalog = {
           q: 'Ist die Qualität der zusammengefügten Datei gut?',
           a: 'Zusammenfügen nach WAV ist verlustfrei — das Audio wird nicht erneut komprimiert. Der MP3-Export kodiert einmal neu mit bis zu 320 kbps, was für fast alle Hörer transparent ist.',
         },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Dateien hinzufügen, dann mit Nach oben und Nach unten sortieren. Die Knöpfe gehen mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Mehrere lange Dateien brauchen mehr Speicher, deshalb ist der Rechner bei einem langen Stapel ruhiger.',
+        },
       ],
       dropHint: 'Zwei oder mehr Audiodateien ablegen oder klicken zum Auswählen',
     },
@@ -1053,7 +1130,8 @@ export const de: Catalog = {
       title: 'WAV in MP3 umwandeln — online kostenlos, 320 kbps',
       description:
         'Wandle WAV im Browser in MP3 um — 128, 192 oder 320 kbps. Kostenlos, ohne Anmeldung; dein Audio wird lokal umgewandelt, nie hochgeladen.',
-      h1: 'WAV-zu-MP3-Konverter',
+      h1: 'Kostenloser Online-WAV-zu-MP3-Konverter — WAV in MP3 umwandeln',
+      heroAlt: 'Eine WAV-Datei in MP3 mit 320 kbps umwandeln',
       subtitle: 'Wandle WAV-Dateien in Sekunden in MP3 um — direkt im Browser, nichts wird hochgeladen.',
       intro:
         'Mach aus schweren WAV-Aufnahmen kompakte MP3s, ohne etwas zu installieren oder dein Audio an einen Server zu schicken. Lege die Datei ab, wähle eine Bitrate — 320 kbps für Musik, 128 kbps für Sprache — und die Umwandlung läuft auf deinem eigenen Gerät, meist in ein paar Sekunden.',
@@ -1098,6 +1176,10 @@ export const de: Catalog = {
           q: 'Wird die WAV-Datei irgendwo hochgeladen?',
           a: 'Nein. Die Datei wird in deinem Browser dekodiert, von einer Bibliothek, die mit dieser Seite ausgeliefert wird, nach MP3 kodiert und zurück auf deine Festplatte gespeichert. Das Audio selbst verlässt dein Gerät nie.',
         },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Datei wählen, die Umwandlung bleibt in diesem Tab. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'WAV-Datei ablegen oder klicken zum Auswählen',
       exportLabel: 'In MP3 umwandeln',
@@ -1109,7 +1191,8 @@ export const de: Catalog = {
       title: 'FLAC in MP3 umwandeln — online kostenlos, 320 kbps',
       description:
         'Wandle FLAC im Browser in MP3 um — 128, 192 oder 320 kbps. Kostenlos, ohne Anmeldung: deine Musik wird lokal umgewandelt und nie hochgeladen.',
-      h1: 'FLAC in MP3 umwandeln',
+      h1: 'Kostenloser Online-FLAC-zu-MP3-Konverter — FLAC in MP3 umwandeln',
+      heroAlt: 'Eine FLAC-Datei in MP3 mit 320 kbps umwandeln',
       subtitle: 'FLAC-Dateien in Sekunden zu MP3 umwandeln — direkt im Browser, ohne Upload.',
       intro:
         'FLAC klingt perfekt und belegt halbe Festplatten als Beweis. Mach aus deiner verlustfreien Bibliothek kompakte MP3s, die im Autoradio, auf Bluetooth-Boxen und älteren Geräten laufen — Dateien ablegen, Bitrate wählen, und die Umwandlung läuft auf deinem eigenen Gerät. Ein 25-MB-FLAC-Track wird bei 320 kbps in ein paar Sekunden zum 12-MB-MP3.',
@@ -1154,6 +1237,10 @@ export const de: Catalog = {
           q: 'Wird mein FLAC irgendwo hochgeladen?',
           a: 'Nein. Die Datei wird in deinem Browser dekodiert und von einer Bibliothek, die mit dieser Seite ausgeliefert wird, zu MP3 encodiert. Das Audio verlässt dein Gerät nie.',
         },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Datei wählen, die Umwandlung bleibt in diesem Tab. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'FLAC-Datei ablegen oder klicken zum Auswählen',
       exportLabel: 'In MP3 umwandeln',
@@ -1165,7 +1252,8 @@ export const de: Catalog = {
       title: 'MP3 in WAV umwandeln — online kostenlos',
       description:
         'Wandle MP3 im Browser in verlustfreies WAV um — zum Bearbeiten, Archivieren und für Apps, die PCM wollen. Kostenlos, ohne Anmeldung.',
-      h1: 'MP3 in WAV umwandeln',
+      h1: 'Kostenloser Online-MP3-zu-WAV-Konverter — Eine MP3 in eine WAV-Datei umwandeln',
+      heroAlt: 'Eine MP3 in eine unkomprimierte WAV-Datei dekodieren',
       subtitle: 'MP3 in sauberes PCM-Audio dekodieren, in Sekunden — direkt im Browser, ohne Upload.',
       intro:
         'MP3 in WAV umzuwandeln holt nicht zurück, was die Kompression entfernt hat — das kann kein Werkzeug. Du bekommst das dekodierte Audio als sauberes 16-Bit-PCM ohne weitere Verluste: der richtige Input für Audio-Editoren, Sampler und alles, was WAV verlangt, und der sicherste Startpunkt, wenn die Datei noch bearbeitet wird. Das Dekodieren passiert auf deinem Gerät, meist in einer Sekunde.',
@@ -1210,6 +1298,10 @@ export const de: Catalog = {
           q: 'Wird meine MP3 irgendwo hochgeladen?',
           a: 'Nein. Die Datei wird in deinem Browser dekodiert und lokal als WAV geschrieben. Nichts verlässt dein Gerät.',
         },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Datei wählen, die Umwandlung bleibt in diesem Tab. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'MP3-Datei ablegen oder klicken zum Auswählen',
       exportLabel: 'In WAV umwandeln',
@@ -1221,7 +1313,8 @@ export const de: Catalog = {
       title: 'Audio komprimieren — MP3 & WAV verkleinern, online',
       description:
         'Verkleinere MP3-, WAV- und andere Audiodateien im Browser — niedrigere Bitrate wählen, anhören, herunterladen. Kostenlos, ohne Upload.',
-      h1: 'Audio-Kompressor',
+      h1: 'Kostenloser Online-MP3-Kompressor — Eine MP3-Datei kleiner machen',
+      heroAlt: 'Eine große WAV- oder MP3-Datei mit niedrigerer Bitrate neu kodieren',
       subtitle: 'Bitrate senken, Datei bleibt abspielbar — Audio im Browser um bis zu 90% verkleinern.',
       intro:
         'Audiodateien sind wegen ihrer Bitrate groß, und der ehrliche Weg, sie kleiner zu machen, ist eine Neukodierung mit niedrigerer Bitrate: ein 320-kbps-MP3 wird bei 128 kbps auf rund 40 % der Größe geschrumpft, eine schwere WAV wird als MP3 zum Zehntel. Ziel wählen, Vorschau anhören, exportieren — die Kodierung läuft auf deinem Gerät, selbst lange Aufnahmen sind in Sekunden fertig.',
@@ -1266,6 +1359,14 @@ export const de: Catalog = {
           q: 'Wird meine Datei irgendwo hochgeladen?',
           a: 'Nein. Dekodierung und Kodierung laufen innerhalb deines Browser-Tabs — du kannst nach dem Laden der Seite offline gehen, und die Komprimierung funktioniert weiter.',
         },
+        {
+          q: 'Gleicht das laute und leise Stellen an?',
+          a: 'Nein. Diese Seite kodiert nur mit einer niedrigeren Bitrate neu, damit die Datei kleiner wird. Laute Spitzen senken und leise Wörter anheben macht der Pegelkompressor. Die Bitrate wählst du dort beim Export.',
+        },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Datei wählen, die Umwandlung bleibt in diesem Tab. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Komprimieren',
@@ -1277,7 +1378,8 @@ export const de: Catalog = {
       title: 'Audio rückwärts — Songs rückwärts abspielen, kostenlos',
       description:
         'Jeden Song rückwärts im Browser abspielen: ein Klick, sofortige Vorschau, speichern als MP3 oder WAV — kostenlos, nichts wird hochgeladen.',
-      h1: 'Audio rückwärts',
+      h1: 'Kostenloses Online-Rückwärts-Audio — Einen Song rückwärts abspielen',
+      heroAlt: 'Eine Sprachnotiz vom Ende her abspielen',
       subtitle: 'Spiele jeden Song oder jede Aufnahme rückwärts ab — ein Klick, direkt im Browser.',
       intro:
         'Dreh einen Titel um, sodass er vom Ende zum Anfang spielt: such nach versteckten Botschaften in Songs, bau rückwärts anschwellende Becken für einen Mix, oder hör einfach, wie deine Stimme rückwärts klingt. Die ganze Datei wird auf deinem Gerät umgekehrt und erst beim Export geschrieben.',
@@ -1332,7 +1434,8 @@ export const de: Catalog = {
       title: 'Audio schneller machen — online kostenlos',
       description:
         'Audio von 0,5× bis 2× schneller oder langsamer, direkt im Browser. Sofortige Vorschau, Export als MP3 oder WAV — kostenlos, nichts wird hochgeladen.',
-      h1: 'Audio schneller machen',
+      h1: 'Kostenloser Online-Tempo-Regler — Audio schneller oder langsamer abspielen',
+      heroAlt: 'Einen Song zum Üben verlangsamen oder eine Vorlesung beschleunigen',
       subtitle: 'Mach jedes Audio von 0,5× bis 2× schneller oder langsamer — direkt im Browser.',
       intro:
         'Mach aus einer 40-Minuten-Vorlesung 20 schnelle Minuten, verlangsame ein Gitarrensolo auf halbe Geschwindigkeit zum Üben oder pass einen Titel in einen kürzeren Videoslot ein. Ziehe den Geschwindigkeitsregler, hör die Änderung sofort und exportiere — das Audio wird auf deinem Gerät neu berechnet und nie hochgeladen.',
@@ -1377,6 +1480,10 @@ export const de: Catalog = {
           q: 'Gibt es eine Längenbegrenzung?',
           a: 'Keine künstliche. Die praktische Obergrenze ist der Speicher deines Geräts — ungefähr eine Stunde Audio auf einem typischen Computer.',
         },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
     },
@@ -1387,7 +1494,8 @@ export const de: Catalog = {
       title: 'MP3 lauter machen — Lautstärke online kostenlos erhöhen',
       description:
         'Leises Audio bis auf das 4-Fache lauter machen, direkt im Browser. Der eingebaute Limiter hält den Klang sauber — kostenlos, nichts wird hochgeladen.',
-      h1: 'MP3 lauter machen',
+      h1: 'Kostenloser Online-MP3-Lautstärke-Booster — Eine MP3 lauter machen',
+      heroAlt: 'Die Lautstärke einer MP3 erhöhen, ohne dass sie übersteuert',
       subtitle: 'Verstärke leise Aufnahmen bis auf das 4-Fache — mit Limiter, damit nichts übersteuert.',
       intro:
         'Mach Aufnahmen lauter, die zu leise sind: Sprachnotizen vom Handy, Vorlesungen aus der letzten Reihe, Videotonspuren mit niedrigem Pegel. Schieb die Lautstärke bis auf das 4-Fache (+12 dB), und ein eingebauter Limiter fängt die Peaks ab, damit es lauter wird, ohne in Verzerrung zu kippen.',
@@ -1432,6 +1540,11 @@ export const de: Catalog = {
           q: 'Funktioniert das mit Videodateien?',
           a: 'Oft ja — Browser können die Audiospur von MP4-Dateien, die du hierher ziehst, meist dekodieren. Wenn dein Browser die Datei ablehnt, extrahiere zuerst das Audio und versuche es erneut.',
         },
+        { q: "Worin unterscheidet sich das vom Lautheitsmesser?", a: "Diese Seite multipliziert die ganze Datei mit dem Wert, den du wählst. Der Lautheitsmesser liest integrierte LUFS — wie laut die Datei ist, nicht der Raum — und kann −16, −14 oder −23 treffen, ohne den Sample-Peak über −1 dBFS zu schieben. Keine der beiden Seiten gleicht laut und leise an." },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
     },
@@ -1442,7 +1555,8 @@ export const de: Catalog = {
       title: 'MP4 in MP3 umwandeln online — kostenlos, ohne Upload',
       description:
         'Wandle MP4-Video im Browser in MP3 um — die Tonspur wird lokal extrahiert und nie hochgeladen. Kostenlos, schnell, ohne Anmeldung, auch auf dem Handy.',
-      h1: 'MP4 in MP3 umwandeln',
+      h1: 'Kostenloser Online-MP4-zu-MP3-Konverter — Ein Video in MP3 umwandeln',
+      heroAlt: 'Eine MP4-, MOV- oder WebM-Tonspur in MP3 umwandeln',
       subtitle: 'Hol die Tonspur aus jedem Video — direkt im Browser, nichts wird hochgeladen.',
       intro:
         'Mach aus MP4-Videos MP3-Audio, ohne etwas zu installieren oder Gigabytes auf einen Server zu laden. Dein Browser liest die Datei von der Festplatte, dekodiert die Tonspur lokal und speichert sie als MP3 — ein 500-MB-Video ist in Sekunden umgewandelt, weil nur die Audiospur verarbeitet wird.',
@@ -1498,7 +1612,8 @@ export const de: Catalog = {
       title: 'Audio aus Video — Tonspur als MP3 oder WAV speichern',
       description:
         'Extrahiere die Audiospur aus jedem Video im Browser und speichere sie als MP3 oder verlustfreies WAV. Kostenlos, privat, kein Upload — auch bei großen Dateien.',
-      h1: 'Audio aus Video',
+      h1: 'Kostenloser Online-Audio-Extraktor — MP3 aus einem Video extrahieren',
+      heroAlt: 'Eine Videotonspur als MP3 oder WAV speichern',
       subtitle: 'Speichere die Tonspur jedes Videos als MP3 oder WAV — lokal, in Sekunden.',
       intro:
         'Trenn den Ton vom Bild: hol Interviews aus Videoanrufen, speichere einen Konzertfilm als Album oder nutze eine Tonspur in deinem eigenen Schnitt. Die Audiospur wird auf deinem Gerät dekodiert und lässt sich verlustfrei als WAV oder kompakt als MP3 speichern.',
@@ -1543,6 +1658,10 @@ export const de: Catalog = {
           q: 'Kann ich stattdessen den Ton aus einem Video entfernen?',
           a: 'Das ist die umgekehrte Operation — ein Video stummschalten behält die Bilder und wirft den Ton weg. Dieses Tool behält den Ton und wirft die Bilder weg.',
         },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Datei wählen, die Umwandlung bleibt in diesem Tab. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'Videodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Audio extrahieren',
@@ -1554,7 +1673,8 @@ export const de: Catalog = {
       title: 'Sprachrekorder online — Audio aufnehmen, MP3/WAV',
       description:
         'Nimm dein Mikrofon im Browser auf, kürze die Aufnahme und speichere sie als MP3 oder WAV. Kostenlos und privat — Aufnahmen werden nie hochgeladen.',
-      h1: 'Sprachrekorder',
+      h1: 'Kostenloser Online-Sprachrekorder — Das Mikrofon als MP3 aufnehmen',
+      heroAlt: 'Eine Sprachnotiz als MP3 oder WAV speichern',
       subtitle: 'Nimm dein Mikrofon auf, kürze die Aufnahme und speichere sie als MP3 — nichts verlässt dein Gerät.',
       intro:
         'Ein Rekorder mit Schneideplatz: nimm Sprachnotizen, Interviews, Übungsaufnahmen oder Besprechungsnotizen auf, schneide die Stille weg und exportiere eine saubere Datei. Aufnahme und Bearbeitung passieren beide in deinem Browser — das Audio wird nie irgendwohin geschickt, deshalb ist das auch bei vertraulichen Gesprächen entspannt.',
@@ -1609,7 +1729,8 @@ export const de: Catalog = {
       title: 'Lautstärke-Booster — Musik und Videos online lauter machen',
       description:
         'Heb die Lautstärke von leiser Musik und Videotonspuren bis auf das 4-Fache im Browser an. Ein Limiter hält es sauber — kostenlos, privat, nichts wird hochgeladen.',
-      h1: 'Lautstärke-Booster',
+      h1: 'Kostenloser Online-Lautstärke-Booster — Audio und Video lauter machen',
+      heroAlt: 'Die leise Tonspur eines Videos anheben',
       subtitle: 'Verstärke leise Titel und Videotonspuren bis auf das 4-Fache — sauber, ohne Übersteuern.',
       intro:
         'Für alles, was zu leise spielt: leise Handyvideos, zurückhaltende Akustikaufnahmen, Podcasts, die auf Flüsterlautstärke gemastert sind. Lade eine Datei, schieb die Lautstärke bis auf das 4-Fache und lass den eingebauten Limiter die Peaks zurückhalten, damit die lauten Stellen sauber bleiben. Das gilt für Audio- und Videodateien gleichermaßen — verarbeitet wird nur die Tonspur.',
@@ -1654,6 +1775,11 @@ export const de: Catalog = {
           q: 'Warum drehe ich nicht einfach die Lautsprecher lauter?',
           a: 'Die Lautsprecherlautstärke hilft nur auf deinem Gerät. Eine verstärkte Datei spielt überall lauter — auf den Handys anderer Leute, in billigen Ohrhörern, über die winzigen Laptop-Lautsprecher.',
         },
+        {
+          q: 'Was ist der Unterschied zum Pegelkompressor?',
+          a: 'Diese Seite multipliziert die ganze Datei, der Abstand zwischen laut und leise bleibt. Der Pegelkompressor verkürzt diesen Abstand und setzt den Peak danach zurück. Nimm diese Seite, wenn alles zu leise ist. Nimm den Kompressor, wenn manche Stellen schreien und andere kaum zu hören sind.',
+        },
+        { q: "Worin unterscheidet sich das vom Lautheitsmesser?", a: "Diesen Regler zu ziehen multipliziert jede Probe. Der Lautheitsmesser misst integrierte LUFS und bietet Podcast −16, Streaming −14 und Broadcast −23. Würde der Sample-Peak −1 dBFS überschreiten, stoppt die Verstärkung. Das ist kein Raum-Messgerät." },
       ],
       dropHint: 'Audio- oder Videodatei ablegen oder klicken zum Auswählen',
     },
@@ -1664,7 +1790,8 @@ export const de: Catalog = {
       title: 'Audio normalisieren — Pegel online kostenlos angleichen',
       description:
         'Normalisiere Audio im Browser auf einen einheitlichen Peak-Pegel — MP3, WAV, M4A und mehr. Ein Klick, kostenlos, nichts wird hochgeladen.',
-      h1: 'Audio normalisieren',
+      h1: 'Kostenloser Online-Audio-Normalizer — Die Lautstärke einer MP3 normalisieren',
+      heroAlt: 'Leise Dateien auf eine gemeinsame Lautstärke anheben',
       subtitle: 'Ein Klick, und leise Dateien liegen auf einem einheitlichen, gesunden Pegel — ausgewertet auf deinem Gerät.',
       intro:
         'Normalisieren sucht den lautesten Peak in deiner Datei und hebt dann die gesamte Datei um genau den Betrag an, der diesen Peak knapp unter die Übersteuerung bringt. Ergebnis: Die Datei nutzt den Lautstärkebereich, den sie hat, ohne dass du den Wert schätzen musst. Das ist die richtige Korrektur, wenn eine Aufnahme durchgehend zu leise ist — Sprachnotizen, Feldaufnahmen, Exporte aus anderen Apps, die bei −18 dB herausgekommen sind.',
@@ -1703,11 +1830,15 @@ export const de: Catalog = {
         },
         {
           q: 'Nutzt es LUFS-Lautheitsziele wie Streaming-Plattformen?',
-          a: 'Nein. Das ist Peak-Normalisierung — sofort und berechenbar. Streaming-Dienste gleichen Titel über die integrierte Lautheit (LUFS) an, ein längerer Mittelwert, der ins Mastering gehört. Peak-Normalisierung bleibt trotzdem die richtige schnelle Korrektur für einen einheitlichen Wiedergabepegel.',
+          a: 'Nein. Diese Seite verschiebt den Peak, nicht die integrierte Lautheit. Der Lautheitsmesser misst K-bewertete LUFS und kann eine Datei auf −16, −14 oder −23 legen. Das sind übliche Lieferziele, keine gesetzliche Grenze und keine Raummessung.',
         },
         {
           q: 'Verringert Normalisieren die Qualität?',
           a: 'Die Pegeländerung selbst ist mathematisch sauber und unhörbar. Die einzige Qualitätsfrage ist das Exportformat: WAV ist für die Verstärkung bitgenau, während MP3 einmal neu kodiert. Exportiere WAV, wenn die Datei weiterbearbeitet wird.',
+        },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
         },
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
@@ -1719,7 +1850,8 @@ export const de: Catalog = {
       title: 'Slowed + Reverb — Songs online kostenlos verlangsamen',
       description:
         'Mach aus jedem Song im Browser ein Slowed + Reverb: verlangsamen, Hall darüberlegen, als MP3 exportieren. Kostenlos, nichts wird hochgeladen.',
-      h1: 'Slowed + Reverb',
+      h1: 'Kostenloser Online-Slowed-Reverb-Maker — Einen Song verlangsamen und Hall hinzufügen',
+      heroAlt: 'Einen Track auf etwa 85 % senken und einen weichen Echo-Ausklang hinzufügen',
       subtitle: 'Der Sound für nachts: Titel auf etwa 85 % verlangsamen, Raum dazugeben, exportieren — keine App, kein Upload.',
       intro:
         'Slowed + Reverb nimmt einen Titel auf etwa 80–90 % Geschwindigkeit herunter, die Tonhöhe sinkt mit, und ein weicher Hallschweif lässt alles klingen, als liefe es zwei Räume weiter. Lade einen Song, zieh die Geschwindigkeit auf etwa 85 %, dreh den Hall hoch, bis es sitzt, und exportiere — die ganze Bearbeitung passiert auf deinem Gerät, deshalb sind auch Songs in voller Länge in Sekunden fertig. Schiebst du die Geschwindigkeit stattdessen über 100 %, kommt nightcore dabei heraus.',
@@ -1764,6 +1896,10 @@ export const de: Catalog = {
           q: 'Darf ich verlangsamte Songs in meinen Videos verwenden?',
           a: 'Einen Titel zu verlangsamen ändert nichts an seinem Urheberrecht. Für Uploads auf YouTube oder TikTok brauchst du weiterhin die Rechte am Originalsong — viele Creator nutzen stattdessen die lizenzierte Musikbibliothek der Plattform und heben Slowed-Edits für eigene Aufnahmen auf.',
         },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'Song ablegen oder klicken zum Auswählen',
     },
@@ -1773,7 +1909,8 @@ export const de: Catalog = {
       shortName: 'Tonhöhe',
       title: 'Tonhöhe ändern — Tonhöhe verschieben, Länge bleibt',
       description: 'Verschiebe die Tonhöhe eines Songs oder einer Stimme um bis zu 12 Halbtöne, ohne die Länge zu ändern. Kostenlos, im Browser, nichts wird hochgeladen.',
-      h1: 'Tonhöhe ändern',
+      h1: 'Kostenloser Online-Tonhöhen-Regler — Die Tonhöhe eines Songs ändern',
+      heroAlt: 'Die Tonhöhe einer MP3 verschieben, während das Tempo gleich bleibt',
       subtitle: 'Tonhöhe in Halbtönen nach oben oder unten. Die Länge der Datei bleibt gleich.',
       intro: 'Leg einen Song oder eine Aufnahme ab und zieh den Tonhöhen-Regler. Die Tonart ändert sich, der Takt bleibt liegen. Das ist nicht der Geschwindigkeitsregler: die Datei wird hier weder kürzer noch länger. Die Verschiebung läuft auf deinem Gerät.',
       usesHeading: 'Die Tonhöhe bewegt sich, die Zeit nicht',
@@ -1794,6 +1931,10 @@ export const de: Catalog = {
         { q: 'Ist das dasselbe wie die Geschwindigkeit ändern?', a: 'Nein. Der Geschwindigkeitsregler spielt die Datei schneller oder langsamer, die Tonhöhe geht mit und die Länge ändert sich. Diese Seite verschiebt nur die Tonhöhe.' },
         { q: 'Wird die Datei hochgeladen?', a: 'Nein. Die Verschiebung wird in deinem Browser berechnet und der Export landet auf deinem Gerät.' },
         { q: 'Kann ich die Tonlage eines Songs ändern, um Copyright zu umgehen?', a: 'Nein — eine Tonlagenänderung entfernt keine Rechte an einer Aufnahme. Ein gepitchter Upload kann weiterhin gemeldet und gelöscht werden. Ändere die Tonlage zum Singen oder für Karaoke, und veröffentliche Musik, an der du die Rechte hast.' },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+        },
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
     },
@@ -1803,7 +1944,8 @@ export const de: Catalog = {
       shortName: 'M4A in MP3',
       title: 'M4A in MP3 — M4A und AAC online kostenlos umwandeln',
       description: 'Wandle M4A- und AAC-Audio im Browser in MP3 um. Kostenlos, ohne Konto, nichts wird hochgeladen. Wähl 128, 192 oder 320 kbps.',
-      h1: 'M4A in MP3',
+      h1: 'Kostenloser Online-M4A-zu-MP3-Konverter — M4A in MP3 umwandeln',
+      heroAlt: 'Eine iPhone-Sprachnotiz oder eine AAC-Datei in MP3 umwandeln',
       subtitle: 'Mach aus M4A- und AAC-Dateien MP3 — im Browser, nichts wird hochgeladen.',
       intro: 'Sprachmemos und AAC-Aufnahmen sind oft M4A. Leg die Datei ab, wähl eine Bitrate, und dein Browser dekodiert sie und speichert ein MP3. Das Audio geht an keinen Server.',
       usesHeading: 'M4A-Dateien, die Leute konvertieren',
@@ -1833,7 +1975,8 @@ export const de: Catalog = {
       shortName: 'OGG zu MP3',
       title: 'OGG in MP3 umwandeln — kostenlos im Browser',
       description: 'Wandle OGG-Dateien im Browser in MP3 um, ohne Größenlimit. Kostenlos, ohne Konto, nichts wird hochgeladen. Vorbis oder Opus in OGG, mit 128, 192 oder 320 kbps.',
-      h1: 'OGG in MP3 umwandeln',
+      h1: 'Kostenloser Online-OGG-zu-MP3-Konverter — OGG in MP3 umwandeln',
+      heroAlt: 'Vorbis oder Opus in einer OGG-Datei in MP3 umwandeln',
       subtitle: 'Mach aus OGG-Audio eine MP3 — im Browser, nichts wird hochgeladen.',
       intro: 'OGG ist ein Container, meist mit Vorbis, manchmal mit Opus. Leg die Datei ab, wähl eine Bitrate, und dein Browser dekodiert sie und speichert eine MP3. Die Audiodatei geht an keinen Server.',
       usesHeading: 'OGG-Dateien, die Leute konvertieren',
@@ -1863,7 +2006,8 @@ export const de: Catalog = {
       shortName: 'Opus zu MP3',
       title: 'Opus in MP3 umwandeln — WhatsApp-Sprachnachrichten',
       description: 'Wandle Opus-Audio im Browser in MP3 um. Kostenlos, ohne Konto, nichts wird hochgeladen. Für .opus und für Opus in OGG oder WebM.',
-      h1: 'Opus in MP3 umwandeln',
+      h1: 'Kostenloser Online-Opus-zu-MP3-Konverter — Opus in MP3 umwandeln',
+      heroAlt: 'Eine WhatsApp- oder Telegram-Sprachnachricht in MP3 umwandeln',
       subtitle: 'Mach aus Opus-Audio eine MP3 — im Browser, nichts wird hochgeladen.',
       intro: 'Sprachnachrichten und manche Downloads sind Opus: eine .opus-Datei, oder Opus in OGG oder WebM. Leg die Datei ab, wähl eine Bitrate, und dein Browser dekodiert sie und speichert eine MP3. Die Audiodatei geht an keinen Server.',
       usesHeading: 'Opus-Dateien, die Leute konvertieren',
@@ -1893,7 +2037,8 @@ export const de: Catalog = {
       shortName: 'Wellenform',
       title: 'Wellenform-Generator — Audio als Wellenbild, kostenlos',
       description: 'Mach aus einem Song oder einer Aufnahme ein Wellenbild. Farben, Stil und Größe wählen, PNG in hoher Auflösung laden. Kostenlos im Browser, kein Upload.',
-      h1: 'Audio-Wellenform-Generator',
+      h1: 'Kostenloser Online-Audio-Wellenform-Generator — Ein Wellenform-Bild erzeugen',
+      heroAlt: 'Die Wellenform eines Songs als PNG speichern',
       subtitle: 'Ein Wellenbild deiner Audiodatei — Farben, Größe und transparentes PNG, gezeichnet auf deinem Gerät.',
       intro: 'Leg einen Song, eine Sprachnotiz oder einen Podcast ab und hol dir ein Wellenbild für Cover, Videohintergrund oder Social Post. Balken oder Fläche, Farben, dann PNG in Video-, Quadrat- oder Bannergröße. Der Browser zeichnet das Bild aus der Datei, die du geöffnet hast — nichts wird hochgeladen.',
       usesHeading: 'Wofür das Bild taugt',
@@ -1924,7 +2069,8 @@ export const de: Catalog = {
       shortName: 'Spektrogramm',
       title: 'Spektrogramm online — Audio als Bild, kostenlos',
       description: 'Aus Audio ein Spektrogramm erzeugen und als PNG laden. Log- oder lineare Frequenz, Farben, dB-Bereich. Kostenlos im Browser, kein Upload.',
-      h1: 'Spektrogramm erstellen',
+      h1: 'Kostenloses Online-Audio-Spektrogramm — Die Frequenzen einer Aufnahme sehen',
+      heroAlt: 'Ein Frequenzbild eines Songs als PNG herunterladen',
       subtitle: 'Sieh, welche Frequenzen in einem Song oder einer Aufnahme stecken, und lade das Bild. Gerechnet wird auf deinem Gerät.',
       intro: 'Ein Spektrogramm zeigt, welche Frequenzen mit der Zeit da sind: Sprache, Bass und alles, was jemand in den Klang gezeichnet hat. Datei ablegen, log oder linear wählen, PNG laden. Die FFT läuft im Browser, nichts wird hochgeladen.',
       usesHeading: 'Wonach Leute hier schauen',
@@ -1955,7 +2101,8 @@ export const de: Catalog = {
       shortName: 'Bild zu Audio',
       title: 'Bild zu Audio — Spektrogramm aus einem Bild erstellen',
       description: 'Ein Bild oder eine kurze Zeile wird zu einer WAV, die ein Spektrogramm zeigt. Kostenlos im Browser, nichts wird hochgeladen.',
-      h1: 'Bild zu Audio',
+      h1: 'Kostenloses Online-Bild-zu-Audio — Ein Bild in Klang verwandeln',
+      heroAlt: 'Ein Spektrogramm-Bild wieder in eine WAV-Datei zurückverwandeln',
       subtitle: 'Ein Bild oder eine Zeile Text in die Frequenzen einer WAV malen. Das Spektrogramm zeigt sie wieder.',
       intro: 'Tippe eine kurze Zeile oder lege ein Bild ab. Diese Seite schreibt die Form in die Frequenzen einer WAV — derselbe Trick wie ein Bild in einem Song. Es ist kein Song und keine Sprache. Öffne die WAV im Spektrogramm-Generator. Nichts wird hochgeladen.',
       usesHeading: 'Was Leute damit machen',
@@ -1986,7 +2133,8 @@ export const de: Catalog = {
       title: 'MP3-Tags online bearbeiten — ID3 & Cover ändern, kostenlos',
       description:
         'MP3-Tags direkt im Browser bearbeiten: Titel, Künstler, Album, Jahr, Track und Cover. Die Datei wird nie hochgeladen. Kostenlos, ohne Anmeldung.',
-      h1: 'MP3-Tag-Editor',
+      h1: 'Kostenloser Online-MP3-Tag-Editor — ID3-Tags bearbeiten',
+      heroAlt: 'Titel, Künstler und Cover einer MP3 ändern',
       subtitle: 'Titel, Künstler, Album und Cover einer MP3 in unter einer Minute richten — direkt im Browser, nichts wird hochgeladen.',
       intro:
         'Eine MP3 trägt zwei Dinge in sich: die Musik und die Info-Karte, die Player daneben anzeigen — Titel, Künstler, Album, Jahr, Cover. Stimmt diese Karte nicht oder fehlt sie, fällt alles vom Handy bis zum Autoradio auf „Unbekannter Künstler“ oder Track 01 zurück. Datei hier ablegen, Felder ausbessern, speichern: Die Audiodaten werden Byte für Byte unverändert kopiert und verlassen dein Gerät nie.',
@@ -2012,6 +2160,151 @@ export const de: Catalog = {
       ],
       dropHint: 'MP3-Datei hierher ziehen oder klicken zum Auswählen',
       exportLabel: 'MP3 speichern',
+    },
+    compressor: {
+      cardLine: 'Laute Spitzen runter, leise Wörter rauf — die ganze Datei wird nicht lauter.',
+      name: 'Pegelkompressor',
+      shortName: 'Kompressor',
+      title: 'Pegelkompressor — Lautstärke online angleichen',
+      description:
+        'Gleicht laute und leise Stellen einer Aufnahme im Browser an. Der Peak bleibt. Keine kleinere Datei. Kostenlos, kein Upload.',
+      h1: 'Kostenloser Online-Audio-Kompressor — Laute und leise Stellen angleichen',
+      heroAlt: 'Die Spitzen einer Sprachaufnahme zähmen, damit die leisen Wörter nach vorn kommen',
+      subtitle: 'Ein Breitband-Kompressor, der Pegelsprünge bändigt. Der Peak der Datei bleibt, wo er war.',
+      intro:
+        'Eine Sprachnotiz, die einen Satz schreit und den nächsten flüstert, braucht Kompression, keinen Lautstärkeregler. Diese Seite fährt einen einzelnen Breitband-Kompressor: Lautes wird leiser, Leises kommt hoch, danach wird der Export so skaliert, dass der Peak zum Ausgangspeak passt. Alles im Browser. Die Datei wird nicht hochgeladen.',
+      usesHeading: 'Was ein Kompressor erledigt',
+      uses: [
+        'Eine Sprachnotiz glätten, bei der jemand nah ans Handy geht und wieder weg.',
+        'Einen Podcast-Gast dämpfen, der viel lauter ist als die Moderation.',
+        'Eine Stimme vor die Spur setzen, wenn der Refrain aus der Strophe springt.',
+      ],
+      howTo: [
+        { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Dekodierung bleibt auf deinem Gerät.' },
+        { name: 'Stärke einstellen', text: 'Zieh Kompressor. 30–50 % reichen für die meisten Stimmen. 100 % ist stark: Schwelle −36 dB, Verhältnis 8:1.' },
+        { name: 'Anhören und exportieren', text: 'Spiel das Ergebnis ab, dann exportiere MP3 oder WAV. Der Peak geht auf den ursprünglichen Peak zurück, knapp unter Vollausschlag.' },
+      ],
+      faqs: [
+        { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Der Kompressor ist ein Web-Audio-Dynamikprozessor im Browser-Tab. Nach dem Laden kannst du offline gehen und trotzdem exportieren.' },
+        { q: 'Was passiert mit dem Audio?', a: 'Ein Breitband-Kompressor (Schwelle von −18 dB bis −36 dB, Verhältnis von knapp über 1:1 bis 8:1). Der Kompressor hat kein automatisches Makeup, deshalb skaliert die Seite den Export auf den Quell-Peak, oder auf etwa −0.2 dBFS, wenn die Quelle heißer war. WAV behält diese Pegeländerung sauber. MP3 wird einmal neu kodiert.' },
+        { q: 'Wird die Datei kleiner?', a: 'Nein. Kleiner wird eine Datei durch eine niedrigere Bitrate — das ist die Seite Audio komprimieren. Diese Seite ändert die Dynamik und überlässt die Bitrate dem Exportformat.' },
+        { q: 'Was ist der Unterschied zu Lautstärke und Normalisieren?', a: 'Die Lautstärke-Seite multipliziert die ganze Datei. Normalisieren hebt alles an, bis die lauteste Sample ein Ziel trifft. Beides lässt den Abstand zwischen laut und leise gleich. Diese Seite verkürzt ihn. Eine Band, keine Multiband-Kette, und kein Rauschen entfernen.' },
+        { q: 'Verschwindet damit das Raumrauschen?', a: 'Nein. Leise Stellen anzuheben hebt auch Rauschen und Raumton an. Wenn das Rauschen das Problem ist, macht Kompression es deutlicher. Schneide die Stille weg oder nimm neu auf.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. Regler und Export funktionieren per Touch in aktuellem Chrome, Edge, Firefox und Safari. Ein paar Minuten Sprache sind auf einem neuen Handy in ein, zwei Sekunden exportiert.' },
+      ],
+      dropHint: 'Audiodatei hierher ziehen oder klicken zum Auswählen',
+    },
+    echo: {
+      cardLine: 'Wiederholungen, die du zählen kannst: ein kurzer Schlag, kein Hall-Nebel.',
+      name: 'Echo',
+      shortName: 'Echo',
+      title: 'Echo hinzufügen — Wiederholungen online kostenlos',
+      description: 'Setze ein zeitlich festes Echo auf beliebiges Audio im Browser. Delay und Wiederholungen stellst du ein. Kostenlos, kein Upload.',
+      h1: 'Kostenloses Online-Echo — Echo zu Audio hinzufügen',
+      heroAlt: 'Einer Aufnahme Delay und Wiederholungen hinzufügen',
+      subtitle: 'Getrennte Wiederholungen in dem Abstand, den du einstellst — vom kurzen Schlag bis 0,8 s.',
+      intro: 'Ein Echo ist eine Kopie, die nach einer Lücke zurückkommt, die du zählen kannst. Das Delay geht von wenigen Hundertstelsekunden bis 0,8 Sekunden, die Wiederholungen bestimmen, wie viel von jeder Kopie wieder hineingeht. Der nasse Anteil liegt fest bei 45 %. Delay null lässt die Datei unverändert. Die Verarbeitung bleibt im Browser.',
+      usesHeading: 'Echos, die Leute wirklich wollen',
+      uses: ['Einen kurzen Schlag auf eine Stimme legen, damit sie Raum hat, ohne zu zerfließen.', 'Einen Gitarren- oder Schlagzeugschlag im Takt zurückkommen lassen.', 'Einen Satz einmal klar zurückhören, statt einer Hallwolke.'],
+      howTo: [
+        { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Dekodierung bleibt auf deinem Gerät.' },
+        { name: 'Delay und Wiederholungen', text: 'Delay ist die Lücke vor der ersten Kopie, bis 0,8 s. Wiederholungen sind die Rückkopplung, gedeckelt bei 55 %, damit nichts hochschaukelt.' },
+        { name: 'Anhören und exportieren', text: 'Spiel es ab, dann exportiere MP3 oder WAV. Die Datei wächst um den Schweif der Wiederholungen, höchstens 4 Sekunden.' },
+      ],
+      faqs: [
+        { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Das Echo ist ein Web-Audio-Delay im Browser-Tab. Nach dem Laden kannst du offline gehen und trotzdem exportieren.' },
+        { q: 'Was macht der Effekt?', a: 'Eine Kopie wird um die eingestellte Zeit verzögert und mit 45 % zugemischt. Jede Kopie geht mit der Wiederholungsstärke wieder ins Delay, bis 0,55, also werden sie leiser statt zu pfeifen. WAV behält diese Mischung. MP3 wird einmal neu kodiert.' },
+        { q: 'Was ist der Unterschied zu Slowed + Reverb?', a: 'Slowed + Reverb ist ein Schleier: die Tonhöhe sinkt mit dem Tempo, der Schweif ist ein Brei aus Reflexionen. Diese Seite behält das Timing und setzt getrennte Kopien dazu. Tempo und Tonhöhe bleiben.' },
+        { q: 'Warum werden die Wiederholungen nicht lauter?', a: 'Die Rückkopplung ist bei 55 % gedeckelt, der gerenderte Schweif bei 4 Sekunden. Das reicht für mehrere Kopien. Es wird kein selbsterregtes Rauschen.' },
+        { q: 'Kann ich nur einen Teil echoen?', a: 'Ja. Markiere den Abschnitt in der Wellenform und behalte die Auswahl. Die Wiederholungen kommen zu dem, was du exportierst, nicht zum Rest der Datei.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. Beide Regler und der Export funktionieren per Touch in aktuellem Chrome, Edge, Firefox und Safari.' },
+      ],
+      dropHint: 'Audiodatei hierher ziehen oder klicken zum Auswählen',
+    },
+    'silence-remover': {
+      cardLine: "Schneide lange stille Stellen weg und lass kurze Atemzüge stehen.",
+      name: "Stille entfernen",
+      shortName: "Stille",
+      title: "Stille aus Audio entfernen — Pausen online kostenlos schneiden",
+      description: "Entferne lange Stille aus jeder Audiodatei im Browser. Du bestimmst, wie leise und wie lang. Kostenlos, nichts wird hochgeladen.",
+      h1: 'Kostenloser Online-Stille-Entferner — Stille aus Audio entfernen',
+      heroAlt: 'Die langen Pausen aus einer Sprachaufnahme schneiden',
+      subtitle: "Weg mit der toten Luft. Pausen, die kürzer sind als dein Abstand, bleiben.",
+      intro: "Es findet Stellen, die leiser als die Schwelle und länger als die Mindestpause sind, und schneidet sie. Die Schwelle steht anfangs auf −40 dBFS, passend für Sprache und Sprachnachrichten. Jeder Schnitt lässt an beiden Enden 0,08 Sekunden stehen, damit ein Wort nicht abgeschnitten wird. Eine kürzere Pause bleibt. Leise Musik und ausklingende Enden liegen ebenfalls unter −40 dBFS und werden mitgeschnitten. Wenn du von Hand wählen willst, nimm den Audio-Trimmer. Liegt die ganze Datei unter der Schwelle, ist der Export die Originaldatei. Die Verarbeitung bleibt in deinem Browser.",
+      usesHeading: "Wo die tote Luft wirklich sitzt",
+      uses: ["Zieh eine Sprachnachricht oder eine Podcast-Aufnahme zusammen, in der zwischen den Sätzen lange Pausen sind.", "Nimm die Stille aus einem Vortrag, ohne jede Lücke von Hand zu schneiden.", "Räum eine Aufnahme vor dem Export auf und lass die kurzen Atemzüge stehen."],
+      howTo: [
+        { name: "Audio ablegen", text: "Beliebiges MP3, WAV, M4A, OGG oder FLAC. Es wird auf deinem Gerät dekodiert." },
+        { name: "Schwelle und Pause setzen", text: "Die Schwelle ist, wie leise eine Stelle sein muss, von −60 bis −20 dBFS. Die Mindestpause ist, wie lange sie dauern muss, bevor sie weg ist, von 0,1 bis 2 Sekunden. Die Statuszeile sagt ungefähr, wie viele Sekunden wegfallen." },
+        { name: "Exportieren", text: "Hör dir das Original an und exportiere dann MP3 oder WAV. Die Datei setzt die lauten Teile aneinander und lässt an jedem Schnitt 0,08 Sekunden stehen." },
+      ],
+      faqs: [
+        { q: "Wird mein Audio hochgeladen?", a: "Nein. Der Pegel wird in deinem Browser gemessen und die leisen Stellen im Speicher geschnitten. Wenn die Seite geladen ist, kannst du offline gehen und der Export funktioniert weiter." },
+        { q: "Was wird wirklich entfernt?", a: "Eine Stelle fällt nur weg, wenn sie leiser als die Schwelle und länger als die Mindestpause ist. Der Startwert ist −40 dBFS und 0,35 Sekunden. Jede Stelle lässt an beiden Enden 0,08 Sekunden stehen. Kürzere Lücken, auch die meisten Atemzüge, bleiben." },
+        { q: "Schneidet das leise Musik?", a: "Ja, wenn sie länger als die Pause unter der Schwelle bleibt. −40 dBFS ist für Sprache. Ein leises Bett, ein Fade oder das Raumrauschen eines Musikmixes gelten als Stille. Schieb die Schwelle Richtung −20, wenn du nur die fast digitalen Nullen weg haben willst, oder nimm den Trimmer und wähl von Hand." },
+        { q: "Was, wenn die ganze Datei leise ist?", a: "Es wird nichts geschnitten. Die Statuszeile sagt das, und der Export ist die Originaldatei." },
+        { q: "Worin unterscheidet sich das vom Trimmer?", a: "Der Audio-Trimmer und der MP3-Cutter behalten den Bereich, den du auf der Wellenform zeichnest. Diese Seite findet lange stille Stellen nach Pegel und entfernt sie alle in einem Export. Tempo, Tonhöhe und Lautstärke des Rests bleiben gleich." },
+        { q: "Geht das auf dem Handy?", a: "Ja. Beide Regler und der Export-Knopf reagieren auf Tippen in aktuellem Chrome, Edge, Firefox und Safari." },
+      ],
+      dropHint: "Audiodatei hier ablegen oder zum Auswählen klicken",
+    },
+    'loudness-meter': {
+      cardLine: "Lies, wie laut eine Datei in LUFS ist, und gleiche dann ein Podcast-, Streaming- oder Broadcast-Ziel an.",
+      name: "Lautheitsmesser",
+      shortName: "Lautheit",
+      title: "Lautheitsmesser — Audio-LUFS online kostenlos prüfen",
+      description: "Miss die Lautheit einer Audiodatei im Browser und gleiche −16, −14 oder −23 an. Der Sample-Peak bleibt unter −1 dBFS. Kostenlos, nichts wird hochgeladen.",
+      h1: 'Kostenloser Online-LUFS-Meter — Die LUFS eines Songs prüfen',
+      heroAlt: 'Prüfen, ob eine Datei zum Lautheitsziel eines Podcasts oder eines Streams passt',
+      subtitle: "Die integrierte Lautheit der Datei, die du ablegst — nicht die Lautheit des Raums.",
+      intro: "Leg eine Datei ab und lies ihre integrierte Lautheit in LUFS, plus den Sample-Peak. Dann gleichst du ein Lieferziel an: Podcast −16, Streaming −14 oder Broadcast −23. Die Verstärkung ist eine Zahl für die ganze Datei. Würde sie die lauteste Probe über −1 dBFS schieben, bleibt sie davor stehen, und die Seite sagt dir die LUFS, die du wirklich erreichst. Das ist kein Raum-Schallpegelmesser und keine Peak-Normalisierung. −16, −14 und −23 sind übliche Lieferziele, keine gesetzliche Grenze. Die Verarbeitung bleibt in deinem Browser.",
+      usesHeading: "Wofür die Zahl da ist",
+      uses: ["Sieh vor dem Verschicken, ob eine Sprachnachricht oder ein Mix nah an einem Podcast-Ziel liegt.", "Heb eine leise Datei Richtung −16 oder −14, ohne den Sample-Peak über −1 dBFS zu lassen.", "Lies Stereo als Stereo. Die beiden Kanäle werden vor der Messung nicht zusammengemischt."],
+      howTo: [
+        { name: "Audio ablegen", text: "Beliebiges MP3, WAV, M4A, OGG oder FLAC. Es wird auf deinem Gerät dekodiert und gemessen." },
+        { name: "Den Messer lesen", text: "Integriert ist die K-bewertete Lautheit der Datei, in LUFS. Sample-Peak ist die größte Probe, in dBFS. Eine stumme Datei hat keine Lautheit zum Angleichen." },
+        { name: "Ziel wählen und exportieren", text: "Podcast ist −16, Streaming ist −14, Broadcast ist −23. Exportiere MP3 oder WAV. Würde der Peak −1 dBFS überschreiten, stoppt die Verstärkung, und die Zeile zeigt die LUFS, die du bekommst." },
+      ],
+      faqs: [
+        { q: "Wird mein Audio hochgeladen?", a: "Nein. Die Datei wird in deinem Browser dekodiert und gemessen. Wenn die Seite geladen ist, kannst du offline gehen und der Export funktioniert weiter." },
+        { q: "Was bedeutet die Zahl?", a: "Integrierte LUFS ist, wie laut die Datei über ihre Länge ist, nach der K-Bewertung aus ITU-R BS.1770. Das ist eine Eigenschaft der Datei. Keine Raummessung und kein A-bewerteter Schalldruckpegel." },
+        { q: "Worin unterscheidet sich das vom Normalisieren?", a: "Normalisieren hebt die Datei, bis die lauteste Probe einen Peak trifft. Diese Seite gleicht die integrierte Lautheit an. Eine Datei kann peak-normalisiert sein und trotzdem weit von −16 LUFS entfernt liegen. Laut und leise bleiben gleich weit auseinander. Der Pegelkompressor ist die Seite, die diesen Abstand verengt." },
+        { q: "Sind −16, −14 und −23 gesetzliche Grenzen?", a: "Nein. Es sind übliche Lieferziele: Podcasts verlangen oft etwa −16 LUFS, Musik-Streaming etwa −14, Broadcast etwa −23. Die Seite verspricht nicht, dass deine Datei eine Plattform oder einen Sender besteht." },
+        { q: "Ist der Peak ein True Peak?", a: "Nein. Sample-Peak ist die größte Probe in der Datei. Ein True Peak braucht Überabtastung und kann zwischen den Proben etwas höher liegen. Diese Seite hält den Sample-Peak bei −1 dBFS und meldet kein dBTP." },
+        { q: "Geht das auf dem Handy?", a: "Ja. Die drei Ziele und der Export-Knopf reagieren auf Tippen in aktuellem Chrome, Edge, Firefox und Safari." },
+      ],
+      dropHint: "Audiodatei hier ablegen oder zum Auswählen klicken",
+    },
+    'multi-track-audio-editor': {
+      cardLine: 'Lege Gesang, Sprache und Musik auf eine Zeitleiste und exportiere einen Mix.',
+      name: 'Mehrspur-Audioeditor',
+      shortName: 'Mehrspur',
+      title: 'Mehrspur-Audioeditor — Dateien kostenlos mischen',
+      description: 'Lege Audiodateien auf eine Zeitleiste, stelle Pegel und Pan pro Spur ein und exportiere einen Mix. Kostenlos, im Browser, nichts wird hochgeladen.',
+      h1: 'Kostenloser Online-Mehrspur-Editor — Spuren zu einem Mix schichten',
+      heroAlt: 'Pegel und Pan einer Stimme über einem Beat einstellen',
+      subtitle: 'Bis zu 8 Dateien übereinander, jede einzeln ausbalancieren, einen Mix exportieren.',
+      intro: 'Leg eine Stimme auf einen Beat oder einen Kommentar auf Musik und hör beides zusammen. Jede Datei ist eine Spur: Pegel, Pan, Stumm, Solo und der Einsatz. Die Summe entsteht in deinem Browser. Nichts wird hochgeladen. Schließt du den Tab, ist die Session weg.',
+      usesHeading: 'Mixe für diese Seite',
+      uses: [
+        'Leg eine Sprachnotiz unter ein Musikbett und schieb sie so, dass die Stimme nach dem Intro kommt.',
+        'Balanciere Stems, die du schon hast — Gesang, Drums, Gitarre — und exportiere eine Datei.',
+        'Hör eine Spur solo und hol die anderen zurück, ohne eine DAW zu installieren.',
+      ],
+      howTo: [
+        { name: 'Dateien hinzufügen', text: 'Leg zwei oder mehr Audiodateien ab, oder klick zum Auswählen. Jede Datei wird eine Spur. Diese Seite hört bei 8 auf.' },
+        { name: 'Setzen und balancieren', text: 'Zieh einen Clip, um den Einsatz zu setzen. Zieh die Kanten zum Kürzen. Stell Pegel und Pan in der Zeile ein, oder tipp die Zeiten. Stumm und Solo sitzen in derselben Zeile.' },
+        { name: 'Abspielen, dann exportieren', text: 'Drück Mix abspielen. Exportiere MP3 oder WAV. Würde die Summe übersteuern, wird der ganze Mix um denselben Faktor leiser, und die Seite sagt um wie viele dB.' },
+      ],
+      faqs: [
+        { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Der Browser dekodiert jede Datei mit decodeAudioData und addiert die Samples im Speicher. Wenn die Seite geladen ist, braucht der Export keinen Server. Den Tab schließen verwirft die Session: kein Konto, kein gespeichertes Projekt.' },
+        { q: 'Was passiert mit dem Ton?', a: 'Spuren werden auf die höchste Samplerate unter ihnen gebracht, mindestens 44,1 kHz, mit linearer Interpolation. WAV ist das 16-Bit-PCM dieses Stereo-Mix. MP3 wird einmal kodiert, mit der Bitrate, die du wählst, bis 320 kbps. Liegt der Peak der Summe über 0,98, wird der ganze Mix so skaliert, dass der Peak bei 0,98 landet. Das ist eine Pegeländerung, kein Kompressor, und keine zweite Kodierung.' },
+        { q: 'Was kann das nicht?', a: 'Es nimmt kein MIDI auf, lädt keine Instrumente oder Samples, zeichnet keine Lautstärkekurve und duckt Musik nicht von allein unter Sprache. Ein Clip pro Spur, acht Spuren, keine Projektdatei. Plugins, Automation und eine Session, die du morgen wieder öffnest, gehören in Audacity oder eine Browser-DAW wie BandLab.' },
+        { q: 'Worin unterscheidet sich das vom Zusammenfügen?', a: 'Der Audio Joiner legt Dateien hintereinander: eine endet, die nächste beginnt, mit optionalem Crossfade. Diese Seite spielt sie gleichzeitig. Eine Playlist in einer Datei ist der Joiner. Eine Stimme auf einem Beat ist diese Seite.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. Die Zeitleiste scrollt seitwärts. Pegel, Pan, Start und Schnitt sind Regler und Zahlen, ohne einen pixelgenauen Zug. Aktuelles Chrome, Edge, Firefox und Safari dekodieren die üblichen Formate. Eine Datei, die der Browser nicht dekodieren kann, wird übersprungen, die anderen bleiben.' },
+        { q: 'Warum nur 8 Spuren?', a: 'Jede Spur wird vor dem Abspielen in den Speicher dekodiert. Acht Stereodateien sind für einen Handy-Tab schon viel. Eine 16-Spur-Produktion mit Plugins ist ein anderes Werkzeug.' },
+      ],
+      dropHint: 'Zwei oder mehr Audiodateien ablegen, um sie zu stapeln',
     },
   },
 };

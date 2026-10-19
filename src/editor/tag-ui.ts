@@ -5,6 +5,7 @@
 import { buildTaggedMp3, parseId3, type AudioTags, type PictureData } from './tags';
 import { formatBytes } from '../lib/format';
 import { showToast } from './messages';
+import { bindFileOpen } from './delivery';
 import type { EditorConfig } from '../data/tools';
 
 /** Only the strings the controller needs at runtime; everything else is SSR. */
@@ -110,13 +111,7 @@ class TagForm {
     const { els } = this;
 
     // Drop zone: click, keyboard, drag & drop.
-    els.dropzone.addEventListener('click', () => els.fileInput.click());
-    els.dropzone.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        els.fileInput.click();
-      }
-    });
+    bindFileOpen(els.dropzone, () => els.fileInput.click());
     for (const type of ['dragenter', 'dragover'] as const) {
       els.dropzone.addEventListener(type, (e) => {
         e.preventDefault();

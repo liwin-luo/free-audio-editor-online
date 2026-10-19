@@ -113,6 +113,10 @@ export default defineConfig({
       },
     }),
   ],
+  // Desktop dev is pinned so Tauri's webview and the dev server stay on the same origin.
+  ...(process.env.DESKTOP === '1'
+    ? { server: { port: 4321, strictPort: true, host: '127.0.0.1' } }
+    : {}),
   vite: {
     plugins: [tailwindcss()],
     // The transcription worker dynamically imports @huggingface/transformers,

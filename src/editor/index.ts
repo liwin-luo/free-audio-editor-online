@@ -5,7 +5,9 @@
 import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { defaultEditState, renderEdit, computeNormalizeGain, type EditState } from './processor';
+import { analyzeSilence, measureSilenceFrames, SILENCE_PAD_SEC, type SilenceFrames, type TimeRange } from './silence';
 import { encodeFor, getFormat, isM4rSupported } from './encoders';
+import { bindDeliveryChips, bindFileOpen } from './delivery';
 import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
@@ -83,6 +85,9 @@ export class Editor {
   private pitchPreviewKey = '';
 
   private busy = false;
+  private silenceFrames: SilenceFrames | null = null;
+  private silenceThreshold = -40;
+  private silenceMin = 0.35;
   private drag: { kind: 'new' | 'start' | 'end'; x0: number; anchor: number; sel: { start: number; end: number } } | null = null;
 
   constructor(root: HTMLElement, config: EditorConfig) {
@@ -124,10 +129,12 @@ export class Editor {
       void isM4rSupported().then((ok) => {
         if (!ok) {
           this.els.format.querySelector<HTMLOptionElement>('option[value="m4r"]')?.remove();
+          this.els.root.querySelector('[data-delivery="m4r"]')?.remove();
           if (this.els.format.value === 'm4r') this.els.format.value = 'mp3-192';
         }
       });
     }
+    bindDeliveryChips(this.els.root, this.els.format);
     this.bind();
     this.applyState(this.state, false);
   }
@@ -137,13 +144,24 @@ export class Editor {
   private bind(): void {
     const { els } = this;
 
-    els.dropzone.addEventListener('click', () => els.fileInput.click());
-    els.dropzone.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        els.fileInput.click();
-      }
-    });
+    if (this.config.silence) {
+      const threshold = els.root.querySelector<HTMLInputElement>('[data-silence-threshold]');
+      const gap = els.root.querySelector<HTMLInputElement>('[data-silence-gap]');
+      const thresholdLabel = els.root.querySelector('[data-silence-threshold-label]');
+      const gapLabel = els.root.querySelector('[data-silence-gap-label]');
+      threshold?.addEventListener('input', () => {
+        this.silenceThreshold = Number(threshold.value);
+        if (thresholdLabel) thresholdLabel.textContent = `${Math.round(this.silenceThreshold)} dB`;
+        this.updateSilenceStatus();
+      });
+      gap?.addEventListener('input', () => {
+        this.silenceMin = Number(gap.value);
+        if (gapLabel) gapLabel.textContent = `${this.silenceMin.toFixed(2)} s`;
+        this.updateSilenceStatus();
+      });
+    }
+
+    bindFileOpen(els.dropzone, () => els.fileInput.click());
     els.fileInput.addEventListener('change', () => {
       const file = els.fileInput.files?.[0];
       if (file) void this.loadFile(file);
@@ -246,6 +264,27 @@ export class Editor {
     quickNormalize?.addEventListener('click', () => this.toggleNormalize());
 
     reverbBind('[data-quick-reverb]', '[data-quick-reverb-label]');
+
+    const quickCompress = this.els.root.querySelector<HTMLInputElement>('[data-quick-compress]');
+    const quickCompressLabel = this.els.root.querySelector<HTMLElement>('[data-quick-compress-label]');
+    if (quickCompress && quickCompressLabel) {
+      quickCompress.addEventListener('input', () => (quickCompressLabel.textContent = `${quickCompress.value}%`));
+      quickCompress.addEventListener('change', () => this.commit({ compress: Number(quickCompress.value) / 100 }));
+    }
+
+    const quickEchoDelay = this.els.root.querySelector<HTMLInputElement>('[data-quick-echo-delay]');
+    const quickEchoDelayLabel = this.els.root.querySelector<HTMLElement>('[data-quick-echo-delay-label]');
+    if (quickEchoDelay && quickEchoDelayLabel) {
+      quickEchoDelay.addEventListener('input', () => (quickEchoDelayLabel.textContent = `${Number(quickEchoDelay.value).toFixed(2)} s`));
+      quickEchoDelay.addEventListener('change', () => this.commit({ echoDelay: Number(quickEchoDelay.value) }));
+    }
+    const quickEchoFeedback = this.els.root.querySelector<HTMLInputElement>('[data-quick-echo-feedback]');
+    const quickEchoFeedbackLabel = this.els.root.querySelector<HTMLElement>('[data-quick-echo-feedback-label]');
+    if (quickEchoFeedback && quickEchoFeedbackLabel) {
+      const pct = () => `${Math.round(Number(quickEchoFeedback.value) * 100)}%`;
+      quickEchoFeedback.addEventListener('input', () => (quickEchoFeedbackLabel.textContent = pct()));
+      quickEchoFeedback.addEventListener('change', () => this.commit({ echoFeedback: Number(quickEchoFeedback.value) }));
+    }
 
     const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
     const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
@@ -362,6 +401,7 @@ export class Editor {
       this.refit(true);
       this.applyState(this.state, false);
       this.setStatus(this.text.ready);
+      if (this.config.silence) this.measureSilence();
 
       if (this.duration > 3600) {
         showToast(this.toastRoot(), 'info', this.text.hourWarning);
@@ -453,6 +493,41 @@ export class Editor {
     this.els.status.textContent = msg;
   }
 
+  private measureSilence(): void {
+    if (!this.buffer) return;
+    const channels = Array.from({ length: this.buffer.numberOfChannels }, (_, i) => this.buffer!.getChannelData(i));
+    this.silenceFrames = measureSilenceFrames(channels, this.buffer.sampleRate);
+    this.updateSilenceStatus();
+  }
+
+  private updateSilenceStatus(): void {
+    if (!this.silenceFrames) return;
+    const analysis = analyzeSilence(this.silenceFrames, {
+      thresholdDb: this.silenceThreshold,
+      minSilenceSec: this.silenceMin,
+      padSec: SILENCE_PAD_SEC,
+    });
+    if (analysis.allBelow) {
+      this.setStatus(this.text.silenceKeepFile);
+      return;
+    }
+    const kept = analysis.ranges.reduce((sum, range) => sum + (range.to - range.from), 0);
+    const removed = Math.max(0, this.duration - kept);
+    this.setStatus(fill(this.text.silenceRemove, { time: `${removed.toFixed(1)} s` }));
+  }
+
+  private silenceBuffer(): AudioBuffer {
+    if (!this.buffer || !this.silenceFrames) return this.buffer!;
+    const analysis = analyzeSilence(this.silenceFrames, {
+      thresholdDb: this.silenceThreshold,
+      minSilenceSec: this.silenceMin,
+      padSec: SILENCE_PAD_SEC,
+    });
+    const kept = analysis.ranges.reduce((sum, range) => sum + (range.to - range.from), 0);
+    if (analysis.allBelow || this.duration - kept < 0.02) return this.buffer;
+    return spliceRanges(this.buffer, analysis.ranges);
+  }
+
   // ---------- Selection & pointer interaction ----------
 
   private timeAtEvent(e: PointerEvent): number {
@@ -463,7 +538,7 @@ export class Editor {
 
   private onPointerDown(e: PointerEvent): void {
     if (!this.buffer || this.busy) return;
-    if (this.config.converter) return; // pure conversion: no selection UI
+    if (this.config.converter || this.config.silence) return;
     const target = e.target as HTMLElement;
     const time = this.timeAtEvent(e);
     let kind: 'new' | 'start' | 'end' = 'new';
@@ -662,6 +737,18 @@ export class Editor {
       const quickReverbLabel = this.els.root.querySelector<HTMLElement>('[data-quick-reverb-label]');
       if (quickReverb) quickReverb.value = String(state.reverb);
       if (quickReverbLabel) quickReverbLabel.textContent = `${Math.round(state.reverb * 100)}%`;
+      const quickCompress = this.els.root.querySelector<HTMLInputElement>('[data-quick-compress]');
+      const quickCompressLabel = this.els.root.querySelector<HTMLElement>('[data-quick-compress-label]');
+      if (quickCompress) quickCompress.value = String(Math.round(state.compress * 100));
+      if (quickCompressLabel) quickCompressLabel.textContent = `${Math.round(state.compress * 100)}%`;
+      const quickEchoDelay = this.els.root.querySelector<HTMLInputElement>('[data-quick-echo-delay]');
+      const quickEchoDelayLabel = this.els.root.querySelector<HTMLElement>('[data-quick-echo-delay-label]');
+      if (quickEchoDelay) quickEchoDelay.value = String(state.echoDelay);
+      if (quickEchoDelayLabel) quickEchoDelayLabel.textContent = `${state.echoDelay.toFixed(2)} s`;
+      const quickEchoFeedback = this.els.root.querySelector<HTMLInputElement>('[data-quick-echo-feedback]');
+      const quickEchoFeedbackLabel = this.els.root.querySelector<HTMLElement>('[data-quick-echo-feedback-label]');
+      if (quickEchoFeedback) quickEchoFeedback.value = String(state.echoFeedback);
+      if (quickEchoFeedbackLabel) quickEchoFeedbackLabel.textContent = `${Math.round(state.echoFeedback * 100)}%`;
       const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
       const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
       if (quickSpeed) quickSpeed.value = String(state.speed);
@@ -724,6 +811,9 @@ export class Editor {
       this.state.gain,
       this.state.reverse ? 1 : 0,
       this.state.reverb,
+      this.state.compress,
+      this.state.echoDelay,
+      this.state.echoFeedback,
       this.state.fadeIn,
       this.state.fadeOut,
       this.state.normalize ? 1 : 0,
@@ -756,6 +846,8 @@ export class Editor {
     let headFrom = from;
     if (
       this.state.pitch !== 0 ||
+      this.state.compress > 0 ||
+      this.state.echoDelay > 0 ||
       this.state.bass !== 0 ||
       this.state.treble !== 0 ||
       this.state.mid !== 0 ||
@@ -859,7 +951,7 @@ export class Editor {
     this.setStatus(this.text.renderingStatus);
 
     try {
-      const out = await renderEdit(this.buffer, this.state);
+      const out = this.config.silence ? this.silenceBuffer() : await renderEdit(this.buffer, this.state);
       const fmt = getFormat(this.els.format.value);
       this.setStatus(fill(this.text.encoding, { ext: fmt.ext.toUpperCase() }));
       const blob = await encodeFor(fmt, out);
@@ -917,6 +1009,31 @@ export class Editor {
       this.undo();
     }
   }
+}
+
+function spliceRanges(buffer: AudioBuffer, ranges: TimeRange[]): AudioBuffer {
+  const rate = buffer.sampleRate;
+  const slices = ranges
+    .map((range) => {
+      const from = clamp(Math.round(range.from * rate), 0, buffer.length);
+      const to = clamp(Math.round(range.to * rate), 0, buffer.length);
+      return { from, to: Math.max(from, to) };
+    })
+    .filter((slice) => slice.to > slice.from);
+  const length = slices.reduce((sum, slice) => sum + (slice.to - slice.from), 0);
+  const out = new AudioBuffer({
+    length: Math.max(1, length),
+    numberOfChannels: buffer.numberOfChannels,
+    sampleRate: rate,
+  });
+  let pos = 0;
+  for (const slice of slices) {
+    for (let c = 0; c < buffer.numberOfChannels; c++) {
+      out.getChannelData(c).set(buffer.getChannelData(c).subarray(slice.from, slice.to), pos);
+    }
+    pos += slice.to - slice.from;
+  }
+  return out;
 }
 
 function formatSemitones(n: number): string {

@@ -293,3 +293,16 @@
     border-left: 3px solid var(--color-accent);
   }
 }
+
+/* Drop well. Unlayered so it wins over the drag-highlight utilities. */
+[data-dropzone] {
+  border-color: color-mix(in srgb, var(--color-ink3) 42%, var(--color-line));
+}
+[data-dropzone]:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 55%, var(--color-line));
+  background-color: color-mix(in srgb, var(--color-accent) 7%, transparent);
+}
+[data-dropzone].border-accent {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-soft);
+}

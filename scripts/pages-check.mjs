@@ -10,6 +10,8 @@ const BASE = process.env.BASE_URL ?? 'http://localhost:4321';
 
 const pages = [
   { path: '/wav-to-mp3', island: true },
+  { path: '/audio-joiner', island: true },
+  { path: '/multi-track-audio-editor', island: true },
   { path: '/reverse-audio', island: true },
   { path: '/change-audio-speed', island: true },
   { path: '/increase-volume', island: true },
@@ -25,6 +27,13 @@ const pages = [
   { path: '/opus-to-mp3', island: true },
   { path: '/fade-audio', island: true },
   { path: '/bass-booster', island: true },
+  { path: '/compressor', island: true },
+  { path: '/echo', island: true },
+  { path: '/silence-remover', island: true },
+  { path: '/loudness-meter', island: true },
+  { path: '/zh/loudness-meter', island: true },
+  { path: '/zh/silence-remover', island: true },
+  { path: '/zh/compressor', island: true },
   { path: '/treble-booster', island: true },
   { path: '/equalizer', island: true },
   { path: '/low-pass-filter', island: true },
@@ -68,6 +77,8 @@ const pages = [
   { path: '/guides/change-pitch-without-changing-speed', island: false },
   { path: '/guides/how-to-edit-an-mp3', island: false },
   { path: '/guides/how-to-edit-a-wav-file', island: false },
+  { path: '/guides/remove-silence-from-podcast', island: false },
+  { path: '/guides/podcast-loudness-lufs', island: false },
   { path: '/es/guides/how-to-trim-audio', island: false },
   { path: '/es/guides/change-pitch-without-changing-speed', island: false },
   { path: '/es/guides/how-to-edit-an-mp3', island: false },
@@ -109,7 +120,7 @@ try {
     try {
       await page.goto(BASE + path, { waitUntil: 'networkidle0', timeout: 20000 });
       const h1 = await page.$eval('h1', (el) => el.textContent.trim());
-      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-visualizer], [data-spec-paint], [data-tag-editor]') !== null;
+      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-audio-mixer], [data-visualizer], [data-spec-paint], [data-tag-editor], [data-loudness]') !== null;
       let recorderOk = true;
       if (recorder) recorderOk = (await page.$('[data-recorder]')) !== null;
       check(

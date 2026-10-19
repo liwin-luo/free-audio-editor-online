@@ -40,6 +40,7 @@ export function localizeTool(slug: string, locale: Locale): ToolDef | undefined 
     title: copy.title,
     description: copy.description,
     h1: copy.h1,
+    hero: tool.hero ? { ...tool.hero, alt: copy.heroAlt ?? tool.hero.alt } : undefined,
     subtitle: copy.subtitle,
     cardLine: copy.cardLine ?? tool.cardLine,
     intro: copy.intro,
@@ -79,6 +80,7 @@ export function assertCatalogs(): void {
     }
     if (cat.ui.features.length !== en.ui.features.length) throw new Error(`${locale}: features`);
     if (cat.home.why.length !== en.home.why.length) throw new Error(`${locale}: why`);
+    if (cat.home.highlights.length !== en.home.highlights.length) throw new Error(`${locale}: highlights`);
     if (cat.home.faqs.length !== en.home.faqs.length) throw new Error(`${locale}: home faqs`);
     if (cat.privacy.sections.length !== en.privacy.sections.length) throw new Error(`${locale}: privacy`);
     for (const tool of TOOLS) {
@@ -98,6 +100,9 @@ export function assertCatalogs(): void {
       }
       if (tool.editor.exportLabel && !copy.exportLabel) {
         throw new Error(`${locale}/${tool.slug}: missing exportLabel`);
+      }
+      if (tool.hero && !copy.heroAlt?.trim()) {
+        throw new Error(`${locale}/${tool.slug}: missing heroAlt`);
       }
     }
   }

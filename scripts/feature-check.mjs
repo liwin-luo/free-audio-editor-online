@@ -5,7 +5,7 @@
  * Usage: node scripts/feature-check.mjs (needs preview on :4321 + test WAV)
  */
 import puppeteer from 'puppeteer-core';
-import { readFileSync, mkdirSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { generateTestWav } from './make-test-tone.mjs';
 
@@ -43,6 +43,57 @@ const wavStats = (file) => {
     if (v > peak) peak = v;
   }
   return { channels, rate, duration: dataSize / 2 / channels / rate, peak };
+};
+
+/** RMS of one channel from `fromSec` to `toSec`. */
+const rangeRms = (file, fromSec, toSec) => {
+  let b;
+  try {
+    b = readFileSync(file);
+  } catch {
+    return 0;
+  }
+  const channels = b.readUInt16LE(22);
+  const rate = b.readUInt32LE(24);
+  const dataSize = b.readUInt32LE(40);
+  const start = 44 + Math.floor(fromSec * rate) * 2 * channels;
+  const end = Math.min(44 + dataSize, 44 + Math.floor(toSec * rate) * 2 * channels);
+  let acc = 0;
+  let n = 0;
+  for (let i = start; i + 1 < end; i += 2 * channels) {
+    const v = b.readInt16LE(i) / 32768;
+    acc += v * v;
+    n++;
+  }
+  return n ? Math.sqrt(acc / n) : 0;
+};
+
+/** 1.5 s quiet sine then 1.5 s loud sine. Crest-factor fixture for the level compressor. */
+const generateSteppedWav = (path) => {
+  const rate = 48000;
+  const seconds = 3;
+  const frames = seconds * rate;
+  const pcm = Buffer.alloc(frames * 2);
+  for (let i = 0; i < frames; i++) {
+    const t = i / rate;
+    const amp = t < 1.5 ? 0.1 : 0.8;
+    pcm.writeInt16LE(Math.round(Math.sin(2 * Math.PI * 1000 * t) * amp * 32767), i * 2);
+  }
+  const header = Buffer.alloc(44);
+  header.write('RIFF', 0);
+  header.writeUInt32LE(36 + pcm.length, 4);
+  header.write('WAVE', 8);
+  header.write('fmt ', 12);
+  header.writeUInt32LE(16, 16);
+  header.writeUInt16LE(1, 20);
+  header.writeUInt16LE(1, 22);
+  header.writeUInt32LE(rate, 24);
+  header.writeUInt32LE(rate * 2, 28);
+  header.writeUInt16LE(2, 32);
+  header.writeUInt16LE(16, 34);
+  header.write('data', 36);
+  header.writeUInt32LE(pcm.length, 40);
+  writeFileSync(path, Buffer.concat([header, pcm]));
 };
 
 /** RMS of one channel from `fromSec` to the end. 0 if the file is shorter. */
@@ -409,6 +460,116 @@ try {
     dryHpf !== null && wetHpfStats !== null && dryHpfRms > 0.3 && wetHpfRms < 0.1,
     `dry=${dryHpfRms.toFixed(3)} wet=${wetHpfRms.toFixed(3)}`,
   );
+
+  // --- Level compressor: loud/quiet ratio must fall, peak stays near the source ---
+  const DYN_WAV = '/tmp/test-dyn.wav';
+  const dynOut = join(DOWNLOAD_DIR, 'test-dyn-edited.wav');
+  generateSteppedWav(DYN_WAV);
+  await client.goto(`${BASE}/compressor`, { waitUntil: 'networkidle0' });
+  await (await client.$('[data-file-input]')).uploadFile(DYN_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.select('[data-format]', 'wav');
+  rmSync(dynOut, { force: true });
+  await client.click('[data-export]');
+  const dynDryStatus = await waitExported(client);
+  check('compressor dry export', /Exported test-dyn-edited\.wav/.test(dynDryStatus), dynDryStatus || '(timeout)');
+  const dryQuiet = rangeRms(dynOut, 0.2, 1.3);
+  const dryLoud = rangeRms(dynOut, 1.7, 2.8);
+  const dryRatio = dryQuiet > 0 ? dryLoud / dryQuiet : 0;
+  check('compressor dry ratio ~8', dryRatio > 6 && dryRatio < 10, `ratio=${dryRatio.toFixed(2)}`);
+  await client.$eval('[data-quick-compress]', (el) => {
+    el.value = '100';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  const compVal = await client.$eval('[data-quick-compress]', (el) => el.value);
+  check('compressor set', compVal === '100', compVal);
+  rmSync(dynOut, { force: true });
+  await client.click('[data-export]');
+  const dynWetStatus = await waitExported(client);
+  check('compressor wet export', /Exported test-dyn-edited\.wav/.test(dynWetStatus), dynWetStatus || '(timeout)');
+  let dynStats = null;
+  for (let i = 0; i < 20 && !dynStats; i++) {
+    await new Promise((r) => setTimeout(r, 250));
+    try {
+      dynStats = wavStats(dynOut);
+    } catch {}
+  }
+  const wetQuiet = dynStats ? rangeRms(dynOut, 0.2, 1.3) : 0;
+  const wetLoud = dynStats ? rangeRms(dynOut, 1.7, 2.8) : 0;
+  const wetRatio = wetQuiet > 0 ? wetLoud / wetQuiet : 99;
+  check(
+    'compressor halves the loud/quiet ratio',
+    dynStats !== null && wetRatio < dryRatio * 0.5 && dynStats.peak > 0.7 && dynStats.peak < 0.95,
+    `ratio ${dryRatio.toFixed(2)} → ${wetRatio.toFixed(2)} peak=${dynStats ? dynStats.peak.toFixed(3) : 'missing'}`,
+  );
+
+  // --- Echo: a click comes back 0.20 s later ---
+  const CLICK_WAV = '/tmp/test-click.wav';
+  const clickOut = join(DOWNLOAD_DIR, 'test-click-edited.wav');
+  {
+    const rate = 48000;
+    const frames = rate;
+    const pcm = Buffer.alloc(frames * 2);
+    pcm.writeInt16LE(32767, 0);
+    const header = Buffer.alloc(44);
+    header.write('RIFF', 0);
+    header.writeUInt32LE(36 + pcm.length, 4);
+    header.write('WAVE', 8);
+    header.write('fmt ', 12);
+    header.writeUInt32LE(16, 16);
+    header.writeUInt16LE(1, 20);
+    header.writeUInt16LE(1, 22);
+    header.writeUInt32LE(rate, 24);
+    header.writeUInt32LE(rate * 2, 28);
+    header.writeUInt16LE(2, 32);
+    header.writeUInt16LE(16, 34);
+    header.write('data', 36);
+    header.writeUInt32LE(pcm.length, 40);
+    writeFileSync(CLICK_WAV, Buffer.concat([header, pcm]));
+  }
+  const sampleAt = (file, sec) => {
+    try {
+      const b = readFileSync(file);
+      const rate = b.readUInt32LE(24);
+      const i = 44 + Math.round(sec * rate) * 2;
+      let peak = 0;
+      for (let k = i - 20; k <= i + 960; k += 2) {
+        if (k < 44 || k + 1 >= b.length) continue;
+        peak = Math.max(peak, Math.abs(b.readInt16LE(k)) / 32768);
+      }
+      return peak;
+    } catch {
+      return 0;
+    }
+  };
+  await client.goto(`${BASE}/echo`, { waitUntil: 'networkidle0' });
+  await (await client.$('[data-file-input]')).uploadFile(CLICK_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.select('[data-format]', 'wav');
+  rmSync(clickOut, { force: true });
+  await client.click('[data-export]');
+  check('echo dry export', /Exported test-click-edited\.wav/.test(await waitExported(client)), '');
+  const dryClick = sampleAt(clickOut, 0.2);
+  check('echo dry has no repeat', dryClick < 0.02, `at0.2=${dryClick.toFixed(3)}`);
+  await client.$eval('[data-quick-echo-delay]', (el) => {
+    el.value = '0.2';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await client.$eval('[data-quick-echo-feedback]', (el) => {
+    el.value = '0.4';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  rmSync(clickOut, { force: true });
+  await client.click('[data-export]');
+  check('echo wet export', /Exported test-click-edited\.wav/.test(await waitExported(client)), '');
+  for (let i = 0; i < 20; i++) {
+    await new Promise((r) => setTimeout(r, 200));
+    try {
+      if (readFileSync(clickOut).length > 100) break;
+    } catch {}
+  }
+  const wetClick = sampleAt(clickOut, 0.2);
+  check('echo repeat near 0.20 s', wetClick > 0.2, `at0.2=${wetClick.toFixed(3)}`);
 
   // --- Waveform image: default social preset exports a 2× PNG ---
   const pngFile = join(DOWNLOAD_DIR, 'test-tone-waveform.png');

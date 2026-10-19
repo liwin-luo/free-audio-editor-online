@@ -4,6 +4,7 @@
  * Static markup; src/editor/joiner.ts wires the behavior.
  */
 import Icon from '../Icon.astro';
+import DropPromise from './DropPromise.astro';
 import { EXPORT_FORMATS } from '../../editor/encoders';
 import { getShell } from '../../i18n';
 import { fill } from '../../i18n/inline';
@@ -31,18 +32,21 @@ const formats = allowed
   class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
 >
   <!-- Dropzone -->
-  <div data-dropzone class="cursor-pointer px-6 py-12 text-center md:py-16" tabindex="0" role="button" aria-label={config.dropHint}>
-    <span class="mx-auto grid size-14 place-items-center rounded-2xl bg-accent-soft text-accent">
-      <Icon name="layers" size={28} />
-    </span>
-    <p class="mt-5 text-lg font-medium">{config.dropHint}</p>
-    <p class="mt-1.5 text-sm text-ink2">{t.joinerMixed}</p>
-    <p class="mt-6 inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
+  <DropPromise config={config} locale={locale}>
+    <div data-open tabindex="0" role="button" aria-label={config.dropHint}>
+      <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
+        <Icon name="layers" size={20} />
+      </span>
+      <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
+    </div>
+  </DropPromise>
+  <div class="mb-5 mt-4 text-center">
+    <p class="inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
       <Icon name="shield-check" size={14} class="text-accent" />
       {t.joinerLocal}
     </p>
-    <input type="file" class="hidden" multiple accept="audio/*,video/mp4,.m4a,.opus" data-file-input />
   </div>
+  <input type="file" class="hidden" multiple accept="audio/*,video/mp4,.m4a,.opus" data-file-input />
 
   <!-- Workspace -->
   <div data-workspace class="hidden">

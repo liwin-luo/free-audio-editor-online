@@ -1,6 +1,6 @@
 ---
 title: Audacity Alternative — When a Browser Tool Is Enough
-description: Audacity is still right for multitrack work. For one cut, a conversion or a ringtone, a browser tool is faster and the file never gets uploaded.
+description: Audacity keeps sessions, plugins and projects you reopen. The browser stacks files you already have, and nothing is uploaded.
 tool: mp3-editor
 date: 2026-10-14
 layout: ../../layouts/Guide.astro
@@ -15,16 +15,20 @@ person on the other end will not install anything.
 
 This page is the honest split: when to stay in Audacity, when a browser tool wins,
 and which page on this site matches which task. Nothing here records, uploads or
-stores your audio. If the task needs a multitrack timeline, close this tab and
-open Audacity.
+stores your audio. Stacking a few files you already have is the
+[multi-track editor](/multi-track-audio-editor). MIDI, plugins, volume
+envelopes, and a project you reopen tomorrow still belong in Audacity.
 
 ## When Audacity is still the right tool
 
 Use Audacity when the work is a project, not a single action.
 
-- **More than one track at once.** A podcast with a host, a guest and a music bed,
-  or a song where you mute one part and keep another, needs a timeline. A browser
-  joiner can place files end to end. It cannot stack them.
+- **A session, not a stack of files.** A podcast with several mics, music, and
+  level rides, or a song you will reopen tomorrow, needs a project. The
+  [multi-track editor](/multi-track-audio-editor) stacks up to eight files you
+  already have: level, pan, mute, solo, and where each one starts. It does not
+  keep a project, draw envelopes, or load plugins. The
+  [joiner](/audio-joiner) only places files end to end.
 - **Repair.** Clicks, hum, a noisy room, a clipped syllable you want to redraw.
   Audacity's noise reduction, click removal and spectrogram view exist for this.
   A volume slider does not.
@@ -68,6 +72,7 @@ step are the whole task.
 | Cut, fade, change volume and speed in one place | [MP3 editor](/mp3-editor) |
 | Make a file for an iPhone ringtone | [Ringtone maker](/ringtone-maker) |
 | Put several files in a row, with or without a crossfade | [Audio joiner](/audio-joiner) |
+| Play several files at once — vocal on a beat, voice on music | [Multi-track editor](/multi-track-audio-editor) |
 | Turn a WAV (or other lossless file) into an MP3 | [WAV to MP3](/wav-to-mp3) |
 | Play a track backwards | [Reverse audio](/reverse-audio) |
 | Slow a song down or speed it up, pitch included | [Change audio speed](/change-audio-speed) |
@@ -96,9 +101,11 @@ modern laptop handles an album track or a half-hour voice memo without drama.
 A feature-length file can run the tab out of memory. That is the point where
 Audacity, which streams from disk, is the more reliable machine.
 
-**No stacked tracks.** The [joiner](/audio-joiner) sequences files and can
-crossfade the overlap. It does not let you hear two clips at the same time on
-separate faders. If "merge" means a mix, you want Audacity.
+**Eight tracks, not a session.** The [multi-track editor](/multi-track-audio-editor)
+plays files at the same time: level, pan, mute, solo, start, and trim, then one
+export. The [joiner](/audio-joiner) still only places files end to end. Neither
+one stores a project. Plugins, envelopes, and a mix you reopen tomorrow are
+still Audacity.
 
 ![The audio joiner with two tracks in a list, song-demo.mp3 then voice-memo-b.wav. Crossfade is 0.0s. They play one after another, not on separate faders.](/guides-media/audacity-alternative/02-joiner.webp)
 

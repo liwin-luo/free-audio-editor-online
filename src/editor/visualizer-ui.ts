@@ -13,6 +13,7 @@ import {
 } from './visualizer';
 import { mixMono, paintSpec, specColumnDb, type ColormapName, type SpecAxis } from './spectrogram';
 import { readEditorText, showToast } from './messages';
+import { bindFileOpen } from './delivery';
 import { clamp, formatBytes, formatTime } from '../lib/format';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
@@ -120,13 +121,7 @@ export class VisualizerApp {
 
   private bind(): void {
     const { els } = this;
-    els.dropzone.addEventListener('click', () => els.fileInput.click());
-    els.dropzone.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        els.fileInput.click();
-      }
-    });
+    bindFileOpen(els.dropzone, () => els.fileInput.click());
     els.fileInput.addEventListener('change', () => {
       const file = els.fileInput.files?.[0];
       els.fileInput.value = '';

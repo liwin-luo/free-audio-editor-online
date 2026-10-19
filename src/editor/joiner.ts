@@ -7,6 +7,7 @@ import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, concatPeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { renderMerge } from './processor';
 import { encodeFor, getFormat } from './encoders';
+import { bindDeliveryChips, bindFileOpen } from './delivery';
 import { initEditors } from './index';
 import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
@@ -37,16 +38,11 @@ class Joiner {
 
     const format = this.q<HTMLSelectElement>('[data-format]');
     if (config.defaultFormat) format.value = config.defaultFormat;
+    bindDeliveryChips(this.root, format);
 
     const dropzone = this.q<HTMLElement>('[data-dropzone]');
     const input = this.q<HTMLInputElement>('[data-file-input]');
-    dropzone.addEventListener('click', () => input.click());
-    dropzone.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        input.click();
-      }
-    });
+    bindFileOpen(dropzone, () => input.click());
     input.addEventListener('change', () => {
       void this.addFiles(Array.from(input.files ?? []));
       input.value = '';

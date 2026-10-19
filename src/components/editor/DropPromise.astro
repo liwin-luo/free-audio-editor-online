@@ -1,0 +1,55 @@
+---
+/**
+ * Dashed drop well. The slot is the icon and the drop hint; the format line sits under them.
+ * Export chips sit below the well. `plain` skips the well when the page already has one.
+ */
+import { deliveryChips, promiseParts, selectedDelivery } from '../../editor/delivery';
+import { getShell } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { EditorConfig } from '../../data/tools';
+
+interface Props {
+  config: EditorConfig;
+  locale?: Locale;
+  plain?: boolean;
+}
+const { config, locale = 'en', plain = false } = Astro.props;
+const { editor: t, ui } = getShell(locale);
+const chips = deliveryChips(config, t.chipText);
+const selected = selectedDelivery(config, chips);
+const promise = promiseParts(config, {
+  etaModel: t.etaModel,
+  limitTenMin: t.limitTenMin,
+  limitRingtone: t.limitRingtone,
+  wav: ui.formats.wav,
+  formatsMore: t.formatsMore,
+}).join(' · ');
+---
+
+<div
+  data-dropzone={plain ? undefined : true}
+  class:list={[
+    'text-center',
+    !plain &&
+      'mx-4 mt-4 cursor-pointer rounded-xl border border-dashed px-6 py-10 transition-colors md:mx-5 md:py-12',
+  ]}
+>
+  <slot />
+  <p class="mt-1.5 text-sm text-ink3">{promise}</p>
+</div>
+{
+  chips.length > 0 && (
+    <div class="mt-4 flex flex-wrap items-center justify-center gap-2" role="group" aria-label={t.format}>
+      {chips.map((chip) => (
+        <button
+          type="button"
+          data-delivery={chip.id}
+          aria-pressed={chip.id === selected ? 'true' : 'false'}
+          class="cursor-pointer rounded-full border border-line bg-bg px-3 py-1 text-xs font-medium text-ink2 aria-pressed:border-accent aria-pressed:bg-accent-soft aria-pressed:text-accent"
+        >
+          {chip.label}
+        </button>
+      ))}
+    </div>
+  )
+}
