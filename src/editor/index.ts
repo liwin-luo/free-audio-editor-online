@@ -7,6 +7,7 @@ import { computePeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './wave
 import { defaultEditState, renderEdit, computeNormalizeGain, survivingRanges, type EditState } from './processor';
 import { analyzeSilence, measureSilenceFrames, SILENCE_PAD_SEC, type SilenceFrames, type TimeRange } from './silence';
 import { CIRCLE_DEPTH, CIRCLE_RATE_HZ, CIRCLE_WET } from './circle';
+import { snapTempo } from './tempo';
 import { loopChannels, LOOP_MAX_SECONDS, loopedDuration } from './loop';
 import { encodeFor, getFormat, isM4rSupported } from './encoders';
 import { bindDeliveryChips, bindFileOpen } from './delivery';
@@ -342,6 +343,17 @@ export class Editor {
       quickSpeed.addEventListener('change', () => this.commit({ speed: Number(quickSpeed.value) }));
     }
 
+    const quickTempo = this.els.root.querySelector<HTMLInputElement>('[data-quick-tempo]');
+    const quickTempoLabel = this.els.root.querySelector<HTMLElement>('[data-quick-tempo-label]');
+    if (quickTempo && quickTempoLabel) {
+      this.state.keepPitch = true;
+      this.state.speed = snapTempo(Number(quickTempo.value));
+      quickTempo.addEventListener('input', () => (quickTempoLabel.textContent = `${Number(quickTempo.value).toFixed(2)}×`));
+      quickTempo.addEventListener('change', () =>
+        this.commit({ speed: snapTempo(Number(quickTempo.value)), keepPitch: true }),
+      );
+    }
+
     const quickPitch = this.els.root.querySelector<HTMLInputElement>('[data-quick-pitch]');
     const quickPitchLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pitch-label]');
     if (quickPitch && quickPitchLabel) {
@@ -418,6 +430,14 @@ export class Editor {
     this.state.reverb = CIRCLE_WET;
   }
 
+  /** The tempo slider's range is not defaultEditState. File load resets state, so put it back. */
+  private applyTempoIfOn(): void {
+    const slider = this.els.root.querySelector<HTMLInputElement>('[data-quick-tempo]');
+    if (!slider) return;
+    this.state.keepPitch = true;
+    this.state.speed = snapTempo(Number(slider.value));
+  }
+
   // ---------- File loading ----------
 
   private async loadFile(file: File): Promise<void> {
@@ -446,6 +466,7 @@ export class Editor {
       this.history = [];
       this.state = defaultEditState();
       this.applyCircleIfOn();
+      this.applyTempoIfOn();
 
       this.els.fileName.textContent = file.name;
       this.els.fileMeta.textContent = `${formatBytes(file.size)} · ${formatTime(this.duration, true)} · ${Math.round(buffer.sampleRate / 1000)} kHz`;
@@ -842,6 +863,10 @@ export class Editor {
       const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
       if (quickSpeed) quickSpeed.value = String(state.speed);
       if (quickSpeedLabel) quickSpeedLabel.textContent = `${state.speed.toFixed(2)}×`;
+      const quickTempo = this.els.root.querySelector<HTMLInputElement>('[data-quick-tempo]');
+      const quickTempoLabel = this.els.root.querySelector<HTMLElement>('[data-quick-tempo-label]');
+      if (quickTempo) quickTempo.value = state.speed.toFixed(2);
+      if (quickTempoLabel) quickTempoLabel.textContent = `${state.speed.toFixed(2)}×`;
       const quickPitch = this.els.root.querySelector<HTMLInputElement>('[data-quick-pitch]');
       const quickPitchLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pitch-label]');
       if (quickPitch) quickPitch.value = String(state.pitch);
@@ -898,6 +923,7 @@ export class Editor {
       this.state.hpf,
       this.state.lpf,
       this.state.speed,
+      this.state.keepPitch ? 1 : 0,
       this.state.gain,
       this.state.reverse ? 1 : 0,
       this.state.reverb,
@@ -937,6 +963,7 @@ export class Editor {
     let rate = this.state.speed;
     let headFrom = from;
     if (
+      (this.state.keepPitch && this.state.speed !== 1) ||
       this.state.pitch !== 0 ||
       this.state.compress > 0 ||
       this.state.echoDelay > 0 ||

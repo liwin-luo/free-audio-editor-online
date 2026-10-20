@@ -1982,7 +1982,7 @@ export const es: Catalog = {
       faqs: [
         {
           q: '¿Cambiar la velocidad cambia el tono?',
-          a: 'Sí. La velocidad y el tono se mueven juntos, como un disco que gira más rápido o más lento: 2× suena cerca de una octava más agudo y 0.5× cerca de una octava más grave. Ese es el efecto clásico. Conservar el tono mientras cambias el tempo necesita un algoritmo de time-stretch, que podríamos agregar más adelante. Para cambiar el tono sin cambiar la duración, usa el cambiador de tono.',
+          a: 'En esta página, la velocidad y el tono se mueven juntos: 2× suena cerca de una octava más agudo y 0.5× cerca de una octava más grave. El cambiador de tempo conserva el tono y cambia la duración, de 0.75× a 1.25× en pasos de 0.01. Para cambiar el tono y conservar la duración, usa el cambiador de tono.',
         },
         {
           q: '¿Qué velocidades puedo elegir?',
@@ -2010,7 +2010,7 @@ export const es: Catalog = {
           heading: 'Velocidad y tono se mueven juntos',
           paragraphs: [
             'Este control reproduce el archivo más rápido o más lento como una cinta, de 0,5× a 2×. A 2× el tono sube cerca de una octava, y a 0,5× baja cerca de una octava. Más rápido significa un archivo más corto y un tono más agudo. Más lento significa un archivo más largo y un tono más grave.',
-            'No puede acelerar el audio y conservar el tono original. Eso exigiría time-stretch, y esta página no lo hace. Una voz más aguda o más grave con la misma duración es el cambiador de tono, hasta 12 semitonos.',
+            'Conservar el tono mientras cambia la duración es el cambiador de tempo, de 0.75× a 1.25×. Esta página sigue moviendo el tono con la velocidad. Una voz más aguda o más grave con la misma duración es el cambiador de tono, hasta 12 semitonos.',
           ],
         },
         {
@@ -2659,6 +2659,61 @@ export const es: Catalog = {
       ],
       dropHint: 'Suelta una canción o haz clic para elegirla',
     },
+    'tempo-changer': {
+      cardLine: 'Cambia la duración de 0.75× a 1.25×. El tono se queda.',
+      name: 'Cambiador de tempo',
+      shortName: 'Tempo',
+      title: 'Cambiar tempo — conservar el tono, gratis',
+      description: 'Cambia la duración de 0.75× a 1.25× en pasos de 0.01. El tono se queda. 1× no estira. La armonía densa puede sonar fina. No se sube nada.',
+      h1: 'Cambiador de tempo, la duración se mueve y el tono se queda',
+      heroAlt: 'Cambiar cuánto dura un archivo mientras el tono se queda',
+      subtitle: 'De 0.75× a 1.25×, en pasos de 0.01. La tonalidad se queda.',
+      intro: 'Suelta un archivo y arrastra la velocidad. El archivo se acorta o se alarga, y el tono vuelve a su sitio. El control se detiene en 0.75× y en 1.25×. 1× deja las muestras quietas y no estira. La armonía densa puede sonar fina. Ese es el límite de este desplazamiento. No se sube nada.',
+      usesHeading: 'Una duración nueva, la misma tonalidad',
+      uses: [
+        'Mete una canción en un hueco un poco más corto o más largo sin mover la tonalidad.',
+        'Estira un poco una nota de voz. La voz se queda en el mismo tono.',
+        '1× exporta el archivo sin el estiramiento.',
+      ],
+      howTo: [
+        { name: 'Suelta el archivo', text: 'Añade un MP3, WAV, M4A u otro audio. Se queda en tu dispositivo.' },
+        { name: 'Pon el tempo', text: 'Arrastra de 0.75× a 1.25×. Cada paso es 0.01. 1.00× es el archivo que soltaste.' },
+        { name: 'Escucha y exporta', text: 'Reproduce para oír la nueva duración en el tono original y guarda en MP3 o WAV.' },
+      ],
+      faqs: [
+        { q: '¿Se sube el archivo?', a: 'No. El navegador estira el archivo en memoria. Después de cargar la página puedes quedar sin conexión y aun así exportar un archivo que sueltes.' },
+        { q: '¿Suena igual, solo más largo o más corto?', a: 'Una nota suelta se queda cerca. La armonía densa puede sonar fina. El mismo desplazamiento, pasado unos 7 semitonos, se vuelve metálico, y este control se queda dentro de unos 5.' },
+        { q: '¿Puedo ir más lento que 0.75× o más rápido que 1.25×?', a: 'No. El control se detiene ahí. 0.5× y 2× son la página de velocidad, y en esa página el tono se mueve con la velocidad. 1× en esta página no estira.' },
+        { q: '¿En qué se diferencia de la velocidad y del cambiador de tono?', a: 'La página de velocidad cambia la duración y el tono se mueve con ella, de 0.5× a 2×. El cambiador de tono mueve el tono y mantiene la duración. Esta página cambia la duración y el tono se queda.' },
+        { q: '¿Funciona en el teléfono?', a: 'Sí. El control de velocidad y el botón de exportar aceptan un toque en Chrome, Edge, Firefox y Safari actuales.' },
+      ],
+      sections: [
+        {
+          heading: 'La duración cambia, el tono se queda',
+          paragraphs: [
+            'La página primero remuestrea el archivo, así que la duración y el tono se mueven juntos. Después devuelve el tono en la misma proporción. 0.8× pasa a durar 1.25 veces más, y la tonalidad vuelve al punto de partida.',
+            'El control va de 0.75× a 1.25× en pasos de 0.01. No hay un control fuera de ese rango. En 1× el estiramiento no corre, y la exportación se queda con las muestras que soltaste.',
+          ],
+        },
+        {
+          heading: 'Dónde se nota el límite',
+          paragraphs: ['La armonía densa puede sonar fina. Una voz sola o una nota suelta se queda más cerca.'],
+          bullets: [
+            'El paso mayor de este control ronda los 5 semitonos. Pasados unos 7, este desplazamiento se vuelve metálico.',
+            'Una pila de acordes es donde el sonido fino aparece primero.',
+            '1× es el archivo que soltaste. El estiramiento se salta.',
+          ],
+        },
+        {
+          heading: 'La página de velocidad y el cambiador de tono',
+          paragraphs: [
+            'La página de velocidad va de 0.5× a 2× y el tono se mueve con el tempo. Úsala cuando ese cambio de tono es el objetivo.',
+            'El cambiador de tono mueve la tonalidad y mantiene la duración, hasta 12 semitonos. Esta página hace lo contrario: la duración se mueve y la tonalidad se queda.',
+          ],
+        },
+      ],
+      dropHint: 'Suelta un archivo de audio o haz clic para elegirlo',
+    },
     'pitch-changer': {
       cardLine: 'Cambia el tono por semitonos para covers y mashups: la duración no cambia.',
       name: 'Cambiador de tono',
@@ -2684,7 +2739,7 @@ export const es: Catalog = {
         { q: '¿Cambia la duración del archivo?', a: 'No. El control de tono mueve la tonalidad y deja la duración quieta. Para hacer el archivo más rápido o más lento —eso también mueve el tono— usa el cambiador de velocidad.' },
         { q: '¿Cuánto puedo subir o bajar el tono?', a: 'De −12 a +12 semitonos, de uno en uno. Es una octava hacia cada lado. La voz y un instrumento solo aguantan mejor un cambio grande que una mezcla densa.' },
         { q: '¿Un cambio grande suena natural?', a: 'Unos pocos semitonos se quedan cerca del original. Pasados unos 7 semitonos el sonido se adelgaza y se pone metálico. Es el límite de este cambiador, no una opción que se pueda apagar.' },
-        { q: '¿Es lo mismo que cambiar la velocidad?', a: 'No. El cambiador de velocidad reproduce el archivo más rápido o más lento, así que el tono se va con él y la duración cambia. Esta página solo mueve el tono.' },
+        { q: '¿Es lo mismo que cambiar la velocidad?', a: 'No. El cambiador de velocidad reproduce el archivo más rápido o más lento, así que el tono se va con él y la duración cambia. Esta página solo mueve el tono. El cambiador de tempo cambia la duración y el tono se queda, de 0.75× a 1.25×.' },
         { q: '¿El archivo se sube a algún lado?', a: 'No. El cambio se calcula en tu navegador y la exportación se guarda en tu dispositivo.' },
         { q: '¿Puedo cambiar el tono de una canción para evitar el copyright?', a: 'No — cambiar el tono no elimina los derechos de una grabación. Una subida con el tono modificado sigue siendo reclamable y puede bajarse. Cambia la tonalidad para cantar o para karaoke, y usa música con los derechos adecuados cuando publiques.' },
         {
@@ -3540,7 +3595,7 @@ export const es: Catalog = {
         { q: '¿Se sube el archivo?', a: 'No. El navegador lo decodifica y lee las muestras en memoria. Cuando la página ha cargado, puedes quedar sin red y seguir leyendo un archivo que sueltes.' },
         { q: '¿Cómo de exacta es la lectura?', a: 'El BPM es el hueco de ataque más fuerte entre 60 y 180, en entero. La tonalidad es el mejor encaje con un perfil mayor fijo y un perfil menor fijo, 12 pesos cada uno. No es una transcripción de acordes.' },
         { q: '¿Qué no hace?', a: 'No cambia el tono ni la velocidad. No hay botón para una tonalidad nueva. Un archivo de menos de 2 segundos no tiene BPM. El silencio muestra que no se puede leer, no 0 y no do mayor. Solo entran los primeros 60 segundos.' },
-        { q: '¿En qué se diferencia del cambiador de tono y de la página de velocidad?', a: 'Esta página solo lee. El cambiador de tono mueve el tono y mantiene la duración. La página de velocidad cambia la duración, y el tono se mueve con ella. Cortar una región es el recortador de audio.' },
+        { q: '¿En qué se diferencia del cambiador de tono y de la página de velocidad?', a: 'Esta página solo lee. El cambiador de tono mueve el tono y mantiene la duración. La página de velocidad cambia la duración, y el tono se mueve con ella. El cambiador de tempo cambia la duración y el tono se queda, de 0.75× a 1.25×.' },
         { q: '¿Funciona en el teléfono?', a: 'Sí. Suelta el archivo y lee los dos números. La zona de soltar y el botón de reinicio se tocan en Chrome, Edge, Firefox y Safari actuales.' },
       ],
       sections: [

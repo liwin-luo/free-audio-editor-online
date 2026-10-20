@@ -131,6 +131,15 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
               </span>
             </label>
           )}
+          {config.quickControls!.includes('tempo') && (
+            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+              {t.speed}
+              <input type="range" data-quick-tempo min="0.75" max="1.25" step="0.01" value="1" class="flex-1 accent-(--color-accent)" />
+              <span class="w-12 font-mono text-xs tabular-nums" data-quick-tempo-label>
+                1.00×
+              </span>
+            </label>
+          )}
           {config.quickControls!.includes('pitch') && (
             <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
               {t.pitch}
@@ -361,7 +370,7 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
     }
 
     {
-      !config.converter && !config.silence && (
+      !config.converter && !config.silence && !config.quickControls?.includes('tempo') && (
         <div class="flex flex-wrap items-center gap-3 px-4 py-3 md:px-5" data-modes-row>
           {!config.loop && (
             <div class="inline-flex rounded-lg border border-line p-0.5" role="group" aria-label={t.cutMode}>
@@ -394,7 +403,13 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
     }
 
     <!-- Export bar -->
-    <div data-export-bar class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+    <div
+      data-export-bar
+      class:list={[
+        'sticky bottom-0 flex items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5',
+        config.quickControls?.includes('tempo') ? 'flex-nowrap' : 'flex-wrap',
+      ]}
+    >
       <label class="flex items-center gap-2 text-sm text-ink2">
         {t.format}
         <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" disabled>

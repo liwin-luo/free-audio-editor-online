@@ -1477,7 +1477,7 @@ export const pt: Catalog = {
       faqs: [
         {
           q: 'Mudar a velocidade muda o tom?',
-          a: 'Sim — velocidade e tom andam juntos, como um disco tocado mais rápido ou mais devagar: 2× soa cerca de uma oitava acima, 0,5× cerca de uma oitava abaixo. Esse é o efeito clássico; manter o tom e mudar o tempo exige um algoritmo dedicado de time-stretch, que podemos adicionar depois. Para mudar o tom sem mudar a duração, use o alterador de tom.',
+          a: 'Nesta página, velocidade e tom andam juntos: 2× fica cerca de uma oitava acima, 0,5× cerca de uma oitava abaixo. O alterador de tempo mantém o tom e muda a duração, de 0,75× a 1,25× em passos de 0,01. Para mudar o tom e manter a duração, use o alterador de tom.',
         },
         {
           q: 'Quais velocidades posso escolher?',
@@ -1918,6 +1918,36 @@ export const pt: Catalog = {
       ],
       dropHint: 'Solte uma música ou clique para procurar',
     },
+    'tempo-changer': {
+      cardLine: 'Muda a duração de 0,75× a 1,25×. O tom fica.',
+      name: 'Alterador de tempo',
+      shortName: 'Tempo',
+      title: 'Mudar tempo — manter o tom, online grátis',
+      description: 'Muda a duração de 0,75× a 1,25× em passos de 0,01. O tom fica. 1× não estica. Harmonia densa pode soar fina. Nada é enviado.',
+      h1: 'Alterador de tempo, a duração anda e o tom fica',
+      heroAlt: 'Mudar quanto um arquivo dura enquanto o tom fica',
+      subtitle: 'De 0,75× a 1,25×, em passos de 0,01. O tom fica no lugar.',
+      intro: 'Solte um arquivo e arraste a velocidade. O arquivo fica mais curto ou mais longo, e o tom volta para onde estava. O controle para em 0,75× e em 1,25×. 1× deixa as amostras quietas e não estica. Harmonia densa pode soar fina. Esse é o limite deste deslocamento. Nada é enviado.',
+      usesHeading: 'Uma duração nova, o mesmo tom',
+      uses: [
+        'Encaixe uma música num espaço um pouco mais curto ou mais longo sem mover o tom.',
+        'Estique um pouco um recado de voz. A voz fica no mesmo tom.',
+        '1× exporta o arquivo sem o esticamento.',
+      ],
+      howTo: [
+        { name: 'Solte o arquivo', text: 'Adicione um MP3, WAV, M4A ou outro áudio. Ele fica no seu aparelho.' },
+        { name: 'Defina o tempo', text: 'Arraste de 0,75× a 1,25×. Cada passo é 0,01. 1,00× é o arquivo que você soltou.' },
+        { name: 'Ouça e exporte', text: 'Reproduza para ouvir a nova duração no tom original e salve em MP3 ou WAV.' },
+      ],
+      faqs: [
+        { q: 'O arquivo é enviado?', a: 'Não. O navegador estica o arquivo na memória. Depois que a página carrega, você pode ficar offline e ainda exportar um arquivo que soltar.' },
+        { q: 'Soa igual, só mais longo ou mais curto?', a: 'Uma nota sozinha fica perto. Harmonia densa pode soar fina. O mesmo deslocamento, passado uns 7 semitons, fica metálico, e este controle fica dentro de uns 5.' },
+        { q: 'Dá para ir mais devagar que 0,75× ou mais rápido que 1,25×?', a: 'Não. O controle para aí. 0,5× e 2× são a página de velocidade, e nela o tom anda junto. 1× nesta página não estica.' },
+        { q: 'Qual a diferença para a velocidade e o alterador de tom?', a: 'A página de velocidade muda a duração e o tom anda junto, de 0,5× a 2×. O alterador de tom move o tom e mantém a duração. Esta página muda a duração e o tom fica.' },
+        { q: 'Funciona no celular?', a: 'Sim. O controle de velocidade e o botão de exportar aceitam um toque no Chrome, Edge, Firefox e Safari atuais.' },
+      ],
+      dropHint: 'Solte um arquivo de áudio ou clique para procurar',
+    },
     'pitch-changer': {
       cardLine: 'Mude o tom em semitons para covers e mashups — com o mesmo comprimento.',
       name: 'Alterador de tom',
@@ -1943,7 +1973,7 @@ export const pt: Catalog = {
         { q: 'A duração do arquivo muda?', a: 'Não. O controle de tom muda a tonalidade e deixa a duração quieta. Para deixar o arquivo mais rápido ou mais lento — o que também muda o tom — use o alterador de velocidade.' },
         { q: 'Até onde dá para mudar o tom?', a: 'De −12 a +12 semitons, de um em um. É uma oitava para cada lado. Voz e um instrumento solo aguentam melhor um deslocamento grande do que uma mix densa.' },
         { q: 'Um deslocamento grande soa natural?', a: 'Alguns semitons ficam perto do original. Passando de uns 7 semitons o som fica mais fino e metálico. É o limite deste alterador, não uma opção que dá para desligar.' },
-        { q: 'É a mesma coisa que mudar a velocidade?', a: 'Não. O alterador de velocidade toca o arquivo mais rápido ou mais devagar, então o tom vai junto e a duração muda. Esta página só mexe no tom.' },
+        { q: 'É a mesma coisa que mudar a velocidade?', a: 'Não. O alterador de velocidade toca o arquivo mais rápido ou mais devagar, então o tom vai junto e a duração muda. Esta página só mexe no tom. O alterador de tempo muda a duração e o tom fica, de 0,75× a 1,25×.' },
         { q: 'O arquivo é enviado?', a: 'Não. A mudança é calculada no navegador e a exportação é salva no seu aparelho.' },
         { q: 'Posso mudar o tom de uma música para evitar copyright?', a: 'Não — mudar o tom não remove os direitos de uma gravação. Um upload com o tom alterado ainda pode ser reclamado e derrubado. Mude o tom para cantar ou para karaokê, e use música com os direitos certos ao publicar.' },
         {
@@ -2396,7 +2426,7 @@ export const pt: Catalog = {
         { q: 'O arquivo é enviado?', a: 'Não. O navegador decodifica e lê as amostras na memória. Depois que a página carrega, você pode ficar offline e ainda ler um arquivo que soltar.' },
         { q: 'Quão exata é a leitura?', a: 'O BPM é o vão de ataque mais forte entre 60 e 180, em inteiro. O tom é o melhor encaixe num perfil maior fixo e num perfil menor fixo, 12 pesos cada. Não é uma transcrição de acordes.' },
         { q: 'O que ele não faz?', a: 'Não muda o tom nem a velocidade. Não há botão para um tom novo. Um arquivo com menos de 2 segundos não tem BPM. O silêncio mostra que não dá para ler, não 0 e não C maior. Só os primeiros 60 segundos entram.' },
-        { q: 'Qual a diferença para o alterador de tom e a página de velocidade?', a: 'Esta página só lê. O alterador de tom move o tom e mantém a duração. A página de velocidade muda a duração, e o tom anda junto. Cortar uma região é o aparador de áudio.' },
+        { q: 'Qual a diferença para o alterador de tom e a página de velocidade?', a: 'Esta página só lê. O alterador de tom move o tom e mantém a duração. A página de velocidade muda a duração, e o tom anda junto. O alterador de tempo muda a duração e o tom fica, de 0,75× a 1,25×.' },
         { q: 'Funciona no celular?', a: 'Sim. Solte o arquivo e leia os dois números. A área de soltar e o botão de recomeçar funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',

@@ -5,6 +5,7 @@
 import { clamp } from '../lib/format';
 import { panAt } from './pan';
 import { pitchShiftChannel } from './pitch';
+import { snapTempo, tempoKeepPitch } from './tempo';
 
 export interface EditState {
   /** keep = export only the selection; delete = remove the selection */
@@ -14,6 +15,8 @@ export interface EditState {
   gain: number;
   /** playback rate, 1 = unchanged */
   speed: number;
+  /** When set, speed changes duration and the pitch is shifted back. 1× skips that shift. */
+  keepPitch: boolean;
   /** semitones, 0 = unchanged. Applied after the edit so length follows speed, not pitch. */
   pitch: number;
   /** fade-in seconds (applied at output start) */
@@ -53,6 +56,7 @@ export function defaultEditState(): EditState {
     sel: null,
     gain: 1,
     speed: 1,
+    keepPitch: false,
     pitch: 0,
     fadeIn: 0,
     fadeOut: 0,
@@ -149,7 +153,7 @@ function createReverbIR(ctx: BaseAudioContext, seconds = REVERB_SECONDS): AudioB
 
 export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise<AudioBuffer> {
   const rate = buffer.sampleRate;
-  const speed = clamp(state.speed, 0.25, 4);
+  const speed = state.keepPitch ? 1 : clamp(state.speed, 0.25, 4);
   const ranges = survivingRanges(buffer.duration, state);
   const outDuration =
     ranges.reduce((acc, r) => acc + (r.to - r.from) / speed, 0) || 0.001;
@@ -321,6 +325,32 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
         for (let i = 0; i < d.length; i++) d[i] = d[i]! * g;
       }
     }
+  }
+  if (state.keepPitch && snapTempo(state.speed) !== 1) {
+    const tempo = snapTempo(state.speed);
+    const shifted: Float32Array[] = [];
+    for (let c = 0; c < rendered.numberOfChannels; c++) {
+      shifted.push(tempoKeepPitch(rendered.getChannelData(c), tempo, rendered.sampleRate));
+    }
+    const next = new AudioBuffer({
+      length: shifted[0]!.length,
+      numberOfChannels: shifted.length,
+      sampleRate: rendered.sampleRate,
+    });
+    for (let c = 0; c < shifted.length; c++) next.getChannelData(c).set(shifted[c]!);
+    let peak = 0;
+    for (let c = 0; c < next.numberOfChannels; c++) {
+      const d = next.getChannelData(c);
+      for (let i = 0; i < d.length; i++) peak = Math.max(peak, Math.abs(d[i]!));
+    }
+    if (peak > 0.98) {
+      const g = 0.98 / peak;
+      for (let c = 0; c < next.numberOfChannels; c++) {
+        const d = next.getChannelData(c);
+        for (let i = 0; i < d.length; i++) d[i] = d[i]! * g;
+      }
+    }
+    return next;
   }
   return rendered;
 }

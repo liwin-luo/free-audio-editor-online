@@ -1983,7 +1983,7 @@ export const de: Catalog = {
       faqs: [
         {
           q: 'Ändert die Geschwindigkeit auch die Tonhöhe?',
-          a: 'Ja — Geschwindigkeit und Tonhöhe bewegen sich zusammen, wie eine Schallplatte, die schneller oder langsamer läuft: 2× klingt etwa eine Oktave höher, 0,5× etwa eine Oktave tiefer. Das ist der klassische Effekt; die Tonhöhe zu halten und nur die Geschwindigkeit zu ändern braucht einen eigenen Time-Stretch-Algorithmus, den wir später ergänzen können. Um die Tonhöhe zu ändern, ohne die Länge zu ändern, nimm den Tonhöhen-Regler.',
+          a: 'Auf dieser Seite bewegen sich Geschwindigkeit und Tonhöhe zusammen: 2× liegt etwa eine Oktave höher, 0,5× etwa eine Oktave tiefer. Der Tempo-Wechsler hält die Tonhöhe und ändert die Länge, von 0,75× bis 1,25× in Schritten von 0,01. Um die Tonhöhe zu ändern und die Länge zu behalten, nimm den Tonhöhen-Regler.',
         },
         {
           q: 'Welche Geschwindigkeiten kann ich wählen?',
@@ -2011,7 +2011,7 @@ export const de: Catalog = {
           heading: 'Tempo und Tonhöhe bewegen sich zusammen',
           paragraphs: [
             'Dieser Regler spielt die Datei schneller oder langsamer, wie ein Band, von 0,5× bis 2×. Bei 2× liegt die Tonhöhe etwa eine Oktave höher, bei 0,5× etwa eine Oktave tiefer. Schneller heißt eine kürzere Datei und eine höhere Tonhöhe. Langsamer heißt eine längere Datei und eine tiefere Tonhöhe.',
-            'Er kann das Audio nicht beschleunigen und die ursprüngliche Tonhöhe halten. Dafür bräuchte es Time-Stretch, und das macht diese Seite nicht. Eine höhere oder tiefere Stimme bei gleicher Länge ist der Tonhöhen-Regler, bis zu 12 Halbtöne.',
+            'Die Tonhöhe zu halten, während sich die Länge ändert, ist der Tempo-Wechsler, von 0,75× bis 1,25×. Diese Seite bewegt die Tonhöhe weiter mit der Geschwindigkeit. Eine höhere oder tiefere Stimme bei gleicher Länge ist der Tonhöhen-Regler, bis zu 12 Halbtöne.',
           ],
         },
         {
@@ -2660,6 +2660,61 @@ export const de: Catalog = {
       ],
       dropHint: 'Song ablegen oder klicken zum Auswählen',
     },
+    'tempo-changer': {
+      cardLine: 'Länge von 0,75× bis 1,25× ändern. Die Tonhöhe bleibt.',
+      name: 'Tempo-Wechsler',
+      shortName: 'Tempo',
+      title: 'Tempo ändern — Tonhöhe bleibt online kostenlos',
+      description: 'Länge von 0,75× bis 1,25× in Schritten von 0,01. Die Tonhöhe bleibt. 1× streckt nicht. Dichte Harmonien können dünn klingen. Nichts wird hochgeladen.',
+      h1: 'Tempo ändern, die Länge zieht und die Tonhöhe bleibt',
+      heroAlt: 'Die Länge einer Datei ändern, die Tonhöhe bleibt',
+      subtitle: '0,75× bis 1,25×, in Schritten von 0,01. Die Tonart bleibt.',
+      intro: 'Leg eine Datei ab und zieh die Geschwindigkeit. Die Datei wird kürzer oder länger, und die Tonhöhe geht zurück an ihren Platz. Der Regler stoppt bei 0,75× und 1,25×. 1× lässt die Samples in Ruhe und streckt nicht. Dichte Harmonien können dünn klingen. Das ist die Grenze dieses Shifters. Nichts wird hochgeladen.',
+      usesHeading: 'Neue Länge, gleiche Tonart',
+      uses: [
+        'Einen Song in einen etwas kürzeren oder längeren Slot legen, ohne die Tonart zu verschieben.',
+        'Eine Sprachnotiz etwas strecken. Die Stimme bleibt auf derselben Tonhöhe.',
+        '1× exportiert die Datei ohne die Streckung.',
+      ],
+      howTo: [
+        { name: 'Datei ablegen', text: 'MP3, WAV, M4A oder anderes Audio hinzufügen. Die Datei bleibt auf deinem Gerät.' },
+        { name: 'Tempo setzen', text: 'Zieh von 0,75× bis 1,25×. Jeder Schritt ist 0,01. 1,00× ist die Datei, die du abgelegt hast.' },
+        { name: 'Anhören und exportieren', text: 'Spiel ab, um die neue Länge in der ursprünglichen Tonhöhe zu hören, und speichere als MP3 oder WAV.' },
+      ],
+      faqs: [
+        { q: 'Wird die Datei hochgeladen?', a: 'Nein. Der Browser streckt die Datei im Speicher. Nach dem Laden der Seite kannst du offline gehen und eine abgelegte Datei trotzdem exportieren.' },
+        { q: 'Klingt es nur länger oder kürzer?', a: 'Ein einzelner Ton bleibt nah am Original. Dichte Harmonien können dünn klingen. Derselbe Shifter wird ab etwa 7 Halbtönen metallisch, und dieser Regler bleibt bei etwa 5.' },
+        { q: 'Kann ich langsamer als 0,75× oder schneller als 1,25×?', a: 'Nein. Der Regler stoppt dort. 0,5× und 2× sind die Geschwindigkeitsseite, und dort geht die Tonhöhe mit. 1× auf dieser Seite streckt nicht.' },
+        { q: 'Was ist der Unterschied zur Geschwindigkeit und zum Tonhöhen-Regler?', a: 'Die Geschwindigkeitsseite ändert die Länge, und die Tonhöhe geht mit, von 0,5× bis 2×. Der Tonhöhen-Regler verschiebt die Tonhöhe und behält die Länge. Diese Seite ändert die Länge, und die Tonhöhe bleibt.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. Der Geschwindigkeitsregler und der Export nehmen einen Tipp in aktuellem Chrome, Edge, Firefox und Safari an.' },
+      ],
+      sections: [
+        {
+          heading: 'Die Länge ändert sich, die Tonhöhe bleibt',
+          paragraphs: [
+            'Die Seite resamplet die Datei zuerst, also ziehen Länge und Tonhöhe zusammen. Danach schiebt sie die Tonhöhe um dasselbe Verhältnis zurück. 0,8× wird 1,25-mal so lang, und die Tonart kehrt zurück.',
+            'Der Regler läuft von 0,75× bis 1,25× in Schritten von 0,01. Außerhalb dieses Bereichs gibt es kein Bedienelement. Bei 1× läuft die Streckung nicht, und der Export bleibt bei den Samples, die du abgelegt hast.',
+          ],
+        },
+        {
+          heading: 'Wo die Grenze hörbar wird',
+          paragraphs: ['Dichte Harmonien können dünn klingen. Eine einzelne Stimme oder ein einzelner Ton bleibt näher dran.'],
+          bullets: [
+            'Der größere Schritt auf diesem Regler liegt bei etwa 5 Halbtönen. Ab etwa 7 wird dieser Shifter metallisch.',
+            'Ein Akkordstapel ist die Stelle, an der der dünne Klang zuerst auffällt.',
+            '1× ist die Datei, die du abgelegt hast. Die Streckung wird übersprungen.',
+          ],
+        },
+        {
+          heading: 'Die Geschwindigkeitsseite und der Tonhöhen-Regler',
+          paragraphs: [
+            'Die Geschwindigkeitsseite läuft von 0,5× bis 2×, und die Tonhöhe geht mit dem Tempo. Nimm sie, wenn diese Tonhöhenänderung der Punkt ist.',
+            'Der Tonhöhen-Regler verschiebt die Tonart und behält die Länge, bis zu 12 Halbtöne. Diese Seite macht das Gegenteil: die Länge zieht, und die Tonart bleibt.',
+          ],
+        },
+      ],
+      dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
+    },
     'pitch-changer': {
       cardLine: 'Verschiebe einen Song in Halbtönen für Covers und Mashups — gleiche Länge.',
       name: 'Tonhöhen-Regler',
@@ -2685,7 +2740,7 @@ export const de: Catalog = {
         { q: 'Ändert sich die Länge der Datei?', a: 'Nein. Der Tonhöhen-Regler verschiebt die Tonart und lässt die Dauer in Ruhe. Um eine Datei schneller oder langsamer zu machen — dabei wandert auch die Tonhöhe — nimm den Geschwindigkeitsregler.' },
         { q: 'Wie weit kann ich die Tonhöhe verschieben?', a: 'Von −12 bis +12 Halbtöne, in Einzelschritten. Das ist eine Oktave in jede Richtung. Sprache und ein einzelnes Instrument halten eine große Verschiebung besser aus als ein dichter Mix.' },
         { q: 'Klingt eine große Verschiebung natürlich?', a: 'Ein paar Halbtöne bleiben nah am Original. Ab etwa 7 Halbtönen wird der Klang dünner und metallischer. Das ist die Grenze dieses Reglers, keine Option, die du abschalten kannst.' },
-        { q: 'Ist das dasselbe wie die Geschwindigkeit ändern?', a: 'Nein. Der Geschwindigkeitsregler spielt die Datei schneller oder langsamer, die Tonhöhe geht mit und die Länge ändert sich. Diese Seite verschiebt nur die Tonhöhe.' },
+        { q: 'Ist das dasselbe wie die Geschwindigkeit ändern?', a: 'Nein. Der Geschwindigkeitsregler spielt die Datei schneller oder langsamer, die Tonhöhe geht mit und die Länge ändert sich. Diese Seite verschiebt nur die Tonhöhe. Der Tempo-Wechsler ändert die Länge und die Tonhöhe bleibt, von 0,75× bis 1,25×.' },
         { q: 'Wird die Datei hochgeladen?', a: 'Nein. Die Verschiebung wird in deinem Browser berechnet und der Export landet auf deinem Gerät.' },
         { q: 'Kann ich die Tonlage eines Songs ändern, um Copyright zu umgehen?', a: 'Nein — eine Tonlagenänderung entfernt keine Rechte an einer Aufnahme. Ein gepitchter Upload kann weiterhin gemeldet und gelöscht werden. Ändere die Tonlage zum Singen oder für Karaoke, und veröffentliche Musik, an der du die Rechte hast.' },
         {
@@ -3537,7 +3592,7 @@ export const de: Catalog = {
         { q: 'Wird die Datei hochgeladen?', a: 'Nein. Der Browser dekodiert sie und liest die Samples im Speicher. Nach dem Laden kannst du offline gehen und eine Datei, die du ablegst, trotzdem lesen.' },
         { q: 'Wie genau ist die Lesung?', a: 'BPM ist der stärkste Einsatzabstand zwischen 60 und 180, als ganze Zahl. Die Tonart ist die beste Übereinstimmung mit einem festen Durprofil und einem festen Mollprofil, je 12 Gewichte. Das ist keine Akkordtranskription.' },
         { q: 'Was macht er nicht?', a: 'Er ändert weder Tonhöhe noch Tempo. Es gibt keinen Knopf für eine neue Tonart. Eine Datei unter 2 Sekunden hat kein BPM. Stille zeigt nicht lesbar, nicht 0 und nicht C-Dur. Nur die ersten 60 Sekunden werden gelesen.' },
-        { q: 'Was ist der Unterschied zum Pitch-Changer und zur Tempo-Seite?', a: 'Diese Seite liest nur. Der Pitch-Changer verschiebt die Tonhöhe und behält die Länge. Die Tempo-Seite ändert die Länge, und die Tonhöhe geht mit. Eine Region schneiden ist der Audio-Trimmer.' },
+        { q: 'Was ist der Unterschied zum Pitch-Changer und zur Tempo-Seite?', a: 'Diese Seite liest nur. Der Pitch-Changer verschiebt die Tonhöhe und behält die Länge. Die Tempo-Seite ändert die Länge, und die Tonhöhe geht mit. Der Tempo-Wechsler ändert die Länge und die Tonhöhe bleibt, von 0,75× bis 1,25×.' },
         { q: 'Geht das auf dem Handy?', a: 'Ja. Leg die Datei ab und lies die zwei Zahlen. Die Ablegefläche und der Zurücksetzen-Knopf lassen sich in aktuellem Chrome, Edge, Firefox und Safari antippen.' },
       ],
       sections: [

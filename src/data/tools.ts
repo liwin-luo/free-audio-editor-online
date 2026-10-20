@@ -80,7 +80,7 @@ export interface EditorConfig {
   /** Max gain slider percent (default 200) */
   maxGainPercent?: number;
   /** Headline controls surfaced outside the Adjust drawer */
-  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf' | 'compress' | 'echo' | 'pan' | 'circle')[];
+  quickControls?: ('reverse' | 'speed' | 'tempo' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf' | 'compress' | 'echo' | 'pan' | 'circle')[];
   /** file input accept attribute (default: audio + common video containers) */
   accept?: string;
   /** Export format ids offered in the select, in order. Default: everything except M4R. */
@@ -1305,7 +1305,7 @@ export const TOOLS: ToolDef[] = [
     faqs: [
       {
         q: 'Can I speed up audio without changing the pitch?',
-        a: 'No — here speed and pitch move together, like a record played faster or slower: 2× sounds about an octave higher, 0.5× about an octave lower. Keeping pitch while changing tempo needs a dedicated time-stretch algorithm we may add later. To change pitch without changing the length, use the pitch changer.',
+        a: 'On this page, speed and pitch move together: 2× is about an octave higher, 0.5× about an octave lower. The tempo changer keeps the pitch and changes the length, from 0.75× to 1.25× in steps of 0.01. To change the pitch and keep the length, use the pitch changer.',
       },
       {
         q: 'What speeds can I choose?',
@@ -1333,7 +1333,7 @@ export const TOOLS: ToolDef[] = [
         heading: 'Speed and pitch move together',
         paragraphs: [
           'This control plays the file faster or slower the way a tape would, from 0.5× to 2×. Faster means a shorter file and a higher pitch. Slower means a longer file and a lower pitch. 2× sits about an octave higher, 0.5× about an octave lower.',
-          'It cannot speed the audio up and keep the original pitch. That would need time-stretch, which this page does not do. A higher or lower voice at the same length is the pitch changer, up to 12 semitones.',
+          'Keeping the pitch while the length changes is the tempo changer, from 0.75× to 1.25×. This page still moves the pitch with the speed. A higher or lower voice at the same length is the pitch changer, up to 12 semitones.',
         ],
       },
       {
@@ -1355,7 +1355,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['pitch-changer', 'metronome', 'key-bpm-finder'],
+    related: ['pitch-changer', 'metronome', 'tempo-changer'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -3572,7 +3572,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Is this the same as changing the speed?',
-        a: 'No. The speed changer plays the file faster or slower, so the pitch rides along and the length changes. This page only moves the pitch.',
+        a: 'No. The speed changer plays the file faster or slower, so the pitch rides along and the length changes. This page only moves the pitch. The tempo changer changes the length and the pitch stays, from 0.75× to 1.25×.',
       },
       {
         q: 'Is the file uploaded?',
@@ -3614,12 +3614,107 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['change-audio-speed', 'key-bpm-finder', 'mp3-editor'],
+    related: ['change-audio-speed', 'key-bpm-finder', 'tempo-changer'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
       dropHint: 'Drop an audio file, or click to browse',
       quickControls: ['pitch'],
+    },
+  },
+  {
+    slug: 'tempo-changer',
+    cardLine: 'Change the length from 0.75× to 1.25×. The pitch stays.',
+    name: 'Tempo Changer',
+    shortName: 'Tempo',
+    icon: 'clock-counter-clockwise',
+    category: 'effects',
+    title: 'Tempo Changer — Keep the Pitch Online Free',
+    description:
+      'Change the length from 0.75× to 1.25× in steps of 0.01. The pitch stays. 1× does not run the stretch. Dense harmony can sound thin. Nothing is uploaded.',
+    h1: 'Tempo changer, the length moves and the pitch stays',
+    hero: {
+      src: '/tempo-changer.svg',
+      alt: 'Change how long a file is while the pitch stays',
+      width: 32,
+      height: 32,
+    },
+    subtitle: '0.75× to 1.25×, in steps of 0.01. The key stays put.',
+    intro:
+      'Drop a file and drag the speed. The file gets shorter or longer, and the pitch is shifted back to where it was. The slider stops at 0.75× and 1.25×. 1× leaves the samples alone and does not run the stretch. Dense harmony can sound thin. That is the limit of this shifter. Nothing is uploaded.',
+    usesHeading: 'A new length, the same key',
+    uses: [
+      'Fit a song into a slightly shorter or longer slot without moving the key.',
+      'Stretch a voice memo a little. The voice stays at the same pitch.',
+      '1× exports the file without the stretch.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your file',
+        text: 'Add an MP3, WAV, M4A, or other audio file. It stays on your device.',
+      },
+      {
+        name: 'Set the tempo',
+        text: 'Drag from 0.75× to 1.25×. Each step is 0.01. 1.00× is the file you dropped.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Play to hear the new length at the original pitch, then save as MP3 or WAV.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is the file uploaded?',
+        a: 'No. The browser stretches the file in memory. After the page loads, you can go offline and still export a file you drop.',
+      },
+      {
+        q: 'Will it sound the same, just longer or shorter?',
+        a: 'A single note stays close. Dense harmony can sound thin. The same shifter, past about 7 semitones, turns metallic, and this slider stays inside about 5.',
+      },
+      {
+        q: 'Can I go slower than 0.75× or faster than 1.25×?',
+        a: 'No. The slider stops there. 0.5× and 2× are the speed page, and the pitch moves with the speed on that page. 1× on this page does not run the stretch.',
+      },
+      {
+        q: 'How is this different from the speed page and the pitch changer?',
+        a: 'The speed page changes the length and the pitch moves with it, from 0.5× to 2×. The pitch changer moves the pitch and keeps the length. This page changes the length and the pitch stays.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The speed slider and the export button take a tap in current Chrome, Edge, Firefox, and Safari.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Length changes, pitch stays',
+        paragraphs: [
+          'The page first resamples the file, so the length and the pitch move together. It then shifts the pitch back by the same ratio. 0.8× becomes 1.25 times as long, and the key returns to where it started.',
+          'The slider runs from 0.75× to 1.25× in steps of 0.01. There is no control outside that range. At 1× the stretch does not run, and the export stays with the samples you dropped.',
+        ],
+      },
+      {
+        heading: 'Where the limit shows',
+        paragraphs: ['Dense harmony can sound thin. A lone voice or a single note stays closer.'],
+        bullets: [
+          'The larger step on this slider is about 5 semitones. Past about 7, this shifter turns metallic.',
+          'A chord stack is where the thin sound shows up first.',
+          '1× is the file you dropped. The stretch is skipped.',
+        ],
+      },
+      {
+        heading: 'The speed page and the pitch changer',
+        paragraphs: [
+          'The speed page runs from 0.5× to 2× and the pitch moves with the tempo. Use it when that pitch change is the point.',
+          'The pitch changer moves the key and keeps the length, up to 12 semitones. This page does the opposite: the length moves, and the key stays.',
+        ],
+      },
+    ],
+    related: ['change-audio-speed', 'pitch-changer', 'key-bpm-finder'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['tempo'],
     },
   },
   {
@@ -4457,7 +4552,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'How is this different from the pitch changer and the speed page?',
-        a: 'This page only reads. The pitch changer moves the pitch and keeps the length. The speed page changes the length, and the pitch moves with the speed. Cutting a region is the audio trimmer.',
+        a: 'This page only reads. The pitch changer moves the pitch and keeps the length. The speed page changes the length, and the pitch moves with the speed. The tempo changer changes the length and the pitch stays, from 0.75× to 1.25×.',
       },
       {
         q: 'Does it work on a phone?',
@@ -4491,7 +4586,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['pitch-changer', 'change-audio-speed', 'audio-trimmer'],
+    related: ['pitch-changer', 'change-audio-speed', 'tempo-changer'],
     editor: {
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',

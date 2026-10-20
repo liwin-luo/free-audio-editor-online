@@ -1478,7 +1478,7 @@ export const id: Catalog = {
       faqs: [
         {
           q: 'Apakah mengubah kecepatan juga mengubah nada?',
-          a: 'Ya — kecepatan dan nada bergerak bersama, seperti piringan yang diputar lebih cepat atau lebih lambat: 2× terdengar sekitar satu oktaf lebih tinggi, 0.5× sekitar satu oktaf lebih rendah. Itulah efek klasiknya; mengubah tempo sambil mempertahankan nada asli membutuhkan algoritma time-stretch khusus, yang mungkin kami tambahkan nanti. Untuk mengubah nada tanpa mengubah durasi, gunakan pengubah nada.',
+          a: 'Di halaman ini, kecepatan dan nada bergerak bersama: 2× sekitar satu oktaf lebih tinggi, 0.5× sekitar satu oktaf lebih rendah. Pengubah tempo mempertahankan nada dan mengubah durasi, dari 0.75× sampai 1.25× dengan langkah 0.01. Untuk mengubah nada tanpa mengubah durasi, gunakan pengubah nada.',
         },
         {
           q: 'Kecepatan apa saja yang bisa dipilih?',
@@ -1919,6 +1919,36 @@ export const id: Catalog = {
       ],
       dropHint: 'Jatuhkan lagu, atau klik untuk memilih',
     },
+    'tempo-changer': {
+      cardLine: 'Ubah durasi dari 0.75× sampai 1.25×. Nada tetap.',
+      name: 'Pengubah tempo',
+      shortName: 'Tempo',
+      title: 'Ubah tempo — nada tetap, online gratis',
+      description: 'Ubah durasi dari 0.75× sampai 1.25× dengan langkah 0.01. Nada tetap. 1× tidak meregangkan. Harmoni padat bisa terdengar tipis. Tidak ada yang diunggah.',
+      h1: 'Pengubah tempo, durasi bergerak dan nada tetap',
+      heroAlt: 'Mengubah lama sebuah file sementara nada tetap',
+      subtitle: '0.75× sampai 1.25×, langkah 0.01. Nada tetap di tempatnya.',
+      intro: 'Jatuhkan file dan geser kecepatan. File menjadi lebih pendek atau lebih panjang, dan nada dikembalikan ke tempatnya. Penggeser berhenti di 0.75× dan 1.25×. 1× membiarkan sampel dan tidak meregangkan. Harmoni padat bisa terdengar tipis. Itu batas penggeser ini. Tidak ada yang diunggah.',
+      usesHeading: 'Durasi baru, nada yang sama',
+      uses: [
+        'Masukkan lagu ke slot yang sedikit lebih pendek atau lebih panjang tanpa menggeser nada.',
+        'Regangkan sedikit memo suara. Suaranya tetap di nada yang sama.',
+        '1× mengekspor file tanpa peregangan.',
+      ],
+      howTo: [
+        { name: 'Jatuhkan file', text: 'Tambahkan MP3, WAV, M4A, atau audio lain. File tetap di perangkat Anda.' },
+        { name: 'Atur tempo', text: 'Geser dari 0.75× sampai 1.25×. Setiap langkah 0.01. 1.00× adalah file yang Anda jatuhkan.' },
+        { name: 'Dengarkan dan ekspor', text: 'Putar untuk mendengar durasi baru pada nada asli, lalu simpan sebagai MP3 atau WAV.' },
+      ],
+      faqs: [
+        { q: 'Apakah file diunggah?', a: 'Tidak. Peramban meregangkan file di memori. Setelah halaman termuat, Anda bisa offline dan tetap mengekspor file yang dijatuhkan.' },
+        { q: 'Apakah terdengar sama, hanya lebih panjang atau lebih pendek?', a: 'Nada tunggal tetap dekat. Harmoni padat bisa terdengar tipis. Penggeser yang sama, lewat sekitar 7 seminada, menjadi metalik, dan penggeser ini tetap di dalam sekitar 5.' },
+        { q: 'Bisakah lebih lambat dari 0.75× atau lebih cepat dari 1.25×?', a: 'Tidak. Penggeser berhenti di situ. 0.5× dan 2× ada di halaman kecepatan, dan di sana nada ikut bergerak. 1× di halaman ini tidak meregangkan.' },
+        { q: 'Apa bedanya dengan halaman kecepatan dan pengubah nada?', a: 'Halaman kecepatan mengubah durasi dan nada ikut bergerak, dari 0.5× sampai 2×. Pengubah nada menggeser nada dan mempertahankan durasi. Halaman ini mengubah durasi dan nada tetap.' },
+        { q: 'Apakah berfungsi di ponsel?', a: 'Ya. Penggeser kecepatan dan tombol ekspor bisa diketuk di Chrome, Edge, Firefox, dan Safari saat ini.' },
+      ],
+      dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+    },
     'pitch-changer': {
       cardLine: 'Geser nada per semiton untuk cover dan mashup — durasinya tetap.',
       name: 'Pengubah nada',
@@ -1944,7 +1974,7 @@ export const id: Catalog = {
         { q: 'Apakah durasi file berubah?', a: 'Tidak. Pengatur nada menggeser nada dan membiarkan durasi tetap. Untuk membuat file lebih cepat atau lebih lambat — yang juga menggeser nada — gunakan pengubah kecepatan.' },
         { q: 'Seberapa jauh nadanya bisa digeser?', a: 'Dari −12 sampai +12 seminada, satu per satu. Itu satu oktaf ke masing-masing arah. Suara dan satu instrumen lebih tahan geseran besar daripada campuran yang padat.' },
         { q: 'Geseran besar terdengar alami?', a: 'Beberapa seminada masih dekat dengan aslinya. Lewat kira-kira 7 seminada, suaranya menipis dan terdengar metalik. Itu batas pengubah ini, bukan pengaturan yang bisa dimatikan.' },
-        { q: 'Apa ini sama dengan mengubah kecepatan?', a: 'Tidak. Pengubah kecepatan memutar file lebih cepat atau lebih lambat, jadi nada ikut berubah dan durasinya juga berubah. Halaman ini hanya menggeser nada.' },
+        { q: 'Apa ini sama dengan mengubah kecepatan?', a: 'Tidak. Pengubah kecepatan memutar file lebih cepat atau lebih lambat, jadi nada ikut berubah dan durasinya juga berubah. Halaman ini hanya menggeser nada. Pengubah tempo mengubah durasi dan nada tetap, dari 0.75× sampai 1.25×.' },
         { q: 'Apakah file diunggah?', a: 'Tidak. Pergeseran dihitung di browser dan hasil ekspor disimpan di perangkat Anda.' },
         { q: 'Bisakah mengubah nada lagu untuk menghindari hak cipta?', a: 'Tidak — mengubah nada tidak menghapus hak atas rekaman. Unggahan yang dinaikkan nadanya tetap bisa diklaim atau dihapus. Ubah kunci untuk bernyanyi atau karaoke, dan gunakan musik yang benar-benar kamu punya haknya saat mempublikasikan.' },
         {
@@ -2397,7 +2427,7 @@ export const id: Catalog = {
         { q: 'Apakah berkas diunggah?', a: 'Tidak. Peramban mendekode dan membaca sampel di memori. Setelah halaman dimuat, Anda bisa offline dan tetap membaca berkas yang Anda letakkan.' },
         { q: 'Seberapa tepat pembacaannya?', a: 'BPM adalah jarak onset terkuat antara 60 dan 180, sebagai bilangan bulat. Nada adalah kecocokan terbaik pada profil mayor tetap dan profil minor tetap, masing-masing 12 bobot. Ini bukan transkripsi akor.' },
         { q: 'Apa yang tidak bisa dilakukan?', a: 'Ini tidak mengubah nada atau kecepatan. Tidak ada tombol untuk nada baru. Berkas lebih pendek dari 2 detik tidak punya BPM. Hening menampilkan tidak terbaca, bukan 0 dan bukan C mayor. Hanya 60 detik pertama yang dibaca.' },
-        { q: 'Apa bedanya dengan pengubah nada dan halaman kecepatan?', a: 'Halaman ini hanya membaca. Pengubah nada menggeser nada dan mempertahankan durasi. Halaman kecepatan mengubah durasi, dan nada ikut bergerak. Memotong suatu bagian adalah pemangkas audio.' },
+        { q: 'Apa bedanya dengan pengubah nada dan halaman kecepatan?', a: 'Halaman ini hanya membaca. Pengubah nada menggeser nada dan mempertahankan durasi. Halaman kecepatan mengubah durasi, dan nada ikut bergerak. Pengubah tempo mengubah durasi dan nada tetap, dari 0.75× sampai 1.25×.' },
         { q: 'Apakah ini berfungsi di ponsel?', a: 'Ya. Letakkan berkas dan baca kedua angka. Area letak dan tombol atur ulang bisa disentuh di Chrome, Edge, Firefox, dan Safari yang sekarang.' },
       ],
       dropHint: 'Letakkan berkas audio, atau klik untuk memilih',

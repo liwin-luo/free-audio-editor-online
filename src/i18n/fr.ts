@@ -1418,7 +1418,7 @@ export const fr: Catalog = {
       faqs: [
         {
           q: 'Changer la vitesse change-t-il la hauteur tonale ?',
-          a: 'Oui — vitesse et hauteur tonale avancent ensemble, comme un disque lu plus vite ou plus lentement : 2× sonne environ une octave plus haut, 0,5× environ une octave plus bas. C’est l’effet classique ; conserver la hauteur tout en changeant le tempo demanderait un algorithme de time-stretch, que nous pourrions ajouter plus tard. Pour changer la hauteur sans changer la durée, utilisez le changeur de hauteur tonale.',
+          a: 'Oui — vitesse et hauteur tonale avancent ensemble, comme un disque lu plus vite ou plus lentement : 2× sonne environ une octave plus haut, 0,5× environ une octave plus bas. Le changeur de tempo garde la hauteur et change la durée, de 0,75× à 1,25× par pas de 0,01. Pour changer la hauteur sans changer la durée, utilisez le changeur de hauteur.',
         },
         {
           q: 'Quelles vitesses puis-je choisir ?',
@@ -1919,6 +1919,36 @@ export const fr: Catalog = {
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
     },
+    'tempo-changer': {
+      cardLine: 'Changez la durée de 0,75× à 1,25×. La hauteur reste.',
+      name: 'Changeur de tempo',
+      shortName: 'Tempo',
+      title: 'Changer le tempo — garder la hauteur, gratuit',
+      description: 'Changez la durée de 0,75× à 1,25× par pas de 0,01. La hauteur reste. 1× n’étire pas. Une harmonie dense peut sonner mince. Rien n’est envoyé.',
+      h1: 'Changeur de tempo, la durée bouge et la hauteur reste',
+      heroAlt: 'Changer la durée d’un fichier pendant que la hauteur reste',
+      subtitle: 'De 0,75× à 1,25×, par pas de 0,01. La tonalité reste.',
+      intro: 'Déposez un fichier et tirez la vitesse. Le fichier devient plus court ou plus long, et la hauteur revient à sa place. Le curseur s’arrête à 0,75× et à 1,25×. 1× laisse les échantillons et ne lance pas l’étirement. Une harmonie dense peut sonner mince. C’est la limite de ce décalage. Rien n’est envoyé.',
+      usesHeading: 'Une durée nouvelle, la même tonalité',
+      uses: [
+        'Placez un morceau dans un créneau un peu plus court ou plus long sans déplacer la tonalité.',
+        'Étirez un peu un mémo vocal. La voix reste à la même hauteur.',
+        '1× exporte le fichier sans l’étirement.',
+      ],
+      howTo: [
+        { name: 'Déposez le fichier', text: 'Ajoutez un MP3, un WAV, un M4A ou un autre audio. Il reste sur votre appareil.' },
+        { name: 'Réglez le tempo', text: 'Tirez de 0,75× à 1,25×. Chaque pas vaut 0,01. 1,00× est le fichier déposé.' },
+        { name: 'Écoutez et exportez', text: 'Lancez la lecture pour entendre la nouvelle durée à la hauteur d’origine, puis enregistrez en MP3 ou WAV.' },
+      ],
+      faqs: [
+        { q: 'Le fichier est-il envoyé ?', a: 'Non. Le navigateur étire le fichier en mémoire. Une fois la page chargée, vous pouvez couper le réseau et exporter quand même un fichier déposé.' },
+        { q: 'Est-ce le même son, juste plus long ou plus court ?', a: 'Une note seule reste proche. Une harmonie dense peut sonner mince. Le même décalage, passé environ 7 demi-tons, devient métallique, et ce curseur reste dans environ 5.' },
+        { q: 'Puis-je aller plus lent que 0,75× ou plus vite que 1,25× ?', a: 'Non. Le curseur s’arrête là. 0,5× et 2× sont la page de vitesse, et la hauteur y suit la vitesse. 1× sur cette page n’étire pas.' },
+        { q: 'Quelle différence avec la vitesse et le changeur de hauteur ?', a: 'La page de vitesse change la durée et la hauteur suit, de 0,5× à 2×. Le changeur de hauteur déplace la hauteur et garde la durée. Cette page change la durée et la hauteur reste.' },
+        { q: 'Est-ce que cela marche sur un téléphone ?', a: 'Oui. Le curseur de vitesse et le bouton d’export acceptent un toucher dans Chrome, Edge, Firefox et Safari actuels.' },
+      ],
+      dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+    },
     'pitch-changer': {
       cardLine: 'Décalez la tonalité en demi-tons pour covers et mashups — à longueur inchangée.',
       name: 'Changeur de hauteur tonale',
@@ -1966,7 +1996,7 @@ export const fr: Catalog = {
         },
         {
           q: 'Est-ce la même chose que changer la vitesse ?',
-          a: 'Non. Le changeur de vitesse lit le fichier plus vite ou plus lentement, donc la hauteur suit et la durée change. Cette page ne déplace que la hauteur tonale.',
+          a: 'Non. Le changeur de vitesse lit le fichier plus vite ou plus lentement, donc la hauteur suit et la durée change. Cette page ne déplace que la hauteur tonale. Le changeur de tempo change la durée et la hauteur reste, de 0,75× à 1,25×.',
         },
         {
           q: 'Le fichier est-il téléversé ?',
@@ -2504,7 +2534,7 @@ export const fr: Catalog = {
         { q: 'Le fichier est-il envoyé ?', a: 'Non. Le navigateur le décode et lit les échantillons en mémoire. Une fois la page chargée, vous pouvez couper le réseau et lire quand même un fichier que vous déposez.' },
         { q: 'La lecture est-elle exacte ?', a: 'Le BPM est l’écart d’attaque le plus fort entre 60 et 180, en entier. La tonalité est le meilleur accord avec un profil majeur fixe et un profil mineur fixe, 12 poids chacun. Ce n’est pas une transcription d’accords.' },
         { q: 'Que refuse la page ?', a: 'Elle ne change ni la hauteur ni la vitesse. Il n’y a pas de bouton pour une nouvelle tonalité. Un fichier de moins de 2 secondes n’a pas de BPM. Le silence affiche illisible, pas 0 et pas do majeur. Seules les 60 premières secondes sont lues.' },
-        { q: 'Quelle différence avec le changeur de hauteur et la page de vitesse ?', a: 'Cette page ne fait que lire. Le changeur de hauteur déplace la hauteur et garde la durée. La page de vitesse change la durée, et la hauteur bouge avec. Couper une région, c’est le coupeur audio.' },
+        { q: 'Quelle différence avec le changeur de hauteur et la page de vitesse ?', a: 'Cette page ne fait que lire. Le changeur de hauteur déplace la hauteur et garde la durée. La page de vitesse change la durée, et la hauteur bouge avec. Le changeur de tempo change la durée et la hauteur reste, de 0,75× à 1,25×.' },
         { q: 'Est-ce que ça marche sur un téléphone ?', a: 'Oui. Déposez le fichier et lisez les deux nombres. La zone de dépôt et le bouton de reprise se touchent dans Chrome, Edge, Firefox et Safari actuels.' },
       ],
       dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',

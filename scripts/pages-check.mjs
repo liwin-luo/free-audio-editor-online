@@ -35,6 +35,7 @@ const pages = [
   { path: '/3d-audio', island: true },
   { path: '/metronome', island: true },
   { path: '/key-bpm-finder', island: true },
+  { path: '/tempo-changer', island: true },
   { path: '/loudness-meter', island: true },
   { path: '/zh/loudness-meter', island: true },
   { path: '/zh/silence-remover', island: true },
