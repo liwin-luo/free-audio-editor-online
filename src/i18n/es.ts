@@ -311,6 +311,10 @@ export const es: Catalog = {
         title: 'Suelta el archivo y empieza',
         body: 'Sin instalar nada y sin cola. Una pista larga nunca sale del equipo, así que la edición empieza al momento.',
       },
+      {
+        title: 'Sin red tras abrir',
+        body: 'La página tiene que abrirse una vez. Después, cortar y exportar siguen si se cae la conexión.',
+      },
     ],
     toolsHeading: 'Herramientas de audio populares',
     allToolsCta: 'Ver las {count} herramientas',
@@ -1865,6 +1869,83 @@ export const es: Catalog = {
       ],
       dropHint: 'Suelta un archivo de audio o haz clic para elegirlo',
       exportLabel: 'Comprimir',
+    },
+    'bitrate-converter': {
+      cardLine: 'Recodifica cualquier audio como MP3 a 64, 96, 128, 192 o 320 kbps.',
+      name: 'Conversor de bitrate',
+      shortName: 'Bitrate',
+      title: 'Conversor de bitrate — MP3 de 64 a 320 kbps',
+      description:
+        'Cambia un audio a MP3 de 64, 96, 128, 192 o 320 kbps en el navegador. Aumentar el número no devuelve el detalle. No se sube nada.',
+      h1: 'Conversor de bitrate: pon un MP3 a 64–320 kbps',
+      heroAlt: 'Cinco barras de bitrate, la del medio marcada a 192 kbps',
+      subtitle: 'Pon un MP3 a 64, 96, 128, 192 o 320 kbps. Un número más alto no devuelve el detalle.',
+      intro:
+        'Elige el bitrate del MP3 y recodifica el archivo en esta pestaña. El menú abre en 192 kbps. Un minuto de estéreo pesa unos 2,4 MB a 320 kbps, 1,4 MB a 192, 1 MB a 128, 0,7 MB a 96 y 0,5 MB a 64. Aumentar el número en un archivo que ya tiene pérdida no devuelve el detalle que falta. La decodificación y la codificación se quedan en el navegador.',
+      usesHeading: 'Para qué sirve esta página',
+      uses: [
+        'Cumple un encargo que pide 192 o 128 kbps y exporta ese archivo.',
+        'Pasa un WAV a MP3 a 320 kbps, la tasa más cercana de esta página.',
+        'Baja de 320 kbps a 128 kbps, cerca del 40 % del tamaño.',
+      ],
+      howTo: [
+        { name: 'Añade el archivo', text: 'Suelta cualquier audio que este navegador pueda decodificar. La conversión se queda en la pestaña.' },
+        { name: 'Elige el bitrate', text: 'Abre el menú de formato. Empieza en 192 kbps. Las otras tasas son 320, 128, 96 y 64.' },
+        { name: 'Exporta el MP3', text: 'El archivo se codifica a la tasa que elegiste. Las etiquetas y la portada no se copian.' },
+      ],
+      faqs: [
+        {
+          q: '¿320 kbps hará sonar mejor un MP3 de 128 kbps?',
+          a: 'No. El codificador solo conserva lo que la fuente todavía tiene. Un MP3 de 128 kbps guardado otra vez a 320 kbps es un archivo más grande de la misma toma. Empieza desde el WAV o la grabación original si necesitas el detalle.',
+        },
+        {
+          q: '¿Qué bitrate elijo?',
+          a: '320 kbps para música que vas a seguir escuchando de cerca, 192 como la tasa con la que abre el menú, 128 para voz o un archivo que tienes que enviar, y 96 o 64 solo cuando el destino es pequeño y con la voz basta. Un minuto de estéreo pesa unos 2,4 MB, 1,4 MB, 1 MB, 0,7 MB y 0,5 MB en esas cinco tasas.',
+        },
+        {
+          q: '¿En qué se diferencia de comprimir audio?',
+          a: 'El mismo codificador, otro trabajo. Esta página sirve para fijar un bitrate y abre en 192 kbps. Comprimir audio sirve para hacer el archivo más pequeño y abre en 128 kbps. WAV a MP3 solo acepta WAV y abre en 320 kbps.',
+        },
+        {
+          q: '¿Puedo convertir a WAV u Opus aquí?',
+          a: 'No. Esta página escribe MP3 a 320, 192, 128, 96 o 64 kbps. WAV no es un bitrate. Para una copia WAV, usa MP3 a WAV. Opus y AAC no están en el menú.',
+        },
+        {
+          q: '¿Se sube mi archivo?',
+          a: 'No. El navegador decodifica el archivo y codifica el MP3 en esta pestaña, con el mismo codificador local que usa comprimir audio. Cuando la página ya cargó, la conversión sigue con la red apagada.',
+        },
+        {
+          q: '¿Funciona en el móvil?',
+          a: 'Sí. Elige el archivo y la conversión se queda en esta pestaña. Chrome, Edge, Firefox y Safari actuales decodifican los formatos habituales en iPhone y Android. Un archivo muy largo usa más memoria, así que un ordenador aguanta mejor a partir de una hora.',
+        },
+      ],
+      sections: [
+        {
+          heading: 'Cuánto pesa cada tasa',
+          paragraphs: [
+            'El menú es 320, 192, 128, 96 y 64 kbps, bitrate constante. Un minuto de estéreo pesa unos 2,4 MB, 1,4 MB, 1 MB, 0,7 MB y 0,5 MB, en ese orden. La página abre en 192 kbps.',
+            'Un WAV no tiene bitrate propio, así que el número que eliges es la primera pasada con pérdida. Un MP3, M4A, OGG u Opus ya perdió algo, y esta pasada pierde un poco más.',
+          ],
+        },
+        {
+          heading: 'Qué tasa encaja',
+          paragraphs: ['Elige según lo que le pasa al archivo después, no según el número más alto del menú.'],
+          bullets: [
+            '320 kbps si la fuente es un WAV y aún la quieres cerca.',
+            '192 kbps como tasa habitual para música, que es donde abre el menú.',
+            '128, 96 o 64 kbps para voz, una nota o una copia que tiene que ser pequeña.',
+          ],
+        },
+        {
+          heading: 'Un número más alto no restaura',
+          paragraphs: [
+            'Codificar un MP3 de 128 kbps a 320 kbps guarda los mismos huecos en un archivo más grande. La única forma de recuperar los agudos que faltan es una fuente que todavía los tenga.',
+            'Es el mismo codificador que comprimir audio. Usa esa página cuando el objetivo es un archivo más pequeño y no te importa en cuál de las cinco tasas empieza. Usa WAV a MP3 cuando la fuente es un WAV y quieres 320 kbps sin elegirlo.',
+          ],
+        },
+      ],
+      dropHint: 'Suelta un archivo de audio o haz clic para buscarlo',
+      exportLabel: 'Convertir',
     },
     'reverse-audio': {
       cardLine: 'Reproduce una pista al revés para crear efectos, revisar una mezcla o por diversión.',

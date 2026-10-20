@@ -310,6 +310,10 @@ export const pt: Catalog = {
         title: 'Solte o arquivo e comece',
         body: 'Sem instalação e sem fila. Uma faixa longa nunca sai do aparelho, então a edição começa na hora.',
       },
+      {
+        title: 'Offline depois de abrir',
+        body: 'A página precisa abrir uma vez. Depois disso, cortar e exportar continuam se a conexão cair.',
+      },
     ],
     toolsHeading: 'Ferramentas de áudio populares',
     allToolsCta: 'Ver todas as {count} ferramentas',
@@ -1387,6 +1391,58 @@ export const pt: Catalog = {
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Comprimir',
+    },
+    'bitrate-converter': {
+      cardLine: 'Recodifique qualquer áudio como MP3 a 64, 96, 128, 192 ou 320 kbps.',
+      name: 'Conversor de bitrate',
+      shortName: 'Bitrate',
+      title: 'Conversor de bitrate — MP3 de 64 a 320 kbps',
+      description:
+        'Mude um áudio para MP3 de 64, 96, 128, 192 ou 320 kbps no navegador. Aumentar o número não devolve o detalhe. Nada é enviado.',
+      h1: 'Conversor de bitrate: ponha um MP3 em 64–320 kbps',
+      heroAlt: 'Cinco barras de bitrate, a do meio marcada em 192 kbps',
+      subtitle: 'Ponha um MP3 em 64, 96, 128, 192 ou 320 kbps. Um número maior não devolve o detalhe.',
+      intro:
+        'Escolha o bitrate do MP3 e recodifique o arquivo nesta aba. O menu abre em 192 kbps. Um minuto de estéreo pesa cerca de 2,4 MB a 320 kbps, 1,4 MB a 192, 1 MB a 128, 0,7 MB a 96 e 0,5 MB a 64. Aumentar o número num arquivo que já tem perda não devolve o detalhe que falta. A decodificação e a codificação ficam no navegador.',
+      usesHeading: 'Para que serve esta página',
+      uses: [
+        'Cumpra um pedido que pede 192 ou 128 kbps e exporte esse arquivo.',
+        'Passe um WAV para MP3 a 320 kbps, a taxa mais próxima desta página.',
+        'Desça de 320 kbps para 128 kbps, cerca de 40% do tamanho.',
+      ],
+      howTo: [
+        { name: 'Adicione o arquivo', text: 'Solte qualquer áudio que este navegador consiga decodificar. A conversão fica na aba.' },
+        { name: 'Escolha o bitrate', text: 'Abra o menu de formato. Ele começa em 192 kbps. As outras taxas são 320, 128, 96 e 64.' },
+        { name: 'Exporte o MP3', text: 'O arquivo é codificado na taxa que você escolheu. Tags e capa não são copiados.' },
+      ],
+      faqs: [
+        {
+          q: '320 kbps deixa um MP3 de 128 kbps melhor?',
+          a: 'Não. O codificador só guarda o que a fonte ainda tem. Um MP3 de 128 kbps salvo de novo a 320 kbps é um arquivo maior da mesma gravação. Comece pelo WAV ou pela gravação original se você precisa do detalhe.',
+        },
+        {
+          q: 'Qual bitrate eu escolho?',
+          a: '320 kbps para música que você ainda vai ouvir com atenção, 192 como a taxa em que o menu abre, 128 para voz ou um arquivo que você precisa enviar, e 96 ou 64 só quando o destino é pequeno e a voz basta. Um minuto de estéreo pesa cerca de 2,4 MB, 1,4 MB, 1 MB, 0,7 MB e 0,5 MB nessas cinco taxas.',
+        },
+        {
+          q: 'Qual a diferença para comprimir áudio?',
+          a: 'O mesmo codificador, outro trabalho. Esta página serve para definir um bitrate e abre em 192 kbps. Comprimir áudio serve para deixar o arquivo menor e abre em 128 kbps. WAV para MP3 só aceita WAV e abre em 320 kbps.',
+        },
+        {
+          q: 'Dá para converter para WAV ou Opus aqui?',
+          a: 'Não. Esta página grava MP3 a 320, 192, 128, 96 ou 64 kbps. WAV não é um bitrate. Para uma cópia WAV, use MP3 para WAV. Opus e AAC não estão no menu.',
+        },
+        {
+          q: 'Meu arquivo é enviado?',
+          a: 'Não. O navegador decodifica o arquivo e codifica o MP3 nesta aba, com o mesmo codificador local que comprimir áudio usa. Depois que a página carregou, a conversão continua sem rede.',
+        },
+        {
+          q: 'Funciona no celular?',
+          a: 'Sim. Escolha o arquivo e a conversão fica nesta aba. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo muito longo usa mais memória, então um computador fica mais estável depois de cerca de uma hora.',
+        },
+      ],
+      dropHint: 'Solte um arquivo de áudio ou clique para escolher',
+      exportLabel: 'Converter',
     },
     'reverse-audio': {
       cardLine: 'Toque uma faixa ao contrário para criar efeitos, conferir a mixagem ou se divertir.',

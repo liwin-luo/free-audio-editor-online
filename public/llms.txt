@@ -16,6 +16,7 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [FLAC to MP3 Converter](https://freeaudioeditor.online/flac-to-mp3): convert FLAC to MP3 at 128–320 kbps; tags and artwork are not copied.
 - [MP3 to WAV Converter](https://freeaudioeditor.online/mp3-to-wav): decode MP3 to lossless 16-bit PCM WAV for editing — no quality restoration, honest copy.
 - [Audio Compressor](https://freeaudioeditor.online/compress-audio): shrink MP3, WAV and other audio by re-encoding at 64–320 kbps.
+- [Bitrate Converter](https://freeaudioeditor.online/bitrate-converter): re-encode any audio as MP3 at 64, 96, 128, 192, or 320 kbps. A higher bitrate does not restore detail the source never had. Same encoder as the audio compressor.
 - [OGG to MP3 Converter](https://freeaudioeditor.online/ogg-to-mp3): convert OGG (Vorbis or Opus) to MP3. Safari often cannot decode Vorbis.
 - [Opus to MP3 Converter](https://freeaudioeditor.online/opus-to-mp3): convert .opus files and Opus inside OGG or WebM to MP3.
 - [Pitch Changer](https://freeaudioeditor.online/pitch-changer): shift audio pitch ±12 semitones while keeping the duration unchanged.

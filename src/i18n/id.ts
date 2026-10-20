@@ -311,6 +311,10 @@ export const id: Catalog = {
         title: 'Jatuhkan file dan mulai',
         body: 'Tanpa instalasi dan tanpa antrean. Trek yang panjang tidak pernah meninggalkan perangkat, jadi penyuntingan langsung dimulai.',
       },
+      {
+        title: 'Offline setelah dimuat',
+        body: 'Halaman harus terbuka sekali. Setelah itu, memotong dan mengekspor tetap jalan kalau koneksi putus.',
+      },
     ],
     toolsHeading: 'Alat audio populer',
     allToolsCta: 'Lihat semua {count} alat',
@@ -1388,6 +1392,58 @@ export const id: Catalog = {
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
       exportLabel: 'Kompres',
+    },
+    'bitrate-converter': {
+      cardLine: 'Kode ulang audio apa pun menjadi MP3 pada 64, 96, 128, 192, atau 320 kbps.',
+      name: 'Konverter bitrate',
+      shortName: 'Bitrate',
+      title: 'Konverter bitrate — MP3 64 sampai 320 kbps',
+      description:
+        'Ubah audio menjadi MP3 64, 96, 128, 192, atau 320 kbps di browser. Menaikkan angka tidak mengembalikan detail. Tidak ada yang diunggah.',
+      h1: 'Konverter bitrate: setel MP3 ke 64–320 kbps',
+      heroAlt: 'Lima batang bitrate, yang tengah ditandai 192 kbps',
+      subtitle: 'Setel MP3 ke 64, 96, 128, 192, atau 320 kbps. Angka yang lebih tinggi tidak mengembalikan detail.',
+      intro:
+        'Pilih bitrate MP3 dan kode ulang file di tab ini. Menu mulai di 192 kbps. Satu menit stereo sekitar 2,4 MB pada 320 kbps, 1,4 MB pada 192, 1 MB pada 128, 0,7 MB pada 96, dan 0,5 MB pada 64. Menaikkan angka pada file yang sudah terkompresi tidak mengembalikan detail yang hilang. Dekode dan enkode tetap di browser.',
+      usesHeading: 'Pekerjaan halaman ini',
+      uses: [
+        'Penuhi brief yang minta 192 atau 128 kbps, lalu ekspor file itu.',
+        'Ubah WAV menjadi MP3 320 kbps, laju terdekat di halaman ini.',
+        'Turunkan 320 kbps ke 128 kbps, sekitar 40% ukuran.',
+      ],
+      howTo: [
+        { name: 'Tambahkan file', text: 'Jatuhkan audio yang bisa didekode browser ini. Konversi tetap di tab.' },
+        { name: 'Pilih bitrate', text: 'Buka menu format. Mulainya 192 kbps. Laju lain adalah 320, 128, 96, dan 64.' },
+        { name: 'Ekspor MP3', text: 'File dikode pada laju yang Anda pilih. Tag dan sampul tidak ikut disalin.' },
+      ],
+      faqs: [
+        {
+          q: 'Apakah 320 kbps membuat MP3 128 kbps terdengar lebih baik?',
+          a: 'Tidak. Encoder hanya menyimpan apa yang masih ada di sumber. MP3 128 kbps yang disimpan lagi pada 320 kbps adalah file yang lebih besar dari rekaman yang sama. Mulai dari WAV atau rekaman asli jika Anda butuh detailnya.',
+        },
+        {
+          q: 'Bitrate mana yang saya pilih?',
+          a: '320 kbps untuk musik yang masih akan Anda dengar teliti, 192 sebagai laju saat menu terbuka, 128 untuk suara atau file yang harus dikirim, dan 96 atau 64 hanya jika tujuan kecil dan suara sudah cukup. Satu menit stereo sekitar 2,4 MB, 1,4 MB, 1 MB, 0,7 MB, dan 0,5 MB pada kelima laju itu.',
+        },
+        {
+          q: 'Apa bedanya dengan kompres audio?',
+          a: 'Encoder yang sama, pekerjaan berbeda. Halaman ini untuk menetapkan bitrate, dan mulai di 192 kbps. Kompres audio untuk membuat file lebih kecil, dan mulai di 128 kbps. WAV ke MP3 hanya menerima WAV, dan mulai di 320 kbps.',
+        },
+        {
+          q: 'Bisakah mengonversi ke WAV atau Opus di sini?',
+          a: 'Tidak. Halaman ini menulis MP3 pada 320, 192, 128, 96, atau 64 kbps. WAV bukan bitrate. Untuk salinan WAV, gunakan MP3 ke WAV. Opus dan AAC tidak ada di menu.',
+        },
+        {
+          q: 'Apakah file saya diunggah?',
+          a: 'Tidak. Browser mendekode file dan mengkode MP3 di tab ini, dengan encoder lokal yang sama seperti kompres audio. Setelah halaman termuat, konversi tetap jalan tanpa jaringan.',
+        },
+        {
+          q: 'Apakah berfungsi di ponsel?',
+          a: 'Ya. Pilih file dan konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format umum di iPhone dan Android. File yang sangat panjang memakai lebih banyak memori, jadi komputer lebih stabil lewat sekitar satu jam.',
+        },
+      ],
+      dropHint: 'Letakkan file audio di sini, atau klik untuk memilih',
+      exportLabel: 'Konversi',
     },
     'reverse-audio': {
       cardLine: 'Putar trek secara terbalik untuk efek, memeriksa mix, atau sekadar seru.',

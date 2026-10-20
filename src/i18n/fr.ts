@@ -311,6 +311,10 @@ export const fr: Catalog = {
         title: 'Déposez un fichier et commencez',
         body: 'Pas d’installation, pas de file d’attente. Un long morceau ne quitte jamais la machine : le montage commence tout de suite.',
       },
+      {
+        title: 'Hors ligne une fois ouvert',
+        body: 'La page doit se charger une fois. Ensuite, couper et exporter continuent si la connexion tombe.',
+      },
     ],
     toolsHeading: 'Outils audio populaires',
     allToolsCta: 'Voir les {count} outils',
@@ -1328,6 +1332,58 @@ export const fr: Catalog = {
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
       exportLabel: 'Compresser',
+    },
+    'bitrate-converter': {
+      cardLine: 'Réencodez n’importe quel audio en MP3 à 64, 96, 128, 192 ou 320 kbps.',
+      name: 'Convertisseur de débit',
+      shortName: 'Débit',
+      title: 'Convertisseur de débit — MP3 de 64 à 320 kbps',
+      description:
+        'Passez un audio en MP3 à 64, 96, 128, 192 ou 320 kbps dans le navigateur. Un chiffre plus haut ne restitue pas le détail. Rien n’est téléversé.',
+      h1: 'Convertisseur de débit : réglez un MP3 de 64 à 320 kbps',
+      heroAlt: 'Cinq barres de débit, celle du milieu marquée à 192 kbps',
+      subtitle: 'Réglez un MP3 à 64, 96, 128, 192 ou 320 kbps. Un chiffre plus haut ne restitue pas le détail.',
+      intro:
+        'Choisissez le débit MP3 et réencodez le fichier dans cet onglet. Le menu s’ouvre à 192 kbps. Une minute de stéréo pèse environ 2,4 Mo à 320 kbps, 1,4 Mo à 192, 1 Mo à 128, 0,7 Mo à 96 et 0,5 Mo à 64. Monter le chiffre sur un fichier déjà avec perte ne restitue pas le détail manquant. Le décodage et l’encodage restent dans le navigateur.',
+      usesHeading: 'À quoi sert cette page',
+      uses: [
+        'Répondez à une commande qui demande 192 ou 128 kbps, puis exportez ce fichier.',
+        'Passez un WAV en MP3 à 320 kbps, le débit le plus proche sur cette page.',
+        'Descendez de 320 kbps à 128 kbps, environ 40 % de la taille.',
+      ],
+      howTo: [
+        { name: 'Ajoutez le fichier', text: 'Déposez un audio que ce navigateur sait décoder. La conversion reste dans l’onglet.' },
+        { name: 'Choisissez le débit', text: 'Ouvrez le menu de format. Il commence à 192 kbps. Les autres débits sont 320, 128, 96 et 64.' },
+        { name: 'Exportez le MP3', text: 'Le fichier est encodé au débit que vous avez choisi. Les tags et la pochette ne sont pas copiés.' },
+      ],
+      faqs: [
+        {
+          q: '320 kbps rend-il meilleur un MP3 à 128 kbps ?',
+          a: 'Non. L’encodeur ne garde que ce que la source a encore. Un MP3 à 128 kbps enregistré de nouveau à 320 kbps est un fichier plus lourd de la même prise. Partez du WAV ou de l’enregistrement d’origine si vous voulez le détail.',
+        },
+        {
+          q: 'Quel débit choisir ?',
+          a: '320 kbps pour une musique que vous écouterez encore de près, 192 comme débit à l’ouverture du menu, 128 pour la voix ou un fichier à envoyer, et 96 ou 64 seulement quand la destination est petite et que la voix suffit. Une minute de stéréo pèse environ 2,4 Mo, 1,4 Mo, 1 Mo, 0,7 Mo et 0,5 Mo à ces cinq débits.',
+        },
+        {
+          q: 'Quelle différence avec compresser l’audio ?',
+          a: 'Le même encodeur, un autre travail. Cette page fixe un débit et s’ouvre à 192 kbps. Compresser l’audio sert à réduire le fichier et s’ouvre à 128 kbps. WAV vers MP3 n’accepte que le WAV et s’ouvre à 320 kbps.',
+        },
+        {
+          q: 'Puis-je convertir en WAV ou en Opus ici ?',
+          a: 'Non. Cette page écrit un MP3 à 320, 192, 128, 96 ou 64 kbps. Le WAV n’est pas un débit. Pour une copie WAV, utilisez MP3 vers WAV. Opus et AAC ne sont pas dans le menu.',
+        },
+        {
+          q: 'Mon fichier est-il envoyé ?',
+          a: 'Non. Le navigateur décode le fichier et encode le MP3 dans cet onglet, avec le même encodeur local que compresser l’audio. Une fois la page chargée, la conversion continue sans réseau.',
+        },
+        {
+          q: 'Est-ce que ça marche sur un téléphone ?',
+          a: 'Oui. Choisissez le fichier, la conversion reste dans cet onglet. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier très long utilise plus de mémoire, un ordinateur tient mieux au-delà d’une heure environ.',
+        },
+      ],
+      dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
+      exportLabel: 'Convertir',
     },
     'reverse-audio': {
       cardLine: 'Lisez une piste à l’envers pour créer des effets, vérifier un mix ou simplement jouer.',

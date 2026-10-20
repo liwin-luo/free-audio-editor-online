@@ -310,6 +310,10 @@ export const en: Shell = {
         title: 'Drop a file and start',
         body: 'No install and no queue. A long track never leaves the machine, so editing starts immediately.',
       },
+      {
+        title: 'Offline after load',
+        body: 'The page has to load once. After that, cutting and exporting continue if the connection drops.',
+      },
     ],
     toolsHeading: 'Popular audio tools',
     allToolsCta: 'Browse all {count} tools',

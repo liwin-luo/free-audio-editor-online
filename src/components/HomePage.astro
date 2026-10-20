@@ -37,7 +37,7 @@ const categoryIcon = { cut: 'scissors', merge: 'layers', record: 'mic', effects:
 // Decorative hero waveform: deterministic heights, selection highlighted in accent
 const heroBars = Array.from({ length: 75 }, (_, i) => 14 + Math.abs(Math.sin(i * 1.7)) * 46 + (i % 5) * 3);
 const heroSel = [21, 47] as const;
-const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise'] as const;
+const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-slash'] as const;
 ---
 
 <Base title={home.title} description={home.description} path="/" locale={locale} jsonLd={jsonLd}>

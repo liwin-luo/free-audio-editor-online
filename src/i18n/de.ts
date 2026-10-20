@@ -312,6 +312,10 @@ export const de: Catalog = {
         title: 'Datei ablegen und loslegen',
         body: 'Keine Installation und keine Warteschlange. Ein langer Titel verlässt das Gerät nie, die Bearbeitung beginnt sofort.',
       },
+      {
+        title: 'Nach dem Laden offline',
+        body: 'Die Seite muss einmal laden. Danach gehen Schneiden und Export weiter, wenn die Verbindung weg ist.',
+      },
     ],
     toolsHeading: 'Beliebte Audio-Tools',
     allToolsCta: 'Alle {count} Tools ansehen',
@@ -1866,6 +1870,83 @@ export const de: Catalog = {
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Komprimieren',
+    },
+    'bitrate-converter': {
+      cardLine: 'Kodiere Audio neu als MP3 mit 64, 96, 128, 192 oder 320 kbps.',
+      name: 'Bitrate ändern',
+      shortName: 'Bitrate',
+      title: 'Bitrate ändern — MP3 auf 64 bis 320 kbps',
+      description:
+        'Setze eine Audiodatei im Browser auf 64, 96, 128, 192 oder 320 kbps MP3. Eine höhere Zahl stellt kein Detail wieder her. Nichts wird hochgeladen.',
+      h1: 'Bitrate ändern: ein MP3 auf 64–320 kbps setzen',
+      heroAlt: 'Fünf Bitraten-Balken, der mittlere auf 192 kbps markiert',
+      subtitle: 'Setze ein MP3 auf 64, 96, 128, 192 oder 320 kbps. Eine höhere Zahl stellt kein Detail wieder her.',
+      intro:
+        'Wähle die MP3-Bitrate und kodiere die Datei in diesem Tab neu. Das Menü startet bei 192 kbps. Eine Minute Stereo wiegt etwa 2,4 MB bei 320 kbps, 1,4 MB bei 192, 1 MB bei 128, 0,7 MB bei 96 und 0,5 MB bei 64. Eine höhere Zahl auf einer Datei, die schon verlustbehaftet ist, holt das fehlende Detail nicht zurück. Dekodieren und Kodieren bleiben im Browser.',
+      usesHeading: 'Wofür diese Seite da ist',
+      uses: [
+        'Erfülle einen Auftrag, der 192 oder 128 kbps verlangt, und exportiere diese Datei.',
+        'Mach aus einer WAV ein MP3 mit 320 kbps, der höchsten Rate auf dieser Seite.',
+        'Geh von 320 kbps auf 128 kbps, etwa 40 % der Größe.',
+      ],
+      howTo: [
+        { name: 'Datei hinzufügen', text: 'Lege eine Audiodatei ab, die dieser Browser dekodieren kann. Die Umwandlung bleibt im Tab.' },
+        { name: 'Bitrate wählen', text: 'Öffne das Formatmenü. Es startet bei 192 kbps. Die anderen Raten sind 320, 128, 96 und 64.' },
+        { name: 'MP3 exportieren', text: 'Die Datei wird mit der Rate kodiert, die du gewählt hast. Tags und Cover werden nicht übernommen.' },
+      ],
+      faqs: [
+        {
+          q: 'Klingt ein 128-kbps-MP3 bei 320 kbps besser?',
+          a: 'Nein. Der Encoder behält nur, was die Quelle noch hat. Ein 128-kbps-MP3, das du noch einmal mit 320 kbps speicherst, ist eine größere Datei derselben Aufnahme. Starte von der WAV oder der Originalaufnahme, wenn du das Detail brauchst.',
+        },
+        {
+          q: 'Welche Bitrate soll ich nehmen?',
+          a: '320 kbps für Musik, die du noch genau hören willst, 192 als Rate, mit der das Menü aufgeht, 128 für Sprache oder eine Datei, die du verschicken musst, und 96 oder 64 nur, wenn das Ziel klein ist und Sprache reicht. Eine Minute Stereo wiegt bei diesen fünf Raten etwa 2,4 MB, 1,4 MB, 1 MB, 0,7 MB und 0,5 MB.',
+        },
+        {
+          q: 'Was ist der Unterschied zu Audio komprimieren?',
+          a: 'Derselbe Encoder, andere Aufgabe. Diese Seite setzt eine Bitrate und startet bei 192 kbps. Audio komprimieren macht die Datei kleiner und startet bei 128 kbps. WAV zu MP3 nimmt nur WAV und startet bei 320 kbps.',
+        },
+        {
+          q: 'Kann ich hier nach WAV oder Opus wandeln?',
+          a: 'Nein. Diese Seite schreibt MP3 mit 320, 192, 128, 96 oder 64 kbps. WAV ist keine Bitrate. Für eine WAV-Kopie nimm MP3 zu WAV. Opus und AAC stehen nicht im Menü.',
+        },
+        {
+          q: 'Wird meine Datei hochgeladen?',
+          a: 'Nein. Der Browser dekodiert die Datei und kodiert das MP3 in diesem Tab, mit demselben lokalen Encoder wie Audio komprimieren. Wenn die Seite geladen ist, läuft die Umwandlung auch ohne Netz.',
+        },
+        {
+          q: 'Geht das auf dem Handy?',
+          a: 'Ja. Wähle die Datei, die Umwandlung bleibt in diesem Tab. Aktuelles Chrome, Edge, Firefox und Safari dekodieren die üblichen Formate auf iPhone und Android. Eine sehr lange Datei braucht mehr Speicher, ein Computer ist ab etwa einer Stunde ruhiger.',
+        },
+      ],
+      sections: [
+        {
+          heading: 'Was die fünf Raten wiegen',
+          paragraphs: [
+            'Das Menü ist 320, 192, 128, 96 und 64 kbps, konstante Bitrate. Eine Minute in Stereo wiegt etwa 2,4 MB, 1,4 MB, 1 MB, 0,7 MB und 0,5 MB, in dieser Reihenfolge. Die Seite öffnet bei 192 kbps.',
+            'Eine WAV hat keine eigene Bitrate, also ist die Zahl, die du wählst, der erste verlustbehaftete Durchgang. Eine MP3-, M4A-, OGG- oder Opus-Datei hat schon etwas verloren, und dieser Durchgang verliert noch etwas.',
+          ],
+        },
+        {
+          heading: 'Welche Rate passt',
+          paragraphs: ['Wähle nach dem, was als Nächstes mit der Datei passiert, nicht nach der größten Zahl im Menü.'],
+          bullets: [
+            '320 kbps, wenn die Quelle eine WAV ist und du sie noch nah am Original willst.',
+            '192 kbps als gewöhnliche Musikrate, dort startet das Menü.',
+            '128, 96 oder 64 kbps für Sprache, eine Sprachnotiz oder eine Kopie, die klein sein muss.',
+          ],
+        },
+        {
+          heading: 'Eine höhere Zahl stellt nichts wieder her',
+          paragraphs: [
+            'Ein 128-kbps-MP3 mit 320 kbps zu kodieren speichert dieselben Lücken in einer größeren Datei. Die fehlenden Höhen kommen nur aus einer Quelle zurück, die sie noch hat.',
+            'Das ist derselbe Encoder wie Audio komprimieren. Nimm Audio komprimieren, wenn du nur eine kleinere Datei willst und die Startrate egal ist. Nimm WAV zu MP3, wenn die Quelle eine WAV ist und du 320 kbps willst, ohne sie zu wählen.',
+          ],
+        },
+      ],
+      dropHint: 'Audiodatei hierher ziehen oder klicken zum Auswählen',
+      exportLabel: 'Umwandeln',
     },
     'reverse-audio': {
       cardLine: 'Spiele einen Track rückwärts — für Effekte, Mix-Kontrollen oder einfach so.',

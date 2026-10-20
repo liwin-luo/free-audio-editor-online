@@ -10,6 +10,7 @@ const BASE = process.env.BASE_URL ?? 'http://localhost:4321';
 
 const pages = [
   { path: '/wav-to-mp3', island: true },
+  { path: '/bitrate-converter', island: true },
   { path: '/audio-joiner', island: true },
   { path: '/multi-track-audio-editor', island: true },
   { path: '/reverse-audio', island: true },

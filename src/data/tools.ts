@@ -847,7 +847,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['m4a-to-mp3', 'ogg-to-mp3', 'audio-trimmer'],
+    related: ['bitrate-converter', 'ogg-to-mp3', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-320',
       dropHint: 'Drop a WAV file, or click to browse',
@@ -1156,12 +1156,114 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['wav-to-mp3', 'flac-to-mp3', 'compressor'],
+    related: ['bitrate-converter', 'wav-to-mp3', 'compressor'],
     editor: {
       defaultFormat: 'mp3-128',
       dropHint: 'Drop an audio file, or click to browse',
       converter: true,
       exportLabel: 'Compress',
+      formats: ['mp3-320', 'mp3-192', 'mp3-128', 'mp3-96', 'mp3-64'],
+    },
+  },
+  {
+    slug: 'bitrate-converter',
+    cardLine: 'Re-encode any audio as MP3 at 64, 96, 128, 192, or 320 kbps.',
+    name: 'Bitrate Converter',
+    shortName: 'Bitrate',
+    icon: 'convert',
+    category: 'merge',
+    title: 'Bitrate Converter — MP3 at 64 to 320 kbps',
+    description:
+      'Change an audio file to 64, 96, 128, 192, or 320 kbps MP3 in the browser. A higher bitrate does not restore detail. Nothing is uploaded.',
+    h1: 'Bitrate Converter: set an MP3 to 64–320 kbps',
+    hero: {
+      src: '/bitrate-converter.svg',
+      alt: 'Five bitrate bars, the middle one marked as 192 kbps',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'Set an MP3 to 64, 96, 128, 192, or 320 kbps. A higher number does not restore detail.',
+    intro:
+      'Pick the MP3 bitrate and re-encode the file in this tab. The menu starts at 192 kbps. One minute of stereo is about 2.4 MB at 320 kbps, 1.4 MB at 192, 1 MB at 128, 0.7 MB at 96, and 0.5 MB at 64. Raising the number on a file that is already lossy does not put the missing detail back. Decode and encode both stay in the browser.',
+    usesHeading: 'Jobs this page is for',
+    uses: [
+      'Match a brief that asks for 192 or 128 kbps and export that file.',
+      'Turn a WAV into an MP3 at 320 kbps, the closest rate this page has.',
+      'Step 320 kbps down to 128 kbps, about 40% of the size.',
+    ],
+    howTo: [
+      {
+        name: 'Add the file',
+        text: 'Drop any audio file this browser can decode. The conversion stays in the tab.',
+      },
+      {
+        name: 'Choose the bitrate',
+        text: 'Open the format menu. It starts at 192 kbps. The other rates are 320, 128, 96, and 64.',
+      },
+      {
+        name: 'Export the MP3',
+        text: 'The file is encoded at the rate you picked. Tags and artwork are not copied across.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Will 320 kbps make a 128 kbps MP3 sound better?',
+        a: 'No. The encoder can only keep what the source still has. A 128 kbps MP3 saved again at 320 kbps is a larger file of the same take. Start from the WAV or the original recording if you need the detail.',
+      },
+      {
+        q: 'Which bitrate should I pick?',
+        a: '320 kbps for music you will still listen to closely, 192 as the rate the menu opens on, 128 for speech or a file you need to send, and 96 or 64 only when the destination is tiny and speech is enough. One minute of stereo is about 2.4 MB, 1.4 MB, 1 MB, 0.7 MB, and 0.5 MB at those five rates.',
+      },
+      {
+        q: 'How is this different from compress audio?',
+        a: 'Same encoder, different job. This page is for setting a bitrate, and it starts at 192 kbps. Compress audio is for making the file smaller, and it starts at 128 kbps. WAV to MP3 is only for WAV files, and it starts at 320 kbps.',
+      },
+      {
+        q: 'Can I convert to WAV or Opus here?',
+        a: 'No. This page writes MP3 at 320, 192, 128, 96, or 64 kbps. WAV is not a bitrate. For a WAV copy, use MP3 to WAV. Opus and AAC are not in the menu.',
+      },
+      {
+        q: 'Does my file get uploaded?',
+        a: 'No. The browser decodes the file and encodes the MP3 in this tab, the same local encoder compress audio uses. After the page has loaded, the conversion still runs with the network off.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. Pick the file and the conversion stays in this tab. Current Chrome, Edge, Firefox, and Safari decode the common formats on iPhone and Android. A very long file uses more memory, so a computer is steadier past about an hour.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'What the five rates weigh',
+        paragraphs: [
+          'The menu is 320, 192, 128, 96, and 64 kbps, constant bitrate. One minute of stereo is about 2.4 MB, 1.4 MB, 1 MB, 0.7 MB, and 0.5 MB in that order. The page opens on 192 kbps.',
+          'A WAV has no bitrate of its own, so the number you pick is the first lossy pass. An MP3, M4A, OGG, or Opus file has already lost something, and this pass loses a little more.',
+        ],
+      },
+      {
+        heading: 'Which rate fits the job',
+        paragraphs: [
+          'Pick by what happens to the file next, not by the largest number in the menu.',
+        ],
+        bullets: [
+          '320 kbps when the source is a WAV and you still want it close.',
+          '192 kbps as the ordinary music rate, which is where the menu starts.',
+          '128, 96, or 64 kbps for speech, a memo, or a copy that has to be small.',
+        ],
+      },
+      {
+        heading: 'A higher number is not a restoration',
+        paragraphs: [
+          'Encoding a 128 kbps MP3 at 320 kbps stores the same gaps in a bigger file. The only way to get the missing highs back is a source that still has them.',
+          'This is the same encoder as compress audio. Use that page when the goal is a smaller file and you do not care which of the five rates it starts on. Use WAV to MP3 when the source is a WAV and you want 320 kbps without picking it.',
+        ],
+      },
+    ],
+    related: ['compress-audio', 'wav-to-mp3', 'mp3-to-wav'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      dropHint: 'Drop an audio file, or click to browse',
+      converter: true,
+      exportLabel: 'Convert',
       formats: ['mp3-320', 'mp3-192', 'mp3-128', 'mp3-96', 'mp3-64'],
     },
   },

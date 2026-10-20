@@ -68,6 +68,14 @@ export const GUIDES: GuideCard[] = [
   },
   {
     locale: 'en',
+    href: '/guides/trim-opentracks-bgm',
+    title: 'How to Trim OpenTracks BGM in the Browser',
+    description:
+      'Download a free track from OpenTracks (formerly DOVA-SYNDROME), then trim, loop, or convert it in the browser. The file stays on your device.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
     href: '/guides/change-pitch-without-changing-speed',
     title: 'How to Change Pitch Without Changing Speed',
     description:
@@ -336,6 +344,14 @@ export const GUIDES: GuideCard[] = [
     title: '音声をトリミングする',
     description:
       'ボイスメモやポッドキャストの必要な区間だけ残します。書き出しは1回につき1ファイル。アップロードしません。',
+    minutes: 4,
+  },
+  {
+    locale: 'ja',
+    href: '/ja/guides/trim-opentracks-bgm',
+    title: 'OpenTracksのBGMをブラウザでトリミングする',
+    description:
+      'OpenTracks（旧DOVA-SYNDROME）で無料BGMをダウンロードし、ブラウザでトリミング、ループ、形式変換をします。ファイルはアップロードしません。',
     minutes: 4,
   },
   {
