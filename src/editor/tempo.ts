@@ -1,13 +1,7 @@
 import { pitchShiftChannel } from './pitch';
+import { snapTempo } from './tempo-snap';
 
-/** Tempo with pitch put back. Outside this range the page has no slider. */
-export const TEMPO_MIN = 0.75;
-export const TEMPO_MAX = 1.25;
-
-export function snapTempo(rate: number): number {
-  const clamped = Math.min(TEMPO_MAX, Math.max(TEMPO_MIN, rate));
-  return Math.round(clamped * 100) / 100;
-}
+export { TEMPO_MAX, TEMPO_MIN, snapTempo } from './tempo-snap';
 
 /** playbackRate r: output is longer when r < 1, and the pitch moves with it. */
 function resample(input: Float32Array, rate: number): Float32Array {

@@ -3,23 +3,47 @@
  * AudioEditor.astro. All audio processing happens in the browser.
  */
 import { formatBytes, formatTime, clamp } from '../lib/format';
-import { computePeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
-import { defaultEditState, renderEdit, computeNormalizeGain, survivingRanges, type EditState } from './processor';
-import { analyzeSilence, measureSilenceFrames, SILENCE_PAD_SEC, type SilenceFrames, type TimeRange } from './silence';
 import { CIRCLE_DEPTH, CIRCLE_RATE_HZ, CIRCLE_WET } from './circle';
-import { snapTempo } from './tempo';
-import { loopChannels, LOOP_MAX_SECONDS, loopedDuration } from './loop';
-import { splitChannels, storeZip } from './split';
-import { fileStem, uniqueFileNames } from './batch';
-import { averageToMono } from './mono';
-import { crushChannel } from './bitcrush';
-import { shiftTo432 } from './hz432';
-import { encodeFor, getFormat, isM4rSupported } from './encoders';
+import { snapTempo } from './tempo-snap';
+import { computeNormalizeGain, defaultEditState, survivingRanges, type EditState } from './edit-state';
+import type { ExportFormat } from './encoders';
+import type { SilenceFrames, TimeRange } from './silence';
+import type { Peaks } from './waveform';
 import { bindDeliveryChips, bindFileOpen, setEmptyHidden } from './delivery';
 import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
+
+// Heavy modules stay out of the first script. Each promise is shared so a
+// second call does not start another fetch.
+let waveform: typeof import('./waveform') | undefined;
+let waveformP: Promise<typeof import('./waveform')> | undefined;
+function loadWaveform() {
+  waveformP ??= import('./waveform').then((mod) => {
+    waveform = mod;
+    return mod;
+  });
+  return waveformP;
+}
+function loadProcessor() {
+  return import('./processor');
+}
+function loadEncoders() {
+  return import('./encoders');
+}
+function loadSilence() {
+  return import('./silence');
+}
+function loadLoop() {
+  return import('./loop');
+}
+function loadSplit() {
+  return import('./split');
+}
+function loadBatch() {
+  return import('./batch');
+}
 
 /** Boost-only shelves keep the "+" at 0. Bipolar shelves (equalizer) show "0 dB" / "−3 dB". */
 function dbLabel(value: number, bipolar: boolean): string {
@@ -143,13 +167,15 @@ export class Editor {
     // The M4R option only renders on pages that opt in; remove it when the
     // browser cannot encode AAC so export never dead-ends.
     if (config.formats?.includes('m4r')) {
-      void isM4rSupported().then((ok) => {
-        if (!ok) {
-          this.els.format.querySelector<HTMLOptionElement>('option[value="m4r"]')?.remove();
-          this.els.root.querySelector('[data-delivery="m4r"]')?.remove();
-          if (this.els.format.value === 'm4r') this.els.format.value = 'mp3-192';
-        }
-      });
+      void loadEncoders()
+        .then((enc) => enc.isM4rSupported())
+        .then((ok) => {
+          if (!ok) {
+            this.els.format.querySelector<HTMLOptionElement>('option[value="m4r"]')?.remove();
+            this.els.root.querySelector('[data-delivery="m4r"]')?.remove();
+            if (this.els.format.value === 'm4r') this.els.format.value = 'mp3-192';
+          }
+        });
     }
     bindDeliveryChips(this.els.root, this.els.format);
     this.bind();
@@ -591,8 +617,10 @@ export class Editor {
     }
     this.busy = true;
     this.setStatus(this.text.decoding);
+    const waveformReady = loadWaveform();
     try {
       const buffer = await this.decodeOne(file);
+      await waveformReady;
 
       this.buffer = buffer;
       this.pitchPreview = null;
@@ -617,12 +645,12 @@ export class Editor {
       this.els.exportBtn.disabled = false;
       this.els.format.disabled = false;
 
-      this.refit(true);
+      await this.refit(true);
       this.applyState(this.state, false);
       this.updateTimecode();
       this.setStatus(this.text.ready);
-      if (this.config.silence) this.measureSilence();
-      if (this.config.loop) this.updateLoopStatus();
+      if (this.config.silence) await this.measureSilence();
+      if (this.config.loop) await this.updateLoopStatus();
       if (this.config.split) this.updateSplitStatus();
       this.updatePageStatus();
       this.renderQueue();
@@ -659,8 +687,9 @@ export class Editor {
 
   // ---------- View / waveform ----------
 
-  private refit(recomputeFit: boolean): void {
+  private async refit(recomputeFit: boolean): Promise<void> {
     if (!this.buffer) return;
+    const { MAX_CANVAS_WIDTH, computePeaks } = await loadWaveform();
     const stageW = this.els.stage.clientWidth || 600;
     if (recomputeFit || !this.zoomed) {
       this.fitPps = stageW / this.duration;
@@ -675,7 +704,8 @@ export class Editor {
   }
 
   private setZoom(pps: number): void {
-    if (!this.buffer) return;
+    if (!this.buffer || !waveform) return;
+    const { MAX_CANVAS_WIDTH, computePeaks } = waveform;
     const maxPps = Math.min(600, MAX_CANVAS_WIDTH / this.duration);
     const next = clamp(pps, this.fitPps, maxPps);
     if (next === this.pps) return;
@@ -690,25 +720,23 @@ export class Editor {
   }
 
   private draw(): void {
-    if (!this.peaks) return;
+    if (!this.peaks || !waveform) return;
     const styles = getComputedStyle(document.documentElement);
     const neutral = styles.getPropertyValue('--color-ink3').trim() || '#a1a1aa';
-    drawWaveform(this.els.canvas, this.peaks, neutral);
+    waveform.drawWaveform(this.els.canvas, this.peaks, neutral);
     this.drawSelectionWave();
   }
 
   /** Repaint the columns inside the selection in the accent color. */
   private drawSelectionWave(): void {
-    if (!this.peaks) return;
+    if (!this.peaks || !waveform) return;
     const sel = this.state.sel;
     if (!sel) return;
     const accent = getComputedStyle(this.els.selection).borderLeftColor || '#0d9488';
-    drawWaveform(
-      this.els.canvas,
-      this.peaks,
-      accent,
-      { from: sel.start * this.pps, to: sel.end * this.pps },
-    );
+    waveform.drawWaveform(this.els.canvas, this.peaks, accent, {
+      from: sel.start * this.pps,
+      to: sel.end * this.pps,
+    });
   }
 
   private toastRoot(): HTMLElement | null {
@@ -719,15 +747,17 @@ export class Editor {
     this.els.status.textContent = msg;
   }
 
-  private measureSilence(): void {
+  private async measureSilence(): Promise<void> {
     if (!this.buffer) return;
+    const { measureSilenceFrames } = await loadSilence();
     const channels = Array.from({ length: this.buffer.numberOfChannels }, (_, i) => this.buffer!.getChannelData(i));
     this.silenceFrames = measureSilenceFrames(channels, this.buffer.sampleRate);
-    this.updateSilenceStatus();
+    await this.updateSilenceStatus();
   }
 
-  private updateSilenceStatus(): void {
+  private async updateSilenceStatus(): Promise<void> {
     if (!this.silenceFrames) return;
+    const { analyzeSilence, SILENCE_PAD_SEC } = await loadSilence();
     const analysis = analyzeSilence(this.silenceFrames, {
       thresholdDb: this.silenceThreshold,
       minSilenceSec: this.silenceMin,
@@ -749,8 +779,9 @@ export class Editor {
     return ranges.reduce((sum, range) => sum + (range.to - range.from), 0) / speed;
   }
 
-  private updateLoopStatus(): void {
+  private async updateLoopStatus(): Promise<void> {
     if (!this.config.loop || !this.buffer) return;
+    const { LOOP_MAX_SECONDS, loopedDuration } = await loadLoop();
     const dur = loopedDuration(this.loopPassSeconds(), this.loopTimes, this.loopCrossfade);
     this.setStatus(dur > LOOP_MAX_SECONDS ? this.text.loopTooLong : fill(this.text.loopExport, { time: `${dur.toFixed(1)} s` }));
   }
@@ -775,20 +806,21 @@ export class Editor {
     if (this.config.hz432) this.setStatus(this.text.hz432Export);
   }
 
-  private pageEffect(buffer: AudioBuffer): AudioBuffer {
+  private async pageEffect(buffer: AudioBuffer): Promise<AudioBuffer> {
     if (this.config.mono) return monoAudioBuffer(buffer);
     if (this.config.bitcrush) return crushAudioBuffer(buffer, this.crushBits, this.crushHold);
     if (this.config.hz432) return shiftAudioBuffer(buffer);
     return buffer;
   }
 
-  private silenceBuffer(): AudioBuffer {
-    if (!this.buffer || !this.silenceFrames) return this.buffer!;
+  private silenceBuffer(): Promise<AudioBuffer> {
+    if (!this.buffer || !this.silenceFrames) return Promise.resolve(this.buffer!);
     return this.cutSilence(this.buffer);
   }
 
   /** Re-measure this buffer. The preview's frames belong to the first file only. */
-  private cutSilence(buffer: AudioBuffer): AudioBuffer {
+  private async cutSilence(buffer: AudioBuffer): Promise<AudioBuffer> {
+    const { analyzeSilence, measureSilenceFrames, SILENCE_PAD_SEC } = await loadSilence();
     const channels = Array.from({ length: buffer.numberOfChannels }, (_, i) => buffer.getChannelData(i));
     const frames = measureSilenceFrames(channels, buffer.sampleRate);
     const analysis = analyzeSilence(frames, {
@@ -1266,7 +1298,8 @@ export class Editor {
         this.updateExportState();
         this.setStatus(this.text.renderingStatus);
         try {
-          const rendered = this.pageEffect(await renderEdit(this.buffer, this.state));
+          const { renderEdit } = await loadProcessor();
+          const rendered = await this.pageEffect(await renderEdit(this.buffer, this.state));
           if (this.pitchPreviewKeyOf() !== key) return;
           this.pitchPreview = rendered;
           this.pitchPreviewKey = key;
@@ -1334,13 +1367,14 @@ export class Editor {
     this.setPlayFace(false);
   }
 
-  private async exportSplit(out: AudioBuffer, fmt: ReturnType<typeof getFormat>): Promise<void> {
-    const pieces = splitAudioBuffer(out, this.splitParts);
+  private async exportSplit(out: AudioBuffer, fmt: ExportFormat): Promise<void> {
+    const pieces = await splitAudioBuffer(out, this.splitParts);
     if (pieces.length === 0) {
       this.setStatus(this.text.splitTooShort);
       showToast(this.toastRoot(), 'error', this.text.splitTooShort);
       return;
     }
+    const { encodeFor } = await loadEncoders();
     const files = [];
     for (let i = 0; i < pieces.length; i++) {
       const blob = await encodeFor(fmt, pieces[i]!);
@@ -1349,6 +1383,7 @@ export class Editor {
         data: new Uint8Array(await blob.arrayBuffer()),
       });
     }
+    const { storeZip } = await loadSplit();
     const zipName = `${this.fileName}-parts.zip`;
     const zip = new Blob([storeZip(files)], { type: 'application/zip' });
     const url = URL.createObjectURL(zip);
@@ -1376,6 +1411,7 @@ export class Editor {
 
   /** One decode at a time. Failures are skipped so the rest of the queue still downloads. */
   private async exportQueue(): Promise<void> {
+    const [{ encodeFor, getFormat }, { fileStem, uniqueFileNames }] = await Promise.all([loadEncoders(), loadBatch()]);
     const fmt = getFormat(this.els.format.value);
     const suffix = this.config.converter ? 'converted' : 'edited';
     const names = uniqueFileNames(
@@ -1396,8 +1432,8 @@ export class Editor {
       try {
         const decoded = await this.decodeOne(file);
         const rendered = this.config.silence
-          ? this.cutSilence(decoded)
-          : this.pageEffect(await renderEdit(decoded, state));
+          ? await this.cutSilence(decoded)
+          : await this.pageEffect(await (await loadProcessor()).renderEdit(decoded, state));
         const blob = await encodeFor(fmt, rendered);
         ready.push({ name: names[i]!, data: new Uint8Array(await blob.arrayBuffer()) });
       } catch (err) {
@@ -1414,7 +1450,7 @@ export class Editor {
     const blob =
       ready.length === 1
         ? new Blob([ready[0]!.data], { type: 'application/octet-stream' })
-        : new Blob([storeZip(ready)], { type: 'application/zip' });
+        : new Blob([(await loadSplit()).storeZip(ready)], { type: 'application/zip' });
     const filename = ready.length === 1 ? ready[0]!.name : zipName;
     this.saveDownload(blob, filename);
     const note = skipped > 0 ? ` ${fill(this.text.batchSkipped, { n: skipped })}` : '';
@@ -1441,19 +1477,26 @@ export class Editor {
     this.els.exportBtn.textContent = this.text.rendering;
     this.setStatus(this.text.renderingStatus);
 
+    const encodersReady = loadEncoders();
     try {
       if (this.config.batch && this.queue.length > 1) {
         await this.exportQueue();
         return;
       }
-      if (this.config.loop && loopedDuration(this.loopPassSeconds(), this.loopTimes, this.loopCrossfade) > LOOP_MAX_SECONDS) {
-        this.setStatus(this.text.loopTooLong);
-        showToast(this.toastRoot(), 'error', this.text.loopTooLong);
-        return;
+      if (this.config.loop) {
+        const { LOOP_MAX_SECONDS, loopedDuration } = await loadLoop();
+        if (loopedDuration(this.loopPassSeconds(), this.loopTimes, this.loopCrossfade) > LOOP_MAX_SECONDS) {
+          this.setStatus(this.text.loopTooLong);
+          showToast(this.toastRoot(), 'error', this.text.loopTooLong);
+          return;
+        }
       }
-      let out = this.config.silence ? this.silenceBuffer() : await renderEdit(this.buffer, this.state);
-      if (this.config.loop) out = loopAudioBuffer(out, this.loopTimes, this.loopCrossfade);
-      out = this.pageEffect(out);
+      let out = this.config.silence
+        ? await this.silenceBuffer()
+        : await (await loadProcessor()).renderEdit(this.buffer, this.state);
+      if (this.config.loop) out = await loopAudioBuffer(out, this.loopTimes, this.loopCrossfade);
+      out = await this.pageEffect(out);
+      const { encodeFor, getFormat } = await encodersReady;
       const fmt = getFormat(this.els.format.value);
       this.setStatus(fill(this.text.encoding, { ext: fmt.ext.toUpperCase() }));
       if (this.config.split) {
@@ -1517,7 +1560,8 @@ export class Editor {
   }
 }
 
-function monoAudioBuffer(buffer: AudioBuffer): AudioBuffer {
+async function monoAudioBuffer(buffer: AudioBuffer): Promise<AudioBuffer> {
+  const { averageToMono } = await import('./mono');
   const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => buffer.getChannelData(c));
   const mono = averageToMono(channels);
   const out = new AudioBuffer({ length: Math.max(1, mono.length), numberOfChannels: 1, sampleRate: buffer.sampleRate });
@@ -1525,7 +1569,8 @@ function monoAudioBuffer(buffer: AudioBuffer): AudioBuffer {
   return out;
 }
 
-function crushAudioBuffer(buffer: AudioBuffer, bits: number, hold: number): AudioBuffer {
+async function crushAudioBuffer(buffer: AudioBuffer, bits: number, hold: number): Promise<AudioBuffer> {
+  const { crushChannel } = await import('./bitcrush');
   const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => crushChannel(buffer.getChannelData(c), bits, hold));
   const out = new AudioBuffer({
     length: buffer.length,
@@ -1536,7 +1581,8 @@ function crushAudioBuffer(buffer: AudioBuffer, bits: number, hold: number): Audi
   return out;
 }
 
-function shiftAudioBuffer(buffer: AudioBuffer): AudioBuffer {
+async function shiftAudioBuffer(buffer: AudioBuffer): Promise<AudioBuffer> {
+  const { shiftTo432 } = await import('./hz432');
   const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => shiftTo432(buffer.getChannelData(c), buffer.sampleRate));
   const out = new AudioBuffer({
     length: channels[0]?.length || 1,
@@ -1547,7 +1593,8 @@ function shiftAudioBuffer(buffer: AudioBuffer): AudioBuffer {
   return out;
 }
 
-function splitAudioBuffer(buffer: AudioBuffer, parts: number): AudioBuffer[] {
+async function splitAudioBuffer(buffer: AudioBuffer, parts: number): Promise<AudioBuffer[]> {
+  const { splitChannels } = await loadSplit();
   const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => buffer.getChannelData(c));
   return splitChannels(channels, parts).map((chs) => {
     const piece = new AudioBuffer({
@@ -1560,7 +1607,8 @@ function splitAudioBuffer(buffer: AudioBuffer, parts: number): AudioBuffer[] {
   });
 }
 
-function loopAudioBuffer(buffer: AudioBuffer, times: number, crossfadeSec: number): AudioBuffer {
+async function loopAudioBuffer(buffer: AudioBuffer, times: number, crossfadeSec: number): Promise<AudioBuffer> {
+  const { loopChannels } = await loadLoop();
   const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => buffer.getChannelData(c));
   const looped = loopChannels(channels, buffer.sampleRate, { times, crossfadeSec });
   const out = new AudioBuffer({
