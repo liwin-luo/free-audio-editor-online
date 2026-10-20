@@ -2,7 +2,7 @@ import { formatBytes, formatTime } from '../lib/format';
 import { encodeFor, getFormat } from './encoders';
 import { fill } from '../i18n/inline';
 import { readEditorText, showToast } from './messages';
-import { bindDeliveryChips, bindFileOpen } from './delivery';
+import { bindDeliveryChips, bindFileOpen, setEmptyHidden } from './delivery';
 import { integratedLufs, matchLufsGain, samplePeakDb, samplePeakLinear } from './loudness';
 import type { EditorText } from '../i18n/types';
 
@@ -105,7 +105,7 @@ class LoudnessMeter {
       this.fileMetaEl.textContent = `${formatBytes(file.size)} · ${formatTime(buffer.duration, true)} · ${Math.round(buffer.sampleRate / 1000)} kHz`;
       this.lufsEl.textContent = dbText(this.measured);
       this.peakEl.textContent = dbText(samplePeakDb(this.channels));
-      this.dropzone.hidden = true;
+      setEmptyHidden(this.dropzone, true);
       this.workspace.classList.remove('hidden');
       this.formatEl.disabled = false;
       const silent = !Number.isFinite(this.measured);
@@ -188,7 +188,7 @@ class LoudnessMeter {
     this.channels = [];
     this.target = null;
     this.workspace.classList.add('hidden');
-    this.dropzone.hidden = false;
+    setEmptyHidden(this.dropzone, false);
     this.exportBtn.disabled = true;
     this.formatEl.disabled = true;
     this.noteEl.textContent = '';

@@ -122,6 +122,13 @@ export function bindDeliveryChips(root: ParentNode, format?: HTMLSelectElement |
   }
 }
 
+/** Hide the empty state together: drop well, format chips, and the privacy line. */
+export function setEmptyHidden(dropzone: HTMLElement, hidden: boolean): void {
+  const empty = dropzone.closest('[data-empty]');
+  if (empty instanceof HTMLElement) empty.hidden = hidden;
+  else dropzone.hidden = hidden;
+}
+
 /** Click and keyboard open the file picker. Delivery chips are excluded. */
 export function bindFileOpen(dropzone: HTMLElement, open: () => void): void {
   dropzone.addEventListener('click', (e) => {

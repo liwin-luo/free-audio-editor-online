@@ -25,7 +25,7 @@ const isSpec = config.visualizer === 'spectrogram';
   data-i18n={JSON.stringify(t)}
   class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
 >
-  <!-- Empty state / dropzone -->
+  <div data-empty>
   <DropPromise config={config} locale={locale}>
     <div data-open tabindex="0" role="button" aria-label={config.dropHint}>
       <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
@@ -39,6 +39,7 @@ const isSpec = config.visualizer === 'spectrogram';
       <Icon name="shield-check" size={14} class="text-accent" />
       {t.dropLocal}
     </p>
+  </div>
   </div>
   <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input />
 
@@ -55,8 +56,8 @@ const isSpec = config.visualizer === 'spectrogram';
           <p data-file-meta class="font-mono text-xs text-ink3"></p>
         </div>
       </div>
-      <button type="button" class="btn btn-ghost size-9 shrink-0 p-0" data-reset aria-label={t.loadDifferent} title={t.startOver}>
-        <Icon name="arrow-arc-left" size={16} />
+      <button type="button" class="btn btn-secondary h-9 shrink-0 px-3 text-sm" data-reset>
+        {t.changeFile}
       </button>
     </div>
 

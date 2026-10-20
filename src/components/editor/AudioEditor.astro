@@ -25,6 +25,16 @@ const formats = allowed
   .filter((f) => f !== undefined);
 // Equalizer exposes cut and boost. Booster pages stay 0…+15.
 const bipolarShelf = config.quickControls?.includes('mid') ?? false;
+const jobChrome = Boolean(
+  config.trimLayout ||
+    config.ringtone ||
+    config.silence ||
+    config.loop ||
+    config.bitcrush ||
+    config.split ||
+    config.converter ||
+    (config.quickControls?.length ?? 0) > 0,
+);
 ---
 
 <div
@@ -33,7 +43,8 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
   data-i18n={JSON.stringify(t)}
   class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
 >
-  <!-- Empty state / dropzone -->
+  <!-- Empty state: drop well, format chips, privacy line. Hidden once a file is loaded. -->
+  <div data-empty>
   <DropPromise config={config} locale={locale}>
     <div data-open tabindex="0" role="button" aria-label={config.dropHint}>
       <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
@@ -48,12 +59,13 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
       {t.dropLocal}
     </p>
   </div>
-  <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input {...(config.multiple ? { multiple: true } : {})} />
+  </div>
+  <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input {...(config.multiple || config.batch ? { multiple: true } : {})} />
 
   <!-- Workspace: visible after a file is loaded -->
   <div data-workspace class="hidden">
     <!-- File bar -->
-    <div class="flex items-center justify-between gap-3 border-b border-line px-4 py-2.5 md:px-5">
+    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-2.5 md:px-5">
       <div class="flex min-w-0 items-center gap-3">
         <span class="grid size-8 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">
           <Icon name="waveform" size={16} />
@@ -63,18 +75,25 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
           <p data-file-meta class="font-mono text-xs text-ink3"></p>
         </div>
       </div>
-      <div class="flex shrink-0 items-center gap-1">
-        <button type="button" class="btn btn-ghost size-9 p-0" data-zoom-out aria-label={t.zoomOut} title={t.zoomOut}>
-          <Icon name="minus" size={16} />
+      <div class="flex shrink-0 flex-wrap items-center justify-end gap-2">
+        <button type="button" class="btn btn-secondary h-9 px-3 text-sm" data-reset>
+          {t.changeFile}
         </button>
-        <button type="button" class="btn btn-ghost size-9 p-0" data-zoom-in aria-label={t.zoomIn} title={t.zoomIn}>
-          <Icon name="plus" size={16} />
+        <button type="button" class="btn btn-secondary h-9 px-2.5 text-sm" data-zoom-out>
+          {t.zoomOut}
         </button>
-        <button type="button" class="btn btn-ghost size-9 p-0" data-reset aria-label={t.loadDifferent} title={t.startOver}>
-          <Icon name="arrow-arc-left" size={16} />
+        <button type="button" class="btn btn-secondary h-9 px-2.5 text-sm" data-zoom-in>
+          {t.zoomIn}
         </button>
       </div>
     </div>
+    <ul data-batch-list class="hidden max-h-36 list-disc overflow-auto border-b border-line px-8 py-2 text-xs leading-5 text-ink2"></ul>
+
+    {
+      config.trimLayout && (
+        <p class="px-4 pt-3 text-xs text-ink3 md:px-5">{t.hintTrim}</p>
+      )
+    }
 
     <!-- Waveform stage -->
     <div data-stage class="relative h-[200px] touch-pan-y overflow-x-auto overflow-y-hidden md:h-[220px]" aria-label={t.waveform}>
@@ -84,8 +103,12 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
           data-selection
           class="pointer-events-none absolute inset-y-0 hidden border-x-2 border-accent bg-accent-soft"
         >
-          <span data-handle-start class="pointer-events-auto absolute -left-2 inset-y-0 w-4 cursor-ew-resize" aria-hidden="true"></span>
-          <span data-handle-end class="pointer-events-auto absolute -right-2 inset-y-0 w-4 cursor-ew-resize" aria-hidden="true"></span>
+          <span data-handle-start class="pointer-events-auto absolute -left-2 inset-y-0 w-4 cursor-ew-resize" aria-hidden="true">
+            {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
+          </span>
+          <span data-handle-end class="pointer-events-auto absolute -right-2 inset-y-0 w-4 cursor-ew-resize" aria-hidden="true">
+            {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
+          </span>
         </div>
         <div data-playhead class="pointer-events-none absolute inset-y-0 w-0.5 bg-ink opacity-0" aria-hidden="true">
           <span class="absolute -top-0 -left-[5px] size-0 border-x-[6px] border-t-[8px] border-x-transparent border-t-ink"></span>
@@ -93,11 +116,34 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
       </div>
     </div>
 
+    {
+      config.trimLayout && (
+        <div class="grid grid-cols-3 border-y border-line">
+          <div class="px-3 py-3 text-center">
+            <span class="block text-xs text-ink3">{t.statStart}</span>
+            <strong data-span-start class="mt-1 block font-mono text-lg font-semibold tabular-nums text-accent">00:00.00</strong>
+          </div>
+          <div class="border-x border-line px-3 py-3 text-center">
+            <span class="block text-xs text-ink3">{t.statSpan}</span>
+            <strong data-span-len class="mt-1 block font-mono text-xl font-semibold tabular-nums text-accent">00:00.00</strong>
+          </div>
+          <div class="px-3 py-3 text-center">
+            <span class="block text-xs text-ink3">{t.statEnd}</span>
+            <strong data-span-end class="mt-1 block font-mono text-lg font-semibold tabular-nums text-accent">00:00.00</strong>
+          </div>
+        </div>
+      )
+    }
+
     <!-- Transport -->
-    <div class="flex items-center gap-3 border-y border-line bg-surface2/60 px-4 py-2.5 md:px-5">
-      <button type="button" class="btn btn-primary size-10 rounded-full p-0" data-play aria-label={t.play} disabled>
-        <Icon name="play" size={18} />
-      </button>
+    <div class:list={['flex items-center gap-3 border-y border-line bg-surface2/60 px-4 py-2.5 md:px-5', config.trimLayout && 'hidden']}>
+      {
+        !jobChrome && (
+          <button type="button" class="btn btn-primary size-10 rounded-full p-0" data-play aria-label={t.play} disabled>
+            <Icon name="play" size={18} />
+          </button>
+        )
+      }
       <p data-timecode class="font-mono text-sm tabular-nums text-ink2">
         00:00.00 / 00:00.00
       </p>
@@ -111,10 +157,28 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
       (config.quickControls?.length ?? 0) > 0 && (
         <div class="flex flex-wrap items-center gap-x-6 gap-y-4 border-b border-line px-4 py-3.5 md:px-5">
           {config.quickControls!.includes('reverse') && (
-            <button type="button" class="btn btn-secondary" data-quick-reverse aria-pressed="false">
+            <button type="button" class="btn btn-secondary h-11 px-4" data-quick-reverse aria-pressed="false">
               <Icon name="reverse" size={16} />
               {t.reverse}
             </button>
+          )}
+          {config.quickControls!.includes('fade') && (
+            <div class="grid w-full gap-5 md:grid-cols-2">
+              <label class="block">
+                <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+                  {t.fadeIn}
+                  <strong class="font-mono text-lg font-semibold tabular-nums text-accent" data-fade-in-label>0.0s</strong>
+                </span>
+                <input type="range" data-fade-in min="0" max="5" step="0.1" value="0" class="w-full accent-(--color-accent)" />
+              </label>
+              <label class="block">
+                <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+                  {t.fadeOut}
+                  <strong class="font-mono text-lg font-semibold tabular-nums text-accent" data-fade-out-label>0.0s</strong>
+                </span>
+                <input type="range" data-fade-out min="0" max="5" step="0.1" value="0" class="w-full accent-(--color-accent)" />
+              </label>
+            </div>
           )}
           {config.quickControls!.includes('normalize') && (
             <button type="button" class="btn btn-secondary" data-quick-normalize aria-pressed="false">
@@ -122,34 +186,90 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
               {t.normalize}
             </button>
           )}
-          {config.quickControls!.includes('speed') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.speed}
-              <input type="range" data-quick-speed min="0.5" max="2" step="0.05" value="1" class="flex-1 accent-(--color-accent)" />
-              <span class="w-12 font-mono text-xs tabular-nums" data-quick-speed-label>
-                1.00×
-              </span>
-            </label>
+          {config.quickControls!.includes('speed') && config.speedPresets && (
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.speed}</span>
+                <strong data-quick-speed-label class="font-mono text-2xl font-semibold tabular-nums text-accent">1.00×</strong>
+              </div>
+              <input type="range" data-quick-speed min="0.5" max="2" step="0.05" value="1" class="mt-3 w-full accent-(--color-accent)" />
+              <p class="mt-2 text-xs text-ink3">{t.speedPitch}</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {config.speedPresets.map((preset) => (
+                  <button type="button" class="rounded-lg border border-line px-3 py-1.5 text-sm tabular-nums" data-speed-preset={preset}>
+                    {preset}×
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {config.quickControls!.includes('speed') && !config.speedPresets && (
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.speed}</span>
+                <strong data-quick-speed-label class="font-mono text-2xl font-semibold tabular-nums text-accent">1.00×</strong>
+              </div>
+              <input type="range" data-quick-speed min="0.5" max="2" step="0.05" value="1" class="mt-3 w-full accent-(--color-accent)" />
+              <p class="mt-2 text-xs text-ink3">{t.speedPitch}</p>
+            </div>
           )}
           {config.quickControls!.includes('tempo') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.speed}
-              <input type="range" data-quick-tempo min="0.75" max="1.25" step="0.01" value="1" class="flex-1 accent-(--color-accent)" />
-              <span class="w-12 font-mono text-xs tabular-nums" data-quick-tempo-label>
-                1.00×
-              </span>
-            </label>
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.speed}</span>
+                <strong data-quick-tempo-label class="font-mono text-2xl font-semibold tabular-nums text-accent">1.00×</strong>
+              </div>
+              <input type="range" data-quick-tempo min="0.75" max="1.25" step="0.01" value="1" class="mt-3 w-full accent-(--color-accent)" />
+              <p class="mt-2 text-xs text-ink3">{t.tempoPitch}</p>
+            </div>
           )}
           {config.quickControls!.includes('pitch') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.pitch}
-              <input type="range" data-quick-pitch min="-12" max="12" step="1" value="0" class="flex-1 accent-(--color-accent)" />
-              <span class="w-14 font-mono text-xs tabular-nums" data-quick-pitch-label>
-                0 st
-              </span>
-            </label>
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.pitch}</span>
+                <strong data-quick-pitch-label class="font-mono text-2xl font-semibold tabular-nums text-accent">0 st</strong>
+              </div>
+              <input type="range" data-quick-pitch min="-12" max="12" step="1" value="0" class="mt-3 w-full accent-(--color-accent)" />
+              <p class="mt-2 text-xs text-ink3">{t.pitchLength}</p>
+              {
+                config.pitchPresets && (
+                  <div class="mt-3 flex flex-wrap gap-2">
+                    {config.pitchPresets.map((preset) => (
+                      <button type="button" class="rounded-lg border border-line px-3 py-1.5 text-sm tabular-nums" data-pitch-preset={String(preset)}>
+                        {preset > 0 ? `+${preset}` : preset < 0 ? `−${Math.abs(preset)}` : '0'}
+                      </button>
+                    ))}
+                  </div>
+                )
+              }
+            </div>
           )}
-          {config.quickControls!.includes('gain') && (
+          {config.quickControls!.includes('gain') && config.gainPresets && (
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.volume}</span>
+                <strong data-quick-gain-label class="font-mono text-2xl font-semibold tabular-nums text-accent">100%</strong>
+              </div>
+              <input
+                type="range"
+                data-quick-gain
+                min="10"
+                max={config.maxGainPercent ?? 200}
+                step="5"
+                value="100"
+                class="mt-3 w-full accent-(--color-accent)"
+              />
+              <p class="mt-2 text-xs text-ink3">{t.gainOriginal}</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {config.gainPresets.map((preset) => (
+                  <button type="button" class="rounded-lg border border-line px-3 py-1.5 text-sm tabular-nums" data-gain-preset={preset}>
+                    {preset}%
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {config.quickControls!.includes('gain') && !config.gainPresets && (
             <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
               {t.volume}
               <input
@@ -167,22 +287,22 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
             </label>
           )}
           {config.quickControls!.includes('reverb') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.reverb}
-              <input type="range" data-quick-reverb min="0" max="1" step="0.05" value="0" class="flex-1 accent-(--color-accent)" />
-              <span class="w-12 font-mono text-xs tabular-nums" data-quick-reverb-label>
-                0%
-              </span>
-            </label>
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.reverb}</span>
+                <strong data-quick-reverb-label class="font-mono text-2xl font-semibold tabular-nums text-accent">0%</strong>
+              </div>
+              <input type="range" data-quick-reverb min="0" max="1" step="0.05" value="0" class="mt-3 w-full accent-(--color-accent)" />
+            </div>
           )}
           {config.quickControls!.includes('compress') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.compress}
-              <input type="range" data-quick-compress min="0" max="100" step="1" value="0" class="flex-1 accent-(--color-accent)" />
-              <span class="w-12 font-mono text-xs tabular-nums" data-quick-compress-label>
-                0%
-              </span>
-            </label>
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.compress}</span>
+                <strong data-quick-compress-label class="font-mono text-2xl font-semibold tabular-nums text-accent">0%</strong>
+              </div>
+              <input type="range" data-quick-compress min="0" max="100" step="1" value="0" class="mt-3 w-full accent-(--color-accent)" />
+            </div>
           )}
           {config.quickControls!.includes('circle') && (
             <button type="button" class="btn btn-secondary border-accent bg-accent-soft text-accent" data-quick-circle aria-pressed="true">
@@ -204,11 +324,13 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
             </>
           )}
           {config.quickControls!.includes('distort') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.distort}
-              <input type="range" data-quick-distort min="0" max="100" step="1" value="40" class="flex-1 accent-(--color-accent)" />
-              <span class="w-12 font-mono text-xs tabular-nums" data-quick-distort-label>40%</span>
-            </label>
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.distort}</span>
+                <strong data-quick-distort-label class="font-mono text-2xl font-semibold tabular-nums text-accent">40%</strong>
+              </div>
+              <input type="range" data-quick-distort min="0" max="100" step="1" value="40" class="mt-3 w-full accent-(--color-accent)" />
+            </div>
           )}
           {config.quickControls!.includes('echo') && (
             <>
@@ -224,50 +346,66 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
               </label>
             </>
           )}
-          {config.quickControls!.includes('bass') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.bass}
-              <input type="range" data-quick-bass min={bipolarShelf ? -15 : 0} max="15" step="1" value="0" class="flex-1 accent-(--color-accent)" />
-              <span class="w-14 font-mono text-xs tabular-nums" data-quick-bass-label>
-                {bipolarShelf ? '0 dB' : '+0 dB'}
-              </span>
-            </label>
+          {config.quickControls!.includes('bass') && !bipolarShelf && (
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.bass}</span>
+                <strong data-quick-bass-label class="font-mono text-2xl font-semibold tabular-nums text-accent">+0 dB</strong>
+              </div>
+              <input type="range" data-quick-bass min="0" max="15" step="1" value="0" class="mt-3 w-full accent-(--color-accent)" />
+            </div>
           )}
-          {config.quickControls!.includes('treble') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.treble}
-              <input type="range" data-quick-treble min={bipolarShelf ? -15 : 0} max="15" step="1" value="0" class="flex-1 accent-(--color-accent)" />
-              <span class="w-14 font-mono text-xs tabular-nums" data-quick-treble-label>
-                {bipolarShelf ? '0 dB' : '+0 dB'}
-              </span>
-            </label>
+          {bipolarShelf && (
+            <div class="grid w-full grid-cols-3 gap-3">
+              <label class="block text-sm text-ink2">
+                <span class="mb-2 flex items-center justify-between">
+                  {t.bass}
+                  <span class="font-mono text-xs tabular-nums" data-quick-bass-label>0 dB</span>
+                </span>
+                <input type="range" data-quick-bass min="-15" max="15" step="1" value="0" class="w-full accent-(--color-accent)" />
+              </label>
+              <label class="block text-sm text-ink2">
+                <span class="mb-2 flex items-center justify-between">
+                  {t.mid}
+                  <span class="font-mono text-xs tabular-nums" data-quick-mid-label>0 dB</span>
+                </span>
+                <input type="range" data-quick-mid min="-15" max="15" step="1" value="0" class="w-full accent-(--color-accent)" />
+              </label>
+              <label class="block text-sm text-ink2">
+                <span class="mb-2 flex items-center justify-between">
+                  {t.treble}
+                  <span class="font-mono text-xs tabular-nums" data-quick-treble-label>0 dB</span>
+                </span>
+                <input type="range" data-quick-treble min="-15" max="15" step="1" value="0" class="w-full accent-(--color-accent)" />
+              </label>
+            </div>
           )}
-          {config.quickControls!.includes('mid') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.mid}
-              <input type="range" data-quick-mid min="-15" max="15" step="1" value="0" class="flex-1 accent-(--color-accent)" />
-              <span class="w-14 font-mono text-xs tabular-nums" data-quick-mid-label>
-                0 dB
-              </span>
-            </label>
+          {config.quickControls!.includes('treble') && !bipolarShelf && (
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.treble}</span>
+                <strong data-quick-treble-label class="font-mono text-2xl font-semibold tabular-nums text-accent">+0 dB</strong>
+              </div>
+              <input type="range" data-quick-treble min="0" max="15" step="1" value="0" class="mt-3 w-full accent-(--color-accent)" />
+            </div>
           )}
           {config.quickControls!.includes('lpf') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.cutoff}
-              <input type="range" data-quick-lpf min="300" max="20000" step="100" value="20000" class="flex-1 accent-(--color-accent)" />
-              <span class="w-16 font-mono text-xs tabular-nums" data-quick-lpf-label>
-                20.0 kHz
-              </span>
-            </label>
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.cutoff}</span>
+                <strong data-quick-lpf-label class="font-mono text-2xl font-semibold tabular-nums text-accent">20.0 kHz</strong>
+              </div>
+              <input type="range" data-quick-lpf min="300" max="20000" step="100" value="20000" class="mt-3 w-full accent-(--color-accent)" />
+            </div>
           )}
           {config.quickControls!.includes('hpf') && (
-            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
-              {t.cutoff}
-              <input type="range" data-quick-hpf min="20" max="5000" step="10" value="20" class="flex-1 accent-(--color-accent)" />
-              <span class="w-16 font-mono text-xs tabular-nums" data-quick-hpf-label>
-                20 Hz
-              </span>
-            </label>
+            <div class="w-full">
+              <div class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-ink2">{t.cutoff}</span>
+                <strong data-quick-hpf-label class="font-mono text-2xl font-semibold tabular-nums text-accent">20 Hz</strong>
+              </div>
+              <input type="range" data-quick-hpf min="20" max="5000" step="10" value="20" class="mt-3 w-full accent-(--color-accent)" />
+            </div>
           )}
         </div>
       )
@@ -335,6 +473,41 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
     }
 
     {
+      config.split && (
+        <div class="border-b border-line px-4 py-3.5 md:px-5">
+          <label class="block max-w-sm">
+            <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+              {t.splitParts}
+              <span class="font-mono text-xs tabular-nums" data-split-parts-label>2</span>
+            </span>
+            <input type="range" data-split-parts min="2" max="16" step="1" value="2" class="w-full accent-(--color-accent)" />
+          </label>
+        </div>
+      )
+    }
+
+    {
+      config.bitcrush && (
+        <div class="grid gap-5 border-b border-line px-4 py-3.5 md:grid-cols-2 md:px-5">
+          <label class="block">
+            <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+              {t.crushBits}
+              <span class="font-mono text-xs tabular-nums" data-crush-bits-label>8</span>
+            </span>
+            <input type="range" data-crush-bits min="1" max="16" step="1" value="8" class="w-full accent-(--color-accent)" />
+          </label>
+          <label class="block">
+            <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+              {t.crushHold}
+              <span class="font-mono text-xs tabular-nums" data-crush-hold-label>2</span>
+            </span>
+            <input type="range" data-crush-hold min="1" max="32" step="1" value="2" class="w-full accent-(--color-accent)" />
+          </label>
+        </div>
+      )
+    }
+
+    {
       config.loop && (
         <div class="grid gap-5 border-b border-line px-4 py-3.5 md:grid-cols-2 md:px-5">
           <label class="block">
@@ -377,9 +550,24 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
     }
 
     {
+      config.trimLayout && (
+        <div class="grid gap-3 px-4 py-3 sm:grid-cols-2 md:px-5">
+          <label class="block text-xs text-ink2">
+            {t.startSec}
+            <input type="number" data-precise-start class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums" min="0" step="0.01" />
+          </label>
+          <label class="block text-xs text-ink2">
+            {t.endSec}
+            <input type="number" data-precise-end class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums" min="0" step="0.01" />
+          </label>
+        </div>
+      )
+    }
+
+    {
       !config.converter && !config.silence && !config.quickControls?.includes('tempo') && (
         <div class="flex flex-wrap items-center gap-3 px-4 py-3 md:px-5" data-modes-row>
-          {!config.loop && (
+          {!config.loop && !config.split && (
             <div class="inline-flex rounded-lg border border-line p-0.5" role="group" aria-label={t.cutMode}>
               <button type="button" class="rounded-md px-3 py-1.5 text-sm font-medium" data-mode="keep">
                 {t.keep}
@@ -389,6 +577,12 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
               </button>
             </div>
           )}
+          {config.trimLayout && (
+            <button type="button" class="btn btn-ghost h-9 px-3" data-select-all hidden>
+              {t.selectAll}
+            </button>
+          )}
+          {!config.trimLayout && (
           <details class="min-w-0 flex-1" data-precise>
             <summary class="inline-flex cursor-pointer list-none items-center gap-1.5 text-sm text-ink2 hover:text-ink">
               <Icon name="cursor-click" size={15} />
@@ -405,6 +599,7 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
               </label>
             </div>
           </details>
+          )}
         </div>
       )
     }
@@ -417,6 +612,14 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
         config.quickControls?.includes('tempo') ? 'flex-nowrap' : 'flex-wrap',
       ]}
     >
+      {
+        jobChrome && (
+          <button type="button" class="btn btn-primary" data-play aria-label={t.play} disabled>
+            <Icon name="play" size={18} />
+            <span>{t.playBtn}</span>
+          </button>
+        )
+      }
       <label class="flex items-center gap-2 text-sm text-ink2">
         {t.format}
         <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" disabled>

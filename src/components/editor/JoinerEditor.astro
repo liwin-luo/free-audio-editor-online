@@ -31,7 +31,7 @@ const formats = allowed
   data-i18n={JSON.stringify(t)}
   class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
 >
-  <!-- Dropzone -->
+  <div data-empty>
   <DropPromise config={config} locale={locale}>
     <div data-open tabindex="0" role="button" aria-label={config.dropHint}>
       <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
@@ -45,6 +45,7 @@ const formats = allowed
       <Icon name="shield-check" size={14} class="text-accent" />
       {t.joinerLocal}
     </p>
+  </div>
   </div>
   <input type="file" class="hidden" multiple accept="audio/*,video/mp4,.m4a,.opus" data-file-input />
 

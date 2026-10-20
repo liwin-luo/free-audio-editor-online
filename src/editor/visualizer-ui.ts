@@ -13,7 +13,7 @@ import {
 } from './visualizer';
 import { mixMono, paintSpec, specColumnDb, type ColormapName, type SpecAxis } from './spectrogram';
 import { readEditorText, showToast } from './messages';
-import { bindFileOpen } from './delivery';
+import { bindFileOpen, setEmptyHidden } from './delivery';
 import { clamp, formatBytes, formatTime } from '../lib/format';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
@@ -199,7 +199,7 @@ export class VisualizerApp {
       this.els.fileName.textContent = file.name;
       this.els.fileMeta.textContent = `${formatBytes(file.size)} · ${formatTime(buffer.duration, true)} · ${Math.round(buffer.sampleRate / 1000)} kHz`;
 
-      this.els.dropzone.hidden = true;
+      setEmptyHidden(this.els.dropzone, true);
       this.els.workspace.classList.remove('hidden');
       this.els.exportBtn.disabled = false;
 
@@ -220,7 +220,7 @@ export class VisualizerApp {
     this.mono = null;
     this.peaks.clear();
     this.els.workspace.classList.add('hidden');
-    this.els.dropzone.hidden = false;
+    setEmptyHidden(this.els.dropzone, false);
     this.els.exportBtn.disabled = true;
     this.setStatus('');
   }

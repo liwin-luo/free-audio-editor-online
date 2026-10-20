@@ -12,13 +12,13 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Ringtone Maker](https://freeaudioeditor.online/ringtone-maker): pick up to 40 seconds of any song and export M4R (Chrome, Edge, Safari) or MP3.
 - [Audio Joiner](https://freeaudioeditor.online/audio-joiner): merge multiple audio files in any order with optional crossfade and fades.
 - [Multi-Track Audio Editor](https://freeaudioeditor.online/multi-track-audio-editor): stack up to 8 files on one timeline with level, pan, mute, and solo, then export one mix. No project file.
-- [WAV to MP3 Converter](https://freeaudioeditor.online/wav-to-mp3): convert WAV and other lossless files to MP3 at 128–320 kbps.
-- [FLAC to MP3 Converter](https://freeaudioeditor.online/flac-to-mp3): convert FLAC to MP3 at 128–320 kbps; tags and artwork are not copied.
-- [MP3 to WAV Converter](https://freeaudioeditor.online/mp3-to-wav): decode MP3 to lossless 16-bit PCM WAV for editing — no quality restoration, honest copy.
-- [Audio Compressor](https://freeaudioeditor.online/compress-audio): shrink MP3, WAV and other audio by re-encoding at 64–320 kbps.
-- [Bitrate Converter](https://freeaudioeditor.online/bitrate-converter): re-encode any audio as MP3 at 64, 96, 128, 192, or 320 kbps. A higher bitrate does not restore detail the source never had. Same encoder as the audio compressor.
-- [OGG to MP3 Converter](https://freeaudioeditor.online/ogg-to-mp3): convert OGG (Vorbis or Opus) to MP3. Safari often cannot decode Vorbis.
-- [Opus to MP3 Converter](https://freeaudioeditor.online/opus-to-mp3): convert .opus files and Opus inside OGG or WebM to MP3.
+- [WAV to MP3 Converter](https://freeaudioeditor.online/wav-to-mp3): convert one or several WAV and other lossless files to MP3 at 128–320 kbps. Two or more download as a ZIP.
+- [FLAC to MP3 Converter](https://freeaudioeditor.online/flac-to-mp3): convert one or several FLAC files to MP3 at 128–320 kbps; tags and artwork are not copied. Two or more download as a ZIP.
+- [MP3 to WAV Converter](https://freeaudioeditor.online/mp3-to-wav): decode one or several MP3s to lossless 16-bit PCM WAV for editing — no quality restoration, honest copy. Two or more download as a ZIP.
+- [Audio Compressor](https://freeaudioeditor.online/compress-audio): shrink one or several MP3, WAV and other audio files by re-encoding at 64–320 kbps. Two or more download as a ZIP.
+- [Bitrate Converter](https://freeaudioeditor.online/bitrate-converter): re-encode any audio as MP3 at 64, 96, 128, 192, or 320 kbps. A higher bitrate does not restore detail the source never had. Several files share the chosen bitrate; two or more download as a ZIP. Same encoder as the audio compressor.
+- [OGG to MP3 Converter](https://freeaudioeditor.online/ogg-to-mp3): convert one or several OGG files (Vorbis or Opus) to MP3. Two or more download as a ZIP. Safari often cannot decode Vorbis.
+- [Opus to MP3 Converter](https://freeaudioeditor.online/opus-to-mp3): convert one or several .opus files and Opus inside OGG or WebM to MP3. Two or more download as a ZIP.
 - [Pitch Changer](https://freeaudioeditor.online/pitch-changer): shift audio pitch ±12 semitones while keeping the duration unchanged.
 - [Bass Booster](https://freeaudioeditor.online/bass-booster): add up to +15 dB of low end below 150 Hz with a true low-shelf EQ.
 - [Treble Booster](https://freeaudioeditor.online/treble-booster): add up to +15 dB of highs above 3 kHz with a true high-shelf EQ.
@@ -28,22 +28,26 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Waveform Generator](https://freeaudioeditor.online/waveform-generator): turn audio into a waveform PNG — look templates, several drawing styles, colors, transparent background, a time range, preset sizes at 2×.
 - [Spectrogram Generator](https://freeaudioeditor.online/spectrogram-generator): turn audio into a spectrogram PNG — log or linear frequency, colormaps, dB range, a time range.
 - [Image to Audio](https://freeaudioeditor.online/image-to-audio): paint a picture or a short line of text into a WAV so a spectrogram shows it.
-- [M4A to MP3 Converter](https://freeaudioeditor.online/m4a-to-mp3): convert M4A/AAC files to MP3 in the browser; tags and artwork are not copied.
+- [M4A to MP3 Converter](https://freeaudioeditor.online/m4a-to-mp3): convert one or several M4A/AAC files to MP3 in the browser; tags and artwork are not copied. Two or more download as a ZIP.
 - [Audio Fade In / Fade Out](https://freeaudioeditor.online/fade-audio): add a smooth fade in and fade out to any recording, 0.1 s precision, export MP3 or WAV.
 - [Reverse Audio](https://freeaudioeditor.online/reverse-audio): play any track backwards, one click.
 - [Audio Speed Changer](https://freeaudioeditor.online/change-audio-speed): speed audio up or slow it down from 0.5× to 2×.
 - [MP3 Volume Booster](https://freeaudioeditor.online/increase-volume): boost quiet audio up to 4× with a limiter.
 - [Volume Booster](https://freeaudioeditor.online/volume-booster): boost quiet music and video soundtracks up to 4×.
-- [MP4 to MP3 Converter](https://freeaudioeditor.online/mp4-to-mp3): extract the soundtrack from MP4/WebM/MOV video as MP3.
-- [Audio Extractor](https://freeaudioeditor.online/extract-audio): extract audio from video as MP3 or lossless WAV.
+- [MP4 to MP3 Converter](https://freeaudioeditor.online/mp4-to-mp3): extract the soundtrack from one or several MP4/WebM/MOV videos as MP3. Two or more download as a ZIP.
+- [Audio Extractor](https://freeaudioeditor.online/extract-audio): extract audio from one or several videos as MP3 or lossless WAV. Two or more download as a ZIP.
 - [Voice Recorder](https://freeaudioeditor.online/voice-recorder): record the microphone, trim the take, export MP3/WAV.
-- [Audio to Text](https://freeaudioeditor.online/audio-to-text): transcribe audio and video to text in the browser (local Whisper model, ~90 languages, auto-detect, TXT/SRT export, 10 min per pass).
-- [Audio Normalizer](https://freeaudioeditor.online/normalize-audio): raise a quiet file so its peak sits just below clipping.
+- [Audio to Text](https://freeaudioeditor.online/audio-to-text): transcribe one or several audio and video files to text in the browser (local Whisper model, ~90 languages, auto-detect, TXT/SRT export, about 10 min per file). Two or more download as a ZIP.
+- [Audio Normalizer](https://freeaudioeditor.online/normalize-audio): raise one or several quiet files so each peak sits just below clipping. Two or more download as a ZIP.
 - [Level Compressor](https://freeaudioeditor.online/compressor): broadband compressor that evens loud and quiet parts, then restores the original peak. Not a file-size shrink.
 - [Echo](https://freeaudioeditor.online/echo): timed repeats with delay up to 0.8 s and feedback capped at 55%. Not a reverb wash.
 - [Audio Distorter](https://freeaudioeditor.online/audio-distorter): tanh overdrive, drive 0–100% (start 40%). 0% leaves the file unchanged. Not a bitcrusher and not a volume boost.
-- [Silence Remover](https://freeaudioeditor.online/silence-remover): cuts stretches quieter than a threshold (default −40 dBFS) and longer than a minimum gap. Short breaths stay. Not a hand trim.
+- [Silence Remover](https://freeaudioeditor.online/silence-remover): cuts stretches quieter than a threshold (default −40 dBFS) and longer than a minimum gap, on one file or several that share those settings. Short breaths stay. Two or more download as a ZIP. Not a hand trim.
 - [Audio Looper](https://freeaudioeditor.online/audio-looper): repeats one clip 2 to 16 times with a linear crossfade at each join (default 0.01 s). Stops if the result would pass 10 minutes. Not a live overdub and not a joiner.
+- [Split MP3](https://freeaudioeditor.online/split-mp3): cuts one file into 2 to 16 equal parts and downloads them as one zip. Cuts fall on sample boundaries. Not a silence scan and not a single-span trim.
+- [Stereo to Mono](https://freeaudioeditor.online/stereo-to-mono): writes one channel, each sample the average of the source channels. A mono file is copied. It does not invent a second channel.
+- [Bitcrusher](https://freeaudioeditor.online/bitcrusher): quantizes each channel to 1–16 bits (default 8) and holds that level for 1–32 samples (default 2). Stereo stays stereo. Not the smooth tanh distorter.
+- [432 Hz Converter](https://freeaudioeditor.online/432-hz-converter): shifts the whole file by 12·log2(432/440), about −0.32 semitones. Length stays. Not a per-note retune and not a tempo change.
 - [Auto Panner](https://freeaudioeditor.online/auto-panner): sweeps one file left and right at 0.05 to 2 Hz (default 0.2 Hz, depth 70%). The position is depth times a sine of that rate. It does not follow the beat. Depth 0 leaves the file unchanged.
 - [3D Audio](https://freeaudioeditor.online/3d-audio): one switch. The direct sound circles at 100% depth and 0.1 Hz, about 10 seconds per trip, with a 25% send of the same short reverb as slowed + reverb. Speed and pitch stay. Off leaves the file as dropped. Not a head-related transfer.
 - [Metronome](https://freeaudioeditor.online/metronome): a click from 40 to 240 BPM (default 100) in 2/4, 3/4, 4/4, or 6/8. The first beat of each bar is louder. 6/8 is six clicks in the bar. Export is 4, 8, or 16 bars of that click, not a click mixed into a song.
@@ -51,7 +55,7 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Tempo Changer](https://freeaudioeditor.online/tempo-changer): changes length from 0.75× to 1.25× in steps of 0.01 and shifts the pitch back. 1× skips the stretch. Dense harmony can sound thin.
 - [Loudness Meter](https://freeaudioeditor.online/loudness-meter): integrated LUFS of a file, with podcast −16, streaming −14, and broadcast −23 targets. Sample peak is held at −1 dBFS. Not a room SPL meter and not peak normalize.
 - [Slowed + Reverb](https://freeaudioeditor.online/slowed-reverb): slow a song (pitch drops with it) and add a reverb tail; speed above 1× is nightcore.
-- [MP3 Tag Editor](https://freeaudioeditor.online/mp3-tag-editor): edit ID3 tags and cover art on MP3 files in the browser; audio bytes untouched, nothing uploaded.
+- [MP3 Tag Editor](https://freeaudioeditor.online/mp3-tag-editor): edit ID3 tags and cover art on one MP3 or a whole album in the browser. Shared artist, album, year, genre and cover; title and track number stay per file. Two or more download as a ZIP. Audio bytes untouched, nothing uploaded.
 
 ## Guides
 

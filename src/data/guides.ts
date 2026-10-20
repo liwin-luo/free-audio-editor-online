@@ -60,6 +60,14 @@ export const GUIDES: GuideCard[] = [
   },
   {
     locale: 'en',
+    href: '/guides/convert-m4a-to-mp3',
+    title: 'How to Convert M4A to MP3',
+    description:
+      'Turn an M4A or AAC file into MP3 with Music, VLC, Audacity, or ffmpeg. The browser page converts AAC without uploading it.',
+    minutes: 7,
+  },
+  {
+    locale: 'en',
     href: '/guides/how-to-trim-audio',
     title: 'How to Trim Audio Online (Free, No Upload)',
     description:
@@ -85,10 +93,10 @@ export const GUIDES: GuideCard[] = [
   {
     locale: 'en',
     href: '/guides/how-to-edit-an-mp3',
-    title: 'How to Edit an MP3 File in Your Browser',
+    title: 'How to Edit MP3 Files',
     description:
-      'Cut, trim, fade or boost an MP3 without installing software. Which page does each job, and when to export WAV so you do not re-encode twice.',
-    minutes: 5,
+      'Cut, fade, or retitle an MP3 in Audacity, with ffmpeg, or in the browser. Export once, and use WAV when another edit is still coming.',
+    minutes: 8,
   },
   {
     locale: 'en',

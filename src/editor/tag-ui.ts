@@ -3,9 +3,11 @@
  * The audio stream is never decoded — only the tag block is rewritten.
  */
 import { buildTaggedMp3, parseId3, type AudioTags, type PictureData } from './tags';
+import { downloadStem, fileStem, uniqueFileNames } from './batch';
+import { storeZip } from './split';
 import { formatBytes } from '../lib/format';
 import { showToast } from './messages';
-import { bindFileOpen } from './delivery';
+import { bindFileOpen, setEmptyHidden } from './delivery';
 import type { EditorConfig } from '../data/tools';
 
 /** Only the strings the controller needs at runtime; everything else is SSR. */
@@ -15,6 +17,16 @@ interface TagRuntime {
   saving: string;
   saved: string;
   writeFail: string;
+  shared: string;
+}
+
+interface TrackItem {
+  fileName: string;
+  buf: ArrayBuffer;
+  title: string;
+  track: string;
+  sourceTitle: string;
+  sourceTrack: string;
 }
 
 const TEXT_FIELDS = [
@@ -69,9 +81,14 @@ class TagForm {
     save: HTMLButtonElement;
     reset: HTMLButtonElement;
     status: HTMLElement;
+    trackList: HTMLElement;
+    trackRows: HTMLElement;
+    singleTitle: HTMLElement;
+    singleTrack: HTMLElement;
   };
 
   private audioBuf: ArrayBuffer | null = null;
+  private tracks: TrackItem[] = [];
   private parsed: AudioTags = {};
   private baseName = 'audio';
   private picture: PictureData | null = null;
@@ -103,6 +120,10 @@ class TagForm {
       save: requireEl<HTMLButtonElement>(root, '[data-save]'),
       reset: requireEl<HTMLButtonElement>(root, '[data-reset]'),
       status: requireEl(root, '[data-status]'),
+      trackList: requireEl(root, '[data-track-list]'),
+      trackRows: requireEl(root, '[data-track-rows]'),
+      singleTitle: requireEl(root, '[data-single="title"]'),
+      singleTrack: requireEl(root, '[data-single="track"]'),
     };
     this.bind();
   }
@@ -125,12 +146,10 @@ class TagForm {
       });
     }
     els.dropzone.addEventListener('drop', (e) => {
-      const file = e.dataTransfer?.files?.[0];
-      if (file) void this.load(file);
+      void this.loadFiles(Array.from(e.dataTransfer?.files ?? []));
     });
     els.fileInput.addEventListener('change', () => {
-      const file = els.fileInput.files?.[0];
-      if (file) void this.load(file);
+      void this.loadFiles(Array.from(els.fileInput.files ?? []));
       els.fileInput.value = '';
     });
 
@@ -180,6 +199,99 @@ class TagForm {
     els.eject.addEventListener('click', () => this.eject());
   }
 
+  private async loadFiles(files: File[]): Promise<void> {
+    if (this.busy || files.length === 0) return;
+    const mp3s = files.filter((file) => file.type === 'audio/mpeg' || /\.mp3$/i.test(file.name));
+    if (mp3s.length === 0) {
+      this.setStatus(this.i18n.readFail);
+      showToast(this.toastRoot(), 'error', this.i18n.readFail);
+      return;
+    }
+    if (mp3s.length === 1) {
+      this.tracks = [];
+      this.renderRows();
+      await this.load(mp3s[0]!);
+      return;
+    }
+    const tracks: TrackItem[] = [];
+    let bytes = 0;
+    for (const file of mp3s) {
+      let buf: ArrayBuffer;
+      try {
+        buf = await file.arrayBuffer();
+      } catch {
+        continue;
+      }
+      const parsed = parseId3(new Uint8Array(buf));
+      const title = parsed.title ?? fileStem(file.name);
+      const track = parsed.track ?? '';
+      tracks.push({ fileName: file.name, buf, title, track, sourceTitle: title, sourceTrack: track });
+      bytes += file.size;
+    }
+    if (tracks.length === 0) {
+      this.setStatus(this.i18n.readFail);
+      showToast(this.toastRoot(), 'error', this.i18n.readFail);
+      return;
+    }
+    tracks.forEach((track, i) => {
+      if (!track.track) track.track = String(i + 1);
+      if (!track.sourceTrack) track.sourceTrack = track.track;
+    });
+    this.tracks = tracks;
+    const first = parseId3(new Uint8Array(tracks[0]!.buf));
+    this.audioBuf = tracks[0]!.buf;
+    this.parsed = first;
+    this.baseName = fileStem(tracks[0]!.fileName);
+    this.picture = first.picture ? { data: first.picture.data, mime: first.picture.mime } : null;
+    this.fillFrom({ ...first, title: '', track: '' });
+    this.els.fileName.textContent = tracks[0]!.fileName;
+    this.els.fileMeta.textContent = `${tracks.length} MP3 · ${formatBytes(bytes)}`;
+    this.refreshCover();
+    this.refreshNoTags();
+    this.renderRows();
+    setEmptyHidden(this.els.dropzone, true);
+    this.els.workspace.classList.remove('hidden');
+    this.els.save.disabled = false;
+    this.setStatus('');
+  }
+
+  private renderRows(): void {
+    const multi = this.tracks.length > 1;
+    this.els.trackList.classList.toggle('hidden', !multi);
+    this.els.singleTitle.hidden = multi;
+    this.els.singleTrack.hidden = multi;
+    this.els.trackRows.replaceChildren();
+    if (!multi) return;
+    const inputClass = 'h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink';
+    for (const track of this.tracks) {
+      const wrap = document.createElement('div');
+      wrap.className = 'grid gap-2 sm:grid-cols-[minmax(0,1fr)_5rem]';
+      const name = document.createElement('p');
+      name.className = 'truncate text-xs text-ink3 sm:col-span-2';
+      name.textContent = track.fileName;
+      const title = document.createElement('input');
+      title.type = 'text';
+      title.autocomplete = 'off';
+      title.className = inputClass;
+      title.value = track.title;
+      title.setAttribute('aria-label', this.els.singleTitle.childNodes[0]?.textContent?.trim() || 'Title');
+      title.addEventListener('input', () => {
+        track.title = title.value;
+      });
+      const num = document.createElement('input');
+      num.type = 'text';
+      num.autocomplete = 'off';
+      num.className = inputClass;
+      num.value = track.track;
+      num.setAttribute('aria-label', this.els.singleTrack.childNodes[0]?.textContent?.trim() || 'Track');
+      num.addEventListener('input', () => {
+        track.track = num.value;
+      });
+      wrap.append(name, title, num);
+      this.els.trackRows.append(wrap);
+    }
+  }
+
   // Load an MP3: read tags on-device, fill the form, show the cover.
   private async load(file: File): Promise<void> {
     if (this.busy) return;
@@ -207,7 +319,7 @@ class TagForm {
     this.fillFrom(this.parsed);
     this.refreshCover();
     this.refreshNoTags();
-    this.els.dropzone.hidden = true;
+    setEmptyHidden(this.els.dropzone, true);
     this.els.workspace.classList.remove('hidden');
     this.els.save.disabled = false;
     this.setStatus('');
@@ -270,6 +382,31 @@ class TagForm {
     els.save.disabled = true;
     this.setStatus(this.i18n.saving);
     try {
+      if (this.tracks.length > 1) {
+        const shared = this.collect();
+        const names = uniqueFileNames(
+          this.tracks.map((track) => downloadStem(track.title.trim() || fileStem(track.fileName))),
+          'mp3',
+        );
+        const files = this.tracks.map((track, i) => ({
+          name: names[i]!,
+          data: new Uint8Array(
+            buildTaggedMp3(
+              track.buf,
+              {
+                ...shared,
+                title: track.title.trim() || undefined,
+                track: track.track.trim() || undefined,
+              },
+              { removeAll: els.removeAll.checked },
+            ),
+          ),
+        }));
+        const zipName = `${fileStem(this.tracks[0]!.fileName)}-tags.zip`;
+        download(new Blob([storeZip(files)], { type: 'application/zip' }), zipName);
+        this.setStatus(this.i18n.saved);
+        return;
+      }
       const out = buildTaggedMp3(this.audioBuf, this.collect(), {
         removeAll: els.removeAll.checked,
       });
@@ -294,6 +431,11 @@ class TagForm {
       : null;
     this.fillFrom(this.parsed);
     this.refreshCover();
+    for (const track of this.tracks) {
+      track.title = track.sourceTitle;
+      track.track = track.sourceTrack;
+    }
+    this.renderRows();
     this.els.removeAll.checked = false;
     this.els.fields.disabled = false;
     this.setStatus('');
@@ -307,12 +449,14 @@ class TagForm {
 
   private eject(): void {
     this.audioBuf = null;
+    this.tracks = [];
+    this.renderRows();
     this.parsed = {};
     this.picture = null;
     this.fillFrom({});
     this.refreshCover();
     this.els.workspace.classList.add('hidden');
-    this.els.dropzone.hidden = false;
+    setEmptyHidden(this.els.dropzone, false);
     this.els.save.disabled = true;
     this.els.fields.disabled = false;
     this.els.removeAll.checked = false;

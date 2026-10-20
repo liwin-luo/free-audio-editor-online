@@ -74,17 +74,31 @@ export const fr: Catalog = {
     play: 'Lire la sélection',
     pause: 'Pause',
     hintSelect: 'Glissez sur la forme d’onde pour sélectionner · Espace pour lire',
+    hintTrim: 'Faites glisser les extrémités pour changer la plage. Lecture n’écoute que cette plage.',
+    changeFile: 'Changer de fichier',
+    statStart: 'Début',
+    statSpan: 'Ce passage',
+    statEnd: 'Fin',
+    selectAll: 'Tout sélectionner',
+    playBtn: 'Lecture',
+    chMono: 'Mono',
+    chStereo: 'Stéréo',
+    chMany: '{n} canaux',
     hintConvert: 'Espace pour lire · rien n’est téléversé',
     hintSilence: 'Les trous plus longs que le minimum sont coupés à l’export. Les respirations courtes restent.',
     reverse: 'Lecture à l’envers',
     normalize: 'Normaliser les crêtes',
     speed: 'Vitesse',
+    speedPitch: 'La hauteur suit la vitesse.',
+    tempoPitch: 'La hauteur reste.',
     pitch: 'Hauteur tonale',
+    pitchLength: 'La durée ne change pas.',
     bass: 'Basses',
     treble: 'Aigus',
     mid: 'Médiums',
     cutoff: 'Coupure',
     volume: 'Volume',
+    gainOriginal: '100 % correspond au volume d’origine.',
     reverb: 'Réverbe',
     compress: 'Compresseur',
     echoDelay: 'Délai',
@@ -111,6 +125,14 @@ export const fr: Catalog = {
     loopCrossfade: 'Jointure',
     loopExport: 'L’export dure environ {time}',
     loopTooLong: 'Cette boucle dépasse 10 minutes. Baissez les répétitions ou raccourcissez la sélection.',
+    splitParts: 'Morceaux',
+    splitExport: '{n} fichiers, environ {time} chacun',
+    splitTooShort: 'Ce fichier est plus court que le nombre de morceaux.',
+    crushBits: 'Bits',
+    crushHold: 'Tenue',
+    crushExport: '{bits} bits, tenu tous les {hold} échantillons',
+    monoExport: 'L’export écrit un canal : la moyenne des canaux du fichier.',
+    hz432Export: 'L’export baisse la hauteur de 0.32 demi-ton. La durée ne change pas.',
     lufsIntegrated: 'Intégrée',
     lufsPeak: 'Crête d’échantillon',
     lufsPodcast: 'Podcast',
@@ -226,6 +248,9 @@ export const fr: Catalog = {
     paintReady: 'Prêt. Téléchargez le WAV, puis ouvrez-le dans le générateur de spectrogramme.',
     paintWorking: 'Écriture de l’audio…',
     paintFail: 'Impossible de lire cette image. Essayez un PNG ou un JPG.',
+    batchProgress: '{current} sur {total}',
+    batchSkipped: '{n} ignorés',
+    tgShared: 'Artiste, album, année, genre et pochette s’appliquent à chaque fichier. Le titre et le numéro de piste restent sur chaque ligne.',
     tgAlbum: 'Album',
     tgAlbumArtist: 'Artiste de l’album',
     tgArtist: 'Artiste',
@@ -449,7 +474,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez le fichier',
-          text: 'Ajoutez un MP3, WAV, M4A, une vidéo ou un autre enregistrement. Le décodage se fait sur votre appareil, rien n’est envoyé.',
+          text: 'Ajoutez un MP3, WAV, M4A, une vidéo ou un autre enregistrement. Le décodage se fait sur votre appareil, rien n’est envoyé. Plusieurs enregistrements partagent la langue et le modèle que vous choisissez ensuite. Chacun reste autour de 10 minutes. Une transcription reste dans le champ. Deux ou plus reviennent dans un ZIP de TXT et SRT.',
         },
         {
           name: 'Choisissez langue et modèle',
@@ -461,6 +486,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je transcrire plus d’un enregistrement ?', a: 'Oui. Plusieurs enregistrements partagent la langue et le modèle. Ils passent l’un après l’autre sur cet appareil, et chacun reste autour de 10 minutes. Une transcription reste dans le champ pour que vous la corrigiez. Deux ou plus se téléchargent dans un ZIP de TXT et SRT. Un téléphone manque de temps et de mémoire plus tôt.' },
         {
           q: 'Mon audio est-il envoyé ?',
           a: 'Non. Le fichier est décodé dans votre navigateur et transcrit par un modèle Whisper qui tourne localement via WebAssembly ou WebGPU. La seule requête réseau est le téléchargement unique du modèle depuis un CDN public — ensuite, la transcription fonctionne hors ligne. Votre audio ne parvient jamais à un serveur.',
@@ -471,7 +497,7 @@ export const fr: Catalog = {
         },
         {
           q: 'Quelles sont les limites ?',
-          a: 'Un fichier à la fois, 10 minutes maximum par passage — coupez d’abord les enregistrements longs (le découpeur audio est tout aussi privé). Les locuteurs ne sont pas identifiés : un dialogue sort en un seul texte sans noms. Et cette page traite des fichiers, pas le micro en direct.',
+          a: 'Plusieurs fichiers, l’un après l’autre, chacun 10 minutes maximum — coupez d’abord un enregistrement plus long (le découpeur audio est tout aussi privé). Les locuteurs ne sont pas identifiés : un dialogue sort en un seul texte sans noms. Et cette page traite des fichiers, pas le micro en direct.',
         },
         {
           q: 'Quelle différence avec l’enregistreur vocal ?',
@@ -486,7 +512,7 @@ export const fr: Catalog = {
           a: 'Oui — Chrome, Edge, Firefox et Safari récents, sur ordinateur comme sur mobile. Les navigateurs avec WebGPU (Chrome, Edge) transcrivent bien plus vite ; ailleurs, cela tourne sur le CPU : choisissez Tiny pour les fichiers longs et comptez quelques minutes pour dix minutes d’audio. Le téléchargement unique du modèle est aussi plus léger avec Tiny.',
         },
       ],
-      dropHint: 'Déposez un fichier audio ou vidéo, ou cliquez pour parcourir',
+      dropHint: 'Déposez des fichiers audio ou vidéo, ou cliquez pour les parcourir',
       exportLabel: 'Transcrire',
     },
     'bass-booster': {
@@ -548,6 +574,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le choisir',
+      exportLabel: 'Renforcer les graves',
     },
     'treble-booster': {
       cardLine: 'Ajoutez éclat et clarté en relevant les aigus jusqu’à +15 dB au-dessus de 3 kHz.',
@@ -608,6 +635,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le choisir',
+      exportLabel: 'Renforcer les aigus',
     },
     'equalizer': {
       cardLine: 'Sculptez graves, médiums et aigus avec un EQ simple à trois boutons ±15 dB.',
@@ -668,6 +696,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le choisir',
+      exportLabel: 'Appliquer l’égaliseur',
     },
     'low-pass-filter': {
       cardLine: 'Gardez seulement la chaleur sous la coupure — parfait pour les textures lo-fi.',
@@ -728,6 +757,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le choisir',
+      exportLabel: 'Appliquer le passe-bas',
     },
     'high-pass-filter': {
       cardLine: 'Supprimez rumble et ronflette sous la coupure pour des voix plus propres.',
@@ -788,6 +818,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le choisir',
+      exportLabel: 'Appliquer le passe-haut',
     },
     'audio-trimmer': {
       cardLine: 'Déplacez les poignées pour garder exactement le passage voulu — podcasts, mémos vocaux, toute piste.',
@@ -848,6 +879,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+      exportLabel: 'Rogner et télécharger',
     },
     'mp3-cutter': {
       cardLine: 'Coupez un morceau sur le refrain, le drop ou n’importe quel extrait, sans réencodage.',
@@ -908,6 +940,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier MP3 ou cliquez pour le parcourir',
+      exportLabel: 'Couper et télécharger',
     },
     'mp3-editor': {
       cardLine: 'Des retouches rapides en un seul onglet : couper, fondre, inverser, accélérer, normaliser.',
@@ -1016,7 +1049,7 @@ export const fr: Catalog = {
         },
         {
           q: 'La sonnerie va-t-elle mal boucler ?',
-          a: 'Ajoutez un court fondu de sortie dans le panneau Ajuster : le retour au début sonne naturel au lieu de se couper en pleine note. Écrire ce clip 2 à 16 fois dans un fichier plus long, c’est la boucle audio. Cette page reste dans les 40 secondes.',
+          a: 'Ajoutez un court fondu de sortie sur la page : le retour au début sonne naturel au lieu de se couper en pleine note. Écrire ce clip 2 à 16 fois dans un fichier plus long, c’est la boucle audio. Cette page reste dans les 40 secondes.',
         },
         {
           q: 'Y a-t-il un filigrane ou une limite ?',
@@ -1024,6 +1057,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez une chanson ou cliquez pour la parcourir',
+      exportLabel: 'Faire une sonnerie',
     },
     'audio-joiner': {
       cardLine: 'Assemblez mémos vocaux, chansons ou épisodes de podcast en un seul fichier continu.',
@@ -1106,7 +1140,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez votre WAV',
-          text: 'Glissez un fichier .wav sur la page ou cliquez pour parcourir. Les autres formats audio (M4A, FLAC, OGG) se convertissent de la même façon.',
+          text: 'Glissez un fichier .wav sur la page ou cliquez pour parcourir. Les autres formats audio (M4A, FLAC, OGG) se convertissent de la même façon. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Choisissez un débit',
@@ -1118,6 +1152,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je convertir plus d’un WAV ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'La conversion WAV vers MP3 perd-elle de la qualité ?',
           a: 'Le MP3 est un format avec perte : une partie de l’information est abandonnée. Mais à 320 kbps, en test à l’aveugle, quasiment personne ne distingue le MP3 du WAV. Si vous voulez zéro perte, gardez le WAV ; ce convertisseur existe pour gagner de la place et se lire partout.',
@@ -1143,7 +1178,7 @@ export const fr: Catalog = {
           a: 'Oui. Vous choisissez le fichier, et la conversion reste dans cet onglet. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier long prend plus de mémoire, donc au-delà d\'environ une heure l\'ordinateur est plus stable.',
         },
       ],
-      dropHint: 'Déposez un fichier WAV ou cliquez pour le parcourir',
+      dropHint: 'Déposez des fichiers WAV ou cliquez pour les parcourir',
       exportLabel: 'Convertir en MP3',
     },
     'flac-to-mp3': {
@@ -1167,7 +1202,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez votre FLAC',
-          text: 'Glissez un fichier .flac sur la page ou cliquez pour le parcourir. Les autres formats sans perte se convertissent de la même façon.',
+          text: 'Glissez un fichier .flac sur la page ou cliquez pour le parcourir. Les autres formats sans perte se convertissent de la même façon. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Choisissez le débit',
@@ -1179,6 +1214,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je convertir plus d’un FLAC ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'Convertir du FLAC en MP3 fait-il perdre de la qualité ?',
           a: 'Le MP3 est destructif, une partie de l’information est abandonnée — mais à 320 kbps, pratiquement personne ne distingue le MP3 du FLAC à l’aveugle. Gardez le FLAC comme copie d’archive et traitez le MP3 comme la version de poche.',
@@ -1204,7 +1240,7 @@ export const fr: Catalog = {
           a: 'Oui. Vous choisissez le fichier, et la conversion reste dans cet onglet. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier long prend plus de mémoire, donc au-delà d\'environ une heure l\'ordinateur est plus stable.',
         },
       ],
-      dropHint: 'Déposez un fichier FLAC ou cliquez pour le parcourir',
+      dropHint: 'Déposez des fichiers FLAC ou cliquez pour les parcourir',
       exportLabel: 'Convertir en MP3',
     },
     'mp3-to-wav': {
@@ -1228,7 +1264,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez votre MP3',
-          text: 'Glissez un fichier .mp3 sur la page ou cliquez pour le parcourir. Les autres formats compressés se décodent de la même façon.',
+          text: 'Glissez un fichier .mp3 sur la page ou cliquez pour le parcourir. Les autres formats compressés se décodent de la même façon. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Laissez WAV sélectionné',
@@ -1240,6 +1276,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je convertir plus d’un MP3 en WAV ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'Convertir du MP3 en WAV améliore-t-il la qualité ?',
           a: 'Non — et méfiez-vous de tout convertisseur qui le promet. Ce que l’encodeur a jeté n’existe plus. Le WAV contient exactement ce que le MP3 décode, et c’est justement pourquoi c’est le bon format pour retravailler : il n’ajoute pas une nouvelle génération destructive.',
@@ -1265,7 +1302,7 @@ export const fr: Catalog = {
           a: 'Oui. Vous choisissez le fichier, et la conversion reste dans cet onglet. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier long prend plus de mémoire, donc au-delà d\'environ une heure l\'ordinateur est plus stable.',
         },
       ],
-      dropHint: 'Déposez un fichier MP3 ou cliquez pour le parcourir',
+      dropHint: 'Déposez des fichiers MP3 ou cliquez pour les parcourir',
       exportLabel: 'Convertir en WAV',
     },
     'compress-audio': {
@@ -1289,7 +1326,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez votre fichier',
-          text: 'Ajoutez un MP3, WAV, M4A ou autre fichier audio. Il est décodé sur votre appareil et jamais téléversé.',
+          text: 'Ajoutez un MP3, WAV, M4A ou autre fichier audio. Il est décodé sur votre appareil et jamais téléversé. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Choisissez la taille cible',
@@ -1301,6 +1338,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je réduire plus d’un fichier ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'Comment fonctionne la compression audio ici ?',
           a: 'Le fichier est décodé puis réencodé en MP3 au débit choisi. La taille suit le débit : une minute de stéréo pèse environ 2,4 Mo à 320 kbps, 1 Mo à 128 et 0,5 Mo à 64.',
@@ -1330,7 +1368,7 @@ export const fr: Catalog = {
           a: 'Oui. Vous choisissez le fichier, et la conversion reste dans cet onglet. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier long prend plus de mémoire, donc au-delà d\'environ une heure l\'ordinateur est plus stable.',
         },
       ],
-      dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+      dropHint: 'Déposez des fichiers audio ou cliquez pour les parcourir',
       exportLabel: 'Compresser',
     },
     'bitrate-converter': {
@@ -1352,11 +1390,12 @@ export const fr: Catalog = {
         'Descendez de 320 kbps à 128 kbps, environ 40 % de la taille.',
       ],
       howTo: [
-        { name: 'Ajoutez le fichier', text: 'Déposez un audio que ce navigateur sait décoder. La conversion reste dans l’onglet.' },
+        { name: 'Ajoutez le fichier', text: 'Déposez un audio que ce navigateur sait décoder. La conversion reste dans l’onglet. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.' },
         { name: 'Choisissez le débit', text: 'Ouvrez le menu de format. Il commence à 192 kbps. Les autres débits sont 320, 128, 96 et 64.' },
         { name: 'Exportez le MP3', text: 'Le fichier est encodé au débit que vous avez choisi. Les tags et la pochette ne sont pas copiés.' },
       ],
       faqs: [
+        { q: 'Puis-je changer le débit de plus d’un fichier ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: '320 kbps rend-il meilleur un MP3 à 128 kbps ?',
           a: 'Non. L’encodeur ne garde que ce que la source a encore. Un MP3 à 128 kbps enregistré de nouveau à 320 kbps est un fichier plus lourd de la même prise. Partez du WAV ou de l’enregistrement d’origine si vous voulez le détail.',
@@ -1382,7 +1421,7 @@ export const fr: Catalog = {
           a: 'Oui. Choisissez le fichier, la conversion reste dans cet onglet. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier très long utilise plus de mémoire, un ordinateur tient mieux au-delà d’une heure environ.',
         },
       ],
-      dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
+      dropHint: 'Déposez des fichiers audio, ou cliquez pour parcourir',
       exportLabel: 'Convertir',
     },
     'reverse-audio': {
@@ -1440,6 +1479,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+      exportLabel: 'Inverser et télécharger',
     },
     'change-audio-speed': {
       cardLine: 'Accélérez un cours à 2× ou ralentissez un riff pour l’apprendre — la tonalité reste juste.',
@@ -1500,6 +1540,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+      exportLabel: 'Changer la vitesse et télécharger',
     },
     'increase-volume': {
       cardLine: 'Relevez des mémos vocaux trop faibles jusqu’à 4×, avec limiteur anti-saturation.',
@@ -1561,6 +1602,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+      exportLabel: 'Augmenter et télécharger',
     },
     'mp4-to-mp3': {
       cardLine: 'Enregistrez la bande-son d’un clip, d’une capture d’écran ou d’une vidéo caméra en MP3.',
@@ -1583,7 +1625,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez votre vidéo',
-          text: 'Glissez un MP4 sur la page ou cliquez pour parcourir. Les fichiers WebM et MOV avec pistes audio standards fonctionnent de la même façon.',
+          text: 'Glissez un MP4 sur la page ou cliquez pour parcourir. Les fichiers WebM et MOV avec pistes audio standards fonctionnent de la même façon. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Choisissez un débit',
@@ -1595,6 +1637,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je convertir plus d’une vidéo ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'La vidéo est-elle téléversée quelque part ?',
           a: 'Non — et avec la vidéo, ça mérite d’être répété, parce que les fichiers sont lourds. Le navigateur lit le fichier depuis votre disque, ne décode que sa piste audio et écrit le MP3 en local. Les images de la vidéo ne sont jamais traitées ni transmises.',
@@ -1616,7 +1659,7 @@ export const fr: Catalog = {
           a: 'Non. La résolution vidéo n’a aucune importance — la piste vidéo est entièrement ignorée. Un fichier 4K et un fichier 240p avec la même bande-son se convertissent à l’identique.',
         },
       ],
-      dropHint: 'Déposez un MP4 ou un fichier vidéo, ou cliquez pour le parcourir',
+      dropHint: 'Déposez des MP4 ou des fichiers vidéo, ou cliquez pour les parcourir',
       exportLabel: 'Convertir en MP3',
     },
     'extract-audio': {
@@ -1640,7 +1683,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez la vidéo',
-          text: 'N’importe quel MP4, WebM ou MOV avec une bande-son standard fonctionne. Le fichier ne quitte jamais votre appareil.',
+          text: 'N’importe quel MP4, WebM ou MOV avec une bande-son standard fonctionne. Le fichier ne quitte jamais votre appareil. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Choisissez le format',
@@ -1652,6 +1695,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je extraire l’audio de plus d’une vidéo ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'Quelle différence avec un convertisseur MP4 vers MP3 ?',
           a: 'Sous le capot, le même moteur d’extraction local. Cette page est pensée pour sortir l’audio d’une vidéo dans le format qu’il vous faut, y compris le WAV sans perte, tandis que la page du convertisseur est optimisée pour une sortie MP3.',
@@ -1677,7 +1721,7 @@ export const fr: Catalog = {
           a: 'Oui. Vous choisissez le fichier, et la conversion reste dans cet onglet. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier long prend plus de mémoire, donc au-delà d\'environ une heure l\'ordinateur est plus stable.',
         },
       ],
-      dropHint: 'Déposez un fichier vidéo ou cliquez pour le parcourir',
+      dropHint: 'Déposez des fichiers vidéo ou cliquez pour les parcourir',
       exportLabel: 'Extraire l’audio',
     },
     'voice-recorder': {
@@ -1796,6 +1840,7 @@ export const fr: Catalog = {
         { q: "En quoi est-ce différent du mesureur de loudness ?", a: "Tirer ce curseur multiplie chaque échantillon. Le mesureur de loudness mesure les LUFS intégrés et propose podcast −16, streaming −14 et diffusion −23. Si la crête d’échantillon dépassait −1 dBFS, le gain s’arrête. Ce n’est pas un sonomètre de pièce." },
       ],
       dropHint: 'Déposez un fichier audio ou vidéo, ou cliquez pour le parcourir',
+      exportLabel: 'Augmenter et télécharger',
     },
     'normalize-audio': {
       cardLine: 'Ramenez tout un lot d’enregistrements à un niveau constant et sain.',
@@ -1818,7 +1863,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez votre audio',
-          text: 'N’importe quel MP3, WAV, M4A ou autre fichier audio. Il est décodé et analysé en local — rien ne quitte votre appareil.',
+          text: 'N’importe quel MP3, WAV, M4A ou autre fichier audio. Il est décodé et analysé en local — rien ne quitte votre appareil. Plusieurs fichiers partagent le bouton Normaliser. Chacun monte jusqu’à son propre pic. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Cliquez sur Normaliser',
@@ -1830,6 +1875,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je normaliser plus d’un fichier ?', a: 'Oui. Quand Normaliser est activé, chaque fichier de la file l’utilise. Chacun est mesuré pour lui-même et monte jusqu’à son propre pic, l’un après l’autre sur cet appareil. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'Que fait exactement la normalisation ?',
           a: 'Elle applique un gain fixe unique à tout le fichier pour que l’échantillon le plus fort se retrouve juste sous le plafond numérique (environ −0,2 dB ici). Si la crête d’un fichier est à 50 % du volume, normaliser double à peu près chaque échantillon — parties faibles et parties fortes pareil.',
@@ -1855,7 +1901,8 @@ export const fr: Catalog = {
           a: 'Oui. Vous faites glisser la forme d\'onde au doigt. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier long prend plus de mémoire, donc au-delà d\'environ une heure l\'ordinateur est plus stable.',
         },
       ],
-      dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+      dropHint: 'Déposez des fichiers audio ou cliquez pour les parcourir',
+      exportLabel: 'Normaliser et télécharger',
     },
     'slowed-reverb': {
       cardLine: 'Offrez à n’importe quel morceau le son nocturne ralenti + réverbe, en un clic.',
@@ -1916,6 +1963,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez une chanson ou cliquez pour la parcourir',
+      exportLabel: 'Ralentir et télécharger',
     },
     'fade-audio': {
       cardLine: 'Lissez fins de chansons et intros de podcast avec des fondus précis.',
@@ -1942,7 +1990,7 @@ export const fr: Catalog = {
         },
         {
           name: 'Réglez les durées',
-          text: 'Ouvrez « Ajuster » et définissez fondu d’entrée et fondu de sortie : 1 à 3 s sonne naturel sur une chanson, 0,2 à 0,5 s sur une boucle.',
+          text: 'Réglez le fondu d’entrée et le fondu de sortie sur la page : 1 à 3 s sonne naturel sur une chanson, 0,2 à 0,5 s sur une boucle.',
         },
         {
           name: 'Écoutez et exportez',
@@ -1976,6 +2024,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+      exportLabel: 'Appliquer le fondu et télécharger',
     },
     'tempo-changer': {
       cardLine: 'Changez la durée de 0,75× à 1,25×. La hauteur reste.',
@@ -2006,6 +2055,7 @@ export const fr: Catalog = {
         { q: 'Est-ce que cela marche sur un téléphone ?', a: 'Oui. Le curseur de vitesse et le bouton d’export acceptent un toucher dans Chrome, Edge, Firefox et Safari actuels.' },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+      exportLabel: 'Changer le tempo',
     },
     'pitch-changer': {
       cardLine: 'Décalez la tonalité en demi-tons pour covers et mashups — à longueur inchangée.',
@@ -2070,6 +2120,7 @@ export const fr: Catalog = {
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
+      exportLabel: 'Changer la hauteur et télécharger',
     },
     'm4a-to-mp3': {
       cardLine: 'Convertissez mémos vocaux iPhone et fichiers AAC en MP3 lisibles partout.',
@@ -2092,7 +2143,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez votre M4A',
-          text: 'Glissez un .m4a ou .aac sur la page, ou cliquez pour parcourir. Un MP4 vidéo, lui, va sur la page MP4 vers MP3.',
+          text: 'Glissez un .m4a ou .aac sur la page, ou cliquez pour parcourir. Un MP4 vidéo, lui, va sur la page MP4 vers MP3. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Choisissez le débit',
@@ -2104,6 +2155,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je convertir plus d’un M4A ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'Peut-on convertir M4A en MP3 sur iPhone, Android ou Mac ?',
           a: 'Oui — le convertisseur tourne dans n’importe quel navigateur, l’appareil n’a pas d’importance. De l’audio AAC dans un conteneur M4A — ce qu’utilisent les mémos vocaux et la plupart des téléchargements AAC. L’Apple Lossless (ALAC) stocké en M4A ne se décode souvent pas dans le navigateur. Convertissez d’abord ce fichier en AAC ou WAV, puis revenez ici.',
@@ -2125,7 +2177,7 @@ export const fr: Catalog = {
           a: 'Non. Votre navigateur décode le M4A et encode le MP3 en local. L’audio reste sur votre appareil.',
         },
       ],
-      dropHint: 'Déposez un fichier M4A ou AAC, ou cliquez pour le parcourir',
+      dropHint: 'Déposez des fichiers M4A ou AAC, ou cliquez pour les parcourir',
       exportLabel: 'Convertir en MP3',
     },
     'ogg-to-mp3': {
@@ -2149,7 +2201,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez votre OGG',
-          text: 'Glissez un .ogg ou .oga sur la page, ou cliquez pour parcourir.',
+          text: 'Glissez un .ogg ou .oga sur la page, ou cliquez pour parcourir. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Choisissez le débit',
@@ -2161,6 +2213,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je convertir plus d’un OGG ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'Qu’est-ce qu’un fichier OGG ?',
           a: 'OGG est un conteneur. La musique qu’il contient utilise généralement Vorbis ; certains fichiers de voix utilisent Opus. Si votre navigateur sait le décoder, cette page le convertit en MP3.',
@@ -2182,7 +2235,7 @@ export const fr: Catalog = {
           a: 'Non. Votre navigateur décode l’OGG et encode le MP3 en local. L’audio reste sur votre appareil.',
         },
       ],
-      dropHint: 'Déposez un fichier OGG ou cliquez pour le parcourir',
+      dropHint: 'Déposez des fichiers OGG ou cliquez pour les parcourir',
       exportLabel: 'Convertir en MP3',
     },
     'opus-to-mp3': {
@@ -2206,7 +2259,7 @@ export const fr: Catalog = {
       howTo: [
         {
           name: 'Déposez votre fichier Opus',
-          text: 'Glissez un .opus sur la page, ou cliquez pour parcourir. Les fichiers OGG et WebM contenant de l’Opus fonctionnent de la même façon.',
+          text: 'Glissez un .opus sur la page, ou cliquez pour parcourir. Les fichiers OGG et WebM contenant de l’Opus fonctionnent de la même façon. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
         },
         {
           name: 'Choisissez le débit',
@@ -2218,6 +2271,7 @@ export const fr: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Puis-je convertir plus d’un fichier Opus ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         {
           q: 'Qu’est-ce que le format Opus ?',
           a: 'Opus est un codec audio. Les messages vocaux de WhatsApp et Telegram sont souvent en .opus. Il se trouve aussi dans l’OGG et le WebM. Cette page transforme cet audio en un MP3 lisible partout.',
@@ -2239,7 +2293,7 @@ export const fr: Catalog = {
           a: 'Non. Votre navigateur décode l’audio Opus et encode le MP3 en local. L’audio reste sur votre appareil.',
         },
       ],
-      dropHint: 'Déposez un fichier Opus ou cliquez pour le parcourir',
+      dropHint: 'Déposez des fichiers Opus ou cliquez pour les parcourir',
       exportLabel: 'Convertir en MP3',
     },
     'waveform-generator': {
@@ -2356,20 +2410,21 @@ export const fr: Catalog = {
         'Supprimer les métadonnées d’appareil et de localisation restées dans un enregistrement avant de le partager.',
       ],
       howTo: [
-        { name: 'Déposez votre MP3', text: 'Déposez le fichier ou cliquez pour parcourir. Les tags et la pochette actuels sont lus sur votre appareil et affichés dans le formulaire.' },
+        { name: 'Déposez votre MP3', text: 'Déposez le fichier ou cliquez pour parcourir. Les tags et la pochette actuels sont lus sur votre appareil et affichés dans le formulaire. Plusieurs MP3 peuvent partager l’artiste, l’album, l’année, le genre et la pochette. Le titre et le numéro de piste restent sur chaque fichier. Deux ou plus se téléchargent en ZIP.' },
         { name: 'Modifiez les champs', text: 'Saisissez le bon titre, l’artiste, l’album, l’année et le numéro de piste, puis ajoutez ou remplacez la pochette par un JPG ou un PNG.' },
         { name: 'Enregistrez le MP3', text: 'Cliquez sur « Enregistrer le MP3 » pour télécharger le fichier avec ses tags. L’audio est copié à l’identique — seule la fiche d’informations autour est réécrite.' },
       ],
       faqs: [
+        { q: 'Puis-je taguer un album entier ?', a: 'Oui. Déposez plusieurs MP3. L’artiste, l’album, l’année, le genre et la pochette s’appliquent à chaque fichier. Le titre et le numéro de piste restent sur chaque ligne. Un numéro de piste vide commence à 1. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. L’audio est toujours copié octet par octet.' },
         { q: 'Mon MP3 est-il téléversé vers un serveur ?', a: 'Non. Le fichier est ouvert avec l’API FileReader du navigateur et réécrit directement dans votre onglet. Vous pouvez charger cette page, couper le Wi-Fi, et l’éditeur fonctionne toujours. Il n’y a aucune étape de téléversement.' },
         { q: 'Modifier les tags change-t-il la qualité audio ?', a: 'Non. Les tags vivent dans un bloc séparé au début du fichier, et les trames audio MPEG sont copiées octet par octet : le son est bit-identique. Le fichier enregistré peut même être légèrement plus petit, car l’ancien bloc de tags et son remplissage ne sont pas repris.' },
         { q: 'Quelle différence avec l’éditeur MP3 ?', a: 'L’éditeur MP3 coupe, rogne et assemble l’audio lui-même, ce qui suppose de décoder puis de réencoder le son. Cette page ne touche jamais au son — elle réécrit la fiche d’informations autour. Utilisez celui-là pour éditer la musique, celui-ci pour l’étiqueter.' },
-        { q: 'Que ne sait-il pas faire ?', a: 'Il n’édite que des fichiers MP3 — FLAC, M4A et WAV utilisent d’autres formats de tags que cette page n’écrit pas encore. Il traite un fichier à la fois, pas tout un album en lot. Et l’enregistrement réécrit tout le bloc de tags : les chapitres de podcast ou les champs personnalisés inhabituels du tag d’origine ne sont pas conservés — les champs courants, oui.' },
+        { q: 'Que ne sait-il pas faire ?', a: 'Il n’édite que des fichiers MP3 — FLAC, M4A et WAV utilisent d’autres formats de tags que cette page n’écrit pas encore. Plusieurs MP3 peuvent partager l’artiste, l’album, l’année, le genre et la pochette, et chaque fichier garde son titre et son numéro de piste. Et l’enregistrement réécrit tout le bloc de tags : les chapitres de podcast ou les champs personnalisés inhabituels du tag d’origine ne sont pas conservés — les champs courants, oui.' },
         { q: 'Pourquoi mon autoradio affiche-t-il encore « Track 01 » ?', a: 'Beaucoup d’autoradios ignorent les tags et se rabattent sur le nom du fichier, et la plupart gardent en cache les anciennes informations jusqu’à ce que vous rebranchiez la clé USB ou relanciez un scan. Enregistrez ici (le fichier est écrit en ID3v2.3, la version que les autoradios lisent le plus sûrement), renommez-le par exemple « 01 - Titre.mp3 », puis relancez le scan.' },
         { q: 'Mes tags chinois, japonais, coréens ou arabes s’affichent en charabia. Est-ce réparable ?', a: 'Oui — cela signifie en général que l’ancien tag était enregistré dans un encodage sur un octet au lieu d’Unicode. Retapez ici le bon texte et enregistrez : le fichier est réécrit en ID3v2.3 avec du texte UTF-16, que les lecteurs modernes affichent correctement, y compris pour les titres en chinois, japonais, coréen, arabe, cyrillique et hindi.' },
         { q: 'Ça marche sur mon téléphone ?', a: 'Oui — Chrome, Safari, Firefox et Edge récents, sur ordinateur comme sur mobile. L’enregistrement remet le fichier au navigateur comme n’importe quel téléchargement ; sur iPhone, Safari l’enregistre dans l’app Fichiers. Tout tourne en local, donc ça marche aussi sur une connexion lente une fois la page ouverte.' },
       ],
-      dropHint: 'Déposez un fichier MP3 ici, ou cliquez pour parcourir',
+      dropHint: 'Déposez des fichiers MP3 ici, ou cliquez pour parcourir',
       exportLabel: 'Enregistrer le MP3',
     },
     compressor: {
@@ -2404,6 +2459,7 @@ export const fr: Catalog = {
         { q: 'Cela marche-t-il sur un téléphone ?', a: 'Oui. Le curseur et l’export fonctionnent au doigt dans Chrome, Edge, Firefox et Safari actuels. Quelques minutes de parole s’exportent en une ou deux secondes sur un téléphone récent.' },
       ],
       dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
+      exportLabel: 'Compresser et télécharger',
     },
     echo: {
       cardLine: 'Des répétitions que l’on peut compter : une claque courte, pas un bain de réverbe.',
@@ -2431,6 +2487,7 @@ export const fr: Catalog = {
         { q: 'Cela marche-t-il sur un téléphone ?', a: 'Oui. Les deux curseurs et l’export fonctionnent au doigt dans Chrome, Edge, Firefox et Safari actuels.' },
       ],
       dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
+      exportLabel: 'Ajouter l’écho',
     },
     'audio-distorter': {
       cardLine: 'Poussez une prise nette vers un écrêtage chaud ou un écrêtage dur.',
@@ -2458,6 +2515,7 @@ export const fr: Catalog = {
         { q: 'Cela marche-t-il sur un téléphone ?', a: 'Oui. Le curseur et l’export fonctionnent au doigt dans Chrome, Edge, Firefox et Safari actuels.' },
       ],
       dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
+      exportLabel: 'Distorcer et télécharger',
     },
     'silence-remover': {
       cardLine: "Coupez les longs silences et laissez les respirations courtes à leur place.",
@@ -2472,11 +2530,12 @@ export const fr: Catalog = {
       usesHeading: "Là où l’air mort se trouve vraiment",
       uses: ["Resserrez un mémo vocal ou une prise de podcast dont les phrases sont séparées par de longues pauses.", "Enlevez le silence d’un cours sans découper chaque trou à la main.", "Nettoyez un enregistrement avant l’export et laissez les respirations courtes."],
       howTo: [
-        { name: "Déposez l’audio", text: "N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil." },
+        { name: "Déposez l’audio", text: "N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil. Plusieurs fichiers partagent le seuil et l’intervalle que vous réglez ensuite. Chacun est coupé pour lui-même. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP." },
         { name: "Réglez le seuil et le trou", text: "Le seuil est le niveau en dessous duquel un passage compte, de −60 à −20 dBFS. Le trou minimum est la durée qu’il doit avoir pour partir, de 0,1 à 2 secondes. La ligne d’état indique à peu près combien de secondes partent." },
         { name: "Exportez", text: "Écoutez l’original, puis exportez en MP3 ou WAV. Le fichier recolle les parties sonores et garde 0,08 seconde de chaque côté d’une coupe." },
       ],
       faqs: [
+        { q: 'Puis-je couper le silence de plus d’un fichier ?', a: 'Oui. Plusieurs fichiers partagent le seuil et l’intervalle minimum de cette page. Chacun est mesuré et coupé pour lui-même, l’un après l’autre sur cet appareil. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
         { q: "Mon audio est-il envoyé ?", a: "Non. Le niveau est mesuré dans votre navigateur et les passages bas sont coupés en mémoire. Une fois la page chargée, vous pouvez couper le réseau : l’export fonctionne encore." },
         { q: "Qu’est-ce qui est vraiment retiré ?", a: "Un passage part seulement s’il est sous le seuil et plus long que le trou minimum. Le départ est −40 dBFS et 0,35 seconde. Chaque passage garde 0,08 seconde aux deux bouts. Les trous plus courts, y compris la plupart des respirations, restent." },
         { q: "Est-ce que la musique basse est coupée ?", a: "Oui, si elle reste sous le seuil plus longtemps que le trou. −40 dBFS est fait pour la voix. Un tapis bas, un fondu ou le bruit de pièce d’un mix musical comptent comme du silence. Montez le seuil vers −20 si vous ne voulez que les zéros presque numériques, ou utilisez le découpeur et sélectionnez à la main." },
@@ -2484,7 +2543,8 @@ export const fr: Catalog = {
         { q: "En quoi est-ce différent du découpeur ?", a: "Le découpeur audio et le coupeur MP3 gardent la zone que vous tracez sur la forme d’onde. Cette page trouve les longs silences par le niveau et les retire tous en un export. Elle ne change ni la vitesse, ni la hauteur, ni le volume de ce qui reste." },
         { q: "Est-ce que ça marche sur un téléphone ?", a: "Oui. Les deux curseurs et le bouton d’export répondent au toucher dans Chrome, Edge, Firefox et Safari actuels." },
       ],
-      dropHint: "Déposez un fichier audio, ou cliquez pour parcourir",
+      dropHint: 'Déposez des fichiers audio ou cliquez pour les parcourir',
+      exportLabel: 'Retirer les silences',
     },
     'audio-looper': {
       cardLine: 'Répétez un clip jusqu’à 16 fois et fondez chaque jointure.',
@@ -2511,6 +2571,7 @@ export const fr: Catalog = {
         { q: 'Est-ce que ça marche sur un téléphone ?', a: 'Oui. Les deux curseurs, la forme d’onde et le bouton d’export se touchent dans Chrome, Edge, Firefox et Safari actuels.' },
       ],
       dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
+      exportLabel: 'Boucler et télécharger',
     },
     'auto-panner': {
       cardLine: 'Balayez un fichier de gauche à droite au rythme que vous fixez. Cela ne suit pas le temps.',
@@ -2537,6 +2598,7 @@ export const fr: Catalog = {
         { q: 'Est-ce que ça marche sur un téléphone ?', a: 'Oui. Les deux curseurs, l’onde et le bouton d’export se touchent dans Chrome, Edge, Firefox et Safari actuels.' },
       ],
       dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
+      exportLabel: 'Appliquer le panoramique',
     },
     '3d-audio': {
       cardLine: 'Un interrupteur met le fichier sur un cercle lent et ajoute une courte queue de réverbe.',
@@ -2563,6 +2625,7 @@ export const fr: Catalog = {
         { q: 'Est-ce que ça marche sur un téléphone ?', a: 'Oui. L’interrupteur, l’onde et le bouton d’export se touchent dans Chrome, Edge, Firefox et Safari actuels.' },
       ],
       dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
+      exportLabel: 'Appliquer la 3D',
     },
     metronome: {
       cardLine: 'Un clic de 40 à 240 BPM. Le premier temps de chaque mesure est plus fort.',
@@ -2681,6 +2744,126 @@ export const fr: Catalog = {
         { q: 'Pourquoi seulement 8 pistes ?', a: 'Chaque piste est décodée en mémoire avant la lecture. Huit fichiers stéréo, c’est déjà beaucoup pour un onglet de téléphone. Une production 16 pistes avec plugins est un autre outil.' },
       ],
       dropHint: 'Déposez deux fichiers audio ou plus pour les empiler',
+    },
+    'split-mp3': {
+      cardLine: 'Coupez un fichier en 2 à 16 parties égales et téléchargez-les ensemble.',
+      name: 'Diviser un MP3',
+      shortName: 'Diviseur',
+      title: 'Diviser un MP3 — 2 à 16 fichiers égaux',
+      description: 'Coupez un enregistrement en 2 à 16 fichiers égaux, un zip. Le WAV garde les échantillons. Chaque MP3 est encodé une fois, jusqu’à 320 kbps.',
+      h1: 'Diviser un MP3 en plusieurs fichiers',
+      heroAlt: 'Couper un enregistrement en fichiers égaux',
+      subtitle: 'Parties égales, de 2 à 16, dans un seul zip.',
+      intro: 'Ce diviseur audio coupe un fichier en parties égales. Le nombre va de 2 à 16 et commence à 2, donc en deux parties. Chaque partie a la même durée, à un échantillon près. Faites glisser une sélection pour ne diviser que ce passage. Sans sélection, le fichier entier est divisé. Les parties se téléchargent dans un zip. Le décodage et les coupes restent dans votre navigateur.',
+      usesHeading: 'À quoi servent les parties',
+      uses: ['Divisez un MP3 en plusieurs fichiers quand un seul est trop long à envoyer.', 'Découpez un mémo vocal en morceaux égaux que vous envoyez un par un.', 'Divisez un fichier audio en parties sans chercher le silence.'],
+      howTo: [
+        { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil.' },
+        { name: 'Choisissez le nombre', text: 'Les morceaux vont de 2 à 16. La ligne d’état indique combien de fichiers vous obtenez et à peu près combien dure chacun. Faites glisser la forme d’onde si seule une partie du fichier doit être coupée.' },
+        { name: 'Téléchargez le zip', text: 'Exportez en MP3 ou WAV. Le téléchargement est un zip au nom du fichier, avec le morceau 1, le morceau 2 et le reste dedans.' },
+      ],
+      faqs: [
+        { q: 'Mon audio est-il envoyé ?', a: 'Non. Le fichier est décodé dans votre navigateur, coupé là, et rangé dans un zip là. Une fois la page chargée, vous pouvez passer hors ligne et l’export continue. Le WAV ne demande pas d’autre téléchargement. L’encodage MP3 marche hors ligne après que l’encodeur a été chargé une fois.' },
+        { q: 'Où tombent les coupes ?', a: 'Sur les limites d’échantillon. Les parties ont la même durée, et si le nombre d’échantillons ne se divise pas juste, les premières sont plus longues d’un échantillon. Rien ne se chevauche et rien n’est perdu. Le WAV, ce sont ces échantillons. Chaque MP3 est encodé une fois, au débit que vous choisissez, jusqu’à 320 kbps. En les écoutant à la suite, la jointure peut montrer quelques millisecondes de remplissage du codec.' },
+        { q: 'Est-ce que ça coupe sur le silence ou les chapitres ?', a: 'Non. Les coupes sont à temps égal, pas un balayage des pauses, des marques de chapitre ou d’un nouveau morceau. Une mesure calme est coupée là où l’horloge le dit. Les morceaux vont seulement de 2 à 16. Un fichier qui a moins d’échantillons que de morceaux est refusé.' },
+        { q: 'En quoi est-ce différent du coupeur ?', a: 'Le coupeur audio et le coupeur MP3 gardent un passage, ou en suppriment un, et enregistrent un fichier. Cette page écrit plusieurs fichiers de même durée. La fusion audio fait l’inverse : elle place des fichiers différents à la suite. Retirer le silence est la page qui suit les pauses.' },
+        { q: 'Est-ce que ça marche sur un téléphone ?', a: 'Oui. Le curseur de morceaux, la forme d’onde et le téléchargement se touchent dans Chrome, Edge, Firefox et Safari actuels. Sur iPhone, Safari range le zip dans l’app Fichiers.' },
+      ],
+      dropHint: 'Déposez un fichier audio, ou cliquez pour le choisir',
+      exportLabel: 'Télécharger les morceaux',
+    },
+    'stereo-to-mono': {
+      cardLine: 'Faites la moyenne de chaque canal en un seul, puis téléchargez ce fichier.',
+      name: 'Stéréo vers mono',
+      shortName: 'Vers mono',
+      title: 'Stéréo vers mono — un canal en moyenne',
+      description: 'Faites la moyenne des canaux en un seul et téléchargez-le. Le WAV garde ces échantillons. Un MP3 encode ce mono une fois, jusqu’à 320 kbps.',
+      h1: 'Stéréo vers mono',
+      heroAlt: 'Ramener un stéréo à un canal par moyenne',
+      subtitle: 'Un canal : la moyenne de chaque canal du fichier.',
+      intro: 'Cette page écrit un canal. Chaque échantillon est la moyenne des canaux du fichier, donc gauche et droite se rejoignent au centre. Un fichier déjà en un canal est copié. Le décodage et la moyenne restent dans votre navigateur.',
+      usesHeading: 'Quand il vous faut un seul canal',
+      uses: [
+        'Une note vocale qui doit sonner pareil sur un seul haut-parleur.',
+        'Un fichier refusé par un lecteur ou une appli qui n’accepte que le mono.',
+        'Un mix dont la gauche et la droite doivent se superposer, pas s’écarter.',
+      ],
+      howTo: [
+        { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil.' },
+        { name: 'Exportez la moyenne', text: 'Il n’y a pas de réglage de largeur. L’export écrit un canal. Écoutez d’abord si vous voulez entendre la moyenne.' },
+        { name: 'Ouvrez le fichier', text: 'Un lecteur qui affiche le nombre de canaux devrait dire un. Le WAV, ce sont ces échantillons moyennés. Le MP3 les encode une fois, jusqu’à 320 kbps.' },
+      ],
+      faqs: [
+        { q: 'Mon audio est-il envoyé ?', a: 'Non. Le fichier est décodé dans votre navigateur et moyenné là. Une fois la page chargée, vous pouvez passer hors ligne et l’export continue. Le WAV ne demande pas d’autre téléchargement. L’encodage MP3 marche hors ligne après que l’encodeur a été chargé une fois.' },
+        { q: 'Comment le mono est-il fait ?', a: 'Chaque échantillon est la somme des canaux à cet instant, divisée par le nombre de canaux. Deux canaux, c’est (gauche + droite) / 2. Un fichier déjà en un canal est copié. Le WAV garde ces échantillons. Un MP3 encode ce canal une fois, au débit que vous choisissez, jusqu’à 320 kbps.' },
+        { q: 'Peut-il passer du mono au stéréo ?', a: 'Non. Cette page n’invente pas un second canal. Copier un canal à gauche et à droite reste un seul signal, et c’est un autre travail. Le fichier que vous téléchargez ici a un canal.' },
+        { q: 'En quoi est-ce différent du coupeur ?', a: 'Le coupeur audio garde un passage dans le temps et laisse le nombre de canaux. Le convertisseur MP3 vers WAV change le contenant et laisse aussi les canaux. Cette page change le nombre de canaux et garde la durée.' },
+        { q: 'Est-ce que ça marche sur un téléphone ?', a: 'Oui. Déposer, lire et télécharger se touchent dans Chrome, Edge, Firefox et Safari actuels.' },
+      ],
+      dropHint: 'Déposez un fichier audio, ou cliquez pour le choisir',
+      exportLabel: 'Télécharger le mono',
+    },
+    bitcrusher: {
+      cardLine: 'Quantifiez de 1 à 16 bits et tenez chaque marche jusqu’à 32 échantillons.',
+      name: 'Bitcrusher',
+      shortName: 'Crush',
+      title: 'Bitcrusher en ligne — de 1 à 16 bits',
+      description: 'Quantifiez de 16 bits à 1 et tenez chaque marche jusqu’à 32 échantillons. Le WAV garde ces échantillons. Le MP3 les encode une fois, jusqu’à 320 kbps.',
+      h1: 'Bitcrusher en ligne',
+      heroAlt: 'Transformer une onde lisse en marches',
+      subtitle: 'Bits de 1 à 16, et une tenue de 1 à 32 échantillons.',
+      intro: 'Ce bitcrusher en ligne réduit le nombre de niveaux que chaque échantillon peut prendre, puis tient ce niveau sur une suite d’échantillons. La stéréo reste stéréo : chaque canal est écrasé seul. Faites glisser une sélection pour n’écraser que ce passage. Le décodage et l’écrasement restent dans votre navigateur.',
+      usesHeading: 'À quoi servent les marches',
+      uses: [
+        'Une voix qui doit sonner comme une vieille console.',
+        'Une boucle de batterie dont les marches doivent rester audibles.',
+        'Une phrase du fichier, le reste inchangé.',
+      ],
+      howTo: [
+        { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil.' },
+        { name: 'Réglez bits et tenue', text: 'Les bits vont de 1 à 16 et commencent à 8. La tenue va de 1 à 32 et commence à 2. Écoutez pour l’entendre. Faites glisser la forme d’onde si seul un passage doit être écrasé.' },
+        { name: 'Exportez', text: 'Le WAV garde les échantillons en marches. Le MP3 les encode une fois, jusqu’à 320 kbps, et peut adoucir les marches.' },
+      ],
+      faqs: [
+        { q: 'Mon audio est-il envoyé ?', a: 'Non. Le fichier est décodé dans votre navigateur et écrasé là. Une fois la page chargée, vous pouvez passer hors ligne et l’export continue. Le WAV ne demande pas d’autre téléchargement. L’encodage MP3 marche hors ligne après que l’encodeur a été chargé une fois.' },
+        { q: 'Que font les bits et la tenue ?', a: 'Les bits fixent le nombre de niveaux. À 16 bits, un échantillon à pleine échelle reste en place si la tenue est 1. À 1 bit, un échantillon devient haut, bas ou silence. La tenue répète le niveau actuel pendant autant d’échantillons : une tenue de 4 garde une valeur sur quatre échantillons, puis prend la marche suivante. Chaque canal est écrasé seul, donc un fichier stéréo reste stéréo.' },
+        { q: 'Le MP3 garde-t-il les marches ?', a: 'Le WAV, ce sont les échantillons écrasés. Un MP3 les encode une fois, au débit que vous choisissez, jusqu’à 320 kbps. L’encodeur peut arrondir les marches vives. Si les marches doivent rester, exportez en WAV.' },
+        { q: 'En quoi est-ce différent de la distorsion ?', a: 'La distorsion audio plie l’onde par une courbe lisse. Cette page remplace les échantillons par une courte liste de niveaux, puis les tient. L’écho ajoute des copies plus tard. Le filtre passe-bas baisse les aigus. Aucun de ces trois n’est un réglage de profondeur de bits.' },
+        { q: 'Est-ce que ça marche sur un téléphone ?', a: 'Oui. Le curseur de bits, celui de tenue, la forme d’onde et le téléchargement se touchent dans Chrome, Edge, Firefox et Safari actuels.' },
+      ],
+      dropHint: 'Déposez un fichier audio, ou cliquez pour le choisir',
+      exportLabel: 'Exporter écrasé',
+    },
+    '432-hz-converter': {
+      cardLine: 'Baissez la hauteur d’environ 0,32 demi-ton et gardez la durée.',
+      name: 'Convertisseur 432 Hz',
+      shortName: '432 Hz',
+      title: 'Convertisseur 432 Hz — même durée, 0,32 en bas',
+      description: 'Baissez la hauteur de 12*log2(432/440), environ 0,32 demi-ton, et gardez la durée. Le WAV est ce décalage. Le MP3 l’encode une fois, jusqu’à 320 kbps.',
+      h1: 'Convertisseur 432 Hz',
+      heroAlt: 'Baisser un fichier d’environ 0,32 demi-ton',
+      subtitle: 'Le fichier entier descend d’environ 0,32 demi-ton. La durée reste.',
+      intro: 'Ce convertisseur décale le fichier entier de 12 fois le log2 de 432 sur 440, environ 0,32 demi-ton vers le bas. Un son à 440 Hz se rapproche de 432 Hz. La durée ne change pas, et les notes ne sont pas accordées une par une. Le décodage et le décalage restent dans votre navigateur.',
+      usesHeading: 'Quand le fichier entier doit se rapprocher de 432 Hz',
+      uses: [
+        'Une piste accordée autour de 440 Hz que vous voulez plus près de 432 Hz.',
+        'Une boucle dont la durée doit rester la même pour continuer à s’aligner.',
+        'Un fichier que vous poserez à côté d’autres pistes déjà décalées vers 432 Hz.',
+      ],
+      howTo: [
+        { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil.' },
+        { name: 'Écoutez le décalage', text: 'L’aperçu est le fichier décalé. Cette page n’a pas de curseur de demi-ton, parce qu’un demi-ton arrondi vaudrait zéro et le fichier ne bougerait pas.' },
+        { name: 'Exportez', text: 'La durée correspond au fichier que vous avez déposé. Le WAV, ce sont les échantillons décalés. Le MP3 les encode une fois, jusqu’à 320 kbps.' },
+      ],
+      faqs: [
+        { q: 'Mon audio est-il envoyé ?', a: 'Non. Le fichier est décodé dans votre navigateur et décalé là. Une fois la page chargée, vous pouvez passer hors ligne et l’export continue. Le WAV ne demande pas d’autre téléchargement. L’encodage MP3 marche hors ligne après que l’encodeur a été chargé une fois.' },
+        { q: 'De combien bouge-t-il ?', a: 'Le décalage est 12 fois le log2 de 432 sur 440, environ 0,3177 demi-ton vers le bas, et la page utilise cette fraction. Elle n’arrondit pas au demi-ton entier le plus proche, qui serait zéro et laisserait le fichier inchangé. Un son à 440 Hz se rapproche de 432 Hz. Le reste du fichier bouge d’autant. Le WAV, ce sont les échantillons décalés. Un MP3 les encode une fois, au débit que vous choisissez, jusqu’à 320 kbps.' },
+        { q: 'La durée change-t-elle ?', a: 'Non. C’est un décalage de hauteur, pas un changement de vitesse. Le changeur de tempo change la durée. Changer la vitesse audio change aussi la durée, sauf si vous gardez la hauteur. Ici la durée reste et la hauteur descend.' },
+        { q: 'Peut-il réaccorder une note ?', a: 'Non. Le fichier entier bouge ensemble. Un accord n’a pas ses notes tirées vers 432 Hz une par une. Un fichier de moins de 32 échantillons est renvoyé tel quel, parce que le décalage a besoin de cette longueur. Cette page ne dit pas que le résultat est plus sain, plus calme ou meilleur.' },
+        { q: 'Est-ce que ça marche sur un téléphone ?', a: 'Oui. Déposer, lire et télécharger se touchent dans Chrome, Edge, Firefox et Safari actuels.' },
+      ],
+      dropHint: 'Déposez un fichier audio, ou cliquez pour le choisir',
+      exportLabel: 'Télécharger 432 Hz',
     },
   },
 };

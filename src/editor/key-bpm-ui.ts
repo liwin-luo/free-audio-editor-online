@@ -1,6 +1,6 @@
 import { formatBytes, formatTime } from '../lib/format';
 import { readEditorText, showToast } from './messages';
-import { bindFileOpen } from './delivery';
+import { bindFileOpen, setEmptyHidden } from './delivery';
 import { PITCHES, readKeyBpm } from './key-bpm';
 import type { EditorText } from '../i18n/types';
 
@@ -73,7 +73,7 @@ class KeyBpmFinder {
       this.bpmEl.textContent = read.bpm == null ? this.text.keyUnread : String(read.bpm);
       this.keyEl.textContent =
         read.tonic == null ? this.text.keyUnread : `${PITCHES[read.tonic]} ${read.mode === 'minor' ? this.text.keyMinor : this.text.keyMajor}`;
-      this.dropzone.hidden = true;
+      setEmptyHidden(this.dropzone, true);
       this.workspace.classList.remove('hidden');
     } catch (err) {
       console.error(err);
@@ -87,7 +87,7 @@ class KeyBpmFinder {
 
   private reset(): void {
     this.workspace.classList.add('hidden');
-    this.dropzone.hidden = false;
+    setEmptyHidden(this.dropzone, false);
     this.bpmEl.textContent = '—';
     this.keyEl.textContent = '—';
   }

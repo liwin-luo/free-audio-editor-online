@@ -9,8 +9,13 @@ import { analyzeSilence, measureSilenceFrames, SILENCE_PAD_SEC, type SilenceFram
 import { CIRCLE_DEPTH, CIRCLE_RATE_HZ, CIRCLE_WET } from './circle';
 import { snapTempo } from './tempo';
 import { loopChannels, LOOP_MAX_SECONDS, loopedDuration } from './loop';
+import { splitChannels, storeZip } from './split';
+import { fileStem, uniqueFileNames } from './batch';
+import { averageToMono } from './mono';
+import { crushChannel } from './bitcrush';
+import { shiftTo432 } from './hz432';
 import { encodeFor, getFormat, isM4rSupported } from './encoders';
-import { bindDeliveryChips, bindFileOpen } from './delivery';
+import { bindDeliveryChips, bindFileOpen, setEmptyHidden } from './delivery';
 import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
@@ -48,6 +53,7 @@ interface Elements {
   preciseEnd: HTMLInputElement | null;
   format: HTMLSelectElement;
   exportBtn: HTMLButtonElement;
+  batchList: HTMLElement;
 }
 
 function requireEl<T extends Element>(root: ParentNode, selector: string): T {
@@ -88,11 +94,16 @@ export class Editor {
   private pitchPreviewKey = '';
 
   private busy = false;
+  /** Files chosen together on a batch page. Length 0 or 1 keeps the single-file export. */
+  private queue: File[] = [];
   private silenceFrames: SilenceFrames | null = null;
   private silenceThreshold = -40;
   private silenceMin = 0.35;
   private loopTimes = 4;
   private loopCrossfade = 0.01;
+  private splitParts = 2;
+  private crushBits = 8;
+  private crushHold = 2;
   private drag: { kind: 'new' | 'start' | 'end'; x0: number; anchor: number; sel: { start: number; end: number } } | null = null;
 
   constructor(root: HTMLElement, config: EditorConfig) {
@@ -125,6 +136,7 @@ export class Editor {
       preciseEnd: root.querySelector<HTMLInputElement>('[data-precise-end]'),
       format: requireEl<HTMLSelectElement>(root, '[data-format]'),
       exportBtn: requireEl<HTMLButtonElement>(root, '[data-export]'),
+      batchList: requireEl(root, '[data-batch-list]'),
     };
 
     if (config.defaultFormat) this.els.format.value = config.defaultFormat;
@@ -183,10 +195,39 @@ export class Editor {
       });
     }
 
+    if (this.config.split) {
+      const parts = els.root.querySelector<HTMLInputElement>('[data-split-parts]');
+      const partsLabel = els.root.querySelector('[data-split-parts-label]');
+      parts?.addEventListener('input', () => {
+        this.splitParts = Number(parts.value);
+        if (partsLabel) partsLabel.textContent = String(Math.round(this.splitParts));
+        this.updateSplitStatus();
+      });
+    }
+
+    if (this.config.bitcrush) {
+      const bits = els.root.querySelector<HTMLInputElement>('[data-crush-bits]');
+      const hold = els.root.querySelector<HTMLInputElement>('[data-crush-hold]');
+      const bitsLabel = els.root.querySelector('[data-crush-bits-label]');
+      const holdLabel = els.root.querySelector('[data-crush-hold-label]');
+      bits?.addEventListener('input', () => {
+        this.crushBits = Number(bits.value);
+        if (bitsLabel) bitsLabel.textContent = String(Math.round(this.crushBits));
+        this.pitchPreview = null;
+        this.updateCrushStatus();
+      });
+      hold?.addEventListener('input', () => {
+        this.crushHold = Number(hold.value);
+        if (holdLabel) holdLabel.textContent = String(Math.round(this.crushHold));
+        this.pitchPreview = null;
+        this.updateCrushStatus();
+      });
+    }
+
     bindFileOpen(els.dropzone, () => els.fileInput.click());
     els.fileInput.addEventListener('change', () => {
-      const file = els.fileInput.files?.[0];
-      if (file) void this.loadFile(file);
+      const files = Array.from(els.fileInput.files ?? []);
+      this.takeFiles(files);
       els.fileInput.value = '';
     });
 
@@ -203,21 +244,21 @@ export class Editor {
       });
     }
     els.dropzone.addEventListener('drop', (e) => {
-      const file = e.dataTransfer?.files?.[0];
-      if (file) void this.loadFile(file);
+      this.takeFiles(Array.from(e.dataTransfer?.files ?? []));
     });
 
     // Also accept paste of audio files
     document.addEventListener('paste', (e) => {
       if (activeEditor !== this) return;
-      const file = Array.from(e.clipboardData?.files ?? [])[0];
-      if (file) void this.loadFile(file);
+      const files = Array.from(e.clipboardData?.files ?? []);
+      if (this.config.batch) this.takeFiles(files);
+      else if (files[0]) void this.loadFile(files[0]);
     });
 
     // External loaders (voice recorder, tests) hand over a File via event
     document.addEventListener('editor-load-file', (e) => {
       const file = (e as CustomEvent<File>).detail;
-      if (file) void this.loadFile(file);
+      if (file) this.takeFiles([file]);
     });
 
     els.zoomIn.addEventListener('click', () => this.setZoom(this.pps * 1.5));
@@ -280,7 +321,17 @@ export class Editor {
 
     // Optional headline controls (kept in sync with the Adjust drawer)
     const quickReverse = this.els.root.querySelector<HTMLButtonElement>('[data-quick-reverse]');
-    quickReverse?.addEventListener('click', () => this.commit({ reverse: !this.state.reverse }));
+    quickReverse?.addEventListener('click', () => {
+      const next = !this.state.reverse;
+      const wasPlaying = this.playing;
+      this.commit({ reverse: next });
+      if (wasPlaying) {
+        this.stopPlayback();
+        void this.togglePlay();
+      } else if (next) {
+        void this.togglePlay();
+      }
+    });
 
     const quickNormalize = this.els.root.querySelector<HTMLButtonElement>('[data-quick-normalize]');
     quickNormalize?.addEventListener('click', () => this.toggleNormalize());
@@ -347,8 +398,20 @@ export class Editor {
     const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
     const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
     if (quickSpeed && quickSpeedLabel) {
-      quickSpeed.addEventListener('input', () => (quickSpeedLabel.textContent = `${Number(quickSpeed.value).toFixed(2)}×`));
+      const paint = () => {
+        const speed = Number(quickSpeed.value);
+        quickSpeedLabel.textContent = `${speed.toFixed(2)}×`;
+        this.paintSpeedPresets(speed);
+      };
+      quickSpeed.addEventListener('input', paint);
       quickSpeed.addEventListener('change', () => this.commit({ speed: Number(quickSpeed.value) }));
+      for (const btn of this.els.root.querySelectorAll<HTMLButtonElement>('[data-speed-preset]')) {
+        btn.addEventListener('click', () => {
+          quickSpeed.value = btn.dataset.speedPreset ?? '1';
+          paint();
+          this.commit({ speed: Number(quickSpeed.value) });
+        });
+      }
     }
 
     const quickTempo = this.els.root.querySelector<HTMLInputElement>('[data-quick-tempo]');
@@ -365,8 +428,20 @@ export class Editor {
     const quickPitch = this.els.root.querySelector<HTMLInputElement>('[data-quick-pitch]');
     const quickPitchLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pitch-label]');
     if (quickPitch && quickPitchLabel) {
-      quickPitch.addEventListener('input', () => (quickPitchLabel.textContent = formatSemitones(Number(quickPitch.value))));
+      const paint = () => {
+        const semis = Number(quickPitch.value);
+        quickPitchLabel.textContent = formatSemitones(semis);
+        this.paintPitchPresets(semis);
+      };
+      quickPitch.addEventListener('input', paint);
       quickPitch.addEventListener('change', () => this.commit({ pitch: Number(quickPitch.value) }));
+      for (const btn of this.els.root.querySelectorAll<HTMLButtonElement>('[data-pitch-preset]')) {
+        btn.addEventListener('click', () => {
+          quickPitch.value = btn.dataset.pitchPreset ?? '0';
+          paint();
+          this.commit({ pitch: Number(quickPitch.value) });
+        });
+      }
     }
 
     const quickBass = this.els.root.querySelector<HTMLInputElement>('[data-quick-bass]');
@@ -414,12 +489,31 @@ export class Editor {
     const quickGain = this.els.root.querySelector<HTMLInputElement>('[data-quick-gain]');
     const quickGainLabel = this.els.root.querySelector<HTMLElement>('[data-quick-gain-label]');
     if (quickGain && quickGainLabel) {
-      quickGain.addEventListener('input', () => (quickGainLabel.textContent = `${quickGain.value}%`));
+      const paint = () => {
+        const percent = Number(quickGain.value);
+        quickGainLabel.textContent = `${percent}%`;
+        this.paintGainPresets(percent);
+      };
+      quickGain.addEventListener('input', paint);
       quickGain.addEventListener('change', () => this.commit({ gain: Number(quickGain.value) / 100 }));
+      for (const btn of this.els.root.querySelectorAll<HTMLButtonElement>('[data-gain-preset]')) {
+        btn.addEventListener('click', () => {
+          quickGain.value = btn.dataset.gainPreset ?? '100';
+          paint();
+          this.commit({ gain: Number(quickGain.value) / 100 });
+        });
+      }
     }
 
     els.preciseStart?.addEventListener('change', () => this.applyPrecise());
     els.preciseEnd?.addEventListener('change', () => this.applyPrecise());
+    els.root.querySelector('[data-select-all]')?.addEventListener('click', () => {
+      if (!this.buffer) return;
+      this.pushHistory();
+      this.state.sel = { start: 0, end: this.duration };
+      this.updateSelectionOverlay();
+      this.updatePreciseInputs();
+    });
 
     els.exportBtn.addEventListener('click', () => void this.doExport());
 
@@ -453,6 +547,40 @@ export class Editor {
     this.state.distort = Number(slider.value) / 100;
   }
 
+  private takeFiles(files: File[]): void {
+    if (files.length === 0) return;
+    this.queue = this.config.batch ? files : [];
+    void this.loadFile(files[0]!);
+  }
+
+  private renderQueue(): void {
+    const list = this.els.batchList;
+    if (this.queue.length < 2) {
+      list.classList.add('hidden');
+      list.replaceChildren();
+      return;
+    }
+    list.classList.remove('hidden');
+    list.replaceChildren(
+      ...this.queue.map((file) => {
+        const li = document.createElement('li');
+        li.className = 'truncate';
+        li.textContent = file.name;
+        return li;
+      }),
+    );
+  }
+
+  private async decodeOne(file: File): Promise<AudioBuffer> {
+    const data = await file.arrayBuffer();
+    const ctx = new AudioContext();
+    try {
+      return await ctx.decodeAudioData(data);
+    } finally {
+      await ctx.close();
+    }
+  }
+
   // ---------- File loading ----------
 
   private async loadFile(file: File): Promise<void> {
@@ -464,15 +592,7 @@ export class Editor {
     this.busy = true;
     this.setStatus(this.text.decoding);
     try {
-      const data = await file.arrayBuffer();
-      const ctx = new AudioContext();
-      let buffer: AudioBuffer;
-      try {
-        buffer = await ctx.decodeAudioData(data);
-      } finally {
-        // Browsers cap concurrent AudioContexts; a failed decode must not leak one.
-        await ctx.close();
-      }
+      const buffer = await this.decodeOne(file);
 
       this.buffer = buffer;
       this.pitchPreview = null;
@@ -480,14 +600,17 @@ export class Editor {
       this.fileName = file.name.replace(/\.[^.]+$/, '');
       this.history = [];
       this.state = defaultEditState();
+      if (this.config.trimLayout) this.state.sel = { start: 0, end: this.duration };
       this.applyCircleIfOn();
       this.applyTempoIfOn();
       this.applyDistortIfOn();
 
       this.els.fileName.textContent = file.name;
-      this.els.fileMeta.textContent = `${formatBytes(file.size)} · ${formatTime(this.duration, true)} · ${Math.round(buffer.sampleRate / 1000)} kHz`;
+      this.els.fileMeta.textContent = this.showsJobChrome()
+        ? `${formatTime(this.duration, true)} · ${this.channelLabel(buffer.numberOfChannels)} · ${this.rateLabel(buffer.sampleRate)} · ${formatBytes(file.size)}`
+        : `${formatBytes(file.size)} · ${formatTime(this.duration, true)} · ${Math.round(buffer.sampleRate / 1000)} kHz`;
 
-      this.els.dropzone.hidden = true;
+      setEmptyHidden(this.els.dropzone, true);
       this.els.workspace.classList.remove('hidden');
 
       this.els.play.disabled = false;
@@ -496,9 +619,13 @@ export class Editor {
 
       this.refit(true);
       this.applyState(this.state, false);
+      this.updateTimecode();
       this.setStatus(this.text.ready);
       if (this.config.silence) this.measureSilence();
       if (this.config.loop) this.updateLoopStatus();
+      if (this.config.split) this.updateSplitStatus();
+      this.updatePageStatus();
+      this.renderQueue();
 
       if (this.duration > 3600) {
         showToast(this.toastRoot(), 'info', this.text.hourWarning);
@@ -517,13 +644,15 @@ export class Editor {
   private reset(): void {
     this.stopPlayback();
     this.buffer = null;
+    this.queue = [];
+    this.renderQueue();
     this.pitchPreview = null;
     this.peaks = null;
     this.state = defaultEditState();
     this.history = [];
     this.playheadTime = 0;
     this.els.workspace.classList.add('hidden');
-    this.els.dropzone.hidden = false;
+    setEmptyHidden(this.els.dropzone, false);
     this.els.playhead.style.opacity = '0';
     this.setStatus('');
   }
@@ -626,16 +755,50 @@ export class Editor {
     this.setStatus(dur > LOOP_MAX_SECONDS ? this.text.loopTooLong : fill(this.text.loopExport, { time: `${dur.toFixed(1)} s` }));
   }
 
+  private updateSplitStatus(): void {
+    if (!this.config.split || !this.buffer) return;
+    const ranges = survivingRanges(this.duration, this.state);
+    const seconds = ranges.reduce((sum, range) => sum + (range.to - range.from), 0);
+    const each = seconds / this.splitParts;
+    this.setStatus(fill(this.text.splitExport, { n: this.splitParts, time: `${each.toFixed(1)} s` }));
+  }
+
+  private updateCrushStatus(): void {
+    if (!this.config.bitcrush) return;
+    this.setStatus(fill(this.text.crushExport, { bits: Math.round(this.crushBits), hold: Math.round(this.crushHold) }));
+  }
+
+  private updatePageStatus(): void {
+    if (!this.buffer) return;
+    if (this.config.mono) this.setStatus(this.text.monoExport);
+    if (this.config.bitcrush) this.updateCrushStatus();
+    if (this.config.hz432) this.setStatus(this.text.hz432Export);
+  }
+
+  private pageEffect(buffer: AudioBuffer): AudioBuffer {
+    if (this.config.mono) return monoAudioBuffer(buffer);
+    if (this.config.bitcrush) return crushAudioBuffer(buffer, this.crushBits, this.crushHold);
+    if (this.config.hz432) return shiftAudioBuffer(buffer);
+    return buffer;
+  }
+
   private silenceBuffer(): AudioBuffer {
     if (!this.buffer || !this.silenceFrames) return this.buffer!;
-    const analysis = analyzeSilence(this.silenceFrames, {
+    return this.cutSilence(this.buffer);
+  }
+
+  /** Re-measure this buffer. The preview's frames belong to the first file only. */
+  private cutSilence(buffer: AudioBuffer): AudioBuffer {
+    const channels = Array.from({ length: buffer.numberOfChannels }, (_, i) => buffer.getChannelData(i));
+    const frames = measureSilenceFrames(channels, buffer.sampleRate);
+    const analysis = analyzeSilence(frames, {
       thresholdDb: this.silenceThreshold,
       minSilenceSec: this.silenceMin,
       padSec: SILENCE_PAD_SEC,
     });
     const kept = analysis.ranges.reduce((sum, range) => sum + (range.to - range.from), 0);
-    if (analysis.allBelow || this.duration - kept < 0.02) return this.buffer;
-    return spliceRanges(this.buffer, analysis.ranges);
+    if (analysis.allBelow || buffer.duration - kept < 0.02) return buffer;
+    return spliceRanges(buffer, analysis.ranges);
   }
 
   // ---------- Selection & pointer interaction ----------
@@ -742,13 +905,96 @@ export class Editor {
     const sel = this.state.sel;
     if (!sel) {
       this.els.selection.classList.add('hidden');
+      this.updateSpanReadout();
       this.draw();
       return;
     }
     this.els.selection.classList.remove('hidden');
     this.els.selection.style.left = `${sel.start * this.pps}px`;
     this.els.selection.style.width = `${(sel.end - sel.start) * this.pps}px`;
+    this.updateSpanReadout();
     this.draw();
+  }
+
+  private updateSpanReadout(): void {
+    if (!this.config.trimLayout) return;
+    const startEl = this.els.root.querySelector('[data-span-start]');
+    const lenEl = this.els.root.querySelector('[data-span-len]');
+    const endEl = this.els.root.querySelector('[data-span-end]');
+    const all = this.els.root.querySelector<HTMLButtonElement>('[data-select-all]');
+    const sel = this.state.sel;
+    if (!startEl || !lenEl || !endEl) return;
+    if (!sel) {
+      startEl.textContent = '—';
+      lenEl.textContent = '—';
+      endEl.textContent = '—';
+      if (all) all.hidden = false;
+      return;
+    }
+    startEl.textContent = formatTime(sel.start, true);
+    endEl.textContent = formatTime(sel.end, true);
+    lenEl.textContent = formatTime(Math.max(0, sel.end - sel.start), true);
+    if (all) all.hidden = sel.start < 0.05 && this.duration - sel.end < 0.05;
+  }
+
+  private channelLabel(channels: number): string {
+    if (channels <= 1) return this.text.chMono;
+    if (channels === 2) return this.text.chStereo;
+    return fill(this.text.chMany, { n: channels });
+  }
+
+  private paintPitchPresets(semis: number): void {
+    for (const btn of this.els.root.querySelectorAll<HTMLButtonElement>('[data-pitch-preset]')) {
+      const on = Number(btn.dataset.pitchPreset) === Math.round(semis);
+      btn.classList.toggle('border-accent', on);
+      btn.classList.toggle('bg-accent', on);
+      btn.classList.toggle('text-white', on);
+    }
+  }
+
+  private paintSpeedPresets(speed: number): void {
+    for (const btn of this.els.root.querySelectorAll<HTMLButtonElement>('[data-speed-preset]')) {
+      const on = Math.abs(Number(btn.dataset.speedPreset) - speed) < 0.001;
+      btn.classList.toggle('border-accent', on);
+      btn.classList.toggle('bg-accent', on);
+      btn.classList.toggle('text-white', on);
+    }
+  }
+
+  private paintGainPresets(percent: number): void {
+    for (const btn of this.els.root.querySelectorAll<HTMLButtonElement>('[data-gain-preset]')) {
+      const on = Number(btn.dataset.gainPreset) === percent;
+      btn.classList.toggle('border-accent', on);
+      btn.classList.toggle('bg-accent', on);
+      btn.classList.toggle('text-white', on);
+    }
+  }
+
+  private showsJobChrome(): boolean {
+    const quick = this.config.quickControls ?? [];
+    return Boolean(
+      this.config.trimLayout ||
+        this.config.ringtone ||
+        this.config.silence ||
+        this.config.loop ||
+        this.config.bitcrush ||
+        this.config.split ||
+        this.config.converter ||
+        quick.length > 0,
+    );
+  }
+
+  private rateLabel(rate: number): string {
+    return rate % 1000 === 0 ? `${rate / 1000} kHz` : `${(rate / 1000).toFixed(1)} kHz`;
+  }
+
+  private setPlayFace(playing: boolean): void {
+    const icon = playing
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 5v14M16 5v14"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>';
+    const label = this.showsJobChrome() ? `<span>${playing ? this.text.pause : this.text.playBtn}</span>` : '';
+    this.els.play.innerHTML = icon + label;
+    this.els.play.setAttribute('aria-label', playing ? this.text.pause : this.text.play);
   }
 
   private updatePreciseInputs(): void {
@@ -883,6 +1129,7 @@ export class Editor {
       const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
       if (quickSpeed) quickSpeed.value = String(state.speed);
       if (quickSpeedLabel) quickSpeedLabel.textContent = `${state.speed.toFixed(2)}×`;
+      this.paintSpeedPresets(state.speed);
       const quickTempo = this.els.root.querySelector<HTMLInputElement>('[data-quick-tempo]');
       const quickTempoLabel = this.els.root.querySelector<HTMLElement>('[data-quick-tempo-label]');
       if (quickTempo) quickTempo.value = state.speed.toFixed(2);
@@ -891,6 +1138,7 @@ export class Editor {
       const quickPitchLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pitch-label]');
       if (quickPitch) quickPitch.value = String(state.pitch);
       if (quickPitchLabel) quickPitchLabel.textContent = formatSemitones(state.pitch);
+      this.paintPitchPresets(state.pitch);
       const quickBass = this.els.root.querySelector<HTMLInputElement>('[data-quick-bass]');
       const quickBassLabel = this.els.root.querySelector<HTMLElement>('[data-quick-bass-label]');
       if (quickBass) quickBass.value = String(state.bass);
@@ -915,11 +1163,17 @@ export class Editor {
       const quickGainLabel = this.els.root.querySelector<HTMLElement>('[data-quick-gain-label]');
       if (quickGain) quickGain.value = String(Math.round(state.gain * 100));
       if (quickGainLabel) quickGainLabel.textContent = `${Math.round(state.gain * 100)}%`;
+      this.paintGainPresets(Math.round(state.gain * 100));
     }
+    this.paintSpeedPresets(state.speed);
+    this.paintPitchPresets(state.pitch);
+    this.paintGainPresets(Math.round(state.gain * 100));
     this.updateSelectionOverlay();
     this.updatePreciseInputs();
     this.updateExportState();
     if (this.config.loop) this.updateLoopStatus();
+    if (this.config.split) this.updateSplitStatus();
+    this.updatePageStatus();
   }
 
   private updateModeButtons(): void {
@@ -959,6 +1213,9 @@ export class Editor {
       this.state.mode,
       sel ? `${sel.start.toFixed(3)}-${sel.end.toFixed(3)}` : '',
       this.buffer?.length ?? 0,
+      this.config.bitcrush ? `${this.crushBits}:${this.crushHold}` : '',
+      this.config.hz432 ? '432' : '',
+      this.config.mono ? 'mono' : '',
     ].join('|');
   }
 
@@ -986,6 +1243,9 @@ export class Editor {
     if (
       (this.state.keepPitch && this.state.speed !== 1) ||
       this.state.pitch !== 0 ||
+      this.state.reverse ||
+      this.state.fadeIn > 0 ||
+      this.state.fadeOut > 0 ||
       this.state.compress > 0 ||
       this.state.echoDelay > 0 ||
       this.state.distort > 0 ||
@@ -995,7 +1255,10 @@ export class Editor {
       this.state.treble !== 0 ||
       this.state.mid !== 0 ||
       this.state.hpf > 25 ||
-      this.state.lpf < 19000
+      this.state.lpf < 19000 ||
+      this.config.mono ||
+      this.config.bitcrush ||
+      this.config.hz432
     ) {
       const key = this.pitchPreviewKeyOf();
       if (!this.pitchPreview || this.pitchPreviewKey !== key) {
@@ -1003,7 +1266,7 @@ export class Editor {
         this.updateExportState();
         this.setStatus(this.text.renderingStatus);
         try {
-          const rendered = await renderEdit(this.buffer, this.state);
+          const rendered = this.pageEffect(await renderEdit(this.buffer, this.state));
           if (this.pitchPreviewKeyOf() !== key) return;
           this.pitchPreview = rendered;
           this.pitchPreviewKey = key;
@@ -1014,7 +1277,8 @@ export class Editor {
           this.busy = false;
           this.updateExportState();
         }
-        this.setStatus(this.text.ready);
+        if (this.config.mono || this.config.bitcrush || this.config.hz432) this.updatePageStatus();
+        else this.setStatus(this.text.ready);
       }
       playBuffer = this.pitchPreview;
       rate = 1;
@@ -1041,9 +1305,7 @@ export class Editor {
     this.playEnd = endAt;
     this.playStartedAt = this.audioCtx.currentTime;
 
-    this.els.play.setAttribute('aria-label', this.text.pause);
-    this.els.play.innerHTML =
-      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 5v14M16 5v14"/></svg>';
+    this.setPlayFace(true);
 
     const tick = () => {
       if (!this.playing || !this.audioCtx) return;
@@ -1069,9 +1331,36 @@ export class Editor {
     if (playheadTo !== undefined) this.playheadTime = playheadTo;
     this.updatePlayhead();
     this.updateTimecode();
-    this.els.play.setAttribute('aria-label', this.text.play);
-    this.els.play.innerHTML =
-      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>';
+    this.setPlayFace(false);
+  }
+
+  private async exportSplit(out: AudioBuffer, fmt: ReturnType<typeof getFormat>): Promise<void> {
+    const pieces = splitAudioBuffer(out, this.splitParts);
+    if (pieces.length === 0) {
+      this.setStatus(this.text.splitTooShort);
+      showToast(this.toastRoot(), 'error', this.text.splitTooShort);
+      return;
+    }
+    const files = [];
+    for (let i = 0; i < pieces.length; i++) {
+      const blob = await encodeFor(fmt, pieces[i]!);
+      files.push({
+        name: `${this.fileName}-${i + 1}.${fmt.ext}`,
+        data: new Uint8Array(await blob.arrayBuffer()),
+      });
+    }
+    const zipName = `${this.fileName}-parts.zip`;
+    const zip = new Blob([storeZip(files)], { type: 'application/zip' });
+    const url = URL.createObjectURL(zip);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = zipName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    this.setStatus(fill(this.text.exported, { file: zipName }));
+    showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: zipName }));
   }
 
   private updatePlayhead(): void {
@@ -1085,6 +1374,65 @@ export class Editor {
 
   // ---------- Export ----------
 
+  /** One decode at a time. Failures are skipped so the rest of the queue still downloads. */
+  private async exportQueue(): Promise<void> {
+    const fmt = getFormat(this.els.format.value);
+    const suffix = this.config.converter ? 'converted' : 'edited';
+    const names = uniqueFileNames(
+      this.queue.map((file) => `${fileStem(file.name)}-${suffix}`),
+      fmt.ext,
+    );
+    // ponytail: a selection drawn on file 1 is not applied to the rest of the queue.
+    const state = this.config.converter ? defaultEditState() : { ...this.state, sel: null };
+    const ready: { name: string; data: Uint8Array }[] = [];
+    let skipped = 0;
+    for (let i = 0; i < this.queue.length; i++) {
+      const file = this.queue[i]!;
+      this.setStatus(fill(this.text.batchProgress, { current: i + 1, total: this.queue.length }));
+      if (file.size > 300 * 1024 * 1024) {
+        skipped++;
+        continue;
+      }
+      try {
+        const decoded = await this.decodeOne(file);
+        const rendered = this.config.silence
+          ? this.cutSilence(decoded)
+          : this.pageEffect(await renderEdit(decoded, state));
+        const blob = await encodeFor(fmt, rendered);
+        ready.push({ name: names[i]!, data: new Uint8Array(await blob.arrayBuffer()) });
+      } catch (err) {
+        console.error(err);
+        skipped++;
+      }
+    }
+    if (ready.length === 0) {
+      this.setStatus('');
+      showToast(this.toastRoot(), 'error', this.text.exportFail);
+      return;
+    }
+    const zipName = `${fileStem(this.queue[0]!.name)}-${suffix}.zip`;
+    const blob =
+      ready.length === 1
+        ? new Blob([ready[0]!.data], { type: 'application/octet-stream' })
+        : new Blob([storeZip(ready)], { type: 'application/zip' });
+    const filename = ready.length === 1 ? ready[0]!.name : zipName;
+    this.saveDownload(blob, filename);
+    const note = skipped > 0 ? ` ${fill(this.text.batchSkipped, { n: skipped })}` : '';
+    this.setStatus(`${fill(this.text.exported, { file: filename })}${note}`);
+    showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: filename }));
+  }
+
+  private saveDownload(blob: Blob, filename: string): void {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  }
+
   private async doExport(): Promise<void> {
     if (!this.buffer || this.busy) return;
     this.busy = true;
@@ -1094,6 +1442,10 @@ export class Editor {
     this.setStatus(this.text.renderingStatus);
 
     try {
+      if (this.config.batch && this.queue.length > 1) {
+        await this.exportQueue();
+        return;
+      }
       if (this.config.loop && loopedDuration(this.loopPassSeconds(), this.loopTimes, this.loopCrossfade) > LOOP_MAX_SECONDS) {
         this.setStatus(this.text.loopTooLong);
         showToast(this.toastRoot(), 'error', this.text.loopTooLong);
@@ -1101,8 +1453,13 @@ export class Editor {
       }
       let out = this.config.silence ? this.silenceBuffer() : await renderEdit(this.buffer, this.state);
       if (this.config.loop) out = loopAudioBuffer(out, this.loopTimes, this.loopCrossfade);
+      out = this.pageEffect(out);
       const fmt = getFormat(this.els.format.value);
       this.setStatus(fill(this.text.encoding, { ext: fmt.ext.toUpperCase() }));
+      if (this.config.split) {
+        await this.exportSplit(out, fmt);
+        return;
+      }
       const blob = await encodeFor(fmt, out);
 
       const suffix = this.config.converter ? 'converted' : this.config.ringtone ? 'ringtone' : 'edited';
@@ -1158,6 +1515,49 @@ export class Editor {
       this.undo();
     }
   }
+}
+
+function monoAudioBuffer(buffer: AudioBuffer): AudioBuffer {
+  const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => buffer.getChannelData(c));
+  const mono = averageToMono(channels);
+  const out = new AudioBuffer({ length: Math.max(1, mono.length), numberOfChannels: 1, sampleRate: buffer.sampleRate });
+  out.getChannelData(0).set(mono);
+  return out;
+}
+
+function crushAudioBuffer(buffer: AudioBuffer, bits: number, hold: number): AudioBuffer {
+  const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => crushChannel(buffer.getChannelData(c), bits, hold));
+  const out = new AudioBuffer({
+    length: buffer.length,
+    numberOfChannels: buffer.numberOfChannels,
+    sampleRate: buffer.sampleRate,
+  });
+  for (let c = 0; c < channels.length; c++) out.getChannelData(c).set(channels[c]!);
+  return out;
+}
+
+function shiftAudioBuffer(buffer: AudioBuffer): AudioBuffer {
+  const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => shiftTo432(buffer.getChannelData(c), buffer.sampleRate));
+  const out = new AudioBuffer({
+    length: channels[0]?.length || 1,
+    numberOfChannels: buffer.numberOfChannels,
+    sampleRate: buffer.sampleRate,
+  });
+  for (let c = 0; c < channels.length; c++) out.getChannelData(c).set(channels[c]!);
+  return out;
+}
+
+function splitAudioBuffer(buffer: AudioBuffer, parts: number): AudioBuffer[] {
+  const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => buffer.getChannelData(c));
+  return splitChannels(channels, parts).map((chs) => {
+    const piece = new AudioBuffer({
+      length: Math.max(1, chs[0]?.length ?? 1),
+      numberOfChannels: buffer.numberOfChannels,
+      sampleRate: buffer.sampleRate,
+    });
+    for (let c = 0; c < chs.length; c++) piece.getChannelData(c).set(chs[c]!);
+    return piece;
+  });
 }
 
 function loopAudioBuffer(buffer: AudioBuffer, times: number, crossfadeSec: number): AudioBuffer {

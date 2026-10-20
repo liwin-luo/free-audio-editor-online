@@ -74,17 +74,31 @@ export const id: Catalog = {
     play: 'Putar pilihan',
     pause: 'Jeda',
     hintSelect: 'Seret di gelombang untuk memilih · Spasi untuk memutar',
+    hintTrim: 'Seret kedua ujung untuk mengubah rentang. Putar hanya memutar rentang itu.',
+    changeFile: 'Ganti file',
+    statStart: 'Awal',
+    statSpan: 'Bagian ini',
+    statEnd: 'Akhir',
+    selectAll: 'Pilih semua',
+    playBtn: 'Putar',
+    chMono: 'Mono',
+    chStereo: 'Stereo',
+    chMany: '{n} kanal',
     hintConvert: 'Spasi untuk memutar · tidak ada yang diunggah',
     hintSilence: 'Celah yang lebih panjang dari minimum dipotong saat ekspor. Napas pendek tetap ada.',
     reverse: 'Putar balik',
     normalize: 'Normalisasi puncak',
     speed: 'Kecepatan',
+    speedPitch: 'Nada ikut berubah bersama tempo.',
+    tempoPitch: 'Nada tetap.',
     pitch: 'Nada',
+    pitchLength: 'Durasi tetap sama.',
     bass: 'Bass',
     treble: 'Treble',
     mid: 'Mid',
     cutoff: 'Cutoff',
     volume: 'Volume',
+    gainOriginal: '100% adalah kenyaringan asli.',
     reverb: 'Reverb',
     compress: 'Kompres',
     echoDelay: 'Tunda',
@@ -111,6 +125,14 @@ export const id: Catalog = {
     loopCrossfade: 'Sambungan',
     loopExport: 'Ekspor sekitar {time}',
     loopTooLong: 'Loop ini lebih dari 10 menit. Kurangi pengulangan atau perpendek pilihan.',
+    splitParts: 'Bagian',
+    splitExport: '{n} file, masing-masing sekitar {time}',
+    splitTooShort: 'File ini lebih pendek dari jumlah bagian.',
+    crushBits: 'Bit',
+    crushHold: 'Tahan',
+    crushExport: '{bits} bit, ditahan setiap {hold} sampel',
+    monoExport: 'Ekspor menulis satu kanal: rata-rata kanal dalam file.',
+    hz432Export: 'Ekspor menurunkan nada 0.32 seminada. Durasi tetap.',
     lufsIntegrated: 'Terintegrasi',
     lufsPeak: 'Puncak sampel',
     lufsPodcast: 'Podcast',
@@ -226,6 +248,9 @@ export const id: Catalog = {
     paintReady: 'Siap. Unduh WAV, lalu buka di generator spektrogram.',
     paintWorking: 'Menulis audio…',
     paintFail: 'Gambar ini tidak terbaca. Coba PNG atau JPG.',
+    batchProgress: '{current} dari {total}',
+    batchSkipped: '{n} dilewati',
+    tgShared: 'Artis, album, tahun, genre, dan sampul berlaku untuk setiap file. Judul dan nomor lagu tetap di tiap baris.',
     tgAlbum: 'Album',
     tgAlbumArtist: 'Artis album',
     tgArtist: 'Artis',
@@ -449,7 +474,7 @@ export const id: Catalog = {
       howTo: [
         {
           name: 'Letakkan file',
-          text: 'Tambahkan MP3, WAV, M4A, file video, atau rekaman lain. Dekode terjadi di perangkat Anda dan tidak diunggah.',
+          text: 'Tambahkan MP3, WAV, M4A, file video, atau rekaman lain. Dekode terjadi di perangkat Anda dan tidak diunggah. Beberapa rekaman memakai bahasa dan model yang kamu pilih berikutnya. Masing-masing tetap sekitar 10 menit. Satu transkrip tinggal di kotak. Dua atau lebih kembali sebagai ZIP berisi TXT dan SRT.',
         },
         {
           name: 'Pilih bahasa dan model',
@@ -461,6 +486,7 @@ export const id: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Bisakah saya mentranskripsi lebih dari satu rekaman?', a: 'Bisa. Beberapa rekaman memakai bahasa dan model yang sama. Mereka berjalan satu per satu di perangkat ini, dan masing-masing tetap sekitar 10 menit. Satu transkrip tinggal di kotak supaya bisa diedit. Dua atau lebih diunduh sebagai ZIP berisi TXT dan SRT. Ponsel kehabisan waktu dan memori lebih dulu.' },
         {
           q: 'Apakah audio saya diunggah?',
           a: 'Tidak. File didekode di browser Anda dan ditranskripsi oleh model Whisper yang berjalan lokal melalui WebAssembly atau WebGPU. Satu-satunya permintaan jaringan adalah unduhan model sekali dari CDN publik — setelah itu transkripsi bisa berjalan offline. Audio Anda tidak pernah sampai ke server.',
@@ -471,7 +497,7 @@ export const id: Catalog = {
         },
         {
           q: 'Apa saja batasannya?',
-          a: 'Satu file sekaligus, maksimal 10 menit per proses — potong dulu rekaman yang lebih panjang (pemotong audio sama privatnya). Tidak ada label pembicara: dialog keluar sebagai satu teks tanpa nama. Dan halaman ini bekerja pada file, bukan mikrofon langsung.',
+          a: 'Beberapa file, satu per satu, masing-masing maksimal 10 menit — potong dulu rekaman yang lebih panjang (pemotong audio sama privatnya). Tidak ada label pembicara: dialog keluar sebagai satu teks tanpa nama. Dan halaman ini bekerja pada file, bukan mikrofon langsung.',
         },
         {
           q: 'Apa bedanya dengan perekam suara?',
@@ -486,7 +512,7 @@ export const id: Catalog = {
           a: 'Bisa — Chrome, Edge, Firefox, dan Safari terbaru, di desktop maupun ponsel. Browser dengan WebGPU (Chrome, Edge) mentranskripsi jauh lebih cepat; lainnya berjalan di CPU, jadi pilih Tiny untuk file panjang dan siapkan beberapa menit untuk sepuluh menit audio. Unduhan model Tiny juga lebih kecil.',
         },
       ],
-      dropHint: 'Letakkan file audio atau video, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file audio atau video, atau klik untuk memilih',
       exportLabel: 'Mulai transkripsi',
     },
     'bass-booster': {
@@ -548,6 +574,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Letakkan file audio atau klik untuk memilih',
+      exportLabel: 'Naikkan bass',
     },
     'treble-booster': {
       cardLine: 'Tambahkan kilau dan kejernihan dengan menaikkan highs hingga +15 dB di atas 3 kHz.',
@@ -608,6 +635,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Letakkan file audio atau klik untuk memilih',
+      exportLabel: 'Naikkan treble',
     },
     'equalizer': {
       cardLine: 'Bentuk lows, mids, dan highs dengan EQ tiga tombol ±15 dB yang lugas.',
@@ -668,6 +696,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Letakkan file audio atau klik untuk memilih',
+      exportLabel: 'Terapkan equalizer',
     },
     'low-pass-filter': {
       cardLine: 'Simpan hanya kehangatan di bawah cutoff — pas untuk tekstur lo-fi dan mute.',
@@ -728,6 +757,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Letakkan file audio atau klik untuk memilih',
+      exportLabel: 'Terapkan low pass',
     },
     'high-pass-filter': {
       cardLine: 'Buang gemuruh dan dengung di bawah cutoff agar rekaman suara lebih bersih.',
@@ -788,6 +818,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Letakkan file audio atau klik untuk memilih',
+      exportLabel: 'Terapkan high pass',
     },
     'fade-audio': {
       cardLine: 'Haluskan akhir lagu dan intro podcast dengan waktu fade yang presisi.',
@@ -814,7 +845,7 @@ export const id: Catalog = {
         },
         {
           name: 'Atur panjang fade',
-          text: 'Buka "Sesuaikan" dan tetapkan fade in serta fade out — 1–3 detik alami untuk lagu, 0,2–0,5 untuk loop.',
+          text: 'Tetapkan fade in serta fade out di halaman — 1–3 detik alami untuk lagu, 0,2–0,5 untuk loop.',
         },
         {
           name: 'Dengar dan ekspor',
@@ -848,6 +879,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Letakkan file audio atau klik untuk memilih',
+      exportLabel: 'Terapkan fade dan unduh',
     },
     'audio-trimmer': {
       cardLine: 'Tarik pegangan untuk menyimpan tepat bagian yang kamu butuhkan — podcast, memo suara, trek apa pun.',
@@ -908,6 +940,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+      exportLabel: 'Pangkas dan unduh',
     },
     'mp3-cutter': {
       cardLine: 'Potong lagu sampai reff, drop, atau klip apa pun tanpa menyandikan ulang.',
@@ -968,6 +1001,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Jatuhkan file MP3, atau klik untuk memilih',
+      exportLabel: 'Potong dan unduh',
     },
     'mp3-editor': {
       cardLine: 'Sunting cepat dalam satu tab: potong, fade, balik, ubah tempo, dan normalisasi.',
@@ -1076,7 +1110,7 @@ export const id: Catalog = {
         },
         {
           q: 'Apakah nada dering akan putus saat berulang?',
-          a: 'Tambahkan fade out yang pendek di panel Sesuaikan — perulangan kembali ke awal terdengar wajar, tidak terputus di tengah nada. Menulis klip itu 2 sampai 16 kali menjadi berkas yang lebih panjang adalah pengulang audio. Halaman ini tetap di dalam 40 detik.',
+          a: 'Tambahkan fade out yang pendek di halaman — perulangan kembali ke awal terdengar wajar, tidak terputus di tengah nada. Menulis klip itu 2 sampai 16 kali menjadi berkas yang lebih panjang adalah pengulang audio. Halaman ini tetap di dalam 40 detik.',
         },
         {
           q: 'Apakah ada watermark atau batas?',
@@ -1084,6 +1118,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Jatuhkan lagu, atau klik untuk memilih',
+      exportLabel: 'Buat nada dering',
     },
     'audio-joiner': {
       cardLine: 'Jahit memo suara, lagu, atau episode podcast menjadi satu file utuh.',
@@ -1166,7 +1201,7 @@ export const id: Catalog = {
       howTo: [
         {
           name: 'Jatuhkan WAV Anda',
-          text: 'Seret file .wav ke halaman, atau klik untuk memilih. Format audio lain (M4A, FLAC, OGG) dikonversi dengan cara yang sama.',
+          text: 'Seret file .wav ke halaman, atau klik untuk memilih. Format audio lain (M4A, FLAC, OGG) dikonversi dengan cara yang sama. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.',
         },
         {
           name: 'Pilih bitrate',
@@ -1178,6 +1213,7 @@ export const id: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Bisakah saya mengubah lebih dari satu WAV?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         {
           q: 'Apakah konversi WAV ke MP3 mengurangi kualitas?',
           a: 'MP3 bersifat lossy, jadi sebagian informasi dibuang — tetapi pada 320 kbps hampir tidak ada yang bisa membedakannya dari WAV dalam uji buta. Jika tidak boleh ada kehilangan sama sekali, simpan WAV-nya; konverter ini ada untuk menghemat ruang dan agar file bisa diputar di mana saja.',
@@ -1203,7 +1239,7 @@ export const id: Catalog = {
           a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
         },
       ],
-      dropHint: 'Jatuhkan file WAV, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file WAV, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
     },
     'flac-to-mp3': {
@@ -1227,7 +1263,7 @@ export const id: Catalog = {
       howTo: [
         {
           name: 'Jatuhkan FLAC kamu',
-          text: 'Seret file .flac ke halaman, atau klik untuk memilih. Format lossless lain dikonversi dengan cara yang sama.',
+          text: 'Seret file .flac ke halaman, atau klik untuk memilih. Format lossless lain dikonversi dengan cara yang sama. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.',
         },
         {
           name: 'Pilih bitrate',
@@ -1239,6 +1275,7 @@ export const id: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Bisakah saya mengubah lebih dari satu FLAC?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         {
           q: 'Apakah konversi FLAC ke MP3 menurunkan kualitas?',
           a: 'MP3 itu lossy, jadi sebagian informasi dibuang — tapi di 320 kbps hampir tidak ada yang bisa membedakannya dari FLAC dalam tes buta. Simpan FLAC sebagai arsip dan anggap MP3 sebagai versi portabelnya.',
@@ -1264,7 +1301,7 @@ export const id: Catalog = {
           a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
         },
       ],
-      dropHint: 'Jatuhkan file FLAC, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file FLAC, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
     },
     'mp3-to-wav': {
@@ -1288,7 +1325,7 @@ export const id: Catalog = {
       howTo: [
         {
           name: 'Jatuhkan MP3 kamu',
-          text: 'Seret file .mp3 ke halaman, atau klik untuk memilih. Format terkompresi lain didekode dengan cara yang sama.',
+          text: 'Seret file .mp3 ke halaman, atau klik untuk memilih. Format terkompresi lain didekode dengan cara yang sama. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.',
         },
         {
           name: 'Biarkan WAV terpilih',
@@ -1300,6 +1337,7 @@ export const id: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Bisakah saya mengubah lebih dari satu MP3 ke WAV?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         {
           q: 'Apakah mengubah MP3 ke WAV menaikkan kualitas?',
           a: 'Tidak — dan waspadai konverter yang mengklaim sebaliknya. Data yang dibuang encoder sudah hilang. WAV berisi persis apa yang dihasilkan dekode MP3, dan justru karena itulah ia format yang tepat untuk mengedit lagi: tidak menambah generasi lossy baru.',
@@ -1325,7 +1363,7 @@ export const id: Catalog = {
           a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
         },
       ],
-      dropHint: 'Jatuhkan file MP3, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file MP3, atau klik untuk memilih',
       exportLabel: 'Konversi ke WAV',
     },
     'compress-audio': {
@@ -1349,7 +1387,7 @@ export const id: Catalog = {
       howTo: [
         {
           name: 'Jatuhkan file kamu',
-          text: 'Tambahkan MP3, WAV, M4A, atau audio lain. Ia didekode di perangkatmu dan tidak pernah diunggah.',
+          text: 'Tambahkan MP3, WAV, M4A, atau audio lain. Ia didekode di perangkatmu dan tidak pernah diunggah. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.',
         },
         {
           name: 'Pilih ukuran target',
@@ -1361,6 +1399,7 @@ export const id: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Bisakah saya mengecilkan lebih dari satu file?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         {
           q: 'Bagaimana kompresi audio di sini bekerja?',
           a: 'File didekode lalu dienkode ulang sebagai MP3 di bitrate pilihanmu. Ukuran sebanding dengan bitrate: satu menit stereo sekitar 2,4 MB di 320 kbps, 1 MB di 128, dan 0,5 MB di 64.',
@@ -1390,7 +1429,7 @@ export const id: Catalog = {
           a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
         },
       ],
-      dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file audio, atau klik untuk memilih',
       exportLabel: 'Kompres',
     },
     'bitrate-converter': {
@@ -1412,11 +1451,12 @@ export const id: Catalog = {
         'Turunkan 320 kbps ke 128 kbps, sekitar 40% ukuran.',
       ],
       howTo: [
-        { name: 'Tambahkan file', text: 'Jatuhkan audio yang bisa didekode browser ini. Konversi tetap di tab.' },
+        { name: 'Tambahkan file', text: 'Jatuhkan audio yang bisa didekode browser ini. Konversi tetap di tab. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.' },
         { name: 'Pilih bitrate', text: 'Buka menu format. Mulainya 192 kbps. Laju lain adalah 320, 128, 96, dan 64.' },
         { name: 'Ekspor MP3', text: 'File dikode pada laju yang Anda pilih. Tag dan sampul tidak ikut disalin.' },
       ],
       faqs: [
+        { q: 'Bisakah saya mengubah bitrate lebih dari satu file?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         {
           q: 'Apakah 320 kbps membuat MP3 128 kbps terdengar lebih baik?',
           a: 'Tidak. Encoder hanya menyimpan apa yang masih ada di sumber. MP3 128 kbps yang disimpan lagi pada 320 kbps adalah file yang lebih besar dari rekaman yang sama. Mulai dari WAV atau rekaman asli jika Anda butuh detailnya.',
@@ -1442,7 +1482,7 @@ export const id: Catalog = {
           a: 'Ya. Pilih file dan konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format umum di iPhone dan Android. File yang sangat panjang memakai lebih banyak memori, jadi komputer lebih stabil lewat sekitar satu jam.',
         },
       ],
-      dropHint: 'Letakkan file audio di sini, atau klik untuk memilih',
+      dropHint: 'Letakkan beberapa file audio di sini, atau klik untuk memilih',
       exportLabel: 'Konversi',
     },
     'reverse-audio': {
@@ -1500,6 +1540,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+      exportLabel: 'Balikkan dan unduh',
     },
     'change-audio-speed': {
       cardLine: 'Percepat kuliah ke 2× atau perlambat riff untuk dipelajari — nadanya tetap.',
@@ -1560,6 +1601,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+      exportLabel: 'Ubah tempo dan unduh',
     },
     'increase-volume': {
       cardLine: 'Angkat memo suara yang pelan hingga 4× dengan limiter, tanpa clipping.',
@@ -1621,6 +1663,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+      exportLabel: 'Keraskan dan unduh',
     },
     'mp4-to-mp3': {
       cardLine: 'Simpan trek suara klip video, rekaman layar, atau file kamera sebagai MP3.',
@@ -1643,7 +1686,7 @@ export const id: Catalog = {
       howTo: [
         {
           name: 'Jatuhkan video',
-          text: 'Seret MP4 ke halaman, atau klik untuk memilih. File WebM dan MOV dengan trek audio standar diproses dengan cara yang sama.',
+          text: 'Seret MP4 ke halaman, atau klik untuk memilih. File WebM dan MOV dengan trek audio standar diproses dengan cara yang sama. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.',
         },
         {
           name: 'Pilih bitrate',
@@ -1655,6 +1698,7 @@ export const id: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Bisakah saya mengubah lebih dari satu video?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         {
           q: 'Apakah videonya diunggah ke suatu tempat?',
           a: 'Tidak — dan untuk video hal ini perlu diulang, karena filenya besar. Browser membaca file dari disk Anda, mendekode hanya trek audionya, lalu menulis MP3 secara lokal. Frame video tidak pernah diproses atau dikirim.',
@@ -1676,7 +1720,7 @@ export const id: Catalog = {
           a: 'Tidak. Resolusi video tidak berpengaruh — trek video diabaikan seluruhnya. File 4K dan file 240p dengan soundtrack yang sama dikonversi dengan cara yang identik.',
         },
       ],
-      dropHint: 'Jatuhkan file MP4 atau video, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file MP4 atau video, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
     },
     'extract-audio': {
@@ -1700,7 +1744,7 @@ export const id: Catalog = {
       howTo: [
         {
           name: 'Jatuhkan videonya',
-          text: 'MP4, WebM, atau MOV apa pun dengan soundtrack standar bisa dipakai. File tidak pernah meninggalkan perangkat Anda.',
+          text: 'MP4, WebM, atau MOV apa pun dengan soundtrack standar bisa dipakai. File tidak pernah meninggalkan perangkat Anda. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.',
         },
         {
           name: 'Pilih formatnya',
@@ -1712,6 +1756,7 @@ export const id: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Bisakah saya mengambil audio dari lebih dari satu video?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         {
           q: 'Apa bedanya dengan konverter MP4 ke MP3?',
           a: 'Di baliknya, mesin ekstraksi lokalnya sama — halaman ini disiapkan untuk mengeluarkan audio dari video dalam format yang Anda butuhkan, termasuk WAV lossless, sedangkan halaman konverter diarahkan untuk keluaran MP3.',
@@ -1737,7 +1782,7 @@ export const id: Catalog = {
           a: 'Bisa. Pilih file, lalu konversi tetap di tab ini. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
         },
       ],
-      dropHint: 'Jatuhkan file video, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file video, atau klik untuk memilih',
       exportLabel: 'Ekstrak Audio',
     },
     'voice-recorder': {
@@ -1856,6 +1901,7 @@ export const id: Catalog = {
         { q: "Apa bedanya dengan pengukur kenyaringan?", a: "Menggeser kontrol ini mengalikan setiap sampel. Pengukur kenyaringan mengukur LUFS terintegrasi dan menawarkan podcast −16, streaming −14, dan siaran −23. Jika puncak sampel akan melewati −1 dBFS, gain berhenti. Ini bukan pengukur ruangan." },
       ],
       dropHint: 'Jatuhkan file audio atau video, atau klik untuk memilih',
+      exportLabel: 'Keraskan dan unduh',
     },
     'normalize-audio': {
       cardLine: 'Bawa seluruh tumpukan rekaman ke level yang konsisten dan sehat.',
@@ -1878,7 +1924,7 @@ export const id: Catalog = {
       howTo: [
         {
           name: 'Jatuhkan audio Anda',
-          text: 'MP3, WAV, M4A, atau file audio lain apa pun. File didekode dan dianalisis secara lokal — tidak ada yang meninggalkan perangkat Anda.',
+          text: 'MP3, WAV, M4A, atau file audio lain apa pun. File didekode dan dianalisis secara lokal — tidak ada yang meninggalkan perangkat Anda. Beberapa file memakai tombol Normalisasi yang sama. Setiap file naik ke puncaknya sendiri. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.',
         },
         {
           name: 'Klik Normalisasi',
@@ -1890,6 +1936,7 @@ export const id: Catalog = {
         },
       ],
       faqs: [
+        { q: 'Bisakah saya menormalkan lebih dari satu file?', a: 'Bisa. Saat Normalisasi menyala, setiap file dalam antrean memakainya. Setiap file diukur sendiri dan naik ke puncaknya sendiri, satu per satu di perangkat ini. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         {
           q: 'Apa yang sebenarnya dilakukan normalisasi?',
           a: 'Normalisasi menerapkan satu jumlah gain yang tetap ke seluruh file, sehingga sampel tunggal yang paling keras berada tepat di bawah batas digital (sekitar −0.2 dB di sini). Jika puncak sebuah file berada di 50% volume, normalisasi kira-kira menggandakan setiap sampel — bagian yang pelan maupun yang keras.',
@@ -1915,7 +1962,8 @@ export const id: Catalog = {
           a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
         },
       ],
-      dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file audio, atau klik untuk memilih',
+      exportLabel: 'Normalkan dan unduh',
     },
     'slowed-reverb': {
       cardLine: 'Beri lagu apa pun nuansa malam slowed + reverb dalam satu klik.',
@@ -1976,6 +2024,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Jatuhkan lagu, atau klik untuk memilih',
+      exportLabel: 'Perlambat dan unduh',
     },
     'tempo-changer': {
       cardLine: 'Ubah durasi dari 0.75× sampai 1.25×. Nada tetap.',
@@ -2006,6 +2055,7 @@ export const id: Catalog = {
         { q: 'Apakah berfungsi di ponsel?', a: 'Ya. Penggeser kecepatan dan tombol ekspor bisa diketuk di Chrome, Edge, Firefox, dan Safari saat ini.' },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+      exportLabel: 'Ubah tempo',
     },
     'pitch-changer': {
       cardLine: 'Geser nada per semiton untuk cover dan mashup — durasinya tetap.',
@@ -2041,6 +2091,7 @@ export const id: Catalog = {
         },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
+      exportLabel: 'Ubah nada dan unduh',
     },
     'm4a-to-mp3': {
       cardLine: 'Konversi memo suara iPhone dan file AAC jadi MP3 yang bisa diputar di mana saja.',
@@ -2059,18 +2110,19 @@ export const id: Catalog = {
         'M4A tetap di perangkat ini. Tidak ada yang diunggah untuk menyelesaikan konversi.',
       ],
       howTo: [
-        { name: 'Jatuhkan M4A', text: 'Seret file .m4a atau .aac ke halaman, atau klik untuk memilih. Video MP4 ada di halaman MP4 ke MP3.' },
+        { name: 'Jatuhkan M4A', text: 'Seret file .m4a atau .aac ke halaman, atau klik untuk memilih. Video MP4 ada di halaman MP4 ke MP3. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.' },
         { name: 'Pilih bitrate', text: '320 kbps untuk musik, 192 kbps untuk dengar sehari-hari, 128 kbps untuk memo suara.' },
         { name: 'Konversi dan unduh', text: 'Klik Konversi ke MP3. Dekode dan enkode terjadi di perangkat Anda, lalu file terunduh.' },
       ],
       faqs: [
+        { q: 'Bisakah saya mengubah lebih dari satu M4A?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         { q: 'Bisakah mengubah M4A ke MP3 di iPhone, Android, atau Mac?', a: 'Bisa — konverter berjalan di browser apa pun, jadi perangkatnya bebas. Audio AAC di dalam M4A, yang dipakai memo suara dan sebagian besar unduhan AAC. Apple Lossless (ALAC) di dalam M4A sering gagal didekode di browser. Ubah dulu ke AAC atau WAV, lalu bawa ke sini.' },
         { q: 'Bagaimana dengan video MP4?', a: 'Pakai konverter MP4 ke MP3 untuk video. Halaman ini untuk audio: M4A dan AAC.' },
         { q: 'Mengubah ke MP3 mengurangi kualitas?', a: 'MP3 bersifat lossy. Pada 320 kbps, bedanya dengan AAC asli kecil bagi hampir semua orang. Simpan M4A jika Anda perlu file asli yang utuh.' },
         { q: 'Tag dan sampul ikut tersimpan?', a: 'Tidak. MP3 ditulis tanpa metadata, sama seperti konverter WAV. Judul, artis, dan sampul tidak disalin.' },
         { q: 'Apakah file diunggah?', a: 'Tidak. Browser mendekode M4A dan mengkodekan MP3 di perangkat Anda. Audionya tetap di situ.' },
       ],
-      dropHint: 'Jatuhkan file M4A atau AAC, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file M4A atau AAC, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
     },
     'ogg-to-mp3': {
@@ -2090,18 +2142,19 @@ export const id: Catalog = {
         'Biarkan ucapan di 128 kbps dan musik lebih tinggi. Mencoba lagi dilakukan lokal, dan gratis.',
       ],
       howTo: [
-        { name: 'Jatuhkan OGG', text: 'Seret file .ogg atau .oga ke halaman, atau klik untuk memilih.' },
+        { name: 'Jatuhkan OGG', text: 'Seret file .ogg atau .oga ke halaman, atau klik untuk memilih. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.' },
         { name: 'Pilih bitrate', text: '320 kbps untuk musik, 192 kbps untuk dengar sehari-hari, 128 kbps untuk suara.' },
         { name: 'Konversi dan unduh', text: 'Klik Konversi ke MP3. Dekode dan kode terjadi di perangkat Anda, lalu MP3 terunduh.' },
       ],
       faqs: [
+        { q: 'Bisakah saya mengubah lebih dari satu OGG?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         { q: 'Apa itu file OGG?', a: 'OGG adalah wadah. Musik di dalamnya biasanya Vorbis. Beberapa file suara memakai Opus. Jika browser bisa mendekode, halaman ini mengubahnya menjadi MP3.' },
         { q: 'Browser mana yang bisa mengonversi OGG?', a: 'Chrome dan Firefox mendekode Vorbis dan Opus di dalam OGG. Safari mendekode Opus dan sering menolak Vorbis. Jika file tidak berbunyi di tab browser biasa, halaman ini juga tidak bisa mengonversinya.' },
         { q: 'Konversi OGG ke MP3 mengurangi kualitas?', a: 'MP3 berlossy. Pada 320 kbps perbedaannya kecil bagi hampir semua orang. Simpan OGG jika Anda perlu file asli.' },
         { q: 'Tag dan sampul tetap ada?', a: 'Tidak. MP3 ditulis tanpa metadata. Judul, artis, dan sampul tidak disalin.' },
         { q: 'Apakah file diunggah?', a: 'Tidak. Browser mendekode OGG dan mengkode MP3 secara lokal. Audio tetap di perangkat Anda.' },
       ],
-      dropHint: 'Jatuhkan file OGG, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file OGG, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
     },
     'opus-to-mp3': {
@@ -2121,18 +2174,19 @@ export const id: Catalog = {
         'Konversi di sini, lalu potong jika pesan punya sunyi panjang di salah satu ujung.',
       ],
       howTo: [
-        { name: 'Jatuhkan Opus', text: 'Seret file .opus ke halaman, atau klik untuk memilih. OGG dan WebM yang berisi Opus bekerja dengan cara yang sama.' },
+        { name: 'Jatuhkan Opus', text: 'Seret file .opus ke halaman, atau klik untuk memilih. OGG dan WebM yang berisi Opus bekerja dengan cara yang sama. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang kamu pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.' },
         { name: 'Pilih bitrate', text: '128 kbps cukup untuk pesan suara. Jika Opus-nya musik, pakai 192 atau 320 kbps.' },
         { name: 'Konversi dan unduh', text: 'Klik Konversi ke MP3. Dekode dan kode terjadi di perangkat Anda, lalu MP3 terunduh.' },
       ],
       faqs: [
+        { q: 'Bisakah saya mengubah lebih dari satu file Opus?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         { q: 'Apa itu format Opus?', a: 'Opus adalah codec audio. Pesan suara WhatsApp dan Telegram sering berupa .opus. Opus juga ada di dalam OGG dan WebM. Halaman ini mengubahnya menjadi MP3 yang bisa diputar di mana saja.' },
         { q: 'File Opus mana yang berhasil?', a: 'File yang browser sudah bisa putar: .opus, OGG dengan Opus, dan WebM dengan Opus, di Chrome, Firefox, dan Safari terbaru. Jika tab biasa tetap senyap, halaman ini juga tidak bisa mendekode file itu.' },
         { q: 'Konversi Opus ke MP3 mengurangi kualitas?', a: 'MP3 berlossy, Opus juga. Pada 320 kbps, MP3 sudah di batas formatnya. Pesan suara cukup di 128 kbps. Simpan file Opus jika Anda perlu yang asli.' },
         { q: 'Apakah tag tetap ada?', a: 'Tidak. MP3 ditulis tanpa metadata. Judul dan artis tidak disalin.' },
         { q: 'Apakah file diunggah?', a: 'Tidak. Browser mendekode audio Opus dan mengkode MP3 secara lokal. Audio tetap di perangkat Anda.' },
       ],
-      dropHint: 'Jatuhkan file Opus, atau klik untuk memilih',
+      dropHint: 'Jatuhkan beberapa file Opus, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
     },
     'waveform-generator': {
@@ -2249,20 +2303,21 @@ export const id: Catalog = {
         'Membuang metadata perangkat dan lokasi yang tertinggal di rekaman sebelum dibagikan.',
       ],
       howTo: [
-        { name: 'Letakkan MP3 Anda', text: 'Letakkan file atau klik untuk memilih. Tag dan cover saat ini dibaca di perangkat Anda dan ditampilkan di formulir.' },
+        { name: 'Letakkan MP3 Anda', text: 'Letakkan file atau klik untuk memilih. Tag dan cover saat ini dibaca di perangkat Anda dan ditampilkan di formulir. Beberapa MP3 bisa berbagi artis, album, tahun, genre, dan sampul. Judul dan nomor lagu tetap di tiap file. Dua atau lebih diunduh sebagai ZIP.' },
         { name: 'Edit kolomnya', text: 'Ketik judul, artis, album, tahun, dan nomor trek yang benar, lalu tambahkan atau ganti cover dengan JPG atau PNG.' },
         { name: 'Simpan MP3', text: 'Klik "Simpan MP3" untuk mengunduh file yang sudah diberi tag. Audio disalin tanpa perubahan — yang ditulis ulang hanya kartu informasi di sekelilingnya.' },
       ],
       faqs: [
+        { q: 'Bisakah saya menandai satu album utuh?', a: 'Bisa. Jatuhkan beberapa MP3. Artis, album, tahun, genre, dan sampul berlaku untuk setiap file. Judul dan nomor lagu tetap di tiap baris. Nomor lagu yang kosong mulai dari 1. Satu file unduh sendiri. Dua atau lebih kembali sebagai ZIP. Audionya tetap disalin byte per byte.' },
         { q: 'Apakah MP3 saya diunggah ke server?', a: 'Tidak. File dibuka dengan API FileReader milik browser dan ditulis ulang langsung di tab Anda. Anda bisa membuka halaman ini, mematikan Wi-Fi, dan editor tetap berjalan. Tidak ada langkah unggah sama sekali.' },
         { q: 'Apakah mengedit tag mengubah kualitas audio?', a: 'Tidak. Data tag tersimpan di blok terpisah di awal file, dan frame audio MPEG disalin byte demi byte, sehingga suaranya identik bit demi bit. File hasil simpan bahkan bisa sedikit lebih kecil karena blok tag lama beserta paddingnya tidak dibawa.' },
         { q: 'Apa bedanya dengan Editor MP3?', a: 'Editor MP3 memotong, memangkas, dan menyambung suaranya, artinya audio didekode dan dienkode ulang. Halaman ini tidak pernah menyentuh suara — yang ditulis ulang hanya kartu informasi di sekelilingnya. Gunakan yang itu untuk mengedit musik, yang ini untuk memberi label.' },
-        { q: 'Apa yang tidak bisa dilakukannya?', a: 'Hanya file MP3 yang bisa diedit — FLAC, M4A, dan WAV memakai format tag berbeda yang belum bisa ditulis halaman ini. Bekerja satu file per kali, bukan satu album sekaligus. Saat menyimpan, seluruh blok tag ditulis ulang, jadi bab podcast atau kolom kustom yang tidak biasa dari tag asli tidak dibawa — kolom yang umum tetap dibawa.' },
+        { q: 'Apa yang tidak bisa dilakukannya?', a: 'Hanya file MP3 yang bisa diedit — FLAC, M4A, dan WAV memakai format tag berbeda yang belum bisa ditulis halaman ini. Beberapa MP3 bisa berbagi artis, album, tahun, genre, dan sampul, dan setiap file menyimpan judul serta nomor lagunya sendiri. Saat menyimpan, seluruh blok tag ditulis ulang, jadi bab podcast atau kolom kustom yang tidak biasa dari tag asli tidak dibawa — kolom yang umum tetap dibawa.' },
         { q: 'Mengapa head unit mobil masih menampilkan "Track 01"?', a: 'Banyak head unit mengabaikan tag dan mengandalkan nama file, dan kebanyakan menyimpan informasi lama sampai Anda memasang ulang flashdisk atau memindai ulang. Simpan di sini (file ditulis sebagai ID3v2.3, versi yang paling andal dibaca head unit), ubah nama file menjadi semacam "01 - Judul Lagu.mp3", lalu pindai ulang.' },
         { q: 'Tag bahasa Mandarin, Jepang, Korea, atau Arab saya tampil kacau. Bisa diperbaiki?', a: 'Bisa — biasanya artinya tag lama tersimpan dengan enkode satu byte, bukan Unicode. Ketik ulang teks yang benar di sini dan simpan: file ditulis ulang sebagai ID3v2.3 dengan teks UTF-16, yang ditampilkan dengan benar oleh pemutar modern, termasuk judul Mandarin, Jepang, Korea, Arab, Kiril, dan Hindi.' },
         { q: 'Apakah berfungsi di ponsel?', a: 'Ya — Chrome, Safari, Firefox, dan Edge terbaru, di desktop maupun ponsel. Saat menyimpan, file diserahkan ke browser seperti unduhan biasa; di iPhone, Safari menyimpannya ke app File. Semuanya berjalan lokal, jadi tetap berfungsi dengan koneksi lambat setelah halaman terbuka.' },
       ],
-      dropHint: 'Letakkan file MP3 di sini, atau klik untuk memilih',
+      dropHint: 'Letakkan beberapa file MP3 di sini, atau klik untuk memilih',
       exportLabel: 'Simpan MP3',
     },
     compressor: {
@@ -2297,6 +2352,7 @@ export const id: Catalog = {
         { q: 'Apakah berfungsi di ponsel?', a: 'Ya. Slider dan ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari saat ini. Beberapa menit ucapan diekspor dalam satu atau dua detik di ponsel yang baru.' },
       ],
       dropHint: 'Letakkan file audio di sini, atau klik untuk memilih',
+      exportLabel: 'Kompres dan unduh',
     },
     echo: {
       cardLine: 'Tambahkan pengulangan yang bisa dihitung: satu tepukan pendek, bukan kabut reverb.',
@@ -2324,6 +2380,7 @@ export const id: Catalog = {
         { q: 'Apakah berfungsi di ponsel?', a: 'Ya. Kedua slider dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari saat ini.' },
       ],
       dropHint: 'Letakkan file audio di sini, atau klik untuk memilih',
+      exportLabel: 'Tambahkan gema',
     },
     'audio-distorter': {
       cardLine: 'Dorong rekaman yang bersih menjadi clipping yang hangat atau yang keras.',
@@ -2351,6 +2408,7 @@ export const id: Catalog = {
         { q: 'Apakah berfungsi di ponsel?', a: 'Ya. Slider dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari saat ini.' },
       ],
       dropHint: 'Letakkan file audio di sini, atau klik untuk memilih',
+      exportLabel: 'Distorsi dan unduh',
     },
     'silence-remover': {
       cardLine: "Potong senyap yang panjang dan biarkan napas pendek tetap di tempatnya.",
@@ -2365,11 +2423,12 @@ export const id: Catalog = {
       usesHeading: "Di mana udara mati itu ada",
       uses: ["Rapatkan memo suara atau rekaman podcast yang jedanya panjang antar kalimat.", "Buang senyap dari kuliah tanpa memotong setiap jeda dengan tangan.", "Bersihkan rekaman sebelum ekspor, dan biarkan napas pendek tetap ada."],
       howTo: [
-        { name: "Letakkan audio", text: "MP3, WAV, M4A, OGG, atau FLAC apa pun. Berkas didekode di perangkat Anda." },
+        { name: "Letakkan audio", text: "MP3, WAV, M4A, OGG, atau FLAC apa pun. Berkas didekode di perangkat Anda. Beberapa file memakai ambang dan jeda yang kamu atur berikutnya. Setiap file dipotong sendiri. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP." },
         { name: "Atur ambang dan jeda", text: "Ambang adalah seberapa pelan sebuah bagian, dari −60 sampai −20 dBFS. Jeda minimum adalah berapa lama bagian itu harus bertahan sebelum dihapus, dari 0,1 sampai 2 detik. Baris status menulis kira-kira berapa detik yang akan hilang." },
         { name: "Ekspor", text: "Putar berkas asli untuk memeriksa, lalu ekspor MP3 atau WAV. Berkasnya adalah bagian yang bersuara digabung, dengan 0,08 detik tersisa di setiap potongan." },
       ],
       faqs: [
+        { q: 'Bisakah saya memotong keheningan dari lebih dari satu file?', a: 'Bisa. Beberapa file memakai ambang dan jeda minimum di halaman ini. Setiap file diukur dan dipotong sendiri, satu per satu di perangkat ini. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },
         { q: "Apakah audio saya diunggah?", a: "Tidak. Level diukur di peramban dan bagian pelan dipotong di memori. Setelah halaman termuat Anda bisa offline dan ekspor tetap jalan." },
         { q: "Apa yang benar-benar dihapus?", a: "Sebuah bagian dihapus hanya jika lebih pelan dari ambang dan lebih lama dari jeda minimum. Bawaan adalah −40 dBFS dan 0,35 detik. Setiap bagian menyisakan 0,08 detik di kedua ujung. Jeda yang lebih pendek, termasuk sebagian besar napas, tetap ada." },
         { q: "Apakah musik pelan ikut terpotong?", a: "Ya, jika musik itu tetap di bawah ambang lebih lama dari jeda. −40 dBFS untuk ucapan. Alas pelan, fade, atau derau ruang dalam campuran musik dianggap senyap. Naikkan ambang ke arah −20 jika Anda hanya ingin nol digital yang hampir hening, atau pakai pemotong audio dan pilih dengan tangan." },
@@ -2377,7 +2436,8 @@ export const id: Catalog = {
         { q: "Apa bedanya dengan pemotong?", a: "Pemotong audio dan pemotong MP3 menyimpan wilayah yang Anda gambar di gelombang. Halaman ini menemukan senyap panjang dari level dan menghapus semuanya dalam satu ekspor. Kecepatan, nada, dan kenyaringan yang tersisa tidak berubah." },
         { q: "Apakah ini jalan di ponsel?", a: "Ya. Kedua penggeser dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari yang sekarang." },
       ],
-      dropHint: "Letakkan berkas audio, atau klik untuk menelusuri",
+      dropHint: 'Jatuhkan beberapa file audio, atau klik untuk memilih',
+      exportLabel: 'Hapus senyap',
     },
     'audio-looper': {
       cardLine: 'Ulangi satu klip sampai 16 kali dan samarkan setiap sambungan.',
@@ -2404,6 +2464,7 @@ export const id: Catalog = {
         { q: 'Apakah bisa di ponsel?', a: 'Ya. Kedua slider, gelombang, dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari yang sekarang.' },
       ],
       dropHint: 'Letakkan berkas audio, atau klik untuk memilih',
+      exportLabel: 'Ulangi dan unduh',
     },
     'auto-panner': {
       cardLine: 'Sapukan satu berkas ke kiri dan kanan dengan laju yang Anda tentukan. Gerakan ini tidak mengikuti ketukan.',
@@ -2430,6 +2491,7 @@ export const id: Catalog = {
         { q: 'Apakah ini berfungsi di ponsel?', a: 'Ya. Kedua penggeser, gelombang, dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari yang sekarang.' },
       ],
       dropHint: 'Letakkan berkas audio, atau klik untuk memilih',
+      exportLabel: 'Pan dan unduh',
     },
     '3d-audio': {
       cardLine: 'Satu sakelar menaruh berkas pada lingkaran pelan dan menambah ekor reverb pendek.',
@@ -2456,6 +2518,7 @@ export const id: Catalog = {
         { q: 'Apakah ini berfungsi di ponsel?', a: 'Ya. Sakelar, gelombang, dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari yang sekarang.' },
       ],
       dropHint: 'Letakkan berkas audio, atau klik untuk memilih',
+      exportLabel: 'Terapkan 3D',
     },
     metronome: {
       cardLine: 'Klik dari 40 sampai 240 BPM. Ketukan pertama tiap birama lebih keras.',
@@ -2574,6 +2637,126 @@ export const id: Catalog = {
         { q: 'Mengapa hanya 8 trek?', a: 'Setiap trek didekode ke memori sebelum diputar. Delapan file stereo sudah banyak untuk tab ponsel. Produksi 16 trek dengan plugin adalah alat lain.' },
       ],
       dropHint: 'Letakkan dua audio atau lebih untuk menumpuknya',
+    },
+    'split-mp3': {
+      cardLine: 'Potong satu file menjadi 2 sampai 16 bagian sama, lalu unduh bersama.',
+      name: 'Pisah MP3',
+      shortName: 'Pemisah',
+      title: 'Pisah MP3 — 2 sampai 16 file sama',
+      description: 'Potong satu rekaman jadi 2 sampai 16 file sama dan unduh satu zip. WAV menyimpan sampel di setiap potongan. Setiap MP3 dikode sekali, sampai 320 kbps.',
+      h1: 'Pisah MP3 menjadi beberapa file',
+      heroAlt: 'Memotong satu rekaman menjadi file yang sama panjang',
+      subtitle: 'Bagian sama, dari 2 sampai 16, dalam satu zip.',
+      intro: 'Pemisah audio ini memotong satu file menjadi bagian yang sama panjang. Jumlahnya dari 2 sampai 16, dan mulai di 2, yaitu dua bagian. Setiap bagian sama panjang, selisih paling banyak satu sampel. Seret pilihan untuk memotong hanya rentang itu. Tanpa pilihan, seluruh file yang dipotong. Bagian-bagian diunduh sebagai satu zip. Dekode dan potongan tetap di browser Anda.',
+      usesHeading: 'Untuk apa bagian ini',
+      uses: ['Pisahkan MP3 menjadi beberapa file saat satu file terlalu panjang untuk dikirim.', 'Pecah memo suara menjadi potongan sama yang bisa Anda kirim satu per satu.', 'Pisahkan file audio menjadi bagian tanpa mencari senyap.'],
+      howTo: [
+        { name: 'Letakkan audio', text: 'MP3, WAV, M4A, OGG, atau FLAC apa pun. File didekode di perangkat Anda.' },
+        { name: 'Tentukan jumlah', text: 'Bagian berjalan dari 2 sampai 16. Baris status menulis jumlah file dan kira-kira berapa lama masing-masing. Seret gelombang jika hanya sebagian file yang harus dipotong.' },
+        { name: 'Unduh zip', text: 'Ekspor MP3 atau WAV. Unduhan adalah satu zip dengan nama file, dan di dalamnya ada bagian 1, bagian 2, dan sisanya.' },
+      ],
+      faqs: [
+        { q: 'Apakah audio saya diunggah?', a: 'Tidak. File didekode di browser Anda, dipotong di sana, dan dikemas jadi zip di sana. Setelah halaman termuat, Anda bisa offline dan ekspor tetap jalan. WAV tidak butuh unduhan tambahan. MP3 dikode offline setelah encoder termuat sekali.' },
+        { q: 'Di mana potongannya jatuh?', a: 'Di batas sampel. Bagian sama panjang, dan jika jumlah sampel tidak habis dibagi, bagian paling awal lebih panjang satu sampel. Tidak ada yang tumpang-tindih dan tidak ada yang hilang. WAV adalah sampel itu. Setiap MP3 dikode sekali, pada bitrate yang Anda pilih, sampai 320 kbps. Memutar MP3 itu berurutan bisa menunjukkan beberapa milidetik isian codec di sambungan.' },
+        { q: 'Apakah terpotong di senyap atau bab?', a: 'Tidak. Potongan adalah waktu yang sama, bukan pencarian jeda, tanda bab, atau lagu baru. Birama yang sunyi tetap terpotong sesuai jam. Jumlah hanya 2 sampai 16. File dengan sampel lebih sedikit daripada jumlah bagian ditolak.' },
+        { q: 'Bedanya dengan memotong?', a: 'Potong Audio dan Potong Lagu menyimpan satu rentang, atau menghapus satu rentang, lalu menyimpan satu file. Halaman ini menulis beberapa file dengan panjang sama. Gabung Audio sebaliknya: menaruh file yang berbeda berurutan. Hapus senyap adalah halaman yang mengikuti jeda.' },
+        { q: 'Apakah jalan di ponsel?', a: 'Ya. Penggeser bagian, gelombang, dan unduhan bisa disentuh di Chrome, Edge, Firefox, dan Safari sekarang. Di iPhone, Safari menyimpan zip ke app File.' },
+      ],
+      dropHint: 'Letakkan file audio, atau klik untuk memilih',
+      exportLabel: 'Unduh bagian',
+    },
+    'stereo-to-mono': {
+      cardLine: 'Rata-ratakan setiap kanal jadi satu, lalu unduh file itu.',
+      name: 'Stereo ke mono',
+      shortName: 'Ke mono',
+      title: 'Stereo ke mono — satu kanal rata-rata',
+      description: 'Rata-ratakan kanal jadi satu dan unduh. WAV menyimpan sampel itu. MP3 mengode file mono itu sekali, sampai 320 kbps.',
+      h1: 'Stereo ke mono',
+      heroAlt: 'Merata-ratakan stereo menjadi satu kanal',
+      subtitle: 'Satu kanal: rata-rata setiap kanal dalam file.',
+      intro: 'Halaman ini menulis satu kanal. Setiap sampel adalah rata-rata kanal dalam file, jadi kiri dan kanan bertemu di tengah. File yang sudah satu kanal disalin. Dekode dan rata-rata tetap di browser Anda.',
+      usesHeading: 'Saat file yang Anda butuhkan punya satu kanal',
+      uses: [
+        'Memo suara yang harus terdengar sama dari satu speaker.',
+        'File yang ditolak pemutar atau aplikasi yang hanya menerima mono.',
+        'Campuran yang kiri dan kanannya harus menyatu, bukan melebar.',
+      ],
+      howTo: [
+        { name: 'Letakkan audio', text: 'MP3, WAV, M4A, OGG, atau FLAC. Didekode di perangkat Anda.' },
+        { name: 'Ekspor rata-rata', text: 'Tidak ada pengatur lebar. Ekspor menulis satu kanal. Putar dulu jika Anda ingin mendengar rata-ratanya.' },
+        { name: 'Buka file', text: 'Pemutar yang menampilkan jumlah kanal seharusnya menyebut satu. WAV adalah sampel yang sudah dirata-rata. MP3 mengode mereka sekali, sampai 320 kbps.' },
+      ],
+      faqs: [
+        { q: 'Apakah audio saya diunggah?', a: 'Tidak. File didekode di browser Anda dan dirata-rata di sana. Setelah halaman termuat, Anda bisa offline dan ekspor tetap jalan. WAV tidak butuh unduhan tambahan. MP3 dikode offline setelah encoder termuat sekali.' },
+        { q: 'Bagaimana mono dibuat?', a: 'Setiap sampel adalah jumlah kanal pada saat itu, dibagi jumlah kanal. Dua kanal berarti (kiri + kanan) / 2. File yang sudah satu kanal disalin. WAV menyimpan sampel itu. MP3 mengode kanal itu sekali, pada bitrate yang Anda pilih, sampai 320 kbps.' },
+        { q: 'Bisakah mono jadi stereo?', a: 'Tidak. Halaman ini tidak mengarang kanal kedua. Menyalin satu kanal ke kiri dan kanan tetap satu sinyal, dan itu pekerjaan lain. File yang Anda unduh di sini punya satu kanal.' },
+        { q: 'Bedanya dengan memotong?', a: 'Potong Audio menyimpan rentang waktu dan membiarkan jumlah kanal. Konversi MP3 ke WAV mengganti wadah dan juga membiarkan kanal. Halaman ini mengubah jumlah kanal dan menjaga durasi.' },
+        { q: 'Apakah jalan di ponsel?', a: 'Ya. Letakkan, putar, dan unduh bisa disentuh di Chrome, Edge, Firefox, dan Safari sekarang.' },
+      ],
+      dropHint: 'Letakkan file audio, atau klik untuk memilih',
+      exportLabel: 'Unduh mono',
+    },
+    bitcrusher: {
+      cardLine: 'Kuantisasi ke 1–16 bit dan tahan tiap anak tangga sampai 32 sampel.',
+      name: 'Bitcrusher',
+      shortName: 'Crush',
+      title: 'Bitcrusher online — 1 sampai 16 bit',
+      description: 'Kuantisasi dari 16 bit ke 1, tahan tiap anak tangga sampai 32 sampel. WAV menyimpan sampel hancur. MP3 mengode sekali, sampai 320 kbps.',
+      h1: 'Bitcrusher online',
+      heroAlt: 'Mengubah gelombang halus menjadi anak tangga',
+      subtitle: 'Bit dari 1 sampai 16, dan tahan dari 1 sampai 32 sampel.',
+      intro: 'Bitcrusher online ini mengurangi berapa tingkat yang bisa diambil tiap sampel, lalu menahan tingkat itu selama beberapa sampel. Stereo tetap stereo: tiap kanal dihancurkan sendiri. Seret pilihan untuk menghancurkan rentang itu saja. Dekode dan penghancuran tetap di browser Anda.',
+      usesHeading: 'Untuk apa anak tangga itu',
+      uses: [
+        'Vokal yang harus terdengar seperti konsol lama.',
+        'Loop drum yang anak tangganya harus tetap terdengar.',
+        'Satu kalimat dalam file, sisanya dibiarkan.',
+      ],
+      howTo: [
+        { name: 'Letakkan audio', text: 'MP3, WAV, M4A, OGG, atau FLAC. Didekode di perangkat Anda.' },
+        { name: 'Atur bit dan tahan', text: 'Bit berjalan dari 1 sampai 16 dan mulai di 8. Tahan berjalan dari 1 sampai 32 dan mulai di 2. Putar untuk mendengarnya. Seret gelombang jika hanya satu rentang yang dihancurkan.' },
+        { name: 'Ekspor', text: 'WAV menyimpan sampel berundak. MP3 mengode mereka sekali, sampai 320 kbps, dan bisa melunakkan anak tangga.' },
+      ],
+      faqs: [
+        { q: 'Apakah audio saya diunggah?', a: 'Tidak. File didekode di browser Anda dan dihancurkan di sana. Setelah halaman termuat, Anda bisa offline dan ekspor tetap jalan. WAV tidak butuh unduhan tambahan. MP3 dikode offline setelah encoder termuat sekali.' },
+        { q: 'Apa yang dilakukan bit dan tahan?', a: 'Bit menentukan jumlah tingkat. Pada 16 bit, sampel skala penuh tetap di tempat jika tahan adalah 1. Pada 1 bit, sampel menjadi naik, turun, atau senyap. Tahan mengulang tingkat saat ini selama sebanyak sampel itu: tahan 4 menjaga satu nilai selama empat sampel, lalu mengambil langkah berikutnya. Tiap kanal dihancurkan sendiri, jadi file stereo tetap stereo.' },
+        { q: 'Apakah MP3 menjaga anak tangga?', a: 'WAV adalah sampel yang dihancurkan. MP3 mengode mereka sekali, pada bitrate yang Anda pilih, sampai 320 kbps. Encoder bisa membulatkan anak tangga yang tajam. Jika anak tangga harus tetap, ekspor WAV.' },
+        { q: 'Bedanya dengan distorsi?', a: 'Distorsi audio membengkokkan gelombang lewat kurva yang halus. Halaman ini mengganti sampel dengan daftar tingkat yang pendek, lalu menahannya. Gema menambah salinan di belakang. Filter low-pass menurunkan nada tinggi. Tidak satu pun dari itu pengatur kedalaman bit.' },
+        { q: 'Apakah jalan di ponsel?', a: 'Ya. Penggeser bit, penggeser tahan, gelombang, dan unduhan bisa disentuh di Chrome, Edge, Firefox, dan Safari sekarang.' },
+      ],
+      dropHint: 'Letakkan file audio, atau klik untuk memilih',
+      exportLabel: 'Ekspor hancur',
+    },
+    '432-hz-converter': {
+      cardLine: 'Turunkan nada sekitar 0.32 seminada dan jaga durasinya.',
+      name: 'Konverter 432 Hz',
+      shortName: '432 Hz',
+      title: 'Konverter 432 Hz — durasi sama, turun 0.32',
+      description: 'Turunkan nada sebesar 12*log2(432/440), sekitar 0.32 seminada, dan jaga durasinya. WAV adalah pergeseran itu. MP3 mengode sekali, sampai 320 kbps.',
+      h1: 'Konverter 432 Hz',
+      heroAlt: 'Menurunkan file sekitar 0.32 seminada',
+      subtitle: 'Seluruh file turun sekitar 0.32 seminada. Durasi tetap.',
+      intro: 'Konverter ini menggeser seluruh file sebesar 12 kali log2 dari 432 per 440, sekitar 0.32 seminada ke bawah. Nada 440 Hz mendekati 432 Hz. Durasi tidak berubah, dan nada tidak disetem satu per satu. Dekode dan pergeseran tetap di browser Anda.',
+      usesHeading: 'Saat seluruh file harus lebih dekat ke 432 Hz',
+      uses: [
+        'Trek yang disetem di sekitar 440 Hz dan Anda ingin lebih dekat ke 432 Hz.',
+        'Loop yang durasinya harus tetap agar masih sejajar.',
+        'File yang akan Anda letakkan di samping trek lain yang sudah digeser ke 432 Hz.',
+      ],
+      howTo: [
+        { name: 'Letakkan audio', text: 'MP3, WAV, M4A, OGG, atau FLAC. Didekode di perangkat Anda.' },
+        { name: 'Dengar pergeseran', text: 'Pratinjau adalah file yang sudah digeser. Halaman ini tidak punya penggeser seminada, karena seminada yang dibulatkan menjadi nol dan file tidak bergerak.' },
+        { name: 'Ekspor', text: 'Durasi sama dengan file yang Anda letakkan. WAV adalah sampel yang digeser. MP3 mengode mereka sekali, sampai 320 kbps.' },
+      ],
+      faqs: [
+        { q: 'Apakah audio saya diunggah?', a: 'Tidak. File didekode di browser Anda dan digeser di sana. Setelah halaman termuat, Anda bisa offline dan ekspor tetap jalan. WAV tidak butuh unduhan tambahan. MP3 dikode offline setelah encoder termuat sekali.' },
+        { q: 'Seberapa jauh ia bergerak?', a: 'Pergeseran adalah 12 kali log2 dari 432 per 440, sekitar 0.3177 seminada ke bawah, dan halaman memakai pecahan itu. Ia tidak membulatkan ke seminada bulat terdekat, yang akan menjadi nol dan membuat file tidak berubah. Nada 440 Hz mendekati 432 Hz. Sisa file bergerak dengan jumlah yang sama. WAV adalah sampel yang digeser. MP3 mengode mereka sekali, pada bitrate yang Anda pilih, sampai 320 kbps.' },
+        { q: 'Apakah durasi berubah?', a: 'Tidak. Ini pergeseran nada, bukan perubahan kecepatan. Pengubah tempo mengubah durasi. Ubah Kecepatan Audio juga mengubah durasi, kecuali Anda menjaga nadanya. Di sini durasi tetap dan nada turun.' },
+        { q: 'Bisakah menyetem satu nada?', a: 'Tidak. Seluruh file bergerak bersama. Sebuah akor tidak ditarik nadanya ke 432 Hz satu per satu. File yang lebih pendek dari 32 sampel dikembalikan apa adanya, karena penggeser butuh audio sebanyak itu. Halaman ini tidak mengklaim hasilnya lebih sehat, lebih tenang, atau lebih baik.' },
+        { q: 'Apakah jalan di ponsel?', a: 'Ya. Letakkan, putar, dan unduh bisa disentuh di Chrome, Edge, Firefox, dan Safari sekarang.' },
+      ],
+      dropHint: 'Letakkan file audio, atau klik untuk memilih',
+      exportLabel: 'Unduh 432 Hz',
     },
   },
 };

@@ -43,17 +43,36 @@ export interface EditorText {
   play: string;
   pause: string;
   hintSelect: string;
+  hintTrim: string;
+  changeFile: string;
+  statStart: string;
+  statSpan: string;
+  statEnd: string;
+  selectAll: string;
+  playBtn: string;
+  chMono: string;
+  chStereo: string;
+  /** Placeholder: {n} */
+  chMany: string;
   hintConvert: string;
   hintSilence: string;
   reverse: string;
   normalize: string;
   speed: string;
+  /** Shown under the speed slider. Pitch follows the speed on this page. */
+  speedPitch: string;
+  /** Shown under the tempo slider. This page keeps the pitch. */
+  tempoPitch: string;
   pitch: string;
+  /** Shown under the pitch slider. This page does not change the length. */
+  pitchLength: string;
   bass: string;
   treble: string;
   mid: string;
   cutoff: string;
   volume: string;
+  /** Shown under the volume slider. */
+  gainOriginal: string;
   reverb: string;
   compress: string;
   echoDelay: string;
@@ -80,6 +99,15 @@ export interface EditorText {
   loopCrossfade: string;
   loopExport: string;
   loopTooLong: string;
+  splitParts: string;
+  splitExport: string;
+  splitTooShort: string;
+  crushBits: string;
+  crushHold: string;
+  /** Placeholders: {bits} {hold} */
+  crushExport: string;
+  monoExport: string;
+  hz432Export: string;
   lufsIntegrated: string;
   lufsPeak: string;
   lufsPodcast: string;
@@ -128,6 +156,10 @@ export interface EditorText {
   exported: string;
   saved: string;
   exportFail: string;
+  /** Placeholders: {current} {total} */
+  batchProgress: string;
+  /** Placeholder: {n} */
+  batchSkipped: string;
   merging: string;
   mergingStatus: string;
   moveUp: string;
@@ -212,6 +244,7 @@ export interface EditorText {
   tgSaved: string;
   tgSaving: string;
   tgSaveCover: string;
+  tgShared: string;
   tgTitle: string;
   tgTrack: string;
   tgWriteFail: string;

@@ -20,6 +20,7 @@ const { editor: t } = getShell(locale);
   data-i18n={JSON.stringify(t)}
   class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
 >
+  <div data-empty>
   <div
     data-dropzone
     class="mx-4 mt-4 cursor-pointer rounded-xl border border-dashed border-line px-6 py-10 text-center md:mx-5 md:py-12"
@@ -37,6 +38,7 @@ const { editor: t } = getShell(locale);
       {t.dropLocal}
     </p>
   </div>
+  </div>
   <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input />
 
   <div data-workspace class="hidden">
@@ -45,8 +47,8 @@ const { editor: t } = getShell(locale);
         <p data-file-name class="truncate text-sm font-medium"></p>
         <p data-file-meta class="font-mono text-xs text-ink3"></p>
       </div>
-      <button type="button" class="btn btn-ghost size-9 shrink-0 p-0" data-reset aria-label={t.loadDifferent} title={t.startOver}>
-        <Icon name="arrow-arc-left" size={16} />
+      <button type="button" class="btn btn-secondary h-9 shrink-0 px-3 text-sm" data-reset>
+        {t.changeFile}
       </button>
     </div>
 

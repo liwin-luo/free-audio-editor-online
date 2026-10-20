@@ -7,7 +7,7 @@ import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, concatPeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { renderMerge } from './processor';
 import { encodeFor, getFormat } from './encoders';
-import { bindDeliveryChips, bindFileOpen } from './delivery';
+import { bindDeliveryChips, bindFileOpen, setEmptyHidden } from './delivery';
 import { initEditors } from './index';
 import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
@@ -150,7 +150,7 @@ class Joiner {
 
     list.innerHTML = '';
     workspace.classList.toggle('hidden', this.clips.length === 0);
-    dropzone.hidden = this.clips.length > 0;
+    setEmptyHidden(dropzone, this.clips.length > 0);
     summary.textContent = fill(this.text.trackSummary, {
       n: this.clips.length,
       time: formatTime(this.totalDuration(), true),

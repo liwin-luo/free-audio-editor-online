@@ -24,7 +24,7 @@ const { editor: t } = getShell(locale);
   data-i18n={JSON.stringify(t)}
   class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
 >
-  <!-- Empty state / dropzone -->
+  <div data-empty>
   <DropPromise config={config} locale={locale}>
     <div data-open tabindex="0" role="button" aria-label={config.dropHint}>
       <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
@@ -39,7 +39,8 @@ const { editor: t } = getShell(locale);
       {t.dropLocal}
     </p>
   </div>
-  <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input />
+  </div>
+  <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input {...(config.batch ? { multiple: true } : {})} />
 
   <!-- Workspace: visible after a file is loaded -->
   <div data-workspace class="hidden">
@@ -54,10 +55,11 @@ const { editor: t } = getShell(locale);
           <p data-file-meta class="font-mono text-xs text-ink3"></p>
         </div>
       </div>
-      <button type="button" class="btn btn-ghost size-9 shrink-0 p-0" data-reset aria-label={t.loadDifferent} title={t.startOver}>
-        <Icon name="arrow-arc-left" size={16} />
+      <button type="button" class="btn btn-secondary h-9 shrink-0 px-3 text-sm" data-reset>
+        {t.changeFile}
       </button>
     </div>
+    <ul data-batch-list class="hidden max-h-36 list-disc overflow-auto border-b border-line px-8 py-2 text-xs leading-5 text-ink2"></ul>
 
     <!-- Controls -->
     <div class="grid gap-x-6 gap-y-4 border-b border-line px-4 py-3.5 sm:grid-cols-2 md:px-5">

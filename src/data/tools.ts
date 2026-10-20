@@ -45,6 +45,8 @@ export type ToolIcon =
 export interface EditorConfig {
   /** Accept multiple files and merge them (audio-joiner) */
   multiple?: boolean;
+  /** Same settings on each file. One file downloads alone; two or more come back as a zip. */
+  batch?: boolean;
   /** Stack files on one timeline (multi-track-audio-editor) */
   mixer?: boolean;
   /** Default export format id. Omitted on image-output tools. */
@@ -59,6 +61,14 @@ export interface EditorConfig {
   tagEditor?: boolean;
   /** Show the Adjust drawer (gain, speed, reverse, fades) */
   showAdjust?: boolean;
+  /** Trimmer layout: span readout, always-visible times, labeled play. */
+  trimLayout?: boolean;
+  /** Volume percents shown as buttons next to the gain slider. */
+  gainPresets?: number[];
+  /** Speed multiples shown as buttons next to the speed slider. */
+  speedPresets?: number[];
+  /** Semitone jumps shown as buttons next to the pitch slider. */
+  pitchPresets?: number[];
   /** Ringtone mode: clamp selection to 40 seconds */
   ringtone?: boolean;
   /** Headline shown inside the empty dropzone */
@@ -69,6 +79,14 @@ export interface EditorConfig {
   silence?: boolean;
   /** Repeat the kept selection, or the whole file, on export. */
   loop?: boolean;
+  /** Cut the kept selection, or the whole file, into equal parts and zip them. */
+  split?: boolean;
+  /** Export one channel: the average of the source channels. */
+  mono?: boolean;
+  /** Quantize and sample-hold. Sliders live on the page. */
+  bitcrush?: boolean;
+  /** Shift pitch by 12·log2(432/440). Length stays. */
+  hz432?: boolean;
   /** File LUFS meter island instead of the waveform editor. */
   loudness?: boolean;
   /** Click island. No file. Oscillator playback, optional bar export. */
@@ -226,10 +244,12 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['silence-remover', 'mp3-cutter', 'audio-joiner'],
+    related: ['silence-remover', 'mp3-cutter', 'split-mp3'],
     editor: {
       defaultFormat: 'mp3-192',
-      showAdjust: true,
+      showAdjust: false,
+      trimLayout: true,
+      exportLabel: 'Trim and download',
       dropHint: 'Drop an audio file, or click to browse',
     },
   },
@@ -337,10 +357,12 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['silence-remover', 'audio-trimmer', 'audio-joiner'],
+    related: ['silence-remover', 'audio-trimmer', 'split-mp3'],
     editor: {
       defaultFormat: 'mp3-192',
-      showAdjust: true,
+      showAdjust: false,
+      trimLayout: true,
+      exportLabel: 'Cut and download',
       dropHint: 'Drop an MP3 file, or click to browse',
     },
   },
@@ -499,7 +521,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Will the ringtone loop badly?',
-        a: 'Add a short fade-out in the Adjust drawer. It makes the phone’s loop back to the start less abrupt. Repeating that clip into a longer file, 2 to 16 times, is the audio looper. This page stays inside 40 seconds.',
+        a: 'Set a short fade out on the page. It makes the phone’s loop back to the start less abrupt. Repeating that clip into a longer file, 2 to 16 times, is the audio looper. This page stays inside 40 seconds.',
       },
       {
         q: 'Is there a watermark or limit?',
@@ -535,9 +557,12 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['mp3-cutter', 'audio-trimmer', 'audio-looper'],
     editor: {
+      exportLabel: 'Make ringtone',
       defaultFormat: 'mp3-192',
-      showAdjust: true,
+      showAdjust: false,
       ringtone: true,
+      trimLayout: true,
+      quickControls: ['fade'],
       dropHint: 'Drop a song, or click to browse',
       formats: ['m4r', 'mp3-320', 'mp3-192', 'mp3-128', 'wav'],
     },
@@ -772,7 +797,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your WAV',
-        text: 'Drag a .wav file onto the page or click to browse. Other audio formats (M4A, FLAC, OGG) convert the same way.',
+        text: 'Drag a .wav file onto the page or click to browse. Other audio formats (M4A, FLAC, OGG) convert the same way. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Pick a bitrate',
@@ -784,6 +809,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I convert more than one WAV?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'Will converting WAV to MP3 lose quality?',
         a: 'MP3 is lossy, so some information is discarded — but at 320 kbps virtually nobody can tell the difference from the WAV in a blind test. If you need zero loss, keep the WAV; this converter exists to save space and play everywhere.',
@@ -847,11 +873,12 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['bitrate-converter', 'ogg-to-mp3', 'audio-trimmer'],
+    related: ['bitrate-converter', 'ogg-to-mp3', 'stereo-to-mono'],
     editor: {
       defaultFormat: 'mp3-320',
-      dropHint: 'Drop a WAV file, or click to browse',
+      dropHint: 'Drop WAV files, or click to browse',
       converter: true,
+      batch: true,
       exportLabel: 'Convert to MP3',
     },
   },
@@ -884,7 +911,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your FLAC',
-        text: 'Drag a .flac file onto the page or click to browse. Other lossless formats convert the same way.',
+        text: 'Drag a .flac file onto the page or click to browse. Other lossless formats convert the same way. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Pick a bitrate',
@@ -896,6 +923,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I convert more than one FLAC?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'Does converting FLAC to MP3 lose quality?',
         a: 'MP3 is lossy, so some information is discarded — but at 320 kbps virtually nobody can tell the difference from the FLAC in a blind test. Keep the FLAC as your archive copy and treat the MP3 as the portable one.',
@@ -951,8 +979,9 @@ export const TOOLS: ToolDef[] = [
     related: ['wav-to-mp3', 'm4a-to-mp3', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-320',
-      dropHint: 'Drop a FLAC file, or click to browse',
+      dropHint: 'Drop FLAC files, or click to browse',
       converter: true,
+      batch: true,
       exportLabel: 'Convert to MP3',
       formats: ['mp3-320', 'mp3-192', 'mp3-128'],
     },
@@ -986,7 +1015,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your MP3',
-        text: 'Drag an .mp3 file onto the page or click to browse. Other compressed formats decode the same way.',
+        text: 'Drag an .mp3 file onto the page or click to browse. Other compressed formats decode the same way. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Keep WAV selected',
@@ -998,6 +1027,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I convert more than one MP3 to WAV?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'Does converting MP3 to WAV improve the quality?',
         a: 'No — and be skeptical of any converter claiming otherwise. The data the encoder discarded is gone. WAV gives you exactly what the MP3 decodes to, which is why it is the right format for further editing: it never adds another lossy generation.',
@@ -1050,11 +1080,12 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['wav-to-mp3', 'extract-audio', 'fade-audio'],
+    related: ['wav-to-mp3', 'extract-audio', 'stereo-to-mono'],
     editor: {
       defaultFormat: 'wav',
-      dropHint: 'Drop an MP3 file, or click to browse',
+      dropHint: 'Drop MP3 files, or click to browse',
       converter: true,
+      batch: true,
       exportLabel: 'Convert to WAV',
       formats: ['wav'],
     },
@@ -1088,7 +1119,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your file',
-        text: 'Add an MP3, WAV, M4A or other audio file. It is decoded on your device and never uploaded.',
+        text: 'Add an MP3, WAV, M4A or other audio file. It is decoded on your device and never uploaded. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Pick the target size',
@@ -1100,6 +1131,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I shrink more than one file?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'How does audio compression work here?',
         a: 'The file is decoded and re-encoded as MP3 at the bitrate you pick. Size scales linearly with bitrate: one minute of stereo audio is about 2.4 MB at 320 kbps, 1 MB at 128 and 0.5 MB at 64.',
@@ -1159,8 +1191,9 @@ export const TOOLS: ToolDef[] = [
     related: ['bitrate-converter', 'wav-to-mp3', 'compressor'],
     editor: {
       defaultFormat: 'mp3-128',
-      dropHint: 'Drop an audio file, or click to browse',
+      dropHint: 'Drop audio files, or click to browse',
       converter: true,
+      batch: true,
       exportLabel: 'Compress',
       formats: ['mp3-320', 'mp3-192', 'mp3-128', 'mp3-96', 'mp3-64'],
     },
@@ -1194,7 +1227,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Add the file',
-        text: 'Drop any audio file this browser can decode. The conversion stays in the tab.',
+        text: 'Drop any audio file this browser can decode. The conversion stays in the tab. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Choose the bitrate',
@@ -1206,6 +1239,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I change the bitrate of more than one file?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'Will 320 kbps make a 128 kbps MP3 sound better?',
         a: 'No. The encoder can only keep what the source still has. A 128 kbps MP3 saved again at 320 kbps is a larger file of the same take. Start from the WAV or the original recording if you need the detail.',
@@ -1261,8 +1295,9 @@ export const TOOLS: ToolDef[] = [
     related: ['compress-audio', 'wav-to-mp3', 'mp3-to-wav'],
     editor: {
       defaultFormat: 'mp3-192',
-      dropHint: 'Drop an audio file, or click to browse',
+      dropHint: 'Drop audio files, or click to browse',
       converter: true,
+      batch: true,
       exportLabel: 'Convert',
       formats: ['mp3-320', 'mp3-192', 'mp3-128', 'mp3-96', 'mp3-64'],
     },
@@ -1359,8 +1394,9 @@ export const TOOLS: ToolDef[] = [
     related: ['change-audio-speed', 'pitch-changer', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-192',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Reverse and download',
       quickControls: ['reverse'],
     },
   },
@@ -1460,9 +1496,11 @@ export const TOOLS: ToolDef[] = [
     related: ['pitch-changer', 'metronome', 'tempo-changer'],
     editor: {
       defaultFormat: 'mp3-192',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Change speed',
       quickControls: ['speed'],
+      speedPresets: [0.5, 0.75, 1, 1.25, 1.5, 2],
     },
   },
   {
@@ -1565,10 +1603,12 @@ export const TOOLS: ToolDef[] = [
     related: ['loudness-meter', 'normalize-audio', 'volume-booster'],
     editor: {
       defaultFormat: 'mp3-192',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Boost and download',
       quickControls: ['gain'],
       maxGainPercent: 400,
+      gainPresets: [100, 150, 200, 250, 400],
     },
   },
   {
@@ -1600,7 +1640,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your video',
-        text: 'Drag an MP4 onto the page or click to browse. WebM and MOV files with standard audio tracks work the same way.',
+        text: 'Drag an MP4 onto the page or click to browse. WebM and MOV files with standard audio tracks work the same way. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Pick a bitrate',
@@ -1612,6 +1652,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I convert more than one video?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'Does the video get uploaded anywhere?',
         a: 'No — and this is the part worth repeating with video, because files are big. The browser reads the file from your disk, decodes only its audio track, and writes the MP3 locally. Video frames are never processed or transmitted.',
@@ -1670,9 +1711,10 @@ export const TOOLS: ToolDef[] = [
     related: ['extract-audio', 'audio-trimmer', 'mp3-tag-editor'],
     editor: {
       defaultFormat: 'mp3-320',
-      dropHint: 'Drop an MP4 or video file, or click to browse',
+      dropHint: 'Drop MP4 or video files, or click to browse',
       accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
       converter: true,
+      batch: true,
       exportLabel: 'Convert to MP3',
     },
   },
@@ -1705,7 +1747,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop the video',
-        text: 'Any MP4, WebM or MOV with a standard soundtrack works. The file never leaves your device.',
+        text: 'Any MP4, WebM or MOV with a standard soundtrack works. The file never leaves your device. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Choose the format',
@@ -1717,6 +1759,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I pull the audio out of more than one video?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'What is the difference between this and an MP4 to MP3 converter?',
         a: 'Under the hood, the same local extraction engine — this page is set up for getting audio out of a video in whatever format you need, including lossless WAV, while the converter page is tuned for MP3 output.',
@@ -1772,9 +1815,10 @@ export const TOOLS: ToolDef[] = [
     related: ['mp4-to-mp3', 'audio-trimmer', 'volume-booster'],
     editor: {
       defaultFormat: 'mp3-192',
-      dropHint: 'Drop a video file, or click to browse',
+      dropHint: 'Drop video files, or click to browse',
       accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
       converter: true,
+      batch: true,
       exportLabel: 'Extract Audio',
     },
   },
@@ -1904,7 +1948,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your file',
-        text: 'Add an MP3, WAV, M4A, video file or other recording. It is decoded on your device and never uploaded.',
+        text: 'Add an MP3, WAV, M4A, video file or other recording. It is decoded on your device and never uploaded. Several recordings can share the language and model you pick next. Each one still stops around 10 minutes. One transcript stays in the box. Two or more come back as a ZIP of TXT and SRT.',
       },
       {
         name: 'Pick a language and model',
@@ -1916,6 +1960,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I transcribe more than one recording?', a: 'Yes. Several recordings share the language and the model. They run one after another on this device, and each one is still capped at about 10 minutes. One transcript stays in the box for you to edit. Two or more download as a ZIP of TXT and SRT files. A phone runs out of time and memory sooner.' },
       {
         q: 'Is my audio uploaded?',
         a: 'No. The file is decoded in your browser and transcribed by a Whisper model that runs locally through WebAssembly or WebGPU. The only network request is the one-time model download from a public CDN — after that, transcription itself works offline. Nothing about your audio ever reaches a server.',
@@ -1926,7 +1971,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'What are the limits?',
-        a: 'One file at a time, up to 10 minutes per pass — trim longer recordings first (the audio trimmer works the same private way). It does not label speakers: a dialogue comes out as one flowing text without names. And this page works on files, not the live microphone.',
+        a: 'Several files, one after another, each up to 10 minutes — trim a longer recording first (the audio trimmer works the same private way). It does not label speakers: a dialogue comes out as one flowing text without names. And this page works on files, not the live microphone.',
       },
       {
         q: 'How is this different from the voice recorder?',
@@ -1971,7 +2016,8 @@ export const TOOLS: ToolDef[] = [
     related: ['voice-recorder', 'extract-audio', 'audio-trimmer'],
     editor: {
       transcribe: true,
-      dropHint: 'Drop an audio or video file, or click to browse',
+      batch: true,
+      dropHint: 'Drop audio or video files, or click to browse',
       accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
       exportLabel: 'Transcribe',
     },
@@ -2089,11 +2135,13 @@ export const TOOLS: ToolDef[] = [
     related: ['loudness-meter', 'increase-volume', 'normalize-audio'],
     editor: {
       defaultFormat: 'mp3-192',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio or video file, or click to browse',
+      exportLabel: 'Boost and download',
       accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
       quickControls: ['gain'],
       maxGainPercent: 400,
+      gainPresets: [100, 150, 200, 250, 400],
     },
   },
   {
@@ -2125,7 +2173,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your audio',
-        text: 'Any MP3, WAV, M4A or other audio file. It is decoded and analyzed locally — nothing leaves your device.',
+        text: 'Any MP3, WAV, M4A or other audio file. It is decoded and analyzed locally — nothing leaves your device. Several files can share that Normalize button. Each file is raised to its own peak. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Click Normalize',
@@ -2137,6 +2185,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I normalize more than one file?', a: 'Yes. Turn Normalize on and every file in the queue uses it. Each file is measured on its own and raised to its own peak, one after another on this device. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'What does normalizing actually do?',
         a: 'It applies one fixed amount of gain to the whole file so that the loudest single sample ends up just below the digital ceiling (about −0.2 dB here). If a file\u2019s peak sits at 50% volume, normalizing roughly doubles every sample — quiet parts and loud parts alike.',
@@ -2191,9 +2240,11 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['loudness-meter', 'compressor', 'volume-booster'],
     editor: {
+      exportLabel: 'Normalize and download',
       defaultFormat: 'mp3-192',
-      showAdjust: true,
-      dropHint: 'Drop an audio file, or click to browse',
+      showAdjust: false,
+      dropHint: 'Drop audio files, or click to browse',
+      batch: true,
       quickControls: ['gain', 'normalize'],
     },
   },
@@ -2292,6 +2343,7 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['compress-audio', 'volume-booster', 'normalize-audio'],
     editor: {
+      exportLabel: 'Compress and download',
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
@@ -2391,8 +2443,9 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['audio-distorter', 'slowed-reverb', 'fade-audio'],
+    related: ['audio-distorter', 'slowed-reverb', 'bitcrusher'],
     editor: {
+      exportLabel: 'Add echo',
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
@@ -2490,8 +2543,9 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['echo', 'low-pass-filter', 'volume-booster'],
+    related: ['echo', 'low-pass-filter', 'bitcrusher'],
     editor: {
+      exportLabel: 'Distort and download',
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
@@ -2527,7 +2581,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your audio',
-        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device.',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device. Several files share the threshold and the gap you set next. Each file is cut on its own. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Set the threshold and the gap',
@@ -2539,6 +2593,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I cut the silence out of more than one file?', a: 'Yes. Several files share the threshold and the minimum gap on this page. Each file is measured and cut on its own, one after another on this device. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'Is my audio uploaded?',
         a: 'No. The level is measured in your browser and the quiet stretches are cut in memory. After the page loads you can go offline and it still exports.',
@@ -2593,10 +2648,12 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['audio-trimmer', 'mp3-cutter', 'voice-recorder'],
     editor: {
+      exportLabel: 'Remove silence',
       defaultFormat: 'mp3-192',
       showAdjust: false,
       silence: true,
-      dropHint: 'Drop an audio file, or click to browse',
+      batch: true,
+      dropHint: 'Drop audio files, or click to browse',
     },
   },
   {
@@ -2795,8 +2852,9 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['echo', 'auto-panner', '3d-audio'],
     editor: {
+      exportLabel: 'Slow and download',
       defaultFormat: 'mp3-192',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop a song, or click to browse',
       quickControls: ['speed', 'reverb'],
     },
@@ -2896,8 +2954,9 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['bass-booster', 'equalizer', 'volume-booster'],
     editor: {
+      exportLabel: 'Boost treble',
       defaultFormat: 'mp3-320',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
       quickControls: ['treble'],
     },
@@ -2997,8 +3056,9 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['bass-booster', 'treble-booster', 'low-pass-filter'],
     editor: {
+      exportLabel: 'Apply EQ',
       defaultFormat: 'mp3-320',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
       quickControls: ['bass', 'mid', 'treble'],
     },
@@ -3096,10 +3156,11 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['high-pass-filter', 'audio-distorter', 'equalizer'],
+    related: ['high-pass-filter', 'audio-distorter', 'bitcrusher'],
     editor: {
+      exportLabel: 'Apply low pass',
       defaultFormat: 'mp3-320',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
       quickControls: ['lpf'],
     },
@@ -3199,8 +3260,9 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['low-pass-filter', 'voice-recorder', 'mp3-editor'],
     editor: {
+      exportLabel: 'Apply high pass',
       defaultFormat: 'mp3-320',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
       quickControls: ['hpf'],
     },
@@ -3612,8 +3674,9 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['spectrogram-generator', 'equalizer', 'treble-booster'],
     editor: {
+      exportLabel: 'Boost bass',
       defaultFormat: 'mp3-320',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
       quickControls: ['bass'],
     },
@@ -3651,7 +3714,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         name: 'Set the fade lengths',
-        text: 'Open the Adjust drawer and set Fade In and Fade Out — 1–3 seconds is natural for songs, 0.2–0.5 for loops.',
+        text: 'Set Fade in and Fade out on the page. 1–3 seconds is natural for songs, 0.2–0.5 for loops.',
       },
       {
         name: 'Preview and export',
@@ -3714,8 +3777,10 @@ export const TOOLS: ToolDef[] = [
     related: ['multi-track-audio-editor', 'audio-joiner', 'audio-looper'],
     editor: {
       defaultFormat: 'mp3-320',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Fade and download',
+      quickControls: ['fade'],
     },
   },
   {
@@ -3815,12 +3880,14 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['change-audio-speed', 'key-bpm-finder', 'tempo-changer'],
+    related: ['change-audio-speed', '432-hz-converter', 'tempo-changer'],
     editor: {
       defaultFormat: 'mp3-192',
-      showAdjust: true,
+      showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Change pitch',
       quickControls: ['pitch'],
+      pitchPresets: [-12, -7, -5, 0, 5, 7, 12],
     },
   },
   {
@@ -3910,8 +3977,9 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['change-audio-speed', 'pitch-changer', 'key-bpm-finder'],
+    related: ['change-audio-speed', 'pitch-changer', '432-hz-converter'],
     editor: {
+      exportLabel: 'Change tempo',
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
@@ -3947,7 +4015,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your M4A',
-        text: 'Drag an .m4a or .aac file onto the page, or click to browse. A video MP4 belongs on the MP4 to MP3 page instead.',
+        text: 'Drag an .m4a or .aac file onto the page, or click to browse. A video MP4 belongs on the MP4 to MP3 page instead. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Pick a bitrate',
@@ -3959,6 +4027,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I convert more than one M4A?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'Can I convert M4A to MP3 on iPhone, Android or Mac?',
         a: 'Yes — the converter runs in your browser, so iPhone, Android, Mac, Windows or Linux all work the same way: open the page and drop the file. Inside the M4A you need AAC audio, which is what voice memos and most AAC downloads use. Apple Lossless (ALAC) stored in an M4A often will not decode in a browser — convert that file to AAC or WAV first, then bring it here.',
@@ -4010,8 +4079,9 @@ export const TOOLS: ToolDef[] = [
     related: ['wav-to-mp3', 'ogg-to-mp3', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-320',
-      dropHint: 'Drop an M4A or AAC file, or click to browse',
+      dropHint: 'Drop M4A or AAC files, or click to browse',
       converter: true,
+      batch: true,
       exportLabel: 'Convert to MP3',
       accept: 'audio/mp4,audio/x-m4a,audio/aac,.m4a,.aac,.mp4',
     },
@@ -4045,7 +4115,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your OGG',
-        text: 'Drag an .ogg or .oga file onto the page, or click to browse.',
+        text: 'Drag an .ogg or .oga file onto the page, or click to browse. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Pick a bitrate',
@@ -4057,6 +4127,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I convert more than one OGG?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'What is an OGG file?',
         a: 'OGG is a container. Music files in it usually use Vorbis. Some voice files use Opus. This page converts either one when your browser can decode it.',
@@ -4108,8 +4179,9 @@ export const TOOLS: ToolDef[] = [
     related: ['opus-to-mp3', 'wav-to-mp3', 'm4a-to-mp3'],
     editor: {
       defaultFormat: 'mp3-320',
-      dropHint: 'Drop an OGG file, or click to browse',
+      dropHint: 'Drop OGG files, or click to browse',
       converter: true,
+      batch: true,
       exportLabel: 'Convert to MP3',
       accept: 'audio/ogg,audio/vorbis,.ogg,.oga',
     },
@@ -4143,7 +4215,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your Opus file',
-        text: 'Drag a .opus file onto the page, or click to browse. OGG and WebM files that contain Opus work the same way.',
+        text: 'Drag a .opus file onto the page, or click to browse. OGG and WebM files that contain Opus work the same way. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
       },
       {
         name: 'Pick a bitrate',
@@ -4155,6 +4227,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I convert more than one Opus file?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A phone runs out of memory sooner, so keep a very long file to one at a time there.' },
       {
         q: 'What is the Opus format?',
         a: 'Opus is an audio codec. WhatsApp and Telegram voice notes are often .opus. It also sits inside OGG and WebM. This page turns that audio into an MP3 you can play anywhere.',
@@ -4206,8 +4279,9 @@ export const TOOLS: ToolDef[] = [
     related: ['ogg-to-mp3', 'wav-to-mp3', 'm4a-to-mp3'],
     editor: {
       defaultFormat: 'mp3-192',
-      dropHint: 'Drop an Opus file, or click to browse',
+      dropHint: 'Drop Opus files, or click to browse',
       converter: true,
+      batch: true,
       exportLabel: 'Convert to MP3',
       accept: 'audio/ogg,audio/opus,.opus,.ogg,.webm',
     },
@@ -4240,7 +4314,7 @@ export const TOOLS: ToolDef[] = [
     howTo: [
       {
         name: 'Drop your MP3',
-        text: 'Drop the file in or click to browse. The current tags and cover art are read on your device and shown in the form.',
+        text: 'Drop the file in or click to browse. The current tags and cover art are read on your device and shown in the form. Several MP3s can share artist, album, year, genre and cover. Title and track number stay on each file. Two or more download as a ZIP.',
       },
       {
         name: 'Edit the fields',
@@ -4252,6 +4326,7 @@ export const TOOLS: ToolDef[] = [
       },
     ],
     faqs: [
+      { q: 'Can I tag a whole album?', a: 'Yes. Drop several MP3s. Artist, album, year, genre and cover apply to every file. Title and track number stay on each row. Empty track numbers start at 1. One file downloads alone. Two or more come back as a ZIP. The audio is still copied byte for byte.' },
       {
         q: 'Is my MP3 uploaded to a server?',
         a: 'No. The file is opened with the browser\u2019s own FileReader API and rewritten right in your tab. You can load this page, switch off Wi-Fi, and the editor still works. There is no upload step at all.',
@@ -4266,7 +4341,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'What can\u2019t it do?',
-        a: 'It edits MP3 files only — FLAC, M4A and WAV use different tag formats this page does not write yet. It works on one file at a time rather than a whole album in batch. And saving rewrites the whole tag block, so podcast chapters or unusual custom fields stored in the original tag are not carried over — the common fields are.',
+        a: 'It edits MP3 files only — FLAC, M4A and WAV use different tag formats this page does not write yet. Several MP3s can share one artist, album, year, genre and cover, and each file keeps its own title and track number. And saving rewrites the whole tag block, so podcast chapters or unusual custom fields stored in the original tag are not carried over — the common fields are.',
       },
       {
         q: 'Why does my car stereo still show "Track 01"?',
@@ -4292,7 +4367,7 @@ export const TOOLS: ToolDef[] = [
       {
         heading: 'What you can set, and what you cannot',
         paragraphs: [
-          'One MP3 at a time. Common fields only:',
+          'Several MP3s, or one. Common fields only. Artist, album, year, genre and cover apply to every file. Title and track number stay on each file:',
         ],
         bullets: [
           'Title, artist, album, and the other everyday fields, plus cover art.',
@@ -4312,7 +4387,7 @@ export const TOOLS: ToolDef[] = [
     editor: {
       tagEditor: true,
       accept: 'audio/mpeg,.mp3',
-      dropHint: 'Drop an MP3 file here, or click to browse',
+      dropHint: 'Drop MP3 files here, or click to browse',
       exportLabel: 'Save MP3',
     },
   },
@@ -4323,10 +4398,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Looper',
     icon: 'layers',
     category: 'effects',
-    title: 'Audio Looper — Repeat a Clip Online Free',
+    title: 'Audio Looper — Free Online MP3 Extender',
     description:
       'Repeat a selection or a whole file from 2 to 16 times, with a 0.01 s crossfade at each join. Free in your browser. Nothing is uploaded.',
-    h1: 'Audio Looper, repeat a clip 2 to 16 times',
+    h1: 'Audio Looper, an MP3 extender that repeats a clip 2 to 16 times',
     hero: {
       src: '/audio-looper.svg',
       alt: 'Repeat one clip and crossfade each join',
@@ -4388,7 +4463,9 @@ export const TOOLS: ToolDef[] = [
       },
       {
         heading: 'One clip, written again',
-        paragraphs: ['Use it when the next copy should be the same audio:'],
+        paragraphs: [
+          'An MP3 extender writes one clip again so the file lasts longer. Use it when the next copy should be the same audio:',
+        ],
         bullets: [
           'A one-bar riff you want as a practice file.',
           'A short voice cue that has to last through a longer scene.',
@@ -4405,6 +4482,7 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['audio-trimmer', 'fade-audio', 'ringtone-maker'],
     editor: {
+      exportLabel: 'Loop and download',
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
@@ -4500,6 +4578,7 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['echo', 'slowed-reverb', '3d-audio'],
     editor: {
+      exportLabel: 'Pan and download',
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
@@ -4595,6 +4674,7 @@ export const TOOLS: ToolDef[] = [
     ],
     related: ['auto-panner', 'slowed-reverb', 'echo'],
     editor: {
+      exportLabel: 'Apply 3D',
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
@@ -4793,6 +4873,392 @@ export const TOOLS: ToolDef[] = [
       dropHint: 'Drop an audio file, or click to browse',
       accept: 'audio/*,video/mp4,.m4a,.opus',
       keyBpm: true,
+    },
+  },
+  {
+    slug: 'split-mp3',
+    cardLine: 'Cut one file into 2 to 16 equal parts and download them together.',
+    name: 'Split MP3',
+    shortName: 'Splitter',
+    icon: 'scissors',
+    category: 'cut',
+    title: 'Split MP3 into Multiple Files — 2 to 16 Parts',
+    description:
+      'Cut one recording into 2 to 16 equal files and download one zip. WAV keeps the samples at each cut. MP3 encodes every part once, up to 320 kbps.',
+    h1: 'Split MP3 into multiple files',
+    hero: {
+      src: '/split-mp3.svg',
+      alt: 'Cut one recording into equal files',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'Equal parts, from 2 to 16, saved together in one zip.',
+    intro:
+      'This audio splitter cuts one file into equal parts. The count runs from 2 to 16, and it starts at 2, which is a split into two parts. Each part is the same length, give or take one sample. Drag a selection to split only that span. With no selection, the whole file is split. The parts download as one zip. Decoding and the cuts stay in your browser.',
+    usesHeading: 'What the parts are for',
+    uses: [
+      'Split an MP3 into multiple files when one file is too long to send.',
+      'Break a voice memo into equal pieces you can share one at a time.',
+      'Split an audio file into parts without hunting for silence.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device.',
+      },
+      {
+        name: 'Set the number of parts',
+        text: 'Parts runs from 2 to 16. The status line shows how many files you will get and about how long each one is. Drag the waveform if only part of the file should be split.',
+      },
+      {
+        name: 'Download the zip',
+        text: 'Export MP3 or WAV. The download is one zip named after the file, with part 1, part 2, and the rest inside.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The file is decoded in your browser, cut into parts there, and packed into a zip there. After the page loads you can go offline and it still exports. WAV needs no extra download. MP3 encoding works offline after the encoder has loaded once.',
+      },
+      {
+        q: 'Where do the cuts land?',
+        a: 'On sample boundaries. The parts are equal in length, and when the sample count does not divide evenly the earliest parts are one sample longer. Nothing overlaps and nothing is dropped. WAV is those samples. Each MP3 is encoded once, at the bitrate you pick, up to 320 kbps. Playing those MP3s back to back can show a few milliseconds of codec padding at the join.',
+      },
+      {
+        q: 'Will it split on silence or chapters?',
+        a: 'No. The cuts are equal time, not a scan for pauses, chapter marks, or a new song. A quiet bar is cut wherever the clock says. Parts only go from 2 to 16. A file with fewer samples than parts is refused.',
+      },
+      {
+        q: 'How is this different from the trimmer and the cutter?',
+        a: 'The audio trimmer and the MP3 cutter keep one span, or delete one span, and save one file. This page writes several files of equal length. The audio joiner does the opposite: it places different files in a row. The silence remover is the page that follows pauses.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The parts slider, the waveform, and the download work with touch in current Chrome, Edge, Firefox and Safari. On iPhone, Safari saves the zip to the Files app.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Equal cuts, on the samples',
+        paragraphs: [
+          'Parts run from 2 to 16. It starts at 2. Each part is the same length, except the earliest parts may be one sample longer when the length does not divide evenly. The next part starts on the sample after the previous one ends. There is no overlap and no gap.',
+          'Drag a selection to split only that span. With no selection, the whole file is split. WAV is those samples. An MP3 export encodes each part once, at the bitrate you pick, up to 320 kbps. Playing the MP3s back to back can show a few milliseconds of codec padding at the join. The samples themselves were not overlapped.',
+        ],
+      },
+      {
+        heading: 'One file, several downloads',
+        paragraphs: ['The zip is how the parts leave the browser:'],
+        bullets: [
+          'A long voice memo cut into equal pieces you can send one at a time.',
+          'A song split into two parts when a message app rejects the full file.',
+          'A take you want as separate files, not one trimmed clip.',
+        ],
+      },
+      {
+        heading: 'Not the cutter, and not a silence scan',
+        paragraphs: [
+          'The audio trimmer and the MP3 cutter keep one span, or delete one span, and save one file. This page writes several files of equal length. The audio joiner does the reverse: it places different files in a row.',
+          'It does not look for silence, chapter marks, or a new song. A quiet bar is cut wherever the clock says. If you need the cuts to follow pauses, use the silence remover, then trim what remains.',
+        ],
+      },
+    ],
+    related: ['audio-trimmer', 'mp3-cutter', 'audio-joiner'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Download parts',
+      split: true,
+    },
+  },
+  {
+    slug: 'stereo-to-mono',
+    cardLine: 'Average every channel into one and download that file.',
+    name: 'Stereo to Mono',
+    shortName: 'To Mono',
+    icon: 'convert',
+    category: 'merge',
+    title: 'Stereo to Mono Converter — One Averaged Channel',
+    description:
+      'Average the channels into one and download it. WAV keeps those samples. An MP3 encodes that mono file once, up to 320 kbps.',
+    h1: 'Stereo to mono converter',
+    hero: {
+      src: '/stereo-to-mono.svg',
+      alt: 'Average a stereo file into one channel',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'One channel: the average of every channel in the file.',
+    intro:
+      'This page writes one channel. Each sample is the average of the channels in the file, so left and right meet in the middle. A file that is already one channel is copied. Decoding and the average stay in your browser.',
+    usesHeading: 'When one channel is the file you need',
+    uses: [
+      'A voice memo that should sound the same from one speaker.',
+      'A file a mono-only player or app refused.',
+      'A mix whose left and right should sit together, not as a wide image.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device.',
+      },
+      {
+        name: 'Export the average',
+        text: 'There is no width control. Export writes one channel. Play it first if you want to hear the average.',
+      },
+      {
+        name: 'Open the file',
+        text: 'A player that shows channel count should say one. WAV is those averaged samples. MP3 encodes them once, up to 320 kbps.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The file is decoded in your browser and averaged there. After the page loads you can go offline and it still exports. WAV needs no extra download. MP3 encoding works offline after the encoder has loaded once.',
+      },
+      {
+        q: 'How is the mono file made?',
+        a: 'Each sample is the sum of the channels at that moment, divided by the number of channels. Two channels means (left + right) / 2. A file that is already one channel is copied. WAV keeps those samples. An MP3 encodes that one channel once, at the bitrate you pick, up to 320 kbps.',
+      },
+      {
+        q: 'Can it turn mono into stereo?',
+        a: 'No. This page does not invent a second channel. Copying one channel onto both left and right is still one signal, and it is a different job. The file you download here has one channel.',
+      },
+      {
+        q: 'How is this different from the trimmer?',
+        a: 'The audio trimmer keeps a span of time and leaves the channel count alone. MP3 to WAV changes the container and also leaves the channels alone. This page changes the channel count and keeps the length.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. Drop, play, and download work with touch in current Chrome, Edge, Firefox and Safari.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'The average, sample by sample',
+        paragraphs: [
+          'Each output sample is the sum of the channels at that moment, divided by how many channels the file has. Two channels means (left + right) / 2. One channel is copied into a new buffer. The length does not change.',
+          'The page does not build a stereo image, a width control, or a second file. Export is one channel. WAV is those samples. An MP3 encodes that mono file once, at the bitrate you pick, up to 320 kbps.',
+        ],
+      },
+      {
+        heading: 'What the one channel is for',
+        paragraphs: ['The average is the whole job:'],
+        bullets: [
+          'A voice memo that should play the same on one speaker.',
+          'A file a mono-only app refused because it still had two channels.',
+          'A mix you want in the middle, not spread between left and right.',
+        ],
+      },
+      {
+        heading: 'Not a trim, and not a fake stereo',
+        paragraphs: [
+          'The audio trimmer keeps a span and leaves the channels as they were. MP3 to WAV changes the format and also leaves the channels. This page keeps the length and writes one channel.',
+          'It will not turn one channel into two. Duplicating a channel so a player shows stereo still carries one signal. That is not what this export does.',
+        ],
+      },
+    ],
+    related: ['mp3-to-wav', 'pitch-changer', 'audio-trimmer'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Download mono',
+      converter: true,
+      mono: true,
+    },
+  },
+  {
+    slug: 'bitcrusher',
+    cardLine: 'Quantize to 1–16 bits and hold each step for up to 32 samples.',
+    name: 'Bitcrusher',
+    shortName: 'Crush',
+    icon: 'waveform',
+    category: 'effects',
+    title: 'Bitcrusher Online — 1 to 16 Bits',
+    description:
+      'Quantize from 16 bits down to 1, and hold each step for up to 32 samples. WAV keeps the crushed samples. MP3 encodes them once, up to 320 kbps.',
+    h1: 'Bitcrusher online',
+    hero: {
+      src: '/bitcrusher.svg',
+      alt: 'Turn a smooth wave into steps',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'Bits from 1 to 16, and a hold of 1 to 32 samples.',
+    intro:
+      'This bitcrusher online reduces how many levels each sample can take, then holds that level for a run of samples. Stereo stays stereo: each channel is crushed on its own. Drag a selection to crush only that span. Decoding and the crush stay in your browser.',
+    usesHeading: 'What the steps are for',
+    uses: [
+      'A vocal that should sound like an old game console.',
+      'A drum loop where the steps should stay audible.',
+      'One phrase in a file, with the rest left alone.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device.',
+      },
+      {
+        name: 'Set bits and hold',
+        text: 'Bits runs from 1 to 16 and starts at 8. Hold runs from 1 to 32 and starts at 2. Play to hear it. Drag the waveform if only a span should be crushed.',
+      },
+      {
+        name: 'Export',
+        text: 'WAV keeps the stepped samples. MP3 encodes them once, up to 320 kbps, and can soften the steps.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The file is decoded in your browser and crushed there. After the page loads you can go offline and it still exports. WAV needs no extra download. MP3 encoding works offline after the encoder has loaded once.',
+      },
+      {
+        q: 'What do bits and hold do?',
+        a: 'Bits sets the number of levels. At 16 bits a full-scale sample stays put when the hold is 1. At 1 bit a sample becomes up, down, or silence. Hold repeats the current level for that many samples, so a hold of 4 keeps one value across four samples, then takes the next step. Each channel is crushed on its own, so a stereo file stays stereo.',
+      },
+      {
+        q: 'Will MP3 keep the steps?',
+        a: 'WAV is the crushed samples. An MP3 encodes them once, at the bitrate you pick, up to 320 kbps. The encoder can round the sharp steps. If the steps must stay, export WAV.',
+      },
+      {
+        q: 'How is this different from the distorter?',
+        a: 'The audio distorter bends the wave through a smooth curve. This page replaces samples with a short list of levels and then holds them. The echo adds copies later in time. The low pass filter turns down highs. None of those is a bit depth control.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The bits slider, the hold slider, the waveform, and the download work with touch in current Chrome, Edge, Firefox and Safari.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Levels, then a hold',
+        paragraphs: [
+          'Bits run from 1 to 16. It starts at 8. A sample is rounded to the nearest level in that range. At 1 bit the level is only up, down, or silence. At 16 bits a full-scale sample stays at full scale when the hold is 1.',
+          'Hold runs from 1 to 32 and starts at 2. The current level is repeated for that many samples, then the next sample sets a new level. Left and right are crushed separately. The length does not change.',
+        ],
+      },
+      {
+        heading: 'What to listen for',
+        paragraphs: ['The two numbers do different jobs:'],
+        bullets: [
+          '8 bits is a mild step. 4 bits is obvious. 1 bit is up, down, or silence.',
+          'Hold 1 moves every sample. Hold 8 or more freezes each level so the stair is easy to hear.',
+          'Drag a selection when only one phrase should be crushed. With no selection, the whole file is crushed.',
+        ],
+      },
+      {
+        heading: 'Not the distorter',
+        paragraphs: [
+          'The audio distorter is a smooth curve, from light clipping to hard clipping. This page is steps and a hold. The echo adds later copies. The low pass filter only turns down highs.',
+          'WAV keeps the crushed samples. An MP3 encodes them once, up to 320 kbps, and can soften the corners. If the steps must survive, use WAV.',
+        ],
+      },
+    ],
+    related: ['audio-distorter', 'low-pass-filter', 'echo'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Export crushed',
+      bitcrush: true,
+    },
+  },
+  {
+    slug: '432-hz-converter',
+    cardLine: 'Lower the pitch by about 0.32 semitones and keep the length.',
+    name: '432 Hz Converter',
+    shortName: '432 Hz',
+    icon: 'note',
+    category: 'effects',
+    title: '432 Hz Converter — Same Length, 0.32 Down',
+    description:
+      'Lower the pitch by 12*log2(432/440), about 0.32 semitones, and keep the length. WAV is that shift. MP3 encodes it once, up to 320 kbps.',
+    h1: '432 Hz converter',
+    hero: {
+      src: '/432-hz-converter.svg',
+      alt: 'Lower a file by about 0.32 semitones',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'The whole file moves down by about 0.32 semitones. The length stays.',
+    intro:
+      'This converter shifts the whole file by 12 times log2 of 432 over 440, which is about 0.32 semitones down. A 440 Hz tone moves toward 432 Hz. The length does not change, and notes are not tuned one by one. Decoding and the shift stay in your browser.',
+    usesHeading: 'When the whole file should sit nearer 432 Hz',
+    uses: [
+      'A track tuned around 440 Hz that you want nearer 432 Hz.',
+      'A loop whose length has to stay the same so it still lines up.',
+      'A file you will place next to other tracks already moved toward 432 Hz.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device.',
+      },
+      {
+        name: 'Play the shift',
+        text: 'The preview is the shifted file. There is no semitone slider on this page, because a rounded semitone would be zero and the file would not move.',
+      },
+      {
+        name: 'Export',
+        text: 'The length matches the file you dropped. WAV is the shifted samples. MP3 encodes them once, up to 320 kbps.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The file is decoded in your browser and shifted there. After the page loads you can go offline and it still exports. WAV needs no extra download. MP3 encoding works offline after the encoder has loaded once.',
+      },
+      {
+        q: 'How far does it move?',
+        a: 'The shift is 12 times log2 of 432 over 440, about 0.3177 semitones down, and the page uses that fraction. It does not round to the nearest whole semitone, which would be zero and would leave the file unchanged. A 440 Hz tone moves toward 432 Hz. The rest of the file moves by the same amount. WAV is the shifted samples. An MP3 encodes them once, at the bitrate you pick, up to 320 kbps.',
+      },
+      {
+        q: 'Does the length change?',
+        a: 'No. This is a pitch shift, not a speed change. The tempo changer changes the length. Change audio speed changes the length too, unless you keep the pitch. Here the length stays and the pitch goes down.',
+      },
+      {
+        q: 'Can it retune one note?',
+        a: 'No. The whole file moves together. A chord does not get its notes pulled onto 432 Hz one by one. A file shorter than 32 samples is returned unchanged, because the shifter needs that much audio. This page does not claim the result is healthier, calmer, or better.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. Drop, play, and download work with touch in current Chrome, Edge, Firefox and Safari.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'One shift for the whole file',
+        paragraphs: [
+          'The amount is 12 times log2 of 432 over 440, about 0.32 semitones down. The page passes that fraction through. Rounding it to a whole semitone would make it zero, and the file would not move.',
+          'A 440 Hz tone moves toward 432 Hz. Every other tone moves by the same fraction. The length stays the same. WAV is the shifted samples. An MP3 encodes them once, at the bitrate you pick, up to 320 kbps.',
+        ],
+      },
+      {
+        heading: 'What stays put',
+        paragraphs: ['The shift is the whole job:'],
+        bullets: [
+          'The length matches the file you dropped.',
+          'A chord moves together. Notes are not pulled onto 432 Hz one by one.',
+          'A file shorter than 32 samples is returned unchanged.',
+        ],
+      },
+      {
+        heading: 'Not a tempo change',
+        paragraphs: [
+          'The pitch changer on this site moves by whole semitones. This page uses the fraction, about 0.32 down, so the result is not the same as leaving that control at zero.',
+          'The tempo changer and change audio speed change the length. This page does not. It also does not say the result is healthier or better. It only moves the pitch.',
+        ],
+      },
+    ],
+    related: ['pitch-changer', 'tempo-changer', 'change-audio-speed'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Download 432 Hz',
+      converter: true,
+      hz432: true,
     },
   },
 ];

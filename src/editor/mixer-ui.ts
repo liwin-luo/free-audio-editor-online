@@ -6,7 +6,7 @@ import { formatTime } from '../lib/format';
 import { computePeaks, drawWaveform } from './waveform';
 import { renderMix } from './mixer';
 import { encodeFor, getFormat } from './encoders';
-import { bindDeliveryChips, bindFileOpen } from './delivery';
+import { bindDeliveryChips, bindFileOpen, setEmptyHidden } from './delivery';
 import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
@@ -186,7 +186,7 @@ class Mixer {
     const exportBtn = this.q<HTMLButtonElement>('[data-export]');
 
     workspace.classList.toggle('hidden', this.tracks.length === 0);
-    dropzone.hidden = this.tracks.length > 0;
+    setEmptyHidden(dropzone, this.tracks.length > 0);
     summary.textContent = fill(this.text.trackSummary, {
       n: this.tracks.length,
       time: formatTime(this.timelineDuration(), true),
