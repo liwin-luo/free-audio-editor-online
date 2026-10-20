@@ -91,6 +91,11 @@ export const de: Catalog = {
     panDepth: 'Tiefe',
     panRate: 'Frequenz',
     circle: 'Kreis',
+    metroBpm: 'BPM',
+    metroMeter: 'Taktart',
+    metroBars: 'Takte',
+    metroPlay: 'Start',
+    metroStop: 'Stopp',
     silenceThreshold: 'Schwelle',
     silenceGap: 'Mindestpause',
     silenceRemove: 'Entfernt etwa {time} Stille',
@@ -3444,6 +3449,63 @@ export const de: Catalog = {
         },
       ],
       dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
+    },
+    metronome: {
+      cardLine: 'Ein Klick von 40 bis 240 BPM. Die erste Zählzeit jedes Taktes ist lauter.',
+      name: 'Metronom',
+      shortName: 'Metronom',
+      title: 'Metronom — Klick von 40 bis 240 BPM gratis',
+      description: 'Klick von 40 bis 240 BPM in 2/4, 3/4, 4/4 oder 6/8. Die erste Zählzeit ist lauter. Exportiere 4, 8 oder 16 Takte als WAV oder MP3. Nichts wird hochgeladen.',
+      h1: 'Metronom, ein Klick von 40 bis 240 BPM',
+      heroAlt: 'Ein Metronom-Klick von 40 bis 240 BPM',
+      subtitle: 'Hör den Klick, oder speichere 4, 8 oder 16 Takte. Er mischt sich nicht in ein Lied.',
+      intro: 'Das Tempo geht von 40 bis 240 BPM. Wähle 2/4, 3/4, 4/4 oder 6/8. Die erste Zählzeit jedes Taktes ist lauter. Drück Start, der Klick läuft, bis du stoppst. Der Export schreibt 4, 8 oder 16 Takte als WAV oder MP3. 6/8 sind sechs Klicks im Takt, bei diesem BPM, nicht zwei. Diese Seite nimmt keine Datei und legt den Klick nicht unter ein Lied. Diese Mischung ist der Mehrspur-Editor. Nichts wird hochgeladen.',
+      usesHeading: 'Was du damit machen kannst',
+      uses: [
+        'Ein Tempo üben, bevor du im Sprachrekorder aufnimmst.',
+        '4, 8 oder 16 Takte desselben Klicks exportieren.',
+        '6/8 als sechs Klicks hören, der erste ist lauter.',
+      ],
+      howTo: [
+        { name: 'BPM und Taktart setzen', text: 'BPM geht von 40 bis 240. Wähle 2/4, 3/4, 4/4 oder 6/8. Die Seite startet bei 100 BPM und 4/4.' },
+        { name: 'Start drücken', text: 'Der Klick läuft, bis du stoppst. Die erste Zählzeit jedes Taktes ist lauter. Jeder Klick ist derselbe kurze Ton.' },
+        { name: 'Takte exportieren, wenn du eine Datei willst', text: 'Wähle 4, 8 oder 16 Takte, dann WAV oder MP3. Die Datei ist nur der Klick. WAV behält diese Samples. MP3 kodiert sie einmal.' },
+      ],
+      faqs: [
+        { q: 'Wird etwas hochgeladen?', a: 'Nein. Die Seite liest keine Datei und öffnet kein Mikrofon. Wiedergabe und Export bleiben im Browser. Nach dem Laden kannst du offline gehen, der Klick läuft weiter.' },
+        { q: 'Wie klingt der Klick?', a: 'Bei 100 BPM liegen die Klicks 0,60 Sekunden auseinander. Die erste Zählzeit des Taktes ist lauter. Die anderen sind derselbe Ton, leiser. WAV sind diese Samples. MP3 kodiert sie einmal, mit der Bitrate, die du wählst.' },
+        { q: 'Was macht er nicht?', a: 'Er richtet den Klick nicht an einem Lied aus. Es gibt keine Datei zum Ablegen. 6/8 bleibt sechs Klicks im Takt, beim BPM des Reglers. Er wechselt nicht auf zwei Klicks im punktierten Viertel.' },
+        { q: 'Was ist der Unterschied zum Mehrspur-Editor und zur Tempo-Seite?', a: 'Diese Seite ist nur der Klick. Den Klick unter ein Lied zu legen ist der Mehrspur-Editor. Die Länge einer Aufnahme zu ändern ist die Tempo-Seite, und die Tonhöhe geht mit. Das Mikrofon ist der Sprachrekorder.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. BPM-Regler, Taktart, Start und Export tippst du in aktuellem Chrome, Edge, Firefox und Safari. Der Klick nutzt einen Web-Audio-Oszillator. Die exportierte Datei nutzt denselben Abstand.' },
+      ],
+      sections: [
+        {
+          heading: 'Der Klick',
+          paragraphs: [
+            'Bei 100 BPM liegen die Klicks 0,60 Sekunden auseinander. Die erste Zählzeit des Taktes ist lauter. Jeder Klick ist derselbe kurze Ton.',
+            '2/4 klickt zweimal im Takt, 3/4 dreimal, 4/4 viermal und 6/8 sechsmal. Das BPM ist die Klickrate in jeder dieser Taktarten.',
+          ],
+        },
+        {
+          heading: 'Eine Datei mit denselben Klicks',
+          paragraphs: [
+            'Der Export schreibt 4, 8 oder 16 Takte. WAV lässt die Klicks, wie sie sind. MP3 kodiert dieses Ergebnis einmal.',
+          ],
+          bullets: [
+            'Vier Takte 4/4 bei 100 BPM sind 16 Klicks.',
+            'Leg diese WAV in den Mehrspur-Editor, wenn du sie unter einem Lied willst.',
+            'Bleib bei Start, wenn du nur das Tempo hören wolltest.',
+          ],
+        },
+        {
+          heading: 'Was er nicht tut',
+          paragraphs: [
+            'Er richtet die Klicks nicht an einem Lied aus. Es gibt keine Datei zum Ablegen und keine Welle zum Schneiden.',
+            'Er ändert nicht die Länge einer Aufnahme. Das macht die Tempo-Seite, und die Tonhöhe geht mit der Geschwindigkeit.',
+          ],
+        },
+      ],
+      dropHint: 'Keine Datei. Drück Start.',
     },
     'loudness-meter': {
       cardLine: "Lies, wie laut eine Datei in LUFS ist, und gleiche dann ein Podcast-, Streaming- oder Broadcast-Ziel an.",

@@ -91,6 +91,11 @@ export const es: Catalog = {
     panDepth: 'Profundidad',
     panRate: 'Frecuencia',
     circle: 'Círculo',
+    metroBpm: 'BPM',
+    metroMeter: 'Compás',
+    metroBars: 'Compases',
+    metroPlay: 'Reproducir',
+    metroStop: 'Parar',
     silenceThreshold: 'Umbral',
     silenceGap: 'Pausa mínima',
     silenceRemove: 'Se quitarán unos {time} de silencio',
@@ -3447,6 +3452,63 @@ export const es: Catalog = {
         },
       ],
       dropHint: 'Suelta un archivo de audio o haz clic para buscar',
+    },
+    metronome: {
+      cardLine: 'Un clic de 40 a 240 BPM. El primer pulso de cada compás suena más fuerte.',
+      name: 'Metrónomo',
+      shortName: 'Metrónomo',
+      title: 'Metrónomo — Clic de 40 a 240 BPM gratis',
+      description: 'Un clic de 40 a 240 BPM en 2/4, 3/4, 4/4 o 6/8. El primer pulso es más fuerte. Exporta 4, 8 o 16 compases en WAV o MP3. No se sube nada.',
+      h1: 'Metrónomo, un clic de 40 a 240 BPM',
+      heroAlt: 'Un clic de metrónomo de 40 a 240 BPM',
+      subtitle: 'Escucha el clic, o guarda 4, 8 o 16 compases. No se mezcla con una canción.',
+      intro: 'El tempo va de 40 a 240 BPM. Elige 2/4, 3/4, 4/4 o 6/8. El primer pulso de cada compás es más fuerte. Pulsa reproducir y el clic sigue hasta que paras. La exportación escribe 4, 8 o 16 compases en WAV o MP3. 6/8 son seis clics en el compás, a ese BPM, no dos. Esta página no recibe un archivo y no pone el clic debajo de una canción. Esa mezcla es el editor multipista. No se sube nada.',
+      usesHeading: 'Qué puedes hacer',
+      uses: [
+        'Ensayar un tempo antes de grabar en la grabadora de voz.',
+        'Exportar 4, 8 o 16 compases del mismo clic.',
+        'Oír el 6/8 como seis clics, con el primero más fuerte.',
+      ],
+      howTo: [
+        { name: 'Pon BPM y compás', text: 'El BPM va de 40 a 240. Elige 2/4, 3/4, 4/4 o 6/8. La página empieza en 100 BPM y 4/4.' },
+        { name: 'Pulsa reproducir', text: 'El clic sigue hasta que paras. El primer pulso de cada compás es más fuerte. Cada clic es el mismo tono corto.' },
+        { name: 'Exporta si quieres un archivo', text: 'Elige 4, 8 o 16 compases, luego WAV o MP3. El archivo es solo el clic. WAV guarda esas muestras. MP3 las codifica una vez.' },
+      ],
+      faqs: [
+        { q: '¿Se sube algo?', a: 'No. La página no lee un archivo y no abre el micrófono. La reproducción y la exportación se quedan en el navegador. Cuando la página ha cargado, puedes quedar sin red y el clic sigue.' },
+        { q: '¿Cómo suena el clic?', a: 'A 100 BPM los clics van a 0,60 segundos. El primer pulso del compás es más fuerte. Los otros son el mismo tono, más bajo. WAV son esas muestras. MP3 las codifica una vez, al bitrate que eliges.' },
+        { q: '¿Qué no hace?', a: 'No alinea el clic con una canción. No hay dónde soltar un archivo. El 6/8 sigue siendo seis clics en el compás, al BPM del control. No pasa a dos clics de negra con puntillo.' },
+        { q: '¿En qué se diferencia del multipista y de la velocidad?', a: 'Esta página es solo el clic. Poner ese clic bajo una canción es el editor multipista. Cambiar lo que dura una grabación es la página de velocidad, y el tono se mueve con la velocidad. El micrófono es la grabadora de voz.' },
+        { q: '¿Funciona en el teléfono?', a: 'Sí. El control de BPM, el compás, reproducir y exportar se tocan en Chrome, Edge, Firefox y Safari actuales. El clic usa un oscilador de Web Audio. El archivo exportado usa el mismo intervalo.' },
+      ],
+      sections: [
+        {
+          heading: 'El clic',
+          paragraphs: [
+            'A 100 BPM los clics van a 0,60 segundos. El primer pulso del compás es más fuerte. Cada clic es el mismo tono corto.',
+            '2/4 suena dos veces en un compás, 3/4 tres, 4/4 cuatro y 6/8 seis. El BPM es el ritmo del clic en cada uno de esos compases.',
+          ],
+        },
+        {
+          heading: 'Un archivo con los mismos clics',
+          paragraphs: [
+            'La exportación escribe 4, 8 o 16 compases. WAV deja los clics como están. MP3 codifica ese resultado una vez.',
+          ],
+          bullets: [
+            'Cuatro compases de 4/4 a 100 BPM son 16 clics.',
+            'Suelta ese WAV en el editor multipista si lo quieres bajo una canción.',
+            'Quédate en reproducir si solo necesitabas oír el tempo.',
+          ],
+        },
+        {
+          heading: 'Lo que no hará',
+          paragraphs: [
+            'No alineará los clics con una canción. No hay archivo que soltar ni onda que recortar.',
+            'No cambiará la duración de una grabación. Eso lo hace la página de velocidad, y el tono se mueve con la velocidad.',
+          ],
+        },
+      ],
+      dropHint: 'Sin archivo. Pulsa reproducir.',
     },
     'loudness-meter': {
       cardLine: "Lee lo fuerte que es un archivo en LUFS y luego iguala un objetivo de pódcast, streaming o emisión.",

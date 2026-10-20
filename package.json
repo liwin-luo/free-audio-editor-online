@@ -23,6 +23,7 @@
     "check:loop": "node_modules/.bin/esbuild scripts/loop-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/loop-check.mjs && node /tmp/loop-check.mjs",
     "check:pan": "node_modules/.bin/esbuild src/editor/pan.ts --bundle --platform=node --format=esm --outfile=/tmp/pan-fn.mjs && node scripts/pan-check.mjs",
     "check:3d": "node scripts/3d-check.mjs",
+    "check:metronome": "node_modules/.bin/esbuild src/editor/metronome.ts --bundle --platform=node --format=esm --outfile=/tmp/metro-fn.mjs && node scripts/metronome-check.mjs",
     "check:loudness": "node_modules/.bin/esbuild scripts/loudness-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/loudness-check.mjs && node /tmp/loudness-check.mjs",
     "check:mixer": "node_modules/.bin/esbuild scripts/mixer-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/mixer-check.mjs && node /tmp/mixer-check.mjs",
     "check:delivery": "node_modules/.bin/esbuild scripts/delivery-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/delivery-check.mjs && node /tmp/delivery-check.mjs",

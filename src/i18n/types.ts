@@ -61,6 +61,11 @@ export interface EditorText {
   panDepth: string;
   panRate: string;
   circle: string;
+  metroBpm: string;
+  metroMeter: string;
+  metroBars: string;
+  metroPlay: string;
+  metroStop: string;
   silenceThreshold: string;
   silenceGap: string;
   silenceRemove: string;

@@ -71,6 +71,8 @@ export interface EditorConfig {
   loop?: boolean;
   /** File LUFS meter island instead of the waveform editor. */
   loudness?: boolean;
+  /** Click island. No file. Oscillator playback, optional bar export. */
+  metronome?: boolean;
   /** Export button label (default "Export") */
   exportLabel?: string;
   /** Max gain slider percent (default 200) */
@@ -1351,7 +1353,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['pitch-changer', 'slowed-reverb', 'audio-trimmer'],
+    related: ['pitch-changer', 'metronome', 'audio-trimmer'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -1761,7 +1763,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['multi-track-audio-editor', 'audio-trimmer', 'audio-to-text'],
+    related: ['multi-track-audio-editor', 'metronome', 'audio-to-text'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -4299,6 +4301,103 @@ export const TOOLS: ToolDef[] = [
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
       quickControls: ['circle'],
+    },
+  },
+  {
+    slug: 'metronome',
+    cardLine: 'A click from 40 to 240 BPM. The first beat of each bar is louder.',
+    name: 'Metronome',
+    shortName: 'Metronome',
+    icon: 'waveform',
+    category: 'record',
+    title: 'Metronome — Click Track Online Free',
+    description:
+      'Click from 40 to 240 BPM in 2/4, 3/4, 4/4, or 6/8. First beat of each bar is louder. Export 4, 8, or 16 bars as WAV or MP3. Nothing is uploaded.',
+    h1: 'Metronome, a click from 40 to 240 BPM',
+    hero: {
+      src: '/metronome.svg',
+      alt: 'A metronome click from 40 to 240 BPM',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'Hear the click, or save 4, 8, or 16 bars. It does not mix into a song.',
+    intro:
+      'Set a tempo from 40 to 240 BPM. Pick 2/4, 3/4, 4/4, or 6/8. The first beat of each bar is louder. Press play and the click runs until you stop it. Export writes 4, 8, or 16 bars as WAV or MP3. 6/8 is six clicks in the bar at that BPM, not two. This page does not take a file and does not lay the click under a song. That mix is the multi-track editor. Nothing is uploaded.',
+    usesHeading: 'What you can do with it',
+    uses: [
+      'Practice a tempo before you record on the voice recorder.',
+      'Export 4, 8, or 16 bars of the same click.',
+      'Hear 6/8 as six clicks, with the first one louder.',
+    ],
+    howTo: [
+      {
+        name: 'Set BPM and meter',
+        text: 'Move BPM from 40 to 240. Pick 2/4, 3/4, 4/4, or 6/8. The page starts at 100 BPM and 4/4.',
+      },
+      {
+        name: 'Press play',
+        text: 'The click runs until you press stop. The first beat of each bar is louder. Every click is the same short tone.',
+      },
+      {
+        name: 'Export bars if you want a file',
+        text: 'Choose 4, 8, or 16 bars, then WAV or MP3. The file is only the clicks. WAV keeps those samples. MP3 encodes them once.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is anything uploaded?',
+        a: 'No. The page does not read a file and does not open the microphone. Playback and export stay in the browser. After the page loads, you can go offline and the click still runs.',
+      },
+      {
+        q: 'What does the click sound like?',
+        a: 'At 100 BPM the clicks are 0.60 seconds apart. The first beat of the bar is louder. The others are the same tone, quieter. WAV is those samples. MP3 encodes them once at the bitrate you pick.',
+      },
+      {
+        q: 'What will it not do?',
+        a: 'It will not line the click up to a song. There is no file to drop. 6/8 stays six clicks in the bar at the BPM on the slider. It does not switch that meter to two dotted-quarter clicks.',
+      },
+      {
+        q: 'How is this different from the multi-track editor and the speed page?',
+        a: 'This page is only the click. Putting that click under a song is the multi-track editor. Changing how long a recording lasts is change-audio-speed, and the pitch moves with the speed. The voice recorder takes the microphone.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The BPM slider, the meter menu, play, and export work with a tap in current Chrome, Edge, Firefox, and Safari. The click uses a Web Audio oscillator. The exported file uses the same timing.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'The click',
+        paragraphs: [
+          'At 100 BPM the clicks are 0.60 seconds apart. The first beat of the bar is louder. Every click is the same short tone.',
+          '2/4 clicks twice in a bar, 3/4 three times, 4/4 four times, and 6/8 six times. The BPM is the click rate in each of those meters.',
+        ],
+      },
+      {
+        heading: 'A file of the same clicks',
+        paragraphs: [
+          'Export writes 4, 8, or 16 bars. WAV keeps the clicks as they are. MP3 encodes that result once.',
+        ],
+        bullets: [
+          'Four bars of 4/4 at 100 BPM is 16 clicks.',
+          'Drop that WAV on the multi-track editor if you want it under a song.',
+          'Stay on play if you only needed to hear the tempo.',
+        ],
+      },
+      {
+        heading: 'What it will not do',
+        paragraphs: [
+          'It will not line the clicks up to a song. There is no file to drop and no waveform to trim.',
+          'It will not change the length of a recording. The change-audio-speed page does that, and the pitch moves with the speed.',
+        ],
+      },
+    ],
+    related: ['voice-recorder', 'change-audio-speed', 'multi-track-audio-editor'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'No file. Press play.',
+      metronome: true,
     },
   },
 ];

@@ -11,6 +11,7 @@ import SpecPaintEditor from './editor/SpecPaintEditor.astro';
 import TranscribeEditor from './editor/TranscribeEditor.astro';
 import TagEditor from './editor/TagEditor.astro';
 import LoudnessEditor from './editor/LoudnessEditor.astro';
+import MetronomeEditor from './editor/MetronomeEditor.astro';
 import MixerEditor from './editor/MixerEditor.astro';
 import VoiceRecorder from './editor/VoiceRecorder.astro';
 import TrustBadge from './TrustBadge.astro';
@@ -86,6 +87,8 @@ const jsonLd = [
         <TranscribeEditor config={tool.editor} locale={locale} />
       ) : tool.editor.tagEditor ? (
         <TagEditor config={tool.editor} locale={locale} />
+      ) : tool.editor.metronome ? (
+        <MetronomeEditor config={tool.editor} locale={locale} />
       ) : tool.editor.loudness ? (
         <LoudnessEditor config={tool.editor} locale={locale} />
       ) : tool.editor.mixer ? (
