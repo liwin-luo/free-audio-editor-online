@@ -3316,6 +3316,31 @@ export const es: Catalog = {
         { q: '¿En qué se diferencia de recortar, unir y el fundido?', a: 'El recorte guarda un tramo una vez. La unión pone archivos distintos en fila. El fundido baja el inicio o el final de un archivo. Esta página vuelve a escribir el mismo clip, y el crossfade solo está entre copias.' },
         { q: '¿Funciona en el móvil?', a: 'Sí. Los dos deslizadores, la onda y el botón de exportar se usan con el dedo en Chrome, Edge, Firefox y Safari actuales.' },
       ],
+      sections: [
+        {
+          heading: 'Las copias se solapan en la unión',
+          paragraphs: [
+            'Las repeticiones van de 2 a 16. El valor inicial es 4. Cada unión se solapa según el control Unión: 0,01 segundos salvo que lo muevas, y nunca más de 0,1 segundos.',
+            'El solape es un crossfade lineal, así que un tono estable no salta. La duración es una pasada por el número de repeticiones, menos el solape por una vez menos que ese número. El tono y la velocidad no cambian. El WAV son esas muestras. El MP3 codifica el bucle una vez.',
+          ],
+        },
+        {
+          heading: 'Un clip, escrito otra vez',
+          paragraphs: ['Úsalo cuando la siguiente copia deba ser el mismo audio:'],
+          bullets: [
+            'Un compás que quieres como archivo de práctica.',
+            'Una frase corta de voz que tiene que cubrir una escena más larga.',
+            'Un sample cuya costura hace clic si las copias se tocan sin solape.',
+          ],
+        },
+        {
+          heading: 'No es un recorte, ni una unión de archivos',
+          paragraphs: [
+            'El recorte guarda un tramo una vez. La unión pone archivos distintos en fila. El fundido baja el inicio o el final de un archivo. El crossfade de esta página solo está entre copias del mismo clip.',
+            'Esta página no graba encima de sí misma. Si el resultado pasara de 10 minutos, la exportación se detiene. Acorta la selección o baja las repeticiones.',
+          ],
+        },
+      ],
       dropHint: 'Suelta un archivo de audio o haz clic para buscar',
     },
     'loudness-meter': {

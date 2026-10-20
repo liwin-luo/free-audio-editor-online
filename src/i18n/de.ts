@@ -3313,6 +3313,31 @@ export const de: Catalog = {
         { q: 'Was ist der Unterschied zu Schnitt, Join und Fade?', a: 'Der Trimmer behält eine Spanne einmal. Der Joiner reiht verschiedene Dateien aneinander. Fade macht Anfang oder Ende einer Datei leiser. Diese Seite schreibt denselben Clip erneut, der Crossfade sitzt nur zwischen den Kopien.' },
         { q: 'Geht das auf dem Handy?', a: 'Ja. Beide Regler, die Wellenform und der Export funktionieren per Touch in aktuellem Chrome, Edge, Firefox und Safari.' },
       ],
+      sections: [
+        {
+          heading: 'Die Kopien überlappen an der Naht',
+          paragraphs: [
+            'Wiederholungen gehen von 2 bis 16. Standard ist 4. Jede Naht überlappt um den Regler Übergang: 0,01 Sekunden, bis du ihn ziehst, und nie mehr als 0,1 Sekunden.',
+            'Die Überlappung ist ein linearer Crossfade, ein gleichbleibender Ton springt nicht. Die Länge ist ein Durchgang mal die Anzahl, minus die Überlappung mal eins weniger als die Anzahl. Tonhöhe und Tempo bleiben. WAV sind diese Samples. MP3 kodiert den Loop einmal.',
+          ],
+        },
+        {
+          heading: 'Ein Clip, noch einmal geschrieben',
+          paragraphs: ['Nimm die Seite, wenn die nächste Kopie dasselbe Audio sein soll:'],
+          bullets: [
+            'Ein Takt, den du als Übungsdatei willst.',
+            'Ein kurzer Sprachschnipsel, der eine längere Szene füllen muss.',
+            'Ein Sample, dessen Naht knackt, wenn die Kopien ohne Überlappung aufeinandertreffen.',
+          ],
+        },
+        {
+          heading: 'Kein Schnitt, und kein Join',
+          paragraphs: [
+            'Der Trimmer behält eine Spanne einmal. Der Joiner reiht verschiedene Dateien aneinander. Fade macht Anfang oder Ende einer Datei leiser. Der Crossfade auf dieser Seite sitzt nur zwischen Kopien desselben Clips.',
+            'Die Seite nimmt keine Overdubs auf. Wird das Ergebnis länger als 10 Minuten, stoppt der Export. Kürze die Auswahl oder nimm weniger Wiederholungen.',
+          ],
+        },
+      ],
       dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
     },
     'loudness-meter': {

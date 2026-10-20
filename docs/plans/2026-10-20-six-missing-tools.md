@@ -32,7 +32,7 @@
 
 1. `src/data/tools.ts` 一条 `ToolDef`。FAQ 五类都有：隐私、音质、做不到什么、和兄弟页的差别、手机。
 2. `src/pages/{slug}.astro` 三行包装。
-3. `es pt id de ko ja zh fr ru ar` 各一份 `ToolCopy`。新编辑器文案键同时写进 `EditorText` 和 11 份 `editor` 段。`assertCatalogs()` 通过。改词典前重读。
+3. `es pt id de ko ja zh fr ru ar` 各一份 `ToolCopy`。英文、西语、德语还要有 `sections` 长文，三段的段落数和要点数必须一致。新编辑器文案键同时写进 `EditorText` 和 11 份 `editor` 段。`assertCatalogs()` 通过。改词典前重读。
 4. `related` 三个 slug，至少两个兄弟页指回来。
 5. `public/llms.txt` 加一行事实。
 6. `scripts/pages-check.mjs` 加上英文路径。

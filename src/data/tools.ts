@@ -4078,6 +4078,31 @@ export const TOOLS: ToolDef[] = [
         a: 'Yes. Both sliders, the waveform, and the export button work with touch in current Chrome, Edge, Firefox and Safari.',
       },
     ],
+    sections: [
+      {
+        heading: 'The copies overlap at the join',
+        paragraphs: [
+          'Repeats run from 2 to 16. The default is 4. Each join overlaps by the Join slider: 0.01 seconds unless you move it, and never more than 0.1 seconds.',
+          'The overlap is a linear crossfade, so a steady tone does not jump. Export length is one pass times the repeat count, minus the overlap times one less than the count. Pitch and speed stay as they are. WAV is those samples. MP3 encodes the loop once.',
+        ],
+      },
+      {
+        heading: 'One clip, written again',
+        paragraphs: ['Use it when the next copy should be the same audio:'],
+        bullets: [
+          'A one-bar riff you want as a practice file.',
+          'A short voice cue that has to last through a longer scene.',
+          'A sample whose seam clicks if the copies meet with no overlap.',
+        ],
+      },
+      {
+        heading: 'Not a trim, and not a join',
+        paragraphs: [
+          'The audio trimmer keeps a span once. The audio joiner places different files in a row. Fade audio quiets the start or the end of one file. The crossfade on this page sits only between copies of the same clip.',
+          'This page does not record over itself. If the result would pass 10 minutes, export stops. Shorten the selection or lower the repeats.',
+        ],
+      },
+    ],
     related: ['audio-trimmer', 'fade-audio', 'ringtone-maker'],
     editor: {
       defaultFormat: 'mp3-192',
