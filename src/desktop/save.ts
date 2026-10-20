@@ -10,7 +10,7 @@ export function installDesktopSave(): void {
     (event) => {
       const el = event.target;
       const link = el instanceof Element ? el.closest('a[download]') : null;
-      if (!link) return;
+      if (!(link instanceof HTMLAnchorElement)) return;
       const name = link.getAttribute('download') || 'download';
       const href = link.href;
       event.preventDefault();

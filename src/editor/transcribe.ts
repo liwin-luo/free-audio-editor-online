@@ -231,7 +231,7 @@ class Transcriber {
       this.queue.map((file) => fileStem(file.name)),
       'srt',
     );
-    const ready: { name: string; data: Uint8Array }[] = [];
+    const ready: { name: string; data: Uint8Array<ArrayBuffer> }[] = [];
     let skipped = 0;
     let ok = 0;
     const enc = new TextEncoder();

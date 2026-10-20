@@ -1384,7 +1384,7 @@ export class Editor {
     );
     // ponytail: a selection drawn on file 1 is not applied to the rest of the queue.
     const state = this.config.converter ? defaultEditState() : { ...this.state, sel: null };
-    const ready: { name: string; data: Uint8Array }[] = [];
+    const ready: { name: string; data: Uint8Array<ArrayBuffer> }[] = [];
     let skipped = 0;
     for (let i = 0; i < this.queue.length; i++) {
       const file = this.queue[i]!;

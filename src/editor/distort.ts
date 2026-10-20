@@ -14,7 +14,7 @@ export function distortAt(x: number, drive: number): number {
   return Math.tanh(k * x) / Math.tanh(k);
 }
 
-export function distortionCurve(drive: number, n = 2048): Float32Array {
+export function distortionCurve(drive: number, n = 2048): Float32Array<ArrayBuffer> {
   const curve = new Float32Array(n);
   for (let i = 0; i < n; i++) {
     const x = (i / (n - 1)) * 2 - 1;

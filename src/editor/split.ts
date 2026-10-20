@@ -25,7 +25,7 @@ export function splitChannels(channels: Float32Array[], parts: number): Float32A
 }
 
 /** Stored zip, UTF-8 names. No compression, so the bytes inside match the encoded parts. */
-export function storeZip(files: { name: string; data: Uint8Array }[]): Uint8Array {
+export function storeZip(files: { name: string; data: Uint8Array<ArrayBuffer> }[]): Uint8Array<ArrayBuffer> {
   const enc = new TextEncoder();
   const locals: Uint8Array[] = [];
   const centrals: Uint8Array[] = [];
