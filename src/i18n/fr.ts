@@ -53,9 +53,11 @@ export const fr: Catalog = {
     },
     categories: {
       cut: 'Couper et rogner',
-      merge: 'Fusionner et convertir',
-      record: 'Enregistrer',
-      effects: 'Effets et studio',
+      convert: 'Convertir et compresser',
+      join: 'Fusionner et mixer',
+      edit: 'Éditer et réparer',
+      effects: 'Effets créatifs',
+      record: 'Enregistrer et analyser',
     },
   },
   editor: {
@@ -391,9 +393,11 @@ export const fr: Catalog = {
   hub: {
     categoryIntro: {
       cut: 'Raccourcissez une chanson, gardez le meilleur passage ou créez une sonnerie : sélectionnez la plage sur la forme d’onde et enregistrez.',
-      merge: 'Assemblez des pistes en un seul fichier, extrayez le son de n’importe quelle vidéo et passez du MP3 au WAV, M4A, OGG et plus.',
-      record: 'Enregistrez votre micro directement dans le navigateur : rognez la prise et sauvegardez en MP3, rien ne quitte votre appareil.',
-      effects: 'Augmentez le volume, changez la vitesse ou la tonalité, ajoutez réverbe et fondus, égalisez graves et aigus, et visualisez le son en onde ou spectrogramme.',
+      convert: 'Convertissez entre MP3, WAV, M4A, OGG et Opus, extrayez le son d’une vidéo ou réduisez le débit d’un fichier — sur votre appareil.',
+      join: 'Ordonnez les pistes, ajoutez des fondus enchaînés, répétez un passage ou empilez jusqu’à huit fichiers sur une timeline. Rien n’est envoyé.',
+      edit: 'Montez ou égalisez le volume, normalisez les crêtes, supprimez les silences, modifiez les tags et façonnez le timbre avec EQ, filtres et fondus.',
+      effects: 'Inversez, accélérez, ralentissez, changez la tonalité, ajoutez réverbération, écho, distorsion ou panoramique 8D, et transformez le son en image.',
+      record: 'Enregistrez au micro, transcrivez l’audio, gardez le tempo avec un métronome ou lisez la tonalité et le BPM d’une piste.',
     },
     tasksTitle: 'Que voulez-vous faire ?',
     tasks: [

@@ -53,9 +53,11 @@ export const de: Catalog = {
     },
     categories: {
       cut: 'Schneiden & Kürzen',
-      merge: 'Zusammenfügen & Umwandeln',
-      record: 'Aufnehmen',
-      effects: 'Effekte & Studio',
+      convert: 'Umwandeln & Komprimieren',
+      join: 'Zusammenfügen & Mischen',
+      edit: 'Bearbeiten & Reparieren',
+      effects: 'Kreative Effekte',
+      record: 'Aufnehmen & Analysieren',
     },
   },
   editor: {
@@ -392,9 +394,11 @@ export const de: Catalog = {
   hub: {
     categoryIntro: {
       cut: 'Einen Song kürzen, nur den besten Teil behalten oder einen Klingelton erstellen — Bereich in der Wellenform wählen und speichern.',
-      merge: 'Titel zu einer Datei zusammenfügen, die Tonspur aus Videos extrahieren und zwischen MP3, WAV, M4A, OGG und mehr wechseln.',
-      record: 'Nimm dein Mikrofon direkt im Browser auf — Aufnahme kürzen und als MP3 speichern, nichts verlässt dein Gerät.',
-      effects: 'Lautstärke erhöhen, Tempo oder Tonlage ändern, Reverb und Fades hinzufügen, Bässe und Höhen justieren — und Klang als Wellenform oder Spektrogramm visualisieren.',
+      convert: 'Wandle zwischen MP3, WAV, M4A, OGG und Opus um, extrahiere Ton aus Videos oder senke die Bitrate — alles auf deinem Gerät.',
+      join: 'Ordne Tracks, setze Crossfades, wiederhole einen Abschnitt oder staple bis zu acht Dateien auf einer Timeline. Nichts wird hochgeladen.',
+      edit: 'Erhöhe oder gleiche die Lautstärke an, normalisiere Peaks, entferne Stille, bearbeite Tags und forme den Klang mit EQ, Filtern und Fades.',
+      effects: 'Umdrehen, beschleunigen, verlangsamen, Tonhöhe ändern, Reverb, Echo, Verzerrung oder 8D-Panning hinzufügen und Klang in ein Bild verwandeln.',
+      record: 'Nimm mit dem Mikrofon auf, transkribiere Audio, halte den Takt mit einem Metronom oder lies Tonart und BPM eines Tracks.',
     },
     tasksTitle: 'Was möchtest du tun?',
     tasks: [

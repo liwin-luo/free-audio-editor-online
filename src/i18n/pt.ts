@@ -53,9 +53,11 @@ export const pt: Catalog = {
     },
     categories: {
       cut: 'Cortar e recortar',
-      merge: 'Juntar e converter',
-      record: 'Gravar',
-      effects: 'Efeitos e estúdio',
+      convert: 'Converter e comprimir',
+      join: 'Juntar e mixar',
+      edit: 'Editar e reparar',
+      effects: 'Efeitos criativos',
+      record: 'Gravar e analisar',
     },
   },
   editor: {
@@ -390,9 +392,11 @@ export const pt: Catalog = {
   hub: {
     categoryIntro: {
       cut: 'Encurte uma música, guarde a melhor parte ou crie um toque: selecione o trecho na onda e salve.',
-      merge: 'Junte faixas num só arquivo, extraia o áudio de qualquer vídeo e alterne entre MP3, WAV, M4A, OGG e mais.',
-      record: 'Grave seu microfone direto no navegador: apare a gravação e salve como MP3, nada sai do seu aparelho.',
-      effects: 'Aumente o volume, mude velocidade ou tom, adicione reverb e fades, ajuste graves e agudos — e visualize o som como onda ou espectrograma.',
+      convert: 'Converta entre MP3, WAV, M4A, OGG e Opus, extraia o áudio de um vídeo ou reduza o bitrate de um arquivo — tudo no seu aparelho.',
+      join: 'Ordene faixas, aplique crossfade, repita um trecho ou empilhe até oito arquivos numa linha do tempo. Nada é enviado.',
+      edit: 'Aumente ou nivele o volume, normalize picos, remova silêncios, edite tags e modele o timbre com EQ, filtros e fades.',
+      effects: 'Inverta, acelere, desacelere, mude o tom, adicione reverb, eco, distorção ou pan 8D, e transforme o som em imagem.',
+      record: 'Grave pelo microfone, transcreva áudio, marque o tempo com um metrônomo ou leia a tonalidade e o BPM de uma faixa.',
     },
     tasksTitle: 'O que você quer fazer?',
     tasks: [

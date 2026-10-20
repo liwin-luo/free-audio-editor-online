@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Icon from './Icon.astro';
 import Faq from './Faq.astro';
 import { CATEGORY_IDS, TOOLS } from '../data/tools';
-import { websiteSchema, webAppSchema, faqSchema } from '../lib/jsonld';
+import { websiteSchema, webAppSchema, faqSchema, organizationSchema } from '../lib/jsonld';
 import { getShell, localizeTool } from '../i18n';
 import { fill } from '../i18n/inline';
 import { localeMeta, localePath, type Locale } from '../i18n/locales';
@@ -18,6 +18,7 @@ const lang = localeMeta(locale).hreflang;
 const tools = TOOLS.map((t) => localizeTool(t.slug, locale)!);
 
 const jsonLd = [
+  organizationSchema(),
   websiteSchema({ description: home.description, inLanguage: lang }),
   webAppSchema(SITE.name, home.appBlurb, {
     url: new URL(localePath(locale, '/'), SITE.url).href,
@@ -33,7 +34,7 @@ const FEATURED_SLUGS = ['mp4-to-mp3', 'audio-trimmer'];
 const POPULAR_SLUGS = ['audio-joiner', 'mp3-cutter', 'voice-recorder', 'increase-volume'];
 const featured = FEATURED_SLUGS.map((slug) => tools.find((t) => t.slug === slug)!);
 const popular = POPULAR_SLUGS.map((slug) => tools.find((t) => t.slug === slug)!);
-const categoryIcon = { cut: 'scissors', merge: 'layers', record: 'mic', effects: 'waveform' } as const;
+const categoryIcon = { cut: 'scissors', convert: 'convert', join: 'layers', edit: 'volume', effects: 'waveform', record: 'mic' } as const;
 // Decorative hero waveform: deterministic heights, selection highlighted in accent
 const heroBars = Array.from({ length: 75 }, (_, i) => 14 + Math.abs(Math.sin(i * 1.7)) * 46 + (i % 5) * 3);
 const heroSel = [21, 47] as const;
@@ -161,13 +162,13 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
         ))
       }
     </div>
-    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
         CATEGORY_IDS.map((cat) => {
           const count = TOOLS.filter((t) => t.category === cat).length;
           return (
             <a
-              href={`${localePath(locale, '/tools')}#hub-${cat}`}
+              href={localePath(locale, `/tools/${cat}`)}
               class="group flex items-center gap-3 rounded-xl border border-line bg-surface p-5 transition-colors hover:border-accent"
             >
               <span class="grid size-10 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">

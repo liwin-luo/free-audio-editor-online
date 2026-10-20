@@ -25,29 +25,6 @@ export function localeMeta(locale: Locale) {
   return LOCALES.find((l) => l.id === locale)!;
 }
 
-/** Articles that exist in more than one language. Other guide URLs are not translations of each other. */
-const TRANSLATED_GUIDES = new Set([
-  '/guides/convert-video-to-mp3',
-  '/guides/how-to-trim-audio',
-  '/guides/change-pitch-without-changing-speed',
-  '/guides/how-to-edit-an-mp3',
-  '/guides/how-to-edit-a-wav-file',
-  '/guides/convert-ogg-to-mp3',
-  '/guides/ogg-a-mp3',
-  '/guides/merge-songs-one-track',
-  '/guides/make-iphone-ringtone',
-]);
-
-export function isTranslatedGuide(path: string): boolean {
-  return TRANSLATED_GUIDES.has(path);
-}
-
-/** Guide articles are not translations of each other, except the set above. The /guides index is. */
-export function hasAlternates(path: string): boolean {
-  if (isTranslatedGuide(path)) return true;
-  return !(path.startsWith('/guides/') || path.startsWith('/guias'));
-}
-
 export function localePath(locale: Locale, path: string): string {
   const p = path.startsWith('/') ? path : `/${path}`;
   if (locale === 'en') return p;

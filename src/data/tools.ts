@@ -16,7 +16,7 @@ export interface HowToStep {
 }
 
 /** Category order — drives the nav dropdown and footer columns. Labels live in i18n. */
-export const CATEGORY_IDS = ['cut', 'merge', 'record', 'effects'] as const;
+export const CATEGORY_IDS = ['cut', 'convert', 'join', 'edit', 'effects', 'record'] as const;
 export type ToolCategory = (typeof CATEGORY_IDS)[number];
 
 export type ToolIcon =
@@ -372,7 +372,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP3 Editor',
     shortName: 'MP3 Editor',
     icon: 'waveform',
-    category: 'effects',
+    category: 'edit',
     title: 'MP3 Editor — Cut, Fade, and Change Speed Online',
     description:
       'Cut, fade, and change speed in one tab. The original file stays untouched, and speed moves the pitch with it.',
@@ -573,7 +573,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Joiner',
     shortName: 'Audio Joiner',
     icon: 'layers',
-    category: 'merge',
+    category: 'join',
     title: 'Audio Joiner — Merge Songs in Order, with Crossfade',
     description:
       'Put songs, chapters, or voice memos in order and export one file. Set a crossfade, or zero for a hard join. Nothing is uploaded.',
@@ -674,7 +674,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Multi-Track Audio Editor',
     shortName: 'Multi-Track',
     icon: 'layers',
-    category: 'merge',
+    category: 'join',
     title: 'Multi-Track Audio Editor — Mix Files Online Free',
     description:
       'Stack audio files on one timeline, set level and pan per track, and export one mix. Free, in your browser, never uploaded.',
@@ -774,7 +774,7 @@ export const TOOLS: ToolDef[] = [
     name: 'WAV to MP3 Converter',
     shortName: 'WAV to MP3',
     icon: 'convert',
-    category: 'merge',
+    category: 'convert',
     title: 'Convert WAV to MP3 Online Free — 320 kbps',
     description:
       'Convert WAV to MP3 in your browser at 128, 192 or 320 kbps. Free, no signup. The file is converted on your device and never uploaded.',
@@ -888,7 +888,7 @@ export const TOOLS: ToolDef[] = [
     name: 'FLAC to MP3 Converter',
     shortName: 'FLAC to MP3',
     icon: 'convert',
-    category: 'merge',
+    category: 'convert',
     title: 'FLAC to MP3 Converter — Convert FLAC Files Online Free',
     description:
       'Convert FLAC to MP3 in your browser — 128, 192 or 320 kbps. Free, no signup: your music is converted locally and never uploaded.',
@@ -992,7 +992,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP3 to WAV Converter',
     shortName: 'MP3 to WAV',
     icon: 'convert',
-    category: 'merge',
+    category: 'convert',
     title: 'MP3 to WAV Converter — Convert MP3 to WAV Online Free',
     description:
       'Convert MP3 to lossless WAV in your browser — for editing, archiving and apps that want PCM. Free, no signup, nothing uploaded.',
@@ -1096,7 +1096,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Compressor',
     shortName: 'Compressor',
     icon: 'file',
-    category: 'merge',
+    category: 'convert',
     title: 'Compress Audio — Reduce MP3 & WAV File Size Online',
     description:
       'Shrink MP3, WAV and other audio files to a smaller size in your browser — pick a lower bitrate, listen, download. Free, nothing uploaded.',
@@ -1204,7 +1204,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Bitrate Converter',
     shortName: 'Bitrate',
     icon: 'convert',
-    category: 'merge',
+    category: 'convert',
     title: 'Bitrate Converter — MP3 at 64 to 320 kbps',
     description:
       'Change an audio file to 64, 96, 128, 192, or 320 kbps MP3 in the browser. A higher bitrate does not restore detail. Nothing is uploaded.',
@@ -1509,7 +1509,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP3 Volume Booster',
     shortName: 'MP3 Volume',
     icon: 'volume',
-    category: 'effects',
+    category: 'edit',
     title: 'Increase MP3 Volume — Quiet MP3 Files Online Free',
     description:
       'Raise a quiet MP3 up to 4× in your browser. A limiter keeps the peaks clean. Free, nothing uploaded.',
@@ -1617,7 +1617,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP4 to MP3 Converter',
     shortName: 'MP4 to MP3',
     icon: 'film',
-    category: 'merge',
+    category: 'convert',
     title: 'MP4 to MP3 — Convert Video to MP3 Online Free',
     description:
       'Convert MP4 to MP3 in your browser. The soundtrack is extracted on your device and the video is never uploaded. Free, no signup.',
@@ -1724,7 +1724,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Extractor',
     shortName: 'Audio Extractor',
     icon: 'film',
-    category: 'merge',
+    category: 'convert',
     title: 'Audio Extractor — Extract Audio from Video Online Free',
     description:
       'Extract the audio track from any video in your browser and save it as MP3 or lossless WAV. Free, private, no upload — even for large files.',
@@ -2028,7 +2028,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Volume Booster',
     shortName: 'Volume Booster',
     icon: 'volume',
-    category: 'effects',
+    category: 'edit',
     title: 'Audio Volume Booster — Make Audio Louder Online Free',
     description:
       'Make audio louder online, up to 4×, for quiet music and video soundtracks. A limiter holds the peaks. Free, and nothing is uploaded.',
@@ -2150,7 +2150,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Normalizer',
     shortName: 'Normalizer',
     icon: 'trending-up',
-    category: 'effects',
+    category: 'edit',
     title: 'Audio Normalizer — Normalize MP3 Volume Online Free',
     description:
       'Normalize audio to a consistent peak level in your browser — MP3, WAV, M4A and more. One click, free, nothing uploaded.',
@@ -2254,7 +2254,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Level Compressor',
     shortName: 'Level Compressor',
     icon: 'volume',
-    category: 'effects',
+    category: 'edit',
     title: 'Level Compressor — Even Out Volume Online Free',
     description:
       'Even out loud and quiet parts of a recording in your browser. Peaks stay put. Not a file-size shrink. Free, nothing uploaded.',
@@ -2543,7 +2543,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['echo', 'low-pass-filter', 'bitcrusher'],
+    related: ['echo', 'low-pass-filter', 'reverse-audio'],
     editor: {
       exportLabel: 'Distort and download',
       defaultFormat: 'mp3-192',
@@ -2558,7 +2558,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Silence Remover',
     shortName: 'Silence',
     icon: 'scissors',
-    category: 'effects',
+    category: 'edit',
     title: 'Remove Silence from Audio — Cut Dead Air Online Free',
     description:
       'Remove long silences from any audio in your browser. Set how quiet and how long a gap must be. Free, nothing uploaded.',
@@ -2662,7 +2662,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Loudness Meter',
     shortName: 'Loudness',
     icon: 'volume',
-    category: 'effects',
+    category: 'edit',
     title: 'Loudness Meter — Check Audio LUFS Online Free',
     description:
       'Measure integrated LUFS of an audio file in your browser, then match −16, −14, or −23. Sample peak stays at or below −1 dBFS. Free, nothing uploaded.',
@@ -2865,7 +2865,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Treble Booster',
     shortName: 'Treble',
     icon: 'sun',
-    category: 'effects',
+    category: 'edit',
     title: 'Treble Booster — Make Audio Clearer Online Free',
     description:
       'Add up to +15 dB of airy highs above 3 kHz in your browser — a true high-shelf, not a loudness trick. Export MP3 or WAV. Free, no upload.',
@@ -2967,7 +2967,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Equalizer',
     shortName: 'Equalizer',
     icon: 'waveform',
-    category: 'effects',
+    category: 'edit',
     title: 'Audio Equalizer — 3-Band EQ Online Free',
     description:
       'Shape low, mid and high with a real 3-band EQ (shelf–peak–shelf) in your browser. ±15 dB per band, export MP3 or WAV. Free, nothing uploaded.',
@@ -3069,7 +3069,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Low Pass Filter',
     shortName: 'Low Pass',
     icon: 'minus',
-    category: 'effects',
+    category: 'edit',
     title: 'Low Pass Filter — Cut High Frequencies Online Free',
     description:
       'Roll off everything above a cutoff from 300 Hz to 20 kHz. A low-pass filter in your browser. Export MP3 or WAV. Free, no upload.',
@@ -3171,7 +3171,7 @@ export const TOOLS: ToolDef[] = [
     name: 'High Pass Filter',
     shortName: 'High Pass',
     icon: 'plus',
-    category: 'effects',
+    category: 'edit',
     title: 'High Pass Filter — Remove Wind, Rumble & Hum Online',
     description:
       'Cut rumble, hum, wind and low-end boom with a real high-pass filter, cutoff 20 Hz–5 kHz, in your browser. Export MP3 or WAV. Free, no upload.',
@@ -3573,7 +3573,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Bass Booster',
     shortName: 'Bass Boost',
     icon: 'volume',
-    category: 'effects',
+    category: 'edit',
     title: 'Bass Booster — Add Deep Bass to Music Online Free',
     description:
       'Add up to +15 dB of deep bass below 150 Hz. A low-shelf, not a louder-everything trick. Free in your browser, nothing uploaded.',
@@ -3687,7 +3687,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Fade In / Fade Out',
     shortName: 'Fade Audio',
     icon: 'trending-up',
-    category: 'effects',
+    category: 'edit',
     title: 'Fade Out Music — Audio Fade In / Fade Out Online Free',
     description:
       'Add a smooth fade in and fade out to any song or recording right in your browser. Set the length to 0.1 s, export MP3 or WAV. Free, no upload.',
@@ -3992,7 +3992,7 @@ export const TOOLS: ToolDef[] = [
     name: 'M4A to MP3 Converter',
     shortName: 'M4A to MP3',
     icon: 'note',
-    category: 'merge',
+    category: 'convert',
     title: 'M4A to MP3 Converter — Convert M4A & AAC Online Free',
     description:
       'Convert M4A and AAC audio to MP3 in your browser. Free, no signup, nothing uploaded. Pick 128, 192 or 320 kbps.',
@@ -4076,7 +4076,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['wav-to-mp3', 'ogg-to-mp3', 'audio-trimmer'],
+    related: ['wav-to-mp3', 'ogg-to-mp3', 'flac-to-mp3'],
     editor: {
       defaultFormat: 'mp3-320',
       dropHint: 'Drop M4A or AAC files, or click to browse',
@@ -4092,7 +4092,7 @@ export const TOOLS: ToolDef[] = [
     name: 'OGG to MP3 Converter',
     shortName: 'OGG to MP3',
     icon: 'file',
-    category: 'merge',
+    category: 'convert',
     title: 'OGG to MP3 Converter — Vorbis & Opus in OGG Online Free',
     description:
       'Convert OGG files to MP3 in your browser — no file size limit. Free, no signup, nothing uploaded. Vorbis or Opus inside OGG, at 128, 192 or 320 kbps.',
@@ -4192,7 +4192,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Opus to MP3 Converter',
     shortName: 'Opus to MP3',
     icon: 'voice',
-    category: 'merge',
+    category: 'convert',
     title: 'Opus to MP3 Converter — WhatsApp Voice Notes to MP3',
     description:
       'Convert WhatsApp & Telegram Opus voice notes to MP3 in your browser. Free, no signup, nothing uploaded. Works on .opus, OGG and WebM.',
@@ -4291,7 +4291,7 @@ export const TOOLS: ToolDef[] = [
     name: 'MP3 Tag Editor',
     shortName: 'Tag Editor',
     icon: 'tag',
-    category: 'merge',
+    category: 'edit',
     title: 'MP3 Tag Editor — Edit ID3 Tags & Cover Art Online Free',
     description:
       'Edit MP3 tags online: title, artist, album, year, track and cover art. The file is edited in your browser and never uploaded. Free, no signup.',
@@ -4397,7 +4397,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Audio Looper',
     shortName: 'Looper',
     icon: 'layers',
-    category: 'effects',
+    category: 'join',
     title: 'Audio Looper — Free Online MP3 Extender',
     description:
       'Repeat a selection or a whole file from 2 to 16 times, with a 0.01 s crossfade at each join. Free in your browser. Nothing is uploaded.',
@@ -4770,7 +4770,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['voice-recorder', 'change-audio-speed', 'multi-track-audio-editor'],
+    related: ['voice-recorder', 'change-audio-speed', 'key-bpm-finder'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: false,
@@ -4784,7 +4784,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Key and BPM Finder',
     shortName: 'Key and BPM',
     icon: 'waveform',
-    category: 'effects',
+    category: 'record',
     title: 'Key and BPM Finder — Read a File Online Free',
     description:
       'Read BPM from 60 to 180 and a major or minor key. Silence stays unread. The first 60 seconds are what the page reads. Nothing is uploaded.',
@@ -4977,7 +4977,7 @@ export const TOOLS: ToolDef[] = [
     name: 'Stereo to Mono',
     shortName: 'To Mono',
     icon: 'convert',
-    category: 'merge',
+    category: 'convert',
     title: 'Stereo to Mono Converter — One Averaged Channel',
     description:
       'Average the channels into one and download it. WAV keeps those samples. An MP3 encodes that mono file once, up to 320 kbps.',

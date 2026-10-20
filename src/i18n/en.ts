@@ -53,9 +53,11 @@ export const en: Shell = {
     },
     categories: {
       cut: 'Cut & Trim',
-      merge: 'Merge & Convert',
-      record: 'Record',
-      effects: 'Effects & Studio',
+      convert: 'Convert & Compress',
+      join: 'Join & Mix',
+      edit: 'Edit & Repair',
+      effects: 'Creative Effects',
+      record: 'Record & Analyze',
     },
   },
   editor: {
@@ -390,9 +392,11 @@ export const en: Shell = {
   hub: {
     categoryIntro: {
       cut: 'Shorten a song, keep only the best part, or make a ringtone — select the range on the waveform and save it.',
-      merge: 'Join tracks into one file, pull the audio out of any video, and switch between MP3, WAV, M4A, OGG and more.',
-      record: 'Capture your microphone straight in the browser — trim the take and save it as MP3, nothing leaves your device.',
-      effects: 'Boost volume, change speed or pitch, add reverb and fades, EQ the lows and highs — and visualize sound as a waveform or spectrogram.',
+      convert: 'Convert between MP3, WAV, M4A, OGG and Opus, extract audio from video, or shrink a file to a lower bitrate — on your device.',
+      join: 'Put tracks in order, crossfade the joins, loop a section, or stack up to eight files on one timeline. Nothing is uploaded.',
+      edit: 'Raise or level volume, normalize peaks, remove silence, edit tags, and shape tone with EQ, filters and fades.',
+      effects: 'Reverse, speed up, slow down, change pitch, add reverb, echo, distortion or 8D panning, and turn sound into an image.',
+      record: 'Record from your microphone, transcribe audio, keep time with a metronome, or read a track’s key and BPM.',
     },
     tasksTitle: 'What do you want to do?',
     tasks: [

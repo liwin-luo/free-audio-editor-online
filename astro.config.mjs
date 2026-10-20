@@ -1,10 +1,30 @@
 import { defineConfig } from 'astro/config';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { imageSize } from 'image-size';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { guideAlternates, localesWithGuides } from './src/data/guides.ts';
 import { localeMeta } from './src/i18n/locales.ts';
+
+/** Guide frontmatter dates, keyed by route, so sitemap lastmod reflects real edits. */
+function guideDates() {
+  const dates = new Map();
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = new URL(`${entry.name}${entry.isDirectory() ? '/' : ''}`, dir);
+      if (entry.isDirectory()) {
+        walk(path);
+      } else if (entry.name.endsWith('.md')) {
+        const date = readFileSync(path, 'utf8').match(/^date:\s*(\S+)/m)?.[1];
+        const route = path.pathname.split('/src/pages/')[1]?.replace(/\.md$/, '');
+        if (date && route) dates.set(`/${route}`, date);
+      }
+    }
+  };
+  walk(new URL('./src/pages/', import.meta.url));
+  return dates;
+}
+const GUIDE_DATES = guideDates();
 
 /**
  * Guide markdown images are static files under public/, so Astro won't touch
@@ -109,7 +129,8 @@ export default defineConfig({
             links = [...links, { url: en.url, lang: 'x-default' }];
           }
         }
-        return { ...item, priority, links };
+        const lastmod = GUIDE_DATES.get(path.replace(/\/$/, ''));
+        return { ...item, priority, links, ...(lastmod ? { lastmod } : {}) };
       },
     }),
   ],

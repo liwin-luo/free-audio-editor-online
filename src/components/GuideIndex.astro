@@ -2,7 +2,8 @@
 import { GUIDE_INDEX, guidesFor } from '../data/guides';
 import { SITE } from '../data/site';
 import { getShell } from '../i18n';
-import { localePath, type Locale } from '../i18n/locales';
+import { breadcrumbSchema } from '../lib/jsonld';
+import { localeMeta, localePath, type Locale } from '../i18n/locales';
 import Base from '../layouts/Base.astro';
 import Icon from './Icon.astro';
 
@@ -15,6 +16,33 @@ const guides = guidesFor(locale);
 const copy = GUIDE_INDEX[locale];
 const { ui } = getShell(locale);
 const indexUrl = new URL(localePath(locale, '/guides'), SITE.url).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: copy.h1,
+    url: indexUrl,
+    inLanguage: localeMeta(locale).hreflang,
+  },
+  ...(guides.length > 0
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          itemListElement: guides.map((g, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: g.title,
+            url: new URL(g.href, SITE.url).href,
+          })),
+        },
+      ]
+    : []),
+  breadcrumbSchema([
+    { name: ui.home, path: localePath(locale, '/') },
+    { name: ui.guides, path: localePath(locale, '/guides') },
+  ]),
+];
 ---
 
 <Base
@@ -23,14 +51,7 @@ const indexUrl = new URL(localePath(locale, '/guides'), SITE.url).href;
   path="/guides"
   locale={locale}
   noindex={guides.length === 0}
-  jsonLd={[
-    {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: copy.h1,
-      url: indexUrl,
-    },
-  ]}
+  jsonLd={jsonLd}
 >
   <section class="container-page py-14">
     <nav aria-label="Breadcrumb" class="text-xs">

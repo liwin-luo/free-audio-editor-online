@@ -1,0 +1,19 @@
+---
+import '../../../i18n/catalogs';
+import CategoryHub from '../../../components/CategoryHub.astro';
+import { CATEGORY_IDS, type ToolCategory } from '../../../data/tools';
+import { TRANSLATED_LOCALES, isLocale, type Locale } from '../../../i18n/locales';
+
+export function getStaticPaths() {
+  return TRANSLATED_LOCALES.flatMap((locale) =>
+    CATEGORY_IDS.map((category) => ({ params: { locale, category } })),
+  );
+}
+
+const { locale, category } = Astro.params;
+if (!isLocale(locale) || !CATEGORY_IDS.includes(category as ToolCategory)) {
+  throw new Error(`bad category path ${locale}/${category}`);
+}
+---
+
+<CategoryHub locale={locale as Locale} category={category as ToolCategory} />

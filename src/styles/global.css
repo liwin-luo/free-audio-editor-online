@@ -292,6 +292,32 @@
     padding-left: 1rem;
     border-left: 3px solid var(--color-accent);
   }
+
+  .guide-prose table {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .guide-prose th,
+  .guide-prose td {
+    border: 1px solid var(--color-line);
+    padding: 0.625rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .guide-prose th {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .guide-prose td:first-child {
+    color: var(--color-ink);
+  }
 }
 
 /* Drop well. Unlayered so it wins over the drag-highlight utilities. */

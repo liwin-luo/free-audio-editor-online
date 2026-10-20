@@ -123,6 +123,70 @@ export const GUIDES: GuideCard[] = [
     minutes: 5,
   },
   {
+    locale: 'en',
+    href: '/guides/cut-a-song-for-tiktok',
+    title: 'How to Cut a Song for TikTok and Reels',
+    description:
+      'Cut a 15–60 second section from any song, keep the hook, and use it in TikTok or Reels. Trim MP3 or WAV in the browser — nothing uploaded.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/trim-audio-on-iphone',
+    title: 'How to Trim Audio on iPhone Without an App',
+    description:
+      'Trim a voice memo or audio file in Safari on iPhone — no app, no upload. Move the file through Files, cut the section, and save it back.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/compress-audio-for-email',
+    title: 'Compress Audio for Email and WhatsApp',
+    description:
+      'Make a voice memo or song small enough to send: pick 64–128 kbps MP3, cut silence first, and compress in the browser. Nothing uploaded.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/record-a-voice-memo-in-browser',
+    title: 'How to Record a Voice Memo in the Browser',
+    description:
+      'Record from your microphone in Chrome, Safari or Firefox, trim the take, and save MP3 or WAV. No app, no upload — the audio stays on your device.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/remove-hum-with-high-pass-filter',
+    title: 'How to Remove Hum with a High-Pass Filter',
+    description:
+      'Cut 50/60 Hz mains hum, rumble and wind from a recording with a high-pass filter. Find the right cutoff for a voice and export without uploading.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/normalize-vs-compress-audio',
+    title: 'Normalize vs Compress: Which One Do You Need?',
+    description:
+      'Normalize moves the whole file to a peak; compression narrows the gap between loud and quiet. Pick the right one, then export in the browser.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/split-long-recording-into-tracks',
+    title: 'How to Split a Long Recording into Tracks',
+    description:
+      'Split a long recording into 2–16 equal files in the browser, or cut at the points you choose. Get one ZIP and keep every part local.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/convert-opus-to-mp3',
+    title: 'How to Convert Opus to MP3 (No Upload)',
+    description:
+      'Turn WhatsApp voice notes and .opus, OGG or WebM files into MP3 in the browser. Pick 128 kbps for speech, 320 for music — nothing uploaded.',
+    minutes: 4,
+  },
+  {
     locale: 'es',
     href: '/es/guides/ogg-a-mp3',
     title: 'Cómo convertir archivos OGG a MP3',
@@ -554,6 +618,7 @@ export function localesWithGuides(): Locale[] {
 /** Same article, different slug. Spanish keeps the query in the URL. */
 const GUIDE_ALIAS: Record<string, string> = {
   '/guides/ogg-a-mp3': '/guides/convert-ogg-to-mp3',
+  '/guides/opus-a-mp3': '/guides/convert-opus-to-mp3',
 };
 
 function unprefixedGuide(href: string, locale: Locale): string {
@@ -564,6 +629,62 @@ function unprefixedGuide(href: string, locale: Locale): string {
 
 function guideKey(path: string): string {
   return GUIDE_ALIAS[path] ?? path;
+}
+
+/** Guides that support a specific tool, by normalized guide path. */
+const GUIDE_TOOL: Record<string, string> = {
+  '/guides/audacity-alternative': 'mp3-editor',
+  '/guides/change-pitch-without-changing-speed': 'pitch-changer',
+  '/guides/compress-audio-for-email': 'compress-audio',
+  '/guides/convert-m4a-to-mp3': 'm4a-to-mp3',
+  '/guides/convert-ogg-to-mp3': 'ogg-to-mp3',
+  '/guides/convert-opus-to-mp3': 'opus-to-mp3',
+  '/guides/convert-video-to-mp3': 'mp4-to-mp3',
+  '/guides/cut-a-song-for-tiktok': 'mp3-cutter',
+  '/guides/how-to-cut-a-song': 'mp3-cutter',
+  '/guides/how-to-edit-a-wav-file': 'mp3-editor',
+  '/guides/how-to-edit-an-mp3': 'mp3-editor',
+  '/guides/how-to-trim-audio': 'audio-trimmer',
+  '/guides/make-iphone-ringtone': 'ringtone-maker',
+  '/guides/merge-songs-one-track': 'audio-joiner',
+  '/guides/normalize-vs-compress-audio': 'normalize-audio',
+  '/guides/podcast-loudness-lufs': 'loudness-meter',
+  '/guides/record-a-voice-memo-in-browser': 'voice-recorder',
+  '/guides/remove-hum-with-high-pass-filter': 'high-pass-filter',
+  '/guides/remove-silence-from-podcast': 'silence-remover',
+  '/guides/split-long-recording-into-tracks': 'split-mp3',
+  '/guides/trim-audio-on-iphone': 'audio-trimmer',
+  '/guides/trim-opentracks-bgm': 'audio-trimmer',
+};
+
+/** Guides in the current language that support this tool. */
+export function guidesForTool(tool: string, locale: Locale): GuideCard[] {
+  return GUIDES.filter(
+    (g) => g.locale === locale && GUIDE_TOOL[guideKey(unprefixedGuide(g.href, g.locale))] === tool,
+  );
+}
+
+/** Articles that exist in more than one language, derived from GUIDES so the two can't drift. */
+const translatedGuideKeys = new Set(
+  [...GUIDES.reduce((byKey, g) => {
+    const key = guideKey(unprefixedGuide(g.href, g.locale));
+    const locales = byKey.get(key) ?? new Set<Locale>();
+    locales.add(g.locale);
+    byKey.set(key, locales);
+    return byKey;
+  }, new Map<string, Set<Locale>>())]
+    .filter(([, locales]) => locales.size > 1)
+    .map(([key]) => key),
+);
+
+export function isTranslatedGuide(path: string): boolean {
+  return translatedGuideKeys.has(guideKey(path));
+}
+
+/** Guide articles only alternate when translated; every other page type alternates across locales. */
+export function hasAlternates(path: string): boolean {
+  if (path.startsWith('/guides/') || path.startsWith('/guias/')) return isTranslatedGuide(path);
+  return true;
 }
 
 /** Every locale that publishes this article, including a translated slug that differs from English. */
@@ -593,7 +714,7 @@ export const GUIDE_INDEX: Record<Locale, IndexCopy> = {
   en: {
     title: 'Audio Guides — Cut, Convert and Edit | Free Audio Editor',
     description:
-      'Guides for browser audio: trim a recording, edit an MP3 or WAV, change pitch without changing speed, cut a song, or convert video to MP3.',
+      'Browser audio guides: trim on iPhone, cut a song for TikTok, compress for email, record a memo, remove hum, normalize, split tracks, convert Opus.',
     h1: 'Audio guides',
     intro:
       'Short, practical walkthroughs for the things people actually do with audio — written for browser tools that never upload your files.',

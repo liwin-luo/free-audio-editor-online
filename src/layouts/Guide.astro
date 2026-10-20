@@ -7,6 +7,7 @@ import '../i18n/catalogs';
 import Base from './Base.astro';
 import Icon from '../components/Icon.astro';
 import { SITE } from '../data/site';
+import { organizationRef } from '../lib/jsonld';
 import { getShell, localizeTool } from '../i18n';
 import { isLocale, localeMeta, localePath, type Locale } from '../i18n/locales';
 
@@ -15,7 +16,8 @@ interface Props {
     title: string;
     description: string;
     tool?: string;
-    date?: string;
+    date?: string | Date;
+    updated?: string | Date;
     audio?: string;
     youtube?: string;
     poster?: string;
@@ -34,7 +36,16 @@ const path = locale !== 'en' && filePath.startsWith(`/${locale}/`) ? filePath.sl
 const guidesPath = '/guides';
 const { ui } = getShell(locale);
 const tool = frontmatter.tool ? localizeTool(frontmatter.tool, locale) : undefined;
-const date = frontmatter.date ?? '2026-10-14';
+// YAML parses `date:` into a Date object; normalize either form to YYYY-MM-DD
+// so JSON-LD and article meta stay valid ISO 8601.
+function day(value: string | Date | undefined, fallback: string): string {
+  if (!value) return fallback;
+  const parsed = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(parsed.getTime()) ? fallback : parsed.toISOString().slice(0, 10);
+}
+const date = day(frontmatter.date, '2026-10-14');
+const modified = day(frontmatter.updated, date);
+const socialImage = new URL(frontmatter.poster ?? '/og.jpg', SITE.url).href;
 const pageUrl = new URL(localePath(locale, path), SITE.url).href;
 const copy = {
   en: {
@@ -133,9 +144,12 @@ const jsonLd = [
     '@type': 'Article',
     headline: frontmatter.title,
     description: frontmatter.description,
-    datePublished: date,
-    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-    publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    image: [socialImage],
+    datePublished: `${date}T00:00:00Z`,
+    dateModified: `${modified}T00:00:00Z`,
+    inLanguage: localeMeta(locale).hreflang,
+    author: organizationRef(),
+    publisher: organizationRef(),
     mainEntityOfPage: pageUrl,
   },
   {
@@ -167,7 +181,17 @@ const jsonLd = [
 ];
 ---
 
-<Base title={frontmatter.title} description={frontmatter.description} path={path} locale={locale} jsonLd={jsonLd} ogType="article">
+<Base
+  title={frontmatter.title}
+  description={frontmatter.description}
+  path={path}
+  locale={locale}
+  jsonLd={jsonLd}
+  ogType="article"
+  publishedTime={`${date}T00:00:00Z`}
+  modifiedTime={`${modified}T00:00:00Z`}
+  articleSection={ui.guides}
+>
   <div class="container-page">
     <nav aria-label="Breadcrumb" class="pt-5 text-xs">
       <a href={localePath(locale, '/')} class="text-ink3 hover:text-accent">{ui.home}</a>

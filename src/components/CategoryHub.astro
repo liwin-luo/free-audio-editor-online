@@ -1,0 +1,149 @@
+---
+import { CATEGORY_IDS, TOOLS, type ToolCategory } from '../data/tools';
+import { SITE } from '../data/site';
+import { getShell, localizeTool } from '../i18n';
+import { guidesForTool } from '../data/guides';
+import { breadcrumbSchema } from '../lib/jsonld';
+import { localeMeta, localePath, type Locale } from '../i18n/locales';
+import Base from '../layouts/Base.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  category: ToolCategory;
+  locale?: Locale;
+}
+
+const { category, locale = 'en' } = Astro.props;
+const { ui, hub } = getShell(locale);
+const label = ui.categories[category];
+const intro = hub.categoryIntro[category];
+const tools = TOOLS.filter((t) => t.category === category).map((t) => localizeTool(t.slug, locale)!);
+const pageUrl = new URL(localePath(locale, `/tools/${category}`), SITE.url).href;
+const others = CATEGORY_IDS.filter((c) => c !== category);
+const seen = new Set<string>();
+const guides = tools
+  .flatMap((t) => guidesForTool(t.slug, locale))
+  .filter((g) => {
+    if (seen.has(g.href)) return false;
+    seen.add(g.href);
+    return true;
+  })
+  .slice(0, 3);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: label,
+    url: pageUrl,
+    description: intro,
+    inLanguage: localeMeta(locale).hreflang,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: tools.map((t, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: t.name,
+      url: new URL(localePath(locale, `/${t.slug}`), SITE.url).href,
+    })),
+  },
+  breadcrumbSchema([
+    { name: ui.home, path: localePath(locale, '/') },
+    { name: ui.tools, path: localePath(locale, '/tools') },
+    { name: label, path: localePath(locale, `/tools/${category}`) },
+  ]),
+];
+---
+
+<Base
+  title={`${label} — ${SITE.name}`}
+  description={intro}
+  path={`/tools/${category}`}
+  locale={locale}
+  jsonLd={jsonLd}
+>
+  <div class="container-page">
+    <nav aria-label="Breadcrumb" class="pt-5 text-xs">
+      <a href={localePath(locale, '/')} class="text-ink3 hover:text-accent">{ui.home}</a>
+      <span class="mx-1.5 text-ink3">/</span>
+      <a href={localePath(locale, '/tools')} class="text-ink3 hover:text-accent">{ui.tools}</a>
+      <span class="mx-1.5 text-ink3">/</span>
+      <span class="text-ink2" aria-current="page">{label}</span>
+    </nav>
+
+    <header class="py-10">
+      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{label}</h1>
+      <p class="mt-3 max-w-[70ch] text-[17px] leading-relaxed text-ink2">{intro}</p>
+    </header>
+
+    <section aria-labelledby="category-tools" class="pb-16">
+      <h2 id="category-tools" class="text-2xl font-semibold tracking-tight md:text-3xl">{ui.tools}</h2>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          tools.map((t) => (
+            <a
+              href={localePath(locale, `/${t.slug}`)}
+              class="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent"
+            >
+              <span class="flex items-center gap-2.5 font-medium leading-snug group-hover:text-accent">
+                <Icon name={t.icon} size={18} class="shrink-0 text-ink3" />
+                {t.name}
+              </span>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-ink2">{t.cardLine ?? t.subtitle}</p>
+              <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                {ui.openTool.replace('{name}', t.shortName)}
+                <Icon name="convert" size={14} class="transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    {
+      guides.length > 0 && (
+        <section aria-labelledby="category-guides" class="pb-16">
+          <h2 id="category-guides" class="text-2xl font-semibold tracking-tight md:text-3xl">
+            {ui.guides}
+          </h2>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {guides.map((guide) => (
+              <a
+                href={guide.href}
+                class="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent"
+              >
+                <h3 class="font-medium leading-snug group-hover:text-accent">{guide.title}</h3>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-ink2">{guide.description}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <section aria-labelledby="category-others" class="pb-16">
+      <h2 id="category-others" class="text-2xl font-semibold tracking-tight md:text-3xl">{ui.allTools}</h2>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          others.map((cat) => {
+            const count = TOOLS.filter((t) => t.category === cat).length;
+            return (
+              <a
+                href={localePath(locale, `/tools/${cat}`)}
+                class="group flex items-center justify-between gap-3 rounded-xl border border-line bg-surface px-5 py-4 text-sm transition-colors hover:border-accent"
+              >
+                <span class="font-medium text-ink2 group-hover:text-ink">{ui.categories[cat]}</span>
+                <span class="inline-flex items-center gap-1.5 text-accent">
+                  {count}
+                  <Icon name="convert" size={14} class="transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </a>
+            );
+          })
+        }
+      </div>
+    </section>
+  </div>
+</Base>

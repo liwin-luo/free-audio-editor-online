@@ -53,9 +53,11 @@ export const id: Catalog = {
     },
     categories: {
       cut: 'Potong & Pangkas',
-      merge: 'Gabung & Konversi',
-      record: 'Rekam',
-      effects: 'Efek & Studio',
+      convert: 'Konversi & Kompres',
+      join: 'Gabung & Mix',
+      edit: 'Edit & Perbaiki',
+      effects: 'Efek Kreatif',
+      record: 'Rekam & Analisis',
     },
   },
   editor: {
@@ -391,9 +393,11 @@ export const id: Catalog = {
   hub: {
     categoryIntro: {
       cut: 'Persingkat lagu, simpan bagian terbaiknya, atau buat nada dering — pilih rentangnya di waveform dan simpan.',
-      merge: 'Gabungkan beberapa trek jadi satu file, ekstrak audio dari video apa pun, dan konversi antara MP3, WAV, M4A, OGG, dan lainnya.',
-      record: 'Rekam mikrofon langsung di browser — potong rekamannya dan simpan sebagai MP3, tidak ada data yang meninggalkan perangkat.',
-      effects: 'Perbesar volume, ubah kecepatan atau nada, tambahkan reverb dan fade, atur lows dan highs — dan visualisasikan suara sebagai waveform atau spektrogram.',
+      convert: 'Konversi MP3, WAV, M4A, OGG, dan Opus, ekstrak audio dari video, atau kecilkan bitrate file — semuanya di perangkat Anda.',
+      join: 'Urutkan trek, beri crossfade, ulangi satu bagian, atau tumpuk hingga delapan file di satu timeline. Tidak ada yang diunggah.',
+      edit: 'Naikkan atau ratakan volume, normalisasi peak, hapus hening, edit tag, dan bentuk nada dengan EQ, filter, dan fade.',
+      effects: 'Balik, percepat, perlambat, ubah nada, tambah reverb, echo, distorsi, atau pan 8D, dan ubah suara menjadi gambar.',
+      record: 'Rekam dari mikrofon, transkripsi audio, ikuti tempo dengan metronom, atau baca key dan BPM sebuah trek.',
     },
     tasksTitle: 'Apa yang ingin Anda lakukan?',
     tasks: [

@@ -6,7 +6,7 @@
  * See docs/competitive-analysis-audioeditor.md §7.3.
  * Usage: node scripts/seo-audit.mjs [baseURL]
  */
-const BASE = (process.argv[2] ?? 'https://free-audio-editor-online.vercel.app').replace(/\/$/, '');
+const BASE = (process.argv[2] ?? 'https://freeaudioeditor.online').replace(/\/$/, '');
 import { readFileSync } from 'node:fs';
 
 const norm = (p) => (p.length > 1 ? p.replace(/\/+$/, '') : p);
@@ -38,24 +38,24 @@ console.log(`\n=== sitemap: ${urls.length} URLs ===`);
 // alternate lists the page back) and self-referencing. Clusters smaller than
 // the site maximum are legitimate when pages are deliberately excluded
 // (per-market guides, noindex pages) — only broken reciprocity is a bug.
+const sitemapAltsets = new Map(); // loc -> Set of alternate hrefs
 {
-  const altsets = new Map(); // loc -> Set of alternate hrefs
   for (const m of sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
     const block = m[1];
     const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
     if (!loc) continue;
     const alts = [...block.matchAll(/xhtml:link[^>]*hreflang="([^"]+)" href="([^"]+)"/g)].map((x) => x[2]);
-    altsets.set(loc, new Set(alts));
+    sitemapAltsets.set(loc, new Set(alts));
     const short = new URL(loc).pathname || '/';
     if (alts.length === 0) continue;
     if (!alts.includes(loc)) note('HIGH', short, 'sitemap hreflang cluster missing self-reference');
     for (const alt of alts) {
-      const back = altsets.get(alt);
+      const back = sitemapAltsets.get(alt);
       if (back && !back.has(loc)) note('HIGH', short, `hreflang not reciprocated by ${alt}`);
     }
   }
-  const withAlts = [...altsets.values()].filter((s) => s.size > 0);
-  console.log(`hreflang clusters in sitemap: ${withAlts.length} full + ${altsets.size - withAlts.length} per-market (no alternates)`);
+  const withAlts = [...sitemapAltsets.values()].filter((s) => s.size > 0);
+  console.log(`hreflang clusters in sitemap: ${withAlts.length} full + ${sitemapAltsets.size - withAlts.length} per-market (no alternates)`);
 }
 
 const seen = new Map(); // url -> {status, html}
@@ -110,6 +110,22 @@ for (const url of urls) {
   if (headAlts.length && !headAlts.some((m) => norm(new URL(m[2], BASE).pathname) === pagePath)) {
     note('HIGH', short, 'head hreflang cluster missing self-reference');
   }
+  // sitemap and head must advertise the same cluster; a translated guide listed
+  // in one place but not the other is the exact failure mode this catches.
+  const sitemapCluster = new Set(
+    [...(sitemapAltsets.get(url) ?? [])].map((h) => norm(new URL(h, BASE).pathname)),
+  );
+  const headCluster = new Set(headAlts.map((m) => norm(new URL(m[2], BASE).pathname)));
+  if (sitemapCluster.size > 0 && headCluster.size === 0) {
+    note('HIGH', short, `sitemap declares ${sitemapCluster.size} hreflang alternates but page has none`);
+  } else if (sitemapCluster.size === 0 && headCluster.size > 0) {
+    note('MED', short, 'page declares hreflang alternates but sitemap has none');
+  } else if (sitemapCluster.size > 0) {
+    const missing = [...sitemapCluster].filter((p) => !headCluster.has(p));
+    const extra = [...headCluster].filter((p) => !sitemapCluster.has(p));
+    if (missing.length) note('HIGH', short, `head hreflang missing: ${missing.slice(0, 3).join(', ')}`);
+    if (extra.length) note('MED', short, `head hreflang not in sitemap: ${extra.slice(0, 3).join(', ')}`);
+  }
   const knownHrefs = new Set(['en', 'de', 'es', 'id', 'ja', 'ko', 'pt-BR', 'zh-Hans', 'fr', 'ru', 'ar', 'x-default']);
   const unknownHrefs = headAlts.map((m) => m[1]).filter((h) => !knownHrefs.has(h));
   if (unknownHrefs.length) note('MED', short, `unexpected hreflang values: ${[...new Set(unknownHrefs)].join(', ')}`);
@@ -163,7 +179,7 @@ for (const [link, info] of seen) {
   else if (
     res.status === 200 &&
     !sitemapPaths.has(norm(new URL(link, BASE).pathname)) &&
-    !/\.(xml|txt|jpg|jpeg|png|svg|webp|webm|ico|md|json)$/.test(link)
+    !/\.(xml|txt|jpg|jpeg|png|svg|webp|webm|ico|md|json|webmanifest)$/.test(link)
   ) {
     const body = await fetch(`${BASE}${link}`).then((r) => r.text()).catch(() => '');
     if (!/name="robots" content="noindex/.test(body)) {

@@ -19,11 +19,14 @@ import TrustBadge from './TrustBadge.astro';
 import HowTo from './HowTo.astro';
 import Faq from './Faq.astro';
 import RelatedTools from './RelatedTools.astro';
+import Icon from './Icon.astro';
 import { webAppSchema, faqSchema, howToSchema, breadcrumbSchema } from '../lib/jsonld';
 import { getShell } from '../i18n';
 import { fill } from '../i18n/inline';
 import { localeMeta, localePath, type Locale } from '../i18n/locales';
 import { SITE } from '../data/site';
+import { guidesForTool, GUIDE_INDEX } from '../data/guides';
+import { TOOL_FACTS } from '../data/tool-facts';
 import type { ToolDef } from '../data/tools';
 
 interface Props {
@@ -32,8 +35,11 @@ interface Props {
 }
 const { tool, locale = 'en' } = Astro.props;
 const { ui } = getShell(locale);
+const facts = locale === 'en' ? TOOL_FACTS[tool.slug] : undefined;
 const pageUrl = new URL(localePath(locale, `/${tool.slug}`), SITE.url).href;
 const lang = localeMeta(locale).hreflang;
+const guides = guidesForTool(tool.slug, locale);
+const guideMinutes = GUIDE_INDEX[locale].minutes;
 const jsonLd = [
   webAppSchema(tool.name, tool.description, {
     url: pageUrl,
@@ -46,6 +52,8 @@ const jsonLd = [
   faqSchema(tool.faqs, lang),
   breadcrumbSchema([
     { name: ui.home, path: localePath(locale, '/') },
+    { name: ui.tools, path: localePath(locale, '/tools') },
+    { name: ui.categories[tool.category], path: localePath(locale, `/tools/${tool.category}`) },
     { name: tool.name, path: localePath(locale, `/${tool.slug}`) },
   ]),
 ];
@@ -55,6 +63,10 @@ const jsonLd = [
   <div class="container-page">
     <nav aria-label="Breadcrumb" class="pt-5 text-xs">
       <a href={localePath(locale, '/')} class="text-ink3 hover:text-accent">{ui.home}</a>
+      <span class="mx-1.5 text-ink3">/</span>
+      <a href={localePath(locale, '/tools')} class="text-ink3 hover:text-accent">{ui.tools}</a>
+      <span class="mx-1.5 text-ink3">/</span>
+      <a href={localePath(locale, `/tools/${tool.category}`)} class="text-ink3 hover:text-accent">{ui.categories[tool.category]}</a>
       <span class="mx-1.5 text-ink3">/</span>
       <span class="text-ink2" aria-current="page">{tool.name}</span>
     </nav>
@@ -123,6 +135,69 @@ const jsonLd = [
         </ul>
       </div>
     </section>
+
+    {
+      facts && (
+        <>
+          <section class="pt-12" aria-labelledby="tool-fit-heading">
+            <h2 id="tool-fit-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+              Where this page fits
+            </h2>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+              <div class="rounded-2xl border border-line bg-surface p-6">
+                <p class="flex items-center gap-2 text-sm font-semibold">
+                  <Icon name="check" size={16} class="text-accent" />
+                  Use it for
+                </p>
+                <ul class="mt-4 space-y-3 text-[15px] leading-relaxed text-ink2">
+                  {facts.fit.use.map((item) => (
+                    <li class="flex gap-3">
+                      <span class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="rounded-2xl border border-line bg-surface p-6">
+                <p class="flex items-center gap-2 text-sm font-semibold">
+                  <Icon name="x" size={16} class="text-ink3" />
+                  Use another page for
+                </p>
+                <ul class="mt-4 space-y-3 text-[15px] leading-relaxed text-ink2">
+                  {facts.fit.avoid.map((item) => (
+                    <li class="flex gap-3">
+                      <span class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-ink3" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="pt-12" aria-labelledby="tool-specs-heading">
+            <h2 id="tool-specs-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+              Formats, limits and privacy
+            </h2>
+            <div class="mt-6 overflow-hidden rounded-2xl border border-line">
+              <table class="w-full border-collapse text-left text-sm">
+                <caption class="sr-only">{tool.name}: formats, limits and privacy</caption>
+                <tbody>
+                  {facts.specs.map((spec) => (
+                    <tr class="border-t border-line first:border-t-0">
+                      <th scope="row" class="w-[34%] bg-surface px-5 py-3.5 align-top font-medium text-ink3">
+                        {spec.label}
+                      </th>
+                      <td class="px-5 py-3.5 align-top leading-relaxed text-ink2">{spec.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </>
+      )
+    }
   </div>
 
   <HowTo title={fill(ui.howTo, { name: tool.name })} steps={tool.howTo} />
@@ -154,5 +229,32 @@ const jsonLd = [
     )
   }
   <Faq faqs={tool.faqs} locale={locale} heading={fill(ui.toolFaq, { name: tool.name })} />
+
+  {
+    guides.length > 0 && (
+      <section class="py-16" aria-labelledby="tool-guides-heading">
+        <div class="container-page">
+          <h2 id="tool-guides-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+            {ui.guides}
+          </h2>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {guides.map((guide) => (
+              <a
+                href={guide.href}
+                class="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent"
+              >
+                <h3 class="font-medium leading-snug group-hover:text-accent">{guide.title}</h3>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-ink2">{guide.description}</p>
+                <p class="mt-4 text-sm font-medium text-accent">
+                  {guide.minutes} {guideMinutes}
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <RelatedTools current={tool} locale={locale} />
 </Base>

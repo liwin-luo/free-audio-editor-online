@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+
+const title = 'How We Test and Write — Free Audio Editor';
+const description =
+  'How the audio tools are tested and the guides are written: real files, browser checks, exact limits, dated pages, and corrections when something changes.';
+const pageUrl = new URL('/editorial', SITE.url).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: title,
+    description,
+    url: pageUrl,
+    inLanguage: 'en',
+    about: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', SITE.url).href },
+      { '@type': 'ListItem', position: 2, name: 'Editorial', item: pageUrl },
+    ],
+  },
+];
+---
+
+<Base title={title} description={description} path="/editorial" locale="en" jsonLd={jsonLd}>
+  <article class="container-page py-14">
+    <nav aria-label="Breadcrumb" class="text-xs">
+      <a href="/" class="text-ink3 hover:text-accent">Home</a>
+      <span class="mx-1.5 text-ink3">/</span>
+      <span class="text-ink2" aria-current="page">Editorial</span>
+    </nav>
+
+    <h1 class="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">How we test and write</h1>
+    <p class="mt-4 max-w-[70ch] text-[15px] leading-relaxed text-ink2">
+      Free Audio Editor is a small, independent site. The tools and the guides are made by the same
+      people, and the point of this page is to say plainly how a tool gets published and how a claim
+      gets into an article.
+    </p>
+
+    <div class="mt-10 max-w-[70ch] space-y-10 text-[15px] leading-relaxed text-ink2">
+      <section>
+        <h2 class="text-xl font-semibold text-ink">Every tool is tested with real files</h2>
+        <p class="mt-3">
+          A tool is not published because it renders. It is tested by loading files the page is meant
+          to handle, performing the job, and checking the downloaded result: that the audio decodes,
+          that the duration matches the selection, that WAV samples are not clipped, and that the MP3
+          plays in a player outside the browser.
+        </p>
+        <p class="mt-3">The checks cover the parts that fail silently:</p>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>Start and end points, including a selection that begins mid-word.</li>
+          <li>Export in each offered format, not only the default one.</li>
+          <li>Batch behavior: one file, several files, and the ZIP path.</li>
+          <li>Error cases, such as a video with an AC3 soundtrack that a browser cannot decode.</li>
+          <li>Offline behavior after the page has loaded, to confirm the file is not being uploaded.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-ink">The browser is the test environment</h2>
+        <p class="mt-3">
+          The tools run on the Web Audio API and related browser APIs, so browser differences are
+          product differences. Current Chrome, Edge, Firefox and Safari are the targets. When a
+          feature depends on the browser — M4R encoding in Firefox, MediaRecorder capture formats,
+          Vorbis decoding in Safari — the page says so instead of pretending the result is universal.
+        </p>
+        <p class="mt-3">
+          Phone testing focuses on touch targets, memory limits and where the download lands. A phone
+          is not a small desktop: iOS saves audio to Files, and a long recording is limited by the
+          memory of the tab.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-ink">Guides are walkthroughs, not summaries</h2>
+        <p class="mt-3">
+          A guide is written by doing the job on this site, in the browsers above, with a real file.
+          Steps use the labels that appear on the screen. Numbers — bitrates, file sizes, LUFS
+          targets, cutoff frequencies — are either measured or stated as conventions, with the
+          difference made clear.
+        </p>
+        <p class="mt-3">The editorial rules are simple:</p>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>Do not claim a quality difference that a listener cannot hear.</li>
+          <li>Do not present a recommendation as a measurement.</li>
+          <li>Say what a tool cannot do, and link to the page that does that job.</li>
+          <li>Date every article, and show the updated date when the steps change.</li>
+          <li>Do not add a comparison table to a tool page; comparisons belong in articles.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-ink">Automated checks before every release</h2>
+        <p class="mt-3">
+          The build runs a type check and a production build. Browser smoke tests drive the editor
+          with a generated test tone and inspect the exported WAV. A crawl of the built site checks
+          titles, descriptions, H1s, canonicals, structured data, image alt text, internal links and
+          hreflang clusters.
+        </p>
+        <p class="mt-3">
+          A page that fails those checks is fixed before it ships. If a rule is broken on purpose —
+          an English-only editorial page, a guide that exists in only one language — the hreflang
+          output is adjusted rather than left to point at pages that do not exist.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-ink">What we do not do</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>We do not upload your audio. Processing is local, and the privacy policy is specific about it.</li>
+          <li>We do not require an account, an email address, or a watermark removal step.</li>
+          <li>We do not sell placements in guides or rank tools because of a payment.</li>
+          <li>We do not claim these tools replace a full DAW for multi-track production, restoration or mastering.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-ink">Corrections</h2>
+        <p class="mt-3">
+          Browser behavior and platform limits change. If a step no longer matches what you see, or a
+          number on a page is wrong, write to
+          <a href="mailto:privacy@freeaudioeditor.online" class="text-accent hover:underline">
+            privacy@freeaudioeditor.online
+          </a>
+          with the page URL and what happened. Corrections are made to the page, and the updated date
+          changes when they are.
+        </p>
+      </section>
+    </div>
+  </article>
+</Base>

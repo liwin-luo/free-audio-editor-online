@@ -68,6 +68,29 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
+const ORGANIZATION = {
+  '@type': 'Organization',
+  '@id': `${SITE.url}/#organization`,
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${SITE.url}/logo.png`,
+    width: 512,
+    height: 512,
+  },
+};
+
+/** Reference used inside other schema nodes (Article publisher/author). */
+export function organizationRef() {
+  return ORGANIZATION;
+}
+
+export function organizationSchema() {
+  return { '@context': 'https://schema.org', ...ORGANIZATION };
+}
+
 export function websiteSchema(extra?: { description?: string; inLanguage?: string }) {
   return {
     '@context': 'https://schema.org',

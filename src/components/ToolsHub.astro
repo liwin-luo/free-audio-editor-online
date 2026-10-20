@@ -2,7 +2,8 @@
 import { CATEGORY_IDS, TOOLS } from '../data/tools';
 import { SITE } from '../data/site';
 import { getShell, localizeTool } from '../i18n';
-import { localePath, type Locale } from '../i18n/locales';
+import { breadcrumbSchema } from '../lib/jsonld';
+import { localeMeta, localePath, type Locale } from '../i18n/locales';
 import Base from '../layouts/Base.astro';
 import Icon from './Icon.astro';
 
@@ -30,6 +31,7 @@ const hubUrl = new URL(localePath(locale, '/tools'), SITE.url).href;
       '@type': 'CollectionPage',
       name: hub.h1,
       url: hubUrl,
+      inLanguage: localeMeta(locale).hreflang,
     },
     {
       '@context': 'https://schema.org',
@@ -41,6 +43,10 @@ const hubUrl = new URL(localePath(locale, '/tools'), SITE.url).href;
         url: new URL(localePath(locale, `/${t.slug}`), SITE.url).href,
       })),
     },
+    breadcrumbSchema([
+      { name: ui.home, path: localePath(locale, '/') },
+      { name: hub.h1, path: localePath(locale, '/tools') },
+    ]),
   ]}
 >
   <section class="container-page py-14">
@@ -76,7 +82,7 @@ const hubUrl = new URL(localePath(locale, '/tools'), SITE.url).href;
       byCategory.map(({ cat, tools }) => (
         <section class="mt-10" aria-labelledby={`hub-${cat}`}>
           <h2 id={`hub-${cat}`} class="text-xl font-semibold tracking-tight">
-            {ui.categories[cat]}
+            <a href={localePath(locale, `/tools/${cat}`)} class="hover:text-accent">{ui.categories[cat]}</a>
           </h2>
           <p class="mt-2 max-w-[70ch] text-sm leading-relaxed text-ink2">{hub.categoryIntro[cat]}</p>
           <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

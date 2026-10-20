@@ -46,6 +46,14 @@ const jsonLd = [
       </p>
       <p>{about.p2}</p>
       <p>{about.p3}</p>
+      {
+        locale === 'en' && (
+          <p>
+            <a href="/editorial" class="text-accent hover:underline">How we test the tools and write the guides</a>
+            {' '}— the checks behind each page, and how corrections are handled.
+          </p>
+        )
+      }
     </div>
   </article>
 </Base>

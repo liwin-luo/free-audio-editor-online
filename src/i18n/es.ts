@@ -53,9 +53,11 @@ export const es: Catalog = {
     },
     categories: {
       cut: 'Cortar y recortar',
-      merge: 'Unir y convertir',
-      record: 'Grabar',
-      effects: 'Efectos y estudio',
+      convert: 'Convertir y comprimir',
+      join: 'Unir y mezclar',
+      edit: 'Editar y reparar',
+      effects: 'Efectos creativos',
+      record: 'Grabar y analizar',
     },
   },
   editor: {
@@ -391,9 +393,11 @@ export const es: Catalog = {
   hub: {
     categoryIntro: {
       cut: 'Acorta una canción, quédate con la mejor parte o crea un tono: selecciona el rango en la onda y guárdalo.',
-      merge: 'Une pistas en un solo archivo, extrae el audio de cualquier vídeo y cambia entre MP3, WAV, M4A, OGG y más.',
-      record: 'Graba tu micrófono directamente en el navegador: recorta la toma y guárdala como MP3, nada sale de tu dispositivo.',
-      effects: 'Sube el volumen, cambia velocidad o tono, añade reverb y fundidos, ecualiza graves y agudos, y visualiza el sonido como onda o espectrograma.',
+      convert: 'Convierte entre MP3, WAV, M4A, OGG y Opus, extrae el audio de un vídeo o reduce el bitrate de un archivo, todo en tu dispositivo.',
+      join: 'Ordena pistas, aplica fundidos cruzados, repite un fragmento o apila hasta ocho archivos en una línea de tiempo. Nada se sube.',
+      edit: 'Sube o nivela el volumen, normaliza picos, quita silencios, edita etiquetas y moldea el tono con EQ, filtros y fundidos.',
+      effects: 'Invierte, acelera, ralentiza, cambia el tono, añade reverb, eco, distorsión o paneo 8D, y convierte el sonido en una imagen.',
+      record: 'Graba con tu micrófono, transcribe audio, marca el compás con un metrónomo o lee la tonalidad y el BPM de una pista.',
     },
     tasksTitle: '¿Qué quieres hacer?',
     tasks: [

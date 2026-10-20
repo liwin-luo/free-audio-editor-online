@@ -336,9 +336,11 @@ export interface UiText {
   };
   categories: {
     cut: string;
-    merge: string;
-    record: string;
+    convert: string;
+    join: string;
+    edit: string;
     effects: string;
+    record: string;
   };
 }
 
@@ -408,7 +410,7 @@ export interface HubCopy {
   h1: string;
   intro: string;
   /** One-liner under each category heading on /tools */
-  categoryIntro: { cut: string; merge: string; record: string; effects: string };
+  categoryIntro: { cut: string; convert: string; join: string; edit: string; effects: string; record: string };
   /** "What do you want to do?" task router */
   tasksTitle: string;
   /** tool is a slug from TOOLS — the label renders the localized tool name */

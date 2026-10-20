@@ -1,0 +1,13 @@
+---
+import CategoryHub from '../../components/CategoryHub.astro';
+import { CATEGORY_IDS, type ToolCategory } from '../../data/tools';
+
+export function getStaticPaths() {
+  return CATEGORY_IDS.map((category) => ({ params: { category } }));
+}
+
+const { category } = Astro.params;
+if (!CATEGORY_IDS.includes(category as ToolCategory)) throw new Error(`unknown category ${category}`);
+---
+
+<CategoryHub locale="en" category={category as ToolCategory} />

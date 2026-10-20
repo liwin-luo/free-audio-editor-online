@@ -17,6 +17,8 @@ const onGuide = path === '/guides' || path.startsWith('/guides/') || path === '/
 // translated article) falls back to its guides index instead of a 404
 const langHref = (target: Locale) => {
   if (path === '/404') return localePath(target, '/');
+  // English-only page: no localized variants exist to switch to
+  if (path === '/editorial') return localePath(target, '/about');
   if (!onGuide) return localePath(target, path);
   return guideAlternates(path).find((a) => a.locale === target)?.href ?? localePath(target, '/guides');
 };
@@ -53,7 +55,7 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
           {
             CATEGORY_IDS.map((cat) => (
               <div class="mb-1 last:mb-0">
-                <p class="px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-ink3">{ui.categories[cat]}</p>
+                <a href={localePath(locale, `/tools/${cat}`)} class="block px-3 pt-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-ink3 hover:text-accent">{ui.categories[cat]}</a>
                 <div class="grid grid-cols-2 gap-x-1 lg:grid-cols-3 lg:gap-x-2">
                   {TOOLS.filter((t) => t.category === cat).map((t) => (
                     <a

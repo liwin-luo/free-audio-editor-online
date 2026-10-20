@@ -76,7 +76,7 @@ try {
   check('file loaded', fileName === 'test-tone.wav', fileName);
 
   const meta = await page.$eval('[data-file-meta]', (el) => el.textContent);
-  check('file meta', /\d+(\.\d+)? (KB|MB) · \d{2}:\d{2}\.\d{2} · \d+ kHz/.test(meta), meta);
+  check('file meta', /\d{2}:\d{2}\.\d{2} · (Mono|Stereo) · \d+ kHz · \d+(\.\d+)? (KB|MB)/.test(meta), meta);
 
   // 3. Waveform canvas painted
   await new Promise((r) => setTimeout(r, 300));
@@ -127,6 +127,10 @@ try {
   // source range. start()'s offset/duration are buffer-time units — if they
   // get scaled by playbackRate, the render starts at source second 4 and
   // bleeds in the loud 5–10 s half of the fixture, failing the peak check.
+  // The trimmer hides the Adjust drawer, so use the full editor for this.
+  await page.goto(`${BASE}/mp3-editor`, { waitUntil: 'networkidle0', timeout: 30000 });
+  await (await page.$('[data-file-input]')).uploadFile(TEST_WAV);
+  await page.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
   await page.$eval('[data-precise-start]', (el) => {
     el.value = '2';
     el.dispatchEvent(new Event('change', { bubbles: true }));
@@ -139,6 +143,7 @@ try {
     el.value = '2';
     el.dispatchEvent(new Event('change', { bubbles: true }));
   });
+  await page.select('[data-format]', 'wav');
   rmSync(DOWNLOAD_DIR, { recursive: true, force: true });
   mkdirSync(DOWNLOAD_DIR, { recursive: true });
   await page.click('[data-export]');
