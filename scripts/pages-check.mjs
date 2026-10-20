@@ -34,6 +34,7 @@ const pages = [
   { path: '/auto-panner', island: true },
   { path: '/3d-audio', island: true },
   { path: '/metronome', island: true },
+  { path: '/key-bpm-finder', island: true },
   { path: '/loudness-meter', island: true },
   { path: '/zh/loudness-meter', island: true },
   { path: '/zh/silence-remover', island: true },
@@ -124,7 +125,7 @@ try {
     try {
       await page.goto(BASE + path, { waitUntil: 'networkidle0', timeout: 20000 });
       const h1 = await page.$eval('h1', (el) => el.textContent.trim());
-      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-audio-mixer], [data-visualizer], [data-spec-paint], [data-tag-editor], [data-loudness], [data-metronome]') !== null;
+      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-audio-mixer], [data-visualizer], [data-spec-paint], [data-tag-editor], [data-loudness], [data-metronome], [data-key-bpm]') !== null;
       let recorderOk = true;
       if (recorder) recorderOk = (await page.$('[data-recorder]')) !== null;
       check(

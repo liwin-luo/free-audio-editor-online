@@ -66,6 +66,11 @@ export interface EditorText {
   metroBars: string;
   metroPlay: string;
   metroStop: string;
+  keyTonic: string;
+  keyMajor: string;
+  keyMinor: string;
+  keyUnread: string;
+  keyCaveat: string;
   silenceThreshold: string;
   silenceGap: string;
   silenceRemove: string;

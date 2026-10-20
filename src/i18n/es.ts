@@ -96,6 +96,11 @@ export const es: Catalog = {
     metroBars: 'Compases',
     metroPlay: 'Reproducir',
     metroStop: 'Parar',
+    keyTonic: 'Tonalidad',
+    keyMajor: 'mayor',
+    keyMinor: 'menor',
+    keyUnread: 'No se puede leer',
+    keyCaveat: 'Un ritmo libre, la voz hablada, el ruido de sala y un relativo mayor o menor pueden cambiarse.',
     silenceThreshold: 'Umbral',
     silenceGap: 'Pausa mínima',
     silenceRemove: 'Se quitarán unos {time} de silencio',
@@ -3509,6 +3514,63 @@ export const es: Catalog = {
         },
       ],
       dropHint: 'Sin archivo. Pulsa reproducir.',
+    },
+    'key-bpm-finder': {
+      cardLine: 'Lee un BPM de 60 a 180 y un tono mayor o menor. El silencio queda sin lectura.',
+      name: 'Tonalidad y BPM',
+      shortName: 'Tono y BPM',
+      title: 'Tonalidad y BPM — Leer un archivo online gratis',
+      description: 'Lee un BPM de 60 a 180 y un tono mayor o menor. El silencio queda sin lectura. La página lee los primeros 60 segundos. No se sube nada.',
+      h1: 'Tonalidad y BPM, leídos del archivo que sueltas',
+      heroAlt: 'Leer el BPM y la tonalidad de un archivo de audio',
+      subtitle: 'Dos números. Ningún botón que mueva el tono.',
+      intro: 'Suelta un archivo. La página lee un BPM de 60 a 180, y una tonalidad: una nota más mayor o menor. El BPM es el hueco más fuerte entre los ataques. Un hueco fuera de ese rango se parte o se dobla hasta caer dentro. La tonalidad es el perfil mayor o menor fijo que mejor encaja con las clases de altura. El silencio muestra «No se puede leer», no 0 BPM y no do mayor. Solo entran los primeros 60 segundos. Un archivo de menos de 2 segundos no tiene BPM. Esta página no cambia el archivo. Mover el tono es el cambiador de tono. No se sube nada.',
+      usesHeading: 'Qué puedes leer',
+      uses: [
+        'El tempo de un bucle antes de cambiar su velocidad.',
+        'La tonalidad de una toma antes de moverla en el cambiador de tono.',
+        'Un resultado sin lectura en un archivo en silencio, en vez de 0 BPM o do mayor.',
+      ],
+      howTo: [
+        { name: 'Suelta un archivo', text: 'Audio, o un vídeo con pista de sonido. El navegador lo decodifica. No se sube nada.' },
+        { name: 'Lee BPM y tonalidad', text: 'El BPM es un entero de 60 a 180. La tonalidad es una nota más mayor o menor. La frase bajo los números nombra los casos que se cambian.' },
+        { name: 'Deja el archivo como está', text: 'Esta página no exporta un archivo cambiado. El cambiador de tono es donde se mueve el tono, y la duración se queda.' },
+      ],
+      faqs: [
+        { q: '¿Se sube el archivo?', a: 'No. El navegador lo decodifica y lee las muestras en memoria. Cuando la página ha cargado, puedes quedar sin red y seguir leyendo un archivo que sueltes.' },
+        { q: '¿Cómo de exacta es la lectura?', a: 'El BPM es el hueco de ataque más fuerte entre 60 y 180, en entero. La tonalidad es el mejor encaje con un perfil mayor fijo y un perfil menor fijo, 12 pesos cada uno. No es una transcripción de acordes.' },
+        { q: '¿Qué no hace?', a: 'No cambia el tono ni la velocidad. No hay botón para una tonalidad nueva. Un archivo de menos de 2 segundos no tiene BPM. El silencio muestra que no se puede leer, no 0 y no do mayor. Solo entran los primeros 60 segundos.' },
+        { q: '¿En qué se diferencia del cambiador de tono y de la página de velocidad?', a: 'Esta página solo lee. El cambiador de tono mueve el tono y mantiene la duración. La página de velocidad cambia la duración, y el tono se mueve con ella. Cortar una región es el recortador de audio.' },
+        { q: '¿Funciona en el teléfono?', a: 'Sí. Suelta el archivo y lee los dos números. La zona de soltar y el botón de reinicio se tocan en Chrome, Edge, Firefox y Safari actuales.' },
+      ],
+      sections: [
+        {
+          heading: 'Qué son los dos números',
+          paragraphs: [
+            'El BPM es el hueco más fuerte entre ataques, de 60 a 180. Un hueco fuera de ese rango se parte o se dobla hasta caer dentro.',
+            'La tonalidad es el perfil mayor o menor que mejor encaja con la energía de las clases de altura. Cada perfil es un conjunto fijo de 12 pesos.',
+          ],
+        },
+        {
+          heading: 'Cuando la lectura es débil',
+          paragraphs: [
+            'Un ritmo libre, la voz hablada y el ruido de sala no tienen un hueco estable, así que el BPM puede caer en el múltiplo equivocado. Un relativo mayor y uno menor comparten muchas notas, así que esos dos pueden cambiarse.',
+          ],
+          bullets: [
+            'Un archivo en silencio muestra que no se puede leer en los dos números.',
+            'Un archivo de menos de 2 segundos puede mostrar tonalidad, y no muestra BPM.',
+            'Solo entran los primeros 60 segundos.',
+          ],
+        },
+        {
+          heading: 'Lo que no hará',
+          paragraphs: [
+            'No moverá el tono. No hay botón para una tonalidad nueva. Eso es el cambiador de tono, y la duración se queda igual.',
+            'No cambiará la velocidad. Eso lo hace la página de velocidad, y el tono se mueve con la velocidad.',
+          ],
+        },
+      ],
+      dropHint: 'Suelta un archivo de audio o haz clic para buscar',
     },
     'loudness-meter': {
       cardLine: "Lee lo fuerte que es un archivo en LUFS y luego iguala un objetivo de pódcast, streaming o emisión.",

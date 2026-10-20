@@ -73,6 +73,8 @@ export interface EditorConfig {
   loudness?: boolean;
   /** Click island. No file. Oscillator playback, optional bar export. */
   metronome?: boolean;
+  /** Read BPM and key. Does not change the file. */
+  keyBpm?: boolean;
   /** Export button label (default "Export") */
   exportLabel?: string;
   /** Max gain slider percent (default 200) */
@@ -127,9 +129,9 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Audio Trimmer',
     icon: 'trimmer',
     category: 'cut',
-    title: 'Audio Trimmer — Trim Audio Online Free',
+    title: 'Audio Trimmer — Trim a Podcast or Voice Memo',
     description:
-      'Trim audio online: voice memos, podcasts and recordings. Select the part you keep, preview, and save. Free, nothing uploaded.',
+      'Keep one span of a podcast, voice memo, or recording and save MP3 or WAV. The trim runs in your browser, so nothing is uploaded.',
     h1: 'Audio Trimmer — Trim a Recording, Online Free',
     hero: {
       src: '/audio-trimmer.svg',
@@ -238,9 +240,9 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP3 Cutter',
     icon: 'scissors',
     category: 'cut',
-    title: 'MP3 Cutter — Cut MP3 Files Online Free, No Upload',
+    title: 'MP3 Cutter — Keep or Delete a Section, No Upload',
     description:
-      'Cut an MP3 online: keep the chorus or delete the intro, preview, then save. Free in your browser, no signup, nothing uploaded.',
+      'Keep the chorus or delete the intro, then save. WAV adds no extra loss. MP3 encodes once, up to 320 kbps.',
     h1: 'MP3 Cutter — Cut an MP3 Online, Free',
     hero: {
       src: '/mp3-cutter.svg',
@@ -349,10 +351,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP3 Editor',
     icon: 'waveform',
     category: 'effects',
-    title: 'MP3 Editor — Cut, Fade, Reverse & Speed Up MP3 Online',
+    title: 'MP3 Editor — Cut, Fade, and Change Speed Online',
     description:
-      'Edit MP3 and other audio online: cut, trim, fade in and out, change volume and speed, reverse playback. Free and private — everything runs in your browser.',
-    h1: 'MP3 Editor — Edit the Length of an MP3, Online Free',
+      'Cut, fade, and change speed in one tab. The original file stays untouched, and speed moves the pitch with it.',
+    h1: 'MP3 Editor — Cut, Fade, and Change Speed',
     hero: {
       src: '/mp3-editor.svg',
       alt: 'Cut, fade, reverse and change the speed of an MP3',
@@ -547,10 +549,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Audio Joiner',
     icon: 'layers',
     category: 'merge',
-    title: 'Audio Joiner — Merge Songs & Audio Files Online Free',
+    title: 'Audio Joiner — Merge Songs in Order, with Crossfade',
     description:
-      'Merge songs and audio files into one track, in any order, right in your browser. Optional fades between tracks — free, private, no upload.',
-    h1: 'Audio Merger — Join MP3 Files into One, Online Free',
+      'Put songs, chapters, or voice memos in order and export one file. Set a crossfade, or zero for a hard join. Nothing is uploaded.',
+    h1: 'Audio Joiner — Put Songs One After Another',
     hero: {
       src: '/audio-joiner.svg',
       alt: 'Put songs and voice notes one after another',
@@ -1353,7 +1355,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['pitch-changer', 'metronome', 'audio-trimmer'],
+    related: ['pitch-changer', 'metronome', 'key-bpm-finder'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -3612,7 +3614,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['change-audio-speed', 'slowed-reverb', 'mp3-editor'],
+    related: ['change-audio-speed', 'key-bpm-finder', 'mp3-editor'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -4398,6 +4400,103 @@ export const TOOLS: ToolDef[] = [
       showAdjust: false,
       dropHint: 'No file. Press play.',
       metronome: true,
+    },
+  },
+  {
+    slug: 'key-bpm-finder',
+    cardLine: 'Read BPM from 60 to 180 and a major or minor key. Silence stays unread.',
+    name: 'Key and BPM Finder',
+    shortName: 'Key and BPM',
+    icon: 'waveform',
+    category: 'effects',
+    title: 'Key and BPM Finder — Read a File Online Free',
+    description:
+      'Read BPM from 60 to 180 and a major or minor key. Silence stays unread. The first 60 seconds are what the page reads. Nothing is uploaded.',
+    h1: 'Key and BPM, read from the file you drop',
+    hero: {
+      src: '/key-bpm-finder.svg',
+      alt: 'Read the BPM and the key of an audio file',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'Two numbers. No button that moves the pitch.',
+    intro:
+      'Drop a file. The page reads BPM from 60 to 180, and a key: a pitch plus major or minor. BPM is the strongest gap between onsets. A gap outside that range is halved or doubled until it lands inside. The key is the fixed major or minor profile that best matches the pitch classes. Silence shows “Can’t read”, not 0 BPM and not C major. Only the first 60 seconds are read. A file shorter than 2 seconds has no BPM. This page does not change the file. Moving the pitch is the pitch changer. Nothing is uploaded.',
+    usesHeading: 'What you can read',
+    uses: [
+      'The tempo of a loop before you change its speed.',
+      'The key of a take before you move it on the pitch changer.',
+      'An unread result on a silent file, instead of 0 BPM or C major.',
+    ],
+    howTo: [
+      {
+        name: 'Drop a file',
+        text: 'Audio, or a video with a soundtrack. The browser decodes it. Nothing is uploaded.',
+      },
+      {
+        name: 'Read BPM and key',
+        text: 'BPM is an integer from 60 to 180. The key is a pitch plus major or minor. The note under the numbers names the cases that swap.',
+      },
+      {
+        name: 'Leave the file as it is',
+        text: 'This page does not export a changed file. The pitch changer is where the pitch moves, and the length stays.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is the file uploaded?',
+        a: 'No. The browser decodes it and reads the samples in memory. After the page loads, you can go offline and still read a file you drop.',
+      },
+      {
+        q: 'How exact is the read?',
+        a: 'BPM is the strongest onset gap between 60 and 180, as an integer. The key is the best match against a fixed major profile and a fixed minor profile, 12 weights each. It is not a chord transcription.',
+      },
+      {
+        q: 'What will it not do?',
+        a: 'It will not change pitch or speed. There is no button for a new key. A file shorter than 2 seconds has no BPM. Silence shows Can’t read, not 0 and not C major. Only the first 60 seconds are read.',
+      },
+      {
+        q: 'How is this different from the pitch changer and the speed page?',
+        a: 'This page only reads. The pitch changer moves the pitch and keeps the length. The speed page changes the length, and the pitch moves with the speed. Cutting a region is the audio trimmer.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. Drop the file and read the two numbers. The drop target and the reset button take a tap in current Chrome, Edge, Firefox, and Safari.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'What the two numbers are',
+        paragraphs: [
+          'BPM is the strongest gap between onsets, from 60 to 180. A gap outside that range is halved or doubled until it lands inside.',
+          'The key is the major or minor profile that best matches the pitch-class energy. Each profile is a fixed set of 12 weights.',
+        ],
+      },
+      {
+        heading: 'When the read is weak',
+        paragraphs: [
+          'Free rhythm, speech, and room noise have no steady gap, so the BPM can sit on the wrong multiple. A relative major and minor share many pitches, so those two can swap.',
+        ],
+        bullets: [
+          'A silent file shows Can’t read for both numbers.',
+          'A file shorter than 2 seconds can still show a key, and it shows no BPM.',
+          'Only the first 60 seconds are read.',
+        ],
+      },
+      {
+        heading: 'What it will not do',
+        paragraphs: [
+          'It will not move the pitch. There is no button for a new key. That is the pitch changer, and the length stays the same.',
+          'It will not change the speed. The speed page does that, and the pitch moves with the speed.',
+        ],
+      },
+    ],
+    related: ['pitch-changer', 'change-audio-speed', 'audio-trimmer'],
+    editor: {
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      accept: 'audio/*,video/mp4,.m4a,.opus',
+      keyBpm: true,
     },
   },
 ];

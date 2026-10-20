@@ -96,6 +96,11 @@ export const de: Catalog = {
     metroBars: 'Takte',
     metroPlay: 'Start',
     metroStop: 'Stopp',
+    keyTonic: 'Tonart',
+    keyMajor: 'Dur',
+    keyMinor: 'Moll',
+    keyUnread: 'Nicht lesbar',
+    keyCaveat: 'Freier Rhythmus, Sprache, Raumgeräusch und eine parallele Dur- oder Molltonart können tauschen.',
     silenceThreshold: 'Schwelle',
     silenceGap: 'Mindestpause',
     silenceRemove: 'Entfernt etwa {time} Stille',
@@ -1047,7 +1052,7 @@ export const de: Catalog = {
       title: 'Audio schneiden – online kürzen, kostenlos',
       description:
         'Audio online kürzen: Sprachnotizen, Podcasts und Aufnahmen. Den Teil markieren, anhören und speichern. Kostenlos, ohne Upload.',
-      h1: 'Audio kürzen – kostenlos im Browser',
+      h1: 'Audio schneiden – einen Podcast oder eine Sprachnotiz',
       heroAlt: 'Eine MP3 oder einen Podcast auf die passende Stelle schneiden',
       subtitle: 'Audio online kürzen — kostenlos, direkt im Browser. Nichts wird hochgeladen.',
       intro:
@@ -3506,6 +3511,63 @@ export const de: Catalog = {
         },
       ],
       dropHint: 'Keine Datei. Drück Start.',
+    },
+    'key-bpm-finder': {
+      cardLine: 'Lies BPM von 60 bis 180 und Dur oder Moll. Stille bleibt unlesbar.',
+      name: 'Tonart und BPM',
+      shortName: 'Tonart BPM',
+      title: 'Tonart und BPM — Datei online kostenlos lesen',
+      description: 'Lies BPM von 60 bis 180 und Dur oder Moll. Stille bleibt unlesbar. Die Seite liest die ersten 60 Sekunden. Nichts wird hochgeladen.',
+      h1: 'Tonart und BPM, gelesen aus der Datei, die du ablegst',
+      heroAlt: 'BPM und Tonart einer Audiodatei lesen',
+      subtitle: 'Zwei Zahlen. Kein Knopf, der die Tonhöhe verschiebt.',
+      intro: 'Leg eine Datei ab. Die Seite liest BPM von 60 bis 180, und eine Tonart: ein Ton plus Dur oder Moll. BPM ist der stärkste Abstand zwischen Einsätzen. Ein Abstand außerhalb dieses Bereichs wird halbiert oder verdoppelt, bis er innen liegt. Die Tonart ist das feste Dur- oder Mollprofil, das am besten zu den Tonklassen passt. Stille zeigt «Nicht lesbar», nicht 0 BPM und nicht C-Dur. Nur die ersten 60 Sekunden werden gelesen. Eine Datei unter 2 Sekunden hat kein BPM. Diese Seite ändert die Datei nicht. Die Tonhöhe verschieben ist der Pitch-Changer. Nichts wird hochgeladen.',
+      usesHeading: 'Was du lesen kannst',
+      uses: [
+        'Das Tempo einer Schleife, bevor du die Geschwindigkeit änderst.',
+        'Die Tonart einer Aufnahme, bevor du sie im Pitch-Changer verschiebst.',
+        'Ein unlesbares Ergebnis bei einer stillen Datei, statt 0 BPM oder C-Dur.',
+      ],
+      howTo: [
+        { name: 'Datei ablegen', text: 'Audio, oder ein Video mit Tonspur. Der Browser dekodiert. Nichts wird hochgeladen.' },
+        { name: 'BPM und Tonart lesen', text: 'BPM ist eine ganze Zahl von 60 bis 180. Die Tonart ist ein Ton plus Dur oder Moll. Der Satz unter den Zahlen nennt die Fälle, die tauschen.' },
+        { name: 'Die Datei lassen, wie sie ist', text: 'Diese Seite exportiert keine geänderte Datei. Der Pitch-Changer ist der Ort, an dem sich die Tonhöhe bewegt, und die Länge bleibt.' },
+      ],
+      faqs: [
+        { q: 'Wird die Datei hochgeladen?', a: 'Nein. Der Browser dekodiert sie und liest die Samples im Speicher. Nach dem Laden kannst du offline gehen und eine Datei, die du ablegst, trotzdem lesen.' },
+        { q: 'Wie genau ist die Lesung?', a: 'BPM ist der stärkste Einsatzabstand zwischen 60 und 180, als ganze Zahl. Die Tonart ist die beste Übereinstimmung mit einem festen Durprofil und einem festen Mollprofil, je 12 Gewichte. Das ist keine Akkordtranskription.' },
+        { q: 'Was macht er nicht?', a: 'Er ändert weder Tonhöhe noch Tempo. Es gibt keinen Knopf für eine neue Tonart. Eine Datei unter 2 Sekunden hat kein BPM. Stille zeigt nicht lesbar, nicht 0 und nicht C-Dur. Nur die ersten 60 Sekunden werden gelesen.' },
+        { q: 'Was ist der Unterschied zum Pitch-Changer und zur Tempo-Seite?', a: 'Diese Seite liest nur. Der Pitch-Changer verschiebt die Tonhöhe und behält die Länge. Die Tempo-Seite ändert die Länge, und die Tonhöhe geht mit. Eine Region schneiden ist der Audio-Trimmer.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. Leg die Datei ab und lies die zwei Zahlen. Die Ablegefläche und der Zurücksetzen-Knopf lassen sich in aktuellem Chrome, Edge, Firefox und Safari antippen.' },
+      ],
+      sections: [
+        {
+          heading: 'Was die zwei Zahlen sind',
+          paragraphs: [
+            'BPM ist der stärkste Abstand zwischen Einsätzen, von 60 bis 180. Ein Abstand außerhalb dieses Bereichs wird halbiert oder verdoppelt, bis er innen liegt.',
+            'Die Tonart ist das Dur- oder Mollprofil, das am besten zur Tonklassen-Energie passt. Jedes Profil ist ein fester Satz von 12 Gewichten.',
+          ],
+        },
+        {
+          heading: 'Wenn die Lesung schwach ist',
+          paragraphs: [
+            'Freier Rhythmus, Sprache und Raumgeräusch haben keinen festen Abstand, also kann das BPM auf dem falschen Vielfachen sitzen. Eine parallele Dur- und Molltonart teilen viele Töne, also können die beiden tauschen.',
+          ],
+          bullets: [
+            'Eine stille Datei zeigt bei beiden Zahlen nicht lesbar.',
+            'Eine Datei unter 2 Sekunden kann eine Tonart zeigen und kein BPM.',
+            'Nur die ersten 60 Sekunden werden gelesen.',
+          ],
+        },
+        {
+          heading: 'Was er nicht tut',
+          paragraphs: [
+            'Er verschiebt die Tonhöhe nicht. Es gibt keinen Knopf für eine neue Tonart. Das ist der Pitch-Changer, und die Länge bleibt gleich.',
+            'Er ändert das Tempo nicht. Das macht die Tempo-Seite, und die Tonhöhe geht mit der Geschwindigkeit.',
+          ],
+        },
+      ],
+      dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
     },
     'loudness-meter': {
       cardLine: "Lies, wie laut eine Datei in LUFS ist, und gleiche dann ein Podcast-, Streaming- oder Broadcast-Ziel an.",
