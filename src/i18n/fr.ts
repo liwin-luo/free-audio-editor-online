@@ -92,6 +92,10 @@ export const fr: Catalog = {
     silenceGap: 'Trou minimum',
     silenceRemove: 'Environ {time} de silence seront retirés',
     silenceKeepFile: 'Rien ne dépasse le seuil, l’export garde le fichier entier',
+    loopTimes: 'Répétitions',
+    loopCrossfade: 'Jointure',
+    loopExport: 'L’export dure environ {time}',
+    loopTooLong: 'Cette boucle dépasse 10 minutes. Baissez les répétitions ou raccourcissez la sélection.',
     lufsIntegrated: 'Intégrée',
     lufsPeak: 'Crête d’échantillon',
     lufsPodcast: 'Podcast',
@@ -821,7 +825,7 @@ export const fr: Catalog = {
         },
         {
           q: 'Quelle longueur peut avoir mon fichier ?',
-          a: 'Les enregistrements d’environ une heure passent sans problème sur un ordinateur moderne. La vraie limite est la mémoire de votre appareil, pas un plafond artificiel.',
+          a: 'Les enregistrements d’environ une heure passent sans problème sur un ordinateur moderne. La vraie limite est la mémoire de votre appareil, pas un plafond artificiel. Répéter la partie gardée, de 2 à 16 fois, c’est la boucle audio.',
         },
       ],
       dropHint: 'Déposez un fichier audio ou cliquez pour le parcourir',
@@ -993,7 +997,7 @@ export const fr: Catalog = {
         },
         {
           q: 'La sonnerie va-t-elle mal boucler ?',
-          a: 'Ajoutez un court fondu de sortie dans le panneau Ajuster : le retour au début sonne naturel au lieu de se couper en pleine note.',
+          a: 'Ajoutez un court fondu de sortie dans le panneau Ajuster : le retour au début sonne naturel au lieu de se couper en pleine note. Écrire ce clip 2 à 16 fois dans un fichier plus long, c’est la boucle audio. Cette page reste dans les 40 secondes.',
         },
         {
           q: 'Y a-t-il un filigrane ou une limite ?',
@@ -1885,7 +1889,7 @@ export const fr: Catalog = {
         },
         {
           q: 'Peut-on faire un fondu enchaîné entre deux chansons ?',
-          a: 'Pas ici — cette page applique un fondu d’entrée et de sortie à un seul fichier. Enchaîner la fin d’une piste sur le début d’une autre est un fondu enchaîné, et c’est le travail de l’outil de fusion audio.',
+          a: 'Pas ici — cette page applique un fondu d’entrée et de sortie à un seul fichier. Enchaîner la fin d’une piste sur le début d’une autre est un fondu enchaîné, et c’est le travail de l’outil de fusion audio. Répéter le même clip avec un court fondu à chaque jointure, c’est la boucle audio.',
         },
         {
           q: 'Quelle différence avec l’augmentation du volume ?',
@@ -2353,6 +2357,32 @@ export const fr: Catalog = {
         { q: "Est-ce que ça marche sur un téléphone ?", a: "Oui. Les deux curseurs et le bouton d’export répondent au toucher dans Chrome, Edge, Firefox et Safari actuels." },
       ],
       dropHint: "Déposez un fichier audio, ou cliquez pour parcourir",
+    },
+    'audio-looper': {
+      cardLine: 'Répétez un clip jusqu’à 16 fois et fondez chaque jointure.',
+      name: 'Boucle audio',
+      shortName: 'Boucle',
+      title: 'Boucle audio — répéter un clip en ligne gratuit',
+      description: 'Répétez une sélection ou le fichier entier de 2 à 16 fois, avec un fondu de 0,01 s à chaque jointure. Gratuit dans le navigateur. Rien n’est envoyé.',
+      h1: 'Répéter un clip de 2 à 16 fois, en ligne et gratuit',
+      heroAlt: 'Répéter un clip et fondre chaque jointure',
+      subtitle: 'Bouclez la sélection ou le fichier entier, puis téléchargez un fichier plus long.',
+      intro: 'Le nombre va de 2 à 16. La valeur de départ est 4. Chaque jointure est un fondu linéaire, 0,01 seconde tant que vous ne le bougez pas, jusqu’à 0,1 seconde. Faites glisser une sélection pour ne répéter que cette partie. Sans sélection, le fichier entier se répète. L’export s’arrête à 10 minutes. La hauteur et la vitesse restent. Le traitement reste dans le navigateur.',
+      usesHeading: 'À quoi servent les répétitions',
+      uses: ['Faites d’une mesure une boucle d’exercice à exporter.', 'Allongez une phrase courte pour couvrir une scène plus longue.', 'Répétez un sample avec un fondu court pour que la jointure ne claque pas.'],
+      howTo: [
+        { name: 'Déposez l’audio', text: 'MP3, WAV, M4A, OGG ou FLAC. Le fichier est décodé sur votre appareil.' },
+        { name: 'Réglez le nombre et la jointure', text: 'Les répétitions vont de 2 à 16. La jointure est le fondu de chaque couture, de 0 à 0,1 seconde. Glissez sur la forme d’onde si seule une partie doit se répéter. La ligne d’état indique la durée.' },
+        { name: 'Exportez', text: 'Écoutez l’original pour vérifier la sélection, puis exportez en MP3 ou WAV. Le fichier est le clip écrit à la suite.' },
+      ],
+      faqs: [
+        { q: 'Mon audio est-il envoyé ?', a: 'Non. Les répétitions sont copiées dans votre navigateur. Une fois la page chargée, l’export fonctionne hors ligne.' },
+        { q: 'Que se passe-t-il à chaque jointure ?', a: 'La fin d’un passage et le début du suivant se chevauchent de la durée de la jointure. La valeur de départ est 0,01 seconde. Le chevauchement est un fondu linéaire, un son stable ne saute pas. Le WAV, ce sont ces échantillons. Le MP3 encode la boucle une fois, au débit que vous choisissez. La hauteur et la vitesse ne changent pas.' },
+        { q: 'Que refuse la page ?', a: 'Les répétitions vont seulement de 2 à 16. Si le résultat dépasse 10 minutes, l’export s’arrête et la ligne d’état le dit. Cette page n’enregistre pas par-dessus elle-même et ne met pas deux fichiers différents bout à bout.' },
+        { q: 'Quelle différence avec le découpage, la jonction et le fondu ?', a: 'Le découpage garde une plage une fois. La jonction aligne des fichiers différents. Le fondu baisse le début ou la fin d’un seul fichier. Cette page réécrit le même clip, et le fondu croisé n’est qu’entre les copies.' },
+        { q: 'Est-ce que ça marche sur un téléphone ?', a: 'Oui. Les deux curseurs, la forme d’onde et le bouton d’export se touchent dans Chrome, Edge, Firefox et Safari actuels.' },
+      ],
+      dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
     },
     'loudness-meter': {
       cardLine: "Lisez le niveau d’un fichier en LUFS, puis alignez une cible podcast, streaming ou diffusion.",

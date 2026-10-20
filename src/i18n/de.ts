@@ -92,6 +92,10 @@ export const de: Catalog = {
     silenceGap: 'Mindestpause',
     silenceRemove: 'Entfernt etwa {time} Stille',
     silenceKeepFile: 'Nichts liegt über der Schwelle, der Export behält die ganze Datei',
+    loopTimes: 'Wiederholungen',
+    loopCrossfade: 'Übergang',
+    loopExport: 'Export dauert etwa {time}',
+    loopTooLong: 'Diese Schleife ist länger als 10 Minuten. Nimm weniger Wiederholungen oder eine kürzere Auswahl.',
     lufsIntegrated: 'Integriert',
     lufsPeak: 'Sample-Peak',
     lufsPodcast: 'Podcast',
@@ -984,7 +988,7 @@ export const de: Catalog = {
         },
         {
           q: 'Kann ich zwei Songs überblenden?',
-          a: 'Hier nicht — diese Seite blendet eine Datei ein und aus. Das weiche Überblenden vom Ende eines Tracks in den Anfang des nächsten ist ein Crossfade; das macht der Audio-Joiner.',
+          a: 'Hier nicht — diese Seite blendet eine Datei ein und aus. Das weiche Überblenden vom Ende eines Tracks in den Anfang des nächsten ist ein Crossfade; das macht der Audio-Joiner. Denselben Clip mit einem kurzen Crossfade an jeder Naht zu wiederholen ist der Audio-Looper.',
         },
         {
           q: 'Was ist der Unterschied zum Volume Booster?',
@@ -1083,7 +1087,7 @@ export const de: Catalog = {
         },
         {
           q: 'Wie lang darf meine Datei sein?',
-          a: 'Aufnahmen bis etwa einer Stunde laufen auf einem modernen Computer problemlos. Die praktische Grenze ist der Speicher deines Geräts, kein künstliches Limit.',
+          a: 'Aufnahmen bis etwa einer Stunde laufen auf einem modernen Computer problemlos. Die praktische Grenze ist der Speicher deines Geräts, kein künstliches Limit. Den behaltenen Teil 2- bis 16-mal zu wiederholen ist der Audio-Looper.',
         },
       ],
       sections: [
@@ -1358,7 +1362,7 @@ export const de: Catalog = {
         },
         {
           q: 'Klingelt er in der Schleife unschön?',
-          a: 'Füge unter Anpassen eine kurze Ausblendung hinzu — dann klingt der Sprung zurück zum Anfang natürlich, statt mitten in der Note abzubrechen.',
+          a: 'Füge unter Anpassen eine kurze Ausblendung hinzu — dann klingt der Sprung zurück zum Anfang natürlich, statt mitten in der Note abzubrechen. Denselben Clip 2- bis 16-mal in eine längere Datei zu schreiben ist der Audio-Looper. Diese Seite bleibt bei 40 Sekunden.',
         },
         {
           q: 'Gibt es ein Wasserzeichen oder ein Limit?',
@@ -3284,6 +3288,32 @@ export const de: Catalog = {
         },
       ],
       dropHint: "Audiodatei hier ablegen oder zum Auswählen klicken",
+    },
+    'audio-looper': {
+      cardLine: 'Wiederhole einen Clip bis zu 16-mal und blende jede Naht über.',
+      name: 'Audio-Looper',
+      shortName: 'Loop',
+      title: 'Audio Looper — Clip online kostenlos wiederholen',
+      description: 'Wiederhole eine Auswahl oder die ganze Datei 2- bis 16-mal, mit 0,01 s Crossfade an jeder Naht. Kostenlos im Browser. Nichts wird hochgeladen.',
+      h1: 'Einen Clip 2- bis 16-mal wiederholen, online kostenlos',
+      heroAlt: 'Einen Clip wiederholen und jede Naht überblenden',
+      subtitle: 'Loop die Auswahl oder die ganze Datei und lade eine längere Datei herunter.',
+      intro: 'Die Zahl geht von 2 bis 16, Standard ist 4. Jede Naht ist ein linearer Crossfade, 0,01 Sekunden, bis du ihn auf höchstens 0,1 Sekunden ziehst. Zieh eine Auswahl, dann loopt nur der Teil. Ohne Auswahl wiederholt sich die ganze Datei. Der Export stoppt bei 10 Minuten. Tonhöhe und Tempo bleiben. Die Verarbeitung bleibt im Browser.',
+      usesHeading: 'Wofür die Wiederholungen da sind',
+      uses: ['Mach aus einem Takt einen Übungsloop zum Exportieren.', 'Zieh einen kurzen Sprachschnipsel auf die Länge einer Szene.', 'Wiederhole ein Sample mit kurzem Crossfade, damit die Naht nicht knackst.'],
+      howTo: [
+        { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Datei wird auf deinem Gerät dekodiert.' },
+        { name: 'Zahl und Naht setzen', text: 'Wiederholungen gehen von 2 bis 16. Die Naht ist der Crossfade, von 0 bis 0,1 Sekunden. Zieh auf der Wellenform, wenn nur ein Teil wiederholt werden soll. Die Statuszeile zeigt die Exportlänge.' },
+        { name: 'Exportieren', text: 'Hör die Auswahl an, dann exportiere MP3 oder WAV. Die Datei ist der Clip hintereinander.' },
+      ],
+      faqs: [
+        { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Die Wiederholungen werden in deinem Browser kopiert. Nach dem Laden der Seite geht der Export auch offline.' },
+        { q: 'Was passiert an der Naht?', a: 'Das Ende eines Durchgangs und der Anfang des nächsten überlappen um die Nahtlänge. Standard sind 0,01 Sekunden. Die Überlappung ist ein linearer Crossfade, ein gleichbleibender Ton springt nicht. WAV sind diese Samples. MP3 kodiert den Loop einmal, mit der Bitrate, die du wählst. Tonhöhe und Tempo bleiben.' },
+        { q: 'Was lehnt die Seite ab?', a: 'Wiederholungen gibt es nur von 2 bis 16. Wird das Ergebnis länger als 10 Minuten, stoppt der Export und die Statuszeile sagt es. Die Seite nimmt keine Overdubs auf und setzt keine zwei verschiedenen Dateien hintereinander.' },
+        { q: 'Was ist der Unterschied zu Schnitt, Join und Fade?', a: 'Der Trimmer behält eine Spanne einmal. Der Joiner reiht verschiedene Dateien aneinander. Fade macht Anfang oder Ende einer Datei leiser. Diese Seite schreibt denselben Clip erneut, der Crossfade sitzt nur zwischen den Kopien.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. Beide Regler, die Wellenform und der Export funktionieren per Touch in aktuellem Chrome, Edge, Firefox und Safari.' },
+      ],
+      dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
     },
     'loudness-meter': {
       cardLine: "Lies, wie laut eine Datei in LUFS ist, und gleiche dann ein Podcast-, Streaming- oder Broadcast-Ziel an.",

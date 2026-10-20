@@ -20,6 +20,7 @@
     "check:srt": "node_modules/.bin/esbuild scripts/srt-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/srt-check.mjs && node /tmp/srt-check.mjs",
     "check:tags": "node_modules/.bin/esbuild scripts/tags-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/tags-check.mjs && node /tmp/tags-check.mjs",
     "check:silence": "node_modules/.bin/esbuild scripts/silence-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/silence-check.mjs && node /tmp/silence-check.mjs",
+    "check:loop": "node_modules/.bin/esbuild scripts/loop-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/loop-check.mjs && node /tmp/loop-check.mjs",
     "check:loudness": "node_modules/.bin/esbuild scripts/loudness-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/loudness-check.mjs && node /tmp/loudness-check.mjs",
     "check:mixer": "node_modules/.bin/esbuild scripts/mixer-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/mixer-check.mjs && node /tmp/mixer-check.mjs",
     "check:delivery": "node_modules/.bin/esbuild scripts/delivery-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/delivery-check.mjs && node /tmp/delivery-check.mjs",

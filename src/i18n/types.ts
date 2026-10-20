@@ -62,6 +62,10 @@ export interface EditorText {
   silenceGap: string;
   silenceRemove: string;
   silenceKeepFile: string;
+  loopTimes: string;
+  loopCrossfade: string;
+  loopExport: string;
+  loopTooLong: string;
   lufsIntegrated: string;
   lufsPeak: string;
   lufsPodcast: string;

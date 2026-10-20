@@ -4,8 +4,9 @@
  */
 import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
-import { defaultEditState, renderEdit, computeNormalizeGain, type EditState } from './processor';
+import { defaultEditState, renderEdit, computeNormalizeGain, survivingRanges, type EditState } from './processor';
 import { analyzeSilence, measureSilenceFrames, SILENCE_PAD_SEC, type SilenceFrames, type TimeRange } from './silence';
+import { loopChannels, LOOP_MAX_SECONDS, loopedDuration } from './loop';
 import { encodeFor, getFormat, isM4rSupported } from './encoders';
 import { bindDeliveryChips, bindFileOpen } from './delivery';
 import { readEditorText, showToast } from './messages';
@@ -88,6 +89,8 @@ export class Editor {
   private silenceFrames: SilenceFrames | null = null;
   private silenceThreshold = -40;
   private silenceMin = 0.35;
+  private loopTimes = 4;
+  private loopCrossfade = 0.01;
   private drag: { kind: 'new' | 'start' | 'end'; x0: number; anchor: number; sel: { start: number; end: number } } | null = null;
 
   constructor(root: HTMLElement, config: EditorConfig) {
@@ -158,6 +161,23 @@ export class Editor {
         this.silenceMin = Number(gap.value);
         if (gapLabel) gapLabel.textContent = `${this.silenceMin.toFixed(2)} s`;
         this.updateSilenceStatus();
+      });
+    }
+
+    if (this.config.loop) {
+      const times = els.root.querySelector<HTMLInputElement>('[data-loop-times]');
+      const join = els.root.querySelector<HTMLInputElement>('[data-loop-join]');
+      const timesLabel = els.root.querySelector('[data-loop-times-label]');
+      const joinLabel = els.root.querySelector('[data-loop-join-label]');
+      times?.addEventListener('input', () => {
+        this.loopTimes = Number(times.value);
+        if (timesLabel) timesLabel.textContent = String(Math.round(this.loopTimes));
+        this.updateLoopStatus();
+      });
+      join?.addEventListener('input', () => {
+        this.loopCrossfade = Number(join.value);
+        if (joinLabel) joinLabel.textContent = `${this.loopCrossfade.toFixed(2)} s`;
+        this.updateLoopStatus();
       });
     }
 
@@ -402,6 +422,7 @@ export class Editor {
       this.applyState(this.state, false);
       this.setStatus(this.text.ready);
       if (this.config.silence) this.measureSilence();
+      if (this.config.loop) this.updateLoopStatus();
 
       if (this.duration > 3600) {
         showToast(this.toastRoot(), 'info', this.text.hourWarning);
@@ -514,6 +535,19 @@ export class Editor {
     const kept = analysis.ranges.reduce((sum, range) => sum + (range.to - range.from), 0);
     const removed = Math.max(0, this.duration - kept);
     this.setStatus(fill(this.text.silenceRemove, { time: `${removed.toFixed(1)} s` }));
+  }
+
+  private loopPassSeconds(): number {
+    if (!this.buffer) return 0;
+    const ranges = survivingRanges(this.duration, this.state);
+    const speed = this.state.speed > 0 ? this.state.speed : 1;
+    return ranges.reduce((sum, range) => sum + (range.to - range.from), 0) / speed;
+  }
+
+  private updateLoopStatus(): void {
+    if (!this.config.loop || !this.buffer) return;
+    const dur = loopedDuration(this.loopPassSeconds(), this.loopTimes, this.loopCrossfade);
+    this.setStatus(dur > LOOP_MAX_SECONDS ? this.text.loopTooLong : fill(this.text.loopExport, { time: `${dur.toFixed(1)} s` }));
   }
 
   private silenceBuffer(): AudioBuffer {
@@ -785,6 +819,7 @@ export class Editor {
     this.updateSelectionOverlay();
     this.updatePreciseInputs();
     this.updateExportState();
+    if (this.config.loop) this.updateLoopStatus();
   }
 
   private updateModeButtons(): void {
@@ -951,7 +986,13 @@ export class Editor {
     this.setStatus(this.text.renderingStatus);
 
     try {
-      const out = this.config.silence ? this.silenceBuffer() : await renderEdit(this.buffer, this.state);
+      if (this.config.loop && loopedDuration(this.loopPassSeconds(), this.loopTimes, this.loopCrossfade) > LOOP_MAX_SECONDS) {
+        this.setStatus(this.text.loopTooLong);
+        showToast(this.toastRoot(), 'error', this.text.loopTooLong);
+        return;
+      }
+      let out = this.config.silence ? this.silenceBuffer() : await renderEdit(this.buffer, this.state);
+      if (this.config.loop) out = loopAudioBuffer(out, this.loopTimes, this.loopCrossfade);
       const fmt = getFormat(this.els.format.value);
       this.setStatus(fill(this.text.encoding, { ext: fmt.ext.toUpperCase() }));
       const blob = await encodeFor(fmt, out);
@@ -1009,6 +1050,18 @@ export class Editor {
       this.undo();
     }
   }
+}
+
+function loopAudioBuffer(buffer: AudioBuffer, times: number, crossfadeSec: number): AudioBuffer {
+  const channels = Array.from({ length: buffer.numberOfChannels }, (_, c) => buffer.getChannelData(c));
+  const looped = loopChannels(channels, buffer.sampleRate, { times, crossfadeSec });
+  const out = new AudioBuffer({
+    length: Math.max(1, looped[0]?.length ?? 1),
+    numberOfChannels: buffer.numberOfChannels,
+    sampleRate: buffer.sampleRate,
+  });
+  for (let c = 0; c < looped.length; c++) out.getChannelData(c).set(looped[c]!);
+  return out;
 }
 
 function spliceRanges(buffer: AudioBuffer, ranges: TimeRange[]): AudioBuffer {

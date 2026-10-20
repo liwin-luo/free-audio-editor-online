@@ -92,6 +92,10 @@ export const id: Catalog = {
     silenceGap: 'Jeda minimum',
     silenceRemove: 'Akan menghapus sekitar {time} senyap',
     silenceKeepFile: 'Tidak ada yang di atas ambang, jadi ekspor menyimpan seluruh berkas',
+    loopTimes: 'Pengulangan',
+    loopCrossfade: 'Sambungan',
+    loopExport: 'Ekspor sekitar {time}',
+    loopTooLong: 'Loop ini lebih dari 10 menit. Kurangi pengulangan atau perpendek pilihan.',
     lufsIntegrated: 'Terintegrasi',
     lufsPeak: 'Puncak sampel',
     lufsPodcast: 'Podcast',
@@ -809,7 +813,7 @@ export const id: Catalog = {
         },
         {
           q: 'Bisakah crossfade antara dua lagu?',
-          a: 'Tidak di sini — halaman ini memberi fade in dan out pada satu berkas. Mencampur akhir satu lagu ke awal lagu lain adalah crossfade, dan itu tugas penggabung audio.',
+          a: 'Tidak di sini — halaman ini memberi fade in dan out pada satu berkas. Mencampur akhir satu lagu ke awal lagu lain adalah crossfade, dan itu tugas penggabung audio. Mengulang satu klip yang sama dengan crossfade pendek di setiap sambungan adalah pengulang audio.',
         },
         {
           q: 'Apa bedanya dengan volume booster?',
@@ -881,7 +885,7 @@ export const id: Catalog = {
         },
         {
           q: 'Berapa panjang file yang bisa diproses?',
-          a: 'Rekaman hingga sekitar satu jam berjalan nyaman di komputer modern. Batas praktisnya adalah memori perangkat Anda, bukan batas buatan.',
+          a: 'Rekaman hingga sekitar satu jam berjalan nyaman di komputer modern. Batas praktisnya adalah memori perangkat Anda, bukan batas buatan. Mengulang bagian yang Anda simpan, 2 sampai 16 kali, adalah pengulang audio.',
         },
       ],
       dropHint: 'Jatuhkan file audio, atau klik untuk memilih',
@@ -1053,7 +1057,7 @@ export const id: Catalog = {
         },
         {
           q: 'Apakah nada dering akan putus saat berulang?',
-          a: 'Tambahkan fade out yang pendek di panel Sesuaikan — perulangan kembali ke awal terdengar wajar, tidak terputus di tengah nada.',
+          a: 'Tambahkan fade out yang pendek di panel Sesuaikan — perulangan kembali ke awal terdengar wajar, tidak terputus di tengah nada. Menulis klip itu 2 sampai 16 kali menjadi berkas yang lebih panjang adalah pengulang audio. Halaman ini tetap di dalam 40 detik.',
         },
         {
           q: 'Apakah ada watermark atau batas?',
@@ -2246,6 +2250,32 @@ export const id: Catalog = {
         { q: "Apakah ini jalan di ponsel?", a: "Ya. Kedua penggeser dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari yang sekarang." },
       ],
       dropHint: "Letakkan berkas audio, atau klik untuk menelusuri",
+    },
+    'audio-looper': {
+      cardLine: 'Ulangi satu klip sampai 16 kali dan samarkan setiap sambungan.',
+      name: 'Pengulang audio',
+      shortName: 'Loop',
+      title: 'Audio looper — ulang klip online gratis',
+      description: 'Ulangi pilihan atau seluruh berkas 2 sampai 16 kali, dengan crossfade 0,01 d di setiap sambungan. Gratis di browser. Tidak ada yang diunggah.',
+      h1: 'Ulangi klip 2 sampai 16 kali, online dan gratis',
+      heroAlt: 'Mengulang satu klip dan menyamarkan setiap sambungan',
+      subtitle: 'Loop bagian yang dipilih atau seluruh berkas, lalu unduh berkas yang lebih panjang.',
+      intro: 'Jumlah ulang dari 2 sampai 16. Bawaan adalah 4. Setiap sambungan adalah crossfade linear, 0,01 detik sampai Anda menggesernya, paling lama 0,1 detik. Seret pilihan untuk mengulang bagian itu saja. Tanpa pilihan, seluruh berkas yang diulang. Ekspor berhenti pada 10 menit. Nada dan kecepatan tetap. Pemrosesan tinggal di browser.',
+      usesHeading: 'Untuk apa pengulangan ini',
+      uses: ['Jadikan satu bar loop latihan, lalu ekspor.', 'Panjangkan ucapan pendek supaya menutup adegan yang lebih lama.', 'Ulangi sampel dengan crossfade pendek supaya sambungan tidak meletup.'],
+      howTo: [
+        { name: 'Letakkan audio', text: 'MP3, WAV, M4A, OGG, atau FLAC. Berkas didekode di perangkat Anda.' },
+        { name: 'Atur jumlah dan sambungan', text: 'Pengulangan dari 2 sampai 16. Sambungan adalah crossfade di tiap batas, dari 0 sampai 0,1 detik. Seret gelombang jika hanya sebagian yang diulang. Baris status menunjukkan durasi ekspor.' },
+        { name: 'Ekspor', text: 'Dengarkan berkas asli untuk memeriksa pilihan, lalu ekspor MP3 atau WAV. Unduhan adalah klip yang ditulis berurutan.' },
+      ],
+      faqs: [
+        { q: 'Apakah audio saya diunggah?', a: 'Tidak. Pengulangan disalin di browser Anda. Setelah halaman termuat, ekspor tetap jalan tanpa jaringan.' },
+        { q: 'Apa yang terjadi di setiap sambungan?', a: 'Akhir satu putaran dan awal putaran berikut tumpang tindih sepanjang sambungan. Bawaan adalah 0,01 detik. Tumpang tindih itu crossfade linear, jadi nada yang rata tidak meloncat. WAV adalah sampel itu. MP3 mengkode loop satu kali, pada bitrate yang Anda pilih. Nada dan kecepatan tidak berubah.' },
+        { q: 'Apa yang ditolak?', a: 'Pengulangan hanya dari 2 sampai 16. Jika hasilnya melewati 10 menit, ekspor berhenti dan baris status memberitahu. Halaman ini tidak merekam di atas dirinya sendiri dan tidak menyusun dua berkas yang berbeda ujung ke ujung.' },
+        { q: 'Apa bedanya dengan potong, gabung, dan fade?', a: 'Pemotong menyimpan satu rentang sekali. Penggabung menyusun berkas yang berbeda berurutan. Fade mengecilkan awal atau akhir satu berkas. Halaman ini menulis klip yang sama lagi, dan crossfade hanya ada di antara salinan.' },
+        { q: 'Apakah bisa di ponsel?', a: 'Ya. Kedua slider, gelombang, dan tombol ekspor bisa disentuh di Chrome, Edge, Firefox, dan Safari yang sekarang.' },
+      ],
+      dropHint: 'Letakkan berkas audio, atau klik untuk memilih',
     },
     'loudness-meter': {
       cardLine: "Baca seberapa nyaring sebuah berkas dalam LUFS, lalu samakan ke target podcast, streaming, atau siaran.",

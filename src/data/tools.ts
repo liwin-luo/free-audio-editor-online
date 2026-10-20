@@ -67,6 +67,8 @@ export interface EditorConfig {
   converter?: boolean;
   /** Remove long silences on export. Hides the cut UI. */
   silence?: boolean;
+  /** Repeat the kept selection, or the whole file, on export. */
+  loop?: boolean;
   /** File LUFS meter island instead of the waveform editor. */
   loudness?: boolean;
   /** Export button label (default "Export") */
@@ -179,7 +181,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'How long can my file be?',
-        a: 'Recordings up to about an hour work comfortably on a modern computer. The practical limit is your device memory, not an artificial cap.',
+        a: 'Recordings up to about an hour work comfortably on a modern computer. The practical limit is your device memory, not an artificial cap. Repeating the part you kept, from 2 to 16 times, is the audio looper.',
       },
     ],
     sections: [
@@ -493,7 +495,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Will the ringtone loop badly?',
-        a: 'Add a short fade-out in the Adjust drawer — it makes the loop back to the start sound natural instead of cutting off mid-note.',
+        a: 'Add a short fade-out in the Adjust drawer. It makes the phone’s loop back to the start less abrupt. Repeating that clip into a longer file, 2 to 16 times, is the audio looper. This page stays inside 40 seconds.',
       },
       {
         q: 'Is there a watermark or limit?',
@@ -527,7 +529,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['mp3-cutter', 'audio-trimmer', 'mp3-editor'],
+    related: ['mp3-cutter', 'audio-trimmer', 'audio-looper'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -3462,7 +3464,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Can it crossfade between two songs?',
-        a: 'Not here — this page fades one file in and out. Blending the end of one track into the start of another is a crossfade join, and the audio joiner does that job.',
+        a: 'Not here. This page fades one file in and out. Blending the end of one track into the start of another is a crossfade join, and the audio joiner does that job. Repeating one clip, with a short crossfade at each join, is the audio looper.',
       },
       {
         q: 'How is this different from the volume booster?',
@@ -3504,7 +3506,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['multi-track-audio-editor', 'audio-joiner', 'mp3-cutter'],
+    related: ['multi-track-audio-editor', 'audio-joiner', 'audio-looper'],
     editor: {
       defaultFormat: 'mp3-320',
       showAdjust: true,
@@ -4012,6 +4014,76 @@ export const TOOLS: ToolDef[] = [
       accept: 'audio/mpeg,.mp3',
       dropHint: 'Drop an MP3 file here, or click to browse',
       exportLabel: 'Save MP3',
+    },
+  },
+  {
+    slug: 'audio-looper',
+    cardLine: 'Repeat one clip up to 16 times and crossfade each join.',
+    name: 'Audio Looper',
+    shortName: 'Looper',
+    icon: 'layers',
+    category: 'effects',
+    title: 'Audio Looper — Repeat a Clip Online Free',
+    description:
+      'Repeat a selection or a whole file from 2 to 16 times, with a 0.01 s crossfade at each join. Free in your browser. Nothing is uploaded.',
+    h1: 'Audio Looper, repeat a clip 2 to 16 times',
+    hero: {
+      src: '/audio-looper.svg',
+      alt: 'Repeat one clip and crossfade each join',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'Loop the selection, or the whole file, and download one longer file.',
+    intro:
+      'Set how many times the clip plays, from 2 to 16. The default is 4. Each join uses a linear crossfade, 0.01 seconds unless you move it, up to 0.1 seconds. Drag a selection to loop only that part. With no selection, the whole file repeats. The export stops at 10 minutes. Pitch and speed stay as they are. Processing stays in your browser.',
+    usesHeading: 'What the repeats are for',
+    uses: [
+      'Turn a one-bar riff into a practice loop you can export.',
+      'Stretch a short voice cue so it lasts through a longer scene.',
+      'Repeat a sample with a short crossfade so the join does not click.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device.',
+      },
+      {
+        name: 'Set repeats and the join',
+        text: 'Repeats runs from 2 to 16. Join is the crossfade at each seam, from 0 to 0.1 seconds. Drag the waveform if only part of the file should repeat. The status line shows the export length.',
+      },
+      {
+        name: 'Export',
+        text: 'Play the original to check the selection, then export MP3 or WAV. The download is the clip written back to back.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The repeats are copied in your browser. After the page loads you can go offline and it still exports.',
+      },
+      {
+        q: 'What happens at each join?',
+        a: 'The end of one pass and the start of the next overlap by the join length. The default is 0.01 seconds. The overlap is a linear crossfade, so a steady tone does not jump. WAV is those samples. MP3 encodes the loop once, at the bitrate you pick. Pitch and speed are unchanged.',
+      },
+      {
+        q: 'What will it refuse?',
+        a: 'Repeats only go from 2 to 16. If the result would pass 10 minutes, export stops and the status line says so. This page does not record over itself, and it does not place two different files end to end.',
+      },
+      {
+        q: 'How is this different from trim, join, and fade?',
+        a: 'The audio trimmer keeps a span once. The audio joiner places different files in a row. Fade audio quiets the start or end of one file. This page writes the same clip again, with a crossfade only at the joins between copies.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. Both sliders, the waveform, and the export button work with touch in current Chrome, Edge, Firefox and Safari.',
+      },
+    ],
+    related: ['audio-trimmer', 'fade-audio', 'ringtone-maker'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      loop: true,
     },
   },
 ];

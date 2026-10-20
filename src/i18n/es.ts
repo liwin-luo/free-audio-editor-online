@@ -92,6 +92,10 @@ export const es: Catalog = {
     silenceGap: 'Pausa mínima',
     silenceRemove: 'Se quitarán unos {time} de silencio',
     silenceKeepFile: 'Nada supera el umbral, así que la exportación conserva el archivo entero',
+    loopTimes: 'Repeticiones',
+    loopCrossfade: 'Unión',
+    loopExport: 'La exportación dura unos {time}',
+    loopTooLong: 'Ese bucle pasa de 10 minutos. Baja las repeticiones o acorta la selección.',
     lufsIntegrated: 'Integrada',
     lufsPeak: 'Pico de muestra',
     lufsPodcast: 'Pódcast',
@@ -983,7 +987,7 @@ export const es: Catalog = {
         },
         {
           q: '¿Puedo hacer un crossfade entre dos canciones?',
-          a: 'Aquí no: esta página funde un solo archivo de entrada y de salida. Fundir el final de una pista con el inicio de otra es una unión con crossfade, y de eso se encarga el creador de uniones.',
+          a: 'Aquí no: esta página funde un solo archivo de entrada y de salida. Fundir el final de una pista con el inicio de otra es una unión con crossfade, y de eso se encarga el creador de uniones. Repetir un mismo clip con un crossfade corto en cada unión es el repetidor de audio.',
         },
         {
           q: '¿En qué se diferencia del potenciador de volumen?',
@@ -1082,7 +1086,7 @@ export const es: Catalog = {
         },
         {
           q: '¿Qué duración puede tener mi archivo?',
-          a: 'Las grabaciones de hasta cerca de una hora van bien en una computadora moderna. El límite real es la memoria de tu dispositivo, no un tope artificial.',
+          a: 'Las grabaciones de hasta cerca de una hora van bien en una computadora moderna. El límite real es la memoria de tu dispositivo, no un tope artificial. Repetir la parte que dejaste, de 2 a 16 veces, es el repetidor de audio.',
         },
       ],
       sections: [
@@ -1357,7 +1361,7 @@ export const es: Catalog = {
         },
         {
           q: '¿El tono se va a repetir mal?',
-          a: 'Agrega un fundido de salida corto en Ajustar. Así el regreso al inicio suena natural, en lugar de cortarse a media nota.',
+          a: 'Agrega un fundido de salida corto en Ajustar. Así el regreso al inicio suena natural, en lugar de cortarse a media nota. Escribir ese clip de 2 a 16 veces en un archivo más largo es el repetidor de audio. Esta página se queda dentro de 40 segundos.',
         },
         {
           q: '¿Hay marca de agua o algún límite?',
@@ -3287,6 +3291,32 @@ export const es: Catalog = {
         },
       ],
       dropHint: "Suelta un archivo de audio o haz clic para buscar",
+    },
+    'audio-looper': {
+      cardLine: 'Repite un clip hasta 16 veces y cruza cada unión.',
+      name: 'Repetidor de audio',
+      shortName: 'Bucle',
+      title: 'Audio looper — repetir un clip en línea gratis',
+      description: 'Repite una selección o el archivo entero de 2 a 16 veces, con un crossfade de 0,01 s en cada unión. Gratis en el navegador. Nada se sube.',
+      h1: 'Repite un clip de 2 a 16 veces, en línea y gratis',
+      heroAlt: 'Repetir un clip y cruzar cada unión',
+      subtitle: 'Haz un bucle de la selección o del archivo entero y descarga uno más largo.',
+      intro: 'Las repeticiones van de 2 a 16. El valor inicial es 4. Cada unión es un crossfade lineal, 0,01 segundos salvo que lo muevas, hasta 0,1 segundos. Arrastra una selección para repetir solo eso. Sin selección, se repite el archivo entero. La exportación se detiene a los 10 minutos. El tono y la velocidad no cambian. El proceso se queda en el navegador.',
+      usesHeading: 'Para qué sirven las repeticiones',
+      uses: ['Convierte un compás en un loop de práctica y expórtalo.', 'Alarga una frase corta de voz para que cubra una escena.', 'Repite un sample con un crossfade corto para que la unión no haga clic.'],
+      howTo: [
+        { name: 'Suelta el audio', text: 'Cualquier MP3, WAV, M4A, OGG o FLAC. Se decodifica en tu dispositivo.' },
+        { name: 'Ajusta repeticiones y unión', text: 'Las repeticiones van de 2 a 16. La unión es el crossfade de cada costura, de 0 a 0,1 segundos. Arrastra la onda si solo debe repetirse una parte. La línea de estado muestra la duración.' },
+        { name: 'Exporta', text: 'Escucha el original para comprobar la selección y exporta MP3 o WAV. La descarga es el clip escrito uno detrás de otro.' },
+      ],
+      faqs: [
+        { q: '¿Se sube mi audio?', a: 'No. Las repeticiones se copian en tu navegador. Cuando la página ha cargado, puedes quedar sin red y la exportación sigue.' },
+        { q: '¿Qué pasa en cada unión?', a: 'El final de una pasada y el inicio de la siguiente se solapan la duración de la unión. El valor inicial es 0,01 segundos. El solape es un crossfade lineal, así que un tono estable no salta. El WAV son esas muestras. El MP3 codifica el bucle una vez, al bitrate que elijas. El tono y la velocidad no cambian.' },
+        { q: '¿Qué rechaza?', a: 'Las repeticiones solo van de 2 a 16. Si el resultado pasara de 10 minutos, la exportación se detiene y la línea de estado lo dice. Esta página no graba encima de sí misma ni pone dos archivos distintos uno detrás de otro.' },
+        { q: '¿En qué se diferencia de recortar, unir y el fundido?', a: 'El recorte guarda un tramo una vez. La unión pone archivos distintos en fila. El fundido baja el inicio o el final de un archivo. Esta página vuelve a escribir el mismo clip, y el crossfade solo está entre copias.' },
+        { q: '¿Funciona en el móvil?', a: 'Sí. Los dos deslizadores, la onda y el botón de exportar se usan con el dedo en Chrome, Edge, Firefox y Safari actuales.' },
+      ],
+      dropHint: 'Suelta un archivo de audio o haz clic para buscar',
     },
     'loudness-meter': {
       cardLine: "Lee lo fuerte que es un archivo en LUFS y luego iguala un objetivo de pódcast, streaming o emisión.",
