@@ -58,6 +58,7 @@ export interface EditorText {
   compress: string;
   echoDelay: string;
   echoFeedback: string;
+  distort: string;
   panDepth: string;
   panRate: string;
   circle: string;

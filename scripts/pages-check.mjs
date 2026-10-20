@@ -29,6 +29,7 @@ const pages = [
   { path: '/bass-booster', island: true },
   { path: '/compressor', island: true },
   { path: '/echo', island: true },
+  { path: '/audio-distorter', island: true },
   { path: '/silence-remover', island: true },
   { path: '/audio-looper', island: true },
   { path: '/auto-panner', island: true },

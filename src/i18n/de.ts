@@ -89,6 +89,7 @@ export const de: Catalog = {
     compress: 'Kompressor',
     echoDelay: 'Delay',
     echoFeedback: 'Wiederholungen',
+    distort: 'Stärke',
     panDepth: 'Tiefe',
     panRate: 'Frequenz',
     circle: 'Kreis',
@@ -3299,6 +3300,58 @@ export const de: Catalog = {
           paragraphs: [
             'Slowed + Reverb senkt die Tonhöhe mit dem Tempo und verwischt den Ausklang zu einem Raum. Diese Seite hält das ursprüngliche Timing und legt Kopien dazu, die du getrennt hörst.',
             'Den Anfang oder das Ende einer Datei ein- und auszublenden ist die Fade-Seite. Zwei Songs zu überlappen ist der Audio-Joiner. Beides ist kein Echo.',
+          ],
+        },
+      ],
+      dropHint: 'Audiodatei hierher ziehen oder klicken zum Auswählen',
+    },
+    'audio-distorter': {
+      cardLine: 'Schieb eine saubere Aufnahme in einen warmen oder einen harten Clip.',
+      name: 'Audio verzerren',
+      shortName: 'Verzerrung',
+      title: 'Audio verzerren — vom weichen Clip zum harten',
+      description: 'Leg Overdrive auf beliebiges Audio im Browser. Ein Regler, vom warmen Clip zum harten. Nichts wird hochgeladen.',
+      h1: 'Audio verzerren — Overdrive auf einer sauberen Aufnahme',
+      heroAlt: 'Die Spitzen einer sauberen Aufnahme abflachen',
+      subtitle: 'Ein Regler. Der Startwert ist 40 %. Bei 0 % bleibt die Datei, wie du sie abgelegt hast.',
+      intro: 'Diese Seite schickt jedes Sample durch eine tanh-Kurve. Beim Start, 40 %, wird ein Sample von 0,25 zu etwa 0,69. Bei 100 % wird dasselbe Sample auf etwa 1 gedrückt. Stärke 0 überspringt die Kurve, die Datei bleibt wie dekodiert. Die Verarbeitung bleibt im Browser.',
+      usesHeading: 'Wenn der Clip der Zweck ist',
+      uses: ['Leg einen kurzen Overdrive auf eine saubere Gitarre oder einen Synth, damit sie nach vorn kommt.', 'Mach eine Gesangszeile rau für einen Trailer, einen Game-Hit oder einen Podcast-Sting.', 'Fang den Lo-Fi-Korn hier an und dämpfe die neuen Höhen im Tiefpass.'],
+      howTo: [
+        { name: 'Audio ablegen', text: 'Beliebiges MP3, WAV, M4A, OGG oder FLAC. Dekodiert wird auf deinem Gerät.' },
+        { name: 'Stärke einstellen', text: '0 % ist sauber. 40 % ist der Start. 100 % ist der härteste Clip, den diese Seite macht.' },
+        { name: 'Anhören und exportieren', text: 'Spiel es ab und exportiere MP3 oder WAV. Die Länge bleibt gleich.' },
+      ],
+      faqs: [
+        { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Der Clip ist ein Web-Audio-Waveshaper in diesem Tab. Nach dem Laden der Seite kannst du offline gehen und trotzdem exportieren. WAV geht sofort. MP3 geht, nachdem der Encoder einmal geladen wurde.' },
+        { q: 'Was macht der Regler wirklich?', a: 'Stärke 0 setzt keinen Waveshaper ein, die Samples bleiben wie dekodiert. Über 0 wird jedes Sample x zu tanh(k·x) / tanh(k), mit k = 10^(Stärke × 1,6) − 1. Beim Start von 40 % ist k etwa 3,4, und ein Sample von 0,25 wird etwa 0,69. Bei 100 % ist k etwa 39, und dieses Sample wird auf etwa 1 gedrückt. Ein Sample auf Vollausschlag bleibt auf Vollausschlag. Der Knoten überabtastet mit 2×. WAV behält diese Kurve. MP3 wird einmal neu kodiert, mit der Bitrate, die du wählst. Die Länge ändert sich nicht.' },
+        { q: 'Was macht diese Seite nicht?', a: 'Sie ist kein Bitcrusher und fügt kein Wow, kein Flutter und keine Radiobandbreite hinzu. Ein dumpfer Lo-Fi-Ton ist diese Seite, danach der Tiefpass. Ein Amp mit Box ist eine DAW-Aufgabe.' },
+        { q: 'Worin unterscheidet sich das vom Lautstärke-Booster?', a: 'Der Lautstärke-Booster multipliziert die ganze Datei, dann hält ein Limiter die Spitzen, damit sie nicht rechteckig werden. Diese Seite flacht sie absichtlich ab. Echo legt eine Kopie nach einer Verzögerung dazu. Beides flacht die Wellenform nicht ab.' },
+        { q: 'Kann ich nur einen Teil verzerren?', a: 'Ja. Markiere den Abschnitt auf der Wellenform und behalte diese Auswahl. Die Kurve gilt für das, was du exportierst, nicht für den Rest der Datei.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. Regler und Export funktionieren mit dem Finger in aktuellem Chrome, Edge, Firefox und Safari.' },
+      ],
+      sections: [
+        {
+          heading: 'Eine Kurve, kein Lautstärkeregler',
+          paragraphs: [
+            'Die Stärke läuft von 0 % bis 100 %. Der Startwert ist 40 %. Bei 0 % sitzt kein Waveshaper im Graphen, der Export entspricht der dekodierten Datei.',
+            'Über 0 wird jedes Sample x zu tanh(k·x) / tanh(k). k ist 10^(Stärke × 1,6) − 1. Bei 40 % ist k etwa 3,4 und ein Sample von 0,25 wird etwa 0,69. Bei 100 % ist k etwa 39 und dieses Sample wird auf etwa 1 gedrückt. Ein Sample auf Vollausschlag bleibt auf Vollausschlag. Tempo, Tonhöhe und Länge bleiben, wie sie waren.',
+          ],
+        },
+        {
+          heading: 'Wie weit du schiebst',
+          paragraphs: ['Der brauchbare Bereich ist klein. Dahinter baust du einen Effekt:'],
+          bullets: [
+            '10–30 %: ein warmer Clip auf Stimme oder sauberer Gitarre.',
+            '40–70 %: das Korn ist deutlich. Spitzen werden flach, leisere Noten lauter.',
+            '80–100 %: nah an einer Rechteckwelle. Sprache wird schwer verständlich.',
+          ],
+        },
+        {
+          heading: 'Kein Lautstärke-Boost und kein Bitcrusher',
+          paragraphs: [
+            'Der Lautstärke-Booster macht eine leise Datei lauter und nutzt einen Limiter, damit die Spitzen nicht rechteckig werden. Diese Seite macht sie absichtlich rechteckig. Echo legt eine Kopie nach einer Verzögerung dazu, die du einstellst. Das ist eine andere Seite.',
+            'Diese Kurve senkt nicht die Bittiefe und schneidet die Höhen nicht ab. Der Knoten überabtastet mit 2×, das mindert nur das Aliasing der neuen Obertöne. Ein dumpfer Lo-Fi-Ton ist diese Seite, danach der Tiefpass.',
           ],
         },
       ],

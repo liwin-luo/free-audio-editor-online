@@ -89,6 +89,7 @@ export const en: Shell = {
     compress: 'Compress',
     echoDelay: 'Delay',
     echoFeedback: 'Repeats',
+    distort: 'Drive',
     panDepth: 'Depth',
     panRate: 'Rate',
     circle: 'Circle',

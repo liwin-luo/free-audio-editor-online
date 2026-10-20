@@ -203,6 +203,13 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
               </label>
             </>
           )}
+          {config.quickControls!.includes('distort') && (
+            <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+              {t.distort}
+              <input type="range" data-quick-distort min="0" max="100" step="1" value="40" class="flex-1 accent-(--color-accent)" />
+              <span class="w-12 font-mono text-xs tabular-nums" data-quick-distort-label>40%</span>
+            </label>
+          )}
           {config.quickControls!.includes('echo') && (
             <>
               <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">

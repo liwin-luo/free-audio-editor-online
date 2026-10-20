@@ -89,6 +89,7 @@ export const es: Catalog = {
     compress: 'Comprimir',
     echoDelay: 'Retardo',
     echoFeedback: 'Repeticiones',
+    distort: 'Intensidad',
     panDepth: 'Profundidad',
     panRate: 'Frecuencia',
     circle: 'Círculo',
@@ -3302,6 +3303,58 @@ export const es: Catalog = {
           paragraphs: [
             'Slowed + reverb baja el tono con la velocidad y emborrona la cola en una sala. Esta página mantiene el tiempo original y añade copias que se oyen por separado.',
             'Fundir el inicio o el final de un archivo es la página de fundido. Solapar dos canciones es Unir canciones. Ninguna de las dos es un eco.',
+          ],
+        },
+      ],
+      dropHint: 'Suelta un archivo de audio o haz clic para buscarlo',
+    },
+    'audio-distorter': {
+      cardLine: 'Empuja una toma limpia hasta un clip cálido o uno duro.',
+      name: 'Distorsión de audio',
+      shortName: 'Distorsión',
+      title: 'Distorsión de audio — de un clip suave a uno duro',
+      description: 'Añade overdrive a cualquier audio en el navegador. Un control, del clip cálido al duro. No se sube nada.',
+      h1: 'Distorsión de audio — overdrive en una toma limpia',
+      heroAlt: 'Aplanar los picos de una grabación limpia',
+      subtitle: 'Un control. El valor inicial es 40 %. Al 0 % el archivo queda como lo soltaste.',
+      intro: 'Esta página pasa cada muestra por una curva tanh. En el inicio, 40 %, una muestra de 0,25 pasa a unos 0,69. Al 100 % esa misma muestra llega a cerca de 1. Intensidad 0 salta la curva, así que el archivo queda como se decodificó. El proceso se queda en el navegador.',
+      usesHeading: 'Cuando el clip es el objetivo',
+      uses: ['Pon un overdrive corto en una guitarra o un sinte limpio para que se adelante.', 'Haz áspera una frase de voz para un tráiler, un golpe de juego o una cuña.', 'Empieza el grano lo-fi aquí y apaga los agudos nuevos en el filtro de paso bajo.'],
+      howTo: [
+        { name: 'Suelta el audio', text: 'Cualquier MP3, WAV, M4A, OGG o FLAC. Se decodifica en tu dispositivo.' },
+        { name: 'Ajusta la intensidad', text: '0 % es limpio. 40 % es el inicio. 100 % es el clip más duro que hace esta página.' },
+        { name: 'Escucha y exporta', text: 'Reprodúcelo y exporta MP3 o WAV. La duración no cambia.' },
+      ],
+      faqs: [
+        { q: '¿Se sube mi audio?', a: 'No. El clip es un waveshaper de Web Audio dentro de la pestaña. Cuando la página ha cargado puedes quedarte sin red y seguir exportando. El WAV sale al momento. El MP3 sale después de que el codificador se haya cargado una vez.' },
+        { q: '¿Qué hace de verdad el control?', a: 'Intensidad 0 no inserta el waveshaper, así que las muestras quedan como se decodificaron. Por encima de 0, cada muestra x pasa a tanh(k·x) / tanh(k), con k = 10^(intensidad × 1,6) − 1. En el inicio del 40 %, k es unos 3,4 y una muestra de 0,25 pasa a unos 0,69. Al 100 %, k es unos 39 y esa muestra llega a cerca de 1. Una muestra a escala completa sigue a escala completa. El nodo sobremuestrea a 2×. El WAV guarda esa curva. El MP3 se recodifica una vez, al bitrate que elijas. La duración no cambia.' },
+        { q: '¿Qué no hace esta página?', a: 'No es un bitcrusher y no añade wow, flutter ni el límite de banda de una radio. Un lo-fi apagado es esta página y luego el filtro de paso bajo. Un ampli con caja es trabajo de un DAW.' },
+        { q: '¿En qué se diferencia del aumento de volumen?', a: 'El aumento de volumen multiplica todo el archivo y un limitador sujeta los picos para que no se vuelvan cuadrados. Esta página los aplana a propósito. El eco añade una copia después de un retardo. Ninguno de los dos aplana la forma de onda.' },
+        { q: '¿Puedo distorsionar solo un trozo?', a: 'Sí. Selecciona el tramo en la forma de onda y conserva esa selección. La curva se aplica a lo que exportas, no al resto del archivo.' },
+        { q: '¿Funciona en el teléfono?', a: 'Sí. El control y el botón de exportar funcionan con el dedo en Chrome, Edge, Firefox y Safari actuales.' },
+      ],
+      sections: [
+        {
+          heading: 'Una curva, no un mando de volumen',
+          paragraphs: [
+            'La intensidad va de 0 % a 100 %. El valor inicial es 40 %. Al 0 % el waveshaper no está en el grafo, así que la exportación coincide con el archivo decodificado.',
+            'Por encima de 0, cada muestra x pasa a tanh(k·x) / tanh(k). k es 10^(intensidad × 1,6) − 1. Al 40 %, k es unos 3,4 y una muestra de 0,25 pasa a unos 0,69. Al 100 %, k es unos 39 y esa muestra llega a cerca de 1. Una muestra a escala completa sigue a escala completa. La velocidad, el tono y la duración se quedan como estaban.',
+          ],
+        },
+        {
+          heading: 'Hasta dónde empujar',
+          paragraphs: ['El rango útil es pequeño. Pasado eso, estás haciendo un efecto:'],
+          bullets: [
+            '10–30 %: un clip cálido en una voz o una guitarra limpia.',
+            '40–70 %: la aspereza se oye. Los picos se aplanan y las notas más bajas suben.',
+            '80–100 %: cerca de una onda cuadrada. El habla se vuelve difícil de seguir.',
+          ],
+        },
+        {
+          heading: 'No es un aumento de volumen, ni un bitcrusher',
+          paragraphs: [
+            'El aumento de volumen hace más alto un archivo bajo y usa un limitador para que los picos no se cuadren. Esta página los cuadra a propósito. El eco añade una copia después de un retardo que tú marcas. Esa es otra página.',
+            'Esta curva no baja la profundidad de bits y no recorta los agudos. El nodo sobremuestrea a 2×, y eso solo reduce el aliasing de los armónicos nuevos. Un lo-fi apagado es esta página y luego el filtro de paso bajo.',
           ],
         },
       ],

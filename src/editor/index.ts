@@ -308,6 +308,14 @@ export class Editor {
       quickEchoFeedback.addEventListener('change', () => this.commit({ echoFeedback: Number(quickEchoFeedback.value) }));
     }
 
+    const quickDistort = this.els.root.querySelector<HTMLInputElement>('[data-quick-distort]');
+    const quickDistortLabel = this.els.root.querySelector<HTMLElement>('[data-quick-distort-label]');
+    if (quickDistort && quickDistortLabel) {
+      this.state.distort = Number(quickDistort.value) / 100;
+      quickDistort.addEventListener('input', () => (quickDistortLabel.textContent = `${quickDistort.value}%`));
+      quickDistort.addEventListener('change', () => this.commit({ distort: Number(quickDistort.value) / 100 }));
+    }
+
     const quickPanDepth = this.els.root.querySelector<HTMLInputElement>('[data-quick-pan-depth]');
     const quickPanDepthLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pan-depth-label]');
     const quickPanRate = this.els.root.querySelector<HTMLInputElement>('[data-quick-pan-rate]');
@@ -438,6 +446,13 @@ export class Editor {
     this.state.speed = snapTempo(Number(slider.value));
   }
 
+  /** File load resets edit state. Drive 0 is the default; the slider start is 40%. */
+  private applyDistortIfOn(): void {
+    const slider = this.els.root.querySelector<HTMLInputElement>('[data-quick-distort]');
+    if (!slider) return;
+    this.state.distort = Number(slider.value) / 100;
+  }
+
   // ---------- File loading ----------
 
   private async loadFile(file: File): Promise<void> {
@@ -467,6 +482,7 @@ export class Editor {
       this.state = defaultEditState();
       this.applyCircleIfOn();
       this.applyTempoIfOn();
+      this.applyDistortIfOn();
 
       this.els.fileName.textContent = file.name;
       this.els.fileMeta.textContent = `${formatBytes(file.size)} · ${formatTime(this.duration, true)} · ${Math.round(buffer.sampleRate / 1000)} kHz`;
@@ -843,6 +859,10 @@ export class Editor {
       const quickEchoFeedbackLabel = this.els.root.querySelector<HTMLElement>('[data-quick-echo-feedback-label]');
       if (quickEchoFeedback) quickEchoFeedback.value = String(state.echoFeedback);
       if (quickEchoFeedbackLabel) quickEchoFeedbackLabel.textContent = `${Math.round(state.echoFeedback * 100)}%`;
+      const quickDistort = this.els.root.querySelector<HTMLInputElement>('[data-quick-distort]');
+      const quickDistortLabel = this.els.root.querySelector<HTMLElement>('[data-quick-distort-label]');
+      if (quickDistort) quickDistort.value = String(Math.round(state.distort * 100));
+      if (quickDistortLabel) quickDistortLabel.textContent = `${Math.round(state.distort * 100)}%`;
       const quickPanDepth = this.els.root.querySelector<HTMLInputElement>('[data-quick-pan-depth]');
       const quickPanDepthLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pan-depth-label]');
       const quickPanRate = this.els.root.querySelector<HTMLInputElement>('[data-quick-pan-rate]');
@@ -930,6 +950,7 @@ export class Editor {
       this.state.compress,
       this.state.echoDelay,
       this.state.echoFeedback,
+      this.state.distort,
       this.state.panDepth,
       this.state.panRate,
       this.state.fadeIn,
@@ -967,6 +988,7 @@ export class Editor {
       this.state.pitch !== 0 ||
       this.state.compress > 0 ||
       this.state.echoDelay > 0 ||
+      this.state.distort > 0 ||
       this.state.panDepth > 0 ||
       this.state.reverb > 0 ||
       this.state.bass !== 0 ||

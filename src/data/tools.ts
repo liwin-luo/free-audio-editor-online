@@ -80,7 +80,7 @@ export interface EditorConfig {
   /** Max gain slider percent (default 200) */
   maxGainPercent?: number;
   /** Headline controls surfaced outside the Adjust drawer */
-  quickControls?: ('reverse' | 'speed' | 'tempo' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf' | 'compress' | 'echo' | 'pan' | 'circle')[];
+  quickControls?: ('reverse' | 'speed' | 'tempo' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf' | 'compress' | 'echo' | 'distort' | 'pan' | 'circle')[];
   /** file input accept attribute (default: audio + common video containers) */
   accept?: string;
   /** Export format ids offered in the select, in order. Default: everything except M4R. */
@@ -2289,12 +2289,111 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['slowed-reverb', 'auto-panner', 'fade-audio'],
+    related: ['audio-distorter', 'slowed-reverb', 'fade-audio'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
       quickControls: ['echo'],
+    },
+  },
+  {
+    slug: 'audio-distorter',
+    cardLine: 'Push a clean take into a warm clip or a hard one.',
+    name: 'Audio Distorter',
+    shortName: 'Distorter',
+    icon: 'waveform',
+    category: 'effects',
+    title: 'Audio Distorter — Soft Clip to a Hard Clip',
+    description:
+      'Add overdrive to any audio in your browser. One drive slider, from a warm clip to a hard one. Nothing is uploaded.',
+    h1: 'Audio Distorter — Add Overdrive to a Clean Take',
+    hero: {
+      src: '/audio-distorter.svg',
+      alt: 'Flatten the peaks of a clean recording',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'One slider. The start value is 40%. 0% leaves the file as you dropped it.',
+    intro:
+      'This page runs each sample through a tanh curve. At the 40% start, a sample of 0.25 becomes about 0.69. At 100% that same sample is pushed to about 1. Drive at 0 skips the curve, so the file stays as decoded. Processing stays in your browser.',
+    usesHeading: 'When the clip is the point',
+    uses: [
+      'Put a short overdrive on a clean guitar or synth so it sits forward.',
+      'Rough up one voice line for a trailer, a game hit, or a podcast sting.',
+      'Start a lo-fi tone here, then dull the new highs on the low-pass filter.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device.',
+      },
+      {
+        name: 'Set the drive',
+        text: '0% is clean. 40% is the start. 100% is the hardest clip this page will make.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Play it, then export MP3 or WAV. The length stays the same.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The clip is a Web Audio waveshaper in your browser tab. After the page loads you can go offline and it still exports. WAV exports immediately. MP3 exports after the encoder has loaded once.',
+      },
+      {
+        q: 'What does the slider actually do?',
+        a: 'Drive at 0 skips the waveshaper, so the samples stay as decoded. Above 0, each sample x becomes tanh(k·x) / tanh(k), where k is 10^(drive × 1.6) − 1. At the 40% start, k is about 3.4, and a sample of 0.25 becomes about 0.69. At 100%, k is about 39, and that sample is pushed to about 1. A full-scale sample stays at full scale. The node oversamples 2×. WAV keeps that curve. MP3 re-encodes once, at the bitrate you pick. The length does not change.',
+      },
+      {
+        q: 'What will it refuse to do?',
+        a: 'It is not a bitcrusher, and it does not add wow, flutter, or a radio band-limit. A dull lo-fi tone is this page, then the low-pass filter. An amp with a cabinet is a DAW job.',
+      },
+      {
+        q: 'How is this different from the volume booster?',
+        a: 'The volume booster multiplies the whole file, then a limiter holds the peaks so they do not square off. This page squares them off on purpose. Echo adds a copy after a delay. Neither of those flattens the waveform.',
+      },
+      {
+        q: 'Can I distort only part of a song?',
+        a: 'Yes. Select the section on the waveform and keep that selection. The curve is applied to what you export, not to the rest of the file.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The slider and the export button work with touch in current Chrome, Edge, Firefox and Safari.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'A curve, not a volume knob',
+        paragraphs: [
+          'Drive runs from 0% to 100%. The start value is 40%. At 0% the waveshaper is not in the graph, so the export matches the decoded file.',
+          'Above 0, each sample x becomes tanh(k·x) / tanh(k). k is 10^(drive × 1.6) − 1. At 40%, k is about 3.4 and a sample of 0.25 becomes about 0.69. At 100%, k is about 39 and that sample is pushed to about 1. A full-scale sample stays at full scale. Speed, pitch, and length stay as they were.',
+        ],
+      },
+      {
+        heading: 'How hard to push',
+        paragraphs: ['The useful range is small. Past it, you are making an effect:'],
+        bullets: [
+          '10–30%: a warm clip on a vocal or a clean guitar.',
+          '40–70%: the grit is obvious. Peaks flatten and quieter notes get louder.',
+          '80–100%: close to a square wave. Speech gets hard to follow.',
+        ],
+      },
+      {
+        heading: 'Not a volume boost, and not a bitcrusher',
+        paragraphs: [
+          'The volume booster makes a quiet file louder and uses a limiter so the peaks do not square off. This page squares them off on purpose. Echo adds a copy after a delay you set. That is a separate page.',
+          'This curve does not drop the bit depth, and it does not roll off the highs. The node oversamples 2×, which only reduces aliasing from the new harmonics. A dull lo-fi tone is this page, then the low-pass filter.',
+        ],
+      },
+    ],
+    related: ['echo', 'low-pass-filter', 'volume-booster'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['distort'],
     },
   },
   {
@@ -2895,7 +2994,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['high-pass-filter', 'equalizer', 'voice-recorder'],
+    related: ['high-pass-filter', 'audio-distorter', 'equalizer'],
     editor: {
       defaultFormat: 'mp3-320',
       showAdjust: true,

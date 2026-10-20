@@ -3,6 +3,7 @@
  * every export is rendered into a fresh buffer via OfflineAudioContext.
  */
 import { clamp } from '../lib/format';
+import { distortionCurve } from './distort';
 import { panAt } from './pan';
 import { pitchShiftChannel } from './pitch';
 import { snapTempo, tempoKeepPitch } from './tempo';
@@ -34,6 +35,8 @@ export interface EditState {
   echoDelay: number;
   /** echo feedback gain, 0…0.55 */
   echoFeedback: number;
+  /** waveshaper drive, 0 = bypass, 1 = hard tanh clip */
+  distort: number;
   /** auto-pan depth, 0 = bypass (no StereoPanner in the graph), 1 = full left/right */
   panDepth: number;
   /** auto-pan rate in Hz, 0.05…2. Ignored when panDepth is 0. */
@@ -66,6 +69,7 @@ export function defaultEditState(): EditState {
     compress: 0,
     echoDelay: 0,
     echoFeedback: 0.35,
+    distort: 0,
     panDepth: 0,
     panRate: 0.2,
     bass: 0,
@@ -184,6 +188,14 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   const boosts = bassDb > 0 || trebleDb > 0 || midDb > 0;
   const master = ctx.createGain();
   let bus: AudioNode = master;
+  const distortAmt = clamp(state.distort, 0, 1);
+  if (distortAmt > 0) {
+    const shaper = ctx.createWaveShaper();
+    shaper.curve = distortionCurve(distortAmt);
+    shaper.oversample = '2x';
+    bus.connect(shaper);
+    bus = shaper;
+  }
   const shelf = (type: BiquadFilterType, freq: number, gainDb: number) => {
     const f = ctx.createBiquadFilter();
     f.type = type;
