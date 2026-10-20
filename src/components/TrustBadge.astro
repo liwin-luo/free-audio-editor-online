@@ -5,8 +5,10 @@ import type { Locale } from '../i18n/locales';
 
 interface Props {
   locale?: Locale;
+  /** False when the tool still needs a download after the page opens (transcription model). */
+  offline?: boolean;
 }
-const { locale = 'en' } = Astro.props;
+const { locale = 'en', offline = true } = Astro.props;
 const { ui } = getShell(locale);
 ---
 
@@ -22,4 +24,15 @@ const { ui } = getShell(locale);
     <Icon name="clock-counter-clockwise" size={18} class="text-accent" />
     {ui.trustClean}
   </span>
+  {
+    offline && (
+      <>
+        <span class="hidden h-4 w-px bg-line sm:block" aria-hidden="true" />
+        <span class="inline-flex items-center gap-2">
+          <Icon name="wifi-slash" size={18} class="text-accent" />
+          {ui.trustOffline}
+        </span>
+      </>
+    )
+  }
 </div>

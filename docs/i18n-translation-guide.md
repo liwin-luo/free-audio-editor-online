@@ -14,6 +14,8 @@ metadata, FAQ, how-to steps), locale homepage copy, `<title>`/meta description.
 per market, not translated** (only the MP4-conversion guide is a true translation).
 Writing a new guide in a non-EN market is a content task that still follows the
 terminology in §3, but never machine-translate an existing guide into another locale.
+New copy also follows §8. Do not apply §8 by rewriting catalogs the task is not
+already editing.
 
 ## 1. Prime directive
 
@@ -246,14 +248,17 @@ pattern → traps. When translating for locale X, paste sheet X into the prompt.
 
 ## 4. Metadata formula (all locales)
 
-- **Tool page title:** `[localized head search term] + [differentiator/benefit] +
-  brand`. Brand suffix `Free Audio Editor` stays in English everywhere (it's the
-  brand; audioeditor.org's inconsistency — brand present in some locale titles,
-  missing in others — is the negative example).
-- **H1 ≠ title.** H1 is human-facing (can be a benefit claim: 「像專業人士一樣編輯音訊」);
-  title is SERP-facing (must contain the search term).
-- **Description = one benefit sentence + one proof point** (local processing, free,
-  no signup), never a string of keywords.
+- **Tool page title:** `[localized head search term] — [fact only this page can say]`.
+  The fact is the operation, the limit, or the number, in that locale's search
+  phrasing. It is not a repeated 「免费 / Online Free」 and it is not 「不上传」 unless
+  the page has no sharper fact. Brand `Free Audio Editor` stays English when it
+  fits; omit it when it would push the fact past the locale budget. Full shape
+  and the offline sentence: `docs/new-tool-spec.md` §3.1.
+- **H1 uses the same head term as the title.** The sentence can differ. Do not
+  swap in a second head term.
+- **Description = one benefit sentence + one proof point** (a number, a mode, or
+  a limit), never a string of keywords. "Works offline" is too broad: the honest
+  line is that after the page has loaded, the edit needs no connection.
 - Keep the en `title`/`description` lengths as the ceiling: CJK ≈ half the character
   budget of Latin (see sheets).
 
@@ -281,6 +286,7 @@ translation doesn't get to invent it — that's an en-source gap, fix it there f
 7. Metadata budgets respected (§3 sheets, §4).
 8. `scripts/seo-audit.mjs` passes (mechanical net for what eyes miss — see
    competitive-analysis §7.3 for the four i18n checks it should grow).
+9. New prose follows §8. A voice pass does not open the other locale catalogs.
 
 ## 7. Prompt recipe (for LLM-assisted translation)
 
@@ -294,3 +300,24 @@ When asking an LLM to translate a catalog or page:
    structure."
 3. Then run the §6 checklist. The checklist is the quality gate — the model's
    self-assessment is not.
+
+When writing new English or a new guide, paste §8 as well. Do not open the other
+locale catalogs to apply it.
+
+## 8. Voice
+
+Applies to new or rewritten site copy: the English source, guides (including
+per-market guides, which still use the §3 glossary), and a UI string the current
+task is already changing.
+
+1. **One fact per sentence.** Write the number: a limit, a bitrate, a duration,
+   the label on the control. Write what the tool cannot do when that limit is real.
+2. **At most one em dash per page.**
+3. **An em dash in the German UI is normal punctuation** (Gedankenstrich), as in
+   「Lokal verarbeitet — deine Datei verlässt diesen Tab nie」. Leave those. Do not
+   delete em dashes across the site.
+4. **Do not write** 「无论你是……还是……」 or "whether you are … or …". **Do not write**
+   「今天你要编辑什么」 or "What will you edit today?".
+5. **Do not rewrite the 11 UI catalogs to strip this voice** (`en`, `es`, `pt`,
+   `id`, `de`, `ko`, `ja`, `zh`, `fr`, `ru`, `ar`). Those files are being translated
+   in parallel, and restyling strings that are already live does not change rankings.

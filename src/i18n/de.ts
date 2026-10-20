@@ -23,6 +23,7 @@ export const de: Catalog = {
     clientSide: '100 % Verarbeitung im Browser',
     trustFree: 'Kostenlos, ohne Anmeldung',
     trustClean: 'Ohne Wasserzeichen',
+    trustOffline: 'Nach dem Laden offline',
     faqHeading: 'Häufige Fragen',
     toolFaq: 'Fragen zu {name}',
     related: 'Ähnliche Tools',
@@ -1049,10 +1050,10 @@ export const de: Catalog = {
       cardLine: 'Ziehe die Griffe, um genau den Teil zu behalten, den du brauchst — Podcasts, Sprachmemos, jeder Track.',
       name: 'Audio-Trimmer',
       shortName: 'Audio-Trimmer',
-      title: 'Audio schneiden – online kürzen, kostenlos',
+      title: 'Audio schneiden – Podcast oder Sprachnotiz',
       description:
-        'Audio online kürzen: Sprachnotizen, Podcasts und Aufnahmen. Den Teil markieren, anhören und speichern. Kostenlos, ohne Upload.',
-      h1: 'Audio schneiden – einen Podcast oder eine Sprachnotiz',
+        'Eine Stelle aus Podcast, Sprachnotiz oder Aufnahme behalten und als MP3 oder WAV speichern. Der Schnitt läuft im Browser, nichts wird hochgeladen.',
+      h1: 'Audio kürzen – kostenlos im Browser',
       heroAlt: 'Eine MP3 oder einen Podcast auf die passende Stelle schneiden',
       subtitle: 'Audio online kürzen — kostenlos, direkt im Browser. Nichts wird hochgeladen.',
       intro:
@@ -1147,9 +1148,9 @@ export const de: Catalog = {
       cardLine: 'Schneide einen Song auf den Refrain, den Drop oder jeden Clip — ohne Re-Encoding.',
       name: 'MP3-Cutter',
       shortName: 'MP3-Cutter',
-      title: 'MP3 schneiden – Songs online kostenlos kürzen',
+      title: 'MP3 schneiden – Abschnitt behalten oder löschen',
       description:
-        'MP3 online in wenigen Klicks schneiden: den besten Teil behalten oder das Intro löschen — kostenlos, ohne Anmeldung, ohne Upload.',
+        'Den Refrain behalten oder das Intro löschen, dann speichern. WAV verliert nichts zusätzlich. MP3 wird einmal kodiert, bis 320 kbps.',
       h1: 'MP3 schneiden – kostenlos online',
       heroAlt: 'MP3 kostenlos online schneiden',
       subtitle: 'Songs und MP3-Dateien online schneiden — behalte den Teil, den du willst, und lösche den Rest.',
@@ -1245,10 +1246,10 @@ export const de: Catalog = {
       cardLine: 'Schnelle Schnitte in einem Tab: schneiden, faden, rückwärts, Tempo und Normalisieren.',
       name: 'MP3-Editor',
       shortName: 'MP3-Editor',
-      title: 'MP3-Editor — Schneiden, Blenden, Geschwindigkeit und Rückwärts',
+      title: 'MP3-Editor – Schneiden, Blenden, Tempo',
       description:
-        'MP3 online bearbeiten: schneiden, blenden, Lautstärke und Tempo ändern, rückwärts abspielen. Kostenlos und privat — alles läuft in deinem Browser.',
-      h1: 'Kostenloser Online-MP3-Editor — Die Länge einer MP3 bearbeiten',
+        'In einem Tab schneiden, blenden und das Tempo ändern. Die Originaldatei bleibt. Das Tempo zieht die Tonhöhe mit.',
+      h1: 'MP3-Editor – Schneiden, blenden und Tempo ändern',
       heroAlt: 'Eine MP3 schneiden, ein- und ausblenden, rückwärts abspielen und das Tempo ändern',
       subtitle: 'Schneiden, blenden, rückwärts abspielen und die Geschwindigkeit ändern — alles in einem Browser-Tab.',
       intro:
@@ -1415,10 +1416,10 @@ export const de: Catalog = {
       cardLine: 'Füge Sprachmemos, Songs oder Podcast-Folgen zu einer durchgehenden Datei zusammen.',
       name: 'Audio-Joiner',
       shortName: 'Audio-Joiner',
-      title: 'MP3 zusammenfügen — online kostenlos',
+      title: 'MP3 zusammenfügen – der Reihe nach, mit Überblendung',
       description:
-        'Songs und Audiodateien in beliebiger Reihenfolge zu einem Titel verbinden — direkt im Browser. Optionale Blenden, kostenlos, ohne Upload.',
-      h1: 'Kostenloser Online-Audio-Joiner — Mehrere MP3-Dateien zusammenfügen',
+        'Songs, Kapitel oder Sprachnotizen der Reihe nach in eine Datei legen. Die Überblendung auf null ist ein harter Schnitt. Nichts wird hochgeladen.',
+      h1: 'MP3 zusammenfügen – eine Datei nach der anderen',
       heroAlt: 'Songs und Sprachnotizen nacheinander aneinanderfügen',
       subtitle: 'Füge Songs und Audiodateien zu einem Titel zusammen — in beliebiger Reihenfolge, in Sekunden.',
       intro:

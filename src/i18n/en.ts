@@ -23,6 +23,7 @@ export const en: Shell = {
     clientSide: '100% client-side processing',
     trustFree: 'Free, no signup',
     trustClean: 'No watermarks',
+    trustOffline: 'Offline after load',
     faqHeading: 'Frequently asked questions',
     toolFaq: '{name} FAQ',
     related: 'Related tools',

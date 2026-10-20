@@ -253,6 +253,8 @@
 - 按钮永远说动作不说概念："Export MP3" 不是 "Submit"；"Drop a file" 不是 "Get started"
 - 空态示例："Drop an audio file, or click to browse — MP3, WAV, M4A and more."
 - 数字真实：不用假评分假用户数；社证只用于真实存在的东西（开源仓库 star 等）
+- 一句一个事实，写出数字和做不到的事。破折号一页最多一处。德语界面里的破折号是正常标点，不必全站删。不要用「无论你是……还是……」，不要用「今天你要编辑什么」。细则见 `docs/i18n-translation-guide.md` §8
+- 11 个语言的界面文案不要为了去腔再通改一遍，那会和正在进行的翻译冲突，也改不了排名
 
 ---
 

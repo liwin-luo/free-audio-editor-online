@@ -23,6 +23,7 @@ export const fr: Catalog = {
     clientSide: 'Traitement 100 % dans le navigateur',
     trustFree: 'Gratuit, sans inscription',
     trustClean: 'Sans filigrane',
+    trustOffline: 'Hors ligne une fois ouvert',
     faqHeading: 'Questions fréquentes',
     toolFaq: 'Questions sur {name}',
     related: 'Outils associés',
@@ -787,10 +788,10 @@ export const fr: Catalog = {
       cardLine: 'Déplacez les poignées pour garder exactement le passage voulu — podcasts, mémos vocaux, toute piste.',
       name: 'Coupeur audio',
       shortName: 'Rogneur',
-      title: 'Couper une musique en ligne — coupeur audio gratuit',
+      title: 'Couper l’audio — podcast ou mémo vocal',
       description:
-        'Rognez musiques, mémos vocaux et podcasts dans votre navigateur. Sélectionnez, écoutez, enregistrez en quelques secondes — gratuit, sans inscription.',
-      h1: 'Couper l’audio — un podcast ou un mémo vocal',
+        'Gardez un passage de podcast, de mémo vocal ou d’enregistrement, en MP3 ou WAV. Le rognage se fait dans le navigateur, sans téléversement.',
+      h1: 'Coupeur audio en ligne gratuit — Couper des fichiers audio',
       heroAlt: 'Couper un MP3 ou un podcast pour n’en garder que le passage voulu',
       subtitle: 'Rognez l’audio en ligne, gratuitement, dans votre navigateur. Rien n’est téléversé.',
       intro:
@@ -847,9 +848,9 @@ export const fr: Catalog = {
       cardLine: 'Coupez un morceau sur le refrain, le drop ou n’importe quel extrait, sans réencodage.',
       name: 'Coupeur MP3',
       shortName: 'Coupeur MP3',
-      title: 'Couper MP3 — couper une chanson en ligne gratuitement',
+      title: 'Couper un MP3 — garder ou supprimer un passage',
       description:
-        'Coupez vos MP3 en ligne en quelques clics : gardez le meilleur passage ou supprimez une intro. Gratuit, sans inscription, sans téléversement.',
+        'Gardez le refrain ou supprimez l’intro, puis enregistrez. Le WAV n’ajoute aucune perte. Le MP3 est encodé une fois, jusqu’à 320 kbps.',
       h1: 'Couper un MP3 en ligne gratuitement',
       heroAlt: 'Couper un MP3 en ligne gratuitement',
       subtitle: 'Coupez chansons et fichiers MP3 en ligne : gardez le passage voulu, supprimez le reste.',
@@ -907,10 +908,10 @@ export const fr: Catalog = {
       cardLine: 'Des retouches rapides en un seul onglet : couper, fondre, inverser, accélérer, normaliser.',
       name: 'Éditeur MP3',
       shortName: 'Éditeur MP3',
-      title: 'Éditeur MP3 — couper, fondus, inverser et accélérer en ligne',
+      title: 'Éditeur MP3 — couper, fondre et changer la vitesse',
       description:
-        'Modifiez l’audio en ligne : couper, rogner, fondus, volume, vitesse, lecture à l’envers. Gratuit et privé — tout se passe dans votre navigateur.',
-      h1: 'Éditeur MP3 en ligne gratuit — Modifier la durée d’un MP3',
+        'Coupez, ajoutez un fondu et changez la vitesse dans un seul onglet. Le fichier d’origine reste intact, et la vitesse entraîne la hauteur.',
+      h1: 'Éditeur MP3 — couper, fondre et changer la vitesse',
       heroAlt: 'Couper, fondre, inverser et changer la vitesse d’un MP3',
       subtitle: 'Coupez, appliquez des fondus, inversez et accélérez l’audio — tout dans un seul onglet.',
       intro:
@@ -1023,10 +1024,10 @@ export const fr: Catalog = {
       cardLine: 'Assemblez mémos vocaux, chansons ou épisodes de podcast en un seul fichier continu.',
       name: 'Fusion audio',
       shortName: 'Fusion audio',
-      title: 'Fusion audio — fusionner des MP3 en ligne gratuitement',
+      title: 'Fusionner l’audio — dans l’ordre, avec fondu',
       description:
-        'Fusionnez chansons et fichiers audio en une piste, dans l’ordre voulu, dans votre navigateur. Fondus facultatifs : gratuit, sans téléversement.',
-      h1: 'Fusion audio en ligne gratuite — Joindre plusieurs MP3 en un seul',
+        'Placez des chansons, des chapitres ou des mémos vocaux dans l’ordre et exportez un fichier. Un fondu à zéro fait une jointure nette. Aucun téléversement.',
+      h1: 'Fusionner l’audio — un fichier après l’autre',
       heroAlt: 'Enchaîner des chansons et des mémos vocaux',
       subtitle: 'Fusionnez chansons et fichiers audio en une seule piste — dans l’ordre voulu, en quelques secondes.',
       intro:

@@ -34,9 +34,9 @@ the voice we ship in.
 | Field | Bar |
 |---|---|
 | `slug` | kebab-case, equals the primary keyword. No abbreviations. |
-| `title` | ≤ 60 chars, primary keyword front-loaded, "Free" or "Online" once, no keyword stuffing. Pattern: `{Keyword} — {differentiator} Online Free` |
-| `description` | ≤ 155 chars. States the job + the privacy fact ("never uploaded") + free. This is the SERP ad — write it like one. |
-| `h1` / `subtitle` | H1 = the query in natural language. Subtitle = the outcome in one line with a number or a time promise where honest ("up to 40 seconds", "in under a minute"). |
+| `title` | ≤ 60 chars. `{Head query} — {fact only this page can say}`. See §3.1. |
+| `description` | ≤ 155 chars. One benefit sentence, then one proof. See §3.1. |
+| `h1` / `subtitle` | H1 uses the same head term as `title`. Subtitle = the outcome in one line with a number or a time promise where honest ("up to 40 seconds", "in under a minute"). |
 | `intro` | 2–3 sentences: what it does, one concrete scenario, one privacy fact. No feature lists. |
 | `usesHeading` + `uses` | 3 jobs stated as outcomes ("Lift a chorus out of a full song without a desktop editor"), not features ("supports MP3"). |
 | `howTo` | 3–5 steps, each name ≤ 5 words, text names actual UI elements. Feeds HowTo schema (machine comprehension even though rich results are deprecated). |
@@ -60,6 +60,30 @@ Mandatory FAQ types — every tool ships all five:
 Volume guidance: 900–1,400 words of body copy per page. Below 800 the page is thinner
 than our competitor's; above ~1,600 it pads. Depth goes into FAQ answers and the
 `uses` items, not a bolted-on glossary.
+
+### 3.1 SERP wording
+
+Recorded 2026-10-20. Locale titles follow the same shape; see `docs/i18n-translation-guide.md` §4.
+
+**Title.** The second half is the operation, the limit, or the number on this page. It is not `Online Free` on every page, and it is not `No Upload` unless this page has no sharper fact. `No upload` is the category claim; it lives in the description. Do not add the brand when that would push the fact past 60 characters. Do not claim frame-accurate lossless MP3 cutting: an MP3 export re-encodes once, and WAV keeps the samples.
+
+Shape to copy (`wav-to-mp3` already does this; the bitrate is the fact):
+
+- `Audio Trimmer — Trim a Podcast or Voice Memo`
+- `MP3 Cutter — Keep or Delete a Section, No Upload`
+- `Audio Joiner — Merge Songs in Order, with Crossfade`
+- `MP3 Editor — Cut, Fade, and Change Speed Online`
+- `MP4 to MP3 — Soundtrack Only, up to 320 kbps`
+
+**Description.** One benefit sentence, then one proof: a number, a mode, or a limit (320 kbps, crossfade including zero, keep versus delete, 40 seconds). Not a keyword list, and not "free, private, no signup, no watermark" stacked.
+
+**H1.** Same head term as the title. The sentence can differ. Do not swap in a second head term (a joiner page whose H1 says "Audio Merger" fails this).
+
+**H2.** Name the job the paragraph already describes. Do not add "why choose us", comparison, or glossary headings.
+
+**Offline.** There is no service worker, so a cold visit while offline does not open the tool. After this page's scripts have loaded, decode, the edit, and WAV export need no connection. MP3 (`lamejs`) and M4R (`mp4-muxer`) are same-origin lazy chunks: they export offline only after that chunk has loaded once; until then the UI tells the user to try WAV. Audio to text needs the Whisper model downloaded once; after that, transcription can run offline, and the audio is still never uploaded.
+
+Do not write `Works offline` in the title. The on-page mark is the trust row under the tool (`TrustBadge`): `Offline after load`, next to free and no watermark. Omit it when the tool still needs a download after the page opens (the transcription model). The description or the privacy FAQ can add the rest: WAV exports immediately; MP3 exports after the encoder has loaded once.
 
 ## 4. Technical implementation
 

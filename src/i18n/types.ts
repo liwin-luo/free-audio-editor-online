@@ -276,6 +276,8 @@ export interface UiText {
   clientSide: string;
   trustFree: string;
   trustClean: string;
+  /** After this page's scripts have loaded. Not a cold-start claim. */
+  trustOffline: string;
   faqHeading: string;
   /** Tool-page FAQ H2. Placeholder: {name} */
   toolFaq: string;

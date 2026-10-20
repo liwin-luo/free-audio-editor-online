@@ -23,6 +23,7 @@ export const pt: Catalog = {
     clientSide: 'Processamento 100% no navegador',
     trustFree: 'Grátis, sem cadastro',
     trustClean: 'Sem marca d\'água',
+    trustOffline: 'Offline depois de abrir',
     faqHeading: 'Perguntas frequentes',
     toolFaq: 'Perguntas sobre {name}',
     related: 'Ferramentas relacionadas',
@@ -846,10 +847,10 @@ export const pt: Catalog = {
       cardLine: 'Arraste as alças para guardar exatamente o trecho que precisa — podcasts, áudios de voz, qualquer faixa.',
       name: 'Cortar áudio',
       shortName: 'Cortar áudio',
-      title: 'Cortar áudio — Recorte música online grátis',
+      title: 'Cortar áudio — podcast ou recado de voz',
       description:
-        'Recorte músicas, recados de voz e podcasts no navegador. Selecione, ouça e salve em segundos — grátis, sem cadastro, e o áudio não sai do aparelho.',
-      h1: 'Cortar áudio — um podcast ou um recado de voz',
+        'Fique com um trecho de podcast, recado de voz ou gravação e salve em MP3 ou WAV. O corte roda no navegador e nada é enviado.',
+      h1: 'Cortador de áudio online grátis — Cortar arquivos de áudio',
       heroAlt: 'Cortar um MP3 ou podcast até ficar só o trecho que você precisa',
       subtitle: 'Recorte áudio online — grátis, direto no navegador. Nada é enviado.',
       intro:
@@ -906,9 +907,9 @@ export const pt: Catalog = {
       cardLine: 'Corte uma música até o refrão, o drop ou qualquer trecho sem recodificar.',
       name: 'Cortar MP3',
       shortName: 'Cortar MP3',
-      title: 'Cortar MP3 — Corte músicas online grátis',
+      title: 'Cortar MP3 — manter ou apagar um trecho',
       description:
-        'Corte arquivos MP3 online em poucos cliques. Fique com a melhor parte ou apague uma intro — grátis, sem cadastro, sem enviar nada.',
+        'Fique com o refrão ou apague a intro e salve. O WAV não perde mais nada. O MP3 é codificado uma vez, até 320 kbps.',
       h1: 'Cortar MP3 online grátis',
       heroAlt: 'Cortar MP3 online grátis',
       subtitle: 'Corte músicas e arquivos MP3 online — fique com o trecho que você quer e apague o resto.',
@@ -966,10 +967,10 @@ export const pt: Catalog = {
       cardLine: 'Edições rápidas numa aba: cortar, fade, reverter, acelerar e normalizar.',
       name: 'Editor de MP3',
       shortName: 'Editor de MP3',
-      title: 'Editor de MP3 — Corte, fade, reverta e acelere online',
+      title: 'Editor de MP3 — cortar, fade e mudar a velocidade',
       description:
-        'Edite MP3 online: corte, recorte, fade de entrada e saída, volume, velocidade e reprodução ao contrário. Grátis e privado, no navegador.',
-      h1: 'Editor de MP3 online grátis — Editar a duração de um MP3',
+        'Corte, aplique fade e mude a velocidade numa aba. O arquivo original fica intacto, e a velocidade leva o tom junto.',
+      h1: 'Editor de MP3 — cortar, fade e mudar a velocidade',
       heroAlt: 'Cortar, aplicar fade, inverter e mudar a velocidade de um MP3',
       subtitle: 'Corte, fade, reverta e acelere o áudio — tudo numa aba do navegador.',
       intro:
@@ -1082,10 +1083,10 @@ export const pt: Catalog = {
       cardLine: 'Junte áudios de voz, músicas ou episódios de podcast num único arquivo contínuo.',
       name: 'Juntar músicas',
       shortName: 'Juntar músicas',
-      title: 'Juntar músicas online grátis — Una MP3 e áudio',
+      title: 'Juntar músicas — em ordem, com crossfade',
       description:
-        'Junte músicas e arquivos de áudio numa faixa só, na ordem que quiser, direto no navegador. Fades opcionais entre as faixas — grátis, privado, sem envio.',
-      h1: 'Juntar músicas online grátis — Unir vários MP3 em um só',
+        'Coloque músicas, capítulos ou recados de voz em ordem e exporte um arquivo. O crossfade em zero é um corte seco. Nada é enviado.',
+      h1: 'Juntar músicas — uma depois da outra',
       heroAlt: 'Colocar músicas e recados de voz um depois do outro',
       subtitle: 'Una músicas e arquivos de áudio numa faixa só — em qualquer ordem, em segundos.',
       intro:
