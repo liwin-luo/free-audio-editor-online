@@ -129,9 +129,9 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Audio Trimmer',
     icon: 'trimmer',
     category: 'cut',
-    title: 'Audio Trimmer — Trim a Podcast or Voice Memo',
+    title: 'Audio Trimmer — Trim Audio Online Free',
     description:
-      'Keep one span of a podcast, voice memo, or recording and save MP3 or WAV. The trim runs in your browser, so nothing is uploaded.',
+      'Trim audio online: voice memos, podcasts and recordings. Select the part you keep, preview, and save. Free, nothing uploaded.',
     h1: 'Audio Trimmer — Trim a Recording, Online Free',
     hero: {
       src: '/audio-trimmer.svg',
@@ -240,9 +240,9 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP3 Cutter',
     icon: 'scissors',
     category: 'cut',
-    title: 'MP3 Cutter — Keep or Delete a Section, No Upload',
+    title: 'MP3 Cutter — Cut MP3 Files Online Free, No Upload',
     description:
-      'Keep the chorus or delete the intro, then save. WAV adds no extra loss. MP3 encodes once, up to 320 kbps.',
+      'Cut an MP3 online: keep the chorus or delete the intro, preview, then save. Free in your browser, no signup, nothing uploaded.',
     h1: 'MP3 Cutter — Cut an MP3 Online, Free',
     hero: {
       src: '/mp3-cutter.svg',
@@ -351,10 +351,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP3 Editor',
     icon: 'waveform',
     category: 'effects',
-    title: 'MP3 Editor — Cut, Fade, and Change Speed Online',
+    title: 'MP3 Editor — Cut, Fade, Reverse & Speed Up MP3 Online',
     description:
-      'Cut, fade, and change speed in one tab. The original file stays untouched, and speed moves the pitch with it.',
-    h1: 'MP3 Editor — Cut, Fade, and Change Speed',
+      'Edit MP3 and other audio online: cut, trim, fade in and out, change volume and speed, reverse playback. Free and private — everything runs in your browser.',
+    h1: 'MP3 Editor — Edit the Length of an MP3, Online Free',
     hero: {
       src: '/mp3-editor.svg',
       alt: 'Cut, fade, reverse and change the speed of an MP3',
@@ -549,10 +549,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Audio Joiner',
     icon: 'layers',
     category: 'merge',
-    title: 'Audio Joiner — Merge Songs in Order, with Crossfade',
+    title: 'Audio Joiner — Merge Songs & Audio Files Online Free',
     description:
-      'Put songs, chapters, or voice memos in order and export one file. Set a crossfade, or zero for a hard join. Nothing is uploaded.',
-    h1: 'Audio Joiner — Put Songs One After Another',
+      'Merge songs and audio files into one track, in any order, right in your browser. Optional fades between tracks — free, private, no upload.',
+    h1: 'Audio Merger — Join MP3 Files into One, Online Free',
     hero: {
       src: '/audio-joiner.svg',
       alt: 'Put songs and voice notes one after another',
