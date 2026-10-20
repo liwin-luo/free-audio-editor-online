@@ -87,6 +87,9 @@ than our competitor's; above ~1,600 it pads. Depth goes into FAQ answers and the
 
 - Add `ToolCopy` for the new slug to **all** catalogs (`src/i18n/{es,pt,id,de,ko,ja,zh}.ts`).
   `assertCatalogs()` fails the build on a missing key — don't bypass it.
+- English, Spanish, and German each get `sections`: three blocks, and each block's
+  paragraph count and bullet count must match the English shape. The other catalogs
+  omit `sections`. `assertCatalogs()` checks Spanish and German against English.
 - Translations are written, not machine-dumped: keep each locale's existing
   terminology for shared UI ("Keep selection", bitrates, format names), localize the
   `title`/`description` around the **localized query**, not a word-for-word translate

@@ -306,6 +306,19 @@ export class Editor {
       quickEchoFeedback.addEventListener('change', () => this.commit({ echoFeedback: Number(quickEchoFeedback.value) }));
     }
 
+    const quickPanDepth = this.els.root.querySelector<HTMLInputElement>('[data-quick-pan-depth]');
+    const quickPanDepthLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pan-depth-label]');
+    const quickPanRate = this.els.root.querySelector<HTMLInputElement>('[data-quick-pan-rate]');
+    const quickPanRateLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pan-rate-label]');
+    if (quickPanDepth && quickPanDepthLabel && quickPanRate && quickPanRateLabel) {
+      this.state.panDepth = Number(quickPanDepth.value) / 100;
+      this.state.panRate = Number(quickPanRate.value);
+      quickPanDepth.addEventListener('input', () => (quickPanDepthLabel.textContent = `${quickPanDepth.value}%`));
+      quickPanDepth.addEventListener('change', () => this.commit({ panDepth: Number(quickPanDepth.value) / 100 }));
+      quickPanRate.addEventListener('input', () => (quickPanRateLabel.textContent = `${Number(quickPanRate.value).toFixed(2)} Hz`));
+      quickPanRate.addEventListener('change', () => this.commit({ panRate: Number(quickPanRate.value) }));
+    }
+
     const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
     const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
     if (quickSpeed && quickSpeedLabel) {
@@ -783,6 +796,14 @@ export class Editor {
       const quickEchoFeedbackLabel = this.els.root.querySelector<HTMLElement>('[data-quick-echo-feedback-label]');
       if (quickEchoFeedback) quickEchoFeedback.value = String(state.echoFeedback);
       if (quickEchoFeedbackLabel) quickEchoFeedbackLabel.textContent = `${Math.round(state.echoFeedback * 100)}%`;
+      const quickPanDepth = this.els.root.querySelector<HTMLInputElement>('[data-quick-pan-depth]');
+      const quickPanDepthLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pan-depth-label]');
+      const quickPanRate = this.els.root.querySelector<HTMLInputElement>('[data-quick-pan-rate]');
+      const quickPanRateLabel = this.els.root.querySelector<HTMLElement>('[data-quick-pan-rate-label]');
+      if (quickPanDepth) quickPanDepth.value = String(Math.round(state.panDepth * 100));
+      if (quickPanDepthLabel) quickPanDepthLabel.textContent = `${Math.round(state.panDepth * 100)}%`;
+      if (quickPanRate) quickPanRate.value = String(state.panRate);
+      if (quickPanRateLabel) quickPanRateLabel.textContent = `${state.panRate.toFixed(2)} Hz`;
       const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
       const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
       if (quickSpeed) quickSpeed.value = String(state.speed);
@@ -849,6 +870,8 @@ export class Editor {
       this.state.compress,
       this.state.echoDelay,
       this.state.echoFeedback,
+      this.state.panDepth,
+      this.state.panRate,
       this.state.fadeIn,
       this.state.fadeOut,
       this.state.normalize ? 1 : 0,
@@ -883,6 +906,7 @@ export class Editor {
       this.state.pitch !== 0 ||
       this.state.compress > 0 ||
       this.state.echoDelay > 0 ||
+      this.state.panDepth > 0 ||
       this.state.bass !== 0 ||
       this.state.treble !== 0 ||
       this.state.mid !== 0 ||

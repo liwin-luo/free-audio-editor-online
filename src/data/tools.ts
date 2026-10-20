@@ -76,7 +76,7 @@ export interface EditorConfig {
   /** Max gain slider percent (default 200) */
   maxGainPercent?: number;
   /** Headline controls surfaced outside the Adjust drawer */
-  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf' | 'compress' | 'echo')[];
+  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf' | 'compress' | 'echo' | 'pan')[];
   /** file input accept attribute (default: audio + common video containers) */
   accept?: string;
   /** Export format ids offered in the select, in order. Default: everything except M4R. */
@@ -2285,7 +2285,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['slowed-reverb', 'fade-audio', 'pitch-changer'],
+    related: ['slowed-reverb', 'auto-panner', 'fade-audio'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: false,
@@ -2588,7 +2588,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['echo', 'change-audio-speed', 'pitch-changer'],
+    related: ['echo', 'auto-panner', 'pitch-changer'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -4109,6 +4109,101 @@ export const TOOLS: ToolDef[] = [
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
       loop: true,
+    },
+  },
+  {
+    slug: 'auto-panner',
+    cardLine: 'Sweep one file left and right at a rate you set. It does not follow the beat.',
+    name: 'Auto Panner',
+    shortName: 'Panner',
+    icon: 'waveform',
+    category: 'effects',
+    title: 'Auto Panner — Sweep Audio Left and Right Free',
+    description:
+      'Sweep mono or stereo left and right at 0.05 to 2 Hz. Depth is 0 to 100%, starting at 70%. Free in your browser. Nothing is uploaded.',
+    h1: 'Auto panner, sweep a file from left to right',
+    hero: {
+      src: '/auto-panner.svg',
+      alt: 'Sweep one recording from left to right',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'Set the depth and the rate. The sweep does not follow the beat.',
+    intro:
+      'Depth runs from 0 to 100%. The start value is 70%. Rate runs from 0.05 Hz to 2 Hz. The start value is 0.2 Hz. Position is depth times a sine of that rate, so 0.2 Hz takes 5 seconds to go left and right and back. It does not follow the drums. Depth at 0 leaves the file as it is. Processing stays in your browser.',
+    usesHeading: 'What the sweep is for',
+    uses: [
+      'Move a pad or a vocal slowly from one speaker to the other.',
+      'Give a mono take a steady left-right motion.',
+      'Pick the rate in hertz, instead of chasing the drums.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device.',
+      },
+      {
+        name: 'Set depth and rate',
+        text: 'Depth is how far the sound travels, from 0 to 100%. Rate is how many sweeps per second, from 0.05 to 2. Drag the waveform if only part of the file should move.',
+      },
+      {
+        name: 'Export',
+        text: 'Play to check the selection, then export MP3 or WAV. WAV is the panned samples. MP3 encodes the sweep once.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The sweep is a stereo panner in your browser. After the page loads you can go offline and it still exports.',
+      },
+      {
+        q: 'What happens to the sound?',
+        a: 'The position is depth times a sine of the rate. Pitch and playback speed stay as they are. A stereo file moves as one image. The two channels are not sent on different paths. WAV is those samples. MP3 encodes once, at the bitrate you pick.',
+      },
+      {
+        q: 'What will it refuse?',
+        a: 'The sweep does not lock to a beat, and it does not split mid and side. Depth at 0 does not insert a panner, so the export matches the file you dropped. This is not a head-related transfer that points the sound at a chosen angle.',
+      },
+      {
+        q: 'How is this different from echo, slowed reverb, and the equalizer?',
+        a: 'Echo adds a copy after a delay. Slowed + reverb changes speed and pitch, then adds a room. The equalizer changes frequency bands. This page only moves the same audio left and right.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. Both sliders, the waveform, and the export button work with touch in current Chrome, Edge, Firefox and Safari.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Where the sound sits',
+        paragraphs: [
+          'Depth runs from 0 to 100%. The start value is 70%. Rate runs from 0.05 Hz to 2 Hz. The start value is 0.2 Hz.',
+          'The position is depth times a sine of that rate. At 0.2 Hz one full left-right cycle takes 5 seconds. Depth at 0 leaves the file as it is. Pitch and playback speed stay as they are.',
+        ],
+      },
+      {
+        heading: 'A steady sweep',
+        paragraphs: ['Use it when the motion should be even:'],
+        bullets: [
+          'A pad or a vocal that should cross the speakers slowly.',
+          'A mono take that should move, without becoming two different tracks.',
+          'A rate you set in hertz, not a sweep that tries to follow the drums.',
+        ],
+      },
+      {
+        heading: 'Not an echo, and not a tempo change',
+        paragraphs: [
+          'Echo adds a copy after a delay you set. Slowed + reverb changes the speed and the pitch, then adds a room. The equalizer changes frequency bands. None of those move the image on a clock.',
+          'This page does not follow a beat. A stereo file stays one image. The left and right channels are not sent on separate paths.',
+        ],
+      },
+    ],
+    related: ['echo', 'slowed-reverb', 'equalizer'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['pan'],
     },
   },
 ];

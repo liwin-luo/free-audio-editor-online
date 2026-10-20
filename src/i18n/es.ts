@@ -88,6 +88,8 @@ export const es: Catalog = {
     compress: 'Comprimir',
     echoDelay: 'Retardo',
     echoFeedback: 'Repeticiones',
+    panDepth: 'Profundidad',
+    panRate: 'Frecuencia',
     silenceThreshold: 'Umbral',
     silenceGap: 'Pausa mínima',
     silenceRemove: 'Se quitarán unos {time} de silencio',
@@ -3338,6 +3340,57 @@ export const es: Catalog = {
           paragraphs: [
             'El recorte guarda un tramo una vez. La unión pone archivos distintos en fila. El fundido baja el inicio o el final de un archivo. El crossfade de esta página solo está entre copias del mismo clip.',
             'Esta página no graba encima de sí misma. Si el resultado pasara de 10 minutos, la exportación se detiene. Acorta la selección o baja las repeticiones.',
+          ],
+        },
+      ],
+      dropHint: 'Suelta un archivo de audio o haz clic para buscar',
+    },
+    'auto-panner': {
+      cardLine: 'Mueve un archivo a izquierda y derecha al ritmo que tú pongas. No sigue el pulso.',
+      name: 'Auto panner',
+      shortName: 'Paneo',
+      title: 'Auto panner — mover el audio a izquierda y derecha',
+      description: 'Mueve mono o estéreo de izquierda a derecha de 0,05 a 2 Hz. La profundidad va de 0 a 100 %, y empieza en 70 %. Gratis en el navegador. Nada se sube.',
+      h1: 'Auto panner, mueve un archivo de izquierda a derecha',
+      heroAlt: 'Mover una grabación de izquierda a derecha',
+      subtitle: 'Tú pones la profundidad y la frecuencia. El barrido no sigue el pulso.',
+      intro: 'La profundidad va de 0 a 100 %. El valor inicial es 70 %. La frecuencia va de 0,05 Hz a 2 Hz. El valor inicial es 0,2 Hz. La posición es la profundidad por un seno de esa frecuencia, así que 0,2 Hz tarda 5 segundos en ir y volver. No sigue la batería. Con profundidad 0 el archivo se queda como está. El proceso se queda en el navegador.',
+      usesHeading: 'Para qué sirve el barrido',
+      uses: ['Mueve un colchón o una voz despacio de un altavoz al otro.', 'Dale a una toma mono un movimiento constante de izquierda a derecha.', 'Elige la frecuencia en hercios, en vez de perseguir la batería.'],
+      howTo: [
+        { name: 'Suelta el audio', text: 'Cualquier MP3, WAV, M4A, OGG o FLAC. Se decodifica en tu dispositivo.' },
+        { name: 'Ajusta profundidad y frecuencia', text: 'La profundidad es cuánto se desplaza el sonido, de 0 a 100 %. La frecuencia es cuántos barridos por segundo, de 0,05 a 2. Arrastra la onda si solo debe moverse una parte.' },
+        { name: 'Exporta', text: 'Escucha para comprobar la selección y exporta MP3 o WAV. El WAV son esas muestras. El MP3 codifica el barrido una vez.' },
+      ],
+      faqs: [
+        { q: '¿Se sube mi audio?', a: 'No. El barrido es un panoramizador estéreo en tu navegador. Cuando la página ha cargado, puedes quedar sin red y la exportación sigue.' },
+        { q: '¿Qué le pasa al sonido?', a: 'La posición es la profundidad por un seno de la frecuencia. El tono y la velocidad de reproducción no cambian. Un estéreo se mueve como una sola imagen. Los dos canales no van por caminos distintos. El WAV son esas muestras. El MP3 codifica una vez, al bitrate que elijas.' },
+        { q: '¿Qué no hace?', a: 'El barrido no se engancha a un pulso y no separa centro y lados. Con profundidad 0 no se inserta el panoramizador, así que la exportación coincide con el archivo que soltaste. No es una transferencia relativa a la cabeza que apunte el sonido a un ángulo.' },
+        { q: '¿En qué se diferencia del eco, del slowed reverb y del ecualizador?', a: 'El eco añade una copia tras un retardo. Slowed + reverb cambia la velocidad y el tono, y luego añade una sala. El ecualizador de audio cambia bandas de frecuencia. Esta página solo mueve el mismo audio a izquierda y derecha.' },
+        { q: '¿Funciona en el móvil?', a: 'Sí. Los dos deslizadores, la onda y el botón de exportar se usan con el dedo en Chrome, Edge, Firefox y Safari actuales.' },
+      ],
+      sections: [
+        {
+          heading: 'Dónde se sienta el sonido',
+          paragraphs: [
+            'La profundidad va de 0 a 100 %. El valor inicial es 70 %. La frecuencia va de 0,05 Hz a 2 Hz. El valor inicial es 0,2 Hz.',
+            'La posición es la profundidad por un seno de esa frecuencia. A 0,2 Hz un ciclo completo de izquierda a derecha tarda 5 segundos. Con profundidad 0 el archivo se queda como está. El tono y la velocidad de reproducción no cambian.',
+          ],
+        },
+        {
+          heading: 'Un barrido constante',
+          paragraphs: ['Úsalo cuando el movimiento deba ser regular:'],
+          bullets: [
+            'Un colchón o una voz que deba cruzar los altavoces despacio.',
+            'Una toma mono que deba moverse, sin convertirse en dos pistas distintas.',
+            'Una frecuencia en hercios, no un barrido que intente seguir la batería.',
+          ],
+        },
+        {
+          heading: 'No es un eco, ni un cambio de tempo',
+          paragraphs: [
+            'El eco añade una copia tras un retardo. Slowed + reverb cambia la velocidad y el tono, y luego añade una sala. El ecualizador cambia bandas de frecuencia. Ninguno de esos mueve la imagen con el reloj.',
+            'Esta página no sigue un pulso. Un estéreo sigue siendo una sola imagen. Izquierda y derecha no van por caminos separados.',
           ],
         },
       ],

@@ -88,6 +88,8 @@ export const en: Shell = {
     compress: 'Compress',
     echoDelay: 'Delay',
     echoFeedback: 'Repeats',
+    panDepth: 'Depth',
+    panRate: 'Rate',
     silenceThreshold: 'Threshold',
     silenceGap: 'Minimum gap',
     silenceRemove: 'Will remove about {time} of silence',

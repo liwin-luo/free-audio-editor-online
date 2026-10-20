@@ -58,6 +58,8 @@ export interface EditorText {
   compress: string;
   echoDelay: string;
   echoFeedback: string;
+  panDepth: string;
+  panRate: string;
   silenceThreshold: string;
   silenceGap: string;
   silenceRemove: string;

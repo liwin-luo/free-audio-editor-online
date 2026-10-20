@@ -175,6 +175,20 @@ const bipolarShelf = config.quickControls?.includes('mid') ?? false;
               </span>
             </label>
           )}
+          {config.quickControls!.includes('pan') && (
+            <>
+              <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+                {t.panDepth}
+                <input type="range" data-quick-pan-depth min="0" max="100" step="1" value="70" class="flex-1 accent-(--color-accent)" />
+                <span class="w-12 font-mono text-xs tabular-nums" data-quick-pan-depth-label>70%</span>
+              </label>
+              <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">
+                {t.panRate}
+                <input type="range" data-quick-pan-rate min="0.05" max="2" step="0.01" value="0.2" class="flex-1 accent-(--color-accent)" />
+                <span class="w-16 font-mono text-xs tabular-nums" data-quick-pan-rate-label>0.20 Hz</span>
+              </label>
+            </>
+          )}
           {config.quickControls!.includes('echo') && (
             <>
               <label class="flex min-w-[200px] flex-1 items-center gap-3 text-sm text-ink2">

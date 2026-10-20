@@ -3,6 +3,7 @@
  * every export is rendered into a fresh buffer via OfflineAudioContext.
  */
 import { clamp } from '../lib/format';
+import { panAt } from './pan';
 import { pitchShiftChannel } from './pitch';
 
 export interface EditState {
@@ -30,6 +31,10 @@ export interface EditState {
   echoDelay: number;
   /** echo feedback gain, 0…0.55 */
   echoFeedback: number;
+  /** auto-pan depth, 0 = bypass (no StereoPanner in the graph), 1 = full left/right */
+  panDepth: number;
+  /** auto-pan rate in Hz, 0.05…2. Ignored when panDepth is 0. */
+  panRate: number;
   /** low-shelf gain in dB (150 Hz corner, −15…+15); booster page exposes 0…+15 */
   bass: number;
   /** high-shelf gain in dB (3 kHz corner, −15…+15) */
@@ -57,6 +62,8 @@ export function defaultEditState(): EditState {
     compress: 0,
     echoDelay: 0,
     echoFeedback: 0.35,
+    panDepth: 0,
+    panRate: 0.2,
     bass: 0,
     treble: 0,
     mid: 0,
@@ -151,11 +158,13 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   const echoDelay = clamp(state.echoDelay, 0, 0.8);
   const echoFeedback = clamp(state.echoFeedback, 0, 0.55);
   const echoTail = echoDelay > 0 ? Math.min(4, echoDelay * (1 + echoFeedback * 12)) : 0;
+  const panDepth = clamp(state.panDepth, 0, 1);
+  const panRate = clamp(state.panRate, 0.05, 2);
 
   // Convolution or repeats past the dry end are discarded unless the context is long enough.
   const tail = Math.max(wet > 0 ? REVERB_SECONDS : 0, echoTail);
   const ctx = new OfflineAudioContext(
-    Math.min(buffer.numberOfChannels, 2),
+    panDepth > 0 ? 2 : Math.min(buffer.numberOfChannels, 2),
     Math.max(1, Math.ceil((outDuration + tail) * rate) + 1),
     rate,
   );
@@ -208,7 +217,17 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
     bus.connect(limiter);
     bus = limiter;
   }
-  bus.connect(ctx.destination);
+  if (panDepth > 0) {
+    const panner = ctx.createStereoPanner();
+    const steps = Math.max(2, Math.ceil(outDuration * 100));
+    const curve = new Float32Array(steps);
+    for (let i = 0; i < steps; i++) curve[i] = panAt((i / (steps - 1)) * outDuration, panDepth, panRate);
+    panner.pan.setValueCurveAtTime(curve, 0, outDuration);
+    bus.connect(panner);
+    panner.connect(ctx.destination);
+  } else {
+    bus.connect(ctx.destination);
+  }
   if (echoDelay > 0) {
     const delay = ctx.createDelay(1);
     delay.delayTime.value = echoDelay;

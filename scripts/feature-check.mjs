@@ -571,6 +571,77 @@ try {
   const wetClick = sampleAt(clickOut, 0.2);
   check('echo repeat near 0.20 s', wetClick > 0.2, `at0.2=${wetClick.toFixed(3)}`);
 
+  // --- Auto pan: 0.25 Hz is right near 1 s and left near 3 s. Depth 0 stays balanced. ---
+  const panRms = (file, sec, channel) => {
+    const b = readFileSync(file);
+    const ch = b.readUInt16LE(22);
+    const rate = b.readUInt32LE(24);
+    const i0 = Math.round(sec * rate);
+    const n = Math.round(0.04 * rate);
+    let acc = 0;
+    let count = 0;
+    for (let i = i0; i < i0 + n; i++) {
+      const off = 44 + (i * ch + channel) * 2;
+      if (off + 2 > b.length) break;
+      const s = b.readInt16LE(off) / 32768;
+      acc += s * s;
+      count++;
+    }
+    return count ? Math.sqrt(acc / count) : 0;
+  };
+  const PAN_SWEEP = '/tmp/pan-sweep.wav';
+  {
+    const rate = 44100;
+    const frames = rate * 4;
+    const pcm = Buffer.alloc(frames * 2);
+    for (let i = 0; i < frames; i++) {
+      pcm.writeInt16LE(Math.round(Math.sin((2 * Math.PI * 440 * i) / rate) * 0.5 * 32767), i * 2);
+    }
+    const header = Buffer.alloc(44);
+    header.write('RIFF', 0);
+    header.writeUInt32LE(36 + pcm.length, 4);
+    header.write('WAVE', 8);
+    header.write('fmt ', 12);
+    header.writeUInt32LE(16, 16);
+    header.writeUInt16LE(1, 20);
+    header.writeUInt16LE(1, 22);
+    header.writeUInt32LE(rate, 24);
+    header.writeUInt32LE(rate * 2, 28);
+    header.writeUInt16LE(2, 32);
+    header.writeUInt16LE(16, 34);
+    header.write('data', 36);
+    header.writeUInt32LE(pcm.length, 40);
+    writeFileSync(PAN_SWEEP, Buffer.concat([header, pcm]));
+  }
+  const panOut = join(DOWNLOAD_DIR, 'pan-sweep-edited.wav');
+  await client.goto(`${BASE}/auto-panner`, { waitUntil: 'networkidle0' });
+  await (await client.$('[data-file-input]')).uploadFile(PAN_SWEEP);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.$eval('[data-quick-pan-depth]', (el) => {
+    el.value = '100';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await client.$eval('[data-quick-pan-rate]', (el) => {
+    el.value = '0.25';
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await client.select('[data-format]', 'wav');
+  rmSync(panOut, { force: true });
+  await client.click('[data-export]');
+  check('auto-pan export', /Exported pan-sweep-edited\.wav/.test(await waitExported(client)), '');
+  for (let i = 0; i < 20; i++) {
+    await new Promise((r) => setTimeout(r, 200));
+    try {
+      if (readFileSync(panOut).length > 100) break;
+    } catch {}
+  }
+  const panRight = panRms(panOut, 1, 1);
+  const panLeft = panRms(panOut, 1, 0);
+  const panLeft3 = panRms(panOut, 3, 0);
+  const panRight3 = panRms(panOut, 3, 1);
+  check('auto-pan right at 1s', panRight > panLeft * 4 && panRight > 0.1, `L=${panLeft.toFixed(3)} R=${panRight.toFixed(3)}`);
+  check('auto-pan left at 3s', panLeft3 > panRight3 * 4 && panLeft3 > 0.1, `L=${panLeft3.toFixed(3)} R=${panRight3.toFixed(3)}`);
+
   // --- Waveform image: default social preset exports a 2× PNG ---
   const pngFile = join(DOWNLOAD_DIR, 'test-tone-waveform.png');
   await client.goto(`${BASE}/waveform-generator`, { waitUntil: 'networkidle0' });

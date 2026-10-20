@@ -88,6 +88,8 @@ export const de: Catalog = {
     compress: 'Kompressor',
     echoDelay: 'Delay',
     echoFeedback: 'Wiederholungen',
+    panDepth: 'Tiefe',
+    panRate: 'Frequenz',
     silenceThreshold: 'Schwelle',
     silenceGap: 'Mindestpause',
     silenceRemove: 'Entfernt etwa {time} Stille',
@@ -3335,6 +3337,57 @@ export const de: Catalog = {
           paragraphs: [
             'Der Trimmer behält eine Spanne einmal. Der Joiner reiht verschiedene Dateien aneinander. Fade macht Anfang oder Ende einer Datei leiser. Der Crossfade auf dieser Seite sitzt nur zwischen Kopien desselben Clips.',
             'Die Seite nimmt keine Overdubs auf. Wird das Ergebnis länger als 10 Minuten, stoppt der Export. Kürze die Auswahl oder nimm weniger Wiederholungen.',
+          ],
+        },
+      ],
+      dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
+    },
+    'auto-panner': {
+      cardLine: 'Schwenke eine Datei links und rechts mit einem Tempo, das du setzt. Es folgt nicht dem Beat.',
+      name: 'Auto-Panner',
+      shortName: 'Panner',
+      title: 'Auto-Panner — Audio links und rechts schwenken',
+      description: 'Schwenke Mono oder Stereo links und rechts, 0,05 bis 2 Hz. Tiefe 0 bis 100 %, Start 70 %. Kostenlos im Browser. Nichts wird hochgeladen.',
+      h1: 'Auto-Panner, eine Datei von links nach rechts schwenken',
+      heroAlt: 'Eine Aufnahme von links nach rechts schwenken',
+      subtitle: 'Setz Tiefe und Frequenz. Der Schwenk folgt nicht dem Beat.',
+      intro: 'Die Tiefe geht von 0 bis 100 %, Start ist 70 %. Die Frequenz geht von 0,05 Hz bis 2 Hz, Start ist 0,2 Hz. Die Position ist die Tiefe mal ein Sinus dieser Frequenz. Bei 0,2 Hz dauert eine volle Links-rechts-Runde 5 Sekunden. Sie folgt nicht dem Schlagzeug. Tiefe 0 lässt die Datei, wie sie ist. Die Verarbeitung bleibt im Browser.',
+      usesHeading: 'Wofür der Schwenk da ist',
+      uses: ['Schieb ein Pad oder eine Stimme langsam von einem Lautsprecher zum anderen.', 'Gib einer Mono-Aufnahme eine gleichmäßige Links-rechts-Bewegung.', 'Wähl die Frequenz in Hertz, statt den Drums hinterherzulaufen.'],
+      howTo: [
+        { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Datei wird auf deinem Gerät dekodiert.' },
+        { name: 'Tiefe und Frequenz setzen', text: 'Die Tiefe ist, wie weit der Ton wandert, von 0 bis 100 %. Die Frequenz ist die Zahl der Schwenks pro Sekunde, von 0,05 bis 2. Zieh auf der Wellenform, wenn nur ein Teil wandern soll.' },
+        { name: 'Exportieren', text: 'Hör die Auswahl an, dann exportiere MP3 oder WAV. WAV sind die geschwenkten Samples. MP3 kodiert den Schwenk einmal.' },
+      ],
+      faqs: [
+        { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Der Schwenk ist ein Stereo-Panner in deinem Browser. Nach dem Laden der Seite geht der Export auch offline.' },
+        { q: 'Was passiert mit dem Ton?', a: 'Die Position ist die Tiefe mal ein Sinus der Frequenz. Tonhöhe und Abspieltempo bleiben. Eine Stereodatei bewegt sich als ein Bild. Die beiden Kanäle laufen nicht auf getrennten Bahnen. WAV sind diese Samples. MP3 kodiert einmal, mit der Bitrate, die du wählst.' },
+        { q: 'Was lehnt die Seite ab?', a: 'Der Schwenk rastet nicht auf einen Beat ein und trennt nicht Mitte und Seite. Bei Tiefe 0 sitzt kein Panner im Graph, der Export entspricht der Datei, die du abgelegt hast. Das ist keine kopfbezogene Übertragung, die den Ton auf einen Winkel richtet.' },
+        { q: 'Was ist der Unterschied zu Echo, Slowed + Reverb und Equalizer?', a: 'Echo setzt eine Kopie nach einer Delay-Zeit. Slowed + Reverb ändert Tempo und Tonhöhe und legt dann einen Raum darüber. Der Audio-Equalizer ändert Frequenzbänder. Diese Seite bewegt nur dasselbe Audio nach links und rechts.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. Beide Regler, die Wellenform und der Export funktionieren per Touch in aktuellem Chrome, Edge, Firefox und Safari.' },
+      ],
+      sections: [
+        {
+          heading: 'Wo der Ton sitzt',
+          paragraphs: [
+            'Die Tiefe geht von 0 bis 100 %. Der Startwert ist 70 %. Die Frequenz geht von 0,05 Hz bis 2 Hz. Der Startwert ist 0,2 Hz.',
+            'Die Position ist die Tiefe mal ein Sinus dieser Frequenz. Bei 0,2 Hz dauert ein voller Links-rechts-Umlauf 5 Sekunden. Tiefe 0 lässt die Datei, wie sie ist. Tonhöhe und Abspieltempo bleiben.',
+          ],
+        },
+        {
+          heading: 'Ein gleichmäßiger Schwenk',
+          paragraphs: ['Nimm die Seite, wenn die Bewegung gleichmäßig sein soll:'],
+          bullets: [
+            'Ein Pad oder eine Stimme, die langsam über die Lautsprecher wandern soll.',
+            'Eine Mono-Aufnahme, die sich bewegen soll, ohne zwei verschiedene Spuren zu werden.',
+            'Eine Frequenz in Hertz, nicht ein Schwenk, der dem Schlagzeug folgen will.',
+          ],
+        },
+        {
+          heading: 'Kein Echo, und keine Tempowechsel',
+          paragraphs: [
+            'Echo setzt eine Kopie nach einer Delay-Zeit. Slowed + Reverb ändert Tempo und Tonhöhe und legt dann einen Raum darüber. Der Equalizer ändert Frequenzbänder. Keines davon bewegt das Bild nach der Uhr.',
+            'Diese Seite folgt keinem Beat. Eine Stereodatei bleibt ein Bild. Links und rechts laufen nicht auf getrennten Bahnen.',
           ],
         },
       ],

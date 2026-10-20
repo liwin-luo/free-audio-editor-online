@@ -31,6 +31,7 @@ const pages = [
   { path: '/echo', island: true },
   { path: '/silence-remover', island: true },
   { path: '/audio-looper', island: true },
+  { path: '/auto-panner', island: true },
   { path: '/loudness-meter', island: true },
   { path: '/zh/loudness-meter', island: true },
   { path: '/zh/silence-remover', island: true },
