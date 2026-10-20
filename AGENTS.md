@@ -1,5 +1,7 @@
 # Agent Instructions
 
+架构、路线、SEO 规则分别在 `docs/architecture.md`、`docs/roadmap.md`、`docs/seo.md`。新工具的完成定义在 `docs/new-tool-spec.md`。
+
 ## 并行任务注意事项（重要）
 
 用户会同时开多个会话/任务并行操作本仓库，文件可能随时被其他会话修改。因此：

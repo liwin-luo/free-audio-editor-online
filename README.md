@@ -3,15 +3,15 @@
 Free online audio tools that run entirely in the browser. Files are never uploaded —
 decoding, editing and exporting all happen locally with the Web Audio API.
 
-**Live tool pages (v0.1):** `/audio-trimmer` · `/mp3-cutter` · `/mp3-editor` ·
-`/ringtone-maker` · `/audio-joiner` + hub at `/`.
+**Live:** 50 tool pages, 11 languages, hub at `/` and `/tools`. Layout and loading are in
+[docs/architecture.md](docs/architecture.md).
 
 ## Stack
 
-- [Astro](https://astro.build) 5 — static output, zero-JS pages except the editor island
-- Tailwind CSS 4 (CSS-first tokens in `src/styles/global.css`, design spec in `docs/ui-ue-spec.md`)
-- Editor engine: plain TypeScript (`src/editor/`) — Web Audio API, OfflineAudioContext
-  rendering, canvas waveform; MP3 encoding via lamejs loaded on demand from a CDN
+- [Astro](https://astro.build) 5 — static HTML, editor islands only where a tool needs them
+- Tailwind CSS 4 (tokens in `src/styles/global.css`, spec in `docs/ui-ue-spec.md`)
+- Editor: plain TypeScript (`src/editor/`) — Web Audio decode and offline render.
+  Waveform, the renderer, and encoders load when used. MP3 is bundled lamejs, not a CDN
 - Fonts self-hosted via Fontsource (Geist + Geist Mono)
 
 ## Commands
@@ -38,16 +38,11 @@ node scripts/smoke-test.mjs   # E2E smoke test (auto-generates its test tone; ne
 Note: Vercel Hobby is non-commercial per ToS; move to Pro (or Cloudflare Pages) before
 enabling ads/paid tiers.
 
-## SEO checklist (already implemented)
+## SEO
 
-- Unique `<title>` / meta description / canonical per page
-- JSON-LD: WebApplication, HowTo, FAQPage, BreadcrumbList
-- `sitemap-index.xml` (via @astrojs/sitemap), `robots.txt`, `llms.txt`
-- Semantic HTML: one H1 per page, breadcrumb nav, descriptive link anchors
-- Performance budget: no framework runtime, fonts subset+preloaded, editor code
-  lazy-split per page (~7 KB gzip shared), CLS-safe fixed-height waveform
-- Clean URLs with no trailing slash, consistent with canonicals (`astro.config.mjs`
-  `format: 'file'` + `vercel.json`)
+Rules: [docs/seo.md](docs/seo.md). Unique title, description, and canonical per page.
+JSON-LD is WebApplication, HowTo, FAQPage, and BreadcrumbList. The sitemap is generated;
+`robots.txt` and `llms.txt` live in `public/`. Clean URLs, no trailing slash.
 
 ## Editing tool content
 
@@ -58,15 +53,11 @@ update automatically.
 
 ## Roadmap
 
-- P1: `/wav-to-mp3`, `/reverse-audio`, `/change-audio-speed`, `/increase-volume` pages
-  (all supported by the existing engine — mostly content work)
-- P2: `/mp4-to-mp3` + `/extract-audio` via ffmpeg.wasm (lazy, CDN; needs
-  COOP/COEP headers for the multithread build), `/voice-recorder` (MediaRecorder)
-- Multilingual (subdirectory + hreflang), AdSense after traffic, Pro tier (export
-  limits / batch / larger files)
+[docs/roadmap.md](docs/roadmap.md). Ads and a paid tier wait on traffic thresholds.
+Do not add a YouTube ripper or a format-permutation matrix.
 
 ## Privacy posture
 
-No accounts, no analytics, no ad code yet; theme preference in localStorage only.
-See `/privacy`. MP3 encoding (lamejs) is bundled with this site and is not a
-third-party request.
+No accounts. No ad code yet. Theme preference is in localStorage. Vercel Web Analytics
+is cookieless and only injected on the production host. See `/privacy`. MP3 encoding
+(lamejs) is bundled with this site and is not a third-party request.

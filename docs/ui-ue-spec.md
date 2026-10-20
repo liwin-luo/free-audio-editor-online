@@ -279,7 +279,7 @@
 | 首屏 JS | < 90KB gzip（编辑器内核独立 chunk 懒加载，dropzone 先行可交互） |
 | 字体 | 2 个 woff2（Geist 400/600 + Geist Mono 500）subset + preload + swap |
 | 图片 | 首屏零图片（logo 内联 SVG；不买 stock 图） |
-| 动画库 | 0（纯 CSS + rAF）；lamejs/ffmpeg.wasm 仅在点击导出/转换时加载并提前 toast 预告 |
+| 动画库 | 0（纯 CSS + rAF）。lamejs 与 M4R 复用器在点下载对应格式时加载。不用 ffmpeg.wasm |
 
 ---
 
