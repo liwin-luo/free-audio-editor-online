@@ -90,6 +90,7 @@ export const en: Shell = {
     echoFeedback: 'Repeats',
     panDepth: 'Depth',
     panRate: 'Rate',
+    circle: 'Circle',
     silenceThreshold: 'Threshold',
     silenceGap: 'Minimum gap',
     silenceRemove: 'Will remove about {time} of silence',

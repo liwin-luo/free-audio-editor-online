@@ -60,6 +60,7 @@ export interface EditorText {
   echoFeedback: string;
   panDepth: string;
   panRate: string;
+  circle: string;
   silenceThreshold: string;
   silenceGap: string;
   silenceRemove: string;

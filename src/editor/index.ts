@@ -6,6 +6,7 @@ import { formatBytes, formatTime, clamp } from '../lib/format';
 import { computePeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { defaultEditState, renderEdit, computeNormalizeGain, survivingRanges, type EditState } from './processor';
 import { analyzeSilence, measureSilenceFrames, SILENCE_PAD_SEC, type SilenceFrames, type TimeRange } from './silence';
+import { CIRCLE_DEPTH, CIRCLE_RATE_HZ, CIRCLE_WET } from './circle';
 import { loopChannels, LOOP_MAX_SECONDS, loopedDuration } from './loop';
 import { encodeFor, getFormat, isM4rSupported } from './encoders';
 import { bindDeliveryChips, bindFileOpen } from './delivery';
@@ -319,6 +320,21 @@ export class Editor {
       quickPanRate.addEventListener('change', () => this.commit({ panRate: Number(quickPanRate.value) }));
     }
 
+    const quickCircle = this.els.root.querySelector<HTMLButtonElement>('[data-quick-circle]');
+    if (quickCircle) {
+      this.state.panDepth = CIRCLE_DEPTH;
+      this.state.panRate = CIRCLE_RATE_HZ;
+      this.state.reverb = CIRCLE_WET;
+      quickCircle.addEventListener('click', () => {
+        const on = quickCircle.getAttribute('aria-pressed') !== 'true';
+        this.commit({
+          panDepth: on ? CIRCLE_DEPTH : 0,
+          panRate: CIRCLE_RATE_HZ,
+          reverb: on ? CIRCLE_WET : 0,
+        });
+      });
+    }
+
     const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
     const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
     if (quickSpeed && quickSpeedLabel) {
@@ -393,6 +409,15 @@ export class Editor {
     document.addEventListener('keydown', (e) => this.onKeydown(e));
   }
 
+  /** File load resets edit state. The circle switch is a preset, so it has to be put back. */
+  private applyCircleIfOn(): void {
+    const btn = this.els.root.querySelector('[data-quick-circle]');
+    if (!btn || btn.getAttribute('aria-pressed') !== 'true') return;
+    this.state.panDepth = CIRCLE_DEPTH;
+    this.state.panRate = CIRCLE_RATE_HZ;
+    this.state.reverb = CIRCLE_WET;
+  }
+
   // ---------- File loading ----------
 
   private async loadFile(file: File): Promise<void> {
@@ -420,6 +445,7 @@ export class Editor {
       this.fileName = file.name.replace(/\.[^.]+$/, '');
       this.history = [];
       this.state = defaultEditState();
+      this.applyCircleIfOn();
 
       this.els.fileName.textContent = file.name;
       this.els.fileMeta.textContent = `${formatBytes(file.size)} · ${formatTime(this.duration, true)} · ${Math.round(buffer.sampleRate / 1000)} kHz`;
@@ -804,6 +830,14 @@ export class Editor {
       if (quickPanDepthLabel) quickPanDepthLabel.textContent = `${Math.round(state.panDepth * 100)}%`;
       if (quickPanRate) quickPanRate.value = String(state.panRate);
       if (quickPanRateLabel) quickPanRateLabel.textContent = `${state.panRate.toFixed(2)} Hz`;
+      const quickCircle = this.els.root.querySelector<HTMLButtonElement>('[data-quick-circle]');
+      if (quickCircle) {
+        const on = state.panDepth > 0 && state.reverb > 0;
+        quickCircle.setAttribute('aria-pressed', String(on));
+        quickCircle.classList.toggle('border-accent', on);
+        quickCircle.classList.toggle('bg-accent-soft', on);
+        quickCircle.classList.toggle('text-accent', on);
+      }
       const quickSpeed = this.els.root.querySelector<HTMLInputElement>('[data-quick-speed]');
       const quickSpeedLabel = this.els.root.querySelector<HTMLElement>('[data-quick-speed-label]');
       if (quickSpeed) quickSpeed.value = String(state.speed);
@@ -907,6 +941,7 @@ export class Editor {
       this.state.compress > 0 ||
       this.state.echoDelay > 0 ||
       this.state.panDepth > 0 ||
+      this.state.reverb > 0 ||
       this.state.bass !== 0 ||
       this.state.treble !== 0 ||
       this.state.mid !== 0 ||

@@ -90,6 +90,7 @@ export const es: Catalog = {
     echoFeedback: 'Repeticiones',
     panDepth: 'Profundidad',
     panRate: 'Frecuencia',
+    circle: 'Círculo',
     silenceThreshold: 'Umbral',
     silenceGap: 'Pausa mínima',
     silenceRemove: 'Se quitarán unos {time} de silencio',
@@ -2604,7 +2605,7 @@ export const es: Catalog = {
         },
         {
           q: '¿Bajar la velocidad cambia el tono?',
-          a: 'Sí, a propósito: como un disco de vinilo a la velocidad equivocada. Las voces se vuelven más graves y la tonalidad baja en la misma proporción. Esa caída de tono es lo que define el estilo. Un slowed sin cambio de tono necesita un editor de time-stretch, que es una herramienta distinta y más pesada.',
+          a: 'Sí, a propósito: como un disco de vinilo a la velocidad equivocada. Las voces se vuelven más graves y la tonalidad baja en la misma proporción. Esa caída de tono es lo que define el estilo. Un slowed sin cambio de tono necesita un editor de time-stretch, que es una herramienta distinta y más pesada. Un círculo lento que deja la velocidad y el tono es la página de audio 3D.',
         },
         {
           q: '¿Cuánto reverb debo agregar?',
@@ -3366,7 +3367,7 @@ export const es: Catalog = {
         { q: '¿Se sube mi audio?', a: 'No. El barrido es un panoramizador estéreo en tu navegador. Cuando la página ha cargado, puedes quedar sin red y la exportación sigue.' },
         { q: '¿Qué le pasa al sonido?', a: 'La posición es la profundidad por un seno de la frecuencia. El tono y la velocidad de reproducción no cambian. Un estéreo se mueve como una sola imagen. Los dos canales no van por caminos distintos. El WAV son esas muestras. El MP3 codifica una vez, al bitrate que elijas.' },
         { q: '¿Qué no hace?', a: 'El barrido no se engancha a un pulso y no separa centro y lados. Con profundidad 0 no se inserta el panoramizador, así que la exportación coincide con el archivo que soltaste. No es una transferencia relativa a la cabeza que apunte el sonido a un ángulo.' },
-        { q: '¿En qué se diferencia del eco, del slowed reverb y del ecualizador?', a: 'El eco añade una copia tras un retardo. Slowed + reverb cambia la velocidad y el tono, y luego añade una sala. El ecualizador de audio cambia bandas de frecuencia. Esta página solo mueve el mismo audio a izquierda y derecha.' },
+        { q: '¿En qué se diferencia del eco, del slowed reverb y del ecualizador?', a: 'El eco añade una copia tras un retardo. Slowed + reverb cambia la velocidad y el tono, y luego añade una sala. El ecualizador de audio cambia bandas de frecuencia. Esta página solo mueve el mismo audio a izquierda y derecha. Un círculo fijo de unos 10 segundos, con una cola de reverb corta, es la página de audio 3D.' },
         { q: '¿Funciona en el móvil?', a: 'Sí. Los dos deslizadores, la onda y el botón de exportar se usan con el dedo en Chrome, Edge, Firefox y Safari actuales.' },
       ],
       sections: [
@@ -3391,6 +3392,57 @@ export const es: Catalog = {
           paragraphs: [
             'El eco añade una copia tras un retardo. Slowed + reverb cambia la velocidad y el tono, y luego añade una sala. El ecualizador cambia bandas de frecuencia. Ninguno de esos mueve la imagen con el reloj.',
             'Esta página no sigue un pulso. Un estéreo sigue siendo una sola imagen. Izquierda y derecha no van por caminos separados.',
+          ],
+        },
+      ],
+      dropHint: 'Suelta un archivo de audio o haz clic para buscar',
+    },
+    '3d-audio': {
+      cardLine: 'Un interruptor pone el archivo en un círculo lento y añade una cola de reverb corta.',
+      name: 'Audio 3D',
+      shortName: '3D',
+      title: 'Audio 3D — círculo lento y reverb en línea gratis',
+      description: 'Un círculo cada unos 10 segundos y una cola de reverb corta. Un interruptor. La velocidad y el tono se quedan. Gratis en el navegador. Nada se sube.',
+      h1: 'Audio 3D, un círculo lento con una cola de reverb corta',
+      heroAlt: 'Un círculo lento entre los altavoces, más una sala corta',
+      subtitle: 'La profundidad, la frecuencia y la sala ya están puestas. Solo cambias el interruptor.',
+      intro: 'El círculo es fijo. La profundidad es 100 %. La frecuencia es 0,1 Hz, así que una vuelta tarda unos 10 segundos. Se mueve el sonido directo. Un envío de reverb al 25 % usa la misma sala corta que Slowed + reverb. La velocidad y el tono no cambian. Con el interruptor apagado, la exportación es el archivo que soltaste. El proceso se queda en el navegador.',
+      usesHeading: 'Para qué sirve el círculo',
+      uses: ['Pon una voz o un colchón en un círculo lento sin elegir la frecuencia.', 'Añade una sala corta detrás de ese movimiento.', 'Deja la velocidad original y el tono original.'],
+      howTo: [
+        { name: 'Suelta el audio', text: 'Cualquier MP3, WAV, M4A, OGG o FLAC. Se decodifica en tu dispositivo.' },
+        { name: 'Deja el círculo encendido', text: 'El interruptor empieza encendido. Apágalo y la exportación coincide con el archivo que soltaste. No hay un segundo deslizador para la profundidad, la frecuencia o la sala.' },
+        { name: 'Exporta', text: 'Escucha y exporta MP3 o WAV. El WAV son las muestras del círculo más la cola. El MP3 codifica eso una vez.' },
+      ],
+      faqs: [
+        { q: '¿Se sube mi audio?', a: 'No. El círculo y la sala se renderizan en tu navegador. Cuando la página ha cargado, puedes quedar sin red y la exportación sigue.' },
+        { q: '¿Qué le pasa al sonido?', a: 'La profundidad se queda en 100 %. La frecuencia se queda en 0,1 Hz, unos 10 segundos por vuelta. Se mueve el sonido directo. La reverb es un envío al 25 %, la misma sala corta que Slowed + reverb, así que el archivo gana una cola. La velocidad y el tono no cambian. El WAV son esas muestras. El MP3 codifica una vez, al bitrate que elijas.' },
+        { q: '¿Qué no hace?', a: 'En esta página no puedes poner otra frecuencia, otra profundidad ni otra sala. No sigue un pulso. No apunta el sonido a un ángulo alrededor de tu cabeza. Con el interruptor apagado no hay círculo ni cola.' },
+        { q: '¿En qué se diferencia del auto panner y del slowed reverb?', a: 'Para fijar tú la frecuencia y la profundidad, usa el auto panner. Esta página es el círculo ya hecho, unos 10 segundos, con la reverb ya encendida. Slowed + reverb cambia la velocidad y el tono. Esta página no.' },
+        { q: '¿Funciona en el móvil?', a: 'Sí. El interruptor, la onda y el botón de exportar se usan con el dedo en Chrome, Edge, Firefox y Safari actuales.' },
+      ],
+      sections: [
+        {
+          heading: 'Un círculo con los números ya elegidos',
+          paragraphs: [
+            'La profundidad es 100 %. La frecuencia es 0,1 Hz. Una vuelta desde el centro, hacia un lado y de regreso por el otro, tarda unos 10 segundos.',
+            'Se mueve el sonido directo. La reverb es un envío al 25 %, la misma sala corta que en Slowed + reverb. La cola es la razón de que la exportación pase del final del archivo que soltaste.',
+          ],
+        },
+        {
+          heading: 'Cuando el preset es el trabajo',
+          paragraphs: ['Usa esta página cuando quieras el movimiento ya hecho:'],
+          bullets: [
+            'Una voz o un colchón que deba vagar, sin un deslizador de frecuencia.',
+            'Una sala corta detrás de ese movimiento, no una mezcla de reverb que hagas tú.',
+            'La velocidad original y el tono original, donde estaban.',
+          ],
+        },
+        {
+          heading: 'No es un panorámico que ajustes, ni una ralentización',
+          paragraphs: [
+            'El auto panner es donde pones la profundidad de 0 a 100 % y la frecuencia de 0,05 Hz a 2 Hz, sin reverb. Esta página fija los dos números y añade la sala.',
+            'Slowed + reverb cambia la velocidad, y el tono se mueve con ella. Esta página no. Con el interruptor apagado, el archivo se queda como lo soltaste.',
           ],
         },
       ],

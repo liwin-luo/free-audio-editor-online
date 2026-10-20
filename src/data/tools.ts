@@ -76,7 +76,7 @@ export interface EditorConfig {
   /** Max gain slider percent (default 200) */
   maxGainPercent?: number;
   /** Headline controls surfaced outside the Adjust drawer */
-  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf' | 'compress' | 'echo' | 'pan')[];
+  quickControls?: ('reverse' | 'speed' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf' | 'compress' | 'echo' | 'pan' | 'circle')[];
   /** file input accept attribute (default: audio + common video containers) */
   accept?: string;
   /** Export format ids offered in the select, in order. Default: everything except M4R. */
@@ -2546,7 +2546,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Does slowing change the pitch?',
-        a: 'Yes, deliberately — like a vinyl record at the wrong speed. Vocals get deeper and the key drops by the same ratio. That pitch drop is the signature of the style; slowed without pitch change needs a time-stretch editor, which is a different (and heavier) tool.',
+        a: 'Yes, deliberately — like a vinyl record at the wrong speed. Vocals get deeper and the key drops by the same ratio. That pitch drop is the signature of the style; slowed without pitch change needs a time-stretch editor, which is a different (and heavier) tool. A slow circle that keeps the speed and the pitch is the 3D audio page.',
       },
       {
         q: 'How much reverb should I add?',
@@ -2588,7 +2588,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['echo', 'auto-panner', 'pitch-changer'],
+    related: ['echo', 'auto-panner', '3d-audio'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -4166,7 +4166,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'How is this different from echo, slowed reverb, and the equalizer?',
-        a: 'Echo adds a copy after a delay. Slowed + reverb changes speed and pitch, then adds a room. The equalizer changes frequency bands. This page only moves the same audio left and right.',
+        a: 'Echo adds a copy after a delay. Slowed + reverb changes speed and pitch, then adds a room. The equalizer changes frequency bands. This page only moves the same audio left and right. A fixed circle of about 10 seconds, with a short reverb tail, is the 3D audio page.',
       },
       {
         q: 'Does it work on a phone?',
@@ -4198,12 +4198,107 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['echo', 'slowed-reverb', 'equalizer'],
+    related: ['echo', 'slowed-reverb', '3d-audio'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
       quickControls: ['pan'],
+    },
+  },
+  {
+    slug: '3d-audio',
+    cardLine: 'One switch puts the file on a slow circle and adds a short reverb tail.',
+    name: '3D Audio',
+    shortName: '3D',
+    icon: 'waveform',
+    category: 'effects',
+    title: '3D Audio — Slow Circle and Reverb Online Free',
+    description:
+      'Circle a file once about every 10 seconds and add a short reverb tail. One switch. Speed and pitch stay put. Free in your browser. Nothing is uploaded.',
+    h1: '3D audio, a slow circle with a short reverb tail',
+    hero: {
+      src: '/3d-audio.svg',
+      alt: 'A slow circle around the speakers, plus a short room',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'Depth, rate, and the room are already set. You only flip the switch.',
+    intro:
+      'The circle is fixed. Depth is 100%. The rate is 0.1 Hz, so one trip around takes about 10 seconds. The direct sound moves. A reverb send at 25% adds the same short room used on the slowed + reverb page. Speed and pitch stay as they are. The switch off leaves the file as you dropped it. Processing stays in your browser.',
+    usesHeading: 'What the circle is for',
+    uses: [
+      'Put a vocal or a pad on a slow circle without picking a rate.',
+      'Add a short room behind that movement.',
+      'Keep the original speed and the original pitch.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device.',
+      },
+      {
+        name: 'Leave the circle on',
+        text: 'The switch starts on. Turn it off and the export matches the file you dropped. There is no second slider for depth, rate, or the room.',
+      },
+      {
+        name: 'Export',
+        text: 'Play to check it, then export MP3 or WAV. WAV is the circled samples plus the tail. MP3 encodes that once.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The circle and the room are rendered in your browser. After the page loads you can go offline and it still exports.',
+      },
+      {
+        q: 'What happens to the sound?',
+        a: 'Depth stays at 100%. The rate stays at 0.1 Hz, about 10 seconds for one circle. The direct sound moves left and right. The reverb is a 25% send of the same short room as slowed + reverb, so the file grows a tail. Speed and pitch stay as they are. WAV is those samples. MP3 encodes once, at the bitrate you pick.',
+      },
+      {
+        q: 'What will it refuse?',
+        a: 'You cannot set a different rate, a different depth, or a different room on this page. It does not follow a beat. It does not aim the sound at an angle around your head. The switch off does not add the circle or the tail.',
+      },
+      {
+        q: 'How is this different from the auto panner and slowed reverb?',
+        a: 'To set the rate and the depth yourself, use the auto panner. This page is the finished circle, about 10 seconds around, with the reverb already on. Slowed + reverb changes the speed and the pitch. This page does not.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The switch, the waveform, and the export button work with touch in current Chrome, Edge, Firefox and Safari.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'A circle with the numbers already chosen',
+        paragraphs: [
+          'Depth is 100%. The rate is 0.1 Hz. One trip from the middle, out to one side, and back through the other side takes about 10 seconds.',
+          'The direct sound is what moves. The reverb is a send at 25%, the same short room as on the slowed + reverb page. The tail is why the export runs past the end of the file you dropped.',
+        ],
+      },
+      {
+        heading: 'When the preset is the job',
+        paragraphs: ['Use this page when you want the finished motion:'],
+        bullets: [
+          'A vocal or a pad that should wander without a rate slider.',
+          'A short room behind that movement, not a wash you mix yourself.',
+          'The original speed and the original pitch, left where they were.',
+        ],
+      },
+      {
+        heading: 'Not a panner you tune, and not a slowdown',
+        paragraphs: [
+          'The auto panner is where you set depth from 0 to 100% and rate from 0.05 Hz to 2 Hz, with no reverb. This page locks both numbers and adds the room.',
+          'Slowed + reverb changes the speed, and the pitch moves with it. This page does not. Turning the switch off leaves the file as you dropped it.',
+        ],
+      },
+    ],
+    related: ['auto-panner', 'slowed-reverb', 'echo'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'Drop an audio file, or click to browse',
+      quickControls: ['circle'],
     },
   },
 ];

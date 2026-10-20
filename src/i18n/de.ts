@@ -90,6 +90,7 @@ export const de: Catalog = {
     echoFeedback: 'Wiederholungen',
     panDepth: 'Tiefe',
     panRate: 'Frequenz',
+    circle: 'Kreis',
     silenceThreshold: 'Schwelle',
     silenceGap: 'Mindestpause',
     silenceRemove: 'Entfernt etwa {time} Stille',
@@ -2605,7 +2606,7 @@ export const de: Catalog = {
         },
         {
           q: 'Ändert Verlangsamen die Tonhöhe?',
-          a: 'Ja, absichtlich — wie eine Schallplatte mit der falschen Geschwindigkeit. Der Gesang wird tiefer, und die Tonart sinkt im selben Verhältnis. Dieser Tonhöhenabfall ist die Signatur des Stils; Slowed ohne Tonhöhenänderung braucht einen Time-Stretch-Editor, und das ist ein anderes, schwereres Werkzeug.',
+          a: 'Ja, absichtlich — wie eine Schallplatte mit der falschen Geschwindigkeit. Der Gesang wird tiefer, und die Tonart sinkt im selben Verhältnis. Dieser Tonhöhenabfall ist die Signatur des Stils; Slowed ohne Tonhöhenänderung braucht einen Time-Stretch-Editor, und das ist ein anderes, schwereres Werkzeug. Ein langsamer Kreis, der Tempo und Tonhöhe lässt, ist die 3D-Audio-Seite.',
         },
         {
           q: 'Wie viel Hall soll ich dazugeben?',
@@ -3363,7 +3364,7 @@ export const de: Catalog = {
         { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Der Schwenk ist ein Stereo-Panner in deinem Browser. Nach dem Laden der Seite geht der Export auch offline.' },
         { q: 'Was passiert mit dem Ton?', a: 'Die Position ist die Tiefe mal ein Sinus der Frequenz. Tonhöhe und Abspieltempo bleiben. Eine Stereodatei bewegt sich als ein Bild. Die beiden Kanäle laufen nicht auf getrennten Bahnen. WAV sind diese Samples. MP3 kodiert einmal, mit der Bitrate, die du wählst.' },
         { q: 'Was lehnt die Seite ab?', a: 'Der Schwenk rastet nicht auf einen Beat ein und trennt nicht Mitte und Seite. Bei Tiefe 0 sitzt kein Panner im Graph, der Export entspricht der Datei, die du abgelegt hast. Das ist keine kopfbezogene Übertragung, die den Ton auf einen Winkel richtet.' },
-        { q: 'Was ist der Unterschied zu Echo, Slowed + Reverb und Equalizer?', a: 'Echo setzt eine Kopie nach einer Delay-Zeit. Slowed + Reverb ändert Tempo und Tonhöhe und legt dann einen Raum darüber. Der Audio-Equalizer ändert Frequenzbänder. Diese Seite bewegt nur dasselbe Audio nach links und rechts.' },
+        { q: 'Was ist der Unterschied zu Echo, Slowed + Reverb und Equalizer?', a: 'Echo setzt eine Kopie nach einer Delay-Zeit. Slowed + Reverb ändert Tempo und Tonhöhe und legt dann einen Raum darüber. Der Audio-Equalizer ändert Frequenzbänder. Diese Seite bewegt nur dasselbe Audio nach links und rechts. Ein fester Kreis von etwa 10 Sekunden mit kurzem Hall ist die 3D-Audio-Seite.' },
         { q: 'Geht das auf dem Handy?', a: 'Ja. Beide Regler, die Wellenform und der Export funktionieren per Touch in aktuellem Chrome, Edge, Firefox und Safari.' },
       ],
       sections: [
@@ -3388,6 +3389,57 @@ export const de: Catalog = {
           paragraphs: [
             'Echo setzt eine Kopie nach einer Delay-Zeit. Slowed + Reverb ändert Tempo und Tonhöhe und legt dann einen Raum darüber. Der Equalizer ändert Frequenzbänder. Keines davon bewegt das Bild nach der Uhr.',
             'Diese Seite folgt keinem Beat. Eine Stereodatei bleibt ein Bild. Links und rechts laufen nicht auf getrennten Bahnen.',
+          ],
+        },
+      ],
+      dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
+    },
+    '3d-audio': {
+      cardLine: 'Ein Schalter legt die Datei auf einen langsamen Kreis und gibt ihr einen kurzen Hall.',
+      name: '3D-Audio',
+      shortName: '3D',
+      title: '3D-Audio — langsamer Kreis und Hall online kostenlos',
+      description: 'Ein Kreis etwa alle 10 Sekunden, plus ein kurzer Hall. Ein Schalter. Tempo und Tonhöhe bleiben. Kostenlos im Browser. Nichts wird hochgeladen.',
+      h1: '3D-Audio, ein langsamer Kreis mit kurzem Hall',
+      heroAlt: 'Ein langsamer Kreis zwischen den Lautsprechern, plus ein kurzer Raum',
+      subtitle: 'Tiefe, Frequenz und Raum sind schon gesetzt. Du legst nur den Schalter um.',
+      intro: 'Der Kreis ist fest. Die Tiefe ist 100 %. Die Frequenz ist 0,1 Hz, eine Runde dauert etwa 10 Sekunden. Es bewegt sich der Direktschall. Ein Hall-Send von 25 % nutzt denselben kurzen Raum wie Slowed + Reverb. Tempo und Tonhöhe bleiben. Schalter aus lässt die Datei, wie du sie abgelegt hast. Die Verarbeitung bleibt im Browser.',
+      usesHeading: 'Wofür der Kreis da ist',
+      uses: ['Leg eine Stimme oder ein Pad auf einen langsamen Kreis, ohne eine Frequenz zu wählen.', 'Setz einen kurzen Raum hinter diese Bewegung.', 'Lass das originale Tempo und die originale Tonhöhe.'],
+      howTo: [
+        { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Datei wird auf deinem Gerät dekodiert.' },
+        { name: 'Kreis anlassen', text: 'Der Schalter startet an. Aus, und der Export entspricht der Datei, die du abgelegt hast. Es gibt keinen zweiten Regler für Tiefe, Frequenz oder Raum.' },
+        { name: 'Exportieren', text: 'Hör es an, dann exportiere MP3 oder WAV. WAV sind die bewegten Samples plus der Schweif. MP3 kodiert das einmal.' },
+      ],
+      faqs: [
+        { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Kreis und Raum rendert dein Browser. Nach dem Laden der Seite geht der Export auch offline.' },
+        { q: 'Was passiert mit dem Ton?', a: 'Die Tiefe bleibt bei 100 %. Die Frequenz bleibt bei 0,1 Hz, etwa 10 Sekunden für eine Runde. Der Direktschall bewegt sich. Der Hall ist ein Send von 25 %, derselbe kurze Raum wie bei Slowed + Reverb, deshalb wächst am Ende ein Schweif. Tempo und Tonhöhe bleiben. WAV sind diese Samples. MP3 kodiert einmal, mit der Bitrate, die du wählst.' },
+        { q: 'Was lehnt die Seite ab?', a: 'Du kannst hier keine andere Frequenz, keine andere Tiefe und keinen anderen Raum setzen. Der Kreis folgt keinem Beat. Er richtet den Ton nicht auf einen Winkel um deinen Kopf. Schalter aus setzt weder Kreis noch Schweif.' },
+        { q: 'Was ist der Unterschied zu Auto-Panner und Slowed + Reverb?', a: 'Frequenz und Tiefe selbst setzen: das ist der Auto-Panner. Diese Seite ist der fertige Kreis, etwa 10 Sekunden, der Hall ist schon an. Slowed + Reverb ändert Tempo und Tonhöhe. Diese Seite nicht.' },
+        { q: 'Geht das auf dem Handy?', a: 'Ja. Schalter, Wellenform und Export funktionieren per Touch in aktuellem Chrome, Edge, Firefox und Safari.' },
+      ],
+      sections: [
+        {
+          heading: 'Ein Kreis mit festen Zahlen',
+          paragraphs: [
+            'Die Tiefe ist 100 %. Die Frequenz ist 0,1 Hz. Eine Runde von der Mitte nach einer Seite und durch die andere zurück dauert etwa 10 Sekunden.',
+            'Es bewegt sich der Direktschall. Der Hall ist ein Send von 25 %, derselbe kurze Raum wie bei Slowed + Reverb. Der Schweif ist der Grund, warum der Export über das Ende deiner Datei hinausläuft.',
+          ],
+        },
+        {
+          heading: 'Wenn das Preset die Aufgabe ist',
+          paragraphs: ['Nimm die Seite, wenn du die fertige Bewegung willst:'],
+          bullets: [
+            'Eine Stimme oder ein Pad, das wandern soll, ohne einen Frequenzregler.',
+            'Ein kurzer Raum hinter der Bewegung, kein Hall, den du selbst mischst.',
+            'Das originale Tempo und die originale Tonhöhe, so wie sie waren.',
+          ],
+        },
+        {
+          heading: 'Kein Panner zum Einstellen, und kein Slowdown',
+          paragraphs: [
+            'Der Auto-Panner ist die Seite, auf der du Tiefe von 0 bis 100 % und Frequenz von 0,05 Hz bis 2 Hz setzt, ohne Hall. Diese Seite sperrt beide Zahlen und legt den Raum dazu.',
+            'Slowed + Reverb ändert das Tempo, und die Tonhöhe geht mit. Diese Seite nicht. Schalter aus lässt die Datei, wie du sie abgelegt hast.',
           ],
         },
       ],
