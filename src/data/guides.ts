@@ -188,6 +188,14 @@ export const GUIDES: GuideCard[] = [
   },
   {
     locale: 'en',
+    href: '/guides/432-hz-vs-440-hz',
+    title: '432 Hz vs 440 Hz: What Converting Actually Does',
+    description:
+      'Converting a song to 432 Hz moves every frequency down about 32 cents and changes nothing else. The standard, the claims, the one small study, the tool.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
     href: '/guides/convert-audio-to-midi',
     title: 'How to Convert Audio to MIDI (Free, in Your Browser)',
     description:
@@ -735,6 +743,7 @@ function guideKey(path: string): string {
 
 /** Guides that support a specific tool, by normalized guide path. */
 const GUIDE_TOOL: Record<string, string> = {
+  '/guides/432-hz-vs-440-hz': '432-hz-converter',
   '/guides/audacity-alternative': 'mp3-editor',
   '/guides/change-pitch-without-changing-speed': 'pitch-changer',
   '/guides/compress-audio-for-email': 'compress-audio',
