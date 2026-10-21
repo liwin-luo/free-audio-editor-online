@@ -13,6 +13,7 @@ const check = (name, ok, detail = '') => {
 const copy = {
   etaModel: 'model',
   limitTenMin: '10 min',
+  limitThreeMin: '3 min',
   limitRingtone: '40 sec',
   wav: 'WAV · lossless',
   formatsMore: ', and more',
@@ -31,6 +32,8 @@ check('picture tools have no chips', ids({ ...hint, visualizer: 'waveform' }) ==
 
 check('single wav promise names the output', promiseParts({ ...hint, converter: true, formats: ['wav'] }, copy).join('|') === 'WAV · lossless');
 check('transcribe promise names the cap and the model', promiseParts({ ...hint, transcribe: true, accept: 'audio/*,video/mp4' }, copy).join('|') === 'MP4, MOV, WebM, MP3, WAV, and more|10 min|model');
+check('midi chip is MIDI', ids({ ...hint, midi: true }) === 'mid');
+check('midi promise names the 3 minute cap', promiseParts({ ...hint, midi: true, accept: 'audio/*,video/mp4' }, copy).join('|') === 'MP4, MOV, WebM, MP3, WAV, and more|3 min');
 check('ringtone promise names the 40 second cap', promiseParts({ ...hint, ringtone: true }, copy).join('|') === 'MP3, WAV, M4A, OGG, FLAC, and more|40 sec');
 check('tag editor promises MP3', promiseParts({ ...hint, tagEditor: true, accept: 'audio/mpeg,.mp3' }, copy).join('|') === 'MP3');
 check('paint promises images', promiseParts({ ...hint, paint: true }, copy).join('|') === 'PNG, JPG, WebP, and more');
