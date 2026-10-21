@@ -483,12 +483,12 @@ export const id: Catalog = {
   tools: {
     'audio-to-text': {
       cardLine: 'Transkripsi wawancara dan memo suara jadi teks atau subtitle SRT, di perangkatmu sendiri.',
-      name: 'Audio ke Teks',
-      shortName: 'Audio ke Teks',
+      name: 'Ubah Audio ke Teks',
+      shortName: 'Ubah Audio ke Teks',
       title: 'Ubah Audio ke Teks Online Gratis — TXT & SRT',
       description:
         'Ubah audio menjadi teks di browser — MP3, WAV, M4A dan video, 90+ bahasa dengan deteksi otomatis, ekspor TXT atau SRT. Gratis, tanpa daftar, tanpa unggah.',
-      h1: 'Audio ke teks online gratis — Ubah rekaman menjadi teks',
+      h1: 'Ubah Audio ke Teks — Ubah rekaman menjadi teks',
       heroAlt: 'Jadikan catatan suara atau wawancara menjadi tulisan yang bisa disalin',
       subtitle: 'Ubah rekaman menjadi teks dalam 90+ bahasa, dengan penanda waktu — langsung di browser Anda.',
       intro:
@@ -850,12 +850,12 @@ export const id: Catalog = {
     },
     'fade-audio': {
       cardLine: 'Haluskan akhir lagu dan intro podcast dengan waktu fade yang presisi.',
-      name: 'Fade audio',
+      name: 'Fade in / fade out audio',
       shortName: 'Fade',
       title: 'Fade in / fade out audio — online gratis',
       description:
         'Tambahkan fade in dan fade out yang halus ke lagu atau rekaman langsung di browser. Atur panjangnya hingga 0,1 detik, ekspor MP3 atau WAV. Gratis, tanpa unggah.',
-      h1: 'Fade audio online gratis — Padamkan musik secara perlahan',
+      h1: 'Fade in / fade out audio — Padamkan musik secara perlahan',
       heroAlt: 'Buat fade in pada sebuah lagu, lalu fade out',
       subtitle: 'Tepi yang halus dalam hitungan detik: atur kedua fade sampai 0,1 detik, dengar, lalu ekspor. Tidak ada yang meninggalkan perangkat Anda.',
       intro:
@@ -972,8 +972,8 @@ export const id: Catalog = {
     },
     'mp3-cutter': {
       cardLine: 'Potong lagu sampai reff, drop, atau klip apa pun tanpa menyandikan ulang.',
-      name: 'Potong Lagu',
-      shortName: 'Potong Lagu',
+      name: 'Potong MP3',
+      shortName: 'Potong MP3',
       title: 'Potong MP3 — simpan atau hapus satu bagian',
       description:
         'Simpan reff atau hapus intro, lalu unduh. WAV tidak menambah kehilangan. MP3 dikode sekali, sampai 320 kbps.',
@@ -1215,7 +1215,7 @@ export const id: Catalog = {
       title: 'Konversi WAV ke MP3 — Online dan Gratis',
       description:
         'Konversi WAV ke MP3 di browser — 128, 192, atau 320 kbps. Gratis, tanpa mendaftar: audio dikonversi secara lokal dan tidak pernah diunggah ke server.',
-      h1: 'WAV ke MP3 online gratis — Ubah WAV menjadi MP3',
+      h1: 'Konversi WAV ke MP3 — Ubah WAV menjadi MP3',
       heroAlt: 'Ubah file WAV menjadi MP3 320 kbps',
       subtitle: 'Konversi file WAV ke MP3 dalam hitungan detik — langsung di browser, tidak ada yang diunggah.',
       intro:
@@ -1272,12 +1272,12 @@ export const id: Catalog = {
     },
     'flac-to-mp3': {
       cardLine: 'Konversi file FLAC lossless ke MP3 untuk pemutar dan aplikasi yang tak mendukung FLAC.',
-      name: 'Konversi FLAC ke MP3',
+      name: 'Ubah FLAC ke MP3',
       shortName: 'FLAC ke MP3',
       title: 'Ubah FLAC ke MP3 Online Gratis — 320 kbps',
       description:
         'Konversi FLAC ke MP3 di browser — 128, 192, atau 320 kbps. Gratis, tanpa mendaftar: musik dikonversi secara lokal dan tidak pernah diunggah.',
-      h1: 'FLAC ke MP3 online gratis — Ubah FLAC menjadi MP3',
+      h1: 'Ubah FLAC ke MP3 — Ubah FLAC menjadi MP3',
       heroAlt: 'Ubah file FLAC menjadi MP3 320 kbps',
       subtitle: 'Ubah file FLAC jadi MP3 dalam hitungan detik — langsung di browser, tanpa unggah.',
       intro:
@@ -1334,12 +1334,12 @@ export const id: Catalog = {
     },
     'mp3-to-wav': {
       cardLine: 'Buka kompresi MP3 ke WAV untuk mengedit, mentranskripsi, atau mendengar detail.',
-      name: 'Konversi MP3 ke WAV',
+      name: 'Ubah MP3 ke WAV',
       shortName: 'MP3 ke WAV',
       title: 'Ubah MP3 ke WAV Online Gratis',
       description:
         'Konversi MP3 ke WAV lossless di browser, untuk mengedit, mengarsipkan, dan aplikasi yang minta PCM. Gratis, tanpa daftar, tanpa unggah.',
-      h1: 'MP3 ke WAV online gratis — Ubah MP3 menjadi file WAV',
+      h1: 'Ubah MP3 ke WAV — Ubah MP3 menjadi file WAV',
       heroAlt: 'Dekode MP3 menjadi WAV tanpa kompresi',
       subtitle: 'Dekode MP3 jadi audio PCM bersih dalam hitungan detik — langsung di browser, tanpa unggah.',
       intro:
@@ -1396,12 +1396,12 @@ export const id: Catalog = {
     },
     'compress-audio': {
       cardLine: 'Kecilkan file audio besar ke ukuran atau bitrate target tanpa mengurangi kejelasan.',
-      name: 'Kompresor Audio',
+      name: 'Kompres Audio',
       shortName: 'Kompresor',
       title: 'Kompres Audio Online Gratis — Perkecil Ukuran File',
       description:
         'Perkecil file MP3, WAV, dan audio lain di browser — pilih bitrate lebih rendah, dengar, unduh. Gratis, tanpa unggah.',
-      h1: 'Kompresor MP3 online gratis — Kecilkan ukuran file MP3',
+      h1: 'Kompres Audio — Kecilkan ukuran file MP3',
       heroAlt: 'Encode ulang WAV atau MP3 yang besar dengan bitrate lebih rendah',
       subtitle: 'Turunkan bitrate, file tetap bisa diputar — perkecil audio sampai 90% di browser.',
       intro:
@@ -1572,12 +1572,12 @@ export const id: Catalog = {
     },
     'change-audio-speed': {
       cardLine: 'Percepat kuliah ke 2× atau perlambat riff untuk dipelajari — nadanya tetap.',
-      name: 'Ubah Kecepatan Audio',
+      name: 'Percepat lagu',
       shortName: 'Ubah Kecepatan',
       title: 'Percepat lagu online — atau perlambat',
       description:
         'Percepat atau perlambat audio apa pun dari 0.5× hingga 2× di browser. Dengarkan langsung, ekspor MP3 atau WAV — gratis, privat, tidak ada yang diunggah.',
-      h1: 'Ubah kecepatan audio online gratis — Percepat atau perlambat audio',
+      h1: 'Percepat lagu — Percepat atau perlambat audio',
       heroAlt: 'Pelankan lagu untuk latihan, atau percepat sebuah kuliah',
       subtitle: 'Percepat atau perlambat audio apa pun dari 0.5× hingga 2× — langsung di browser.',
       intro:
@@ -1695,12 +1695,12 @@ export const id: Catalog = {
     },
     'mp4-to-mp3': {
       cardLine: 'Simpan trek suara klip video, rekaman layar, atau file kamera sebagai MP3.',
-      name: 'Konversi MP4 ke MP3',
+      name: 'Ubah Video Menjadi MP3',
       shortName: 'MP4 ke MP3',
       title: 'Ubah Video Menjadi MP3 Online Gratis — MP4 ke MP3',
       description:
         'Konversi video MP4 ke MP3 di browser — soundtrack diekstrak secara lokal, tidak pernah diunggah. Gratis, cepat, tanpa mendaftar, dan berjalan di ponsel.',
-      h1: 'MP4 ke MP3 online gratis — Ubah video menjadi MP3',
+      h1: 'Ubah Video Menjadi MP3',
       heroAlt: 'Ubah trek audio MP4, MOV, atau WebM menjadi MP3',
       subtitle: 'Ambil soundtrack dari video apa pun — langsung di browser, tidak ada yang diunggah.',
       intro:
@@ -1758,7 +1758,7 @@ export const id: Catalog = {
       title: 'Ekstrak Audio dari Video — Simpan Suara sebagai MP3 atau WAV',
       description:
         'Ekstrak trek audio dari video apa pun di browser, lalu simpan sebagai MP3 atau WAV lossless. Gratis, privat, tanpa unggah — juga untuk file yang besar.',
-      h1: 'Ekstrak audio online gratis — Ekstrak MP3 dari video',
+      h1: 'Ekstrak Audio dari Video — Ekstrak MP3 dari video',
       heroAlt: 'Simpan trek video sebagai MP3 atau WAV',
       subtitle: 'Simpan soundtrack video apa pun sebagai MP3 atau WAV — secara lokal, dalam hitungan detik.',
       intro:
@@ -1876,7 +1876,7 @@ export const id: Catalog = {
       title: 'Perbesar Volume Audio Online Gratis — Sampai 4×',
       description:
         'Perbesar volume musik dan soundtrack video yang pelan hingga 4× di browser. Limiter menjaganya tetap bersih — gratis, privat, tidak ada yang diunggah.',
-      h1: 'Perbesar volume online gratis — Buat audio dan video lebih keras',
+      h1: 'Perbesar Volume Audio — Buat audio dan video lebih keras',
       heroAlt: 'Keraskan trek video yang terlalu pelan',
       subtitle: 'Perbesar trek dan soundtrack video yang pelan hingga 4× — bersih, tidak clipping.',
       intro:
@@ -2000,7 +2000,7 @@ export const id: Catalog = {
       title: 'Slowed + Reverb — Buat Lagu Slowed + Reverb Online Gratis',
       description:
         'Jadikan lagu apa pun suntingan slowed + reverb di browser — perlambat, beri reverb, ekspor MP3. Gratis, tidak ada yang diunggah.',
-      h1: 'Pembuat slowed reverb online gratis — Pelankan lagu dan tambah reverb',
+      h1: 'Slowed + Reverb — Pelankan lagu dan tambah reverb',
       heroAlt: 'Turunkan lagu ke sekitar 85% dan tambahkan ekor gema yang lembut',
       subtitle: 'Suara larut malam: perlambat trek ke sekitar 85%, tambahkan ruang, lalu ekspor — tanpa aplikasi, tanpa unggah.',
       intro:
@@ -2056,11 +2056,11 @@ export const id: Catalog = {
     },
     'tempo-changer': {
       cardLine: 'Ubah durasi dari 0.75× sampai 1.25×. Nada tetap.',
-      name: 'Pengubah tempo',
+      name: 'Ubah tempo',
       shortName: 'Tempo',
       title: 'Ubah tempo — nada tetap, online gratis',
       description: 'Ubah durasi dari 0.75× sampai 1.25× dengan langkah 0.01. Nada tetap. 1× tidak meregangkan. Harmoni padat bisa terdengar tipis. Tidak ada yang diunggah.',
-      h1: 'Pengubah tempo, durasi bergerak dan nada tetap',
+      h1: 'Ubah tempo — Pengubah tempo, durasi bergerak dan nada tetap',
       heroAlt: 'Mengubah lama sebuah file sementara nada tetap',
       subtitle: '0.75× sampai 1.25×, langkah 0.01. Nada tetap di tempatnya.',
       intro: 'Jatuhkan file dan geser kecepatan. File menjadi lebih pendek atau lebih panjang, dan nada dikembalikan ke tempatnya. Penggeser berhenti di 0.75× dan 1.25×. 1× membiarkan sampel dan tidak meregangkan. Harmoni padat bisa terdengar tipis. Itu batas penggeser ini. Tidak ada yang diunggah.',
@@ -2159,7 +2159,7 @@ export const id: Catalog = {
       shortName: 'OGG ke MP3',
       title: 'Konversi OGG ke MP3 — gratis di browser',
       description: 'Konversi file OGG ke MP3 di browser, tanpa batas ukuran. Gratis, tanpa akun, tidak ada yang diunggah. Vorbis atau Opus di dalam OGG, pada 128, 192, atau 320 kbps.',
-      h1: 'OGG ke MP3 online gratis — Ubah OGG menjadi MP3',
+      h1: 'Konversi OGG ke MP3 — Ubah OGG menjadi MP3',
       heroAlt: 'Ubah Vorbis atau Opus di dalam file OGG menjadi MP3',
       subtitle: 'Ubah audio OGG menjadi MP3 — di browser, tidak ada yang diunggah.',
       intro: 'OGG adalah wadah, biasanya Vorbis, kadang Opus. Jatuhkan file, pilih bitrate, dan browser mendekode lalu menyimpan MP3. Audio tidak dikirim ke server.',
@@ -2191,7 +2191,7 @@ export const id: Catalog = {
       shortName: 'Opus ke MP3',
       title: 'Konversi Opus ke MP3 — suara WhatsApp jadi MP3',
       description: 'Konversi audio Opus ke MP3 di browser. Gratis, tanpa akun, tidak ada yang diunggah. Untuk file .opus dan Opus di dalam OGG atau WebM.',
-      h1: 'Opus ke MP3 online gratis — Ubah Opus menjadi MP3',
+      h1: 'Konversi Opus ke MP3 — Ubah Opus menjadi MP3',
       heroAlt: 'Ubah pesan suara WhatsApp atau Telegram menjadi MP3',
       subtitle: 'Ubah audio Opus menjadi MP3 — di browser, tidak ada yang diunggah.',
       intro: 'Pesan suara dan beberapa unduhan adalah Opus: file .opus, atau Opus di dalam OGG atau WebM. Jatuhkan file, pilih bitrate, dan browser mendekode lalu menyimpan MP3. Audio tidak dikirim ke server.',
@@ -2355,7 +2355,7 @@ export const id: Catalog = {
       title: 'Kompresor level — Ratakan volume online',
       description:
         'Ratakan bagian keras dan pelan dari rekaman di browser. Puncak tetap. Ini bukan memperkecil file. Gratis, tanpa unggah.',
-      h1: 'Kompresor audio online gratis — Ratakan bagian keras dan pelan',
+      h1: 'Kompresor level — Ratakan bagian keras dan pelan',
       heroAlt: 'Tahan puncak rekaman suara supaya kata yang pelan ikut terdengar',
       subtitle: 'Kompresor pita lebar yang menahan lonjakan level. Puncak file tetap di tempat semula.',
       intro:
@@ -2384,11 +2384,11 @@ export const id: Catalog = {
     },
     echo: {
       cardLine: 'Tambahkan pengulangan yang bisa dihitung: satu tepukan pendek, bukan kabut reverb.',
-      name: 'Gema',
-      shortName: 'Gema',
+      name: 'Tambah gema ke audio',
+      shortName: 'Tambah gema ke audio',
       title: 'Tambah gema ke audio — efek gema online',
       description: 'Tambahkan gema berwaktu ke audio apa pun di browser. Anda yang mengatur tunda dan pengulangan. Gratis, tanpa unggah.',
-      h1: 'Gema online gratis — Tambah gema ke audio',
+      h1: 'Tambah gema ke audio',
       heroAlt: 'Tambahkan delay dan pengulangan ke sebuah rekaman',
       subtitle: 'Pengulangan yang terpisah, pada tunda yang Anda pilih: dari tepukan pendek sampai 0,8 d.',
       intro: 'Gema adalah salinan yang kembali setelah jeda yang bisa dihitung. Tunda berjalan dari beberapa perseratus detik sampai 0,8 detik, dan pengulangan menentukan seberapa banyak setiap salinan masuk lagi. Campuran basah tetap 45%. Tunda nol membuat file tidak berubah. Prosesnya tetap di browser.',
@@ -2469,11 +2469,11 @@ export const id: Catalog = {
     },
     'audio-looper': {
       cardLine: 'Ulangi satu klip sampai 16 kali dan samarkan setiap sambungan.',
-      name: 'Pengulang audio',
+      name: 'Audio looper',
       shortName: 'Loop',
       title: 'Audio looper — ulang klip online gratis',
       description: 'Ulangi pilihan atau seluruh berkas 2 sampai 16 kali, dengan crossfade 0,01 d di setiap sambungan. Gratis di browser. Tidak ada yang diunggah.',
-      h1: 'Ulangi klip 2 sampai 16 kali, online dan gratis',
+      h1: 'Audio looper — Ulangi klip 2 sampai 16 kali, online dan gratis',
       heroAlt: 'Mengulang satu klip dan menyamarkan setiap sambungan',
       subtitle: 'Loop bagian yang dipilih atau seluruh berkas, lalu unduh berkas yang lebih panjang.',
       intro: 'Jumlah ulang dari 2 sampai 16. Bawaan adalah 4. Setiap sambungan adalah crossfade linear, 0,01 detik sampai Anda menggesernya, paling lama 0,1 detik. Seret pilihan untuk mengulang bagian itu saja. Tanpa pilihan, seluruh berkas yang diulang. Ekspor berhenti pada 10 menit. Nada dan kecepatan tetap. Pemrosesan tinggal di browser.',

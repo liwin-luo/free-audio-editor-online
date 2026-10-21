@@ -482,12 +482,12 @@ export const pt: Catalog = {
   tools: {
     'audio-to-text': {
       cardLine: 'Transcreva entrevistas e áudios de voz em texto ou legendas SRT, no seu aparelho.',
-      name: 'Áudio para texto',
-      shortName: 'Áudio para texto',
+      name: 'Transcrever áudio em texto',
+      shortName: 'Transcrever áudio em texto',
       title: 'Transcrever áudio em texto online grátis — TXT e SRT',
       description:
         'Transcreva áudio para texto no navegador — MP3, WAV, M4A e vídeo, mais de 90 idiomas com detecção automática, exporte TXT ou SRT. Grátis, sem cadastro.',
-      h1: 'Áudio para texto online grátis — Transcrever uma gravação',
+      h1: 'Transcrever áudio em texto — Transcrever uma gravação',
       heroAlt: 'Transformar um recado de voz ou uma entrevista em texto',
       subtitle: 'Transforme gravações em texto em mais de 90 idiomas, com marcas de tempo — direto no seu navegador.',
       intro:
@@ -849,12 +849,12 @@ export const pt: Catalog = {
     },
     'fade-audio': {
       cardLine: 'Suavize finais de músicas e introduções de podcast com fades exatos.',
-      name: 'Fade de áudio',
+      name: 'Fade de entrada e saída',
       shortName: 'Fade',
       title: 'Fade de entrada e saída — Adicionar fade online grátis',
       description:
         'Adicione fade de entrada e de saída a músicas ou gravações no navegador. Duração em décimos de segundo, exporte em MP3 ou WAV. Grátis, sem enviar arquivos.',
-      h1: 'Fade de áudio online grátis — Fazer a música desaparecer aos poucos',
+      h1: 'Fade de entrada e saída — Fazer a música desaparecer aos poucos',
       heroAlt: 'Fazer um fade de entrada e um fade de saída numa faixa',
       subtitle: 'Bordas suaves em segundos: ajuste os dois fades em décimos de segundo, ouça e exporte. Nada sai do seu aparelho.',
       intro:
@@ -915,7 +915,7 @@ export const pt: Catalog = {
       title: 'Cortar áudio — podcast ou recado de voz',
       description:
         'Fique com um trecho de podcast, recado de voz ou gravação e salve em MP3 ou WAV. O corte roda no navegador e nada é enviado.',
-      h1: 'Cortador de áudio online grátis — Cortar arquivos de áudio',
+      h1: 'Cortar áudio — Cortar arquivos de áudio',
       heroAlt: 'Cortar um MP3 ou podcast até ficar só o trecho que você precisa',
       subtitle: 'Recorte áudio online — grátis, direto no navegador. Nada é enviado.',
       intro:
@@ -1097,7 +1097,7 @@ export const pt: Catalog = {
       title: 'Criar toque de celular — Use qualquer música, grátis',
       description:
         'Transforme qualquer música em toque no navegador: 40 segundos, fade e exporte M4R ou MP3 — grátis, sem cadastro, nada enviado.',
-      h1: 'Criar toque online grátis — Fazer um toque de iPhone a partir de uma música',
+      h1: 'Criar toque de celular — Fazer um toque de iPhone a partir de uma música',
       heroAlt: 'Salvar até 40 segundos de uma música como M4R ou MP3',
       subtitle: 'Escolha a melhor parte de qualquer música e salve como toque — em menos de um minuto.',
       intro:
@@ -1214,7 +1214,7 @@ export const pt: Catalog = {
       title: 'Converter WAV para MP3 — Online e grátis',
       description:
         'Converta WAV para MP3 no navegador — 128, 192 ou 320 kbps. Grátis, sem cadastro: o áudio é convertido no aparelho e nunca enviado a um servidor.',
-      h1: 'Conversor de WAV para MP3 online grátis — Converter WAV em MP3',
+      h1: 'Converter WAV para MP3 — Converter WAV em MP3',
       heroAlt: 'Converter um arquivo WAV em MP3 de 320 kbps',
       subtitle: 'Converta arquivos WAV para MP3 em segundos — direto no navegador, nada enviado.',
       intro:
@@ -1271,12 +1271,12 @@ export const pt: Catalog = {
     },
     'flac-to-mp3': {
       cardLine: 'Converta arquivos FLAC sem perda em MP3 para players e apps que não aceitam FLAC.',
-      name: 'Converter FLAC para MP3',
+      name: 'Converter FLAC em MP3',
       shortName: 'FLAC para MP3',
       title: 'Converter FLAC em MP3 online grátis — 320 kbps',
       description:
         'Converta FLAC em MP3 no navegador: 128, 192 ou 320 kbps. Grátis, sem cadastro: sua música é convertida no aparelho e nunca enviada.',
-      h1: 'Conversor de FLAC para MP3 online grátis — Converter FLAC em MP3',
+      h1: 'Converter FLAC em MP3',
       heroAlt: 'Converter um arquivo FLAC em MP3 de 320 kbps',
       subtitle: 'Converta arquivos FLAC em MP3 em segundos — direto no navegador, sem enviar nada.',
       intro:
@@ -1333,12 +1333,12 @@ export const pt: Catalog = {
     },
     'mp3-to-wav': {
       cardLine: 'Descompacte MP3 para WAV para editar, transcrever ou ouvir em detalhe.',
-      name: 'Converter MP3 para WAV',
+      name: 'Converter MP3 em WAV',
       shortName: 'MP3 para WAV',
       title: 'Converter MP3 em WAV online grátis',
       description:
         'Converta MP3 em WAV sem perdas no navegador, para editar, arquivar e apps que pedem PCM. Grátis, sem cadastro, sem envio.',
-      h1: 'Conversor de MP3 para WAV online grátis — Transformar um MP3 em um arquivo WAV',
+      h1: 'Converter MP3 em WAV — Transformar um MP3 em um arquivo WAV',
       heroAlt: 'Decodificar um MP3 em um WAV sem compressão',
       subtitle: 'Decodifique MP3 em áudio PCM limpo em segundos — direto no navegador, sem enviar nada.',
       intro:
@@ -1395,12 +1395,12 @@ export const pt: Catalog = {
     },
     'compress-audio': {
       cardLine: 'Reduza arquivos de áudio grandes para o tamanho ou bitrate desejado sem perder a clareza.',
-      name: 'Compressor de áudio',
+      name: 'Comprimir áudio',
       shortName: 'Compressor',
       title: 'Comprimir áudio online grátis — reduza o tamanho',
       description:
         'Encolha arquivos MP3, WAV e outros áudios no navegador — escolha um bitrate menor, ouça e baixe. Grátis, sem envio.',
-      h1: 'Compressor de MP3 online grátis — Reduzir o tamanho de um MP3',
+      h1: 'Comprimir áudio — Reduzir o tamanho de um MP3',
       heroAlt: 'Recodificar um WAV ou MP3 grande em um bitrate mais baixo',
       subtitle: 'Abaixe o bitrate e o arquivo continua tocando — reduza o áudio em até 90% no navegador.',
       intro:
@@ -1519,7 +1519,7 @@ export const pt: Catalog = {
       title: 'Reverter áudio — Toque músicas de trás para frente',
       description:
         'Toque qualquer música ou gravação de trás para frente no navegador. Um clique para reverter, ouça na hora e salve em MP3 ou WAV — grátis, e nada é enviado.',
-      h1: 'Áudio ao contrário online grátis — Tocar uma música de trás para frente',
+      h1: 'Reverter áudio — Tocar uma música de trás para frente',
       heroAlt: 'Virar um recado de voz para tocar do fim',
       subtitle: 'Toque qualquer música ou gravação de trás para frente — um clique, direto no navegador.',
       intro:
@@ -1571,12 +1571,12 @@ export const pt: Catalog = {
     },
     'change-audio-speed': {
       cardLine: 'Acelere aulas a 2× ou desacelere riffs para aprender — o tom permanece.',
-      name: 'Alterar velocidade do áudio',
+      name: 'Acelerar áudio',
       shortName: 'Velocidade',
       title: 'Acelerar áudio online — ou desacelerar',
       description:
         'Acelere ou desacelere qualquer áudio de 0,5× a 2× no navegador. Ouça na hora e exporte MP3 ou WAV — grátis, privado, nada enviado.',
-      h1: 'Mudar velocidade do áudio online grátis — Acelerar ou desacelerar o áudio',
+      h1: 'Acelerar áudio — Acelerar ou desacelerar o áudio',
       heroAlt: 'Deixar uma música mais lenta para praticar, ou acelerar uma aula',
       subtitle: 'Acelere ou desacelere qualquer áudio de 0,5× a 2× — direto no navegador.',
       intro:
@@ -1694,12 +1694,12 @@ export const pt: Catalog = {
     },
     'mp4-to-mp3': {
       cardLine: 'Salve a trilha de um vídeo, gravação de tela ou arquivo de câmera como MP3.',
-      name: 'Converter MP4 para MP3',
+      name: 'Converter vídeo em MP3',
       shortName: 'MP4 para MP3',
       title: 'Converter vídeo em MP3 online grátis — MP4 para MP3',
       description:
         'Converta vídeo MP4 para MP3 no navegador — a trilha é extraída no aparelho e nunca enviada. Grátis, rápido, sem cadastro, funciona no celular.',
-      h1: 'Conversor de MP4 para MP3 online grátis — Converter um vídeo em MP3',
+      h1: 'Converter vídeo em MP3 — Converter um vídeo em MP3',
       heroAlt: 'Converter a faixa de um MP4, MOV ou WebM em MP3',
       subtitle: 'Tire a trilha sonora de qualquer vídeo — direto no navegador, nada enviado.',
       intro:
@@ -1757,7 +1757,7 @@ export const pt: Catalog = {
       title: 'Extrair áudio de vídeo — Salve o som em MP3 ou WAV',
       description:
         'Extraia o áudio de qualquer vídeo no navegador e salve em MP3 ou WAV sem perdas. Grátis, privado, sem envio — mesmo em arquivos grandes.',
-      h1: 'Extrator de áudio online grátis — Extrair MP3 de um vídeo',
+      h1: 'Extrair áudio de vídeo — Extrair MP3 de um vídeo',
       heroAlt: 'Salvar a trilha de um vídeo como MP3 ou WAV',
       subtitle: 'Salve a trilha sonora de qualquer vídeo em MP3 ou WAV — no aparelho, em segundos.',
       intro:
@@ -1875,7 +1875,7 @@ export const pt: Catalog = {
       title: 'Aumentar volume do áudio online grátis — até 4×',
       description:
         'Aumente o volume de músicas baixas e trilhas de vídeo em até 4× no navegador. Um limitador mantém o som limpo — grátis, privado, nada enviado.',
-      h1: 'Aumentar volume online grátis — Deixar áudio e vídeo mais altos',
+      h1: 'Aumentar volume do áudio — Deixar áudio e vídeo mais altos',
       heroAlt: 'Aumentar a trilha baixa de um vídeo',
       subtitle: 'Aumente faixas baixas e trilhas de vídeo em até 4× — limpo, sem clipar.',
       intro:
@@ -1937,7 +1937,7 @@ export const pt: Catalog = {
       title: 'Normalizar áudio — Nivele o volume online grátis',
       description:
         'Normalize o áudio para um pico consistente no navegador — MP3, WAV, M4A e mais. Um clique, grátis, e nada é enviado.',
-      h1: 'Normalizador de áudio online grátis — Normalizar o volume de um MP3',
+      h1: 'Normalizar áudio — Normalizar o volume de um MP3',
       heroAlt: 'Trazer os arquivos baixos para um mesmo nível',
       subtitle: 'Um clique para levar arquivos baixos a um nível consistente e saudável — analisado no seu aparelho.',
       intro:
@@ -1999,7 +1999,7 @@ export const pt: Catalog = {
       title: 'Slowed + Reverb online grátis — Crie a sua versão',
       description:
         'Transforme qualquer música em slowed + reverb no navegador: desacelere, coloque reverb e exporte MP3. Grátis, e nada é enviado.',
-      h1: 'Criador de slowed reverb online grátis — Deixar uma música lenta e adicionar reverb',
+      h1: 'Slowed + Reverb — Deixar uma música lenta e adicionar reverb',
       heroAlt: 'Baixar uma faixa para cerca de 85% e adicionar uma cauda de eco suave',
       subtitle: 'O som da madrugada: desacelere a faixa para ~85%, dê espaço e exporte — sem app, sem envio.',
       intro:
@@ -2055,11 +2055,11 @@ export const pt: Catalog = {
     },
     'tempo-changer': {
       cardLine: 'Muda a duração de 0,75× a 1,25×. O tom fica.',
-      name: 'Alterador de tempo',
+      name: 'Mudar tempo',
       shortName: 'Tempo',
       title: 'Mudar tempo — manter o tom, online grátis',
       description: 'Muda a duração de 0,75× a 1,25× em passos de 0,01. O tom fica. 1× não estica. Harmonia densa pode soar fina. Nada é enviado.',
-      h1: 'Alterador de tempo, a duração anda e o tom fica',
+      h1: 'Mudar tempo — Alterador de tempo, a duração anda e o tom fica',
       heroAlt: 'Mudar quanto um arquivo dura enquanto o tom fica',
       subtitle: 'De 0,75× a 1,25×, em passos de 0,01. O tom fica no lugar.',
       intro: 'Solte um arquivo e arraste a velocidade. O arquivo fica mais curto ou mais longo, e o tom volta para onde estava. O controle para em 0,75× e em 1,25×. 1× deixa as amostras quietas e não estica. Harmonia densa pode soar fina. Esse é o limite deste deslocamento. Nada é enviado.',
@@ -2126,7 +2126,7 @@ export const pt: Catalog = {
       shortName: 'M4A para MP3',
       title: 'M4A para MP3 — Converta M4A e AAC online grátis',
       description: 'Converta áudio M4A e AAC para MP3 no navegador. Grátis, sem cadastro e sem enviar nada. Escolha 128, 192 ou 320 kbps.',
-      h1: 'Conversor de M4A para MP3 online grátis — Converter M4A em MP3',
+      h1: 'M4A para MP3 — Converter M4A em MP3',
       heroAlt: 'Converter um recado de voz do iPhone ou um arquivo AAC em MP3',
       subtitle: 'Transforme arquivos M4A e AAC em MP3, no navegador, sem enviar nada.',
       intro: 'Recados de voz e gravações AAC costumam ser M4A. Solte o arquivo, escolha um bitrate e o navegador decodifica e salva um MP3. O áudio não vai para um servidor.',
@@ -2158,7 +2158,7 @@ export const pt: Catalog = {
       shortName: 'OGG para MP3',
       title: 'Converter OGG para MP3 — online e grátis',
       description: 'Converta arquivos OGG para MP3 no navegador, sem limite de tamanho. Grátis, sem cadastro e sem enviar nada. Vorbis ou Opus dentro do OGG, em 128, 192 ou 320 kbps.',
-      h1: 'Conversor de OGG para MP3 online grátis — Converter OGG em MP3',
+      h1: 'Converter OGG para MP3 — Converter OGG em MP3',
       heroAlt: 'Converter o Vorbis ou o Opus de um OGG em MP3',
       subtitle: 'Transforme áudio OGG em MP3, no navegador, sem enviar nada.',
       intro: 'OGG é um contêiner: em geral Vorbis, às vezes Opus. Solte o arquivo, escolha um bitrate e o navegador decodifica e salva um MP3. O áudio não vai para um servidor.',
@@ -2190,7 +2190,7 @@ export const pt: Catalog = {
       shortName: 'Opus para MP3',
       title: 'Converter Opus para MP3 — áudios do WhatsApp',
       description: 'Converta áudio Opus para MP3 no navegador. Grátis, sem cadastro e sem enviar nada. Serve para .opus e para Opus dentro de OGG ou WebM.',
-      h1: 'Conversor de Opus para MP3 online grátis — Converter Opus em MP3',
+      h1: 'Converter Opus para MP3 — Converter Opus em MP3',
       heroAlt: 'Converter um recado de voz do WhatsApp ou do Telegram em MP3',
       subtitle: 'Transforme áudio Opus em MP3, no navegador, sem enviar nada.',
       intro: 'Recados de voz e alguns downloads são Opus: um arquivo .opus, ou Opus dentro de OGG ou WebM. Solte o arquivo, escolha um bitrate e o navegador decodifica e salva um MP3. O áudio não vai para um servidor.',
@@ -2354,7 +2354,7 @@ export const pt: Catalog = {
       title: 'Compressor de nível — Iguale o volume online',
       description:
         'Iguala as partes altas e baixas de uma gravação no navegador. O pico fica. Não encolhe o arquivo. Grátis, sem envio.',
-      h1: 'Compressor de áudio online grátis — Igualar o que está alto e o que está baixo',
+      h1: 'Compressor de nível — Igualar o que está alto e o que está baixo',
       heroAlt: 'Segurar os picos de uma voz para as palavras baixas aparecerem',
       subtitle: 'Um compressor de banda larga que segura os saltos de nível. O pico do arquivo continua onde estava.',
       intro:
@@ -2383,11 +2383,11 @@ export const pt: Catalog = {
     },
     echo: {
       cardLine: 'Adiciona repetições que dá para contar: um tapa curto, não um banho de reverb.',
-      name: 'Eco',
-      shortName: 'Eco',
+      name: 'Adicionar eco ao áudio',
+      shortName: 'Adicionar eco ao áudio',
       title: 'Adicionar eco ao áudio — efeito de eco online',
       description: 'Adiciona um eco medido a qualquer áudio no navegador. Você define o atraso e as repetições. Grátis, sem envio.',
-      h1: 'Eco online grátis — Adicionar eco ao áudio',
+      h1: 'Adicionar eco ao áudio',
       heroAlt: 'Adicionar um atraso e repetições a uma gravação',
       subtitle: 'Repetições separadas, no atraso que você escolher: de um tapa curto a 0,8 s.',
       intro: 'Eco é uma cópia que volta depois de um intervalo que dá para contar. O atraso vai de alguns centésimos até 0,8 segundos, e as repetições decidem quanto de cada cópia volta a entrar. A mistura molhada fica em 45%. Com atraso zero o arquivo não muda. O processo fica no navegador.',
@@ -2468,11 +2468,11 @@ export const pt: Catalog = {
     },
     'audio-looper': {
       cardLine: 'Repete um clipe até 16 vezes e cruza cada emenda.',
-      name: 'Repetidor de áudio',
+      name: 'Audio looper',
       shortName: 'Loop',
       title: 'Audio looper — repetir um clipe online grátis',
       description: 'Repete uma seleção ou o arquivo inteiro de 2 a 16 vezes, com crossfade de 0,01 s em cada emenda. Grátis no navegador. Nada é enviado.',
-      h1: 'Repita um clipe de 2 a 16 vezes, online e grátis',
+      h1: 'Audio looper — Repita um clipe de 2 a 16 vezes, online e grátis',
       heroAlt: 'Repetir um clipe e cruzar cada emenda',
       subtitle: 'Faça um loop da seleção ou do arquivo inteiro e baixe um arquivo mais longo.',
       intro: 'As repetições vão de 2 a 16. O padrão é 4. Cada emenda é um crossfade linear, 0,01 segundo até você mover, no máximo 0,1 segundo. Arraste uma seleção para repetir só essa parte. Sem seleção, o arquivo inteiro se repete. A exportação para aos 10 minutos. Tom e velocidade ficam iguais. O processo fica no navegador.',
@@ -2640,7 +2640,7 @@ export const pt: Catalog = {
       shortName: 'Multipista',
       title: 'Editor multipista online grátis — Misture faixas',
       description: 'Empilhe arquivos numa linha do tempo, ajuste nível e pan por faixa e exporte uma mix. Grátis, no navegador, sem enviar nada.',
-      h1: 'Editor de áudio multipista online grátis — Sobrepor faixas num mix',
+      h1: 'Editor multipista — Sobrepor faixas num mix',
       heroAlt: 'Ajustar o nível e o pan de um vocal sobre um beat',
       subtitle: 'Empilhe até 8 arquivos, equilibre cada um e exporte uma única mix.',
       intro: 'Coloque um vocal sobre um beat, ou uma narração sobre música, e ouça os dois juntos. Cada arquivo é uma faixa: nível, pan, mudo, solo e o instante em que entra. A soma acontece no navegador. Nada é enviado. Fechar a aba encerra a sessão.',
@@ -2756,11 +2756,11 @@ export const pt: Catalog = {
     },
     '432-hz-converter': {
       cardLine: 'Baixe o tom em cerca de 0.32 semitons e mantenha a duração.',
-      name: 'Conversor para 432 Hz',
+      name: 'Conversor 432 Hz',
       shortName: '432 Hz',
       title: 'Conversor 432 Hz — mesma duração, 0.32 abaixo',
       description: 'Baixe o tom em 12*log2(432/440), cerca de 0.32 semitons, e mantenha a duração. O WAV é esse deslocamento. O MP3 o codifica uma vez, até 320 kbps.',
-      h1: 'Conversor para 432 Hz',
+      h1: 'Conversor 432 Hz — Conversor para 432 Hz',
       heroAlt: 'Baixar um arquivo em cerca de 0.32 semitons',
       subtitle: 'O arquivo inteiro desce cerca de 0.32 semitons. A duração fica.',
       intro: 'Este conversor desloca o arquivo inteiro em 12 vezes o log2 de 432 sobre 440, cerca de 0.32 semitons para baixo. Um tom de 440 Hz se aproxima de 432 Hz. A duração não muda, e as notas não são afinadas uma a uma. A decodificação e o deslocamento ficam no seu navegador.',

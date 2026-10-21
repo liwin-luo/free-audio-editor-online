@@ -773,7 +773,7 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'wav-to-mp3',
     cardLine: 'Shrink heavy WAV recordings into shareable MP3s at the bitrate you pick.',
-    name: 'WAV to MP3 Converter',
+    name: 'Convert WAV to MP3',
     shortName: 'WAV to MP3',
     icon: 'convert',
     category: 'convert',
@@ -1095,14 +1095,14 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'compress-audio',
     cardLine: 'Shrink big audio files to a target size or bitrate while keeping them easy to hear.',
-    name: 'Audio Compressor',
+    name: 'Compress Audio',
     shortName: 'Compressor',
     icon: 'file',
     category: 'convert',
     title: 'Compress Audio — Reduce MP3 & WAV File Size Online',
     description:
       'Shrink MP3, WAV and other audio files to a smaller size in your browser — pick a lower bitrate, listen, download. Free, nothing uploaded.',
-    h1: 'MP3 Compressor — Reduce an MP3 File’s Size, Online Free',
+    h1: 'Compress Audio — Reduce an MP3 File’s Size, Online Free',
     hero: {
       src: '/compress-audio.svg',
       alt: 'Re-encode a large WAV or MP3 at a lower bitrate',
@@ -1405,14 +1405,14 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'change-audio-speed',
     cardLine: 'Speed up lectures to 2× or slow down riffs to learn them — pitch stays true.',
-    name: 'Audio Speed Changer',
+    name: 'Change Audio Speed',
     shortName: 'Speed Changer',
     icon: 'clock-counter-clockwise',
     category: 'effects',
     title: 'Change Audio Speed Online — Speed Up or Slow Down Audio',
     description:
       'Speed up a lecture or slow a song for practice, from 0.5× to 2×. Preview in your browser, export MP3 or WAV. Pitch moves with the tempo.',
-    h1: 'Audio Speed Changer — Speed Up or Slow Down Audio, Online Free',
+    h1: 'Change Audio Speed — Speed Up or Slow Down Audio, Online Free',
     hero: {
       src: '/change-audio-speed.svg',
       alt: 'Slow a song down for practice, or speed a lecture up',
@@ -1508,7 +1508,7 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'increase-volume',
     cardLine: 'Lift quiet voice memos up to 4× with a limiter so nothing clips.',
-    name: 'MP3 Volume Booster',
+    name: 'Increase MP3 Volume',
     shortName: 'MP3 Volume',
     icon: 'volume',
     category: 'edit',
@@ -1730,7 +1730,7 @@ export const TOOLS: ToolDef[] = [
     title: 'Audio Extractor — Extract Audio from Video Online Free',
     description:
       'Extract the audio track from any video in your browser and save it as MP3 or lossless WAV. Free, private, no upload — even for large files.',
-    h1: 'Extract Audio from Video — Soundtrack as WAV or MP3',
+    h1: 'Audio Extractor — Soundtrack as WAV or MP3',
     hero: {
       src: '/extract-audio.svg',
       alt: 'Save a video soundtrack as MP3 or WAV',
@@ -2027,8 +2027,8 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'volume-booster',
     cardLine: 'Make quiet music and video soundtracks loud and clean, up to 4×.',
-    name: 'Volume Booster',
-    shortName: 'Volume Booster',
+    name: 'Audio Volume Booster',
+    shortName: 'Audio Volume Booster',
     icon: 'volume',
     category: 'edit',
     title: 'Audio Volume Booster — Make Audio Louder Online Free',
@@ -2355,14 +2355,14 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'echo',
     cardLine: 'Add spaced repeats you can time — a slap, a canyon, not a wash of reverb.',
-    name: 'Echo',
-    shortName: 'Echo',
+    name: 'Add Echo to Audio',
+    shortName: 'Add Echo to Audio',
     icon: 'reverse',
     category: 'effects',
     title: 'Add Echo to Audio — Online Echo Effect Free',
     description:
       'Add a timed echo to any audio in your browser. Set the delay and how many repeats. Free, nothing uploaded.',
-    h1: 'Echo — Add Echo to Audio, Online Free',
+    h1: 'Add Echo to Audio — Online Echo Effect Free',
     hero: {
       src: '/echo.svg',
       alt: 'Add a delay and repeats to a recording',
@@ -2557,14 +2557,14 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'silence-remover',
     cardLine: 'Cut the long quiet stretches and leave the short breaths where they are.',
-    name: 'Silence Remover',
+    name: 'Remove Silence from Audio',
     shortName: 'Silence',
     icon: 'scissors',
     category: 'edit',
     title: 'Remove Silence from Audio — Cut Dead Air Online Free',
     description:
       'Remove long silences from any audio in your browser. Set how quiet and how long a gap must be. Free, nothing uploaded.',
-    h1: 'Silence Remover — Remove Silence from Audio, Online Free',
+    h1: 'Remove Silence from Audio — Cut Dead Air, Online Free',
     hero: {
       src: '/silence-remover.svg',
       alt: 'Cut the long pauses out of a voice recording',
@@ -2668,7 +2668,7 @@ export const TOOLS: ToolDef[] = [
     title: 'Loudness Meter — Check Audio LUFS Online Free',
     description:
       'Measure integrated LUFS of an audio file in your browser, then match −16, −14, or −23. Sample peak stays at or below −1 dBFS. Free, nothing uploaded.',
-    h1: 'LUFS Meter — Check the LUFS of a Song, Online Free',
+    h1: 'Loudness Meter — Check the LUFS of a Song, Online Free',
     hero: {
       src: '/loudness-meter.svg',
       alt: 'See whether a file matches a podcast or streaming loudness target',
@@ -2762,8 +2762,8 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'slowed-reverb',
     cardLine: 'Give any track the late-night slowed + reverb treatment in one click.',
-    name: 'Slowed + Reverb',
-    shortName: 'Slowed + Reverb',
+    name: 'Slowed Reverb Maker',
+    shortName: 'Slowed Reverb Maker',
     icon: 'moon',
     category: 'effects',
     title: 'Slowed Reverb Maker — Make Slowed + Reverb Songs Online',
@@ -3272,7 +3272,7 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'waveform-generator',
     cardLine: 'Turn any track into a shareable waveform picture with your own colors.',
-    name: 'Waveform Generator',
+    name: 'Audio Waveform Generator',
     shortName: 'Waveform',
     icon: 'image',
     category: 'effects',
@@ -3379,7 +3379,7 @@ export const TOOLS: ToolDef[] = [
     title: 'Spectrogram Generator — Turn Audio into a Spectrogram PNG',
     description:
       'Generate a spectrogram from any audio file and download it as PNG. Log or linear frequency axis, colormaps, dB control — free, nothing uploaded.',
-    h1: 'Audio Spectrogram — See the Frequencies in a Recording, Online Free',
+    h1: 'Spectrogram Generator — See the Frequencies in a Recording, Online Free',
     hero: {
       src: '/spectrogram-generator.svg',
       alt: 'Download a frequency picture of a song as a PNG',
@@ -3479,7 +3479,7 @@ export const TOOLS: ToolDef[] = [
     title: 'Image to Audio Spectrogram Maker — Paint a WAV Online',
     description:
       'Turn a picture or a short line of text into a WAV a spectrogram can show. Free in your browser — the file is written on your device.',
-    h1: 'Image to Audio — Turn a Picture into Sound, Online Free',
+    h1: 'Image to Audio Spectrogram Maker — Turn a Picture into Sound, Online Free',
     hero: {
       src: '/image-to-audio.svg',
       alt: 'Turn a spectrogram image back into a WAV',
@@ -3686,14 +3686,14 @@ export const TOOLS: ToolDef[] = [
   {
     slug: 'fade-audio',
     cardLine: 'Smooth song endings and podcast intros with exact fade in/out times.',
-    name: 'Audio Fade In / Fade Out',
+    name: 'Fade Out Music',
     shortName: 'Fade Audio',
     icon: 'trending-up',
     category: 'edit',
     title: 'Fade Out Music — Audio Fade In / Fade Out Online Free',
     description:
       'Add a smooth fade in and fade out to any song or recording right in your browser. Set the length to 0.1 s, export MP3 or WAV. Free, no upload.',
-    h1: 'Audio Fade — Fade Music Out, Online Free',
+    h1: 'Fade Out Music — Fade In and Fade Out',
     hero: {
       src: '/fade-audio.svg',
       alt: 'Fade a track in and fade it out',
@@ -4790,7 +4790,7 @@ export const TOOLS: ToolDef[] = [
     title: 'Key and BPM Finder — Read a File Online Free',
     description:
       'Read BPM from 60 to 180 and a major or minor key. Silence stays unread. The first 60 seconds are what the page reads. Nothing is uploaded.',
-    h1: 'Key and BPM, read from the file you drop',
+    h1: 'Key and BPM Finder — Key and BPM, read from the file you drop',
     hero: {
       src: '/key-bpm-finder.svg',
       alt: 'Read the BPM and the key of an audio file',
