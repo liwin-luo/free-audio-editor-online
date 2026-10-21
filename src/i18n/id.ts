@@ -25,6 +25,11 @@ export const id: Catalog = {
     contactBody: 'Ada pertanyaan tentang alat, koreksi, atau permintaan privasi? Tulis ke {email}. Kami membaca setiap pesan.',
     contactPrivacy: 'Untuk mengetahui cara file dan umpan balik ditangani, lihat {privacy}.',
     privacyPolicyLabel: 'kebijakan privasi',
+    cookieBody:
+      'Cookie opsional hanya dipakai widget umpan balik. Statistik lalu lintas tidak memakai cookie. Situs ini tidak menayangkan iklan.',
+    cookieAccept: 'Terima',
+    cookieReject: 'Tolak yang tidak perlu',
+    cookiePolicy: 'Kebijakan privasi',
     trustMethod: 'Cara kami menguji',
     trustFree: 'Gratis, tanpa daftar',
     trustClean: 'Tanpa watermark',
@@ -447,7 +452,7 @@ export const id: Catalog = {
       },
       {
         h: 'Apa yang kami simpan',
-        body: 'Kami tidak membuat akun atau profil untuk Anda. Situs ini tidak memiliki akun dan tidak meminta alamat email. Preferensi tema (terang atau gelap) disimpan di localStorage browser Anda dan tidak pernah meninggalkan perangkat.',
+        body: 'Kami tidak membuat akun atau profil untuk Anda. Situs ini tidak memiliki akun dan tidak meminta alamat email. Preferensi tema (terang atau gelap) dan pilihan cookie Anda disimpan di localStorage browser Anda dan tidak pernah meninggalkan perangkat.',
       },
       {
         h: 'Pihak ketiga',
@@ -459,7 +464,7 @@ export const id: Catalog = {
       },
       {
         h: 'Widget umpan balik',
-        body: 'Jika Anda memakai tombol umpan balik, situs memuat Userback, layanan umpan balik pihak ketiga, hanya setelah interaksi pertama atau setelah delapan detik. Tidak ada yang dikirim sampai Anda menulis dan mengirim pesan. Tulisan Anda, ditambah informasi dasar halaman dan browser, diproses Userback atas nama kami agar kami bisa membacanya dan membalas. File audio tidak pernah terlibat. Lihat kebijakan privasi Userback untuk mengetahui cara data itu ditangani.',
+        body: 'Jika Anda menerima cookie opsional, situs memuat Userback, layanan umpan balik pihak ketiga, hanya setelah interaksi pertama atau setelah delapan detik. Jika Anda menolak, Userback tidak dimuat. Tidak ada yang dikirim sampai Anda menulis dan mengirim pesan. Tulisan Anda, ditambah informasi dasar halaman dan browser, diproses Userback atas nama kami agar kami bisa membacanya dan membalas. File audio tidak pernah terlibat. Lihat kebijakan privasi Userback untuk mengetahui cara data itu ditangani.',
       },
     ],
     contactHeading: 'Kontak',

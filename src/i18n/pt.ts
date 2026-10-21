@@ -25,6 +25,11 @@ export const pt: Catalog = {
     contactBody: 'Dúvidas sobre uma ferramenta, uma correção ou um pedido de privacidade? Escreva para {email}. Lemos todas as mensagens.',
     contactPrivacy: 'Para saber como arquivos e comentários são tratados, consulte a {privacy}.',
     privacyPolicyLabel: 'política de privacidade',
+    cookieBody:
+      'Cookies opcionais são usados só pelo widget de comentários. As estatísticas não usam cookies. Este site não mostra anúncios.',
+    cookieAccept: 'Aceitar',
+    cookieReject: 'Recusar opcionais',
+    cookiePolicy: 'Política de privacidade',
     trustMethod: 'Como testamos',
     trustFree: 'Grátis, sem cadastro',
     trustClean: 'Sem marca d\'água',
@@ -446,7 +451,7 @@ export const pt: Catalog = {
       },
       {
         h: 'O que guardamos',
-        body: 'Não criamos uma conta nem um perfil para você. O site não tem contas e não pede e-mail. Sua preferência de tema (claro ou escuro) fica no localStorage do navegador e nunca sai do aparelho.',
+        body: 'Não criamos uma conta nem um perfil para você. O site não tem contas e não pede e-mail. Sua preferência de tema (claro ou escuro) e sua escolha de cookies ficam no localStorage do navegador e nunca saem do aparelho.',
       },
       {
         h: 'Terceiros',
@@ -458,7 +463,7 @@ export const pt: Catalog = {
       },
       {
         h: 'Widget de comentários',
-        body: 'Se você usar o botão de comentários, o site carrega o Userback, um serviço de comentários de terceiros, só depois da sua primeira interação ou após oito segundos. Nada é enviado até você escrever e enviar uma mensagem. O que você escreve, junto com informações básicas da página e do navegador, é processado pelo Userback em nosso nome para que possamos ler e responder. Arquivos de áudio nunca são envolvidos. Consulte a política de privacidade do Userback para saber como esses dados são tratados.',
+        body: 'Se você aceitar os cookies opcionais, o site carrega o Userback, um serviço de comentários de terceiros, só depois da sua primeira interação ou após oito segundos. Se você recusar, o Userback não é carregado. Nada é enviado até você escrever e enviar uma mensagem. O que você escreve, junto com informações básicas da página e do navegador, é processado pelo Userback em nosso nome para que possamos ler e responder. Arquivos de áudio nunca são envolvidos. Consulte a política de privacidade do Userback para saber como esses dados são tratados.',
       },
     ],
     contactHeading: 'Contato',

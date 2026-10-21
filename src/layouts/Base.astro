@@ -7,6 +7,7 @@ import geistLatinUrl from '@fontsource-variable/geist/files/geist-latin-wght-nor
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieNotice from '../components/CookieNotice.astro';
 import { SITE } from '../data/site';
 import { getShell } from '../i18n';
 import { guideAlternates, hasAlternates, isTranslatedGuide, localesWithGuides } from '../data/guides';
@@ -163,6 +164,11 @@ const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
       <slot />
     </main>
     <Footer locale={locale} shareUrl={canonical} shareTitle={title} />
+    <CookieNotice locale={locale} />
+    <script>
+      import { installConsent } from '../consent';
+      installConsent(document);
+    </script>
     <script>
       // Vercel Web Analytics — cookieless, aggregate-only. Only inject on the
       // production host so local previews and staging deploys stay clean.
@@ -173,31 +179,6 @@ const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
     <script>
       import { installDesktopSave } from '../desktop/save';
       installDesktopSave();
-    </script>
-    <script is:inline>
-      // Feedback widget, anonymous (no login). Load on the first tap or key,
-      // otherwise after the page has been up for 8s, so it stays off first paint.
-      (function (d) {
-        var w = d.defaultView;
-        var loaded = false;
-        function load() {
-          if (loaded) return;
-          loaded = true;
-          w.Userback = w.Userback || {};
-          w.Userback.access_token = 'A-cawCPZd8Mqr5Qea3QzjeqN8lP';
-          var s = d.createElement('script');
-          s.async = true;
-          s.src = 'https://static.userback.io/widget/v1.js';
-          (d.head || d.body).appendChild(s);
-        }
-        d.addEventListener('pointerdown', load, { once: true, passive: true });
-        d.addEventListener('keydown', load, { once: true });
-        w.setTimeout(function () {
-          var idle = w.requestIdleCallback;
-          if (idle) idle(load, { timeout: 2000 });
-          else load();
-        }, 8000);
-      })(document);
     </script>
   </body>
 </html>

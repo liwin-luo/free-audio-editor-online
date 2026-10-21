@@ -25,6 +25,11 @@ export const fr: Catalog = {
     contactBody: 'Une question sur un outil, une correction ou une demande liée à la confidentialité ? Écrivez à {email}. Nous lisons chaque message.',
     contactPrivacy: 'Pour savoir comment les fichiers et les retours sont traités, consultez la {privacy}.',
     privacyPolicyLabel: 'politique de confidentialité',
+    cookieBody:
+      'Les cookies facultatifs servent seulement au module de retours. La mesure d’audience n’utilise pas de cookies. Ce site n’affiche pas de publicité.',
+    cookieAccept: 'Accepter',
+    cookieReject: 'Refuser les facultatifs',
+    cookiePolicy: 'Politique de confidentialité',
     trustMethod: 'Comment nous testons',
     trustFree: 'Gratuit, sans inscription',
     trustClean: 'Sans filigrane',
@@ -447,7 +452,7 @@ export const fr: Catalog = {
       },
       {
         h: 'Ce que nous conservons',
-        body: 'Nous ne créons ni compte ni profil pour vous. Le site n’a ni comptes, ni adresse e-mail à fournir. Votre préférence de thème (clair ou sombre) est enregistrée dans le localStorage de votre navigateur et ne quitte jamais votre appareil.',
+        body: 'Nous ne créons ni compte ni profil pour vous. Le site n’a ni comptes, ni adresse e-mail à fournir. Votre préférence de thème (clair ou sombre) et votre choix de cookies sont enregistrés dans le localStorage de votre navigateur et ne quittent jamais votre appareil.',
       },
       {
         h: 'Les tiers',
@@ -459,7 +464,7 @@ export const fr: Catalog = {
       },
       {
         h: 'Widget de retours',
-        body: 'Si vous utilisez le bouton de retour, le site charge Userback, un service de retours tiers, seulement après votre première interaction ou au bout de huit secondes. Rien n’est envoyé tant que vous n’avez pas écrit et envoyé un message. Ce que vous écrivez, ainsi que des informations de base sur la page et le navigateur, est traité par Userback pour notre compte afin que nous puissions le lire et vous répondre. Les fichiers audio ne sont jamais concernés. Consultez la politique de confidentialité de Userback pour savoir comment ces données sont traitées.',
+        body: 'Si vous acceptez les cookies facultatifs, le site charge Userback, un service de retours tiers, seulement après votre première interaction ou au bout de huit secondes. Si vous les refusez, Userback n’est pas chargé. Rien n’est envoyé tant que vous n’avez pas écrit et envoyé un message. Ce que vous écrivez, ainsi que des informations de base sur la page et le navigateur, est traité par Userback pour notre compte afin que nous puissions le lire et vous répondre. Les fichiers audio ne sont jamais concernés. Consultez la politique de confidentialité de Userback pour savoir comment ces données sont traitées.',
       },
     ],
     contactHeading: 'Contact',

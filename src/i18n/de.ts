@@ -25,6 +25,11 @@ export const de: Catalog = {
     contactBody: 'Fragen zu einem Tool, eine Korrektur oder ein Datenschutzanliegen? Schreib an {email}. Wir lesen jede Nachricht.',
     contactPrivacy: 'Wie Dateien und Feedback behandelt werden, steht in der {privacy}.',
     privacyPolicyLabel: 'Datenschutzerklärung',
+    cookieBody:
+      'Optionale Cookies nutzt nur das Feedback-Widget. Die Zugriffsstatistik kommt ohne Cookies aus. Wir schalten keine Werbung.',
+    cookieAccept: 'Akzeptieren',
+    cookieReject: 'Optionale ablehnen',
+    cookiePolicy: 'Datenschutzerklärung',
     trustMethod: 'So testen wir',
     trustFree: 'Kostenlos, ohne Anmeldung',
     trustClean: 'Ohne Wasserzeichen',
@@ -448,7 +453,7 @@ export const de: Catalog = {
       },
       {
         h: 'Was wir speichern',
-        body: 'Wir legen weder ein Konto noch ein Profil für dich an. Die Seite hat keine Konten und verlangt keine E-Mail-Adresse. Deine Einstellung für hell oder dunkel liegt im localStorage deines Browsers und verlässt dein Gerät nie.',
+        body: 'Wir legen weder ein Konto noch ein Profil für dich an. Die Seite hat keine Konten und verlangt keine E-Mail-Adresse. Deine Einstellung für hell oder dunkel und deine Cookie-Wahl liegen im localStorage deines Browsers und verlassen dein Gerät nie.',
       },
       {
         h: 'Drittanbieter',
@@ -460,7 +465,7 @@ export const de: Catalog = {
       },
       {
         h: 'Feedback-Widget',
-        body: 'Wenn du die Feedback-Schaltfläche nutzt, lädt die Seite Userback, einen Feedback-Dienst eines Drittanbieters, erst nach deiner ersten Interaktion oder nach acht Sekunden. Es wird nichts gesendet, bevor du eine Nachricht schreibst und absendest. Was du schreibst, zusammen mit grundlegenden Seiten- und Browserinformationen, verarbeitet Userback in unserem Auftrag, damit wir es lesen und beantworten können. Audiodateien sind nie beteiligt. Wie Userback diese Daten behandelt, steht in der Datenschutzerklärung von Userback.',
+        body: 'Wenn du optionale Cookies akzeptierst, lädt die Seite Userback, einen Feedback-Dienst eines Drittanbieters, erst nach deiner ersten Interaktion oder nach acht Sekunden. Lehnst du sie ab, wird Userback nicht geladen. Es wird nichts gesendet, bevor du eine Nachricht schreibst und absendest. Was du schreibst, zusammen mit grundlegenden Seiten- und Browserinformationen, verarbeitet Userback in unserem Auftrag, damit wir es lesen und beantworten können. Audiodateien sind nie beteiligt. Wie Userback diese Daten behandelt, steht in der Datenschutzerklärung von Userback.',
       },
     ],
     contactHeading: 'Kontakt',

@@ -25,6 +25,11 @@ export const en: Shell = {
     contactBody: 'Questions about a tool, a correction, or a privacy request? Write to {email}. We read every message.',
     contactPrivacy: 'For how files and feedback are handled, see the {privacy}.',
     privacyPolicyLabel: 'privacy policy',
+    cookieBody:
+      'Optional cookies are used only by the feedback widget. Traffic measurement does not use cookies. This site does not show ads.',
+    cookieAccept: 'Accept',
+    cookieReject: 'Reject optional',
+    cookiePolicy: 'Privacy policy',
     trustMethod: 'How we test',
     trustFree: 'Free, no signup',
     trustClean: 'No watermarks',
@@ -446,7 +451,7 @@ export const en: Shell = {
       },
       {
         h: 'What we store',
-        body: 'We do not create an account or a profile for you. The site has no accounts and does not require an email address. Your theme preference (light or dark) is saved in your browser\u2019s localStorage and never leaves your device.',
+        body: 'We do not create an account or a profile for you. The site has no accounts and does not require an email address. Your theme preference (light or dark) and your cookie choice are saved in your browser\u2019s localStorage and never leave your device.',
       },
       {
         h: 'Third parties',
@@ -458,7 +463,7 @@ export const en: Shell = {
       },
       {
         h: 'Feedback widget',
-        body: 'If you use the feedback button, the site loads Userback, a third-party feedback service, only after your first interaction or after eight seconds. Nothing is sent until you write and submit a message. What you type, plus basic page and browser information, is processed by Userback on our behalf so we can read it and reply. Audio files are never involved. See Userback\u2019s privacy policy for how that data is handled.',
+        body: 'If you accept optional cookies, the site loads Userback, a third-party feedback service, after your first interaction or after eight seconds. If you reject them, Userback is not loaded. Nothing is sent until you write and submit a message. What you type, plus basic page and browser information, is processed by Userback on our behalf so we can read it and reply. Audio files are never involved. See Userback\u2019s privacy policy for how that data is handled.',
       },
     ],
     contactHeading: 'Contact',

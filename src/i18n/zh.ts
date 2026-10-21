@@ -25,6 +25,10 @@ export const zh: Catalog = {
     contactBody: '对工具有疑问、发现需要更正的内容，或有隐私相关请求？写信到 {email}。每封邮件我们都会看。',
     contactPrivacy: '文件与反馈如何处理，见{privacy}。',
     privacyPolicyLabel: '隐私政策',
+    cookieBody: '只有反馈组件会用到可选 Cookie。流量统计不用 Cookie。这个网站不投放广告。',
+    cookieAccept: '接受',
+    cookieReject: '拒绝非必要的',
+    cookiePolicy: '隐私政策',
     trustMethod: '我们如何测试',
     trustFree: '免费，不用注册',
     trustClean: '没有水印',
@@ -443,7 +447,7 @@ export const zh: Catalog = {
       },
       {
         h: '我们存什么',
-        body: '我们不会为你创建账号或档案。网站没有账号，也不需要邮箱。你的主题偏好（浅色或深色）存在浏览器的 localStorage 里，不会离开你的设备。',
+        body: '我们不会为你创建账号或档案。网站没有账号，也不需要邮箱。你的主题偏好（浅色或深色）和 Cookie 选择存在浏览器的 localStorage 里，不会离开你的设备。',
       },
       {
         h: '第三方',
@@ -455,7 +459,7 @@ export const zh: Catalog = {
       },
       {
         h: '反馈组件',
-        body: '如果你使用反馈按钮，网站会在你首次交互后或八秒后加载第三方反馈服务 Userback。只有你写下并提交消息时才会发送内容。你填写的内容以及基本的页面和浏览器信息，由 Userback 代表我们处理，以便我们阅读和回复。音频文件不会参与其中。Userback 如何处理这些数据，请参阅其隐私政策。',
+        body: '如果你接受可选 Cookie，网站会在你首次交互后或八秒后加载第三方反馈服务 Userback。如果你拒绝，就不会加载 Userback。只有你写下并提交消息时才会发送内容。你填写的内容以及基本的页面和浏览器信息，由 Userback 代表我们处理，以便我们阅读和回复。音频文件不会参与其中。Userback 如何处理这些数据，请参阅其隐私政策。',
       },
     ],
     contactHeading: '联系',

@@ -310,6 +310,12 @@ export interface UiText {
   /** Contact page privacy note. Placeholder: {privacy}. */
   contactPrivacy: string;
   privacyPolicyLabel: string;
+  /** Cookie bar body. Three sentences: feedback widget, cookieless stats, no ads. */
+  cookieBody: string;
+  cookieAccept: string;
+  cookieReject: string;
+  /** Standalone privacy-policy link under the cookie bar. */
+  cookiePolicy: string;
   /** Link from the tool trust badge to the testing method. */
   trustMethod: string;
   guides: string;
