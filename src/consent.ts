@@ -58,8 +58,8 @@ export function installConsent(doc: Document): void {
     armed = true;
     doc.addEventListener('pointerdown', load, { once: true, passive: true });
     doc.addEventListener('keydown', load, { once: true });
-    view.setTimeout(() => {
-      const idle = view.requestIdleCallback;
+    view?.setTimeout(() => {
+      const idle = view?.requestIdleCallback;
       if (typeof idle === 'function') idle(() => load(), { timeout: 2000 });
       else load();
     }, 8000);
