@@ -407,7 +407,7 @@ export const de: Catalog = {
       },
       {
         q: 'Welche Audioformate werden unterstützt?',
-        a: 'Du kannst MP3, WAV, M4A/AAC, OGG, FLAC und WebM-Audio öffnen und das Ergebnis als MP3 (128–320 kbps) oder verlustfreies WAV speichern. Der Klingelton erstellen exportiert außerdem M4R in Chrome, Edge und Safari.',
+        a: 'Du kannst MP3, WAV, M4A/AAC, OGG, FLAC und WebM-Audio öffnen und das Ergebnis als MP3 (128–320 kbps) oder verlustfreies WAV speichern. Klingelton erstellen exportiert außerdem M4R in Chrome, Edge und Safari.',
       },
     ],
   },
@@ -443,7 +443,7 @@ export const de: Catalog = {
       'Free Audio Editor ist eine Sammlung datenschutzfreundlicher Audio-Tools, die komplett in deinem Browser laufen — ohne Upload, ohne Anmeldung, ohne Wasserzeichen.',
     h1: 'Über uns',
     p1: 'Free Audio Editor gibt es, weil eine Sprachnotiz zu bearbeiten nicht heißen sollte, sie auf einen fremden Server hochzuladen. Jedes Tool hier — der {trimmer}, der {cutter}, der {joiner} und der Rest — funktioniert gleich: dein Browser liest die Datei, bearbeitet sie im Speicher und schreibt das Ergebnis direkt zurück auf dein Gerät.',
-    linkTrimmer: 'Audio-Trimmer',
+    linkTrimmer: 'Audio schneiden',
     linkCutter: 'MP3-Cutter',
     linkJoiner: 'Audio-Joiner',
     p2: 'Genau deshalb sind die Tools schnell und kostenlos. Es gibt keine Upload-Warteschlange, keine Serverfarm und keine Speicherkosten — nur dein Gerät, das die Arbeit macht, die es ohnehin kann.',
@@ -1113,14 +1113,14 @@ export const de: Catalog = {
     },
     'audio-trimmer': {
       cardLine: 'Ziehe die Griffe, um genau den Teil zu behalten, den du brauchst — Podcasts, Sprachmemos, jeder Track.',
-      name: 'Audio-Trimmer',
-      shortName: 'Audio-Trimmer',
+      name: 'Audio schneiden',
+      shortName: 'Audio schneiden',
       title: 'Audio schneiden – Podcast oder Sprachnotiz',
       description:
         'Eine Stelle aus Podcast, Sprachnotiz oder Aufnahme behalten und als MP3 oder WAV speichern. Der Schnitt läuft im Browser, nichts wird hochgeladen.',
-      h1: 'Audio kürzen – kostenlos im Browser',
+      h1: 'Audio schneiden – einen Abschnitt behalten',
       heroAlt: 'Eine MP3 oder einen Podcast auf die passende Stelle schneiden',
-      subtitle: 'Audio online kürzen — kostenlos, direkt im Browser. Nichts wird hochgeladen.',
+      subtitle: 'Audio online schneiden — kostenlos, direkt im Browser. Nichts wird hochgeladen.',
       intro:
         'Schneide genau den Teil heraus, den du brauchst, aus jedem Song, jeder Sprachnotiz, jedem Podcast oder jeder Aufnahme. Ziehe auf der Wellenform, um auszuwählen, höre ihn an und speichere. Das Kürzen passiert komplett auf deinem Gerät, deshalb bleiben auch lange Aufnahmen privat und starten sofort.',
       usesHeading: 'Schnitte, die den Edit erledigen',
@@ -1145,7 +1145,7 @@ export const de: Catalog = {
       ],
       faqs: [
         {
-          q: 'Ist dieser Audio-Trimmer wirklich kostenlos?',
+          q: 'Ist Audio schneiden wirklich kostenlos?',
           a: 'Ja. Jedes Kürzen und jeder Export ist kostenlos, ohne Anmeldung und ohne Wasserzeichen. Das Tool läuft vollständig in deinem Browser, deshalb gibt es keine Serverkosten, die an dich weitergegeben werden.',
         },
         {
@@ -1183,8 +1183,8 @@ export const de: Catalog = {
             'Diese Seite ist für eine Aufnahme, die kürzer werden soll: eine Podcast-Antwort, eine Sprachnotiz, eine Vorlesung, die Mitte einer langen Datei.',
           ],
           bullets: [
-            'Audio kürzen, diese Seite: du behältst einen Abschnitt von beliebigem Audio oder einer Videotonspur und speicherst ihn als MP3 oder WAV.',
-            'MP3-Cutter: dieselbe Art Auswahl, geschrieben für einen Song. Die Seite erklärt, wie du einen Refrain behältst oder ein Intro löschst.',
+            'Audio schneiden, diese Seite: du behältst einen Abschnitt von beliebigem Audio oder einer Videotonspur und speicherst ihn als MP3 oder WAV.',
+            'MP3 schneiden: dieselbe Art Auswahl, geschrieben für einen Song. Die Seite erklärt, wie du einen Refrain behältst oder ein Intro löschst.',
             'Stille entfernen: wirft lange Pausen von selbst raus. Nimm das, wenn das Problem tote Luft ist, nicht ein Abschnitt, den du von Hand markieren musst.',
           ],
         },
@@ -1212,8 +1212,8 @@ export const de: Catalog = {
     },
     'mp3-cutter': {
       cardLine: 'Schneide einen Song auf den Refrain, den Drop oder jeden Clip — ohne Re-Encoding.',
-      name: 'MP3-Cutter',
-      shortName: 'MP3-Cutter',
+      name: 'MP3 schneiden',
+      shortName: 'MP3 schneiden',
       title: 'MP3 schneiden – Abschnitt behalten oder löschen',
       description:
         'Den Refrain behalten oder das Intro löschen, dann speichern. WAV verliert nichts zusätzlich. MP3 wird einmal kodiert, bis 320 kbps.',
@@ -1284,7 +1284,7 @@ export const de: Catalog = {
           heading: 'Eine MP3 schneiden oder eine Aufnahme trimmen',
           paragraphs: [
             'Diese Seite ist dafür da, einen Song oder eine MP3 auf einen Abschnitt zu kürzen. Der Editor nimmt auch die meisten anderen Audio- und Videodateien, und das Ergebnis ist eine neue MP3 oder ein WAV.',
-            'Der Audio-Trimmer macht denselben Schnitt, gedacht für Podcasts und Sprachnotizen, bei denen du einen mittleren Teil behältst. Nutze diese Seite, um eine MP3 zu schneiden. Nutze den Trimmer, wenn die Datei kein Song ist.',
+            'Audio schneiden macht denselben Schnitt, gedacht für Podcasts und Sprachnotizen, bei denen du einen mittleren Teil behältst. Nutze diese Seite, um eine MP3 zu schneiden. Nutze Audio schneiden, wenn die Datei kein Song ist.',
           ],
         },
         {
@@ -1301,7 +1301,7 @@ export const de: Catalog = {
           ],
           bullets: [
             'Mehrere Songs zu einer Datei verbinden ist der Audio-Joiner.',
-            'Ein Clip unter 40 Sekunden, gespeichert als iPhone-Klingelton, ist der Klingelton-Ersteller.',
+            'Ein Clip unter 40 Sekunden, gespeichert als iPhone-Klingelton, ist Klingelton erstellen.',
             'Titel, Künstler und Cover sind der MP3-Tag-Editor, nachdem du den Schnitt hast.',
           ],
         },
@@ -1382,7 +1382,7 @@ export const de: Catalog = {
           ],
           bullets: [
             'Ein Song, ein Refrain soll bleiben: MP3 schneiden ist dafür geschrieben.',
-            'Podcast oder Sprachnotiz, die Enden kürzen: Audio kürzen.',
+            'Podcast oder Sprachnotiz, die Enden kürzen: Audio schneiden.',
             'Nur Titel, Künstler oder Cover: der MP3-Tag-Editor kopiert die Audiodaten unverändert.',
           ],
         },
@@ -1403,7 +1403,7 @@ export const de: Catalog = {
       title: 'Klingelton erstellen online — aus jedem Song, kostenlos',
       description:
         'Aus jedem Song ein Klingelton: die besten 40 Sekunden wählen, Blende dazu, als M4R oder MP3 exportieren — kostenlos, ohne Anmeldung.',
-      h1: 'Kostenloser Online-Klingelton-Ersteller — Aus einem Song einen iPhone-Klingelton machen',
+      h1: 'Klingelton erstellen — aus einem Song, bis 40 Sekunden',
       heroAlt: 'Bis zu 40 Sekunden eines Songs als M4R oder MP3 speichern',
       subtitle: 'Nimm den besten Teil eines Songs und speichere ihn als Klingelton — in unter einer Minute.',
       intro:
