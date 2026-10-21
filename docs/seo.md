@@ -1,6 +1,6 @@
 # SEO 规则
 
-日期：2026-10-20。这是站内规则。一次审查的证据在 [2026-10-16 对抗审查](plans/2026-10-16-seo-adversarial-audit.md)。新页面怎么写完，看 [new-tool-spec](new-tool-spec.md)。各语言的字数和用词，看 [i18n 翻译规范](i18n-translation-guide.md)。
+日期：2026-10-20。这是站内规则。一次审查的证据在 [2026-10-16 对抗审查](plans/2026-10-16-seo-adversarial-audit.md)。新页面怎么写完，看 [new-tool-spec](new-tool-spec.md)。各语言的字数和用词，看 [i18n 翻译规范](i18n-translation-guide.md)。页面类型和文章结构的分工，看 [内容类型](content-types.md)；文章由哪个声音执笔，看 [作家角色](writer-personas.md)。
 
 ## 一条意图一个 URL
 
