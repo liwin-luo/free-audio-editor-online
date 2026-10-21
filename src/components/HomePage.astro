@@ -88,7 +88,7 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
           }
         </ul>
       </aside>
-      <div class="rounded-2xl border border-line bg-surface p-5 shadow-sm lg:col-start-1 lg:row-start-2">
+      <div class="rounded-2xl border border-line bg-surface p-5 shadow-card lg:col-start-1 lg:row-start-2">
         <div class="flex items-center justify-between gap-3 text-xs text-ink3">
           <span class="inline-flex items-center gap-2 font-medium text-ink2">
             <Icon name="waveform" size={14} class="text-accent" />
@@ -121,7 +121,7 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
   </section>
 
   <section id="tools" class="container-wide pb-16" aria-labelledby="tools-heading">
-    <h2 id="tools-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">{home.toolsHeading}</h2>
+    <h2 id="tools-heading" class="text-[28px] font-semibold tracking-tight">{home.toolsHeading}</h2>
     <div class="mt-8 grid gap-4 md:grid-cols-2">
       {
         featured.map((tool) => (
@@ -196,7 +196,7 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
   </section>
 
   <section class="container-page pb-16" aria-labelledby="use-heading">
-    <h2 id="use-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">{home.useCasesHeading}</h2>
+    <h2 id="use-heading" class="text-[28px] font-semibold tracking-tight">{home.useCasesHeading}</h2>
     <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {
         home.useCases.map((uc, i) => (
@@ -212,7 +212,7 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
                 return t ? (
                   <a
                     href={localePath(locale, `/${slug}`)}
-                    class="inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-strong"
+                    class="inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-strong pointer-coarse:min-h-6"
                   >
                     {t.shortName}
                     <Icon name="convert" size={13} />
@@ -228,7 +228,7 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
 
   <section class="border-y border-line bg-surface py-16" aria-labelledby="why-heading">
     <div class="container-page">
-      <h2 id="why-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+      <h2 id="why-heading" class="text-[28px] font-semibold tracking-tight">
         {home.whyHeading}
       </h2>
       <div class="mt-8 grid gap-8 md:grid-cols-[2fr_1fr_1fr]">

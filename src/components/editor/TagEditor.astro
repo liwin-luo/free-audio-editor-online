@@ -6,6 +6,7 @@
  * The audio stream is never decoded — only the tag block is rewritten.
  */
 import Icon from '../Icon.astro';
+import LocalBadge from './LocalBadge.astro';
 import DropPromise from './DropPromise.astro';
 import { getShell } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
@@ -31,7 +32,7 @@ const runtime = {
   data-tag-editor
   data-config={JSON.stringify(config)}
   data-i18n={JSON.stringify(runtime)}
-  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+  class="overflow-clip rounded-(--radius-tool) border border-line bg-surface"
 >
   <div data-empty>
   <DropPromise config={config} locale={locale}>
@@ -42,12 +43,7 @@ const runtime = {
       <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
     </div>
   </DropPromise>
-  <div class="mb-5 mt-4 text-center">
-    <p class="inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
-      <Icon name="shield-check" size={14} class="text-accent" />
-      {t.dropLocal}
-    </p>
-  </div>
+  <LocalBadge text={t.dropLocal} />
   </div>
   <input type="file" class="hidden" accept={config.accept ?? 'audio/mpeg,.mp3'} data-file-input multiple />
 
@@ -75,43 +71,43 @@ const runtime = {
     <fieldset data-fields class="grid gap-x-6 gap-y-4 border-b border-line px-4 py-3.5 sm:grid-cols-2 md:px-5">
       <label data-single="title" class="block text-sm text-ink2 sm:col-span-2">
         {t.tgTitle}
-        <input data-field="title" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+        <input data-field="title" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.tgArtist}
-        <input data-field="artist" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+        <input data-field="artist" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.tgAlbum}
-        <input data-field="album" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+        <input data-field="album" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.tgAlbumArtist}
-        <input data-field="albumArtist" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+        <input data-field="albumArtist" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.tgYear}
-        <input data-field="year" type="text" inputmode="numeric" maxlength="4" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+        <input data-field="year" type="text" inputmode="numeric" maxlength="4" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.tgGenre}
-        <input data-field="genre" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+        <input data-field="genre" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
       </label>
       <label data-single="track" class="block text-sm text-ink2">
         {t.tgTrack}
-        <input data-field="track" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+        <input data-field="track" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.tgDisc}
-        <input data-field="disc" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+        <input data-field="disc" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.tgComposer}
-        <input data-field="composer" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" />
+        <input data-field="composer" type="text" autocomplete="off" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
       </label>
       <label class="block text-sm text-ink2 sm:col-span-2">
         {t.tgComment}
-        <textarea data-field="comment" rows="2" class="mt-1.5 w-full resize-y rounded-lg border border-line bg-bg px-3 py-2.5 text-sm leading-relaxed text-ink"></textarea>
+        <textarea data-field="comment" rows="2" class="mt-1.5 w-full resize-y rounded-lg border border-line-strong bg-bg px-3 py-2.5 text-sm leading-relaxed text-ink"></textarea>
       </label>
     </fieldset>
 
@@ -146,9 +142,9 @@ const runtime = {
     </label>
 
     <!-- Action bar -->
-    <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+    <div class="export-bar flex-wrap">
       <p class="text-xs text-ink3">{t.dropLocal}</p>
-      <div class="ml-auto flex flex-wrap items-center gap-3">
+      <div class="ms-auto flex flex-wrap items-center gap-3">
         <p data-status class="text-sm text-ink2" aria-live="polite"></p>
         <button type="button" class="btn btn-ghost" data-reset>{t.tgReset}</button>
         <button type="button" class="btn btn-primary btn-lg" data-save disabled>
@@ -159,7 +155,7 @@ const runtime = {
     </div>
   </div>
 
-  <div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+  <div data-toast-root class="toast-root"></div>
 </div>
 
 <script>

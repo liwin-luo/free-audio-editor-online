@@ -1,7 +1,10 @@
-# freeaudioeditor.online UI/UE 设计规范 v1.0
+# freeaudioeditor.online UI/UE 设计规范 v1.1
 
-日期：2026-10-14 · 依据：美区 26 词用户意图分析 + 前十竞品视觉审计 + design-taste 规则
+日期：2026-10-14 初版 · 2026-10-21 修订（UI/UX 审查后的收敛版本）
+依据：美区 26 词用户意图分析 + 前十竞品视觉审计 + design-taste 规则 + 全站浏览器审查
 适用：全部工具落地页、Hub 首页、编辑器界面。技术栈假设：Astro 静态站 + Tailwind + 原生 TS 编辑器内核。
+
+> v1.1 变更：把实现中已经落地的 token（`--color-line-strong`、`--color-on-accent`、`--shadow-pop`）与组件类（`.export-bar` / `.toast-root` / `.skip-link`）写回规范；补充 WCAG 1.4.11 非文本对比度、触控热区、页脚工具索引折叠、窄屏导航图标回退等审查结论。规范与代码冲突时以本文件为准，改代码前先改本文件。
 
 ---
 
@@ -70,11 +73,13 @@
 | `--surface` | #FFFFFF | 卡片/工具容器 |
 | `--surface-2` | #F4F4F5 (zinc-100) | 次级面板、代码块 |
 | `--border` | #E4E4E7 (zinc-200) | 描边、分隔 |
+| `--border-strong` | #C9C9CF | 表单控件描边、dropzone 虚线边（需 ≥3:1，见 §8.1） |
 | `--text` | #18181B (zinc-900) | 主文本 |
 | `--text-2` | #52525B (zinc-600) | 次文本 |
 | `--accent` | #0D9488 (teal-600) | 主按钮、链接、选中区 |
 | `--accent-hover` | #0F766E (teal-700) | 悬停 |
 | `--accent-soft` | rgba(13,148,136,0.12) | 选中波形、徽标底 |
+| `--on-accent` | #FFFFFF | 强调色面上的文字/图标（暗色模式翻转为 #09090B） |
 | `--success` | #047857 | 成功 |
 | `--warning` | #B45309 | 警告 |
 | `--error` | #BE123C | 错误/删除 |
@@ -87,10 +92,12 @@
 | `--surface` | #18181B (zinc-900) |
 | `--surface-2` | #27272A (zinc-800) |
 | `--border` | #27272A |
+| `--border-strong` | #3F3F46 |
 | `--text` | #FAFAFA |
 | `--text-2` | #A1A1AA (zinc-400) |
 | `--accent` | #2DD4BF (teal-400，暗底提亮) |
 | `--accent-soft` | rgba(45,212,191,0.15) |
+| `--on-accent` | #09090B（暗底上的强调色面前景翻黑，保证按钮文字对比度） |
 
 **禁用清单**：紫色/蓝紫渐变、霓虹 glow、渐变文字、纯黑、超过 1 个强调色、冷暖灰混用。
 
@@ -112,6 +119,7 @@
 
 - 字阶：12 / 14 / 16 / 18 / 22 / 28 / 36
 - H1（工具页）：36px/44px，weight 600，tracking-tight——克制，不 screaming
+- H2（区块标题）：28px，weight 600，tracking-tight（不随断点放大，避免手机端换行塌陷）
 - 正文：16px，line-height 1.6，`max-w-[65ch]`
 - 时间码最小 12px Geist Mono，字重 500
 
@@ -132,8 +140,11 @@
 ## 六、圆角 / 阴影 / 层级
 
 - 圆角：8（按钮/输入）、12（卡片）、16（dropzone/工具容器）、full（chip/头像）
-- 阴影一律带底色调：`0 8px 24px -8px rgba(9,9,11,0.08)`；暗色模式用 1px 内描边 `border-white/10` 代替阴影表达层级；**禁外发光**
-- z-index 体系：10 sticky 导航 / 30 下拉 / 40 modal / 50 toast。禁随意 z-50
+- 阴影一律带底色调，**只用两个 token**：
+  - `--shadow-card: 0 8px 24px -8px rgba(9,9,11,0.08)` —— 卡片/浮层（暗色模式换成 `rgba(0,0,0,0.55)`，否则近黑底上看不见）
+  - `--shadow-pop: 0 8px 24px -8px rgba(9,9,11,0.15)` —— toast、下拉、弹出面板（暗色 `rgba(0,0,0,0.65)`）
+  - 禁手写任意 box-shadow；禁外发光（glow）
+- z-index 体系：10 sticky 导航 / 30 下拉 / 40 modal / 50 toast / 60 skip-link。禁随意 z-50
 - 触感反馈：`:active` 时 `scale(0.98)` 或 `translateY(1px)`
 
 ---
@@ -146,7 +157,7 @@
 | 播放头 | rAF 驱动 `transform: translateX`，禁 left/top |
 | 解码加载 | 波形容器内 skeleton shimmer（禁圆形 spinner） |
 | 导出成功 | toast 弹入 + 下载自动触发 |
-| 列表显现 | CSS `animation-delay: calc(var(--i)*60ms)` 级联，仅首屏以下 |
+| 列表显现 | CSS `animation-delay: calc(var(--i)*60ms)` 级联，仅首屏以下；可选，当前 How-to 步骤未启用（不要留没人消费的 `--i`） |
 
 - **禁**：视差滚动、自动轮播、磁吸按钮、滚动劫持、无限循环动画
 - `prefers-reduced-motion: reduce` 时全部动效关闭
@@ -157,23 +168,27 @@
 
 ### 8.1 Upload Dropzone（每个工具页的主角）
 
-- 尺寸：桌面 min-h 280px / 移动 min-h 220px，圆角 16，2px dashed `--border`
+- 尺寸：桌面 min-h 280px / 移动 min-h 220px，圆角 16，2px dashed
+- 虚线边颜色 = `color-mix(in srgb, var(--color-ink3) 78%, var(--color-line))`——虚线是「这里可以放文件」的唯一视觉线索，属于非文本内容，必须过 WCAG 1.4.11 的 3:1（实测浅色 3.45:1 / 暗色 4.8:1）
 - 三态：**空态**（Phosphor `UploadSimple` 图标 32px + "Drop an audio file, or click to browse" + 支持格式 chips: MP3 WAV M4A OGG FLAC AAC）→ **拖入悬停**（border 变 `--accent`，底色 `--accent-soft`）→ **解码中**（skeleton）
-- 底部常驻 TrustBadge：「🔒→盾形图标 Processed locally — your file never leaves this tab」（图标用 Phosphor `ShieldCheck`，**禁 emoji**）
+- 底部常驻 TrustBadge：「🔒→盾形图标 Processed locally — your file never leaves this tab」（图标用 Phosphor `ShieldCheck`，**禁 emoji**）；该徽标统一由 `components/editor/LocalBadge.astro` 渲染，不要在编辑器里各写一份
 - 支持 drag-drop、点击、粘贴 (Ctrl+V 音频文件)
 
 ### 8.2 波形编辑器（hero 组件）
 
 - 高度：桌面 200px / 移动 160px，容器**固定高度**（防 CLS）
-- 选择区：把手 hit area ≥44px（视觉 8px，热区扩大）；移动端双指缩放波形
+- 选择区：把手 hit area ≥44px（视觉 8–16px，热区扩大）；触控设备用 `pointer-coarse` 变体把热区从 16px 提到 44px，鼠标保持精确边缘
+- 选区与播放头一律用 `transform` 定位（`translateX` + `scaleX`），禁改 left/width——拖拽时不重排、不掉帧
 - 时间标尺：Geist Mono 12px，`mm:ss.ms` 格式，随缩放自动换挡（s→ms）
 - 播放控制：播放/暂停（Space）、循环选中段（L）、试听选中段前后 1s 淡入出（高级选项）
 - 渐进披露：默认显示 Cut/Keep + Fade + Export；音量/速度/反转收进「Adjust」抽屉；精确数值输入框（start/end 秒数）在「精确模式」下显示——服务播客人群但不吓走铃声党
+- 所有滑杆必须有 `aria-label`；预设/模式切换用 `aria-pressed` 表达选中态，不用纯颜色区分
 
 ### 8.3 操作栏（工具下方，常驻）
 
 - 布局：左侧模式切换（segmented control: Keep Selection / Delete Selection），中间微调（fade in/out 开关 + 时长，音量 slider），右侧 **Export 主按钮**
 - 移动端：操作栏 `position: sticky; bottom: 0`，Export 永远可达
+- 样式统一用 `.export-bar` 组件类（`src/styles/global.css` 的 `@layer components`），不要在 9 个编辑器里各抄一遍工具类字符串
 
 ### 8.4 导出流程
 
@@ -184,12 +199,20 @@
 
 ### 8.5 通用组件
 
-- **按钮**：primary（accent 底白字）/ secondary（surface 底 border）/ ghost（无底）/ destructive（error 底，仅删除选中段用）；尺寸 h-40（默认）/ h-48（Export）；loading 态按钮内嵌 16px 转圈 + 禁点
-- **Toast**：右下（桌面）/ 顶部下滑（移动），4s 自动消失，`aria-live="polite"`
+- **按钮**：primary（accent 底 `--on-accent` 字）/ secondary（surface 底 border）/ ghost（无底）/ destructive（error 底，仅删除选中段用）；尺寸 h-40（默认）/ h-48（Export）；loading 态按钮内嵌 16px 转圈 + 禁点
+- **Toast**：右下（桌面）/ 顶部下滑（移动），4s 自动消失，`aria-live="polite"`；容器统一用 `.toast-root` 组件类（逻辑方向属性写 inset，右下角在 RTL 下自动镜像到左下角）
 - **Modal**：仅用于「更换文件确认」等破坏性确认，居中，ESC/遮罩可关
 - **FAQ 手风琴**：`<details>` 原生实现（零 JS），FAQPage schema 必配
-- **TrustBadge**：盾形图标 + 一句话，出现在 dropzone 底部和页脚
+- **TrustBadge**：盾形图标 + 一句话，出现在 dropzone 底部和页脚；编辑器内统一用 `LocalBadge.astro`
+- **Skip link**：`.skip-link`，页首第一个可聚焦元素，focus 时从顶部滑出
 - **Related Tools 卡**：不对称 grid `2fr 1fr 1fr`——首张 feature 卡（大图标 + 完整副标题 + CTA 行），其余紧凑卡（图标 + 名 + 一行描述 line-clamp-2），末尾全宽「All tools」横条；禁三等分
+- **重复区块一律收敛成组件/类**：编辑器共用的容器、徽标、提示条不允许在多个 `.astro` 里各写一份，改样式只改 `src/styles/global.css` 的 `@layer components` 一处
+
+### 8.6 全局导航与页脚
+
+- **主导航**：长本地化标签（如 «Инструменты»、«Anleitungen»）在窄屏回退为图标，图标带 `aria-label`；短标签保留文字，下限 400px。11 个语言在 320/360/375/414px 下都不允许横向溢出
+- **页脚工具索引**：桌面 4 列平铺；手机端每个分类用原生 `<details>` 折叠（零 JS 依赖，链接仍留在 HTML 里供抓取），折叠状态由一段内联脚本在窄屏下设置
+- 页脚底部保留 `client-side` 徽标与状态页链接
 
 ---
 
@@ -261,11 +284,16 @@
 ## 十二、无障碍（WCAG 2.1 AA）
 
 - 对比度 ≥4.5:1（teal-600 on white = 4.54:1 达标；teal-400 on zinc-950 达标）
+- 非文本对比度 ≥3:1（WCAG 1.4.11）：表单控件描边、dropzone 虚线边、焦点环都要过
 - `:focus-visible` 2px `--accent` ring + 2px offset，全组件
 - 波形编辑器提供键盘等价物：start/end 数值输入框（精确模式）+ 快捷键
 - 状态变化 `aria-live="polite"`（导出进度、错误）
 - 图标全部带 `aria-label` 或 `aria-hidden`（装饰性）
-- 触控目标 ≥44×44px
+- 触控热区分两档，用 `pointer-coarse` 变体实现，鼠标用户保持紧凑：
+  - 真控件（`.btn`、格式 chip、开关、下拉项、分享按钮）粗指针下 ≥44×44px
+  - 页脚工具索引、面包屑、卡片内文字链接这类信息密集的 SEO 链接列表，粗指针下取 WCAG 2.5.8 的 24px 下限（`footer nav ul a { min-height: 1.5rem }`），避免把页脚撑到几屏高
+- 开关/预设/模式切换用 `aria-pressed`，滑杆必须命名（`aria-label`）
+- Space 键只在没有焦点于按钮/链接时触发播放，避免一次按键触发两次动作
 
 ---
 
@@ -285,23 +313,28 @@
 
 ## 十四、Design Tokens 落地
 
-以 CSS variables 为单一事实源，Tailwind 主题引用：
+以 CSS variables 为单一事实源，Tailwind v4 的 `@theme` 生成工具类：
 
 ```css
-:root {
-  --bg: #fafafa; --surface: #ffffff; --surface-2: #f4f4f5;
-  --border: #e4e4e7; --text: #18181b; --text-2: #52525b;
-  --accent: #0d9488; --accent-hover: #0f766e;
-  --accent-soft: rgba(13,148,136,0.12);
-  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+@theme {
+  --color-bg: #fafafa; --color-surface: #ffffff; --color-surface2: #f4f4f5;
+  --color-line: #e4e4e7; --color-line-strong: #c9c9cf;
+  --color-ink: #18181b; --color-ink2: #52525b; --color-ink3: #71717a;
+  --color-accent: #0f766e; --color-accent-strong: #115e59;
+  --color-accent-soft: rgba(13,148,136,0.12); --color-on-accent: #ffffff;
+  --radius-card: 0.75rem; --radius-tool: 1rem;
   --shadow-card: 0 8px 24px -8px rgba(9,9,11,0.08);
-  --ease-out: cubic-bezier(0.16,1,0.3,1);
-  --dur-fast: 150ms; --dur-base: 250ms;
+  --shadow-pop: 0 8px 24px -8px rgba(9,9,11,0.15);
+  --ease-out-expo: cubic-bezier(0.16,1,0.3,1);
 }
-[data-theme="dark"] { /* 见 §三 Dark 表 */ }
+[data-theme="dark"] { /* 见 §三 Dark 表：--color-line-strong #3f3f46、--color-on-accent #09090b、阴影加深 */ }
 ```
 
-图标统一 **Phosphor Icons**（tree-shakeable，strokeWidth 全站统一 1.5）。
+- 暗色主题通过 `data-theme="dark"` 覆盖同一批变量，工具类自动跟随
+- 自定义变体：`@custom-variant dark (...)`、`@custom-variant pointer-coarse (@media (pointer: coarse))`
+- 通用组件类写在 `@layer components`：`.btn` / `.btn-primary` / `.btn-secondary` / `.btn-ghost` / `.btn-lg` / `.card` / `.container-page` / `.container-wide` / `.export-bar` / `.toast-root` / `.skip-link` / `.origin-inline-start`
+- 需要压过工具类优先级（如 dropzone 拖入态）的规则写在 `@layer` 之外
+- 图标统一 **Phosphor Icons**（tree-shakeable，strokeWidth 全站统一 1.5）
 
 ---
 
@@ -315,3 +348,21 @@
 6. 禁假数据假评分
 7. 禁 h-screen、禁 calc 布局减法、禁动画 left/top/width/height
 8. 禁无空态/加载态/错误态的组件
+9. 禁手写 `box-shadow`（用 `--shadow-card` / `--shadow-pop`）、禁外发光
+10. 禁在多处复制同一段工具类字符串（容器/徽标/提示条一律收敛成组件类或组件）
+
+---
+
+## 十六、变更记录
+
+### v1.1（2026-10-21，UI/UX 全站审查后）
+
+高严重度修复：编辑器滑杆/开关缺可访问名称；Space 键在按钮上双触发；选区与播放头改用 transform 定位（拖拽重排）；深色模式下强调色按钮文字对比度不足（引入 `--color-on-accent`）；移动端导出条被遮挡；320px 下长语言导航溢出；表单控件描边与 dropzone 虚线边对比度不足（引入 `--color-line-strong`）。
+
+规范对齐：区块标题统一 28px、正文行高 1.6、阅读宽度 65ch、页脚 2 列节奏、toast 位置改为逻辑方向属性（RTL 自动镜像）、`--shadow-pop` 取代各处手写阴影。
+
+结构收敛：编辑器共用容器类 `.export-bar`（9 处）、toast 容器类 `.toast-root`（10 处）、本地处理徽标组件 `LocalBadge.astro`（8 处）；页脚工具索引在手机端改用原生 `<details>` 折叠；清理 `HowTo.astro` 里无人引用的 `--i` 变量。
+
+复验补修：`/tools` Hub 任务卡在 320px 下溢出（工具名 `shrink-0` 与任务文案争宽），窄屏改为纵向堆叠；触控热区按 §12 分档落到 `pointer-coarse`（首页 <44px 项 42 → 21，工具页 → 13，剩余项均 ≥24px）。
+
+复验结果（Chrome 桌面 1280 / 平板 768 / 手机 375 与 320，light + dark + 阿语 RTL）：264 个页面×视口组合横向溢出 0、控制台错误 0；5 个代表页 × 双主题 无名元素 0、对比度不达标 0、标题层级异常 0；`npm run check` 0 error、`check:pages` / `check:smoke` 全绿、`audit:preview` 318 项全为 LOW（与改动前同量级）。

@@ -75,11 +75,11 @@ const jsonLd = [
 
     <header class="py-10">
       <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{label}</h1>
-      <p class="mt-3 max-w-[70ch] text-[17px] leading-relaxed text-ink2">{intro}</p>
+      <p class="mt-3 max-w-[65ch] text-[17px] leading-relaxed text-ink2">{intro}</p>
     </header>
 
     <section aria-labelledby="category-tools" class="pb-16">
-      <h2 id="category-tools" class="text-2xl font-semibold tracking-tight md:text-3xl">{ui.tools}</h2>
+      <h2 id="category-tools" class="text-[28px] font-semibold tracking-tight">{ui.tools}</h2>
       <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           tools.map((t) => (
@@ -105,7 +105,7 @@ const jsonLd = [
     {
       guides.length > 0 && (
         <section aria-labelledby="category-guides" class="pb-16">
-          <h2 id="category-guides" class="text-2xl font-semibold tracking-tight md:text-3xl">
+          <h2 id="category-guides" class="text-[28px] font-semibold tracking-tight">
             {ui.guides}
           </h2>
           <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -124,7 +124,7 @@ const jsonLd = [
     }
 
     <section aria-labelledby="category-others" class="pb-16">
-      <h2 id="category-others" class="text-2xl font-semibold tracking-tight md:text-3xl">{ui.allTools}</h2>
+      <h2 id="category-others" class="text-[28px] font-semibold tracking-tight">{ui.allTools}</h2>
       <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {
           others.map((cat) => {

@@ -341,7 +341,7 @@ class Transcriber {
     this.els.workspace.classList.add('hidden');
     setEmptyHidden(this.els.dropzone, false);
     this.els.progressRow.classList.add('hidden');
-    this.els.progressBar.style.width = '0%';
+    this.els.progressBar.style.transform = 'scaleX(0)';
     this.setStatus('');
   }
 
@@ -433,7 +433,7 @@ class Transcriber {
         console.error('transcribe worker:', msg.message);
         showToast(this.toastRoot(), 'error', this.text.trFail);
         this.els.progressRow.classList.add('hidden');
-        this.els.progressBar.style.width = '0%';
+        this.els.progressBar.style.transform = 'scaleX(0)';
         this.busy = false;
         this.els.runBtn.disabled = false;
         this.setStatus('');
@@ -479,7 +479,7 @@ class Transcriber {
   }
 
   private setProgress(percent: number): void {
-    this.els.progressBar.style.width = `${Math.max(0, Math.min(100, percent))}%`;
+    this.els.progressBar.style.transform = `scaleX(${Math.max(0, Math.min(100, percent)) / 100})`;
   }
 
   private toastRoot(): HTMLElement | null {

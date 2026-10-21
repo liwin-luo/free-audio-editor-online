@@ -237,7 +237,7 @@ const jsonLd = [
     </nav>
 
     <article class="py-8">
-      <header class="max-w-[70ch]">
+      <header class="max-w-[65ch]">
         <h1 class="text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{frontmatter.title}</h1>
         <p class="mt-3 text-sm text-ink3">
           {copy.by}{' '}
@@ -285,7 +285,7 @@ const jsonLd = [
 
       {
         frontmatter.youtube && (
-          <div class="mt-8 max-w-[70ch]">
+          <div class="mt-8 max-w-[65ch]">
             <div class="relative aspect-video overflow-hidden rounded-xl border border-line bg-surface2">
               <button
                 type="button"
@@ -300,7 +300,7 @@ const jsonLd = [
                   class="h-full w-full object-cover"
                 />
                 <span class="absolute inset-0 grid place-items-center">
-                  <span class="grid size-16 place-items-center rounded-full bg-accent text-white shadow-[0_10px_30px_-8px_rgba(13,148,136,0.6)] transition-transform duration-200 group-hover:scale-105 group-active:scale-95">
+                  <span class="grid size-16 place-items-center rounded-full bg-accent text-on-accent shadow-pop transition-transform duration-200 group-hover:scale-105 group-active:scale-95">
                     <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path d="M8 5.5v13l10-6.5-10-6.5Z" />
                     </svg>
@@ -319,13 +319,13 @@ const jsonLd = [
         )
       }
 
-      <div class="guide-prose mt-8 max-w-[70ch]">
+      <div class="guide-prose mt-8 max-w-[65ch]">
         <slot />
       </div>
 
       {
         (frontmatter.sources?.length ?? 0) > 0 && (
-          <section class="mt-10 max-w-[70ch] border-t border-line pt-6" aria-labelledby="sources-heading">
+          <section class="mt-10 max-w-[65ch] border-t border-line pt-6" aria-labelledby="sources-heading">
             <h2 id="sources-heading" class="text-lg font-semibold text-ink">{copy.sourcesLabel}</h2>
             <ul class="mt-3 space-y-2 text-sm text-ink2">
               {frontmatter.sources!.map((source) => (
@@ -342,7 +342,7 @@ const jsonLd = [
 
       {
         tool && (
-          <aside class="mt-12 flex max-w-[70ch] flex-col items-start gap-4 rounded-xl border border-line bg-surface p-6 sm:flex-row sm:items-center sm:justify-between">
+          <aside class="mt-12 flex max-w-[65ch] flex-col items-start gap-4 rounded-xl border border-line bg-surface p-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p class="font-medium">{copy.ready}</p>
               <p class="mt-1 text-sm text-ink2">
@@ -357,7 +357,7 @@ const jsonLd = [
         )
       }
 
-      <p class="mt-10 max-w-[70ch] text-sm text-ink3">
+      <p class="mt-10 max-w-[65ch] text-sm text-ink3">
         {copy.more}
         <a href={localePath(locale, guidesPath)} class="text-accent underline underline-offset-2 hover:underline">{copy.all}</a>{locale === 'zh' || locale === 'ja' ? '。' : '.'}
       </p>

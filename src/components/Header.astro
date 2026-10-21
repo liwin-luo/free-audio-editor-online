@@ -24,33 +24,48 @@ const langHref = (target: Locale) => {
 };
 const current = LOCALES.find((l) => l.id === locale)!;
 const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
+// Long localized labels ("Инструменты", "Anleitungen") overflow the header on
+// narrow phones, so those two labels fall back to an icon instead of pushing
+// the nav past the viewport. Short labels keep their text down to 400px.
+const navLabels = (label: string) => (label.length > 8
+  ? { icon: 'sm:hidden', text: 'hidden sm:inline' }
+  : { icon: 'min-[400px]:hidden', text: 'hidden min-[400px]:inline' });
+const guidesLabel = navLabels(ui.guides);
+const toolsLabel = navLabels(ui.tools);
 ---
 
 <header class="sticky top-0 z-10 border-b border-line bg-bg/90 backdrop-blur">
   <div class="container-wide flex h-16 items-center justify-between gap-4">
     <a href={localePath(locale, '/')} class="flex items-center gap-2.5 font-semibold tracking-tight" aria-label={ui.logoHome}>
-      <span class="grid size-8 place-items-center rounded-lg bg-accent text-white">
+      <span class="grid size-8 place-items-center rounded-lg bg-accent text-on-accent">
         <Icon name="waveform" size={18} />
       </span>
       <span class="hidden sm:block">Free Audio Editor</span>
     </a>
 
-    <nav class="flex items-center gap-1" aria-label={ui.navMain}>
+    <nav class="flex min-w-0 items-center gap-1" aria-label={ui.navMain}>
       {
-        <a href={guidesHref} class="btn btn-ghost" aria-current={path === '/guides' ? 'page' : undefined}>
-          {ui.guides}
+        <a
+          href={guidesHref}
+          class="btn btn-ghost"
+          aria-label={ui.guides}
+          aria-current={path === '/guides' ? 'page' : undefined}
+        >
+          <span class={guidesLabel.icon}><Icon name="book" size={18} /></span>
+          <span class={guidesLabel.text}>{ui.guides}</span>
         </a>
       }
       <details class="group relative" data-nav-dropdown>
         <summary
           class="btn btn-ghost list-none aria-expanded:bg-surface2"
-          aria-haspopup="true"
+          aria-label={ui.tools}
         >
-          {ui.tools}
+          <span class={toolsLabel.icon}><Icon name="sliders" size={18} /></span>
+          <span class={toolsLabel.text}>{ui.tools}</span>
           <Icon name="caret-down" size={16} class="transition-transform group-open:rotate-180" />
         </summary>
         <div
-          class="fixed inset-x-3 top-[4.25rem] z-30 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain rounded-xl border border-line bg-surface p-2 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)] sm:absolute sm:inset-x-auto sm:end-0 sm:top-full sm:mt-2 sm:w-[32rem] lg:w-[40rem]"
+          class="fixed inset-x-3 top-[4.25rem] z-30 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain rounded-xl border border-line bg-surface p-2 shadow-pop sm:absolute sm:inset-x-auto sm:end-0 sm:top-full sm:mt-2 sm:w-[32rem] lg:w-[40rem]"
         >
           {
             CATEGORY_IDS.map((cat) => (
@@ -60,7 +75,7 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
                   {TOOLS.filter((t) => t.category === cat).map((t) => (
                     <a
                       href={localePath(locale, `/${t.slug}`)}
-                      class="flex items-center gap-2.5 rounded-lg px-3 py-1.5 text-sm leading-snug text-ink2 hover:bg-surface2 hover:text-ink"
+                      class="flex items-center gap-2.5 rounded-lg px-3 py-1.5 text-sm leading-snug text-ink2 hover:bg-surface2 hover:text-ink pointer-coarse:py-3"
                     >
                       <Icon name={t.icon} size={18} class="shrink-0 text-ink3" />
                       <span class="min-w-0">{toolName(t.slug)}</span>
@@ -72,7 +87,7 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
           }
           <a
             href={localePath(locale, '/tools')}
-            class="mt-1 flex items-center gap-2.5 rounded-lg border-t border-line px-3 py-2 text-sm font-medium text-ink2 hover:bg-surface2 hover:text-ink"
+            class="mt-1 flex items-center gap-2.5 rounded-lg border-t border-line px-3 py-2 text-sm font-medium text-ink2 hover:bg-surface2 hover:text-ink pointer-coarse:py-3"
           >
             <Icon name="layers" size={18} class="shrink-0 text-ink3" />
             {ui.allTools}
@@ -86,16 +101,16 @@ const toolName = (slug: string) => localizeTool(slug, locale)?.name ?? slug;
               <span class="hidden sm:inline">{current.label}</span>
               <Icon name="caret-down" size={14} class="transition-transform group-open:rotate-180" />
             </summary>
-            <div class="absolute end-0 top-full z-30 mt-2 w-44 rounded-xl border border-line bg-surface p-1.5 shadow-[0_8px_24px_-8px_rgba(9,9,11,0.15)]">
+            <div class="absolute end-0 top-full z-30 mt-2 w-44 rounded-xl border border-line bg-surface p-1.5 shadow-pop">
               {LOCALES.map((l) => (
                 <a
                   href={langHref(l.id)}
                   hreflang={l.hreflang}
                   class:list={[
-                    'block rounded-lg px-3 py-2 text-sm hover:bg-surface2',
+                    'block rounded-lg px-3 py-2 text-sm hover:bg-surface2 pointer-coarse:py-3',
                     l.id === locale ? 'font-medium text-ink' : 'text-ink2',
                   ]}
-                  aria-current={l.id === locale ? 'true' : undefined}
+                  aria-current={l.id === locale ? 'page' : undefined}
                 >
                   {l.label}
                 </a>

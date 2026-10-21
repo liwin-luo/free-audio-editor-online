@@ -1,0 +1,16 @@
+---
+import Icon from '../Icon.astro';
+
+interface Props {
+  /** Local-processing note shown under the drop well. */
+  text: string;
+}
+const { text } = Astro.props;
+---
+
+<div class="mb-5 mt-4 text-center">
+  <p class="inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
+    <Icon name="shield-check" size={14} class="text-accent" />
+    {text}
+  </p>
+</div>

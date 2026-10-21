@@ -5,6 +5,7 @@
  * wires it into a full waveform editor. All processing is client-side.
  */
 import Icon from '../Icon.astro';
+import LocalBadge from './LocalBadge.astro';
 import DropPromise from './DropPromise.astro';
 import { EXPORT_FORMATS } from '../../editor/encoders';
 import { getShell } from '../../i18n';
@@ -41,7 +42,7 @@ const jobChrome = Boolean(
   data-audio-editor
   data-config={JSON.stringify(config)}
   data-i18n={JSON.stringify(t)}
-  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+  class="overflow-clip rounded-(--radius-tool) border border-line bg-surface"
 >
   <!-- Empty state: drop well, format chips, privacy line. Hidden once a file is loaded. -->
   <div data-empty>
@@ -53,12 +54,7 @@ const jobChrome = Boolean(
       <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
     </div>
   </DropPromise>
-  <div class="mb-5 mt-4 text-center">
-    <p class="inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
-      <Icon name="shield-check" size={14} class="text-accent" />
-      {t.dropLocal}
-    </p>
-  </div>
+  <LocalBadge text={t.dropLocal} />
   </div>
   <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input {...(config.multiple || config.batch ? { multiple: true } : {})} />
 
@@ -101,13 +97,13 @@ const jobChrome = Boolean(
         <canvas data-wave class="absolute inset-0 h-full w-full text-ink3" aria-hidden="true"></canvas>
         <div
           data-selection
-          class="pointer-events-none absolute inset-y-0 hidden border-x-2 border-accent bg-accent-soft"
+          class="pointer-events-none absolute inset-y-0 left-0 hidden border-x-2 border-accent bg-accent-soft"
         >
-          <span data-handle-start class="pointer-events-auto absolute -left-2 inset-y-0 w-4 cursor-ew-resize" aria-hidden="true">
-            {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
+          <span data-handle-start class="pointer-events-auto absolute inset-y-0 left-0 w-4 -translate-x-1/2 cursor-ew-resize pointer-coarse:w-11" aria-hidden="true">
+            {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
           </span>
-          <span data-handle-end class="pointer-events-auto absolute -right-2 inset-y-0 w-4 cursor-ew-resize" aria-hidden="true">
-            {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
+          <span data-handle-end class="pointer-events-auto absolute inset-y-0 right-0 w-4 translate-x-1/2 cursor-ew-resize pointer-coarse:w-11" aria-hidden="true">
+            {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
           </span>
         </div>
         <div data-playhead class="pointer-events-none absolute inset-y-0 w-0.5 bg-ink opacity-0" aria-hidden="true">
@@ -147,7 +143,7 @@ const jobChrome = Boolean(
       <p data-timecode class="font-mono text-sm tabular-nums text-ink2">
         00:00.00 / 00:00.00
       </p>
-      <p data-hint class="ml-auto hidden text-xs text-ink3 md:block">
+      <p data-hint class="ms-auto hidden text-xs text-ink3 md:block">
         {config.silence ? t.hintSilence : config.converter ? t.hintConvert : t.hintSelect}
       </p>
     </div>
@@ -192,11 +188,11 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.speed}</span>
                 <strong data-quick-speed-label class="font-mono text-2xl font-semibold tabular-nums text-accent">1.00×</strong>
               </div>
-              <input type="range" data-quick-speed min="0.5" max="2" step="0.05" value="1" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-speed min="0.5" max="2" step="0.05" value="1" aria-label={t.speed} class="mt-3 w-full accent-(--color-accent)" />
               <p class="mt-2 text-xs text-ink3">{t.speedPitch}</p>
               <div class="mt-3 flex flex-wrap gap-2">
                 {config.speedPresets.map((preset) => (
-                  <button type="button" class="rounded-lg border border-line px-3 py-1.5 text-sm tabular-nums" data-speed-preset={preset}>
+                  <button type="button" class="rounded-lg border border-line-strong px-3 py-1.5 text-sm tabular-nums" data-speed-preset={preset} aria-pressed="false">
                     {preset}×
                   </button>
                 ))}
@@ -209,7 +205,7 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.speed}</span>
                 <strong data-quick-speed-label class="font-mono text-2xl font-semibold tabular-nums text-accent">1.00×</strong>
               </div>
-              <input type="range" data-quick-speed min="0.5" max="2" step="0.05" value="1" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-speed min="0.5" max="2" step="0.05" value="1" aria-label={t.speed} class="mt-3 w-full accent-(--color-accent)" />
               <p class="mt-2 text-xs text-ink3">{t.speedPitch}</p>
             </div>
           )}
@@ -219,7 +215,7 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.speed}</span>
                 <strong data-quick-tempo-label class="font-mono text-2xl font-semibold tabular-nums text-accent">1.00×</strong>
               </div>
-              <input type="range" data-quick-tempo min="0.75" max="1.25" step="0.01" value="1" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-tempo min="0.75" max="1.25" step="0.01" value="1" aria-label={t.speed} class="mt-3 w-full accent-(--color-accent)" />
               <p class="mt-2 text-xs text-ink3">{t.tempoPitch}</p>
             </div>
           )}
@@ -229,13 +225,13 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.pitch}</span>
                 <strong data-quick-pitch-label class="font-mono text-2xl font-semibold tabular-nums text-accent">0 st</strong>
               </div>
-              <input type="range" data-quick-pitch min="-12" max="12" step="1" value="0" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-pitch min="-12" max="12" step="1" value="0" aria-label={t.pitch} class="mt-3 w-full accent-(--color-accent)" />
               <p class="mt-2 text-xs text-ink3">{t.pitchLength}</p>
               {
                 config.pitchPresets && (
                   <div class="mt-3 flex flex-wrap gap-2">
                     {config.pitchPresets.map((preset) => (
-                      <button type="button" class="rounded-lg border border-line px-3 py-1.5 text-sm tabular-nums" data-pitch-preset={String(preset)}>
+                      <button type="button" class="rounded-lg border border-line-strong px-3 py-1.5 text-sm tabular-nums" data-pitch-preset={String(preset)} aria-pressed="false">
                         {preset > 0 ? `+${preset}` : preset < 0 ? `−${Math.abs(preset)}` : '0'}
                       </button>
                     ))}
@@ -253,6 +249,7 @@ const jobChrome = Boolean(
               <input
                 type="range"
                 data-quick-gain
+                aria-label={t.volume}
                 min="10"
                 max={config.maxGainPercent ?? 200}
                 step="5"
@@ -262,7 +259,7 @@ const jobChrome = Boolean(
               <p class="mt-2 text-xs text-ink3">{t.gainOriginal}</p>
               <div class="mt-3 flex flex-wrap gap-2">
                 {config.gainPresets.map((preset) => (
-                  <button type="button" class="rounded-lg border border-line px-3 py-1.5 text-sm tabular-nums" data-gain-preset={preset}>
+                  <button type="button" class="rounded-lg border border-line-strong px-3 py-1.5 text-sm tabular-nums" data-gain-preset={preset} aria-pressed="false">
                     {preset}%
                   </button>
                 ))}
@@ -292,7 +289,7 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.reverb}</span>
                 <strong data-quick-reverb-label class="font-mono text-2xl font-semibold tabular-nums text-accent">0%</strong>
               </div>
-              <input type="range" data-quick-reverb min="0" max="1" step="0.05" value="0" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-reverb min="0" max="1" step="0.05" value="0" aria-label={t.reverb} class="mt-3 w-full accent-(--color-accent)" />
             </div>
           )}
           {config.quickControls!.includes('compress') && (
@@ -301,7 +298,7 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.compress}</span>
                 <strong data-quick-compress-label class="font-mono text-2xl font-semibold tabular-nums text-accent">0%</strong>
               </div>
-              <input type="range" data-quick-compress min="0" max="100" step="1" value="0" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-compress min="0" max="100" step="1" value="0" aria-label={t.compress} class="mt-3 w-full accent-(--color-accent)" />
             </div>
           )}
           {config.quickControls!.includes('circle') && (
@@ -329,7 +326,7 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.distort}</span>
                 <strong data-quick-distort-label class="font-mono text-2xl font-semibold tabular-nums text-accent">40%</strong>
               </div>
-              <input type="range" data-quick-distort min="0" max="100" step="1" value="40" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-distort min="0" max="100" step="1" value="40" aria-label={t.distort} class="mt-3 w-full accent-(--color-accent)" />
             </div>
           )}
           {config.quickControls!.includes('echo') && (
@@ -352,7 +349,7 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.bass}</span>
                 <strong data-quick-bass-label class="font-mono text-2xl font-semibold tabular-nums text-accent">+0 dB</strong>
               </div>
-              <input type="range" data-quick-bass min="0" max="15" step="1" value="0" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-bass min="0" max="15" step="1" value="0" aria-label={t.bass} class="mt-3 w-full accent-(--color-accent)" />
             </div>
           )}
           {bipolarShelf && (
@@ -386,7 +383,7 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.treble}</span>
                 <strong data-quick-treble-label class="font-mono text-2xl font-semibold tabular-nums text-accent">+0 dB</strong>
               </div>
-              <input type="range" data-quick-treble min="0" max="15" step="1" value="0" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-treble min="0" max="15" step="1" value="0" aria-label={t.treble} class="mt-3 w-full accent-(--color-accent)" />
             </div>
           )}
           {config.quickControls!.includes('lpf') && (
@@ -395,7 +392,7 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.cutoff}</span>
                 <strong data-quick-lpf-label class="font-mono text-2xl font-semibold tabular-nums text-accent">20.0 kHz</strong>
               </div>
-              <input type="range" data-quick-lpf min="300" max="20000" step="100" value="20000" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-lpf min="300" max="20000" step="100" value="20000" aria-label={t.cutoff} class="mt-3 w-full accent-(--color-accent)" />
             </div>
           )}
           {config.quickControls!.includes('hpf') && (
@@ -404,7 +401,7 @@ const jobChrome = Boolean(
                 <span class="text-sm text-ink2">{t.cutoff}</span>
                 <strong data-quick-hpf-label class="font-mono text-2xl font-semibold tabular-nums text-accent">20 Hz</strong>
               </div>
-              <input type="range" data-quick-hpf min="20" max="5000" step="10" value="20" class="mt-3 w-full accent-(--color-accent)" />
+              <input type="range" data-quick-hpf min="20" max="5000" step="10" value="20" aria-label={t.cutoff} class="mt-3 w-full accent-(--color-accent)" />
             </div>
           )}
         </div>
@@ -554,11 +551,11 @@ const jobChrome = Boolean(
         <div class="grid gap-3 px-4 pt-3 sm:grid-cols-2 md:px-5">
           <label class="block text-xs text-ink2">
             {t.startSec}
-            <input type="number" data-precise-start class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums" min="0" step="0.01" />
+            <input type="number" data-precise-start class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums" min="0" step="0.01" />
           </label>
           <label class="block text-xs text-ink2">
             {t.endSec}
-            <input type="number" data-precise-end class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums" min="0" step="0.01" />
+            <input type="number" data-precise-end class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums" min="0" step="0.01" />
           </label>
         </div>
       )
@@ -568,11 +565,11 @@ const jobChrome = Boolean(
       !config.converter && !config.silence && !config.quickControls?.includes('tempo') && (
         <div class="flex flex-wrap items-center gap-3 px-4 py-3 md:px-5" data-modes-row>
           {!config.loop && !config.split && (
-            <div class="inline-flex rounded-lg border border-line p-0.5" role="group" aria-label={t.cutMode}>
-              <button type="button" class="rounded-md px-3 py-1.5 text-sm font-medium" data-mode="keep">
+            <div class="inline-flex rounded-lg border border-line-strong p-0.5" role="group" aria-label={t.cutMode}>
+              <button type="button" class="rounded-md px-3 py-1.5 text-sm font-medium" data-mode="keep" aria-pressed="true">
                 {t.keep}
               </button>
-              <button type="button" class="rounded-md px-3 py-1.5 text-sm font-medium" data-mode="delete">
+              <button type="button" class="rounded-md px-3 py-1.5 text-sm font-medium" data-mode="delete" aria-pressed="false">
                 {t.deleteSel}
               </button>
             </div>
@@ -590,7 +587,7 @@ const jobChrome = Boolean(
     <div
       data-export-bar
       class:list={[
-        'sticky bottom-0 flex items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5',
+        'export-bar',
         config.quickControls?.includes('tempo') ? 'flex-nowrap' : 'flex-wrap',
       ]}
     >
@@ -604,7 +601,7 @@ const jobChrome = Boolean(
       }
       <label class="flex items-center gap-2 text-sm text-ink2">
         {t.format}
-        <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" disabled>
+        <select data-format class="h-10 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" disabled>
           {formats.map((f) => (
             <option value={f.id} selected={f.id === config.defaultFormat}>
               {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
@@ -612,7 +609,7 @@ const jobChrome = Boolean(
           ))}
         </select>
       </label>
-      <button type="button" class="btn btn-primary btn-lg ml-auto" data-export disabled>
+      <button type="button" class="btn btn-primary btn-lg ms-auto" data-export disabled>
         <Icon name="download-simple" size={18} />
         {config.exportLabel ?? t.export}
       </button>
@@ -622,7 +619,7 @@ const jobChrome = Boolean(
   <p data-status class="sr-only" role="status" aria-live="polite"></p>
 </div>
 
-<div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+<div data-toast-root class="toast-root"></div>
 
 <script>
   import { initEditors } from '../../editor/index';

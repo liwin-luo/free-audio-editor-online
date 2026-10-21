@@ -31,7 +31,7 @@ const promise = promiseParts(config, {
   class:list={[
     'text-center',
     !plain &&
-      'mx-4 mt-4 cursor-pointer rounded-xl border border-dashed px-6 py-10 transition-colors md:mx-5 md:py-12',
+      'mx-4 mt-4 flex min-h-[220px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-10 transition-colors md:mx-5 md:min-h-[280px] md:py-12',
   ]}
 >
   <slot />
@@ -45,7 +45,7 @@ const promise = promiseParts(config, {
           type="button"
           data-delivery={chip.id}
           aria-pressed={chip.id === selected ? 'true' : 'false'}
-          class="cursor-pointer rounded-full border border-line bg-bg px-3 py-1 text-xs font-medium text-ink2 aria-pressed:border-accent aria-pressed:bg-accent-soft aria-pressed:text-accent"
+          class="cursor-pointer rounded-full border border-line-strong bg-bg px-3 py-1 text-xs font-medium text-ink2 aria-pressed:border-accent aria-pressed:bg-accent-soft aria-pressed:text-accent pointer-coarse:min-h-11"
         >
           {chip.label}
         </button>

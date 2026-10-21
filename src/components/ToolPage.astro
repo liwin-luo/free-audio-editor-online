@@ -120,9 +120,9 @@ const jsonLd = [
     </div>
 
     <section class="pt-14">
-      <p class="max-w-[70ch] text-[17px] leading-relaxed text-ink2">{tool.intro}</p>
-      <div class="mt-8 max-w-[70ch]">
-        <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">{tool.usesHeading}</h2>
+      <p class="max-w-[65ch] text-[17px] leading-relaxed text-ink2">{tool.intro}</p>
+      <div class="mt-8 max-w-[65ch]">
+        <h2 class="text-[28px] font-semibold tracking-tight">{tool.usesHeading}</h2>
         <ul class="mt-3 space-y-2.5 text-[15px] leading-relaxed text-ink2">
           {
             tool.uses.map((item) => (
@@ -140,7 +140,7 @@ const jsonLd = [
       facts && (
         <>
           <section class="pt-12" aria-labelledby="tool-fit-heading">
-            <h2 id="tool-fit-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+            <h2 id="tool-fit-heading" class="text-[28px] font-semibold tracking-tight">
               Where this page fits
             </h2>
             <div class="mt-6 grid gap-4 md:grid-cols-2">
@@ -176,11 +176,11 @@ const jsonLd = [
           </section>
 
           <section class="pt-12" aria-labelledby="tool-specs-heading">
-            <h2 id="tool-specs-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+            <h2 id="tool-specs-heading" class="text-[28px] font-semibold tracking-tight">
               Formats, limits and privacy
             </h2>
             <div class="mt-6 overflow-hidden rounded-2xl border border-line">
-              <table class="w-full border-collapse text-left text-sm">
+              <table class="w-full border-collapse text-start text-sm">
                 <caption class="sr-only">{tool.name}: formats, limits and privacy</caption>
                 <tbody>
                   {facts.specs.map((spec) => (
@@ -207,8 +207,8 @@ const jsonLd = [
       <div class="container-page">
         <section class="pb-16">
           {tool.sections.map((section, i) => (
-            <div class:list={['max-w-[70ch]', i === 0 ? 'mt-0' : 'mt-10']}>
-              <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">{section.heading}</h2>
+            <div class:list={['max-w-[65ch]', i === 0 ? 'mt-0' : 'mt-10']}>
+              <h2 class="text-[28px] font-semibold tracking-tight">{section.heading}</h2>
               {section.paragraphs?.map((paragraph) => (
                 <p class="mt-3 text-[15px] leading-relaxed text-ink2">{paragraph}</p>
               ))}
@@ -234,7 +234,7 @@ const jsonLd = [
     guides.length > 0 && (
       <section class="py-16" aria-labelledby="tool-guides-heading">
         <div class="container-page">
-          <h2 id="tool-guides-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+          <h2 id="tool-guides-heading" class="text-[28px] font-semibold tracking-tight">
             {ui.guides}
           </h2>
           <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

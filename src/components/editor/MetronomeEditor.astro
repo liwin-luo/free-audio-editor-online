@@ -25,7 +25,7 @@ const bars = [4, 8, 16];
 <div
   data-metronome
   data-i18n={JSON.stringify(t)}
-  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+  class="overflow-clip rounded-(--radius-tool) border border-line bg-surface"
 >
   <div class="grid gap-5 px-4 py-6 md:px-5">
     <label class="flex items-center gap-3 text-sm text-ink2">
@@ -37,7 +37,7 @@ const bars = [4, 8, 16];
     <div class="flex flex-wrap items-center gap-3">
       <label class="flex items-center gap-2 text-sm text-ink2">
         {t.metroMeter}
-        <select data-metro-meter class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-metro-meter class="h-10 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           {meters.map((m) => (
             <option value={m} selected={m === '4/4'}>{m}</option>
           ))}
@@ -49,10 +49,10 @@ const bars = [4, 8, 16];
     </div>
   </div>
 
-  <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+  <div class="export-bar flex-wrap">
     <label class="flex items-center gap-2 text-sm text-ink2">
       {t.metroBars}
-      <select data-metro-bars class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+      <select data-metro-bars class="h-10 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
         {bars.map((n) => (
           <option value={n} selected={n === 4}>{n}</option>
         ))}
@@ -60,7 +60,7 @@ const bars = [4, 8, 16];
     </label>
     <label class="flex items-center gap-2 text-sm text-ink2">
       {t.format}
-      <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+      <select data-format class="h-10 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
         {formats.map((f) => (
           <option value={f.id} selected={f.id === (config.defaultFormat ?? 'wav')}>
             {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
@@ -68,14 +68,14 @@ const bars = [4, 8, 16];
         ))}
       </select>
     </label>
-    <button type="button" class="btn btn-primary btn-lg ml-auto" data-export>
+    <button type="button" class="btn btn-primary btn-lg ms-auto" data-export>
       <Icon name="download-simple" size={18} />
       {config.exportLabel ?? t.export}
     </button>
   </div>
 </div>
 
-<div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+<div data-toast-root class="toast-root"></div>
 
 <script>
   import { initMetronome } from '../../editor/metronome-ui';

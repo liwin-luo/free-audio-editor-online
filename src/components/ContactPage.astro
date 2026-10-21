@@ -27,7 +27,7 @@ const description = ui.contactBody.replace('{email}', email);
 <Base title={title} description={description} path="/contact" locale={locale} jsonLd={jsonLd}>
   <article class="container-page py-14">
     <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{ui.contact}</h1>
-    <div class="mt-8 max-w-[70ch] space-y-5 text-[15px] leading-relaxed text-ink2">
+    <div class="mt-8 max-w-[65ch] space-y-5 text-[15px] leading-relaxed text-ink2">
       <p>
         {
           splitSlots(ui.contactBody).map((part) =>

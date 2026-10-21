@@ -4,6 +4,7 @@
  * Static markup; src/editor/joiner.ts wires the behavior.
  */
 import Icon from '../Icon.astro';
+import LocalBadge from './LocalBadge.astro';
 import DropPromise from './DropPromise.astro';
 import { EXPORT_FORMATS } from '../../editor/encoders';
 import { getShell } from '../../i18n';
@@ -29,7 +30,7 @@ const formats = allowed
   data-audio-joiner
   data-config={JSON.stringify(config)}
   data-i18n={JSON.stringify(t)}
-  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+  class="overflow-clip rounded-(--radius-tool) border border-line bg-surface"
 >
   <div data-empty>
   <DropPromise config={config} locale={locale}>
@@ -40,12 +41,7 @@ const formats = allowed
       <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
     </div>
   </DropPromise>
-  <div class="mb-5 mt-4 text-center">
-    <p class="inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
-      <Icon name="shield-check" size={14} class="text-accent" />
-      {t.joinerLocal}
-    </p>
-  </div>
+  <LocalBadge text={t.joinerLocal} />
   </div>
   <input type="file" class="hidden" multiple accept="audio/*,video/mp4,.m4a,.opus" data-file-input />
 
@@ -92,10 +88,10 @@ const formats = allowed
     </div>
 
     <!-- Export bar -->
-    <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+    <div class="export-bar flex-wrap">
       <label class="flex items-center gap-2 text-sm text-ink2">
         {t.format}
-        <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-format class="h-10 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           {formats.map((f) => (
             <option value={f.id} selected={f.id === config.defaultFormat}>
               {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
@@ -103,7 +99,7 @@ const formats = allowed
           ))}
         </select>
       </label>
-      <button type="button" class="btn btn-primary btn-lg ml-auto" data-export disabled>
+      <button type="button" class="btn btn-primary btn-lg ms-auto" data-export disabled>
         <Icon name="download-simple" size={18} />
         {t.mergeExport}
       </button>
@@ -113,7 +109,7 @@ const formats = allowed
   <p data-status class="sr-only" role="status" aria-live="polite"></p>
 </div>
 
-<div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2"></div>
+<div data-toast-root class="toast-root"></div>
 
 <script>
   import { initJoiners } from '../../editor/joiner';

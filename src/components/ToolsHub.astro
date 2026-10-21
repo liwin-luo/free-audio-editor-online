@@ -65,12 +65,12 @@ const hubUrl = new URL(localePath(locale, '/tools'), SITE.url).href;
           hub.tasks.map(({ task, tool }) => (
             <a
               href={localePath(locale, `/${tool}`)}
-              class="group flex items-center justify-between gap-3 rounded-xl border border-line bg-surface px-4 py-3 text-sm transition-colors hover:border-accent"
+              class="group flex flex-col items-start gap-1 rounded-xl border border-line bg-surface px-4 py-3 text-sm transition-colors hover:border-accent sm:flex-row sm:items-center sm:justify-between sm:gap-3"
             >
               <span class="text-ink2 group-hover:text-ink">{task}</span>
-              <span class="inline-flex shrink-0 items-center gap-1.5 font-medium text-accent">
+              <span class="inline-flex items-center gap-1.5 font-medium text-accent">
                 {localizeTool(tool, locale)?.name ?? tool}
-                <Icon name="convert" size={14} class="transition-transform group-hover:translate-x-0.5" />
+                <Icon name="convert" size={14} class="shrink-0 transition-transform group-hover:translate-x-0.5" />
               </span>
             </a>
           ))
@@ -84,7 +84,7 @@ const hubUrl = new URL(localePath(locale, '/tools'), SITE.url).href;
           <h2 id={`hub-${cat}`} class="text-xl font-semibold tracking-tight">
             <a href={localePath(locale, `/tools/${cat}`)} class="hover:text-accent">{ui.categories[cat]}</a>
           </h2>
-          <p class="mt-2 max-w-[70ch] text-sm leading-relaxed text-ink2">{hub.categoryIntro[cat]}</p>
+          <p class="mt-2 max-w-[65ch] text-sm leading-relaxed text-ink2">{hub.categoryIntro[cat]}</p>
           <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {tools.map((t) => (
               <a

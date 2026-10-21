@@ -2,6 +2,9 @@
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+/* Touch devices get the larger hit areas; mouse keeps the precise edges. */
+@custom-variant pointer-coarse (@media (pointer: coarse));
+
 @theme {
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -11,18 +14,24 @@
   --color-surface: #ffffff;
   --color-surface2: #f4f4f5;
   --color-line: #e4e4e7;
+  /* Form controls need a stronger edge than layout separators (WCAG 1.4.11). */
+  --color-line-strong: #c9c9cf;
   --color-ink: #18181b;
   --color-ink2: #52525b;
   --color-ink3: #71717a;
   --color-accent: #0f766e;
   --color-accent-strong: #115e59;
   --color-accent-soft: rgba(13, 148, 136, 0.12);
+  /* Text/icon colour on top of an accent surface — flips in dark mode. */
+  --color-on-accent: #ffffff;
   --color-success: #047857;
   --color-warning: #b45309;
   --color-danger: #be123c;
 
   --radius-card: 0.75rem;
   --radius-tool: 1rem;
+  --shadow-card: 0 8px 24px -8px rgba(9, 9, 11, 0.08);
+  --shadow-pop: 0 8px 24px -8px rgba(9, 9, 11, 0.15);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -32,15 +41,21 @@
   --color-surface: #18181b;
   --color-surface2: #27272a;
   --color-line: #27272a;
+  --color-line-strong: #3f3f46;
   --color-ink: #fafafa;
   --color-ink2: #a1a1aa;
   --color-ink3: #a1a1aa;
   --color-accent: #2dd4bf;
   --color-accent-strong: #5eead4;
   --color-accent-soft: rgba(45, 212, 191, 0.15);
+  --color-on-accent: #09090b;
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-danger: #fb7185;
+
+  /* Dark surfaces need a deeper shadow — the light one disappears on near-black. */
+  --shadow-card: 0 8px 24px -8px rgba(0, 0, 0, 0.55);
+  --shadow-pop: 0 8px 24px -8px rgba(0, 0, 0, 0.65);
 }
 
 @layer base {
@@ -57,7 +72,7 @@
 
   ::selection {
     background-color: var(--color-accent);
-    color: #ffffff;
+    color: var(--color-on-accent);
   }
 
   :focus-visible {
@@ -83,19 +98,73 @@
 }
 
 @layer components {
-  .skip-link {
-    position: absolute;
-    left: -9999px;
-    top: 0;
-    z-index: 100;
-    background: var(--color-accent);
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 0 0 0.5rem 0;
+  /* Toast stack: centred under the header on phones, pinned to the reading-end
+     corner on desktop. Logical insets keep it on the right in RTL. */
+  .toast-root {
+    position: fixed;
+    inset-inline: 1rem;
+    top: 5rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    pointer-events: none;
   }
 
-  .skip-link:focus {
-    left: 0;
+  @media (min-width: 768px) {
+    .toast-root {
+      inset-inline: auto;
+      inset-inline-end: 1.5rem;
+      top: auto;
+      bottom: 1.5rem;
+      align-items: flex-end;
+    }
+  }
+
+  /* Grows from the reading start, so the fill runs the right way in RTL. */
+  .origin-inline-start {
+    transform-origin: left;
+  }
+
+  [dir='rtl'] .origin-inline-start {
+    transform-origin: right;
+  }
+
+  .skip-link {
+    position: fixed;
+    inset-inline-start: 0;
+    top: 0;
+    z-index: 60;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 0.5rem 0;
+    transform: translateY(-150%);
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
+  /* Sticky export bar shared by the editors. One place to change the
+     surface, the blur and the padding. */
+  .export-bar {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: 1px solid var(--color-line);
+    background-color: color-mix(in srgb, var(--color-surface) 95%, transparent);
+    padding: 0.75rem 1rem;
+    backdrop-filter: blur(8px);
+  }
+
+  @media (min-width: 768px) {
+    .export-bar {
+      padding-inline: 1.25rem;
+    }
   }
 
   .container-page {
@@ -153,7 +222,7 @@
 
   .btn-primary {
     background-color: var(--color-accent);
-    color: #ffffff;
+    color: var(--color-on-accent);
   }
 
   .btn-primary:hover:not(:disabled) {
@@ -184,6 +253,27 @@
     height: 3rem;
     padding-inline: 1.5rem;
     font-size: 1rem;
+  }
+
+  /* Fingers are less precise than a cursor: every button clears 44×44 on
+     touch, while mouse users keep the tighter 40px default. Dense text-link
+     lists stay readable but reach the 24px floor from WCAG 2.5.8. */
+  @media (pointer: coarse) {
+    .btn {
+      min-height: 2.75rem;
+      min-width: 2.75rem;
+    }
+
+    /* Footer link lists stay dense for SEO; give each row a 24px tap box. */
+    footer nav ul a {
+      display: inline-flex;
+      min-height: 1.5rem;
+      align-items: center;
+    }
+
+    nav[aria-label='Breadcrumb'] a {
+      padding-block: 0.25rem;
+    }
   }
 
   .card {
@@ -218,7 +308,7 @@
 
   .guide-prose h2 {
     margin-top: 2.5rem;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--color-ink);
@@ -233,14 +323,14 @@
 
   .guide-prose p {
     margin-top: 1rem;
-    line-height: 1.7;
+    line-height: 1.6;
   }
 
   .guide-prose ul,
   .guide-prose ol {
     margin-top: 1rem;
-    padding-left: 1.25rem;
-    line-height: 1.7;
+    padding-inline-start: 1.25rem;
+    line-height: 1.6;
   }
 
   .guide-prose ul {
@@ -289,8 +379,8 @@
 
   .guide-prose blockquote {
     margin-top: 1rem;
-    padding-left: 1rem;
-    border-left: 3px solid var(--color-accent);
+    padding-inline-start: 1rem;
+    border-inline-start: 3px solid var(--color-accent);
   }
 
   .guide-prose table {
@@ -305,7 +395,7 @@
   .guide-prose td {
     border: 1px solid var(--color-line);
     padding: 0.625rem 0.75rem;
-    text-align: left;
+    text-align: start;
     vertical-align: top;
   }
 
@@ -320,9 +410,11 @@
   }
 }
 
-/* Drop well. Unlayered so it wins over the drag-highlight utilities. */
+/* Drop well. Unlayered so it wins over the drag-highlight utilities.
+   The dashed edge is the only cue that the area is a target, so it has to
+   clear 3:1 against the page background (WCAG 1.4.11). */
 [data-dropzone] {
-  border-color: color-mix(in srgb, var(--color-ink3) 42%, var(--color-line));
+  border-color: color-mix(in srgb, var(--color-ink3) 78%, var(--color-line));
 }
 [data-dropzone]:hover {
   border-color: color-mix(in srgb, var(--color-accent) 55%, var(--color-line));

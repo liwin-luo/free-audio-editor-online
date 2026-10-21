@@ -10,13 +10,13 @@ const { title, steps } = Astro.props;
 
 <section class="py-16" aria-labelledby="howto-heading">
   <div class="container-page">
-    <h2 id="howto-heading" class="text-2xl font-semibold tracking-tight md:text-3xl">
+    <h2 id="howto-heading" class="text-[28px] font-semibold tracking-tight">
       {title}
     </h2>
     <ol class="mt-8 grid gap-6 md:grid-cols-3">
       {
         steps.map((step, i) => (
-          <li class="relative rounded-xl border border-line bg-surface p-6" style={`--i:${i}`}>
+          <li class="relative rounded-xl border border-line bg-surface p-6">
             <span
               class="grid size-8 place-items-center rounded-full bg-accent-soft font-mono text-sm font-medium text-accent"
               aria-hidden="true"

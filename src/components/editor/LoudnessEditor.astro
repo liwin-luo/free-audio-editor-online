@@ -4,6 +4,7 @@
  * delivery targets. Not a room meter and not the waveform editor.
  */
 import Icon from '../Icon.astro';
+import LocalBadge from './LocalBadge.astro';
 import DropPromise from './DropPromise.astro';
 import { EXPORT_FORMATS } from '../../editor/encoders';
 import { getShell } from '../../i18n';
@@ -30,7 +31,7 @@ const targets = [
 <div
   data-loudness
   data-i18n={JSON.stringify(t)}
-  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+  class="overflow-clip rounded-(--radius-tool) border border-line bg-surface"
 >
   <div data-empty>
   <DropPromise config={config} locale={locale}>
@@ -41,12 +42,7 @@ const targets = [
       <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
     </div>
   </DropPromise>
-  <div class="mb-5 mt-4 text-center">
-    <p class="inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
-      <Icon name="shield-check" size={14} class="text-accent" />
-      {t.dropLocal}
-    </p>
-  </div>
+  <LocalBadge text={t.dropLocal} />
   </div>
   <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input />
 
@@ -85,10 +81,10 @@ const targets = [
     </div>
     <p data-lufs-note class="px-4 pb-4 text-sm text-ink2 md:px-5" aria-live="polite"></p>
 
-    <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+    <div class="export-bar flex-wrap">
       <label class="flex items-center gap-2 text-sm text-ink2">
         {t.format}
-        <select data-format class="h-10 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink" disabled>
+        <select data-format class="h-10 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" disabled>
           {formats.map((f) => (
             <option value={f.id} selected={f.id === (config.defaultFormat ?? 'wav')}>
               {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
@@ -96,7 +92,7 @@ const targets = [
           ))}
         </select>
       </label>
-      <button type="button" class="btn btn-primary btn-lg ml-auto" data-export disabled>
+      <button type="button" class="btn btn-primary btn-lg ms-auto" data-export disabled>
         <Icon name="download-simple" size={18} />
         {config.exportLabel ?? t.export}
       </button>
@@ -104,7 +100,7 @@ const targets = [
   </div>
 </div>
 
-<div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+<div data-toast-root class="toast-root"></div>
 
 <script>
   import { initLoudness } from '../../editor/loudness-ui';

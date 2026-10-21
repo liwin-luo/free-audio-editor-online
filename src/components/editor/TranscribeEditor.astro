@@ -5,6 +5,7 @@
  * no waveform and no audio export, unlike the other islands.
  */
 import Icon from '../Icon.astro';
+import LocalBadge from './LocalBadge.astro';
 import DropPromise from './DropPromise.astro';
 import { getShell } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
@@ -22,7 +23,7 @@ const { editor: t } = getShell(locale);
   data-transcribe
   data-config={JSON.stringify(config)}
   data-i18n={JSON.stringify(t)}
-  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+  class="overflow-clip rounded-(--radius-tool) border border-line bg-surface"
 >
   <div data-empty>
   <DropPromise config={config} locale={locale}>
@@ -33,12 +34,7 @@ const { editor: t } = getShell(locale);
       <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
     </div>
   </DropPromise>
-  <div class="mb-5 mt-4 text-center">
-    <p class="inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
-      <Icon name="shield-check" size={14} class="text-accent" />
-      {t.dropLocal}
-    </p>
-  </div>
+  <LocalBadge text={t.dropLocal} />
   </div>
   <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input {...(config.batch ? { multiple: true } : {})} />
 
@@ -65,13 +61,13 @@ const { editor: t } = getShell(locale);
     <div class="grid gap-x-6 gap-y-4 border-b border-line px-4 py-3.5 sm:grid-cols-2 md:px-5">
       <label class="block text-sm text-ink2">
         {t.trLang}
-        <select data-language class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-language class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           <option value="" selected>{t.trLangAuto}</option>
         </select>
       </label>
       <label class="block text-sm text-ink2">
         {t.trModel}
-        <select data-model class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-model class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           <option value="base">{t.trModelBase}</option>
           <option value="tiny">{t.trModelTiny}</option>
         </select>
@@ -81,7 +77,7 @@ const { editor: t } = getShell(locale);
     <!-- Progress -->
     <div data-progress-row class="hidden border-b border-line px-4 py-3 md:px-5">
       <div class="h-1.5 w-full overflow-hidden rounded-full bg-surface2">
-        <div data-progress-bar class="h-full w-0 rounded-full bg-accent transition-[width] duration-300"></div>
+        <div data-progress-bar class="h-full w-full origin-inline-start rounded-full bg-accent transition-transform duration-300" style="transform: scaleX(0)"></div>
       </div>
     </div>
 
@@ -92,15 +88,15 @@ const { editor: t } = getShell(locale);
         rows={9}
         disabled
         placeholder={t.trResultPlaceholder}
-        class="w-full resize-y rounded-lg border border-line bg-bg px-3 py-2.5 text-sm leading-relaxed text-ink placeholder:text-ink3 disabled:cursor-not-allowed"
+        class="w-full resize-y rounded-lg border border-line-strong bg-bg px-3 py-2.5 text-sm leading-relaxed text-ink placeholder:text-ink3 disabled:cursor-not-allowed"
       ></textarea>
       <p class="mt-2 text-xs text-ink3">{t.trFirstRun}</p>
     </div>
 
     <!-- Action bar -->
-    <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+    <div class="export-bar flex-wrap">
       <p class="text-xs text-ink3">{t.dropLocal}</p>
-      <div class="ml-auto flex flex-wrap items-center gap-2">
+      <div class="ms-auto flex flex-wrap items-center gap-2">
         <button type="button" class="btn btn-ghost" data-copy disabled>{t.trCopy}</button>
         <button type="button" class="btn btn-ghost" data-download-txt disabled>{t.trTxt}</button>
         <button type="button" class="btn btn-ghost" data-download-srt disabled>{t.trSrt}</button>
@@ -114,7 +110,7 @@ const { editor: t } = getShell(locale);
 
   <p data-status class="sr-only" role="status" aria-live="polite"></p>
 
-  <div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+  <div data-toast-root class="toast-root"></div>
 </div>
 
 <script>

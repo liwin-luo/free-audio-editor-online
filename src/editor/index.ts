@@ -544,6 +544,8 @@ export class Editor {
     els.exportBtn.addEventListener('click', () => void this.doExport());
 
     els.root.addEventListener('pointerdown', () => (activeEditor = this));
+    // Keyboard users reach the editor by tabbing, which never fires pointerdown.
+    els.root.addEventListener('focusin', () => (activeEditor = this));
     window.addEventListener('themechange', () => this.draw());
     window.addEventListener('resize', () => this.draw());
     document.addEventListener('keydown', (e) => this.onKeydown(e));
@@ -942,7 +944,8 @@ export class Editor {
       return;
     }
     this.els.selection.classList.remove('hidden');
-    this.els.selection.style.left = `${sel.start * this.pps}px`;
+    // Position with a transform so dragging the selection does not re-layout.
+    this.els.selection.style.transform = `translateX(${sel.start * this.pps}px)`;
     this.els.selection.style.width = `${(sel.end - sel.start) * this.pps}px`;
     this.updateSpanReadout();
     this.draw();
@@ -980,7 +983,8 @@ export class Editor {
       const on = Number(btn.dataset.pitchPreset) === Math.round(semis);
       btn.classList.toggle('border-accent', on);
       btn.classList.toggle('bg-accent', on);
-      btn.classList.toggle('text-white', on);
+      btn.classList.toggle('text-on-accent', on);
+      btn.setAttribute('aria-pressed', String(on));
     }
   }
 
@@ -989,7 +993,8 @@ export class Editor {
       const on = Math.abs(Number(btn.dataset.speedPreset) - speed) < 0.001;
       btn.classList.toggle('border-accent', on);
       btn.classList.toggle('bg-accent', on);
-      btn.classList.toggle('text-white', on);
+      btn.classList.toggle('text-on-accent', on);
+      btn.setAttribute('aria-pressed', String(on));
     }
   }
 
@@ -998,7 +1003,8 @@ export class Editor {
       const on = Number(btn.dataset.gainPreset) === percent;
       btn.classList.toggle('border-accent', on);
       btn.classList.toggle('bg-accent', on);
-      btn.classList.toggle('text-white', on);
+      btn.classList.toggle('text-on-accent', on);
+      btn.setAttribute('aria-pressed', String(on));
     }
   }
 
@@ -1210,11 +1216,13 @@ export class Editor {
 
   private updateModeButtons(): void {
     if (!this.els.modeKeep || !this.els.modeDelete) return;
-    const active = 'bg-accent text-white';
+    const active = 'bg-accent text-on-accent';
     const idle = 'text-ink2 hover:text-ink';
     const keepActive = this.state.mode === 'keep';
     this.els.modeKeep.className = `rounded-md px-3 py-1.5 text-sm font-medium ${keepActive ? active : idle}`;
     this.els.modeDelete.className = `rounded-md px-3 py-1.5 text-sm font-medium ${keepActive ? idle : active}`;
+    this.els.modeKeep.setAttribute('aria-pressed', String(keepActive));
+    this.els.modeDelete.setAttribute('aria-pressed', String(!keepActive));
   }
 
   // ---------- Playback ----------
@@ -1537,6 +1545,10 @@ export class Editor {
     if (target.tagName === 'INPUT' || target.tagName === 'SELECT' || target.tagName === 'TEXTAREA') return;
 
     if (e.code === 'Space') {
+      // Space already activates a focused button, link or summary — toggling
+      // playback there too would run the action twice.
+      const focused = target instanceof Element ? target.closest('button, a[href], summary, [role="button"]') : null;
+      if (focused) return;
       e.preventDefault();
       void this.togglePlay();
     } else if (e.key === 'Escape') {

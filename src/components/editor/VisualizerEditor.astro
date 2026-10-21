@@ -5,6 +5,7 @@
  * No audio-export UI — the product is a picture of the chosen time range.
  */
 import Icon from '../Icon.astro';
+import LocalBadge from './LocalBadge.astro';
 import DropPromise from './DropPromise.astro';
 import { getShell } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
@@ -23,7 +24,7 @@ const isSpec = config.visualizer === 'spectrogram';
   data-visualizer
   data-config={JSON.stringify(config)}
   data-i18n={JSON.stringify(t)}
-  class="overflow-hidden rounded-(--radius-tool) border border-line bg-surface"
+  class="overflow-clip rounded-(--radius-tool) border border-line bg-surface"
 >
   <div data-empty>
   <DropPromise config={config} locale={locale}>
@@ -34,12 +35,7 @@ const isSpec = config.visualizer === 'spectrogram';
       <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
     </div>
   </DropPromise>
-  <div class="mb-5 mt-4 text-center">
-    <p class="inline-flex items-center gap-2 rounded-full bg-surface2 px-4 py-1.5 text-xs text-ink2">
-      <Icon name="shield-check" size={14} class="text-accent" />
-      {t.dropLocal}
-    </p>
-  </div>
+  <LocalBadge text={t.dropLocal} />
   </div>
   <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input />
 
@@ -70,7 +66,7 @@ const isSpec = config.visualizer === 'spectrogram';
     <div class:list={['grid gap-x-6 gap-y-4 border-b border-line px-4 py-3.5 sm:grid-cols-2 md:px-5 lg:grid-cols-3', isSpec && 'hidden']}>
       <label class:list={['block text-sm text-ink2', isSpec && 'hidden']}>
         {t.vizTemplate}
-        <select data-viz-template class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-viz-template class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           <option value="" selected>{t.vizTemplateNone}</option>
           <option value="soundcloud">{t.vizTplSoundcloud}</option>
           <option value="podcast">{t.vizTplPodcast}</option>
@@ -83,7 +79,7 @@ const isSpec = config.visualizer === 'spectrogram';
       </label>
       <label class:list={['block text-sm text-ink2', isSpec && 'hidden']}>
         {t.vizStyle}
-        <select data-viz-style class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-viz-style class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           <option value="bars" selected>{t.vizStyleBars}</option>
           <option value="filled">{t.vizStyleFilled}</option>
           <option value="outline">{t.vizStyleOutline}</option>
@@ -94,11 +90,11 @@ const isSpec = config.visualizer === 'spectrogram';
       </label>
       <label class:list={['block text-sm text-ink2', isSpec && 'hidden']}>
         {t.vizWaveColor}
-        <input type="color" data-viz-wave-color value="#0d9488" class="mt-1.5 h-10 w-full cursor-pointer rounded-lg border border-line bg-bg p-1" />
+        <input type="color" data-viz-wave-color value="#0d9488" class="mt-1.5 h-10 w-full cursor-pointer rounded-lg border border-line-strong bg-bg p-1" />
       </label>
       <label class:list={['block text-sm text-ink2', isSpec && 'hidden']}>
         {t.vizBgColor}
-        <input type="color" data-viz-bg-color value="#09090b" class="mt-1.5 h-10 w-full cursor-pointer rounded-lg border border-line bg-bg p-1" />
+        <input type="color" data-viz-bg-color value="#09090b" class="mt-1.5 h-10 w-full cursor-pointer rounded-lg border border-line-strong bg-bg p-1" />
       </label>
       <label class:list={['flex items-center gap-3 text-sm text-ink2', isSpec && 'hidden']}>
         <input type="checkbox" data-viz-transparent checked class="size-4 accent-(--color-accent)" />
@@ -109,7 +105,7 @@ const isSpec = config.visualizer === 'spectrogram';
     <div class:list={['grid gap-x-6 gap-y-4 border-b border-line px-4 py-3.5 sm:grid-cols-2 md:px-5 lg:grid-cols-3', !isSpec && 'hidden']}>
       <label class="block text-sm text-ink2">
         {t.specFft}
-        <select data-viz-fft class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-viz-fft class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           <option value="1024">1024</option>
           <option value="2048" selected>2048</option>
           <option value="4096">4096</option>
@@ -117,26 +113,26 @@ const isSpec = config.visualizer === 'spectrogram';
       </label>
       <label class="block text-sm text-ink2">
         {t.specAxis}
-        <select data-viz-axis class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-viz-axis class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           <option value="log" selected>{t.specAxisLog}</option>
           <option value="linear">{t.specAxisLinear}</option>
         </select>
       </label>
       <label class="block text-sm text-ink2">
         {t.specMaxHz}
-        <input type="number" data-viz-max-hz value="20000" min="200" max="96000" step="100" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
+        <input type="number" data-viz-max-hz value="20000" min="200" max="96000" step="100" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.specDbFloor}
-        <input type="number" data-viz-db-floor value="-90" min="-140" max="0" step="1" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
+        <input type="number" data-viz-db-floor value="-90" min="-140" max="0" step="1" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.specDbCeil}
-        <input type="number" data-viz-db-ceil value="-20" min="-80" max="0" step="1" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
+        <input type="number" data-viz-db-ceil value="-20" min="-80" max="0" step="1" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
       </label>
       <label class="block text-sm text-ink2">
         {t.specColors}
-        <select data-viz-colormap class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-viz-colormap class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           <option value="viridis" selected>{t.specViridis}</option>
           <option value="inferno">{t.specInferno}</option>
           <option value="gray">{t.specGray}</option>
@@ -147,7 +143,7 @@ const isSpec = config.visualizer === 'spectrogram';
     <div class="grid gap-x-6 gap-y-4 border-b border-line px-4 py-3.5 sm:grid-cols-2 md:px-5 lg:grid-cols-3">
       <label class="block text-sm text-ink2">
         {t.vizSize}
-        <select data-viz-size class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 text-sm text-ink">
+        <select data-viz-size class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink">
           <option value="video" data-w="1920" data-h="1080">{t.vizSizeVideo} · 1920×1080</option>
           <option value="square" data-w="1080" data-h="1080">{t.vizSizeSquare} · 1080×1080</option>
           <option value="og" data-w="1200" data-h="630" selected>{t.vizSizeOg} · 1200×630</option>
@@ -158,11 +154,11 @@ const isSpec = config.visualizer === 'spectrogram';
       <div data-viz-custom-row class="hidden items-end gap-3 text-sm text-ink2">
         <label class="block">
           {t.vizWidth}
-          <input type="number" data-viz-w value="1600" min="100" max="8000" step="10" class="mt-1.5 h-10 w-24 rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
+          <input type="number" data-viz-w value="1600" min="100" max="8000" step="10" class="mt-1.5 h-10 w-24 rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
         </label>
         <label class="block">
           {t.vizHeight}
-          <input type="number" data-viz-h value="400" min="100" max="8000" step="10" class="mt-1.5 h-10 w-24 rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
+          <input type="number" data-viz-h value="400" min="100" max="8000" step="10" class="mt-1.5 h-10 w-24 rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
         </label>
       </div>
     </div>
@@ -176,14 +172,14 @@ const isSpec = config.visualizer === 'spectrogram';
         <div>
           <label class="block text-sm text-ink2">
             {t.vizRangeStart}
-            <input type="number" data-viz-start value="0" min="0" step="0.01" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
+            <input type="number" data-viz-start value="0" min="0" step="0.01" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
           </label>
           <input type="range" data-viz-start-slider min="0" max="1" step="0.01" value="0" class="mt-2 w-full accent-(--color-accent)" aria-label={t.vizRangeStart} />
         </div>
         <div>
           <label class="block text-sm text-ink2">
             {t.vizRangeEnd}
-            <input type="number" data-viz-end value="0" min="0" step="0.01" class="mt-1.5 h-10 w-full rounded-lg border border-line bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
+            <input type="number" data-viz-end value="0" min="0" step="0.01" class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums text-ink" />
           </label>
           <input type="range" data-viz-end-slider min="0" max="1" step="0.01" value="0" class="mt-2 w-full accent-(--color-accent)" aria-label={t.vizRangeEnd} />
         </div>
@@ -191,9 +187,9 @@ const isSpec = config.visualizer === 'spectrogram';
     </div>
 
     <!-- Export bar -->
-    <div class="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-line bg-surface/95 px-4 py-3 backdrop-blur md:px-5">
+    <div class="export-bar flex-wrap">
       <p class="text-xs text-ink3">{t.dropLocal}</p>
-      <button type="button" class="btn btn-primary btn-lg ml-auto" data-export disabled>
+      <button type="button" class="btn btn-primary btn-lg ms-auto" data-export disabled>
         <Icon name="download-simple" size={18} />
         <span data-export-label>{config.exportLabel ?? t.export}</span>
       </button>
@@ -202,7 +198,7 @@ const isSpec = config.visualizer === 'spectrogram';
 
   <p data-status class="sr-only" role="status" aria-live="polite"></p>
 
-  <div data-toast-root class="pointer-events-none fixed inset-x-4 top-20 z-50 flex flex-col items-center gap-2 md:inset-x-auto md:bottom-6 md:left-auto md:right-6 md:top-auto md:items-end"></div>
+  <div data-toast-root class="toast-root"></div>
 </div>
 
 <script>

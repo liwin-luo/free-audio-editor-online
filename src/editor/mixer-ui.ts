@@ -396,7 +396,7 @@ class Mixer {
       clip.style.left = `${track.offset * pps}px`;
       clip.style.width = `${Math.max(28, span * pps)}px`;
     }
-    this.q<HTMLElement>('[data-playhead]').style.left = `${this.playhead * pps}px`;
+    this.updatePlayhead();
     const summary = this.root.querySelector('[data-summary]');
     if (summary && this.tracks.length > 0) {
       summary.textContent = fill(this.text.trackSummary, {
@@ -404,6 +404,12 @@ class Mixer {
         time: formatTime(this.timelineDuration(), true),
       });
     }
+  }
+
+  /** Playback tick: only the playhead moves, so the clip boxes stay untouched. */
+  private updatePlayhead(): void {
+    const pps = this.pixelsPerSecond();
+    this.q<HTMLElement>('[data-playhead]').style.transform = `translateX(${this.playhead * pps}px)`;
   }
 
   private drawClip(track: Track): void {
@@ -458,7 +464,7 @@ class Mixer {
     this.playTimer = window.setInterval(() => {
       if (!this.ctx) return;
       this.playhead = this.playFrom + (this.ctx.currentTime - this.playAnchor);
-      this.layout();
+      this.updatePlayhead();
     }, 50);
   }
 

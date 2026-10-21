@@ -38,7 +38,7 @@ const { ui } = getShell(locale);
   <span class="hidden h-4 w-px bg-line sm:block" aria-hidden="true"></span>
   <a
     href={locale === 'en' ? '/editorial' : localePath(locale, '/about')}
-    class="inline-flex items-center gap-1 font-medium text-accent hover:underline"
+    class="inline-flex items-center gap-1 font-medium text-accent hover:underline pointer-coarse:min-h-6"
   >
     {ui.trustMethod}
     <span aria-hidden="true">→</span>
