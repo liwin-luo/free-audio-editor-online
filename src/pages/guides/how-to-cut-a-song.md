@@ -8,6 +8,11 @@ poster: /guides-media/how-to-cut-a-song/poster.webp
 youtube: j7BmUJedDJo
 layout: ../../layouts/Guide.astro
 persona: engineer
+sources:
+  - label: Wikipedia — MP3
+    url: https://en.wikipedia.org/wiki/MP3
+  - label: Wikipedia — LAME (the encoder lamejs ports)
+    url: https://en.wikipedia.org/wiki/LAME
 ---
 
 The chorus starts at 1:12 and the intro takes forty seconds you do not need.

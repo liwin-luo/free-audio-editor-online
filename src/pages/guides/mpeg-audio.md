@@ -15,7 +15,9 @@ sources:
 MPEG audio is lossy compressed digital audio as defined by the MPEG standards,
 ISO/IEC 11172-3 and the revisions that followed it. The .mp3 file in your
 recordings folder is MPEG-1 Audio Layer III, and the same family includes the
-MPEG-2 and MPEG-2.5 variants that run at lower sample rates.
+MPEG-2 and MPEG-2.5 variants that run at lower sample rates. The
+[MP3 editor](/mp3-editor) opens that file, and the rest of the family, right
+in the browser.
 
 ## Why the name is everywhere
 

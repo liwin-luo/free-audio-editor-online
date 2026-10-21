@@ -16,6 +16,8 @@ into a player. The question is where the cuts should land. Equal parts are the
 [split MP3](/split-mp3) page's job; chapter cuts belong on the
 [MP3 cutter](/mp3-cutter).
 
+![The split MP3 page. Equal parts from 2 to 16, downloading as one ZIP.](/guides-media/split-long-recording-into-tracks/01-splitDropzone.webp)
+
 There are two jobs hiding under “split”. Equal parts, when the length matters
 more than the content. Chapter cuts, when you know the moments.
 
@@ -30,6 +32,8 @@ ZIP.
 3. If only part of the file should be split, drag a selection on the waveform.
    With no selection, the whole file is split.
 4. Export MP3 or WAV and download the ZIP.
+
+![The parts exported. The ZIP carries every piece at the chosen length.](/guides-media/split-long-recording-into-tracks/02-splitExport.webp)
 
 The cuts are equal time, not a scan for silence, chapter marks or a new song. A
 quiet bar is cut wherever the clock says. That is fine for a backup, a long

@@ -5,6 +5,9 @@ tool: audio-trimmer
 date: 2026-10-16
 layout: ../../layouts/Guide.astro
 persona: engineer
+sources:
+  - label: Wikipedia — HTML5 audio (which codecs browsers decode)
+    url: https://en.wikipedia.org/wiki/HTML5_audio
 ---
 
 A voice memo runs two minutes before anyone speaks. A podcast answer ends and

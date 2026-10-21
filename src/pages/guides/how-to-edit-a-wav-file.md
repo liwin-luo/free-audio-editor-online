@@ -5,6 +5,11 @@ tool: mp3-editor
 date: 2026-10-16
 layout: ../../layouts/Guide.astro
 persona: engineer
+sources:
+  - label: Wikipedia — WAV
+    url: https://en.wikipedia.org/wiki/WAV
+  - label: Wikipedia — Pulse-code modulation
+    url: https://en.wikipedia.org/wiki/Pulse-code_modulation
 ---
 
 A WAV file is the audio with the MP3 compression left off. You can trim it,

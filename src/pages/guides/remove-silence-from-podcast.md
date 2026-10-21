@@ -5,6 +5,9 @@ tool: silence-remover
 date: 2026-10-19
 layout: ../../layouts/Guide.astro
 persona: engineer
+sources:
+  - label: Wikipedia — dBFS (the threshold scale)
+    url: https://en.wikipedia.org/wiki/DBFS
 ---
 
 A podcast take usually has two kinds of quiet. One is the breath between
@@ -20,6 +23,8 @@ where you draw one region and keep exactly that.
 
 Open the [silence remover](/silence-remover) and drop the file. Two controls
 do the work.
+
+![The silence remover page. Threshold and minimum gap decide every cut.](/guides-media/remove-silence-from-podcast/01-silenceDropzone.webp)
 
 **Threshold** is how quiet a stretch must be, from −60 to −20 dBFS. The
 default is −40 dBFS, which suits speech and a voice memo. A number closer to
@@ -44,6 +49,8 @@ export.
    conversation, start around half a second and listen.
 4. Play the original, then export MP3 or WAV. The file is the loud parts
    joined together.
+
+![The gaps removed and the file exported. Short breaths remain.](/guides-media/remove-silence-from-podcast/02-silenceExport.webp)
 
 If the whole file sits under the threshold, there is nothing above the line
 to keep, and the export is the original file.

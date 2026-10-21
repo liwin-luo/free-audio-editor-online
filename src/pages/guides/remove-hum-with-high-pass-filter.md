@@ -17,6 +17,8 @@ sit below the part of the voice that carries meaning. A
 rolls off everything below it: you sweep the cutoff, listen, and export, and
 the file is processed in the browser.
 
+![The high-pass filter page. Everything above the cutoff passes, everything below rolls off.](/guides-media/remove-hum-with-high-pass-filter/01-highpassDropzone.webp)
+
 ## Find out what the noise is
 
 Play the recording on headphones and listen to the bottom end.
@@ -59,6 +61,8 @@ noisy street interview, try 120 Hz. For a deep narration voice, stay near
 5. Check a plosive, a “p” or a “b”, and a low vowel. Those are where an
    over-cut voice gives itself away.
 6. Export MP3 for delivery or WAV if the file will be edited again.
+
+![A cutoff set and the filtered file exported. The hum stays gone.](/guides-media/remove-hum-with-high-pass-filter/02-highpassExport.webp)
 
 Do not judge on one word. Play a full sentence with a natural pause, because
 the noise is most obvious in the gaps.

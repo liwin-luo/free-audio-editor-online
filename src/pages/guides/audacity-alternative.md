@@ -5,6 +5,11 @@ tool: mp3-editor
 date: 2026-10-14
 layout: ../../layouts/Guide.astro
 persona: engineer
+sources:
+  - label: Audacity — free, open source audio software
+    url: https://www.audacityteam.org/
+  - label: Wikipedia — Audacity (audio software)
+    url: https://en.wikipedia.org/wiki/Audacity_(audio_software)
 ---
 
 People searching for an Audacity alternative usually want one of two things. Either

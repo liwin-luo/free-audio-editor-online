@@ -17,6 +17,8 @@ route: the [audio trimmer](/audio-trimmer) runs in Safari, with no app to
 install and no upload. You choose a start and an end, preview the selection,
 and save the cut back to Files.
 
+![The audio trimmer in the browser. Drop a file, or tap to browse Files.](/guides-media/trim-audio-on-iphone/01-trimmerDropzone.webp)
+
 ## What you need on the phone
 
 - The file, saved somewhere iOS can reach. Mail attachments, WhatsApp files and
@@ -49,6 +51,8 @@ the same place.
 5. Tap **Precise times** and type the start and end if the drag is not exact.
 6. Press play. You should hear only the highlighted span.
 7. Choose **Keep selection**, pick MP3 or WAV, and tap **Export**.
+
+![Keep selection is active on the waveform. The export keeps the highlighted span.](/guides-media/trim-audio-on-iphone/02-trimmerExport.webp)
 
 Safari downloads the result to **Files → Downloads** and shows the download
 button in the address bar. Tap it, then move the file to the folder you want.

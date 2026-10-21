@@ -8,6 +8,13 @@ poster: /guides-media/make-iphone-ringtone/poster.webp
 youtube: 5Gt0fMdXHwk
 layout: ../../layouts/Guide.astro
 persona: phone-first
+sources:
+  - label: Wikipedia — Ringtone
+    url: https://en.wikipedia.org/wiki/Ringtone
+  - label: Wikipedia — MPEG-4 Part 14 (the .m4r extension)
+    url: https://en.wikipedia.org/wiki/MPEG-4_Part_14
+  - label: Wikipedia — GarageBand
+    url: https://en.wikipedia.org/wiki/GarageBand
 ---
 
 An iPhone ringtone is an `.m4r` file, under about 40 seconds. The

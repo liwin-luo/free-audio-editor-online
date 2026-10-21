@@ -11,6 +11,7 @@
  * Usage: node scripts/generate-guide-media.mjs
  */
 import puppeteer from 'puppeteer-core';
+import sharp from 'sharp';
 import { execSync } from 'node:child_process';
 import { mkdirSync, writeFileSync, existsSync, statSync, cpSync, readdirSync, unlinkSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -59,6 +60,105 @@ const DIAGRAMS = {
         <p style="position:absolute;right:0;bottom:0;color:#a1a1aa;margin:0">…while track B fades in</p>
       </div>`,
   },
+  bitrateLadder: {
+    title: 'What a minute costs at each bitrate',
+    body: `
+      <div style="display:grid;gap:22px">
+        ${[['320 kbps', '2.4 MB', 100, '#0d9488'], ['192 kbps', '1.4 MB', 58, '#2dd4bf'], ['128 kbps', '1 MB', 40, '#5eead4']].map(([k, v, w, c]) => `
+        <div>
+          <p style="margin:0 0 8px;font-weight:600">${k} <span style="color:#71717a;font-weight:400">· ${v} per minute</span></p>
+          <div style="height:34px;width:${w}%;background:${c};border-radius:8px"></div>
+        </div>`).join('')}
+      </div>`,
+  },
+  sizeBars: {
+    title: 'One minute of stereo audio',
+    body: `
+      <div style="display:grid;gap:22px">
+        ${[['WAV, 16-bit', '10 MB', 100, '#18181b'], ['MP3 320 kbps', '2.4 MB', 24, '#0d9488'], ['MP3 128 kbps', '1 MB', 10, '#2dd4bf']].map(([k, v, w, c]) => `
+        <div>
+          <p style="margin:0 0 8px;font-weight:600">${k} <span style="color:#71717a;font-weight:400">· ${v}</span></p>
+          <div style="height:34px;width:${w}%;min-width:60px;background:${c};border-radius:8px"></div>
+        </div>`).join('')}
+      </div>`,
+  },
+  dbfsScale: {
+    title: 'dBFS: everything at or below zero',
+    body: `
+      <div style="display:flex;gap:40px;align-items:stretch">
+        <div style="width:26px;height:300px;border-left:4px solid #0d9488;background:linear-gradient(180deg,#0d9488 0%,#5eead4 100%);border-radius:4px"></div>
+        <div style="display:grid;align-content:space-between;height:300px">
+          <p style="margin:0;font-weight:600">0 dBFS — the ceiling. Nothing louder exists in the file.</p>
+          <p style="margin:0">−1 dBFS — delivery margin (peak kept out of the encode)</p>
+          <p style="margin:0">−6 dBFS — half the amplitude</p>
+          <p style="margin:0">−12 dBFS — a quarter</p>
+          <p style="margin:0">−40 dBFS — quiet room tone (silence-remover default)</p>
+        </div>
+      </div>`,
+  },
+  gainVsVolume: {
+    title: 'Gain is baked in; volume is a knob',
+    body: `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px">
+        <div style="background:#18181b;border:1px solid #27272a;border-radius:14px;padding:30px">
+          <p style="margin:0 0 12px;font-weight:600;color:#fb7185">VOLUME — at playback</p>
+          ${wave([0, 48], '#71717a')}
+          <p style="margin:10px 0 0;color:#a1a1aa">The file on disk is untouched. Turn it down and everyone else still gets the original level.</p>
+        </div>
+        <div style="background:#18181b;border:1px solid #27272a;border-radius:14px;padding:30px">
+          <p style="margin:0 0 12px;font-weight:600;color:#2dd4bf">GAIN — in the export</p>
+          ${wave([0, 48], '#2dd4bf')}
+          <p style="margin:10px 0 0;color:#a1a1aa">The louder level is written into the samples. Every player, everywhere, gets the boosted file.</p>
+        </div>
+      </div>`,
+  },
+  sampleRateDots: {
+    title: 'A wave measured 44,100 times a second',
+    body: `
+      <div style="position:relative;height:240px">
+        <svg viewBox="0 0 1060 240" style="width:100%;height:100%">
+          <path d="M0,120 C90,10 180,10 265,120 C350,230 440,230 530,120 C620,10 710,10 795,120 C880,230 970,230 1060,120" fill="none" stroke="#2dd4bf" stroke-width="4"/>
+          ${Array.from({ length: 22 }, (_, i) => {
+            const x = i * 50;
+            const y = 120 - 110 * Math.sin((i / 21) * Math.PI * 4);
+            return `<circle cx="${x}" cy="${y.toFixed(0)}" r="7" fill="#0d9488" stroke="#fff" stroke-width="2"/>`;
+          }).join('')}
+        </svg>
+        <p style="margin:10px 0 0;color:#71717a">Each dot is one sample: the wave's level at that instant. 44.1 kHz = 44,100 dots per second.</p>
+      </div>`,
+  },
+  losslessFlow: {
+    title: 'Lossless round-trips; lossy does not',
+    body: `
+      <div style="display:grid;gap:26px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="background:#0d9488;color:#fff;padding:12px 20px;border-radius:10px;font-weight:600">WAV</span><span>→</span>
+          <span style="background:#134e4a;color:#2dd4bf;padding:12px 20px;border-radius:10px">FLAC (pack)</span><span>→</span>
+          <span style="background:#134e4a;color:#2dd4bf;padding:12px 20px;border-radius:10px">unpack</span><span>→</span>
+          <span style="background:#0d9488;color:#fff;padding:12px 20px;border-radius:10px">identical WAV ✓</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="background:#18181b;color:#fafafa;padding:12px 20px;border-radius:10px;border:1px solid #27272a">WAV</span><span>→</span>
+          <span style="background:#4c1d24;color:#fb7185;padding:12px 20px;border-radius:10px">MP3 (lossy encode)</span><span>→</span>
+          <span style="background:#4c1d24;color:#fb7185;padding:12px 20px;border-radius:10px">decode</span><span>→</span>
+          <span style="background:#18181b;color:#fafafa;padding:12px 20px;border-radius:10px;border:1px solid #27272a">different WAV ✗</span>
+        </div>
+        <p style="margin:0;color:#71717a">The top row loses nothing. The bottom row never gets the discarded samples back — at any bitrate.</p>
+      </div>`,
+  },
+  pcmSamples: {
+    title: 'PCM: the wave written down as numbers',
+    body: `
+      <div style="display:grid;gap:18px">
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          ${[0.00, 0.31, 0.59, 0.81, 0.95, 1.00, 0.95, 0.81, 0.59, 0.31, 0.00, -0.31, -0.59, -0.81].map((v) => `
+          <div style="background:#18181b;border:1px solid #27272a;border-radius:10px;padding:12px 16px;text-align:center">
+            <div style="font-family:ui-monospace,monospace;font-size:22px;font-weight:600;color:#2dd4bf">${v.toFixed(2)}</div>
+          </div>`).join('')}
+        </div>
+        <p style="margin:0;color:#a1a1aa">One column per sample, thousands of times a second, two channels wide. That column of numbers <b>is</b> the audio — players decode everything else back to this.</p>
+      </div>`,
+  },
 };
 
 function wave(range, color, invert = false) {
@@ -72,6 +172,202 @@ function wave(range, color, invert = false) {
 }
 
 const ARTICLES = [
+  // image-only entries (no slides): shots are framed article images, no TTS/video.
+  {
+    slug: 'convert-wav-to-mp3',
+    videoTitle: 'How to Convert WAV to MP3',
+    shots: ['wavDropzone', 'wavExport'],
+    slides: [],
+  },
+  {
+    slug: 'convert-flac-to-mp3',
+    videoTitle: 'How to Convert FLAC to MP3',
+    shots: ['flacDropzone', 'flacExport'],
+    slides: [],
+  },
+  {
+    slug: 'make-slowed-and-reverb',
+    videoTitle: 'How to Make a Slowed + Reverb Edit',
+    shots: ['slowedDropzone', 'slowedLoaded', 'slowedExport'],
+    slides: [],
+  },
+  {
+    slug: 'compress-audio-for-email',
+    videoTitle: 'How to Compress Audio for Email',
+    shots: ['compressDropzone', 'compressExport'],
+    slides: [],
+  },
+  {
+    slug: 'why-is-my-voice-memo-so-quiet',
+    videoTitle: 'Why Is My Voice Memo So Quiet?',
+    shots: ['volumeDropzone', 'volumeExport'],
+    slides: [],
+  },
+  {
+    slug: 'audio-clicks-at-the-start',
+    videoTitle: 'Why Your Audio Clip Clicks at the Start',
+    shots: ['fadeDropzone', 'fadeExport'],
+    slides: [],
+  },
+  {
+    slug: 'garageband-alternative',
+    videoTitle: 'GarageBand Alternative',
+    shots: ['editorDropzone', 'editorExport'],
+    slides: [],
+  },
+  {
+    slug: 'audition-alternative',
+    videoTitle: 'Adobe Audition Alternative',
+    shots: ['editorDropzone', 'editorExport'],
+    slides: [],
+  },
+  {
+    slug: '123apps-alternative',
+    videoTitle: '123apps Alternative',
+    shots: ['editorDropzone', 'editorExport'],
+    slides: [],
+  },
+  {
+    slug: 'car-stereo-wont-play',
+    videoTitle: 'Why Your Car Stereo Won\u2019t Play That File',
+    shots: ['m4aDropzone', 'm4aExport'],
+    slides: [],
+  },
+  {
+    slug: 'find-bpm-and-key',
+    videoTitle: 'How to Find the BPM and Key of a Song',
+    shots: ['bpmDropzone', 'bpmReadings'],
+    slides: [],
+  },
+  {
+    slug: 'transcribe-audio-to-text',
+    videoTitle: 'How to Transcribe Audio to Text',
+    shots: ['transcribeDone'],
+    slides: [],
+  },
+  {
+    slug: 'what-is-crossfade',
+    videoTitle: 'What Is Crossfade?',
+    shots: [],
+    diagrams: [{ name: 'crossfade', file: 'crossfade' }],
+    slides: [],
+  },
+  {
+    slug: 'what-is-audio-bitrate',
+    videoTitle: 'What Is Audio Bitrate?',
+    shots: [],
+    diagrams: [{ name: 'bitrateLadder', file: 'bitrate-ladder' }],
+    slides: [],
+  },
+  {
+    slug: 'wav-vs-mp3',
+    videoTitle: 'WAV vs MP3',
+    shots: [],
+    diagrams: [{ name: 'sizeBars', file: 'size-per-minute' }],
+    slides: [],
+  },
+  {
+    slug: 'what-is-dbfs',
+    videoTitle: 'What Is dBFS?',
+    shots: [],
+    diagrams: [{ name: 'dbfsScale', file: 'dbfs-scale' }],
+    slides: [],
+  },
+  {
+    slug: 'cut-a-song-for-tiktok',
+    videoTitle: 'How to Cut a Song for TikTok and Reels',
+    shots: ['dropzone', 'selection', 'exportToast'],
+    slides: [],
+  },
+  {
+    slug: 'record-a-voice-memo-in-browser',
+    videoTitle: 'How to Record a Voice Memo in the Browser',
+    shots: ['recorderLoaded'],
+    slides: [],
+  },
+  {
+    slug: 'trim-audio-on-iphone',
+    videoTitle: 'How to Trim Audio on iPhone',
+    shots: ['trimmerDropzone', 'trimmerExport'],
+    slides: [],
+  },
+  {
+    slug: 'trim-opentracks-bgm',
+    videoTitle: 'How to Trim OpenTracks BGM',
+    shots: ['trimmerDropzone', 'trimmerExport'],
+    slides: [],
+  },
+  {
+    slug: 'normalize-vs-compress-audio',
+    videoTitle: 'Normalize vs Compress',
+    shots: ['normalizeDropzone', 'compressorExport'],
+    slides: [],
+  },
+  {
+    slug: 'remove-hum-with-high-pass-filter',
+    videoTitle: 'Remove Hum with a High-Pass Filter',
+    shots: ['highpassDropzone', 'highpassExport'],
+    slides: [],
+  },
+  {
+    slug: 'remove-silence-from-podcast',
+    videoTitle: 'Remove Silence from a Podcast',
+    shots: ['silenceDropzone', 'silenceExport'],
+    slides: [],
+  },
+  {
+    slug: 'split-long-recording-into-tracks',
+    videoTitle: 'Split a Long Recording into Tracks',
+    shots: ['splitDropzone', 'splitExport'],
+    slides: [],
+  },
+  {
+    slug: 'convert-opus-to-mp3',
+    videoTitle: 'Convert Opus to MP3',
+    shots: ['opusDropzone', 'opusExport'],
+    slides: [],
+  },
+  {
+    slug: 'convert-m4a-to-mp3',
+    videoTitle: 'Convert M4A to MP3',
+    shots: ['m4aDropzone', 'm4aExport'],
+    slides: [],
+  },
+  {
+    slug: 'podcast-loudness-lufs',
+    videoTitle: 'What LUFS Should a Podcast Be?',
+    shots: ['loudDropzone', 'loudReadings'],
+    slides: [],
+  },
+  {
+    slug: 'gain-vs-volume',
+    videoTitle: 'Gain vs Volume',
+    shots: [],
+    diagrams: [{ name: 'gainVsVolume', file: 'gain-vs-volume' }],
+    slides: [],
+  },
+  {
+    slug: 'what-is-sample-rate',
+    videoTitle: 'What Is Sample Rate?',
+    shots: [],
+    diagrams: [{ name: 'sampleRateDots', file: 'sample-rate-dots' }],
+    slides: [],
+  },
+  {
+    slug: 'what-is-lossless-audio',
+    videoTitle: 'What Is Lossless Audio?',
+    shots: [],
+    diagrams: [{ name: 'losslessFlow', file: 'lossless-flow' }],
+    slides: [],
+  },
+  {
+    slug: 'what-is-pcm-audio',
+    videoTitle: 'What Is PCM Audio?',
+    shots: [],
+    diagrams: [{ name: 'pcmSamples', file: 'pcm-samples' }],
+    slides: [],
+  },
+
   {
     slug: 'how-to-cut-a-song',
     videoTitle: 'How to Cut a Song Online (Free, Nothing Uploaded)',
@@ -254,6 +550,157 @@ async function captureShots(browser) {
   await page.close();
 }
 
+// Editor-shell pages share the cutter flow: dropzone → upload a tone →
+// workspace → (drag a selection where a waveform exists) → export toast.
+// Wrapped per page so one odd page cannot kill the batch.
+const EDITOR_PAGES = [
+  ['wav-to-mp3', 'wav', true],
+  ['flac-to-mp3', 'flac', true],
+  ['slowed-reverb', 'slowed', true],
+  ['compress-audio', 'compress', false],
+  ['increase-volume', 'volume', false],
+  ['fade-audio', 'fade', false],
+  ['mp3-editor', 'editor', true],
+  ['m4a-to-mp3', 'm4a', true],
+  ['audio-trimmer', 'trimmer', true],
+  ['normalize-audio', 'normalize', true],
+  ['compressor', 'compressor', false],
+  ['high-pass-filter', 'highpass', true],
+  ['silence-remover', 'silence', true],
+  ['split-mp3', 'split', false],
+  ['opus-to-mp3', 'opus', true],
+];
+
+async function captureEditorPages(browser) {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1366, height: 900, deviceScaleFactor: 2 });
+  const upload = async (sel, files) => {
+    const input = await page.$(sel);
+    await input.uploadFile(...(Array.isArray(files) ? files : [files]));
+  };
+  const waitExported = async () => {
+    for (let i = 0; i < 40; i++) {
+      await sleep(250);
+      const s = await page.evaluate(() => document.querySelector('[data-status]')?.textContent ?? '');
+      if (/Exported/.test(s)) return;
+    }
+  };
+  for (const [slug, prefix, select, file] of EDITOR_PAGES) {
+    try {
+      await page.goto(`${BASE}/${slug}`, { waitUntil: 'networkidle0' });
+      await sleep(300);
+      const shell = await page.$('[data-audio-editor]');
+      if (!shell) throw new Error('no [data-audio-editor]');
+      await shell.screenshot({ path: `${RAW}/${prefix}Dropzone.png` });
+      log(`shot: ${prefix}Dropzone`);
+      await upload('[data-file-input]', file ?? '/tmp/test-tone.wav');
+      await page.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 15000 });
+      if (select) {
+        try {
+          const stage = await page.$('[data-stage-content]');
+          const box = await stage.boundingBox();
+          const cy = box.y + box.height / 2;
+          await page.mouse.move(box.x + box.width * 0.25, cy);
+          await page.mouse.down();
+          await page.mouse.move(box.x + box.width * 0.65, cy, { steps: 8 });
+          await page.mouse.up();
+          await sleep(250);
+        } catch { /* no waveform on this page — skip the selection */ }
+      }
+      await sleep(300);
+      const loaded = await page.$('[data-audio-editor]');
+      await loaded.screenshot({ path: `${RAW}/${prefix}Loaded.png` });
+      log(`shot: ${prefix}Loaded`);
+      try { await page.select('[data-format]', 'wav'); } catch { /* format select optional */ }
+      await page.click('[data-export]');
+      await waitExported();
+      await page.screenshot({ path: `${RAW}/${prefix}Export.png` });
+      log(`shot: ${prefix}Export`);
+    } catch (e) {
+      log(`✗ ${slug}: ${e.message}`);
+    }
+  }
+  await page.close();
+}
+
+// key-bpm-finder: readings need rhythmic material — a 120 BPM click track,
+// not the sine test tone (a flat tone has no onsets and would read "Can't read").
+async function captureLoudnessMeter(browser) {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1366, height: 900, deviceScaleFactor: 2 });
+  try {
+    await page.goto(`${BASE}/loudness-meter`, { waitUntil: 'networkidle0' });
+    await sleep(300);
+    const shell = await page.$('[data-audio-editor]');
+    if (shell) await shell.screenshot({ path: `${RAW}/loudDropzone.png` });
+    else await page.screenshot({ path: `${RAW}/loudDropzone.png` });
+    log('shot: loudDropzone');
+    const input = await page.$('[data-file-input]');
+    await input.uploadFile('/tmp/test-tone.wav');
+    await sleep(4000);
+    await page.screenshot({ path: `${RAW}/loudReadings.png` });
+    log('shot: loudReadings');
+  } catch (e) {
+    log(`✗ loudness-meter: ${e.message}`);
+  }
+  await page.close();
+}
+
+async function captureBpmFinder(browser) {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1366, height: 900, deviceScaleFactor: 2 });
+  try {
+    await page.goto(`${BASE}/key-bpm-finder`, { waitUntil: 'networkidle0' });
+    await sleep(300);
+    const shell = await page.$('[data-audio-editor]');
+    if (shell) await shell.screenshot({ path: `${RAW}/bpmDropzone.png` });
+    else await page.screenshot({ path: `${RAW}/bpmDropzone.png` });
+    log('shot: bpmDropzone');
+    const input = await page.$('[data-file-input]');
+    await input.uploadFile('/tmp/test-clicks.wav');
+    await sleep(4000);
+    await page.screenshot({ path: `${RAW}/bpmReadings.png`, fullPage: false });
+    log('shot: bpmReadings');
+  } catch (e) {
+    log(`✗ key-bpm-finder: ${e.message}`);
+  }
+  await page.close();
+}
+
+// audio-to-text: the first run downloads the Whisper model, so this capture
+// waits up to ~2.5 minutes for the transcript before shooting whatever is on
+// screen (a progress state is also an honest image).
+async function captureTranscribe(browser) {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1366, height: 900, deviceScaleFactor: 2 });
+  try {
+    await page.goto(`${BASE}/audio-to-text`, { waitUntil: 'networkidle0' });
+    await sleep(300);
+    const shell = await page.$('[data-audio-editor]');
+    if (shell) await shell.screenshot({ path: `${RAW}/transcribeDropzone.png` });
+    else await page.screenshot({ path: `${RAW}/transcribeDropzone.png` });
+    log('shot: transcribeDropzone');
+    const input = await page.$('[data-file-input]');
+    if (!input) throw new Error('no file input');
+    await input.uploadFile('/tmp/test-clicks.wav');
+    let done = false;
+    for (let i = 0; i < 60; i++) {
+      await sleep(2500);
+      done = await page.evaluate(() => {
+        const t = document.body.innerText;
+        return /SRT|\.txt|Transcript|Copy/i.test(t) && !/Transcribing|Loading|%/i.test(t.slice(-400));
+      });
+      if (done) break;
+    }
+    await sleep(500);
+    await page.screenshot({ path: `${RAW}/transcribeDone.png` });
+    log(`shot: transcribeDone (settled=${done})`);
+  } catch (e) {
+    log(`✗ audio-to-text: ${e.message}`);
+  }
+  await page.close();
+}
+
 async function captureRecorder(browser) {
   const page = await browser.newPage();
   await page.setViewport({ width: 1366, height: 900, deviceScaleFactor: 2 });
@@ -271,6 +718,19 @@ async function captureRecorder(browser) {
 // ---------------------------------------------------------------- render
 
 let htmlCounter = 0;
+async function convertPngToWebp(dir) {
+  // This ffmpeg build has no libwebp/native webp encoder — use sharp (Astro
+  // already depends on it). Slide PNGs for the video pipeline are converted
+  // by the caller's choice of directory.
+  for (const name of readdirSync(dir)) {
+    if (!name.endsWith('.png')) continue;
+    const png = join(dir, name);
+    if (/slide-|poster\.png$/.test(name)) continue; // slideshow + facade stay PNG
+    const webp = png.replace(/\.png$/, '.webp');
+    await sharp(png).webp({ quality: 82 }).toFile(webp);
+    unlinkSync(png);
+  }
+}
 async function renderHtml(page, html, outPath, w, h) {
   // about:blank pages (setContent) cannot load file:// images — write the HTML
   // to disk and open it as a file:// page instead
@@ -297,6 +757,41 @@ async function buildArticleMedia(page, article) {
     ringtoneExportToast: ['Export the clip', 'A short fade-out makes the loop sound natural'],
     joinerTracks: ['Load and order the tracks', 'Arrow buttons reorder · total duration updates live'],
     joinerExportToast: ['Merge and export', 'Crossfade 2–4 s for a continuous mix · 0 s for hard cuts'],
+    wavDropzone: ['Open the converter', 'Drop a WAV, or click to browse — nothing is uploaded'],
+    wavExport: ['Convert and download', '320 kbps for music · 128 kbps for voice'],
+    flacDropzone: ['Open the converter', 'Drop a FLAC, or click to browse — lossless in, MP3 out'],
+    flacExport: ['Convert and download', 'The FLAC on disk stays untouched'],
+    slowedDropzone: ['Open the slowed + reverb maker', 'Any song, full length — processed on the device'],
+    slowedLoaded: ['Draw the section, then set Speed and Reverb', 'Speed lands near 85% · Reverb 20–30% — the pitch sinks with the speed'],
+    slowedExport: ['Export the edit', 'MP3 320 kbps for posting · WAV for another app'],
+    compressDropzone: ['Open the compressor', 'Drop the file that is too big to send'],
+    compressExport: ['Pick the bitrate and export', '64–96 kbps for speech · 128 kbps for casual music'],
+    volumeDropzone: ['Open the volume booster', 'Drop the memo that is too quiet'],
+    volumeExport: ['Boost to 150–250% and export', 'The limiter holds the peaks — clean loudness first'],
+    fadeDropzone: ['Open the fade tool', 'Drop the clip that clicks at the edges'],
+    fadeExport: ['Set a 0.1 s fade-in and export', 'The ramp walks the level up from zero'],
+    editorDropzone: ['Open the editor', 'One file, one export — selection, fades, level'],
+    editorExport: ['Adjust and export', 'MP3 or WAV, encoded once on the device'],
+    m4aDropzone: ['Open the converter', 'Drop the M4A the car refuses'],
+    m4aExport: ['Convert to MP3 192 kbps', 'The format every head unit reads'],
+    bpmDropzone: ['Open the key and BPM finder', 'Drop a song — audio or a video soundtrack'],
+    bpmReadings: ['Read the two numbers', 'BPM as an integer · a pitch plus major or minor'],
+    transcribeDropzone: ['Open the transcriber', 'Drop a recording — the audio never uploads'],
+    trimmerDropzone: ['Open the audio trimmer', 'Drop a memo, podcast or song — nothing is uploaded'],
+    trimmerExport: ['Keep or delete the selection, then export', 'MP3 192 kbps for sending · WAV for editing'],
+    recorderLoaded: ['Record, stop, trim the ends', 'The take stays in the tab until you export'],
+    normalizeDropzone: ['Open the normalizer', 'Peak normalize aims just under the ceiling'],
+    normalizeExport: ['Normalize and export', 'The largest clean gain, measured not guessed'],
+    compressorDropzone: ['Open the level compressor', 'Threshold and ratio, with the peak restored'],
+    compressorExport: ['Compress and export', 'The loud parts come down, the quiet parts come up'],
+    highpassDropzone: ['Open the high-pass filter', 'Sweep the cutoff, listen, export'],
+    highpassExport: ['Set the cutoff and export', '80–120 Hz suits most voices'],
+    silenceDropzone: ['Open the silence remover', 'Threshold and minimum gap decide each cut'],
+    silenceExport: ['Remove the dead air and export', 'Breaths shorter than the gap stay'],
+    splitDropzone: ['Open the splitter', 'Equal parts from 2 to 16, one ZIP'],
+    splitExport: ['Split and download', 'Each part is the same length to the sample'],
+    opusDropzone: ['Open the Opus converter', 'Drop the voice note, OGG or WebM'],
+    opusExport: ['Convert to MP3', '128 kbps for a voice note is usually enough'],
   };
 
   // article images: framed real screenshots (PNG ≈ 65 KB each — light enough)
@@ -311,18 +806,32 @@ async function buildArticleMedia(page, article) {
 
   // article diagram images
   // Number diagrams after the screenshots. A fixed "03-" collides once a guide has 3 shots.
-  const diagramIndex = String(shotIndex + 1).padStart(2, '0');
+  let diagramIndex = Number(String(shotIndex + 1).padStart(2, '0'));
   if (article.slug === 'how-to-cut-a-song') {
     const d = DIAGRAMS.keepVsDelete;
     await renderHtml(page, diagramHtml(d), `${dir}/${diagramIndex}-keep-vs-delete.png`, 1200, 750);
+    diagramIndex += 1;
   }
   if (article.slug === 'merge-songs-one-track') {
     const d = DIAGRAMS.crossfade;
     await renderHtml(page, diagramHtml(d), `${dir}/${diagramIndex}-crossfade.png`, 1200, 750);
+    diagramIndex += 1;
+  }
+  for (const d of article.diagrams ?? []) {
+    const def = DIAGRAMS[d.name];
+    await renderHtml(page, diagramHtml(def), `${dir}/${String(diagramIndex).padStart(2, '0')}-${d.file}.png`, 1200, 750);
+    diagramIndex += 1;
   }
 
-  // narration + video slides
+  // Article images ship as WebP (PNG stays only for the ffmpeg slideshow input).
+  await convertPngToWebp(dir);
+
+  // narration + video slides (image-only articles skip this block)
   const durations = [];
+  if (article.slides.length === 0) {
+    log(`✔ ${article.slug}: images only, no narration/video`);
+    return;
+  }
   for (let i = 0; i < article.slides.length; i++) {
     const slide = article.slides[i];
     const aiff = `${narrDir}/${i}.aiff`;
@@ -352,14 +861,7 @@ async function buildArticleMedia(page, article) {
 
   // poster: the branded title slide doubles as the YouTube facade cover
   cpSync(join(slideDir, 'slide-01.png'), join(dir, 'poster.png'));
-  // Article images ship as WebP. Slide PNGs stay PNG — ffmpeg's slideshow input.
-  for (const name of readdirSync(dir)) {
-    if (!name.endsWith('.png')) continue;
-    const png = join(dir, name);
-    const webp = png.replace(/\.png$/, '.webp');
-    sh(`ffmpeg -y -loglevel error -i "${png}" -c:v libwebp -quality 82 "${webp}"`);
-    unlinkSync(png);
-  }
+  await convertPngToWebp(dir);
 
   // video
   const slidesTxt = durations.map((d, i) => `file '${slideDir}/slide-${String(i + 1).padStart(2, '0')}.png'\nduration ${d.toFixed(2)}`).join('\n') + `\nfile '${slideDir}/slide-${String(article.slides.length).padStart(2, '0')}.png'`;
@@ -403,9 +905,16 @@ try {
   log('capturing product screenshots…');
   await captureShots(normal);
   await captureRecorder(fakeMic);
+  await captureEditorPages(normal);
+  await captureBpmFinder(normal);
+  await captureLoudnessMeter(normal);
+  await captureTranscribe(normal);
+
+  const ONLY = (process.env.ONLY ?? '').split(',').map((s) => s.trim()).filter(Boolean);
+  const articles = ONLY.length ? ARTICLES.filter((a) => ONLY.includes(a.slug)) : ARTICLES;
 
   const page = await normal.newPage();
-  for (const article of ARTICLES) {
+  for (const article of articles) {
     log(`building ${article.slug}…`);
     await buildArticleMedia(page, article);
   }

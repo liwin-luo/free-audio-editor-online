@@ -12,6 +12,158 @@ export type GuideCard = {
 export const GUIDES: GuideCard[] = [
   {
     locale: 'en',
+    href: '/guides/what-is-dbfs',
+    title: 'What Is dBFS? Why Every Digital Level Is Negative',
+    description:
+      'dBFS measures digital audio against the ceiling, so every level is zero or negative. What 0, minus 6 and minus 40 dBFS mean, and where you set them.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/gain-vs-volume',
+    title: 'Gain vs Volume: the Difference That Matters in a File',
+    description:
+      'Both are level changes, but one is baked into the export and one lives on your knob. Where gain, volume and normalization each belong.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/what-is-pcm-audio',
+    title: 'What Is PCM Audio? Why WAV Is PCM in a Container',
+    description:
+      'PCM is the waveform stored as raw numbers, sample by sample. Why WAV is PCM in a container, why every player ends at PCM, and where the term matters.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/what-is-audio-bitrate',
+    title: 'What Is Audio Bitrate? What 128 vs 320 kbps Changes',
+    description:
+      'Bitrate is how many bits a second of audio spends, in kbps. What the number changes, what it does not, and how to pick one per destination.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/what-is-sample-rate',
+    title: 'What Is Sample Rate? What 44.1 and 48 kHz Mean',
+    description:
+      'Sample rate is how many times per second audio is measured. What 44.1 and 48 kHz mean, why it exists, and when it actually matters to you.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/what-is-lossless-audio',
+    title: 'What Is Lossless Audio? What FLAC and WAV Promise',
+    description:
+      'Lossless means the unpacked file returns every original sample. What FLAC, ALAC and WAV promise, what they cost, and where lossy fits anyway.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/what-is-crossfade',
+    title: 'What Is Crossfade? How Long a Blend Should Be',
+    description:
+      'A crossfade overlaps the end of one track with the start of the next. How long it should be, when a hard cut wins, and how it differs from a fade.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/audition-alternative',
+    title: 'Adobe Audition Alternative: What You Actually Pay For',
+    description:
+      'Audition is a subscription DAW with spectral repair. What it earns, what a browser covers for single-file jobs, and the order to switch in.',
+    minutes: 6,
+  },
+  {
+    locale: 'en',
+    href: '/guides/123apps-alternative',
+    title: '123apps Alternative: What an Upload-Based Tool Costs You',
+    description:
+      '123apps is a convenient free suite. The honest comparison for audio: where the file goes, what the queues cost, and the local route per job.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/convert-flac-to-mp3',
+    title: 'How to Convert FLAC to MP3 (And What the Conversion Costs)',
+    description:
+      'FLAC is lossless and MP3 is not, so convert knowing what survives. Bitrates for a car stereo or a phone, and why the FLAC stays on the drive.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/why-is-my-voice-memo-so-quiet',
+    title: 'Why Is My Voice Memo So Quiet?',
+    description:
+      'The memo plays but you need silence around it. Why phone recordings end up quiet, the 4\u00d7 boost with a limiter, and how the next one records louder.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/audio-clicks-at-the-start',
+    title: 'Why Your Audio Clip Clicks at the Start',
+    description:
+      'A tick at the first sample is a cut that starts mid-waveform. The 0.1-second fade that fixes it, and cutting so it never starts.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/car-stereo-wont-play',
+    title: 'Why Your Car Stereo Won\'t Play That Audio File',
+    description:
+      'The USB stick works in the laptop and the car says no file. Causes in order, from missing codecs to USB formatting, and the MP3 conversion that fixes most.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/garageband-alternative',
+    title: 'GarageBand Alternative: What a Browser Replaces',
+    description:
+      'GarageBand keeps projects and records multitrack; a browser page cuts, converts and joins one file fast. The honest split, job by job.',
+    minutes: 7,
+  },
+  {
+    locale: 'en',
+    href: '/guides/find-bpm-and-key',
+    title: 'How to Find the BPM and Key of a Song',
+    description:
+      'Read a song\u2019s tempo and major or minor key in the browser. What the two numbers mean, why 140 arrives as 70, and what to do with them.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/transcribe-audio-to-text',
+    title: 'How to Transcribe Audio to Text in Your Browser',
+    description:
+      'Turn a recording into text or an SRT file with a Whisper model that runs on your device. Model choices, the 10-minute cap, and export formats.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
+    href: '/guides/convert-wav-to-mp3',
+    title: 'How to Convert WAV to MP3 (Free, on Any Device)',
+    description:
+      'Music app, VLC, Audacity, ffmpeg, or the browser: what each WAV-to-MP3 route costs, what each bitrate keeps, and when to stay lossless.',
+    minutes: 6,
+  },
+  {
+    locale: 'en',
+    href: '/guides/wav-vs-mp3',
+    title: 'WAV vs MP3: Which File Do You Actually Need?',
+    description:
+      'WAV keeps every sample; MP3 keeps what you hear. Sizes per minute, what blind tests support, editing losses, and the export order that loses least.',
+    minutes: 6,
+  },
+  {
+    locale: 'en',
+    href: '/guides/make-slowed-and-reverb',
+    title: 'How to Make a Slowed + Reverb Edit Online',
+    description:
+      'Slow a track to about 85% and wash it in 20–30% reverb in the browser. Why the pitch sinks, the nightcore flip, and export settings.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
     href: '/guides/how-to-cut-a-song',
     title: 'How to Cut a Song Online (Free, Nothing Uploaded)',
     description:
@@ -37,7 +189,7 @@ export const GUIDES: GuideCard[] = [
   {
     locale: 'en',
     href: '/guides/audacity-alternative',
-    title: 'Audacity Alternative: When a Browser Tool Is Enough',
+    title: 'Audacity Alternative — When a Browser Tool Is Enough',
     description:
       'Audacity keeps sessions, plugins and projects you reopen. The browser stacks files you already have, and nothing is uploaded.',
     minutes: 8,
@@ -53,7 +205,7 @@ export const GUIDES: GuideCard[] = [
   {
     locale: 'en',
     href: '/guides/convert-ogg-to-mp3',
-    title: 'Convert OGG to MP3 in Your Browser',
+    title: 'Convert OGG to MP3 in Your Browser (Nothing Uploaded)',
     description:
       'Turn an OGG file into an MP3 without uploading it — Vorbis versus Opus, which bitrate to pick, and the Safari case that cannot decode Vorbis.',
     minutes: 5,
@@ -571,7 +723,7 @@ export const GUIDES: GuideCard[] = [
   {
     locale: 'zh',
     href: '/zh/guides/how-to-trim-audio',
-    title: '在线裁剪音频',
+    title: '在线裁剪音频 — 保留或删除选区',
     description: '语音备忘或播客只留需要的一段。一次导出一个文件。文件不会上传。',
     minutes: 4,
   },
@@ -743,21 +895,31 @@ function guideKey(path: string): string {
 
 /** Guides that support a specific tool, by normalized guide path. */
 const GUIDE_TOOL: Record<string, string> = {
+  '/guides/123apps-alternative': 'mp3-editor',
   '/guides/432-hz-vs-440-hz': '432-hz-converter',
   '/guides/audacity-alternative': 'mp3-editor',
+  '/guides/audio-clicks-at-the-start': 'fade-audio',
+  '/guides/audition-alternative': 'mp3-editor',
+  '/guides/car-stereo-wont-play': 'm4a-to-mp3',
   '/guides/change-pitch-without-changing-speed': 'pitch-changer',
   '/guides/compress-audio-for-email': 'compress-audio',
   '/guides/convert-audio-to-midi': 'audio-to-midi',
+  '/guides/convert-flac-to-mp3': 'flac-to-mp3',
   '/guides/convert-m4a-to-mp3': 'm4a-to-mp3',
   '/guides/convert-ogg-to-mp3': 'ogg-to-mp3',
   '/guides/convert-opus-to-mp3': 'opus-to-mp3',
   '/guides/convert-video-to-mp3': 'mp4-to-mp3',
+  '/guides/convert-wav-to-mp3': 'wav-to-mp3',
   '/guides/cut-a-song-for-tiktok': 'mp3-cutter',
+  '/guides/find-bpm-and-key': 'key-bpm-finder',
+  '/guides/gain-vs-volume': 'increase-volume',
+  '/guides/garageband-alternative': 'mp3-editor',
   '/guides/how-to-cut-a-song': 'mp3-cutter',
   '/guides/how-to-edit-a-wav-file': 'mp3-editor',
   '/guides/how-to-edit-an-mp3': 'mp3-editor',
   '/guides/how-to-trim-audio': 'audio-trimmer',
   '/guides/make-iphone-ringtone': 'ringtone-maker',
+  '/guides/make-slowed-and-reverb': 'slowed-reverb',
   '/guides/merge-songs-one-track': 'audio-joiner',
   '/guides/mpeg-audio': 'mp3-editor',
   '/guides/normalize-vs-compress-audio': 'normalize-audio',
@@ -767,8 +929,17 @@ const GUIDE_TOOL: Record<string, string> = {
   '/guides/remove-hum-with-high-pass-filter': 'high-pass-filter',
   '/guides/remove-silence-from-podcast': 'silence-remover',
   '/guides/split-long-recording-into-tracks': 'split-mp3',
+  '/guides/transcribe-audio-to-text': 'audio-to-text',
   '/guides/trim-audio-on-iphone': 'audio-trimmer',
   '/guides/trim-opentracks-bgm': 'audio-trimmer',
+  '/guides/wav-vs-mp3': 'wav-to-mp3',
+  '/guides/what-is-audio-bitrate': 'bitrate-converter',
+  '/guides/what-is-crossfade': 'audio-joiner',
+  '/guides/what-is-dbfs': 'loudness-meter',
+  '/guides/what-is-lossless-audio': 'flac-to-mp3',
+  '/guides/what-is-pcm-audio': 'mp3-to-wav',
+  '/guides/what-is-sample-rate': 'wav-to-mp3',
+  '/guides/why-is-my-voice-memo-so-quiet': 'increase-volume',
 };
 
 /** Guides in the current language that support this tool. */

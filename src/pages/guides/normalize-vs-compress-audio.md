@@ -19,6 +19,8 @@ Choosing the wrong one is why a recording can end up louder and still hard to
 listen to. The [normalizer](/normalize-audio) and the
 [level compressor](/compressor) on this site split the two jobs.
 
+![The normalizer page. Peak normalize aims just under the ceiling.](/guides-media/normalize-vs-compress-audio/01-normalizeDropzone.webp)
+
 Both pages run in the browser and neither uploads the file. The decision is
 about what you want the dynamics to do.
 
@@ -50,6 +52,8 @@ at −0.2 dBFS). There is no separate makeup gain to set.
 | Target | Sample peak near −0.2 dBFS | Peak restored after compression |
 | Good for | A file that is uniformly too quiet | A take where some words are loud and others are not |
 | Not for | Evening out a shout and a whisper | Making a quiet file louder without changing dynamics |
+
+![The level compressor. Threshold and ratio, with the peak restored after.](/guides-media/normalize-vs-compress-audio/02-compressorExport.webp)
 
 ## Pick normalize when
 

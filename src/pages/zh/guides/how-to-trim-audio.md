@@ -1,5 +1,5 @@
 ---
-title: 在线裁剪音频
+title: 在线裁剪音频 — 保留或删除选区
 description: 语音备忘或播客只留需要的一段。一次导出一个文件。文件不会上传。
 tool: audio-trimmer
 locale: zh

@@ -8,6 +8,11 @@ poster: /guides-media/merge-songs-one-track/poster.webp
 youtube: RceLdI_b6_o
 layout: ../../layouts/Guide.astro
 persona: engineer
+sources:
+  - label: Wikipedia — 44,100 Hz
+    url: https://en.wikipedia.org/wiki/44,100_Hz
+  - label: Wikipedia — Crossfading
+    url: https://en.wikipedia.org/wiki/Crossfading
 ---
 
 One file is easier to play and send than a folder of clips. A gym mix, a stack of

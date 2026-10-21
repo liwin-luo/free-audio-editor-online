@@ -5,6 +5,11 @@ tool: pitch-changer
 date: 2026-10-16
 layout: ../../layouts/Guide.astro
 persona: engineer
+sources:
+  - label: Wikipedia — Audio time stretching and pitch scaling
+    url: https://en.wikipedia.org/wiki/Audio_time_stretching_and_pitch_scaling
+  - label: Wikipedia — Semitone
+    url: https://en.wikipedia.org/wiki/Semitone
 ---
 
 Changing the pitch of a song moves it into another key. Changing the speed

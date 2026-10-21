@@ -10,6 +10,8 @@ sources:
     url: https://support.google.com/mail/answer/6584
   - label: WhatsApp Help Center — How to send media and documents
     url: https://faq.whatsapp.com/windows/chats/how-to-send-media/
+  - label: Wikipedia — MP3
+    url: https://en.wikipedia.org/wiki/MP3
 ---
 
 An audio file gets rejected for one reason: it is too big for the inbox or the
@@ -18,6 +20,8 @@ about 3 MB. The [audio compressor](/compress-audio) re-encodes a file at 64,
 96, 128, 192 or 320 kbps in the browser, and nothing is uploaded, so a private
 voice memo stays private. The fix is a lower bitrate, not a zip file and not a
 renamed extension.
+
+![The audio compressor page before a file is open. Drop the file that is too big to send.](/guides-media/compress-audio-for-email/01-compressDropzone.webp)
 
 ## Do the math before you choose a bitrate
 
@@ -52,6 +56,8 @@ least quality loss.
 4. Listen to the preview. Check a sibilant word, an “s” or a “sh”, because
    that is where low bitrates fail first.
 5. Export and send.
+
+![A bitrate picked and the file exported. The download starts in the browser.](/guides-media/compress-audio-for-email/02-compressExport.webp)
 
 If the file starts as a WAV, convert it to MP3 first with
 [WAV to MP3](/wav-to-mp3). The compressor also accepts WAV, but the output is

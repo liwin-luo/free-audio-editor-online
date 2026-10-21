@@ -19,6 +19,8 @@ both ends and export just that span. On the [MP3 cutter](/mp3-cutter) that is
 a two-minute job, and the song is not uploaded to a server before it reaches
 the video.
 
+![The MP3 cutter before a file is open. Drop the song, or click to browse.](/guides-media/cut-a-song-for-tiktok/01-dropzone.webp)
+
 ## Decide the length before you cut
 
 TikTok and Reels change their upload limits, and the limit is not the target.
@@ -47,6 +49,8 @@ keeps watching.
 4. Adjust with **Precise times** if a finger or a mouse is not exact enough.
 5. Choose **Keep selection** and export.
 
+![A selection drawn on the waveform. The preview plays only the highlighted span.](/guides-media/cut-a-song-for-tiktok/02-selection.webp)
+
 **Delete selection** is the other mode. It keeps everything outside the
 highlight, useful for removing a verse from the middle of a longer edit. For
 a TikTok or Reel, **Keep selection** is almost always the one you want.
@@ -61,6 +65,8 @@ Export WAV when the next step is a desktop editor that will process the audio
 again. WAV keeps the samples you selected; MP3 encodes once. For a 15-second
 clip the file size difference does not matter, but the extra encode does if
 you plan to apply more effects.
+
+![The cut exported. The download starts in the browser.](/guides-media/cut-a-song-for-tiktok/03-exportToast.webp)
 
 The downloaded file keeps the name of the source song. Rename it to the part
 (`song-hook-30s.mp3`) before you import it, or you will be hunting through

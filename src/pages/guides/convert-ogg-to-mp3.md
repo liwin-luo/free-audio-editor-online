@@ -5,6 +5,13 @@ tool: ogg-to-mp3
 date: 2026-10-14
 layout: ../../layouts/Guide.astro
 persona: engineer
+sources:
+  - label: Wikipedia — Ogg container format
+    url: https://en.wikipedia.org/wiki/Ogg
+  - label: Wikipedia — Vorbis
+    url: https://en.wikipedia.org/wiki/Vorbis
+  - label: Wikipedia — Opus (audio codec)
+    url: https://en.wikipedia.org/wiki/Opus_(audio_codec)
 ---
 
 An OGG file plays in Chrome and Firefox, and a car stereo or an older speaker

@@ -5,6 +5,11 @@ tool: mp4-to-mp3
 date: 2026-10-14
 layout: ../../layouts/Guide.astro
 persona: engineer
+sources:
+  - label: Wikipedia — MPEG-4 Part 14 (MP4)
+    url: https://en.wikipedia.org/wiki/MPEG-4_Part_14
+  - label: Wikipedia — Dolby Digital (AC-3)
+    url: https://en.wikipedia.org/wiki/Dolby_Digital
 ---
 
 Keep the soundtrack, drop the picture, and the result is an MP3 that plays in a

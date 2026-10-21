@@ -19,6 +19,8 @@ account: record, stop, trim the ends, export. The take never leaves the
 device, which matters for interviews, client calls and anything you would not
 upload to a random site.
 
+![The voice recorder after a take. The waveform is loaded, ready to trim and export.](/guides-media/record-a-voice-memo-in-browser/01-recorderLoaded.webp)
+
 ## Before you press record
 
 **Use a browser that supports MediaRecorder.** Chrome, Edge, Firefox and Safari
