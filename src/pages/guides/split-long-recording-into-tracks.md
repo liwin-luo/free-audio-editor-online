@@ -4,6 +4,7 @@ description: Split a long recording into 2–16 equal files in the browser, or c
 tool: split-mp3
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+persona: engineer
 sources:
   - label: Audacity Manual — Splitting a recording into separate tracks
     url: https://manual.audacityteam.org/man/splitting_a_recording_into_separate_tracks.html
@@ -11,11 +12,12 @@ sources:
 
 A long recording is hard to send, hard to replay and hard to name. Splitting it
 into tracks solves all three: each part is a file you can label, send and drop
-into a player. The question is where the cuts should land.
+into a player. The question is where the cuts should land. Equal parts are the
+[split MP3](/split-mp3) page's job; chapter cuts belong on the
+[MP3 cutter](/mp3-cutter).
 
 There are two jobs hiding under “split”. Equal parts, when the length matters
-more than the content. And chapter cuts, when you know the moments. The browser
-has a page for each.
+more than the content. Chapter cuts, when you know the moments.
 
 ## Equal parts: the splitter
 
@@ -40,8 +42,8 @@ dropped.
 
 ## Chapter cuts: the cutter
 
-If the recording has natural boundaries — songs in a live set, segments in a
-workshop, answers in an interview — do not split it into equal pieces. Mark
+If the recording has natural boundaries (songs in a live set, segments in a
+workshop, answers in an interview), do not split it into equal pieces. Mark
 each chapter and export it as its own file.
 
 Use the [MP3 cutter](/mp3-cutter) or the [audio trimmer](/audio-trimmer) and
@@ -85,7 +87,7 @@ listening copies, MP3 at 192 kbps is enough for speech and 320 kbps for music.
 ## Common mistakes
 
 **Using 16 parts because the slider goes that high.** A 20-minute talk split
-into 16 pieces is 75 seconds each — too short to be a chapter and too many to
+into 16 pieces is 75 seconds each: too short to be a chapter and too many to
 manage. Choose the count the content suggests, not the maximum.
 
 **Splitting an MP3 and rejoining it later.** Each export is another encode.

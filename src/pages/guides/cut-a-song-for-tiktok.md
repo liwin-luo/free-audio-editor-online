@@ -4,6 +4,7 @@ description: Cut a 15–60 second section from any song, keep the hook, and use 
 tool: mp3-cutter
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+persona: engineer
 sources:
   - label: TikTok Help Center — Creating videos
     url: https://support.tiktok.com/en/using-tiktok/creating-videos
@@ -14,10 +15,9 @@ sources:
 A video edit needs a short, clean piece of a song: the hook, the drop, the
 eight bars that carry the post. The full track is the wrong file, and the
 platform’s built-in trimmer only moves the start point. You want to choose
-both ends and export just that span.
-
-That is a two-minute job on the [MP3 cutter](/mp3-cutter). It runs in the
-browser, so the song is not uploaded to a server before it reaches the video.
+both ends and export just that span. On the [MP3 cutter](/mp3-cutter) that is
+a two-minute job, and the song is not uploaded to a server before it reaches
+the video.
 
 ## Decide the length before you cut
 
@@ -35,8 +35,8 @@ than a three-minute excerpt with dead air at the end.
 
 ## Pick the part that works without the intro
 
-The first frame is the hook. A song’s intro — the fade-in, the count-in, the
-first verse — usually costs you the one second that decides whether someone
+The first frame is the hook. A song’s intro (the fade-in, the count-in, the
+first verse) usually costs you the one second that decides whether someone
 keeps watching.
 
 1. Open the [MP3 cutter](/mp3-cutter) and drop the song.
@@ -48,14 +48,14 @@ keeps watching.
 5. Choose **Keep selection** and export.
 
 **Delete selection** is the other mode. It keeps everything outside the
-highlight — useful for removing a verse from the middle of a longer edit. For
+highlight, useful for removing a verse from the middle of a longer edit. For
 a TikTok or Reel, **Keep selection** is almost always the one you want.
 
 ## Export the file the editor can open
 
 MP3 is the safe choice. Every phone editor and every desktop editor imports
 it. Use 192 kbps for a phone edit. Use 320 kbps if the clip will be the main
-audio and the song is dense — a busy mix is less forgiving than a voice.
+audio and the song is dense; a busy mix is less forgiving than a voice.
 
 Export WAV when the next step is a desktop editor that will process the audio
 again. WAV keeps the samples you selected; MP3 encodes once. For a 15-second
@@ -100,7 +100,7 @@ rights holders claim. The tool changes the length, not the licence.
 ## When this is the wrong page
 
 The [audio trimmer](/audio-trimmer) is the better fit for a voice memo,
-interview or podcast — it is built around one recording, not a song. The
+interview or podcast: it is built around one recording, not a song. The
 [ringtone maker](/ringtone-maker) caps the selection at 40 seconds and exports
 M4R for iPhone.
 
@@ -108,5 +108,5 @@ If you need several short clips from one track, cut and export them one at a
 time. The cutter writes one file per export. To join the pieces back into a
 longer edit, use the [audio joiner](/audio-joiner).
 
-For the wider version of this job — removing an intro, keeping a chorus,
-exporting once — read [how to cut a song](/guides/how-to-cut-a-song).
+For the wider version of this job (removing an intro, keeping a chorus,
+exporting once), read [how to cut a song](/guides/how-to-cut-a-song).

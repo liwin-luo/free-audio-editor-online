@@ -4,12 +4,18 @@ description: Cut, fade, or retitle an MP3 in Audacity, with ffmpeg, or in the br
 tool: mp3-editor
 date: 2026-10-20
 layout: ../../layouts/Guide.astro
+persona: engineer
+sources:
+  - label: Audacity — the free, open-source, cross-platform audio editor
+    url: https://www.audacityteam.org/
+  - label: FFmpeg — the complete, cross-platform solution for record, convert and stream audio and video
+    url: https://ffmpeg.org/
 ---
 
 Editing an MP3 usually means one of four jobs: keep a section, delete a chunk,
-change how loud or how fast it is, or fix the title the player shows. The sound
-jobs decode the file and write a new one. The title is a tag. It is not the
-sound.
+change how loud or how fast it is, or fix the title the player shows. The
+[MP3 editor](/mp3-editor) covers all four in the browser. The sound jobs decode
+the file and write a new one; the title is a tag, and a tag is not the sound.
 
 Every sound edit is a new encode. MP3 was already lossy. A second encode throws
 away a little more. Do the cut, the fade, and the volume in one export. If
@@ -57,11 +63,12 @@ or late by a fraction of a second. Use the encoder when the edge matters.
 
 mp3cut.net, Clideo, and 123apps take the file, edit it on a server, and hand
 back a download. They are a reasonable choice for a clip you would post. The
-file leaves your device for as long as that site keeps uploads. Free tiers add
-a size cap, a queue, or a page of ads.
+file leaves your device for as long as that site keeps uploads, and the free
+tiers are paid for with caps, queues, and ads.
 
-A voice memo, a meeting, or an unreleased song is a bad file to upload for a
-cut the computer can do itself.
+The local routes above are private by construction. Reach for an upload site
+only when the file is not sensitive and the desktop tools are genuinely
+unavailable.
 
 ## The title is a separate edit
 
@@ -128,7 +135,8 @@ not the same control.
 [Normalize](/normalize-audio) measures the peak and applies the largest clean
 gain that still avoids clipping. Use it when you do not know how far to push.
 
-[Increase volume](/increase-volume) is a multiplier you choose, up to 400%,
+[Increase volume](/increase-volume), the MP3 volume booster, is a multiplier
+you choose, up to 400%,
 with a limiter on the peaks. The editor's own volume slider stops at 200%.
 Use the dedicated page when 200% is not enough. Back off if the loud parts
 start to pump.

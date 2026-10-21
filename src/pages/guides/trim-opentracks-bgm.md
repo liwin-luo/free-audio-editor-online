@@ -4,11 +4,17 @@ description: Download a free track from OpenTracks (formerly DOVA-SYNDROME), the
 tool: audio-trimmer
 date: 2026-10-20
 layout: ../../layouts/Guide.astro
+persona: engineer
+sources:
+  - label: OpenTracks (formerly DOVA-SYNDROME) — free background music
+    url: https://opentracks.com/en/
+  - label: OpenTracks — audio source license
+    url: https://opentracks.com/en/help/articles/license/
 ---
 
-[OpenTracks](https://opentracks.com/en/), formerly DOVA-SYNDROME, publishes free background music. The download is an MP3. A video usually needs less than the full track: the intro cut off, a loop that matches the picture, or a fade so the end does not stop cold.
+[OpenTracks](https://opentracks.com/en/), formerly DOVA-SYNDROME, publishes free background music. The download is an MP3. A video usually needs less than the full track: the intro cut off, a loop that matches the picture, or a fade so the end does not stop cold. The [audio trimmer](/audio-trimmer) does the cut in the browser, and the file stays on your device.
 
-Their license already allows that edit. Cutting the intro, taking the part you need, making a loop, and converting MP3 to WAV or OGG are listed as ordinary processing. Credit is optional. This page is the edit. It does not host their music.
+Their [license](https://opentracks.com/en/help/articles/license/) already allows that edit. Cutting the intro, taking the part you need, making a loop, and converting MP3 to WAV or OGG are listed as ordinary processing. Credit is optional. This page is the edit. It does not host their music.
 
 ## Download the file
 
@@ -45,3 +51,5 @@ Each export is a new download. The MP3 you saved from OpenTracks stays on disk.
 A credit is optional, including the link. If you add one, point it at the track page you downloaded, and name the composer.
 
 Read the [audio source license](https://opentracks.com/en/help/articles/license/) before you use a track, and follow any extra conditions the composer set on that page. Putting their tracks inside another tool, so other people can pick a track and export a video, needs their permission first. This editor does not do that.
+
+When the export is on disk, it drops into a video editor like any MP3. If a section turns out too short after all, cut a second one from the same original: the file you downloaded has not changed.

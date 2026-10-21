@@ -4,12 +4,14 @@ description: Trim a voice memo, podcast or recording in the browser. Keep one re
 tool: audio-trimmer
 date: 2026-10-16
 layout: ../../layouts/Guide.astro
+persona: engineer
 ---
 
-Trimming audio means keeping one stretch of a recording and dropping the rest:
-the silence before a voice memo, the dead air after a podcast answer, the part
-of a meeting you actually need to send. Cropping is the same operation. You
-mark the region that stays.
+A voice memo runs two minutes before anyone speaks. A podcast answer ends and
+the room noise keeps going for a while. A meeting holds one paragraph worth
+sending. All three are the same job: mark the region that stays, and drop the
+rest. The [audio trimmer](/audio-trimmer) does it in the tab, and nothing is
+uploaded.
 
 That is a different job from [cutting a song](/guides/how-to-cut-a-song) down
 to the chorus. The controls are the same. The decisions are not.
@@ -23,7 +25,7 @@ to the chorus. The controls are the same. The decisions are not.
 ## Trim the file
 
 Drop the file onto the trimmer, or click to browse. The waveform appears
-immediately. There is no upload bar, because the file never leaves the device.
+immediately; the file is read where it sits and is not sent anywhere.
 
 ![The audio trimmer before a file is open. The only step on screen is the drop zone.](/guides-media/how-to-trim-audio/01-drop.webp)
 
@@ -41,10 +43,10 @@ the middle of either.
 
 Two modes, and they answer different sentences:
 
-- **Keep selection** — the export is only the highlighted part. Use this to
+- **Keep selection**: the export is only the highlighted part. Use this to
   crop a voice memo down to the point, or to lift one answer out of a long
   recording.
-- **Delete selection** — the export is everything except the highlighted part.
+- **Delete selection**: the export is everything except the highlighted part.
   Use this to remove silence at the start, or a pause in the middle. A middle
   delete keeps both sides and joins them with a hard cut.
 
@@ -77,17 +79,17 @@ The download starts in the browser. The original file on disk is unchanged.
 
 ## On a phone
 
-The same page works in mobile Safari and Chrome. The waveform accepts touch,
-and the export bar stays pinned to the bottom of the screen. A long recording
-is limited by the phone's memory, not by an account cap. A modern laptop is
-comfortable around an hour. A phone is comfortable with less.
+Mobile Safari and Chrome both run the trimmer: pinch to zoom the waveform, drag
+the handles with a thumb, and the export controls stay reachable one-handed.
+The limit on a phone is memory, not an account. A modern laptop is comfortable
+around an hour of audio; a phone is comfortable with less.
 
 ## What trimming will not fix
 
 Trimming removes time. It does not remove noise, separate a voice from music,
 or make a quiet take loud by itself. Volume in **Adjust** runs from 10% to
 200%. A recording that is quiet all the way through wants the
-[volume control](/increase-volume), which goes to 400% with a limiter, or
+[MP3 volume booster](/increase-volume) that goes to 400% with a limiter, or
 [normalize](/normalize-audio), which raises the file until its loudest peak
 sits just under clipping.
 

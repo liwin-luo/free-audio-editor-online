@@ -4,12 +4,13 @@ description: Shift a song or a voice by semitones and keep the same length. Spee
 tool: pitch-changer
 date: 2026-10-16
 layout: ../../layouts/Guide.astro
+persona: engineer
 ---
 
 Changing the pitch of a song moves it into another key. Changing the speed
 makes it shorter or longer, and the pitch rides along, the way a record does
-when it plays at the wrong speed. Those are two controls. This page is the one
-that leaves the length alone.
+when it plays at the wrong speed. Those are two controls, and the
+[pitch changer](/pitch-changer) is the one that leaves the length alone.
 
 ## Which control you actually want
 

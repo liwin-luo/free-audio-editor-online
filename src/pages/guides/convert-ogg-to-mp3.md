@@ -4,13 +4,14 @@ description: Turn an OGG file into MP3 without uploading it. What Vorbis and Opu
 tool: ogg-to-mp3
 date: 2026-10-14
 layout: ../../layouts/Guide.astro
+persona: engineer
 ---
 
-Converting OGG to MP3 means taking the audio out of an OGG container and
-saving it as a file that plays in a car, a phone, or an old speaker. The usual
-online converter does that by uploading the file. A lecture, a voice memo, or
-an unreleased track does not need to leave your computer. The browser you
-already have can decode OGG and encode MP3 on its own.
+An OGG file plays in Chrome and Firefox, and a car stereo or an older speaker
+may still refuse it. MP3 is the format everything accepts, so the job is to
+re-save the audio as MP3. The [OGG to MP3 converter](/ogg-to-mp3) does the
+decode and the encode in this tab: a lecture, a voice memo, or an unreleased
+track never has to be uploaded to get there.
 
 ## What an OGG file actually is
 
@@ -45,15 +46,16 @@ A file named `.opus` is a different job. Use the
 The three rates cover real use. Past what you can hear, a bigger number only
 makes a bigger file.
 
-- **128 kbps** is the right rate for speech: a voice memo, a meeting, a lecture
-  someone exported as OGG. Music at 128 kbps is listenable and slightly dull.
-- **192 kbps** is the sensible middle for music you will actually listen to.
-- **320 kbps** is the top of MP3. Use it when the OGG is a clean recording and
-  you want the smallest compromise. It is still lossy. If the next step is more
-  editing, export WAV from another tool and encode MP3 once, at the end.
+- **128 kbps** for anything spoken: a lecture exported as OGG, a meeting, a
+  voice note.
+- **192 kbps** for most music. Past this rate the MP3 stops being the weakest
+  link in the chain.
+- **320 kbps** when the source is a high-rate Vorbis or Opus track and you
+  want the new encode to stop being the limit.
 
-Vorbis and Opus were already lossy. Converting them cannot put back detail the
-original encode threw away. 320 kbps only describes the MP3.
+A 320 kbps MP3 of a Vorbis file does not undo the Vorbis encode. The first
+lossy stage already decided what survived; the MP3 rate only describes how the
+survivors are re-packed.
 
 ## When the browser cannot decode it
 
@@ -66,9 +68,9 @@ conversion will work. If the tab is silent:
   video soundtrack from an unusual container. For MP4, WebM and MOV, use the
   [MP4 to MP3 converter](/mp4-to-mp3).
 
-There is no honest "every OGG" claim available to a page that will not upload
-the file. For the files the browser refuses, ffmpeg on your own computer keeps
-the same privacy property and adds the missing decoder.
+A page that refuses uploads cannot promise to open every OGG variant, and this
+one does not. For the files the browser refuses, ffmpeg on your own computer
+keeps the same privacy property and adds the missing decoder.
 
 ## After you have the MP3
 
@@ -78,5 +80,6 @@ The result is a normal audio file.
 - If the whole thing was recorded quietly,
   [normalize](/normalize-audio) it so the peak sits just under clipping.
 
-Tags and cover art are not copied. The MP3 is written without metadata. Add
-them back afterwards in any tag editor if you need them.
+The MP3 comes out bare: no title, no artist, no cover art. Most players fall
+back to the file name, which is often enough for a lecture. Add tags
+afterwards in any editor if a player needs them.

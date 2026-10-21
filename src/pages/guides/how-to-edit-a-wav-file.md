@@ -4,13 +4,14 @@ description: Trim and edit a WAV before you convert it. When to stay 16-bit PCM,
 tool: mp3-editor
 date: 2026-10-16
 layout: ../../layouts/Guide.astro
+persona: engineer
 ---
 
 A WAV file is the audio with the MP3 compression left off. You can trim it,
-fade it and change its level in the browser without turning it into an MP3
-first. For a cut, a fade or a level change, installing a WAV editor is more
-tool than the job needs. Convert once, at the end, if you need a smaller file
-to send.
+fade it and change its level in the browser, on the
+[MP3 editor](/mp3-editor), without turning it into an MP3 first. For a cut, a
+fade or a level change, installing a WAV editor is more tool than the job
+needs. Convert once, at the end, if you need a smaller file to send.
 
 Opening a WAV in a converter and editing the MP3 afterwards is the long way
 around. Every later cut then re-encodes a file that has already lost the
@@ -36,7 +37,7 @@ The edits are the same ones used on an MP3:
 - **Fade in** and **Fade out** in **Adjust** shape the start and end of the
   export, up to 5 seconds.
 - **Volume** runs from 10% to 200%. A quiet field recording that needs more
-  than that belongs on [increase volume](/increase-volume).
+  than that belongs on the [MP3 volume booster](/increase-volume).
 - **Speed** runs from 0.5× to 2×, and the pitch moves with the tempo. To move
   the key and keep the length, use the
   [pitch changer](/pitch-changer).

@@ -7,11 +7,13 @@ audio: /guides-media/merge-songs-one-track/narration.m4a
 poster: /guides-media/merge-songs-one-track/poster.webp
 youtube: RceLdI_b6_o
 layout: ../../layouts/Guide.astro
+persona: engineer
 ---
 
 One file is easier to play and send than a folder of clips. A gym mix, a stack of
 voice memos, or podcast chapters all use the same steps: load the tracks, set the
-order, choose how they meet, export. The browser does it. Nothing is uploaded.
+order, choose how they meet, export. The [audio joiner](/audio-joiner) does it
+in the browser. Nothing is uploaded.
 
 ## What you can merge
 
@@ -75,8 +77,8 @@ two-hour set feels no different from merging two songs.
 
 - Track too long overall? Trim sections out first with the
   [audio trimmer](/audio-trimmer), then merge.
-- Need one song quieter than the others? Change it before the merge with
-  [increase volume](/increase-volume). One volume control over the whole mix
+- Need one song quieter than the others? Change it before the merge with the
+  [MP3 volume booster](/increase-volume). One volume control over the whole mix
   does not fix a single quiet track.
 - Want a section of the mix to play backwards as a transition? The
   [reverse tool](/reverse-audio) does exactly that, and merged output can be

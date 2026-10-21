@@ -4,6 +4,7 @@ description: Cut 50/60 Hz mains hum, rumble and wind from a recording with a hig
 tool: high-pass-filter
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+persona: engineer
 sources:
   - label: W3C — Audio EQ Cookbook (biquad filter design)
     url: https://www.w3.org/TR/audio-eq-cookbook/
@@ -11,12 +12,10 @@ sources:
 
 A steady low drone under a voice is usually one of two things: electrical mains
 hum at 50 or 60 Hz, or rumble from traffic, handling and the room itself. Both
-sit below the part of the voice that carries meaning, which is why a high-pass
-filter is the right first move.
-
-The [high-pass filter](/high-pass-filter) lets everything above a cutoff pass
-and rolls off everything below it. You sweep the cutoff, listen, and export.
-The file is processed in the browser; nothing is uploaded.
+sit below the part of the voice that carries meaning. A
+[high-pass filter](/high-pass-filter) lets everything above a cutoff pass and
+rolls off everything below it: you sweep the cutoff, listen, and export, and
+the file is processed in the browser.
 
 ## Find out what the noise is
 
@@ -26,8 +25,8 @@ Play the recording on headphones and listen to the bottom end.
 America) is mains hum. It often has harmonics at 100/120 Hz and 150/180 Hz,
 which is why a filter that only removes the fundamental may leave a ring.
 
-**A rumble or thump** that moves with the room — traffic, footsteps, a desk
-knock, wind on a phone mic — is broadband low-frequency noise. A high-pass
+**A rumble or thump** that moves with the room (traffic, footsteps, a desk
+knock, wind on a phone mic) is broadband low-frequency noise. A high-pass
 filter handles it well.
 
 **A hiss or a whistle** at the top end is not a low-frequency problem. The
@@ -53,11 +52,11 @@ noisy street interview, try 120 Hz. For a deep narration voice, stay near
 ## Sweep, listen, compare
 
 1. Open the [high-pass filter](/high-pass-filter) and drop the file.
-2. Start at 20 Hz — effectively bypassed — and listen to a sentence.
+2. Start at 20 Hz, effectively bypassed, and listen to a sentence.
 3. Raise the cutoff in small steps. Stop when the rumble disappears.
 4. Bypass and re-engage the filter. If the voice suddenly sounds thin, you
    went too far.
-5. Check a plosive — a “p” or “b” — and a low vowel. Those are where an
+5. Check a plosive, a “p” or a “b”, and a low vowel. Those are where an
    over-cut voice gives itself away.
 6. Export MP3 for delivery or WAV if the file will be edited again.
 
@@ -86,7 +85,8 @@ It does not remove background conversation, keyboard clicks, or a dog barking.
 Those sit in the same frequency range as the voice, so a filter would damage
 the voice before it removed the noise.
 
-It does not make a quiet file louder. Normalize or the level compressor does
+It does not make a quiet file louder. [Normalize](/normalize-audio) or the
+[level compressor](/compressor) does
 that. It does not remove long pauses; the
 [silence remover](/silence-remover) does.
 
@@ -105,4 +105,4 @@ For a voice recording that needs several fixes, work in this order:
 
 That order avoids processing audio you are about to delete, and it puts the
 level changes after the tonal ones. If the recording is still noisy after the
-high pass, the problem is probably not below the voice — it is the room.
+high pass, the problem is probably not below the voice; it is the room.

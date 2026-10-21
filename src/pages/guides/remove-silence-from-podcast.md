@@ -4,17 +4,17 @@ description: Cut pauses longer than the gap you set. Breaths shorter than that s
 tool: silence-remover
 date: 2026-10-19
 layout: ../../layouts/Guide.astro
+persona: engineer
 ---
 
 A podcast take usually has two kinds of quiet. One is the breath between
 words, and it should stay. The other is the pause while someone thinks, or
 the gap after an answer before the next question, and that is the dead air
-people skip. Removing silence means cutting the second kind and leaving the
-first.
+people skip. The [silence remover](/silence-remover) cuts the second kind and
+leaves the first, walking the whole file on its own.
 
-That is a different job from [trimming audio](/guides/how-to-trim-audio). A
-trim keeps one region you draw. A silence remover walks the whole file and
-cuts every stretch that is both quiet enough and long enough.
+That is a different job from [trimming audio](/guides/how-to-trim-audio),
+where you draw one region and keep exactly that.
 
 ## The two numbers that decide a cut
 
@@ -60,11 +60,16 @@ stretch and delete it. You do not need a threshold for a single edit you can
 already see.
 
 If the take is quiet all the way through, silence removal will not make it
-louder. That is a loudness job, on the [LUFS meter](/loudness-meter) or with
-[increase volume](/increase-volume).
+louder. That is a loudness job, on the [loudness meter](/loudness-meter) or
+with the [MP3 volume booster](/increase-volume).
 
 ## What you get
 
 The export is shorter by the gaps that passed both tests. Short breaths
 remain. Nothing is uploaded: the file is read in the tab and the result
 downloads to your device.
+
+Before publishing, check the level. The dead air was holding the integrated
+loudness down, so the reading changes after the cut. The
+[podcast loudness guide](/guides/podcast-loudness-lufs) covers the targets,
+and the [loudness meter](/loudness-meter) does the match.

@@ -4,6 +4,7 @@ description: Audacity keeps sessions, plugins and projects you reopen. The brows
 tool: mp3-editor
 date: 2026-10-14
 layout: ../../layouts/Guide.astro
+persona: engineer
 ---
 
 People searching for an Audacity alternative usually want one of two things. Either
@@ -11,7 +12,8 @@ they do not want to install a desktop app for a job that will take a minute, or
 Audacity is genuinely the wrong shape of tool for what they are about to do. Both
 are reasonable. Audacity is free, serious, and still the correct choice for a long
 list of jobs. It is also a poor fit for "cut this chorus and send it" when the
-person on the other end will not install anything.
+person on the other end will not install anything. That second job is the
+[MP3 editor](/mp3-editor), in the browser, with nothing uploaded.
 
 This page is the honest split: when to stay in Audacity, when a browser tool wins,
 and which page on this site matches which task. Nothing here records, uploads or
@@ -72,7 +74,7 @@ step are the whole task.
 | Cut, fade, change volume and speed in one place | [MP3 editor](/mp3-editor) |
 | Make a file for an iPhone ringtone | [Ringtone maker](/ringtone-maker) |
 | Put several files in a row, with or without a crossfade | [Audio joiner](/audio-joiner) |
-| Play several files at once — vocal on a beat, voice on music | [Multi-track editor](/multi-track-audio-editor) |
+| Play several files at once (vocal on a beat, voice on music) | [Multi-track editor](/multi-track-audio-editor) |
 | Turn a WAV (or other lossless file) into an MP3 | [WAV to MP3](/wav-to-mp3) |
 | Play a track backwards | [Reverse audio](/reverse-audio) |
 | Slow a song down or speed it up, pitch included | [Change audio speed](/change-audio-speed) |
@@ -109,7 +111,7 @@ still Audacity.
 
 ![The audio joiner with two tracks in a list, song-demo.mp3 then voice-memo-b.wav. Crossfade is 0.0s. They play one after another, not on separate faders.](/guides-media/audacity-alternative/02-joiner.webp)
 
-**Effects are the short list.** Reverse, speed (pitch moves with it — this is
+**Effects are the short list.** Reverse, speed (pitch moves with it; this is
 not time-stretch), a separate pitch shift that keeps the length, gain with a
 limiter, peak normalize, a 3-band EQ, high-pass and low-pass, and a single
 synthesized reverb. There is no noise print, no de-esser, no third-party plugin.

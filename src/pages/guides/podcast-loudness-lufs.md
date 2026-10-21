@@ -4,13 +4,20 @@ description: −16 LUFS is the usual podcast target, −14 is streaming, −23 i
 tool: loudness-meter
 date: 2026-10-19
 layout: ../../layouts/Guide.astro
+persona: engineer
+sources:
+  - label: Spotify for Artists — Loudness normalization (-14 dB LUFS, ITU 1770)
+    url: https://support.spotify.com/us/artists/article/loudness-normalization/
+  - label: EBU R128 — Loudness normalisation and permitted maximum level of audio signals (-23 LUFS)
+    url: https://tech.ebu.ch/docs/r/r128.pdf
 ---
 
 A podcast host asks for a number before they will take the file. The usual
 answer is **−16 LUFS**. Streaming platforms that publish a loudness target
 often sit near **−14 LUFS**. Broadcast delivery is often **−23 LUFS**. These
 are common targets, not a law, and a platform can change its own number
-without this page changing.
+without this page changing. The [loudness meter](/loudness-meter) reads your
+file and matches one of these targets.
 
 LUFS is integrated loudness: one figure for the whole file, weighted the way
 a listener hears it. It is not the loudness of the room, and it is not the

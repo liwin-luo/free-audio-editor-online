@@ -4,13 +4,14 @@ description: Turn an MP4, WebM or MOV into MP3 without uploading the video. Whic
 tool: mp4-to-mp3
 date: 2026-10-14
 layout: ../../layouts/Guide.astro
+persona: engineer
 ---
 
-Converting a video to MP3 means one thing: keep the soundtrack, throw away the
-picture, and save an audio file you can play anywhere. The usual online converter
-does that by uploading the whole video to someone else's server. That works, and
-it is a bad default for a lecture, a family video, or anything you would not post
-publicly. The browser you already have can decode the soundtrack itself.
+Keep the soundtrack, drop the picture, and the result is an MP3 that plays in a
+car, a podcast app, or a cheap speaker. The [MP4 to MP3 converter](/mp4-to-mp3)
+does that in the browser, and the video never reaches a server. For a lecture, a
+family video, or anything you would not post publicly, that is the right
+default.
 
 ## Local conversion versus an upload site
 
@@ -38,7 +39,7 @@ decode the audio. That case is specific, and it is the next section but one.
 
 1. Open the [MP4 to MP3 converter](/mp4-to-mp3).
 2. Drop the video, or click to browse. MP4, WebM and MOV are the containers
-   people actually have. M4A audio files work too — there is no picture to drop.
+   people actually have. M4A audio files work too, since there is no picture to drop.
 3. The format menu opens on **MP3 · 320 kbps**. Change it if you want, then
    click **Convert to MP3**. The file downloads to your device. The video stays
    where it was.
@@ -61,15 +62,14 @@ with WAV already selected.
 The menu has three MP3 rates. Bigger is not automatically better once you are
 past what you can hear.
 
-- **128 kbps** is the right rate for speech: a lecture, a meeting, a voice memo
-  someone filmed. Music at 128 kbps is listenable and slightly dull. Use it when
-  the file has to be small.
-- **192 kbps** is the sensible middle for music you will actually listen to.
-  Most people cannot pick it from a higher rate on ordinary headphones.
-- **320 kbps** is what this page selects when the file opens, and it is the top
-  of MP3. Leave it when the source is a clean recording, or when someone asked
-  for "the best MP3." It is still lossy. If the next step is more editing,
-  export WAV instead and encode once, later.
+- **128 kbps** fits what most phone and action cameras record anyway. A lecture
+  or a voice memo stays clear, and the file stays small.
+- **192 kbps** for soundtrack audio that was mastered before it got into the
+  video, like a concert film. On ordinary headphones, past this rate the MP3 is
+  no longer the weak link.
+- **320 kbps**, the page's default, is the top of MP3. Keep it for a clean
+  source or when someone asked for "the best MP3." It is still lossy. If the
+  next step is more editing, export WAV instead and encode once, later.
 
 A phone video of a concert does not become a studio master at 320 kbps. The
 bitrate only describes the MP3. It cannot put back what the camera microphone
@@ -89,7 +89,7 @@ It does not work for soundtracks the browser has no decoder for. The common ones
   player shows a picture and silence, the soundtrack is the part we cannot read.
 
 There is no honest "we support every format" claim available to a page that
-refuses to upload. For those files, install ffmpeg and run it locally — you keep
+refuses to upload. For those files, install ffmpeg and run it locally: you keep
 the privacy property, and you gain the decoders. A website that accepts the
 upload will also work, if you have decided the file is fine to send.
 
@@ -97,7 +97,7 @@ upload will also work, if you have decided the file is fine to send.
 
 The soundtrack is a normal audio file from this point.
 
-- Cut the part you wanted with the [MP3 cutter](/mp3-cutter) — a song from a
+- Cut the part you wanted with the [MP3 cutter](/mp3-cutter): a song from a
   concert clip, a question from a lecture.
 - If the whole thing is quietly recorded, [normalize](/normalize-audio) it so the
   peak sits just under clipping, or [raise it by a chosen amount](/volume-booster)
@@ -108,6 +108,6 @@ The soundtrack is a normal audio file from this point.
   cheap speaker that will not open the video.
 
 The picture is discarded on purpose. If you needed the video with a louder
-soundtrack baked back in, this is the wrong tool — nothing here remuxes audio
+soundtrack baked back in, this is the wrong tool; nothing here remuxes audio
 into a new MP4. You leave with the sound, which is what "convert video to MP3"
 asks for.

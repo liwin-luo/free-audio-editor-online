@@ -4,12 +4,19 @@ description: Turn an M4A or AAC file into MP3 with Music, GarageBand, VLC, Audac
 tool: m4a-to-mp3
 date: 2026-10-20
 layout: ../../layouts/Guide.astro
+persona: engineer
+sources:
+  - label: Apple Support — Convert music file formats in Music on Mac
+    url: https://support.apple.com/guide/music/convert-music-file-formats-musfb0cea9fa/mac
+  - label: Audacity — the free, open-source, cross-platform audio editor
+    url: https://www.audacityteam.org/
 ---
 
 An M4A file is usually an iPhone voice memo or an AAC download. A car stereo, an
-old speaker, or a form that only accepts MP3 will not open it. Converting means
-decoding that audio and saving an MP3. Most websites do this by uploading the
-file. A voice memo does not need to leave the phone.
+old speaker, or a form that only accepts MP3 will not open it. The
+[M4A to MP3 converter](/m4a-to-mp3) decodes the audio and writes the MP3 in this
+tab, so a voice memo does not need to leave the phone. Most websites do the same
+job by uploading the file first.
 
 ## What is inside the file
 
@@ -120,14 +127,12 @@ for a conversion the phone can do itself.
 
 The number describes the MP3. It does not repair the M4A.
 
-- **128 kbps** is the right rate for speech: a voice memo, a meeting, a
-  lecture. Music at 128 kbps is listenable and slightly dull. VLC's stock MP3
-  profile is this rate.
-- **192 kbps** is the sensible middle for music you will actually listen to.
-- **320 kbps** is the top of MP3. Use it when the source is a clean AAC
-  recording and you want the smallest compromise. It is still lossy. If you
-  still plan to trim or normalize, export WAV and encode MP3 once, at the end.
-  Encoding MP3 twice is the step that loses more detail.
+- **128 kbps** for a voice memo, a meeting, a lecture. Speech carries at this
+  rate, and it is the rate VLC's stock profile already uses.
+- **192 kbps** for music from a clean AAC source that will actually be played.
+- **320 kbps** only for music you care about, from a source recorded at a
+  matching rate. The MP3 is still lossy, and no bitrate adds back what the AAC
+  encode already spent.
 
 ## In the browser, on this site
 
@@ -153,12 +158,12 @@ cut before the export belongs in Audacity, with one MP3 at the end.
 4. Click **Convert to MP3**. The file downloads to your device. The label stays
    Convert to MP3 when the menu is on WAV. The download is the WAV.
 
-Try the file in a plain browser tab first. If you hear it, this conversion will
-work. If the tab is silent, use VLC or ffmpeg.
+The plain-tab test above is the decoder check: if the tab stayed silent, the
+path is VLC or ffmpeg, not this page.
 
-Tags and cover art are not copied. The MP3 is written without metadata. Put a
-title back with the [MP3 tag editor](/mp3-tag-editor) if the player needs a
-name.
+The MP3 is written without metadata. Put a title back with the
+[MP3 tag editor](/mp3-tag-editor) if the player needs a name. Cover art is not
+copied either.
 
 Keep the M4A if you still need the original. After you have the MP3, cut a
 section with the [MP3 cutter](/mp3-cutter), or trim the ends with the

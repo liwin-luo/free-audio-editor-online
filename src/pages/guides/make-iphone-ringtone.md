@@ -7,10 +7,12 @@ audio: /guides-media/make-iphone-ringtone/narration.m4a
 poster: /guides-media/make-iphone-ringtone/poster.webp
 youtube: 5Gt0fMdXHwk
 layout: ../../layouts/Guide.astro
+persona: phone-first
 ---
 
-An iPhone ringtone is an `.m4r` file, under about 40 seconds. You build that clip
-in the browser. GarageBand is only the fallback when the browser cannot encode AAC.
+An iPhone ringtone is an `.m4r` file, under about 40 seconds. The
+[ringtone maker](/ringtone-maker) builds that clip in the browser, and
+GarageBand is only the fallback when the browser cannot encode AAC.
 
 ## Step 1: Build the ringtone audio
 
@@ -20,8 +22,8 @@ whatever you have). Then:
 1. Drag across the waveform to pick the moment you want: usually the hook, the
    drop, or the first fifteen seconds of the chorus.
 2. The selection is capped at **40 seconds** automatically, which matches what
-   iOS allows for a ringtone. Shorter is fine and usually better. Most calls
-   are answered within 15 seconds.
+   iOS allows for a ringtone. Shorter is fine and usually better: a ring that
+   plays once or twice is all a call needs.
 3. Add a short **fade-out** (0.5–1 s in the Adjust drawer). Ringtones loop, and a
    fade makes the jump back to the start sound natural instead of abrupt.
 4. In the format menu, pick **M4R · iPhone ringtone**, then click **Export**.
@@ -35,7 +37,9 @@ whatever you have). Then:
 Nothing was uploaded: the clip was made on your phone, in the browser. If the
 format menu does not list M4R, your browser cannot encode AAC (Firefox and
 Safari older than 17). Export MP3 and use the GarageBand fallback
-below.
+below. Working from a song longer than the part you want? Cut it down first
+with the [MP3 cutter](/mp3-cutter), or repeat a short hook with the
+[audio looper](/audio-looper).
 
 ## Step 2 (iPhone): Sync the M4R
 
@@ -81,6 +85,6 @@ volume, independent of media volume.
 **The loop clicks.** That is the export ending mid-waveform. Re-export with a
 0.5-second fade-out; the click disappears.
 
-**Is this free?** Yes. The [maker](/ringtone-maker) has no watermark, no signup
-and no export limit, because the audio never touches a server. GarageBand is
-free too.
+**Is this free?** Yes. The [maker](/ringtone-maker) runs in the tab and the
+audio never touches a server, so there is nothing to pay for and nothing to
+sign into. GarageBand is free too.

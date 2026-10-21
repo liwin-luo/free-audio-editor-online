@@ -4,6 +4,7 @@ description: "Make a voice memo or song small enough to send: pick 64–128 kbps
 tool: compress-audio
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+persona: engineer
 sources:
   - label: Google Support — Send attachments with Gmail (25 MB limit)
     url: https://support.google.com/mail/answer/6584
@@ -13,12 +14,10 @@ sources:
 
 An audio file gets rejected for one reason: it is too big for the inbox or the
 chat. A three-minute WAV can be 30 MB. The same recording as a 128 kbps MP3 is
-about 3 MB. The fix is a lower bitrate, not a zip file and not a renamed
-extension.
-
-The [audio compressor](/compress-audio) re-encodes a file at 64, 96, 128, 192
-or 320 kbps in the browser. Nothing is uploaded, so a private voice memo stays
-private.
+about 3 MB. The [audio compressor](/compress-audio) re-encodes a file at 64,
+96, 128, 192 or 320 kbps in the browser, and nothing is uploaded, so a private
+voice memo stays private. The fix is a lower bitrate, not a zip file and not a
+renamed extension.
 
 ## Do the math before you choose a bitrate
 
@@ -34,7 +33,7 @@ Chat apps have their own limits and often re-compress audio again on the way
 out, which is another reason to start small.
 
 If the goal is “under 10 MB”, a 10-minute voice recording at 128 kbps is about
-10 MB — right at the edge. At 64 kbps it is about 5 MB, and speech still sounds
+10 MB, right at the edge. At 64 kbps it is about 5 MB, and speech still sounds
 clear.
 
 ## Cut first, compress second
@@ -50,7 +49,7 @@ least quality loss.
 2. Open the [audio compressor](/compress-audio) and drop the trimmed file.
 3. Pick the bitrate for the content. **64–96 kbps** for speech, **128 kbps**
    for casual listening, **192 kbps** for music you care about.
-4. Listen to the preview. Check a sibilant word — an “s” or a “sh” — because
+4. Listen to the preview. Check a sibilant word, an “s” or a “sh”, because
    that is where low bitrates fail first.
 5. Export and send.
 
@@ -78,8 +77,8 @@ trying to squeeze under a size cap.
 ## Why zipping does not help
 
 MP3 is already compressed. A zip archive of an MP3 typically saves a percent or
-two, not the 60% you need. Renaming `.wav` to `.mp3` does not change the bytes
-either — the file is still a WAV and many players will refuse it.
+two, not the 60% you need. Renaming `.wav` to `.mp3` does not change the bytes:
+the file is still a WAV and many players will refuse it.
 
 The only honest ways to shrink audio are a lower bitrate, a shorter file, or a
 more efficient codec. For email and chat, a lower-bitrate MP3 is the one that

@@ -4,6 +4,7 @@ description: Record from your microphone in Chrome, Safari or Firefox, trim the 
 tool: voice-recorder
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+persona: podcast-producer
 sources:
   - label: MDN — MediaRecorder API
     url: https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
@@ -11,13 +12,12 @@ sources:
     url: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 ---
 
-Sometimes the recorder you need is the one already open. A browser tab can
-capture the microphone, show the waveform, and save an MP3 without an app
-install or an account. The take never leaves the device, which matters for
-interviews, client calls and anything you would not upload to a random site.
-
-The [voice recorder](/voice-recorder) does exactly that: record, stop, trim the
-ends, export.
+Sometimes the recorder you need is the one already open. The
+[voice recorder](/voice-recorder) is a browser tab that captures the
+microphone, shows the waveform, and saves an MP3 without an app install or an
+account: record, stop, trim the ends, export. The take never leaves the
+device, which matters for interviews, client calls and anything you would not
+upload to a random site.
 
 ## Before you press record
 
@@ -43,7 +43,7 @@ level and the room before you record the real take.
 2. Press **Record** and accept the browser’s microphone permission prompt.
 3. Watch the timer. Speak at a normal level; do not lean in for emphasis.
 4. Press **Stop** when you are done. The take loads into the editor below.
-5. Play it back. If you need another take, record again — the previous take is
+5. Play it back. If you need another take, record again; the previous take is
    replaced unless you export it first.
 
 The browser decides the capture format. Chrome and Firefox record WebM with

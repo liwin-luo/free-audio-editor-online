@@ -7,11 +7,13 @@ audio: /guides-media/how-to-cut-a-song/narration.m4a
 poster: /guides-media/how-to-cut-a-song/poster.webp
 youtube: j7BmUJedDJo
 layout: ../../layouts/Guide.astro
+persona: engineer
 ---
 
-Cutting a song means marking a stretch of the waveform and exporting either that
-stretch or everything except it. The browser does the cut. The file stays on the
-computer.
+The chorus starts at 1:12 and the intro takes forty seconds you do not need.
+Mark that stretch on the waveform, export the part that matters, and leave the
+rest of the file out of the export. The [MP3 cutter](/mp3-cutter) does the cut
+in the browser, and the song never leaves the computer.
 
 If the file is a voice memo or a podcast and the job is dropping silence, use
 [how to trim audio](/guides/how-to-trim-audio). This page is about cutting a song.

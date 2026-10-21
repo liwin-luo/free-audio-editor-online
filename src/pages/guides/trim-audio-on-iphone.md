@@ -4,6 +4,7 @@ description: Trim a voice memo or audio file in Safari on iPhone — no app, no 
 tool: audio-trimmer
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+persona: phone-first
 sources:
   - label: Apple Support — Record and edit voice memos on iPhone
     url: https://support.apple.com/guide/iphone/record-and-edit-voice-memos-iph4d2a14b8b/ios
@@ -11,11 +12,10 @@ sources:
 
 iPhone has a trim control inside Voice Memos, and it works for recordings made
 there. It does not open the MP3 a client emailed you, the WAV from a camera, or
-the M4A someone sent in a chat. For those files, the browser is the shortest
-route — and it does not require installing an app or uploading the audio.
-
-The [audio trimmer](/audio-trimmer) runs in Safari. You choose a start and an
-end, preview the selection, and save the cut back to Files.
+the M4A someone sent in a chat. For those files the browser is the shortest
+route: the [audio trimmer](/audio-trimmer) runs in Safari, with no app to
+install and no upload. You choose a start and an end, preview the selection,
+and save the cut back to Files.
 
 ## What you need on the phone
 
@@ -34,7 +34,7 @@ If the audio is in Mail, tap the attachment and choose **Save to Files**.
 If it is in WhatsApp, open the message, tap the file, and use **Share → Save to
 Files**. If it is already a download, it is probably in **Files → Downloads**.
 
-Put it in a folder you will remember — **On My iPhone → Audio**, for example.
+Put it in a folder you will remember, **On My iPhone → Audio** for example.
 The trimmer's file picker can browse that folder, and the export can go back to
 the same place.
 
@@ -45,7 +45,7 @@ the same place.
 3. Wait for the waveform. A long file takes a moment to decode; the page is
    working locally, not waiting on an upload.
 4. Drag across the waveform to mark the part you want. The handles are touch
-   targets — pinch to zoom if the section is short.
+   targets; pinch to zoom if the section is short.
 5. Tap **Precise times** and type the start and end if the drag is not exact.
 6. Press play. You should hear only the highlighted span.
 7. Choose **Keep selection**, pick MP3 or WAV, and tap **Export**.
@@ -58,7 +58,7 @@ button in the address bar. Tap it, then move the file to the folder you want.
 **MP3 at 192 kbps** is the right default for a voice memo you will send. It is
 small, it plays everywhere, and speech does not need more.
 
-**WAV** is the choice if the file will be edited again — on the phone or on a
+**WAV** is the choice if the file will be edited again, on the phone or on a
 computer. It keeps the selected samples without another lossy encode. A WAV of
 a long recording is large, so check the free space before exporting.
 
@@ -86,7 +86,7 @@ Trimming removes time. It does not make a quiet recording louder, remove a hum,
 or clean up wind. Those are separate jobs:
 
 - A file that is too quiet throughout: [normalize](/normalize-audio) raises the
-  peak; the [volume booster](/increase-volume) applies a gain you choose.
+  peak; the [MP3 volume booster](/increase-volume) applies a gain you choose.
 - A hum or rumble under the voice: the
   [high-pass filter](/high-pass-filter).
 - Long pauses between sentences: the

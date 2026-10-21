@@ -4,6 +4,7 @@ description: Normalize moves the whole file to a peak; compression narrows the g
 tool: normalize-audio
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+persona: engineer
 sources:
   - label: ITU-R BS.1770 — Algorithms to measure audio programme loudness
     url: https://www.itu.int/rec/R-REC-BS.1770/en
@@ -15,7 +16,8 @@ Normalize and compress are often listed as if they were two names for the same
 cleanup. They are not. Normalize moves the entire file up or down by one gain.
 Compression changes the distance between the loud parts and the quiet parts.
 Choosing the wrong one is why a recording can end up louder and still hard to
-listen to.
+listen to. The [normalizer](/normalize-audio) and the
+[level compressor](/compressor) on this site split the two jobs.
 
 Both pages run in the browser and neither uploads the file. The decision is
 about what you want the dynamics to do.
