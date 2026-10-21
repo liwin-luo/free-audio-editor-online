@@ -59,5 +59,6 @@ Do not add a YouTube ripper or a format-permutation matrix.
 ## Privacy posture
 
 No accounts. No ad code yet. Theme preference is in localStorage. Vercel Web Analytics
-is cookieless and only injected on the production host. See `/privacy`. MP3 encoding
+is cookieless and only injected on the production host. Microsoft Clarity loads on
+that host only after optional cookies are accepted. See `/privacy`. MP3 encoding
 (lamejs) is bundled with this site and is not a third-party request.

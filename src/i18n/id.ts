@@ -26,7 +26,7 @@ export const id: Catalog = {
     contactPrivacy: 'Untuk mengetahui cara file dan umpan balik ditangani, lihat {privacy}.',
     privacyPolicyLabel: 'kebijakan privasi',
     cookieBody:
-      'Cookie opsional hanya dipakai widget umpan balik. Statistik lalu lintas tidak memakai cookie. Situs ini tidak menayangkan iklan.',
+      'Cookie opsional dipakai widget umpan balik dan Microsoft Clarity, yang mencatat cara Anda memakai halaman. Statistik lalu lintas agregat tidak memakai cookie. Situs ini tidak menayangkan iklan.',
     cookieAccept: 'Terima',
     cookieReject: 'Tolak yang tidak perlu',
     cookiePolicy: 'Kebijakan privasi',
@@ -470,7 +470,7 @@ export const id: Catalog = {
       },
       {
         h: 'Analitik dan iklan',
-        body: 'Kami mengukur lalu lintas secara keseluruhan dengan Vercel Web Analytics. Layanan itu tidak memakai cookie dan hanya mencatat tampilan halaman secara agregat — bukan identitas Anda, dan bukan audio Anda. Kami tidak menayangkan iklan. Jika salah satu dari hal ini berubah, kebijakan ini diperbarui lebih dulu.',
+        body: 'Kami mengukur lalu lintas secara keseluruhan dengan Vercel Web Analytics. Layanan itu tidak memakai cookie dan hanya mencatat tampilan halaman secara agregat — bukan identitas Anda, dan bukan audio Anda. Jika Anda menerima cookie opsional, situs juga memuat Microsoft Clarity. Clarity mencatat klik, gulir, dan rekaman sesi, supaya kami melihat alat mana yang sulit dipakai. Jika Anda menolak, Clarity tidak dimuat. Audio Anda tidak dikirim ke Clarity. Kami tidak menayangkan iklan.',
       },
       {
         h: 'Widget umpan balik',

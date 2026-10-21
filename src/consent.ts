@@ -1,12 +1,17 @@
-/** Same key as the inline reveal script in CookieNotice.astro. */
-export const CONSENT_KEY = 'fae-consent';
+/**
+ * Same key as the inline reveal script in CookieNotice.astro.
+ * Bumped when optional cookies gained Clarity. A stored `fae-consent`
+ * accept only covered the feedback widget.
+ */
+export const CONSENT_KEY = 'fae-consent-2';
 
-import { shouldLoadFeedback } from './feedback-consent.mjs';
+import { shouldLoadClarity, shouldLoadFeedback } from './feedback-consent.mjs';
 
-export { shouldLoadFeedback };
+export { shouldLoadClarity, shouldLoadFeedback };
 
 const CONSENT_EVENT = 'fae-consent';
 const USERBACK_TOKEN = 'A-cawCPZd8Mqr5Qea3QzjeqN8lP';
+const CLARITY_ID = 'z15k2kvoqo';
 
 function readConsent(): string | null {
   try {
@@ -38,7 +43,26 @@ export function installConsent(doc: Document): void {
   });
 
   let loaded = false;
+  let clarityLoaded = false;
   let armed = false;
+
+  function loadClarity() {
+    if (!view || clarityLoaded || !shouldLoadClarity(readConsent(), view.location.hostname)) return;
+    clarityLoaded = true;
+    const w = view as Window & { clarity?: ClarityFn };
+    if (!w.clarity) {
+      const clarity: ClarityFn = function () {
+        (clarity.q = clarity.q || []).push(arguments);
+      };
+      w.clarity = clarity;
+    }
+    const s = doc.createElement('script');
+    s.async = true;
+    s.src = 'https://www.clarity.ms/tag/' + CLARITY_ID + '?ref=bwt';
+    const first = doc.getElementsByTagName('script')[0];
+    if (first?.parentNode) first.parentNode.insertBefore(s, first);
+    else (doc.head || doc.body).appendChild(s);
+  }
 
   function load() {
     if (!shouldLoadFeedback(readConsent()) || loaded) return;
@@ -65,6 +89,12 @@ export function installConsent(doc: Document): void {
     }, 8000);
   }
 
-  doc.addEventListener(CONSENT_EVENT, load);
+  doc.addEventListener(CONSENT_EVENT, () => {
+    load();
+    loadClarity();
+  });
+  loadClarity();
   arm();
 }
+
+type ClarityFn = ((...args: unknown[]) => void) & { q?: IArguments[] };

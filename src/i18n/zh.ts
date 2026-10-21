@@ -25,7 +25,7 @@ export const zh: Catalog = {
     contactBody: '对工具有疑问、发现需要更正的内容，或有隐私相关请求？写信到 {email}。每封邮件我们都会看。',
     contactPrivacy: '文件与反馈如何处理，见{privacy}。',
     privacyPolicyLabel: '隐私政策',
-    cookieBody: '只有反馈组件会用到可选 Cookie。流量统计不用 Cookie。这个网站不投放广告。',
+    cookieBody: '可选 Cookie 用于反馈组件，以及 Microsoft Clarity（记录你怎么使用页面）。汇总流量统计不用 Cookie。这个网站不投放广告。',
     cookieAccept: '接受',
     cookieReject: '拒绝非必要的',
     cookiePolicy: '隐私政策',
@@ -465,7 +465,7 @@ export const zh: Catalog = {
       },
       {
         h: '统计和广告',
-        body: '我们用 Vercel Web Analytics 统计整体流量。它不用 Cookie，只记录汇总后的页面浏览，不会记录你的身份，也不会记录你的音频。我们不投放广告。如果这两点有变化，会先更新这份政策。',
+        body: '我们用 Vercel Web Analytics 统计整体流量。它不用 Cookie，只记录汇总后的页面浏览，不会记录你的身份，也不会记录你的音频。如果你接受可选 Cookie，网站还会加载 Microsoft Clarity。它记录点击、滚动和一次会话回放，方便我们看出哪个工具难用。如果你拒绝，就不会加载 Clarity。音频不会发给 Clarity。我们不投放广告。',
       },
       {
         h: '反馈组件',

@@ -26,7 +26,7 @@ export const en: Shell = {
     contactPrivacy: 'For how files and feedback are handled, see the {privacy}.',
     privacyPolicyLabel: 'privacy policy',
     cookieBody:
-      'Optional cookies are used only by the feedback widget. Traffic measurement does not use cookies. This site does not show ads.',
+      'Optional cookies are used by the feedback widget and by Microsoft Clarity, which records how you use the page. Aggregate traffic measurement does not use cookies. This site does not show ads.',
     cookieAccept: 'Accept',
     cookieReject: 'Reject optional',
     cookiePolicy: 'Privacy policy',
@@ -469,7 +469,7 @@ export const en: Shell = {
       },
       {
         h: 'Analytics and advertising',
-        body: 'We measure overall traffic with Vercel Web Analytics, which is cookieless and records only aggregate page views — never your identity and never your audio. We do not run advertising. If either of these change, this policy will be updated first.',
+        body: 'We measure overall traffic with Vercel Web Analytics, which is cookieless and records only aggregate page views — never your identity and never your audio. If you accept optional cookies, the site also loads Microsoft Clarity. Clarity records clicks, scrolling, and a replay of the session so we can see where a tool is hard to use. If you reject them, Clarity is not loaded. Your audio is not sent to Clarity. We do not run advertising.',
       },
       {
         h: 'Feedback widget',

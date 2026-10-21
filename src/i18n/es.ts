@@ -26,7 +26,7 @@ export const es: Catalog = {
     contactPrivacy: 'Para saber cómo se tratan los archivos y los comentarios, consulta la {privacy}.',
     privacyPolicyLabel: 'política de privacidad',
     cookieBody:
-      'Las cookies opcionales las usa solo el widget de comentarios. Las estadísticas no usan cookies. Este sitio no muestra anuncios.',
+      'Las cookies opcionales las usan el widget de comentarios y Microsoft Clarity, que registra cómo usas la página. Las estadísticas agregadas no usan cookies. Este sitio no muestra anuncios.',
     cookieAccept: 'Aceptar',
     cookieReject: 'Rechazar opcionales',
     cookiePolicy: 'Política de privacidad',
@@ -470,7 +470,7 @@ export const es: Catalog = {
       },
       {
         h: 'Analítica y publicidad',
-        body: 'Medimos el tráfico general con Vercel Web Analytics, que no usa cookies y registra solo vistas de página agregadas: nunca tu identidad y nunca tu audio. No mostramos publicidad. Si algo de esto cambia, esta política se actualiza primero.',
+        body: 'Medimos el tráfico general con Vercel Web Analytics, que no usa cookies y registra solo vistas de página agregadas: nunca tu identidad y nunca tu audio. Si aceptas las cookies opcionales, el sitio también carga Microsoft Clarity. Clarity registra clics, desplazamiento y una reproducción de la sesión, para ver dónde una herramienta cuesta usar. Si las rechazas, Clarity no se carga. Tu audio no se envía a Clarity. No mostramos publicidad.',
       },
       {
         h: 'Widget de comentarios',

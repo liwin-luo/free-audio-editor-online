@@ -26,7 +26,7 @@ export const de: Catalog = {
     contactPrivacy: 'Wie Dateien und Feedback behandelt werden, steht in der {privacy}.',
     privacyPolicyLabel: 'Datenschutzerklärung',
     cookieBody:
-      'Optionale Cookies nutzt nur das Feedback-Widget. Die Zugriffsstatistik kommt ohne Cookies aus. Wir schalten keine Werbung.',
+      'Optionale Cookies nutzen das Feedback-Widget und Microsoft Clarity, das aufzeichnet, wie du die Seite benutzt. Die zusammengefasste Zugriffsstatistik kommt ohne Cookies aus. Wir schalten keine Werbung.',
     cookieAccept: 'Akzeptieren',
     cookieReject: 'Optionale ablehnen',
     cookiePolicy: 'Datenschutzerklärung',
@@ -471,7 +471,7 @@ export const de: Catalog = {
       },
       {
         h: 'Analyse und Werbung',
-        body: 'Den Gesamtverkehr messen wir mit Vercel Web Analytics, ohne Cookies und nur mit aggregierten Seitenaufrufen — nie deine Identität und nie dein Audio. Wir schalten keine Werbung. Ändert sich die Analyse oder die Werbung, wird diese Erklärung zuerst aktualisiert.',
+        body: 'Den Gesamtverkehr messen wir mit Vercel Web Analytics, ohne Cookies und nur mit aggregierten Seitenaufrufen — nie deine Identität und nie dein Audio. Akzeptierst du optionale Cookies, lädt die Seite zusätzlich Microsoft Clarity. Clarity zeichnet Klicks, Scrollen und eine Wiedergabe der Sitzung auf, damit wir sehen, wo ein Werkzeug schwer zu bedienen ist. Lehnst du sie ab, wird Clarity nicht geladen. Dein Audio geht nicht an Clarity. Wir schalten keine Werbung.',
       },
       {
         h: 'Feedback-Widget',

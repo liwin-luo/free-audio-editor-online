@@ -26,7 +26,7 @@ export const ja: Catalog = {
     contactPrivacy: 'ファイルとフィードバックの扱いは、{privacy}をご覧ください。',
     privacyPolicyLabel: 'プライバシーポリシー',
     cookieBody:
-      '任意の Cookie を使うのはフィードバック部品だけです。アクセス計測は Cookie を使いません。広告は出していません。',
+      '任意の Cookie は、フィードバック部品と Microsoft Clarity（ページの使い方の記録）が使います。集計のアクセス計測は Cookie を使いません。広告は出していません。',
     cookieAccept: '同意する',
     cookieReject: '任意のものは拒否',
     cookiePolicy: 'プライバシーポリシー',
@@ -470,7 +470,7 @@ export const ja: Catalog = {
       },
       {
         h: 'アクセス解析と広告',
-        body: '全体のアクセスは Vercel Web Analytics で見ています。Cookie は使わず、集計されたページビューだけを記録します。身元も、音声も記録しません。広告は出していません。この二つが変わるときは、先にこのポリシーを更新します。',
+        body: '全体のアクセスは Vercel Web Analytics で見ています。Cookie は使わず、集計されたページビューだけを記録します。身元も、音声も記録しません。任意の Cookie に同意すると、Microsoft Clarity も読み込みます。クリック、スクロール、セッションの再生を記録し、どのツールが使いにくいかを見るためです。拒否した場合、Clarity は読み込みません。音声は Clarity に送りません。広告は出していません。',
       },
       {
         h: 'フィードバックウィジェット',

@@ -26,7 +26,7 @@ export const fr: Catalog = {
     contactPrivacy: 'Pour savoir comment les fichiers et les retours sont traités, consultez la {privacy}.',
     privacyPolicyLabel: 'politique de confidentialité',
     cookieBody:
-      'Les cookies facultatifs servent seulement au module de retours. La mesure d’audience n’utilise pas de cookies. Ce site n’affiche pas de publicité.',
+      'Les cookies facultatifs servent au module de retours et à Microsoft Clarity, qui enregistre comment vous utilisez la page. La mesure d’audience agrégée n’utilise pas de cookies. Ce site n’affiche pas de publicité.',
     cookieAccept: 'Accepter',
     cookieReject: 'Refuser les facultatifs',
     cookiePolicy: 'Politique de confidentialité',
@@ -470,7 +470,7 @@ export const fr: Catalog = {
       },
       {
         h: 'Statistiques et publicité',
-        body: 'Nous mesurons le trafic global avec Vercel Web Analytics, qui n’utilise pas de cookies et n’enregistre que des vues de pages agrégées — jamais votre identité, jamais votre audio. Nous n’affichons aucune publicité. Si l’un de ces points évolue, cette politique sera mise à jour en premier.',
+        body: 'Nous mesurons le trafic global avec Vercel Web Analytics, qui n’utilise pas de cookies et n’enregistre que des vues de pages agrégées — jamais votre identité, jamais votre audio. Si vous acceptez les cookies facultatifs, le site charge aussi Microsoft Clarity. Clarity enregistre les clics, le défilement et une rediffusion de la session, pour voir où un outil est difficile à utiliser. Si vous les refusez, Clarity n’est pas chargé. Votre audio n’est pas envoyé à Clarity. Nous n’affichons aucune publicité.',
       },
       {
         h: 'Widget de retours',

@@ -26,7 +26,7 @@ export const ko: Catalog = {
     contactPrivacy: '파일과 피드백이 어떻게 처리되는지는 {privacy}에서 확인할 수 있어요.',
     privacyPolicyLabel: '개인정보 처리방침',
     cookieBody:
-      '선택 쿠키는 피드백 위젯만 써요. 트래픽 통계는 쿠키를 쓰지 않아요. 광고도 하지 않아요.',
+      '선택 쿠키는 피드백 위젯과 Microsoft Clarity(페이지 사용 기록)가 써요. 합산 트래픽 통계는 쿠키를 쓰지 않아요. 광고도 하지 않아요.',
     cookieAccept: '동의',
     cookieReject: '선택 항목 거부',
     cookiePolicy: '개인정보 처리방침',
@@ -470,7 +470,7 @@ export const ko: Catalog = {
       },
       {
         h: '분석과 광고',
-        body: '전체 트래픽은 Vercel Web Analytics로 봐요. 쿠키가 없고, 페이지 조회만 합산해서 기록해요. 신원도, 오디오도 남기지 않아요. 광고는 하지 않아요. 이 둘 중 하나라도 바뀌면 이 방침을 먼저 업데이트할게요.',
+        body: '전체 트래픽은 Vercel Web Analytics로 봐요. 쿠키가 없고, 페이지 조회만 합산해서 기록해요. 신원도, 오디오도 남기지 않아요. 선택 쿠키에 동의하면 Microsoft Clarity도 불러와요. 클릭, 스크롤, 세션 재생을 기록해서 어떤 도구가 쓰기 어려운지 봐요. 거부하면 Clarity는 불러오지 않아요. 오디오는 Clarity에 보내지 않아요. 광고는 하지 않아요.',
       },
       {
         h: '피드백 위젯',

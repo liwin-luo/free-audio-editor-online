@@ -324,7 +324,7 @@ export interface UiText {
   /** Contact page privacy note. Placeholder: {privacy}. */
   contactPrivacy: string;
   privacyPolicyLabel: string;
-  /** Cookie bar body. Three sentences: feedback widget, cookieless stats, no ads. */
+  /** Cookie bar body. Three sentences: optional cookies (feedback + Clarity), cookieless aggregate stats, no ads. */
   cookieBody: string;
   cookieAccept: string;
   cookieReject: string;
