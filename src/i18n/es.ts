@@ -21,6 +21,11 @@ export const es: Catalog = {
     guides: 'Guías',
     rights: 'Ningún archivo sale de tu dispositivo.',
     clientSide: 'Procesamiento 100% en el navegador',
+    contact: 'Contacto',
+    contactBody: '¿Preguntas sobre una herramienta, una corrección o una solicitud de privacidad? Escribe a {email}. Leemos todos los mensajes.',
+    contactPrivacy: 'Para saber cómo se tratan los archivos y los comentarios, consulta la {privacy}.',
+    privacyPolicyLabel: 'política de privacidad',
+    trustMethod: 'Cómo lo probamos',
     trustFree: 'Gratis, sin registro',
     trustClean: 'Sin marcas de agua',
     trustOffline: 'Sin red tras abrir',
@@ -433,7 +438,7 @@ export const es: Catalog = {
     description:
       'Política de privacidad de freeaudioeditor.online: los archivos de audio se procesan en tu navegador y nunca se suben. Sin cuentas y sin rastrear tu audio.',
     h1: 'Política de privacidad',
-    updated: 'Última actualización: 16 de octubre de 2026',
+    updated: 'Última actualización: 21 de octubre de 2026',
     sections: [
       {
         h: 'Tus archivos de audio',
@@ -442,7 +447,7 @@ export const es: Catalog = {
       },
       {
         h: 'Qué guardamos',
-        body: 'Nada sobre ti. El sitio no tiene cuentas y no pide un correo. Tu preferencia de tema (claro u oscuro) se guarda en el localStorage de tu navegador y nunca sale de tu dispositivo.',
+        body: 'No creamos una cuenta ni un perfil para ti. El sitio no tiene cuentas y no pide un correo. Tu preferencia de tema (claro u oscuro) se guarda en el localStorage de tu navegador y nunca sale de tu dispositivo.',
       },
       {
         h: 'Terceros',
@@ -451,6 +456,10 @@ export const es: Catalog = {
       {
         h: 'Analítica y publicidad',
         body: 'Medimos el tráfico general con Vercel Web Analytics, que no usa cookies y registra solo vistas de página agregadas: nunca tu identidad y nunca tu audio. No mostramos publicidad. Si algo de esto cambia, esta política se actualiza primero.',
+      },
+      {
+        h: 'Widget de comentarios',
+        body: 'Si usas el botón de comentarios, el sitio carga Userback, un servicio de comentarios de terceros, solo después de tu primera interacción o a los ocho segundos. No se envía nada hasta que escribes y envías un mensaje. Lo que escribes, junto con información básica de la página y del navegador, lo procesa Userback por cuenta nuestra para que podamos leerlo y responderte. Los archivos de audio nunca intervienen. Consulta la política de privacidad de Userback para saber cómo trata esos datos.',
       },
     ],
     contactHeading: 'Contacto',

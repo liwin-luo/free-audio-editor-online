@@ -21,6 +21,11 @@ export const de: Catalog = {
     guides: 'Anleitungen',
     rights: 'Keine Datei verlässt dein Gerät.',
     clientSide: '100 % Verarbeitung im Browser',
+    contact: 'Kontakt',
+    contactBody: 'Fragen zu einem Tool, eine Korrektur oder ein Datenschutzanliegen? Schreib an {email}. Wir lesen jede Nachricht.',
+    contactPrivacy: 'Wie Dateien und Feedback behandelt werden, steht in der {privacy}.',
+    privacyPolicyLabel: 'Datenschutzerklärung',
+    trustMethod: 'So testen wir',
     trustFree: 'Kostenlos, ohne Anmeldung',
     trustClean: 'Ohne Wasserzeichen',
     trustOffline: 'Nach dem Laden offline',
@@ -434,7 +439,7 @@ export const de: Catalog = {
     description:
       'Datenschutzerklärung für freeaudioeditor.online: Audio wird lokal in deinem Browser verarbeitet und nie hochgeladen. Keine Konten, kein Audio-Tracking.',
     h1: 'Datenschutzerklärung',
-    updated: 'Zuletzt aktualisiert: 16. Oktober 2026',
+    updated: 'Zuletzt aktualisiert: 21. Oktober 2026',
     sections: [
       {
         h: 'Deine Audiodateien',
@@ -443,7 +448,7 @@ export const de: Catalog = {
       },
       {
         h: 'Was wir speichern',
-        body: 'Nichts über dich. Die Seite hat keine Konten und verlangt keine E-Mail-Adresse. Deine Einstellung für hell oder dunkel liegt im localStorage deines Browsers und verlässt dein Gerät nie.',
+        body: 'Wir legen weder ein Konto noch ein Profil für dich an. Die Seite hat keine Konten und verlangt keine E-Mail-Adresse. Deine Einstellung für hell oder dunkel liegt im localStorage deines Browsers und verlässt dein Gerät nie.',
       },
       {
         h: 'Drittanbieter',
@@ -452,6 +457,10 @@ export const de: Catalog = {
       {
         h: 'Analyse und Werbung',
         body: 'Den Gesamtverkehr messen wir mit Vercel Web Analytics, ohne Cookies und nur mit aggregierten Seitenaufrufen — nie deine Identität und nie dein Audio. Wir schalten keine Werbung. Ändert sich die Analyse oder die Werbung, wird diese Erklärung zuerst aktualisiert.',
+      },
+      {
+        h: 'Feedback-Widget',
+        body: 'Wenn du die Feedback-Schaltfläche nutzt, lädt die Seite Userback, einen Feedback-Dienst eines Drittanbieters, erst nach deiner ersten Interaktion oder nach acht Sekunden. Es wird nichts gesendet, bevor du eine Nachricht schreibst und absendest. Was du schreibst, zusammen mit grundlegenden Seiten- und Browserinformationen, verarbeitet Userback in unserem Auftrag, damit wir es lesen und beantworten können. Audiodateien sind nie beteiligt. Wie Userback diese Daten behandelt, steht in der Datenschutzerklärung von Userback.',
       },
     ],
     contactHeading: 'Kontakt',

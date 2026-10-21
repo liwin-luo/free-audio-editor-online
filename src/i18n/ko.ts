@@ -21,6 +21,11 @@ export const ko: Catalog = {
     guides: '가이드',
     rights: '파일은 기기를 떠나지 않아요.',
     clientSide: '100% 브라우저에서 처리',
+    contact: '문의',
+    contactBody: '도구에 관한 질문, 수정할 내용, 개인정보 관련 요청이 있나요? {email}로 보내 주세요. 모든 메시지를 읽습니다.',
+    contactPrivacy: '파일과 피드백이 어떻게 처리되는지는 {privacy}에서 확인할 수 있어요.',
+    privacyPolicyLabel: '개인정보 처리방침',
+    trustMethod: '테스트 방법',
     trustFree: '무료, 가입 없음',
     trustClean: '워터마크 없음',
     trustOffline: '불러온 뒤 오프라인',
@@ -433,7 +438,7 @@ export const ko: Catalog = {
     description:
       'freeaudioeditor.online 개인정보 처리방침. 오디오는 브라우저에서 로컬로 처리되고 업로드되지 않아요. 계정도 없고, 오디오를 추적하지도 않아요.',
     h1: '개인정보 처리방침',
-    updated: '최종 업데이트: 2026년 10월 16일',
+    updated: '최종 업데이트: 2026년 10월 21일',
     sections: [
       {
         h: '오디오 파일',
@@ -442,7 +447,7 @@ export const ko: Catalog = {
       },
       {
         h: '저장하는 정보',
-        body: '사용자에 대해 저장하는 건 없어요. 계정도 없고, 이메일도 받지 않아요. 테마(라이트 또는 다크)는 브라우저 localStorage에만 남고, 기기를 떠나지 않아요.',
+        body: '계정이나 프로필을 만들지 않아요. 사이트에는 계정이 없고 이메일도 받지 않아요. 테마(라이트 또는 다크)는 브라우저 localStorage에만 남고, 기기를 떠나지 않아요.',
       },
       {
         h: '제3자',
@@ -451,6 +456,10 @@ export const ko: Catalog = {
       {
         h: '분석과 광고',
         body: '전체 트래픽은 Vercel Web Analytics로 봐요. 쿠키가 없고, 페이지 조회만 합산해서 기록해요. 신원도, 오디오도 남기지 않아요. 광고는 하지 않아요. 이 둘 중 하나라도 바뀌면 이 방침을 먼저 업데이트할게요.',
+      },
+      {
+        h: '피드백 위젯',
+        body: '피드백 버튼을 사용하면 첫 상호작용 뒤 또는 8초 뒤에 제3자 피드백 서비스인 Userback을 불러옵니다. 메시지를 작성해 보내기 전에는 아무것도 전송되지 않습니다. 작성한 내용과 기본 페이지·브라우저 정보는 저희를 대신해 Userback이 처리하며, 저희가 읽고 답변하는 데 쓰입니다. 오디오 파일은 전혀 관련되지 않습니다. 해당 데이터 처리 방식은 Userback의 개인정보 처리방침을 참고하세요.',
       },
     ],
     contactHeading: '문의',

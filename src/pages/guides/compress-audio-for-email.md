@@ -4,6 +4,11 @@ description: "Make a voice memo or song small enough to send: pick 64–128 kbps
 tool: compress-audio
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+sources:
+  - label: Google Support — Send attachments with Gmail (25 MB limit)
+    url: https://support.google.com/mail/answer/6584
+  - label: WhatsApp Help Center — How to send media and documents
+    url: https://faq.whatsapp.com/windows/chats/how-to-send-media/
 ---
 
 An audio file gets rejected for one reason: it is too big for the inbox or the

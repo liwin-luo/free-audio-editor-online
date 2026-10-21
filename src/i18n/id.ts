@@ -21,6 +21,11 @@ export const id: Catalog = {
     guides: 'Panduan',
     rights: 'Tidak ada file yang meninggalkan perangkat Anda.',
     clientSide: 'Pemrosesan 100% di perangkat',
+    contact: 'Kontak',
+    contactBody: 'Ada pertanyaan tentang alat, koreksi, atau permintaan privasi? Tulis ke {email}. Kami membaca setiap pesan.',
+    contactPrivacy: 'Untuk mengetahui cara file dan umpan balik ditangani, lihat {privacy}.',
+    privacyPolicyLabel: 'kebijakan privasi',
+    trustMethod: 'Cara kami menguji',
     trustFree: 'Gratis, tanpa daftar',
     trustClean: 'Tanpa watermark',
     trustOffline: 'Offline setelah dimuat',
@@ -433,7 +438,7 @@ export const id: Catalog = {
     description:
       'Kebijakan privasi freeaudioeditor.online: audio diproses lokal di browser Anda dan tidak pernah diunggah. Tanpa akun, tanpa pelacakan audio.',
     h1: 'Kebijakan Privasi',
-    updated: 'Terakhir diperbarui: 16 Oktober 2026',
+    updated: 'Terakhir diperbarui: 21 Oktober 2026',
     sections: [
       {
         h: 'File audio Anda',
@@ -442,7 +447,7 @@ export const id: Catalog = {
       },
       {
         h: 'Apa yang kami simpan',
-        body: 'Tidak ada data tentang Anda. Situs ini tidak memiliki akun dan tidak meminta alamat email. Preferensi tema (terang atau gelap) disimpan di localStorage browser Anda dan tidak pernah meninggalkan perangkat.',
+        body: 'Kami tidak membuat akun atau profil untuk Anda. Situs ini tidak memiliki akun dan tidak meminta alamat email. Preferensi tema (terang atau gelap) disimpan di localStorage browser Anda dan tidak pernah meninggalkan perangkat.',
       },
       {
         h: 'Pihak ketiga',
@@ -451,6 +456,10 @@ export const id: Catalog = {
       {
         h: 'Analitik dan iklan',
         body: 'Kami mengukur lalu lintas secara keseluruhan dengan Vercel Web Analytics. Layanan itu tidak memakai cookie dan hanya mencatat tampilan halaman secara agregat — bukan identitas Anda, dan bukan audio Anda. Kami tidak menayangkan iklan. Jika salah satu dari hal ini berubah, kebijakan ini diperbarui lebih dulu.',
+      },
+      {
+        h: 'Widget umpan balik',
+        body: 'Jika Anda memakai tombol umpan balik, situs memuat Userback, layanan umpan balik pihak ketiga, hanya setelah interaksi pertama atau setelah delapan detik. Tidak ada yang dikirim sampai Anda menulis dan mengirim pesan. Tulisan Anda, ditambah informasi dasar halaman dan browser, diproses Userback atas nama kami agar kami bisa membacanya dan membalas. File audio tidak pernah terlibat. Lihat kebijakan privasi Userback untuk mengetahui cara data itu ditangani.',
       },
     ],
     contactHeading: 'Kontak',

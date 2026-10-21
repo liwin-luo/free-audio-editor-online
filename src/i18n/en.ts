@@ -21,6 +21,11 @@ export const en: Shell = {
     guides: 'Guides',
     rights: 'No files leave your device.',
     clientSide: '100% client-side processing',
+    contact: 'Contact',
+    contactBody: 'Questions about a tool, a correction, or a privacy request? Write to {email}. We read every message.',
+    contactPrivacy: 'For how files and feedback are handled, see the {privacy}.',
+    privacyPolicyLabel: 'privacy policy',
+    trustMethod: 'How we test',
     trustFree: 'Free, no signup',
     trustClean: 'No watermarks',
     trustOffline: 'Offline after load',
@@ -432,7 +437,7 @@ export const en: Shell = {
     description:
       'Privacy policy for freeaudioeditor.online: audio files are processed locally in your browser and never uploaded. No accounts, no tracking of your audio.',
     h1: 'Privacy Policy',
-    updated: 'Last updated: October 16, 2026',
+    updated: 'Last updated: October 21, 2026',
     sections: [
       {
         h: 'Your audio files',
@@ -441,7 +446,7 @@ export const en: Shell = {
       },
       {
         h: 'What we store',
-        body: 'Nothing about you. The site has no accounts and does not require an email address. Your theme preference (light or dark) is saved in your browser\u2019s localStorage and never leaves your device.',
+        body: 'We do not create an account or a profile for you. The site has no accounts and does not require an email address. Your theme preference (light or dark) is saved in your browser\u2019s localStorage and never leaves your device.',
       },
       {
         h: 'Third parties',
@@ -450,6 +455,10 @@ export const en: Shell = {
       {
         h: 'Analytics and advertising',
         body: 'We measure overall traffic with Vercel Web Analytics, which is cookieless and records only aggregate page views — never your identity and never your audio. We do not run advertising. If either of these change, this policy will be updated first.',
+      },
+      {
+        h: 'Feedback widget',
+        body: 'If you use the feedback button, the site loads Userback, a third-party feedback service, only after your first interaction or after eight seconds. Nothing is sent until you write and submit a message. What you type, plus basic page and browser information, is processed by Userback on our behalf so we can read it and reply. Audio files are never involved. See Userback\u2019s privacy policy for how that data is handled.',
       },
     ],
     contactHeading: 'Contact',

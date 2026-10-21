@@ -4,6 +4,11 @@ description: Normalize moves the whole file to a peak; compression narrows the g
 tool: normalize-audio
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+sources:
+  - label: ITU-R BS.1770 — Algorithms to measure audio programme loudness
+    url: https://www.itu.int/rec/R-REC-BS.1770/en
+  - label: Spotify for Artists — Loudness normalization
+    url: https://support.spotify.com/us/artists/article/loudness-normalization/
 ---
 
 Normalize and compress are often listed as if they were two names for the same

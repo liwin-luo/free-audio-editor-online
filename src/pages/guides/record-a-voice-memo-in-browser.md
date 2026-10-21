@@ -4,6 +4,11 @@ description: Record from your microphone in Chrome, Safari or Firefox, trim the 
 tool: voice-recorder
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+sources:
+  - label: MDN — MediaRecorder API
+    url: https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
+  - label: MDN — MediaDevices.getUserMedia()
+    url: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 ---
 
 Sometimes the recorder you need is the one already open. A browser tab can

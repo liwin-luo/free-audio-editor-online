@@ -15,7 +15,10 @@ function guideDates() {
       if (entry.isDirectory()) {
         walk(path);
       } else if (entry.name.endsWith('.md')) {
-        const date = readFileSync(path, 'utf8').match(/^date:\s*(\S+)/m)?.[1];
+        const source = readFileSync(path, 'utf8');
+        const date =
+          source.match(/^updated:\s*["']?([^"'\s]+)/m)?.[1] ??
+          source.match(/^date:\s*["']?([^"'\s]+)/m)?.[1];
         const route = path.pathname.split('/src/pages/')[1]?.replace(/\.md$/, '');
         if (date && route) dates.set(`/${route}`, date);
       }

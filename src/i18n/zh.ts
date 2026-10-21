@@ -21,6 +21,11 @@ export const zh: Catalog = {
     guides: '指南',
     rights: '文件不会离开你的设备。',
     clientSide: '100% 在本地处理',
+    contact: '联系我们',
+    contactBody: '对工具有疑问、发现需要更正的内容，或有隐私相关请求？写信到 {email}。每封邮件我们都会看。',
+    contactPrivacy: '文件与反馈如何处理，见{privacy}。',
+    privacyPolicyLabel: '隐私政策',
+    trustMethod: '我们如何测试',
     trustFree: '免费，不用注册',
     trustClean: '没有水印',
     trustOffline: '打开后可离线',
@@ -429,7 +434,7 @@ export const zh: Catalog = {
     description:
       'freeaudioeditor.online 的隐私政策：音频文件在你的浏览器里本地处理，不会上传。没有账号，也不会追踪你的音频。',
     h1: '隐私政策',
-    updated: '最近更新：2026 年 10 月 16 日',
+    updated: '最近更新：2026 年 10 月 21 日',
     sections: [
       {
         h: '你的音频文件',
@@ -438,7 +443,7 @@ export const zh: Catalog = {
       },
       {
         h: '我们存什么',
-        body: '不存任何关于你的信息。网站没有账号，也不需要邮箱。你的主题偏好（浅色或深色）存在浏览器的 localStorage 里，不会离开你的设备。',
+        body: '我们不会为你创建账号或档案。网站没有账号，也不需要邮箱。你的主题偏好（浅色或深色）存在浏览器的 localStorage 里，不会离开你的设备。',
       },
       {
         h: '第三方',
@@ -447,6 +452,10 @@ export const zh: Catalog = {
       {
         h: '统计和广告',
         body: '我们用 Vercel Web Analytics 统计整体流量。它不用 Cookie，只记录汇总后的页面浏览，不会记录你的身份，也不会记录你的音频。我们不投放广告。如果这两点有变化，会先更新这份政策。',
+      },
+      {
+        h: '反馈组件',
+        body: '如果你使用反馈按钮，网站会在你首次交互后或八秒后加载第三方反馈服务 Userback。只有你写下并提交消息时才会发送内容。你填写的内容以及基本的页面和浏览器信息，由 Userback 代表我们处理，以便我们阅读和回复。音频文件不会参与其中。Userback 如何处理这些数据，请参阅其隐私政策。',
       },
     ],
     contactHeading: '联系',

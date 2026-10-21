@@ -4,6 +4,9 @@ description: Trim a voice memo or audio file in Safari on iPhone — no app, no 
 tool: audio-trimmer
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+sources:
+  - label: Apple Support — Record and edit voice memos on iPhone
+    url: https://support.apple.com/guide/iphone/record-and-edit-voice-memos-iph4d2a14b8b/ios
 ---
 
 iPhone has a trim control inside Voice Memos, and it works for recordings made

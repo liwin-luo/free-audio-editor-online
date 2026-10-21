@@ -21,6 +21,11 @@ export const fr: Catalog = {
     guides: 'Guides',
     rights: 'Aucun fichier ne quitte votre appareil.',
     clientSide: 'Traitement 100 % dans le navigateur',
+    contact: 'Contact',
+    contactBody: 'Une question sur un outil, une correction ou une demande liée à la confidentialité ? Écrivez à {email}. Nous lisons chaque message.',
+    contactPrivacy: 'Pour savoir comment les fichiers et les retours sont traités, consultez la {privacy}.',
+    privacyPolicyLabel: 'politique de confidentialité',
+    trustMethod: 'Comment nous testons',
     trustFree: 'Gratuit, sans inscription',
     trustClean: 'Sans filigrane',
     trustOffline: 'Hors ligne une fois ouvert',
@@ -433,7 +438,7 @@ export const fr: Catalog = {
     description:
       'Confidentialité sur freeaudioeditor.online : l’audio est traité localement dans votre navigateur, jamais téléversé. Aucun compte, aucun suivi.',
     h1: 'Politique de confidentialité',
-    updated: 'Dernière mise à jour : 16 octobre 2026',
+    updated: 'Dernière mise à jour : 21 octobre 2026',
     sections: [
       {
         h: 'Vos fichiers audio',
@@ -442,7 +447,7 @@ export const fr: Catalog = {
       },
       {
         h: 'Ce que nous conservons',
-        body: 'Rien à votre sujet. Le site n’a ni comptes, ni adresse e-mail à fournir. Votre préférence de thème (clair ou sombre) est enregistrée dans le localStorage de votre navigateur et ne quitte jamais votre appareil.',
+        body: 'Nous ne créons ni compte ni profil pour vous. Le site n’a ni comptes, ni adresse e-mail à fournir. Votre préférence de thème (clair ou sombre) est enregistrée dans le localStorage de votre navigateur et ne quitte jamais votre appareil.',
       },
       {
         h: 'Les tiers',
@@ -451,6 +456,10 @@ export const fr: Catalog = {
       {
         h: 'Statistiques et publicité',
         body: 'Nous mesurons le trafic global avec Vercel Web Analytics, qui n’utilise pas de cookies et n’enregistre que des vues de pages agrégées — jamais votre identité, jamais votre audio. Nous n’affichons aucune publicité. Si l’un de ces points évolue, cette politique sera mise à jour en premier.',
+      },
+      {
+        h: 'Widget de retours',
+        body: 'Si vous utilisez le bouton de retour, le site charge Userback, un service de retours tiers, seulement après votre première interaction ou au bout de huit secondes. Rien n’est envoyé tant que vous n’avez pas écrit et envoyé un message. Ce que vous écrivez, ainsi que des informations de base sur la page et le navigateur, est traité par Userback pour notre compte afin que nous puissions le lire et vous répondre. Les fichiers audio ne sont jamais concernés. Consultez la politique de confidentialité de Userback pour savoir comment ces données sont traitées.',
       },
     ],
     contactHeading: 'Contact',

@@ -4,6 +4,9 @@ description: Cut 50/60 Hz mains hum, rumble and wind from a recording with a hig
 tool: high-pass-filter
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+sources:
+  - label: W3C — Audio EQ Cookbook (biquad filter design)
+    url: https://www.w3.org/TR/audio-eq-cookbook/
 ---
 
 A steady low drone under a voice is usually one of two things: electrical mains

@@ -4,6 +4,9 @@ description: Split a long recording into 2–16 equal files in the browser, or c
 tool: split-mp3
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+sources:
+  - label: Audacity Manual — Splitting a recording into separate tracks
+    url: https://manual.audacityteam.org/man/splitting_a_recording_into_separate_tracks.html
 ---
 
 A long recording is hard to send, hard to replay and hard to name. Splitting it

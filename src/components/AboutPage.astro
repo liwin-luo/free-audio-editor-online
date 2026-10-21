@@ -9,7 +9,7 @@ interface Props {
   locale?: Locale;
 }
 const { locale = 'en' } = Astro.props;
-const { about } = getShell(locale);
+const { about, ui } = getShell(locale);
 const links: Record<string, { href: string; label: string }> = {
   trimmer: { href: localePath(locale, '/audio-trimmer'), label: about.linkTrimmer },
   cutter: { href: localePath(locale, '/mp3-cutter'), label: about.linkCutter },
@@ -54,6 +54,9 @@ const jsonLd = [
           </p>
         )
       }
+      <p>
+        <a href={localePath(locale, '/contact')} class="text-accent hover:underline">{ui.contact}</a>
+      </p>
     </div>
   </article>
 </Base>

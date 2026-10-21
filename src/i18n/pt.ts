@@ -21,6 +21,11 @@ export const pt: Catalog = {
     guides: 'Guias',
     rights: 'Nenhum arquivo sai do seu aparelho.',
     clientSide: 'Processamento 100% no navegador',
+    contact: 'Contato',
+    contactBody: 'Dúvidas sobre uma ferramenta, uma correção ou um pedido de privacidade? Escreva para {email}. Lemos todas as mensagens.',
+    contactPrivacy: 'Para saber como arquivos e comentários são tratados, consulte a {privacy}.',
+    privacyPolicyLabel: 'política de privacidade',
+    trustMethod: 'Como testamos',
     trustFree: 'Grátis, sem cadastro',
     trustClean: 'Sem marca d\'água',
     trustOffline: 'Offline depois de abrir',
@@ -432,7 +437,7 @@ export const pt: Catalog = {
     description:
       'Política de privacidade do freeaudioeditor.online: os arquivos de áudio são processados no navegador e nunca enviados. Sem contas, sem rastrear seu áudio.',
     h1: 'Política de privacidade',
-    updated: 'Última atualização: 16 de outubro de 2026',
+    updated: 'Última atualização: 21 de outubro de 2026',
     sections: [
       {
         h: 'Seus arquivos de áudio',
@@ -441,7 +446,7 @@ export const pt: Catalog = {
       },
       {
         h: 'O que guardamos',
-        body: 'Nada sobre você. O site não tem contas e não pede e-mail. Sua preferência de tema (claro ou escuro) fica no localStorage do navegador e nunca sai do aparelho.',
+        body: 'Não criamos uma conta nem um perfil para você. O site não tem contas e não pede e-mail. Sua preferência de tema (claro ou escuro) fica no localStorage do navegador e nunca sai do aparelho.',
       },
       {
         h: 'Terceiros',
@@ -450,6 +455,10 @@ export const pt: Catalog = {
       {
         h: 'Análises e publicidade',
         body: 'Medimos o tráfego geral com o Vercel Web Analytics, que não usa cookies e registra apenas visualizações agregadas de página — nunca sua identidade e nunca seu áudio. Não veiculamos publicidade. Se qualquer um desses dois pontos mudar, esta política será atualizada antes.',
+      },
+      {
+        h: 'Widget de comentários',
+        body: 'Se você usar o botão de comentários, o site carrega o Userback, um serviço de comentários de terceiros, só depois da sua primeira interação ou após oito segundos. Nada é enviado até você escrever e enviar uma mensagem. O que você escreve, junto com informações básicas da página e do navegador, é processado pelo Userback em nosso nome para que possamos ler e responder. Arquivos de áudio nunca são envolvidos. Consulte a política de privacidade do Userback para saber como esses dados são tratados.',
       },
     ],
     contactHeading: 'Contato',

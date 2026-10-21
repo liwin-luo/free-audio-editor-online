@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import { getShell } from '../i18n';
+import { splitSlots } from '../i18n/inline';
+import { localeMeta, localePath, type Locale } from '../i18n/locales';
+import { SITE } from '../data/site';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const { ui } = getShell(locale);
+const email = 'privacy@freeaudioeditor.online';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: ui.contact,
+    url: new URL(localePath(locale, '/contact'), SITE.url).href,
+    inLanguage: localeMeta(locale).hreflang,
+  },
+];
+const title = `${ui.contact} — ${SITE.name}`;
+const description = ui.contactBody.replace('{email}', email);
+---
+
+<Base title={title} description={description} path="/contact" locale={locale} jsonLd={jsonLd}>
+  <article class="container-page py-14">
+    <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{ui.contact}</h1>
+    <div class="mt-8 max-w-[70ch] space-y-5 text-[15px] leading-relaxed text-ink2">
+      <p>
+        {
+          splitSlots(ui.contactBody).map((part) =>
+            part.type === 'slot' ? (
+              <a href={`mailto:${email}`} class="text-accent hover:underline">{email}</a>
+            ) : (
+              part.value
+            )
+          )
+        }
+      </p>
+      <p>
+        {
+          splitSlots(ui.contactPrivacy).map((part) =>
+            part.type === 'slot' ? (
+              <a href={localePath(locale, '/privacy')} class="text-accent hover:underline">{ui.privacyPolicyLabel}</a>
+            ) : (
+              part.value
+            )
+          )
+        }
+      </p>
+    </div>
+  </article>
+</Base>

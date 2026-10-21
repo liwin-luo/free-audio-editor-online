@@ -4,6 +4,11 @@ description: Turn WhatsApp voice notes and .opus, OGG or WebM files into MP3 in 
 tool: opus-to-mp3
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+sources:
+  - label: RFC 6716 — Definition of the Opus Audio Codec
+    url: https://www.rfc-editor.org/rfc/rfc6716
+  - label: Opus Codec — Official site
+    url: https://opus-codec.org/
 ---
 
 Opus is an efficient codec with an unhelpful habit of hiding in containers

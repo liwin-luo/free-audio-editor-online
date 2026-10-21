@@ -4,6 +4,11 @@ description: Cut a 15–60 second section from any song, keep the hook, and use 
 tool: mp3-cutter
 date: 2026-10-21
 layout: ../../layouts/Guide.astro
+sources:
+  - label: TikTok Help Center — Creating videos
+    url: https://support.tiktok.com/en/using-tiktok/creating-videos
+  - label: Instagram Help Center — Reels
+    url: https://help.instagram.com/1038071743007909
 ---
 
 A video edit needs a short, clean piece of a song: the hook, the drop, the

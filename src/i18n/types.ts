@@ -304,6 +304,14 @@ export interface UiText {
   copied: string;
   about: string;
   privacy: string;
+  contact: string;
+  /** Contact page lede. Placeholder: {email}. */
+  contactBody: string;
+  /** Contact page privacy note. Placeholder: {privacy}. */
+  contactPrivacy: string;
+  privacyPolicyLabel: string;
+  /** Link from the tool trust badge to the testing method. */
+  trustMethod: string;
   guides: string;
   status: string;
   rights: string;
