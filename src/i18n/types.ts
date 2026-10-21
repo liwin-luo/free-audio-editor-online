@@ -31,6 +31,8 @@ export interface EditorText {
   etaModel: string;
   /** Hard cap on the transcribe promise line. */
   limitTenMin: string;
+  /** Hard cap on the audio-to-MIDI promise line. */
+  limitThreeMin: string;
   /** Ringtone selection cap on the promise line. */
   limitRingtone: string;
   /** Short label for the transcribe "text" chip. */
@@ -269,6 +271,18 @@ export interface EditorText {
   trSrt: string;
   trTooLong: string;
   trFail: string;
+  midiCaveat: string;
+  /** Placeholder: {count} */
+  midiNotes: string;
+  midiNone: string;
+  midiTooLong: string;
+  /** Placeholder: {percent} */
+  midiWorking: string;
+  midiFirstRun: string;
+  midiFail: string;
+  /** Placeholders: {shown} {count} */
+  midiMore: string;
+  midiDownload: string;
   mixMute: string;
   mixSolo: string;
   mixPan: string;

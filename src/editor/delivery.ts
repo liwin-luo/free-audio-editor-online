@@ -17,6 +17,7 @@ export interface DeliveryChip {
 export interface PromiseCopy {
   etaModel: string;
   limitTenMin: string;
+  limitThreeMin: string;
   limitRingtone: string;
   /** Localized single-output label, e.g. "WAV · lossless". */
   wav: string;
@@ -50,6 +51,7 @@ export function deliveryChips(config: EditorConfig, textLabel = 'Text'): Deliver
       { id: 'srt', label: 'SRT' },
     ];
   }
+  if (config.midi) return [{ id: 'mid', label: 'MIDI' }];
   if (config.visualizer || config.paint || config.tagEditor) return [];
 
   if (config.ringtone) {
@@ -78,6 +80,7 @@ export function deliveryChips(config: EditorConfig, textLabel = 'Text'): Deliver
 export function selectedDelivery(config: EditorConfig, chips: DeliveryChip[]): string | null {
   if (!chips.length) return null;
   if (config.transcribe) return 'txt';
+  if (config.midi) return 'mid';
   if (config.defaultFormat && chips.some((chip) => chip.id === config.defaultFormat)) return config.defaultFormat;
   return chips[0].id;
 }
@@ -99,6 +102,7 @@ export function promiseParts(config: EditorConfig, copy: PromiseCopy): string[] 
   const named = singleWav ? copy.wav : inputFormats(config);
   const parts = [BROAD.has(named) ? `${named}${copy.formatsMore}` : named];
   if (config.transcribe) parts.push(copy.limitTenMin, copy.etaModel);
+  if (config.midi) parts.push(copy.limitThreeMin);
   if (config.ringtone) parts.push(copy.limitRingtone);
   return parts;
 }

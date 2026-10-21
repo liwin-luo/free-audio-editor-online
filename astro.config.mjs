@@ -143,6 +143,17 @@ export default defineConfig({
     : {}),
   vite: {
     plugins: [tailwindcss()],
+    // `@tensorflow/tfjs`'s module entry loads the Node platform (node-fetch).
+    // Basic Pitch runs against the browser subset instead.
+    resolve: {
+      alias: {
+        '@tensorflow/tfjs': new URL('./src/editor/tfjs-browser.js', import.meta.url).pathname,
+        'node-fetch': new URL('./src/editor/node-fetch-stub.js', import.meta.url).pathname,
+      },
+    },
+    optimizeDeps: {
+      include: ['@spotify/basic-pitch'],
+    },
     // The transcription worker dynamically imports @huggingface/transformers,
     // which code-splits — only ES worker output supports that.
     worker: {

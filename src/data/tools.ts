@@ -57,6 +57,8 @@ export interface EditorConfig {
   paint?: boolean;
   /** Speech-to-text island instead of an audio editor */
   transcribe?: boolean;
+  /** Audio-to-MIDI island. Model loads on the first convert. */
+  midi?: boolean;
   /** MP3 tag editor island instead of an audio editor */
   tagEditor?: boolean;
   /** Show the Adjust drawer (gain, speed, reverse, fades) */
@@ -3880,7 +3882,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['change-audio-speed', '432-hz-converter', 'tempo-changer'],
+    related: ['change-audio-speed', 'audio-to-midi', 'tempo-changer'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: false,
@@ -4867,7 +4869,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['pitch-changer', 'change-audio-speed', 'tempo-changer'],
+    related: ['pitch-changer', 'audio-to-midi', 'tempo-changer'],
     editor: {
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
@@ -5259,6 +5261,105 @@ export const TOOLS: ToolDef[] = [
       exportLabel: 'Download 432 Hz',
       converter: true,
       hz432: true,
+    },
+  },
+  {
+    slug: 'audio-to-midi',
+    cardLine: 'Turn a melody, a voice, or a solo piano into a MIDI file. A full mix comes out wrong.',
+    name: 'Audio to MIDI',
+    shortName: 'Audio to MIDI',
+    icon: 'note',
+    category: 'record',
+    title: 'Audio to MIDI — One Instrument, up to 3 Minutes',
+    description:
+      'Turn a melody, a voice, or a solo piano into a MIDI file. A full mix, drums, or dense chords come out wrong. Up to 3 minutes. Nothing is uploaded.',
+    h1: 'Audio to MIDI — notes from one instrument',
+    hero: {
+      src: '/audio-to-midi.svg',
+      alt: 'Turn a melody or a solo piano into MIDI notes',
+      width: 32,
+      height: 32,
+    },
+    subtitle: 'A .mid file in the browser. Up to 3 minutes of one instrument.',
+    intro:
+      'Drop a melody, a sung line, or a solo piano. This page writes a MIDI file you can open in GarageBand, Ableton, or Logic: each note’s pitch, start, length, and velocity. Spotify’s Basic Pitch model runs in the tab. The audio is never uploaded. The model is under 1 MB and downloads once from this site. A full mix, drums, or dense chords come out wrong. Anything longer than 3 minutes has to be trimmed first.',
+    usesHeading: 'Notes you can edit next',
+    uses: [
+      'Open a hummed melody in a DAW and move the notes instead of re-recording them.',
+      'Turn a solo piano take into notes, then change one pitch on the pitch changer if the key is wrong.',
+      'Read the note count before download, and skip the file when the count is nonsense.',
+    ],
+    howTo: [
+      {
+        name: 'Drop one instrument',
+        text: 'Add an MP3, WAV, M4A, or a video with a soundtrack. The browser decodes it. Nothing is uploaded. Longer than 3 minutes stays blocked until you trim it.',
+      },
+      {
+        name: 'Convert to notes',
+        text: 'The first run downloads the model, under 1 MB, from this site. The page then lists the notes and a count.',
+      },
+      {
+        name: 'Download the MIDI',
+        text: 'Save the .mid file. It is one track of note-on and note-off messages. There is no audio preview on this page.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The browser decodes the file and runs Basic Pitch in the tab. The only network request is the model, under 1 MB, from this site, the first time. After that the browser can reuse its copy. The audio itself is not sent anywhere.',
+      },
+      {
+        q: 'What is in the MIDI file?',
+        a: 'One track, MIDI type 0. Each note has a pitch from 21 to 108, a start time, a length, and a velocity. The tempo mark is 120 so those times line up with the recording in seconds. That 120 is not the song’s BPM. The track starts on General MIDI piano so a DAW has a sound. It is not a recording of the original instrument. WAV and MP3 are not offered here.',
+      },
+      {
+        q: 'What will it get wrong?',
+        a: 'A full mix, drums, and dense chords. Basic Pitch is built for one instrument at a time, and a busy recording turns into extra notes or none. The file has no pitch-bend curve, so a slide becomes a steady note. There is no playback, no sheet music, and no stem split. Over 3 minutes is refused. Trim on the audio trimmer, then come back.',
+      },
+      {
+        q: 'How is this different from the key and BPM finder?',
+        a: 'The key and BPM finder reads two numbers and does not write a file. This page writes notes. It does not tell you the key or the BPM. Read those on the key and BPM finder. Moving the pitch of the original audio, without making notes, is the pitch changer.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes, in current Chrome, Edge, Firefox, and Safari. Three minutes of audio is the cap because the model holds the notes in memory. A phone that is low on memory can fail the conversion; the file is unchanged and you can try a shorter clip. The download is a .mid file.',
+      },
+      {
+        q: 'I searched for this in Logic Pro. Is this that?',
+        a: 'No. Logic has its own audio-to-MIDI command on the track. This page is for a browser, when Logic is not open. The .mid file it writes can be dragged into Logic afterward. It will not remove a MIDI device in macOS, and it will not edit a Logic project.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'One instrument, in the tab',
+        paragraphs: [
+          'Basic Pitch listens to one channel at 22050 Hz. Stereo is mixed to mono before the model runs. The weights are under 1 MB and come from this site once.',
+          'It is meant for a melody, a voice, or a solo piano. A full mix, drums, or a thick chord stack is outside what this model holds.',
+        ],
+      },
+      {
+        heading: 'What the file actually contains',
+        paragraphs: ['The download is a standard MIDI file, not audio:'],
+        bullets: [
+          'Pitch, start, length, and velocity. No pitch-bend curve.',
+          'Tempo mark 120, so the times match the recording in seconds. That is not the song’s BPM.',
+          'One track, starting on General MIDI piano, so a DAW has a sound to play.',
+        ],
+      },
+      {
+        heading: 'What this page will not do',
+        paragraphs: [
+          'It will not play the MIDI back, print sheet music, or split a song into stems. It will not name chords.',
+          'Longer than 3 minutes is refused. Trim first. Logic’s own convert stays in Logic. This page does not open a Logic project.',
+        ],
+      },
+    ],
+    related: ['key-bpm-finder', 'pitch-changer', 'audio-trimmer'],
+    editor: {
+      midi: true,
+      dropHint: 'Drop an audio file, or click to browse',
+      accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
+      exportLabel: 'Convert to MIDI',
     },
   },
 ];

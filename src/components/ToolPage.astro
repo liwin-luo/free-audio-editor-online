@@ -9,6 +9,7 @@ import JoinerEditor from './editor/JoinerEditor.astro';
 import VisualizerEditor from './editor/VisualizerEditor.astro';
 import SpecPaintEditor from './editor/SpecPaintEditor.astro';
 import TranscribeEditor from './editor/TranscribeEditor.astro';
+import MidiEditor from './editor/MidiEditor.astro';
 import TagEditor from './editor/TagEditor.astro';
 import LoudnessEditor from './editor/LoudnessEditor.astro';
 import MetronomeEditor from './editor/MetronomeEditor.astro';
@@ -98,6 +99,8 @@ const jsonLd = [
         <VisualizerEditor config={tool.editor} locale={locale} />
       ) : tool.editor.transcribe ? (
         <TranscribeEditor config={tool.editor} locale={locale} />
+      ) : tool.editor.midi ? (
+        <MidiEditor config={tool.editor} locale={locale} />
       ) : tool.editor.tagEditor ? (
         <TagEditor config={tool.editor} locale={locale} />
       ) : tool.editor.keyBpm ? (
@@ -116,7 +119,7 @@ const jsonLd = [
     </section>
 
     <div class="mt-5">
-      <TrustBadge locale={locale} offline={!tool.editor.transcribe} />
+      <TrustBadge locale={locale} offline={!tool.editor.transcribe && !tool.editor.midi} />
     </div>
 
     <section class="pt-14">
