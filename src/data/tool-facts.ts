@@ -281,4 +281,32 @@ export const TOOL_FACTS: Record<string, ToolFacts> = {
       { label: 'Privacy', value: 'Rendered on the device; the song is never uploaded' },
     ],
   },
+
+  soundboard: {
+    fit: {
+      use: [
+        'Trigger reactions on a live stream, with more than one sound playing.',
+        'Drop a sting, applause, or a wrong-answer buzzer into a podcast or a class.',
+        'Tap squares on a phone during a presentation. The room hears the speaker.',
+        'Start from the eleven synthesized sounds, then replace any square with your own clip.',
+      ],
+      avoid: [
+        'You need one take trimmed and downloaded. Use the voice recorder.',
+        'You need the pitch moved, or echo and reverb on a clip. Export WAV from the square, then use the pitch changer or slowed and reverb.',
+        'The source is longer than 60 seconds. The upload skips it. Cut it on the audio trimmer first.',
+        'The sound has to enter a Discord, Zoom, or game microphone. This page plays speakers and desktop audio. A virtual-microphone app is a different tool.',
+      ],
+    },
+    specs: [
+      { label: 'Built-in sounds', value: 'Eleven, synthesized at 44.1 kHz and normalized to −1 dBFS: Air Horn, Boom, Sad Trombone, Rimshot, Buzzer, Fart, Applause, Crickets, Ding, Boing, Coin' },
+      { label: 'Input', value: 'MP3, WAV, M4A, OGG, FLAC, AAC, and the microphone. Uploads longer than 60 seconds are skipped' },
+      { label: 'Useful length', value: 'Half a second to five seconds. There is no fixed number of squares; the ceiling is the memory in the tab' },
+      { label: 'Playback', value: 'Squares overlap. Keys are 1 through 0, then Q W E R T Y U I O P. Esc stops every sound' },
+      { label: 'One square', value: 'Trim, rename, color, Replace audio, or Export WAV as 16-bit PCM at the clip’s sample rate' },
+      { label: 'Board file', value: 'JSON with the WAV audio inside. Import also reads a soundtools.io board: buttons with audio come across' },
+      { label: 'Storage', value: 'Nothing is kept in the browser. Export before you close the tab' },
+      { label: 'Browsers', value: 'Current Chrome, Edge, Firefox, and Safari, including iPhone and Android. Hotkeys need a keyboard. iPhone playback follows the silent switch' },
+      { label: 'Privacy', value: 'Web Audio API in this tab. The microphone and the files stay on the device' },
+    ],
+  },
 };

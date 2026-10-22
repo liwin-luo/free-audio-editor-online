@@ -867,6 +867,22 @@ export const GUIDES: GuideCard[] = [
       'Сохраните звуковую дорожку видео в MP3. Битрейт 128, 192 или 320 kbps. Дорожки AC3 и DTS браузер не прочитает. Файл не загружается на сервер.',
     minutes: 6,
   },
+  {
+    locale: 'en',
+    href: '/guides/are-meme-sounds-copyrighted',
+    title: 'Are Meme Sounds Copyrighted? The Three Rights in One Clip',
+    description:
+      'A meme sound can carry three different rights: the recording, the work behind it, and the person speaking. Which ones copying, imitation and synthesis actually touch.',
+    minutes: 8,
+  },
+  {
+    locale: 'en',
+    href: '/guides/how-to-make-a-soundboard',
+    title: 'How to Make a Soundboard: Record, Trim, Trigger, Export',
+    description:
+      'Record or upload clips, trim each to the trigger moment, map hotkeys, and export the board as a file. The four-step workflow, with timing notes for live use.',
+    minutes: 6,
+  },
 ];
 
 export function guidesFor(locale: Locale): GuideCard[] {
@@ -897,6 +913,7 @@ function guideKey(path: string): string {
 const GUIDE_TOOL: Record<string, string> = {
   '/guides/123apps-alternative': 'mp3-editor',
   '/guides/432-hz-vs-440-hz': '432-hz-converter',
+  '/guides/are-meme-sounds-copyrighted': 'soundboard',
   '/guides/audacity-alternative': 'mp3-editor',
   '/guides/audio-clicks-at-the-start': 'fade-audio',
   '/guides/audition-alternative': 'mp3-editor',
@@ -917,6 +934,7 @@ const GUIDE_TOOL: Record<string, string> = {
   '/guides/how-to-cut-a-song': 'mp3-cutter',
   '/guides/how-to-edit-a-wav-file': 'mp3-editor',
   '/guides/how-to-edit-an-mp3': 'mp3-editor',
+  '/guides/how-to-make-a-soundboard': 'soundboard',
   '/guides/how-to-trim-audio': 'audio-trimmer',
   '/guides/make-iphone-ringtone': 'ringtone-maker',
   '/guides/make-slowed-and-reverb': 'slowed-reverb',

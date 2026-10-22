@@ -254,6 +254,14 @@ pattern → traps. When translating for locale X, paste sheet X into the prompt.
   the page has no sharper fact. Brand `Free Audio Editor` stays English when it
   fits; omit it when it would push the fact past the locale budget. Full shape
   and the offline sentence: `docs/new-tool-spec.md` §3.1.
+- **When the head term is uncertain, ask the SERP, not the dictionary.** Search
+  Google in the target language for what the page serves and analyze the **top 5
+  results**: take the head term those locally-ranking pages actually use in their
+  titles and H1s — that is what the locale's search engine rewards. If the five
+  disagree, prefer whichever matches the sheet's 「What locals search」 lines; if
+  the sheets have no line for it, pick the most frequent phrasing. Never coin a
+  term no local page uses. Record the winning phrasing back into the locale sheet
+  so the next page starts from it.
 - **H1 uses the same head term as the title.** The sentence can differ. Do not
   swap in a second head term.
 - **Description = one benefit sentence + one proof point** (a number, a mode, or

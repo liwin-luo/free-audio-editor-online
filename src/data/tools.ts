@@ -93,6 +93,8 @@ export interface EditorConfig {
   loudness?: boolean;
   /** Click island. No file. Oscillator playback, optional bar export. */
   metronome?: boolean;
+  /** Soundboard island. No single file. Board of clips with hotkeys and presets. */
+  soundboard?: boolean;
   /** Read BPM and key. Does not change the file. */
   keyBpm?: boolean;
   /** Export button label (default "Export") */
@@ -246,7 +248,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['silence-remover', 'mp3-cutter', 'split-mp3'],
+    related: ['silence-remover', 'mp3-cutter', 'soundboard'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: false,
@@ -1913,7 +1915,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['multi-track-audio-editor', 'metronome', 'audio-to-text'],
+    related: ['soundboard', 'metronome', 'multi-track-audio-editor'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -5360,6 +5362,108 @@ export const TOOLS: ToolDef[] = [
       dropHint: 'Drop an audio file, or click to browse',
       accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
       exportLabel: 'Convert to MIDI',
+    },
+  },
+  {
+    slug: 'soundboard',
+    cardLine: 'A board of your own sounds: record or upload clips, then trigger them live.',
+    name: 'Soundboard',
+    shortName: 'Soundboard',
+    icon: 'plus',
+    category: 'record',
+    title: 'Soundboard Maker — Eleven Sounds, Then Your Own',
+    description:
+      'Tap or press a key and several clips play at once. Eleven sounds are already synthesized on the page; trim your own and keep the board in a JSON file.',
+    h1: 'Soundboard Maker, with eleven sounds already on it',
+    subtitle: 'Tap a square or press its key. Several sounds play at once. Half a second to five seconds is the useful length.',
+    intro:
+      'A soundboard is a grid of short clips you fire on cue: a rimshot under a joke, a buzzer in class, applause on a stream. Record a line or upload a file, trim it to the hit, and it becomes one square. Nothing is uploaded. The page decodes and plays in this tab, and the board leaves only as a JSON file you export.',
+    usesHeading: 'What you can do with it',
+    uses: [
+      'Fire a rimshot, an air horn, or applause on a live stream while the previous sound is still playing.',
+      'Keep a correct-answer ding and a wrong-answer buzzer for a class, on squares large enough to hit on a phone.',
+      'Punch a podcast or a presentation with a sting you recorded, without opening a desktop mixer.',
+    ],
+    howTo: [
+      {
+        name: 'Start from a preset or a sound',
+        text: 'The board opens with eleven synthesized sounds: Air Horn, Boom, Sad Trombone, Rimshot, Buzzer, Fart, Applause, Crickets, Ding, Boing, and Coin. A preset above the grid swaps in a starter set for streaming, a podcast, or a classroom. Upload audio and Record add your own.',
+      },
+      {
+        name: 'Trim each clip',
+        text: 'The pencil on a square opens the editor. Drag the two handles around the part you want, press loop to hear it, then Apply trim. Rename the square and pick a color there. Replace audio swaps the sound and keeps the name, the color, and the key.',
+      },
+      {
+        name: 'Play and save the board',
+        text: 'Tap a square or press the key printed on it: 1 through 0, then Q W E R T Y U I O P. Esc stops every sound. Export board writes every clip into one JSON file. Import board reads that file back, and it also reads a board exported from soundtools.io.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is anything uploaded?',
+        a: 'No. Files are decoded with the Web Audio API in this tab, the microphone stays on your device, and playback is local. Export board writes a JSON file to your disk. After this page has loaded, trimming and playback need no connection.',
+      },
+      {
+        q: 'What quality are the sounds?',
+        a: 'A clip keeps the sample rate it was decoded at. Export WAV on one sound writes 16-bit PCM at that rate. The board file stores each sound as WAV data inside the JSON, so the audio is not encoded a second time. The eleven built-in sounds are synthesized at 44.1 kHz and normalized to −1 dBFS.',
+      },
+      {
+        q: 'Will this play into Discord or a game call?',
+        a: 'No. Discord, Zoom, and games hear your microphone, not this page. Apps such as Voicemod and Resanance install a virtual microphone on Windows so other people hear the board. This page cannot do that. The sounds come out of your speakers or desktop audio, which OBS and other capture tools can record. On a phone the board plays on the device the same way.',
+      },
+      {
+        q: 'How is this different from the voice recorder?',
+        a: 'The voice recorder takes one clip and hands it to an editor to trim and export. This page holds many clips and plays them live from keys. It is for triggering, not for editing one file.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. Tapping squares, recording, and the trim editor work in current Chrome, Edge, Firefox, and Safari, including iPhone and Android. Hotkeys need a keyboard, so they are for a desktop. On iPhone, playback follows the silent switch.',
+      },
+      {
+        q: 'How do I save the board?',
+        a: 'Nothing is stored in the browser. Export board before you close the tab, or the board is gone. Import board brings the JSON file back on this device or another. The same button reads a board file from soundtools.io: each button that contains audio comes across, and a gradient color is mapped to the nearest color on this board.',
+      },
+      {
+        q: 'Which files can I add, and how long?',
+        a: 'Upload accepts MP3, WAV, M4A, OGG, FLAC, and AAC, whatever the browser can decode. A file longer than 60 seconds is skipped, so trim a long song on the audio trimmer first. The useful length on the board is half a second to five seconds. There is no fixed number of squares. The ceiling is the memory in the tab.',
+      },
+      {
+        q: 'Can I change the pitch or add echo?',
+        a: 'Not on this page. Export WAV on the square, then open that file in the pitch changer (pitch moves, length stays) or the slowed and reverb page. Bring the result back with Upload audio or Replace audio.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'How the board works',
+        paragraphs: [
+          'A soundboard is one job: the right short sound, now, without hunting through a folder. Each square is one clip. Tap it and it plays immediately. Tap another while it is still going and both play. That overlap is the point.',
+          'Keys follow the board order: 1 through 9, then 0, then the top letter row. Esc stops everything. A preset above the grid replaces the whole set with a starter for streaming, a podcast, a classroom, or a blank board.',
+        ],
+      },
+      {
+        heading: 'Make your own clips',
+        paragraphs: [
+          'Upload takes MP3, WAV, M4A, OGG, FLAC, or AAC and decodes it in the browser. Record takes the microphone. The pencil then opens the trim editor: drag the two handles, loop the selection, and apply it.',
+          'Short is the point. Half a second to five seconds covers a punchline, a buzzer, or a boom. Replace audio swaps the sound under a square and keeps its name, color, and key. A file longer than 60 seconds is skipped on upload.',
+        ],
+        bullets: [
+          'Export WAV on one sound writes 16-bit PCM at that clip’s sample rate.',
+          'The color on a square is there so you can find the key during a stream.',
+          'The eleven built-in sounds are synthesized on the page. No download, no library, no one else’s recording.',
+        ],
+      },
+      {
+        heading: 'What it will not do',
+        paragraphs: [
+          'It will not put sounds into a call. Discord, games, and voice chat hear the microphone. Putting the board on that path takes a desktop app with a virtual audio device, such as Voicemod or Resanance on Windows. For a stream, the honest path is desktop audio: the sounds play out of the machine, and OBS captures that.',
+          'It will not remember the board between visits. Export board before you close the tab, then import it next time, including a board file from soundtools.io. It will not search a meme library. The built-in sounds are generic effects synthesized here. Everything else is a file you bring.',
+        ],
+      },
+    ],
+    related: ['voice-recorder', 'audio-trimmer', 'pitch-changer'],
+    editor: {
+      soundboard: true,
+      dropHint: 'No file needed — tap a square or add your own',
     },
   },
 ];

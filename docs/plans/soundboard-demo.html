@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soundboard 原型 — freeaudioeditor.online</title>
+<!--
+  交互原型，对应 docs/plans/2026-10-22-soundboard-design.md
+  双击打开即用。数据仅存内存（v1 既定行为），刷新会丢，保存请"导出板"。
+-->
+<style>
+  :root{
+    --bg:#FAFAFA; --surface:#FFFFFF; --surface2:#F4F4F5;
+    --line:#E4E4E7; --line-strong:#C9C9CF;
+    --text:#18181B; --text2:#52525B; --text3:#71717A;
+    --accent:#0D9488; --accent-hover:#0F766E;
+    --accent-soft:rgba(13,148,136,.12); --on-accent:#FFFFFF;
+    --error:#BE123C;
+    --shadow-card:0 8px 24px -8px rgba(9,9,11,.08);
+    --shadow-pop:0 8px 24px -8px rgba(9,9,11,.15);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  html[data-theme="dark"]{
+    --bg:#09090B; --surface:#18181B; --surface2:#27272A;
+    --line:#27272A; --line-strong:#3F3F46;
+    --text:#FAFAFA; --text2:#A1A1AA; --text3:#71717A;
+    --accent:#2DD4BF; --accent-hover:#5EEAD4;
+    --accent-soft:rgba(45,212,191,.15); --on-accent:#09090B;
+    --error:#FB7185;
+    --shadow-card:0 8px 24px -8px rgba(0,0,0,.55);
+    --shadow-pop:0 8px 24px -8px rgba(0,0,0,.65);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:64rem; margin:0 auto; padding:24px 16px 96px}
+  h1{font-size:28px; font-weight:600; letter-spacing:-.02em; margin:0 0 4px}
+  .sub{color:var(--text2); margin:0 0 8px; max-width:65ch}
+  .trust{display:flex; flex-wrap:wrap; gap:8px 16px; color:var(--text3); font-size:13px; margin:8px 0 20px}
+  .trust span{display:inline-flex; align-items:center; gap:6px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-variant-numeric:tabular-nums}
+
+  .toolbar{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+    background:var(--surface); border:1px solid var(--line); border-radius:16px;
+    padding:12px; box-shadow:var(--shadow-card); margin-bottom:12px;
+  }
+  .spacer{flex:1}
+  .btn{
+    display:inline-flex; align-items:center; gap:6px; height:40px; padding:0 14px;
+    border-radius:8px; border:1px solid var(--line-strong); background:var(--surface);
+    color:var(--text); font-size:14px; font-weight:500; cursor:pointer;
+    transition:all .18s var(--ease); white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--accent); color:var(--accent)}
+  .btn:active{transform:scale(.98)}
+  .btn.primary{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+  .btn.primary:hover{background:var(--accent-hover); border-color:var(--accent-hover); color:var(--on-accent)}
+  .btn.recording{background:var(--error); border-color:var(--error); color:#fff}
+  .btn.recording:hover{color:#fff; filter:brightness(1.08)}
+  .btn.danger-armed{border-color:var(--error); color:var(--error)}
+  .btn.sm{height:32px; padding:0 10px; font-size:13px}
+  .btn svg{width:16px; height:16px; flex:none}
+  .vol{display:inline-flex; align-items:center; gap:8px; color:var(--text2); font-size:13px}
+  .vol input{width:96px; accent-color:var(--accent)}
+  .keyhint{color:var(--text3); font-size:12px; width:100%}
+
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:10px;
+  }
+  .grid.coarse{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+  .grid.coarse .tile{min-height:128px}
+  .grid.coarse .tile .tname{font-size:17px}
+  .grid.list{display:flex; flex-direction:column; gap:8px}
+  .grid.list .tile{
+    min-height:56px; flex-direction:row; align-items:center; gap:12px; padding:8px 14px;
+  }
+  .grid.list .tile .key{position:static; order:-1}
+  .grid.list .tile .tname{-webkit-line-clamp:1; flex:1}
+  .grid.list .tile .tdur{order:1}
+  .grid.list .tile .edit{position:static; order:2}
+  .grid.list .tile .prog{top:auto; bottom:0; height:2px}
+  .grid.list .tile:hover{transform:none; outline-color:var(--accent)}
+  /* square：SoundTools 风——深色面板 + 方形渐变大彩块 + 居中大写标签 + 末尾加号块 */
+  #stage.square{
+    background:#1A1D29; border:1px solid #1A1D29; border-radius:16px;
+    padding:16px; margin-bottom:12px; color:#E7E9EE;
+  }
+  #stage.square .toolbar{background:#222634; border-color:#2A2F3E; box-shadow:none}
+  #stage.square .btn{background:#262B3A; border-color:#2A2F3E; color:#E7E9EE}
+  #stage.square .btn:hover{border-color:#5EEAD4; color:#5EEAD4}
+  #stage.square .btn.primary{background:#6366F1; border-color:#6366F1; color:#fff}
+  #stage.square .btn.primary:hover{background:#4F46E5; border-color:#4F46E5; color:#fff}
+  #stage.square .btn.recording{background:#F43F5E; border-color:#F43F5E; color:#fff}
+  #stage.square .vol{color:#A5ADC2}
+  #stage.square .keyhint{color:#8B93A7}
+  #stage.square .templates .lbl{color:#8B93A7}
+  #stage.square .chip{background:#262B3A; border-color:#2A2F3E; color:#A5ADC2}
+  #stage.square .chip:hover{border-color:#5EEAD4; color:#5EEAD4}
+  #stage.square .chip[aria-pressed="true"]{background:rgba(99,102,241,.18); border-color:#818CF8; color:#C7D2FE}
+  #stage.square .chip.danger-armed{border-color:#FB7185; color:#FB7185}
+  #stage.square .drawer{background:#222634; border-color:#2A2F3E}
+  #stage.square .field{background:#1A1D29; border-color:#3A4152; color:#E7E9EE}
+  #stage.square .wave-wrap{background:#1A1D29}
+  #stage.square .times{color:#8B93A7}
+  #stage.square footer.note{color:#8B93A7}
+  .grid.square{grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:14px}
+  .grid.square .tile{
+    aspect-ratio:1; min-height:0; border-radius:14px;
+    flex-direction:row; align-items:center; justify-content:center;
+    background:var(--grad,var(--tile));
+  }
+  .grid.square .tile:hover{transform:none; outline-color:rgba(255,255,255,.85)}
+  .grid.square .tile .tname{
+    font-size:17px; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; text-align:center;
+  }
+  .grid.square .tile .tdur{display:none}
+  .add-tile{
+    aspect-ratio:1; min-height:0; border-radius:14px; cursor:pointer;
+    border:2px dashed #3A4152; background:transparent; color:#8B93A7;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    font-size:14px; transition:all .18s var(--ease); padding:0;
+  }
+  .add-tile:hover{border-color:#5EEAD4; color:#5EEAD4}
+  .add-tile svg{width:22px; height:22px}
+  .empty{
+    grid-column:1/-1; border:2px dashed var(--line-strong); border-radius:16px;
+    padding:44px 16px; text-align:center; color:var(--text2); font-size:14px;
+  }
+  .templates{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:10px}
+  .templates .lbl{font-size:13px; color:var(--text2); margin-right:4px}
+  .chip{
+    height:32px; padding:0 12px; border-radius:999px; border:1px solid var(--line-strong);
+    background:var(--surface); color:var(--text2); font-size:13px; cursor:pointer;
+    transition:all .18s var(--ease); white-space:nowrap;
+  }
+  .chip:hover{border-color:var(--accent); color:var(--accent)}
+  .chip:active{transform:scale(.98)}
+  .chip[aria-pressed="true"]{
+    background:var(--accent-soft); border-color:var(--accent);
+    color:var(--accent); font-weight:600;
+  }
+  .chip.danger-armed{border-color:var(--error); color:var(--error)}
+
+  /* 全屏演出模式：对工具区整体生效，页面框架自动隐藏 */
+  #stage:fullscreen{
+    background:var(--bg); padding:24px; overflow:auto;
+    width:100vw; height:100dvh; max-width:none; margin:0;
+  }
+  #stage:-webkit-full-screen{
+    background:var(--bg); padding:24px; overflow:auto;
+    width:100vw; height:100vh; max-width:none; margin:0;
+  }
+  #stage:fullscreen .keyhint{display:none}
+  #stage:-webkit-full-screen .keyhint{display:none}
+  .is-fs .grid:not(.list):not(.square) .tile{min-height:112px}
+  .is-fs .grid.coarse .tile{min-height:160px}
+  .tile{
+    position:relative; overflow:hidden; border:none; border-radius:12px;
+    background:var(--tile,#0D9488); color:#fff; cursor:pointer;
+    min-height:96px; padding:12px; text-align:left;
+    display:flex; flex-direction:column; justify-content:flex-end; gap:2px;
+    transition:transform .18s var(--ease), box-shadow .18s var(--ease), outline-color .18s var(--ease);
+    outline:3px solid transparent; outline-offset:-3px;
+    box-shadow:var(--shadow-card);
+  }
+  .tile:hover{transform:translateY(-2px)}
+  .tile:active{transform:scale(.98)}
+  .tile:focus-visible{outline:2px solid var(--text); outline-offset:2px}
+  .tile.playing{outline-color:var(--text)}
+  .tile .key{
+    position:absolute; top:8px; left:8px; font-size:11px; font-weight:600;
+    background:rgba(255,255,255,.22); border-radius:6px; padding:1px 6px;
+  }
+  .tile .tname{font-weight:600; font-size:15px; line-height:1.3;
+    overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical}
+  .tile .tdur{font-size:12px; opacity:.85}
+  .tile .prog{
+    position:absolute; top:0; left:0; right:0; height:3px; background:rgba(255,255,255,.9);
+    transform:scaleX(0); transform-origin:left;
+  }
+  @keyframes prog{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+  .tile .edit{
+    position:absolute; top:6px; right:6px; width:32px; height:32px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.18); border:none; color:#fff; cursor:pointer;
+    transition:background .15s var(--ease);
+  }
+  .tile .edit:hover{background:rgba(255,255,255,.35)}
+  .tile .edit svg{width:15px; height:15px}
+
+  .c-teal{--tile:#0D9488} .c-sky{--tile:#0369A1} .c-blue{--tile:#1D4ED8}
+  .c-emerald{--tile:#047857} .c-amber{--tile:#B45309} .c-orange{--tile:#C2410C}
+  .c-rose{--tile:#BE123C} .c-slate{--tile:#52525B}
+
+  .drawer{
+    margin-top:12px; background:var(--surface); border:1px solid var(--line);
+    border-radius:16px; box-shadow:var(--shadow-pop); padding:16px;
+  }
+  .drawer[hidden]{display:none}
+  .drawer h2{font-size:16px; font-weight:600; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+  .drow{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px}
+  .drow label{font-size:13px; color:var(--text2)}
+  .field{
+    height:40px; padding:0 10px; border-radius:8px; border:1px solid var(--line-strong);
+    background:var(--surface); color:var(--text); font-size:14px; width:200px;
+  }
+  .field:focus{outline:2px solid var(--accent); outline-offset:1px}
+  .swatches{display:flex; gap:6px}
+  .sw{width:28px; height:28px; border-radius:8px; border:2px solid transparent; cursor:pointer; padding:0}
+  .sw[aria-pressed="true"]{border-color:var(--text); outline:2px solid var(--surface)}
+  .wave-wrap{position:relative; height:120px; background:var(--surface2); border-radius:8px; overflow:hidden; touch-action:none}
+  .wave-wrap canvas{width:100%; height:100%; display:block}
+  .sel{position:absolute; top:0; bottom:0; background:var(--accent-soft); pointer-events:none}
+  .handle{
+    position:absolute; top:0; bottom:0; width:20px; margin-left:-10px; cursor:ew-resize;
+    display:flex; align-items:center; justify-content:center; touch-action:none;
+  }
+  .handle::before{content:""; width:4px; height:56%; border-radius:2px; background:var(--accent)}
+  .times{display:flex; gap:16px; font-size:12px; color:var(--text2); margin:6px 0 12px}
+  .status{color:var(--text2); font-size:13px; min-height:20px; margin:4px 0 8px}
+
+  .toasts{position:fixed; right:16px; bottom:16px; display:flex; flex-direction:column; gap:8px; z-index:50}
+  .toast{
+    background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent);
+    border-radius:8px; box-shadow:var(--shadow-pop); padding:10px 14px; font-size:14px; max-width:320px;
+  }
+  .toast.err{border-left-color:var(--error)}
+  footer.note{margin-top:24px; color:var(--text3); font-size:13px}
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important; animation:none!important}
+    .tile .prog{display:none}
+  }
+  @media (max-width:480px){
+    .grid{grid-template-columns:repeat(auto-fill,minmax(124px,1fr))}
+    .grid.coarse{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+    .grid.square{grid-template-columns:repeat(2,1fr)}
+    .field{width:100%}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Soundboard 音效板</h1>
+  <p class="sub">上传或录制短音效，点击按钮或按热键立即播放，多个声音可叠放。全部在你的浏览器本地处理，不上传任何文件。</p>
+  <div class="trust">
+    <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1.5 13 3.5v4c0 3.2-2.1 5.6-5 7-2.9-1.4-5-3.8-5-7v-4z"/></svg>本地处理，文件不出浏览器</span>
+    <span>免费 · 无需注册 · 无水印</span>
+    <span>数据仅存本页，刷新会丢——保存请「导出板」</span>
+  </div>
+
+  <div id="stage">
+    <div class="toolbar" role="toolbar" aria-label="音效板操作">
+    <button class="btn primary" id="btnUpload">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 10V2m0 0L5 5m3-3 3 3M2.5 11v2A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5v-2"/></svg>上传音频
+    </button>
+    <button class="btn" id="btnRecord" aria-pressed="false">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5.5" y="1.5" width="5" height="8" rx="2.5"/><path d="M3 7.5a5 5 0 0 0 10 0M8 12.5V15"/></svg><span id="recLabel">录音</span>
+    </button>
+    <span class="spacer"></span>
+    <span class="vol">音量 <input type="range" id="masterVol" min="0" max="1" step="0.01" value="0.9" aria-label="主音量"></span>
+    <button class="btn" id="btnStop" title="Esc">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="9" height="9" rx="1.5"/></svg>全停
+    </button>
+    <button class="btn" id="btnExport">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 2v8m0 0 3-3m-3 3L5 7M2.5 11v2A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5v-2"/></svg>导出板
+    </button>
+    <button class="btn" id="btnImport">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 2v8m0 0L5 7m3 3 3-3M2.5 11v2A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5v-2" transform="rotate(180 8 8)"/></svg>导入板
+    </button>
+    <button class="btn" id="btnFs">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10"/></svg><span id="fsLabel">全屏</span>
+    </button>
+    <button class="btn sm" id="btnTheme" aria-label="切换暗色模式">暗</button>
+    <span class="keyhint">热键：按顺序占用 1-9、0、Q W E R T Y U I O P · Esc 全停 · 点按钮右上的铅笔编辑/裁剪</span>
+  </div>
+
+  <div class="templates" id="templateBar" role="group" aria-label="场景模板与布局"></div>
+  <div class="grid" id="grid"></div>
+
+  <section class="drawer" id="drawer" hidden aria-label="编辑音效">
+    <h2><span id="drawerTitle">编辑</span>
+      <span class="spacer" style="flex:1"></span>
+      <button class="btn sm" id="drawerClose" aria-label="关闭编辑面板">✕ 关闭</button>
+    </h2>
+    <div class="drow">
+      <label for="nameInput">名称</label>
+      <input class="field" id="nameInput" maxlength="24" type="text">
+      <span class="spacer" style="flex:1"></span>
+      <div class="swatches" id="swatches" role="group" aria-label="按钮颜色"></div>
+    </div>
+    <div class="wave-wrap" id="waveWrap">
+      <canvas id="wave"></canvas>
+      <div class="sel" id="sel"></div>
+      <div class="handle" id="h1" role="slider" aria-label="裁剪起点"></div>
+      <div class="handle" id="h2" role="slider" aria-label="裁剪终点"></div>
+    </div>
+    <div class="times mono">
+      <span>起点 <span id="tStart">0:00.00</span></span>
+      <span>终点 <span id="tEnd">0:00.00</span></span>
+      <span>时长 <span id="tLen">0:00.00</span></span>
+    </div>
+    <div class="drow">
+      <button class="btn" id="btnPreview">循环试听选区</button>
+      <button class="btn" id="btnUseAll">用整段</button>
+      <button class="btn primary" id="btnApplyTrim">应用裁剪</button>
+    </div>
+    <div class="drow" style="margin-bottom:0">
+      <button class="btn" id="btnWav">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 2v8m0 0 3-3m-3 3L5 7M2.5 11v2A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5v-2"/></svg>导出 WAV
+      </button>
+      <button class="btn" id="btnReplace">替换音频</button>
+      <span class="spacer" style="flex:1"></span>
+      <button class="btn" id="btnDelete">删除</button>
+    </div>
+  </section>
+  </div><!-- /stage -->
+
+  <footer class="note">
+    原型说明：默认 11 个音效由 Web Audio 实时合成——对照 SoundTools 默认板的非人声原型（合成即自有录音，零素材零版权风险）·
+    5 个场景模板一键切换（直播/播客/课堂配不同音效集，课堂用大按钮密度）·
+    导出板 JSON 兼容导入 soundtools.io 的板子文件 ·
+    设计文档 docs/plans/2026-10-22-soundboard-design.md
+  </footer>
+</main>
+
+<input type="file" id="fileInput" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac,.aac" multiple hidden>
+<input type="file" id="boardInput" accept=".json,application/json" hidden>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+'use strict';
+/* ---------- 基础 ---------- */
+const $ = s => document.querySelector(s);
+const grid = $('#grid'), drawer = $('#drawer');
+const KEYS = '1234567890qwertyuiop'.split('');
+let ctx = null, master = null;
+let board = [];            // Sound[]
+let cur = null;            // 抽屉当前编辑的 Sound
+let trim = {s:0, e:0};
+let previewSrc = null;
+let rec = null, recStream = null, recTimer = null, recStart = 0;
+let replaceTarget = null;
+
+function ensureCtx(){
+  if(!ctx){
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    master = ctx.createGain();
+    master.gain.value = parseFloat($('#masterVol').value);
+    master.connect(ctx.destination);
+  }
+  if(ctx.state === 'suspended') ctx.resume();
+  return ctx;
+}
+$('#masterVol').addEventListener('input', e => { if(master) master.gain.value = parseFloat(e.target.value); });
+
+function toast(msg, err){
+  const t = document.createElement('div');
+  t.className = 'toast' + (err ? ' err' : '');
+  t.textContent = msg;
+  $('#toasts').appendChild(t);
+  setTimeout(() => t.remove(), 3800);
+}
+const fmt = t => {
+  const m = Math.floor(t/60), s = t - m*60;
+  return m + ':' + (s < 10 ? '0' : '') + s.toFixed(2);
+};
+const cleanName = n => n.replace(/\.[a-z0-9]{1,5}$/i,'').slice(0,24) || '音效';
+
+/* ---------- 颜色 ---------- */
+const PALETTE = [
+  {id:'teal',hex:'#0D9488'},{id:'sky',hex:'#0369A1'},{id:'blue',hex:'#1D4ED8'},
+  {id:'emerald',hex:'#047857'},{id:'amber',hex:'#B45309'},{id:'orange',hex:'#C2410C'},
+  {id:'rose',hex:'#BE123C'},{id:'slate',hex:'#52525B'},
+];
+const rgb = h => [1,3,5].map(i => parseInt(h.slice(i,i+2),16));
+function nearestColor(str){
+  const m = String(str).match(/#[0-9a-fA-F]{6}/);
+  if(!m) return 'teal';
+  const [r,g,b] = rgb(m[0]);
+  let best='teal', bd=1e9;
+  for(const p of PALETTE){
+    const [pr,pg,pb] = rgb(p.hex);
+    const d = (r-pr)**2 + (g-pg)**2 + (b-pb)**2;
+    if(d < bd){ bd=d; best=p.id; }
+  }
+  return best;
+}
+
+/* ---------- Sound ---------- */
+let seq = 0;
+function addSound(buffer, name, color){
+  const s = {
+    id:'b_' + (++seq) + '_' + Date.now().toString(36),
+    name, color: color || PALETTE[seq % PALETTE.length].id,
+    buffer, duration: buffer.duration,
+    active: new Set(),
+  };
+  board.push(s);
+  dirty = true;
+  renderBoard();
+  return s;
+}
+
+/* ---------- 合成默认音（零素材） ---------- */
+const SR = 44100;
+function offCtx(dur){ return new OfflineAudioContext(1, Math.ceil(dur*SR), SR); }
+function env(g, t0, a, hold, rel, peak){
+  g.gain.setValueAtTime(0.0001, t0);
+  g.gain.exponentialRampToValueAtTime(peak, t0+a);
+  g.gain.setValueAtTime(peak, t0+a+hold);
+  g.gain.exponentialRampToValueAtTime(0.0001, t0+a+hold+rel);
+}
+function noiseBuf(oc, dur){
+  const b = oc.createBuffer(1, Math.ceil(dur*oc.sampleRate), oc.sampleRate);
+  const d = b.getChannelData(0);
+  for(let i=0;i<d.length;i++) d[i] = Math.random()*2-1;
+  return b;
+}
+/* 默认板：对照 SoundTools 11 个默认梗音的"非人声原型"逐个覆盖（合成 = 自有录音，零版权风险）。
+   人声梗（Bruh/Oof）与特定表演（Wilhelm Scream）不模仿。激光/底鼓/军鼓留在合成库里备用。 */
+const DEFAULTS = ['汽笛','低音爆','悲伤长号','敲棍','错误蜂鸣','屁声','掌声','蟋蟀','叮','弹簧','金币'];
+const SYNTHS = {
+  '汽笛': { d:0.95, fn(oc){        // 原型：MLG Air Horn
+    const t0=0, dur=0.95;
+    const lp=oc.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=1900;
+    const g=oc.createGain(); env(g,t0,.02,.5,.4,.8);
+    lp.connect(g); g.connect(oc.destination);
+    [440,452,466].forEach(f=>{
+      const o=oc.createOscillator(); o.type='sawtooth'; o.frequency.value=f;
+      o.start(t0); o.stop(t0+dur); o.connect(lp);
+    });
+  }},
+  '低音爆': { d:0.95, fn(oc){      // 原型：Vine Boom
+    const t0=0;
+    const o=oc.createOscillator(); o.type='sine';
+    o.frequency.setValueAtTime(62,t0);
+    o.frequency.exponentialRampToValueAtTime(27,t0+0.5);
+    const g=oc.createGain(); env(g,t0,.005,.08,.8,1.0);
+    o.connect(g); g.connect(oc.destination); o.start(t0); o.stop(t0+0.95);
+    const n=oc.createBufferSource(); n.buffer=noiseBuf(oc,0.06);
+    const lp=oc.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=900;
+    const ng=oc.createGain(); env(ng,t0,.001,.01,.04,.5);
+    n.connect(lp); lp.connect(ng); ng.connect(oc.destination); n.start(t0);
+  }},
+  '悲伤长号': { d:1.7, fn(oc){     // 原型：Sad Trombone（ wah wah wah waaah ）
+    const t0=0;
+    const lp=oc.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=900;
+    const g=oc.createGain(); g.gain.value=1; lp.connect(g); g.connect(oc.destination);
+    const vib=oc.createOscillator(); vib.frequency.value=6;
+    const vg=oc.createGain(); vg.gain.value=6; vib.connect(vg);
+    let t=t0;
+    [[220,.3],[196,.3],[175,.3],[147,.75]].forEach(([f,d],idx)=>{
+      const o=oc.createOscillator(); o.type='sawtooth'; o.frequency.value=f;
+      if(idx===3) vg.connect(o.frequency);
+      const eg=oc.createGain();
+      eg.gain.setValueAtTime(0.0001,t);
+      eg.gain.exponentialRampToValueAtTime(idx===3?0.5:0.45,t+0.03);
+      eg.gain.setValueAtTime(idx===3?0.5:0.45,t+d-0.08);
+      eg.gain.exponentialRampToValueAtTime(0.0001,t+d);
+      o.connect(eg); eg.connect(lp);
+      o.start(t); o.stop(t+d+0.01);
+      t+=d;
+    });
+    vib.start(t0); vib.stop(t+0.1);
+  }},
+  '敲棍': { d:0.7, fn(oc){         // 原型：Rimshot（ ba-dum-tss ）
+    const t0=0;
+    const thud=(t,f,a)=>{
+      const o=oc.createOscillator(); o.type='sine';
+      o.frequency.setValueAtTime(f,t);
+      o.frequency.exponentialRampToValueAtTime(f*0.6,t+0.09);
+      const g=oc.createGain(); env(g,t,.002,.02,.1,a);
+      o.connect(g); g.connect(oc.destination); o.start(t); o.stop(t+0.15);
+    };
+    thud(0,170,.9); thud(0.13,150,.8);
+    const n=oc.createBufferSource(); n.buffer=noiseBuf(oc,0.5);
+    const hp=oc.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=5500;
+    const ng=oc.createGain(); env(ng,0.26,.003,.05,.38,.5);
+    n.connect(hp); hp.connect(ng); ng.connect(oc.destination); n.start(0);
+  }},
+  '错误蜂鸣': { d:0.75, fn(oc){    // 原型：Wrong Answer Buzzer
+    const t0=0, dur=0.75;
+    const g=oc.createGain(); env(g,t0,.01,.55,.18,.55); g.connect(oc.destination);
+    [110,92].forEach(f=>{
+      const o=oc.createOscillator(); o.type='square'; o.frequency.value=f;
+      o.start(t0); o.stop(t0+dur); o.connect(g);
+    });
+  }},
+  '屁声': { d:0.5, fn(oc){         // 原型：Fart Button（热门榜常客）
+    const t0=0;
+    const o=oc.createOscillator(); o.type='sawtooth'; o.frequency.value=88;
+    const w1=oc.createOscillator(); w1.frequency.value=31;
+    const w1g=oc.createGain(); w1g.gain.value=22; w1.connect(w1g); w1g.connect(o.frequency);
+    const w2=oc.createOscillator(); w2.frequency.value=7;
+    const w2g=oc.createGain(); w2g.gain.value=12; w2.connect(w2g); w2g.connect(o.frequency);
+    const lp=oc.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=360;
+    const g=oc.createGain(); env(g,t0,.015,.18,.28,.8);
+    o.connect(lp); lp.connect(g); g.connect(oc.destination);
+    o.start(t0); o.stop(t0+0.5);
+    w1.start(t0); w1.stop(t0+0.5); w2.start(t0); w2.stop(t0+0.5);
+  }},
+  '掌声': { d:1.6, fn(oc){         // 原型：Applause
+    const sr=oc.sampleRate, n=Math.ceil(1.6*sr);
+    const b=oc.createBuffer(1,n,sr), ch=b.getChannelData(0);
+    let i=0;
+    while(i<n){
+      const dur=(0.004+Math.random()*0.004)*sr|0;
+      const amp=0.08+Math.random()*0.3;
+      const f=1400+Math.random()*1800;
+      for(let j=0;j<dur&&i+j<n;j++){
+        const e=1-j/dur;
+        ch[i+j]+=Math.sin(2*Math.PI*f*j/sr)*e*amp+(Math.random()*2-1)*e*amp*0.5;
+      }
+      i+=dur+((10+Math.random()*35)*sr*0.001)|0;
+    }
+    const src=oc.createBufferSource(); src.buffer=b;
+    const g=oc.createGain();
+    g.gain.setValueAtTime(1,0); g.gain.setValueAtTime(1,1.1);
+    g.gain.linearRampToValueAtTime(0.001,1.6);
+    src.connect(g); g.connect(oc.destination); src.start(0);
+  }},
+  '蟋蟀': { d:2.0, fn(oc){         // 原型：Crickets（冷场专用）
+    const sr=oc.sampleRate, n=Math.ceil(2.0*sr);
+    const b=oc.createBuffer(1,n,sr), ch=b.getChannelData(0);
+    let i=0;
+    while(i<n){
+      for(let k=0;k<3;k++){
+        const dur=(0.03*sr)|0;
+        for(let j=0;j<dur&&i+j<n;j++){
+          const e=Math.sin(Math.PI*j/dur);
+          ch[i+j]+=Math.sin(2*Math.PI*4300*j/sr)*e*0.22;
+        }
+        i+=(0.045*sr)|0;
+      }
+      i+=(0.4*sr)|0;
+    }
+    const src=oc.createBufferSource(); src.buffer=b;
+    src.connect(oc.destination); src.start(0);
+  }},
+  '叮': { d:1.1, fn(oc){
+    const t0=0, dur=1.1;
+    [1568,2349].forEach((f,i)=>{
+      const o=oc.createOscillator(); o.type='sine'; o.frequency.value=f;
+      const g=oc.createGain(); env(g,t0,.005,.05,1.0-i*.25,i?.35:.6);
+      o.connect(g); g.connect(oc.destination); o.start(t0); o.stop(t0+dur);
+    });
+  }},
+  '弹簧': { d:0.55, fn(oc){        // 原型：Boing
+    const t0=0, dur=0.55;
+    const o=oc.createOscillator(); o.type='sine';
+    o.frequency.setValueAtTime(320,t0);
+    o.frequency.exponentialRampToValueAtTime(70,t0+.45);
+    const g=oc.createGain(); env(g,t0,.01,.15,.35,.7);
+    const lfo=oc.createOscillator(); lfo.frequency.value=9;
+    const lg=oc.createGain(); lg.gain.value=.25;
+    lfo.connect(lg); lg.connect(g.gain);
+    o.connect(g); g.connect(oc.destination);
+    o.start(t0); o.stop(t0+dur); lfo.start(t0); lfo.stop(t0+dur);
+  }},
+  '金币': { d:0.4, fn(oc){         // 原型：Coin / 1-Up
+    const t0=0;
+    [[987.77,0,.09],[1318.51,.09,.3]].forEach(([f,dt,d])=>{
+      const o=oc.createOscillator(); o.type='square'; o.frequency.value=f;
+      const g=oc.createGain(); env(g,t0+dt,.005,.04,d-.05,.35);
+      o.connect(g); g.connect(oc.destination); o.start(t0+dt); o.stop(t0+dt+d);
+    });
+  }},
+  '激光': { d:0.3, fn(oc){
+    const t0=0, dur=0.3;
+    const o=oc.createOscillator(); o.type='square';
+    o.frequency.setValueAtTime(1760,t0);
+    o.frequency.exponentialRampToValueAtTime(160,t0+.26);
+    const g=oc.createGain(); env(g,t0,.005,.05,.2,.4);
+    o.connect(g); g.connect(oc.destination); o.start(t0); o.stop(t0+dur);
+  }},
+  '底鼓': { d:0.4, fn(oc){
+    const t0=0, dur=0.4;
+    const o=oc.createOscillator(); o.type='sine';
+    o.frequency.setValueAtTime(160,t0);
+    o.frequency.exponentialRampToValueAtTime(45,t0+.2);
+    const g=oc.createGain(); env(g,t0,.004,.02,.3,.95);
+    o.connect(g); g.connect(oc.destination); o.start(t0); o.stop(t0+dur);
+  }},
+  '军鼓': { d:0.25, fn(oc){
+    const t0=0, dur=0.25;
+    const n=oc.createBufferSource(); n.buffer=noiseBuf(oc,dur);
+    const hp=oc.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=1700;
+    const ng=oc.createGain(); env(ng,t0,.002,.01,.19,.8);
+    n.connect(hp); hp.connect(ng); ng.connect(oc.destination); n.start(t0);
+    const o=oc.createOscillator(); o.type='sine'; o.frequency.value=190;
+    const g=oc.createGain(); env(g,t0,.002,.01,.09,.5);
+    o.connect(g); g.connect(oc.destination); o.start(t0); o.stop(t0+dur);
+  }},
+};
+const defaultBufs = {};   // name -> AudioBuffer（模板切换后重建用）
+function normalizeBuf(buf){
+  let peak = 0;                  // 归一化到 -1 dBFS，防削波
+  for(let c=0;c<buf.numberOfChannels;c++){
+    const ch = buf.getChannelData(c);
+    for(let i=0;i<ch.length;i++){ const v=Math.abs(ch[i]); if(v>peak) peak=v; }
+  }
+  if(peak > 0.95){
+    const k = 0.9/peak;
+    for(let c=0;c<buf.numberOfChannels;c++){
+      const ch = buf.getChannelData(c);
+      for(let i=0;i<ch.length;i++) ch[i]*=k;
+    }
+  }
+  return buf;
+}
+async function ensureSynth(name){
+  if(!defaultBufs[name]){
+    const { d, fn } = SYNTHS[name];
+    const oc = offCtx(d);
+    fn(oc);                      // 先建图，再渲染
+    defaultBufs[name] = normalizeBuf(await oc.startRendering());
+  }
+  return defaultBufs[name];
+}
+async function buildDefaults(){
+  for(const name of DEFAULTS) await ensureSynth(name);
+  return DEFAULTS;
+}
+
+/* ---------- 场景模板与布局 ---------- */
+/* 四种布局：grid 标准网格 / coarse 大按钮 / list 行列表 / square SoundTools 风。
+   模板只切换音效集；布局是用户的选择，切模板不改变布局（避免整屏跳变） */
+const GRADS = [   // square 布局的渐变轮换（对齐 SoundTools 的鲜活观感）
+  'linear-gradient(135deg,#EC4899,#BE185D)',
+  'linear-gradient(135deg,#F97316,#C2410C)',
+  'linear-gradient(135deg,#F59E0B,#B45309)',
+  'linear-gradient(135deg,#8B5CF6,#6D28D9)',
+  'linear-gradient(135deg,#3B82F6,#1D4ED8)',
+  'linear-gradient(135deg,#22C55E,#15803D)',
+  'linear-gradient(135deg,#06B6D4,#0E7490)',
+  'linear-gradient(135deg,#64748B,#334155)',
+];
+const TEMPLATES = [
+  { id:'general', label:'通用',
+    desc:'常用效果全家桶',
+    sounds:['汽笛','低音爆','悲伤长号','敲棍','错误蜂鸣','屁声','掌声','蟋蟀','叮','弹簧','金币'] },
+  { id:'stream', label:'直播 · 游戏',
+    desc:'高能量反馈：胜利、失败、节目效果',
+    sounds:['汽笛','低音爆','底鼓','军鼓','敲棍','激光','错误蜂鸣','弹簧','金币','屁声'] },
+  { id:'podcast', label:'播客',
+    desc:'转场与 stinger：rimshot、叮、掌声',
+    sounds:['敲棍','叮','掌声','悲伤长号','错误蜂鸣','蟋蟀','汽笛'] },
+  { id:'class', label:'课堂 · 演示',
+    desc:'抢答器场景：对/错/鼓励',
+    sounds:['叮','错误蜂鸣','掌声','底鼓','军鼓','汽笛','低音爆'] },
+  { id:'blank', label:'空白',
+    desc:'从零开始：自己上传或录音',
+    sounds:[] },
+];
+const LAYOUTS = [
+  { id:'grid',   label:'网格' },
+  { id:'coarse', label:'大按钮' },
+  { id:'list',   label:'列表' },
+  { id:'square', label:'大彩块' },
+];
+let curTpl = 'general';
+let layout = 'grid';
+let dirty = false;             // 板子被改过 → 切模板需确认
+function syncGridClass(){
+  grid.classList.toggle('coarse', layout === 'coarse');
+  grid.classList.toggle('list', layout === 'list');
+  grid.classList.toggle('square', layout === 'square');
+  stage.classList.toggle('square', layout === 'square');
+}
+function setLayout(id){ layout = id; syncGridClass(); renderBoard(); renderTemplateBar(); }
+function renderTemplateBar(){
+  const bar = $('#templateBar');
+  bar.innerHTML = '<span class="lbl">场景模板</span>';
+  TEMPLATES.forEach(t => {
+    const b = document.createElement('button');
+    b.className = 'chip';
+    b.dataset.tpl = t.id;
+    b.textContent = t.label;
+    b.title = t.desc;
+    b.setAttribute('aria-pressed', String(t.id === curTpl));
+    b.addEventListener('click', () => requestTemplate(t, b));
+    bar.appendChild(b);
+  });
+  const sp = document.createElement('span');
+  sp.style.cssText = 'flex:1';
+  bar.appendChild(sp);
+  const ll = document.createElement('span');
+  ll.className = 'lbl'; ll.textContent = '布局';
+  bar.appendChild(ll);
+  LAYOUTS.forEach(l => {
+    const b = document.createElement('button');
+    b.className = 'chip';
+    b.dataset.layout = l.id;
+    b.textContent = l.label;
+    b.setAttribute('aria-pressed', String(layout === l.id));
+    b.addEventListener('click', () => setLayout(l.id));
+    bar.appendChild(b);
+  });
+}
+function requestTemplate(t, btn){
+  if(t.id === curTpl && !dirty) return;
+  if(dirty && btn.dataset.arm !== '1'){
+    btn.dataset.arm = '1';
+    btn.classList.add('danger-armed');
+    btn.textContent = '确认替换？';
+    setTimeout(renderTemplateBar, 2500);
+    return;
+  }
+  applyTemplate(t);
+}
+async function applyTemplate(t){
+  stopAll();
+  drawer.hidden = true; cur = null;
+  board = [];
+  curTpl = t.id;               // 布局不动——那是用户的选择
+  for(let i=0;i<t.sounds.length;i++){
+    addSound(await ensureSynth(t.sounds[i]), t.sounds[i], PALETTE[i % PALETTE.length].id);
+  }
+  dirty = false;
+  renderBoard();
+  renderTemplateBar();
+}
+async function resetDefaults(){ await applyTemplate(TEMPLATES[0]); }
+
+/* ---------- 全屏演出模式 ---------- */
+const stage = $('#stage');
+function isFs(){ return !!document.fullscreenElement; }
+$('#btnFs').addEventListener('click', () => {
+  if(isFs()){
+    const p = document.exitFullscreen || document.webkitExitFullscreen;
+    const r = p && p.call(document);
+    if(r && r.catch) r.catch(() => {});   // 文档失焦时部分环境拒绝退出；Esc/系统手势仍可退出
+    return;
+  }
+  const req = stage.requestFullscreen || stage.webkitRequestFullscreen;
+  if(req){
+    const r = req.call(stage);
+    if(r && r.catch) r.catch(() => {});
+  }
+});
+document.addEventListener('fullscreenchange', () => {
+  const fs = isFs();
+  document.body.classList.toggle('is-fs', fs);
+  $('#fsLabel').textContent = fs ? '退出全屏' : '全屏';
+});
+
+/* ---------- 渲染网格 ---------- */
+function renderBoard(){
+  grid.innerHTML = '';
+  if(!board.length){
+    const e = document.createElement('div');
+    e.className = 'empty';
+    e.textContent = '板子是空的——上传音频或点「录音」开始添加，也可以从上方场景模板一键开始。';
+    grid.appendChild(e);
+    return;
+  }
+  board.forEach((s,i) => {
+    const tile = document.createElement('div');
+    tile.className = 'tile c-' + s.color + (s.active.size ? ' playing' : '');
+    tile.tabIndex = 0;
+    tile.setAttribute('role','button');
+    tile.setAttribute('aria-label','播放 ' + s.name);
+    const key = KEYS[i] || '';
+    tile.innerHTML =
+      (key ? '<span class="key mono">' + key.toUpperCase() + '</span>' : '') +
+      '<span class="tname"></span><span class="tdur mono">' + s.duration.toFixed(1) + 's</span>' +
+      '<span class="prog"></span>';
+    tile.querySelector('.tname').textContent = s.name;
+    const edit = document.createElement('button');
+    edit.className = 'edit';
+    edit.setAttribute('aria-label','编辑 ' + s.name);
+    edit.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="m11.5 2.5 2 2L6 12l-2.7.7L4 10z"/></svg>';
+    edit.addEventListener('click', e => { e.stopPropagation(); openDrawer(s); });
+    tile.appendChild(edit);
+    tile.addEventListener('click', () => playSound(s));
+    tile.addEventListener('keydown', e => {
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); playSound(s); }
+    });
+    tile.dataset.id = s.id;
+    if(layout === 'square') tile.style.setProperty('--grad', GRADS[i % GRADS.length]);
+    grid.appendChild(tile);
+  });
+  if(layout === 'square' && board.length){
+    const add = document.createElement('button');
+    add.className = 'add-tile';
+    add.setAttribute('aria-label','添加音效');
+    add.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 2.5v11M2.5 8h11"/></svg><span>添加音效</span>';
+    add.addEventListener('click', () => { ensureCtx(); $('#fileInput').click(); });
+    grid.appendChild(add);
+  }
+}
+const tileOf = s => grid.querySelector('[data-id="' + s.id + '"]');
+
+function playSound(s){
+  ensureCtx();
+  const src = ctx.createBufferSource();
+  src.buffer = s.buffer;
+  src.connect(master);
+  s.active.add(src);
+  const tile = tileOf(s);
+  if(tile){
+    tile.classList.add('playing');
+    const p = tile.querySelector('.prog');
+    p.style.animation = 'none'; void p.offsetWidth;
+    p.style.animation = 'prog ' + s.duration + 's linear forwards';
+  }
+  src.onended = () => {
+    s.active.delete(src);
+    if(s.active.size === 0 && tileOf(s)){
+      const t = tileOf(s);
+      t.classList.remove('playing');
+      t.querySelector('.prog').style.animation = 'none';
+    }
+  };
+  src.start();
+}
+function stopAll(){
+  board.forEach(s => s.active.forEach(src => { try{ src.stop(); }catch(_){} }));
+  if(previewSrc){ try{ previewSrc.stop(); }catch(_){} previewSrc=null; syncPreviewBtn(); }
+}
+
+/* ---------- 热键 ---------- */
+document.addEventListener('keydown', e => {
+  const tag = (e.target.tagName || '').toLowerCase();
+  if(tag==='input' || tag==='textarea' || e.target.isContentEditable) return;
+  if(e.key === 'Escape'){ stopAll(); return; }
+  const i = KEYS.indexOf(e.key.toLowerCase());
+  if(i >= 0 && board[i]){ e.preventDefault(); playSound(board[i]); }
+});
+
+/* ---------- 上传 ---------- */
+$('#btnUpload').addEventListener('click', () => { ensureCtx(); $('#fileInput').click(); });
+$('#fileInput').addEventListener('change', async e => {
+  const files = [...e.target.files]; e.target.value = '';
+  if(!files.length) return;
+  ensureCtx();
+  if(replaceTarget){                       // 替换模式：只取第一个文件，保留名称/颜色/键位
+    const s = replaceTarget; replaceTarget = null;
+    try{
+      const buf = await ctx.decodeAudioData(await files[0].arrayBuffer());
+      s.buffer = buf; s.duration = buf.duration;
+      const t = tileOf(s);
+      if(t) t.querySelector('.tdur').textContent = s.duration.toFixed(1) + 's';
+      dirty = true;
+      toast('已替换「' + s.name + '」的音频');
+    }catch(_){ toast('这个文件解不了——试试 MP3、WAV、OGG 或 M4A', true); }
+    return;
+  }
+  for(const f of files){
+    try{
+      const ab = await f.arrayBuffer();
+      const buf = await ctx.decodeAudioData(ab);
+      if(buf.duration > 60){ toast(cleanName(f.name) + ' 超过 60 秒，已跳过（音效建议 0.5–5 秒）', true); continue; }
+      addSound(buf, cleanName(f.name), null);
+    }catch(_){
+      toast('「' + f.name + '」解不了——试试 MP3、WAV、OGG 或 M4A', true);
+    }
+  }
+});
+
+/* ---------- 录音 ---------- */
+$('#btnRecord').addEventListener('click', async () => {
+  if(rec){ rec.stop(); return; }
+  ensureCtx();
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    toast('当前环境不支持录音（需要 https 或 localhost）', true); return;
+  }
+  try{ recStream = await navigator.mediaDevices.getUserMedia({audio:true}); }
+  catch(_){ toast('麦克风不可用：请在浏览器提示中允许录音权限', true); return; }
+  const mime = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/mp4';
+  rec = new MediaRecorder(recStream, {mimeType:mime});
+  const chunks = [];
+  rec.ondataavailable = e => chunks.push(e.data);
+  rec.onstop = async () => {
+    clearInterval(recTimer);
+    recStream.getTracks().forEach(t => t.stop());
+    const secs = ((Date.now()-recStart)/1000).toFixed(1);
+    rec = null; syncRecBtn();
+    try{
+      const buf = await ctx.decodeAudioData(await new Blob(chunks,{type:mime}).arrayBuffer());
+      addSound(buf, '录音 ' + new Date().toTimeString().slice(0,5), 'rose');
+      toast('录音 ' + secs + 's 已加入');
+    }catch(_){ toast('录音解码失败，请重试', true); }
+  };
+  recStart = Date.now();
+  rec.start();
+  syncRecBtn();
+  recTimer = setInterval(syncRecBtn, 200);
+});
+function syncRecBtn(){
+  const b = $('#btnRecord'), l = $('#recLabel');
+  if(rec){
+    b.classList.add('recording'); b.setAttribute('aria-pressed','true');
+    l.textContent = '停止 ' + ((Date.now()-recStart)/1000).toFixed(1) + 's';
+  }else{
+    b.classList.remove('recording'); b.setAttribute('aria-pressed','false');
+    l.textContent = '录音';
+  }
+}
+
+/* ---------- 裁剪抽屉 ---------- */
+const wave = $('#wave'), wctx2d = wave.getContext('2d');
+function openDrawer(s){
+  cur = s; trim = {s:0, e:s.duration};
+  stopPreview();
+  $('#drawerTitle').textContent = '编辑「' + s.name + '」';
+  $('#nameInput').value = s.name;
+  renderSwatches();
+  drawer.hidden = false;
+  requestAnimationFrame(() => { drawWave(); layoutHandles(); drawer.scrollIntoView({behavior:'smooth', block:'nearest'}); });
+}
+$('#drawerClose').addEventListener('click', () => { stopPreview(); drawer.hidden = true; cur = null; });
+function renderSwatches(){
+  const box = $('#swatches'); box.innerHTML = '';
+  PALETTE.forEach(p => {
+    const b = document.createElement('button');
+    b.className = 'sw'; b.style.background = p.hex;
+    b.setAttribute('aria-label','颜色 ' + p.id);
+    b.setAttribute('aria-pressed', String(cur.color === p.id));
+    b.addEventListener('click', () => {
+      cur.color = p.id; dirty = true;
+      const t = tileOf(cur); if(t) t.className = 'tile c-' + cur.color + (cur.active.size ? ' playing' : '');
+      renderSwatches();
+    });
+    box.appendChild(b);
+  });
+}
+$('#nameInput').addEventListener('input', e => {
+  dirty = true;
+  cur.name = e.target.value.trim().slice(0,24) || '音效';
+  const t = tileOf(cur);
+  if(t) t.querySelector('.tname').textContent = cur.name;
+  $('#drawerTitle').textContent = '编辑「' + cur.name + '」';
+});
+
+function drawWave(){
+  const wrap = $('#waveWrap');
+  const dpr = window.devicePixelRatio || 1;
+  const W = wrap.clientWidth, H = wrap.clientHeight;
+  wave.width = W*dpr; wave.height = H*dpr;
+  wctx2d.setTransform(dpr,0,0,dpr,0,0);
+  wctx2d.clearRect(0,0,W,H);
+  const d = cur.buffer.getChannelData(0);
+  const step = d.length / W;
+  wctx2d.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text3').trim() || '#71717A';
+  for(let x=0; x<W; x++){
+    let peak = 0;
+    const a = Math.floor(x*step), b = Math.min(d.length, Math.floor((x+1)*step));
+    for(let i=a; i<b; i+=Math.max(1, Math.floor(step/50))){
+      const v = Math.abs(d[i]); if(v>peak) peak=v;
+    }
+    const h = Math.max(1, peak*(H-8));
+    wctx2d.fillRect(x, (H-h)/2, 1, h);
+  }
+}
+function layoutHandles(){
+  const W = $('#waveWrap').clientWidth, total = cur.duration;
+  const x1 = trim.s/total*W, x2 = trim.e/total*W;
+  $('#h1').style.transform = 'translateX(' + x1 + 'px)';
+  $('#h2').style.transform = 'translateX(' + x2 + 'px)';
+  const sel = $('#sel');
+  sel.style.transform = 'translateX(' + x1 + 'px)';
+  sel.style.width = (x2-x1) + 'px';
+  $('#tStart').textContent = fmt(trim.s);
+  $('#tEnd').textContent = fmt(trim.e);
+  $('#tLen').textContent = fmt(trim.e - trim.s);
+}
+function bindHandle(el, which){
+  el.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    try{ el.setPointerCapture(e.pointerId); }catch(_){}
+    const move = ev => {
+      const W = $('#waveWrap').clientWidth;
+      const min = which==='s' ? 0 : trim.s + .05;
+      const max = which==='s' ? trim.e - .05 : cur.duration;
+      let t = (ev.clientX - $('#waveWrap').getBoundingClientRect().left)/W * cur.duration;
+      trim[which] = Math.min(max, Math.max(min, t));
+      layoutHandles();
+    };
+    const up = () => { el.removeEventListener('pointermove',move); el.removeEventListener('pointerup',up); };
+    el.addEventListener('pointermove', move);
+    el.addEventListener('pointerup', up);
+  });
+}
+bindHandle($('#h1'),'s'); bindHandle($('#h2'),'e');
+
+function stopPreview(){
+  if(previewSrc){ try{ previewSrc.stop(); }catch(_){} previewSrc = null; }
+  syncPreviewBtn();
+}
+function syncPreviewBtn(){
+  $('#btnPreview').textContent = previewSrc ? '停止试听' : '循环试听选区';
+  $('#btnPreview').setAttribute('aria-pressed', String(!!previewSrc));
+}
+$('#btnPreview').addEventListener('click', () => {
+  if(previewSrc){ stopPreview(); return; }
+  ensureCtx();
+  const src = ctx.createBufferSource();
+  src.buffer = cur.buffer;
+  src.loop = true;
+  src.loopStart = trim.s; src.loopEnd = trim.e;
+  src.connect(master); src.start(0, trim.s);
+  previewSrc = src; syncPreviewBtn();
+});
+$('#btnUseAll').addEventListener('click', () => { trim = {s:0, e:cur.duration}; layoutHandles(); });
+$('#btnApplyTrim').addEventListener('click', () => {
+  ensureCtx();
+  const sr = cur.buffer.sampleRate;
+  const a = Math.floor(trim.s*sr), b = Math.floor(trim.e*sr), n = b-a;
+  if(n < 1) return;
+  const out = ctx.createBuffer(cur.buffer.numberOfChannels, n, sr);
+  for(let c=0; c<cur.buffer.numberOfChannels; c++){
+    out.getChannelData(c).set(cur.buffer.getChannelData(c).subarray(a,b));
+  }
+  cur.buffer = out; cur.duration = out.duration;
+  dirty = true;
+  trim = {s:0, e:out.duration};
+  const t = tileOf(cur);
+  if(t) t.querySelector('.tdur').textContent = cur.duration.toFixed(1) + 's';
+  drawWave(); layoutHandles();
+  toast('已裁剪为 ' + cur.duration.toFixed(2) + 's');
+});
+
+/* ---------- 每按钮操作 ---------- */
+function encodeWav(buffer){
+  const ch = buffer.numberOfChannels, n = buffer.length, sr = buffer.sampleRate;
+  const bytes = 44 + n*ch*2;
+  const ab = new ArrayBuffer(bytes), v = new DataView(ab);
+  const ws = (o,s) => { for(let i=0;i<s.length;i++) v.setUint8(o+i, s.charCodeAt(i)); };
+  ws(0,'RIFF'); v.setUint32(4, bytes-8, true); ws(8,'WAVE');
+  ws(12,'fmt '); v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,ch,true);
+  v.setUint32(24,sr,true); v.setUint32(28,sr*ch*2,true); v.setUint16(32,ch*2,true); v.setUint16(34,16,true);
+  ws(36,'data'); v.setUint32(40, n*ch*2, true);
+  let off = 44;
+  const chans = []; for(let c=0;c<ch;c++) chans.push(buffer.getChannelData(c));
+  for(let i=0;i<n;i++) for(let c=0;c<ch;c++){
+    let x = Math.max(-1, Math.min(1, chans[c][i]));
+    v.setInt16(off, x<0 ? x*0x8000 : x*0x7FFF, true); off += 2;
+  }
+  return ab;
+}
+function b64(ab){
+  const u = new Uint8Array(ab); let s = '';
+  for(let i=0;i<u.length;i+=0x8000) s += String.fromCharCode.apply(null, u.subarray(i,i+0x8000));
+  return btoa(s);
+}
+function unb64(str){
+  const bin = atob(str), u = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) u[i] = bin.charCodeAt(i);
+  return u.buffer;
+}
+function download(name, blob){
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+}
+$('#btnWav').addEventListener('click', () => {
+  ensureCtx();
+  download(cur.name + '.wav', new Blob([encodeWav(cur.buffer)], {type:'audio/wav'}));
+  toast('已导出 ' + cur.name + '.wav（16-bit / ' + cur.buffer.sampleRate/1000 + ' kHz）');
+});
+$('#btnReplace').addEventListener('click', () => { replaceTarget = cur; $('#fileInput').click(); });
+$('#btnDelete').addEventListener('click', function(){
+  if(this.dataset.arm !== '1'){
+    this.dataset.arm = '1'; this.classList.add('danger-armed'); this.textContent = '确认删除？';
+    setTimeout(() => { this.dataset.arm=''; this.classList.remove('danger-armed'); this.textContent='删除'; }, 2500);
+    return;
+  }
+  this.dataset.arm=''; this.classList.remove('danger-armed'); this.textContent='删除';
+  stopPreview();
+  board = board.filter(x => x !== cur);
+  dirty = true;
+  drawer.hidden = true; cur = null;
+  renderBoard();
+});
+
+/* ---------- 板子导出 / 导入 ---------- */
+$('#btnExport').addEventListener('click', () => {
+  if(!board.length){ toast('板子是空的', true); return; }
+  ensureCtx();
+  const data = {
+    version: 1, app: 'freeaudioeditor-online',
+    buttons: board.map(s => ({
+      id: s.id, name: s.name, color: s.color,
+      duration: +s.duration.toFixed(3), sampleRate: s.buffer.sampleRate,
+      audioB64: b64(encodeWav(s.buffer)),
+    })),
+  };
+  const json = JSON.stringify(data);
+  download('soundboard-' + new Date().toISOString().slice(0,10) + '.json',
+           new Blob([json], {type:'application/json'}));
+  toast('已导出 ' + board.length + ' 个音效（' + (json.length/1048576).toFixed(1) + ' MB）');
+});
+$('#btnImport').addEventListener('click', () => { ensureCtx(); $('#boardInput').click(); });
+$('#boardInput').addEventListener('change', async e => {
+  const f = e.target.files[0]; e.target.value = '';
+  if(!f) return;
+  ensureCtx();
+  let data;
+  try{ data = JSON.parse(await f.text()); }
+  catch(_){ toast('不是有效的板子 JSON 文件', true); return; }
+  const btns = data && Array.isArray(data.buttons) ? data.buttons : null;
+  if(!btns || !btns.length){ toast('文件里没有按钮数据', true); return; }
+  let ok = 0;
+  for(const b of btns){
+    if(typeof b.audioB64 !== 'string'){ continue; }
+    try{
+      const buf = await ctx.decodeAudioData(unb64(b.audioB64));
+      const isST = typeof b.color === 'string' && b.color.includes('gradient');
+      const color = isST ? nearestColor(b.color)
+                : (PALETTE.some(p => p.id === b.color) ? b.color : 'teal');
+      addSound(buf, String(b.name || '音效').slice(0,24), color);
+      ok++;
+    }catch(_){ /* 单条失败跳过 */ }
+  }
+  toast(ok ? '导入成功：' + ok + ' 个音效' + (btns.length>ok ? '，' + (btns.length-ok) + ' 个失败' : '')
+           : '没有可解码的音频', !ok);
+});
+
+/* ---------- 其他 ---------- */
+$('#btnStop').addEventListener('click', stopAll);
+$('#btnTheme').addEventListener('click', () => {
+  const html = document.documentElement;
+  const dark = html.dataset.theme === 'dark';
+  html.dataset.theme = dark ? 'light' : 'dark';
+  $('#btnTheme').textContent = dark ? '暗' : '亮';
+  if(cur && !drawer.hidden) drawWave();
+});
+if(matchMedia('(prefers-color-scheme: dark)').matches){
+  document.documentElement.dataset.theme = 'dark';
+  $('#btnTheme').textContent = '亮';
+}
+$('#masterVol').value = '0.9';
+
+/* 支持拖文件进页面 */
+document.addEventListener('dragover', e => e.preventDefault());
+document.addEventListener('drop', e => {
+  e.preventDefault();
+  if(e.dataTransfer.files.length){
+    ensureCtx();
+    const dt = new DataTransfer();
+    [...e.dataTransfer.files].forEach(f => dt.items.add(f));
+    $('#fileInput').files = dt.files;
+    $('#fileInput').dispatchEvent(new Event('change'));
+  }
+});
+
+window.addEventListener('resize', () => {
+  if(cur && !drawer.hidden){ drawWave(); layoutHandles(); }
+});
+
+resetDefaults();
+</script>
+</body>
+</html>

@@ -13,6 +13,7 @@ import MidiEditor from './editor/MidiEditor.astro';
 import TagEditor from './editor/TagEditor.astro';
 import LoudnessEditor from './editor/LoudnessEditor.astro';
 import MetronomeEditor from './editor/MetronomeEditor.astro';
+import SoundboardEditor from './editor/SoundboardEditor.astro';
 import KeyBpmEditor from './editor/KeyBpmEditor.astro';
 import MixerEditor from './editor/MixerEditor.astro';
 import VoiceRecorder from './editor/VoiceRecorder.astro';
@@ -107,6 +108,8 @@ const jsonLd = [
         <KeyBpmEditor config={tool.editor} locale={locale} />
       ) : tool.editor.metronome ? (
         <MetronomeEditor config={tool.editor} locale={locale} />
+      ) : tool.editor.soundboard ? (
+        <SoundboardEditor config={tool.editor} locale={locale} />
       ) : tool.editor.loudness ? (
         <LoudnessEditor config={tool.editor} locale={locale} />
       ) : tool.editor.mixer ? (

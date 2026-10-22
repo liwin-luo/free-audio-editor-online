@@ -5,9 +5,10 @@
 
 下面两节是现在的位置和接下来做什么。再往下是 10-14 以来的记录，不要把它当成未完成清单。
 
-## 现在（2026-10-20）
+## 现在（2026-10-22）
 
-- 50 个工具页，11 种语言。英语无前缀，其余 `/{locale}/...`。
+- 51 个工具页，11 种语言。英语无前缀，其余 `/{locale}/...`。
+- 45 篇英语指南，各市场另有互译集；配图由 `scripts/generate-guide-media.mjs` 生成。指南↔工具的内链经 `GUIDE_TOOL` 全量闭环，全部指南有 `sources` 和 persona。
 - 单任务页的控件在页面上，播放按钮有文字，下载按钮是动词。`mp3-editor` 仍是多步编辑。
 - 编辑器按动作加载：波形在选文件时，渲染在预览或导出时，编码器在下载时。视频音轨用浏览器解码，不用 ffmpeg.wasm。
 - 生产由推 `main` 触发。CI 是类型检查加构建，Vercel 发 `dist/`。
@@ -21,7 +22,7 @@ Phase 0 还没勾掉的：Search Console / Bing 提交 sitemap 的线上确认�
 
 1. **收录。** 把 sitemap 交进 Search Console，对新 URL 请求编入索引。四周后看真实查询，写进对应 FAQ（规则见 [seo.md](seo.md)）。
 2. **蚕食。** 双周看 `volume-booster` 和 `increase-volume` 是否抢同一条查询。抢了就收紧定位，或把弱的 301 到强的。`speed` 和 `tempo` 同样看。
-3. **指南。** 每月两篇，按市场写，不机翻。互译只加进 `TRANSLATED_GUIDES`。
+3. **指南。** 按 [内容差距分析](plans/2026-10-21-content-gap-analysis.md) §4 的批次推进，每批过 [content-types](content-types.md) 的完成定义（含 `GUIDE_TOOL` 登记）。按市场写，不机翻。互译只加进 `TRANSLATED_GUIDES`。
 4. **新工具。** 只加搜索意图还没有页、而且浏览器里做得诚实的。定义见 [new-tool-spec.md](new-tool-spec.md)。六页缺口（循环、声像、3D、节拍器、调性/BPM、变速保调）已在 10-20 交完，不续极性反转和排列页。
 5. **变现。** 日 UV 稳定 ≥ 300 再谈 AdSense，广告不进工具区 600px。日 UV ≥ 1000 再调研 Pro。在那之前 Hobby 计划就够。
 
@@ -116,6 +117,24 @@ Phase 0 还没勾掉的：Search Console / Bing 提交 sitemap 的线上确认�
 - [x] **audit 终值**(本地,291 页构建 / 287 条 sitemap):**HIGH 0**;MED 51(全部长度类);
   LOW 111;hreflang 簇 280 全互惠 + 7 个 per-market 页无 alternates(设计如此)
 - 注:fr/ru/ar 无指南(工具页先行,规范 §9.4),`/{locale}/guides` 索引 noindex;
+
+## 2026-10-21 内容批次（19 篇指南）
+
+按 [内容差距分析](plans/2026-10-21-content-gap-analysis.md) §4 一次性交付：
+
+- [x] **19 篇英语指南上线**：what-is 定义簇（dBFS / PCM / bitrate / sample-rate / lossless / crossfade）、
+  alternatives 与 vs 簇（123apps / audition / garageband / wav-vs-mp3 / gain-vs-volume / normalize-vs-compress / 432-hz）、
+  how-to 与排障（convert flac/wav、slowed+reverb、transcribe、BPM+key、audio clicks、car stereo、voice memo quiet）
+- [x] **配图管线覆盖旧文**：26 组 webp 插图进旧指南；generate-guide-media.mjs 新增 bitrate ladder、
+  dBFS scale、gain-vs-volume 图；sharp 补进 devDependencies（此前靠传递依赖才能跑）
+- [x] **内链闭环**：19 篇补进 `GUIDE_TOOL`，工具页的相关指南块恢复渲染；45 篇 `sources` 补齐；
+  2 篇首段补主工具链（432-hz-vs-440-hz、mpeg-audio）；3 处卡片标题漂移修复
+- [x] **标题批次**：6 篇 what-is 标题加正文坐实的后半，zh trim 指南标题同改——`serp-check` 回到 0 issue
+- [x] **审计基线**（本地，803 URL，2026-10-21）：seo-audit **HIGH 0 / MED 0**（LOW 327 为长度类噪音）；
+  pages-check 103 项全过；内容审计结构性问题清零
+- 遗留：feature-check 的 `[data-reverse]` 抽屉断言与 smoke-test 的 speed ×2 步骤在 9ca0c48
+  （10-20 内联控件重构）后即失败，HEAD 复现，与内容无关；待修脚本断言并人工验证
+  mp3-editor 抽屉调速后导出是否正常
 
 ## Phase 3 · 增长与变现（第 4 个月起，流量触发制）
 

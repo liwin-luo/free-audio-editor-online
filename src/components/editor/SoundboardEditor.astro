@@ -1,0 +1,493 @@
+---
+/**
+ * Soundboard island. A board of clips: record or upload, trim, hotkeys,
+ * presets, four layouts. Nothing is stored — the board travels as a JSON file.
+ */
+import LocalBadge from './LocalBadge.astro';
+import { getShell } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { EditorConfig } from '../../data/tools';
+
+interface Props {
+  config: EditorConfig;
+  locale?: Locale;
+}
+const { config, locale = 'en' } = Astro.props;
+const { editor: t } = getShell(locale);
+
+/** The subset of editor strings the soundboard script reads. */
+const sb = {
+  sbUpload: t.sbUpload,
+  sbStopAll: t.sbStopAll,
+  sbExportBoard: t.sbExportBoard,
+  sbImportBoard: t.sbImportBoard,
+  sbFullscreen: t.sbFullscreen,
+  sbExitFs: t.sbExitFs,
+  sbTemplates: t.sbTemplates,
+  tplGeneral: t.tplGeneral,
+  tplStream: t.tplStream,
+  tplPodcast: t.tplPodcast,
+  tplClass: t.tplClass,
+  tplBlank: t.tplBlank,
+  tplConfirm: t.tplConfirm,
+  sbName: t.sbName,
+  sbColor: t.sbColor,
+  sbPreview: t.sbPreview,
+  sbStopPreview: t.sbStopPreview,
+  sbUseAll: t.sbUseAll,
+  sbApplyTrim: t.sbApplyTrim,
+  sbTrimmed: t.sbTrimmed,
+  sbExportWav: t.sbExportWav,
+  sbReplace: t.sbReplace,
+  sbReplaced: t.sbReplaced,
+  sbDelete: t.sbDelete,
+  sbConfirmDelete: t.sbConfirmDelete,
+  sbAddSound: t.sbAddSound,
+  sbEmpty: t.sbEmpty,
+  sbKeyHint: t.sbKeyHint,
+  sbRecAdded: t.sbRecAdded,
+  sbImported: t.sbImported,
+  sbImportNone: t.sbImportNone,
+  sbImportBad: t.sbImportBad,
+  sbExported: t.sbExported,
+  sbPlayAria: t.sbPlayAria,
+  sbEditAria: t.sbEditAria,
+  record: t.record,
+  stop: t.stop,
+  volume: t.volume,
+  micBlocked: t.micBlocked,
+  recUnavailable: t.recUnavailable,
+  decodeFail: t.decodeFail,
+  exportFail: t.exportFail,
+};
+---
+
+<div data-soundboard data-sb-theme="light" data-i18n={JSON.stringify(sb)} class="overflow-clip rounded-(--radius-tool) border border-line bg-surface">
+  <script is:inline>
+    (() => {
+      const root = document.currentScript.parentElement;
+      if (document.documentElement.dataset.theme === 'dark') root.dataset.sbTheme = 'dark';
+    })();
+  </script>
+  <div data-sb-controls>
+  <div class="flex flex-wrap items-center gap-2 px-4 pt-4 md:px-5" data-sb-toolbar>
+    <button type="button" class="btn btn-primary" data-sb-upload>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 10V2m0 0L5 5m3-3 3 3M2.5 11v2A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5v-2"/></svg>
+      {t.sbUpload}
+    </button>
+    <button type="button" class="btn btn-secondary" data-sb-record aria-pressed="false">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="5.5" y="1.5" width="5" height="8" rx="2.5"/><path d="M3 7.5a5 5 0 0 0 10 0M8 12.5V15"/></svg>
+      <span data-sb-record-label>{t.record}</span>
+    </button>
+    <span class="flex-1"></span>
+    <label class="flex items-center gap-2 text-sm text-ink2">
+      {t.volume}
+      <input type="range" data-sb-volume min="0" max="1" step="0.01" value="0.9" aria-label={t.volume} class="h-10 w-24 accent-(--color-accent)" />
+    </label>
+    <button type="button" class="btn btn-secondary" data-sb-stop>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3.5" y="3.5" width="9" height="9" rx="1.5"/></svg>
+      {t.sbStopAll}
+    </button>
+    <button type="button" class="btn btn-secondary" data-sb-export-board>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 2v8m0 0 3-3m-3 3L5 7M2.5 11v2A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5v-2"/></svg>
+      {t.sbExportBoard}
+    </button>
+    <button type="button" class="btn btn-secondary" data-sb-import-board>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M2.5 11v2A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5v-2"/></svg>
+      {t.sbImportBoard}
+    </button>
+    <button type="button" class="btn btn-secondary" data-sb-fullscreen>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10"/></svg>
+      <span data-sb-fs-label>{t.sbFullscreen}</span>
+    </button>
+    <p class="w-full text-xs text-ink3" data-sb-keyhint></p>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-1.5 px-4 pb-1 pt-1 md:px-5" data-sb-templates role="group" aria-label={t.sbTemplates}></div>
+  </div>
+
+  <div class="grid px-4 pb-4 pt-4 md:px-5" data-sb-grid></div>
+
+  <section data-sb-drawer hidden class="border-t border-line bg-surface2/50 px-4 py-4 md:px-5" aria-label={`${t.sbName} · ${t.sbApplyTrim}`}>
+    <div class="flex items-center gap-3">
+      <h2 class="text-base font-semibold" data-sb-drawer-title></h2>
+      <span class="flex-1"></span>
+      <button type="button" class="btn btn-ghost" data-sb-drawer-close>✕</button>
+    </div>
+    <div class="mt-3 flex flex-wrap items-center gap-3">
+      <label class="flex items-center gap-2 text-sm text-ink2">
+        {t.sbName}
+        <input type="text" data-sb-name maxlength="24" class="h-10 w-48 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" />
+      </label>
+      <span class="flex-1"></span>
+      <div class="flex gap-1.5" data-sb-swatches role="group" aria-label={t.sbColor}></div>
+    </div>
+    <div class="relative mt-3 h-28 overflow-hidden rounded-lg bg-surface2" data-sb-wave-wrap>
+      <canvas data-sb-wave class="block h-full w-full"></canvas>
+      <div class="pointer-events-none absolute inset-y-0 bg-accent-soft" data-sb-sel></div>
+      <div class="absolute inset-y-0 z-10 -ms-2.5 w-5 cursor-ew-resize" data-sb-h1 role="slider" aria-label={t.sbName}><span class="mx-auto block h-3/5 w-1 rounded bg-accent"></span></div>
+      <div class="absolute inset-y-0 z-10 -ms-2.5 w-5 cursor-ew-resize" data-sb-h2 role="slider" aria-label={t.sbApplyTrim}><span class="mx-auto block h-3/5 w-1 rounded bg-accent"></span></div>
+    </div>
+    <div class="mt-1.5 flex gap-4 font-mono text-xs tabular-nums text-ink2">
+      <span><span data-sb-t-start>0:00.00</span></span>
+      <span><span data-sb-t-end>0:00.00</span></span>
+      <span><span data-sb-t-len>0:00.00</span></span>
+    </div>
+    <div class="mt-3 flex flex-wrap gap-2">
+      <button type="button" class="btn btn-secondary" data-sb-preview aria-pressed="false">{t.sbPreview}</button>
+      <button type="button" class="btn btn-secondary" data-sb-use-all>{t.sbUseAll}</button>
+      <button type="button" class="btn btn-primary" data-sb-apply-trim>{t.sbApplyTrim}</button>
+    </div>
+    <div class="mt-3 flex flex-wrap gap-2">
+      <button type="button" class="btn btn-secondary" data-sb-wav>{t.sbExportWav}</button>
+      <button type="button" class="btn btn-secondary" data-sb-replace>{t.sbReplace}</button>
+      <span class="flex-1"></span>
+      <button type="button" class="btn btn-secondary" data-sb-delete>{t.sbDelete}</button>
+    </div>
+  </section>
+
+  <input type="file" data-sb-file accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac,.aac" multiple hidden />
+  <input type="file" data-sb-board accept=".json,application/json" hidden />
+</div>
+
+<LocalBadge text={t.dropLocal} />
+
+<div data-toast-root class="toast-root"></div>
+
+<script>
+  import { initSoundboard } from '../../editor/soundboard/soundboard-ui';
+
+  initSoundboard();
+</script>
+
+<style is:global>
+  /* Soundboard tiles are created by the controller at runtime, so these styles
+     are global on purpose. The board panel has a light (site-token) and a dark
+     (SoundTools-style navy) appearance, switched by the toolbar day/night
+     button; gradients and the dark navy are the documented user-requested
+     exemption and stay inside this island. */
+  [data-soundboard] .btn {
+    white-space: nowrap;
+  }
+  [data-soundboard] [data-sb-grid] {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.875rem;
+  }
+  [data-soundboard] [data-sb-tile] {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.125rem;
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 0.875rem;
+    color: #fff;
+    cursor: pointer;
+    outline: 3px solid transparent;
+    outline-offset: -3px;
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 180ms var(--ease-out-expo),
+      outline-color 180ms var(--ease-out-expo);
+  }
+  [data-soundboard] [data-sb-tile]:hover {
+    outline-color: rgba(255, 255, 255, 0.85);
+  }
+  [data-soundboard] [data-sb-tile]:active {
+    transform: scale(0.98);
+  }
+  [data-soundboard] [data-sb-tile]:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+  [data-soundboard] [data-sb-tile].sb-playing {
+    outline-color: #fff;
+  }
+  [data-soundboard] .sb-key {
+    position: absolute;
+    top: 0.5rem;
+    inset-inline-start: 0.5rem;
+    padding: 0.05rem 0.4rem;
+    border-radius: 0.375rem;
+    background: rgba(255, 255, 255, 0.22);
+    font-size: 0.6875rem;
+    font-weight: 600;
+  }
+  [data-soundboard] .sb-name {
+    overflow: hidden;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  [data-soundboard] .sb-dur {
+    font-size: 0.6875rem;
+    opacity: 0.85;
+  }
+  [data-soundboard] .sb-prog {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  @keyframes sb-prog {
+    from {
+      transform: scaleX(1);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
+  [data-soundboard] .sb-edit {
+    position: absolute;
+    top: 0.4rem;
+    inset-inline-end: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    cursor: pointer;
+    transition: background 150ms var(--ease-out-expo);
+  }
+  [data-soundboard] .sb-edit:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+  [data-soundboard] .sb-edit svg {
+    width: 0.9375rem;
+    height: 0.9375rem;
+  }
+  [data-soundboard] .sb-add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    aspect-ratio: 1;
+    border: 2px dashed var(--color-line-strong);
+    border-radius: 0.875rem;
+    background: transparent;
+    color: var(--color-ink3);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition:
+      border-color 180ms var(--ease-out-expo),
+      color 180ms var(--ease-out-expo);
+  }
+  [data-soundboard] .sb-add:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  [data-soundboard] .sb-add svg {
+    width: 1.375rem;
+    height: 1.375rem;
+  }
+  [data-soundboard] .sb-swatch[aria-pressed='true'] {
+    border-color: var(--color-ink);
+    outline: 2px solid var(--color-surface);
+  }
+  [data-soundboard] .sb-armed {
+    border-color: var(--color-danger, #be123c) !important;
+    color: var(--color-danger, #be123c) !important;
+  }
+  [data-soundboard] .sb-recording {
+    background: var(--color-danger, #be123c) !important;
+    border-color: var(--color-danger, #be123c) !important;
+    color: #fff !important;
+  }
+  [data-soundboard].sb-fs {
+    padding: 0;
+    overflow: auto;
+  }
+  [data-soundboard].sb-fs [data-sb-grid] {
+    padding-top: 1.5rem;
+  }
+  /* Controls overlay on top of the tiles and auto-hide — reveal by moving the
+     pointer to the top edge (tap on touch), like a video player. */
+  [data-soundboard].sb-fs [data-sb-controls] {
+    position: fixed;
+    top: 0;
+    inset-inline: 0;
+    z-index: 60;
+    background: rgba(26, 29, 41, 0.94);
+    border-bottom: 1px solid #2a2f3e;
+    padding-block: 0.5rem 0.25rem;
+    transform: translateY(-110%);
+    transition: transform 250ms var(--ease-out-expo);
+  }
+  [data-soundboard].sb-fs [data-sb-controls].sb-controls-shown {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    [data-soundboard] [data-sb-grid] {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* Light panel: explicit light literals so the day/night control works
+     independently of the page theme (tokens would follow the page instead). */
+  [data-soundboard][data-sb-theme='light'] {
+    background: #ffffff;
+    border-color: #e4e4e7;
+    color: #18181b;
+  }
+  [data-soundboard][data-sb-theme='light'] .text-ink2,
+  [data-soundboard][data-sb-theme='light'] .text-ink3 {
+    color: #71717a;
+  }
+  [data-soundboard][data-sb-theme='light'] input[type='range'] {
+    accent-color: #0d9488;
+  }
+  [data-soundboard][data-sb-theme='light'] .btn-secondary {
+    background: #ffffff;
+    border-color: #e4e4e7;
+    color: #18181b;
+  }
+  [data-soundboard][data-sb-theme='light'] .btn-secondary:hover:not(:disabled) {
+    border-color: #71717a;
+    color: #0f766e;
+  }
+  [data-soundboard][data-sb-theme='light'] .btn-primary {
+    background: #0d9488;
+    border-color: #0d9488;
+    color: #ffffff;
+  }
+  [data-soundboard][data-sb-theme='light'] .btn-primary:hover:not(:disabled) {
+    background: #0f766e;
+    border-color: #0f766e;
+    color: #ffffff;
+  }
+  [data-soundboard][data-sb-theme='light'] .chip {
+    background: #ffffff;
+    border-color: #c9c9cf;
+    color: #52525b;
+  }
+  [data-soundboard][data-sb-theme='light'] .chip:hover {
+    border-color: #0d9488;
+    color: #0d9488;
+  }
+  [data-soundboard][data-sb-theme='light'] .chip[aria-pressed='true'] {
+    background: rgba(13, 148, 136, 0.12);
+    border-color: #0d9488;
+    color: #0f766e;
+  }
+  [data-soundboard][data-sb-theme='light'] .sb-add {
+    border-color: #c9c9cf;
+    color: #71717a;
+  }
+  [data-soundboard][data-sb-theme='light'] .sb-add:hover {
+    border-color: #0d9488;
+    color: #0f766e;
+  }
+  [data-soundboard][data-sb-theme='light'] [data-sb-drawer] {
+    background: #f4f4f5;
+    border-color: #e4e4e7;
+  }
+  [data-soundboard][data-sb-theme='light'] [data-sb-name] {
+    background: #ffffff;
+    border-color: #c9c9cf;
+    color: #18181b;
+  }
+  [data-soundboard][data-sb-theme='light'] [data-sb-wave-wrap] {
+    background: #f4f4f5;
+  }
+  [data-soundboard][data-sb-theme='light'] .sb-swatch[aria-pressed='true'] {
+    border-color: #18181b;
+    outline: 2px solid #ffffff;
+  }
+
+  /* Dark panel (SoundTools-style navy). Gated on the panel toggle, which
+     initializes from the page theme. */
+  [data-soundboard][data-sb-theme='dark'] {
+    background: #1a1d29;
+    border-color: #1a1d29;
+    color: #e7e9ee;
+  }
+  [data-soundboard][data-sb-theme='dark'] .text-ink2,
+  [data-soundboard][data-sb-theme='dark'] .text-ink3 {
+    color: #a5adc2;
+  }
+  [data-soundboard][data-sb-theme='dark'] input[type='range'] {
+    accent-color: #2dd4bf;
+  }
+  [data-soundboard][data-sb-theme='dark'] .btn-primary {
+    background: #2dd4bf;
+    border-color: #2dd4bf;
+    color: #09090b;
+  }
+  [data-soundboard][data-sb-theme='dark'] .btn-primary:hover:not(:disabled) {
+    background: #5eead4;
+    border-color: #5eead4;
+    color: #09090b;
+  }
+  [data-soundboard][data-sb-theme='dark'] .btn-secondary {
+    background: #262b3a;
+    border-color: #2a2f3e;
+    color: #e7e9ee;
+  }
+  [data-soundboard][data-sb-theme='dark'] .btn-secondary:hover:not(:disabled) {
+    border-color: #2dd4bf;
+    color: #2dd4bf;
+  }
+  [data-soundboard][data-sb-theme='dark'] .chip {
+    background: #262b3a;
+    border-color: #2a2f3e;
+    color: #a5adc2;
+  }
+  [data-soundboard][data-sb-theme='dark'] .chip:hover {
+    border-color: #2dd4bf;
+    color: #2dd4bf;
+  }
+  [data-soundboard][data-sb-theme='dark'] .chip[aria-pressed='true'] {
+    background: rgba(45, 212, 191, 0.16);
+    border-color: #2dd4bf;
+    color: #5eead4;
+  }
+  [data-soundboard][data-sb-theme='dark'] .sb-add {
+    border-color: #3a4152;
+    color: #8b93a7;
+  }
+  [data-soundboard][data-sb-theme='dark'] .sb-add:hover {
+    border-color: #2dd4bf;
+    color: #2dd4bf;
+  }
+  [data-soundboard][data-sb-theme='dark'] [data-sb-drawer] {
+    background: #222634;
+    border-color: #2a2f3e;
+  }
+  [data-soundboard][data-sb-theme='dark'] [data-sb-name] {
+    background: #1a1d29;
+    border-color: #3a4152;
+    color: #e7e9ee;
+  }
+  [data-soundboard][data-sb-theme='dark'] [data-sb-wave-wrap] {
+    background: #1a1d29;
+  }
+  [data-soundboard][data-sb-theme='dark'] .sb-swatch[aria-pressed='true'] {
+    border-color: #e7e9ee;
+    outline: 2px solid #1a1d29;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-soundboard] [data-sb-tile],
+    [data-soundboard] .chip {
+      transition: none;
+    }
+    [data-soundboard] .sb-prog {
+      display: none;
+    }
+  }
+</style>

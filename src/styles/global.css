@@ -98,6 +98,45 @@
 }
 
 @layer components {
+  /* Pill chip for in-editor switchers (soundboard presets and layouts).
+     Selected state uses aria-pressed, per the switcher rule in the UI spec. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    height: 2rem;
+    padding-inline: 0.85rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-line-strong);
+    background-color: var(--color-surface);
+    color: var(--color-ink2);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background-color 150ms var(--ease-out-expo),
+      border-color 150ms var(--ease-out-expo),
+      color 150ms var(--ease-out-expo),
+      transform 100ms var(--ease-out-expo);
+  }
+
+  .chip:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .chip:active {
+    transform: scale(0.98);
+  }
+
+  .chip[aria-pressed='true'] {
+    background-color: var(--color-accent-soft);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
   /* Toast stack: centred under the header on phones, pinned to the reading-end
      corner on desktop. Logical insets keep it on the right in RTL. */
   .toast-root {

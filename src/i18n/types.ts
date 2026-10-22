@@ -300,6 +300,48 @@ export interface EditorText {
   mixExport: string;
   /** Placeholder: {name} */
   mixDecode: string;
+  sbUpload: string;
+  sbStopAll: string;
+  sbExportBoard: string;
+  sbImportBoard: string;
+  sbFullscreen: string;
+  sbExitFs: string;
+  sbTemplates: string;
+  tplGeneral: string;
+  tplStream: string;
+  tplPodcast: string;
+  tplClass: string;
+  tplBlank: string;
+  tplConfirm: string;
+  sbName: string;
+  sbColor: string;
+  sbPreview: string;
+  sbStopPreview: string;
+  sbUseAll: string;
+  sbApplyTrim: string;
+  /** Placeholder: {sec} */
+  sbTrimmed: string;
+  sbExportWav: string;
+  sbReplace: string;
+  /** Placeholder: {name} */
+  sbReplaced: string;
+  sbDelete: string;
+  sbConfirmDelete: string;
+  sbAddSound: string;
+  sbEmpty: string;
+  sbKeyHint: string;
+  sbRecAdded: string;
+  /** Placeholder: {n} */
+  sbImported: string;
+  sbImportNone: string;
+  sbImportBad: string;
+  /** Placeholder: {n} */
+  sbExported: string;
+  /** Placeholder: {name} */
+  sbPlayAria: string;
+  /** Placeholder: {name} */
+  sbEditAria: string;
+  sbTooLong: string;
 }
 
 export interface UiText {

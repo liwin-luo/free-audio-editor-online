@@ -1,6 +1,6 @@
 # 架构
 
-日期：2026-10-20。站点是静态页加浏览器里的音频处理。文件不上传。没有账号，没有服务端转码。
+日期：2026-10-22。站点是静态页加浏览器里的音频处理。文件不上传。没有账号，没有服务端转码。
 
 线上：`https://freeaudioeditor.online`。推到 `main` 后 GitHub Actions 跑 `npm run check` 和 `npm run build`，Vercel 用 `dist/` 发生产。`vercel.json` 开 `cleanUrls`、关尾斜杠，`/_astro/` 长期缓存。
 
@@ -14,7 +14,7 @@
 页面（Astro，构建时 HTML）
   └─ ToolPage
        ├─ 编辑器岛（见下表）
-       ├─ TrustBadge / HowTo / sections / Faq / RelatedTools
+       ├─ TrustBadge / 旗舰页 facts / HowTo / sections / Faq / RelatedTools / 相关指南
        └─ Base（head、Header、Footer）
 ```
 
@@ -40,8 +40,9 @@
 
 | 路径 | 职责 |
 |---|---|
-| `src/data/tools.ts` | 50 个工具的英文文案和 `EditorConfig`。导航、页脚、相关工具、sitemap 都从这里来 |
-| `src/data/guides.ts` | 指南索引和互译关系 |
+| `src/data/tools.ts` | 51 个工具的英文文案和 `EditorConfig`。导航、页脚、相关工具、sitemap 都从这里来 |
+| `src/data/tool-facts.ts` | 旗舰页的适用/不适用/规格表，仅英语渲染 |
+| `src/data/guides.ts` | 指南卡片、互译关系和 `GUIDE_TOOL` 映射；工具页的相关指南块由这个映射驱动 |
 | `src/data/site.ts` | 站点名和 canonical 主机 |
 | `src/i18n/` | 11 份词典。`assertCatalogs()` 要求键和英文对齐；英文有 `exportLabel` 时各语也必须有 |
 | `src/editor/` | 处理函数。新 DSP 是纯函数，配 `scripts/*-check.mjs` |

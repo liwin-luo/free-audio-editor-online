@@ -21,7 +21,7 @@
 
 1. **工具页**：字段级硬规则（title、description、HowTo、FAQ 五类）都在 new-tool-spec，不让步。作家角色只影响 `intro`、`uses`、FAQ 答案的措辞温度——数字和限制照写。旗舰 10 页有适用/不适用块和规格表（路线图 §4），事实必须可验证。
 2. **分类 Hub 和工具总览**：模板化输出，不派角色。只列工具卡、相关指南、相邻分类，不写长正文，否则制造和工具页抢意图的同质页。
-3. **指南索引**：列表页。每个指南必须先在这里有卡片（`src/data/guides.ts`），再建 markdown。
+3. **指南索引**：列表页。每个指南必须先在这里有卡片（`src/data/guides.ts`），再建 markdown。同一改动里还要在同文件的 `GUIDE_TOOL` 登记它支撑的工具：工具页底部的相关指南块由这个映射驱动，frontmatter 的 `tool` 字段不驱动它，漏登记就是断内链（10-21 批次 19 篇踩过）。
 4. **信任页**：服务 E-E-A-T，不追搜索词，不派角色，保持事实更新即可（`/editorial` 说明测试方法，指南的 `sources` frontmatter 指向它）。
 
 ## 指南的七种结构
@@ -37,6 +37,8 @@
 | Best 清单 | best free X | 入选方法 → 对比表 → 短评 → 结论 | 1,200–1,800 词 | `skeptic`、`phone-first` |
 | Pillar | X guide | TOC → 3,000+ 词 → 集群内链 | 3,000+ 词 | `engineer`、`podcast-producer`、`bedroom-musician` |
 | Device / format | convert X on iPhone/Mac | 平台差异 → 步骤 → FAQ | 900–1,400 词 | `phone-first` |
+
+已发样例：definition——`what-is-dbfs`；alternatives——`wav-vs-mp3`、`123apps-alternative`；troubleshooting——`car-stereo-wont-play`；how-to——`how-to-trim-audio`；device——`trim-audio-on-iphone`。写前先看同结构的现稿。
 
 通用要求（seo.md 已有，这里汇总）：首段链主工具；`sources` frontmatter 引外部事实；做不到的事写明并指向兄弟页；英文/西语/德语按翻译规范出 `sections`。
 

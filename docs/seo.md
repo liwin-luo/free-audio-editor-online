@@ -1,6 +1,6 @@
 # SEO 规则
 
-日期：2026-10-20。这是站内规则。一次审查的证据在 [2026-10-16 对抗审查](plans/2026-10-16-seo-adversarial-audit.md)。新页面怎么写完，看 [new-tool-spec](new-tool-spec.md)。各语言的字数和用词，看 [i18n 翻译规范](i18n-translation-guide.md)。页面类型和文章结构的分工，看 [内容类型](content-types.md)；文章由哪个声音执笔，看 [作家角色](writer-personas.md)。
+日期：2026-10-22。这是站内规则。一次审查的证据在 [2026-10-16 对抗审查](plans/2026-10-16-seo-adversarial-audit.md)。新页面怎么写完，看 [new-tool-spec](new-tool-spec.md)。各语言的字数和用词，看 [i18n 翻译规范](i18n-translation-guide.md)。页面类型和文章结构的分工，看 [内容类型](content-types.md)；文章由哪个声音执笔，看 [作家角色](writer-personas.md)。
 
 ## 一条意图一个 URL
 
@@ -27,7 +27,7 @@ slug 就是主搜索词，短横线，不缩写。已经有页能接住的意图
 
 英语 `title` ≤ 60 字符，`description` ≤ 155。CJK 的预算在翻译规范 §3，不要用英语字符数去卡汉字。
 
-标题前半是主词，后半是这一页独有的操作、上限或数字。不要每页都用 `Online Free`。`No upload` 是全站说法，放描述，除非这一页没有更硬的事实。品牌名会把事实挤出 60 字符时就不加。
+标题前半是主词，后半是这一页独有的操作、上限或数字。不要每页都用 `Online Free`。`No upload` 是全站说法，放描述，除非这一页没有更硬的事实。品牌名会把事实挤出 60 字符时就不加。指南标题同构：`What Is dBFS? Why Every Digital Level Is Negative`——后半必须是正文里坐实的事实（能在页内指出原句），不是口号。
 
 H1 用和标题相同的主词。不要在 H1 里换成第二个主词。H2 写这段已经在讲的事，不加「为什么选我们」、对比表或词汇表。
 

@@ -159,6 +159,39 @@ const DIAGRAMS = {
         <p style="margin:0;color:#a1a1aa">One column per sample, thousands of times a second, two channels wide. That column of numbers <b>is</b> the audio — players decode everything else back to this.</p>
       </div>`,
   },
+  copyrightLayers: {
+    title: 'Three rights that can live in one five-second clip',
+    body: `
+      <div style="display:grid;gap:16px">
+        ${[
+          ['1 · THE SOUND RECORDING', 'The fixed waveform in the file. Copying the file copies this. Almost every meme sound is somebody\u2019s recording.', '#0d9488'],
+          ['2 · THE WORK BEHIND IT', 'A song, a script line, a composition. A separate copyright stacked on top of the recording.', '#b45309'],
+          ['3 · THE PERSON', 'A recognizable voice carries publicity rights — not copyright, and not yours to synthesize.', '#be123c'],
+        ].map(([k, v, c]) => `
+        <div style="border:1px solid #e4e4e7;border-inline-start:6px solid ${c};border-radius:10px;padding:14px 18px">
+          <p style="margin:0 0 4px;font-weight:700;color:${c};font-size:14px">${k}</p>
+          <p style="margin:0;color:#3f3f46;font-size:15px">${v}</p>
+        </div>`).join('')}
+        <p style="margin:4px 0 0;color:#0f766e;font-weight:600;font-size:15px">17 U.S.C. § 114(b): sounds that merely imitate or simulate sit outside right #1 — that is the synthesized board\u2019s legal footing.</p>
+      </div>`,
+  },
+  boardFlow: {
+    title: 'From raw material to hotkey',
+    body: `
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        ${[
+          ['1 · CAPTURE', 'Record the mic or upload a file', '#0d9488'],
+          ['2 · TRIM', 'Handles around 0.5–5 s, loop to check', '#0f766e'],
+          ['3 · BOARD', 'Square gets a name, a color, a hotkey', '#155e75'],
+          ['4 · TRIGGER', 'Tap or press keys — several at once', '#134e4a'],
+        ].map(([k, v, c]) => `
+        <div style="background:${c};border-radius:10px;padding:16px 12px;color:#fff">
+          <p style="margin:0 0 6px;font-weight:700;font-size:13px">${k}</p>
+          <p style="margin:0;font-size:13px;opacity:.9">${v}</p>
+        </div>`).join('')}
+      </div>
+      <p style="margin:12px 0 0;color:#71717a;font-size:14px">Export board → one JSON file with every clip · Import board brings it back anywhere.</p>`,
+  },
 };
 
 function wave(range, color, invert = false) {
@@ -250,6 +283,20 @@ const ARTICLES = [
     videoTitle: 'What Is Crossfade?',
     shots: [],
     diagrams: [{ name: 'crossfade', file: 'crossfade' }],
+    slides: [],
+  },
+  {
+    slug: 'are-meme-sounds-copyrighted',
+    videoTitle: 'Are Meme Sounds Copyrighted?',
+    shots: [],
+    diagrams: [{ name: 'copyrightLayers', file: 'copyright-layers' }],
+    slides: [],
+  },
+  {
+    slug: 'how-to-make-a-soundboard',
+    videoTitle: 'How to Make a Soundboard',
+    shots: [],
+    diagrams: [{ name: 'boardFlow', file: 'board-flow' }],
     slides: [],
   },
   {
