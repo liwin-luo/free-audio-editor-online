@@ -38,6 +38,7 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Audio Extractor](https://freeaudioeditor.online/extract-audio): extract audio from one or several videos as MP3 or lossless WAV. Two or more download as a ZIP.
 - [Voice Recorder](https://freeaudioeditor.online/voice-recorder): record the microphone, trim the take, export MP3/WAV.
 - [Soundboard](https://freeaudioeditor.online/soundboard): eleven synthesized sounds, then your own. Record or upload, trim, trigger several at once from keys, export JSON. Import also reads a soundtools.io board file. Playback is speakers and desktop audio, not a call microphone.
+- [Music Visualizer](https://freeaudioeditor.online/music-visualizer): turns a song into an animated spectrum video — bars, mirrored bars, ring, or oscilloscope — recorded live from the canvas as WebM up to 1080p. Realtime: the export lasts as long as the song. No canvas recording on iOS Safari.
 - [Audio to Text](https://freeaudioeditor.online/audio-to-text): transcribe one or several audio and video files to text in the browser (local Whisper model, ~90 languages, auto-detect, TXT/SRT export, about 10 min per file). Two or more download as a ZIP.
 - [Audio Normalizer](https://freeaudioeditor.online/normalize-audio): raise one or several quiet files so each peak sits just below clipping. Two or more download as a ZIP.
 - [Level Compressor](https://freeaudioeditor.online/compressor): broadband compressor that evens loud and quiet parts, then restores the original peak. Not a file-size shrink.

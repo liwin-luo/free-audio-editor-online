@@ -52,7 +52,7 @@ export interface EditorConfig {
   /** Default export format id. Omitted on image-output tools. */
   defaultFormat?: string;
   /** Image-output editor instead of the audio editor */
-  visualizer?: 'waveform' | 'spectrogram';
+  visualizer?: 'waveform' | 'spectrogram' | 'live';
   /** Paint a picture or text into a WAV spectrogram */
   paint?: boolean;
   /** Speech-to-text island instead of an audio editor */
@@ -3364,7 +3364,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['spectrogram-generator', 'image-to-audio', 'audio-trimmer'],
+    related: ['spectrogram-generator', 'image-to-audio', 'audio-trimmer', 'music-visualizer'],
     editor: {
       visualizer: 'waveform',
       dropHint: 'Drop an audio file, or click to browse',
@@ -3464,7 +3464,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['waveform-generator', 'image-to-audio', 'bass-booster'],
+    related: ['waveform-generator', 'image-to-audio', 'bass-booster', 'music-visualizer'],
     editor: {
       visualizer: 'spectrogram',
       dropHint: 'Drop an audio file, or click to browse',
@@ -5464,6 +5464,105 @@ export const TOOLS: ToolDef[] = [
     editor: {
       soundboard: true,
       dropHint: 'No file needed — tap a square or add your own',
+    },
+  },
+  {
+    slug: 'music-visualizer',
+    cardLine: 'Turn a song into an animated spectrum video, no upload.',
+    name: 'Music Visualizer',
+    shortName: 'Music Visualizer',
+    icon: 'film',
+    category: 'effects',
+    title: 'Music Visualizer — Animated Spectrum Video from Any Song',
+    description:
+      'Turn a song into an animated spectrum video in your browser — bars, ring or oscilloscope at up to 1080p, recorded live. Nothing is uploaded.',
+    h1: 'Music Visualizer — Turn a Song into a Spectrum Video, Free and Online',
+    subtitle: 'Play a song, watch the spectrum move, and record it as a video — drawn and captured on your device.',
+    intro:
+      'This page turns a song into the kind of video YouTube, Shorts, and Reels use as a backdrop: the spectrum of the music, animated in real time and recorded straight off the canvas. Drop an audio file, pick a look and a frame size, press record, and the video lands in your downloads when the song ends. Everything runs in the browser — the audio is decoded locally and never uploaded.',
+    usesHeading: 'What people make with it',
+    uses: [
+      'Give a track a video for YouTube, Shorts, or TikTok without opening an editor.',
+      'Post a song with a moving spectrum so a static cover does not carry the whole post.',
+      'Record a backdrop for a podcast clip, a demo reel, or a livestream starting screen.',
+    ],
+    howTo: [
+      {
+        name: 'Drop a song',
+        text: 'Drop an audio file on the well, or click to browse. MP3, WAV, M4A, OGG, FLAC — anything the browser can decode.',
+      },
+      {
+        name: 'Pick a look',
+        text: 'Choose a style — spectrum bars, mirrored bars, ring, or oscilloscope — and a theme. Both colors stay editable after a theme is applied.',
+      },
+      {
+        name: 'Choose the frame',
+        text: 'Pick the video size: 16:9 for YouTube, 9:16 vertical for Shorts and TikTok, square for feed posts, or a custom size.',
+      },
+      {
+        name: 'Record the video',
+        text: 'Press Record video. The song plays once while the browser captures the canvas, and the file downloads when it ends.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my song uploaded?',
+        a: 'No. The file is decoded with the Web Audio API in this tab, the animation is drawn on a canvas in this tab, and the browser’s own recorder captures that canvas and audio. The finished video is written straight to your disk.',
+      },
+      {
+        q: 'What format and quality is the video?',
+        a: 'Chrome, Edge, and Firefox record WebM: VP9 or VP8 video with Opus audio at 192 kbps, at your chosen size up to 1080p, 30 fps, about 8 Mbps video. Some Chrome builds offer MP4 instead — the browser picks the first container it can record, and the file extension follows.',
+      },
+      {
+        q: 'Does a 3-minute song really take 3 minutes to export?',
+        a: 'Yes. The video is captured while the song plays once, in real time. It is the honest trade for recording on your device with no server: no upload wait, no render queue, no length limit beyond the file itself. Keep the tab in front while it records — browsers throttle drawing in background tabs, which would freeze the picture while the audio continues.',
+      },
+      {
+        q: 'How is this different from the waveform generator?',
+        a: 'The waveform generator draws one still PNG of loudness over time — a picture for a cover or a post. This page animates the frequency spectrum while the song plays and records a video. Same file in, opposite outputs: still image versus moving image.',
+      },
+      {
+        q: 'Does it work on a phone or on iPhone?',
+        a: 'Android Chrome plays and records. Chrome, Edge, and Firefox on desktop all record. Safari on iPhone and iPad can play and show the animation but cannot record a canvas, so the record button stands down there — the honest path is a screen recording, or the desktop.',
+      },
+      {
+        q: 'Can I use the video commercially?',
+        a: 'The video has no watermark and carries no license from us: it is your file. The song inside it is your responsibility — visualizers made from your own tracks, licensed music, or royalty-free audio are yours to publish.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'What the page actually records',
+        paragraphs: [
+          'The animation is drawn on a canvas at the size you picked, and the browser’s own recorder captures that canvas plus the audio playing through it. There is no server render and no watermark: the file is written by the tab, the moment the song finishes.',
+          'Recording is realtime by design. A three-minute song takes three minutes, and the video is exactly as long as the audio. That trade is what keeps the page instant and free: no upload, no queue, no render ceiling.',
+        ],
+      },
+      {
+        heading: 'The four styles',
+        paragraphs: [
+          'All four styles read the same analysis: 2048 samples per frame, grouped into 64 bands spaced logarithmically from 30 Hz to 16 kHz, so the bass sits on the left and the hats on the right in every look. The themes only set colors — a template is a starting point, and both colors stay editable.',
+        ],
+        bullets: [
+          'Spectrum bars rise from the bottom edge with a gradient toward the peaks.',
+          'Mirrored bars fold the same bars around the middle — the classic player look.',
+          'Ring arranges the bands in a circle, the one that reads best in a square frame.',
+          'Oscilloscope draws the waveform itself, a line that breathes with the track.',
+        ],
+      },
+      {
+        heading: 'Where the videos fit',
+        paragraphs: [
+          '16:9 fits a YouTube upload or an end card. 9:16 vertical fits Shorts, Reels, and TikTok, where a song post is often the audio over a moving spectrum. Square sits between them for feed timelines. Custom sizes clamp between 200 and 2160 pixels per side so capture stays smooth.',
+          'The video is always as long as the audio, so trim the song first if you only want a section. For a still picture of a track instead of a video, the waveform generator draws one from the same file.',
+        ],
+      },
+    ],
+    related: ['waveform-generator', 'spectrogram-generator', 'audio-trimmer'],
+    editor: {
+      visualizer: 'live',
+      dropHint: 'Drop an audio file, or click to browse',
+      exportLabel: 'Record video',
     },
   },
 ];

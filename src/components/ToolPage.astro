@@ -7,6 +7,7 @@ import Base from '../layouts/Base.astro';
 import AudioEditor from './editor/AudioEditor.astro';
 import JoinerEditor from './editor/JoinerEditor.astro';
 import VisualizerEditor from './editor/VisualizerEditor.astro';
+import MusicVisualizerEditor from './editor/MusicVisualizerEditor.astro';
 import SpecPaintEditor from './editor/SpecPaintEditor.astro';
 import TranscribeEditor from './editor/TranscribeEditor.astro';
 import MidiEditor from './editor/MidiEditor.astro';
@@ -96,6 +97,8 @@ const jsonLd = [
       {tool.recorder && <VoiceRecorder locale={locale} />}
       {tool.editor.paint ? (
         <SpecPaintEditor config={tool.editor} locale={locale} />
+      ) : tool.editor.visualizer === 'live' ? (
+        <MusicVisualizerEditor config={tool.editor} locale={locale} />
       ) : tool.editor.visualizer ? (
         <VisualizerEditor config={tool.editor} locale={locale} />
       ) : tool.editor.transcribe ? (

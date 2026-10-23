@@ -342,6 +342,32 @@ export interface EditorText {
   /** Placeholder: {name} */
   sbEditAria: string;
   sbTooLong: string;
+  mvPlay: string;
+  mvPause: string;
+  mvStyle: string;
+  mvStyleBars: string;
+  mvStyleMirrored: string;
+  mvStyleRing: string;
+  mvStyleScope: string;
+  mvTheme: string;
+  mvThemeNeon: string;
+  mvThemeSynthwave: string;
+  mvThemeFire: string;
+  mvThemeOcean: string;
+  mvThemeMatrix: string;
+  mvThemeMidnight: string;
+  mvThemePaper: string;
+  mvPrimary: string;
+  mvSizeLandscape: string;
+  mvSizePortrait: string;
+  /** Placeholders: {t} {total} */
+  mvRecording: string;
+  mvCancel: string;
+  mvCancelled: string;
+  mvSaved: string;
+  mvFail: string;
+  mvNoRecord: string;
+  mvRealtime: string;
 }
 
 export interface UiText {

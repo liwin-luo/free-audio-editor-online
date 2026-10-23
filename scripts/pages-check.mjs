@@ -53,9 +53,11 @@ const pages = [
   { path: '/high-pass-filter', island: true },
   { path: '/waveform-generator', island: true },
   { path: '/spectrogram-generator', island: true },
+  { path: '/music-visualizer', island: true },
   { path: '/image-to-audio', island: true },
   { path: '/mp3-tag-editor', island: true },
   { path: '/zh/spectrogram-generator', island: true },
+  { path: '/zh/music-visualizer', island: true },
   { path: '/zh/mp3-tag-editor', island: true },
   { path: '/ja/image-to-audio', island: true },
   { path: '/es/ogg-to-mp3', island: true },
@@ -134,7 +136,7 @@ try {
     try {
       await page.goto(BASE + path, { waitUntil: 'networkidle0', timeout: 20000 });
       const h1 = await page.$eval('h1', (el) => el.textContent.trim());
-      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-audio-mixer], [data-visualizer], [data-spec-paint], [data-tag-editor], [data-loudness], [data-metronome], [data-key-bpm], [data-soundboard]') !== null;
+      const hasIsland = await page.$('[data-audio-editor], [data-audio-joiner], [data-audio-mixer], [data-visualizer], [data-music-visualizer], [data-spec-paint], [data-tag-editor], [data-loudness], [data-metronome], [data-key-bpm], [data-soundboard]') !== null;
       let recorderOk = true;
       if (recorder) recorderOk = (await page.$('[data-recorder]')) !== null;
       check(

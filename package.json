@@ -37,6 +37,7 @@
     "check:loudness": "node_modules/.bin/esbuild scripts/loudness-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/loudness-check.mjs && node /tmp/loudness-check.mjs",
     "check:mixer": "node_modules/.bin/esbuild scripts/mixer-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/mixer-check.mjs && node /tmp/mixer-check.mjs",
     "check:delivery": "node_modules/.bin/esbuild scripts/delivery-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/delivery-check.mjs && node /tmp/delivery-check.mjs",
+    "check:music-visualizer": "node_modules/.bin/esbuild src/editor/music-visualizer.ts --bundle --platform=node --format=esm --outfile=/tmp/mv-fn.mjs && node scripts/music-visualizer-check.mjs",
     "desktop": "tauri dev",
     "desktop:build": "tauri build"
   },
