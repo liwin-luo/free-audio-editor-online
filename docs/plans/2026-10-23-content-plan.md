@@ -28,6 +28,8 @@
 
 四篇均过完成定义:首段链主工具、GUIDE_TOOL 登记、sources 2–3 个验证外链、persona 抽签(pick-persona seed 7/11/13/17)、配图各 2 张(管线截图目检通过)、全部在 900–1,400 词带内。`what-is-432-hz` 悬案同日了结(定义折进 VS 篇,不另开 URL)。门禁:build 832 页、pages-check 全过、serp-check 0 issue、smoke/feature ALL PASS、seo-audit HIGH 0 / MED 0。
 
+**补记(2026-10-23,批次后例外 1 篇)**:[make-a-music-visualizer-video](../../src/pages/guides/make-a-music-visualizer-video.md) — how-to · podcast-producer(seed 7)· 1,092 词,锚定新工具 `music-visualizer`(同日上线)。偏离冻结的理由:新工具零锚定指南会断「工具↔指南」内链(声波板有 how-to-make-a-soundboard 先例);关键词为场景变体「make a music visualizer video for YouTube/Shorts」,与工具页主词「music visualizer」及其页内 HowTo 错开,非新赌词。过完成定义:首段链主工具、GUIDE_TOOL 登记、sources 2 个(YouTube 上传格式/Shorts)、配图 3 张、门禁同批。此例外不重开冻结;后续新工具是否必配指南,留待阶段 2 数据循环裁定。
+
 写作注意:
 
 - **#2 的分工线**:与 `change-pitch-without-changing-speed`(锚 pitch-changer,变调)错开——本篇是变速保调;与 `change-audio-speed` 工具页(音高跟着变)的 FAQ 也划清。场景写慢放学习/听写,不重复变调篇的换调角度。

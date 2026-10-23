@@ -77,6 +77,7 @@ const pages = [
   { path: '/ru/audio-joiner', island: true },
   { path: '/guides/how-to-cut-a-song', island: false },
   { path: '/guides/make-iphone-ringtone', island: false },
+  { path: '/guides/make-a-music-visualizer-video', island: false },
   { path: '/guides/merge-songs-one-track', island: false },
   { path: '/guides/audacity-alternative', island: false },
   { path: '/guides/convert-video-to-mp3', island: false },

@@ -204,6 +204,14 @@ export const GUIDES: GuideCard[] = [
   },
   {
     locale: 'en',
+    href: '/guides/make-a-music-visualizer-video',
+    title: 'How to Make a Music Visualizer Video for YouTube and Shorts',
+    description:
+      'Trim the song, pick the frame, and record the spectrum moving — one live pass in the browser. The video is as long as the audio and uploads to YouTube as WebM.',
+    minutes: 4,
+  },
+  {
+    locale: 'en',
     href: '/guides/audacity-alternative',
     title: 'Audacity Alternative — When a Browser Tool Is Enough',
     description:
@@ -971,6 +979,7 @@ const GUIDE_TOOL: Record<string, string> = {
   '/guides/how-to-reverse-a-song': 'reverse-audio',
   '/guides/how-to-trim-audio': 'audio-trimmer',
   '/guides/loop-a-section-of-a-song': 'audio-looper',
+  '/guides/make-a-music-visualizer-video': 'music-visualizer',
   '/guides/make-iphone-ringtone': 'ringtone-maker',
   '/guides/make-slowed-and-reverb': 'slowed-reverb',
   '/guides/merge-songs-one-track': 'audio-joiner',
