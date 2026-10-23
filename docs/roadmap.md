@@ -1,140 +1,40 @@
 # freeaudioeditor.online 路线图
 
-版本：2026-10-20 · [架构](architecture.md) · [SEO 规则](seo.md) · [竞品调研](competitor-research.md) · [UI-UE 规范](ui-ue-spec.md)
+版本：2026-10-23 · [架构](architecture.md) · [SEO 规则](seo.md) · [内容计划](plans/2026-10-23-content-plan.md) · [竞品调研](competitor-research.md) · [UI-UE 规范](ui-ue-spec.md)
 原则：先用低竞争词拿索引和首批排名 → 数据验证后加码 → 流量过门槛再变现。
 
-下面两节是现在的位置和接下来做什么。再往下是 10-14 以来的记录，不要把它当成未完成清单。
+## 现在（2026-10-23）
 
-## 现在（2026-10-22）
-
-- 51 个工具页，11 种语言。英语无前缀，其余 `/{locale}/...`。
-- 45 篇英语指南，各市场另有互译集；配图由 `scripts/generate-guide-media.mjs` 生成。指南↔工具的内链经 `GUIDE_TOOL` 全量闭环，全部指南有 `sources` 和 persona。
+- 52 个工具页上线（music-visualizer 第 53 个在并行会话进行），11 种语言。英语无前缀，其余 `/{locale}/...`。
+- 47 篇英语指南，锚定 29/52 个工具（56%）；10 个互译市场各 6–8 篇。配图由 `scripts/generate-guide-media.mjs` 生成，指南↔工具内链经 `GUIDE_TOOL` 闭环，全部指南有 `sources` 和 persona。
+- **内容生产已跑到验证前面**：Semrush 仅收录 2 个关键词（10-21 实测），GSC 数据循环一次都没跑过。广度生产冻结，见下面的内容计划。
 - 单任务页的控件在页面上，播放按钮有文字，下载按钮是动词。`mp3-editor` 仍是多步编辑。
 - 编辑器按动作加载：波形在选文件时，渲染在预览或导出时，编码器在下载时。视频音轨用浏览器解码，不用 ffmpeg.wasm。
 - 生产由推 `main` 触发。CI 是类型检查加构建，Vercel 发 `dist/`。
 - 变现没开始。AdSense 和 Pro 仍看下面的流量门槛。
 
-Phase 0 还没勾掉的：Search Console / Bing 提交 sitemap 的线上确认，以及五页 smoke 加手机 Safari。
-
 ## 接下来
 
-按这个顺序，一次一件。不要开格式排列页，不要做 YouTube 抓取，不要上广告。
+一次一件，顺序即优先级。**文章队列的唯一来源是 [内容计划](plans/2026-10-23-content-plan.md)**——四个阶段：阶段 0 前置（GSC/Bing 提交线上确认 + 五页 smoke/手机 Safari）→ 阶段 1 收尾批 4 篇（reverse-audio、tempo-changer、mp3-tag-editor、audio-looper）→ 阶段 2 冻结 + GSC 数据循环（约 11-11 起每 4 周一轮：查询回填 FAQ、加深赢家、修剪零展示）→ 阶段 3 按数据解冻（翻译转换集群优先于新英语文；Best/Pillar/device 维持数据门槛）。
 
-1. **收录。** 把 sitemap 交进 Search Console，对新 URL 请求编入索引。四周后看真实查询，写进对应 FAQ（规则见 [seo.md](seo.md)）。
+1. **内容。** 按内容计划四阶段执行；蚕食红线和写作完成定义都在那份计划里。
 2. **蚕食。** 双周看 `volume-booster` 和 `increase-volume` 是否抢同一条查询。抢了就收紧定位，或把弱的 301 到强的。`speed` 和 `tempo` 同样看。
-3. **指南。** 按 [内容差距分析](plans/2026-10-21-content-gap-analysis.md) §4 的批次推进，每批过 [content-types](content-types.md) 的完成定义（含 `GUIDE_TOOL` 登记）。按市场写，不机翻。互译只加进 `TRANSLATED_GUIDES`。
-4. **新工具。** 只加搜索意图还没有页、而且浏览器里做得诚实的。定义见 [new-tool-spec.md](new-tool-spec.md)。六页缺口（循环、声像、3D、节拍器、调性/BPM、变速保调）已在 10-20 交完，不续极性反转和排列页。
-5. **变现。** 日 UV 稳定 ≥ 300 再谈 AdSense，广告不进工具区 600px。日 UV ≥ 1000 再调研 Pro。在那之前 Hobby 计划就够。
+3. **新工具。** 只加搜索意图还没有页、而且浏览器里做得诚实的。定义见 [new-tool-spec.md](new-tool-spec.md)。六页缺口（循环、声像、3D、节拍器、调性/BPM、变速保调）已在 10-20 交完，不续极性反转和排列页。
+4. **变现。** 日 UV 稳定 ≥ 300 再谈 AdSense，广告不进工具区 600px。日 UV ≥ 1000 再调研 Pro。在那之前 Hobby 计划就够。
 
 ---
 
-## Phase 0 · 上线与收录（第 1 周）
+## 历史（2026-10-14 → 10-22）
 
-目标：站点可访问、被搜索引擎发现、有度量手段。
+细节看 git log 和 `docs/plans/` 对应文档，这里只留结论：
 
-- [ ] `git init` + 推 GitHub + Vercel Import + 绑定 freeaudioeditor.online（选定唯一 canonical 主机，另一个 301）
-- [ ] Google Search Console 提交 sitemap-index.xml；Bing Webmaster Tools 同步提交（Bing 收录快，能提前验证关键词）
-  （GSC 验证文件 `public/google824e0769c16d7fbd.html` 已部署；提交动作线上确认后勾选）
-- [x] **补 OG 分享图**（`public/og.jpg` 1200×630，`Base.astro` 全站引用）✅ 2026-10-15
-- [x] 加一个轻量分析（Vercel Web Analytics，cookieless 仅聚合页览，`Base.astro` 按生产域名注入；/privacy 已写明）✅ 2026-10-15
-- [x] PageSpeed Insights / Lighthouse 基线记录（见 lighthouse-baseline.md：4 页全 100）✅ 2026-10-14
-- [ ] 手工回归：5 个工具页各跑一遍 smoke 流程 + 手机 Safari 真机测试
-
-退出条件：GSC 显示页面已被收录（通常 3–10 天）。
-
-## Phase 1 · P1 内容扩张（第 2–4 周）✅ 2026-10-14 完成
-
-目标：把现有引擎能力覆盖到的词全部铺上页面，成本低、全是文案工作。
-
-新增 4 页（每页 = tools.ts 加一个 ToolDef + 3 行 page 文件，sitemap/导航自动更新）：
-
-| 页面 | 目标词（美区月搜） | 引擎支持 |
-|---|---|---|
-| /wav-to-mp3 | wav to mp3（33.1k，竞争 0） | ✅ 已上线（converter 模式） |
-| /reverse-audio | reverse audio（2.4k，$4.95 CPC） | ✅ 已上线（快捷反转控件） |
-| /change-audio-speed | change audio speed（2.4k） | ✅ 已上线（快捷变速滑杆） |
-| /increase-volume | increase mp3 volume（2.9k） | ✅ 已上线（增益上限 400% + 限幅器 + soft clip） |
-
-- [x] 4 页上线，每页独立文案/FAQ/HowTo
-- [x] Hub 与全部页面交叉内链更新（导航/页脚/related 由 TOOLS 注册表自动生成）
-- [x] /guides/ 深度内容 3 篇：《How to Cut a Song Online》《How to Make a Ringtone on iPhone》《How to Merge Songs into One Track》+ guides 索引页 + Article/Breadcrumb schema
-- 注：原计划的 extract-audio 指南因功能尚未上线（P2），替换为 merge-songs 指南
-- 验证：功能级 E2E（scripts/feature-check.mjs）8/8 —— MP3 经 CDN 编码导出、反转输出采样级比对、转换模式 UI；Lighthouse：wav-to-mp3 四项 100、guide 页四项 100
-
-## Phase 2 · 技术重活 + 国际化启动（第 2–3 个月）✅ 核心项 2026-10-14 完成
-
-目标：攻下最大的单一机会词，并开始非英语市场试探。
-
-- [x] **/mp4-to-mp3 + /extract-audio**（16.5 万 + 1.5 万月搜）：~~ffmpeg.wasm~~ **改用浏览器原生解码方案**——decodeAudioData 直接解 MP4/AAC、WebM/Opus 音轨（Chrome/Firefox/Safari 实测通过），零 30MB 下载、移动端可用；仅极少数编解码器（AC3/DTS）不支持，FAQ 已如实说明。E2E：ffmpeg 生成真实 MP4 夹具 → 原生解码 → MP3 导出全链路通过
-- [x] /voice-recorder（5.4k）：MediaRecorder（Chrome/Firefox 用 WebM/Opus，Safari 用 MP4/AAC）→ 停止后经 editor-load-file 事件载入下方编辑器 → 裁剪/导出。E2E 用 Chrome 假麦克风跑通全链路
-- [x] /volume-booster（18.1k）：与 /increase-volume 同引擎不同定位（视频音轨 + 手机场景文案），400% 增益 + 限幅
-- [x] **国际化启动**：✅ 已超额完成（2026-10-14）——8 语言全部上线（es/pt/id/de/ko/ja/zh + en），超出原计划 4 语言。剩余 zh-Hant/ru/fr 按 `i18n-translation-guide.md` §3 预案表执行，触发条件不变（GSC 非英语展示 >20%）
-- [ ] 深度内容每月 +2 篇
-
-数据检查点（第 3 个月末）：至少 3 个词进 TOP 10；日 UV 破 100。
-
-## 2026-10-14 提前落地
-
-原计划里排到后面的几项，引擎已经够用，提前做完：
-
-- [x] **/normalize-audio**（原 Phase 3 长尾）：峰值归一化，目标 −0.2 dBFS，增益上限 +12 dB。和手动增益不是一回事，文案里写明了。
-- [x] **/slowed-reverb**：变速（音高跟着变）加合成混响尾音。速度高于 1× 即 nightcore。依据是年轻创作者的 slowed + reverb 用法，不是关键词表里的长尾补洞。
-- [x] 铃声页 Chrome / Edge / Safari 17+ 直接导出 M4R；不支持的浏览器仍走 MP3 + GarageBand。
-- [x] 两篇文字指南：`/guides/audacity-alternative`、`/guides/convert-video-to-mp3`。截图和旁白留到下一次媒体管线。
-
-## 2026-10-15 结构补齐
-
-对照 audioeditor.org 竞品分析（competitive-analysis-audioeditor.md）的 P0 缺口,当天落地:
-
-- [x] **`/tools` hub 页**:全部 19 个工具按分类分组,8 语言本地化(新增 `hub` 词典段),
-  CollectionPage + ItemList schema,进 sitemap 且 hreflang 全簇自引用;导航下拉与页脚均入口
-- [x] **seo-audit.mjs 增 4 项 i18n 检查**(竞品分析 §7.3):翻译键名泄漏(HIGH)、
-  非英文页英文残留(MED,停用词窗口法,防误报已按去重计数)、sitemap↔页面双向对齐(MED)、
-  hreflang 簇完整性——head 自引用 + sitemap 簇(残簇 1–7 条判 HIGH)
-- [x] **规范文档入库**:竞品分析、i18n 翻译规范、new-tool-spec、执行计划全部提交;
-  翻译规范三处语域修正为与词典一致(de du / ko 해요체 / id Anda)
-- [x] **audit 基线**(production,2026-10-15):**HIGH 0**;MED 25(全部是 title/description
-  长度类);LOW 103(多为 CJK 标题天然短于拉丁阈值)。sitemap 簇 8×192 完整 + 7 个 per-market
-  指南无 alternates(设计如此)
-- [x] ~~遗留:de 语区 description 截断风险~~ **已修复(同日)**:51 条 MED 长度超标全部重写
-  (7 条 title + 44 条 description,fr 最多),按 i18n-translation-guide.md §3 预算压到 ≤60/≤155,
-  事实逐字保留;同时 ru 工具标题统一去掉品牌后缀(与其余 10 语一致)、404 页切换器死链修复、
-  llms.txt 补齐 pitch-changer 与 m4a-to-mp3(20/20)。**audit 终值:HIGH 0 / MED 0**,LOW 111
-  为 CJK 标题阈值噪音(待按语区预算细化,见下)
-
-## 2026-10-15 语言补齐(11 语)
-
-按既定语言清单补齐 Arabic / French / Russian,站点现为 **11 语**(en + 10 译语,韩语保留):
-
-- [x] **fr / ru / ar 全量词典**:每语 20 个工具 + 全站 UI/Home/Hub/About/Privacy/Guide 索引,
-  assertCatalogs 强制对齐;语域按规范(fr vous / ru вы / ar أنت);ru 规避 «без загрузки» 歧义
-- [x] **RTL 支持**:`LOCALES` 增加 `dir`,`<html dir>` 按语区输出;物理定位改逻辑属性(end-0);
-  简中/阿语截图抽查通过
-- [x] **连带修复两个真 bug**:①互译指南(`/guides/convert-video-to-mp3`)的 hreflang 簇和
-  语言切换器向无此指南的语言输出 404 链接——现在 guides 类路径只在有指南的语言间互指/切换;
-  ②seo-audit 本地模式语义修复(dist sitemap + BASE 改写爬取 URL + canonical/pathname 比较 +
-  noindex 豁免)——此前"本地审计"实际上没审任何页面或爬的是 production
-- [x] **audit 终值**(本地,291 页构建 / 287 条 sitemap):**HIGH 0**;MED 51(全部长度类);
-  LOW 111;hreflang 簇 280 全互惠 + 7 个 per-market 页无 alternates(设计如此)
-- 注:fr/ru/ar 无指南(工具页先行,规范 §9.4),`/{locale}/guides` 索引 noindex;
-
-## 2026-10-21 内容批次（19 篇指南）
-
-按 [内容差距分析](plans/2026-10-21-content-gap-analysis.md) §4 一次性交付：
-
-- [x] **19 篇英语指南上线**：what-is 定义簇（dBFS / PCM / bitrate / sample-rate / lossless / crossfade）、
-  alternatives 与 vs 簇（123apps / audition / garageband / wav-vs-mp3 / gain-vs-volume / normalize-vs-compress / 432-hz）、
-  how-to 与排障（convert flac/wav、slowed+reverb、transcribe、BPM+key、audio clicks、car stereo、voice memo quiet）
-- [x] **配图管线覆盖旧文**：26 组 webp 插图进旧指南；generate-guide-media.mjs 新增 bitrate ladder、
-  dBFS scale、gain-vs-volume 图；sharp 补进 devDependencies（此前靠传递依赖才能跑）
-- [x] **内链闭环**：19 篇补进 `GUIDE_TOOL`，工具页的相关指南块恢复渲染；45 篇 `sources` 补齐；
-  2 篇首段补主工具链（432-hz-vs-440-hz、mpeg-audio）；3 处卡片标题漂移修复
-- [x] **标题批次**：6 篇 what-is 标题加正文坐实的后半，zh trim 指南标题同改——`serp-check` 回到 0 issue
-- [x] **审计基线**（本地，803 URL，2026-10-21）：seo-audit **HIGH 0 / MED 0**（LOW 327 为长度类噪音）；
-  pages-check 103 项全过；内容审计结构性问题清零
-- 遗留：feature-check 的 `[data-reverse]` 抽屉断言与 smoke-test 的 speed ×2 步骤在 9ca0c48
-  （10-20 内联控件重构）后即失败，HEAD 复现，与内容无关；待修脚本断言并人工验证
-  mp3-editor 抽屉调速后导出是否正常
+- **Phase 0–2 完成**：上线 + OG 分享图 + Vercel Analytics + Lighthouse 基线（4 页全 100）；P1 四页（wav-to-mp3 / reverse-audio / change-audio-speed / increase-volume）；技术重活全部用浏览器原生方案落地（mp4-to-mp3、extract-audio、voice-recorder、volume-booster、normalize-audio、slowed-reverb、M4R 直出）；国际化 11 语补齐（RTL、hreflang 全簇，audit HIGH 0 / MED 0）。
+- **结构补齐（10-15）**：`/tools` hub、seo-audit 增 4 项 i18n 检查、规范文档入库（竞品分析、i18n 规范、new-tool-spec）。
+- **内容批次（10-21）**：19 篇指南（what-is / alternatives-vs / troubleshooting / definition 结构开张）+ 配图管线覆盖旧文（26 组插图）+ `GUIDE_TOOL` 内链闭环 + sources 补齐；批次 1–4b 全部发布，批次内普遍低于词数带——加深等 GSC 数据，不预设。六页缺口工具同日交完。
+- **soundboard（10-22）**：工具 + 两篇支撑指南（how-to-make-a-soundboard、are-meme-sounds-copyrighted）。
+- **遗留 bug 已修（10-23）**：feature-check 的 `[data-reverse]` 断言与 smoke-test 的 speed ×2 步骤在 9ca0c48 后失败——根因是 ①快捷控件页不再渲染 Adjust 抽屉，断言改测按钮自身双向状态；②固定 cookie 同意条盖住底部导出栏，page.click 落在覆盖层上，测试现在预置 localStorage 同意值；③快捷控件触发的预览渲染期间 busy 守卫会吞掉导出点击，waitExported 改为轮询补点。调速后导出本身无 bug（时长 1.00s、渲染区间正确）。
+- **Phase 0 剩余两件**（GSC/Bing 提交线上确认、五页 smoke + 手机 Safari）并入内容计划阶段 0。
+- 选题依据的历史文档：[内容差距分析](plans/2026-10-21-content-gap-analysis.md)（已被内容计划取代，保留作历史证据）、[内容路线图](plans/2026-10-21-content-tool-page-roadmap.md)。
 
 ## Phase 3 · 增长与变现（第 4 个月起，流量触发制）
 
@@ -148,9 +48,10 @@ Phase 0 还没勾掉的：Search Console / Bing 提交 sitemap 的线上确认�
 | 频率 | 动作 |
 |---|---|
 | 每周 | GSC 看查询词与排名变化；E2E smoke test 回归（依赖升级后必跑） |
-| 每月 | 关键词扩展 20–30 个新词入候选池；内容 +2 篇；CWV 复测 |
+| 每 4 周 | 内容计划阶段 2 数据循环一轮：查询回填 FAQ、加深赢家、修剪零展示 |
+| 双周 | GSC 蚕食裁定：volume-booster vs increase-volume、speed vs tempo，出现双排名或展示拆开就收紧定位或 301 合并 |
+| 每月 | 关键词扩展 20–30 个新词入候选池；CWV 复测。新英语文冻结期间为 0，翻译只走内容计划阶段 3 队列 |
 | 每季 | 竞品复盘（cut.audio / soundtools 上了什么新功能）；技术栈小版本升级 |
-| 双周 | GSC：volume-booster 与 increase-volume 是否同一查询双排名，或展示被拆开。若是，收紧各自定位，或 301 合并到赢家 |
 
 ## 关键风险与对策
 

@@ -164,6 +164,14 @@ export const GUIDES: GuideCard[] = [
   },
   {
     locale: 'en',
+    href: '/guides/how-to-reverse-a-song',
+    title: 'How to Reverse a Song: Play Audio Backwards Online',
+    description:
+      'Flip a song or voice memo so it plays end to start — in the browser, or with Audacity and ffmpeg. What reversing is for, and what a reversed file keeps.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
     href: '/guides/how-to-cut-a-song',
     title: 'How to Cut a Song Online (Free, Nothing Uploaded)',
     description:
@@ -185,6 +193,14 @@ export const GUIDES: GuideCard[] = [
     description:
       'Combine songs, voice memos or podcast clips into one file. Set the order, add a crossfade, and export MP3 or WAV. Nothing is uploaded.',
     minutes: 4,
+  },
+  {
+    locale: 'en',
+    href: '/guides/loop-a-section-of-a-song',
+    title: 'How to Loop a Section of a Song Online (2–16 Repeats)',
+    description:
+      'Repeat a clip or a whole track back to back, with a 0–0.1 s crossfade hiding every seam, and download one longer MP3 or WAV. Nothing is uploaded.',
+    minutes: 5,
   },
   {
     locale: 'en',
@@ -244,11 +260,27 @@ export const GUIDES: GuideCard[] = [
   },
   {
     locale: 'en',
+    href: '/guides/slow-down-audio-without-changing-pitch',
+    title: 'Slow Down Audio Without Changing Pitch (Online)',
+    description:
+      'Stretch a song or a fast talker from 0.75× to 1.25× while the key stays put. The browser route, the Audacity route, and when plain speed change wins.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
     href: '/guides/how-to-edit-an-mp3',
     title: 'How to Edit MP3 Files',
     description:
       'Cut, fade, or retitle an MP3 in Audacity, with ffmpeg, or in the browser. Export once, and use WAV when another edit is still coming.',
     minutes: 8,
+  },
+  {
+    locale: 'en',
+    href: '/guides/how-to-edit-mp3-tags',
+    title: 'How to Edit MP3 Tags: Title, Artist, Album, Cover',
+    description:
+      'Fix the ID3 title, artist, album, year and cover art on one MP3 or a whole folder. Browser or desktop tagger — the audio bytes are not re-encoded.',
+    minutes: 5,
   },
   {
     locale: 'en',
@@ -934,8 +966,11 @@ const GUIDE_TOOL: Record<string, string> = {
   '/guides/how-to-cut-a-song': 'mp3-cutter',
   '/guides/how-to-edit-a-wav-file': 'mp3-editor',
   '/guides/how-to-edit-an-mp3': 'mp3-editor',
+  '/guides/how-to-edit-mp3-tags': 'mp3-tag-editor',
   '/guides/how-to-make-a-soundboard': 'soundboard',
+  '/guides/how-to-reverse-a-song': 'reverse-audio',
   '/guides/how-to-trim-audio': 'audio-trimmer',
+  '/guides/loop-a-section-of-a-song': 'audio-looper',
   '/guides/make-iphone-ringtone': 'ringtone-maker',
   '/guides/make-slowed-and-reverb': 'slowed-reverb',
   '/guides/merge-songs-one-track': 'audio-joiner',
@@ -946,6 +981,7 @@ const GUIDE_TOOL: Record<string, string> = {
   '/guides/record-a-voice-memo-in-browser': 'voice-recorder',
   '/guides/remove-hum-with-high-pass-filter': 'high-pass-filter',
   '/guides/remove-silence-from-podcast': 'silence-remover',
+  '/guides/slow-down-audio-without-changing-pitch': 'tempo-changer',
   '/guides/split-long-recording-into-tracks': 'split-mp3',
   '/guides/transcribe-audio-to-text': 'audio-to-text',
   '/guides/trim-audio-on-iphone': 'audio-trimmer',

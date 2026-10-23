@@ -1,6 +1,6 @@
 # 内容类型
 
-日期：2026-10-21。细化 [SEO 规则](seo.md) 里的页面分工；选题和优先级看[内容路线图](plans/2026-10-21-content-tool-page-roadmap.md)；每篇文章由哪个声音执笔，看[作家角色](writer-personas.md)。规则冲突时，以 seo.md 和 new-tool-spec 为准，本文只做地图和补充。
+日期：2026-10-21。细化 [SEO 规则](seo.md) 里的页面分工；选题和优先级看[内容计划](plans/2026-10-23-content-plan.md)；每篇文章由哪个声音执笔，看[作家角色](writer-personas.md)。规则冲突时，以 seo.md 和 new-tool-spec 为准，本文只做地图和补充。
 
 ## 页面类型
 

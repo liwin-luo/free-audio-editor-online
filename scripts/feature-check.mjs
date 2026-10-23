@@ -5,7 +5,7 @@
  * Usage: node scripts/feature-check.mjs (needs preview on :4321 + test WAV)
  */
 import puppeteer from 'puppeteer-core';
-import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { generateTestWav } from './make-test-tone.mjs';
 
@@ -23,8 +23,18 @@ const check = (name, ok, detail = '') => {
   if (!ok) failures++;
 };
 
+// The export click can land inside a busy window — e.g. the preview render a
+// quick control just triggered — and doExport silently returns. Re-click while
+// polling; the busy guard makes redundant clicks no-ops mid-render.
 const waitExported = async (page) => {
-  for (let i = 0; i < 40; i++) {
+  let lastClick = -4;
+  for (let i = 0; i < 60; i++) {
+    if (i - lastClick >= 4) {
+      lastClick = i;
+      try {
+        await page.click('[data-export]');
+      } catch {}
+    }
     await new Promise((r) => setTimeout(r, 250));
     const status = await page.evaluate(() => document.querySelector('[data-status]')?.textContent ?? '');
     if (/Exported/.test(status)) return status;
@@ -124,6 +134,19 @@ const waitForStats = async (file) => {
   return null;
 };
 
+/** 4 s AAC-in-MP4 fixture for the native video-audio decode check. */
+const MP4_FIXTURE = '/tmp/fixtures/test-video.mp4';
+const ensureMp4Fixture = async () => {
+  if (existsSync(MP4_FIXTURE)) return;
+  const { execFile } = await import('node:child_process');
+  const { promisify } = await import('node:util');
+  mkdirSync('/tmp/fixtures', { recursive: true });
+  await promisify(execFile)('ffmpeg', [
+    '-y', '-f', 'lavfi', '-i', 'sine=frequency=440:duration=4',
+    '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', MP4_FIXTURE,
+  ]);
+};
+
 const browser = await puppeteer.launch({
   executablePath: CHROME,
   headless: true,
@@ -132,6 +155,14 @@ const browser = await puppeteer.launch({
 try {
   const client = await browser.newPage();
   await client.setViewport({ width: 1366, height: 900 });
+  // Seed returning-user consent before any page script runs: the fixed cookie
+  // notice covers the bottom export bar and page.click lands on it instead of
+  // [data-export] / the quick controls. "rejected" keeps the notice hidden
+  // without loading the Userback widget (accept would inject it after ~8s and
+  // cover the export bar again late in the run).
+  await client.evaluateOnNewDocument(() => {
+    try { localStorage.setItem('fae-consent-2', 'rejected'); } catch {}
+  });
   const consoleErrors = [];
   client.on('console', (m) => m.type() === 'error' && consoleErrors.push(m.text()));
   client.on('pageerror', (e) => consoleErrors.push('pageerror: ' + e.message));
@@ -174,8 +205,12 @@ try {
   await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
   await client.click('[data-quick-reverse]');
   const pressed = await client.$eval('[data-quick-reverse]', (el) => el.getAttribute('aria-pressed'));
-  const drawerSync = await client.$eval('[data-reverse]', (el) => el.checked);
-  check('reverse quick control', pressed === 'true' && drawerSync === true, `aria=${pressed} drawer=${drawerSync}`);
+  // 9ca0c48 moved adjust controls into an optional drawer (config.showAdjust);
+  // quick-control pages don't render it, so verify the button's own two-way state.
+  await client.click('[data-quick-reverse]');
+  const unpressed = await client.$eval('[data-quick-reverse]', (el) => el.getAttribute('aria-pressed'));
+  check('reverse quick control', pressed === 'true' && unpressed === 'false', `on=${pressed} off=${unpressed}`);
+  await client.click('[data-quick-reverse]');
   await client.select('[data-format]', 'wav');
   await client.click('[data-export]');
   const revStatus = await waitExported(client);
@@ -205,9 +240,10 @@ try {
   );
 
   // --- Phase 2: MP4 → MP3 (native video-audio decoding) ---
+  await ensureMp4Fixture();
   await client.goto(`${BASE}/mp4-to-mp3`, { waitUntil: 'networkidle0' });
   const videoInput = await client.$('[data-file-input]');
-  await videoInput.uploadFile('/tmp/fixtures/test-video.mp4');
+  await videoInput.uploadFile(MP4_FIXTURE);
   await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 15000 });
   const videoMeta = await client.$eval('[data-file-meta]', (el) => el.textContent);
   check('mp4 audio decoded', /00:04\.00/.test(videoMeta), videoMeta);

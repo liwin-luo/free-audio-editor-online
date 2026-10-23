@@ -52,6 +52,13 @@ const browser = await puppeteer.launch({
 try {
   const page = await browser.newPage();
   await page.setViewport({ width: 1366, height: 900 });
+  // Seed returning-user consent before any page script runs: the fixed cookie
+  // notice covers the bottom export bar and page.click lands on it instead of
+  // [data-export] (the speed ×2 step failed on exactly this). "rejected" keeps
+  // the notice hidden without loading the Userback widget.
+  await page.evaluateOnNewDocument(() => {
+    try { localStorage.setItem('fae-consent-2', 'rejected'); } catch {}
+  });
   const consoleErrors = [];
   page.on('console', (msg) => {
     if (msg.type() === 'error') consoleErrors.push(msg.text());

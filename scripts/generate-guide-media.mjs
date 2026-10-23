@@ -375,6 +375,30 @@ const ARTICLES = [
     slides: [],
   },
   {
+    slug: 'how-to-reverse-a-song',
+    videoTitle: 'How to Reverse a Song',
+    shots: ['reverseDropzone', 'reverseExport'],
+    slides: [],
+  },
+  {
+    slug: 'slow-down-audio-without-changing-pitch',
+    videoTitle: 'Slow Down Audio Without Changing Pitch',
+    shots: ['tempoDropzone', 'tempoExport'],
+    slides: [],
+  },
+  {
+    slug: 'how-to-edit-mp3-tags',
+    videoTitle: 'How to Edit MP3 Tags',
+    shots: ['tagEmpty', 'tagFilled'],
+    slides: [],
+  },
+  {
+    slug: 'loop-a-section-of-a-song',
+    videoTitle: 'How to Loop a Section of a Song',
+    shots: ['loopDropzone', 'loopExport'],
+    slides: [],
+  },
+  {
     slug: 'convert-m4a-to-mp3',
     videoTitle: 'Convert M4A to MP3',
     shots: ['m4aDropzone', 'm4aExport'],
@@ -616,17 +640,32 @@ const EDITOR_PAGES = [
   ['silence-remover', 'silence', true],
   ['split-mp3', 'split', false],
   ['opus-to-mp3', 'opus', true],
+  ['reverse-audio', 'reverse', true],
+  ['tempo-changer', 'tempo', true],
+  ['audio-looper', 'loop', true],
 ];
 
 async function captureEditorPages(browser) {
   const page = await browser.newPage();
   await page.setViewport({ width: 1366, height: 900, deviceScaleFactor: 2 });
+  // Seed returning-user consent: the fixed cookie notice covers the bottom
+  // export bar and page.click lands on it instead of [data-export].
+  await page.evaluateOnNewDocument(() => {
+    try { localStorage.setItem('fae-consent-2', 'rejected'); } catch {}
+  });
   const upload = async (sel, files) => {
     const input = await page.$(sel);
     await input.uploadFile(...(Array.isArray(files) ? files : [files]));
   };
+  // Re-click while polling: a quick control's preview render holds the busy
+  // guard for a moment, and an export click inside that window does nothing.
   const waitExported = async () => {
-    for (let i = 0; i < 40; i++) {
+    let lastClick = -4;
+    for (let i = 0; i < 60; i++) {
+      if (i - lastClick >= 4) {
+        lastClick = i;
+        try { await page.click('[data-export]'); } catch {}
+      }
       await sleep(250);
       const s = await page.evaluate(() => document.querySelector('[data-status]')?.textContent ?? '');
       if (/Exported/.test(s)) return;
@@ -653,6 +692,19 @@ async function captureEditorPages(browser) {
           await page.mouse.up();
           await sleep(250);
         } catch { /* no waveform on this page — skip the selection */ }
+      }
+      // Page-specific state so the Loaded/Export shots show the tool doing
+      // its actual job instead of a freshly-loaded default.
+      if (slug === 'reverse-audio') {
+        const qr = await page.$('[data-quick-reverse]');
+        if (qr) { await qr.click(); await sleep(600); }
+      } else if (slug === 'tempo-changer') {
+        await page.$eval('[data-quick-tempo]', (el) => {
+          el.value = '0.85';
+          el.dispatchEvent(new Event('input', { bubbles: true }));
+          el.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+        await sleep(600);
       }
       await sleep(300);
       const loaded = await page.$('[data-audio-editor]');
@@ -762,6 +814,47 @@ async function captureRecorder(browser) {
   await page.close();
 }
 
+// mp3-tag-editor runs its own island ([data-tag-editor]), not the audio
+// editor, so it gets its own capture: empty form, then a filled one.
+async function captureTagEditor(browser) {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1366, height: 900, deviceScaleFactor: 2 });
+  await page.evaluateOnNewDocument(() => {
+    try { localStorage.setItem('fae-consent-2', 'rejected'); } catch {}
+  });
+  try {
+    if (!existsSync('/tmp/test-tags.mp3')) {
+      execSync('ffmpeg -y -f lavfi -i sine=frequency=440:duration=6 -c:a libmp3lame -b:a 192k /tmp/test-tags.mp3', { stdio: 'pipe' });
+    }
+    await page.goto(`${BASE}/mp3-tag-editor`, { waitUntil: 'networkidle0' });
+    await sleep(300);
+    const shell = await page.$('[data-tag-editor]');
+    if (!shell) throw new Error('no [data-tag-editor]');
+    await shell.screenshot({ path: `${RAW}/tagEmpty.png` });
+    log('shot: tagEmpty');
+    await (await page.$('[data-file-input]')).uploadFile('/tmp/test-tags.mp3');
+    await page.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 15000 });
+    await sleep(400);
+    const set = (field, value) =>
+      page.$eval(`[data-field="${field}"]`, (el, v) => {
+        el.value = v;
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      }, value);
+    await set('title', 'Basement Demo');
+    await set('artist', 'The Bedroom Tapes');
+    await set('album', 'First Takes');
+    await set('year', '2026');
+    await set('track', '1');
+    await sleep(300);
+    await (await page.$('[data-tag-editor]')).screenshot({ path: `${RAW}/tagFilled.png` });
+    log('shot: tagFilled');
+  } catch (e) {
+    log(`✗ mp3-tag-editor: ${e.message}`);
+  }
+  await page.close();
+}
+
 // ---------------------------------------------------------------- render
 
 let htmlCounter = 0;
@@ -839,6 +932,14 @@ async function buildArticleMedia(page, article) {
     splitExport: ['Split and download', 'Each part is the same length to the sample'],
     opusDropzone: ['Open the Opus converter', 'Drop the voice note, OGG or WebM'],
     opusExport: ['Convert to MP3', '128 kbps for a voice note is usually enough'],
+    reverseDropzone: ['Open the reverse tool', 'Drop a song, or click to browse — nothing is uploaded'],
+    reverseExport: ['Press Reverse, listen, export', 'The lit button is the state the download reflects'],
+    tempoDropzone: ['Open the tempo changer', 'Drop the file that runs too fast — or too slow'],
+    tempoExport: ['Set 0.85× and export', 'The length moved. The key did not.'],
+    tagEmpty: ['Open the tag editor', 'Drop one MP3 or a whole album — nothing is uploaded'],
+    tagFilled: ['Fix the fields and save', 'The audio is copied unchanged; only the card around it is rewritten'],
+    loopDropzone: ['Open the audio looper', 'Drop the clip that should repeat'],
+    loopExport: ['Select, set repeats, export', 'The status line prints the export length before you commit'],
   };
 
   // article images: framed real screenshots (PNG ≈ 65 KB each — light enough)
@@ -953,6 +1054,7 @@ try {
   await captureShots(normal);
   await captureRecorder(fakeMic);
   await captureEditorPages(normal);
+  await captureTagEditor(normal);
   await captureBpmFinder(normal);
   await captureLoudnessMeter(normal);
   await captureTranscribe(normal);
