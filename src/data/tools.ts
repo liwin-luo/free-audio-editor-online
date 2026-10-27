@@ -456,7 +456,6 @@ export const TOOLS: ToolDef[] = [
           'One song, keep one chorus: the [MP3 cutter](/mp3-cutter) is the same keep-or-delete editor.',
           'A podcast or voice memo: the [audio trimmer](/audio-trimmer) is that same editor.',
           'Song title, artist, or cover only: the [MP3 tag editor](/mp3-tag-editor) copies the audio bytes and only changes tags.',
-          'A clip capped at 40 seconds, downloaded as a ringtone, is the [ringtone maker](/ringtone-maker). This page does not install it on a phone.',
         ],
       },
       {
@@ -552,6 +551,7 @@ export const TOOLS: ToolDef[] = [
         bullets: [
           'M4R is AAC-LC, at most two channels, at 192 kbps. It is listed only when this browser can encode AAC.',
           'Otherwise the menu is MP3 at 320, 192, or 128 kbps, or 16-bit WAV.',
+          'The menu does not include 64 or 96 kbps. This page only downloads the file.',
         ],
       },
       {
@@ -1709,7 +1709,8 @@ export const TOOLS: ToolDef[] = [
       {
         heading: 'MP4 to MP3, or extract the audio',
         paragraphs: [
-          'The export starts as MP3 at 320 kbps. WebM and MOV open only if this browser can decode the soundtrack. Switch the format to WAV for a 16-bit copy. The page written for WAV as the default choice is [extract audio](/extract-audio). If you only need one minute, convert the whole soundtrack here and then use the [audio trimmer](/audio-trimmer). This page does not cut a span out of the video.',
+          'The export starts as MP3 at 320 kbps. WebM and MOV open only if this browser can decode the soundtrack. Switch the format to WAV for a 16-bit copy. The page written for WAV as the default choice is [extract audio](/extract-audio).',
+          'If you only need one minute, convert the whole soundtrack here and then use the [audio trimmer](/audio-trimmer). This page does not cut a span out of the video.',
         ],
       },
       {
