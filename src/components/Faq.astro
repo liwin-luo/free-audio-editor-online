@@ -10,6 +10,13 @@ interface Props {
 }
 const { faqs, locale = 'en', heading } = Astro.props;
 const { ui } = getShell(locale);
+
+function answerParts(text: string): { link: boolean; value: string }[] {
+  return text
+    .split(/(\/mcp)(?![A-Za-z0-9_-])/)
+    .filter((part) => part.length > 0)
+    .map((value) => ({ link: value === '/mcp', value }));
+}
 ---
 
 <section class="py-16" aria-labelledby="faq-heading">
@@ -38,7 +45,19 @@ const { ui } = getShell(locale);
                 <path d="m6 9 6 6 6-6" />
               </svg>
             </summary>
-            <p class="pb-5 text-[15px] leading-relaxed text-ink2">{f.a}</p>
+            <p class="pb-5 text-[15px] leading-relaxed text-ink2">
+              {
+                answerParts(f.a).map((part) =>
+                  part.link ? (
+                    <a href="/mcp" class="text-accent hover:underline">
+                      {part.value}
+                    </a>
+                  ) : (
+                    part.value
+                  ),
+                )
+              }
+            </p>
           </details>
         ))
       }

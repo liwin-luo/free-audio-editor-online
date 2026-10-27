@@ -1,0 +1,16 @@
+{
+  "name": "free-audio-editor-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local stdio MCP server. Eight ffmpeg audio tools. Not published to npm.",
+  "bin": {
+    "free-audio-editor-mcp": "./index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.21.0"
+  }
+}

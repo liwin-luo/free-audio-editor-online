@@ -84,6 +84,10 @@ English walkthroughs. Spanish, Brazilian Portuguese, and Indonesian have the tri
 - Supported input: MP3, WAV, M4A/AAC, OGG, FLAC, WebM audio, and MP4/WebM/MOV video soundtracks (whatever the browser decodes). Output: MP3 (64–320 kbps), lossless WAV, M4R on the ringtone maker (Chrome, Edge, Safari 17+), transcript text as TXT/SRT on audio-to-text, or a .mid file on audio-to-midi.
 - Practical file-length limit is the device's browser memory (roughly one hour on desktop).
 
+## Local MCP
+
+- [Audio MCP Server](https://freeaudioeditor.online/mcp): eight ffmpeg tools (trim, join, convert, normalize, fade, extract, tags, tempo) over stdio on the user's machine. The chat client still sees the paths and arguments. It is not the browser Web Audio engine. Download [free-audio-editor-mcp.zip](https://freeaudioeditor.online/free-audio-editor-mcp.zip) from that page, unzip it, and run npm install in the folder. It is not on npm. The install section has a prompt to paste into Claude or Cursor; that prompt downloads the zip, runs npm install, and writes the client config.
+
 ## For crawlers
 
 - Sitemap: https://freeaudioeditor.online/sitemap-index.xml

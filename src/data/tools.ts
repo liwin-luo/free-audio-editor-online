@@ -209,7 +209,10 @@ export const TOOLS: ToolDef[] = [
         q: 'How long can my file be?',
         a: 'Recordings up to about an hour work comfortably on a modern computer. The practical limit is your device memory, not an artificial cap. Repeating the part you kept, from 2 to 16 times, is the audio looper.',
       },
-    ],
+      {
+        q: 'Can I trim a local file from Claude or Cursor?',
+        a: 'This page trims in the browser with the Web Audio API. Nothing is installed. /mcp runs on your computer and calls ffmpeg. Pass a start and an end in seconds. WAV is the decoded samples. MP3 is encoded once. The chat app still sees the path and the arguments.',
+      }],
     sections: [
       {
         heading: 'Mark the part you want to keep',
@@ -636,7 +639,10 @@ export const TOOLS: ToolDef[] = [
         q: 'Does it work on my phone?',
         a: 'Yes. Add files, then move them up or down. Those buttons work with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. Several long files use more memory, so a desktop is steadier when the stack is long.',
       },
-    ],
+      {
+        q: 'Can I join local files from Claude or Cursor?',
+        a: 'This page merges in the browser. The crossfade slider runs from 0 to 5 seconds, in steps of 0.5. /mcp joins 2 to 20 local files with ffmpeg, with a crossfade from 0 to 5 seconds, and writes 44100 Hz stereo. It does not show a waveform. The chat app still sees the paths.',
+      }],
     sections: [
       {
         heading: 'Join means one file after another',
@@ -838,7 +844,10 @@ export const TOOLS: ToolDef[] = [
         q: 'Does it work on my phone?',
         a: 'Yes. Pick the file and the conversion stays in the tab. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
-    ],
+      {
+        q: 'Can I convert a local WAV from Claude or Cursor?',
+        a: 'This page converts in the browser at 128-320 kbps. /mcp calls ffmpeg on a file already on your computer. MP3, M4A, and OGG can be 64, 96, 128, 192, 256, or 320 kbps, and the default is 192. WAV is 16-bit PCM. FLAC is lossless. The chat app still sees the path.',
+      }],
     sections: [
       {
         heading: 'Which bitrate to pick',
@@ -1788,7 +1797,10 @@ export const TOOLS: ToolDef[] = [
         q: 'Does it work on my phone?',
         a: 'Yes. Pick the file and the conversion stays in the tab. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
-    ],
+      {
+        q: 'Can I extract a local soundtrack from Claude or Cursor?',
+        a: 'This page extracts a soundtrack the browser can decode. AC3 and DTS are rejected here. /mcp uses ffmpeg, so a format opens only when your ffmpeg build includes that decoder. It does not fetch a video from a link. The chat app still sees the path.',
+      }],
     sections: [
       {
         heading: 'Pull the soundtrack off a video',
@@ -2214,7 +2226,10 @@ export const TOOLS: ToolDef[] = [
         q: 'Does it work on my phone?',
         a: 'Yes. Drag the waveform with a finger. Current Chrome, Edge, Firefox, and Safari on iPhone and Android decode the usual formats. A long file uses more memory, so a desktop is steadier past roughly an hour.',
       },
-    ],
+      {
+        q: 'Can I normalize a local file from Claude or Cursor?',
+        a: 'This page raises the peak in the browser, to about -0.2 dB. /mcp runs ffmpeg loudnorm once, at -16 LUFS, -1.5 dBTP, and LRA 11. That is one pass, not a second measured pass. The chat app still sees the path.',
+      }],
     sections: [
       {
         heading: 'One gain, aimed at the peak',
@@ -3750,7 +3765,10 @@ export const TOOLS: ToolDef[] = [
         q: 'Does it work on a phone?',
         a: 'Yes. The editor is built for touch — drag to select, set the sliders, export. Works in current Chrome, Edge, Firefox and Safari, on desktop and mobile.',
       },
-    ],
+      {
+        q: 'Can I fade a local file from Claude or Cursor?',
+        a: 'This page fades one file in the browser, from 0 to 5 seconds, in steps of 0.1. /mcp applies ffmpeg afade from 0 to 30 seconds on each end. MP3 is encoded once. The chat app still sees the path.',
+      }],
     sections: [
       {
         heading: 'The edges get quiet, the middle stays',
@@ -3955,7 +3973,10 @@ export const TOOLS: ToolDef[] = [
         q: 'Does it work on a phone?',
         a: 'Yes. The speed slider and the export button take a tap in current Chrome, Edge, Firefox, and Safari.',
       },
-    ],
+      {
+        q: 'Can I change the tempo of a local file from Claude or Cursor?',
+        a: 'This page stretches from 0.75× to 1.25× and keeps the pitch. /mcp uses ffmpeg atempo from 0.5× to 2× and also keeps the pitch. MP3 is encoded once. The chat app still sees the path.',
+      }],
     sections: [
       {
         heading: 'Length changes, pitch stays',
@@ -4359,7 +4380,10 @@ export const TOOLS: ToolDef[] = [
         q: 'Does it work on my phone?',
         a: 'Yes — recent Chrome, Safari, Firefox and Edge, desktop or mobile. Saving hands the file to the browser like any download; on iPhone, Safari saves it to the Files app. Everything runs locally, so it also works on a slow connection once the page is open.',
       },
-    ],
+      {
+        q: 'Can I edit local MP3 tags from Claude or Cursor?',
+        a: 'This page edits ID3 in the browser, including cover art, and does not re-encode. /mcp writes title, artist, album, date, genre, track, and comment with ffmpeg, copies the audio unchanged, and writes ID3v2.3. It does not edit cover art. The chat app still sees the path.',
+      }],
     sections: [
       {
         heading: 'The label changes, the audio does not',

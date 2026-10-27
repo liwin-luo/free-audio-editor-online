@@ -1140,7 +1140,10 @@ export const es: Catalog = {
           q: '¿Funciona en el móvil?',
           a: 'Sí. El editor está pensado para táctil: arrastra para seleccionar, mueve los controles y exporta. Funciona en Chrome, Edge, Firefox y Safari actuales, en escritorio y móvil.',
         },
-      ],
+      {
+        q: '¿Puedo fundir un archivo local desde Claude o Cursor?',
+        a: 'Esta página funde un archivo en el navegador, de 0 a 5 segundos, en pasos de 0.1. /mcp aplica ffmpeg afade de 0 a 30 segundos en cada extremo. El MP3 se codifica una vez. La app de chat igual ve la ruta.',
+      }],
       sections: [
         {
           heading: 'Los extremos se quedan bajos, el centro no',
@@ -1228,7 +1231,10 @@ export const es: Catalog = {
           q: '¿Qué duración puede tener mi archivo?',
           a: 'Las grabaciones de hasta cerca de una hora van bien en una computadora moderna. El límite real es la memoria de tu dispositivo, no un tope artificial. Repetir la parte que dejaste, de 2 a 16 veces, es el repetidor de audio.',
         },
-      ],
+      {
+        q: '¿Puedo recortar un archivo local desde Claude o Cursor?',
+        a: 'Esta página recorta en el navegador con la Web Audio API. No instalas nada. /mcp corre en tu ordenador y llama a ffmpeg. El inicio y el fin van en segundos. WAV son las muestras decodificadas. El MP3 se codifica una vez. La app de chat igual ve la ruta y los argumentos.',
+      }],
       sections: [
         {
           heading: 'Marca el tramo que quieres conservar',
@@ -1597,7 +1603,10 @@ export const es: Catalog = {
           q: '¿Funciona en el teléfono?',
           a: 'Sí. Añades archivos y los subes o bajas con los botones. Se pulsan con el dedo. Chrome, Edge, Firefox y Safari actuales decodifican los formatos habituales en iPhone y Android. Varios archivos largos usan más memoria, así que con una pila larga el ordenador va más estable.',
         },
-      ],
+      {
+        q: '¿Puedo unir archivos locales desde Claude o Cursor?',
+        a: 'Esta página une en el navegador. El control de crossfade va de 0 a 5 segundos, en pasos de 0.5. /mcp une de 2 a 20 archivos locales con ffmpeg, con un crossfade de 0 a 5 segundos, y escribe estéreo a 44100 Hz. No muestra una forma de onda. La app de chat igual ve las rutas.',
+      }],
       sections: [
         {
           heading: 'Unir es un archivo detrás de otro',
@@ -1685,7 +1694,10 @@ export const es: Catalog = {
           q: '¿Funciona en el teléfono?',
           a: 'Sí. Eliges el archivo y la conversión se queda en esta pestaña. Chrome, Edge, Firefox y Safari actuales decodifican los formatos habituales en iPhone y Android. Un archivo largo usa más memoria, así que a partir de una hora el ordenador va más estable.',
         },
-      ],
+      {
+        q: '¿Puedo convertir un WAV local desde Claude o Cursor?',
+        a: 'Esta página convierte en el navegador a 128-320 kbps. /mcp llama a ffmpeg sobre un archivo que ya está en tu ordenador. MP3, M4A y OGG pueden ser 64, 96, 128, 192, 256 o 320 kbps, y el valor por defecto es 192. WAV es PCM de 16 bits. FLAC no tiene pérdida. La app de chat igual ve la ruta.',
+      }],
       sections: [
         {
           heading: 'Qué bitrate elegir',
@@ -2487,7 +2499,10 @@ export const es: Catalog = {
           q: '¿Funciona en el teléfono?',
           a: 'Sí. Eliges el archivo y la conversión se queda en esta pestaña. Chrome, Edge, Firefox y Safari actuales decodifican los formatos habituales en iPhone y Android. Un archivo largo usa más memoria, así que a partir de una hora el ordenador va más estable.',
         },
-      ],
+      {
+        q: '¿Puedo extraer una pista local desde Claude o Cursor?',
+        a: 'Esta página extrae una pista que el navegador puede decodificar. AC3 y DTS se rechazan aquí. /mcp usa ffmpeg, así que un formato se abre solo si tu compilación de ffmpeg incluye ese decodificador. No descarga un vídeo desde un enlace. La app de chat igual ve la ruta.',
+      }],
       sections: [
         {
           heading: 'Sacar la pista de un vídeo',
@@ -2761,7 +2776,10 @@ export const es: Catalog = {
           q: '¿Funciona en el teléfono?',
           a: 'Sí. Arrastras la forma de onda con el dedo. Chrome, Edge, Firefox y Safari actuales decodifican los formatos habituales en iPhone y Android. Un archivo largo usa más memoria, así que a partir de una hora el ordenador va más estable.',
         },
-      ],
+      {
+        q: '¿Puedo normalizar un archivo local desde Claude o Cursor?',
+        a: 'Esta página sube el pico en el navegador, hasta unos -0.2 dB. /mcp ejecuta ffmpeg loudnorm una vez, a -16 LUFS, -1.5 dBTP y LRA 11. Es una pasada, no una segunda pasada medida. La app de chat igual ve la ruta.',
+      }],
       sections: [
         {
           heading: 'Una ganancia, apuntando al pico',
@@ -2907,7 +2925,10 @@ export const es: Catalog = {
         { q: '¿Puedo ir más lento que 0.75× o más rápido que 1.25×?', a: 'No. El control se detiene ahí. 0.5× y 2× son la página de velocidad, y en esa página el tono se mueve con la velocidad. 1× en esta página no estira.' },
         { q: '¿En qué se diferencia de la velocidad y del cambiador de tono?', a: 'La página de velocidad cambia la duración y el tono se mueve con ella, de 0.5× a 2×. El cambiador de tono mueve el tono y mantiene la duración. Esta página cambia la duración y el tono se queda.' },
         { q: '¿Funciona en el teléfono?', a: 'Sí. El control de velocidad y el botón de exportar aceptan un toque en Chrome, Edge, Firefox y Safari actuales.' },
-      ],
+      {
+        q: '¿Puedo cambiar el tempo de un archivo local desde Claude o Cursor?',
+        a: 'Esta página estira de 0.75× a 1.25× y mantiene el tono. /mcp usa ffmpeg atempo de 0.5× a 2× y también mantiene el tono. El MP3 se codifica una vez. La app de chat igual ve la ruta.',
+      }],
       sections: [
         {
           heading: 'La duración cambia, el tono se queda',
@@ -3388,7 +3409,10 @@ export const es: Catalog = {
         { q: '¿Por qué mi autoestéreo sigue mostrando "Track 01"?', a: 'Muchas radios de coche ignoran las etiquetas y recurren al nombre del archivo, y la mayoría guarda en caché la información antigua hasta que vuelves a conectar la memoria USB o vuelves a escanear. Guarda aquí (el archivo se escribe como ID3v2.3, la versión que los autoestéreos leen con más fiabilidad), renómbralo a algo como "01 - Título de la canción.mp3" y vuelve a escanear.' },
         { q: 'Mis etiquetas en chino, japonés, coreano o árabe salen con símbolos raros. ¿Tiene arreglo?', a: 'Sí: normalmente significa que la etiqueta antigua se guardó en una codificación de un byte en lugar de Unicode. Vuelve a escribir aquí el texto correcto y guarda: el archivo se reescribe como ID3v2.3 con texto UTF-16, que los reproductores modernos muestran bien, incluidos los títulos en chino, japonés, coreano, árabe, cirílico e hindi.' },
         { q: '¿Funciona en el móvil?', a: 'Sí: Chrome, Safari, Firefox y Edge recientes, en escritorio o móvil. Al guardar, el archivo se entrega al navegador como cualquier descarga; en iPhone, Safari lo guarda en la app Archivos. Todo funciona en local, así que también va con conexión lenta una vez abierta la página.' },
-      ],
+      {
+        q: '¿Puedo editar etiquetas MP3 locales desde Claude o Cursor?',
+        a: 'Esta página edita ID3 en el navegador, incluida la portada, y no vuelve a codificar. /mcp escribe title, artist, album, date, genre, track y comment con ffmpeg, copia el audio sin cambios y escribe ID3v2.3. No edita la portada. La app de chat igual ve la ruta.',
+      }],
       sections: [
         {
           heading: 'Cambia la ficha, no el audio',

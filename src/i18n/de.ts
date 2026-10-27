@@ -1141,7 +1141,10 @@ export const de: Catalog = {
           q: 'Funktioniert das auf dem Handy?',
           a: 'Ja. Der Editor ist für Touch gebaut — ziehen, Regler setzen, exportieren. Läuft in aktuellen Chrome-, Edge-, Firefox- und Safari-Versionen, auf Desktop und Mobilgeräten.',
         },
-      ],
+      {
+        q: 'Kann ich eine lokale Datei aus Claude oder Cursor ein- und ausblenden?',
+        a: 'Diese Seite blendet eine Datei im Browser ein und aus, von 0 bis 5 Sekunden, in Schritten von 0.1. /mcp nutzt ffmpeg afade, an jedem Ende von 0 bis 30 Sekunden. MP3 wird einmal neu kodiert. Die Chat-App sieht den Pfad trotzdem.',
+      }],
       sections: [
         {
           heading: 'Die Kanten werden leise, die Mitte bleibt',
@@ -1229,7 +1232,10 @@ export const de: Catalog = {
           q: 'Wie lang darf meine Datei sein?',
           a: 'Aufnahmen bis etwa einer Stunde laufen auf einem modernen Computer problemlos. Die praktische Grenze ist der Speicher deines Geräts, kein künstliches Limit. Den behaltenen Teil 2- bis 16-mal zu wiederholen ist der Audio-Looper.',
         },
-      ],
+      {
+        q: 'Kann ich eine lokale Datei aus Claude oder Cursor schneiden?',
+        a: 'Diese Seite schneidet im Browser mit der Web Audio API. Du installierst nichts. /mcp läuft auf deinem Computer und ruft ffmpeg auf. Start und Ende sind Sekunden. WAV sind die dekodierten Samples. MP3 wird einmal neu kodiert. Die Chat-App sieht Pfad und Argumente trotzdem.',
+      }],
       sections: [
         {
           heading: 'Den Teil markieren, den du behalten willst',
@@ -1598,7 +1604,10 @@ export const de: Catalog = {
           q: 'Geht das auf dem Handy?',
           a: 'Ja. Dateien hinzufügen, dann mit Nach oben und Nach unten sortieren. Die Knöpfe gehen mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Mehrere lange Dateien brauchen mehr Speicher, deshalb ist der Rechner bei einem langen Stapel ruhiger.',
         },
-      ],
+      {
+        q: 'Kann ich lokale Dateien aus Claude oder Cursor aneinanderhängen?',
+        a: 'Diese Seite fügt im Browser zusammen. Der Crossfade-Regler geht von 0 bis 5 Sekunden, in Schritten von 0.5. /mcp hängt 2 bis 20 lokale Dateien mit ffmpeg aneinander, Crossfade 0 bis 5 Sekunden, und schreibt 44100 Hz Stereo. Eine Wellenform zeigt es nicht. Die Chat-App sieht die Pfade trotzdem.',
+      }],
       sections: [
         {
           heading: 'Zusammenfügen heißt Datei hinter Datei',
@@ -1686,7 +1695,10 @@ export const de: Catalog = {
           q: 'Geht das auf dem Handy?',
           a: 'Ja. Datei wählen, die Umwandlung bleibt in diesem Tab. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
         },
-      ],
+      {
+        q: 'Kann ich ein lokales WAV aus Claude oder Cursor umwandeln?',
+        a: 'Diese Seite wandelt im Browser bei 128-320 kbps um. /mcp ruft ffmpeg für eine Datei auf, die schon auf deinem Computer liegt. MP3, M4A und OGG können 64, 96, 128, 192, 256 oder 320 kbps sein, Standard ist 192. WAV ist 16-bit PCM. FLAC ist verlustfrei. Die Chat-App sieht den Pfad trotzdem.',
+      }],
       sections: [
         {
           heading: 'Welche Bitrate du nehmen solltest',
@@ -2488,7 +2500,10 @@ export const de: Catalog = {
           q: 'Geht das auf dem Handy?',
           a: 'Ja. Datei wählen, die Umwandlung bleibt in diesem Tab. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
         },
-      ],
+      {
+        q: 'Kann ich eine lokale Tonspur aus Claude oder Cursor herausziehen?',
+        a: 'Diese Seite zieht eine Tonspur, die der Browser dekodieren kann. AC3 und DTS werden hier abgelehnt. /mcp nutzt ffmpeg, eine Form geht also nur auf, wenn dein ffmpeg-Build den Decoder hat. Ein Video von einem Link holt es nicht. Die Chat-App sieht den Pfad trotzdem.',
+      }],
       sections: [
         {
           heading: 'Die Tonspur aus einem Video ziehen',
@@ -2762,7 +2777,10 @@ export const de: Catalog = {
           q: 'Geht das auf dem Handy?',
           a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
         },
-      ],
+      {
+        q: 'Kann ich eine lokale Datei aus Claude oder Cursor normalisieren?',
+        a: 'Diese Seite hebt die Spitze im Browser an, auf etwa -0.2 dB. /mcp führt ffmpeg loudnorm einmal aus, bei -16 LUFS, -1.5 dBTP und LRA 11. Das ist ein Durchgang, kein zweiter gemessener Durchgang. Die Chat-App sieht den Pfad trotzdem.',
+      }],
       sections: [
         {
           heading: 'Ein Gain, auf den Peak gezielt',
@@ -2908,7 +2926,10 @@ export const de: Catalog = {
         { q: 'Kann ich langsamer als 0,75× oder schneller als 1,25×?', a: 'Nein. Der Regler stoppt dort. 0,5× und 2× sind die Geschwindigkeitsseite, und dort geht die Tonhöhe mit. 1× auf dieser Seite streckt nicht.' },
         { q: 'Was ist der Unterschied zur Geschwindigkeit und zum Tonhöhen-Regler?', a: 'Die Geschwindigkeitsseite ändert die Länge, und die Tonhöhe geht mit, von 0,5× bis 2×. Der Tonhöhen-Regler verschiebt die Tonhöhe und behält die Länge. Diese Seite ändert die Länge, und die Tonhöhe bleibt.' },
         { q: 'Geht das auf dem Handy?', a: 'Ja. Der Geschwindigkeitsregler und der Export nehmen einen Tipp in aktuellem Chrome, Edge, Firefox und Safari an.' },
-      ],
+      {
+        q: 'Kann ich das Tempo einer lokalen Datei aus Claude oder Cursor ändern?',
+        a: 'Diese Seite streckt von 0.75× bis 1.25× und behält die Tonhöhe. /mcp nutzt ffmpeg atempo von 0.5× bis 2× und behält die Tonhöhe ebenfalls. MP3 wird einmal neu kodiert. Die Chat-App sieht den Pfad trotzdem.',
+      }],
       sections: [
         {
           heading: 'Die Länge ändert sich, die Tonhöhe bleibt',
@@ -3385,7 +3406,10 @@ export const de: Catalog = {
         { q: 'Warum zeigt mein Autoradio weiter „Track 01“ an?', a: 'Viele Autoradios ignorieren Tags und greifen auf den Dateinamen zurück, und die meisten cachen die alten Informationen, bis du den USB-Stick neu einsteckst oder neu einlesen lässt. Hier speichern (die Datei wird als ID3v2.3 geschrieben, die Version, die Autoradios am zuverlässigsten lesen), die Datei etwa in „01 - Songtitel.mp3“ umbenennen, dann neu einlesen.' },
         { q: 'Meine chinesischen, japanischen, koreanischen oder arabischen Tags sehen wirr aus. Lässt sich das reparieren?', a: 'Ja — meistens heißt das, der alte Tag war in einer Ein-Byte-Kodierung statt in Unicode gespeichert. Tippe den richtigen Text hier neu ein und speichere: Die Datei wird als ID3v2.3 mit UTF-16-Text geschrieben, was moderne Player korrekt anzeigen — chinesische, japanische, koreanische, arabische, kyrillische und Titel in Hindi inklusive.' },
         { q: 'Funktioniert das auf dem Handy?', a: 'Ja — aktuelle Chrome-, Safari-, Firefox- und Edge-Versionen, am Desktop wie mobil. Beim Speichern übergibt die Seite die Datei wie jeden anderen Download; auf dem iPhone legt sie Safari in der Dateien-App ab. Alles läuft lokal, darum klappt es auch bei langsamer Verbindung, sobald die Seite offen ist.' },
-      ],
+      {
+        q: 'Kann ich lokale MP3-Tags aus Claude oder Cursor bearbeiten?',
+        a: 'Diese Seite bearbeitet ID3 im Browser, einschließlich Cover, und kodiert nicht neu. /mcp schreibt title, artist, album, date, genre, track und comment mit ffmpeg, kopiert das Audio unverändert und schreibt ID3v2.3. Cover bearbeitet es nicht. Die Chat-App sieht den Pfad trotzdem.',
+      }],
       sections: [
         {
           heading: 'Das Etikett ändert sich, das Audio nicht',

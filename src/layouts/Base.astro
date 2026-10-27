@@ -69,7 +69,7 @@ const guideLocales = new Set(localesWithGuides());
 // A cluster can use a different slug per language (OGG).
 const cluster = isTranslatedGuide(path) ? guideAlternates(path) : [];
 const alternateList =
-  path === '/editorial'
+  path === '/editorial' || path === '/mcp'
     ? LOCALES.filter((l) => l.id === 'en')
     : path === '/guides'
       ? LOCALES.filter((l) => guideLocales.has(l.id))

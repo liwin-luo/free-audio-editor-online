@@ -1,0 +1,292 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import { breadcrumbSchema, faqSchema } from '../lib/jsonld';
+import { SITE } from '../data/site';
+
+const title = 'Audio MCP Server — 8 Local FFmpeg Tools';
+const description =
+  'Run trim, join, convert, fade, and loudness on files already on your computer. Eight ffmpeg tools over stdio; an MP3 is encoded once.';
+const pageUrl = new URL('/mcp', SITE.url).href;
+const faqs = [
+  {
+    q: 'Does this server upload my file?',
+    a: 'No upload to this site. The process is stdio on your computer, and ffmpeg reads the path you pass. The chat app still sees that path and the arguments. A browser tool is different: the file stays inside the tab.',
+  },
+  {
+    q: 'What happens to the audio quality?',
+    a: 'MP3, M4A, and OGG are encoded once. The bitrate choices are 64, 96, 128, 192, 256, and 320 kbps, and the default is 192. WAV is 16-bit PCM. FLAC is lossless. Joined files are 44100 Hz stereo. Tag writes copy the audio and write ID3v2.3. Normalize is one loudnorm pass at -16 LUFS, -1.5 dBTP, and LRA 11.',
+  },
+  {
+    q: 'What can it not do?',
+    a: 'No waveform, no microphone, no transcription, and no cover art. It does not fetch a video from a link. A single call is stopped after 15 minutes. Pitch, recording, transcription, and a spectrogram stay on the browser pages.',
+  },
+  {
+    q: 'How is this different from the browser tools?',
+    a: 'The browser tools use the Web Audio API and need no install. This server calls ffmpeg. Tempo here is 0.5× to 2×. The tempo page is 0.75× to 1.25×. Fade here is 0 to 30 seconds. The fade page is 0 to 5 seconds. Normalize here is loudnorm. The normalize page moves the peak to about -0.2 dB.',
+  },
+  {
+    q: 'Does it run on a phone?',
+    a: 'No. It needs Node.js 18 or newer, ffmpeg, and a desktop client that speaks MCP, such as Claude Desktop or Cursor. A phone browser cannot start a stdio server.',
+  },
+];
+const install = `cd free-audio-editor-mcp
+npm install`;
+const clientConfig = `{
+  "mcpServers": {
+    "audio": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/free-audio-editor-mcp/index.js"]
+    }
+  }
+}`;
+const zipUrl = new URL('/free-audio-editor-mcp.zip', SITE.url).href;
+const agentPrompt = `Install the Audio MCP server from Free Audio Editor on this computer, then register it with this chat client. Do the work. Do not only print the steps.
+
+1. Download ${zipUrl} and unzip it so the folder is exactly ~/free-audio-editor-mcp on macOS or Linux, or %USERPROFILE%\\free-audio-editor-mcp on Windows. That folder must stay. Do not use a temp directory. If the folder is already there, replace the files from this zip and continue. Do not touch anything outside that folder.
+2. In that folder, run npm install. Node.js must be 18 or newer. This package is not on npm. Do not use npx. Do not publish it.
+3. ffmpeg and ffprobe must be installed. If the command is missing: macOS, brew install ffmpeg. Windows, winget install FFmpeg. Debian and Ubuntu, sudo apt install ffmpeg.
+4. In that folder, run node check.js. If it prints FAIL, stop and fix that before writing a config.
+5. Register one server named audio. Merge it into the existing JSON and keep every other mcpServers entry. Create the file and parent directories if they are missing.
+   command: node. If this app does not inherit the shell PATH, use the absolute path of the node binary instead.
+   args: one item, the absolute path of free-audio-editor-mcp/index.js.
+   If this app will not see ffmpeg on PATH, add env FFMPEG_PATH and FFPROBE_PATH with the absolute binaries.
+   Shape:
+   { "mcpServers": { "audio": { "command": "node", "args": ["/ABSOLUTE/PATH/free-audio-editor-mcp/index.js"] } } }
+6. Write the file for the app you are running in. Cursor, for every project: ~/.cursor/mcp.json on macOS and Linux, %USERPROFILE%\\.cursor\\mcp.json on Windows. Claude Desktop: ~/Library/Application Support/Claude/claude_desktop_config.json on macOS, %APPDATA%\\Claude\\claude_desktop_config.json on Windows. On Linux, if you are in Claude Desktop, edit the config file that app already uses. Do not invent a new path. If you cannot tell which app this is, write the Cursor file and the Claude Desktop file for this operating system.
+7. Do not leave index.js running. The client starts it over stdio.
+8. Reply with the absolute path you configured, the config file you wrote, and tell me to quit and reopen this app.
+
+The tools are audio_trim, audio_join, audio_convert, audio_normalize, audio_fade, audio_extract, audio_tags, and audio_tempo. Each one calls ffmpeg on a file already on this computer. Nothing is uploaded to ${SITE.url}.`;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Audio MCP Server',
+    description,
+    url: pageUrl,
+    downloadUrl: new URL('/free-audio-editor-mcp.zip', SITE.url).href,
+    applicationCategory: 'MultimediaApplication',
+    operatingSystem: 'macOS, Windows, Linux',
+    softwareRequirements: 'Node.js 18 or newer, ffmpeg and ffprobe on PATH',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    featureList: [
+      'audio_trim',
+      'audio_join',
+      'audio_convert',
+      'audio_normalize',
+      'audio_fade',
+      'audio_extract',
+      'audio_tags',
+      'audio_tempo',
+    ],
+  },
+  faqSchema(faqs, 'en'),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Audio MCP Server', path: '/mcp' },
+  ]),
+];
+---
+
+<Base title={title} description={description} path="/mcp" locale="en" jsonLd={jsonLd}>
+  <article class="container-page py-14">
+    <nav aria-label="Breadcrumb" class="text-xs">
+      <a href="/" class="text-ink3 hover:text-accent">Home</a>
+      <span class="mx-1.5 text-ink3">/</span>
+      <span class="text-ink2" aria-current="page">Audio MCP Server</span>
+    </nav>
+
+    <h1 class="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">Audio MCP Server</h1>
+    <p class="mt-4 max-w-[65ch] text-[15px] leading-relaxed text-ink2">
+      Eight tools for Claude Desktop and Cursor. Each one calls ffmpeg on a file already on your computer.
+      This site never receives the file. There is no account. The chat app still sees the path and the arguments.
+    </p>
+
+    <div class="guide-prose mt-2 min-w-0 max-w-[65ch] [&_code]:break-all">
+      <h2>What you can run</h2>
+      <p>
+        The name in the first column is the tool the client calls. The browser page is the same job with no
+        install. The engines differ: the browser uses the Web Audio API, and this server uses ffmpeg.
+      </p>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>On your computer</th>
+              <th>In the browser</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>audio_trim</code></td>
+              <td>Start and end in seconds. WAV is decoded samples. MP3 is encoded once.</td>
+              <td><a href="/audio-trimmer">Audio Trimmer</a></td>
+            </tr>
+            <tr>
+              <td><code>audio_join</code></td>
+              <td>2 to 20 files. Crossfade 0 to 5 seconds. Output is 44100 Hz stereo.</td>
+              <td><a href="/audio-joiner">Audio Joiner</a></td>
+            </tr>
+            <tr>
+              <td><code>audio_convert</code></td>
+              <td>mp3, wav, flac, m4a, or ogg. Lossy rates are 64, 96, 128, 192, 256, or 320 kbps. Default 192.</td>
+              <td><a href="/wav-to-mp3">WAV to MP3</a></td>
+            </tr>
+            <tr>
+              <td><code>audio_normalize</code></td>
+              <td>One loudnorm pass: -16 LUFS, -1.5 dBTP, LRA 11. Not a second measured pass.</td>
+              <td><a href="/normalize-audio">Normalize Audio</a></td>
+            </tr>
+            <tr>
+              <td><code>audio_fade</code></td>
+              <td>Fade in and fade out, each from 0 to 30 seconds.</td>
+              <td><a href="/fade-audio">Fade Audio</a></td>
+            </tr>
+            <tr>
+              <td><code>audio_extract</code></td>
+              <td>Soundtrack of a local video. A codec opens only if your ffmpeg build has that decoder.</td>
+              <td><a href="/extract-audio">Extract Audio</a></td>
+            </tr>
+            <tr>
+              <td><code>audio_tags</code></td>
+              <td>Read, or write title, artist, album, date, genre, track, and comment. Audio is copied. ID3v2.3. No cover art.</td>
+              <td><a href="/mp3-tag-editor">MP3 Tag Editor</a></td>
+            </tr>
+            <tr>
+              <td><code>audio_tempo</code></td>
+              <td>0.5× to 2× with ffmpeg atempo. Pitch stays.</td>
+              <td><a href="/tempo-changer">Tempo Changer</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Install</h2>
+      <p>
+        This server is not on npm. You need Node.js 18 or newer, plus ffmpeg and ffprobe on PATH.
+      </p>
+      <h3>Paste this to Claude or Cursor</h3>
+      <p>
+        Copy this and paste it into the chat. That client downloads the zip, installs it, and writes its own
+        config. Quit and reopen the app when it says to.
+      </p>
+      <p>
+        <button type="button" class="btn btn-secondary" data-copy-prompt>
+          <span data-copy-label>Copy</span>
+        </button>
+      </p>
+      <pre id="mcp-agent-prompt" class="mt-4 overflow-x-auto rounded-xl border border-line bg-surface p-4 font-mono text-[13px] leading-relaxed text-ink">{agentPrompt}</pre>
+      <h3>Or install it yourself</h3>
+      <p>
+        <a class="btn btn-primary download-mcp" href="/free-audio-editor-mcp.zip" download="free-audio-editor-mcp.zip">Download the server</a>
+      </p>
+      <pre class="mt-4 overflow-x-auto rounded-xl border border-line bg-surface p-4 font-mono text-[13px] leading-relaxed text-ink">{install}</pre>
+      <p>Install ffmpeg if the command is missing:</p>
+      <ul>
+        <li>macOS: <code>brew install ffmpeg</code></li>
+        <li>Windows: <code>winget install FFmpeg</code></li>
+        <li>Debian and Ubuntu: <code>sudo apt install ffmpeg</code></li>
+      </ul>
+      <p>
+        Claude Desktop reads <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> on macOS
+        and <code>%APPDATA%\Claude\claude_desktop_config.json</code> on Windows. Cursor reads
+        <code>~/.cursor/mcp.json</code>, or <code>.cursor/mcp.json</code> in a project. Same JSON either way.
+        Replace the path with the <code>index.js</code> you just installed. Restart the client after saving.
+      </p>
+      <pre class="mt-4 overflow-x-auto rounded-xl border border-line bg-surface p-4 font-mono text-[13px] leading-relaxed text-ink">{clientConfig}</pre>
+      <p>
+        If the binary is not on PATH, set <code>FFMPEG_PATH</code> and <code>FFPROBE_PATH</code> in that config’s
+        <code>env</code> block.
+      </p>
+
+      <h2>What this does not do</h2>
+      <p>
+        There is no waveform, no microphone, and no model download. Pitch stays on the
+        <a href="/pitch-changer">pitch changer</a>. Recording stays on the
+        <a href="/voice-recorder">voice recorder</a>. Transcription stays on
+        <a href="/audio-to-text">audio to text</a>. A picture of the spectrum stays on the
+        <a href="/spectrogram-generator">spectrogram generator</a>. Echo stays on
+        <a href="/echo">echo</a>. The server does not read a video URL.
+      </p>
+
+      <h2>Privacy</h2>
+      <p>
+        ffmpeg runs on the machine where the client runs. Nothing is posted to {SITE.name}. The chat client still
+        receives the path and the arguments, and that client may send the conversation to its own API. The
+        <a href="/privacy">privacy page</a> covers the browser tools, where the file stays in the tab.
+      </p>
+
+      <h2>When a call fails</h2>
+      <p>The tool returns the sentence below. Fix that, then call it again.</p>
+      <ul>
+        <li>
+          <code>ffmpeg was not found on PATH. Install ffmpeg, then restart the client.</code>
+          Install ffmpeg, or set <code>FFMPEG_PATH</code>, then restart.
+        </li>
+        <li>
+          <code>output must be a different file</code> — the output path is the same as an input. Pick a new name.
+        </li>
+        <li>
+          <code>fades (… + … s) are longer than the file</code> — shorten the fades. A fade cannot be longer than the file.
+        </li>
+        <li>
+          <code>inputs needs 2 to 20 files</code> — join starts at two files and stops at 20.
+        </li>
+        <li>A call that runs longer than 15 minutes is stopped.</li>
+      </ul>
+    </div>
+  </article>
+  <Faq faqs={faqs} locale="en" />
+</Base>
+
+<style>
+  .guide-prose a.download-mcp,
+  .guide-prose a.download-mcp:hover {
+    color: var(--color-on-accent);
+    text-decoration: none;
+  }
+</style>
+<script>
+  const copyPrompt = document.querySelector('[data-copy-prompt]');
+  const promptSource = document.querySelector('#mcp-agent-prompt');
+  if (copyPrompt instanceof HTMLButtonElement && promptSource) {
+    const label = copyPrompt.querySelector('[data-copy-label]');
+    const idle = label?.textContent ?? 'Copy';
+    copyPrompt.addEventListener('click', async () => {
+      const text = promptSource.textContent ?? '';
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      } catch {
+        try {
+          const input = document.createElement('textarea');
+          input.value = text;
+          input.setAttribute('readonly', '');
+          input.style.position = 'fixed';
+          input.style.opacity = '0';
+          document.body.append(input);
+          input.select();
+          ok = document.execCommand('copy');
+          input.remove();
+        } catch {
+          ok = false;
+        }
+      }
+      if (!ok) {
+        const range = document.createRange();
+        range.selectNodeContents(promptSource);
+        const selection = getSelection();
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+      }
+      if (!label) return;
+      label.textContent = ok ? 'Copied' : 'Selected';
+      window.setTimeout(() => {
+        label.textContent = idle;
+      }, 2000);
+    });
+  }
+</script>

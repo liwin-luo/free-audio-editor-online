@@ -5,6 +5,9 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { guideAlternates, localesWithGuides } from './src/data/guides.ts';
 import { localeMeta } from './src/i18n/locales.ts';
+import { packMcpZip } from './scripts/pack-mcp.mjs';
+
+packMcpZip();
 
 /** Guide frontmatter dates, keyed by route, so sitemap lastmod reflects real edits. */
 function guideDates() {

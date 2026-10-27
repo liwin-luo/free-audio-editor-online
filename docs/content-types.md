@@ -4,7 +4,7 @@
 
 ## 页面类型
 
-站上一共 6 种对外页面类型。404 一律 `noindex`，不算内容类型。
+站上一共 7 种对外页面类型。404 一律 `noindex`，不算内容类型。
 
 | # | 类型 | URL | 结构化数据 | 硬规则出处 |
 |---|---|---|---|---|
@@ -14,6 +14,7 @@
 | 4 | 指南 | `/guides/{slug}` | `Article` | seo.md + 本文 |
 | 5 | 指南索引 | `/guides` | `CollectionPage` | — |
 | 6 | 信任页 | `/about`、`/editorial`、`/privacy`、`/contact` | — | — |
+| 7 | 本地 MCP | `/mcp`，仅英语 | `SoftwareApplication` + `FAQPage` + `BreadcrumbList` | 不进 `TOOLS`，不进 hreflang 簇 |
 
 分工一句话：**交易型查询由工具页承接，深度信息型查询由指南承接，浏览型查询由两级 Hub 承接**。对比表只出现在指南（`alternatives / vs`），工具页的 FAQ 继续承担「和兄弟页差在哪」。
 
@@ -23,6 +24,7 @@
 2. **分类 Hub 和工具总览**：模板化输出，不派角色。只列工具卡、相关指南、相邻分类，不写长正文，否则制造和工具页抢意图的同质页。
 3. **指南索引**：列表页。每个指南必须先在这里有卡片（`src/data/guides.ts`），再建 markdown。同一改动里还要在同文件的 `GUIDE_TOOL` 登记它支撑的工具：工具页底部的相关指南块由这个映射驱动，frontmatter 的 `tool` 字段不驱动它，漏登记就是断内链（10-21 批次 19 篇踩过）。
 4. **信任页**：服务 E-E-A-T，不追搜索词，不派角色，保持事实更新即可（`/editorial` 说明测试方法，指南的 `sources` frontmatter 指向它）。
+5. **本地 MCP**：`/mcp` 只出英语。不进 `TOOLS`，不进分类 Hub，不进 hreflang 簇。语言切换回到该语言首页。页上的数字以 `mcp/` 里的 8 个工具为准。构建时把这份源码打成 `/free-audio-editor-mcp.zip`（不含 `node_modules`），页面提供下载。安装区另有一段可复制的提示，交给 Claude 或 Cursor 去下载、安装并写入配置。配套指南等内容计划解冻后再写。
 
 ## 指南的七种结构
 

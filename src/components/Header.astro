@@ -19,6 +19,7 @@ const langHref = (target: Locale) => {
   if (path === '/404') return localePath(target, '/');
   // English-only page: no localized variants exist to switch to
   if (path === '/editorial') return localePath(target, '/about');
+  if (path === '/mcp') return localePath(target, '/');
   if (!onGuide) return localePath(target, path);
   return guideAlternates(path).find((a) => a.locale === target)?.href ?? localePath(target, '/guides');
 };
