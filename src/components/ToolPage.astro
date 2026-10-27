@@ -23,6 +23,7 @@ import HowTo from './HowTo.astro';
 import Faq from './Faq.astro';
 import RelatedTools from './RelatedTools.astro';
 import Icon from './Icon.astro';
+import CopyText from './CopyText.astro';
 import { webAppSchema, faqSchema, howToSchema, breadcrumbSchema } from '../lib/jsonld';
 import { getShell } from '../i18n';
 import { fill } from '../i18n/inline';
@@ -129,7 +130,7 @@ const jsonLd = [
     </div>
 
     <section class="pt-14">
-      <p class="max-w-[65ch] text-[17px] leading-relaxed text-ink2">{tool.intro}</p>
+      <p class="max-w-[65ch] text-[17px] leading-relaxed text-ink2"><CopyText text={tool.intro} locale={locale} /></p>
       <div class="mt-8 max-w-[65ch]">
         <h2 class="text-[28px] font-semibold tracking-tight">{tool.usesHeading}</h2>
         <ul class="mt-3 space-y-2.5 text-[15px] leading-relaxed text-ink2">
@@ -137,7 +138,7 @@ const jsonLd = [
             tool.uses.map((item) => (
               <li class="flex gap-3">
                 <span class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                <span>{item}</span>
+                <span><CopyText text={item} locale={locale} /></span>
               </li>
             ))
           }
@@ -162,7 +163,7 @@ const jsonLd = [
                   {facts.fit.use.map((item) => (
                     <li class="flex gap-3">
                       <span class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                      <span>{item}</span>
+                      <span><CopyText text={item} locale={locale} /></span>
                     </li>
                   ))}
                 </ul>
@@ -176,7 +177,7 @@ const jsonLd = [
                   {facts.fit.avoid.map((item) => (
                     <li class="flex gap-3">
                       <span class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-ink3" aria-hidden="true" />
-                      <span>{item}</span>
+                      <span><CopyText text={item} locale={locale} /></span>
                     </li>
                   ))}
                 </ul>
@@ -197,7 +198,7 @@ const jsonLd = [
                       <th scope="row" class="w-[34%] bg-surface px-5 py-3.5 align-top font-medium text-ink3">
                         {spec.label}
                       </th>
-                      <td class="px-5 py-3.5 align-top leading-relaxed text-ink2">{spec.value}</td>
+                      <td class="px-5 py-3.5 align-top leading-relaxed text-ink2"><CopyText text={spec.value} locale={locale} /></td>
                     </tr>
                   ))}
                 </tbody>
@@ -209,7 +210,7 @@ const jsonLd = [
     }
   </div>
 
-  <HowTo title={fill(ui.howTo, { name: tool.name })} steps={tool.howTo} />
+  <HowTo title={fill(ui.howTo, { name: tool.name })} steps={tool.howTo} locale={locale} />
 
   {
     tool.sections && tool.sections.length > 0 && (
@@ -219,14 +220,14 @@ const jsonLd = [
             <div class:list={['max-w-[65ch]', i === 0 ? 'mt-0' : 'mt-10']}>
               <h2 class="text-[28px] font-semibold tracking-tight">{section.heading}</h2>
               {section.paragraphs?.map((paragraph) => (
-                <p class="mt-3 text-[15px] leading-relaxed text-ink2">{paragraph}</p>
+                <p class="mt-3 text-[15px] leading-relaxed text-ink2"><CopyText text={paragraph} locale={locale} /></p>
               ))}
               {section.bullets && (
                 <ul class="mt-3 space-y-2.5 text-[15px] leading-relaxed text-ink2">
                   {section.bullets.map((item) => (
                     <li class="flex gap-3">
                       <span class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                      <span>{item}</span>
+                      <span><CopyText text={item} locale={locale} /></span>
                     </li>
                   ))}
                 </ul>

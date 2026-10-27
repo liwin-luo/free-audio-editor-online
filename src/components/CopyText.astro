@@ -1,0 +1,23 @@
+---
+import { splitCopy } from '../lib/copy-links';
+import { localePath, type Locale } from '../i18n/locales';
+
+interface Props {
+  text: string;
+  locale?: Locale;
+}
+const { text, locale = 'en' } = Astro.props;
+const parts = splitCopy(text);
+---
+
+{
+  parts.map((part) =>
+    part.link && part.href ? (
+      <a href={part.href === '/mcp' ? '/mcp' : localePath(locale, part.href)} class="text-accent hover:underline">
+        {part.value}
+      </a>
+    ) : (
+      part.value
+    ),
+  )
+}

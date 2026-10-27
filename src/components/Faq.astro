@@ -1,5 +1,6 @@
 ---
 import type { FaqItem } from '../data/tools';
+import CopyText from './CopyText.astro';
 import { getShell } from '../i18n';
 import type { Locale } from '../i18n/locales';
 
@@ -10,13 +11,6 @@ interface Props {
 }
 const { faqs, locale = 'en', heading } = Astro.props;
 const { ui } = getShell(locale);
-
-function answerParts(text: string): { link: boolean; value: string }[] {
-  return text
-    .split(/(\/mcp)(?![A-Za-z0-9_-])/)
-    .filter((part) => part.length > 0)
-    .map((value) => ({ link: value === '/mcp', value }));
-}
 ---
 
 <section class="py-16" aria-labelledby="faq-heading">
@@ -46,17 +40,7 @@ function answerParts(text: string): { link: boolean; value: string }[] {
               </svg>
             </summary>
             <p class="pb-5 text-[15px] leading-relaxed text-ink2">
-              {
-                answerParts(f.a).map((part) =>
-                  part.link ? (
-                    <a href="/mcp" class="text-accent hover:underline">
-                      {part.value}
-                    </a>
-                  ) : (
-                    part.value
-                  ),
-                )
-              }
+              <CopyText text={f.a} locale={locale} />
             </p>
           </details>
         ))
