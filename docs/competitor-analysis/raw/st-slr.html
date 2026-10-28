@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link rel="canonical" href="https://soundtools.io/slowed-reverb/" />
+
+    <link rel="stylesheet" href="../css/tools-style.css">
+    <link rel="icon" href="../favicon.png" type="image/png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2L1GFZ61L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-T2L1GFZ61L');
+    </script>
+
+
+    <meta name="description" content="Free slowed and reverb maker — turn any song into a slowed + reverb version in seconds. Pick a preset or set speed and reverb yourself. No account, no download.">
+
+    <meta name="author" content="SoundTools">
+    <meta property="og:title" content="Slowed Reverb Maker — Create Slowed + Reverb Audio Free">
+    <meta property="og:description" content="Upload any audio file and add the slowed reverb effect instantly. Make your own slowed + reverb version of any song — free, online, no download needed.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soundtools.io/slowed-reverb/">
+    <title>Slowed and Reverb Maker — Make Slowed + Reverb Songs | SoundTools</title>
+    
+    <!-- Organization schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://soundtools.io/#organization",
+      "name": "SoundTools",
+      "alternateName": "soundtools.io",
+      "url": "https://soundtools.io",
+      "logo": "https://soundtools.io/logo.png",
+      "description": "SoundTools is a free, browser-based audio toolkit offering 35+ tools for editing, converting, and transforming audio — including creator effects, AI and voice tools, and everyday utilities. Everything runs locally in the browser; files never leave your device.",
+      "foundingDate": "2025",
+      "knowsAbout": [
+        "Audio editing",
+        "Text to speech",
+        "Vocal removal",
+        "Stem separation",
+        "Speech to text",
+        "Voice changing",
+        "Noise reduction",
+        "Audio conversion"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/soundtools-io",
+        "https://www.crunchbase.com/organization/soundtools-8406",
+        "https://www.wikidata.org/wiki/Q140073639"
+      ]
+    }
+    </script>
+
+    <!-- Website schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://soundtools.io/#website",
+      "name": "SoundTools",
+      "alternateName": "soundtools.io",
+      "url": "https://soundtools.io",
+      "publisher": { "@id": "https://soundtools.io/#organization" }
+    }
+    </script>
+
+    <!-- WebApplication schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://soundtools.io/slowed-reverb/#webapp",
+      "name": "SoundTools Slowed and Reverb Maker",
+      "url": "https://soundtools.io/slowed-reverb/",
+      "applicationCategory": "MultimediaApplication",
+      "browserRequirements": "Works in any modern web browser on desktop and mobile (Windows, Mac, Linux, iOS, and Android). No install required.",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://soundtools.io/#organization"
+      },
+      "datePublished": "2025",
+      "dateModified": "2026-07-14",
+      "inLanguage": "en",
+      "featureList": [
+        "Turn any song into a slowed and reverb version",
+        "Presets: TikTok Slowed (80% speed), Nightcore Reverse (75%), and Vaporwave Aesthetic (65%)",
+        "Custom mode with independent speed (50-100%) and reverb (0-200%) sliders",
+        "Pitch is preserved when slowing down — no chipmunk effect",
+        "Supports MP3, FLAC, WAV, AAC, and OGG; downloads as MP3",
+        "Processing runs locally in your browser — audio never leaves your device",
+        "Free and unlimited, no account or install required"
+      ],
+      "description": "Free online slowed and reverb maker that runs in your browser. Turn any song into a slowed + reverb version using the TikTok Slowed, Nightcore Reverse, or Vaporwave Aesthetic presets, or set the speed and reverb amount yourself. Pitch is preserved when slowing down. No account required, and your audio never leaves your device."
+    }
+    </script>
+
+    <!-- HowTo Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Create Slowed and Reverb Audio",
+      "description": "Create slowed and reverb audio effects in 3 simple steps using our free online tool",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Upload your audio file",
+          "text": "Select the audio file you want to slow down and add reverb to",
+          "position": 1
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Adjust speed and reverb",
+          "text": "Choose a preset (TikTok Slowed, Nightcore Reverse, Vaporwave) or use custom sliders to adjust speed and reverb amount",
+          "position": 2
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Download slowed audio",
+          "text": "Click 'Create Slowed Audio' and download your slowed and reverb track instantly",
+          "position": 3
+        }
+      ],
+      "totalTime": "PT30S"
+    }
+    </script>
+    
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I make slowed and reverb audio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload your audio file, choose a preset like 'TikTok Slowed' (80% speed, medium reverb) or adjust the speed and reverb sliders manually for custom settings, then click 'Create Slowed Audio' to download your track with the slowed tempo and reverb effect applied."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What audio formats are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our slowed and reverb maker supports MP3, FLAC, WAV, AAC, and OGG audio formats. Upload any of these formats and download your slowed audio as high-quality MP3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this slowed and reverb maker free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, completely free with no file limits, no subscriptions, and no hidden charges. Create unlimited slowed and reverb audio tracks for TikTok, YouTube, or personal use."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to create slowed audio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most audio files process in under 30 seconds. The exact time depends on your file size and the speed/reverb settings you choose, but even large files typically complete within a minute."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the TikTok Slowed preset?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TikTok Slowed preset sets your audio to 80% of the original speed with medium reverb effect, creating the popular slowed and reverb sound commonly used in TikTok videos, Instagram reels, and social media edits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I slow down a song without changing the pitch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Our tool slows down the audio while preserving the original pitch, so the song doesn't sound lower or \"chipmunk-like\" - just slower with reverb. This maintains the natural sound of the vocals and instruments."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between the presets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TikTok Slowed (80% speed, medium reverb) is the most popular for social media. Nightcore Reverse (75% speed, light reverb) is more dramatic with subtle atmosphere. Vaporwave Aesthetic (65% speed, heavy reverb) creates deep, dreamy vibes for extreme slow-down effects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use slowed and reverb audio on TikTok and YouTube?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you can use your created slowed and reverb audio in your own videos. However, remember that the original song may still be subject to copyright. Use royalty-free music or music you have rights to for the best legal protection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install any software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No installation required! This slowed and reverb maker works entirely in your web browser. Just visit this page, upload your audio, adjust settings, and download your slowed track."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I adjust the speed and reverb separately?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, absolutely. Choose the 'Custom' preset and use the two sliders to independently control speed (50-100%) and reverb amount (0-200%). This gives you complete creative control over your slowed audio sound, including extreme reverb effects for experimental and ambient sounds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will slowed audio sound good?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The pitch is preserved when the track is slowed, so vocals and instruments keep their natural character rather than dropping into a chipmunk or demon-voice effect, and the reverb tail is applied smoothly. Output is a high-quality MP3. Bear in mind that slowing audio down is a real transformation of the original recording — at 65% and below the effect is meant to be obvious."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I slow down audio more than 50%?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Currently, the tool supports slowing down to 50% of original speed (half speed). This covers most use cases from subtle slowing to extreme vaporwave effects. For most slowed and reverb tracks, 65-80% speed is ideal."
+          }
+        }
+      ]
+    }
+    </script>
+    
+
+
+    <style>
+        kbd {
+            font-family: monospace;
+            font-size: 0.875rem;
+        }
+
+        /* Styled file upload button */
+        .styled-file-upload {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+        .styled-file-upload input[type="file"] {
+            display: none;
+        }
+        .styled-file-upload .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: #4f5aed;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .styled-file-upload .upload-btn:hover {
+            background: #3d47d9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 90, 237, 0.3);
+        }
+        .styled-file-upload .upload-btn:active {
+            transform: translateY(0);
+        }
+        .styled-file-upload .upload-filename {
+            font-size: 0.9375rem;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+        }
+
+        /* CTA download button */
+        .cta-download-btn {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: white;
+            color: #16a34a;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 10px;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            box-sizing: border-box;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .cta-download-btn:hover {
+            background: #f0fdf4;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+    </style>
+
+
+
+    <!-- ================================================== -->
+    <!--    START - NEW: REPEAT VISITOR TRACKING SYSTEM     -->
+    <!-- ================================================== -->
+    <script>
+        // Tool usage tracking utility
+        const ToolTracker = {
+            STORAGE_KEY: 'soundtools_usage',
+            CURRENT_TOOL: 'slowed-reverb', // Set this per tool page
+            
+            // Get all usage data from localStorage
+            getUsageData() {
+                try {
+                    const data = localStorage.getItem(this.STORAGE_KEY);
+                    return data ? JSON.parse(data) : {};
+                } catch (e) {
+                    console.error('Error reading usage data:', e);
+                    return {};
+                }
+            },
+            
+            // Save usage data to localStorage
+            saveUsageData(data) {
+                try {
+                    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+                } catch (e) {
+                    console.error('Error saving usage data:', e);
+                }
+            },
+            
+            // Track that user successfully used a tool
+            trackToolSuccess(toolName = this.CURRENT_TOOL) {
+                const usage = this.getUsageData();
+                
+                // Initialize tool data if it doesn't exist
+                if (!usage[toolName]) {
+                    usage[toolName] = {
+                        count: 0,
+                        firstUsed: new Date().toISOString(),
+                        lastUsed: null
+                    };
+                }
+                
+                // Increment usage count
+                usage[toolName].count++;
+                usage[toolName].lastUsed = new Date().toISOString();
+                
+                this.saveUsageData(usage);
+                
+                return this.getAnalytics();
+            },
+            
+            // Get analytics data for GA4 events
+            getAnalytics() {
+                const usage = this.getUsageData();
+                const currentToolData = usage[this.CURRENT_TOOL] || { count: 0 };
+                
+                return {
+                    // How many times has user used THIS specific tool
+                    lifetime_tool_uses: currentToolData.count,
+                    
+                    // How many DIFFERENT tools has user tried (ever)
+                    total_tools_used: Object.keys(usage).length,
+                    
+                    // Is this a repeat user of ANY tool?
+                    is_repeat_user: Object.values(usage).some(tool => tool.count > 1),
+                    
+                    // Is this a repeat user of THIS SPECIFIC tool?
+                    is_repeat_tool_user: currentToolData.count > 1,
+                    
+                    // Total uses across ALL tools
+                    total_lifetime_uses: Object.values(usage).reduce((sum, tool) => sum + tool.count, 0),
+                    
+                    // Days since first use of this tool (if applicable)
+                    days_since_first_use: currentToolData.firstUsed 
+                        ? Math.floor((Date.now() - new Date(currentToolData.firstUsed)) / (1000 * 60 * 60 * 24))
+                        : 0
+                };
+            },
+            
+            // Track file selection with analytics
+            trackFileSelected(fileSize) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-file_selected`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': 'audio_file',
+                    'file_size': fileSize,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            },
+            
+             // Track preset selection with analytics
+            trackPresetSelected(presetName) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-preset_selected`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': presetName,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            },
+
+            // Track successful conversion with analytics
+            trackSuccess(additionalParams = {}) {
+                const analytics = this.trackToolSuccess(); // Increments count & returns analytics
+                
+                gtag('event', `${this.CURRENT_TOOL}-success`, {
+                    'event_category': this.CURRENT_TOOL,
+                    ...additionalParams,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses,
+                    'days_since_first_use': analytics.days_since_first_use
+                });
+            },
+            
+            // Track errors with analytics
+            trackError(errorMessage) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-error`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': 'processing_failed',
+                    'error_message': errorMessage,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            }
+        };
+        
+        // Log initial analytics on page load (optional - for debugging)
+        console.log('SoundTools Usage Analytics:', ToolTracker.getAnalytics());
+    </script>
+    <!-- ================================================== -->
+    <!--     END - NEW: REPEAT VISITOR TRACKING SYSTEM      -->
+    <!-- ================================================== -->
+
+</head>
+
+<body>
+    
+    <!-- NAV_START -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">SoundTools</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a class="mobile-dropdown-toggle">Tools</a>
+                    <div class="dropdown-menu mega-menu">
+                        <div class="mega-col">
+                            <span class="mega-heading">Effects</span>
+                            <a href="/eq/">EQ</a>
+                            <a href="/8d-audio/">8D Audio</a>
+                            <a href="/add-reverb-to-audio/">Add Reverb</a>
+                            <a href="/bass-boost/">Bass Boost</a>
+                            <a href="/nightcore/">Nightcore</a>
+                            <a href="/nightcore-reverse/">Nightcore Reverse</a>
+                            <a href="/slowed-reverb/">Slowed + Reverb</a>
+                            <a href="/sped-up/">Sped Up Audio</a>
+                            <a href="/tiktok-slowed-reverb/">TikTok Slowed</a>
+                            <a href="/vaporwave/">Vaporwave</a>
+                            <a href="/volume-booster/">Volume Booster</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Voice & AI</span>
+                            <a href="/voice-cloning/">Voice Cloning</a>
+                            <a href="/vocal-tuner/">Vocal Tuner</a>
+                            <a href="/voice-to-instrument/">Voice to Instrument</a>
+                            <a href="/noise-remover/">Noise Remover</a>
+                            <a href="/stem-splitter/">Stem Splitter</a>
+                            <a href="/text-to-speech/">Text to Speech</a>
+                            <a href="/speech-to-text/">Speech to Text</a>
+                            <a href="/speech-to-song/">Speech to Song</a>
+                            <a href="/vocal-remover/">Vocal Remover</a>
+                            <a href="/voice-changer/">Voice Changer</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Edit & Convert</span>
+                            <a href="/audio-converter/">Audio Converter</a>
+                            <a href="/audio-joiner/">Audio Joiner</a>
+                            <a href="/audio-trimmer/">Audio Trimmer</a>
+                            <a href="/flac-cover-art/">FLAC Cover Art</a>
+                            <a href="/audio-metadata-editor/">Metadata Editor</a>
+                            <a href="/pitch-shifter/">Pitch Shifter</a>
+                            <a href="/reverse-audio/">Reverse Audio</a>
+                            <a href="/tempo-changer/">Tempo Changer</a>
+                            <a href="/video-to-audio/">Video to Audio</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Create & Analyze</span>
+                            <a href="/beat-maker/">Beat Maker</a>
+                            <a href="/bpm-detector/">BPM Detector</a>
+                            <a href="/granular-synthesizer/">Granular Synthesizer</a>
+                            <a href="/hearing-test/">Hearing Test</a>
+                            <a href="/music-visualizer/">Music Visualizer</a>
+                            <a href="/soundboard/">Soundboard</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/lab/">The Lab</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- NAV_END -->
+
+
+
+    <header>
+        <div class="container">
+            <h1>Slowed and Reverb Maker</h1>
+            <time class="last-updated" datetime="2026-07-14">Updated July 14, 2026</time>
+            <p class="tagline">A free slowed and reverb generator — make slowed + reverb songs online for TikTok, vaporwave, and nightcore reverse edits. Also works as a slow and reverb maker for any track.</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Ad Slot 1: Top Leaderboard -->
+        <!--
+        <div class="ad-placeholder leaderboard">
+            AD SLOT 1: Leaderboard (728x90 or 320x50 mobile)
+        </div>
+        -->
+
+        <section class="tool-section">
+            <div class="intro-text">
+                <p>Upload your audio file and apply the slowed reverb effect with one click. Adjust playback speed and reverb depth separately, then preview your track before downloading. Works with MP3, WAV, FLAC, AAC, and OGG — no account or download required.</p>
+            </div>
+
+            <!-- File Upload -->
+            <div class="file-input-group">
+                <label for="audioFile">Upload Your Audio File</label>
+                <label class="styled-file-upload">
+                    <input type="file" id="audioFile" accept="audio/mp3,audio/flac,audio/wav,audio/aac,audio/ogg,.mp3,.flac,.wav,.aac,.ogg" aria-label="Choose audio file">
+                    <span class="upload-btn">📂 Choose File</span>
+                    <span class="upload-filename" id="uploadFilename">No file selected</span>
+                </label>
+            </div>
+
+            <!-- Preview Player (SoundToolsPlayer) -->
+            <div id="previewPlayer" style="display: none;"></div>
+
+            <!-- Preset Buttons -->
+            <div class="preset-buttons">
+                <button class="preset-btn" data-speed="80" data-reverb="50">
+                    <span class="preset-name">🎵 TikTok Slowed</span>
+                    <span class="preset-desc">80% speed, medium reverb</span>
+                </button>
+                <button class="preset-btn" data-speed="75" data-reverb="30">
+                    <span class="preset-name">⚡ Nightcore Reverse</span>
+                    <span class="preset-desc">75% speed, light reverb</span>
+                </button>
+                <button class="preset-btn" data-speed="65" data-reverb="80">
+                    <span class="preset-name">🌊 Vaporwave Aesthetic</span>
+                    <span class="preset-desc">65% speed, heavy reverb</span>
+                </button>
+                <button class="preset-btn active" data-speed="100" data-reverb="0">
+                    <span class="preset-name">🎛️ Custom</span>
+                    <span class="preset-desc">Adjust sliders below</span>
+                </button>
+            </div>
+
+            <!-- Speed Slider -->
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Speed</span>
+                    <span class="slider-value" id="speedValue">100%</span>
+                </div>
+                <input type="range" min="50" max="100" value="100" class="slider" id="speedSlider" aria-label="Adjust audio speed">
+                <div class="slider-hint">
+                    <span>Slower (50%)</span>
+                    <span>Normal (100%)</span>
+                </div>
+            </div>
+
+            <!-- Reverb Slider -->
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Reverb</span>
+                    <span class="slider-value" id="reverbValue">0%</span>
+                </div>
+                <input type="range" min="0" max="200" value="0" class="slider" id="reverbSlider" aria-label="Adjust reverb amount">
+                <div class="slider-hint">
+                    <span>None (0%)</span>
+                    <span>Maximum (200%)</span>
+                </div>
+            </div>
+
+            <button id="processBtn" disabled aria-label="Create slowed and reverb audio">Create Slowed Audio</button>
+            
+            <div id="status" role="status" aria-live="polite"></div>
+        </section>
+
+        <!-- Ad Slot 2: During Processing -->
+        <!--
+        <div id="processingAd" class="ad-placeholder rectangle" style="display: none;">
+            AD SLOT 2: Rectangle (300x250) - Shown during processing
+        </div>
+        -->
+
+        <section class="info-section">
+            <h2>What is Slowed and Reverb Audio?</h2>
+            <p>Slowed and reverb is a popular audio effect that reduces the tempo of a song while adding an echo-like reverb effect. This creates a dreamy, atmospheric sound that's become hugely popular on TikTok, YouTube, and social media for music edits, aesthetic videos, and creating chill vibes.</p>
+            <p>Looking to create slowed reverb audio specifically for TikTok videos? Try our <a href="/tiktok-slowed-reverb/">TikTok Slowed Reverb Maker</a> — it's optimized for TikTok-ready audio output.</p>
+
+            <h2>How to Use This Slowed + Reverb Maker</h2>
+            <p>Creating slowed and reverb audio is simple with our free online tool:</p>
+            <ul>
+                <li><strong>Choose a Preset:</strong> Click 'TikTok Slowed', 'Nightcore Reverse', or 'Vaporwave Aesthetic' for instant settings</li>
+                <li><strong>Or Customize:</strong> Select 'Custom' and use the sliders to adjust speed (50-100%) and reverb (0-200%) to your exact preferences</li>
+                <li><strong>Upload Your File:</strong> Select any MP3, FLAC, WAV, AAC, or OGG audio file from your device</li>
+                <li><strong>Preview Your Changes:</strong> Click 'Preview Audio' or press spacebar to hear your slowed and reverb effects in real-time before downloading</li>
+                <li><strong>Create & Download:</strong> Click 'Create Slowed Audio' and download your slowed and reverb track in seconds</li>
+            </ul>
+            <p>If you want to change playback speed without adding reverb, our <a href="/tempo-changer/">Tempo Changer</a> gives you more precise BPM and speed control.</p>
+
+            <h2>Popular Slowed Audio Presets</h2>
+            <p><strong>TikTok Slowed (80% speed, medium reverb):</strong> The most popular preset for TikTok edits and social media videos. Creates that signature slowed and reverb sound that's trending everywhere.</p>
+            
+            <p><strong>Nightcore Reverse (75% speed, light reverb):</strong> The opposite of nightcore - instead of speeding up, we slow down. Perfect for creating dramatic, emotional versions of songs with subtle atmosphere.</p>
+            
+            <p><strong>Vaporwave Aesthetic (65% speed, heavy reverb):</strong> Deep, dreamy, nostalgic vibes. This extreme slowed and reverb setting creates that classic vaporwave sound perfect for aesthetic videos and chill playlists.</p>
+
+        </section>
+
+        <!-- Ad Slot 3: Bottom Rectangle -->
+        <!--
+        <div class="ad-placeholder rectangle">
+            AD SLOT 3: Rectangle (300x250) - Bottom of page
+        </div>
+        -->
+
+        <section class="info-section">
+            <h2>Frequently Asked Questions</h2>
+            
+           <h3>How do I make slowed and reverb audio?</h3>
+            <p>Upload your audio file, choose a preset like 'TikTok Slowed' (80% speed, medium reverb) or adjust the speed and reverb sliders manually for custom settings, then click 'Create Slowed Audio' to download your track with the slowed tempo and reverb effect applied.</p>
+            
+           <h3>What audio formats are supported?</h3>
+            <p>Our slowed and reverb maker supports MP3, FLAC, WAV, AAC, and OGG audio formats. Upload any of these formats and download your slowed audio as high-quality MP3.</p>
+            
+           <h3>Is this slowed and reverb maker free?</h3>
+            <p>Yes, completely free with no file limits, no subscriptions, and no hidden charges. Create unlimited slowed and reverb audio tracks for TikTok, YouTube, or personal use.</p>
+            
+           <h3>How long does it take to create slowed audio?</h3>
+            <p>Most audio files process in under 30 seconds. The exact time depends on your file size and the speed/reverb settings you choose, but even large files typically complete within a minute.</p>
+            
+           <h3>What is the TikTok Slowed preset?</h3>
+            <p>TikTok Slowed preset sets your audio to 80% of the original speed with medium reverb effect, creating the popular slowed and reverb sound commonly used in TikTok videos, Instagram reels, and social media edits.</p>
+            
+           <h3>Can I slow down a song without changing the pitch?</h3>
+            <p>Yes! Our tool slows down the audio while preserving the original pitch, so the song doesn't sound lower or "chipmunk-like" - just slower with reverb. This maintains the natural sound of the vocals and instruments.</p>
+            
+           <h3>What's the difference between the presets?</h3>
+            <p>TikTok Slowed (80% speed, medium reverb) is the most popular for social media. Nightcore Reverse (75% speed, light reverb) is more dramatic with subtle atmosphere. Vaporwave Aesthetic (65% speed, heavy reverb) creates deep, dreamy vibes for extreme slow-down effects.</p>
+            
+           <h3>Can I use slowed and reverb audio on TikTok and YouTube?</h3>
+            <p>Yes, you can use your created slowed and reverb audio in your own videos. However, remember that the original song may still be subject to copyright. Use royalty-free music or music you have rights to for the best legal protection.</p>
+            
+           <h3>Do I need to install any software?</h3>
+            <p>No installation required! This slowed and reverb maker works entirely in your web browser. Just visit this page, upload your audio, adjust settings, and download your slowed track.</p>
+            
+           <h3>Can I adjust the speed and reverb separately?</h3>
+            <p>Yes, absolutely. Choose the 'Custom' preset and use the two sliders to independently control speed (50-100%) and reverb amount (0-200%). This gives you complete creative control over your slowed audio sound, including extreme reverb effects for experimental and ambient sounds.</p>
+            
+           <h3>Will slowed audio sound good?</h3>
+            <p>Yes. The pitch is preserved when the track is slowed, so vocals and instruments keep their natural character rather than dropping into a chipmunk or demon-voice effect, and the reverb tail is applied smoothly. Output is a high-quality MP3. Bear in mind that slowing audio down is a real transformation of the original recording — at 65% and below the effect is meant to be obvious.</p>
+            
+           <h3>Can I slow down audio more than 50%?</h3>
+            <p>Currently, the tool supports slowing down to 50% of original speed (half speed). This covers most use cases from subtle slowing to extreme vaporwave effects. For most slowed and reverb tracks, 65-80% speed is ideal.</p>
+        </section>
+
+
+
+        <section class="related-tools-section">
+            <div class="container">
+                <h2 class="related-tools-header">Related Audio Tools</h2>
+                <p class="related-tools-subheader">Create more amazing audio with these popular tools</p>
+                
+                
+                
+                <!-- Related Tools Grid -->
+                <div class="related-tools-grid">
+
+                    <a href="/granular-synthesizer/" class="related-tool-card">
+                        <span class="tool-emoji">🔬</span>
+                        <h3>Granular Synthesizer</h3>
+                        <p>Turn any audio into ambient textures &amp; soundscapes</p>
+                    </a>
+                    
+                      <a href="/nightcore-reverse/" class="related-tool-card">
+                        <span class="tool-emoji">🌙</span>
+                        <h3>Nightcore Reverse</h3>
+                        <p>Dramatic 75% slowed audio</p>
+                    </a>
+                    
+
+                    <a href="/tiktok-slowed-reverb/" class="related-tool-card">
+                        <span class="tool-emoji">🎵</span>
+                        <h3>TikTok Slowed</h3>
+                        <p>Viral 80% slowed + reverb</p>
+                    </a>
+                    
+
+                     <a href="/vaporwave/" class="related-tool-card">
+                        <span class="tool-emoji">🌴</span>
+                        <h3>Vaporwave</h3>
+                        <p>Aesthetic 65% nostalgic audio</p>
+                    </a>
+                    
+
+                    <a href="/sped-up/" class="related-tool-card">
+                        <span class="tool-emoji">⚡</span>
+                        <h3>Sped Up Audio</h3>
+                        <p>Speed up songs without pitch change</p>
+                    </a>
+    
+                </div>
+                
+                <!-- Browse All Tools CTA -->
+                <div class="browse-all-cta">
+                    <a href="/" class="browse-all-btn">
+                        <span class="btn-icon">🎵</span>
+                        Browse All Audio Tools
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer with Mega Menu -->
+    <!-- FOOTER_START -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Effects</h3>
+                    <ul>
+                        <li><a href="/eq/">EQ</a></li>
+                        <li><a href="/8d-audio/">8D Audio</a></li>
+                        <li><a href="/add-reverb-to-audio/">Add Reverb</a></li>
+                        <li><a href="/bass-boost/">Bass Boost</a></li>
+                        <li><a href="/nightcore/">Nightcore</a></li>
+                        <li><a href="/nightcore-reverse/">Nightcore Reverse</a></li>
+                        <li><a href="/slowed-reverb/">Slowed + Reverb</a></li>
+                        <li><a href="/sped-up/">Sped Up Audio</a></li>
+                        <li><a href="/tiktok-slowed-reverb/">TikTok Slowed</a></li>
+                        <li><a href="/vaporwave/">Vaporwave</a></li>
+                        <li><a href="/volume-booster/">Volume Booster</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Voice & AI</h3>
+                    <ul>
+                        <li><a href="/voice-cloning/">Voice Cloning</a></li>
+                        <li><a href="/vocal-tuner/">Vocal Tuner</a></li>
+                        <li><a href="/voice-to-instrument/">Voice to Instrument</a></li>
+                        <li><a href="/noise-remover/">Noise Remover</a></li>
+                        <li><a href="/stem-splitter/">Stem Splitter</a></li>
+                        <li><a href="/text-to-speech/">Text to Speech</a></li>
+                        <li><a href="/speech-to-text/">Speech to Text</a></li>
+                        <li><a href="/speech-to-song/">Speech to Song</a></li>
+                        <li><a href="/vocal-remover/">Vocal Remover</a></li>
+                        <li><a href="/voice-changer/">Voice Changer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Edit & Convert</h3>
+                    <ul>
+                        <li><a href="/audio-converter/">Audio Converter</a></li>
+                        <li><a href="/audio-joiner/">Audio Joiner</a></li>
+                        <li><a href="/audio-trimmer/">Audio Trimmer</a></li>
+                        <li><a href="/flac-cover-art/">FLAC Cover Art</a></li>
+                        <li><a href="/audio-metadata-editor/">Metadata Editor</a></li>
+                        <li><a href="/pitch-shifter/">Pitch Shifter</a></li>
+                        <li><a href="/reverse-audio/">Reverse Audio</a></li>
+                        <li><a href="/tempo-changer/">Tempo Changer</a></li>
+                        <li><a href="/video-to-audio/">Video to Audio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Create & Analyze</h3>
+                    <ul>
+                        <li><a href="/beat-maker/">Beat Maker</a></li>
+                        <li><a href="/bpm-detector/">BPM Detector</a></li>
+                        <li><a href="/granular-synthesizer/">Granular Synthesizer</a></li>
+                        <li><a href="/hearing-test/">Hearing Test</a></li>
+                        <li><a href="/music-visualizer/">Music Visualizer</a></li>
+                        <li><a href="/soundboard/">Soundboard</a></li>
+                    </ul>
+                </div>
+
+                 <div class="footer-column">
+                    <h3>The Lab</h3>
+                    <ul>
+                        <li><a href="/lab/evaporator/">Evaporator</a></li>
+                        <li><a href="/lab/we-have-the-cherry-point-at-home/">Dead Empires</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service/">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoundTools - Free Audio Tools for Creators</p>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER_END -->
+    
+    
+
+    <!-- Mobile Menu Script -->
+    <script>
+        // Toggle main mobile menu
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Mobile dropdown toggle - handle both desktop hover and mobile click
+        const hasDropdownItems = document.querySelectorAll('.has-dropdown');
+        
+        hasDropdownItems.forEach(item => {
+            const toggle = item.querySelector('a, .mobile-dropdown-toggle');
+            const dropdown = item.querySelector('.dropdown-menu');
+            
+            if (toggle && dropdown) {
+                toggle.addEventListener('click', function(e) {
+                    // Only prevent default and toggle on mobile
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a:not(.mobile-dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            if (!nav.contains(event.target)) {
+                document.querySelector('.nav-links').classList.remove('active');
+            }
+        });
+    </script>
+
+    <!-- SoundToolsPlayer - shared preview player component -->
+    <script src="../preview-player/soundtools-player.js"></script>
+
+    <!-- Slowed + Reverb Tool Logic - REFACTORED TO USE WEB AUDIO API + FFMPEG HYBRID -->
+    <script type="module">
+        // Web Audio API for effects, FFmpeg for format conversion only
+        let FFmpeg = null;
+        let ffmpeg = null;
+        let ffmpegLoaded = false;
+        let ffmpegLoading = false;
+        let audioFile = null;
+
+        // Audio state
+        let audioContext = null;
+        let audioBuffer = null;
+        let previewBuffer = null;
+
+        // SoundToolsPlayer instance
+        let player = null;
+
+        const audioInput = document.getElementById('audioFile');
+        const processBtn = document.getElementById('processBtn');
+        const statusDiv = document.getElementById('status');
+        const uploadFilename = document.getElementById('uploadFilename');
+        const speedSlider = document.getElementById('speedSlider');
+        const reverbSlider = document.getElementById('reverbSlider');
+        const speedValue = document.getElementById('speedValue');
+        const reverbValue = document.getElementById('reverbValue');
+        const presetButtons = document.querySelectorAll('.preset-btn');
+        const previewPlayerDiv = document.getElementById('previewPlayer');
+
+        // Debounce timer for slider
+        let sliderDebounceTimer = null;
+
+        // Show status message
+        function showStatus(message, type = 'info') {
+            statusDiv.textContent = message;
+            statusDiv.className = type;
+        }
+
+        // Create multi-tap delay reverb for OFFLINE rendering
+        function createMultiTapReverbOffline(context, source, speedFactor, reverbAmount) {
+            source.playbackRate.value = speedFactor;
+            
+            if (reverbAmount === 0) return source;
+            
+            const reverbIntensity = reverbAmount / 100;
+            const inGain = 0.6 + (reverbIntensity * 0.3);
+            const outGain = (0.5 + (reverbIntensity * 0.4)) * 0.45;
+            const baseDelay = (40 + (reverbIntensity * 80)) / 1000;
+            const decay = 0.3 + (reverbIntensity * 0.5);
+            
+            const dryGain = context.createGain();
+            const masterGain = context.createGain();
+            
+            dryGain.gain.value = inGain;
+            
+            const numTaps = 5;
+            
+            for (let i = 0; i < numTaps; i++) {
+                const delay = context.createDelay(5.0);
+                const delayGain = context.createGain();
+                
+                const tapDelay = baseDelay * (1 + i * 0.5);
+                const tapGain = outGain * Math.pow(decay, i);
+                
+                delay.delayTime.value = tapDelay;
+                delayGain.gain.value = tapGain;
+                
+                source.connect(delay);
+                delay.connect(delayGain);
+                delayGain.connect(masterGain);
+            }
+            
+            source.connect(dryGain);
+            dryGain.connect(masterGain);
+            
+            return masterGain;
+        }
+
+        // Convert AudioBuffer to WAV blob
+        function bufferToWave(audioBuffer) {
+            const numChannels = audioBuffer.numberOfChannels;
+            const sampleRate = audioBuffer.sampleRate;
+            const format = 1;
+            const bitDepth = 16;
+            
+            const bytesPerSample = bitDepth / 8;
+            const blockAlign = numChannels * bytesPerSample;
+            
+            const samples = audioBuffer.length;
+            const dataSize = samples * blockAlign;
+            
+            const buffer = new ArrayBuffer(44 + dataSize);
+            const view = new DataView(buffer);
+            
+            const writeString = (offset, string) => {
+                for (let i = 0; i < string.length; i++) {
+                    view.setUint8(offset + i, string.charCodeAt(i));
+                }
+            };
+            
+            writeString(0, 'RIFF');
+            view.setUint32(4, 36 + dataSize, true);
+            writeString(8, 'WAVE');
+            writeString(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, format, true);
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+            writeString(36, 'data');
+            view.setUint32(40, dataSize, true);
+            
+            const channels = [];
+            for (let i = 0; i < numChannels; i++) {
+                channels.push(audioBuffer.getChannelData(i));
+            }
+            
+            let offset = 44;
+            for (let i = 0; i < samples; i++) {
+                for (let channel = 0; channel < numChannels; channel++) {
+                    const sample = Math.max(-1, Math.min(1, channels[channel][i]));
+                    view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+                    offset += 2;
+                }
+            }
+            
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        // Render preview buffer with current speed + reverb settings
+        async function renderPreviewBuffer() {
+            if (!audioBuffer) return null;
+
+            const speed = parseInt(speedSlider.value);
+            const reverb = parseInt(reverbSlider.value);
+            const speedFactor = speed / 100;
+
+            const newLength = Math.floor(audioBuffer.length / speedFactor);
+            const offlineContext = new OfflineAudioContext(
+                audioBuffer.numberOfChannels,
+                newLength,
+                audioBuffer.sampleRate
+            );
+
+            const source = offlineContext.createBufferSource();
+            source.buffer = audioBuffer;
+
+            const outputNode = createMultiTapReverbOffline(offlineContext, source, speedFactor, reverb);
+            outputNode.connect(offlineContext.destination);
+
+            source.start(0);
+            previewBuffer = await offlineContext.startRendering();
+            return previewBuffer;
+        }
+
+        // Create or update the SoundToolsPlayer with the current preview buffer
+        async function updatePlayer() {
+            if (!audioBuffer) return;
+
+            const wasPlaying = player ? player._isPlaying : false;
+
+            showStatus('Rendering preview...', 'info');
+
+            try {
+                await renderPreviewBuffer();
+
+                if (player) {
+                    player.load(previewBuffer, audioFile.name);
+                } else {
+                    player = new SoundToolsPlayer({
+                        container:   previewPlayerDiv,
+                        audioBuffer: previewBuffer,
+                        filename:    audioFile.name,
+                    });
+                }
+
+                previewPlayerDiv.style.display = '';
+
+                if (wasPlaying) {
+                    player.play();
+                }
+
+                const speed = parseInt(speedSlider.value);
+                const reverb = parseInt(reverbSlider.value);
+                const speedText = speed !== 100 ? ` at ${speed}% speed` : '';
+                const reverbText = reverb > 0 ? ` with ${reverb}% reverb` : '';
+                showStatus(`Preview ready${speedText}${reverbText}. Adjust settings or create your file.`, 'success');
+            } catch (error) {
+                console.error('Preview render error:', error);
+                showStatus('Error rendering preview: ' + error.message, 'error');
+            }
+        }
+
+        // Update slider displays
+        speedSlider.addEventListener('input', (e) => {
+            speedValue.textContent = e.target.value + '%';
+            presetButtons.forEach(btn => btn.classList.remove('active'));
+            presetButtons[3].classList.add('active'); // Activate "Custom"
+            
+            if (audioBuffer) {
+                clearTimeout(sliderDebounceTimer);
+                sliderDebounceTimer = setTimeout(() => {
+                    updatePlayer();
+                }, 300);
+            }
+        });
+
+        reverbSlider.addEventListener('input', (e) => {
+            reverbValue.textContent = e.target.value + '%';
+            presetButtons.forEach(btn => btn.classList.remove('active'));
+            presetButtons[3].classList.add('active'); // Activate "Custom"
+            
+            if (audioBuffer) {
+                clearTimeout(sliderDebounceTimer);
+                sliderDebounceTimer = setTimeout(() => {
+                    updatePlayer();
+                }, 300);
+            }
+        });
+
+        // Preset button handlers
+        presetButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const speed = btn.dataset.speed;
+                const reverb = btn.dataset.reverb;
+                
+                speedSlider.value = speed;
+                reverbSlider.value = reverb;
+                speedValue.textContent = speed + '%';
+                reverbValue.textContent = reverb + '%';
+                
+                presetButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                if (audioBuffer) {
+                    updatePlayer();
+                }
+
+                const presetName = btn.querySelector('.preset-name').textContent;
+                ToolTracker.trackPresetSelected(presetName);
+            });
+        });
+
+        // Load audio for preview
+        async function loadAudioForPreview(file) {
+            try {
+                showStatus('Loading audio...', 'info');
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const arrayBuffer = await file.arrayBuffer();
+                audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                
+                await updatePlayer();
+                
+                updateButtonState();
+            } catch (error) {
+                console.error('Error loading audio:', error);
+                showStatus('Error loading audio for preview: ' + error.message + '. Please insure the file you are attempting to use exists on your physical device, not "online only" / "cloud-only" files in DropBox or iCloud', 'error');
+                audioBuffer = null;
+                previewPlayerDiv.style.display = 'none';
+                updateButtonState();
+            }
+        }
+
+        // Lazy load FFmpeg for format conversion
+        async function loadFFmpeg() {
+            if (ffmpegLoaded) return true;
+            if (ffmpegLoading) {
+                while (ffmpegLoading) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                return ffmpegLoaded;
+            }
+
+            ffmpegLoading = true;
+
+            try {
+                showStatus('Loading format converter (this may take a moment on slow connections)...', 'info');
+                
+                const module = await import('../../ffmpeg/index.js');
+                FFmpeg = module.FFmpeg;
+                
+                ffmpeg = new FFmpeg();
+                
+                await ffmpeg.load({
+                    coreURL: '../../ffmpeg/ffmpeg-core.js',
+                    wasmURL: 'https://cdn.soundtools.io/ffmpeg/ffmpeg-core.wasm',
+                });
+                
+                ffmpegLoaded = true;
+                showStatus('Ready!', 'success');
+                return true;
+            } catch (error) {
+                ffmpegLoaded = false;
+                showStatus('Error loading converter: ' + error.message, 'error');
+                console.error('FFmpeg load error:', error);
+                return false;
+            } finally {
+                ffmpegLoading = false;
+            }
+        }
+
+        // Update button state
+        function updateButtonState() {
+            const shouldEnable = !!(audioBuffer && audioFile && ffmpegLoaded);
+            processBtn.disabled = !shouldEnable;
+            
+            if (statusDiv.classList.contains('success-enhanced')) {
+                return;
+            }
+            
+            if (audioBuffer && audioFile && !ffmpegLoaded) {
+                if (ffmpegLoading) {
+                    processBtn.textContent = 'Loading converter...';
+                    showStatus('⏳ Loading format converter... This may take a moment on slow connections.', 'info');
+                } else {
+                    processBtn.textContent = 'Preparing...';
+                    showStatus('Preparing format converter...', 'info');
+                }
+            } else if (shouldEnable) {
+                processBtn.textContent = 'Create Slowed + Reverb';
+            } else {
+                processBtn.textContent = 'Create Slowed + Reverb';
+            }
+        }
+
+        // Handle file selection
+        audioInput.addEventListener('change', async (e) => {
+            if (statusDiv.classList.contains('success-enhanced')) { statusDiv.className = ''; statusDiv.innerHTML = ''; }
+            audioFile = e.target.files[0];
+
+            if (audioFile) {
+                ToolTracker.trackFileSelected(audioFile.size);
+
+                uploadFilename.textContent = audioFile.name;
+                
+                await loadAudioForPreview(audioFile);
+                
+                if (!ffmpegLoaded && audioBuffer) {
+                    await loadFFmpeg();
+                    updateButtonState();
+                }
+            } else {
+                uploadFilename.textContent = 'No file selected';
+                previewPlayerDiv.style.display = 'none';
+                if (player) { player.destroy(); player = null; }
+                audioBuffer = null;
+                updateButtonState();
+            }
+        });
+
+        // Process audio: Web Audio API for effects, FFmpeg for format conversion
+        processBtn.addEventListener('click', async () => {
+            if (statusDiv.classList.contains('success-enhanced')) { statusDiv.className = ''; statusDiv.innerHTML = ''; }
+            if (!audioBuffer || !audioFile) {
+                showStatus('Please upload an audio file first', 'error');
+                return;
+            }
+
+            if (!ffmpegLoaded) {
+                showStatus('Waiting for format converter to load... Please be patient on slow connections.', 'info');
+                const loadResult = await loadFFmpeg();
+                if (!loadResult || !ffmpegLoaded) {
+                    showStatus('✗ Error: Format converter failed to load. Please refresh the page and try again.', 'error');
+                    processBtn.disabled = false;
+                    updateButtonState();
+                    return;
+                }
+            }
+
+            const speed = parseInt(speedSlider.value);
+            const reverb = parseInt(reverbSlider.value);
+            const speedFactor = speed / 100;
+
+            try {
+                processBtn.disabled = true;
+                
+                if (player) {
+                    player.stop();
+                }
+                
+                showStatus('Rendering audio with speed and reverb (Web Audio API)...', 'info');
+
+                const newLength = Math.floor(audioBuffer.length / speedFactor);
+                const offlineContext = new OfflineAudioContext(
+                    audioBuffer.numberOfChannels,
+                    newLength,
+                    audioBuffer.sampleRate
+                );
+
+                const source = offlineContext.createBufferSource();
+                source.buffer = audioBuffer;
+
+                const outputNode = createMultiTapReverbOffline(offlineContext, source, speedFactor, reverb);
+                outputNode.connect(offlineContext.destination);
+                
+                source.start(0);
+                
+                showStatus('Processing slowed + reverb effects...', 'info');
+                const renderedBuffer = await offlineContext.startRendering();
+                
+                showStatus('Encoding to WAV...', 'info');
+                const wavBlob = bufferToWave(renderedBuffer);
+                const wavArrayBuffer = await wavBlob.arrayBuffer();
+                const wavData = new Uint8Array(wavArrayBuffer);
+                
+                showStatus('Converting to original format...', 'info');
+                
+                await ffmpeg.writeFile('input.wav', wavData);
+                
+                // Write original file to FFmpeg filesystem for metadata preservation
+                const originalData = new Uint8Array(await audioFile.arrayBuffer());
+                const fileExt = audioFile.name.split('.').pop().toLowerCase();
+                const originalFileName = `original.${fileExt}`;
+                await ffmpeg.writeFile(originalFileName, originalData);
+                
+                const outputFileName = `output.${fileExt}`;
+                
+                // -map 0:a = audio from processed WAV, -map 1:v? = cover art from original
+                // -map_metadata 1 = text metadata from original, -c:v copy = passthrough cover art
+                let ffmpegCommand = ['-i', 'input.wav', '-i', originalFileName, '-map', '0:a', '-map', '1:v?', '-map_metadata', '1', '-c:v', 'copy'];
+                
+                if (fileExt === 'mp3') {
+                    ffmpegCommand.push('-codec:a', 'libmp3lame', '-b:a', '320k', outputFileName);
+                } else if (fileExt === 'flac') {
+                    ffmpegCommand.push('-codec:a', 'flac', outputFileName);
+                } else if (fileExt === 'ogg') {
+                    ffmpegCommand.push('-codec:a', 'libvorbis', '-q:a', '8', outputFileName);
+                } else if (fileExt === 'aac' || fileExt === 'm4a') {
+                    ffmpegCommand.push('-codec:a', 'aac', '-b:a', '256k', outputFileName);
+                } else if (fileExt === 'wav') {
+                    ffmpegCommand.push('-codec:a', 'pcm_s16le', outputFileName);
+                } else {
+                    ffmpegCommand.push('-codec:a', 'libmp3lame', '-b:a', '320k', 'output.mp3');
+                }
+                
+                await ffmpeg.exec(ffmpegCommand);
+                
+                showStatus('Preparing download...', 'info');
+                
+                const finalFileName = fileExt === 'aac' || fileExt === 'm4a' || ['mp3', 'flac', 'ogg', 'wav'].includes(fileExt) ? outputFileName : 'output.mp3';
+                const data = await ffmpeg.readFile(finalFileName);
+                
+                const mimeTypes = {
+                    'mp3': 'audio/mpeg',
+                    'flac': 'audio/flac',
+                    'ogg': 'audio/ogg',
+                    'wav': 'audio/wav',
+                    'aac': 'audio/aac',
+                    'm4a': 'audio/mp4'
+                };
+                const mimeType = mimeTypes[fileExt] || 'audio/mpeg';
+                
+                const blob = new Blob([data.buffer], { type: mimeType });
+                const downloadUrl = URL.createObjectURL(blob);
+                
+                const originalName = audioFile.name.substring(0, audioFile.name.lastIndexOf('.')) || audioFile.name;
+                const downloadExt = fileExt === 'aac' || fileExt === 'm4a' || ['mp3', 'flac', 'ogg', 'wav'].includes(fileExt) ? fileExt : 'mp3';
+                const downloadName = `${originalName}_slowed_reverb.${downloadExt}`;
+
+                await ffmpeg.deleteFile('input.wav');
+                await ffmpeg.deleteFile(originalFileName);
+                await ffmpeg.deleteFile(finalFileName);
+
+                const analytics = ToolTracker.getAnalytics();
+
+                statusDiv.innerHTML = `
+                    <div class="success-message-enhanced">
+                        <div class="success-text">✔ Slowed + reverb applied!</div>
+                        <div class="next-tools">
+                            <span class="next-label">Try next:</span>
+                            <a href="/bass-boost/" class="next-tool-link" data-tool="bass-boost">🔊 Bass Boost</a>
+                            <a href="/audio-trimmer/" class="next-tool-link" data-tool="audio-trimmer">✂️ Audio Trimmer</a>
+                            <a href="/volume-booster/" class="next-tool-link" data-tool="volume-booster">📈 Volume Booster</a>
+                            <a href="/" class="next-tool-link all-tools" data-tool="all-tools">More tools →</a>
+                        </div>
+                        <a id="ctaDownloadBtn" class="cta-download-btn" href="${downloadUrl}" download="${downloadName}">⬇️ Download Slowed + Reverb (${downloadExt.toUpperCase()})</a>
+                    </div>
+                `;
+
+                statusDiv.classList.add('success-enhanced');
+
+                statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.getElementById('ctaDownloadBtn').addEventListener('click', function() {
+                    gtag('event', 'cta-download-clicked', {
+                        'event_category': 'download',
+                        'source_tool': 'slowed-reverb',
+                        'output_format': fileExt
+                    });
+                    setTimeout(() => URL.revokeObjectURL(downloadUrl), 60000);
+                });
+
+                gtag('event', 'related-tools-cta-shown', {
+                    'event_category': 'cross_tool_engagement',
+                    'event_label': 'success_message_inline',
+                    'source_tool': 'slowed-reverb',
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user
+                });
+
+                document.querySelectorAll('.next-tool-link').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        const destinationTool = this.getAttribute('data-tool');
+                        gtag('event', 'related-tool-clicked', {
+                            'event_category': 'cross_tool_engagement',
+                            'source_tool': 'slowed-reverb',
+                            'destination_tool': destinationTool,
+                            'cta_position': 'inline_success',
+                            'lifetime_tool_uses': analytics.lifetime_tool_uses
+                        });
+                    });
+                });
+
+                ToolTracker.trackSuccess({
+                    'event_label': `speed_${speed}_reverb_${reverb}`,
+                    'speed': speed,
+                    'reverb': reverb,
+                    'method': 'web_audio_api_ffmpeg',
+                    'output_format': fileExt
+                });
+                
+                processBtn.disabled = false;
+                updateButtonState();
+            } catch (error) {
+                showStatus('✗ Error: ' + error.message, 'error');
+                console.error(error);
+                processBtn.disabled = false;
+                updateButtonState();
+
+                console.log('error.message', error.message);
+                console.log('error.stack', error.stack);
+
+                const errorMessage = error?.message || error?.toString() || String(error) || 'Unknown error';   
+                console.log('errorMessage', errorMessage);
+                const stackFirstLine = error?.stack ? error.stack.split('\n')[1]?.trim()  : ''; 
+                console.log('stackFirstLine', stackFirstLine);
+                const errorForGA4 = stackFirstLine  ? `${errorMessage} | ${stackFirstLine}`  : errorMessage;
+                console.log('errorForGA4', errorForGA4);
+                ToolTracker.trackError(errorForGA4);
+               
+            }
+        });
+
+        // Initialize
+        showStatus('Select your audio file and choose a preset or adjust the sliders.', 'info');
+    </script>
+</body>
+</html>

@@ -47,6 +47,32 @@
 | 2026-10-28 | change audio speed / speed up audio | ❌(两次采样全同;三家的 speed 页都不在场,含 ST 3137 词页) | 品牌双 Entry(musicspeedchanger)+ EMD + Reddit/YouTube 双双打「保调变速」| 簇核心=保调;我们双页切分成立,保调范围 ±25% 为产品级留观(009) |
 | 2026-10-28 | increase mp3 volume | ❌(**SS #6,第三次进簇**) | Web 工具簇:EMD(mp3louder,501 词无 schema #1)+ Reddit(50+ 评论)+ freebeat | 在位页弱,我们 896 词/4 schema 竞争力足够;等 GSC(010) |
 | 2026-10-28 | volume booster | ❌(**ST #3,第四次在场**) | **应用/扩展簇**:Chrome Store ×2 + Play ×2 + MS Store,Web 工具仅 2 席 | 头部是结构性逆风,页面价值在 online 长尾;双页蚕食裁定:两词两条 SERP,分工确认(010) |
+| 2026-10-28 | normalize audio | 部分(**AE #6,首次露面**) | **信息意图过半**:Wikipedia/行业博客/Audacity 手册/Reddit/YouTube;两次采样大不同(不稳定) | LUFS 目标归一能力站内已拆分承接(normalize=峰值、loudness-meter=LUFS);信息向指南候选交内容计划,先核对 vs-compress 篇(011) |
+| 2026-10-28 | audio equalizer / online equalizer | ❌(**ST 双席 #7/#2,SS #9**) | 主词被系统 EQ 污染(Chrome Store/FxSound/Play);online 簇全部以段数为标题规格(10-band ×3) | **产品升级候选 P2:3-band→10-band+流派预设**(012);主攻 online 切片,不追系统 EQ 头部 |
+| 2026-10-28 | pitch changer / change key of song | ❌ | EMD×2 + 应用×2;change key 为歌手向独立簇 | 无任务;transpose 长尾留观(013) |
+| 2026-10-28 | bpm finder / song key finder | ❌ | DJ 生态(tunebat 数据库 #1);合并页形态是市场标准(SS 拆页不在场) | **产品候选 P3:Camelot 记号展示**(014) |
+| 2026-10-28 | ringtone maker | ❌(**SS #6,第四次进簇**) | **应用商店污染最重**(Play×2+App Store 占 #1/#2/#8) | M4R 能力已主打;Android title 表达数据门控(015) |
+| 2026-10-28 | transcribe audio to text | ❌ | 大品牌战场(EMD+happyscribe+Canva/Microsoft/Adobe);SS/ST 的 Whisper 重页也不在场(第四例) | 定位=本地隐私长尾服务页(016) |
+| 2026-10-28 | voice recorder online | ❌ | 老牌占位(EMD+vocaroo+speakpipe)+ Google 自家 #8 | **产品候选 P3:mic-test 页**(017);录后编辑是我们的差异轴 |
+| 2026-10-28 | music visualizer | ❌ | 视频模板 SaaS 市场(vizz/Renderforest/Specterr);三家均不在场 | 品类不同不追;风格扩展为产品决策留观(018) |
+| 2026-10-28 | slowed and reverb | ❌ | 趋势簇:EMD×3 + Spotify 歌单 #5;SS/ST 重页均不在场 | 与 nightcore 候选合并;趋势热度前置核(019) |
+| 2026-10-28 | remove silence from audio | ❌(单采样,竞争 0.42 全簇最高) | AI 清理品牌(audo/cleanvoice)+ HuggingFace Space #1 + rendley 第八簇 | 诚实规则式定位,长尾服务页(020) |
+| 2026-10-28 | mp3 tag editor | ❌ | Mp3tag 桌面软件统治 + 商店 ×2 + Reddit(c2) | Web 切片(cover art/批量)满配;无任务(021) |
+| 2026-10-28 | soundboard / online soundboard maker | ❌ | 裸词=声音库站(不同品);maker 簇 **ST #1(第五次在场、首次登顶)**;Limewire 的 Discord 角度留观 | 无任务;ST #1 页为内容标杆(022) |
+| 2026-10-28 | audio compressor online | ❌ | **全部是文件体积压缩器**——动力学压缩无独立 Web 词场 | 体积意图由 compress-audio 承接;/compressor=长尾服务页(023) |
+| 2026-10-28 | add echo to audio | ❌(**AE #5,第二次露面**) | 薄工具簇 | 无任务(024) |
+| 2026-10-28 | fade out audio | 部分(**AE #3 + SS #4 双双在册**) | 薄工具簇 + Audacity 手册 + Adobe | 无任务;与 cutter 边缘淡化互链(025) |
+| 2026-10-28 | convert stereo to mono | ❌ | 薄工具簇 + DIY 信息页 | 无任务;单声道/混缩双模式表达留观(026) |
+| 2026-10-28 | 8d audio | ❌ | **听歌意图**:Spotify/Apple 歌单占 3 席 + 信息博客;SS/ST 8D 页均不在场 | 制作意图在长尾;无任务(027) |
+| 2026-10-28 | bitrate converter | ❌(未单独采样,待补) | 转换簇长尾(002 证据) | 唯一专用 bitrate 页,长尾定位(028) |
+| 2026-10-28 | loudness meter online | ❌(未单独采样,待补) | — | 站内唯一 LUFS 测+导页;与 normalize 切分成立(029) |
+| 2026-10-28 | metronome online | ❌ | EMD×2 + 专站林立(独立小品类) | 编辑器配套工具定位(030) |
+| 2026-10-28 | treble booster | ❌ | **全簇是吉他效果器踏板**(guitarpedalx/Reddit/Wikipedia/Sweetwater/eBay)——关键词语义错配 | 候选:title 加 "for audio files" 限定,数据循环后定(031) |
+| 2026-10-28 | low pass filter audio online | 部分(**AE #1,全审计首次登顶**) | 薄工具簇、意图干净(去嘶声) | 可竞争切片;high-pass 同构待采样(032) |
+| 2026-10-28 | flac to mp3 | ❌ | 纯大厂格式对簇(cloudconvert/freeconvert/convertio/zamzar)+ freebeat 第八簇 | 五个成对转换页原型正确、共享对手集(033) |
+| 2026-10-28 | 432 hz converter | ❌ | EMD×2 + Chrome 扩展 + freebeat 第九簇 | 无任务(034) |
+| 2026-10-28 | audio looper online / bitcrusher online / spectrogram generator online | ❌ | 均为薄工具簇;bitcrusher 带复古游戏色彩;AudioCipher 的隐藏信息角度与 008 同族 | 无任务(035–037) |
+| 2026-10-28 | (独有工具五页) | — | 无成熟关键词簇,不做 SERP 采样 | 服务页/长尾页,GSC 反哺(038) |
 
 三个词第一页均无我们与三家直接竞品——head 簇当前是「大品牌 + 内容站 + 商店」的局,印证低竞争词先行。
 
@@ -63,3 +89,6 @@
 - [008-reverse-audio.md](008-reverse-audio.md) — 2026-10-28(趋势簇:挑战内容统治头部;两篇指南候选交内容计划;含 extract-audio 版权 FAQ 级联实施日志)
 - [009-change-audio-speed.md](009-change-audio-speed.md) — 2026-10-28(无页面任务;簇核心=保调变速,双页切分确认成立,保调范围为产品级留观)
 - [010-increase-volume.md](010-increase-volume.md) — 2026-10-28(第一轮 10 项收官;双页蚕食裁定=两词两条 SERP 分工确认;volume booster 头部为应用簇结构性逆风)
+- [011-normalize-audio.md](011-normalize-audio.md) — 2026-10-28(无页面任务;信息意图过半的簇;LUFS 能力已由 loudness-meter 承接)
+- [012-equalizer.md](012-equalizer.md) — 2026-10-28(产品升级候选 P2:3-band→10-band+预设,规格轴证据;系统 EQ 头部不追)
+- [013–038](.) — 2026-10-28(第二、三批:pitch/key-bpm/ringtone/transcribe/recorder/visualizer/slowed/silence/tag-editor/soundboard/compressor/echo/fade/stereo/3d/bitrate/loudness/metronome/treble/lowpass/成对转换/432/looper/bitcrusher/spectrogram/独有工具,每项一份精简 A–E 报告;产品候选 P3:Camelot 展示、mic-test 页;treble-booster 关键词语义错配发现)

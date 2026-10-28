@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Audio Compressor — Compress for WhatsApp | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-decode-gate.js" defer></script>
+<script src="/vendor/snip-bigfile.js" defer></script>
+<meta name="description" content="Compress an audio file for WhatsApp free: cut MP3, WAV or M4A size by bitrate or target size. Runs in your browser, files stay on your device.">
+<meta name="keywords" content="audio compressor, compress mp3, reduce audio file size, compress audio for whatsapp, compress mp3 for email, audio compressor online, make mp3 smaller, mp3 size reducer, audio file size reducer, compress audio online free">
+<link rel="canonical" href="https://snipsound.com/tools/audio-compressor/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/audio-compressor/">
+<link rel="alternate" hreflang="es" href="https://snipsound.com/es/comprimir-audio/">
+<link rel="alternate" hreflang="pt-BR" href="https://snipsound.com/pt/comprimir-audio/">
+<link rel="alternate" hreflang="ar" href="https://snipsound.com/ar/ضغط-الصوت/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/audio-compressor/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Audio Compressor — Compress for WhatsApp">
+<meta property="og:description" content="Compress an audio file for WhatsApp free: cut MP3, WAV or M4A size by bitrate or target size. Runs in your browser, files stay on your device.">
+<meta property="og:url" content="https://snipsound.com/tools/audio-compressor/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Audio Compressor — Compress for WhatsApp">
+<meta name="twitter:description" content="Compress an audio file for WhatsApp free: cut MP3, WAV or M4A size by bitrate or target size. Runs in your browser, files stay on your device.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+
+  
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 32px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .file-info { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .file-info .file-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; color: var(--text); }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove { margin-left: auto; background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: color 0.2s, border-color 0.2s; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  /* Mode toggle: Manual / Target size / Platform preset */
+  .mode-toggle {
+    display: inline-flex; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 3px; margin-bottom: 18px;
+    flex-wrap: wrap; gap: 0;
+  }
+  .mode-toggle button {
+    padding: 8px 16px; font-size: 13px; font-weight: 500;
+    border-radius: 999px; background: transparent; border: none;
+    color: var(--text-dim); cursor: pointer; font-family: inherit;
+    transition: color 0.15s, background 0.15s;
+  }
+  .mode-toggle button.active { background: var(--accent); color: #fff; }
+
+  /* Bitrate row (Manual mode) */
+  .bitrate-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px; margin-bottom: 16px;
+  }
+  .bitrate-card {
+    padding: 14px 16px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+    cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    text-align: left;
+  }
+  .bitrate-card:hover { border-color: var(--accent); }
+  .bitrate-card.selected { border-color: var(--accent); background: var(--accent-subtle); }
+  .bitrate-card-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; display: flex; align-items: baseline; gap: 6px; }
+  .bitrate-card-title .kbps { color: var(--accent); font-variant-numeric: tabular-nums; }
+  .bitrate-card-desc { font-size: 0.78rem; color: var(--text-dim); }
+
+  /* Platform presets (Discord, WhatsApp, etc.) */
+  .preset-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px; margin-bottom: 16px;
+  }
+  .preset-card {
+    padding: 14px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+    cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    text-align: left; display: flex; align-items: center; gap: 10px;
+  }
+  .preset-card:hover { border-color: var(--accent); }
+  .preset-card.selected { border-color: var(--accent); background: var(--accent-subtle); }
+  .preset-card .icon { font-size: 22px; line-height: 1; }
+  .preset-card .info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .preset-card-title { font-weight: 600; font-size: 0.92rem; }
+  .preset-card-limit { font-size: 0.78rem; color: var(--text-dim); margin-top: 2px; }
+  /* When the user's file is already under the platform's limit we
+     swap the dim "X MB max" subtitle for a green "Already fits" tag
+     so they don't waste a click compressing what's already small enough. */
+  .preset-card-ok { font-size: 0.78rem; color: #4caf50; margin-top: 2px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+  .preset-card-ok svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+  /* Target size mode */
+  .target-row {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 14px 16px; background: var(--surface2);
+    border-radius: 10px; margin-bottom: 16px;
+  }
+  .target-row label { font-size: 0.95rem; color: var(--text-dim); }
+  .target-row input[type="number"] {
+    width: 100px; padding: 8px 12px;
+    background: var(--bg); border: 1px solid var(--border-bright);
+    color: var(--text); font-family: inherit; font-size: 1rem;
+    border-radius: 6px;
+  }
+  .target-row input[type="number"]:focus { outline: none; border-color: var(--accent); }
+  .target-row .unit { color: var(--text-dim); }
+  .target-row .unit-select {
+    background: var(--surface2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 8px; font-size: 0.95rem; font-family: inherit; cursor: pointer;
+  }
+  .target-row .unit-select:focus { outline: none; border-color: var(--accent); }
+  .size-hint { font-size: 0.9rem; margin-top: 12px; color: var(--text-dim); line-height: 1.5; min-height: 1.3em; }
+  .size-hint strong { color: var(--text); font-weight: 600; }
+  .size-hint.ok { color: var(--green); }
+  .size-hint.ok strong { color: var(--green); }
+  .size-hint.warn { color: var(--orange); }
+  .size-hint.warn strong { color: var(--orange); }
+
+  /* Estimated output card */
+  .estimate-card {
+    padding: 16px 18px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .estimate-info { font-size: 0.9rem; color: var(--text-dim); }
+  .estimate-info strong { color: var(--text); font-weight: 600; }
+  .estimate-size {
+    text-align: right; font-size: 1.5rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #b599ff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-variant-numeric: tabular-nums;
+  }
+  .estimate-savings { font-size: 0.85rem; font-weight: 500; }
+  .estimate-savings.smaller { color: var(--green); }
+  .estimate-savings.bigger { color: var(--orange); }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+  /* Progress + notify hint shown while compressing. Inline below the
+     transport buttons so users can read the ETA without losing the
+     primary action. */
+  .compress-progress {
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border-radius: 10px;
+  }
+  .cp-bar {
+    position: relative;
+    height: 6px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .cp-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover, #9184ff));
+    border-radius: 3px;
+    transition: width 0.18s ease-out;
+  }
+  .cp-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+  }
+  .cp-pct { font-weight: 700; color: var(--text); }
+  .cp-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+  .cp-hint-text { flex: 1; min-width: 220px; }
+  .cp-hint-text strong { color: var(--text); font-weight: 600; }
+  .cp-notify-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.15s;
+  }
+  .cp-notify-btn:hover:not(:disabled) { opacity: 0.92; }
+  .cp-notify-btn:disabled { opacity: 0.55; cursor: default; }
+  /* Persistent result card — shown after a successful compress. Stays
+     visible (with a working Download button) even if the user dismissed
+     the browser save dialog, so they never lose the encoded blob. */
+  .compress-result {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: 14px; padding: 14px 18px;
+    background: linear-gradient(135deg, rgba(76,175,80,0.10), rgba(76,175,80,0.04));
+    border: 1px solid rgba(76,175,80,0.45);
+    border-radius: 10px;
+  }
+  .cr-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--green, #4caf50);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cr-info { flex: 1; min-width: 0; line-height: 1.35; }
+  .cr-title { font-weight: 700; color: var(--text); font-size: 0.95rem; }
+  .cr-meta { font-size: 0.8rem; color: var(--text-dim); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cr-download { flex-shrink: 0; padding: 9px 18px; }
+
+  /* SEO content section */
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul { padding-left: 22px; }
+
+  /* Platform limit table */
+  .limit-table {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px; margin: 18px 0 24px;
+  }
+  .limit-card {
+    padding: 14px 16px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+  }
+  .limit-card-name { font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .limit-card-size { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 700; }
+  .limit-card-note { font-size: 0.82rem; color: var(--text-dim); }
+
+  /* Bitrate guide */
+  .bitrate-guide {
+    display: grid; grid-template-columns: 70px 1fr 120px;
+    gap: 12px 18px; margin: 16px 0; align-items: baseline;
+  }
+  .bitrate-guide .bg-kbps { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--accent); }
+  .bitrate-guide .bg-name { color: var(--text); font-weight: 600; }
+  .bitrate-guide .bg-desc { grid-column: 1 / -1; color: var(--text-dim); font-size: 0.9rem; padding-left: 90px; margin-top: -8px; margin-bottom: 6px; }
+  .bitrate-guide .bg-size { color: var(--text-dim); font-variant-numeric: tabular-nums; font-size: 0.85rem; text-align: right; }
+  @media (max-width: 600px) {
+    .bitrate-guide { grid-template-columns: 70px 1fr; }
+    .bitrate-guide .bg-size { grid-column: 1 / -1; padding-left: 90px; text-align: left; }
+    .bitrate-guide .bg-desc { padding-left: 0; }
+  }
+
+  .related-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .related-tool { padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: border-color 0.15s, color 0.15s; }
+  .related-tool:hover { border-color: var(--accent); color: var(--accent); }
+  .related-tool .rt-desc { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+  .related-tool:hover .rt-desc { color: var(--text-dim); }
+
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .estimate-card { flex-direction: column; align-items: flex-start; }
+    .estimate-size { text-align: left; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "SnipSound Audio Compressor", "url": "https://snipsound.com/tools/audio-compressor/", "description": "Free online audio compressor. Reduce MP3, WAV, OGG, FLAC, AAC or M4A file size for WhatsApp, email, Discord and web uploads. Runs entirely in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How do I compress an audio file for WhatsApp?", "acceptedAnswer": { "@type": "Answer", "text": "Drop your audio file onto the page, pick the WhatsApp preset (16 MB), and click Compress. WhatsApp documents (which include audio) cap out at 100 MB, but voice notes and shared chats work best under 16 MB so they preview and send quickly on slow connections." } },
+  { "@type": "Question", "name": "How small can I compress an MP3?", "acceptedAnswer": { "@type": "Answer", "text": "You can drop bitrate as low as 32 kbps, which is roughly 1/10 the size of a 320 kbps MP3 but audibly degrades music. For voice and podcasts, 64–96 kbps is usually the sweet spot. For music, 128 kbps is the practical minimum and 192 kbps is the casual-listening floor." } },
+  { "@type": "Question", "name": "What's the difference between bitrate and file size?", "acceptedAnswer": { "@type": "Answer", "text": "Bitrate is how many kilobits of audio data the file stores per second; file size is bitrate × duration. A 1-minute MP3 at 128 kbps is about 960 KB; at 320 kbps it's about 2.4 MB. Lower bitrate = smaller file but less audio fidelity." } },
+  { "@type": "Question", "name": "Will compression reduce the audio quality?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — MP3 is a lossy codec, so reducing bitrate discards more frequency information. The audible loss depends on the source: voice recordings tolerate 64–96 kbps comfortably; music starts to feel \"thin\" below 128 kbps; demanding listeners notice the difference below 192 kbps." } },
+  { "@type": "Question", "name": "Is my file uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. SnipSound's compressor runs entirely in your browser using lamejs. Your audio never leaves your device." } },
+  { "@type": "Question", "name": "What input formats can I compress?", "acceptedAnswer": { "@type": "Answer", "text": "Any format your browser can decode — MP3, WAV, OGG, FLAC, AAC, M4A and more. The output is always MP3 because it's the most universally supported compressed format." } },
+  { "@type": "Question", "name": "Can I compress lossless audio (WAV/FLAC) without quality loss?", "acceptedAnswer": { "@type": "Answer", "text": "Not with MP3 — MP3 is always lossy. To shrink lossless audio while staying lossless, use the FLAC option in our Audio Converter (FLAC files are typically about 55% the size of WAV). If you don't need bit-perfect quality, MP3 at 256–320 kbps is much smaller and most listeners won't tell the difference." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Audio Compressor</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/" class="active">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">Audio Compressor</span></h1>
+    <p>Make audio files smaller for WhatsApp, email, Discord, and web uploads. Drop in any MP3, WAV, OGG, FLAC, AAC or M4A — pick a bitrate or a target file size, download a compressed MP3. Your audio never leaves your device.</p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+      <path d="M14 3v6a2 2 0 0 0 2 2h6"/>
+    </svg>
+    <h2>Drop audio file here</h2>
+    <p>or click to browse &mdash; compressed in your browser, never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span><span class="format-tag">WAV</span><span class="format-tag">OGG</span>
+      <span class="format-tag">FLAC</span><span class="format-tag">AAC</span><span class="format-tag">M4A</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,video/*,.mp3,.wav,.ogg,.flac,.aac,.m4a,.mp4,.mov,.webm,.mkv,.m4v">
+  </div>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your file never leaves your device.</strong> All compression happens in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Remove file</button>
+    </div>
+
+    <div class="mode-toggle" role="tablist" aria-label="Compression mode">
+      <button type="button" class="active" data-mode="preset" role="tab">For a platform</button>
+      <button type="button" data-mode="size" role="tab">Target file size</button>
+      <button type="button" data-mode="bitrate" role="tab">Custom bitrate</button>
+    </div>
+
+    <!-- Mode: Platform preset -->
+    <div class="mode-panel" data-panel="preset">
+      <div class="preset-grid" id="preset-grid"></div>
+    </div>
+
+    <!-- Mode: Target file size -->
+    <div class="mode-panel" data-panel="size" style="display:none;">
+      <div class="target-row">
+        <label for="target-size">Compress to about</label>
+        <input type="number" id="target-size" min="0.1" max="500" step="0.1" value="5">
+        <select id="target-unit" class="unit-select" aria-label="Size unit">
+          <option value="MB" selected>MB</option>
+          <option value="KB">KB</option>
+        </select>
+        <span style="font-size:0.85rem;color:var(--text-dim);margin-left:auto;">We'll pick the closest standard bitrate.</span>
+      </div>
+      <div class="size-hint" id="size-hint"></div>
+    </div>
+
+    <!-- Mode: Custom bitrate -->
+    <div class="mode-panel" data-panel="bitrate" style="display:none;">
+      <div class="bitrate-grid" id="bitrate-grid"></div>
+    </div>
+
+    <!-- Estimated output -->
+    <div class="estimate-card" id="estimate-card">
+      <div class="estimate-info">
+        <div>Bitrate: <strong id="est-bitrate">&mdash;</strong></div>
+        <div style="margin-top:4px;">Estimated output size:</div>
+      </div>
+      <div>
+        <div class="estimate-size" id="estimate-size">&mdash;</div>
+        <div class="estimate-savings" id="estimate-savings">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="btn-compress">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Compress &amp; Download</span>
+      </button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+
+    <!-- Progress + notify-when-done UX. Hidden until the user clicks
+         Compress; revealed inline so they can read the ETA and choose
+         to be notified instead of waiting. -->
+    <div class="compress-progress" id="compress-progress" hidden>
+      <div class="cp-bar"><div class="cp-fill" id="cp-fill"></div></div>
+      <div class="cp-meta">
+        <span class="cp-pct" id="cp-pct">0%</span>
+        <span class="cp-eta" id="cp-eta"></span>
+      </div>
+      <div class="cp-hint" id="cp-hint" hidden>
+        <span class="cp-hint-text">This may take a couple of minutes — feel free to switch to another tab, <strong>we'll notify you when it's done.</strong></span>
+        <button type="button" class="cp-notify-btn" id="cp-notify-btn" hidden>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Notify me
+        </button>
+      </div>
+    </div>
+
+    <!-- Persistent result card. Stays visible until the user starts a
+         new compress, so dismissing the browser save dialog never loses
+         the encoded blob. -->
+    <div class="compress-result" id="compress-result" hidden>
+      <div class="cr-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="cr-info">
+        <div class="cr-title">Your file is ready</div>
+        <div class="cr-meta" id="cr-meta"></div>
+      </div>
+      <button type="button" class="btn btn-primary cr-download" id="cr-download">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download</span>
+      </button>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>Why compress audio?</h2>
+    <p>Audio files are big &mdash; a 3-minute song at CD quality is roughly 30 MB. Most platforms cap file uploads well below that, and even when they don't, smaller files send faster, eat less data on mobile, and don't get rejected at the door. SnipSound's compressor shrinks any audio file to fit your destination by lowering its bitrate to a high-quality MP3 (the most universally supported compressed audio format).</p>
+
+    <h3>How to compress audio for WhatsApp, email, and Discord</h3>
+    <p>Pick the <strong>For a platform</strong> tab, choose where you're sending the file, and we'll auto-select a bitrate that lands well under the platform's limit. Or pick <strong>Target file size</strong> if your destination has a specific cap (a school upload form, an embed in a Notion doc, an email signature). For more control, use <strong>Custom bitrate</strong> to dial it in by ear.</p>
+
+    <h3>Platform file size limits</h3>
+    <div class="limit-table">
+      <div class="limit-card">
+        <div class="limit-card-name">💬 WhatsApp <span class="limit-card-size">~16 MB</span></div>
+        <div class="limit-card-note">Documents go up to 100 MB, but voice notes and shared chats are most reliable at 16 MB or less.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-name">📧 Email (Gmail / Outlook) <span class="limit-card-size">25 MB</span></div>
+        <div class="limit-card-note">Hard cap on attachments. Gmail will silently route to Drive at the limit.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-name">💜 Discord (free) <span class="limit-card-size">10 MB</span></div>
+        <div class="limit-card-note">Nitro Basic raises to 50 MB, Nitro to 500 MB.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-name">📨 SMS / MMS <span class="limit-card-size">~1 MB</span></div>
+        <div class="limit-card-note">Carrier-dependent; most US carriers cap MMS attachments around 1 MB.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-name">📱 Slack (free) <span class="limit-card-size">1 GB</span></div>
+        <div class="limit-card-note">Generous, but smaller files cut history quota usage in shared channels.</div>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-name">🌐 Web embed <span class="limit-card-size">any</span></div>
+        <div class="limit-card-note">No cap, but smaller files load faster and rank better in Core Web Vitals.</div>
+      </div>
+    </div>
+
+    <h3>Bitrate guide — what each level sounds like</h3>
+    <p>Bitrate is the most important quality knob in MP3 compression. Higher bitrate = more audio data per second = bigger file but better sound. Reference for 1 minute of stereo audio:</p>
+    <div class="bitrate-guide">
+      <div class="bg-kbps">320</div>
+      <div class="bg-name">Near-CD quality</div>
+      <div class="bg-size">~2.4 MB / min</div>
+      <div class="bg-desc">Highest standard MP3 bitrate. Most listeners can't distinguish it from CD audio.</div>
+
+      <div class="bg-kbps">256</div>
+      <div class="bg-name">High quality (iTunes default)</div>
+      <div class="bg-size">~1.9 MB / min</div>
+      <div class="bg-desc">Indistinguishable from 320 to most listeners on most material. Apple Music's AAC at 256 is comparable.</div>
+
+      <div class="bg-kbps">192</div>
+      <div class="bg-name">Standard music quality</div>
+      <div class="bg-size">~1.4 MB / min</div>
+      <div class="bg-desc">The casual-listening floor — sounds great in earbuds, light artifacts on demanding material in good headphones.</div>
+
+      <div class="bg-kbps">128</div>
+      <div class="bg-name">Sharing-friendly</div>
+      <div class="bg-size">~960 KB / min</div>
+      <div class="bg-desc">Half the size of 256 with audible compression on cymbals and reverb tails. Fine for podcasts, voice notes, sharing in a hurry.</div>
+
+      <div class="bg-kbps">96</div>
+      <div class="bg-name">Voice / podcast</div>
+      <div class="bg-size">~720 KB / min</div>
+      <div class="bg-desc">Speech sounds clean; music sounds noticeably compressed. Good for podcast distribution and language-learning files.</div>
+
+      <div class="bg-kbps">64</div>
+      <div class="bg-name">Mono voice memo</div>
+      <div class="bg-size">~480 KB / min</div>
+      <div class="bg-desc">Below this, music becomes unpleasant. Voice is still intelligible. WhatsApp voice notes use roughly this bitrate.</div>
+
+      <div class="bg-kbps">32</div>
+      <div class="bg-name">Smallest usable</div>
+      <div class="bg-size">~240 KB / min</div>
+      <div class="bg-desc">Smallest standard bitrate. Use only when size is critical and audio is voice-only.</div>
+    </div>
+
+    <h3>Related tools</h3>
+    <div class="related-tools">
+      <a href="/tools/audio-converter/" class="related-tool"><strong>Audio Converter</strong><span class="rt-desc">Convert between MP3, WAV, FLAC, OGG, AAC, M4A</span></a>
+      <a href="/tools/audio-trimmer/" class="related-tool"><strong>Audio Trimmer</strong><span class="rt-desc">Cut out a single section before compressing</span></a>
+      <a href="/tools/audio-merger/" class="related-tool"><strong>Audio Merger</strong><span class="rt-desc">Combine multiple clips, then compress the result</span></a>
+      <a href="/tools/volume-booster/" class="related-tool"><strong>Volume Booster</strong><span class="rt-desc">Normalize loudness before compressing</span></a>
+      <a href="/tools/compress-audio-for-whatsapp/" class="related-tool"><strong>Compressing for WhatsApp?</strong><span class="rt-desc">Get under WhatsApp's 16 MB limit with the right preset</span></a>
+      <a href="/tools/compress-mp3/" class="related-tool"><strong>Compress an MP3</strong><span class="rt-desc">How small each bitrate makes an MP3, and which to pick</span></a>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Audio compressor FAQ</h2>
+    <div class="faq-item"><div class="faq-q"><span>How do I compress an audio file for WhatsApp?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Drop your audio file onto the page, pick the WhatsApp preset (16 MB), and click Compress. WhatsApp documents (which include audio) cap out at 100 MB, but voice notes and shared chats work best under 16 MB so they preview and send quickly on slow connections.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How small can I compress an MP3?</span><span class="arrow">&#9660;</span></div><div class="faq-a">You can drop bitrate as low as 32 kbps, which is roughly 1/10 the size of a 320 kbps MP3 but audibly degrades music. For voice and podcasts, 64–96 kbps is usually the sweet spot. For music, 128 kbps is the practical minimum and 192 kbps is the casual-listening floor.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What's the difference between bitrate and file size?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Bitrate is how many kilobits of audio data the file stores per second; file size is bitrate × duration. A 1-minute MP3 at 128 kbps is about 960 KB; at 320 kbps it's about 2.4 MB. Lower bitrate = smaller file but less audio fidelity.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Will compression reduce the audio quality?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Yes — MP3 is a lossy codec, so reducing bitrate discards more frequency information. The audible loss depends on the source: voice recordings tolerate 64–96 kbps comfortably; music starts to feel "thin" below 128 kbps; demanding listeners notice the difference below 192 kbps.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my file uploaded to a server?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. SnipSound's compressor runs entirely in your browser using lamejs. Your audio never leaves your device.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What input formats can I compress?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Any format your browser can decode — MP3, WAV, OGG, FLAC, AAC, M4A and more. The output is always MP3 because it's the most universally supported compressed format.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Can I compress lossless audio (WAV/FLAC) without quality loss?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Not with MP3 — MP3 is always lossy. To shrink lossless audio while staying lossless, use the FLAC option in our <a href="/tools/audio-converter/">Audio Converter</a> (FLAC files are typically about 55% the size of WAV). If you don't need bit-perfect quality, MP3 at 256–320 kbps is much smaller and most listeners won't tell the difference.</div></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; SnipSound. <a href="/">Snip Editor</a> &middot; <a href="/free-music/">Playlist</a> &middot; <a href="/tools/">All Tools</a> &middot; <a href="/privacy/">Privacy</a></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input');
+  const editor = document.getElementById('editor');
+  const fileNameEl = document.getElementById('file-name');
+  const fileMetaEl = document.getElementById('file-meta');
+  const fileRemove = document.getElementById('file-remove');
+  const modeToggle = document.querySelector('.mode-toggle');
+  const targetSizeInput = document.getElementById('target-size');
+  const targetUnit = document.getElementById('target-unit');
+  // Target size in MB regardless of the selected unit (KB or MB).
+  function targetMB() {
+    const v = parseFloat(targetSizeInput.value);
+    if (!isFinite(v) || v <= 0) return 0;
+    return (targetUnit && targetUnit.value === 'KB') ? v / 1024 : v;
+  }
+  const presetGrid = document.getElementById('preset-grid');
+  const bitrateGrid = document.getElementById('bitrate-grid');
+  const estBitrateEl = document.getElementById('est-bitrate');
+  const estSizeEl = document.getElementById('estimate-size');
+  const estSavingsEl = document.getElementById('estimate-savings');
+  const sizeHint = document.getElementById('size-hint');
+  const btnCompress = document.getElementById('btn-compress');
+  const statusText = document.getElementById('status-text');
+
+  let currentFile = null;
+  let originalBuffer = null;
+  // BIG-FILE MODE (snip-bigfile, R-86ce8a): a file too big to decode here is never decoded at all - FFmpeg reads
+  // it by reference and re-encodes it at the chosen bitrate. There is no buffer then, only the file and the
+  // duration from its own metadata; everything that asked "is there a buffer?" now asks _haveAudio().
+  let streamMode = false;
+  function _haveAudio() { return !!originalBuffer || streamMode; }
+  let durationSec = 0;
+  let originalSizeBytes = 0;
+
+  let mode = 'preset';
+  // Default bitrate per mode
+  let selectedBitrate = 128;
+  let selectedPresetIdx = 0;
+  let ctx = null;
+
+  function getAudioContext() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      ctx = new AC();
+    }
+    return ctx;
+  }
+
+  function formatBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(0) + ' KB';
+    if (b < 1024 * 1024 * 1024) return (b / 1024 / 1024).toFixed(1) + ' MB';
+    return (b / 1024 / 1024 / 1024).toFixed(2) + ' GB';
+  }
+
+  function formatTime(sec) {
+    if (!isFinite(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.round(sec - m * 60);
+    return m + ':' + String(s).padStart(2, '0');
+  }
+
+  // Available MP3 bitrates we render UI for + estimate against.
+  const BITRATES = [
+    { kbps: 320, name: 'Near-CD',     desc: 'Highest MP3 quality, biggest file' },
+    { kbps: 256, name: 'High',        desc: 'iTunes default; transparent for most music' },
+    { kbps: 192, name: 'Standard',    desc: 'Casual-listening floor' },
+    { kbps: 128, name: 'Sharing',     desc: 'Half the size, fine for podcasts and chats' },
+    { kbps: 96,  name: 'Voice',       desc: 'Speech sounds clean, music sounds compressed' },
+    { kbps: 64,  name: 'Voice memo',  desc: 'Voice-only; tiny file' },
+    { kbps: 32,  name: 'Tiny',        desc: 'Smallest standard; voice in a pinch' },
+  ];
+
+  // Platform presets — pick a bitrate that comfortably fits under the
+  // platform's cap for the file the user actually loaded.
+  const PRESETS = [
+    { name: 'WhatsApp',  icon: '💬', limitMB: 16 },
+    { name: 'Email',     icon: '📧', limitMB: 25 },
+    { name: 'Discord',   icon: '💜', limitMB: 10 },
+    { name: 'SMS / MMS', icon: '📨', limitMB: 1  },
+    { name: 'Slack',     icon: '🟪', limitMB: 50 },
+    { name: 'Web embed', icon: '🌐', limitMB: 8  },
+  ];
+
+  function renderBitrateGrid() {
+    bitrateGrid.innerHTML = BITRATES.map(b => {
+      const mb = ((b.kbps * durationSec) / 8 / 1024).toFixed(2);
+      const sel = b.kbps === selectedBitrate ? ' selected' : '';
+      return (
+        '<button type="button" class="bitrate-card' + sel + '" data-kbps="' + b.kbps + '">' +
+          '<div class="bitrate-card-title">' + b.name + ' <span class="kbps">' + b.kbps + ' kbps</span></div>' +
+          '<div class="bitrate-card-desc">~' + mb + ' MB &middot; ' + b.desc + '</div>' +
+        '</button>'
+      );
+    }).join('');
+  }
+
+  function renderPresetGrid() {
+    const originalMB = originalSizeBytes / 1024 / 1024;
+    presetGrid.innerHTML = PRESETS.map((p, i) => {
+      const sel = i === selectedPresetIdx ? ' selected' : '';
+      const alreadyFits = originalSizeBytes > 0 && originalMB <= p.limitMB;
+      const subtitle = alreadyFits
+        ? '<span class="preset-card-ok"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 8.5 6.5 12 13 4.5"></polyline></svg>Already fits</span>'
+        : '<span class="preset-card-limit">' + p.limitMB + ' MB max</span>';
+      return (
+        '<button type="button" class="preset-card' + sel + '" data-preset-idx="' + i + '">' +
+          '<span class="icon" aria-hidden="true">' + p.icon + '</span>' +
+          '<span class="info">' +
+            '<span class="preset-card-title">' + p.name + '</span>' +
+            subtitle +
+          '</span>' +
+        '</button>'
+      );
+    }).join('');
+  }
+
+  // Pick the highest BITRATES entry that produces an output under
+  // `targetMB` for the current file's duration. Falls back to the
+  // smallest available (32 kbps) if even that overflows.
+  function bitrateForTargetSize(targetMB) {
+    if (durationSec <= 0) return 128;
+    for (const b of BITRATES) { // BITRATES is sorted high→low
+      const mb = (b.kbps * durationSec) / 8 / 1024;
+      if (mb <= targetMB) return b.kbps;
+    }
+    return 32;
+  }
+
+  function effectiveBitrate() {
+    if (mode === 'bitrate') return selectedBitrate;
+    if (mode === 'preset') return bitrateForTargetSize(PRESETS[selectedPresetIdx].limitMB);
+    if (mode === 'size') {
+      const mb = targetMB();
+      if (mb <= 0) return 32;
+      return bitrateForTargetSize(mb);
+    }
+    return 128;
+  }
+
+  // In "Target file size" mode, give immediate, contextual feedback under the
+  // input (the output snaps to standard bitrates, so the estimate card alone
+  // doesn't obviously track typing) — and handle unreachable targets.
+  function updateSizeHint() {
+    if (!sizeHint) return;
+    if (mode !== 'size' || !_haveAudio() || durationSec <= 0) { sizeHint.textContent = ''; sizeHint.className = 'size-hint'; return; }
+    const tMB = targetMB();
+    const unit = (targetUnit && targetUnit.value === 'KB') ? 'KB' : 'MB';
+    const fmtTarget = unit === 'KB' ? Math.round(tMB * 1024) + ' KB' : (Math.round(tMB * 10) / 10) + ' MB';
+    if (tMB <= 0) { sizeHint.textContent = 'Enter a target size.'; sizeHint.className = 'size-hint'; return; }
+    const dm = Math.floor(durationSec / 60), ds = Math.round(durationSec % 60);
+    const mmss = dm === 0 ? (ds + ' sec') : (ds === 0 ? (dm + ' min') : (dm + ' min ' + ds + ' sec'));
+    const minBytes = (32 * durationSec * 1000) / 8;     // lowest bitrate (32 kbps)
+    const maxBytes = (320 * durationSec * 1000) / 8;    // highest bitrate (320 kbps)
+    const kbps = effectiveBitrate();
+    const outBytes = (kbps * durationSec * 1000) / 8;
+    const targetBytes = tMB * 1024 * 1024;
+    if (targetBytes < minBytes) {
+      sizeHint.innerHTML = '⚠ <strong>' + fmtTarget + '</strong> isn\'t reachable for this <strong>' + mmss + '</strong> file — the smallest possible is <strong>' + formatBytes(minBytes) + '</strong> (32 kbps MP3). We\'ll use that.';
+      sizeHint.className = 'size-hint warn';
+    } else if (targetBytes > maxBytes) {
+      sizeHint.innerHTML = 'Output ≈ <strong>' + formatBytes(outBytes) + '</strong> at ' + kbps + ' kbps (max MP3 quality) — comfortably under your <strong>' + fmtTarget + '</strong> target.';
+      sizeHint.className = 'size-hint ok';
+    } else {
+      sizeHint.innerHTML = '✓ Output ≈ <strong>' + formatBytes(outBytes) + '</strong> at ' + kbps + ' kbps — fits under your <strong>' + fmtTarget + '</strong> target.';
+      sizeHint.className = 'size-hint ok';
+    }
+  }
+
+  function updateEstimate() {
+    if (!_haveAudio()) return;
+    const kbps = effectiveBitrate();
+    const sizeBytes = (kbps * durationSec * 1000) / 8; // approximate
+    estBitrateEl.textContent = kbps + ' kbps MP3';
+    estSizeEl.textContent = formatBytes(sizeBytes);
+    updateSizeHint();
+    if (originalSizeBytes > 0) {
+      const delta = originalSizeBytes - sizeBytes;
+      const pct = Math.round((delta / originalSizeBytes) * 100);
+      if (delta > 0) {
+        estSavingsEl.textContent = formatBytes(delta) + ' smaller · ' + pct + '% reduction';
+        estSavingsEl.className = 'estimate-savings smaller';
+      } else if (delta < 0) {
+        estSavingsEl.textContent = formatBytes(-delta) + ' bigger (uncompress upgrade)';
+        estSavingsEl.className = 'estimate-savings bigger';
+      } else {
+        estSavingsEl.textContent = 'Same size as input';
+        estSavingsEl.className = 'estimate-savings';
+      }
+    } else {
+      estSavingsEl.textContent = '';
+    }
+  }
+
+  function showEditor() {
+    editor.classList.add('active');
+    dropZone.style.display = 'none';
+  }
+  function hideEditor() {
+    editor.classList.remove('active');
+    dropZone.style.display = '';
+  }
+
+  function switchMode(newMode) {
+    mode = newMode;
+    document.querySelectorAll('.mode-toggle button').forEach(b => {
+      b.classList.toggle('active', b.dataset.mode === newMode);
+    });
+    document.querySelectorAll('.mode-panel').forEach(p => {
+      p.style.display = p.dataset.panel === newMode ? '' : 'none';
+    });
+    if (_haveAudio()) updateEstimate();
+  }
+
+  // The streamed route needs no buffer: the file, its duration from metadata, and the same bitrate grid.
+  function enterStreamMode(file, dur, why) {
+    streamMode = true; originalBuffer = null; durationSec = dur || 0;
+    if (window.snipBigFile) window.snipBigFile.entered('audio-compressor', file, why);
+    fileNameEl.textContent = file.name;
+    fileMetaEl.textContent = formatBytes(file.size) + (durationSec ? ' · ' + formatTime(durationSec) : '') +
+      ' · big file - compressed without loading it all into memory';
+    showEditor();
+    renderBitrateGrid();
+    renderPresetGrid();
+    updateEstimate();
+    statusText.textContent = '';
+  }
+
+  async function handleFile(file) {
+    if (!file) return;
+    currentFile = file;
+    originalSizeBytes = file.size;
+    streamMode = false; originalBuffer = null;
+    const _gate = window.snipDecodeGate;
+    const _big = window.snipBigFile;
+    // ROUTE BEFORE READING (posthog R-fa08c6: 72 tab deaths a month, no card). This page used to read and
+    // decode every file whatever its size; a file the gate calls too big for this device now never gets
+    // decoded - it goes straight to the streamed route.
+    let _dur = 0;
+    if (_big && _big.canStream()) {
+      statusText.textContent = 'Reading file…';
+      _dur = await _big.probeDuration(file);
+      if (currentFile !== file) return;   // a newer pick won
+      if (_big.route(file, _dur) === 'stream') { enterStreamMode(file, _dur, 'gate'); return; }
+    }
+    // THE CROSS-TOOL CACHE COPIES THE WHOLE FILE INTO MEMORY (theme.js saveSharedAudio reads file.arrayBuffer()),
+    // so it runs only on the path that decodes anyway. A streamed file is exactly the one this device cannot hold:
+    // copying it whole first would undo the route. (Proven by the promise test: two whole-file reads, both here.)
+    if (window.snipSharedAudio) window.snipSharedAudio.save(file);
+    statusText.textContent = 'Decoding…';
+    // A tab that dies mid-decode leaves this crumb behind, so the death is COUNTED instead of invisible.
+    if (_gate && _gate.armCrumb) _gate.armCrumb('audio-compressor', file);
+    if (_gate && _gate.decodeStarted) _gate.decodeStarted('audio-compressor', file, 'native');
+    try {
+      const acx = getAudioContext();
+      const buf = window.snipDecodeAudio
+        ? await window.snipDecodeAudio(file, acx, { tool: 'audio-compressor' })
+        : await acx.decodeAudioData((await file.arrayBuffer()).slice(0));
+      if (_gate && _gate.decodeOk) _gate.decodeOk('audio-compressor', file, 'native');
+      if (_gate && _gate.clearCrumb) _gate.clearCrumb();
+      originalBuffer = buf;
+      durationSec = buf.duration;
+
+      fileNameEl.textContent = file.name;
+      const ch = buf.numberOfChannels === 1 ? 'mono' : buf.numberOfChannels + ' channels';
+      const sr = Math.round(buf.sampleRate / 100) / 10;
+      fileMetaEl.textContent =
+        formatBytes(file.size) + ' · ' + formatTime(durationSec) + ' · ' + ch + ' · ' + sr + ' kHz';
+
+      showEditor();
+      renderBitrateGrid();
+      renderPresetGrid();
+      updateEstimate();
+      statusText.textContent = '';
+    } catch (err) {
+      console.error('Decode failed', err);
+      if (_gate && _gate.clearCrumb) _gate.clearCrumb();
+      if (_gate && _gate.decodeFailed) _gate.decodeFailed('audio-compressor', file, 'native', (err && err.name) || 'Error', err && err.snipDiag);
+      // A memory-shaped failure is not the end here: compressing never needed the decode. Same rule as the
+      // compress rescue on every other tool (the gate's worthCompressing), routed to the streamed path.
+      if (_big && _big.shouldStreamAfter(file, err)) {
+        if (!_dur) _dur = await _big.probeDuration(file);
+        if (currentFile === file) enterStreamMode(file, _dur, 'fallback');
+        return;
+      }
+      const _r = (err && err.name === 'NotReadableError') ? 'file_read_failed' : 'decode_failed';
+      if (window.snipTrackFailed) window.snipTrackFailed('audio-compressor', _r, 'decode', err && err.snipDiag);
+      if (_gate && _gate.showFailure) {
+        _gate.showFailure(dropZone, 'Could not decode "' + file.name + '". Try a different file or format.',
+          { tool: 'audio-compressor', report: true, reason: _r, onPick: hideEditor });
+      } else alert('Could not decode "' + file.name + '". Try a different file or format.');
+      statusText.textContent = '';
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  // ── Wiring ────────────────────────────────────────────────────────────
+  dropZone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (f) handleFile(f);
+    e.target.value = '';
+  });
+  ['dragenter', 'dragover'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); }));
+  ['dragleave', 'drop'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.remove('drag-over'); }));
+  dropZone.addEventListener('drop', (e) => {
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) handleFile(f);
+  });
+
+  fileRemove.addEventListener('click', () => {
+    currentFile = null; originalBuffer = null; streamMode = false; durationSec = 0; originalSizeBytes = 0;
+    fileInput.value = ''; hideEditor(); statusText.textContent = '';
+    hideResultCard();
+  });
+
+  modeToggle.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-mode]');
+    if (btn) switchMode(btn.dataset.mode);
+  });
+
+  bitrateGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.bitrate-card');
+    if (!card) return;
+    selectedBitrate = parseInt(card.dataset.kbps, 10);
+    bitrateGrid.querySelectorAll('.bitrate-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    updateEstimate();
+  });
+
+  presetGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.preset-card');
+    if (!card) return;
+    selectedPresetIdx = parseInt(card.dataset.presetIdx, 10);
+    presetGrid.querySelectorAll('.preset-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    updateEstimate();
+  });
+
+  targetSizeInput.addEventListener('input', updateEstimate);
+  if (targetUnit) targetUnit.addEventListener('change', () => {
+    // Convert the entered number to the new unit so the real target is unchanged,
+    // and retune the input's range/step for that unit.
+    const v = parseFloat(targetSizeInput.value);
+    if (targetUnit.value === 'KB') {
+      targetSizeInput.min = '10'; targetSizeInput.max = '500000'; targetSizeInput.step = '10';
+      if (isFinite(v)) targetSizeInput.value = Math.round(v * 1024);
+    } else {
+      targetSizeInput.min = '0.1'; targetSizeInput.max = '500'; targetSizeInput.step = '0.1';
+      if (isFinite(v)) targetSizeInput.value = Math.round((v / 1024) * 10) / 10;
+    }
+    updateEstimate();
+  });
+
+  // Notify-when-done UX. Mobile caveat: fully backgrounding the browser
+  // (closing the tab, locking the phone) throttles or pauses the Web
+  // Worker that drives the encode — so encodes stall until the user
+  // returns. That's why the copy says "feel free to switch to another
+  // tab" rather than "minimize your browser." We still request the
+  // Notification permission so when the tab is hidden but the browser
+  // is foregrounded the OS toast surfaces completion.
+  const progressEl = document.getElementById('compress-progress');
+  const cpFill = document.getElementById('cp-fill');
+  const cpPct = document.getElementById('cp-pct');
+  const cpEta = document.getElementById('cp-eta');
+  const cpHint = document.getElementById('cp-hint');
+  const cpNotifyBtn = document.getElementById('cp-notify-btn');
+  // On mobile, background tabs suspend (the encode pauses) and notifications
+  // don't fire, so don't suggest switching tabs or offer a notify button.
+  (function () {
+    var mob;
+    try {
+      mob = /Android|iPhone|iPod|iPad|Mobile|Silk|Kindle/i.test(navigator.userAgent || '')
+        || ((navigator.maxTouchPoints > 1) && window.matchMedia('(pointer: coarse)').matches);
+    } catch (_) { mob = false; }
+    if (mob) {
+      var ht = cpHint && cpHint.querySelector('.cp-hint-text');
+      if (ht) ht.innerHTML = 'This may take a minute — <strong>keep this tab open</strong> while it works.';
+      if (cpNotifyBtn) cpNotifyBtn.style.display = 'none';
+    }
+  })();
+  const resultEl = document.getElementById('compress-result');
+  const crMeta = document.getElementById('cr-meta');
+  const crDownloadBtn = document.getElementById('cr-download');
+  const originalTitle = document.title;
+  let notifyArmed = false;
+  // Persistent result state — kept until the next Compress click so
+  // dismissing the browser save dialog doesn't lose the encoded blob.
+  let pendingResultUrl = null;
+  let pendingResultFname = null;
+
+  function showNotifyButtonIfApplicable() {
+    if (!('Notification' in window)) return; // no API, no button
+    if (Notification.permission === 'granted') { notifyArmed = true; cpNotifyBtn.hidden = true; return; }
+    if (Notification.permission === 'denied') { cpNotifyBtn.hidden = true; return; }
+    cpNotifyBtn.hidden = false;
+  }
+  if (cpNotifyBtn) {
+    cpNotifyBtn.addEventListener('click', async () => {
+      try {
+        const result = await Notification.requestPermission();
+        if (result === 'granted') {
+          notifyArmed = true;
+          cpNotifyBtn.disabled = true;
+          cpNotifyBtn.textContent = '✓ Will notify';
+        } else {
+          cpNotifyBtn.disabled = true;
+          cpNotifyBtn.textContent = 'Notifications blocked';
+        }
+      } catch (_) {}
+    });
+  }
+
+  function fireDoneNotification(fname, blobSize) {
+    if (!notifyArmed || !('Notification' in window)) return;
+    try {
+      const n = new Notification('Your compressed audio is ready', {
+        body: fname + ' — ' + formatBytes(blobSize),
+        icon: '/favicon.png',
+        tag: 'snipsound-compress',
+      });
+      n.onclick = () => { try { window.focus(); } catch (_) {} try { n.close(); } catch (_) {} };
+    } catch (_) {}
+  }
+
+  function flashTitle(state, pct) {
+    if (state === 'done') document.title = '✅ Done — SnipSound';
+    else if (state === 'working') {
+      // Live % in title so users on another tab can glance at progress
+      // without coming back. Reset to original on completion.
+      const p = (pct != null && pct >= 0) ? Math.min(100, Math.round(pct)) : null;
+      document.title = (p != null ? p + '% · ' : '') + 'Compressing — SnipSound';
+    }
+    else document.title = originalTitle;
+  }
+
+  function showResultCard(fname, size, reductionStr) {
+    crMeta.textContent = fname + ' · ' + formatBytes(size) + ' · ' + reductionStr;
+    resultEl.hidden = false;
+  }
+  function hideResultCard() {
+    resultEl.hidden = true;
+    if (pendingResultUrl) try { URL.revokeObjectURL(pendingResultUrl); } catch (_) {}
+    pendingResultUrl = null;
+    pendingResultFname = null;
+  }
+  if (crDownloadBtn) {
+    crDownloadBtn.addEventListener('click', () => {
+      if (!pendingResultUrl || !pendingResultFname) return;
+      const a = document.createElement('a');
+      a.href = pendingResultUrl; a.download = pendingResultFname;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    });
+  }
+
+  function resetProgressUI() {
+    progressEl.hidden = true;
+    cpFill.style.width = '0%';
+    cpPct.textContent = '0%';
+    cpEta.textContent = '';
+    cpHint.hidden = true;
+    cpNotifyBtn.hidden = true;
+    cpNotifyBtn.disabled = false;
+    cpNotifyBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Notify me';
+  }
+
+  btnCompress.addEventListener('click', async () => {
+    if (!_haveAudio()) return;
+    if (!window.snipEncoder) { alert('Encoder not loaded yet — try again.'); return; }
+    const kbps = effectiveBitrate();
+    btnCompress.disabled = true;
+    statusText.textContent = 'Compressing…';
+    resetProgressUI();
+    hideResultCard(); // wipe any previous result + its blob URL
+    progressEl.hidden = false;
+    flashTitle('working', 0);
+
+    const start = performance.now();
+    let lastPct = 0;
+    function onProgress(pct) {
+      const p = Math.max(0, Math.min(100, Math.round((pct || 0) * 100)));
+      if (p === lastPct) return;
+      lastPct = p;
+      cpFill.style.width = p + '%';
+      cpPct.textContent = p + '%';
+      flashTitle('working', p);
+      // Simple ETA: extrapolate linearly from elapsed.
+      if (p > 4) {
+        const elapsedMs = performance.now() - start;
+        const remainMs = Math.max(0, elapsedMs * (100 - p) / p);
+        const secs = Math.round(remainMs / 1000);
+        cpEta.textContent = secs >= 60
+          ? '~' + Math.round(secs / 60) + ' min left'
+          : '~' + secs + ' sec left';
+      }
+    }
+    // Reveal the "we'll notify you" hint after 2.5 s of encoding — fast
+    // encodes shouldn't show it (just looks noisy).
+    const hintTimer = setTimeout(() => {
+      cpHint.hidden = false;
+      showNotifyButtonIfApplicable();
+    }, 2500);
+
+    try {
+      const format = 'mp3-' + kbps;
+      // Streamed: FFmpeg re-encodes the file by reference (no buffer ever existed). Native: as before.
+      const { blob, ext } = streamMode
+        ? await window.snipBigFile.transcode(currentFile, { format, durationSec,
+            onProgress: (p) => onProgress(((p && typeof p.percent === 'number') ? p.percent : 0) / 100) })
+        : await window.snipEncoder.encode(originalBuffer, format, { onProgress });
+      clearTimeout(hintTimer);
+      // currentFile can be null here (audio restored without its File) - the export must not die on the NAME.
+      const base = ((currentFile && currentFile.name) || 'audio').replace(/\.[^.]+$/, '');
+      const fname = base + '_' + kbps + 'kbps.' + ext;
+      // Persistent result: keep the blob URL alive on a Download button
+      // instead of auto-clicking + revoking. If the user dismisses the
+      // browser save dialog they can re-trigger from the result card.
+      pendingResultUrl = URL.createObjectURL(blob);
+      pendingResultFname = fname;
+      const reductionPct = Math.round((1 - blob.size / originalSizeBytes) * 100);
+      const reductionStr = reductionPct >= 0
+        ? reductionPct + '% smaller'
+        : Math.abs(reductionPct) + '% larger';
+      showResultCard(fname, blob.size, reductionStr);
+      // Auto-trigger the save dialog one time for users who do want the
+      // immediate download — the blob URL stays alive on the card if
+      // they dismiss it.
+      const aAuto = document.createElement('a');
+      aAuto.href = pendingResultUrl; aAuto.download = fname;
+      document.body.appendChild(aAuto); aAuto.click(); document.body.removeChild(aAuto);
+      statusText.textContent = 'Done — ' + formatBytes(blob.size) + ' (' + reductionStr + ')';
+      // Notify surfaces: tab title flash, OS notification (if armed), and
+      // a chime via the shared snipShowSuccess toast.
+      flashTitle('done');
+      fireDoneNotification(fname, blob.size);
+      try { if (window.snipShowSuccess) window.snipShowSuccess('Compressed!', { emoji: '✅', sub: fname }); } catch (_) {}
+      setTimeout(() => { flashTitle('reset'); }, 8000);
+      // Result card stays — only progress UI clears.
+      setTimeout(() => { statusText.textContent = ''; progressEl.hidden = true; }, 4000);
+    } catch (err) {
+      clearTimeout(hintTimer);
+      flashTitle('reset');
+      console.error('Compress failed', err);
+      statusText.textContent = 'Failed: ' + (err && err.message ? err.message : 'unknown');
+      try {
+        if (window.posthog && window.posthog.capture) {
+          window.posthog.capture('compress_failed', {
+            error_message: (err && err.message) ? err.message : String(err),
+            kbps: kbps,
+            input_size: originalSizeBytes,
+            input_duration_sec: originalBuffer ? originalBuffer.duration : (durationSec || null),
+            streamed: streamMode,
+          });
+        }
+      } catch (_) {}
+      resetProgressUI();
+    } finally {
+      btnCompress.disabled = false;
+    }
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Demo button — picks Handel and loads it like a normal upload.
+  if (window.snipDemo && window.snipDemo.renderButton) {
+    window.snipDemo.renderButton({
+      target: '#snip-demo-row',
+      label: 'Try with demo audio (Handel – Sarabande)',
+      onClick: (file) => handleFile(file),
+    });
+  }
+
+  // Pick up audio shared from another tool.
+  document.addEventListener('snipsound:use-shared-file', (e) => {
+    const file = e.detail && e.detail.file;
+    if (file) handleFile(file);
+  });
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51aa6bf1b7e3e6d',t:'MTc5MzE5Nzk2Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

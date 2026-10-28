@@ -1,0 +1,43 @@
+[
+ {
+  "query": "audio equalizer",
+  "pos": 1,
+  "url": "https://mp3cut.net/equalizer",
+  "code": "200",
+  "title": "Online Equalizer - Boost bass, change any frequencies",
+  "h2": [
+   "Boost or reduce specific frequencies of any audio file"
+  ],
+  "words": 906,
+  "schema": [
+   "AggregateRating",
+   "ImageObject",
+   "Offer",
+   "Organization",
+   "SoftwareApplication"
+  ],
+  "presets": 5
+ },
+ {
+  "query": "online equalizer",
+  "pos": 1,
+  "url": "https://freebeat.ai/tools/online-equalizer",
+  "code": "429",
+  "title": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "presets": 0
+ },
+ {
+  "query": "online equalizer",
+  "pos": 5,
+  "url": "https://theaudiostuff.com/tools/online-equalizer",
+  "code": "404",
+  "title": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "presets": 0
+ }
+]

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free MP3 Tag Editor — Edit ID3 Tags + Album Art Online | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/id3-writer.js" defer></script>
+<!-- Loaded outright, not left to theme.js's idle prefetch: this door DEPENDS on the answer
+     (ID3Writer will happily prepend a tag to an MP4 and hand back a broken file), and an
+     upload can beat the prefetch. Same file, so there is no second copy. -->
+<script src="/vendor/snip-identify.js" defer></script>
+<meta name="description" content="Free online MP3 tag editor. Edit ID3 tags (title, artist, album, year, genre, track, comment) and album art directly in your browser. Files never leave your device, no sign-up.">
+<meta name="keywords" content="mp3 tag editor, id3 editor online, edit mp3 metadata, mp3tag online, add cover art to mp3, mp3 metadata editor, change mp3 title online, free id3 editor">
+<link rel="canonical" href="https://snipsound.com/tools/id3-editor/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/id3-editor/">
+<link rel="alternate" hreflang="es" href="https://snipsound.com/es/editor-de-etiquetas-mp3/">
+<link rel="alternate" hreflang="pt-BR" href="https://snipsound.com/pt/editor-de-tags-mp3/">
+<link rel="alternate" hreflang="it" href="https://snipsound.com/it/editor-tag-mp3/">
+<link rel="alternate" hreflang="fr" href="https://snipsound.com/fr/editeur-tags-mp3/">
+<link rel="alternate" hreflang="de" href="https://snipsound.com/de/mp3-tag-editor/">
+<link rel="alternate" hreflang="ru" href="https://snipsound.com/ru/redaktor-tegov-mp3/">
+<link rel="alternate" hreflang="zh-Hans" href="https://snipsound.com/zh/mp3-biaoqian-bianji/">
+<link rel="alternate" hreflang="hi" href="https://snipsound.com/hi/mp3-tag-editor/">
+<link rel="alternate" hreflang="ar" href="https://snipsound.com/ar/محرر-وسوم-mp3/">
+<link rel="alternate" hreflang="ja" href="https://snipsound.com/ja/mp3-タグ-編集/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/id3-editor/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free MP3 Tag Editor — Edit ID3 Tags + Album Art Online | SnipSound">
+<meta property="og:description" content="Edit MP3 metadata (title, artist, album, year, genre, comment) and album art in your browser. 100% client-side — files never leave your device.">
+<meta property="og:url" content="https://snipsound.com/tools/id3-editor/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free MP3 Tag Editor — Edit ID3 Tags Online | SnipSound">
+<meta name="twitter:description" content="Edit MP3 title, artist, album, year, cover art. Files never leave your device, no sign-up.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+
+  
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 32px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  .privacy-notice { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-dim); margin: 0 0 24px; padding: 0 4px; }
+  .privacy-notice svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
+  .privacy-notice strong { color: var(--text); font-weight: 600; }
+  .privacy-notice a { color: var(--accent); text-decoration: none; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .file-info { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .file-info .file-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; color: var(--text); }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove { margin-left: auto; background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: color 0.2s, border-color 0.2s; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  /* Tag form: two columns — album art on the left, text fields on the right */
+  .tag-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 700px) {
+    .tag-layout { grid-template-columns: 1fr; }
+  }
+
+  /* Album art card */
+  .art-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 10px;
+  }
+  .art-preview {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--bg);
+    border: 1px dashed var(--border-bright);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    position: relative;
+  }
+  .art-preview:hover { border-color: var(--accent); }
+  .art-preview img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .art-preview .art-empty {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    text-align: center;
+    padding: 12px;
+    line-height: 1.4;
+  }
+  .art-preview .art-empty svg {
+    display: block; margin: 0 auto 6px;
+    width: 28px; height: 28px;
+    color: var(--text-dim);
+  }
+  .art-actions { display: flex; gap: 8px; width: 100%; }
+  .art-btn {
+    flex: 1;
+    padding: 6px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .art-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .art-btn.danger:hover { border-color: var(--red); color: var(--red); }
+  #art-input { display: none; }
+
+  /* Tag form (text inputs) */
+  .tag-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field.span-2 { grid-column: 1 / -1; }
+  .field label {
+    font-size: 0.78rem; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.4px;
+    font-weight: 600;
+  }
+  .field input, .field select, .field textarea {
+    padding: 9px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit; font-size: 0.92rem;
+    border-radius: 8px;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+  .field textarea { resize: vertical; min-height: 60px; font-family: inherit; }
+  @media (max-width: 600px) {
+    .tag-form { grid-template-columns: 1fr; }
+  }
+
+  /* Existing tags table (read-only diagnostics, shown collapsed initially) */
+  .existing-tags-row {
+    margin: 14px 0 16px;
+  }
+  .existing-tags-row summary {
+    cursor: pointer;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    user-select: none;
+    list-style: none;
+  }
+  .existing-tags-row summary::-webkit-details-marker { display: none; }
+  .existing-tags-row summary::before {
+    content: '▸ ';
+    color: var(--accent);
+  }
+  .existing-tags-row[open] summary::before { content: '▾ '; }
+  .existing-tags-row summary:hover { color: var(--text); }
+  .existing-tags-table {
+    margin-top: 10px;
+    width: 100%; border-collapse: collapse;
+    font-size: 0.82rem;
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+  }
+  .existing-tags-table td {
+    padding: 4px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+  }
+  .existing-tags-table td:first-child {
+    color: var(--accent);
+    width: 90px;
+    font-weight: 600;
+  }
+  .existing-tags-table td:last-child {
+    color: var(--text);
+    word-break: break-word;
+  }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .btn-secondary { background: var(--bg); border: 1px solid var(--border-bright); color: var(--text); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+
+  /* SEO content section */
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul, .seo-section ol { padding-left: 22px; }
+
+  .usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 18px 0 24px; }
+  .usecase-card { padding: 14px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; }
+  .usecase-name { font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .usecase-note { font-size: 0.82rem; color: var(--text-dim); }
+
+  .related-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .related-tool { padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: border-color 0.15s, color 0.15s; }
+  .related-tool:hover { border-color: var(--accent); color: var(--accent); }
+  .related-tool .rt-desc { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+  .related-tool:hover .rt-desc { color: var(--text-dim); }
+
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SnipSound MP3 Tag Editor", "url": "https://snipsound.com/tools/id3-editor/", "description": "Free online MP3 ID3 tag editor. Edit title, artist, album, year, genre, track number, comment, and album art directly in your browser. Files never leave your device, no sign-up.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "What's an ID3 tag?", "acceptedAnswer": { "@type": "Answer", "text": "ID3 is the metadata format embedded in MP3 files. It stores the title, artist, album, year, genre, track number, comment, and album art that your music player displays. Without ID3 tags, an MP3 just shows up as its filename and nothing else." } },
+  { "@type": "Question", "name": "How do I add album art to an MP3?", "acceptedAnswer": { "@type": "Answer", "text": "Upload your MP3, click the cover-art square on the left, pick a JPG or PNG image (square works best — 600×600 is standard), and click Save. The image is embedded inside the MP3 file as an APIC frame and shows up on every device that reads ID3v2." } },
+  { "@type": "Question", "name": "Why does my podcast app / Spotify show the wrong artist?", "acceptedAnswer": { "@type": "Answer", "text": "Most likely the MP3 has old or empty ID3 tags. Fix the artist + album + title fields in this tool, save, and re-upload to your podcast host or music library. Streaming services like Spotify ignore ID3 entirely and use the metadata you provide in their dashboards, but downloadable / local-playback apps (iTunes, foobar2000, VLC, podcast apps) all read ID3." } },
+  { "@type": "Question", "name": "Will this tool also edit FLAC / M4A / OGG tags?", "acceptedAnswer": { "@type": "Answer", "text": "Not yet — this tool only handles ID3 (MP3). FLAC uses Vorbis Comments, M4A uses MP4 atoms, OGG uses Vorbis Comments. They're all different formats. If you need to retag a FLAC or M4A, we recommend Mp3tag (Windows desktop), MusicBrainz Picard (cross-platform), or our Audio Converter — which strips most tags during conversion, so you can re-tag with this tool after converting to MP3." } },
+  { "@type": "Question", "name": "What ID3 version does the tool write?", "acceptedAnswer": { "@type": "Answer", "text": "It writes ID3v2.3, which is the most widely supported version across players (iTunes, Spotify Local Files, foobar2000, VLC, Windows Explorer, Android default players). It also reads ID3v2.2, v2.3, and v2.4 on import so you can edit files tagged with any of those." } },
+  { "@type": "Question", "name": "Is my MP3 uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. The tag editor runs entirely in your browser. Your MP3 stays on your device. Even the album-art image you add is processed locally — it never crosses the network." } },
+  { "@type": "Question", "name": "Why is my year field blank after upload?", "acceptedAnswer": { "@type": "Answer", "text": "Older MP3s use the TYER frame for year; newer files (post-2009) use TDRC for full date. The tool reads both and writes TYER on save, so the year will be visible to old players too. If the source file has neither, the field stays blank — fill it in yourself." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free MP3 Tag Editor</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/" class="active">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">MP3 Tag Editor</span></h1>
+    <p>SnipSound's free ID3 tag editor edits your MP3's tags &mdash; title, artist, album, year, genre, track number, comment, and album art &mdash; right in your browser. Works on any MP3, supports ID3v2.2 / v2.3 / v2.4 on read and writes v2.3 for maximum player compatibility. <strong>Your file never leaves your device.</strong></p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <path d="M8 13h8M8 17h5"/>
+    </svg>
+    <h2>Drop an MP3 here &mdash; or a whole album</h2>
+    <p>or click to browse &mdash; tags edited in your browser, never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3 only</span>
+      <span class="format-tag">ID3v2.2/v2.3/v2.4</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/mpeg,.mp3">
+  </div>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your MP3 never leaves your device.</strong> All tag reading and writing happens in your browser. The file (and any album art you add) never leaves your device. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Remove file</button>
+    </div>
+
+    <div class="tag-layout">
+      <div class="art-card">
+        <div class="art-preview" id="art-preview" tabindex="0" role="button" aria-label="Set album art">
+          <div class="art-empty" id="art-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            Click to add<br>album art<br>(JPG / PNG)
+          </div>
+          <img id="art-img" alt="" style="display:none;">
+        </div>
+        <div class="art-actions">
+          <button type="button" class="art-btn" id="art-pick">Choose image</button>
+          <button type="button" class="art-btn danger" id="art-clear">Remove</button>
+        </div>
+        <input type="file" id="art-input" accept="image/jpeg,image/png,.jpg,.jpeg,.png">
+      </div>
+
+      <div class="tag-form">
+        <div class="field span-2">
+          <label for="tag-title">Title</label>
+          <input type="text" id="tag-title" placeholder="Song or episode title">
+        </div>
+        <div class="field span-2">
+          <label for="tag-artist">Artist</label>
+          <input type="text" id="tag-artist" placeholder="Artist / podcast / speaker">
+        </div>
+        <div class="field span-2">
+          <label for="tag-album">Album</label>
+          <input type="text" id="tag-album" placeholder="Album / show name">
+        </div>
+        <div class="field">
+          <label for="tag-year">Year</label>
+          <input type="text" id="tag-year" placeholder="YYYY" maxlength="4" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label for="tag-track">Track #</label>
+          <input type="text" id="tag-track" placeholder="e.g. 3 or 3/12">
+        </div>
+        <div class="field span-2">
+          <label for="tag-genre">Genre</label>
+          <input type="text" id="tag-genre" placeholder="Pop, Rock, Podcast, etc." list="genre-list">
+          <datalist id="genre-list">
+            <option value="Pop"><option value="Rock"><option value="Hip-Hop"><option value="Electronic">
+            <option value="Classical"><option value="Jazz"><option value="Country"><option value="R&amp;B">
+            <option value="Folk"><option value="Indie"><option value="Metal"><option value="Soundtrack">
+            <option value="Podcast"><option value="Audiobook"><option value="Spoken Word"><option value="Voice Memo">
+          </datalist>
+        </div>
+        <div class="field span-2">
+          <label for="tag-comment">Comment</label>
+          <textarea id="tag-comment" placeholder="Optional note (lyrics URL, episode description, etc.)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <details class="existing-tags-row" id="existing-tags-row">
+      <summary>Show all detected tags (raw)</summary>
+      <table class="existing-tags-table" id="existing-tags-table"></table>
+    </details>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="btn-save">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+          <polyline points="17 21 17 13 7 13 7 21"/>
+          <polyline points="7 3 7 8 15 8"/>
+        </svg>
+        <span>Save tags &amp; Download</span>
+      </button>
+      <button type="button" class="btn btn-secondary" id="btn-reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 11 10 11"/></svg>
+        <span>Reset to original</span>
+      </button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>Edit MP3 ID3 tags + album art online &mdash; free, private, no sign-up</h2>
+    <p>SnipSound's MP3 Tag Editor reads the metadata embedded in your MP3 file (title, artist, album, year, genre, track number, comment, album art), shows it in an editable form, and lets you save a new MP3 with your changes. The whole flow runs in your browser using a vanilla-JS ID3v2 parser plus the open-source <a href="https://github.com/egoroof/browser-id3-writer">browser-id3-writer</a> library. Your audio file never leaves your device.</p>
+
+    <h3>How ID3 tags work</h3>
+    <p>An MP3 file is mostly audio frames, but the start (and sometimes the end) of the file can carry a metadata block called an <strong>ID3 tag</strong>. ID3v1 (the original, 128 bytes at the very end) is mostly obsolete &mdash; everything modern uses <strong>ID3v2</strong>, a flexible container that can hold any number of "frames" with names like TIT2 (title), TPE1 (artist), TALB (album), TYER (year), TCON (genre), TRCK (track number), COMM (comment), and APIC (attached picture — i.e., album art).</p>
+    <p>Different players expect different ID3 versions. <strong>v2.3</strong> is the safe choice because every major player on every OS reads it correctly &mdash; iTunes/Apple Music, Spotify Local Files, foobar2000, Windows Media Player, Android default music apps, podcast players (Pocket Casts, Overcast, Apple Podcasts), and VLC. We write v2.3 by default for that reason. We read v2.2, v2.3, AND v2.4 so you can edit files tagged by any tool.</p>
+
+    <h3>Common use cases</h3>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="usecase-name">🎵 Tag your own song uploads</div>
+        <div class="usecase-note">Bandcamp / SoundCloud / podcast hosts pull title + artist + album art from ID3. Get those right before uploading.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🖼 Add cover art to an MP3</div>
+        <div class="usecase-note">Click the cover-art square, pick a square JPG/PNG (600×600 is standard), save. Embeds an APIC frame readable by every modern player.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎙 Tag podcast episodes</div>
+        <div class="usecase-note">Title = episode name, Artist = host or show name, Album = season or show, Genre = Podcast. Apple Podcasts and Overcast read all four.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">📚 Fix tags on ripped CDs</div>
+        <div class="usecase-note">Older rippers leave fields blank or fill in garbage. Drag the file in, type the right values, save.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🔠 Bulk-rename "Unknown Artist"</div>
+        <div class="usecase-note">Music library shows "Unknown Artist - Unknown Album" for one of your files? It's missing ID3 tags. Add them here.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🔄 Convert tags from old players</div>
+        <div class="usecase-note">If a v2.2-tagged file isn't showing up right in modern apps, save it here. The output is v2.3 — universally readable.</div>
+      </div>
+    </div>
+
+    <h3>How to use it (step-by-step)</h3>
+    <ol>
+      <li>Drop your MP3 on the page (or click to pick one).</li>
+      <li>The current ID3 tags are read and shown in the form. The "Show all detected tags (raw)" section below the form lists every frame the file contains &mdash; useful if your player shows tags you don't see in the standard form fields.</li>
+      <li>Edit any field. To add or replace album art, click the cover-art square and pick a JPG or PNG. To remove art entirely, click "Remove."</li>
+      <li>Click <strong>Save tags &amp; Download</strong>. A new MP3 is generated with your changes baked into the ID3v2.3 header. The audio data is untouched &mdash; just the tag block changes.</li>
+    </ol>
+
+    <h3>Why use SnipSound's tag editor</h3>
+    <ul>
+      <li><strong>100% in your browser.</strong> Other online tag editors (Mp3tag.de's web demo, Audio-online-convert, TagMP3) often upload your file to a server. We don't &mdash; the MP3 never leaves your device.</li>
+      <li><strong>Album art included.</strong> Embed a JPG / PNG cover image straight from your computer. Many free editors skip the APIC frame.</li>
+      <li><strong>Reads ANY ID3 version, writes the safest one.</strong> v2.2 / v2.3 / v2.4 input, v2.3 output. Maximum player compatibility.</li>
+      <li><strong>Raw-tag view.</strong> Most editors only show the standard form fields. We expose every frame so you can see if there are unusual tags (TXXX user-defined frames, USLT lyrics, etc.) and decide whether to keep them.</li>
+      <li><strong>No file-size cap, no quota, no signup.</strong> Tag a 200 MB MP3 audiobook chapter — works fine.</li>
+    </ul>
+
+    <h3>Related tools</h3>
+    <div class="related-tools">
+      <a href="/tools/audio-converter/" class="related-tool"><strong>Audio Converter</strong><span class="rt-desc">Convert FLAC / WAV / M4A to MP3 first, then tag here</span></a>
+      <a href="/tools/audio-trimmer/" class="related-tool"><strong>Audio Trimmer</strong><span class="rt-desc">Trim a section out before retagging</span></a>
+      <a href="/tools/ringtone-maker/" class="related-tool"><strong>Ringtone Maker</strong><span class="rt-desc">Make iPhone ringtones (separate metadata format)</span></a>
+      <a href="/tools/audio-compressor/" class="related-tool"><strong>Audio Compressor</strong><span class="rt-desc">Shrink the file size before tagging</span></a>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>MP3 tag editor FAQ</h2>
+    <div class="faq-item"><div class="faq-q"><span>What's an ID3 tag?</span><span class="arrow">&#9660;</span></div><div class="faq-a">ID3 is the metadata format embedded in MP3 files. It stores the title, artist, album, year, genre, track number, comment, and album art that your music player displays. Without ID3 tags, an MP3 just shows up as its filename and nothing else.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How do I add album art to an MP3?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Upload your MP3, click the cover-art square on the left, pick a JPG or PNG image (square works best — 600×600 is standard), and click Save. The image is embedded inside the MP3 file as an APIC frame and shows up on every device that reads ID3v2.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Why does my podcast app / Spotify show the wrong artist?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Most likely the MP3 has old or empty ID3 tags. Fix the artist + album + title fields in this tool, save, and re-upload to your podcast host or music library. Streaming services like Spotify ignore ID3 entirely and use the metadata you provide in their dashboards, but downloadable / local-playback apps (iTunes, foobar2000, VLC, podcast apps) all read ID3.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Will this tool also edit FLAC / M4A / OGG tags?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Not yet &mdash; this tool only handles ID3 (MP3). FLAC uses Vorbis Comments, M4A uses MP4 atoms, OGG uses Vorbis Comments. They're all different formats. If you need to retag a FLAC or M4A, we recommend Mp3tag (Windows desktop), MusicBrainz Picard (cross-platform), or our <a href="/tools/audio-converter/">Audio Converter</a> &mdash; which strips most tags during conversion, so you can re-tag with this tool after converting to MP3.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What ID3 version does the tool write?</span><span class="arrow">&#9660;</span></div><div class="faq-a">It writes ID3v2.3, which is the most widely supported version across players (iTunes, Spotify Local Files, foobar2000, VLC, Windows Explorer, Android default players). It also reads ID3v2.2, v2.3, and v2.4 on import so you can edit files tagged with any of those.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my MP3 uploaded to a server?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. The tag editor runs entirely in your browser. Your MP3 stays on your device. Even the album-art image you add is processed locally &mdash; it never crosses the network.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Why is my year field blank after upload?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Older MP3s use the TYER frame for year; newer files (post-2009) use TDRC for full date. The tool reads both and writes TYER on save, so the year will be visible to old players too. If the source file has neither, the field stays blank &mdash; fill it in yourself.</div></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; SnipSound. <a href="/">Snip Editor</a> &middot; <a href="/free-music/">Playlist</a> &middot; <a href="/tools/">All Tools</a> &middot; <a href="/privacy/">Privacy</a></p>
+</footer>
+
+<script src="/vendor/tools/id3-editor.js?v=5" defer></script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51aa6a07da731df',t:'MTc5MzE5Nzk1Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

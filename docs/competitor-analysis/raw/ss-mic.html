@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mic Test: Free Online Microphone Test | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<meta name="description" content="Free mic test: read one sentence and every microphone on your device is scored for clarity, noise and echo, then hear each one back. Stays on your device.">
+<link rel="canonical" href="https://snipsound.com/tools/mic-test/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mic Test: Free Online Microphone Test">
+<meta property="og:description" content="Read one sentence: every microphone on your device is scored and ranked, so you know which one to record with.">
+<meta property="og:url" content="https://snipsound.com/tools/mic-test/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Mic Test","url":"https://snipsound.com/tools/mic-test/","applicationCategory":"MultimediaApplication","operatingSystem":"Any (browser-based)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"Tests every microphone on the device at once, a score out of 100 for each, checks clarity, background noise, echo, volume and distortion, detects Bluetooth headsets in call mode, play each microphone back, test sentence in 11 languages, runs 100% in the browser","creator":{"@type":"Organization","name":"SnipSound","url":"https://snipsound.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I check my microphone?","acceptedAnswer":{"@type":"Answer","text":"Press Test my microphones and allow access in your browser. Every microphone it finds is listed. Read the sentence out loud and each one gets a score out of 100 and a recording you can play back, so you hear exactly what it picks up."}},
+{"@type":"Question","name":"How do I test my microphone online?","acceptedAnswer":{"@type":"Answer","text":"Press Test my microphones and allow access. The page lists every microphone it found. Press Start the test and read the sentence out loud: each microphone gets a score out of 100, and you can play each one back."}},
+{"@type":"Question","name":"Is this mic test free and private?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free with no account, and the test runs in your browser. Your voice is never uploaded or recorded anywhere; the samples disappear when you close the tab."}},
+{"@type":"Question","name":"Why do my AirPods or Bluetooth headset sound like a phone call?","acceptedAnswer":{"@type":"Answer","text":"When a website or app uses a Bluetooth headset's microphone, the headset switches to its call mode, which sends narrow audio that stops near 4 kHz. Voices sound muffled and speech recognition misses words. A wired headset or your computer's built-in mic usually records much better."}},
+{"@type":"Question","name":"Which of my microphones is best for recording?","acceptedAnswer":{"@type":"Answer","text":"Every microphone listens to the same sentence at the same moment, so the comparison is fair. The test ranks them by clarity, background noise, echo, volume and distortion, marks the best in green and a poor one in red, and tells you which one to record with."}},
+{"@type":"Question","name":"Why does my microphone not work in the browser?","acceptedAnswer":{"@type":"Answer","text":"Usually the browser is blocking the microphone for the site, another app is already using it, or no microphone is plugged in. The test tells you which one it is and shows the steps for your browser."}},
+{"@type":"Question","name":"What is a good mic test score?","acceptedAnswer":{"@type":"Answer","text":"80 or more is a clear, close microphone that is good for recording and transcription. 55 to 80 works but has a weakness the test names, such as echo or noise. Under 55 usually means a Bluetooth headset in call mode, a mic far from your mouth, or a noisy room."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to test your microphones online","step":[
+{"@type":"HowToStep","name":"Find your microphones","text":"Press Test my microphones and allow microphone access. Every microphone on the device is listed."},
+{"@type":"HowToStep","name":"Read one sentence","text":"Press Start the test and read the sentence out loud. The test starts the moment it hears you."},
+{"@type":"HowToStep","name":"Compare the scores","text":"Each microphone gets a score out of 100. The best is marked green and a poor one red; play each back to hear the difference."},
+{"@type":"HowToStep","name":"Record with the best","text":"Press Record with it to open the voice recorder with that microphone chosen."}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://snipsound.com/"},
+{"@type":"ListItem","position":2,"name":"Tools","item":"https://snipsound.com/tools/"},
+{"@type":"ListItem","position":3,"name":"Mic Test"}]}
+</script>
+<style>
+  .container { max-width: 780px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 26px; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; text-wrap: balance; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+
+  .mt-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .mt-card [hidden] { display: none !important; }
+  .mt-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 12px; border: 1px solid transparent; font: inherit; font-size: 0.95rem; font-weight: 600; cursor: pointer; text-decoration: none; }
+  .mt-btn.primary { background: var(--accent); color: #fff; }
+  .mt-btn.primary:hover { background: var(--accent-hover); }
+  .mt-btn.ghost { background: transparent; color: var(--text); border-color: var(--border-bright); }
+  .mt-btn:disabled { opacity: .5; cursor: not-allowed; }
+  .mt-btn:focus-visible, .mt-mini:focus-visible, .mt-card select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .mt-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .mt-dim { color: var(--text-dim); font-size: 0.9rem; }
+  .mt-start { text-align: center; padding: 14px 0 4px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .mt-start .mt-btn { min-height: 54px; padding: 0 28px; font-size: 1.05rem; }
+  .mt-found-title { font-size: 1.1rem; font-weight: 600; margin: 0; }
+
+  .mt-mics { display: flex; flex-direction: column; gap: 10px; }
+  .mt-mic { display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; align-items: center; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255,255,255,.02); }
+  .mt-mic.best { border-color: rgba(76,175,80,.6); background: rgba(76,175,80,.07); }
+  .mt-mic.poor { border-color: rgba(244,67,54,.55); background: rgba(244,67,54,.06); }
+  .mt-mic .name { font-weight: 600; overflow-wrap: anywhere; }
+  .mt-mic .tag { font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: 2px; }
+  .mt-mic.best .tag { background: rgba(76,175,80,.18); color: #7ed886; }
+  .mt-mic.poor .tag { background: rgba(244,67,54,.16); color: #ff8a80; }
+  .mt-mic .tot { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .mt-mic .tot small { font-size: .78rem; color: var(--text-dim); font-weight: 500; }
+  .mt-mic .lead { grid-column: 1 / -1; font-size: .92rem; line-height: 1.5; color: var(--text-dim); }
+  .mt-mic .lead.on { color: var(--text); }
+  .mt-mic .checks { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: .8rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+  .mt-mic .lv { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: var(--surface2); overflow: hidden; }
+  .mt-mic .lv i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .06s linear; }
+  .mt-mic .acts { grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap; }
+  .mt-mini { min-height: 36px; padding: 0 12px; border-radius: 9px; border: 1px solid var(--border-bright); background: transparent; color: var(--text); font: inherit; font-size: .85rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; }
+
+  .mt-read { display: flex; flex-direction: column; gap: 8px; }
+  .mt-lang { display: flex; align-items: center; gap: 8px; font-size: .88rem; color: var(--text-dim); }
+  .mt-lang select { background: var(--surface2); color: var(--text); border: 1px solid var(--border-bright); border-radius: 8px; padding: 5px 8px; font: inherit; font-size: .88rem; }
+  .mt-sentence { font-size: 1.3rem; line-height: 1.5; font-weight: 600; padding: 14px 16px; border-radius: 12px; background: rgba(124,111,255,.08); border: 1px solid rgba(124,111,255,.25); text-wrap: balance; }
+  .mt-count { font-size: 1.05rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .mt-prog { height: 4px; border-radius: 2px; background: var(--surface2); overflow: hidden; }
+  .mt-prog i { display: block; height: 100%; width: 0; background: var(--accent); }
+  .mt-banner { padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(76,175,80,.45); background: rgba(76,175,80,.08); line-height: 1.6; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+  .mt-banner.warn { border-color: rgba(255,152,0,.45); background: rgba(255,152,0,.08); }
+
+  .kicker { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .mt-link { background: none; border: 0; padding: 0; color: var(--accent); font: inherit; font-size: .88rem; text-decoration: underline; cursor: pointer; }
+  .mt-lang .mt-link { margin-left: auto; }
+  .mt-own { display: flex; flex-direction: column; gap: 6px; }
+  .mt-own label { font-size: .88rem; color: var(--text-dim); }
+  .mt-own textarea { width: 100%; box-sizing: border-box; resize: vertical; min-height: 84px; background: var(--surface2); color: var(--text); border: 1px solid var(--border-bright); border-radius: 12px; padding: 12px 14px; font: inherit; font-size: 1.05rem; line-height: 1.5; }
+  .mt-enough { font-size: .88rem; font-weight: 600; color: var(--orange); }
+  .mt-enough.ok { color: var(--green); }
+  .mt-enough.ok::before { content: '\25CF  '; }
+  /* after the test: the winner and the recorder, the rest small (Marc 10-26) */
+  .mt-card.done #mt-found-title, .mt-card.done #mt-read, .mt-card.done #mt-test-row { display: none !important; }
+  .mt-mic.win { padding: 20px; border-width: 2px; }
+  .mt-mic.win .name { font-size: 1.15rem; }
+  .mt-mic.win .tot { font-size: 2rem; }
+  .mt-others-title { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); margin-top: 4px; }
+  #mt-others .mt-mic { padding: 10px 14px; opacity: .85; }
+  #mt-others .mt-mic .checks { display: none; }
+  #mt-others .mt-mic .tot { font-size: 1.1rem; }
+  #mt-others .mt-mic .lead { font-size: .84rem; }
+  .mt-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .mt-cta .mt-btn { min-height: 56px; font-size: 1.05rem; padding: 0 26px; }
+  #mt-again { align-self: flex-start; }
+  .mt-err { padding: 16px; border-radius: 12px; border: 1px solid rgba(244,67,54,.4); background: rgba(244,67,54,.07); }
+  .mt-err h2 { font-size: 1.05rem; margin: 0 0 6px; }
+  .mt-err ol { margin: 8px 0 12px 20px; color: var(--text-dim); }
+
+  .privacy-notice { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 16px auto 24px; padding: 10px 14px; color: var(--text-dim); font-size: 0.85rem; line-height: 1.4; max-width: 720px; text-align: center; }
+  .privacy-notice svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--green); }
+  .privacy-notice strong { color: var(--text); font-weight: 600; }
+  .privacy-notice a { color: var(--accent); text-decoration: none; }
+
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; line-height: 1.6; }
+  .seo-section table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+  .seo-section th, .seo-section td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; }
+  .seo-section th { color: var(--text); }
+  .table-wrap { overflow-x: auto; }
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; line-height: 1.6; }
+  .faq-item.open .faq-a { display: block; }
+  .related { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .related a { background: var(--surface); border: 1px solid var(--border); border-radius: 99px; padding: 6px 14px; font-size: 0.85rem; text-decoration: none; color: var(--accent); }
+
+  @media (max-width: 640px) { .hero h1 { font-size: 1.7rem; } .mt-card { padding: 16px; } .mt-sentence { font-size: 1.1rem; } }
+</style>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Mic Test</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/" class="active">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="kicker">Microphone test</div>
+    <h1>Free <span class="accent">Mic Test</span>: which microphone sounds best?</h1>
+    <p>Read one sentence and every microphone on this device listens at the same time. We score each one and tell you which to record with: a clearer mic means a better transcript. Your voice never leaves your device.</p>
+  </section>
+
+  <section class="mt-card" id="mt-card" aria-live="polite">
+    <div class="mt-start" id="mt-start">
+      <button class="mt-btn primary" id="mt-go" type="button">Test my microphones</button>
+      <span class="mt-dim">Your browser will ask to use the microphone.</span>
+    </div>
+
+    <div id="mt-err" hidden>
+      <div class="mt-err" role="alert">
+        <h2 id="mt-err-title"></h2>
+        <p class="mt-dim" id="mt-err-text"></p>
+        <ol id="mt-err-steps"></ol>
+        <button class="mt-btn primary" id="mt-retry" type="button">Try again</button>
+      </div>
+    </div>
+
+    <p class="mt-found-title" id="mt-found-title" hidden></p>
+    <div class="mt-mics" id="mt-mics" hidden></div>
+
+    <div class="mt-read" id="mt-read" hidden>
+      <div class="mt-lang"><label for="mt-lang">Read in</label><select id="mt-lang"></select><button type="button" class="mt-link" id="mt-own-btn">Type my own text instead</button></div>
+      <div class="mt-sentence" id="mt-sentence"></div>
+      <div class="mt-own" id="mt-own" hidden>
+        <label for="mt-own-text" id="mt-own-label">Type or paste something to read out loud</label>
+        <textarea id="mt-own-text" rows="3" placeholder="Anything you like: a line from your script, a few sentences about your day."></textarea>
+        <div class="mt-enough" id="mt-enough" role="status"></div>
+      </div>
+      <div class="mt-count" id="mt-count" hidden></div>
+      <div class="mt-prog" id="mt-prog-wrap" hidden><i id="mt-prog"></i></div>
+    </div>
+    <div class="mt-row" id="mt-test-row" hidden>
+      <button class="mt-btn primary" id="mt-test" type="button">Start the test</button>
+      <span class="mt-dim" id="mt-test-note">Read the sentence out loud when you are ready: the test starts the moment it hears you. It takes about 10 seconds.</span>
+    </div>
+
+    <div class="mt-banner" id="mt-banner" hidden></div>
+    <div class="mt-others-title" id="mt-others-title" hidden>Other microphones</div>
+    <div class="mt-mics" id="mt-others" hidden></div>
+    <button type="button" class="mt-link" id="mt-again" hidden>Test again</button>
+  </section>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>100% in your browser.</strong> The microphone stream never uploads. Your test stays on your device and is gone when you close the tab. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <section class="seo-section">
+    <h2>How do I test my microphone online?</h2>
+    <p>Press <strong>Test my microphones</strong> and allow access. The page lists every microphone it found: a built-in mic, a headset, a USB mic, a webcam. Press <strong>Start the test</strong>, read one sentence out loud, and each one gets a score out of 100. Play each back to hear exactly what other people, and speech recognition, will hear.</p>
+
+    <h2>What the mic test checks</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Check</th><th>What it means</th><th>What hurts it</th></tr>
+        <tr><td>Clarity</td><td>How much of your voice's high detail comes through: the "s", "t" and "f" sounds speech recognition needs.</td><td>Bluetooth headsets in call mode (they stop near 4&nbsp;kHz), cheap or covered mics.</td></tr>
+        <tr><td>Background noise</td><td>How far your voice stands above the room.</td><td>Fans, traffic, a laptop's own fan, a mic far from your mouth.</td></tr>
+        <tr><td>Echo</td><td>How cleanly each word stops. A mic near your mouth hears your voice; one at arm's length also hears the room bouncing it back.</td><td>Bare rooms, a laptop mic at arm's length.</td></tr>
+        <tr><td>Volume</td><td>Whether the input is loud enough.</td><td>A mic turned down in your sound settings, or pointing away from you.</td></tr>
+        <tr><td>Distortion</td><td>Crackle on loud words, or a mains hum under the voice.</td><td>Input set too high, a ground loop on a USB or headphone-jack mic.</td></tr>
+      </table>
+    </div>
+
+    <h2>Why do AirPods and Bluetooth headsets sound bad on a computer?</h2>
+    <p>The moment a website or app uses a Bluetooth headset's microphone, the headset switches from its music mode to its call mode. Call mode sends narrow audio that stops at about 4&nbsp;kHz, which is why your voice sounds muffled, like a phone call, and why transcripts made from it miss words. The mic test spots this and says so. For recording, a wired headset or your computer's built-in mic usually sounds much better.</p>
+
+    <h2>Which microphone is best for recording?</h2>
+    <p>The one closest to your mouth that is not in call mode, in the quietest room you have. Every microphone hears the same sentence at the same moment, so the scores compare like for like. Press <strong>Record with it</strong> to go straight to the <a href="/tools/voice-recorder/">free voice recorder</a> with that microphone chosen.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item"><div class="faq-q"><span>How do I check my microphone?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Press Test my microphones and allow access in your browser. Every microphone it finds is listed. Read the sentence out loud and each one gets a score out of 100 and a recording you can play back, so you hear exactly what it picks up.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is this mic test free and private?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Yes. It is free with no account, and the test runs in your browser. Your voice is never uploaded or recorded anywhere; the samples disappear when you close the tab.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Why do my AirPods or Bluetooth headset sound like a phone call?</span><span class="arrow">&#9660;</span></div><div class="faq-a">When a website or app uses a Bluetooth headset's microphone, the headset switches to its call mode, which sends narrow audio that stops near 4&nbsp;kHz. Voices sound muffled and speech recognition misses words. A wired headset or your computer's built-in mic usually records much better.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Which of my microphones is best for recording?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Every microphone listens to the same sentence at the same moment, so the comparison is fair. The test ranks them by clarity, background noise, echo, volume and distortion, marks the best in green and a poor one in red, and tells you which one to record with.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Why does my microphone not work in the browser?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Usually the browser is blocking the microphone for the site, another app is already using it, or no microphone is plugged in. The test tells you which one it is and shows the steps for your browser.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What is a good mic test score?</span><span class="arrow">&#9660;</span></div><div class="faq-a">80 or more is a clear, close microphone that is good for recording and transcription. 55 to 80 works but has a weakness the test names, such as echo or noise. Under 55 usually means a Bluetooth headset in call mode, a mic far from your mouth, or a noisy room.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How do I test my microphone online?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Press Test my microphones and allow access. The page lists every microphone it found. Press Start the test and read the sentence out loud: each microphone gets a score out of 100, and you can play each one back.</div></div>
+  </section>
+
+  <section class="seo-section">
+    <h2>Ready to record?</h2>
+    <div class="related">
+      <a href="/tools/voice-recorder/">Voice Recorder with live transcription</a>
+      <a href="/tools/audio-transcription/">AI Transcription</a>
+      <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+      <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <a href="/">SnipSound</a> &mdash; Free tools for creators &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/help/">Help</a> &middot; <a href="/tools/">All Tools</a>
+</footer>
+
+<script src="/vendor/snip-mic-check.js?v=6"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var MC = window.snipMicCheck, TOOL = 'mic-test', SECS = 8;   // the whole sentence (6 s cut its last words, 10-27)
+  var ctx = null, devices = [], rows = [], busy = false, playing = null;
+  // (Marc 10-26) no "How's this result?" thumbs on this page: the universal prompt is skipped by marking it asked for
+  // this tool this session (snip-feedback.js reads snip-fb:t:<tool>). Failure prompts are untouched.
+  try { sessionStorage.setItem('snip-fb:t:' + TOOL, '1'); } catch (e) {}
+
+  document.querySelectorAll('.faq-q').forEach(function (q) { q.addEventListener('click', function () { q.parentNode.classList.toggle('open'); }); });
+
+  function show(id, on) { $(id).hidden = !on; }
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function audioCtx() { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); return ctx.state === 'suspended' ? ctx.resume().then(function () { return ctx; }) : Promise.resolve(ctx); }
+
+  // the sentence in the reader's language, changeable
+  var sel = $('mt-lang'), own = false, RTL = { ar: 1, he: 1, fa: 1, ur: 1, ps: 1, sd: 1, yi: 1 };
+  MC.LANGS.slice().sort(function (a, b) { return a[1].localeCompare(b[1]); }).forEach(function (r) { var o = document.createElement('option'); o.value = r[0]; o.textContent = MC.LANG_NAMES[r[0]]; sel.appendChild(o); });
+  sel.value = MC.lang();
+  // (Marc 10-26) "allow a user to type something of their own to read out... a green light when they have written
+  // enough": about 5 seconds aloud. A language with no written sentence goes straight to typing.
+  function paintSentence() {
+    var l = sel.value, t = MC.sentence(l), s = $('mt-sentence'), mine = own || !t;
+    s.hidden = mine; if (t) { s.textContent = t; s.lang = l; s.dir = RTL[l] ? 'rtl' : 'auto'; }
+    show('mt-own', mine); $('mt-own-btn').hidden = !t;
+    $('mt-own-btn').textContent = own ? 'Use the sentence instead' : 'Type my own text instead';
+    $('mt-own-label').textContent = t ? 'Type or paste something to read out loud' : 'We do not have a sentence in ' + MC.LANGS.filter(function (r) { return r[0] === l; })[0][1] + ' yet. Type or paste something to read out loud';
+    $('mt-own-text').dir = RTL[l] ? 'rtl' : 'auto'; $('mt-own-text').lang = l;
+    paintEnough();
+  }
+  function paintEnough() {
+    var mine = own || !MC.sentence(sel.value), e = MC.enough($('mt-own-text').value), el = $('mt-enough');
+    el.className = 'mt-enough' + (e.ok ? ' ok' : '');
+    el.textContent = e.ok ? 'Long enough to test' : (e.need >= (e.unit === 'words' ? 10 : 20) ? 'About 10 words is enough' : 'Keep going: about ' + e.need + ' more ' + (e.need === 1 ? e.unit.replace(/s$/, '') : e.unit));
+    $('mt-test').disabled = busy || (mine && !e.ok);
+  }
+  sel.addEventListener('change', paintSentence);
+  $('mt-own-btn').addEventListener('click', function () { own = !own; paintSentence(); if (own) $('mt-own-text').focus(); });
+  $('mt-own-text').addEventListener('input', paintEnough);
+
+  paintSentence();
+  function fail(err) {
+    var slug = MC.reason(err), h = MC.help(slug);
+    $('mt-err-title').textContent = h.title; $('mt-err-text').textContent = h.text;
+    var ol = $('mt-err-steps'); ol.textContent = ''; h.steps.forEach(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); }); ol.hidden = !h.steps.length;
+    ['mt-start', 'mt-found-title', 'mt-mics', 'mt-read', 'mt-test-row', 'mt-banner', 'mt-others-title', 'mt-others', 'mt-again'].forEach(function (id) { show(id, false); });
+    $('mt-card').classList.remove('done');
+    show('mt-err', true);
+    try { if (window.snipTrackFailed) window.snipTrackFailed(TOOL, slug, 'mic_permission', { explained: true, msg_key: slug }); } catch (e) {}
+  }
+
+  // ── 1. find: permission (labels are blank without it), then every mic, listed ──
+  function find() {
+    show('mt-err', false);
+    return audioCtx().then(function () { return MC.open(null); }).then(function (s) {
+      s.getTracks().forEach(function (t) { t.stop(); });
+      return MC.list();
+    }).then(function (list) {
+      devices = list;
+      if (!devices.length) throw Object.assign(new Error('none'), { name: 'NotFoundError' });
+      MC.markSeen(devices);
+      $('mt-found-title').textContent = devices.length === 1 ? '1 microphone found' : devices.length + ' microphones found';
+      var box = $('mt-mics'); box.textContent = '';
+      rows = devices.map(function (d) {
+        var el = document.createElement('div'); el.className = 'mt-mic';
+        var nm = document.createElement('div'); nm.className = 'name'; nm.textContent = d.label;
+        var tot = document.createElement('div'); tot.className = 'tot';
+        var lead = document.createElement('div'); lead.className = 'lead'; lead.textContent = 'Not tested yet';
+        var checks = document.createElement('div'); checks.className = 'checks';
+        var acts = document.createElement('div'); acts.className = 'acts';
+        // (Marc 10-26) "show the live audio coming in on both [mics] so users get some feedback that their mic is working"
+        var lv = document.createElement('div'); lv.className = 'lv'; lv.hidden = true; var bar = document.createElement('i'); lv.appendChild(bar);
+        [nm, tot, lv, lead, checks, acts].forEach(function (x) { el.appendChild(x); }); box.appendChild(el);
+        return { d: d, el: el, nm: nm, tot: tot, lv: lv, bar: bar, lead: lead, checks: checks, acts: acts };
+      });
+      show('mt-start', false); show('mt-found-title', true); show('mt-mics', true); show('mt-read', true); show('mt-test-row', true);
+    }).catch(fail);
+  }
+  $('mt-go').addEventListener('click', find);
+  $('mt-retry').addEventListener('click', find);
+
+  // ── 2. test: every mic opened at once, the same sentence, ranked ──
+  $('mt-test').addEventListener('click', function () { if (!busy) testAll(); });
+  function testAll() {
+    busy = true; $('mt-test').disabled = true; sel.disabled = true; show('mt-banner', false);
+    backToTest();
+    rows.forEach(function (r) { r.el.className = 'mt-mic'; r.tot.textContent = ''; r.lead.className = 'lead'; r.lead.textContent = 'Waiting…'; r.checks.textContent = ''; r.acts.textContent = ''; var t = r.nm.querySelector('.tag'); if (t) t.remove(); });
+    var streams = [];
+    return audioCtx().then(function () {
+      return devices.reduce(function (p, d, i) {
+        return p.then(function () { return MC.open(d.deviceId).then(function (s) { streams[i] = s; }, function (e) { streams[i] = null; rows[i].lead.textContent = MC.help(MC.reason(e)).title; }); });
+      }, Promise.resolve());
+    }).then(function () {
+      if (!streams.some(Boolean)) throw Object.assign(new Error('no mic opened'), { name: 'NotReadableError' });
+      // (Marc 10-27: "it doesn't wait for me to start speaking before counting down like the voice recorder page does")
+      // no countdown to miss: every mic listens, and the test starts at the first word (snipMicCheck.listen, the
+      // recorder's own); the room each mic heard before that is measured with it
+      rows.forEach(function (r, i) { if (streams[i]) { r.lv.hidden = false; r.lead.textContent = 'Listening…'; } });
+      show('mt-count', true); show('mt-prog-wrap', true); $('mt-prog').style.width = '0%';
+      $('mt-count').textContent = 'Read the sentence out loud: we start when we hear you';
+      var stopAll = function () { streams.forEach(function (s) { if (s) s.getTracks().forEach(function (t) { t.stop(); }); }); };
+      return MC.listen(ctx, streams, {
+        secs: SECS, waitSec: 20,
+        onLevel: function (i, pk) { rows[i].bar.style.width = Math.min(100, Math.round(Math.sqrt(pk) * 100)) + '%'; },
+        onStart: function () { $('mt-count').textContent = 'Got it: keep reading'; },
+        onProgress: function (f) { $('mt-prog').style.width = Math.round(f * 100) + '%'; }
+      }).then(function (got) {
+        stopAll();
+        show('mt-count', false); show('mt-prog-wrap', false);
+        rows.forEach(function (r) { r.lv.hidden = true; r.bar.style.width = '0%'; });
+        if (!got.heard) {
+          rows.forEach(function (r, i) { if (streams[i]) r.lead.textContent = 'Heard nothing'; });
+          var nb = $('mt-banner'); nb.className = 'mt-banner warn'; nb.textContent = 'We can\u2019t hear you. Check your microphone is plugged in, switched on and not muted, then press Test again and read the sentence.'; show('mt-banner', true);
+          if (window.snipTrackFailed) window.snipTrackFailed(TOOL, 'no_voice_heard', 'mic_test', { explained: true, msg_key: 'no_voice_heard' });
+          return;
+        }
+        var rooms = got.rooms || [];
+        var res = got.pcms.map(function (pcm, i) { if (!pcm) return null; var m = MC.measure(pcm, ctx.sampleRate, rooms[i]); return { i: i, pcm: pcm, m: m, sc: MC.score(m) }; });
+        paint(res);
+      });
+    }).catch(fail).then(function () { busy = false; sel.disabled = false; $('mt-test').textContent = 'Test again'; paintEnough(); });
+  }
+
+  var DIMS = [['clarity', 'Clarity'], ['whole', 'Whole words'], ['noise', 'Background noise'], ['echo', 'Echo'], ['level', 'Volume'], ['distortion', 'Distortion']];
+  function dimText(k, m) {
+    if (k === 'clarity') return m.edgeHz < 5000 ? 'phone-call quality' : m.hfDb != null && m.hfDb < -28 ? 'dull' : 'up to ' + (m.edgeHz / 1000).toFixed(1) + ' kHz';
+    if (k === 'whole') return m.chopPct >= 5 ? m.chopPct + '% cut out' : 'yes';
+    if (k === 'noise') return m.snrDb == null ? 'can’t tell' : (m.snrDb >= 25 ? 'quiet room' : m.snrDb >= 18 ? 'some noise' : 'noisy');
+    if (k === 'echo') { if (m.echoDrop == null) return m.tail100 == null ? 'can’t tell' : m.tail100 >= 8 ? 'low' : m.tail100 >= 5 ? 'some' : 'a lot'; return m.echoDrop >= 20 ? 'low' : m.echoDrop >= 14 ? 'some' : 'a lot'; }
+    if (k === 'level') return m.speechDb < -50 ? 'quiet' : 'good';
+    if (k === 'distortion') return m.clipPct > 0.05 ? 'clipping' : m.hum ? 'mains hum' : 'none';
+  }
+  function paint(res) {
+    var scored = res.filter(function (r) { return r && r.sc; }).sort(function (a, b) { return b.sc.total - a.sc.total; });
+    var best = scored[0], second = scored[1], close = !!(second && best.sc.total - second.sc.total < 5);
+    MC.saveScores(scored.map(function (r) { return { dev: devices[r.i], total: r.sc.total }; }));
+    res.forEach(function (r, i) {
+      var row = rows[i]; if (!r) return;
+      row.tot.textContent = ''; row.tot.appendChild(document.createTextNode(r.sc ? String(r.sc.total) : '—'));
+      var sm = document.createElement('small'); sm.textContent = ' / 100'; row.tot.appendChild(sm);
+      var v = MC.verdict(r.m), lead = v.filter(function (x) { return x.tone === 'bad'; })[0] || v.filter(function (x) { return x.tone === 'warn'; })[0] || v[0];
+      row.lead.className = 'lead on'; row.lead.textContent = lead ? lead.text : '';
+      if (r.sc) DIMS.forEach(function (p) { var s = document.createElement('span'); s.textContent = p[1] + ': ' + dimText(p[0], r.m); row.checks.appendChild(s); });
+      var play = document.createElement('button'); play.type = 'button'; play.className = 'mt-mini'; play.textContent = '▶ Hear it';
+      play.addEventListener('click', function () { playPcm(r.pcm); }); row.acts.appendChild(play);
+      // green = the best (when it really is ahead), red = poor (under 55)
+      var isBest = r === best && !close && scored.length > 1, isPoor = r.sc && !isBest && r.sc.total < 55;
+      if (isBest || isPoor) { row.el.classList.add(isBest ? 'best' : 'poor'); var tg = document.createElement('span'); tg.className = 'tag'; tg.textContent = isBest ? 'Best' : 'Poor'; row.nm.appendChild(tg); }
+    });
+    var b = $('mt-banner'); b.className = 'mt-banner'; b.textContent = '';
+    if (!best) { b.className = 'mt-banner warn'; b.textContent = 'We could not hear any microphone clearly. Check one is plugged in and not muted, then test again.'; show('mt-banner', true); return; }
+    // (Marc 10-26) "when it's finished hide stuff that isn't relevant anymore ... a focus on the winning microphone and
+    // less emphasis on the loser ... getting the user to use our free voice recorder"
+    var d = devices[best.i], winRow = rows[best.i], box = $('mt-mics'), others = $('mt-others');
+    winRow.el.classList.add('win');
+    box.textContent = ''; box.appendChild(winRow.el);
+    others.textContent = ''; rows.forEach(function (r, i) { if (i !== best.i) others.appendChild(r.el); });
+    var cta = document.createElement('div'); cta.className = 'mt-cta';
+    var txt = document.createElement('div');
+    if (scored.length === 1) txt.textContent = best.sc.total >= 55 ? 'This microphone records well.' : 'This microphone is not great for recording. If you have another (your computer\u2019s built-in mic, a wired headset), plug it in and test again.';
+    else if (close) txt.textContent = 'These sound about the same (' + best.sc.total + ' and ' + second.sc.total + ' out of 100), so either will do.';
+    else { txt.appendChild(document.createTextNode('Record with ')); var st = document.createElement('strong'); st.textContent = d.label; txt.appendChild(st); txt.appendChild(document.createTextNode(': it scored ' + best.sc.total + ' out of 100' + (scored.length > 1 ? ', ' + (best.sc.total - scored[scored.length - 1].sc.total) + ' more than the weakest.' : '.'))); }
+    var go = document.createElement('a'); go.className = 'mt-btn primary'; go.href = '/tools/voice-recorder/'; go.textContent = 'Record with it in the free Voice Recorder \u2192';
+    go.addEventListener('click', function () { MC.choose(d, best.sc.total); });
+    cta.appendChild(txt); cta.appendChild(go); b.appendChild(cta); show('mt-banner', true);
+    show('mt-others-title', others.children.length > 0); show('mt-others', others.children.length > 0); show('mt-again', true);
+    $('mt-card').classList.add('done');
+    MC.choose(d, best.sc.total);
+    try { if (window.snipTrackCompleted) window.snipTrackCompleted(TOOL, devices.length > 1 ? 'compared' : 'tested', { mic_count: devices.length, score: best.sc.total, spread: scored.length > 1 ? best.sc.total - scored[scored.length - 1].sc.total : null, call_mode: scored.some(function (r) { return r.m.edgeHz < 5000; }), read_lang: sel.value }); } catch (e) {}
+  }
+  // Test again: the reading view back, every mic in its first place
+  function backToTest() {
+    $('mt-card').classList.remove('done'); show('mt-others-title', false); show('mt-others', false); show('mt-again', false);
+    var box = $('mt-mics'); box.textContent = ''; rows.forEach(function (r) { r.el.classList.remove('win'); box.appendChild(r.el); });
+  }
+  $('mt-again').addEventListener('click', function () { backToTest(); show('mt-banner', false); $('mt-read').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+  function playPcm(pcm) {
+    try { if (playing) playing.stop(); } catch (e) {}
+    var buf = ctx.createBuffer(1, pcm.length, ctx.sampleRate); buf.getChannelData(0).set(pcm);
+    var src = ctx.createBufferSource(); src.buffer = buf; src.connect(ctx.destination); src.start(); playing = src;
+  }
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51aa041a89ac4ac',t:'MTc5MzE5NzY5Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

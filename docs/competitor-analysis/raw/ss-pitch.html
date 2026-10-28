@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Pitch Shifter Online — Change Key &amp; Transpose Song Without Changing Tempo | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/snip-transport.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-notify.js" defer></script>
+<meta name="description" content="Free online pitch shifter. Change the pitch / key of any song in semitones without changing tempo. Transpose MP3 to a singable key, or shift down to learn a guitar part. 100% in your browser.">
+<meta name="keywords" content="pitch shifter, change pitch online, transpose song online, change key of song, pitch changer free, pitch shift mp3, online pitch shifter, key changer, change key online">
+<link rel="canonical" href="https://snipsound.com/tools/pitch-shifter/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Pitch Shifter Online — Change Key Without Changing Tempo | SnipSound">
+<meta property="og:description" content="Transpose any song in semitones while keeping the tempo. Drop in MP3 / WAV / FLAC, drag the slider, download the new key. 100% client-side.">
+<meta property="og:url" content="https://snipsound.com/tools/pitch-shifter/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Pitch Shifter Online — Change Key Without Changing Tempo | SnipSound">
+<meta name="twitter:description" content="Transpose a song in semitones without changing tempo. Files never leave your device, no sign-up.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+
+  
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 32px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  .privacy-notice { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-dim); margin: 0 0 24px; padding: 0 4px; }
+  .privacy-notice svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
+  .privacy-notice strong { color: var(--text); font-weight: 600; }
+  .privacy-notice a { color: var(--accent); text-decoration: none; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .file-info { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .file-info .file-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; color: var(--text); }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove { margin-left: auto; background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: color 0.2s, border-color 0.2s; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  /* Big semitone readout */
+  .pitch-readout {
+    text-align: center;
+    padding: 24px 16px 18px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+  }
+  .pitch-readout .semitone-value {
+    font-size: 3rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #b599ff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .pitch-readout .interval-label {
+    font-size: 0.95rem; color: var(--text); margin-top: 6px;
+    font-weight: 600;
+  }
+  .pitch-readout .ratio-label {
+    font-size: 0.8rem; color: var(--text-dim);
+    margin-top: 4px; font-variant-numeric: tabular-nums;
+  }
+
+  /* Semitone slider */
+  .slider-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 14px;
+  }
+  .slider-row .step-btn {
+    width: 36px; height: 36px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit; font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .slider-row .step-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .slider-row input[type="range"] { flex: 1; accent-color: var(--accent); }
+
+  /* Quick-jump preset row */
+  .preset-row {
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    padding: 10px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 14px;
+  }
+  .preset-row .label { font-size: 0.85rem; color: var(--text-dim); margin-right: 4px; }
+  .preset-btn {
+    padding: 6px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    border-radius: 999px;
+    font-family: inherit; font-size: 0.8rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* Preserve-tempo toggle */
+  .tempo-toggle-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    font-size: 0.88rem;
+  }
+  .tempo-toggle-row input { accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer; }
+  .tempo-toggle-row label { cursor: pointer; color: var(--text); }
+  .tempo-toggle-row .hint { color: var(--text-dim); font-size: 0.82rem; margin-left: auto; }
+
+  /* Preview transport */
+  .transport-row {
+    display: flex; gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .transport-btn {
+    background: var(--accent);
+    color: #fff; border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit; font-size: 0.9rem; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .transport-btn:hover { background: var(--accent-hover); }
+  .transport-btn svg { width: 14px; height: 14px; }
+  .transport-btn.playing { background: var(--surface); border: 1px solid var(--accent); color: var(--accent); }
+  .transport-btn.secondary { background: var(--bg); border: 1px solid var(--border-bright); color: var(--text); }
+  .transport-btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .transport-row .transport-label { font-size: 0.85rem; color: var(--text-dim); }
+
+  /* Output format dropdown */
+  .output-row {
+    display: flex; gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .output-row label { font-size: 0.9rem; color: var(--text-dim); }
+  .output-row select {
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    font-family: inherit; font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .output-row select:focus { outline: none; border-color: var(--accent); }
+  .output-row .hint { font-size: 0.8rem; color: var(--text-dim); margin-left: auto; }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+
+  /* SEO content section */
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul { padding-left: 22px; }
+
+  .usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 18px 0 24px; }
+  .usecase-card { padding: 14px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; }
+  .usecase-name { font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .usecase-note { font-size: 0.82rem; color: var(--text-dim); }
+
+  .interval-table { display: grid; grid-template-columns: 80px 1fr; gap: 8px 18px; margin: 16px 0; align-items: baseline; }
+  .interval-table .it-st { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; text-align: right; }
+  .interval-table .it-desc { color: var(--text-dim); font-size: 0.9rem; }
+  @media (max-width: 600px) { .interval-table { grid-template-columns: 1fr; gap: 2px 0; } .interval-table .it-desc { margin-bottom: 10px; } }
+
+  .related-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .related-tool { padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: border-color 0.15s, color 0.15s; }
+  .related-tool:hover { border-color: var(--accent); color: var(--accent); }
+  .related-tool .rt-desc { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+  .related-tool:hover .rt-desc { color: var(--text-dim); }
+
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* Centered progress popup (shared pattern) */
+  .measure-popup-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); display: none; align-items: center; justify-content: center; z-index: 500; backdrop-filter: blur(4px); }
+  .measure-popup-overlay.visible { display: flex; }
+  .measure-popup { background: var(--surface); border: 1px solid var(--border-bright); border-radius: 14px; padding: 28px 32px; max-width: 380px; width: calc(100% - 40px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4); text-align: center; }
+  .measure-popup-title { font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+  .measure-popup-sub { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 18px; }
+  .measure-popup-bar-outer { width: 100%; height: 8px; background: var(--surface2); border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+  .measure-popup-bar-inner { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-hover)); width: 0%; transition: width 0.15s ease; border-radius: 6px; }
+  .measure-popup-pct { font-variant-numeric: tabular-nums; font-size: 0.8rem; color: var(--text-dim); }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "SnipSound Pitch Shifter", "url": "https://snipsound.com/tools/pitch-shifter/", "description": "Free online pitch shifter. Change pitch / key of any audio file in semitones without changing tempo. Runs entirely in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How do I change the key of a song online?", "acceptedAnswer": { "@type": "Answer", "text": "Drop your audio file in, drag the semitone slider to your target key (e.g. +2 semitones to go from C major to D major), preview the result, and click Apply & Download. The tempo stays the same — only the pitch changes." } },
+  { "@type": "Question", "name": "What's a semitone?", "acceptedAnswer": { "@type": "Answer", "text": "A semitone (also called a half step) is the smallest interval in Western music — the distance between two adjacent piano keys (white-to-black or B-to-C / E-to-F). 12 semitones make an octave. To transpose from C major to G major, shift by +7 semitones (a perfect fifth up). To match a singer's range, +2 to +5 semitones is typical." } },
+  { "@type": "Question", "name": "Does this change the tempo too?", "acceptedAnswer": { "@type": "Answer", "text": "No — pitch and tempo are independent. With the default 'Preserve tempo' option enabled, the audio plays at exactly the same speed; only the pitch shifts. If you want both pitch AND speed changed together (the classic 'tape speed' effect), turn off Preserve tempo." } },
+  { "@type": "Question", "name": "Will it sound natural?", "acceptedAnswer": { "@type": "Answer", "text": "For small shifts (±3 semitones), the result is musically usable. Larger shifts introduce audible artifacts — the classic 'chipmunk' on big upshifts, 'underwater' on big downshifts. For best quality, stay within ±5 semitones and prefer downshifts (they're more forgiving). The algorithm is OLA-based granular pitch shift, which is a step above naive resample but not as clean as commercial phase vocoders (Logic, Pro Tools, Melodyne) — those use proprietary algorithms tuned for music." } },
+  { "@type": "Question", "name": "Can I transpose a song to a singable key without it sounding slow?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — that's exactly what this tool is for. Drop in the original, find the right amount of shift (usually +2 to +5 for songs originally too low, or -2 to -5 for songs too high), and download. Tempo is preserved, so the karaoke / cover-band feel stays intact." } },
+  { "@type": "Question", "name": "Is my audio uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. All decoding, pitch processing, and re-encoding happens in your browser. Your audio never leaves your device." } },
+  { "@type": "Question", "name": "What input formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Any audio format your browser can decode — MP3, WAV, OGG, FLAC, AAC, M4A. Output formats include MP3 (320, 256, 192, 128 kbps), WAV, FLAC, OGG, AAC and M4A." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body data-owns-keys="space">
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Pitch Shifter</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/" class="active">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">Pitch Shifter</span> Online</h1>
+    <p>Change the key of any song in semitones <strong>without changing tempo</strong>. Transpose a song into a singable range, tune a guitar part down to learn it, or shift a sample to fit your project. Runs entirely in your browser &mdash; your files never leave your device.</p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V5l12-2v13"/>
+      <circle cx="6" cy="18" r="3"/>
+      <circle cx="18" cy="16" r="3"/>
+    </svg>
+    <h2>Drop a song here</h2>
+    <p>or click to browse &mdash; pitch-shifted in your browser, never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span><span class="format-tag">WAV</span><span class="format-tag">OGG</span>
+      <span class="format-tag">FLAC</span><span class="format-tag">AAC</span><span class="format-tag">M4A</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,.mp3,.wav,.ogg,.flac,.aac,.m4a">
+  </div>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your audio never leaves your device.</strong> Decoding, pitch shifting, and encoding all happen in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Remove file</button>
+    </div>
+
+    <style>
+        .wave-stage canvas.wave { cursor: pointer; }
+        /* High-contrast orange so it stands out over the --accent waveform. */
+        .playhead {
+          position: absolute; top: 0; bottom: 0; width: 2px;
+          background: #ff9800;
+          box-shadow: 0 0 0 1px rgba(0,0,0,0.35), 0 0 6px rgba(255,152,0,0.55);
+          pointer-events: none; display: none; left: 0;
+          will-change: left; z-index: 2;
+        }
+        .playhead.active { display: block; }
+        .playhead::before {
+          content: ''; position: absolute; top: -3px; left: -4px;
+          width: 10px; height: 10px; border-radius: 50%;
+          background: #ff9800; box-shadow: 0 0 0 1px rgba(0,0,0,0.35), 0 0 6px rgba(255,152,0,0.6);
+        }
+        /* Canonical transport row (shared standard) — directly under the waveform. */
+        .wave-transport { display:flex; align-items:center; gap:10px; margin-top:12px; flex-wrap:wrap; }
+        .wt-btn { display:inline-flex; align-items:center; justify-content:center;
+          width:44px; height:44px; min-width:44px; border-radius:10px; cursor:pointer;
+          border:1px solid var(--border,rgba(255,255,255,.14));
+          background:var(--surface2,rgba(255,255,255,.06)); color:var(--text,#f2f2f5); padding:0; }
+        .wt-btn:hover { background:var(--surface3,rgba(255,255,255,.10)); }
+        .wt-btn:disabled { opacity:.4; cursor:default; }
+        .wt-btn svg { width:22px; height:22px; }
+        .wt-btn:focus-visible { outline:2px solid var(--accent,#7c6fff); outline-offset:2px; }
+        .wt-play { background:var(--accent,#7c6fff); border-color:transparent; color:#fff; }
+        .wt-play:hover { filter:brightness(1.08); background:var(--accent,#7c6fff); }
+        .wt-time { font-variant-numeric:tabular-nums; font-weight:600; font-size:1rem; color:var(--text,#f2f2f5); }
+        .wt-time .snip-tp-total { opacity:.55; }
+        .wt-flex { flex:1 1 auto; }
+        .wt-kbd { color:var(--muted,#a9a9b3); }
+        /* Draggable green ⟳ replay marker (matches the fx-engine). */
+        .restart-marker { position:absolute; top:0; bottom:0; width:2px; background:var(--green,#22c55e); left:0; display:none; cursor:ew-resize; pointer-events:auto; z-index:3; }
+        .restart-marker::before { content:'\27F3'; position:absolute; top:-17px; left:50%; transform:translateX(-50%); font-size:12px; color:#fff; background:var(--green,#22c55e); width:18px; height:18px; border-radius:4px; display:flex; align-items:center; justify-content:center; line-height:1; box-shadow:0 1px 4px rgba(0,0,0,0.4); }
+        /* Zoom control row + replay-from-marker toggle. */
+        .wave-zoom { display:flex; align-items:center; gap:10px; margin-top:10px; flex-wrap:wrap; }
+        /* Keep [zoom-out][slider][zoom-in] together so they never split across a wrap (mobile). */
+        .wz-group { display:inline-flex; align-items:center; gap:8px; }
+        .wz-slider { flex:0 1 150px; min-width:90px; accent-color:var(--accent,#7c6fff); cursor:pointer; }
+        .wz-btn { display:inline-flex; align-items:center; justify-content:center; height:38px; min-width:38px; padding:0 13px; gap:6px; border-radius:9px; cursor:pointer; font-weight:600; font-size:0.88rem; font-family:inherit; border:1px solid var(--border,rgba(255,255,255,.14)); background:var(--surface2,rgba(255,255,255,.06)); color:var(--text,#f2f2f5); }
+        .wz-btn:hover:not(:disabled) { background:var(--surface3,rgba(255,255,255,.10)); }
+        .wz-btn:disabled { opacity:.4; cursor:default; }
+        .wz-btn.wz-icon { min-width:38px; padding:0; }
+        .wz-btn svg { width:18px; height:18px; }
+        .replay-row { display:flex; align-items:center; gap:12px; margin-top:12px; flex-wrap:wrap; }
+        .replay-switch { display:inline-flex; align-items:center; gap:8px; cursor:pointer; font-size:0.92rem; font-weight:600; color:var(--text,#f2f2f5); white-space:nowrap; }
+        .replay-switch input { width:16px; height:16px; accent-color:var(--green,#22c55e); cursor:pointer; }
+        .replay-glyph { color:var(--green,#22c55e); font-weight:700; font-size:1.05em; }
+        /* Contextual hint line — waveform metadata, directly under the wave (design R-bba306). */
+        .wave-hint { margin:6px 0 0; font-size:0.78rem; color:var(--text-dim,#9a9aa8); min-height:1.2em; }
+        /* Zoom to snip is gold-tinted (ties to the gold selection) and only renders while a selection exists. */
+        #tp-zoom-snip { border-color:rgba(255,200,60,0.55); color:rgba(255,214,90,0.95); }
+        #tp-zoom-snip:hover { background:rgba(255,200,60,0.12); }
+        /* ±5s skip buttons: the touch equivalent of ←/→ (Marc: option C). Shown by input
+           capability, not screen width — pointer:coarse = primary input is touch. */
+        .wt-skip { display:none; position:relative; }
+        .wt-skip small { position:absolute; bottom:3px; right:4px; font-size:8.5px; font-weight:800; color:var(--text-dim,#9a9aa8); }
+        @media (pointer: coarse) {
+          .wt-skip { display:inline-flex; }
+          #tp-shortcuts { display:none; }   /* no physical keyboard → ⌨ is clutter */
+        }
+        /* PHONE-MINIMAL (Marc, 2026-10-20) - the same as slowed-reverb: the waveform takes a pinch to zoom and a
+           finger drag to move the playhead (snip-transport touch mode), so the zoom controls go; "Reset view"
+           shows only while zoomed; the replay toggle keeps its one line and loses the paragraph. */
+        @media (hover: none) and (pointer: coarse) {
+          .wz-group, #tp-zoom-snip { display:none !important; }
+          #tp-zoom-reset:disabled { display:none; }
+          .replay-help { display:none; }
+          #tp-to-start { display:none; }   /* pick 1: ⏪5s / a drag covers it, and the time then fits on the play row */
+        }
+        .replay-help { margin:0; font-size:0.8rem; color:var(--text-dim,#9a9aa8); line-height:1.4; flex:1 1 240px; }
+      </style>
+    <style>
+      /* Pitch Shifter sizing for the shared waveform (the rules above are slowed-reverb's, verbatim). */
+      .wave-stage { margin-top: 18px; }
+      .wave-stage canvas.wave { display: block; width: 100%; height: 140px; border-radius: 10px;
+        background: var(--surface2, rgba(255,255,255,.04)); }
+      #transport-label { margin: 10px 0 22px; }
+      /* The shared .wz-btn / .wt-btn rules set display:inline-flex, and page styles beat
+         the browser's default [hidden] rule, so "Zoom to snip" (which the core shows only
+         while a section is highlighted) was always on screen. Honour [hidden] explicitly. */
+      .wz-btn[hidden], .wt-btn[hidden] { display: none !important; }
+    </style>
+    <div class="wave-stage" style="position:relative;cursor:pointer;">
+      <canvas class="wave" id="wave-canvas" width="1600" height="140"></canvas>
+      <div class="restart-marker" id="restart-marker" title="Replay point — drag to set where Play (and Replay from marker) begins"></div>
+      <div class="playhead" id="playhead"></div>
+    </div>
+    <p class="wave-hint" id="wave-hint" aria-hidden="true"></p>
+    <div class="wave-transport" role="group" aria-label="Playback and zoom controls">
+        <button type="button" class="wt-btn" id="tp-to-start" aria-label="Play from the start" title="Play from the start">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="2.5" height="14" rx="0.5"/><polygon points="20 5 20 19 9 12"/></svg>
+        </button>
+        <button type="button" class="wt-btn wt-play" id="btn-play" aria-label="Play (Space)"></button>
+        <button type="button" class="wt-btn wt-skip" id="tp-skip-back" aria-label="Back 5 seconds" title="Back 5 seconds">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg><small>5s</small>
+        </button>
+        <button type="button" class="wt-btn wt-skip" id="tp-skip-fwd" aria-label="Forward 5 seconds" title="Forward 5 seconds">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg><small>5s</small>
+        </button>
+        <span class="wt-time" id="tp-time">0:00<span class="snip-tp-total"> / 0:00</span></span>
+        <span class="wt-flex"></span>
+        <span class="wz-group">
+          <button type="button" class="wz-btn wz-icon" id="tp-zoom-out" aria-label="Zoom out" title="Zoom out" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
+          <input type="range" class="wz-slider" id="tp-zoom-slider" min="0" max="100" value="0" aria-label="Zoom level" title="Drag to zoom">
+          <button type="button" class="wz-btn wz-icon" id="tp-zoom-in" aria-label="Zoom in" title="Zoom in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
+        </span>
+        <button type="button" class="wz-btn" id="tp-zoom-reset" title="Reset the view to the full track" disabled>Reset view</button>
+        <button type="button" class="wz-btn" id="tp-zoom-snip" title="Zoom to the highlighted section" hidden>Zoom to snip</button>
+        <button type="button" class="wt-btn wt-kbd" id="tp-shortcuts" aria-label="Keyboard shortcuts" title="Keyboard shortcuts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6" y2="10"/><line x1="10" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="14" y2="10"/><line x1="18" y1="10" x2="18" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+        </button>
+      </div>
+    <div class="replay-row">
+        <label class="replay-switch"><input type="checkbox" id="replay-on-change"> <span class="replay-glyph">&#10227;</span> Replay from marker</label>
+        <p class="replay-help">When <strong>on</strong>, changing the pitch replays from the green &#10227; marker (drag it anywhere on the wave). When <strong>off</strong>, the new pitch is heard instantly while the song keeps playing.</p>
+      </div>
+    <p class="transport-label" id="transport-label">Load a song, press play, then drag the slider — the new pitch is heard instantly.</p>
+    <div class="pitch-readout">
+      <div class="semitone-value" id="semitone-value">+0</div>
+      <div class="interval-label" id="interval-label">No shift</div>
+      <div class="ratio-label" id="ratio-label">Frequency ratio: 1.000×</div>
+    </div>
+
+    <div class="slider-row">
+      <button type="button" class="step-btn" id="step-down" aria-label="Down one semitone">−</button>
+      <input type="range" id="semitone-slider" min="-12" max="12" step="1" value="0">
+      <button type="button" class="step-btn" id="step-up" aria-label="Up one semitone">+</button>
+    </div>
+
+    <div class="preset-row" id="preset-row">
+      <span class="label">Quick jump:</span>
+      <button type="button" class="preset-btn" data-semis="-12">−1 octave</button>
+      <button type="button" class="preset-btn" data-semis="-7">−5th (−7)</button>
+      <button type="button" class="preset-btn" data-semis="-5">−4th (−5)</button>
+      <button type="button" class="preset-btn" data-semis="-2">−2 st</button>
+      <button type="button" class="preset-btn active" data-semis="0">Reset</button>
+      <button type="button" class="preset-btn" data-semis="2">+2 st</button>
+      <button type="button" class="preset-btn" data-semis="5">+4th (+5)</button>
+      <button type="button" class="preset-btn" data-semis="7">+5th (+7)</button>
+      <button type="button" class="preset-btn" data-semis="12">+1 octave</button>
+    </div>
+
+    <div class="tempo-toggle-row">
+      <input type="checkbox" id="preserve-tempo" checked>
+      <label for="preserve-tempo"><strong>Preserve tempo</strong> &mdash; change pitch without changing speed</label>
+      <span class="hint">Uncheck for the classic "tape speed" effect (pitch + speed together).</span>
+    </div>
+
+
+    <div class="output-row">
+      <label for="output-format">Output format:</label>
+      <select id="output-format">
+        <option value="mp3-320" selected>MP3 — 320 kbps (best)</option>
+        <option value="mp3-256">MP3 — 256 kbps</option>
+        <option value="mp3-192">MP3 — 192 kbps</option>
+        <option value="mp3-128">MP3 — 128 kbps (smaller)</option>
+        <option value="wav">WAV (lossless)</option>
+        <option value="flac">FLAC (lossless)</option>
+        <option value="ogg">OGG Vorbis</option>
+        <option value="aac">AAC</option>
+        <option value="m4a">M4A</option>
+      </select>
+      <span class="hint">WAV/FLAC preserve the pitch-shifted result exactly.</span>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="btn-apply">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Apply Pitch Shift &amp; Download</span>
+      </button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>Change the key of a song online &mdash; free, private, no sign-up</h2>
+    <p>SnipSound's Pitch Shifter changes the pitch (musical key) of any audio file in semitones &mdash; without speeding it up or slowing it down. Drop in a song, drag the slider to your target shift, preview the result, and download. Works on MP3, WAV, FLAC, OGG, AAC, and M4A. Everything runs in your browser; your files never leave your device.</p>
+
+    <h3>What each semitone shift does</h3>
+    <div class="interval-table">
+      <div class="it-st">−12</div><div class="it-desc">One octave down. The classic "tape slowed to half-speed" pitch — but tempo stays the same.</div>
+      <div class="it-st">−7</div><div class="it-desc">Down a perfect 5th. C major → F major. Big drop, useful for low-voice covers.</div>
+      <div class="it-st">−5</div><div class="it-desc">Down a perfect 4th. C major → G major. Common karaoke transpose for male voices.</div>
+      <div class="it-st">−2</div><div class="it-desc">Down a whole step (major 2nd). The smallest shift that's "obvious" as a key change.</div>
+      <div class="it-st">−1</div><div class="it-desc">Down one semitone. Subtle — great for fitting a melody under a vocal range without sounding "wrong".</div>
+      <div class="it-st">0</div><div class="it-desc">No shift. Original pitch.</div>
+      <div class="it-st">+1</div><div class="it-desc">Up one semitone. Adds energy, makes vocals sit slightly higher.</div>
+      <div class="it-st">+2</div><div class="it-desc">Up a whole step. Common "second verse modulation" interval.</div>
+      <div class="it-st">+5</div><div class="it-desc">Up a perfect 4th. C major → F major. The "make it more anthemic" interval.</div>
+      <div class="it-st">+7</div><div class="it-desc">Up a perfect 5th. Big lift — classic last-chorus key change.</div>
+      <div class="it-st">+12</div><div class="it-desc">One octave up. Chipmunk territory if you shift further. Tempo unchanged.</div>
+    </div>
+
+    <h3>Common use cases</h3>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="usecase-name">🎤 Karaoke / cover-band transpose</div>
+        <div class="usecase-note">Shift a backing track ±2 to ±5 semitones so the lead vocal sits in a comfortable range without slowing the groove.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎸 Guitar / piano learning</div>
+        <div class="usecase-note">Drop a song down a few semitones so the chord shapes match the open position you're learning. Don't have a capo? Pitch-shift +2 to fake one.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎵 DJ key matching</div>
+        <div class="usecase-note">Shift a track ±1 semitone to harmonically mix it with the next one (Camelot wheel logic). Pair with our Key Finder to identify the source key first.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎬 Sample sound design</div>
+        <div class="usecase-note">Shift a sound effect down for menace, up for energy — useful for podcast intros, video stingers, game audio.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎓 Music education</div>
+        <div class="usecase-note">Teachers transposing exercises so students can practice in different keys without buying multiple recordings.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎙 Voice anonymization</div>
+        <div class="usecase-note">Shift speech +6 or -6 semitones to disguise a voice for an interview clip or whistleblower podcast.</div>
+      </div>
+    </div>
+
+    <h3>How the pitch shifter works</h3>
+    <p>The standard "naive" pitch shifter (the one Windows Media Player and lots of free tools use) just plays the audio at a different sample rate &mdash; which raises pitch AND speeds up the audio. That's not what you want. Real pitch shifting splits the audio into short overlapping windows, resamples each window to raise/lower its pitch, then stitches the windows back together with crossfades to maintain the original duration. This is called <strong>OLA (overlap-add) granular pitch shifting</strong>.</p>
+    <p>Our implementation runs entirely in JavaScript via the Web Audio API. For each shift, we render the result through an OfflineAudioContext using a granular algorithm with 50&nbsp;ms windows and 50% overlap. The result is musically usable for shifts within ±6 semitones; beyond that, artifacts ("rubbery", "underwater", or "chipmunk" depending on direction) become audible. For commercial-grade quality on extreme shifts, you'd need a phase vocoder like Logic's Flex Pitch or Pro Tools' Elastic Audio &mdash; those use proprietary algorithms tuned for music.</p>
+
+    <h3>Pitch shifting vs key changing — same thing or different?</h3>
+    <p>Same thing, different vocabulary. "Pitch shifting by +2 semitones" and "transposing from C major to D major" describe the same operation. We use "semitones" in the UI because it's unambiguous &mdash; you don't need to know what key the song is in to shift it. If you want to know the source key first, run the file through our <a href="/tools/key-finder/">Key Finder</a> tool.</p>
+
+    <h3>Why use SnipSound's pitch shifter</h3>
+    <ul>
+      <li><strong>100% in your browser.</strong> Most online pitch shifters (mp3cut, vocalremover, audiotrimmer-pitch) upload your file to a server. We don't &mdash; your audio never leaves your device.</li>
+      <li><strong>Tempo preservation is the default.</strong> Some tools default to "tape speed" mode where pitch and tempo move together. We default to musically-useful pitch-only shifting.</li>
+      <li><strong>Honest about limits.</strong> Granular pitch shift is OK for ±6 semitones; we tell you that in the FAQ instead of pretending it's commercial-grade for any shift size.</li>
+      <li><strong>Tempo-coupled mode available too.</strong> Toggle Preserve Tempo off if you actually WANT the "Alvin and the Chipmunks" effect (or its slow-mo inverse).</li>
+      <li><strong>Real intervals, not just numbers.</strong> The readout shows the musical interval name (perfect 5th, major 3rd, etc.) alongside the raw semitone count.</li>
+    </ul>
+
+    <h3>Related tools</h3>
+    <div class="related-tools">
+      <a href="/tools/tempo-changer/" class="related-tool"><strong>Speed Changer</strong><span class="rt-desc">Inverse operation — change tempo without changing pitch</span></a>
+      <a href="/tools/key-finder/" class="related-tool"><strong>Key Finder</strong><span class="rt-desc">Identify a song's source key so you know how much to shift</span></a>
+      <a href="/tools/bpm-finder/" class="related-tool"><strong>BPM Finder</strong><span class="rt-desc">Source tempo for DJ key/tempo matching</span></a>
+      <a href="/tools/audio-equalizer/" class="related-tool"><strong>Audio Equalizer</strong><span class="rt-desc">Tame harshness after a big upshift with a treble cut</span></a>
+      <a href="/tools/change-song-key/" class="related-tool"><strong>Change Song Key</strong><span class="rt-desc">Transpose a song to a new key online</span></a>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Pitch shifter FAQ</h2>
+    <div class="faq-item"><div class="faq-q"><span>How do I change the key of a song online?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Drop your audio file in, drag the semitone slider to your target key (e.g. +2 semitones to go from C major to D major), preview the result, and click Apply &amp; Download. The tempo stays the same — only the pitch changes.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What's a semitone?</span><span class="arrow">&#9660;</span></div><div class="faq-a">A semitone (also called a half step) is the smallest interval in Western music &mdash; the distance between two adjacent piano keys (white-to-black or B-to-C / E-to-F). 12 semitones make an octave. To transpose from C major to G major, shift by +7 semitones (a perfect fifth up). To match a singer's range, +2 to +5 semitones is typical.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Does this change the tempo too?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No &mdash; pitch and tempo are independent. With the default "Preserve tempo" option enabled, the audio plays at exactly the same speed; only the pitch shifts. If you want both pitch AND speed changed together (the classic "tape speed" effect), turn off Preserve tempo.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Will it sound natural?</span><span class="arrow">&#9660;</span></div><div class="faq-a">For small shifts (±3 semitones), the result is musically usable. Larger shifts introduce audible artifacts &mdash; the classic "chipmunk" on big upshifts, "underwater" on big downshifts. For best quality, stay within ±5 semitones and prefer downshifts (they're more forgiving). The algorithm is OLA-based granular pitch shift, which is a step above naive resample but not as clean as commercial phase vocoders (Logic, Pro Tools, Melodyne) &mdash; those use proprietary algorithms tuned for music.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Can I transpose a song to a singable key without it sounding slow?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Yes &mdash; that's exactly what this tool is for. Drop in the original, find the right amount of shift (usually +2 to +5 for songs originally too low, or -2 to -5 for songs too high), and download. Tempo is preserved, so the karaoke / cover-band feel stays intact.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my audio uploaded to a server?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. All decoding, pitch processing, and re-encoding happens in your browser. Your audio never leaves your device.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What input formats are supported?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Any audio format your browser can decode &mdash; MP3, WAV, OGG, FLAC, AAC, M4A. Output formats include MP3 (320, 256, 192, 128 kbps), WAV, FLAC, OGG, AAC and M4A.</div></div>
+  </section>
+
+</main>
+
+<div class="measure-popup-overlay" id="measure-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="measure-popup-title">
+  <div class="measure-popup">
+    <div class="measure-popup-title" id="measure-popup-title">Pitch shifting&hellip;</div>
+    <div class="measure-popup-sub" id="measure-popup-sub">This runs entirely in your browser.</div>
+    <div class="measure-popup-bar-outer">
+      <div class="measure-popup-bar-inner" id="measure-popup-bar"></div>
+    </div>
+    <div class="measure-popup-pct" id="measure-popup-pct">0%</div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>&copy; SnipSound. <a href="/">Snip Editor</a> &middot; <a href="/free-music/">Playlist</a> &middot; <a href="/tools/">All Tools</a> &middot; <a href="/privacy/">Privacy</a></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── DOM ────────────────────────────────────────────────────────────────
+  const dropZone     = document.getElementById('drop-zone');
+  const fileInput    = document.getElementById('file-input');
+  const editor       = document.getElementById('editor');
+  const fileNameEl   = document.getElementById('file-name');
+  const fileMetaEl   = document.getElementById('file-meta');
+  const fileRemove   = document.getElementById('file-remove');
+  const semitoneSlider = document.getElementById('semitone-slider');
+  const semitoneValue  = document.getElementById('semitone-value');
+  const intervalLabel  = document.getElementById('interval-label');
+  const ratioLabel     = document.getElementById('ratio-label');
+  const stepDown     = document.getElementById('step-down');
+  const stepUp       = document.getElementById('step-up');
+  const presetRow    = document.getElementById('preset-row');
+  const preserveTempo = document.getElementById('preserve-tempo');
+  const transportLabel = document.getElementById('transport-label');
+  const outputFormat = document.getElementById('output-format');
+  const btnApply     = document.getElementById('btn-apply');
+  const statusText   = document.getElementById('status-text');
+  const popupOverlay = document.getElementById('measure-popup-overlay');
+  const popupTitle   = document.getElementById('measure-popup-title');
+  const popupSub     = document.getElementById('measure-popup-sub');
+  const popupBar     = document.getElementById('measure-popup-bar');
+  const popupPct     = document.getElementById('measure-popup-pct');
+
+  // ── State ──────────────────────────────────────────────────────────────
+  let currentFile    = null;
+  let originalBuffer = null;
+  let durationSec    = 0;
+  let acx            = null;
+  // Live playback state (shared transport + real-time pitch worklet). Declared up front
+  // so updateReadouts() can run before the transport exists.
+  let transport        = null;
+  let pitchNode        = null;
+  let workletReady     = null;
+  let masterGain       = null;
+  let tapeSrc          = null;
+  let isPlaying        = false;
+  let isMuted          = false;
+  let pausedAt         = null;
+  let loopRegion       = null;
+  let playMode         = null;   // 'ola' = live worklet | 'tape' = buffer at a rate
+  let activeRate       = 1;      // song-seconds per real second while playing
+  let playStartCtxTime = 0;
+  let playStartPos     = 0;
+  let lastView         = null;
+
+  function getAudioContext() {
+    if (!acx) {
+      const Ctor = window.AudioContext || window.webkitAudioContext;
+      acx = new Ctor();
+    }
+    return acx;
+  }
+  function uiYield() { return new Promise(r => setTimeout(r, 0)); }
+
+  // Musical interval names. Mostly diatonic names; chromatic shifts (-1, +1)
+  // get the dual augmented/diminished labels common in transcription.
+  const INTERVAL_NAMES = {
+    '-12': 'Octave down',  '-11': 'Major 7th down',  '-10': 'Minor 7th down',
+    '-9':  'Major 6th down','-8':  'Minor 6th down', '-7':  'Perfect 5th down',
+    '-6':  'Tritone down',  '-5':  'Perfect 4th down','-4':  'Major 3rd down',
+    '-3':  'Minor 3rd down','-2':  'Whole step down', '-1':  'Half step down',
+    '0':   'No shift',
+    '1':   'Half step up',  '2':   'Whole step up',   '3':   'Minor 3rd up',
+    '4':   'Major 3rd up',  '5':   'Perfect 4th up',  '6':   'Tritone up',
+    '7':   'Perfect 5th up','8':   'Minor 6th up',    '9':   'Major 6th up',
+    '10':  'Minor 7th up',  '11':  'Major 7th up',    '12':  'Octave up',
+  };
+
+  // ── Formatting ─────────────────────────────────────────────────────────
+  function formatTime(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    const m = Math.floor(sec / 60);
+    const s = sec - m * 60;
+    return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1);
+  }
+  function formatBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+    return (b / 1024 / 1024).toFixed(1) + ' MB';
+  }
+  function semitonesToRatio(semis) {
+    return Math.pow(2, semis / 12);
+  }
+
+  // ── Popup helpers ──────────────────────────────────────────────────────
+  function showPopup(title) {
+    popupTitle.textContent = title || 'Pitch shifting…';
+    popupBar.style.width = '0%';
+    popupPct.textContent = '0%';
+    popupSub.textContent = 'This runs entirely in your browser.';
+    popupOverlay.classList.add('visible');
+  }
+  function hidePopup() { popupOverlay.classList.remove('visible'); }
+  function updatePopup(frac, label) {
+    const pct = Math.max(0, Math.min(100, Math.round(frac * 100)));
+    popupBar.style.width = pct + '%';
+    popupPct.textContent = pct + '%';
+    if (label) popupSub.textContent = label;
+  }
+
+  // ── UI show/hide ───────────────────────────────────────────────────────
+  function showEditor() { editor.classList.add('active'); dropZone.style.display = 'none'; }
+  function hideEditor() { editor.classList.remove('active'); dropZone.style.display = ''; stopPreview(); }
+
+  // ── Update slider readouts ────────────────────────────────────────────
+  function updateReadouts() {
+    const semis = parseInt(semitoneSlider.value, 10);
+    const sign = semis > 0 ? '+' : (semis < 0 ? '' : '+');
+    semitoneValue.textContent = sign + semis;
+    intervalLabel.textContent = INTERVAL_NAMES[String(semis)] || (semis + ' semitones');
+    ratioLabel.textContent = 'Frequency ratio: ' + semitonesToRatio(semis).toFixed(3) + '×';
+    // Highlight matching preset
+    document.querySelectorAll('.preset-btn').forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.semis, 10) === semis);
+    });
+    // Live: while playing, the new pitch is heard at once (or replays from the ⟳
+    // marker when "Replay from marker" is on). Nothing is re-rendered.
+    if (isPlaying) {
+      if (transport && transport.isReplayOnChange()) playFrom(transport.getMarker());
+      else if (playMode === 'ola' && pitchNode) pitchNode.port.postMessage({ type: 'ratio', ratio: semitonesToRatio(semis) });
+      else if (playMode === 'tape' && tapeSrc && !preserveTempo.checked) {
+        const pos = currentPos();
+        activeRate = semitonesToRatio(semis);
+        playStartPos = pos; playStartCtxTime = getAudioContext().currentTime;
+        try { tapeSrc.playbackRate.value = activeRate; } catch (e) {}
+      } else playFrom(currentPos());
+    }
+    if (transport) transport.refresh();
+  }
+
+  // ── File handling ──────────────────────────────────────────────────────
+  async function handleFile(file) {
+    if (!file) return;
+    currentFile = file;
+    statusText.textContent = 'Decoding…';
+    if (window.snipSharedAudio) window.snipSharedAudio.save(file);
+    try {
+      const ctx = getAudioContext();
+      // The shared decoder, for its FFmpeg->WAV rescue when the browser refuses the file (posthog
+      // R-ae1009). This page called decodeAudioData raw, so a file Edge or Safari would not read
+      // failed outright, with none of the retry the trimmer and the converters already get.
+      const buf = window.snipDecodeAudio
+        ? await window.snipDecodeAudio(file, ctx, { tool: 'pitch-shifter' })
+        : await ctx.decodeAudioData((await file.arrayBuffer()).slice(0));
+      originalBuffer = buf;
+      durationSec = buf.duration;
+
+      fileNameEl.textContent = file.name;
+      const ch = buf.numberOfChannels === 1 ? 'mono' : buf.numberOfChannels + ' channels';
+      const sr = (buf.sampleRate / 1000).toFixed(1);
+      fileMetaEl.textContent =
+        formatBytes(file.size) + ' · ' + formatTime(durationSec) + ' · ' + ch + ' · ' + sr + ' kHz';
+
+      showEditor();
+      onFileReady();
+      updateReadouts();
+      statusText.textContent = '';
+    } catch (err) {
+      console.error('Decode failed', err);
+      // COUNTED, not only alerted (R-ae1009): this failure sent no tool_failed, so the page's decode
+      // failures were missing from the rate and reached PostHog only as console-captured exceptions.
+      // An empty-after-read file is not a decode failure: the shared decoder already said so and
+      // counted it (upload_rejected), so it gets neither the event nor a second message.
+      const _empty = !!(err && err.name === 'SnipEmptyAfterRead');
+      if (!_empty && window.snipTrackFailed) window.snipTrackFailed('pitch-shifter', (err && err.name === 'NotReadableError') ? 'file_read_failed' : 'decode_failed', 'decode', Object.assign({}, (err && err.snipDiag) || {}, { explained: true, msg_key: 'decode_try_other' }));
+      if (!_empty) alert('Could not decode "' + file.name + '". Try a different file or format.');
+      statusText.textContent = '';
+    }
+  }
+
+  // ── Pitch shift algorithm: OLA granular shift, runs on a Float32Array ──
+  // Process: walk the INPUT buffer in overlapping windows of WINDOW_SAMP
+  // samples with WINDOW_HOP between window starts. For each window, copy
+  // ratio*WINDOW_SAMP source samples and OUTPUT them with a Hann window
+  // applied, hop'ing the OUTPUT pointer by WINDOW_HOP — meaning the
+  // output's length matches the input's. Resampling each window changes
+  // the perceived pitch; output-hop equals input-hop preserves duration.
+  //
+  // This is the simplest form of pitch shifting (no phase coherence,
+  // no formant correction) — quality is OK for ±6 semitones on most
+  // material, audibly artificial beyond that. Pure JS, no dependencies.
+  function pitchShiftChannel(input, ratio, onProgress) {
+    const len = input.length;
+    if (!(ratio > 0) || Math.abs(ratio - 1) < 1e-6) return Float32Array.from(input);
+
+    const WINDOW_SAMP = 2048;              // ~46 ms at 44.1 kHz
+    const WINDOW_HOP = WINDOW_SAMP / 4;    // 75% overlap
+    const OVERLAP = WINDOW_SAMP - WINDOW_HOP;
+    const SEARCH = 256;                    // +-5.8 ms of alignment freedom
+    const CORR_STEP = 4;                   // decimate the correlation: 4x cheaper, same choice
+    const CAND_STEP = 2;
+
+    // Periodic Hann (i / N, not i / (N-1)): the form that sums to exactly 2.0 at 75% overlap.
+    const hann = new Float32Array(WINDOW_SAMP);
+    for (let i = 0; i < WINDOW_SAMP; i++) hann[i] = 0.5 * (1 - Math.cos(2 * Math.PI * i / WINDOW_SAMP));
+
+    // ── 1. WSOLA time-stretch by `ratio`. Grains are COPIED, never resampled, and each one is
+    // placed where it best matches the previous grain's natural continuation, so overlapping
+    // grains add in phase. That alignment is what removes the comb filtering.
+    const stretchedLen = Math.round(len * ratio) + WINDOW_SAMP;
+    const acc = new Float32Array(stretchedLen);
+    const env = new Float32Array(stretchedLen);
+    const analysisHop = WINDOW_HOP / ratio;
+    let prevStart = 0, k = 0, progressCounter = 0;
+    for (;;) {
+      const outPos = k * WINDOW_HOP;
+      if (outPos + WINDOW_SAMP > stretchedLen) break;
+      const ideal = Math.round(k * analysisHop);
+      if (ideal + WINDOW_SAMP >= len) break;
+      let start = ideal;
+      if (k > 0) {
+        const target = prevStart + WINDOW_HOP;   // where the previous grain was heading
+        const lo = Math.max(0, ideal - SEARCH);
+        const hi = Math.min(len - WINDOW_SAMP - 1, ideal + SEARCH);
+        let best = -Infinity;
+        for (let c = lo; c <= hi; c += CAND_STEP) {
+          let num = 0, den = 1e-9;
+          for (let i = 0; i < OVERLAP; i += CORR_STEP) {
+            const a = input[target + i] || 0, b = input[c + i] || 0;
+            num += a * b; den += b * b;
+          }
+          const score = num / Math.sqrt(den);   // normalised: loudness cannot win the search
+          if (score > best) { best = score; start = c; }
+        }
+      }
+      for (let i = 0; i < WINDOW_SAMP; i++) {
+        const s = input[start + i] || 0;
+        acc[outPos + i] += s * hann[i];
+        env[outPos + i] += hann[i];
+      }
+      prevStart = start;
+      k++;
+      if (++progressCounter % 50 === 0 && onProgress) onProgress(Math.min(1, (ideal / len) * 0.9));
+    }
+
+    // ── 2. Divide by the window envelope actually laid down. Exact everywhere, including the
+    // partial overlap at both ends - no fixed constant, so no 1.333x loudness error.
+    const stretched = new Float32Array(stretchedLen);
+    for (let i = 0; i < stretchedLen; i++) stretched[i] = env[i] > 1e-3 ? acc[i] / env[i] : acc[i];
+
+    // ── 3. One resample by `ratio` brings the length back to the original and moves the pitch.
+    // Catmull-Rom, not linear: linear interpolation dulls highs and adds aliasing.
+    const output = new Float32Array(len);
+    for (let i = 0; i < len; i++) {
+      const p = i * ratio, i1 = Math.floor(p), f = p - i1;
+      if (i1 >= stretchedLen) break;
+      const i0 = i1 > 0 ? i1 - 1 : 0;
+      const i2 = i1 + 1 < stretchedLen ? i1 + 1 : stretchedLen - 1;
+      const i3 = i1 + 2 < stretchedLen ? i1 + 2 : stretchedLen - 1;
+      const a = stretched[i0], b = stretched[i1], c = stretched[i2], d = stretched[i3];
+      output[i] = b + 0.5 * f * (c - a + f * (2 * a - 5 * b + 4 * c - d + f * (3 * (b - c) + d - a)));
+    }
+    if (onProgress) onProgress(1);
+    return output;
+  }
+
+  // Overlap-add without grain alignment can sum constructively on sustained tones
+  // (a pure tone swung from a 0.35 to a 1.17 peak across shifts), which clips on
+  // export. One gain across ALL channels so the stereo image is untouched, and it
+  // only ever turns the level DOWN — never a loudness boost.
+  function peakGuard(buffer, ceiling) {
+    let peak = 0;
+    for (let c = 0; c < buffer.numberOfChannels; c++) {
+      const d = buffer.getChannelData(c);
+      for (let i = 0; i < d.length; i++) { const v = Math.abs(d[i]); if (v > peak) peak = v; }
+    }
+    if (peak > ceiling) {
+      const g = ceiling / peak;
+      for (let c = 0; c < buffer.numberOfChannels; c++) {
+        const d = buffer.getChannelData(c);
+        for (let i = 0; i < d.length; i++) d[i] *= g;
+      }
+    }
+    return peak;
+  }
+
+  // Build a pitch-shifted AudioBuffer. If preserveTempo is true, we run
+  // the granular OLA shift (changes pitch, keeps duration). If false,
+  // we just resample (changes both — the "tape speed" effect, same as
+  // playing the buffer at a different sample rate).
+  async function buildShifted(onProgress) {
+    const semis = parseInt(semitoneSlider.value, 10);
+    if (semis === 0) return originalBuffer;
+    const ratio = semitonesToRatio(semis);
+    const sr = originalBuffer.sampleRate;
+    const nCh = originalBuffer.numberOfChannels;
+
+    if (!preserveTempo.checked) {
+      // Tape-speed mode: resample via OfflineAudioContext + playbackRate.
+      // New duration = old / ratio.
+      const newLen = Math.floor(originalBuffer.length / ratio);
+      const off = new OfflineAudioContext(nCh, newLen, sr);
+      const src = off.createBufferSource();
+      src.buffer = originalBuffer;
+      src.playbackRate.value = ratio;
+      src.connect(off.destination);
+      src.start(0);
+      return await off.startRendering();
+    }
+
+    // Preserve-tempo mode: granular OLA shift per channel.
+    const out = (acx || getAudioContext()).createBuffer(nCh, originalBuffer.length, sr);
+    for (let c = 0; c < nCh; c++) {
+      const inp = originalBuffer.getChannelData(c);
+      // Channel-relative progress (split between channels)
+      const channelOnProgress = (frac) => {
+        if (onProgress) onProgress((c + frac) / nCh);
+      };
+      const shifted = pitchShiftChannel(inp, ratio, channelOnProgress);
+      out.copyToChannel(shifted, c);
+      // Yield between channels so the UI repaints
+      await uiYield();
+    }
+    peakGuard(out, 0.98);
+    return out;
+  }
+
+  // ── Live playback: waveform + shared transport + real-time pitch ───────
+  // The preview used to render the WHOLE song through the pitch algorithm on every press
+  // of Play, so nothing could react to the slider. Now:
+  //   - Preserve tempo -> an AudioWorklet (pitch-worklet.js) runs the SAME grain math as
+  //     pitchShiftChannel() around the playhead: the preview is the export, and a slider
+  //     move is heard within one grain (~12 ms).
+  //   - Tape speed     -> the buffer simply plays at the new rate (instant).
+  // The shared transport (snip-transport.js) owns play/pause, the playhead, click- and
+  // drag-to-seek, zoom, drag-to-loop and the keyboard map, like every audio tool.
+  const waveCanvas = document.getElementById('wave-canvas');
+  const playheadEl = document.getElementById('playhead');
+  const btnPlay    = document.getElementById('btn-play');
+
+  function currentRatio() { return semitonesToRatio(parseInt(semitoneSlider.value, 10)); }
+
+  function drawWaveform(vs, ve) {
+    if (!originalBuffer || !waveCanvas) return;
+    const g = waveCanvas.getContext('2d'); if (!g) return;
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = waveCanvas.clientWidth, cssH = waveCanvas.clientHeight;
+    if (!cssW || !cssH) return;
+    waveCanvas.width = cssW * dpr; waveCanvas.height = cssH * dpr;
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, cssW, cssH);
+    const data = originalBuffer.getChannelData(0), sr = originalBuffer.sampleRate;
+    const a = (typeof vs === 'number') ? Math.max(0, vs) : 0;
+    const b = (typeof ve === 'number' && ve > a) ? Math.min(originalBuffer.duration, ve) : originalBuffer.duration;
+    lastView = [a, b];
+    const s0 = Math.floor(a * sr), s1 = Math.min(data.length, Math.floor(b * sr));
+    const step = Math.max(1, Math.floor(Math.max(1, s1 - s0) / cssW)), mid = cssH / 2;
+    g.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#7c6fff';
+    for (let x = 0; x < cssW; x++) {
+      const start = s0 + x * step, end = Math.min(start + step, s1);
+      let mn = 1, mx = -1;
+      for (let i = start; i < end; i++) { const v = data[i]; if (v < mn) mn = v; if (v > mx) mx = v; }
+      if (mx < mn) { mn = 0; mx = 0; }
+      g.fillRect(x, mid + mn * mid, 1, Math.max(1, (mx - mn) * mid));
+    }
+  }
+  window.addEventListener('resize', () => { if (lastView) drawWaveform(lastView[0], lastView[1]); });
+
+  function ensureEngine() {
+    const ctx = getAudioContext();
+    if (!masterGain) {
+      masterGain = ctx.createGain();
+      masterGain.gain.value = isMuted ? 0 : 1;
+      masterGain.connect(ctx.destination);
+    }
+    if (workletReady) return workletReady;
+    if (!ctx.audioWorklet || typeof AudioWorkletNode === 'undefined') {
+      workletReady = Promise.resolve(false);
+      return workletReady;
+    }
+    workletReady = ctx.audioWorklet.addModule('/tools/pitch-shifter/pitch-worklet.js?v=2').then(() => {
+      pitchNode = new AudioWorkletNode(ctx, 'snip-pitch-ola',
+        { numberOfInputs: 0, numberOfOutputs: 1, outputChannelCount: [2] });
+      pitchNode.connect(masterGain);
+      pitchNode.port.onmessage = (e) => {
+        if (e.data && e.data.type === 'ended' && playMode === 'ola') { isPlaying = false; pausedAt = null; }
+      };
+      loadIntoWorklet();
+      return true;
+    }).catch((err) => { console.warn('Live pitch engine unavailable, using rendered preview', err); return false; });
+    return workletReady;
+  }
+  function loadIntoWorklet() {
+    if (!pitchNode || !originalBuffer) return;
+    const chans = [];
+    for (let c = 0; c < originalBuffer.numberOfChannels; c++) chans.push(originalBuffer.getChannelData(c).slice());
+    pitchNode.port.postMessage({ type: 'load', channels: chans }, chans.map((x) => x.buffer));
+  }
+
+  // Song position in seconds (buffer time), including the live rate and loop wrap.
+  function currentPos() {
+    if (!isPlaying || !originalBuffer) return pausedAt || 0;
+    let pos = playStartPos + (getAudioContext().currentTime - playStartCtxTime) * activeRate;
+    if (loopRegion) {
+      const seg = loopRegion.end - loopRegion.start;
+      if (seg > 0 && pos >= loopRegion.start) pos = loopRegion.start + ((pos - loopRegion.start) % seg);
+    }
+    return Math.max(0, Math.min(originalBuffer.duration - 0.01, pos));
+  }
+
+  function stopPlayback() {
+    if (tapeSrc) { try { tapeSrc.onended = null; tapeSrc.stop(); } catch (e) {} tapeSrc = null; }
+    if (pitchNode) pitchNode.port.postMessage({ type: 'pause' });
+    isPlaying = false;
+  }
+
+  function startBufferAt(buf, sec, rate) {
+    const ctx = getAudioContext();
+    tapeSrc = ctx.createBufferSource();
+    tapeSrc.buffer = buf;
+    tapeSrc.playbackRate.value = rate;
+    if (loopRegion && loopRegion.end > loopRegion.start) {
+      tapeSrc.loop = true; tapeSrc.loopStart = loopRegion.start; tapeSrc.loopEnd = loopRegion.end;
+    }
+    tapeSrc.connect(masterGain);
+    const me = tapeSrc;
+    tapeSrc.onended = () => { if (tapeSrc === me) { isPlaying = false; pausedAt = null; } };
+    tapeSrc.start(0, sec);
+  }
+
+  function playFrom(sec) {
+    stopPlayback();
+    if (!originalBuffer) return;
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') { try { ctx.resume(); } catch (e) {} }
+    ensureEngine();                       // creates the output gain synchronously
+    sec = Math.max(0, Math.min(sec || 0, originalBuffer.duration - 0.001));
+    playStartPos = sec; playStartCtxTime = ctx.currentTime;
+    if (preserveTempo.checked && !pitchNode) {
+      // First press while the engine is still loading: start the moment it is ready.
+      playMode = 'ola'; activeRate = 1; isPlaying = true; pausedAt = null;
+      ensureEngine().then((ok) => {
+        if (!isPlaying || playMode !== 'ola') return;      // paused or re-routed meanwhile
+        if (ok && pitchNode) playFrom(sec); else fallbackPreview(sec);
+      });
+      return;
+    }
+    if (preserveTempo.checked) {
+      playMode = 'ola'; activeRate = 1;
+      pitchNode.port.postMessage({ type: 'ratio', ratio: currentRatio() });
+      pitchNode.port.postMessage({ type: 'loop', start: loopRegion ? loopRegion.start : null, end: loopRegion ? loopRegion.end : 0 });
+      pitchNode.port.postMessage({ type: 'play', at: sec });
+    } else {
+      playMode = 'tape'; activeRate = currentRatio();
+      startBufferAt(originalBuffer, sec, activeRate);
+    }
+    isPlaying = true; pausedAt = null;
+  }
+
+  // No AudioWorklet (very old browsers): render the shifted song once, then play it.
+  // Preserve-tempo output has the input's length, so positions still map 1:1.
+  async function fallbackPreview(sec) {
+    transportLabel.textContent = 'Building preview\u2026';
+    let buf;
+    try { buf = await buildShifted(); } catch (e) { transportLabel.textContent = 'Preview failed.'; isPlaying = false; return; }
+    if (!isPlaying) return;
+    const ctx = getAudioContext();
+    playMode = 'tape'; activeRate = 1;
+    playStartPos = sec; playStartCtxTime = ctx.currentTime;
+    startBufferAt(buf, sec, 1);
+    transportLabel.textContent = 'This browser can\u2019t shift pitch live, so each change rebuilds the preview.';
+  }
+
+  // Kept for the existing hideEditor() call: stop, remembering where we were.
+  function stopPreview() {
+    if (isPlaying) pausedAt = currentPos();
+    stopPlayback();
+    if (transport) transport.refresh();
+  }
+
+  function onFileReady() {
+    stopPlayback();
+    pausedAt = null; loopRegion = null; playMode = null;
+    drawWaveform(0, originalBuffer.duration);
+    if (transport) { transport.clearSelection(); transport.resetView(); transport.refresh(); }
+    ensureEngine();
+    loadIntoWorklet();                    // no-op until the engine is up; it loads itself then
+    transportLabel.textContent = 'Pitch changes are live \u2014 drag the slider while it plays. Click the waveform to jump; drag across it to loop a section.';
+  }
+
+  if (window.snipTransport) {
+    transport = window.snipTransport.create({
+      waveEl: document.querySelector('.wave-stage'),
+      playheadEl: playheadEl,
+      playBtn: btnPlay,
+      toStartBtn: document.getElementById('tp-to-start'),
+      skipBackBtn: document.getElementById('tp-skip-back'),
+      skipFwdBtn: document.getElementById('tp-skip-fwd'),
+      timeEl: document.getElementById('tp-time'),
+      hintEl: document.getElementById('wave-hint'),
+      shortcutsBtn: document.getElementById('tp-shortcuts'),
+      zoom: true,
+      onViewChange: (vs, ve) => drawWaveform(vs, ve),
+      zoomInBtn: document.getElementById('tp-zoom-in'),
+      zoomOutBtn: document.getElementById('tp-zoom-out'),
+      zoomSlider: document.getElementById('tp-zoom-slider'),
+      resetBtn: document.getElementById('tp-zoom-reset'),
+      zoomToSnipBtn: document.getElementById('tp-zoom-snip'),
+      markerEl: document.getElementById('restart-marker'),
+      replayToggle: document.getElementById('replay-on-change'),
+      shortcuts: [
+        { keys: 'Drag', label: 'Highlight a section to loop it' },
+        { keys: 'Scroll', label: 'Zoom in / out' }
+      ],
+      getAudioContext: getAudioContext,
+      getDuration: () => originalBuffer ? originalBuffer.duration : 0,
+      getCurrentTime: () => currentPos(),
+      // The waveform stays in buffer time; the readout shows wall-clock (tape speed changes length).
+      timeScale: () => preserveTempo.checked ? 1 : currentRatio(),
+      play: () => playFrom(pausedAt != null ? pausedAt : transport.getMarker()),
+      pause: () => { pausedAt = currentPos(); stopPlayback(); },
+      isPlaying: () => isPlaying,
+      seekTo: (sec) => { if (isPlaying) playFrom(sec); else pausedAt = sec; },
+      onMute: (m) => { isMuted = m; if (masterGain) { try { masterGain.gain.value = m ? 0 : 1; } catch (e) {} } },
+      onLoopStart: (s, e) => { loopRegion = { start: s, end: e }; playFrom(s); },
+      onLoopClear: () => {
+        loopRegion = null;
+        if (pitchNode) pitchNode.port.postMessage({ type: 'loop', start: null });
+        if (tapeSrc) { try { tapeSrc.loop = false; } catch (e) {} }
+      }
+    });
+  }
+
+  // ── Apply & download ───────────────────────────────────────────────────
+  async function applyAndDownload() {
+    if (!originalBuffer) return;
+    if (!window.snipEncoder) { alert('Encoder not loaded yet — try again.'); return; }
+    if (window.snipNotify) window.snipNotify.prime();
+    btnApply.disabled = true;
+    showPopup('Pitch shifting…');
+    try {
+      updatePopup(0.05, 'Resampling windows…');
+      await uiYield();
+      const processed = await buildShifted((frac) => updatePopup(0.05 + frac * 0.6, 'Resampling windows…'));
+      updatePopup(0.7, 'Encoding…');
+      await uiYield();
+      const format = outputFormat.value;
+      const { blob, ext } = await window.snipEncoder.encode(processed, format, {
+        onProgress: (frac) => updatePopup(0.7 + (frac || 0) * 0.28, 'Encoding…')
+      });
+      const base = (currentFile.name || 'audio').replace(/\.[^.]+$/, '');
+      const semis = parseInt(semitoneSlider.value, 10);
+      const tag = (semis > 0 ? '+' : '') + semis + 'st' + (preserveTempo.checked ? '' : '-tape');
+      const fname = base + '_pitch-' + tag + '.' + ext;
+      updatePopup(1, 'Done');
+      if (window.snipNotify) {
+        window.snipNotify.deliver(blob, fname, { statusEl: statusText, doneStatus: 'Done — ' + formatBytes(blob.size) });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = fname;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+        statusText.textContent = 'Done — ' + formatBytes(blob.size);
+      }
+      hidePopup();
+    } catch (err) {
+      console.error('Encode failed', err);
+      hidePopup();
+      alert('Pitch shifting failed: ' + (err.message || err));
+      statusText.textContent = '';
+    } finally {
+      btnApply.disabled = false;
+    }
+  }
+  btnApply.addEventListener('click', applyAndDownload);
+
+  // ── Slider + preset + step wiring ──────────────────────────────────────
+  semitoneSlider.addEventListener('input', updateReadouts);
+  stepDown.addEventListener('click', () => {
+    const v = Math.max(-12, parseInt(semitoneSlider.value, 10) - 1);
+    semitoneSlider.value = v; updateReadouts();
+  });
+  stepUp.addEventListener('click', () => {
+    const v = Math.min(12, parseInt(semitoneSlider.value, 10) + 1);
+    semitoneSlider.value = v; updateReadouts();
+  });
+  presetRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.preset-btn');
+    if (!btn) return;
+    semitoneSlider.value = btn.dataset.semis;
+    updateReadouts();
+  });
+  preserveTempo.addEventListener('change', () => {
+    // Switch engines in place: keep playing from the same spot in the new mode.
+    if (isPlaying) playFrom(currentPos());
+    if (transport) transport.refresh();
+  });
+
+  // ── File upload wiring ─────────────────────────────────────────────────
+  dropZone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (f) handleFile(f);
+    e.target.value = '';
+  });
+  // Cross-tool shared-file handoff — required by theme.js auto-load.
+  // See docs/new-tool-checklist.md §3.
+  document.addEventListener('snipsound:use-shared-file', (e) => {
+    if (e.detail && e.detail.file) handleFile(e.detail.file);
+  });
+  ['dragenter', 'dragover'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); }));
+  ['dragleave', 'drop'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.remove('drag-over'); }));
+  dropZone.addEventListener('drop', (e) => {
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) handleFile(f);
+  });
+
+  fileRemove.addEventListener('click', () => {
+    currentFile = null;
+    originalBuffer = null;
+    durationSec = 0;
+    fileInput.value = '';
+    hideEditor();
+    statusText.textContent = '';
+  });
+
+  // Init
+  updateReadouts();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item .faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51a96b5bf6cd74d',t:'MTc5MzE5NzMwNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

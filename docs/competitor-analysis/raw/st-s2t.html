@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="https://soundtools.io/speech-to-text/" />
+    <link rel="stylesheet" href="../css/tools-style.css">
+    <link rel="icon" href="../favicon.png" type="image/png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2L1GFZ61L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T2L1GFZ61L');
+    </script>
+
+
+    <!-- ================================================== -->
+    <!--  ADSENSE: Replace publisher ID and uncomment to enable  -->
+    <!--  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>  -->
+    <!-- ================================================== -->
+
+    <meta name="description" content="Free AI speech to text — transcribe audio with OpenAI's Whisper in your browser. Record or upload, get TXT or SRT subtitles in 99+ languages. Private, no account.">
+
+    <meta name="author" content="SoundTools">
+    <meta property="og:title" content="Free AI Speech to Text — Transcribe Audio | SoundTools">
+    <meta property="og:description" content="Free AI speech to text — transcribe audio with OpenAI's Whisper in your browser. Record or upload, get TXT or SRT subtitles in 99+ languages. Private, no account.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soundtools.io/speech-to-text/">
+
+    <title>Free AI Speech to Text — Transcribe Audio | SoundTools</title>
+
+     <!-- Organization schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://soundtools.io/#organization",
+        "name": "SoundTools",
+        "alternateName": "soundtools.io",
+        "url": "https://soundtools.io",
+        "logo": "https://soundtools.io/logo.png",
+        "description": "SoundTools is a free, browser-based audio toolkit offering 35+ tools for editing, converting, and transforming audio — including creator effects, AI and voice tools, and everyday utilities. Everything runs locally in the browser; files never leave your device.",
+        "foundingDate": "2025",
+        "knowsAbout": [
+          "Audio editing",
+          "Text to speech",
+          "Vocal removal",
+          "Stem separation",
+          "Speech to text",
+          "Voice changing",
+          "Noise reduction",
+          "Audio conversion"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/company/soundtools-io",
+          "https://www.crunchbase.com/organization/soundtools-8406",
+          "https://www.wikidata.org/wiki/Q140073639"
+        ]
+      }
+    </script>
+
+    <!-- Website schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://soundtools.io/#website",
+      "name": "SoundTools",
+      "alternateName": "soundtools.io",
+      "url": "https://soundtools.io",
+      "publisher": { "@id": "https://soundtools.io/#organization" }
+    }
+    </script>
+
+    <!-- WebApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://soundtools.io/speech-to-text/#webapp",
+      "name": "SoundTools Speech to Text",
+      "url": "https://soundtools.io/speech-to-text/",
+      "applicationCategory": "MultimediaApplication",
+      "browserRequirements": "Requires a desktop browser with WebAssembly support (Chrome, Edge, or Firefox). Not supported on most mobile devices due to memory limits.",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://soundtools.io/#organization"
+      },
+      "datePublished": "2025",
+      "dateModified": "2026-06-30",
+      "inLanguage": "en",
+      "featureList": [
+        "Transcribe uploaded audio or microphone recordings into text",
+        "Powered by OpenAI's Whisper, running locally via Transformers.js and WebAssembly",
+        "99+ languages with automatic language detection",
+        "Export as plain text (.txt) or SRT subtitles (.srt) with timestamps",
+        "Chunked processing for long audio of any length",
+        "Extracts and transcribes the audio track from video files",
+        "Processing runs locally in your browser — audio never leaves your device",
+        "Free and unlimited, no account required"
+      ],
+      "description": "Free AI speech-to-text that runs in your browser. Transcribe audio files or your microphone into text in 99+ languages using OpenAI's Whisper, export as TXT or SRT subtitles, and keep everything private — your audio never leaves your device."
+    }
+    </script>
+
+    <!-- HowTo Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Transcribe Audio to Text Online for Free",
+      "description": "Convert speech to text with AI — 3 steps, no account required",
+      "step": [
+        { "@type": "HowToStep", "name": "Record or upload audio", "text": "Record speech using your microphone, or upload an audio file (WAV, MP3, M4A, or any common format)", "position": 1 },
+        { "@type": "HowToStep", "name": "Choose model and language", "text": "Select the AI model (accurate multi-language or fast English-only) and optionally set the language", "position": 2 },
+        { "@type": "HowToStep", "name": "Transcribe and export", "text": "Click Transcribe to convert speech to text, then copy, download as TXT, or export as SRT subtitles", "position": 3 }
+      ],
+      "totalTime": "PT2M"
+    }
+    </script>
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I transcribe audio to text for free?", "acceptedAnswer": { "@type": "Answer", "text": "Click Record to speak into your microphone, or click Upload Audio File to upload a recording. The AI transcribes your audio automatically — completely free, no account needed. Export as text or SRT subtitles." }},
+        { "@type": "Question", "name": "Is this speech to text tool really free with no limits?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free with no usage limits, no file length restrictions, no account required, and no watermarks. The AI model runs entirely in your browser." }},
+        { "@type": "Question", "name": "Does this tool upload my audio to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. The Whisper AI model downloads to your browser on first use (about 240 MB, cached for future visits) and all transcription happens locally on your device. Your audio never leaves your browser." }},
+        { "@type": "Question", "name": "How accurate is the transcription?", "acceptedAnswer": { "@type": "Answer", "text": "This tool uses OpenAI's Whisper model, which achieves near-human accuracy on clean audio. Accuracy depends on audio quality — clear speech in a quiet environment produces the best results." }},
+        { "@type": "Question", "name": "What languages are supported?", "acceptedAnswer": { "@type": "Answer", "text": "The default Whisper Small model supports 99+ languages including English, Spanish, French, German, Portuguese, Chinese, Japanese, Korean, Arabic, Hindi, Russian, and many more. Language is auto-detected or can be set manually." }},
+        { "@type": "Question", "name": "How long does transcription take?", "acceptedAnswer": { "@type": "Answer", "text": "On a modern desktop, transcription takes roughly twice the audio length. A 5-minute recording takes about 10 minutes. The AI runs on your CPU via WebAssembly." }},
+        { "@type": "Question", "name": "Why does it take a while to load the first time?", "acceptedAnswer": { "@type": "Answer", "text": "The Whisper AI model needs to download (about 240 MB). This is a one-time download — the model is cached in your browser and loads instantly on future visits." }},
+        { "@type": "Question", "name": "Does this work on iPhone and mobile devices?", "acceptedAnswer": { "@type": "Answer", "text": "Speech to text requires a desktop or laptop computer. The AI model needs more memory and processing power than mobile browsers can provide. Use Chrome, Edge, or Firefox on desktop for best results." }},
+        { "@type": "Question", "name": "Can I transcribe long audio files?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The tool processes long audio in chunks, so there is no length limit. A 1-hour recording will take roughly 1-2 hours to transcribe on a modern desktop. Progress is shown as each chunk is processed." }},
+        { "@type": "Question", "name": "Can I get subtitles (SRT) from audio?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Click Download SRT to export the transcription as an SRT subtitle file with timestamps, perfect for adding captions to YouTube, TikTok, and other video platforms." }},
+        { "@type": "Question", "name": "What audio formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "WAV, MP3, M4A, OGG, FLAC, WebM, AAC, and more. You can also upload video files (MP4, MOV) and the audio track will be extracted and transcribed." }},
+        { "@type": "Question", "name": "What is the Whisper model?", "acceptedAnswer": { "@type": "Answer", "text": "Whisper is an open-source automatic speech recognition model created by OpenAI, trained on 680,000 hours of multilingual audio. SoundTools runs it entirely in your browser via Transformers.js and WebAssembly." }},
+        { "@type": "Question", "name": "What is the difference between this and SoundTools Text to Speech?", "acceptedAnswer": { "@type": "Answer", "text": "Speech to Text converts audio INTO text (transcription). Text to Speech converts text INTO audio (voice generation). They are complementary tools." }},
+        { "@type": "Question", "name": "What is the difference between this and SoundTools Voice Cloning?", "acceptedAnswer": { "@type": "Answer", "text": "Speech to Text transcribes audio into text. Voice Cloning uses a short voice sample to generate new speech in a cloned voice. Voice Cloning also uses Whisper internally, but its main purpose is voice generation, not transcription." }},
+        {
+          "@type": "Question",
+          "name": "Is this an Otter.ai alternative?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, for unlimited free transcription with full privacy. Otter.ai caps free users at 300 minutes per month, supports English only, and requires an account that uploads audio to their servers. SoundTools runs OpenAI's Whisper in your browser — no account, no upload, no usage cap, and 99+ languages supported. Otter.ai is faster and has better meeting integrations and mobile support. SoundTools is the private, unlimited, multilingual alternative."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this a TurboScribe alternative?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. TurboScribe uses OpenAI's Whisper on their servers — the same model as SoundTools — but requires an account and limits free users to 3 files per day. SoundTools runs Whisper entirely in your browser: no account, no upload, and no daily file limit. TurboScribe's cloud processing is faster and handles longer files more easily. SoundTools is the private, unlimited, account-free version of the same Whisper technology."
+          }
+        }
+      ]
+    }
+    </script>
+
+   
+
+    <style>
+        /* ── Speech-to-Text custom styles (matching voice-cloning patterns) ── */
+        .recording-script-box { background:#f8f9fa; border:2px solid #e0e4e8; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1rem; font-style:italic; font-size:1.0625rem; line-height:1.7; color:#374151; }
+        .recording-script-label { font-style:normal; font-size:0.8125rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:#6b7280; margin-bottom:0.5rem; display:block; }
+        .record-upload-row { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
+        .record-btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.875rem 1.75rem; background:#ef4444; color:white; border:none; border-radius:10px; font-size:1rem; font-weight:600; cursor:pointer; transition:all 0.2s ease; }
+        .record-btn:hover:not(:disabled) { background:#dc2626; transform:translateY(-1px); box-shadow:0 4px 12px rgba(239,68,68,0.3); }
+        .record-btn:disabled { background:#9ca3af; cursor:not-allowed; transform:none; box-shadow:none; }
+        .record-btn.recording { background:#dc2626; animation:pulse-red 1.5s ease-in-out infinite; }
+        @keyframes pulse-red { 0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0.4);} 50%{box-shadow:0 0 0 10px rgba(239,68,68,0);} }
+        .or-divider { color:#9ca3af; font-size:0.875rem; font-weight:500; }
+        .upload-audio-label { display:inline-flex; align-items:center; gap:0.375rem; padding:0.875rem 1.5rem; background:white; color:#4f5aed; border:2px solid #4f5aed; border-radius:10px; font-size:1rem; font-weight:600; cursor:pointer; transition:all 0.2s ease; }
+        .upload-audio-label:hover { background:#f5f6ff; transform:translateY(-1px); }
+        #audioFileInput { display:none; }
+        .recording-timer { font-size:1.5rem; font-weight:700; color:#ef4444; font-variant-numeric:tabular-nums; min-width:3rem; text-align:center; }
+
+        .audio-preview-section { background:#f8f9fa; border:2px solid #e0e4e8; border-radius:12px; padding:1rem 1.25rem; margin:1rem 0; display:none; }
+        .audio-preview-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; }
+        .audio-preview-header h3 { font-size:0.9375rem; font-weight:600; color:#1a1a1a; margin:0; }
+        .remove-audio-btn { background:none; border:1px solid #d1d5db; border-radius:6px; padding:0.25rem 0.625rem; font-size:0.8125rem; color:#6b7280; cursor:pointer; transition:all 0.15s ease; }
+        .remove-audio-btn:hover { border-color:#ef4444; color:#ef4444; }
+        #audioPreviewPlayer { width:100%; border-radius:8px; margin-bottom:0.5rem; }
+        .audio-preview-meta { font-size:0.8125rem; color:#6b7280; }
+
+        .settings-row { display:flex; gap:1rem; flex-wrap:wrap; align-items:flex-end; margin:0.75rem 0; }
+        .setting-group { display:flex; flex-direction:column; gap:0.375rem; min-width:200px; flex:1; }
+        .setting-group label { font-size:0.8125rem; font-weight:600; color:#374151; }
+        .setting-group select { padding:0.625rem 0.875rem; border:2px solid #e0e4e8; border-radius:8px; font-size:0.9375rem; color:#1a1a1a; background:white; cursor:pointer; transition:border-color 0.2s ease; appearance:auto; }
+        .setting-group select:focus { outline:none; border-color:#4f5aed; }
+
+        .step-header { font-size:0.875rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#4f5aed; margin:1.5rem 0 0.75rem 0; padding-bottom:0.375rem; border-bottom:2px solid #eef0fd; }
+        .step-header .step-number { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; background:#4f5aed; color:white; border-radius:50%; font-size:0.75rem; margin-right:0.5rem; vertical-align:middle; }
+
+        #modelLoadSection { background:#f0f4ff; border:2px solid #c7d2fe; border-radius:12px; padding:1.25rem 1.5rem; margin:1rem 0; display:none; }
+        .model-load-title { font-weight:600; font-size:1rem; margin-bottom:0.75rem; color:#1a1a1a; }
+        .progress-bar-track { background:#dde4f7; border-radius:999px; height:10px; overflow:hidden; margin-bottom:0.5rem; }
+        .progress-bar-fill { height:100%; background:linear-gradient(90deg,#4f5aed,#7c86f0); border-radius:999px; transition:width 0.3s ease; width:0%; }
+        .progress-label { font-size:0.875rem; color:#4b5563; }
+        .model-load-note { font-size:0.8125rem; color:#6b7280; margin-top:0.625rem; }
+        @keyframes spin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+        .blink-dot { animation:blink-dot 1s step-end infinite; font-size:1.1rem; }
+        @keyframes blink-dot { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+        #status.processing { animation:status-pulse 1.5s ease-in-out infinite; }
+        @keyframes status-pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+        .long-audio-callout { background:linear-gradient(135deg,#fffbeb,#fef3c7); border:2px solid #fbbf24; border-radius:12px; padding:1rem 1.25rem; margin:0.75rem 0; display:none; font-size:0.875rem; line-height:1.6; color:#92400e; }
+        .long-audio-callout-title { font-weight:700; font-size:0.9375rem; margin-bottom:0.5rem; color:#78350f; display:flex; align-items:center; gap:0.5rem; }
+        .long-audio-callout ul { margin:0.5rem 0 0 1.25rem; padding:0; }
+        .long-audio-callout li { margin-bottom:0.25rem; }
+
+        #transcriptionProgress { background:#f0f4ff; border:2px solid #c7d2fe; border-radius:12px; padding:1.25rem 1.5rem; margin:1rem 0; display:none; animation:pulse-bg 2s ease-in-out infinite; }
+        @keyframes pulse-bg { 0%,100%{background:#f0f4ff;border-color:#c7d2fe;} 50%{background:#e0e7ff;border-color:#a5b4fc;} }
+        .gen-title { font-weight:600; font-size:1rem; margin-bottom:0.875rem; color:#1a1a1a; display:flex; align-items:center; gap:0.5rem; }
+        .gen-title .spinner { display:inline-block; width:18px; height:18px; border:2.5px solid #c7d2fe; border-top-color:#4f5aed; border-radius:50%; animation:spin 0.8s linear infinite; }
+        .gen-explainer { font-size:0.8125rem; color:#6b7280; line-height:1.5; margin-bottom:0.875rem; padding:0.625rem 0.75rem; background:white; border-radius:8px; border-left:3px solid #4f5aed; }
+        .progress-bar-track.shimmer .progress-bar-fill { background:linear-gradient(90deg,#4f5aed 0%,#7c86f0 40%,#a5b4fc 50%,#7c86f0 60%,#4f5aed 100%); background-size:200% 100%; animation:shimmer 1.5s ease-in-out infinite; }
+        @keyframes shimmer { 0%{background-position:100% 0;} 100%{background-position:-100% 0;} }
+        .partial-transcript { font-size:0.875rem; color:#374151; margin-top:0.75rem; padding:0.75rem; background:white; border-radius:8px; border:1px solid #e0e4e8; max-height:120px; overflow-y:auto; white-space:pre-wrap; line-height:1.6; }
+        .progress-time-est { font-size:0.8125rem; color:#6b7280; margin-top:0.375rem; }
+
+        #transcriptionOutput { display:none; margin:1rem 0; }
+        /* Reserve a floor height once a run starts (.armed) so phase swaps don't
+           reflow the page below. Armed within 500ms of the Transcribe click, so the
+           reservation itself is excluded from CLS (Layout Instability: hadRecentInput).
+           A floor, not a cap — the output view expands past it freely. Tune if needed. */
+        #phaseRegion.armed { min-height: 430px; }
+        @media (max-width:600px) { #phaseRegion.armed { min-height: 490px; } }
+        .transcription-output-area { width:100%; min-height:200px; padding:1rem; font-size:0.9375rem; font-family:inherit; border:2px solid #e0e4e8; border-radius:10px; resize:vertical; transition:border-color 0.2s ease; box-sizing:border-box; line-height:1.7; color:#1a1a1a; }
+        .transcription-output-area:focus { outline:none; border-color:#4f5aed; }
+        .output-meta-row { display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem; flex-wrap:wrap; gap:0.5rem; }
+        .output-stats { font-size:0.875rem; color:#6b7280; }
+        .timestamp-toggle { display:flex; align-items:center; gap:0.5rem; font-size:0.875rem; color:#4f5aed; cursor:pointer; font-weight:500; user-select:none; }
+        .timestamp-toggle input { accent-color:#4f5aed; width:16px; height:16px; cursor:pointer; }
+        .timestamp-unavailable-note { font-size:0.8125rem; color:#9ca3af; }
+
+        .export-row { display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1rem; }
+        .export-btn { flex:1; min-width:120px; padding:0.75rem 1.25rem; border:none; border-radius:10px; font-weight:600; font-size:0.9375rem; cursor:pointer; transition:all 0.2s ease; display:inline-flex; align-items:center; justify-content:center; gap:0.375rem; }
+        .export-btn:hover:not(:disabled) { transform:translateY(-1px); }
+        .export-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none !important; }
+        .export-btn-copy { background:#4f5aed; color:white; }
+        .export-btn-copy:hover:not(:disabled) { background:#3d47d9; box-shadow:0 4px 12px rgba(79,90,237,0.3); }
+        .export-btn-txt { background:#1a1a1a; color:white; }
+        .export-btn-txt:hover:not(:disabled) { background:#374151; }
+        .export-btn-srt { background:#059669; color:white; }
+        .export-btn-srt:hover:not(:disabled) { background:#047857; box-shadow:0 4px 12px rgba(5,150,105,0.3); }
+
+        #transcribeBtn { display:block; width:100%; padding:0.9375rem 2rem; background:#4f5aed; color:white; border:none; border-radius:10px; font-size:1.0625rem; font-weight:600; cursor:pointer; transition:all 0.2s ease; margin:0.5rem 0 1rem 0; letter-spacing:0.01em; }
+        #transcribeBtn:hover:not(:disabled) { background:#3d47d9; transform:translateY(-1px); box-shadow:0 4px 12px rgba(79,90,237,0.3); }
+        #transcribeBtn:disabled { background:#9ca3af; cursor:not-allowed; transform:none; box-shadow:none; }
+
+        .privacy-note { display:flex; align-items:flex-start; gap:0.625rem; background:linear-gradient(135deg,#f0fdf4,#dcfce7); border:1px solid #86efac; border-radius:10px; padding:0.875rem 1rem; margin:0.5rem 0 1rem 0; font-size:0.8125rem; color:#166534; line-height:1.5; }
+        .privacy-note-icon { font-size:1.125rem; flex-shrink:0; margin-top:0.05rem; }
+
+        .new-transcription-btn { display:block; width:100%; padding:0.75rem 1.5rem; background:white; color:#4f5aed; border:2px solid #4f5aed; border-radius:10px; font-size:0.9375rem; font-weight:600; cursor:pointer; transition:all 0.2s ease; margin-top:0.75rem; }
+        .new-transcription-btn:hover { background:#f5f6ff; transform:translateY(-1px); }
+
+        @media (max-width:600px) {
+            .record-upload-row { flex-direction:column; }
+            .record-btn, .upload-audio-label { width:100%; justify-content:center; }
+            .or-divider { text-align:center; }
+            .settings-row { flex-direction:column; }
+            .setting-group { min-width:100%; }
+            .export-row { flex-direction:column; }
+            .export-btn { min-width:100%; }
+        }
+
+        /* ── Comparison table ── */
+        .comparison-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .comparison-table th, .comparison-table td { border: 1px solid #e0e4e8; padding: 0.5rem 0.75rem; text-align: left; }
+        .comparison-table th { background: #f0f4ff; font-weight: 600; }
+        .comparison-table tr:nth-child(even) td { background: #f9fafb; }
+        @media (max-width: 640px) {
+            .comparison-table { font-size: 0.8rem; }
+            .comparison-table th, .comparison-table td { padding: 0.375rem 0.5rem; }
+        }
+    </style>
+
+    <!-- ToolTracker -->
+    <script>
+        const ToolTracker={STORAGE_KEY:'soundtools_usage',CURRENT_TOOL:'speech-to-text',getUsageData(){try{const d=localStorage.getItem(this.STORAGE_KEY);return d?JSON.parse(d):{};}catch(e){return{};}},saveUsageData(d){try{localStorage.setItem(this.STORAGE_KEY,JSON.stringify(d));}catch(e){}},trackToolSuccess(t=this.CURRENT_TOOL){const u=this.getUsageData();if(!u[t])u[t]={count:0,firstUsed:new Date().toISOString(),lastUsed:null};u[t].count++;u[t].lastUsed=new Date().toISOString();this.saveUsageData(u);return this.getAnalytics();},getAnalytics(){const u=this.getUsageData(),c=u[this.CURRENT_TOOL]||{count:0};return{lifetime_tool_uses:c.count,total_tools_used:Object.keys(u).length,is_repeat_user:Object.values(u).some(t=>t.count>1),is_repeat_tool_user:c.count>1,total_lifetime_uses:Object.values(u).reduce((s,t)=>s+t.count,0),days_since_first_use:c.firstUsed?Math.floor((Date.now()-new Date(c.firstUsed))/86400000):0};},trackEvent(n,p={}){const a=this.getAnalytics();gtag('event',`${this.CURRENT_TOOL}-${n}`,{event_category:this.CURRENT_TOOL,...p,lifetime_tool_uses:a.lifetime_tool_uses,total_tools_used:a.total_tools_used,is_repeat_user:a.is_repeat_user,is_repeat_tool_user:a.is_repeat_tool_user,total_lifetime_uses:a.total_lifetime_uses});},trackSuccess(p={}){const a=this.trackToolSuccess();gtag('event',`${this.CURRENT_TOOL}-success`,{event_category:this.CURRENT_TOOL,...p,lifetime_tool_uses:a.lifetime_tool_uses,total_tools_used:a.total_tools_used,is_repeat_user:a.is_repeat_user,is_repeat_tool_user:a.is_repeat_tool_user,total_lifetime_uses:a.total_lifetime_uses,days_since_first_use:a.days_since_first_use});},trackError(m){this.trackEvent('error',{event_label:'processing_failed',error_message:m});}};
+    </script>
+</head>
+
+<body>
+
+    <!-- NAV_START -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">SoundTools</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a class="mobile-dropdown-toggle">Tools</a>
+                    <div class="dropdown-menu mega-menu">
+                        <div class="mega-col">
+                            <span class="mega-heading">Effects</span>
+                            <a href="/eq/">EQ</a>
+                            <a href="/8d-audio/">8D Audio</a>
+                            <a href="/add-reverb-to-audio/">Add Reverb</a>
+                            <a href="/bass-boost/">Bass Boost</a>
+                            <a href="/nightcore/">Nightcore</a>
+                            <a href="/nightcore-reverse/">Nightcore Reverse</a>
+                            <a href="/slowed-reverb/">Slowed + Reverb</a>
+                            <a href="/sped-up/">Sped Up Audio</a>
+                            <a href="/tiktok-slowed-reverb/">TikTok Slowed</a>
+                            <a href="/vaporwave/">Vaporwave</a>
+                            <a href="/volume-booster/">Volume Booster</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Voice & AI</span>
+                            <a href="/voice-cloning/">Voice Cloning</a>
+                            <a href="/vocal-tuner/">Vocal Tuner</a>
+                            <a href="/voice-to-instrument/">Voice to Instrument</a>
+                            <a href="/noise-remover/">Noise Remover</a>
+                            <a href="/stem-splitter/">Stem Splitter</a>
+                            <a href="/text-to-speech/">Text to Speech</a>
+                            <a href="/speech-to-text/">Speech to Text</a>
+                            <a href="/speech-to-song/">Speech to Song</a>
+                            <a href="/vocal-remover/">Vocal Remover</a>
+                            <a href="/voice-changer/">Voice Changer</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Edit & Convert</span>
+                            <a href="/audio-converter/">Audio Converter</a>
+                            <a href="/audio-joiner/">Audio Joiner</a>
+                            <a href="/audio-trimmer/">Audio Trimmer</a>
+                            <a href="/flac-cover-art/">FLAC Cover Art</a>
+                            <a href="/audio-metadata-editor/">Metadata Editor</a>
+                            <a href="/pitch-shifter/">Pitch Shifter</a>
+                            <a href="/reverse-audio/">Reverse Audio</a>
+                            <a href="/tempo-changer/">Tempo Changer</a>
+                            <a href="/video-to-audio/">Video to Audio</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Create & Analyze</span>
+                            <a href="/beat-maker/">Beat Maker</a>
+                            <a href="/bpm-detector/">BPM Detector</a>
+                            <a href="/granular-synthesizer/">Granular Synthesizer</a>
+                            <a href="/hearing-test/">Hearing Test</a>
+                            <a href="/music-visualizer/">Music Visualizer</a>
+                            <a href="/soundboard/">Soundboard</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/lab/">The Lab</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- NAV_END -->
+
+
+    <header>
+      <div class="container">
+        <h1>Free AI Speech to Text Online</h1>
+        <time class="last-updated" datetime="2026-06-30">Updated June 30, 2026</time>
+        <p>Transcribe audio to text with AI for free. Record with your microphone or upload any audio file. Powered by OpenAI's Whisper — runs 100% in your browser. No account, no upload, no limits, no watermark.</p>
+      </div>
+    </header>
+
+    <main>
+        <section class="tool-section">
+            <div class="intro-text"><p>Our free AI speech to text tool transcribes any audio into accurate text using OpenAI's Whisper model. Supports 99+ languages with automatic detection. Runs entirely in your browser via Transformers.js and WebAssembly — your audio is never uploaded to any server. Record via microphone or upload an audio file, then export as plain text or SRT subtitles.</p></div>
+
+            <!-- iOS block banner — hidden by default, shown via JS -->
+            <div id="iosBlockBanner" style="display:none;background:#fef3c7;border:2px solid #f59e0b;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;line-height:1.7;">
+                <div style="font-size:1.125rem;font-weight:700;color:#92400e;margin-bottom:0.5rem;">⚠️ Speech to Text is not available on iOS</div>
+                <div style="color:#92400e;font-size:0.9375rem;">Speech to text requires more processing power than iPhone or iPad can provide. The AI model needs a desktop-class CPU and more memory than mobile browsers allow.</div>
+                <div style="margin-top:0.75rem;padding:0.75rem 1rem;background:white;border-radius:8px;border:1px solid #fde68a;">
+                    <strong style="color:#1a1a1a;">To use this tool, open this page on a desktop or laptop in:</strong>
+                    <ul style="margin:0.375rem 0 0 1.25rem;padding:0;color:#374151;font-size:0.9375rem;">
+                        <li><strong>Google Chrome</strong> (recommended)</li>
+                        <li><strong>Microsoft Edge</strong></li>
+                        <li><strong>Firefox</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="toolInteractive">
+
+            <!-- ═══ Step 1: Provide Audio ═══ -->
+            <div class="step-header"><span class="step-number">1</span> Provide Audio</div>
+
+            <div class="recording-script-box">
+                <span class="recording-script-label">Try reading this aloud to test, or say anything you like:</span>
+                "The morning sun cast golden light across the quiet village square. Would you believe that just five hundred people live here? Despite its small size, the town boasts a remarkable history dating back over three centuries."
+            </div>
+
+            <div class="record-upload-row">
+                <button class="record-btn" id="recordBtn">🎙️ Record</button>
+                <span class="recording-timer" id="recordingTimer" style="display:none;">0:00</span>
+                <span class="or-divider">— or —</span>
+                <label class="upload-audio-label" for="audioFileInput">📁 Upload Audio File
+                    <input type="file" id="audioFileInput" accept="audio/*,video/*,.wav,.mp3,.m4a,.ogg,.flac,.webm,.aac,.wma,.mp4,.mov">
+                </label>
+            </div>
+
+            <div class="audio-preview-section" id="audioPreviewSection">
+                <div class="audio-preview-header"><h3>🎧 Audio Preview</h3><button class="remove-audio-btn" id="removeAudioBtn">✕ Remove</button></div>
+                <audio id="audioPreviewPlayer" controls preload="auto"></audio>
+                <div class="audio-preview-meta" id="audioPreviewMeta">Duration: — · Source: —</div>
+            </div>
+
+            <!-- AdSense: After audio input -->
+            <!--<div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>-->
+
+            <!-- ═══ Step 2: Settings ═══ -->
+            <div class="step-header"><span class="step-number">2</span> Settings </div>
+
+            <div class="settings-row">
+                <div class="setting-group">
+                    <label for="modelSelect">AI Model</label>
+                    <select id="modelSelect">
+                        <!--
+                        <option value="Xenova/whisper-small" selected>Accurate — Multi-language (~240 MB)</option>
+                        -->
+                        <option value="whisper-small" selected>Accurate — Multi-language (~240 MB)</option>
+                        <option value="distil-whisper-small.en">Fast — English Only (~180 MB)</option>
+                    </select>
+                </div>
+                <div class="setting-group" id="languageGroup">
+                    <label for="languageSelect">Language <span style="font-weight:600;text-transform:none;letter-spacing:0;font-size:0.8125rem;color:#FF0000;">(required)</span></label>
+                    <select id="languageSelect">
+                        <option value="" selected disabled>Please choose language</option>
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="it">Italian</option>
+                        <option value="nl">Dutch</option>
+                        <option value="zh">Chinese</option>
+                        <option value="ja">Japanese</option>
+                        <option value="ko">Korean</option>
+                        <option value="ar">Arabic</option>
+                        <option value="hi">Hindi</option>
+                        <option value="ru">Russian</option>
+                        <option value="pl">Polish</option>
+                        <option value="tr">Turkish</option>
+                        <option value="sv">Swedish</option>
+                        <option value="da">Danish</option>
+                        <option value="no">Norwegian</option>
+                        <option value="fi">Finnish</option>
+                        <option value="he">Hebrew</option>
+                        <option value="el">Greek</option>
+                        <option value="cs">Czech</option>
+                        <option value="vi">Vietnamese</option>
+                        <option value="th">Thai</option>
+                        <option value="uk">Ukrainian</option>
+                        <option value="id">Indonesian</option>
+                        <option value="ms">Malay</option>
+                        <option value="ro">Romanian</option>
+                        <option value="hu">Hungarian</option>
+                        <option value="bg">Bulgarian</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="transcribeBtn" disabled>🎧 Transcribe</button>
+
+            <aside class="keep-open" id="keepOpen" role="note" style="display:none;">
+              <span class="ko-icon" aria-hidden="true">⏳</span>
+              <p class="ko-text">
+                <strong>Keep this tab open until processing finishes.</strong>
+                Everything runs on your device — if you switch tabs or let your device sleep,
+                the browser may pause this tab or close it to free memory, which ends
+                processing and you'd have to start over.
+              </p>
+            </aside>
+
+            <div class="privacy-note" id="privacyNote">
+                <span class="privacy-note-icon">🔒</span>
+                <span>OpenAI's Whisper AI runs <strong>entirely on your device</strong> — your audio is never uploaded to any server. 
+                First visit downloads the model (~240 MB, cached for instant future visits). 
+                Transcription time is approximately twice the audio length on desktop.</span>
+            </div>
+
+            <!-- Phase region (download → transcribing → output), height-reserved -->
+            <div id="phaseRegion">
+
+            <!-- Model Loading -->
+            <div id="modelLoadSection">
+                <div class="model-load-title" id="modelLoadTitle">Loading transcription AI...</div>
+                <div class="progress-bar-track"><div class="progress-bar-fill" id="modelProgressBar"></div></div>
+                <div class="progress-label" id="modelProgressLabel">Preparing...</div>
+                <div class="model-load-note" id="modelLoadNote">⏱️ First visit? The AI model downloads once and is cached for instant future visits.</div>
+                <!-- AdSense: During model loading (premium placement — user idle 10-30+ seconds) -->
+                <!--<div style="margin-top:1rem;"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>-->
+            </div>
+
+            <!-- Long-audio live estimate (the amber "keep tab open" box above already
+                 carries the tab/sleep warning, so this is estimate-only). -->
+            <div class="long-audio-callout" id="longAudioCallout">
+                <div class="long-audio-callout-title">⏳ <span id="longAudioEstimate"></span></div>
+            </div>
+
+            <!-- Transcription Progress -->
+            <div id="transcriptionProgress">
+                <div class="gen-title"><span class="spinner"></span> Transcribing your audio...</div>
+                <div class="gen-explainer">OpenAI's Whisper model is processing your audio on your device — your recording never leaves your browser.</div>
+                <div class="progress-bar-track shimmer"><div class="progress-bar-fill" id="transcribeProgressBar" style="width:100%"></div></div>
+                <div class="progress-label" id="transcribeProgressLabel">Starting transcription...</div>
+                <div class="progress-time-est" id="progressTimeEst"></div>
+                <div class="partial-transcript" id="partialTranscript" style="display:none;"></div>
+            </div>
+
+            <!-- Transcription Output -->
+            <div id="transcriptionOutput">
+                <h3 style="font-size:1.0625rem;font-weight:600;margin-bottom:0.75rem;color:#1a1a1a;">📝 Transcription</h3>
+                <textarea id="transcriptionText" class="transcription-output-area" placeholder="Transcription will appear here..." spellcheck="true"></textarea>
+                <div class="output-meta-row">
+                    <span class="output-stats" id="outputStats">0 characters · 0 words</span>
+                    <label class="timestamp-toggle" id="timestampToggleLabel">
+                        <input type="checkbox" id="timestampToggle"> Show timestamps
+                    </label>
+                    <span class="timestamp-unavailable-note" id="timestampUnavailableNote" style="display:none;">Timestamps &amp; SRT are available with the Accurate model</span>
+                </div>
+
+                <div class="export-row">
+                    <button class="export-btn export-btn-copy" id="copyBtn" disabled>📋 Copy Text</button>
+                    <button class="export-btn export-btn-txt" id="downloadTxtBtn" disabled>⬇️ Download TXT</button>
+                    <button class="export-btn export-btn-srt" id="downloadSrtBtn" disabled>⬇️ Download SRT</button>
+                </div>
+
+                <!-- Cross-tool CTA (also carries the single success line — merged from the old separate green status box) -->
+                <div id="sttCta" role="status" aria-live="polite" style="display:none;background:linear-gradient(135deg,#059669,#10b981);border-radius:12px;padding:1.25rem 1.5rem;margin-top:1rem;color:white;">
+                    <div id="sttCtaMsg" style="font-size:1.0625rem;font-weight:700;margin-bottom:0.75rem;">✔ Transcription complete!</div>
+                    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;">
+                        <span style="font-size:0.8125rem;font-weight:600;opacity:0.9;">Try next:</span>
+                        <a href="/text-to-speech/" class="next-tool-link" data-tool="text-to-speech" style="padding:0.35rem 0.75rem;background:rgba(255,255,255,0.2);color:white;border-radius:999px;font-size:0.8125rem;font-weight:600;text-decoration:none;white-space:nowrap;">🔊 Text to Speech</a>
+                        <a href="/noise-remover/" class="next-tool-link" data-tool="noise-remover" style="padding:0.35rem 0.75rem;background:rgba(255,255,255,0.2);color:white;border-radius:999px;font-size:0.8125rem;font-weight:600;text-decoration:none;white-space:nowrap;">🎙️ Noise Remover</a>
+                        <a href="/audio-trimmer/" class="next-tool-link" data-tool="audio-trimmer" style="padding:0.35rem 0.75rem;background:rgba(255,255,255,0.2);color:white;border-radius:999px;font-size:0.8125rem;font-weight:600;text-decoration:none;white-space:nowrap;">✂️ Audio Trimmer</a>
+                        <a href="/" class="next-tool-link all-tools" data-tool="all-tools" style="padding:0.35rem 0.75rem;background:rgba(255,255,255,0.15);color:white;border-radius:999px;font-size:0.8125rem;font-weight:600;text-decoration:none;white-space:nowrap;">More tools →</a>
+                    </div>
+                </div>
+
+                <button class="new-transcription-btn" id="newTranscriptionBtn">🔄 Transcribe Another</button>
+
+                <div style="font-size:0.8125rem;color:#9ca3af;margin-top:0.75rem;">⚡ Powered by <a href="https://github.com/openai/whisper" target="_blank" rel="noopener" style="color:#4f5aed;">OpenAI Whisper</a> (open source) via <a href="https://huggingface.co/docs/transformers.js" target="_blank" rel="noopener" style="color:#4f5aed;">Transformers.js</a>. Audio never leaves your device.</div>
+            </div>
+            </div><!-- /phaseRegion -->
+
+            <div id="status" role="status" aria-live="polite"></div>
+
+            </div><!-- /toolInteractive -->
+        </section>
+
+        <!-- AdSense: Between tool and SEO content -->
+        <!--<div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>-->
+
+        <section class="info-section" id="about">
+            <h2>About This Speech to Text Tool</h2>
+            <p>SoundTools Speech to Text is a free AI-powered transcription tool that converts any audio into accurate text. It uses OpenAI's Whisper model running entirely in your browser via Transformers.js and WebAssembly. Your audio is never uploaded to any server — all processing happens locally on your device. Supports 99+ languages with automatic language detection.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Transcribe any audio file</strong> — WAV, MP3, M4A, OGG, FLAC, WebM, AAC, and more</li>
+                <li><strong>Record via microphone</strong> for instant transcription of speech, meetings, or lectures</li>
+                <li><strong>Powered by OpenAI's Whisper</strong> — state-of-the-art AI speech recognition trained on 680,000 hours of audio</li>
+                <li><strong>99+ languages supported</strong> with automatic language detection</li>
+                <li><strong>Export as plain text (.txt) or SRT subtitles (.srt)</strong> for video captioning</li>
+                <li><strong>Timestamps included</strong> — toggle timestamps on or off, export SRT for YouTube, TikTok, and other platforms</li>
+                <li><strong>100% free</strong> — no account, no watermark, no usage limits, no character caps</li>
+                <li><strong>100% private</strong> — audio never leaves your browser, no server upload</li>
+                <li><strong>AI model cached after first visit</strong> — instant loading on return visits</li>
+                <li><strong>Long audio support</strong> — chunked processing with progress indication for files of any length</li>
+                <li><strong>Works on desktop</strong> — Chrome, Edge, and Firefox on Windows, Mac, and Linux</li>
+            </ul>
+        </section>
+
+        <section class="info-section">
+            <h2>What Is AI Speech to Text?</h2>
+
+            <p>AI speech to text (also called automatic speech recognition or ASR) uses machine learning to convert spoken audio into written text. Unlike older dictation software that relied on rigid rules, modern AI models like <a href="https://github.com/openai/whisper" target="_blank" rel="noopener">OpenAI's Whisper</a> — an open-source speech recognition model — are trained on hundreds of thousands of hours of diverse audio. Whisper's <a href="https://arxiv.org/abs/2212.04356" target="_blank" rel="noopener">research paper</a> describes training on 680,000 hours, achieving near-human accuracy across dozens of languages. SoundTools runs Whisper entirely in your browser via <a href="https://huggingface.co/docs/transformers.js" target="_blank" rel="noopener">Transformers.js</a> and WebAssembly, so your audio is never uploaded to any server.</p>
+
+            <h2>How to Transcribe Audio to Text — Step by Step</h2>
+            <ul>
+                <li><strong>Record or Upload Audio:</strong> Click "Record" to speak into your microphone, or click "Upload Audio File" to upload a recording (WAV, MP3, M4A, or any common format). There's no file length limit.</li>
+                <li><strong>Choose Settings:</strong> Select the AI model — "Accurate" for 99+ languages with auto-detection, or "Fast" for English-only with quicker results. Optionally set the language manually for better accuracy.</li>
+                <li><strong>Transcribe and Export:</strong> Click "Transcribe" to start. The first time, the AI model downloads (~240 MB, cached for future visits). View your transcription, toggle timestamps, then copy to clipboard or download as TXT or SRT subtitles.</li>
+            </ul>
+
+            <h2>Speech to Text Use Cases</h2>
+            <h3>Students — Transcribe Lectures and Study Material</h3>
+            <p>Record lectures on your phone, upload the audio, and get a full transcript in minutes. Search, highlight, and review key points from class. Create study notes from recorded discussions. Works with any language your professor speaks.</p>
+            <h3>Content Creators — Captions and Subtitles</h3>
+            <p>Upload your YouTube video audio and generate SRT subtitle files for free. Add captions to TikTok, Instagram Reels, and YouTube videos. Repurpose video and podcast content into blog posts and social media text.</p>
+            <h3>Journalists — Private Interview Transcription</h3>
+            <p>Transcribe interview recordings without uploading sensitive audio to any server. Your sources' voices never leave your device. Export timestamped transcripts for accurate quoting and fact-checking.</p>
+            <h3>Podcasters — Show Notes and SEO</h3>
+            <p>Generate full transcripts of podcast episodes for show notes, blog posts, and SEO. Search engines can't listen to audio — transcripts make your podcast content discoverable.</p>
+            <h3>Meeting Notes — Transcribe Recordings</h3>
+            <p>Upload meeting recordings from Zoom, Teams, or Google Meet and get a complete transcript. Never miss an action item or decision again. Share transcripts with team members who couldn't attend.</p>
+            <h3>Accessibility — Make Audio Content Readable</h3>
+            <p>Convert podcasts, videos, voice messages, and audio recordings into text for people who are deaf or hard of hearing. Generate captions and transcripts to make spoken content accessible to everyone. SRT subtitle export makes it easy to add captions to any video platform.</p>
+
+           
+            <h2>How SoundTools Compares to Other Transcription Tools</h2>
+            <p>The most popular transcription services — Otter.ai, TurboScribe, and Rev — all upload your audio to their servers, require accounts, and limit free usage. Otter.ai caps free users at 300 minutes per month and only supports English. TurboScribe allows 3 files per day on the free tier. Rev is fully paid. SoundTools runs OpenAI's Whisper model entirely in your browser — no upload, no account, unlimited use, and 99+ languages. The tradeoff is a one-time ~240 MB model download and slower processing speed than cloud APIs (roughly 1.5–2× real-time on desktop). After the first download, the model is cached and loads instantly on every return visit.</p>
+            <div style="overflow-x:auto;">
+              <table class="comparison-table">
+                  <thead>
+                      <tr>
+                          <th>Feature</th>
+                          <th>SoundTools</th>
+                          <th>Otter.ai</th>
+                          <th>TurboScribe</th>
+                          <th>Rev</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr><td>Free transcription</td><td>✅ Unlimited</td><td>⚠️ 300 min/mo</td><td>⚠️ 3 files/day</td><td>❌ Paid</td></tr>
+                      <tr><td>No account required</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+                      <tr><td>Privacy (no upload)</td><td>✅ Browser-only</td><td>❌ Server</td><td>❌ Server</td><td>❌ Server</td></tr>
+                      <tr><td>Accuracy</td><td>✅ Very Good</td><td>✅ Very Good</td><td>✅ Excellent</td><td>✅ Excellent</td></tr>
+                      <tr><td>Languages supported</td><td>99+</td><td>English only</td><td>98+</td><td>36</td></tr>
+                      <tr><td>SRT subtitle export</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                      <tr><td>File length limit</td><td>✅ Unlimited</td><td>⚠️ 40 min (free)</td><td>⚠️ 30 min (free)</td><td>✅ Unlimited (paid)</td></tr>
+                      <tr><td>Works on mobile</td><td>❌ Desktop only</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                  </tbody>
+              </table>
+            </div>
+
+           
+        </section>
+
+        <!-- AdSense: Between SEO sections -->
+        <!--<div style="max-width:1200px;margin:0 auto;padding:0 1.5rem;"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>-->
+
+        <section class="info-section">
+            <h2>Frequently Asked Questions</h2>
+            <h3>How do I transcribe audio to text for free?</h3>
+            <p>Click "Record" to speak into your microphone, or click "Upload Audio File" to upload a recording. The AI transcribes your audio automatically — completely free, no account needed. Export as text or SRT subtitles.</p>
+            <h3>Is this transcription tool really free with no limits?</h3>
+            <p>Yes. There are no usage limits, no file length restrictions, no character caps, no account requirements, and no watermarks. The AI model runs entirely in your browser, so there are no server costs to recover.</p>
+            <h3>Does this upload my audio to a server?</h3>
+            <p>No. The AI model downloads to your browser (~240 MB, cached after first visit). All transcription happens locally. Your audio never leaves your browser — completely private.</p>
+            <h3>How accurate is the transcription?</h3>
+            <p>This tool uses OpenAI's Whisper model, which achieves near-human accuracy on clean audio. Accuracy depends on audio quality — clear speech in a quiet environment produces the best results. Heavy accents, background noise, and overlapping speakers may reduce accuracy.</p>
+            <h3>What languages are supported?</h3>
+            <p>The default model (Whisper Small) supports 99+ languages including English, Spanish, French, German, Portuguese, Chinese, Japanese, Korean, Arabic, Hindi, Russian, and many more. Language is auto-detected, or you can select manually. The "Fast" model is optimized for English only.</p>
+            <h3>How long does transcription take?</h3>
+            <p>On a modern desktop, transcription takes roughly twice the audio length — a 5-minute recording takes about 10 minutes to transcribe. The AI runs on your CPU via WebAssembly. A progress bar shows the transcription status.</p>
+            <h3>Why does it take a while to load the first time?</h3>
+            <p>The Whisper AI model needs to download (~240 MB). This is a one-time download — the model is cached in your browser and loads instantly on future visits.</p>
+            <h3>Does this work on iPhone and mobile devices?</h3>
+            <p>Speech to text requires a desktop or laptop computer — the AI model needs more memory and processing power than mobile browsers can provide. Use Chrome, Edge, or Firefox on a desktop or laptop for best results. iPhone, iPad, and most Android devices do not have enough memory to run the Whisper AI model.</p>
+            <h3>Can I transcribe long audio files?</h3>
+            <p>Yes. The tool processes long audio in chunks, so there is no length limit. A 1-hour recording will take roughly 120 minutes to transcribe on a modern desktop. Progress is shown chunk by chunk.</p>
+            <h3>What audio formats are supported?</h3>
+            <p>WAV, MP3, M4A, OGG, FLAC, WebM, AAC, and more — essentially any audio format your browser can decode. You can also upload video files (MP4, MOV) and the audio track will be extracted and transcribed.</p>
+            <h3>Can I get subtitles (SRT) from audio?</h3>
+            <p>Yes. Click "Download SRT" to export the transcription as an SRT subtitle file with timestamps. This is perfect for adding captions to YouTube videos, TikTok, Instagram Reels, and other video platforms.</p>
+            <h3>What is the Whisper model?</h3>
+            <p>Whisper is an open-source automatic speech recognition (ASR) model created by OpenAI. It was trained on 680,000 hours of multilingual audio and achieves state-of-the-art accuracy across many languages. SoundTools runs Whisper entirely in your browser using Transformers.js and WebAssembly.</p>
+            <h3>What's the difference between this and SoundTools Text to Speech?</h3>
+            <p>Speech to Text converts audio INTO text (transcription). <a href="/text-to-speech/">Text to Speech</a> converts text INTO audio (voice generation). They're complementary tools — one listens, the other speaks.</p>
+            <h3>What's the difference between this and SoundTools Voice Cloning?</h3>
+            <p>Speech to Text transcribes audio into text. <a href="/voice-cloning/">Voice Cloning</a> uses a short voice sample to generate new speech in a cloned voice. Voice Cloning also uses Whisper internally, but its main purpose is voice generation, not transcription.</p>
+
+            <h3>Is this an Otter.ai alternative?</h3>
+            <p>Yes, for unlimited free transcription with full privacy. Otter.ai is an excellent transcription service popular for meeting notes and collaboration — it integrates with Zoom, Google Meet, and Teams, and has a solid mobile app. But it requires an account, caps free users at 300 minutes per month, and only supports English. SoundTools transcribes any language (99+), has no usage cap, no account requirement, and your audio never leaves your browser. The key differences: Otter.ai is faster (cloud processing vs. local browser), has better meeting integrations, and works on mobile. SoundTools is fully private, unlimited, and multilingual. If you need meeting-focused features or mobile support, Otter.ai is worth using. If you need private, unlimited, multilingual transcription, SoundTools is the better fit.</p>
+
+            <h3>Is this a TurboScribe alternative?</h3>
+            <p>Yes. TurboScribe is a popular free transcription tool that uses Whisper on their servers — same underlying AI model as SoundTools. The difference is architecture: TurboScribe uploads your audio to their cloud, requires an account, and limits free users to 3 files per day (upgrading to unlimited requires a paid plan). SoundTools runs Whisper directly in your browser — no upload, no account, no daily limits. TurboScribe's cloud processing is faster and supports longer files without performance concerns. SoundTools is the private, unlimited, account-free version of the same technology.</p>
+        </section>
+
+        <section class="related-tools-section"><div class="container"><h2 class="related-tools-header">Related Audio Tools</h2><p class="related-tools-subheader">Create more amazing audio with these popular tools</p><div class="related-tools-grid">
+            <a href="/text-to-speech/" class="related-tool-card"><span class="tool-emoji">🗣️</span><h3>Text to Speech</h3><p>Convert text back to speech with 20+ natural AI voices.</p></a>
+            <a href="/voice-cloning/" class="related-tool-card"><span class="tool-emoji">🎙️</span><h3>Voice Cloning</h3><p>Clone any voice from 10 seconds of audio — free, in-browser.</p></a>
+            <a href="/noise-remover/" class="related-tool-card"><span class="tool-emoji">🔇</span><h3>Noise Remover</h3><p>Clean up audio for better transcription accuracy.</p></a>
+            <a href="/video-to-audio/" class="related-tool-card"><span class="tool-emoji">🎬</span><h3>Video to Audio</h3><p>Extract audio from video files, then transcribe.</p></a>
+            <a href="/audio-trimmer/" class="related-tool-card"><span class="tool-emoji">✂️</span><h3>Audio Trimmer</h3><p>Trim audio to the relevant section before transcribing.</p></a>
+            <a href="/audio-converter/" class="related-tool-card"><span class="tool-emoji">🔄</span><h3>Audio Converter</h3><p>Convert audio formats — WAV, MP3, OGG, FLAC, and more.</p></a>
+            <a href="/voice-changer/" class="related-tool-card"><span class="tool-emoji">🎭</span><h3>Voice Changer</h3><p>17+ voice effects — from anime to alien to autotune.</p></a>
+        </div><div class="browse-all-cta"><a href="/" class="browse-all-btn"><span class="btn-icon">🎵</span>Browse All Audio Tools<span class="btn-arrow">→</span></a></div></div></section>
+    </main>
+
+    <!-- FOOTER_START -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Effects</h3>
+                    <ul>
+                        <li><a href="/eq/">EQ</a></li>
+                        <li><a href="/8d-audio/">8D Audio</a></li>
+                        <li><a href="/add-reverb-to-audio/">Add Reverb</a></li>
+                        <li><a href="/bass-boost/">Bass Boost</a></li>
+                        <li><a href="/nightcore/">Nightcore</a></li>
+                        <li><a href="/nightcore-reverse/">Nightcore Reverse</a></li>
+                        <li><a href="/slowed-reverb/">Slowed + Reverb</a></li>
+                        <li><a href="/sped-up/">Sped Up Audio</a></li>
+                        <li><a href="/tiktok-slowed-reverb/">TikTok Slowed</a></li>
+                        <li><a href="/vaporwave/">Vaporwave</a></li>
+                        <li><a href="/volume-booster/">Volume Booster</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Voice & AI</h3>
+                    <ul>
+                        <li><a href="/voice-cloning/">Voice Cloning</a></li>
+                        <li><a href="/vocal-tuner/">Vocal Tuner</a></li>
+                        <li><a href="/voice-to-instrument/">Voice to Instrument</a></li>
+                        <li><a href="/noise-remover/">Noise Remover</a></li>
+                        <li><a href="/stem-splitter/">Stem Splitter</a></li>
+                        <li><a href="/text-to-speech/">Text to Speech</a></li>
+                        <li><a href="/speech-to-text/">Speech to Text</a></li>
+                        <li><a href="/speech-to-song/">Speech to Song</a></li>
+                        <li><a href="/vocal-remover/">Vocal Remover</a></li>
+                        <li><a href="/voice-changer/">Voice Changer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Edit & Convert</h3>
+                    <ul>
+                        <li><a href="/audio-converter/">Audio Converter</a></li>
+                        <li><a href="/audio-joiner/">Audio Joiner</a></li>
+                        <li><a href="/audio-trimmer/">Audio Trimmer</a></li>
+                        <li><a href="/flac-cover-art/">FLAC Cover Art</a></li>
+                        <li><a href="/audio-metadata-editor/">Metadata Editor</a></li>
+                        <li><a href="/pitch-shifter/">Pitch Shifter</a></li>
+                        <li><a href="/reverse-audio/">Reverse Audio</a></li>
+                        <li><a href="/tempo-changer/">Tempo Changer</a></li>
+                        <li><a href="/video-to-audio/">Video to Audio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Create & Analyze</h3>
+                    <ul>
+                        <li><a href="/beat-maker/">Beat Maker</a></li>
+                        <li><a href="/bpm-detector/">BPM Detector</a></li>
+                        <li><a href="/granular-synthesizer/">Granular Synthesizer</a></li>
+                        <li><a href="/hearing-test/">Hearing Test</a></li>
+                        <li><a href="/music-visualizer/">Music Visualizer</a></li>
+                        <li><a href="/soundboard/">Soundboard</a></li>
+                    </ul>
+                </div>
+
+                 <div class="footer-column">
+                    <h3>The Lab</h3>
+                    <ul>
+                        <li><a href="/lab/evaporator/">Evaporator</a></li>
+                        <li><a href="/lab/we-have-the-cherry-point-at-home/">Dead Empires</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service/">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoundTools - Free Audio Tools for Creators</p>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER_END -->
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});
+        document.querySelectorAll('.has-dropdown').forEach(item=>{const t=item.querySelector('a,.mobile-dropdown-toggle'),d=item.querySelector('.dropdown-menu');if(t&&d)t.addEventListener('click',function(e){if(window.innerWidth<=768){e.preventDefault();d.classList.toggle('active');}});});
+        document.addEventListener('click',function(e){if(!document.querySelector('nav').contains(e.target))document.querySelector('.nav-links').classList.remove('active');});
+    </script>
+
+    <!-- ============================================================ -->
+    <!--  SPEECH TO TEXT ENGINE                                        -->
+    <!--  Whisper via Transformers.js in a Web Worker                  -->
+    <!--  Models (served from Cloudflare R2): whisper-small,           -->
+    <!--          distil-whisper-small.en                              -->
+    <!-- ============================================================ -->
+    <script type="module">
+
+    // ── Constants ─────────────────────────────────────────────────────
+    const WHISPER_SAMPLE_RATE = 16000; // Whisper expects 16kHz
+    //const MAX_RECORDING_SECONDS = 600; // 10 min max recording
+    const MAX_RECORDING_SECONDS = 3600; // 60 min max recording
+
+    // ── State ─────────────────────────────────────────────────────────
+    let isRecording = false;
+    let mediaRecorder = null;
+    let recordingChunks = [];
+    let recordingStartTime = null;
+    let recordingTimerInterval = null;
+    let audioBlob = null;
+    let audioUrl = null;
+    let audioFloat32 = null; // Preprocessed Float32Array — mono, native sample rate
+    let audioSampleRate = 0; // Native sample rate of the decoded audio
+    let audioDuration = 0;
+    let originalAudioDuration = 0; // Uncompressed duration from the source file
+    let isTranscribing = false;
+    let transcriptionResult = null; // { text, chunks }
+    let workerReady = false;
+    let modelLoaded = false;
+    let currentLoadedModel = null;
+    let progressTimerInterval = null;  // Main-thread timer for progress UI
+
+    // new 04.18
+    let _removals = null
+
+    // ── DOM refs ──────────────────────────────────────────────────────
+    const recordBtn = document.getElementById('recordBtn');
+    const recordingTimer = document.getElementById('recordingTimer');
+    const audioFileInput = document.getElementById('audioFileInput');
+    const audioPreviewSection = document.getElementById('audioPreviewSection');
+    const audioPreviewPlayer = document.getElementById('audioPreviewPlayer');
+    const audioPreviewMeta = document.getElementById('audioPreviewMeta');
+    const removeAudioBtn = document.getElementById('removeAudioBtn');
+    const modelSelect = document.getElementById('modelSelect');
+    const languageSelect = document.getElementById('languageSelect');
+    const languageGroup = document.getElementById('languageGroup');
+    const transcribeBtn = document.getElementById('transcribeBtn');
+    const modelLoadSection = document.getElementById('modelLoadSection');
+    const modelLoadTitle = document.getElementById('modelLoadTitle');
+    const modelProgressBar = document.getElementById('modelProgressBar');
+    const modelProgressLabel = document.getElementById('modelProgressLabel');
+    const transcriptionProgress = document.getElementById('transcriptionProgress');
+    const transcribeProgressBar = document.getElementById('transcribeProgressBar');
+    const transcribeProgressLabel = document.getElementById('transcribeProgressLabel');
+    const progressTimeEst = document.getElementById('progressTimeEst');
+    const partialTranscript = document.getElementById('partialTranscript');
+    const transcriptionOutput = document.getElementById('transcriptionOutput');
+    const transcriptionText = document.getElementById('transcriptionText');
+    const outputStats = document.getElementById('outputStats');
+    const timestampToggle = document.getElementById('timestampToggle');
+    const copyBtn = document.getElementById('copyBtn');
+    const downloadTxtBtn = document.getElementById('downloadTxtBtn');
+    const downloadSrtBtn = document.getElementById('downloadSrtBtn');
+    const newTranscriptionBtn = document.getElementById('newTranscriptionBtn');
+    const statusDiv = document.getElementById('status');
+    const keepOpenBox = document.getElementById('keepOpen');
+    const privacyNoteBox = document.getElementById('privacyNote');
+    const phaseRegion = document.getElementById('phaseRegion');
+    const sttCtaMsg = document.getElementById('sttCtaMsg');
+
+    /**
+     * Single source of truth for the phase-aware status region.
+     * Phases: 'idle' | 'downloading' | 'transcribing' | 'complete'
+     *   idle         — nothing running. Green privacy note only, no amber.
+     *   downloading  — model download AFTER Transcribe. Amber "keep tab open" +
+     *                  privacy note + the download bar.
+     *   transcribing — amber "keep tab open" + progress panel (with its own live
+     *                  estimate for long audio). Privacy note hidden.
+     *   complete     — output view + single green success/CTA box. No amber.
+     * The amber "keep tab open" box is driven by the Transcribe click (running
+     * phases), not by the download bar.
+     */
+    function setPhase(phase) {
+        const running = (phase === 'downloading' || phase === 'transcribing');
+        keepOpenBox.style.display = running ? '' : 'none';
+        privacyNoteBox.style.display = (phase === 'idle' || phase === 'downloading') ? '' : 'none';
+        transcriptionProgress.style.display = (phase === 'transcribing') ? 'block' : 'none';
+        transcriptionOutput.style.display = (phase === 'complete') ? 'block' : 'none';
+        // Download bar is loader-owned; only force it hidden once past downloading.
+        if (phase === 'transcribing' || phase === 'complete') modelLoadSection.style.display = 'none';
+        if (phase === 'downloading' || phase === 'transcribing' || phase === 'complete') {
+            phaseRegion.classList.add('armed');
+        } else {
+            phaseRegion.classList.remove('armed');
+        }
+    }
+
+    // ── Web Worker ────────────────────────────────────────────────────
+    let whisperWorker = null;
+
+    function initWorker() {
+        // The worker uses dynamic import() internally (no top-level imports)
+        // so it loads instantly as a module worker. Transformers.js is only
+        // fetched when the user actually clicks Transcribe.
+        try {
+            whisperWorker = new Worker('./whisper-worker.js', { type: 'module' });
+        } catch (e) {
+            console.warn('[STT] Module worker failed, trying classic worker:', e);
+            // Classic worker fallback — dynamic import() works in Chrome 80+, Firefox 113+
+            try {
+                whisperWorker = new Worker('./whisper-worker.js');
+            } catch (e2) {
+                console.error('[STT] Worker creation failed:', e2);
+                showStatus('Your browser does not support Web Workers. Please try Chrome, Edge, or Firefox.', 'error');
+                return;
+            }
+        }
+
+        whisperWorker.onmessage = handleWorkerMessage;
+        whisperWorker.onerror = (e) => {
+            console.error('[STT] Worker error:', e);
+            // Only show error to user if they're actively doing something
+            // (not on initial page load — the worker might just need a moment)
+            if (isTranscribing) {
+                showStatus('AI engine error: ' + (e.message || 'Processing failed. Please try again.'), 'error');
+                isTranscribing = false;
+                transcriptionProgress.style.display = 'none';
+                updateTranscribeBtn();
+            } else if (!workerReady) {
+                // Worker failed to initialize — try providing a useful message
+                showStatus('AI engine failed to initialize. Please refresh the page, or try Chrome/Edge/Firefox.', 'error');
+            }
+        };
+
+        // Timeout: if worker doesn't signal ready within 5 seconds, warn
+        setTimeout(() => {
+            if (!workerReady && whisperWorker) {
+                console.warn('[STT] Worker has not signaled ready after 5s');
+            }
+        }, 5000);
+    }
+
+    function handleWorkerMessage(event) {
+        const { type, progress, message, result, error, id, partial, modelId } = event.data;
+
+        switch (type) {
+            case 'ready':
+                workerReady = true;
+                console.log('[STT] Worker ready');
+                break;
+
+            case 'loading':
+                modelLoadSection.style.display = 'block';
+                modelProgressBar.style.width = `${Math.min(100, progress || 0)}%`;
+                modelProgressLabel.textContent = message || 'Loading...';
+                break;
+
+            case 'loaded':
+                modelLoaded = true;
+                currentLoadedModel = modelId;
+                modelProgressBar.style.width = '100%';
+                modelProgressLabel.textContent = 'Model ready!';
+                setTimeout(() => { modelLoadSection.style.display = 'none'; }, 800);
+                console.log('[STT] Model loaded:', modelId);
+                ToolTracker.trackEvent('model_loaded', { model: modelId });
+                // If we were waiting to transcribe, do it now
+                if (isTranscribing && audioFloat32) {
+                    startTranscription();
+                }
+                break;
+
+            case 'transcribing': {
+                // Worker tells us transcription has started — now WE run the timer
+                // (Worker's event loop is blocked by WASM, so it can't run setInterval)
+                const info = event.data;
+                const durS = info.audioDurationS || audioDuration;
+                const chunks = info.estimatedChunks || 1;
+                const isLong = info.isLongAudio || false;
+
+                // Clear any previous timer
+                if (progressTimerInterval) clearInterval(progressTimerInterval);
+
+                // Switch to real progress bar for long audio, keep shimmer for short
+                if (isLong) {
+                    transcribeProgressBar.parentElement.classList.remove('shimmer');
+                    transcribeProgressBar.style.width = '0%';
+                } 
+
+                transcribeProgressLabel.textContent = isLong
+                    ? `Transcribing ${Math.round(durS)}s of audio (~${chunks} segments)...`
+                    : `Transcribing ${Math.round(durS)}s of audio...`;
+
+                // Start main-thread progress timer
+                const timerStart = performance.now();
+                const estimatedTotalMs = durS * 1000 * 1.5; // ~1.5x real-time estimate
+
+                progressTimerInterval = setInterval(() => {
+                    const elapsed = performance.now() - timerStart;
+                    const elapsedS = Math.round(elapsed / 1000);
+                    const rawPct = elapsed / estimatedTotalMs;
+                    // Asymptotic ease — approaches 95% but never hits 100%
+                    const easedPct = Math.min(95, Math.round(rawPct * 100 * (1 - 0.3 * rawPct)));
+
+                    if (isLong) {
+                        const estSegment = Math.min(chunks, Math.max(1, Math.ceil(rawPct * chunks)));
+                        transcribeProgressBar.style.width = `${easedPct}%`;
+                        transcribeProgressLabel.textContent =
+                            `Processing segment ~${estSegment} of ${chunks}... (${elapsedS}s elapsed)`;
+                    } else {
+                        transcribeProgressLabel.textContent =
+                            `Transcribing... (${elapsedS}s elapsed)`;
+                    }
+
+                    // Time remaining estimate
+                    if (easedPct > 5) {
+                        const estTotalS = (elapsed / 1000) / (easedPct / 100);
+                        const remainS = Math.max(0, estTotalS - elapsedS);
+                        progressTimeEst.textContent = remainS > 5
+                            ? `~${Math.round(remainS)}s remaining`
+                            : 'Almost done...';
+                    }
+                }, 1000);
+                break;
+            }
+
+            case 'partial': {
+                // Worker completed one chunk — show streaming text + update progress
+                const pd = event.data;
+                const pct = pd.progress || 0;
+                const ci = (pd.chunkIndex || 0) + 1;
+                const tc = pd.totalChunks || 1;
+
+                // Update progress bar with real chunk-based progress
+                transcribeProgressBar.parentElement.classList.remove('shimmer');
+                transcribeProgressBar.style.width = `${Math.min(99, pct)}%`;
+                transcribeProgressLabel.textContent = `Completed segment ${ci} of ${tc}`;
+
+                // Show streaming partial text
+                if (pd.text) {
+                    partialTranscript.style.display = 'block';
+                    partialTranscript.textContent += (partialTranscript.textContent ? ' ' : '') + pd.text;
+                    partialTranscript.scrollTop = partialTranscript.scrollHeight;
+                }
+
+                // Update time estimate with real progress
+                if (pct > 5 && transcriptionStartTime) {
+                    const elapsed = (performance.now() - transcriptionStartTime) / 1000;
+                    const estTotal = elapsed / (pct / 100);
+                    const remaining = Math.max(0, estTotal - elapsed);
+                    progressTimeEst.textContent = remaining > 5
+                        ? `~${Math.round(remaining)}s remaining`
+                        : 'Almost done...';
+                }
+                break;
+            }
+
+            case 'complete':
+                // Clear progress timer
+                if (progressTimerInterval) {
+                    clearInterval(progressTimerInterval);
+                    progressTimerInterval = null;
+                }
+                // Release keep-alive mechanisms
+                stopKeepAlive();
+                hideLongAudioCallout();
+                transcribeProgressBar.parentElement.classList.remove('shimmer');
+                transcribeProgressBar.style.width = '100%';
+                transcribeProgressLabel.textContent = 'Transcription complete!';
+                progressTimeEst.textContent = '';
+                transcriptionResult = result;
+                displayTranscription(result);
+                isTranscribing = false;
+                // Enter the "complete" phase: hides amber + privacy note + progress
+                // panel, shows the output view and the single green success/CTA box.
+                setPhase('complete');
+                updateTranscribeBtn();
+
+                const totalTime = ((performance.now() - transcriptionStartTime) / 1000).toFixed(0);
+                const wordCount = (result.text || '').trim().split(/\s+/).filter(w => w).length;
+                const charCount = (result.text || '').length;
+
+                // Single success line, merged into the green CTA box (no separate green
+                // status box). aria-live on #sttCta announces it. #status stays empty.
+                sttCtaMsg.textContent = `✔ Transcribed! ${wordCount} words in ${totalTime}s — processed entirely on your device.`;
+
+                ToolTracker.trackSuccess({
+                    audio_duration_seconds: Math.round(audioDuration),
+                    transcription_time_seconds: parseInt(totalTime),
+                    word_count: wordCount,
+                    character_count: charCount,
+                    model: currentLoadedModel
+                });
+                break;
+
+            case 'error':
+                if (progressTimerInterval) {
+                    clearInterval(progressTimerInterval);
+                    progressTimerInterval = null;
+                }
+                // Release keep-alive mechanisms
+                stopKeepAlive();
+                hideLongAudioCallout();
+                console.error('[STT] Worker error:', error);
+                showStatus('Transcription error: ' + error, 'error');
+                isTranscribing = false;
+                setPhase('idle');  // return to a clean idle layout; error shown in #status
+                updateTranscribeBtn();
+                ToolTracker.trackError(error);
+                break;
+        }
+    }
+
+    let transcriptionStartTime = 0;
+
+    // ── Utility ───────────────────────────────────────────────────────
+    function showStatus(msg, type = 'info') {
+        if (statusDiv.classList.contains('success-enhanced')) return;
+        statusDiv.textContent = msg;
+        // 'processing' uses 'info' base styling + pulse animation
+        statusDiv.className = type === 'processing' ? 'info processing' : type;
+    }
+    function clearStatus() {
+        if (statusDiv.classList.contains('success-enhanced')) return;
+        statusDiv.textContent = '';
+        statusDiv.className = '';
+    }
+
+    function formatTime(seconds) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = Math.floor(seconds % 60);
+        if (h > 0) return `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+        return `${m}:${s.toString().padStart(2,'0')}`;
+    }
+
+    function formatTimeSrt(seconds) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = Math.floor(seconds % 60);
+        const ms = Math.round((seconds % 1) * 1000);
+        return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')},${ms.toString().padStart(3,'0')}`;
+    }
+
+    let isProcessingAudio = false; // True while ffmpeg/preprocessing runs
+
+    function updateTranscribeBtn() {
+        const hasAudio = audioFloat32 !== null;
+        const isEnglishOnly = modelSelect.value.includes('distil-whisper');
+        const hasLanguage = isEnglishOnly || (languageSelect.value !== '');
+        transcribeBtn.disabled = !hasAudio || isTranscribing || isProcessingAudio || !hasLanguage;
+        if (isTranscribing) {
+            transcribeBtn.textContent = '⏳ Transcribing...';
+        } else if (isProcessingAudio) {
+            transcribeBtn.textContent = '🎧 Transcribe';
+        } else if (!hasLanguage && hasAudio) {
+            transcribeBtn.textContent = '🎧 Transcribe';
+        } else {
+            transcribeBtn.textContent = '🎧 Transcribe';
+        }
+    }
+
+    // ── FFmpeg (lazy loaded — same pattern as all other SoundTools) ──
+    let FFmpeg = null;
+    let ffmpeg = null;
+    let ffmpegLoaded = false;
+    let ffmpegLoading = false;
+
+    async function loadFFmpeg() {
+        if (ffmpegLoaded) return true;
+        if (ffmpegLoading) {
+            while (ffmpegLoading) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            return ffmpegLoaded;
+        }
+
+        ffmpegLoading = true;
+
+        try {
+            showStatus('Loading audio converter (one-time download)...', 'processing');
+
+            const module = await import('../../ffmpeg/index.js');
+            FFmpeg = module.FFmpeg;
+
+            ffmpeg = new FFmpeg();
+
+            await ffmpeg.load({
+                coreURL: '../../ffmpeg/ffmpeg-core.js',
+                //wasmURL: '../../ffmpeg/ffmpeg-core.wasm',
+                wasmURL: 'https://cdn.soundtools.io/ffmpeg/ffmpeg-core.wasm',
+            });
+
+            ffmpegLoaded = true;
+            return true;
+        } catch (error) {
+            ffmpegLoaded = false;
+            showStatus('Error loading converter: ' + error.message, 'error');
+            console.error('FFmpeg load error:', error);
+            return false;
+        } finally {
+            ffmpegLoading = false;
+        }
+    }
+
+    function getExtFromMime(mimeType) {
+        const map = {
+            'audio/wav':'.wav','audio/wave':'.wav','audio/x-wav':'.wav',
+            'audio/mpeg':'.mp3','audio/mp3':'.mp3',
+            'audio/mp4':'.m4a','audio/m4a':'.m4a','audio/x-m4a':'.m4a',
+            'audio/aac':'.aac','audio/ogg':'.ogg','audio/flac':'.flac',
+            'audio/webm':'.webm','video/mp4':'.mp4','video/quicktime':'.mov',
+            'video/webm':'.webm',
+        };
+        const base = (mimeType || '').split(';')[0].trim().toLowerCase();
+        return map[base] || '.wav';
+    }
+
+    // ── Audio Preprocessing ───────────────────────────────────────────
+    // Follows the HuggingFace Transformers.js documented pattern EXACTLY:
+    // https://huggingface.co/docs/transformers.js/guides/node-audio-processing
+    async function preprocessAudio(blob) {
+        // Step 0: Convert any audio format to WAV using ffmpeg
+        const loaded = await loadFFmpeg();
+        if (!loaded) throw new Error('Failed to load audio converter.');
+       
+        showStatus('Converting audio to WAV...', 'processing');
+        const inputName = 'input' + getExtFromMime(blob.type);
+        const outputName = 'output.raw';
+
+        await ffmpeg.writeFile(inputName, new Uint8Array(await blob.arrayBuffer()));
+
+        await ffmpeg.exec([
+          '-i', inputName,
+          '-ar', '16000',
+          '-ac', '1',
+          '-f', 'f32le',
+          '-y', outputName
+        ]);
+
+        const rawBytes = await ffmpeg.readFile(outputName);
+        let audioData = new Float32Array(rawBytes.buffer);
+        await ffmpeg.deleteFile(inputName);
+        await ffmpeg.deleteFile(outputName);
+
+        // audioData is now mono, 16kHz, Float32 — ready for silence compression and transcription
+
+
+        if (Array.isArray(audioData)) {
+            if (audioData.length > 1) {
+                const SCALING_FACTOR = Math.sqrt(2);
+                // Merge channels (into first channel to save memory)
+                for (let i = 0; i < audioData[0].length; ++i) {
+                    audioData[0][i] =
+                        (SCALING_FACTOR * (audioData[0][i] + audioData[1][i])) / 2;
+                }
+            }
+            // Select first channel
+            audioData = audioData[0];
+        }
+        
+
+        // new 04.18
+        //audioData = compressSilences(audioData, 16000, 0.01, 0.5);
+        const { audio: compressed, removals, sampleRate } = compressSilences(audioData, 16000, 0.01, 0.5);
+        audioData = compressed;
+
+        // new 04.18
+        //console.log(`1. removals: ${JSON.stringify(removals, null, 2)}`)
+        _removals = removals
+
+        // pad end of audio with 1 second of silence to insure last sentence is captured
+        const PAD_S = 1.0;
+        const padSamples = Math.round(PAD_S * 16000);
+        const padded = new Float32Array(audioData.length + padSamples);  // only +1 pad worth
+        padded.set(audioData, 0);  // audio at index 0 (no leading silence)
+        // trailing silence is automatic
+        audioData = padded;
+        
+
+
+        return { samples: new Float32Array(audioData), sampleRate: WHISPER_SAMPLE_RATE };
+    }
+
+
+    /**
+     * Compress silences in audio to a maximum duration.
+     * Prevents Whisper from interpreting long pauses as end-of-speech.
+     * 
+     * @param {Float32Array} audio - Raw audio samples
+     * @param {number} sampleRate - Sample rate (default 16000)
+     * @param {number} threshold - Amplitude below which a sample is "silence" (default 0.01)
+     * @param {number} maxSilenceS - Maximum silence duration to keep, in seconds (default 0.5)
+     * @returns {Float32Array} Audio with silences compressed
+     */
+    // new 04.18
+    function compressSilences(audio, sampleRate = 16000, threshold = 0.01, maxSilenceS = 0.5) {
+      const maxSilenceSamples = Math.round(maxSilenceS * sampleRate);
+
+      // First pass: build a map of removed regions
+      const removals = []; // { at: sampleIndex, removed: numSamples }
+      let silenceRun = 0;
+      let silenceStart = 0;
+      for (let i = 0; i < audio.length; i++) {
+        if (Math.abs(audio[i]) < threshold) {
+          if (silenceRun === 0) silenceStart = i;
+          silenceRun++;
+        } else {
+          if (silenceRun > maxSilenceSamples) {
+            removals.push({
+              at: silenceStart + maxSilenceSamples,
+              removed: silenceRun - maxSilenceSamples,
+            });
+          }
+          silenceRun = 0;
+        }
+      }
+      // Handle trailing silence
+      if (silenceRun > maxSilenceSamples) {
+        removals.push({
+          at: silenceStart + maxSilenceSamples,
+          removed: silenceRun - maxSilenceSamples,
+        });
+      }
+
+      // Second pass: build compressed audio
+      const outputLength = audio.length - removals.reduce((sum, r) => sum + r.removed, 0);
+      const out = new Float32Array(outputLength);
+      let writeIdx = 0;
+      silenceRun = 0;
+      for (let i = 0; i < audio.length; i++) {
+        if (Math.abs(audio[i]) < threshold) {
+          silenceRun++;
+          if (silenceRun <= maxSilenceSamples) out[writeIdx++] = audio[i];
+        } else {
+          silenceRun = 0;
+          out[writeIdx++] = audio[i];
+        }
+      }
+
+      return { audio: out, removals, sampleRate };
+    }
+
+
+
+
+
+    // ── Recording ─────────────────────────────────────────────────────
+    async function startRecording() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                audio: { sampleRate:{ideal:16000}, channelCount:1, echoCancellation:true, noiseSuppression:true }
+            });
+            let mimeType = 'audio/webm;codecs=opus';
+            if (!MediaRecorder.isTypeSupported(mimeType)) mimeType = 'audio/mp4';
+            if (!MediaRecorder.isTypeSupported(mimeType)) mimeType = '';
+            mediaRecorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+            recordingChunks = [];
+            mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) recordingChunks.push(e.data); };
+            mediaRecorder.onstop = async () => {
+                stream.getTracks().forEach(t => t.stop());
+                const blob = new Blob(recordingChunks, { type: mediaRecorder.mimeType });
+                const recordedDuration = (Date.now() - recordingStartTime) / 1000;
+                await handleAudio(blob, 'microphone', recordedDuration);
+            };
+            mediaRecorder.start(250);
+            isRecording = true;
+            recordBtn.textContent = '⏹️ Stop';
+            recordBtn.classList.add('recording');
+            recordingTimer.style.display = 'inline';
+            recordingStartTime = Date.now();
+            recordingTimerInterval = setInterval(updateRecordingTimer, 100);
+            ToolTracker.trackEvent('recording_started');
+        } catch (err) {
+            if (err.name === 'NotAllowedError') showStatus('Microphone access denied. Allow mic access or upload an audio file.', 'error');
+            else showStatus('Recording error: ' + (err.message || 'Unknown'), 'error');
+        }
+    }
+
+    function stopRecording() {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+        isRecording = false;
+        recordBtn.textContent = '🎙️ Record';
+        recordBtn.classList.remove('recording');
+        clearInterval(recordingTimerInterval);
+    }
+
+    function updateRecordingTimer() {
+        const elapsed = (Date.now() - recordingStartTime) / 1000;
+        recordingTimer.textContent = formatTime(elapsed);
+        if (elapsed >= MAX_RECORDING_SECONDS) {
+            stopRecording();
+            showStatus(`Auto-stopped at ${MAX_RECORDING_SECONDS / 60} minutes.`, 'info');
+        }
+    }
+
+    // ── Handle Audio (from mic or file) ───────────────────────────────
+    async function handleAudio(blob, source, knownDuration) {
+        // Reset previous state
+        resetTranscription();
+
+        // Immediately null out old audio data so Transcribe button disables
+        audioFloat32 = null;
+        audioSampleRate = 0;
+        isProcessingAudio = true;
+        updateTranscribeBtn();
+
+        audioBlob = blob;
+        if (audioUrl) URL.revokeObjectURL(audioUrl);
+        audioUrl = URL.createObjectURL(blob);
+        audioPreviewPlayer.src = audioUrl;
+        audioPreviewPlayer.load();
+        audioPreviewSection.style.display = 'block';
+        recordingTimer.style.display = 'none';
+
+        // Use knownDuration (from recording timer) if available,
+        // otherwise try the <audio> element's metadata
+        if (knownDuration && isFinite(knownDuration)) {
+            originalAudioDuration = knownDuration;
+        }
+
+        audioPreviewPlayer.onloadedmetadata = () => {
+            const metaDuration = audioPreviewPlayer.duration;
+            // Only use metadata duration if it's a real number (not Infinity — 
+            // some browsers report Infinity for live-recorded blob URLs)
+            if (isFinite(metaDuration) && metaDuration > 0) {
+                audioDuration = metaDuration;
+                if (!knownDuration) originalAudioDuration = metaDuration;
+            } else if (knownDuration) {
+                audioDuration = knownDuration;
+            }
+            const durStr = isFinite(audioDuration) && audioDuration > 0 ? formatTime(audioDuration) : '—';
+            const sourceLabel = source === 'microphone' ? 'microphone recording' : (blob.name || 'uploaded file');
+            audioPreviewMeta.textContent = `Duration: ${durStr} · Source: ${sourceLabel}`;
+        };
+
+        showStatus('Processing audio...', 'processing');
+        try {
+            const result = await preprocessAudio(blob);
+            audioFloat32 = result.samples;
+            audioSampleRate = result.sampleRate;
+            audioDuration = audioFloat32.length / audioSampleRate;
+            const durStr = formatTime(audioDuration);
+            const sourceLabel = source === 'microphone' ? 'microphone recording' : 'uploaded file';
+            audioPreviewMeta.textContent = `Duration: ${durStr} · Source: ${sourceLabel} · ${audioSampleRate} Hz`;
+            clearStatus();
+            isProcessingAudio = false;
+            updateTranscribeBtn();
+            console.log(`[STT] Audio preprocessed: ${audioDuration.toFixed(1)}s, ${audioFloat32.length} samples at ${audioSampleRate}Hz (native — Whisper resamples internally)`);
+        } catch (err) {
+            console.error('[STT] Audio processing error:', err);
+            showStatus('Error: ' + err.message, 'error');
+            audioFloat32 = null;
+            audioSampleRate = 0;
+            isProcessingAudio = false;
+            updateTranscribeBtn();
+        }
+
+        ToolTracker.trackEvent(source === 'microphone' ? 'audio_recorded' : 'audio_uploaded', {
+            duration_seconds: Math.round(audioDuration),
+            source
+        });
+    }
+
+    function removeAudio() {
+        audioBlob = null;
+        audioFloat32 = null;
+        audioSampleRate = 0;
+        if (audioUrl) URL.revokeObjectURL(audioUrl);
+        audioUrl = null;
+        audioDuration = 0;
+        originalAudioDuration = 0;
+        audioPreviewSection.style.display = 'none';
+        resetTranscription();
+        updateTranscribeBtn();
+        clearStatus();
+    }
+
+    function resetTranscription() {
+        transcriptionResult = null;
+        transcriptionOutput.style.display = 'none';
+        transcriptionText.value = '';
+        outputStats.textContent = '0 characters · 0 words';
+        copyBtn.disabled = true;
+        downloadTxtBtn.disabled = true;
+        downloadSrtBtn.disabled = true;
+        partialTranscript.textContent = '';
+        partialTranscript.style.display = 'none';
+        transcriptionProgress.style.display = 'none';
+        statusDiv.textContent = '';
+        statusDiv.className = '';
+        statusDiv.classList.remove('success-enhanced');
+        document.getElementById('sttCta').style.display = 'none';
+        // Clean up keep-alive if still active
+        stopKeepAlive();
+        hideLongAudioCallout();
+        setPhase('idle');  // reset the phase-aware layout (hide amber, restore privacy note, disarm)
+    }
+
+    // ── Transcription Pipeline ────────────────────────────────────────
+    async function onTranscribeClick() {
+        if (!audioFloat32) {
+            showStatus('Please record or upload audio first.', 'error');
+            return;
+        }
+        if (isTranscribing) return;
+
+        // Validate language selection for multi-language model
+        const isEnglishOnly = modelSelect.value.includes('distil-whisper');
+        if (!isEnglishOnly && !languageSelect.value) {
+            showStatus('Please select a language before transcribing.', 'error');
+            languageSelect.focus();
+            return;
+        }
+
+        isTranscribing = true;
+        transcriptionStartTime = performance.now();
+        updateTranscribeBtn();
+        resetTranscription();
+
+        // Start keep-alive mechanisms (Wake Lock + silent audio)
+        startKeepAlive();
+
+        // Show long-audio warning if needed
+        showLongAudioCallout(audioDuration);
+
+        // Prime the progress panel's contents (visibility is controlled by setPhase)
+        transcribeProgressBar.style.width = '100%';
+        transcribeProgressBar.parentElement.classList.add('shimmer');
+        transcribeProgressLabel.textContent = 'Starting transcription...';
+        progressTimeEst.textContent = '';
+        partialTranscript.textContent = '';
+        partialTranscript.style.display = 'none';
+
+        const selectedModel = modelSelect.value;
+        const selectedLanguage = languageSelect.value;
+
+        ToolTracker.trackEvent('transcribe_clicked', {
+            audio_duration_seconds: Math.round(audioDuration),
+            model: selectedModel,
+            language: selectedLanguage
+        });
+
+        // Load model if not loaded or different model selected
+        if (!modelLoaded || currentLoadedModel !== selectedModel) {
+            // Enter the "downloading" phase (amber keep-tab-open + privacy note + the
+            // download bar; arms the reserved height within 500ms of the click).
+            setPhase('downloading');
+            modelLoadSection.style.display = 'block';
+            modelLoadTitle.textContent = 'Loading transcription AI...';
+            modelProgressBar.style.width = '0%';
+            modelProgressLabel.textContent = 'Preparing...';
+            whisperWorker.postMessage({
+                type: 'load',
+                payload: { modelId: selectedModel, dtype: 'q8' }
+            });
+            // Transcription will start in the 'loaded' handler
+            return;
+        }
+
+        // Model already loaded — start transcription directly
+        startTranscription();
+    }
+
+    function startTranscription() {
+        // Model is ready → enter the "transcribing" phase (hides the download bar and
+        // the privacy note; the live estimate callout takes over for long audio).
+        setPhase('transcribing');
+        const selectedLanguage = languageSelect.value;
+
+        // Send audio data to worker via structured clone (NOT Transferable —
+        // large buffer transfers can corrupt data in some browsers)
+        whisperWorker.postMessage({
+            type: 'transcribe',
+            payload: {
+                audioData: new Float32Array(audioFloat32),
+                sampleRate: audioSampleRate,
+                options: {
+                    return_timestamps: true,
+                    language: selectedLanguage || null,
+                    task: 'transcribe',
+                    removals: _removals
+                }
+            }
+        });
+    }
+
+    // ── Display Transcription ─────────────────────────────────────────
+    function displayTranscription(result) {
+        transcriptionOutput.style.display = 'block';
+        updateTranscriptionDisplay();
+
+        const text = result.text || '';
+        const words = text.trim().split(/\s+/).filter(w => w).length;
+        const chars = text.length;
+        outputStats.textContent = `${chars.toLocaleString()} characters · ${words.toLocaleString()} words`;
+
+        copyBtn.disabled = false;
+        downloadTxtBtn.disabled = false;
+        // Timestamps + SRT only exist for the multilingual model. The Fast (distil)
+        // model returns text only, so swap the "Show timestamps" toggle for a short
+        // note instead of leaving a checkbox that does nothing.
+        const hasTimestamps = !!(result.chunks && result.chunks.length > 0);
+        downloadSrtBtn.disabled = !hasTimestamps;
+        if (!hasTimestamps) timestampToggle.checked = false;
+        document.getElementById('timestampToggleLabel').style.display = hasTimestamps ? '' : 'none';
+        document.getElementById('timestampUnavailableNote').style.display = hasTimestamps ? 'none' : '';
+
+        // Show CTA
+        const ctaDiv = document.getElementById('sttCta');
+        ctaDiv.style.display = 'block';
+        ctaDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        gtag('event', 'related-tools-cta-shown', { event_category: 'cross_tool_engagement', source_tool: 'speech-to-text' });
+        ctaDiv.querySelectorAll('.next-tool-link').forEach(link => {
+            link.addEventListener('click', function() {
+                gtag('event', 'related-tool-clicked', { event_category: 'cross_tool_engagement', source_tool: 'speech-to-text', destination_tool: this.getAttribute('data-tool') });
+            });
+        });
+    }
+
+    function updateTranscriptionDisplay() {
+        if (!transcriptionResult) return;
+        const showTimestamps = timestampToggle.checked;
+
+        if (showTimestamps && transcriptionResult.chunks && transcriptionResult.chunks.length > 0) {
+            // Show with timestamps
+            const lines = transcriptionResult.chunks.map(chunk => {
+                const start = chunk.timestamp && chunk.timestamp[0] != null
+                    ? `[${formatTime(chunk.timestamp[0])}]`
+                    : '';
+                return `${start} ${(chunk.text || '').trim()}`;
+            });
+            transcriptionText.value = lines.join('\n');
+        } else {
+            // Plain text
+            transcriptionText.value = (transcriptionResult.text || '').trim();
+        }
+    }
+
+    // ── Export Functions ───────────────────────────────────────────────
+    function copyToClipboard() {
+        const text = transcriptionText.value;
+        if (!text) return;
+
+        navigator.clipboard.writeText(text).then(() => {
+            const original = copyBtn.textContent;
+            copyBtn.textContent = '✅ Copied!';
+            setTimeout(() => { copyBtn.textContent = original; }, 2000);
+        }).catch(() => {
+            // Fallback: select and copy
+            transcriptionText.select();
+            document.execCommand('copy');
+            const original = copyBtn.textContent;
+            copyBtn.textContent = '✅ Copied!';
+            setTimeout(() => { copyBtn.textContent = original; }, 2000);
+        });
+
+        ToolTracker.trackEvent('copied_clipboard', {
+            word_count: transcriptionText.value.trim().split(/\s+/).filter(w => w).length
+        });
+    }
+
+    function downloadTxt() {
+        const text = transcriptionText.value;
+        if (!text) return;
+
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `soundtools-transcription-${Date.now()}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        ToolTracker.trackEvent('exported_txt', {
+            word_count: text.trim().split(/\s+/).filter(w => w).length
+        });
+    }
+
+    function downloadSrt() {
+        if (!transcriptionResult || !transcriptionResult.chunks || transcriptionResult.chunks.length === 0) return;
+
+        let srt = '';
+        transcriptionResult.chunks.forEach((chunk, i) => {
+            const startTime = chunk.timestamp && chunk.timestamp[0] != null ? chunk.timestamp[0] : 0;
+            const endTime = chunk.timestamp && chunk.timestamp[1] != null ? chunk.timestamp[1] : startTime + 5;
+            const text = (chunk.text || '').trim();
+            if (!text) return;
+
+            srt += `${i + 1}\n`;
+            srt += `${formatTimeSrt(startTime)} --> ${formatTimeSrt(endTime)}\n`;
+            srt += `${text}\n\n`;
+        });
+
+        const blob = new Blob([srt.trim()], { type: 'text/srt;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `soundtools-transcription-${Date.now()}.srt`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        ToolTracker.trackEvent('exported_srt', {
+            word_count: (transcriptionResult.text || '').trim().split(/\s+/).filter(w => w).length,
+            chunk_count: transcriptionResult.chunks.length
+        });
+    }
+
+    function newTranscription() {
+        resetTranscription();
+        // Scroll back to top of tool
+        document.querySelector('.step-header').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ── Keep-Alive Utilities ─────────────────────────────────────────
+    // Prevent the browser / OS from sleeping or discarding the tab
+    // during long transcriptions.
+
+    let wakeLockSentinel = null;
+    let silentAudioCtx = null;
+    let silentAudioSource = null;
+
+    /** Request a Wake Lock so the screen stays on (prevents OS sleep) */
+    async function acquireWakeLock() {
+        if (!('wakeLock' in navigator)) {
+            console.log('[STT] Wake Lock API not supported');
+            return;
+        }
+        try {
+            wakeLockSentinel = await navigator.wakeLock.request('screen');
+            console.log('[STT] Wake Lock acquired');
+            // Re-acquire if the page becomes visible again after losing it
+            wakeLockSentinel.addEventListener('release', () => {
+                console.log('[STT] Wake Lock released');
+                // If still transcribing and page is visible, re-acquire
+                if (isTranscribing && document.visibilityState === 'visible') {
+                    acquireWakeLock();
+                }
+            });
+        } catch (err) {
+            console.warn('[STT] Wake Lock failed:', err.message);
+        }
+    }
+
+    function releaseWakeLock() {
+        if (wakeLockSentinel) {
+            wakeLockSentinel.release().catch(() => {});
+            wakeLockSentinel = null;
+            console.log('[STT] Wake Lock released (manual)');
+        }
+    }
+
+    // Re-acquire wake lock when tab becomes visible again (browsers release it on hide)
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && isTranscribing) {
+            acquireWakeLock();
+        }
+    });
+
+    /**
+     * Play a silent audio loop to prevent mobile browsers (especially Safari/iOS)
+     * from suspending the tab. Mobile browsers treat tabs with active audio as
+     * "in use" and avoid throttling/freezing them.
+     */
+    function startSilentKeepalive() {
+        try {
+            silentAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            // Create a tiny silent buffer (1 sample of silence, looped)
+            const buffer = silentAudioCtx.createBuffer(1, 1, 22050);
+            silentAudioSource = silentAudioCtx.createBufferSource();
+            silentAudioSource.buffer = buffer;
+            silentAudioSource.loop = true;
+            silentAudioSource.connect(silentAudioCtx.destination);
+            silentAudioSource.start();
+            console.log('[STT] Silent keepalive audio started');
+        } catch (err) {
+            console.warn('[STT] Silent keepalive failed:', err.message);
+        }
+    }
+
+    function stopSilentKeepalive() {
+        if (silentAudioSource) {
+            try { silentAudioSource.stop(); } catch (e) {}
+            silentAudioSource = null;
+        }
+        if (silentAudioCtx) {
+            try { silentAudioCtx.close(); } catch (e) {}
+            silentAudioCtx = null;
+        }
+        console.log('[STT] Silent keepalive audio stopped');
+    }
+
+    /** beforeunload — warn user if they try to close the tab during transcription */
+    window.addEventListener('beforeunload', (e) => {
+        if (isTranscribing) {
+            e.preventDefault();
+            // Modern browsers ignore custom text — they show their own generic message
+            e.returnValue = 'Transcription is still in progress. Are you sure you want to leave?';
+        }
+    });
+
+    /** Show/hide the long-audio callout based on audio duration */
+    const LONG_AUDIO_THRESHOLD_S = 300; // 5 minutes
+    const longAudioCallout = document.getElementById('longAudioCallout');
+    const longAudioEstimate = document.getElementById('longAudioEstimate');
+
+    function showLongAudioCallout(durationS) {
+        const displayDuration = originalAudioDuration || durationS;
+        if (!isFinite(displayDuration) || displayDuration < LONG_AUDIO_THRESHOLD_S) {
+            longAudioCallout.style.display = 'none';
+            return;
+        }
+        const estMinutes = Math.round((durationS * 2) / 60); // ~2x realtime (based on compressed audio)
+        longAudioEstimate.textContent =
+            `Your audio is ${formatTime(displayDuration)} long. Estimated transcription time: ~${estMinutes} minutes.`;
+        longAudioCallout.style.display = 'block';
+    }
+
+    function hideLongAudioCallout() {
+        longAudioCallout.style.display = 'none';
+    }
+
+    /** Start all keep-alive mechanisms */
+    function startKeepAlive() {
+        acquireWakeLock();
+        startSilentKeepalive();
+    }
+
+    /** Stop all keep-alive mechanisms */
+    function stopKeepAlive() {
+        releaseWakeLock();
+        stopSilentKeepalive();
+    }
+
+    // ── Event Listeners ───────────────────────────────────────────────
+    recordBtn.addEventListener('click', () => { isRecording ? stopRecording() : startRecording(); });
+
+    audioFileInput.addEventListener('change', (e) => {
+        const f = e.target.files[0];
+        if (f) {
+            const blob = f; // File extends Blob
+            handleAudio(blob, 'upload');
+        }
+        e.target.value = '';
+    });
+
+    removeAudioBtn.addEventListener('click', removeAudio);
+
+    modelSelect.addEventListener('change', () => {
+        const isEnglishOnly = modelSelect.value.includes('distil-whisper');
+        languageGroup.style.display = isEnglishOnly ? 'none' : '';
+        if (isEnglishOnly) languageSelect.value = '';
+        ToolTracker.trackEvent('model_selected', { model: modelSelect.value });
+        updateTranscribeBtn();
+    });
+
+    languageSelect.addEventListener('change', () => {
+        ToolTracker.trackEvent('language_selected', { language: languageSelect.value });
+        updateTranscribeBtn();
+    });
+
+    transcribeBtn.addEventListener('click', onTranscribeClick);
+    timestampToggle.addEventListener('change', updateTranscriptionDisplay);
+    copyBtn.addEventListener('click', copyToClipboard);
+    downloadTxtBtn.addEventListener('click', downloadTxt);
+    downloadSrtBtn.addEventListener('click', downloadSrt);
+    newTranscriptionBtn.addEventListener('click', newTranscription);
+
+    // Ctrl+Enter shortcut to transcribe
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.ctrlKey && !transcribeBtn.disabled) {
+            e.preventDefault();
+            onTranscribeClick();
+        }
+    });
+
+    // ── iOS Detection ──────────────────────────────────────────────────
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    // ── Init ──────────────────────────────────────────────────────────
+    if (isIOS) {
+        // Show the block banner
+        document.getElementById('iosBlockBanner').style.display = 'block';
+
+        // Grey out and disable all interactive elements
+        const toolInteractive = document.getElementById('toolInteractive');
+        toolInteractive.style.opacity = '0.4';
+        toolInteractive.style.pointerEvents = 'none';
+        toolInteractive.style.userSelect = 'none';
+        toolInteractive.style.filter = 'grayscale(50%)';
+
+        console.log('[SoundTools Speech to Text] iOS detected — tool disabled.');
+    } else {
+        initWorker();
+        updateTranscribeBtn();
+        setPhase('idle');  // establish the initial phase-aware layout (no amber at idle)
+        showStatus('Record or upload audio above, then click Transcribe.', 'info');
+        console.log('[SoundTools Speech to Text] Ready. Whisper runs in Web Worker.');
+    }
+
+    </script>
+</body>
+</html>

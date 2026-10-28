@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Ringtone Maker Online — iPhone and Android | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-decode-gate.js" defer></script>
+<script src="/vendor/snip-audio-decode.js" defer></script>
+<meta name="description" content="Free ringtone maker: trim any song to 30 seconds and export M4R for iPhone or MP3 for Android, with fades. Files stay on your device.">
+<meta name="keywords" content="ringtone maker, iphone ringtone maker, mp3 to m4r, make custom ringtone, free ringtone maker online, m4r converter, android ringtone maker, make ringtone from song, ringtone creator, free ringtone download">
+<link rel="canonical" href="https://snipsound.com/tools/ringtone-maker/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/ringtone-maker/">
+<link rel="alternate" hreflang="es" href="https://snipsound.com/es/creador-de-tonos/">
+<link rel="alternate" hreflang="pt-BR" href="https://snipsound.com/pt/criador-de-toques/">
+<link rel="alternate" hreflang="it" href="https://snipsound.com/it/creatore-suonerie/">
+<link rel="alternate" hreflang="fr" href="https://snipsound.com/fr/createur-sonneries/">
+<link rel="alternate" hreflang="de" href="https://snipsound.com/de/klingelton-erstellen/">
+<link rel="alternate" hreflang="ru" href="https://snipsound.com/ru/sozdat-rington/">
+<link rel="alternate" hreflang="zh-Hans" href="https://snipsound.com/zh/linsheng-zhizuo/">
+<link rel="alternate" hreflang="hi" href="https://snipsound.com/hi/ringtone-maker/">
+<link rel="alternate" hreflang="ar" href="https://snipsound.com/ar/صانع-نغمات/">
+<link rel="alternate" hreflang="ja" href="https://snipsound.com/ja/着信音-メーカー/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/ringtone-maker/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Ringtone Maker Online — iPhone and Android">
+<meta property="og:description" content="Free ringtone maker: trim any song to 30 seconds and export M4R for iPhone or MP3 for Android, with fades. Files stay on your device.">
+<meta property="og:url" content="https://snipsound.com/tools/ringtone-maker/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Ringtone Maker Online — iPhone and Android">
+<meta name="twitter:description" content="Free ringtone maker: trim any song to 30 seconds and export M4R for iPhone or MP3 for Android, with fades. Files stay on your device.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+      :root { --selection: rgba(124,111,255,0.22); --selection-edge: rgba(124,111,255,0.9); }
+
+  
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 32px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  .privacy-notice { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-dim); margin: 0 0 24px; padding: 0 4px; }
+  .privacy-notice svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
+  .privacy-notice strong { color: var(--text); font-weight: 600; }
+  .privacy-notice a { color: var(--accent); text-decoration: none; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .file-info { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .file-info .file-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; color: var(--text); }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove { margin-left: auto; background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: color 0.2s, border-color 0.2s; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  /* Device mode toggle */
+  .device-toggle {
+    display: inline-flex; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 3px; margin-bottom: 18px; flex-wrap: wrap;
+  }
+  .device-toggle button {
+    padding: 8px 18px; font-size: 13px; font-weight: 500;
+    border-radius: 999px; background: transparent; border: none;
+    color: var(--text-dim); cursor: pointer; font-family: inherit;
+    transition: color 0.15s, background 0.15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .device-toggle button.active { background: var(--accent); color: #fff; }
+  .device-toggle button svg { width: 14px; height: 14px; }
+
+  /* Waveform with selection overlay + drag handles */
+  .waveform-wrap {
+    position: relative;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    height: 160px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    user-select: none;
+  }
+  .waveform-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .waveform-empty {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dim); font-size: 0.85rem;
+  }
+  .sel-region {
+    position: absolute; top: 0; bottom: 0;
+    background: var(--selection);
+    border-left: 2px solid var(--selection-edge);
+    border-right: 2px solid var(--selection-edge);
+    cursor: grab;
+    z-index: 2;
+  }
+  .sel-region:active, .sel-region.dragging { cursor: grabbing; }
+  .sel-handle {
+    position: absolute; top: 0; bottom: 0;
+    width: 16px;
+    cursor: ew-resize;
+    background: transparent;
+    z-index: 4;
+  }
+  .sel-handle::before {
+    content: '';
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px; height: 32px;
+    background: var(--accent);
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.3);
+  }
+  .sel-handle.start { transform: translateX(-50%); }
+  .sel-handle.end   { transform: translateX(-50%); }
+  .playhead {
+    position: absolute; top: 0; bottom: 0;
+    width: 2px;
+    background: #fff;
+    pointer-events: none;
+    z-index: 5;
+    display: none;
+  }
+  .playhead.visible { display: block; }
+
+  .waveform-legend {
+    display: flex; gap: 14px; font-size: 0.8rem;
+    color: var(--text-dim); margin-bottom: 16px; padding: 0 4px;
+    align-items: center; flex-wrap: wrap;
+  }
+  .waveform-legend strong { color: var(--text); font-variant-numeric: tabular-nums; }
+  .waveform-legend .duration-pill {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 0.78rem;
+  }
+  .waveform-legend .duration-pill.over { background: rgba(244,67,54,0.15); color: var(--red); }
+  .waveform-legend .hint { margin-left: auto; }
+
+  /* Manual start/end inputs + duration */
+  .time-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .time-card {
+    padding: 12px 14px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+  }
+  .time-card .label {
+    font-size: 0.78rem; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .time-card input[type="text"] {
+    width: 100%;
+    padding: 6px 8px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    font-family: inherit; font-size: 0.95rem;
+    border-radius: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .time-card input[type="text"]:focus { outline: none; border-color: var(--accent); }
+  .time-card .duration-display {
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .time-card.over .duration-display { color: var(--red); }
+  @media (max-width: 600px) {
+    .time-row { grid-template-columns: 1fr 1fr; }
+    .time-card:last-child { grid-column: 1 / -1; }
+  }
+
+  /* Fade sliders */
+  .fade-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .fade-card {
+    padding: 12px 14px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .fade-card label { font-size: 0.88rem; color: var(--text); flex: 1; min-width: 80px; }
+  .fade-card input[type="range"] { flex: 2; min-width: 100px; accent-color: var(--accent); }
+  .fade-card .v { color: var(--accent); font-weight: 600; min-width: 50px; text-align: right; font-variant-numeric: tabular-nums; }
+  @media (max-width: 600px) {
+    .fade-row { grid-template-columns: 1fr; }
+  }
+
+  /* Preview transport */
+  .transport-row {
+    display: flex; gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .transport-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .transport-btn:hover { background: var(--accent-hover); }
+  .transport-btn svg { width: 14px; height: 14px; }
+  .transport-btn.playing { background: var(--surface); border: 1px solid var(--accent); color: var(--accent); }
+  .transport-row .transport-label { font-size: 0.85rem; color: var(--text-dim); }
+
+  /* Plan card */
+  .plan-card {
+    padding: 14px 16px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .plan-info { font-size: 0.9rem; color: var(--text-dim); }
+  .plan-info strong { color: var(--text); font-weight: 600; }
+  .plan-format {
+    text-align: right; font-size: 1.4rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #b599ff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-variant-numeric: tabular-nums;
+  }
+  .plan-warning { font-size: 0.85rem; color: var(--orange); margin-top: 6px; }
+  .plan-warning.error { color: var(--red); }
+  .plan-ok { font-size: 0.85rem; color: var(--green); margin-top: 6px; }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+
+  /* SEO content section */
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul { padding-left: 22px; }
+  .seo-section ol { padding-left: 22px; }
+  .seo-section ol li { margin-bottom: 12px; }
+
+  /* Install-guide tabs */
+  .guide-tabs {
+    display: inline-flex; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 3px; margin: 12px 0;
+  }
+  .guide-tabs button {
+    padding: 7px 16px; font-size: 13px; font-weight: 500;
+    border-radius: 999px; background: transparent; border: none;
+    color: var(--text-dim); cursor: pointer; font-family: inherit;
+  }
+  .guide-tabs button.active { background: var(--accent); color: #fff; }
+  .guide-panel { display: none; padding: 16px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 24px; }
+  .guide-panel.active { display: block; }
+  .guide-panel h4 { font-size: 1rem; color: var(--text); margin: 12px 0 6px; font-weight: 600; }
+  .guide-panel h4:first-child { margin-top: 0; }
+
+  /* Related-tools + FAQ */
+  .related-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .related-tool { padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: border-color 0.15s, color 0.15s; }
+  .related-tool:hover { border-color: var(--accent); color: var(--accent); }
+  .related-tool .rt-desc { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+  .related-tool:hover .rt-desc { color: var(--text-dim); }
+
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* Centered progress popup (shared pattern) */
+  .measure-popup-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); display: none; align-items: center; justify-content: center; z-index: 500; backdrop-filter: blur(4px); }
+  .measure-popup-overlay.visible { display: flex; }
+  .measure-popup { background: var(--surface); border: 1px solid var(--border-bright); border-radius: 14px; padding: 28px 32px; max-width: 380px; width: calc(100% - 40px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4); text-align: center; }
+  .measure-popup-title { font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+  .measure-popup-sub { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 18px; }
+  .measure-popup-bar-outer { width: 100%; height: 8px; background: var(--surface2); border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+  .measure-popup-bar-inner { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-hover)); width: 0%; transition: width 0.15s ease; border-radius: 6px; }
+  .measure-popup-pct { font-variant-numeric: tabular-nums; font-size: 0.8rem; color: var(--text-dim); }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .plan-card { flex-direction: column; align-items: flex-start; }
+    .plan-format { text-align: left; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "SnipSound Ringtone Maker", "url": "https://snipsound.com/tools/ringtone-maker/", "description": "Free online ringtone maker. Trim any song to 30 seconds and export as M4R for iPhone or MP3 for Android, with optional fade-in and fade-out. Runs entirely in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How long can an iPhone ringtone be?", "acceptedAnswer": { "@type": "Answer", "text": "iPhone ringtones must be 30 seconds or shorter. The tool caps your selection at 30s when iPhone mode is selected; drag the handles in the waveform to pick which 30s of the song you want." } },
+  { "@type": "Question", "name": "What format do iPhone ringtones need to be in?", "acceptedAnswer": { "@type": "Answer", "text": "iPhone uses the M4R format — which is technically the same as M4A (AAC audio in an MP4 container), just with a .m4r extension. Our tool encodes your selection as 256 kbps AAC and downloads it with the .m4r extension that iOS recognizes as a ringtone." } },
+  { "@type": "Question", "name": "How do I install a ringtone on my iPhone?", "acceptedAnswer": { "@type": "Answer", "text": "On a Mac (Catalina or later): plug in your iPhone, open Finder, click your iPhone in the sidebar, then drag the .m4r file from your Downloads folder onto the iPhone. The ringtone shows up under Settings → Sounds & Haptics → Ringtone within a few seconds. On Windows or older macOS: use iTunes — drag the .m4r file into the iTunes library, then sync your iPhone. There's also a no-cable GarageBand on iPhone workflow described in our install guide." } },
+  { "@type": "Question", "name": "How do I install a ringtone on Android?", "acceptedAnswer": { "@type": "Answer", "text": "Download the MP3 and move it to your phone's Ringtones folder (Internal storage → Ringtones). Then go to Settings → Sound & vibration → Phone ringtone → My sounds, and pick the new file. On most Android phones you can also set per-contact ringtones from the Contacts app." } },
+  { "@type": "Question", "name": "Can I add fade-in or fade-out?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Two sliders let you set the fade-in and fade-out duration independently (0 to 3 seconds each). The fades apply only to your selected ringtone region, not the full source song." } },
+  { "@type": "Question", "name": "Is my song uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. The audio is decoded, trimmed, faded, and re-encoded entirely in your browser. Your files never leave your device." } },
+  { "@type": "Question", "name": "What if the song I want to use is on Apple Music or Spotify?", "acceptedAnswer": { "@type": "Answer", "text": "You'll need a local audio file — streaming services don't expose downloadable audio. If you own the song outright (purchased download, your own recording, or a royalty-free track from our playlist), drop it in and the tool handles the rest." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Ringtone Maker</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/" class="active">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">Ringtone Maker</span></h1>
+    <p>Make a custom ringtone from any song. Drag the handles to pick your 30 seconds, add fade-in and fade-out, and download as <strong>M4R for iPhone</strong> or <strong>MP3 for Android</strong>. Runs entirely in your browser &mdash; your files never leave your device.</p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+    <h2>Drop a song here</h2>
+    <p>or click to browse &mdash; trimmed in your browser &mdash; your file never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span><span class="format-tag">WAV</span><span class="format-tag">OGG</span>
+      <span class="format-tag">FLAC</span><span class="format-tag">AAC</span><span class="format-tag">M4A</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,video/*,.mp3,.wav,.ogg,.flac,.aac,.m4a,.mp4,.mov,.webm,.mkv,.m4v">
+  </div>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your song never leaves your device.</strong> All trimming, fading, and encoding happens in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Remove file</button>
+    </div>
+
+    <div class="device-toggle" role="tablist" aria-label="Target device">
+      <button type="button" class="active" data-device="iphone" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+        iPhone (M4R, 30s max)
+      </button>
+      <button type="button" data-device="android" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+        Android (MP3)
+      </button>
+    </div>
+
+    <div class="waveform-wrap" id="waveform-wrap">
+      <canvas class="waveform-canvas" id="waveform-canvas"></canvas>
+      <div class="sel-region" id="sel-region" style="left:10%; right:50%;"></div>
+      <div class="sel-handle start" id="handle-start" style="left:10%;" aria-label="Selection start handle"></div>
+      <div class="sel-handle end" id="handle-end" style="left:50%;" aria-label="Selection end handle"></div>
+      <div class="playhead" id="playhead" style="left:10%;"></div>
+      <div class="waveform-empty" id="waveform-empty" style="display:none;">Loading waveform&hellip;</div>
+    </div>
+    <div class="waveform-legend">
+      <span>Drag the handles to pick your ringtone region.</span>
+      <span class="duration-pill" id="duration-pill">0.0s</span>
+    </div>
+
+    <div class="time-row">
+      <div class="time-card">
+        <div class="label">Start</div>
+        <input type="text" id="start-input" value="0:00" inputmode="decimal">
+      </div>
+      <div class="time-card">
+        <div class="label">End</div>
+        <input type="text" id="end-input" value="0:30" inputmode="decimal">
+      </div>
+      <div class="time-card" id="dur-card">
+        <div class="label">Duration</div>
+        <div class="duration-display" id="duration-display">0:30</div>
+      </div>
+    </div>
+
+    <div class="fade-row">
+      <div class="fade-card">
+        <label for="fade-in">Fade in</label>
+        <input type="range" id="fade-in" min="0" max="3" step="0.1" value="0.3">
+        <span class="v" id="fade-in-v">0.3 s</span>
+      </div>
+      <div class="fade-card">
+        <label for="fade-out">Fade out</label>
+        <input type="range" id="fade-out" min="0" max="3" step="0.1" value="0.8">
+        <span class="v" id="fade-out-v">0.8 s</span>
+      </div>
+    </div>
+
+    <div class="transport-row">
+      <button type="button" class="transport-btn" id="btn-preview">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <span>Preview ringtone</span>
+      </button>
+      <span class="transport-label" id="transport-label">Plays your selection with fades applied.</span>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-info">
+        <div>Will download as <strong id="plan-filename">ringtone.m4r</strong></div>
+        <div style="margin-top:4px;">Format: <strong id="plan-format-desc">M4R (AAC 256 kbps in MP4 container)</strong></div>
+        <div id="plan-msg" class="plan-ok">&nbsp;</div>
+      </div>
+      <div>
+        <div class="plan-format" id="plan-ext">.m4r</div>
+        <div style="font-size:0.85rem;color:var(--text-dim);text-align:right;">extension</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="btn-download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Make Ringtone &amp; Download</span>
+      </button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>How to make a ringtone for iPhone or Android &mdash; free, private, no sign-up</h2>
+    <p>SnipSound's Ringtone Maker turns any song into a phone ringtone. Drop in an MP3, WAV, FLAC, or M4A file you own, drag the handles on the waveform to pick the catchy 30-second hook, optionally fade in and fade out, then download as <strong>M4R</strong> (the format iPhone needs) or <strong>MP3</strong> (works on every Android). All the processing happens in your browser; your files never leave your device.</p>
+
+    <h3>Why iPhone needs M4R and not MP3</h3>
+    <p>iPhone won't recognize an MP3 as a ringtone. iOS specifically looks for files in the <strong>M4R</strong> format, which is just AAC audio (the same codec Apple Music uses) inside an MP4 container, saved with a <code>.m4r</code> extension instead of <code>.m4a</code>. iPhone also caps ringtones at <strong>30 seconds</strong> &mdash; longer files will be rejected when you try to install them. The Android side is simpler: drop in any MP3 of any reasonable length and you're done.</p>
+
+    <h3>Install your ringtone</h3>
+    <div class="guide-tabs" role="tablist" aria-label="Install guide">
+      <button type="button" class="active" data-guide="iphone-mac">iPhone on Mac</button>
+      <button type="button" data-guide="iphone-win">iPhone on Windows</button>
+      <button type="button" data-guide="iphone-only">iPhone-only (GarageBand)</button>
+      <button type="button" data-guide="android">Android</button>
+    </div>
+
+    <div class="guide-panel active" data-guide="iphone-mac">
+      <h4>macOS Catalina (10.15) or later</h4>
+      <ol>
+        <li>Connect your iPhone to your Mac with a USB cable. Tap <strong>Trust</strong> on the iPhone if prompted.</li>
+        <li>Open <strong>Finder</strong>. Your iPhone should appear in the Finder sidebar under "Locations".</li>
+        <li>Click your iPhone name in the sidebar. The main window shows tabs (General, Music, Movies, etc.) at the top.</li>
+        <li>Open a second Finder window and navigate to your <strong>Downloads</strong> folder.</li>
+        <li>Drag the <code>.m4r</code> ringtone file from Downloads onto the iPhone name in the sidebar of the first Finder window.</li>
+        <li>The ringtone syncs in a few seconds. On your iPhone, open <strong>Settings → Sounds &amp; Haptics → Ringtone</strong>. Your new ringtone appears at the top of the list.</li>
+      </ol>
+      <h4>macOS Mojave (10.14) or earlier</h4>
+      <p>Use the iTunes flow described under "iPhone on Windows" — iTunes still works the same way on older macOS.</p>
+    </div>
+
+    <div class="guide-panel" data-guide="iphone-win">
+      <h4>Windows (iTunes)</h4>
+      <ol>
+        <li>Install <strong>iTunes for Windows</strong> from the Microsoft Store or apple.com/itunes if you don't already have it.</li>
+        <li>Connect your iPhone with a USB cable and tap <strong>Trust</strong> on the iPhone if prompted.</li>
+        <li>Open iTunes. Click the small iPhone icon near the top-left, just under the playback controls.</li>
+        <li>In the left sidebar of the iPhone-specific view, click <strong>Tones</strong>. (If you don't see it, click <strong>Summary</strong> first, then go to <strong>File → Add File to Library</strong> and pick the .m4r — it'll be added to Tones.)</li>
+        <li>Drag the <code>.m4r</code> file from your Downloads folder into the iTunes Tones list.</li>
+        <li>Click the <strong>Sync</strong> button at the bottom-right. Make sure <strong>Manually manage music and tones</strong> is on, or that "Sync Tones" is checked under the Tones tab.</li>
+        <li>After sync, the ringtone shows up under <strong>Settings → Sounds &amp; Haptics → Ringtone</strong> on your iPhone.</li>
+      </ol>
+    </div>
+
+    <div class="guide-panel" data-guide="iphone-only">
+      <h4>iPhone-only (no computer, using GarageBand)</h4>
+      <ol>
+        <li>Save the <code>.m4r</code> ringtone to <strong>Files</strong> on your iPhone (the Downloads folder is fine, or drag it into iCloud Drive).</li>
+        <li>Open <strong>GarageBand</strong> on your iPhone (free from the App Store if not installed).</li>
+        <li>Create a new song and tap any instrument (the choice doesn't matter — we're going to discard it).</li>
+        <li>Tap the <strong>Tracks View</strong> button (looks like horizontal bars), then tap the <strong>Loop Browser</strong> icon (top-right, looks like a loop).</li>
+        <li>Tap <strong>Files → Browse items from the Files app</strong>, locate your <code>.m4r</code>, and drag it into the timeline.</li>
+        <li>Tap the down-arrow next to the song name at the top, choose <strong>My Songs</strong>. Find your new song, long-press it, choose <strong>Share → Ringtone</strong>.</li>
+        <li>Name the ringtone, tap <strong>Export</strong>, then <strong>Use sound as → Standard Ringtone</strong> (or Text Tone, or Assign to a Contact).</li>
+      </ol>
+      <p style="margin-top:6px;font-size:0.85rem;">If GarageBand crashes or rejects the file, double-check that it's exactly <code>.m4r</code> (not <code>.m4a</code>) and 30 seconds or less.</p>
+    </div>
+
+    <div class="guide-panel" data-guide="android">
+      <h4>Android</h4>
+      <ol>
+        <li>Download the <code>.mp3</code> ringtone to your Android phone (or transfer it from your computer via USB or Google Drive).</li>
+        <li>Open the <strong>Files</strong> app (or Files by Google) and move the MP3 to <strong>Internal storage → Ringtones</strong>. (If the Ringtones folder doesn't exist, create it.)</li>
+        <li>Open <strong>Settings → Sound &amp; vibration → Phone ringtone</strong>. The exact wording varies by manufacturer — Samsung calls it "Ringtone", Pixel calls it "Phone ringtone", OnePlus calls it "Ringtone &amp; vibration".</li>
+        <li>Tap <strong>My sounds</strong> (or the + button to add a custom sound), pick your new ringtone, and tap <strong>OK</strong> or <strong>Apply</strong>.</li>
+        <li>For per-contact ringtones: open the <strong>Contacts</strong> app, pick a contact, tap <strong>⋮ → Set ringtone</strong>, and choose the new file.</li>
+      </ol>
+      <p style="margin-top:6px;font-size:0.85rem;">If you don't see "My sounds" or your file isn't appearing, restart the phone — Android sometimes needs a moment to index newly-added ringtones.</p>
+    </div>
+
+    <h3>Tips for picking a good ringtone region</h3>
+    <ul>
+      <li><strong>Start on a downbeat.</strong> Ringtones that start mid-bar feel jarring. Listen for the kick or snare that lands on beat 1 and start there.</li>
+      <li><strong>Use a 0.2&ndash;0.5 second fade-in.</strong> Songs that start cold (no fade) sound abrupt as a ringtone. A short fade-in sounds intentional.</li>
+      <li><strong>Use a 0.5&ndash;1.5 second fade-out</strong> if your selection doesn't end on a natural breath or beat. Otherwise the ringtone cuts off and feels unfinished.</li>
+      <li><strong>Pick a 20&ndash;30 second window.</strong> iPhone caps at 30s; on Android you can go longer but most people prefer shorter. The catchy chorus hook usually fits comfortably in 25 seconds.</li>
+      <li><strong>Avoid sections with lyrics that name a specific subject</strong> &mdash; "Hey John, where you going to?" works as a song but is awkward as your default ringtone in public.</li>
+    </ul>
+
+    <h3>Why use SnipSound's ringtone maker</h3>
+    <ul>
+      <li><strong>100% in your browser.</strong> Most online ringtone makers (audiocutter, online-convert, media.io) upload your song to a server. We don't &mdash; your audio never leaves your device.</li>
+      <li><strong>Both formats in one tool.</strong> Some sites only output MP3, leaving iPhone users stuck. We output proper M4R that iOS recognizes as a ringtone.</li>
+      <li><strong>Built-in install guides.</strong> Four step-by-step walkthroughs (Mac, Windows, iPhone-only via GarageBand, Android) so you don't have to leave the page to figure out how to install.</li>
+      <li><strong>Real fade automation.</strong> Fades are applied via Web Audio gain ramps inside the OfflineAudioContext render — they're real volume curves, not crossfaded clips.</li>
+      <li><strong>No sign-up, no quota, no watermark.</strong> Make as many ringtones as you want.</li>
+    </ul>
+
+    <h3>Related tools</h3>
+    <div class="related-tools">
+      <a href="/tools/audio-trimmer/" class="related-tool"><strong>Audio Trimmer</strong><span class="rt-desc">Trim audio without the 30s cap if you're not making a ringtone</span></a>
+      <a href="/tools/audio-converter/" class="related-tool"><strong>Audio Converter</strong><span class="rt-desc">Convert between MP3, WAV, FLAC, M4A &mdash; no length constraint</span></a>
+      <a href="/tools/video-to-audio/" class="related-tool"><strong>Video to Audio</strong><span class="rt-desc">Extract a song from a video first, then make a ringtone</span></a>
+      <a href="/tools/audio-compressor/" class="related-tool"><strong>Audio Compressor</strong><span class="rt-desc">Shrink a long song before trimming to save memory</span></a>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Ringtone maker FAQ</h2>
+    <div class="faq-item"><div class="faq-q"><span>How long can an iPhone ringtone be?</span><span class="arrow">&#9660;</span></div><div class="faq-a">iPhone ringtones must be 30 seconds or shorter. The tool caps your selection at 30s when iPhone mode is selected; drag the handles in the waveform to pick which 30s of the song you want.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What format do iPhone ringtones need to be in?</span><span class="arrow">&#9660;</span></div><div class="faq-a">iPhone uses the M4R format &mdash; which is technically the same as M4A (AAC audio in an MP4 container), just with a .m4r extension. Our tool encodes your selection as 256 kbps AAC and downloads it with the .m4r extension that iOS recognizes as a ringtone.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How do I install a ringtone on my iPhone?</span><span class="arrow">&#9660;</span></div><div class="faq-a">On a Mac (Catalina or later): plug in your iPhone, open Finder, click your iPhone in the sidebar, then drag the .m4r file onto the iPhone. The ringtone shows up under <strong>Settings → Sounds &amp; Haptics → Ringtone</strong> within a few seconds. On Windows or older macOS: use iTunes. There's also a no-cable GarageBand-on-iPhone workflow &mdash; all three are detailed in the install-guide tabs above.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How do I install a ringtone on Android?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Download the MP3 and move it to your phone's Ringtones folder (Internal storage → Ringtones). Then go to <strong>Settings → Sound &amp; vibration → Phone ringtone → My sounds</strong>, and pick the new file. On most Android phones you can also set per-contact ringtones from the Contacts app.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Can I add fade-in or fade-out?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Yes. Two sliders let you set the fade-in and fade-out duration independently (0 to 3 seconds each). The fades apply only to your selected ringtone region, not the full source song.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my song uploaded to a server?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. The audio is decoded, trimmed, faded, and re-encoded entirely in your browser. Your files never leave your device.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What if the song I want to use is on Apple Music or Spotify?</span><span class="arrow">&#9660;</span></div><div class="faq-a">You'll need a local audio file &mdash; streaming services don't expose downloadable audio. If you own the song outright (purchased download, your own recording, or a royalty-free track from our <a href="/free-music/">playlist</a>), drop it in and the tool handles the rest.</div></div>
+  </section>
+
+</main>
+
+<div class="measure-popup-overlay" id="measure-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="measure-popup-title">
+  <div class="measure-popup">
+    <div class="measure-popup-title" id="measure-popup-title">Making ringtone&hellip;</div>
+    <div class="measure-popup-sub" id="measure-popup-sub">This runs entirely in your browser.</div>
+    <div class="measure-popup-bar-outer">
+      <div class="measure-popup-bar-inner" id="measure-popup-bar"></div>
+    </div>
+    <div class="measure-popup-pct" id="measure-popup-pct">0%</div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>&copy; SnipSound. <a href="/">Snip Editor</a> &middot; <a href="/free-music/">Playlist</a> &middot; <a href="/tools/">All Tools</a> &middot; <a href="/privacy/">Privacy</a></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── DOM ────────────────────────────────────────────────────────────────
+  const dropZone    = document.getElementById('drop-zone');
+  const fileInput   = document.getElementById('file-input');
+  const editor      = document.getElementById('editor');
+  const fileNameEl  = document.getElementById('file-name');
+  const fileMetaEl  = document.getElementById('file-meta');
+  const fileRemove  = document.getElementById('file-remove');
+  const deviceToggle= document.querySelector('.device-toggle');
+  const waveWrap    = document.getElementById('waveform-wrap');
+  const waveCanvas  = document.getElementById('waveform-canvas');
+  const waveEmpty   = document.getElementById('waveform-empty');
+  const selRegion   = document.getElementById('sel-region');
+  const handleStart = document.getElementById('handle-start');
+  const handleEnd   = document.getElementById('handle-end');
+  const playhead    = document.getElementById('playhead');
+  const startInput  = document.getElementById('start-input');
+  const endInput    = document.getElementById('end-input');
+  const durDisplay  = document.getElementById('duration-display');
+  const durCard     = document.getElementById('dur-card');
+  const durationPill= document.getElementById('duration-pill');
+  const fadeIn      = document.getElementById('fade-in');
+  const fadeInV     = document.getElementById('fade-in-v');
+  const fadeOut     = document.getElementById('fade-out');
+  const fadeOutV    = document.getElementById('fade-out-v');
+  const btnPreview  = document.getElementById('btn-preview');
+  const transportLabel = document.getElementById('transport-label');
+  const planFilename= document.getElementById('plan-filename');
+  const planFormatDesc = document.getElementById('plan-format-desc');
+  const planExt     = document.getElementById('plan-ext');
+  const planMsg     = document.getElementById('plan-msg');
+  const btnDownload = document.getElementById('btn-download');
+  const statusText  = document.getElementById('status-text');
+  const popupOverlay= document.getElementById('measure-popup-overlay');
+  const popupTitle  = document.getElementById('measure-popup-title');
+  const popupSub    = document.getElementById('measure-popup-sub');
+  const popupBar    = document.getElementById('measure-popup-bar');
+  const popupPct    = document.getElementById('measure-popup-pct');
+
+  // ── State ──────────────────────────────────────────────────────────────
+  let currentFile    = null;
+  let originalBuffer = null;
+  let durationSec    = 0;
+  let device         = 'iphone';   // 'iphone' | 'android'
+  // Selection in seconds. The waveform handle positions are derived
+  // from these, not the other way around.
+  let selStart       = 0;
+  let selEnd         = 30;
+  let acx            = null;
+  // Preview playback state (Preview Ringtone button — plays trimmed+faded)
+  let previewSource  = null;
+  let previewGain    = null;
+  let previewStartedAt = 0;
+  let previewRaf     = 0;
+  // Scrub playback state (clicking the waveform — plays original from a point)
+  let scrubSource    = null;
+  let scrubStartedAtTime = 0;   // acx.currentTime when started
+  let scrubStartedAtSec  = 0;   // position in the original where playback began
+  let scrubRaf       = 0;
+
+  function getAudioContext() {
+    if (!acx) {
+      const Ctor = window.AudioContext || window.webkitAudioContext;
+      acx = new Ctor();
+    }
+    return acx;
+  }
+  function uiYield() { return new Promise(r => setTimeout(r, 0)); }
+
+  // ── Formatting ─────────────────────────────────────────────────────────
+  function formatTime(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    const m = Math.floor(sec / 60);
+    const s = sec - m * 60;
+    return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1);
+  }
+  // Accept "1:23.4" or "83.4" or "1:23" and return seconds. Invalid → NaN.
+  function parseTime(str) {
+    if (!str) return NaN;
+    const s = String(str).trim();
+    if (s.indexOf(':') >= 0) {
+      const parts = s.split(':');
+      if (parts.length !== 2) return NaN;
+      const m = parseFloat(parts[0]);
+      const sec = parseFloat(parts[1]);
+      if (!isFinite(m) || !isFinite(sec)) return NaN;
+      return m * 60 + sec;
+    }
+    const v = parseFloat(s);
+    return isFinite(v) ? v : NaN;
+  }
+  function formatBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+    return (b / 1024 / 1024).toFixed(1) + ' MB';
+  }
+
+  // ── Popup helpers ──────────────────────────────────────────────────────
+  function showPopup(title) {
+    popupTitle.textContent = title || 'Making ringtone…';
+    popupBar.style.width = '0%';
+    popupPct.textContent = '0%';
+    popupSub.textContent = 'This runs entirely in your browser.';
+    popupOverlay.classList.add('visible');
+  }
+  function hidePopup() { popupOverlay.classList.remove('visible'); }
+  function updatePopup(frac, label) {
+    const pct = Math.max(0, Math.min(100, Math.round(frac * 100)));
+    popupBar.style.width = pct + '%';
+    popupPct.textContent = pct + '%';
+    if (label) popupSub.textContent = label;
+  }
+
+  // ── UI show/hide ───────────────────────────────────────────────────────
+  function showEditor() { editor.classList.add('active'); dropZone.style.display = 'none'; }
+  function hideEditor() { editor.classList.remove('active'); dropZone.style.display = ''; stopPreview(); stopScrub(); }
+
+  // ── File handling ──────────────────────────────────────────────────────
+  async function handleFile(file) {
+    if (!file) return;
+    // Decode gate: size heads-up, crash breadcrumb, compress rescue, and (since
+    // gate-refuse-2) it turns away a file that can never be audio and names what
+    // it really is, instead of letting the decoder fail with the wrong reason.
+    if (window.snipDecodeGate) {
+      const decision = await window.snipDecodeGate.check(file, {
+        tool: 'ringtone-maker', dropZone: dropZone, onPick: hideEditor,
+        onCompressed: function (nf) { handleFile(nf); }
+      });
+      if (decision === 'cancel') return;
+    }
+    currentFile = file;
+    statusText.textContent = 'Decoding…';
+    waveEmpty.style.display = 'flex';
+    if (window.snipDecodeGate) window.snipDecodeGate.armCrumb('ringtone-maker', file);
+    if (window.snipDecodeGate && window.snipDecodeGate.decodeStarted) window.snipDecodeGate.decodeStarted('ringtone-maker', file, 'native');
+    if (window.snipSharedAudio) window.snipSharedAudio.save(file);
+    try {
+      const ctx = getAudioContext();
+      // Robust decode: FFmpeg->WAV fallback when decodeAudioData refuses the file.
+      const buf = window.snipDecodeAudio
+        ? await window.snipDecodeAudio(file, ctx, { tool: 'ringtone-maker' })
+        : await ctx.decodeAudioData((await file.arrayBuffer()).slice(0));
+      if (window.snipDecodeGate && window.snipDecodeGate.decodeOk) window.snipDecodeGate.decodeOk('ringtone-maker', file, 'native');
+      originalBuffer = buf;
+      durationSec = buf.duration;
+
+      fileNameEl.textContent = file.name;
+      const ch = buf.numberOfChannels === 1 ? 'mono' : buf.numberOfChannels + ' channels';
+      const sr = (buf.sampleRate / 1000).toFixed(1);
+      fileMetaEl.textContent =
+        formatBytes(file.size) + ' · ' + formatTime(durationSec) + ' · ' + ch + ' · ' + sr + ' kHz';
+
+      // Default selection: first 30s (or whole file if shorter).
+      selStart = 0;
+      selEnd = Math.min(30, durationSec);
+      showEditor();
+      drawWaveform();
+      updateUIFromSelection();
+      statusText.textContent = '';
+      waveEmpty.style.display = 'none';
+      if (window.snipDecodeGate) { window.snipDecodeGate.clearCrumb(); window.snipDecodeGate.clearCard(dropZone); }
+    } catch (err) {
+      console.error('Decode failed', err);
+      if (window.snipDecodeGate && window.snipDecodeGate.decodeFailed) window.snipDecodeGate.decodeFailed('ringtone-maker', file, 'native', (err && err.name) || 'Error', err && err.snipDiag);
+      const _r = (err && err.name === 'NotReadableError') || /could not be read|permission/i.test((err && err.message) || '') ? 'file_read_failed' : 'decode_failed';
+      if (window.snipTrackFailed) window.snipTrackFailed('ringtone-maker', _r, 'decode', err && err.snipDiag);
+      const _m = _r === 'file_read_failed'
+        ? 'Couldn’t read “' + file.name + '” — it may have moved or changed. Please pick it again.'
+        : 'Couldn’t process “' + file.name + '”. If it’s very large it may be too big to load in one piece — split it into parts first with our free Audio Splitter, then make a ringtone from the part you want.';
+      let _rec = null;
+      // worthCompressing (design R-87ddfb) is the ONE rule for whether compress-and-retry can help; the 20 MB
+      // floor posthog measured (R-e391e7) lives beside it in the gate. The locale copies of this page carried
+      // the old rule with no floor, so an ordinary 40 MB failure on iOS got no rescue there.
+      if (_r !== 'file_read_failed' && window.snipDecodeGate && typeof window.snipDecodeGate.worthCompressing === 'function'
+          && window.snipDecodeGate.worthCompressing(file, err)) {
+        _rec = { canCompress: true, file: file, onCompressed: function (nf) { handleFile(nf); } };
+      }
+      // The person sees the gate's vetted sentence; a file that failed BOTH decoders gets the 'may be
+      // incomplete' one. The TRACKED reason stays as it was, so posthog's series grows no false onset.
+      const _shown = (_r === 'decode_failed' && err && err.snipDiag && err.snipDiag.fell_back) ? 'decode_failed_after_fallback' : _r;
+      if (window.snipDecodeGate) {
+        window.snipDecodeGate.clearCrumb();
+        window.snipDecodeGate.showFailure(dropZone, _m, { tool: 'ringtone-maker', report: true, reason: _shown, onPick: hideEditor, recovery: _rec });
+      } else alert(_m);
+      statusText.textContent = '';
+      waveEmpty.style.display = 'none';
+    }
+  }
+
+  // ── Waveform draw ──────────────────────────────────────────────────────
+  function drawWaveform() {
+    if (!originalBuffer) return;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = waveCanvas.getBoundingClientRect();
+    const w = Math.floor(rect.width * dpr);
+    const h = Math.floor(rect.height * dpr);
+    if (waveCanvas.width !== w || waveCanvas.height !== h) {
+      waveCanvas.width = w; waveCanvas.height = h;
+    }
+    const ctx = waveCanvas.getContext('2d');
+    ctx.clearRect(0, 0, w, h);
+
+    const data = originalBuffer.getChannelData(0);
+    const samplesPerPx = Math.max(1, Math.floor(data.length / w));
+    const mid = h / 2;
+
+    ctx.fillStyle = '#7c6fff';
+    for (let x = 0; x < w; x++) {
+      const start = x * samplesPerPx;
+      const end = Math.min(start + samplesPerPx, data.length);
+      let mn = 1, mx = -1;
+      for (let i = start; i < end; i++) {
+        const v = data[i];
+        if (v < mn) mn = v;
+        if (v > mx) mx = v;
+      }
+      ctx.fillRect(x, mid + mn * mid, 1, Math.max(1, mid + mx * mid - (mid + mn * mid)));
+    }
+  }
+
+  // ── Selection / time-input sync ────────────────────────────────────────
+  function clampSelection() {
+    if (selStart < 0) selStart = 0;
+    if (selEnd > durationSec) selEnd = durationSec;
+    if (selEnd < selStart + 0.5) selEnd = Math.min(durationSec, selStart + 0.5);
+    if (device === 'iphone') {
+      const span = selEnd - selStart;
+      if (span > 30) selEnd = selStart + 30;
+    }
+  }
+
+  function updateUIFromSelection() {
+    clampSelection();
+    const startPct = (selStart / durationSec) * 100;
+    const endPct = (selEnd / durationSec) * 100;
+    selRegion.style.left = startPct + '%';
+    selRegion.style.right = (100 - endPct) + '%';
+    handleStart.style.left = startPct + '%';
+    handleEnd.style.left = endPct + '%';
+
+    startInput.value = formatTime(selStart);
+    endInput.value = formatTime(selEnd);
+    const dur = selEnd - selStart;
+    durDisplay.textContent = formatTime(dur);
+    durationPill.textContent = dur.toFixed(1) + 's';
+
+    const overLimit = device === 'iphone' && dur > 30.01;
+    durationPill.classList.toggle('over', overLimit);
+    durCard.classList.toggle('over', overLimit);
+
+    // Plan card
+    if (device === 'iphone') {
+      planFilename.textContent = (currentFile ? currentFile.name.replace(/\.[^.]+$/, '') : 'ringtone') + '_ringtone.m4r';
+      planFormatDesc.textContent = 'M4R (AAC 256 kbps in MP4 container)';
+      planExt.textContent = '.m4r';
+      if (dur > 30.01) {
+        planMsg.textContent = 'Selection is longer than 30 seconds — iPhone will reject it. Drag a handle in.';
+        planMsg.className = 'plan-warning error';
+      } else if (dur < 3) {
+        planMsg.textContent = 'Very short selection — most ringtones are 15–30s.';
+        planMsg.className = 'plan-warning';
+      } else {
+        planMsg.textContent = 'Selection is iPhone-ready.';
+        planMsg.className = 'plan-ok';
+      }
+    } else {
+      planFilename.textContent = (currentFile ? currentFile.name.replace(/\.[^.]+$/, '') : 'ringtone') + '_ringtone.mp3';
+      planFormatDesc.textContent = 'MP3 — 320 kbps (works on any Android phone)';
+      planExt.textContent = '.mp3';
+      if (dur < 3) {
+        planMsg.textContent = 'Very short selection — most ringtones are 15–30s.';
+        planMsg.className = 'plan-warning';
+      } else {
+        planMsg.textContent = 'Ready for Android.';
+        planMsg.className = 'plan-ok';
+      }
+    }
+  }
+
+  // ── Drag-handle logic ──────────────────────────────────────────────────
+  function handleClientXToSec(clientX) {
+    const rect = waveWrap.getBoundingClientRect();
+    const frac = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    return frac * durationSec;
+  }
+
+  function makeDraggable(handle, kind) {
+    let active = false;
+    function start(e) {
+      if (!originalBuffer) return;
+      active = true;
+      e.preventDefault();
+      stopPreview();
+      stopScrub();
+    }
+    function move(e) {
+      if (!active) return;
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const t = handleClientXToSec(cx);
+      if (kind === 'start') {
+        selStart = Math.min(t, selEnd - 0.5);
+      } else {
+        selEnd = Math.max(t, selStart + 0.5);
+      }
+      updateUIFromSelection();
+    }
+    function end() { active = false; }
+    handle.addEventListener('mousedown', start);
+    handle.addEventListener('touchstart', start, { passive: false });
+    window.addEventListener('mousemove', move);
+    window.addEventListener('touchmove', move, { passive: false });
+    window.addEventListener('mouseup', end);
+    window.addEventListener('touchend', end);
+  }
+  makeDraggable(handleStart, 'start');
+  makeDraggable(handleEnd, 'end');
+
+  // ── Region drag (move whole selection preserving length) ───────────────
+  // mousedown on the selection body starts tracking. If the user moves the
+  // cursor > DRAG_THRESHOLD px before releasing, it's a drag; otherwise
+  // it's a click → scrub-play from that point.
+  (function setupRegionDrag() {
+    const DRAG_THRESHOLD = 3;
+    let mode = null;          // null | 'pending' | 'dragging'
+    let downX = 0;
+    let downSelStart = 0;
+    let downSelEnd = 0;
+
+    function onDown(e) {
+      if (!originalBuffer) return;
+      if (e.target === handleStart || e.target === handleEnd) return;
+      mode = 'pending';
+      downX = e.touches ? e.touches[0].clientX : e.clientX;
+      downSelStart = selStart;
+      downSelEnd = selEnd;
+      e.preventDefault();
+    }
+    function onMove(e) {
+      if (mode === null) return;
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const dx = cx - downX;
+      if (mode === 'pending' && Math.abs(dx) >= DRAG_THRESHOLD) {
+        mode = 'dragging';
+        selRegion.classList.add('dragging');
+        stopPreview();
+        stopScrub();
+      }
+      if (mode === 'dragging') {
+        const rect = waveWrap.getBoundingClientRect();
+        const dSec = (dx / rect.width) * durationSec;
+        const span = downSelEnd - downSelStart;
+        let newStart = downSelStart + dSec;
+        // Clamp so the whole window stays on the file
+        if (newStart < 0) newStart = 0;
+        if (newStart + span > durationSec) newStart = durationSec - span;
+        selStart = newStart;
+        selEnd = newStart + span;
+        updateUIFromSelection();
+      }
+    }
+    function onUp(e) {
+      if (mode === null) return;
+      if (mode === 'pending') {
+        // No drag occurred — treat as click → scrub-play from clicked position
+        const cx = e.changedTouches
+          ? e.changedTouches[0].clientX
+          : e.clientX;
+        const t = handleClientXToSec(cx);
+        startScrub(t);
+      }
+      mode = null;
+      selRegion.classList.remove('dragging');
+    }
+    selRegion.addEventListener('mousedown', onDown);
+    selRegion.addEventListener('touchstart', onDown, { passive: false });
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('touchmove', onMove, { passive: false });
+    window.addEventListener('mouseup', onUp);
+    window.addEventListener('touchend', onUp);
+  })();
+
+  // ── Click anywhere on the waveform (outside selection) to scrub-play ───
+  waveWrap.addEventListener('click', (e) => {
+    if (!originalBuffer) return;
+    // Skip clicks that came through the handles or the selection region
+    // (selRegion has its own mousedown→click handling for scrub).
+    if (e.target === handleStart || e.target === handleEnd) return;
+    if (e.target === selRegion) return;
+    // Click on the empty waveform area → scrub-play from that point.
+    // If scrub is already playing, clicking the same area stops it.
+    const t = handleClientXToSec(e.clientX);
+    if (scrubSource) {
+      // Restart at the new position
+      startScrub(t);
+    } else {
+      startScrub(t);
+    }
+  });
+
+  // ── Time-input sync ────────────────────────────────────────────────────
+  startInput.addEventListener('change', () => {
+    const t = parseTime(startInput.value);
+    if (isFinite(t)) { selStart = t; updateUIFromSelection(); }
+    else startInput.value = formatTime(selStart);
+  });
+  endInput.addEventListener('change', () => {
+    const t = parseTime(endInput.value);
+    if (isFinite(t)) { selEnd = t; updateUIFromSelection(); }
+    else endInput.value = formatTime(selEnd);
+  });
+
+  // ── Device toggle ──────────────────────────────────────────────────────
+  deviceToggle.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-device]');
+    if (!btn) return;
+    device = btn.dataset.device;
+    document.querySelectorAll('.device-toggle button').forEach(b =>
+      b.classList.toggle('active', b.dataset.device === device));
+    updateUIFromSelection();
+  });
+
+  // ── Fade sliders ───────────────────────────────────────────────────────
+  fadeIn.addEventListener('input', () => { fadeInV.textContent = parseFloat(fadeIn.value).toFixed(1) + ' s'; });
+  fadeOut.addEventListener('input', () => { fadeOutV.textContent = parseFloat(fadeOut.value).toFixed(1) + ' s'; });
+
+  // ── Build a faded + trimmed AudioBuffer ────────────────────────────────
+  async function buildTrimmedFaded() {
+    const sr = originalBuffer.sampleRate;
+    const nCh = originalBuffer.numberOfChannels;
+    const startSamp = Math.floor(selStart * sr);
+    const endSamp = Math.min(originalBuffer.length, Math.floor(selEnd * sr));
+    const len = endSamp - startSamp;
+    if (len <= 0) throw new Error('Empty selection');
+
+    // 1. Slice into a fresh buffer (zero-copy via subarray)
+    const trimmed = (acx || getAudioContext()).createBuffer(nCh, len, sr);
+    for (let c = 0; c < nCh; c++) {
+      const src = originalBuffer.getChannelData(c);
+      trimmed.getChannelData(c).set(src.subarray(startSamp, endSamp));
+    }
+
+    // 2. Apply fade-in / fade-out via OfflineAudioContext + GainNode ramps.
+    const inSec = Math.min(parseFloat(fadeIn.value), (selEnd - selStart) / 2);
+    const outSec = Math.min(parseFloat(fadeOut.value), (selEnd - selStart) / 2);
+    if (inSec <= 0 && outSec <= 0) return trimmed;
+
+    const off = new OfflineAudioContext(nCh, len, sr);
+    const src = off.createBufferSource();
+    src.buffer = trimmed;
+    const gain = off.createGain();
+    const dur = len / sr;
+    const t0 = 0;
+    if (inSec > 0) {
+      gain.gain.setValueAtTime(0, t0);
+      gain.gain.linearRampToValueAtTime(1, t0 + inSec);
+    } else {
+      gain.gain.setValueAtTime(1, t0);
+    }
+    if (outSec > 0) {
+      gain.gain.setValueAtTime(1, t0 + dur - outSec);
+      gain.gain.linearRampToValueAtTime(0, t0 + dur);
+    }
+    src.connect(gain); gain.connect(off.destination);
+    src.start(0);
+    return await off.startRendering();
+  }
+
+  // ── Preview playback ───────────────────────────────────────────────────
+  function stopPreview() {
+    if (previewSource) {
+      try { previewSource.stop(); } catch (e) {}
+      previewSource.disconnect();
+      previewSource = null;
+    }
+    if (previewGain) { previewGain.disconnect(); previewGain = null; }
+    if (previewRaf) { cancelAnimationFrame(previewRaf); previewRaf = 0; }
+    playhead.classList.remove('visible');
+    btnPreview.classList.remove('playing');
+    btnPreview.querySelector('span').textContent = 'Preview ringtone';
+    transportLabel.textContent = 'Plays your selection with fades applied.';
+  }
+
+  async function startPreview() {
+    if (!originalBuffer) return;
+    stopPreview();
+    stopScrub();
+    transportLabel.textContent = 'Building preview…';
+    let buf;
+    try {
+      buf = await buildTrimmedFaded();
+    } catch (err) {
+      transportLabel.textContent = 'Could not build preview.';
+      return;
+    }
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') await ctx.resume();
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    const g = ctx.createGain();
+    g.gain.value = 1;
+    src.connect(g); g.connect(ctx.destination);
+    src.start(0);
+    previewSource = src;
+    previewGain = g;
+    previewStartedAt = ctx.currentTime;
+    btnPreview.classList.add('playing');
+    btnPreview.querySelector('span').textContent = 'Stop preview';
+    transportLabel.textContent = 'Playing ' + formatTime(buf.duration) + ' selection.';
+    playhead.classList.add('visible');
+
+    src.onended = () => { if (previewSource === src) stopPreview(); };
+
+    function tick() {
+      if (!previewSource) return;
+      const elapsed = ctx.currentTime - previewStartedAt;
+      const t = selStart + elapsed;
+      if (t >= selEnd) { stopPreview(); return; }
+      const pct = (t / durationSec) * 100;
+      playhead.style.left = pct + '%';
+      previewRaf = requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  btnPreview.addEventListener('click', () => {
+    if (previewSource) stopPreview();
+    else startPreview();
+  });
+
+  // ── Scrub playback (click waveform to play original from that point) ───
+  function stopScrub() {
+    if (scrubSource) {
+      try { scrubSource.stop(); } catch (e) {}
+      scrubSource.disconnect();
+      scrubSource = null;
+    }
+    if (scrubRaf) { cancelAnimationFrame(scrubRaf); scrubRaf = 0; }
+    // Only hide the playhead if preview isn't using it too.
+    if (!previewSource) playhead.classList.remove('visible');
+  }
+
+  async function startScrub(atSec) {
+    if (!originalBuffer) return;
+    stopScrub();
+    stopPreview();
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') await ctx.resume();
+    const src = ctx.createBufferSource();
+    src.buffer = originalBuffer;
+    src.connect(ctx.destination);
+    src.start(0, Math.max(0, Math.min(durationSec - 0.01, atSec)));
+    scrubSource = src;
+    scrubStartedAtTime = ctx.currentTime;
+    scrubStartedAtSec = atSec;
+    playhead.classList.add('visible');
+    transportLabel.textContent = 'Playing original from ' + formatTime(atSec) + ' (click again to seek).';
+    src.onended = () => { if (scrubSource === src) {
+      stopScrub();
+      transportLabel.textContent = 'Plays your selection with fades applied.';
+    } };
+
+    function tick() {
+      if (!scrubSource) return;
+      const elapsed = ctx.currentTime - scrubStartedAtTime;
+      const t = scrubStartedAtSec + elapsed;
+      if (t >= durationSec) { stopScrub(); transportLabel.textContent = 'Plays your selection with fades applied.'; return; }
+      playhead.style.left = (t / durationSec * 100) + '%';
+      scrubRaf = requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  // ── Make ringtone + download ───────────────────────────────────────────
+  // posthog R-7cacb3: one session failed the encode SIXTEEN times, 88 s apart, and not one failure said
+  // why - this was the only tool in the encode family whose failure event carried no message. Two fixes:
+  // the failure now carries the encoder's words (below), and an IDENTICAL run is not re-offered after a
+  // cause that will fail the same way. Keyed on the inputs, so changing the selection or the device
+  // (which picks the format) tries again; a load failure stays retryable because retrying IS the fix.
+  let _lastEncodeFail = null;   // { key, reason }
+  const _RETRYABLE = { encoder_load_failed: true };
+  function _encodeKey() { return device + '|' + selStart.toFixed(2) + '|' + selEnd.toFixed(2); }
+
+  async function makeAndDownload() {
+    if (!originalBuffer) return;
+    if (!window.snipEncoder) { alert('Encoder not loaded yet — try again.'); return; }
+    const dur = selEnd - selStart;
+    if (dur < 0.5) { alert('Selection is too short.'); return; }
+    if (device === 'iphone' && dur > 30.01) {
+      alert('Selection is over 30 seconds. iPhone rejects longer ringtones — drag the handles in.');
+      return;
+    }
+    if (_lastEncodeFail && _lastEncodeFail.key === _encodeKey() && !_RETRYABLE[_lastEncodeFail.reason]) {
+      const again = _rmFriendly(_lastEncodeFail.reason) + ' Change the selection or the device to try a different encode.';
+      if (window.snipShowError) window.snipShowError(again); else alert(again);
+      if (window.snipsoundTrack) window.snipsoundTrack('encode_retry_refused', { tool: 'ringtone-maker', reason: _lastEncodeFail.reason });
+      return;
+    }
+
+    const _tracker = window.snipTrackTool && window.snipTrackTool('ringtone-maker', {
+      device: device,
+      ringtone_duration_sec: Math.round(dur)
+    });
+    btnDownload.disabled = true;
+    showPopup(device === 'iphone' ? 'Making M4R…' : 'Making MP3…');
+
+    try {
+      updatePopup(0.1, 'Trimming + applying fades…');
+      await uiYield();
+      const processed = await buildTrimmedFaded();
+
+      // For iPhone we encode as M4A (AAC-in-MP4) and rename .m4a → .m4r.
+      // For Android we encode as 320 kbps MP3 — broadly compatible.
+      const encodeFormat = device === 'iphone' ? 'm4a' : 'mp3-320';
+      updatePopup(0.3, 'Encoding…');
+      await uiYield();
+      const { blob, ext } = await window.snipEncoder.encode(processed, encodeFormat, {
+        onProgress: (frac) => updatePopup(0.3 + (frac || 0) * 0.65, 'Encoding…')
+      });
+
+      // currentFile can be null here (audio restored without its File) - the export must not die on the NAME.
+      const base = ((currentFile && currentFile.name) || 'ringtone').replace(/\.[^.]+$/, '');
+      const finalExt = device === 'iphone' ? 'm4r' : ext;
+      const fname = base + '_ringtone.' + finalExt;
+      // For .m4r we keep the audio/mp4 MIME — iOS / iTunes read the
+      // container, not the extension, to verify the format.
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = fname;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      updatePopup(1, 'Done');
+      statusText.textContent = 'Saved ' + fname + ' (' + formatBytes(blob.size) + ')';
+      _tracker && _tracker.completed({ output_size_kb: Math.round(blob.size / 1024), output_ext: finalExt });
+      hidePopup();
+    } catch (err) {
+      console.error('Encode failed', err);
+      // Normalize the failure (posthog R-999a6f #2: raw messages — WASM CompileError /
+      // 'Failed to fetch' / 'Cannot read property size of null' — landed as unknown reasons).
+      var reason = _rmReason(err);
+      var friendly = _rmFriendly(reason);
+      _tracker && _tracker.failed(reason);
+      // The encoder's last log line when FFmpeg ran (m4a / ogg), else the error's own words (the LAME
+      // worker's for mp3). Name first, so "RangeError: Array buffer allocation failed" reads as one field.
+      var _lastLine = '';
+      try { var _log = window.snipEncoder && window.snipEncoder.getLastLog && window.snipEncoder.getLastLog(); if (_log && _log.length) _lastLine = String(_log[_log.length - 1]); } catch (e) {}
+      var _errMsg = (((err && err.name) || 'Error') + ': ' + ((err && err.message) || '') + (_lastLine ? ' | ' + _lastLine : '')).slice(0, 200);
+      if (window.snipTrackFailed) window.snipTrackFailed('ringtone-maker', reason, 'encode', Object.assign({ err_msg: _errMsg, err_name: (err && err.name) || 'Error', device: device, ringtone_duration_sec: Math.round(selEnd - selStart) }, (err && err.snipDiag) || {}));
+      _lastEncodeFail = { key: _encodeKey(), reason: reason };
+      hidePopup();
+      if (window.snipShowError) window.snipShowError(friendly); else alert(friendly);
+      statusText.textContent = '';
+    } finally {
+      btnDownload.disabled = false;
+    }
+  }
+
+  // Map an encode failure to a stable reason slug + friendly copy (build-dev / R-999a6f #2).
+  // The root of the WASM 'Failed to fetch' (mp3.wasm not fetching/compiling on some browsers)
+  // is a CDN/caching issue in cloudflare's lane; the snip-encoder worker diag surfaces it —
+  // here we just fail gracefully instead of a raw crash.
+  function _rmReason(e) {
+    var m = ((e && (e.message || e)) + '').toLowerCase();
+    if (/compileerror|failed to fetch|wasm|instantiate|worker error|spawn|load failure/.test(m)) return 'encoder_load_failed';
+    if (/cannot read propert|null|undefined is not/.test(m)) return 'encode_empty';
+    if (/out of memory|allocation failed|maximum call stack/.test(m)) return 'oom_alloc';
+    return 'encode_failed';
+  }
+  function _rmFriendly(reason) {
+    switch (reason) {
+      case 'encoder_load_failed': return "The audio encoder couldn't load — check your connection and try again (a reload usually fixes it).";
+      case 'encode_empty': return 'The encoder returned no audio — please try again.';
+      case 'oom_alloc': return 'Ran out of memory — try a shorter clip.';
+      default: return 'Encoding failed — please try again.';
+    }
+  }
+  btnDownload.addEventListener('click', makeAndDownload);
+
+  // ── Install-guide tab switcher ─────────────────────────────────────────
+  document.querySelector('.guide-tabs').addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-guide]');
+    if (!btn) return;
+    document.querySelectorAll('.guide-tabs button').forEach(b =>
+      b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.guide-panel').forEach(p =>
+      p.classList.toggle('active', p.dataset.guide === btn.dataset.guide));
+  });
+
+  // ── File upload wiring ─────────────────────────────────────────────────
+  dropZone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (f) handleFile(f);
+    e.target.value = '';
+  });
+  // Cross-tool shared-file handoff: theme.js dispatches this event when
+  // a file uploaded on another tool is available. Without this listener,
+  // theme.js hides the drop zone and the tool shows a blank area.
+  document.addEventListener('snipsound:use-shared-file', (e) => {
+    if (e.detail && e.detail.file) handleFile(e.detail.file);
+  });
+  ['dragenter', 'dragover'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); }));
+  ['dragleave', 'drop'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.remove('drag-over'); }));
+  dropZone.addEventListener('drop', (e) => {
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) handleFile(f);
+  });
+
+  fileRemove.addEventListener('click', () => {
+    currentFile = null;
+    originalBuffer = null;
+    durationSec = 0;
+    selStart = 0; selEnd = 30;
+    fileInput.value = '';
+    hideEditor();
+    statusText.textContent = '';
+  });
+
+  // Init readouts
+  fadeInV.textContent = parseFloat(fadeIn.value).toFixed(1) + ' s';
+  fadeOutV.textContent = parseFloat(fadeOut.value).toFixed(1) + ' s';
+
+  // Redraw waveform on viewport size changes
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => { resizeRaf = 0; if (originalBuffer) drawWaveform(); });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item .faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51a9bcb4abdcca8',t:'MTc5MzE5NzUxMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,21 @@
+# 轮次 020 · silence-remover(规范报告 A–E)
+
+日期:2026-10-28 · 我们页面:`/silence-remover` · 关键词:remove silence from audio(2.9k/月,竞争 0.42——全簇最高竞争)
+原始数据:`raw/ss-sil.html`。上下文同 001b。
+
+## 报告 A · SERP 画像
+
+- 单次采样(竞争 0.42 的高竞争词,补充第二采样留待下轮):**HuggingFace Space #1**(开源模型直挂)+ AI 清理品牌(audo.ai、cleanvoice deadair-remover)+ notevibes + rendley(#8,**第八簇**)+ 小站若干。
+- **AI 降噪/清理品牌占头部**,与 seodata 竞争 0.42 的判断吻合。SS(1317 词)/AE(silence-trimmer)/我们均不在场。
+
+## 报告 B/C(vs /silence-remover,1034 词)
+
+| 维度 | 在场覆盖 | 我们状态 | 建议 | 置信度 |
+|---|---|---|---|---|
+| AI 清理叙事 | audo/cleanvoice/HF 模型 | 规则式静音检测(阈值+时长,非 AI) | 维持诚实定位;「AI」叙事不伪装;长尾走「remove silence free no upload」 | 高 |
+| 视频+音频双输入 | cleanvoice/rendley 标题含 video | 音频(视频经 extract 两步) | 留观 | 中 |
+| 字数 | — | 上游(1034) | — | 中 |
+
+## 报告 D/E
+
+无任务。高竞争 + AI 品牌门槛 = 本页定位为长尾服务页。GSC 基线;第二采样补测提示已记。

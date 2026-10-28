@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Soundboard — Online Soundboard Maker with Hotkeys | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/diagnostics.js" defer></script>
+<script src="/vendor/snip-audio-fx.js" defer></script>
+<meta name="description" content="Free online soundboard: play 122 royalty-free sound effects instantly, build a custom soundboard with keyboard hotkeys, and add your own clips — they stay on your device. No install, no account.">
+<meta name="keywords" content="soundboard maker, free soundboard, custom soundboard, soundboard with hotkeys, keyboard sound buttons, make a soundboard online, meme soundboard, sound button maker">
+<link rel="canonical" href="https://snipsound.com/tools/soundboard/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Soundboard — Online Soundboard Maker with Hotkeys | SnipSound">
+<meta property="og:description" content="Build a custom soundboard from your own audio — label clips, assign hotkeys, play instantly. 100% in your browser, no sign-up.">
+<meta property="og:url" content="https://snipsound.com/tools/soundboard/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Soundboard Maker | SnipSound">
+<meta name="twitter:description" content="Play royalty-free sounds instantly, build your own board with hotkeys, add your own clips — they stay on your device.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 20px; max-width: 780px; margin: 0 auto; }
+  .hero h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  /* Toolbar */
+  .sb-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; margin: 4px auto 20px; max-width: 720px; }
+  .sb-btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 10px; font-family: inherit; font-size: 0.92rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border-bright); background: var(--surface2); color: var(--text); transition: border-color 0.15s, background 0.15s; }
+  .sb-btn:hover { border-color: var(--accent); background: var(--accent-subtle); }
+  .sb-btn svg { width: 17px; height: 17px; }
+  .sb-btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); border: none; color: #fff; }
+  .sb-btn.primary:hover { filter: brightness(1.08); }
+  .sb-btn.ghost { background: none; }
+  .sb-count { color: var(--text-dim); font-size: 0.85rem; margin-left: 2px; }
+
+  /* Drop zone (also the empty state) */
+
+  /* ── Pad grid — two-frame SVG arcade buttons (snipsound-button-style-picker).
+     Each pad = a square FACE holding complete UP/DOWN artwork (press = sprite swap,
+     never a CSS plunger translate; the housing never moves) + the label BELOW the
+     button, myinstants-style. Orbit ring + hotkey/delete overlay live on the face. ── */
+  .sb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--card-min, 88px), 1fr)); gap: 8px; margin-bottom: 8px; }
+  .sb-pad { --pad-rgb: 124,111,255; --pad-text: #fff; position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; background: none; border: none; cursor: pointer; user-select: none; }
+  .sb-pad:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 14px; }
+  .sb-pad-face { position: relative; width: 100%; aspect-ratio: 1 / 1; }
+  .sb-pad-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+  .sb-pad-art.down { opacity: 0; }
+  .sb-pad.is-pressed .sb-pad-art.up { opacity: 0; }
+  .sb-pad.is-pressed .sb-pad-art.down { opacity: 1; }
+  /* Label sits UNDER the button artwork (inline-editable). */
+  .sb-pad-label { width: 100%; text-align: center; font-weight: 700; font-size: 0.9rem; color: var(--text); word-break: break-word; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; padding: 2px 4px; pointer-events: none; }
+  /* Hotkey = small badge at the top of the face. */
+  .sb-pad-hotkey { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 8px; background: rgba(0,0,0,0.45); border: 1px solid rgba(var(--pad-rgb),0.42); color: rgb(var(--pad-rgb)); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.3px; cursor: pointer; transition: all 0.12s; z-index: 3; }
+  .sb-pad.playing .sb-pad-hotkey { border-color: rgba(255,255,255,0.4); color: var(--pad-text); }
+  .sb-pad-hotkey:hover { border-color: rgb(var(--pad-rgb)); filter: brightness(1.2); }
+  .sb-pad-hotkey.listening { color: #fff; background: rgb(var(--pad-rgb)); border-color: rgb(var(--pad-rgb)); animation: sbpulse 0.9s ease-in-out infinite; }
+  .sb-pad-hotkey svg { width: 11px; height: 11px; }
+  @keyframes sbpulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .sb-pad-kbd { font-variant-numeric: tabular-nums; }
+  /* Unset = a quiet ✎ edit chip; it grows the "set a key" hint on hover. Set = the key itself. */
+  .sb-pad-hotkey.unset { opacity: 0.65; color: #fff; border-color: rgba(255,255,255,0.25); }
+  .sb-pad-hotkey.unset:hover { opacity: 1; }
+  .sb-pad-hotkey.unset .sb-pad-kbd::after { content: ''; }
+  .sb-pad-hotkey.unset:hover .sb-pad-kbd::after { content: 'Set key'; margin-left: 2px; }
+  .sb-pad-hotkey.set .sb-hk-edit, .sb-pad-hotkey.listening .sb-hk-edit { display: none; }
+  /* LOADING orbit — the comet ring appears ONLY while a clip is being fetched/decoded
+     (i.e. the user is actually waiting). Instant plays get no ring — the press-down
+     artwork is the feedback. Separate layer: it never moves the button artwork. */
+  .sb-pad-ring { position: absolute; inset: 1%; border-radius: 50%; padding: 3px; opacity: 0; pointer-events: none; z-index: 2; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; }
+  .sb-pad.loading .sb-pad-ring { opacity: 0.95; animation: orbitspin 0.9s linear infinite; }
+  @keyframes orbitspin { to { transform: rotate(360deg); } }
+  /* Remove-from-board corner: same icon style as the browse cards' corners. */
+  .sb-pad-del { position: absolute; bottom: 6px; right: 6px; width: 24px; height: 24px; border-radius: 50%; border: none;
+    display: inline-flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.28); color: #fff;
+    cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.12s, transform 0.12s, background 0.15s; z-index: 3; padding: 0; }
+  .sb-pad-face:hover .sb-pad-del, .sb-pad.pinned .sb-pad-del, .sb-pad:focus-within .sb-pad-del { opacity: 1; pointer-events: auto; }
+  .sb-pad-del:hover { background: #ff5a5a; transform: scale(1.15); }
+  .sb-pad-del svg { width: 13px; height: 13px; }
+  /* Applied-effect badge — a pad saved "with effect" wears it. Always visible: it's info, not an action. */
+  .sb-fx-badge { position: absolute; bottom: 6px; left: 6px; display: inline-flex; align-items: center; gap: 4px;
+    max-width: calc(100% - 42px); padding: 3px 8px; border-radius: 999px; background: rgba(0,0,0,0.42); color: #fff;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; pointer-events: none; z-index: 2; }
+  /* Empty [+] add-pad slot. */
+  .sb-add-slot { aspect-ratio: 1 / 1; align-self: start; border: 2px dashed var(--border-bright); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-dim); cursor: pointer; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+  .sb-add-slot:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
+  .sb-add-slot svg { width: 26px; height: 26px; }
+  @media (prefers-reduced-motion: reduce) {
+    .sb-pad-hotkey.listening { animation: none; }
+    .sb-pad.loading .sb-pad-ring { animation: none; }   /* JS paints a static full ring */
+  }
+  /* ── Plastic style (video-editor panel language): category-hued toy buttons ── */
+  .sb-style-plastic .sb-pad-art, .sb-style-plastic .sb-x-img { display: none; }
+  .sb-emoji { display: none; pointer-events: none; }
+  .sb-style-plastic .sb-emoji { display: block; font-size: 34px; line-height: 1; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); }
+  .sb-style-plastic .sb-x-play .sb-emoji { font-size: 26px; }
+  .sb-style-plastic .sb-x-play {
+    border-radius: 14px;
+    background: linear-gradient(180deg, hsl(var(--sbh) 72% 62%), hsl(var(--sbh) 68% 46%));
+    box-shadow: inset 0 2px 0 hsl(var(--sbh) 72% 78%), inset 0 -3px 0 hsl(var(--sbh) 68% 32%),
+      0 4px 0 hsl(var(--sbh) 70% 26%), 0 7px 14px rgba(0,0,0,0.35);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.06s, box-shadow 0.06s, filter 0.12s;
+  }
+  .sb-style-plastic .sb-x-play.is-pressed, .sb-style-plastic .sb-x-play:active {
+    transform: translateY(3px);
+    box-shadow: inset 0 2px 0 hsl(var(--sbh) 72% 78%), inset 0 -3px 0 hsl(var(--sbh) 68% 32%),
+      0 1px 0 hsl(var(--sbh) 70% 26%), 0 3px 8px rgba(0,0,0,0.3);
+  }
+  .sb-plastic-swatch { width: 40px; height: 40px; border-radius: 10px; --sbh: 265;
+    background: linear-gradient(180deg, hsl(var(--sbh) 72% 62%), hsl(var(--sbh) 68% 46%));
+    box-shadow: inset 0 1px 0 hsl(var(--sbh) 72% 78%), inset 0 -2px 0 hsl(var(--sbh) 68% 32%), 0 3px 0 hsl(var(--sbh) 70% 26%); }
+  /* liked state on the browse heart: outline until liked */
+  .sb-b-heart { background: rgba(230,73,128,0.35); }
+  .sb-b-heart.on { background: #e64980; }
+
+  /* ── R-e3476b: editor Sounds-panel cards on the browse grid (spec verbatim) ── */
+  /* Card-size system — S/M/L toggle sets one var pack; icons/labels scale with it. */
+  .sb-x-grid, .sb-grid { --card-min: 88px; --card-emoji: 22px; --card-lbl: 10.5px; --corner: 21px; --corner-ic: 11px; }
+  .sb-x-grid.sb-size-m, .sb-grid.sb-size-m { --card-min: 124px; --card-emoji: 34px; --card-lbl: 12px; --corner: 24px; --corner-ic: 12px; }
+  .sb-x-grid.sb-size-l, .sb-grid.sb-size-l { --card-min: 164px; --card-emoji: 46px; --card-lbl: 14px; --corner: 28px; --corner-ic: 14px; }
+  .sb-b-row { grid-template-columns: repeat(auto-fill, minmax(var(--card-min), 1fr)); gap: 8px; }
+  .sb-b-item { gap: 6px; }
+  .sb-card { position: relative; width: 100%; aspect-ratio: 1 / 1; border: none; cursor: pointer; padding: 8px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    border-radius: 14px; font-family: inherit;
+    background: linear-gradient(180deg, hsl(var(--sbh) 72% 62%), hsl(var(--sbh) 68% 46%));
+    box-shadow: inset 0 2px 0 hsl(var(--sbh) 80% 78% / 0.9), inset 0 -3px 0 hsl(var(--sbh) 70% 32% / 0.8),
+      0 4px 0 hsl(var(--sbh) 62% 26%), 0 7px 10px rgba(0,0,0,0.35);
+    transition: transform 0.06s, box-shadow 0.06s, filter 0.12s; }
+  .sb-card:active, .sb-card.is-pressed, .sb-card.playing {
+    transform: translateY(3px);
+    box-shadow: inset 0 2px 0 hsl(var(--sbh) 80% 78% / 0.9), inset 0 -3px 0 hsl(var(--sbh) 70% 32% / 0.8),
+      0 1px 0 hsl(var(--sbh) 62% 26%), 0 4px 8px rgba(0,0,0,0.3); }
+  .sb-card.playing { filter: brightness(1.12) saturate(1.15); }
+  /* Loading = a light traveling ALONG THE CARD'S EDGE (border sweep, follows the
+     rounded corners) — a circular spinner reads wrong on a rounded square. */
+  .sb-card.loading::after { content: ''; position: absolute; inset: 0; border-radius: 14px; padding: 2.5px;
+    pointer-events: none;
+    background: conic-gradient(from var(--sba, 0deg), transparent 0 72%, rgba(255,255,255,0.55) 85%, #fff 92%, transparent 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: sbedge 0.9s linear infinite; }
+  @property --sba { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+  @keyframes sbedge { to { --sba: 360deg; } }
+  @media (prefers-reduced-motion: reduce) {
+    .sb-card.loading::after { animation: none; background: none; box-shadow: inset 0 0 0 2.5px rgba(255,255,255,0.7); }
+  }
+  .sb-card-emoji { font-size: var(--card-emoji, 34px); line-height: 1; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25)); }
+  /* Board pads share the browse-card look: label lives INSIDE the card, still editable. */
+  .sb-pad-face.sb-card .sb-pad-label { width: 92%; color: #fff; font-weight: 800; font-size: var(--card-lbl, 12px);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.45); z-index: 2; }
+  .sb-pad-face.sb-card .sb-pad-label:hover { color: #fff; }
+  .sb-pad-face.sb-card .sb-pad-ring { border-radius: 14px; inset: 0; }
+  .sb-pad.is-pressed .sb-pad-face.sb-card, .sb-pad-face.sb-card:active {
+    transform: translateY(3px);
+    box-shadow: inset 0 2px 0 hsl(var(--sbh) 80% 78% / 0.9), inset 0 -3px 0 hsl(var(--sbh) 70% 32% / 0.8),
+      0 1px 0 hsl(var(--sbh) 62% 26%), 0 4px 8px rgba(0,0,0,0.3); }
+  .sb-pad.playing .sb-pad-face.sb-card { filter: brightness(1.12) saturate(1.15); }
+  .sb-card-lbl { font-size: var(--card-lbl); font-weight: 800; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.45);
+    line-height: 1.2; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .sb-corner { position: absolute; width: var(--corner); height: var(--corner); border-radius: 50%; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.28); color: #fff;
+    opacity: 0; pointer-events: none; transition: opacity 0.12s, transform 0.12s; z-index: 2; padding: 0; }
+  /* Corners hide until you hover — and STAY on the card you clicked (.pinned). */
+  .sb-card:hover .sb-corner, .sb-card.pinned .sb-corner,
+  .sb-pad-face:hover .sb-corner, .sb-pad.pinned .sb-corner,
+  .sb-corner:focus-visible { opacity: 1; pointer-events: auto; }
+  .sb-corner-heart.on { opacity: 1; pointer-events: auto; }   /* favorited = visible state */
+  .sb-corner:hover { transform: scale(1.15); }
+  .sb-corner svg { width: var(--corner-ic); height: var(--corner-ic); }
+  .sb-corner-heart { top: 6px; left: 6px; }
+  .sb-corner-heart.on { background: #e64980; opacity: 1; }
+  .sb-corner-dl { top: 6px; right: 6px; }
+  .sb-corner-link { bottom: 6px; left: 6px; }
+  .sb-corner-add { bottom: 6px; right: 6px; }
+  /* License modal — why some sounds can't be raw-downloaded, with the source link. */
+  .sb-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.55); padding: 20px; }
+  .sb-modal[hidden] { display: none; }
+  .sb-modal-card { position: relative; max-width: 440px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px 26px; }
+  .sb-modal-card h3 { margin: 0 0 10px; font-size: 1.1rem; padding-right: 28px; }
+  .sb-modal-card p { margin: 0 0 12px; color: var(--text-dim); font-size: 0.92rem; line-height: 1.55; }
+  .sb-modal-card p a { color: var(--accent); }
+  .sb-modal-x { position: absolute; top: 10px; right: 12px; width: 28px; height: 28px; border: none; border-radius: 50%;
+    background: none; color: var(--text-dim); font-size: 18px; cursor: pointer; }
+  .sb-modal-x:hover { color: var(--text); background: rgba(255,255,255,0.08); }
+  .sb-modal-src { display: inline-block; margin-top: 4px; padding: 10px 18px; border-radius: 10px; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; text-decoration: none; }
+  .sb-modal-src:hover { filter: brightness(1.08); }
+  .sb-corner-add.added { background: #2f9e44; opacity: 1; }
+  .sb-b-lic { font-size: 0.58rem; color: var(--text-dim); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sb-b-lic a { color: var(--text-dim); text-decoration: underline; text-underline-offset: 2px; }
+  .sb-b-chip { border-radius: 999px; padding: 3px 10px; font-size: 11.5px; }
+  .sb-size-toggle { display: inline-flex; border: 1px solid var(--border-bright); border-radius: 9px; overflow: hidden; }
+  .sb-size-toggle button { width: 30px; height: 30px; border: none; background: none; color: var(--text-dim); font-family: inherit; font-weight: 800; font-size: 0.75rem; cursor: pointer; }
+  .sb-size-toggle button + button { border-left: 1px solid var(--border-bright); }
+  .sb-size-toggle button.active { background: var(--accent); color: #fff; }
+  /* MOCK ROUND: style-picker machinery hidden ("we may even hide the buttons for now"). */
+  #sb-style-btn, #sb-style-picker { display: none !important; }
+
+  /* ── Live audio effects — free-music's PL-FX chip row, copied (chips + engine). ── */
+  /* Fixed bottom dock, free-music style — stays put while the user scrolls. */
+  .sb-fx-row { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+    display: flex; align-items: center; gap: 7px; flex-wrap: nowrap; overflow-x: auto;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--surface, rgba(18,18,24,0.92));
+    background: color-mix(in srgb, var(--surface, #12121a) 93%, transparent);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border-bright); scrollbar-width: thin; }
+  .sb-fx-row .fx-chip { flex-shrink: 0; }
+  .sb-fx-row-label { flex-shrink: 0; }
+  body { padding-bottom: 74px; }   /* content never hides behind the dock (JS syncs to real dock height) */
+  /* Desktop: no dragging needed — the dock WRAPS so every chip is visible. Mobile keeps swipe-scroll. */
+  @media (min-width: 768px) {
+    .sb-fx-row { flex-wrap: wrap; overflow-x: visible; justify-content: center; }
+  }
+  .sb-fx-row-label { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-right: 3px; }
+  /* Narrow screens shorten the dock label to "FX" — every pixel goes to chips. */
+  .fx-lbl-narrow { display: none; }
+  @media (max-width: 767px) {
+    .fx-lbl-wide { display: none; }
+    .fx-lbl-narrow { display: inline; }
+  }
+  .fx-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 13px; border-radius: 999px;
+    border: 1px solid var(--border-bright); background: none; color: var(--text); font-family: inherit;
+    font-size: 12.5px; font-weight: 600; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+  .fx-chip:hover { border-color: var(--text-dim); }
+  .fx-chip.active { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); border-color: transparent; color: #fff; box-shadow: 0 2px 12px var(--accent-glow, rgba(124,111,255,0.4)); }
+  .fx-chip .fx-emoji { font-size: 14px; }
+  /* When an effect is ON, dull everything except the active chip. */
+  .sb-fx-row.has-active .fx-chip:not(.active) { opacity: 0.45; }
+  .sb-fx-row.has-active .fx-chip:not(.active):hover { opacity: 0.85; }
+  .fx-chip.saving { animation: sbpulse 0.9s ease-in-out infinite; }
+  .sb-empty { grid-column: 1 / -1; text-align: center; color: var(--text-dim); padding: 34px 16px; border: 2px dashed var(--border-bright); border-radius: 14px; font-size: 0.95rem; line-height: 1.6; }
+  .sb-empty button { background: none; border: none; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+  .sb-empty-mine { padding: 40px 18px; }
+  .sb-empty-mine strong { display: inline-block; color: var(--text); font-size: 1.15rem; margin-bottom: 6px; }
+  .sb-empty-mine #sb-empty-upload { margin: 16px 0 8px; text-decoration: none; }
+
+  .sb-swatch-img { pointer-events: none; }
+  .sb-swatch-img img { width: 40px; height: 40px; display: block; }
+
+  .sb-x-search { padding: 8px 12px; border-radius: 9px; border: 1px solid var(--border-bright); background: var(--surface); color: var(--text); font-family: inherit; font-size: 0.85rem; min-width: 170px; }
+  .sb-x-search:focus { outline: none; border-color: var(--accent); }
+  .sb-x-none { color: var(--text-dim); font-size: 0.9rem; margin: 4px 0; }
+  /* Focus mode (free-music pattern): the first real interaction — or an existing
+     board — collapses the hero so the tool takes the stage. */
+  body.sb-has-board .hero, body.sb-focus .hero { display: none; }
+  body.sb-has-board .container, body.sb-focus .container { padding-top: 10px; }
+  body.sb-has-board .sb-tabs, body.sb-focus .sb-tabs { margin-top: 0; }
+  .sb-style-picker { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 2px auto 22px; max-width: 780px; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+  .sb-style-picker[hidden] { display: none; }
+  .sb-style-opt { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px 12px 11px; min-width: 78px; background: none; border: 1.5px solid var(--border); border-radius: 12px; cursor: pointer; font-family: inherit; font-size: 0.73rem; font-weight: 600; color: var(--text-dim); transition: border-color 0.15s, color 0.15s, background 0.15s; }
+  .sb-style-opt:hover { border-color: var(--border-bright); color: var(--text); }
+  .sb-style-opt.active { border-color: var(--accent); color: var(--text); background: var(--accent-subtle); }
+  .sb-style-opt > span:first-child { display: grid; place-items: center; width: 44px; height: 44px; }
+
+  /* Section headers + the Explore catalog (free-music-style: preview / add / dismiss). */
+  .sb-sec-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 6px 0 12px; }
+  .sb-sec-head h2 { font-size: 1.15rem; margin: 0; }
+  .sb-sec-sub { color: var(--text-dim); font-size: 0.85rem; flex: 1 1 auto; }
+  .sb-explore { margin: 0 0 26px; }
+  .sb-explore[hidden], .sb-sec-head[hidden] { display: none; }
+  .sb-x-grid { display: flex; flex-direction: column; gap: 4px; }
+  .sb-x-cat { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-dim); margin: 14px 0 8px; }
+  .sb-x-cat:first-child { margin-top: 0; }
+  .sb-x-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+  .sb-x-info { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .sb-x-lic { font-size: 0.68rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sb-x-lic a { color: var(--text-dim); text-decoration: underline; text-underline-offset: 2px; }
+  .sb-x-lic a:hover { color: var(--accent); }
+  .sb-x-ext { margin: 16px 0 0; padding: 11px 14px; background: var(--surface); border: 1px dashed var(--border-bright); border-radius: 10px; color: var(--text-dim); font-size: 0.85rem; }
+  .sb-x-ext a { color: var(--accent); }
+  /* ── Browse grid, myinstants layout: big button, label under, action icons under that. ── */
+  .sb-tabs { display: flex; gap: 6px; justify-content: center; margin: 0 0 20px; border-bottom: 1px solid var(--border); }
+  .sb-tab { padding: 10px 22px; background: none; border: none; border-bottom: 2.5px solid transparent; color: var(--text-dim); font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: inherit; }
+  .sb-tab:hover { color: var(--text); }
+  .sb-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+  .sb-style-toggle { margin-left: 14px; align-self: center; font-size: 0.8rem; padding: 6px 12px; }
+  .sb-editor-cta { text-align: center; margin: -4px 0 18px; }
+  /* Header CTA — free-music's "Add Video" pattern: centered in the header, and
+     only once a sound has played (before that there is nothing to save). */
+  .header-cta { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none; align-items: center; gap: 8px; }
+  body.sb-played .header-cta { display: inline-flex; }
+  .header-save { display: inline-flex; align-items: center; gap: 6px; font-family: inherit; font-size: 13px; font-weight: 700;
+    cursor: pointer; border: none; color: #06251a; background: linear-gradient(135deg, #34e3a3, #16c79a);
+    padding: 8px 16px; border-radius: 18px; box-shadow: 0 2px 14px rgba(22,199,154,0.45);
+    transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap; }
+  .header-save:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(22,199,154,0.6); }
+  .header-save:disabled { opacity: 0.75; cursor: default; transform: none; }
+  @media (max-width: 640px) { .header-cta { position: static; transform: none; } .header-save { padding: 7px 12px; font-size: 12px; } }
+  .sb-b-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sb-b-chip { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border-bright); background: none; color: var(--text-dim); font-size: 0.78rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .sb-b-chip:hover { color: var(--text); border-color: var(--accent); }
+  .sb-b-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .sb-b-row { display: grid; }
+  .sb-b-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  /* A shared link lands ON its sound: ringed, pulsed once, and played. */
+  .sb-b-item.sb-linked .sb-card { outline: 3px solid var(--accent); outline-offset: 3px; animation: sblinkpulse 1.1s ease-out 2; }
+  @keyframes sblinkpulse { 0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow, rgba(124,111,255,0.5)); } 50% { box-shadow: 0 0 0 12px transparent; } }
+  @media (prefers-reduced-motion: reduce) { .sb-b-item.sb-linked .sb-card { animation: none; } }
+  .sb-b-name { font-weight: 600; font-size: 0.85rem; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .sb-b-actions { display: flex; gap: 8px; }
+  .sb-b-act { width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: #fff; transition: filter 0.12s; }
+  .sb-b-act svg { width: 14px; height: 14px; }
+  .sb-b-act:hover { filter: brightness(1.18); }
+  .sb-b-heart { background: #e64980; }
+  .sb-b-heart.on { background: #2f9e44; }
+  .sb-b-heart:disabled { opacity: 0.6; }
+  .sb-b-act[data-act="link"] { background: #1c7ed6; }
+  .sb-b-act[data-act="share"] { background: #0ca678; }
+  /* Preview button = the user's selected button style (two-frame press). */
+  .sb-x-play { flex-shrink: 0; position: relative; width: 46px; height: 46px; border: none; background: none; padding: 0; cursor: pointer; }
+  .sb-x-play:hover { filter: brightness(1.08); }
+  .sb-x-img { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; user-select: none; -webkit-user-drag: none; }
+  .sb-x-img.down { opacity: 0; }
+  .sb-x-play.is-pressed .sb-x-img.up { opacity: 0; }
+  .sb-x-play.is-pressed .sb-x-img.down { opacity: 1; }
+  .sb-x-play:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 50%; }
+  /* Loading ring — spins around the pressed browse button until audio starts. */
+  .sb-x-play.loading::after { content: ''; position: absolute; inset: -7px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.12); border-top-color: var(--accent); animation: sbxspin 0.7s linear infinite; pointer-events: none; }
+  @keyframes sbxspin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .sb-x-play.loading::after { animation: none; border-color: var(--accent); } }
+
+  .privacy-notice { display: flex; align-items: flex-start; gap: 10px; max-width: 760px; margin: 20px auto; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text-dim); font-size: 0.85rem; }
+  .privacy-notice svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+  .privacy-notice a { color: var(--accent); }
+
+  .seo-section { max-width: 820px; margin: 40px auto 0; color: var(--text-dim); line-height: 1.65; font-size: 0.95rem; }
+  .seo-section h2 { color: var(--text); font-size: 1.5rem; margin: 28px 0 12px; }
+  .seo-section a { color: var(--accent); }
+  .use-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 14px 0; }
+  .use-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .use-card h4 { color: var(--text); font-size: 0.95rem; margin-bottom: 6px; }
+  .use-card p { font-size: 0.85rem; margin: 0; }
+
+  .faq { max-width: 820px; margin: 36px auto 0; }
+  .faq h2 { font-size: 1.5rem; margin-bottom: 14px; }
+  .faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+  .faq summary { cursor: pointer; font-weight: 600; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq details p { color: var(--text-dim); margin-top: 10px; }
+
+  .sb-toast { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(20px); background: var(--surface2); border: 1px solid var(--border-bright); color: var(--text); padding: 10px 18px; border-radius: 10px; font-size: 0.88rem; font-weight: 600; box-shadow: 0 8px 30px rgba(0,0,0,0.4); opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 9999; }
+  .sb-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 560px) {
+    .hero h1 { font-size: 1.7rem; }
+  }
+</style>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body data-owns-keys="space">
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Soundboard Maker</span>
+  </div>
+  <div class="header-cta">
+    <button type="button" class="header-save" id="sb-save-cta" title="Save the sound you just played — with the effect that's on — to your board">&#128190; Save with effect</button>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<!-- tools-subnav removed on the soundboard (Marc): the tool is the destination. -->
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">Soundboard</span> — Online Soundboard Maker</h1>
+    <p>Play royalty-free sounds and effects instantly, build your own board, and add your own clips — your sounds stay on your device. Assign keyboard hotkeys and fire any sound with a tap or a keypress. No install, no account.</p>
+  </section>
+
+  <h2 style="position:absolute;left:-9999px;">How do I make a custom soundboard with hotkeys online for free?</h2>
+
+  <!-- Tabs — myinstants-style IA: your instrument vs the sound library. -->
+  <div class="sb-tabs" role="tablist" aria-label="Soundboard sections">
+    <button type="button" class="sb-tab active" id="sb-tab-board" role="tab" aria-selected="true">Your board</button>
+    <button type="button" class="sb-tab" id="sb-tab-browse" role="tab" aria-selected="false">Browse sounds</button>
+    <button type="button" class="sb-btn ghost sb-style-toggle" id="sb-style-btn" aria-haspopup="true" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+      Button style
+    </button>
+  </div>
+
+
+  <div class="sb-fx-row" id="sb-fx-row">
+    <span class="sb-fx-row-label"><span class="fx-lbl-wide">Effects</span><span class="fx-lbl-narrow">FX</span></span>
+    <span id="sb-fx-chips" style="display:contents"></span>
+  </div>
+
+  <p class="sb-editor-cta">
+    <a class="sb-btn" href="/video-editor/?panel=sounds">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+      Open board in Video Editor
+    </a>
+  </p>
+
+  <div id="sb-view-board" role="tabpanel">
+  <div class="sb-bar" id="sb-bar">
+    <button type="button" class="sb-btn primary" id="sb-add">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+      Upload sounds
+    </button>
+    <button type="button" class="sb-btn ghost" id="sb-stop" hidden>
+      <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1.5"/></svg>
+      Stop all
+    </button>
+    <span class="sb-count" id="sb-count"></span>
+
+  </div>
+
+  <!-- Style picker opens ON DEMAND from the "Button style" button — not a permanent row. -->
+  <div class="sb-style-picker" id="sb-style-picker" role="radiogroup" aria-label="Button style" hidden>
+    <button type="button" class="sb-style-opt" data-style="plastic" role="radio"><span class="sb-swatch-img"><span class="sb-plastic-swatch"></span></span>Plastic</button>
+    <button type="button" class="sb-style-opt" data-style="neon-ring" role="radio"><span class="sb-swatch-img"><img src="/tools/soundboard/buttons/neon-ring-up.svg" alt="" loading="lazy"></span>Neon Ring</button>
+    <button type="button" class="sb-style-opt" data-style="crystal-lens" role="radio"><span class="sb-swatch-img"><img src="/tools/soundboard/buttons/crystal-lens-up.svg" alt="" loading="lazy"></span>Crystal Lens</button>
+    <button type="button" class="sb-style-opt" data-style="playful-plastic" role="radio"><span class="sb-swatch-img"><img src="/tools/soundboard/buttons/playful-plastic-up.svg" alt="" loading="lazy"></span>Playful Plastic</button>
+    <button type="button" class="sb-style-opt" data-style="minimal-gloss" role="radio"><span class="sb-swatch-img"><img src="/tools/soundboard/buttons/minimal-gloss-up.svg" alt="" loading="lazy"></span>Minimal Gloss</button>
+  </div>
+
+  <input type="file" id="sb-file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac" multiple hidden>
+
+  <div class="sb-sec-head" id="sb-mine-head" hidden><h2>My sounds</h2></div>
+  <div class="sb-grid" id="sb-grid"></div>
+  </div>
+
+  <div id="sb-view-browse" role="tabpanel" hidden>
+  <section class="sb-explore" id="sb-explore">
+    <div class="sb-sec-head">
+      <input type="search" id="sb-x-search" class="sb-x-search" placeholder="Search sounds…" aria-label="Search sounds">
+      <span class="sb-size-toggle" id="sb-size-toggle" role="group" aria-label="Card size">
+        <button type="button" data-size="s" title="Small cards">S</button><button type="button" data-size="m" title="Medium cards">M</button><button type="button" data-size="l" title="Large cards">L</button>
+      </span>
+      <div class="sb-b-chips" id="sb-b-chips" role="group" aria-label="Filter by category"></div>
+    </div>
+    <p class="sb-sec-sub" style="margin:0 0 14px">Royalty-free sounds — press a button to hear it, ♥ to add it to your board. Every sound shows its source and license.</p>
+    <div class="sb-x-grid" id="sb-x-grid"></div>
+    <p class="sb-x-ext">Want sounds from other sites? Our <strong>Chrome extension</strong> (coming soon) will let you bring sounds over from sites like <a href="https://www.myinstants.com" target="_blank" rel="noopener">myinstants</a> straight onto your board.</p>
+  </section>
+  </div>
+
+  <p style="text-align:center;margin:6px 0 18px;">
+    <button type="button" id="btn-report-bug" style="background:none;border:1px solid var(--border);color:var(--text-dim);font-family:inherit;font-size:0.85rem;padding:8px 16px;border-radius:8px;cursor:pointer;">🐞 Something not working? Report a bug</button>
+  </p>
+
+  <div class="sb-modal" id="sb-dl-modal" hidden role="dialog" aria-modal="true" aria-labelledby="sb-dlm-title">
+    <div class="sb-modal-card">
+      <button type="button" class="sb-modal-x" aria-label="Close">&times;</button>
+      <h3 id="sb-dlm-title"></h3>
+      <p>This sound is <strong>royalty-free to use</strong> &mdash; play it here, add it to your board, and use it in videos you make (try it in the <a href="/video-editor/">Video Editor</a>, no credit needed).</p>
+      <p>Its license (<span id="sb-dlm-lic"></span>) doesn&rsquo;t allow us to offer the raw file as a download &mdash; but the original source does, for free:</p>
+      <a id="sb-dlm-src" class="sb-modal-src" target="_blank" rel="noopener">Get it from the source &rarr;</a>
+    </div>
+  </div>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span><strong>100% private.</strong> Your clips are saved only in this browser (on your device) and play locally with the Web Audio API — your files never leave your device and no account is needed. Clearing your browser data removes the board. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <section class="seo-section">
+    <p style="color:var(--text);font-size:1rem;"><strong>To build a soundboard online free:</strong> click <strong>Upload sounds</strong> (or drag files anywhere onto the page), rename each pad, and click its key badge to assign a hotkey. Then click a pad — or press its key — to play the clip instantly. Your board is saved in your browser, so it's there next time.</p>
+
+    <h2>What is a soundboard?</h2>
+    <p>A soundboard is a grid of one-tap sound buttons — the airhorns, memes, stingers and catchphrases streamers, podcasters and Discord callers fire off on cue. SnipSound's soundboard maker lets you build your <strong>own</strong> from audio you add, name each clip, and bind it to a keyboard key so it plays the instant you press it. Everything runs in your browser, so there's your files stay on your device, no account, and no cost.</p>
+
+    <h2>Ways to use it</h2>
+    <div class="use-grid">
+      <div class="use-card"><h4>🎙️ Streaming &amp; podcasts</h4><p>Keep your stingers, applause and airhorns one keypress away while you're live.</p></div>
+      <div class="use-card"><h4>🎮 Discord &amp; calls</h4><p>Fire off reactions and meme sounds on cue during a game night or hangout.</p></div>
+      <div class="use-card"><h4>✂️ Video editing prep</h4><p>Organize the sound effects for your next edit so they're labeled and ready.</p></div>
+      <div class="use-card"><h4>🎹 Just for fun</h4><p>Turn your keyboard into a pad of your favorite clips and catchphrases.</p></div>
+    </div>
+
+    <h2>Why SnipSound's soundboard?</h2>
+    <p>It's free with no sign-up, and everything happens on your device — your clips never leave your browser. Assign hotkeys for instant playback, rename pads inline, and your board persists between visits. Add your own audio, or grab a track from the <a href="/free-music/">free music library</a> or make an effect in the <a href="/tools/audio-effects/">Audio Effects Studio</a> first.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is this soundboard maker free?</summary><p>Completely free — no sign-up, no watermark, no limits. It runs entirely in your browser, so there's nothing to charge for.</p></details>
+    <details><summary>Where are my sounds stored?</summary><p>Only in this browser, on your device (in local storage). Your files never leave your device to a server. Your board is here next time you visit — but clearing your browser data or using a different device/browser starts fresh.</p></details>
+    <details><summary>How do I assign a hotkey?</summary><p>Click the key badge on a pad, then press any key. Press that key any time (as long as you're not typing in a text box) to play the clip. Click the badge again to change or clear it.</p></details>
+    <details><summary>Can I play more than one sound at once?</summary><p>Yes — each tap or keypress plays a fresh instance, so sounds can overlap. Use “Stop all” to silence everything at once.</p></details>
+    <details><summary>What audio formats can I add?</summary><p>Anything your browser can decode — MP3, WAV, OGG, M4A, AAC, FLAC.</p></details>
+    <details><summary>Does my audio get uploaded anywhere?</summary><p>No. Files are read and played locally with the Web Audio API — they never leave your device.</p></details>
+  </section>
+
+</main>
+
+<div class="sb-toast" id="sb-toast"></div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SnipSound Soundboard Maker","applicationCategory":"MultimediaApplication","operatingSystem":"Any (browser-based)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online soundboard: play royalty-free sound effects instantly, build a custom board with keyboard hotkeys, and add your own clips — they stay on your device. No install, no account.","url":"https://snipsound.com/tools/soundboard/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this soundboard maker free?","acceptedAnswer":{"@type":"Answer","text":"Completely free — no sign-up, no watermark, no limits. It runs entirely in your browser."}},
+{"@type":"Question","name":"Where are my sounds stored?","acceptedAnswer":{"@type":"Answer","text":"Only in this browser on your device (local storage). Your files never leave your device to a server; clearing browser data or switching device starts fresh."}},
+{"@type":"Question","name":"How do I assign a hotkey?","acceptedAnswer":{"@type":"Answer","text":"Click the key badge on a pad, then press any key. Press that key any time you're not typing in a text box to play the clip."}},
+{"@type":"Question","name":"Can I play more than one sound at once?","acceptedAnswer":{"@type":"Answer","text":"Yes — each tap or keypress plays a fresh instance so sounds can overlap. Use Stop all to silence everything."}},
+{"@type":"Question","name":"Does my audio get uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Files are read and played locally with the Web Audio API — they never leave your device."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to make a soundboard online","step":[
+{"@type":"HowToStep","name":"Add your sounds","text":"Click Upload sounds or drop audio files onto the page. Each clip becomes a pad."},
+{"@type":"HowToStep","name":"Label each pad","text":"Click a pad's name to rename it so you know what it is at a glance."},
+{"@type":"HowToStep","name":"Assign a hotkey","text":"Click the key badge on a pad and press any key to bind it."},
+{"@type":"HowToStep","name":"Play","text":"Click a pad or press its hotkey to fire the clip instantly. Your board is saved in the browser."}
+]}
+</script>
+
+<script>
+(function () {
+  'use strict';
+  // No "How's this result?" prompt on the soundboard (Marc) — rapid-fire sound
+  // presses aren't a "result" moment. Pre-filling the slot with a no-op stops
+  // theme.js from lazy-loading the real widget; completion telemetry still fires.
+  window.snipFeedback = { completed: function () { return this; }, failed: function () { return this; } };
+  var $ = function (id) { return document.getElementById(id); };
+
+  // ── Persistence: config in localStorage, audio blobs in IndexedDB ──────────
+  var LS_KEY = 'snipsound:soundboard:v1';
+  var DB_NAME = 'snipsound-soundboard', STORE = 'clips';
+  var pads = [];               // [{ id, label, hotkey }]  (audio blob lives in IDB by id)
+  var buffers = {};            // id -> decoded AudioBuffer (lazy cache)
+  var active = [];             // live AudioBufferSourceNodes (for Stop all)
+  var audioCtx = null;
+  var listeningPadId = null;   // pad currently capturing a hotkey
+  // Launchpad palette — each pad gets a vibrant colour (cycled) so the board pops.
+  var PALETTE = ['124,111,255','255,90,138','34,211,238','52,211,153','251,191,36','249,115,22','96,165,250','244,114,182','167,139,250','74,222,128'];
+  // Auto-contrast: dark text on light hues (yellow/cyan/green), light text on dark ones.
+  function padText(rgb) { var p = (rgb || '124,111,255').split(',').map(Number); var lum = 0.299 * p[0] + 0.587 * p[1] + 0.114 * p[2]; return lum > 150 ? '#0a0a0f' : '#fff'; }
+  var reduceMotion = false; try { reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
+  function db() {
+    return new Promise(function (res, rej) {
+      var rq = indexedDB.open(DB_NAME, 1);
+      rq.onupgradeneeded = function () { var d = rq.result; if (!d.objectStoreNames.contains(STORE)) d.createObjectStore(STORE); };
+      rq.onsuccess = function () { res(rq.result); };
+      rq.onerror = function () { rej(rq.error); };
+    });
+  }
+  function idbPut(id, val) { return db().then(function (d) { return new Promise(function (res, rej) { var tx = d.transaction(STORE, 'readwrite'); tx.objectStore(STORE).put(val, id); tx.oncomplete = function () { d.close(); res(); }; tx.onerror = function () { rej(tx.error); }; }); }); }
+  function idbGet(id) { return db().then(function (d) { return new Promise(function (res, rej) { var tx = d.transaction(STORE, 'readonly'); var r = tx.objectStore(STORE).get(id); r.onsuccess = function () { d.close(); res(r.result); }; r.onerror = function () { rej(r.error); }; }); }); }
+  function idbDel(id) { return db().then(function (d) { return new Promise(function (res) { var tx = d.transaction(STORE, 'readwrite'); tx.objectStore(STORE).delete(id); tx.oncomplete = function () { d.close(); res(); }; }); }); }
+
+  function saveConfig() { try { localStorage.setItem(LS_KEY, JSON.stringify(pads)); } catch (e) {} }
+  function loadConfig() { try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]') || []; } catch (e) { return []; } }
+
+  function getCtx() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); return audioCtx; }
+  // WAIT FOR THE CLOCK BEFORE SCHEDULING ANYTHING (posthog R-9f0fd6). getCtx() above calls
+  // resume() and returns immediately - resume is ASYNCHRONOUS, so a press that plays a cached
+  // buffer could schedule src.start() while the context was still suspended. The source starts
+  // against a clock that is not running: no sound, no error, nothing to report. The user presses
+  // again, by which time the resume has completed, and it plays.
+  // That matches every part of what posthog measured: rage on the card, 55 users on the newest
+  // build, NOTHING in tool_failed, and a population disjoint from the people whose sound failed
+  // to load. It is also why the fix I shipped did not move the number - and worse, my prefetch
+  // removed the fetch latency that had been accidentally giving resume() time to finish, which
+  // would make the newest build the worst one. The faster I made the fetch, the more often the
+  // press landed inside the window.
+  // NOT PROVEN, and I want that on the record: headless Chromium hands out a context that is
+  // already 'running', so I cannot reproduce the suspended state a phone gives. This is the
+  // mechanism that fits the evidence, fixed because scheduling against a possibly-suspended
+  // context is wrong regardless of whether it is THE cause.
+  function whenRunning(fn) {
+    var ctx = getCtx();
+    if (ctx.state !== 'suspended') { fn(ctx); return; }
+    try {
+      var pr = ctx.resume();
+      if (pr && pr.then) { pr.then(function () { fn(ctx); }, function () { fn(ctx); }); return; }
+    } catch (e) {}
+    fn(ctx);
+  }
+  function uid() { return 'p' + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36); }
+
+  var toastTimer;
+  function toast(msg) { var t = $('sb-toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('show'); }, 1800); }
+
+  // ── Add clips ──────────────────────────────────────────────────────────────
+  function addFiles(fileList) {
+    var files = Array.prototype.slice.call(fileList).filter(function (f) { return /^audio\//.test(f.type) || /\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name); });
+    if (!files.length) { toast('No audio files found'); return; }
+    var chain = Promise.resolve();
+    files.forEach(function (f) {
+      chain = chain.then(function () {
+        var id = uid();
+        var label = f.name.replace(/\.[^/.]+$/, '').slice(0, 40);
+        return idbPut(id, { blob: f, name: f.name, type: f.type || 'audio/mpeg' }).then(function () {
+          pads.push({ id: id, label: label, hotkey: '', color: PALETTE[pads.length % PALETTE.length] });
+        });
+      });
+    });
+    chain.then(function () { saveConfig(); render(); toast(files.length + (files.length === 1 ? ' sound added' : ' sounds added')); });
+  }
+
+  // Cross-tool: a file handed over from another SnipSound tool.
+  document.addEventListener('snipsound:use-shared-file', function (e) { if (e.detail && e.detail.file) addFiles([e.detail.file]); });
+
+  // ── Explore catalog — a browsable royalty-free SOUND LIBRARY (free-music
+  // pattern): preview on the styled button, add-to-board, dismiss. Every sound
+  // shows WHERE it came from + its license. Synth sounds render in-browser; the
+  // starter pack ships as mp3 + manifest (sfx/manifest.json).
+  // WHOSE ERROR IS IT (posthog R-af2ab4). Their uncaught board has 22 Edge users a fortnight
+  // throwing TypeError "Failed to fetch" on this page, with no URL on the exception and nothing in
+  // tool_failed - so there is no way to tell our request from one made by an extension or by
+  // something the browser injected. I could not reproduce it: every fetch this page can reach is
+  // enumerated and guarded, and exercising every control in a real Edge - media CDN blocked and
+  // unblocked - produced no uncaught error and no unhandled rejection.
+  // So report the ONE fact that separates the two cases: does any frame of the stack belong to a
+  // file we serve. `ours` false with no frame is injected or extension code, which is also why it
+  // would be Edge-only and URL-less; `ours` true with a frame is mine and I own it the same day.
+  // Once per session, counts and closed strings only - no user text ever reaches this.
+  // Through snipsoundTrack, not snipTrackFailed: the helpers filter `extra` through a fixed facet
+  // allow-list that posthog owns, and an unlisted key is dropped silently.
+  (function () {
+    var sent = 0;
+    function ourFrame(stack) {
+      var lines = String(stack || '').split('\n');
+      for (var i = 0; i < lines.length; i++) {
+        var m = /(https?:\/\/[^\s)]*snipsound\.com\/[^\s)]+|\/(?:theme|vendor|tools)\/[^\s)]+)/.exec(lines[i]);
+        if (m) return m[1].slice(-80);
+      }
+      return null;
+    }
+    function report(kind, msg, stack) {
+      if (sent) return;
+      sent = 1;
+      var frame = ourFrame(stack);
+      try {
+        if (window.snipsoundTrack) window.snipsoundTrack('sb_uncaught', {
+          kind: kind,
+          msg: String(msg || '').slice(0, 80),
+          ours: !!frame,
+          frame: frame,
+          has_stack: !!String(stack || '').trim()
+        });
+      } catch (e) {}
+    }
+    addEventListener('error', function (e) {
+      try { report('error', (e && e.message) || e, (e && e.error && e.error.stack) || ''); } catch (x) {}
+    });
+    addEventListener('unhandledrejection', function (e) {
+      try {
+        var r = e && e.reason;
+        report('unhandledrejection', (r && r.message) || r, (r && r.stack) || '');
+      } catch (x) {}
+    });
+  })();
+
+  var DISMISS_KEY = 'snipsound:soundboard:dismissed';
+  function dismissed() { try { return JSON.parse(localStorage.getItem(DISMISS_KEY) || '[]'); } catch (e) { return []; } }
+  var CAT_ORDER = ['stings', 'animals', 'nature', 'human', 'comedy', 'reactions', 'game', 'impacts', 'everyday', 'misc'];
+  var CAT_NAMES = { stings: 'Stings & Drops', animals: 'Animal sounds', nature: 'Nature', human: 'Human', comedy: 'Comedy', reactions: 'Reactions', game: 'Game & UI', impacts: 'Impacts', everyday: 'Everyday', misc: 'Misc' };
+  var CATALOG = [];
+  fetch('/tools/soundboard/sfx/manifest.json').then(function (r) { return r.json(); }).then(function (m) {
+    (m.sounds || []).forEach(function (s) { CATALOG.push(s); });
+    // A ?sound= deep link may point at a pack sound that just arrived.
+    if (window.__sbPendingSound) {
+      var hit = CATALOG.filter(function (d) { return d.id === window.__sbPendingSound; })[0];
+      if (hit && $('sb-x-search')) { $('sb-x-search').value = hit.label; }
+      window.__sbPendingSound = null;
+    }
+    renderExplore();
+  }).catch(function (e) {
+    // Was silent: "pack unavailable -> synth-only catalog" is a real fallback, but a page whose
+    // starter pack never arrives looks half-empty and said nothing about it (posthog R-af2ab4
+    // asked for the request NAMED on the failure). Once per session, host and what, no URL text.
+    try {
+      if (window.snipsoundTrack) window.snipsoundTrack('sb_fetch_failed', {
+        what: 'manifest', host: location.host, err_name: (e && e.name) || 'unknown'
+      });
+    } catch (e2) {}
+  });
+
+  // Sound loader — returns {buf (decoded, for preview + instant play), blob (for IDB)}.
+  var soundCache = {};   // id -> Promise<{buf, blob, ext, type}>
+  var soundReady = {};   // entry.id -> the decoded buffer is in memory NOW (see below)
+  function getSound(entry) {
+    if (soundCache[entry.id]) return soundCache[entry.id];
+    var p;
+    {
+      // ?cors=1 = the media-CDN cache-buster convention: keeps these fetches on the
+      // cache lane that carries the Access-Control-Allow-Origin header.
+      var fileUrl = /^https?:/.test(entry.file) ? entry.file + (entry.file.indexOf('?') < 0 ? '?cors=1' : '&cors=1') : entry.file;
+      // TIME THE FETCH AND THE DECODE SEPARATELY. posthog measured cold p50 halving after
+      // prefetch landed (281 -> ~140 ms), which prefetch cannot do: it moves plays OUT of the cold
+      // bucket, it does not make a cold fetch faster. Their hypothesis is that prefetch warms the
+      // HTTP cache, so a play reporting cached:false (not in our in-memory map) now often hits
+      // DISK rather than the network - which would make cached:false two different things.
+      // Resource Timing cannot answer that here: every clip is on media.snipsound.com and that
+      // host sends no Timing-Allow-Origin, so transferSize reads 0 for a disk hit and a network
+      // fetch alike. A field built on it would read 'unknown' forever, which is the
+      // looks-instrumented-carries-nothing failure.
+      // Timing OUR OWN fetch() needs no header and answers it directly: a disk hit resolves in
+      // single-digit milliseconds and still pays full decode, a network fetch does not.
+      var attempt = function (url) {
+        var _f0 = (window.performance && performance.now) ? performance.now() : Date.now();
+        var _fMs = null;
+        return fetch(url).then(function (r) {
+          if (!r.ok) throw new Error('fetch ' + r.status);
+          return r.arrayBuffer();
+        }).then(function (ab) {
+          _fMs = ((window.performance && performance.now) ? performance.now() : Date.now()) - _f0;
+          var blob = new Blob([ab], { type: 'audio/mpeg' });
+          var _d0 = (window.performance && performance.now) ? performance.now() : Date.now();
+          return getCtx().decodeAudioData(ab.slice(0)).then(function (buf) {
+            var _dMs = ((window.performance && performance.now) ? performance.now() : Date.now()) - _d0;
+            return { buf: buf, blob: blob, ext: '.mp3', type: 'audio/mpeg',
+                     fetchMs: Math.round(_fMs), decodeMs: Math.round(_dMs) };
+          });
+        });
+      };
+      // The CDN occasionally truncates a cold fetch (R-f77f71) -> retry once, cache-busted.
+      p = attempt(fileUrl).catch(function () { return attempt(fileUrl + '&cb=' + Date.now()); });
+    }
+    soundCache[entry.id] = p.catch(function (e) { delete soundCache[entry.id]; throw e; });
+    // READY is not the same as IN FLIGHT, and the difference decides a metric. soundCache holds the
+    // PROMISE, so once prefetch exists a clip can be "in the cache" while the user still waits
+    // 500 ms for it. Reporting that as cached:true would inflate the cached share - the single
+    // number posthog says tells us whether prefetch worked - using the very plays that prove it
+    // only half worked. soundReady is set when the buffer actually exists.
+    soundCache[entry.id].then(function () { soundReady[entry.id] = 1; }, function () {});
+    return soundCache[entry.id];
+  }
+  // ── WARM THE CLIP BEFORE THE CLICK ────────────────────────────────────────────────
+  // A cold browse play costs 284 ms at the median and 710 ms at p90 (posthog R-0957ea), and
+  // cached plays cost 0. So this is not a speed problem to optimise, it is a question of whether
+  // the fetch has already happened when the press lands - and both of these buy time we are
+  // currently throwing away:
+  //   pointerdown  the press itself. Fires before click on mouse AND touch, and a tap is tens of
+  //                milliseconds of head start that cost nothing and work on phones, where there
+  //                is no hover at all.
+  //   pointerenter the gap between a mouse arriving and the click. Much larger, but mouse-only.
+  // WHY A DWELL TIMER: a mouse sweeping across 122 cards would otherwise fire 122 fetches. The
+  // press path has no timer because a press IS the intent.
+  // WHY ONE AT A TIME: a queue of hover prefetches competing with the clip the user actually
+  // pressed would make the thing we are fixing worse - the same mistake as the pad path's
+  // duplicate decodes, which is what started all this.
+  // saveData is honoured for the hover path only: someone on a metered connection should not pay
+  // for clips they merely moused over. A real press still fetches.
+  var sbPrefetching = 0, sbHoverTimer = null;
+  function sbPrefetch(entry, why) {
+    try {
+      if (!entry || soundCache[entry.id]) return;            // already warm (or in flight)
+      if (why === 'hover') {
+        var c = navigator.connection || {};
+        if (c.saveData) return;
+        if (sbPrefetching) return;                           // one hover fetch at a time
+      }
+      sbPrefetching++;
+      getSound(entry).catch(function () {}).then(function () { sbPrefetching--; });
+    } catch (e) {}
+  }
+
+  // ── Sound-diag trace (dev pages): every press/attempt/failure lands here so a
+  // "silent button" is one copy-paste away from being diagnosable. ──
+  var sbTrace = [];
+  function trace(m) {
+    sbTrace.push(new Date().toISOString().slice(11, 23) + ' ' + m);
+    if (sbTrace.length > 120) sbTrace.shift();
+  }
+  var previewSrc = null;
+  var loadingBtn = null;   // browse button currently showing the loading ring
+  function setPreviewLoading(btn, on) {
+    if (loadingBtn && loadingBtn !== btn) loadingBtn.classList.remove('loading');
+    loadingBtn = on ? btn : null;
+    if (btn) btn.classList.toggle('loading', !!on);
+  }
+  // Previews use the SAME WebAudio engine as the pads (which provably plays in
+  // every browser the board works in — Brave blocks <audio>.play() per-site on
+  // preview subdomains, which was the silent-browse bug). getSound caches, so
+  // the first press pays one fetch+decode and repeats are instant.
+  function previewSound(entry, btn) {
+    trace('press ' + entry.id);
+    var ctx = getCtx();
+    trace('ctx ' + ctx.state);
+    if (ctx.state === 'suspended') {
+      try { ctx.resume().then(function () { trace('ctx resumed -> ' + ctx.state); }); } catch (e) { trace('resume threw ' + e.name); }
+    }
+    setPreviewLoading(btn, true);
+    var t0 = performance.now();
+    // Was this clip already in soundCache? Read it BEFORE the call, because getSound memoises on
+    // entry and a cold fetch would look cached by the time it resolves. This is the browse half of
+    // the latency question, and the ms below was already being computed and thrown into a local
+    // trace - the number existed, nothing reported it.
+    // ready = instant. in flight = a prefetch started but the user beat it, so they DID wait and
+    // this play belongs in the cold percentiles - with prefetched:true saying the prefetch helped
+    // but not enough, which is a different fix from "no prefetch at all".
+    var wasCached = !!soundReady[entry.id];
+    var wasPrefetching = !wasCached && !!soundCache[entry.id];
+    getSound(entry).then(function (s) {
+      setPreviewLoading(btn, false);
+      // Was a preview still sounding when this one landed? previewSrc used to stay set for the
+      // life of the page (nothing ever cleared it), so it could not answer that - the onended
+      // below fixes it. This is also the honest reading of the browse rage: a second click does
+      // not layer the sound, it CUTS OFF the one playing, so an impatient user hears a truncated
+      // clip and presses again.
+      var _ov = previewSrc ? 1 : 0;
+      if (previewSrc) { try { previewSrc.stop(); } catch (e) {} }
+      document.body.classList.add('sb-played');
+      lastPlayed = { label: entry.label, soundId: entry.id,
+        get: function () { return getSound(entry).then(function (x) { return x.buf; }); },
+        getRec: function () { return getSound(entry).then(function (x) { return { blob: x.blob, type: x.type, kind: entry.id }; }); } };
+      whenRunning(function () {
+        var src = ctx.createBufferSource(); src.buffer = s.buf; fxConnect(ctx, src); src.start();
+        previewSrc = src;
+        src.onended = function () { if (previewSrc === src) previewSrc = null; };
+      });
+      trace('playing ' + entry.id + ' (' + Math.round(performance.now() - t0) + 'ms, ctx ' + ctx.state + ')');
+      sbPlayed(performance.now() - t0, wasCached, 'browse', entry.id, _ov, s.buf.duration * 1000, wasPrefetching,
+               s.fetchMs, s.decodeMs);
+    }).catch(function (e) {
+      setPreviewLoading(btn, false);
+      trace('FAIL ' + entry.id + ' ' + (e && e.name) + ': ' + String(e && e.message).slice(0, 80));
+      console.error('preview failed', entry.id, e);
+      toast('Sound failed to load — check your connection');
+      // 39 fires in ONE session (posthog R-9f0fd6) - a retry loop reporting per attempt. The
+      // first one carries everything the next 38 would; a cap is the fix, not a redesign.
+      if (!window.__sbFetchFailSent) {
+        window.__sbFetchFailSent = 1;
+        if (window.snipTrackFailed) window.snipTrackFailed('soundboard', 'sfx_fetch_failed', 'preview', { explained: true, msg_key: 'check_connection' });
+        // The slug stays for posthog's board; the HOST is what their R-af2ab4 read was missing -
+        // "something fetches and Edge refuses it" cannot be narrowed without knowing which host.
+        // snipsoundTrack because host/what are not on the helpers' facet allow-list.
+        try {
+          var _h = '';
+          try { _h = new URL(entry.file, location.href).host; } catch (e3) { _h = 'unparsed'; }
+          if (window.snipsoundTrack) window.snipsoundTrack('sb_fetch_failed', {
+            what: 'sfx', host: _h, err_name: (e && e.name) || 'unknown'
+          });
+        } catch (e2) {}
+      }
+    });
+  }
+  function freeKey(want) {
+    var used = {}; pads.forEach(function (p) { if (p.hotkey) used[p.hotkey] = 1; });
+    if (want && !used[want]) return want;
+    for (var i = 1; i <= 9; i++) if (!used[String(i)]) return String(i);
+    return '';
+  }
+  function addExplore(entry) {
+    return getSound(entry).then(function (s) {
+      var id = uid();
+      buffers[id] = s.buf;   // pre-decoded -> first press is instant
+      return idbPut(id, { blob: s.blob, name: entry.label + s.ext, type: s.type }).then(function () {
+        var pad = { id: id, label: entry.label, hotkey: freeKey(entry.key), color: PALETTE[pads.length % PALETTE.length], kind: entry.id };
+        if (currentFx !== 'normal') { pad.fx = currentFx; }   // what you hear is what you save
+        pads.push(pad);
+      });
+    });
+  }
+  // ── Browse grid — myinstants-style: big styled button (press = hear it),
+  // label under it, then [♥ add] [copy link] [share], license line last. ──
+  var browseCat = 'all';
+  // Share links carry the ACTIVE effect too (Marc): the receiver hears the
+  // sound the way the sender heard it — ?sound=<id>&fx=<preset>.
+  // A shared link should land on THE SOUND and play it — not just filter the grid
+  // (Marc). Browsers block audio before a gesture, so: try it, and if the context
+  // is blocked, arm the very next tap anywhere to fire the same sound.
+  function openSharedSound(entry) {
+    sbFocus();
+    var card = null;
+    var items = document.querySelectorAll('.sb-b-item');
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].getAttribute('data-sound') === entry.id) { card = items[i]; break; }
+    }
+    if (!card) return;
+    card.classList.add('sb-linked');
+    try { card.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) { card.scrollIntoView(); }
+    var btn = card.querySelector('.sb-card');
+    var fxNote = currentFx !== 'normal' ? ' with ' + fxPreset(currentFx).label : '';
+    var armed = false;
+    function armGesture() {
+      if (armed) return;
+      armed = true;
+      toast('\u25B6 Tap anywhere to hear ' + entry.label + fxNote);
+      var fire = function () {
+        document.removeEventListener('pointerdown', fire, true);
+        document.removeEventListener('keydown', fire, true);
+        previewSound(entry, btn);
+      };
+      document.addEventListener('pointerdown', fire, true);
+      document.addEventListener('keydown', fire, true);
+    }
+    // Give layout a beat, then try to play. A suspended context = autoplay blocked.
+    setTimeout(function () {
+      var ctx = getCtx();
+      var go = function () {
+        if (ctx.state === 'running') {
+          toast('\u25B6 ' + entry.label + fxNote);
+          previewSound(entry, btn);
+        } else armGesture();
+      };
+      if (ctx.state === 'suspended') {
+        var r = ctx.resume();
+        if (r && r.then) r.then(go, armGesture); else go();
+      } else go();
+    }, 420);
+  }
+  function soundLink(id) {
+    var u = location.origin + '/tools/soundboard/?sound=' + encodeURIComponent(id);
+    if (currentFx !== 'normal') u += '&fx=' + encodeURIComponent(currentFx);
+    return u;
+  }
+  function renderChips() {
+    var wrap = $('sb-b-chips'); if (!wrap) return;
+    wrap.innerHTML = '';
+    [['all', 'All']].concat(CAT_ORDER.map(function (c) { return [c, CAT_NAMES[c]]; })).forEach(function (pair) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'sb-b-chip' + (browseCat === pair[0] ? ' active' : '');
+      b.textContent = (pair[0] === 'all' ? '' : (CAT_EMOJI[pair[0]] || '') + ' ') + pair[1];
+      b.addEventListener('click', function () { browseCat = pair[0]; renderChips(); renderExplore(); });
+      wrap.appendChild(b);
+    });
+  }
+  // ── Live audio effects — free-music's PL-FX pattern, same presets, same shared
+  // SnipFX engine (snip-audio-fx.js buildChain). One active effect, applied to
+  // every sound this page plays (previews AND pads). ──
+  var FX_PRESETS = [
+    { key: 'normal',    label: 'Off',               emoji: '',    set: { rate: 1 } },
+    { key: 'slowed',    label: 'Slowed + Reverb',   emoji: '\u{1F319}', set: { rate: 0.80, reverb: 0.55, reverbTail: 2.8 } },
+    { key: 'nightcore', label: 'Nightcore',         emoji: '\u26A1',    set: { rate: 1.30, reverb: 0.12, reverbTail: 2.2 } },
+    { key: 'spedup',    label: 'Sped Up',           emoji: '\u{1F680}', set: { rate: 1.25 } },
+    { key: 'vaporwave', label: 'Vaporwave',         emoji: '\u{1F334}', set: { rate: 0.80, reverb: 0.60, reverbTail: 3.2, lowpass: 3200 } },
+    { key: 'bass',      label: 'Bass Boost',        emoji: '\u{1F50A}', set: { rate: 1.0, reverb: 0, bass: { freq: 110, gain: 8, trim: -1.5 }, limiter: true } },
+    { key: '8d',        label: '8D Audio',          emoji: '\u{1F3A7}', set: { rate: 1.0, reverb: 0.22, reverbTail: 2.6, pan8d: { period: 10, depth: 0.92 } } },
+    { key: 'screwed',   label: 'Chopped & Screwed', emoji: '\u{1F6E2}\uFE0F', set: { rate: 0.75, reverb: 0.40, reverbTail: 2.8 } },
+    // ── Voice-changer set — the TTS tool's presets, copied (same params, same builders) ──
+    { key: 'chipmunk',  label: 'Chipmunk',    emoji: '\u{1F43F}\uFE0F', set: { rate: 1.6 } },
+    { key: 'deep',      label: 'Deep Voice',  emoji: '\u{1F996}', set: { rate: 0.66, bass: { gain: 6, freq: 90 } } },
+    { key: 'shout',     label: 'Shout',       emoji: '\u{1F4E2}', set: { rate: 1 }, build: 'lab', vp: { hp: 120, pre: 2.2, drive: 18, peak: { f: 3000, g: 7, q: 0.8 }, lp: 8000, out: 0.9 } },
+    { key: 'demon',     label: 'Demon',       emoji: '\u{1F479}', set: { rate: 0.68 }, build: 'demon' },
+    { key: 'ghost',     label: 'Ghost',       emoji: '\u{1F47B}', set: { rate: 0.95 }, build: 'lab', vp: { hp: 900, trem: { rate: 6, depth: 0.25 }, lp: 7500, rev: { wet: 0.7, tail: 3.8, decay: 1.8 }, out: 0.9 } },
+    { key: 'door',      label: 'Behind Door', emoji: '\u{1F6AA}', set: { rate: 1 }, build: 'lab', vp: { lp: 380, lpQ: 1.2, wob: { rate: 0.35, depth: 90 }, mk: 2.2, rev: { wet: 0.18, tail: 1.2 }, out: 0.95 } },
+    { key: 'stadium',   label: 'Stadium',     emoji: '\u{1F3DF}\uFE0F', set: { rate: 1 }, build: 'lab', vp: { hp: 550, pre: 1.9, drive: 16, peak: { f: 1500, g: 7, q: 1.4 }, lp: 3000, echo: { t: 0.19, fb: 0.3, wet: 0.35 }, rev: { wet: 0.25, tail: 2.6 }, out: 0.9 } },
+    { key: 'robot',     label: 'Robot',       emoji: '\u{1F916}', set: { rate: 1 }, build: 'robot' },
+    { key: 'telephone', label: 'Telephone',   emoji: '\u260E\uFE0F', set: { rate: 1 }, build: 'telephone' },
+    { key: 'echo',      label: 'Echo / Cave', emoji: '\u{1F573}\uFE0F', set: { rate: 1 }, build: 'echo' }
+  ];
+  var currentFx = 'normal';
+  var lastPlayed = null;   // { label, get: () => Promise<AudioBuffer> } — for Save-with-effect
+  function fxPreset(k) { return FX_PRESETS.filter(function (p) { return p.key === k; })[0] || FX_PRESETS[0]; }
+  // Route a buffer source through the ACTIVE effect (live). Returns nodes to start.
+  // ── Voice-changer builders — copied verbatim from the TTS tool ──
+  function driveCurve(k){ var n=1024, c=new Float32Array(n); for(var i=0;i<n;i++){ var x=i*2/n-1; c[i]=(1+k)*x/(1+k*Math.abs(x)); } return c; }
+  function buildRobot(ctx, src, starts){           // ring modulation -> metallic
+    var ring=ctx.createGain(); ring.gain.value=0;
+    var osc=ctx.createOscillator(); osc.type='square'; osc.frequency.value=55;
+    var depth=ctx.createGain(); depth.gain.value=1; osc.connect(depth); depth.connect(ring.gain);
+    src.connect(ring); ring.connect(ctx.destination); starts.push(osc);
+  }
+  function buildTelephone(ctx, src, starts){       // band-limited "phone line"
+    var hp=ctx.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=500; src.connect(hp);
+    var lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=3000; hp.connect(lp);
+    var pk=ctx.createBiquadFilter(); pk.type='peaking'; pk.frequency.value=1700; pk.gain.value=6; pk.Q.value=1.2; lp.connect(pk);
+    pk.connect(ctx.destination);
+  }
+  function buildEcho(ctx, src, starts){            // delay + feedback
+    var dly=ctx.createDelay(1.0); dly.delayTime.value=0.28;
+    var fb=ctx.createGain(); fb.gain.value=0.4; var wet=ctx.createGain(); wet.gain.value=0.5;
+    src.connect(ctx.destination);
+    src.connect(dly); dly.connect(fb); fb.connect(dly); dly.connect(wet); wet.connect(ctx.destination);
+  }
+  function buildDemon(ctx, src, starts){           // growl: mild drive + heavy lows + dark reverb (rate 0.68 does the pitch)
+    var pre=ctx.createGain(); pre.gain.value=1.6; src.connect(pre);
+    var ws=ctx.createWaveShaper(); ws.curve=driveCurve(10); ws.oversample='2x'; pre.connect(ws);
+    var ls=ctx.createBiquadFilter(); ls.type='lowshelf'; ls.frequency.value=140; ls.gain.value=7; ws.connect(ls);
+    var lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=5200; ls.connect(lp);
+    var comp=ctx.createDynamicsCompressor(); comp.threshold.value=-14; comp.knee.value=8; comp.ratio.value=6; comp.attack.value=0.004; comp.release.value=0.15; lp.connect(comp);
+    comp.connect(ctx.destination);
+    if (window.SnipFX) { var wet=ctx.createGain(); wet.gain.value=0.22; var cv=ctx.createConvolver(); cv.buffer=SnipFX.makeReverbIR(ctx,2.2,2.4); comp.connect(cv); cv.connect(wet); wet.connect(ctx.destination); }
+  }
+  // one parametric chain for all lab variants: hp -> pre -> drive -> peak -> shelf -> lp(+wobble) -> trem -> makeup -> comp -> out (+echo/reverb sends)
+  function buildLab(ctx, src, starts, vp){
+    vp=vp||{}; var node=src, g;
+    if(vp.hp){ var hp=ctx.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=vp.hp; node.connect(hp); node=hp; }
+    if(vp.pre){ g=ctx.createGain(); g.gain.value=vp.pre; node.connect(g); node=g; }
+    if(vp.drive){ var ws=ctx.createWaveShaper(); ws.curve=driveCurve(vp.drive); ws.oversample='2x'; node.connect(ws); node=ws; }
+    if(vp.peak){ var pk=ctx.createBiquadFilter(); pk.type='peaking'; pk.frequency.value=vp.peak.f; pk.gain.value=vp.peak.g; pk.Q.value=vp.peak.q||1; node.connect(pk); node=pk; }
+    if(vp.lp){ var lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=vp.lp; lp.Q.value=vp.lpQ||0.8; node.connect(lp); node=lp;
+      if(vp.wob){ var wo=ctx.createOscillator(); wo.type='sine'; wo.frequency.value=vp.wob.rate; var wd=ctx.createGain(); wd.gain.value=vp.wob.depth; wo.connect(wd); wd.connect(lp.frequency); starts.push(wo); } }
+    if(vp.trem){ var tg=ctx.createGain(); tg.gain.value=1-vp.trem.depth*0.5; var to=ctx.createOscillator(); to.type='sine'; to.frequency.value=vp.trem.rate; var td=ctx.createGain(); td.gain.value=vp.trem.depth*0.5; to.connect(td); td.connect(tg.gain); node.connect(tg); node=tg; starts.push(to); }
+    if(vp.mk){ g=ctx.createGain(); g.gain.value=vp.mk; node.connect(g); node=g; }
+    var cp=ctx.createDynamicsCompressor(); cp.threshold.value=-14; cp.knee.value=8; cp.ratio.value=6; cp.attack.value=0.003; cp.release.value=0.12; node.connect(cp); node=cp;
+    var out=ctx.createGain(); out.gain.value=vp.out||1; node.connect(out); out.connect(ctx.destination);
+    if(vp.echo){ var dl=ctx.createDelay(1.0); dl.delayTime.value=vp.echo.t; var fb=ctx.createGain(); fb.gain.value=vp.echo.fb; var ew=ctx.createGain(); ew.gain.value=vp.echo.wet; out.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(ew); ew.connect(ctx.destination); }
+    if(vp.rev && window.SnipFX){ var rw=ctx.createGain(); rw.gain.value=vp.rev.wet; var cv=ctx.createConvolver(); cv.buffer=SnipFX.makeReverbIR(ctx, vp.rev.tail||2.6, vp.rev.decay||2.2); out.connect(cv); cv.connect(rw); rw.connect(ctx.destination); }
+  }
+  function fxConnect(ctx, src, key) {
+    key = key || currentFx;
+    var p = fxPreset(key);
+    src.playbackRate.value = p.set.rate || 1;
+    if (key === 'normal') { src.connect(ctx.destination); return; }
+    var starts = [];
+    if (p.build === 'robot') buildRobot(ctx, src, starts);
+    else if (p.build === 'telephone') buildTelephone(ctx, src, starts);
+    else if (p.build === 'echo') buildEcho(ctx, src, starts);
+    else if (p.build === 'demon') buildDemon(ctx, src, starts);
+    else if (p.build === 'lab') buildLab(ctx, src, starts, p.vp);
+    else if (window.SnipFX) SnipFX.buildChain(ctx, src, p.set, starts);   // music set: bass/lowpass/8D/limiter/reverb
+    else { src.connect(ctx.destination); return; }
+    starts.forEach(function (n) { try { n.start(0); } catch (e) {} });
+  }
+  function buildFxChips() {
+    var wrap = $('sb-fx-chips'); if (!wrap) return;
+    $('sb-fx-row').classList.toggle('has-active', currentFx !== 'normal');
+    wrap.innerHTML = '';
+    FX_PRESETS.forEach(function (p) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'fx-chip' + (p.key === currentFx ? ' active' : '');
+      b.dataset.key = p.key;
+      b.innerHTML = (p.emoji ? '<span class="fx-emoji">' + p.emoji + '</span>' : '') + p.label;
+      b.addEventListener('click', function () {
+        currentFx = p.key;
+        buildFxChips();
+        sbFocus();
+        // Instant A/B: replay the current sound from the top with the new effect.
+        if (lastPlayed) {
+          var ctx = getCtx();
+          if (ctx.state === 'suspended') { try { ctx.resume(); } catch (e) {} }
+          var _fxT0 = performance.now();
+          lastPlayed.get().then(function (buf) {
+            stopAll();
+            if (previewSrc) { try { previewSrc.stop(); } catch (e) {} }
+            var src = ctx.createBufferSource(); src.buffer = buf; fxConnect(ctx, src); src.start();
+            previewSrc = src;
+            src.onended = function () { if (previewSrc === src) previewSrc = null; };
+            // A chip click REPLAYS the current sound with the new effect. It is a play, and it
+            // reported nothing - so "which sounds get replayed, how often" was blind to the one
+            // path whose whole purpose is replaying. Always cached (it re-reads a buffer we hold),
+            // which is also why it never showed up as a latency problem.
+            sbPlayed(performance.now() - _fxT0, true, 'fx', (lastPlayed && lastPlayed.soundId) || 'unknown', 0, buf.duration * 1000);
+          }).catch(function () {});
+        } else {
+          toast(p.key === 'normal' ? 'Effects off' : p.label + ' \u2014 press any sound to hear it');
+        }
+        // R-7db0ce catch-it-early: sb_fx_chip is UI churn (18.6/session) — 1-in-5 sample so it can't
+        // eat budget headroom as the soundboard grows; sampled:5 tells posthog to scale counts x5.
+        try { if (window.posthog && Math.random() < 0.2) window.posthog.capture('sb_fx_chip', { fx: p.key, sampled: 5 }); } catch (e) {}
+      });
+      wrap.appendChild(b);
+    });
+  }
+  buildFxChips();
+  // Keep the page's bottom padding in sync with the dock's real height (it wraps
+  // to multiple rows on desktop now that the voice-changer set is in).
+  function padForDock() {
+    var d = $('sb-fx-row');
+    if (d) document.body.style.paddingBottom = (d.offsetHeight + 12) + 'px';
+  }
+  padForDock();
+  window.addEventListener('resize', padForDock);
+  // Save-with-effect: offline-render the last-played sound through the SAME
+  // buildChain, decode-roundtrip (Brave-safe), land it on the board as a new pad.
+  // Instant save: no rendering — store the ORIGINAL sound + which effect
+  // (effect-by-reference). Playback applies the effect live, so saving is just
+  // writing the clip + a preset name. Milliseconds, and immune to Brave farbling.
+  function addSoundToBoard(label, recP, fxKey) {
+    var eff = fxKey && fxKey !== 'normal' ? fxKey : null;
+    var fullLabel = label;   // the card's fx badge shows the effect — don't repeat it in the name (Marc)
+    return recP.then(function (rec) {
+      var id = uid();
+      return idbPut(id, { blob: rec.blob, name: fullLabel, type: rec.type || rec.blob.type || 'audio/mpeg' }).then(function () {
+        var pad = { id: id, label: fullLabel, hotkey: freeKey(''), color: PALETTE[pads.length % PALETTE.length] };
+        if (eff) { pad.fx = eff; pad.userFx = 1; }
+        if (rec.kind) pad.kind = rec.kind;
+        pads.push(pad);
+        saveConfig(); render();
+        return fullLabel;
+      });
+    });
+  }
+  $('sb-save-cta').addEventListener('click', function () {
+    if (!lastPlayed) { toast('Play a sound first, then save it'); return; }
+    var btn = $('sb-save-cta'); btn.disabled = true; btn.innerHTML = '\u23F3 Saving\u2026';
+    addSoundToBoard(lastPlayed.label, lastPlayed.getRec(), currentFx).then(function (fullLabel) {
+      btn.innerHTML = '\u2713 Saved!';
+      toast('\u2713 Saved to Your board \u2014 ' + fullLabel);
+      try { if (window.posthog) window.posthog.capture('sb_fx_saved', { fx: currentFx }); } catch (e) {}
+    }).catch(function (e) { console.error(e); toast('Could not save \u2014 try again'); }).then(function () {
+      btn.disabled = false;
+      setTimeout(function () { btn.innerHTML = '\u{1F4BE} Save with effect'; }, 1800);
+    });
+  });
+  function fxWav(buf) {
+    var nCh = Math.min(2, buf.numberOfChannels) || 1, sr = buf.sampleRate, n = buf.length;
+    var bytes = 44 + n * nCh * 2, ab = new ArrayBuffer(bytes), v = new DataView(ab);
+    function s(o, str) { for (var i = 0; i < str.length; i++) v.setUint8(o + i, str.charCodeAt(i)); }
+    s(0, 'RIFF'); v.setUint32(4, bytes - 8, true); s(8, 'WAVE'); s(12, 'fmt ');
+    v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, nCh, true);
+    v.setUint32(24, sr, true); v.setUint32(28, sr * nCh * 2, true); v.setUint16(32, nCh * 2, true); v.setUint16(34, 16, true);
+    s(36, 'data'); v.setUint32(40, n * nCh * 2, true);
+    var o = 44;
+    for (var i = 0; i < n; i++) for (var c = 0; c < nCh; c++) {
+      var x = Math.max(-1, Math.min(1, buf.getChannelData(Math.min(c, buf.numberOfChannels - 1))[i]));
+      v.setInt16(o, x < 0 ? x * 0x8000 : x * 0x7FFF, true); o += 2;
+    }
+    return new Blob([ab], { type: 'audio/wav' });
+  }
+
+  // Raw-file downloads are only offered where the license allows redistribution
+  // (CC0 / Public Domain). Mixkit sounds are free to USE in projects but their
+  // license bars re-hosting raw downloads — those get the explainer modal.
+  function dlAllowed(d) { return /CC0|Public Domain/i.test(d.license || ''); }
+  function openDlModal(d) {
+    var m = $('sb-dl-modal');
+    $('sb-dlm-title').textContent = d.label;
+    $('sb-dlm-lic').textContent = d.license;
+    var src = $('sb-dlm-src');
+    src.href = d.source || '#';
+    src.textContent = 'Get it free on ' + (d.source_name || 'the source') + ' →';
+    m.hidden = false;
+  }
+  (function () {
+    var m = $('sb-dl-modal');
+    m.addEventListener('click', function (e) { if (e.target === m || e.target.closest('.sb-modal-x')) m.hidden = true; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !m.hidden) m.hidden = true; });
+  })();
+
+  // ── WHAT PEOPLE LOOK FOR AND DO NOT FIND ──────────────────────────────────────────
+  // posthog R-0957ea: "Put my singing monsters sounds in PlEASE!" arrived through the bug form on
+  // the TRANSCRIPTION page, because a content request had nowhere else to go. The soundboard
+  // measured 873 adds, 917 effect chips, 553 likes - and nothing at all about a sound somebody
+  // searched for and did not get. So one anecdote was the entire signal, and it could not say
+  // whether one person wanted it or two hundred did.
+  //
+  // SHAPE, NEVER THE TEXT. posthog asked for the shape explicitly and was right to: a sound name
+  // is low-risk until the day the field catches something it should not, and length + script +
+  // digits answers the product question without carrying anything a person typed.
+  //
+  // DEBOUNCED, because the box reports on every keystroke. "my singing monsters" is 19 input
+  // events; this emits ONE, 700 ms after the typing stops. A per-keystroke event here would be
+  // the metronome I was sent to fix on the visualiser, self-inflicted on a new field.
+  // ZERO RESULTS ALWAYS GO; a search that found something is sampled 1-in-5 - the empty ones are
+  // the signal and they are rare, the successful ones are common and only needed for the ratio.
+  var sbQTimer = null, sbQSeen = {}, sbLastResults = -1;
+  function sbQShape(q) {
+    var len = q.length;
+    return {
+      len_bucket: len <= 2 ? '1-2' : len <= 5 ? '3-5' : len <= 10 ? '6-10' : len <= 20 ? '11-20' : '21+',
+      words: q.split(/\s+/).filter(Boolean).length,
+      has_digits: /[0-9]/.test(q),
+      script: /[\u0400-\u04ff]/.test(q) ? 'cyrillic'
+            : /[\u3040-\u30ff\u4e00-\u9fff]/.test(q) ? 'cjk'
+            : /[\u0600-\u06ff]/.test(q) ? 'arabic'
+            : /[a-z]/i.test(q) ? 'latin' : 'other'
+    };
+  }
+  function sbSearchReport() {
+    try {
+      var q = (($('sb-x-search') || {}).value || '').trim().toLowerCase();
+      if (q.length < 2) return;                      // a single letter is typing, not a search
+      if (sbLastResults < 0) return;                 // nothing rendered yet
+      // The query itself never leaves the page - it is only a local key so retyping the same
+      // thing does not report twice.
+      if (sbQSeen[q]) return;
+      sbQSeen[q] = 1;
+      var empty = sbLastResults === 0;
+      if (!empty && Math.random() >= 0.2) return;
+      var props = sbQShape(q);
+      props.results = sbLastResults;
+      props.found = !empty;
+      props.category = browseCat;                    // 'all', or the filter that excluded it
+      props.sampled = empty ? 1 : 5;
+      if (window.snipsoundTrack) window.snipsoundTrack('sb_search', props);
+    } catch (e) {}
+  }
+  function sbSearchQueued() {
+    if (sbQTimer) clearTimeout(sbQTimer);
+    sbQTimer = setTimeout(sbSearchReport, 700);
+  }
+
+  function renderExplore() {
+    var grid = $('sb-x-grid'); if (!grid) return;
+    var q = (($('sb-x-search') || {}).value || '').trim().toLowerCase();
+    var items = CATALOG.filter(function (d) {
+      if (browseCat !== 'all' && d.category !== browseCat) return false;
+      if (!q) return true;
+      return d.label.toLowerCase().indexOf(q) >= 0 || d.category.indexOf(q) >= 0 ||
+        (CAT_NAMES[d.category] || '').toLowerCase().indexOf(q) >= 0;
+    });
+    sbLastResults = items.length;   // read by sbSearchReport once the typing settles
+    grid.innerHTML = '';
+    if (!items.length) {
+      var none = document.createElement('p'); none.className = 'sb-x-none';
+      none.textContent = q ? ('No sounds match \u201c' + q + '\u201d') : 'No sounds in this category yet.';
+      grid.appendChild(none);
+      return;
+    }
+    var sv = BUTTON_STYLES[currentStyle] || BUTTON_STYLES['playful-plastic'];
+    if (sv.css) sv = BUTTON_STYLES['playful-plastic'];   // art imgs still rendered (hidden by plastic CSS)
+    var row = document.createElement('div');
+    row.className = 'sb-b-row';
+    items.forEach(function (d) {
+      var added = pads.some(function (p) { return p.kind === d.id; });
+      var it = document.createElement('div');
+      it.className = 'sb-b-item';
+      it.setAttribute('data-sound', d.id);
+      // Spec card: hue-driven plastic pad, emoji + label INSIDE, corner heart/+ .
+      // (Corners are spans with button role — nested <button> is invalid HTML.)
+      it.innerHTML =
+        // data-rage-ok: PRESSING THIS REPEATEDLY IS THE PRODUCT (posthog R-9f0fd6). The rage
+        // detector fires on 3 clicks inside 1000 ms inside a 30 px box; a 96 px pad tapped three
+        // times in a second satisfies every part of that, and measured in both Edge and Chromium
+        // the sink gets sound_played on the same presses it gets rage_click for. 66 rage users a
+        // day on this page were people playing it, and two lanes spent three days reading that as
+        // a dead control. theme.js put the escape hatch in markup for exactly this control; this
+        // page never used it.
+        // The COST, stated rather than discovered: the four .sb-corner controls live inside this
+        // button, so the ancestor walk exempts them too. Their own failures are visible elsewhere
+        // (a favourite toggles and syncs, download fires file_saved, add changes the board), and
+        // the general fix is the mutation test posthog offered when this detector was built -
+        // rapid clicking that changes nothing is rage, and a play press toggles .playing.
+        '<button type="button" class="sb-card" data-rage-ok style="--sbh:' + (CAT_HUE[d.category] || 200) + '" title="Play ' + '">' +
+          '<span class="sb-corner sb-corner-heart' + (likes().indexOf(d.id) >= 0 ? ' on' : '') + '" role="button" tabindex="0" title="Favorite \u2014 synced with the Video Editor" aria-label="Favorite"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.7-10-9.3C.6 8.6 2.6 5 6.1 5c2 0 3.4 1.1 4.2 2.4h3.4C14.5 6.1 15.9 5 17.9 5c3.5 0 5.5 3.6 4.1 6.7C19.5 16.3 12 21 12 21z"/></svg></span>' +
+          '<span class="sb-corner sb-corner-dl" role="button" tabindex="0" title="Download" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>' +
+          '<span class="sb-corner sb-corner-link" role="button" tabindex="0" title="Copy link" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span>' +
+          '<span class="sb-corner sb-corner-add' + (added ? ' added' : '') + '" role="button" tabindex="0" title="' + (added ? 'On your board' : 'Add to your board') + '" aria-label="Add to your board">' + (added ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>') + '</span>' +
+          '<span class="sb-card-emoji">' + (CAT_EMOJI[d.category] || '\u{1F3B2}') + '</span>' +
+          '<span class="sb-card-lbl"></span>' +
+        '</button>' +
+        '<span class="sb-b-lic"></span>';
+      it.querySelector('.sb-card-lbl').textContent = d.label;
+      var playBtn = it.querySelector('.sb-card');
+      playBtn.setAttribute('aria-label', 'Play ' + d.label);
+      var lic = it.querySelector('.sb-b-lic');
+      if (d.source) {
+        var a2 = document.createElement('a');
+        a2.href = d.source; a2.target = '_blank'; a2.rel = 'noopener';
+        a2.textContent = d.license + ' \u00b7 ' + d.source_name;
+        lic.appendChild(a2);
+      } else lic.textContent = d.license + ' \u00b7 ' + d.source_name;
+      playBtn.addEventListener('pointerdown', function (e) {
+        if (e.target.closest('.sb-corner')) return;
+        playBtn.classList.add('is-pressed');
+        sbPrefetch(d, 'press');   // start the fetch on the PRESS, not on the click it becomes
+      });
+      ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (ev) {
+        playBtn.addEventListener(ev, function () { playBtn.classList.remove('is-pressed'); });
+      });
+      // A deliberate hover buys much more than the press does - 150 ms of dwell separates
+      // "reading the grid" from "sweeping the mouse across it".
+      playBtn.addEventListener('pointerenter', function () {
+        if (sbHoverTimer) clearTimeout(sbHoverTimer);
+        sbHoverTimer = setTimeout(function () { sbPrefetch(d, 'hover'); }, 150);
+      });
+      playBtn.addEventListener('pointerleave', function () {
+        if (sbHoverTimer) { clearTimeout(sbHoverTimer); sbHoverTimer = null; }
+      });
+      playBtn.addEventListener('click', function (e) {
+        if (e.target.closest('.sb-corner')) return;
+        pinCard(playBtn);
+        previewSound(d, playBtn);
+      });
+      it.querySelector('.sb-corner-heart').addEventListener('click', function (e) {
+        e.stopPropagation();
+        var on = toggleLike(d.id);
+        it.querySelector('.sb-corner-heart').classList.toggle('on', on);
+        if (on) {
+          // Heart = save to your board WITH the active effect (instant, by reference).
+          var eff = currentFx !== 'normal' ? currentFx : null;
+          var dup = pads.some(function (pd) { return pd.kind === d.id && (pd.fx || null) === eff; });
+          if (dup) { toast('Already on your board'); }
+          else addSoundToBoard(d.label, getSound(d).then(function (x) { return { blob: x.blob, type: x.type, kind: d.id }; }), currentFx)
+            .then(function (fullLabel) { toast('\u2713 Saved to Your board \u2014 ' + fullLabel); })
+            .catch(function () { toast('Could not save that sound'); });
+        } else {
+          toast('Removed from favorites (the pad stays on your board)');
+        }
+        try { if (window.posthog) window.posthog.capture('sb_like_toggled', { sound: d.id, on: on, fx: currentFx }); } catch (e2) {}
+      });
+      it.querySelector('.sb-corner-link').addEventListener('click', function (e) {
+        e.stopPropagation();
+        var link = soundLink(d.id);
+        (navigator.clipboard ? navigator.clipboard.writeText(link) : Promise.reject()).then(
+          function () { toast('Link copied'); },
+          function () { prompt('Copy this link:', link); });
+      });
+      it.querySelector('.sb-corner-dl').addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (dlAllowed(d)) {
+          getSound(d).then(function (s) {
+            var url = URL.createObjectURL(s.blob);
+            var a3 = document.createElement('a');
+            a3.href = url; a3.download = d.label + '.mp3';
+            document.body.appendChild(a3); a3.click(); document.body.removeChild(a3);
+            URL.revokeObjectURL(url);
+            toast('Downloaded — ' + d.license + ', free to use anywhere');
+            try { if (window.posthog) window.posthog.capture('sb_download', { sound: d.id }); } catch (e2) {}
+          }).catch(function () { toast('Could not fetch that sound'); });
+        } else {
+          openDlModal(d);
+          try { if (window.posthog) window.posthog.capture('sb_dl_license_modal', { sound: d.id }); } catch (e2) {}
+        }
+      });
+      it.querySelector('.sb-corner-add').addEventListener('click', function (e) {
+        e.stopPropagation();
+        var ab = it.querySelector('.sb-corner-add');
+        var eff = currentFx !== 'normal' ? currentFx : null;
+        if (pads.some(function (p) { return p.kind === d.id && (p.fx || null) === eff; })) { toast('Already on your board'); return; }
+        addExplore(d).then(function () {
+          saveConfig(); render();
+          ab.classList.add('added');
+          ab.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+          ab.title = 'On your board';
+          toast(d.label + (eff ? ' (' + fxPreset(eff).label + ')' : '') + ' added to your board');
+          try { if (window.posthog) window.posthog.capture('sb_explore_added', { sound: d.id }); } catch (e2) {}
+        }).catch(function (e2) { console.error(e2); toast('Could not add that sound'); });
+      });
+      row.appendChild(it);
+    });
+    grid.appendChild(row);
+  }
+
+  // ── Tabs: Your board / Browse sounds ──
+  function showTab(name) {
+    var board = name === 'board';
+    $('sb-view-board').hidden = !board;
+    $('sb-view-browse').hidden = board;
+    $('sb-tab-board').classList.toggle('active', board);
+    $('sb-tab-browse').classList.toggle('active', !board);
+    $('sb-tab-board').setAttribute('aria-selected', board ? 'true' : 'false');
+    $('sb-tab-browse').setAttribute('aria-selected', board ? 'false' : 'true');
+    if (!board) renderExplore();
+  }
+  $('sb-tab-board').addEventListener('click', function () { showTab('board'); });
+  $('sb-tab-browse').addEventListener('click', function () { showTab('browse'); });
+
+  // ── Playback ────────────────────────────────────────────────────────────────
+  var playCount = {};   // id -> how many instances of this pad are live (for the lit state)
+  // A pad whose clip is being fetched/decoded right now. Keyed by pad, because two DIFFERENT
+  // pads loading at once is legitimate; the same pad twice never is.
+  var loadingPad = {};
+  // HOW LONG DOES A PAD TAKE TO SPEAK? (posthog R-0957ea item 2.) Nobody could answer it, which is
+  // why the rage-click number had three different explanations in two days. cached:true should sit
+  // near zero; cached:false is the window people are clicking into.
+  // SAMPLED, because a pad press is the single most frequent action on this page and we are near
+  // the event tier: the FIRST cold play of a session always goes (that is the number that matters,
+  // and it makes every session with a cold play contribute exactly one), everything after that at
+  // 1 in 5 with sampled:5 so the rate can be multiplied back - the same shape already used for
+  // sb_fx_chip on this page.
+  // source ('pad' | 'browse') is the field that makes the percentiles mean anything (posthog
+  // R-0957ea): the two paths are different code with different caches, and the rage-click targets
+  // turned out to be mostly BROWSE cards, not board pads. Mixing them would average an in-memory
+  // replay with a cold CDN fetch, and the median would describe neither.
+  // first_cold is per SOURCE, so one unsampled cold reading arrives for each path per session.
+  // overlap = how many copies of THIS sound were already sounding when the press landed. It is the
+  // integer design's loop ruling turns on (R-a7ad74): a cluster at overlap 3-5 is someone playing
+  // in rhythm and nothing should ship; a cluster at 0-1 spaced at the sound's own length is someone
+  // who wants it to keep going, and the loop control ships.
+  // READ THE RANGE PER SOURCE BEFORE SPLITTING ON IT. On the browse grid overlap can only ever be
+  // 0 or 1, because each preview STOPS the previous one - so a 3-5 cluster is unobservable there by
+  // construction, and a split expecting it would read every browse cluster as "wants a loop".
+  // Pads genuinely stack, so 3-5 is only meaningful for source 'pad' and 'key'.
+  // `sound` replaces `kind`, which carried the same catalog id under a name nobody could group by.
+  // One day of `kind` data is the whole cost of the rename, and posthog will group on this for a
+  // year - better a confusing field dies at a day old than gets aliased forever.
+  // WHY overlap ALONE CANNOT CARRY THE LOOP RULING, found by measuring it rather than shipping it:
+  // the same sound can never stack on ANY path here. A pad re-press deliberately retriggers from
+  // the top "instead of stacking copies" (play(), and it is the right behaviour), and each browse
+  // preview stops the previous one. So overlap is 0 or 1 everywhere, and a 3-5 cluster - design's
+  // evidence for "playing in rhythm" - is unobservable by construction. A split on it would read
+  // EVERY cluster as "wants it to keep going" and ship the loop control on a field that cannot
+  // produce the other answer.
+  // So the discriminator is TIMING, and these two fields carry it:
+  //   gap_ms  - since the previous play of THIS sound (null on the first)
+  //   dur_ms  - how long the sound actually is
+  // gap_ms at or above dur_ms is someone who let it finish and wants it again: the loop control
+  // helps them. gap_ms far below dur_ms is someone cutting it off - impatience or rhythm - and a
+  // loop would not help. That is design's question, answerable, from one subtraction.
+  var sbLastPlay = {};
+  function sbPlayed(ms, cached, source, sound, overlap, durMs, prefetching, fetchMs, decodeMs) {
+    try {
+      window.__sbCold = window.__sbCold || {};
+      var first = !cached && !window.__sbCold[source];
+      if (first) window.__sbCold[source] = 1;
+      var now = (window.performance && performance.now) ? performance.now() : Date.now();
+      var key = (sound || 'unknown');
+      var gap = sbLastPlay[key] != null ? Math.round(now - sbLastPlay[key]) : null;
+      sbLastPlay[key] = now;
+      if (!first && Math.random() >= 0.2) return;
+      if (window.snipsoundTrack) window.snipsoundTrack('sound_played', {
+        ms: Math.round(ms), cached: !!cached, source: source,
+        sound: key, overlap: overlap | 0,
+        gap_ms: gap, dur_ms: durMs == null ? null : Math.round(durMs),
+        prefetched: !!prefetching,
+        // Only on a play that actually fetched. fetch_ms in single digits with a real decode_ms
+        // is the HTTP cache answering; tens or hundreds is the network. This is what splits
+        // cached:false into "warm on disk" and "genuinely cold" without a CDN header.
+        fetch_ms: fetchMs == null ? null : fetchMs,
+        decode_ms: decodeMs == null ? null : decodeMs,
+        first_cold: first, sampled: first ? 1 : 5
+      });
+    } catch (e) {}
+  }
+  function play(pad, via) {
+    var ctx = getCtx();
+    // Counted BEFORE start() stops this pad's own sources for the retrigger - after it, this is
+    // always 0 and the field would be a constant.
+    var _ov = 0;
+    try { for (var _a = 0; _a < active.length; _a++) if (active[_a].__padId === pad.id) _ov++; } catch (e) {}
+    try { trace('pad ' + pad.id + ' ctx ' + ctx.state); } catch (e) {}
+    // Autoplay policy (Brave especially): the context can sit 'suspended' even
+    // after a click — resume on every play or pads fire into silence.
+    if (ctx.state === 'suspended') { try { ctx.resume(); } catch (e) {} }
+    function start(buf) {
+      // Rage-click = RETRIGGER: a re-press restarts this pad's sound from the
+      // top instead of stacking copies. Different pads still overlap freely.
+      active.slice().forEach(function (s) {
+        if (s.__padId === pad.id) { try { s.onended = null; s.stop(); } catch (e) {}
+          var i = active.indexOf(s); if (i >= 0) active.splice(i, 1); }
+      });
+      playCount[pad.id] = 0;
+      document.body.classList.add('sb-played');
+      lastPlayed = { label: pad.label, soundId: pad.kind || 'custom',
+        get: function () { return Promise.resolve(buf); },
+        getRec: function () { return idbGet(pad.id).then(function (r) { return { blob: r.blob, type: r.type, kind: pad.kind }; }); } };
+      // A pad saved "with effect" carries fx by reference — applied live, instantly.
+      var src = ctx.createBufferSource(); src.buffer = buf; fxConnect(ctx, src, pad.fx || currentFx); src.start();
+      src.__padId = pad.id;
+      active.push(src);
+      playCount[pad.id] = (playCount[pad.id] || 0) + 1;
+      // Completion metric = a session that actually PLAYED a sound (once per session).
+      if (!window.__sbPlayed) { window.__sbPlayed = 1; if (window.snipTrackCompleted) window.snipTrackCompleted('soundboard', 'play'); }
+      $('sb-stop').hidden = false;
+      src.onended = function () {
+        var i = active.indexOf(src); if (i >= 0) active.splice(i, 1);
+        if (!active.length) $('sb-stop').hidden = true;
+        playCount[pad.id] = Math.max(0, (playCount[pad.id] || 1) - 1);
+      };
+    }
+    // Cached buffer → instant playback: no ring, the press-down IS the feedback.
+    if (buffers[pad.id]) {
+      sbPlayed(0, true, via || 'pad', pad.kind || 'custom', _ov, buffers[pad.id].duration * 1000);
+      whenRunning(function () { start(buffers[pad.id]); });   // the instant path is the risky one
+      return;
+    }
+    // ALREADY LOADING THIS PAD — IGNORE THE PRESS (posthog R-0957ea). The soundboard is the
+    // most rage-clicked thing on the site: 23 users in 3 days hammering one card, 61 clusters of
+    // 3+ clicks. Every one of those presses used to start ANOTHER idbGet + decodeAudioData for
+    // the same clip, so the clicks competed with the decode they were waiting for and each extra
+    // press made the wait longer. The ring is already showing; a second decode adds nothing a
+    // user can perceive. Cached pads still RETRIGGER on re-press (above) - that is deliberate and
+    // untouched; this only swallows presses during the one window where there is nothing to play.
+    if (loadingPad[pad.id]) return;
+    loadingPad[pad.id] = true;
+    var _t0 = (window.performance && performance.now) ? performance.now() : Date.now();
+    // First play needs an IDB fetch + decode → show the spinning orbit ONLY while
+    // the user is actually waiting for the sound.
+    loadRingStart(pad.id);
+    idbGet(pad.id).then(function (rec) {
+      if (!rec || !rec.blob) { loadingPad[pad.id] = false; loadRingStop(pad.id); toast('Clip missing'); return; }
+      return rec.blob.arrayBuffer().then(function (ab) { return ctx.decodeAudioData(ab); }).then(function (buf) {
+        buffers[pad.id] = buf; loadingPad[pad.id] = false; loadRingStop(pad.id);
+        sbPlayed(((window.performance && performance.now) ? performance.now() : Date.now()) - _t0, false, via || 'pad', pad.kind || 'custom', _ov, buf.duration * 1000);
+        whenRunning(function () { start(buf); });
+      });
+    }).catch(function () {
+      loadingPad[pad.id] = false;
+      loadRingStop(pad.id); toast('Could not play this clip. Try another sound, or reload the page.');
+      if (window.snipTrackFailed) window.snipTrackFailed('soundboard', 'decode_failed', 'play', { explained: true, msg_key: 'try_other_or_reload' });
+    });
+  }
+  // Loading orbit — a comet sweeping the ring while a clip is fetched/decoded.
+  // It is a separate layer and never moves the button artwork.
+  function loadRingStart(id) {
+    var el = document.querySelector('.sb-pad[data-id="' + id + '"]'); if (!el) return;
+    el.classList.add('loading');
+    var ring = el.querySelector('.sb-pad-ring'); if (!ring) return;
+    var col = (getComputedStyle(el).getPropertyValue('--ring-color') || '#fff').trim() || '#fff';
+    if (reduceMotion) { ring.style.background = 'conic-gradient(' + col + ' 360deg, transparent 0)'; return; }
+    ring.style.background = 'conic-gradient(from 0deg, transparent 0 300deg, ' + col + ' 315deg, #fff 321deg, transparent 340deg)';
+  }
+  function loadRingStop(id) {
+    var el = document.querySelector('.sb-pad[data-id="' + id + '"]'); if (!el) return;
+    el.classList.remove('loading');
+    var ring = el.querySelector('.sb-pad-ring'); if (ring) ring.style.background = 'none';
+  }
+  function stopAll() {
+    active.slice().forEach(function (s) { try { s.stop(); } catch (e) {} });
+    active = []; playCount = {}; $('sb-stop').hidden = true;
+    document.querySelectorAll('.sb-pad.loading').forEach(function (el) {
+      el.classList.remove('loading');
+      var r = el.querySelector('.sb-pad-ring'); if (r) r.style.background = 'none';
+    });
+  }
+
+  // ── Hotkeys ──────────────────────────────────────────────────────────────────
+  function keyLabel(k) { if (!k) return ''; if (k === ' ') return 'Space'; return k.length === 1 ? k.toUpperCase() : k; }
+  function startListen(padId) {
+    listeningPadId = padId;
+    render();
+    toast('Press any key to bind — Esc to cancel');
+  }
+  function bindKey(padId, key) {
+    // clear the key from any other pad (one key = one pad)
+    pads.forEach(function (p) { if (p.id !== padId && p.hotkey === key) p.hotkey = ''; });
+    var pad = pads.filter(function (p) { return p.id === padId; })[0];
+    if (pad) pad.hotkey = key;
+    listeningPadId = null;
+    saveConfig(); render();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    // Capturing a hotkey for a pad
+    if (listeningPadId) {
+      e.preventDefault();
+      if (e.key === 'Escape') { listeningPadId = null; render(); return; }
+      if (e.key === 'Backspace' || e.key === 'Delete') { bindKey(listeningPadId, ''); return; }
+      if (e.key === 'Tab' || e.key === 'Shift' || e.key === 'Control' || e.key === 'Alt' || e.key === 'Meta') return;
+      bindKey(listeningPadId, e.key.length === 1 ? e.key.toLowerCase() : e.key);
+      return;
+    }
+    // Don't hijack keys while typing (labels, search, etc.)
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    var pad = pads.filter(function (p) { return p.hotkey && p.hotkey === k; })[0];
+    if (pad) { e.preventDefault(); play(pad, 'key'); }
+  });
+
+  // ── Render ────────────────────────────────────────────────────────────────
+  // Applied-effect badge markup for a board pad (guarded: render can run early).
+  function fxBadgeHtml(k) {
+    if (!k) return '';
+    try { var p = fxPreset(k); return p && p.key !== 'normal' ? '<span class="sb-fx-badge">' + (p.emoji ? p.emoji + ' ' : '') + p.label + '</span>' : ''; }
+    catch (e) { return ''; }
+  }
+  // One card at a time keeps its corner icons pinned open — the last one clicked.
+  var pinnedEl = null;
+  function pinCard(el) {
+    if (pinnedEl === el) return;
+    if (pinnedEl) pinnedEl.classList.remove('pinned');
+    pinnedEl = el; el.classList.add('pinned');
+  }
+  function render() {
+    var grid = $('sb-grid');
+    grid.innerHTML = '';
+    pads.forEach(function (pad) {
+      var el = document.createElement('div');
+      el.className = 'sb-pad'; el.setAttribute('data-id', pad.id);
+      el.style.setProperty('--pad-rgb', pad.color || PALETTE[0]);
+      el.style.setProperty('--pad-text', padText(pad.color));
+      el.innerHTML =
+        // FACE = the same plastic card as Browse sounds (emoji + editable label
+        // INSIDE the card) — one visual language across both tabs.
+        // data-rage-ok, same reason as the browse card above. .sb-pad-del sits inside this
+        // face and loses rage coverage with it; a removal that does nothing is visible as the pad
+        // still being on the board.
+        '<div class="sb-pad-face sb-card" data-rage-ok style="--sbh:' + (CAT_HUE[(CATALOG.filter(function (c) { return c.id === pad.kind; })[0] || {}).category] || (pad.userFx ? 190 : ((37 * (pads.indexOf(pad) + 1)) % 360))) + '">' +
+          '<button type="button" class="sb-pad-del" title="Remove from board" aria-label="Remove from board"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>' +
+          fxBadgeHtml(pad.fx) +
+          // Unset: a small \u270e edit icon. Set: the key itself. Listening: "Press a key\u2026".
+          '<span class="sb-pad-hotkey" title="Set a keyboard key for this sound">' +
+            '<svg class="sb-hk-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>' +
+            '<span class="sb-pad-kbd"></span>' +
+          '</span>' +
+          '<div class="sb-pad-ring"></div>' +
+          '<span class="sb-card-emoji">' + (CAT_EMOJI[(CATALOG.filter(function (c) { return c.id === pad.kind; })[0] || {}).category] || '\u{1F50A}') + '</span>' +
+          '<span class="sb-pad-label"></span>' +
+        '</div>';
+      var labelEl = el.querySelector('.sb-pad-label');
+      labelEl.textContent = pad.label;
+      var hk = el.querySelector('.sb-pad-hotkey');
+      var kbd = el.querySelector('.sb-pad-kbd');
+      var listening = listeningPadId === pad.id;
+      hk.classList.toggle('set', !!pad.hotkey && !listening);
+      hk.classList.toggle('unset', !pad.hotkey && !listening);
+      hk.classList.toggle('listening', listening);
+      kbd.textContent = listening ? 'Press a key…' : keyLabel(pad.hotkey);
+
+      // Play on pad click (but not when interacting with label / hotkey / delete).
+      el.addEventListener('click', function (e) {
+        if (e.target.closest('.sb-pad-hotkey') || e.target.closest('.sb-pad-del')) return;
+        pinCard(el);
+        play(pad);
+      });
+      // Two-frame press state (SVG styles show the DOWN artwork while held).
+      // pointerdown -> DOWN frame; pointerup/pointercancel/lostpointercapture -> UP.
+      // Playback stays on the click above — the visual swap never delays audio.
+      el.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        if (e.target.closest('.sb-pad-hotkey') || e.target.closest('.sb-pad-del')) return;
+        el.classList.add('is-pressed');
+        try { el.setPointerCapture(e.pointerId); } catch (err) {}
+      });
+      ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (ev) {
+        el.addEventListener(ev, function () { el.classList.remove('is-pressed'); });
+      });
+      // Keyboard: pads are focusable and play on Enter/Space (with a visible press).
+      el.tabIndex = 0;
+      el.setAttribute('role', 'button');
+      el.setAttribute('aria-label', 'Play ' + (pad.label || 'clip'));
+      el.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        if (e.target !== el) return;   // don't hijack the label input or inner buttons
+        e.preventDefault();
+        el.classList.add('is-pressed');
+        setTimeout(function () { el.classList.remove('is-pressed'); }, 130);
+        play(pad, 'key');   // Enter/Space on a focused pad is a keyboard play, not a click
+      });
+      // Hotkey assign
+      hk.addEventListener('click', function (e) { e.stopPropagation(); if (listeningPadId === pad.id) { listeningPadId = null; render(); } else startListen(pad.id); });
+      // Delete
+      el.querySelector('.sb-pad-del').addEventListener('click', function (e) {
+        e.stopPropagation();
+        pads = pads.filter(function (p) { return p.id !== pad.id; });
+        delete buffers[pad.id]; idbDel(pad.id); saveConfig(); render();
+      });
+      grid.appendChild(el);
+    });
+    // Trailing [+] slot so the board reads as an instrument with room to grow.
+    if (pads.length) {
+      var add = document.createElement('div');
+      add.className = 'sb-add-slot'; add.title = 'Add more sounds';
+      add.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>';
+      add.addEventListener('click', function () { $('sb-file').click(); });
+      grid.appendChild(add);
+    }
+    if (!pads.length) {
+      var empty = document.createElement('div');
+      empty.className = 'sb-empty';
+      if (VIEW_MINE) {
+        // UPLOAD-FIRST (seo R-fea151: the custom-soundboard landing). A visitor who came to make their own board
+        // sees the upload in front, not the library.
+        empty.className = 'sb-empty sb-empty-mine';
+        empty.innerHTML = '<strong>Make your own soundboard</strong><br>Upload your sounds, or drop audio files anywhere on this page. Each one becomes a pad you can rename and give a key, and your board stays saved in this browser.' +
+          '<br><button type="button" class="sb-btn primary" id="sb-empty-upload">Upload your sounds</button><br><button type="button" id="sb-empty-browse">Or add free sounds from the library</button>';
+        grid.appendChild(empty);
+        empty.querySelector('#sb-empty-upload').addEventListener('click', function () { $('sb-file').click(); });
+      } else {
+        empty.innerHTML = 'Your board is empty.<br><button type="button" id="sb-empty-browse">Browse 122 free sounds</button> and tap <strong>+</strong> on any card \u2014 or use <strong>Upload sounds</strong> to add your own.';
+        grid.appendChild(empty);
+      }
+      empty.querySelector('#sb-empty-browse').addEventListener('click', function () { showTab('browse'); });
+    }
+    // Re-point the freshly-built pads' UP/DOWN artwork at the active SVG style.
+    syncArt();
+    // Empty state / counts
+    var n = pads.length;
+    $('sb-count').textContent = n ? (n + (n === 1 ? ' sound' : ' sounds')) : '';
+    $('sb-mine-head').hidden = n === 0;   // "My sounds" header once the board exists
+    document.body.classList.toggle('sb-has-board', n > 0);   // focus in on the tool
+    renderExplore();                       // keep catalog add-states in sync
+  }
+
+  // ── Wire up ───────────────────────────────────────────────────────────────
+  var fileInput = $('sb-file');
+  $('sb-add').addEventListener('click', function () { fileInput.click(); });
+  fileInput.addEventListener('change', function () { if (fileInput.files.length) addFiles(fileInput.files); fileInput.value = ''; });
+  // Page-level drag & drop still works — no dedicated drop zone needed.
+  document.addEventListener('dragover', function (e) { e.preventDefault(); });
+  document.addEventListener('drop', function (e) { e.preventDefault(); if (e.dataTransfer && e.dataTransfer.files.length) addFiles(e.dataTransfer.files); });
+  $('sb-stop').addEventListener('click', stopAll);
+
+  // Board style selector — pick a look, persisted.
+  // The four two-frame SVG styles carry complete UP/DOWN artwork; press = sprite
+  // swap (see snipsound-button-style-picker package). Orbit = playback-ring color.
+  var BUTTON_STYLES = {
+    'neon-ring':       { name: 'Neon Ring',       up: '/tools/soundboard/buttons/neon-ring-up.svg',       down: '/tools/soundboard/buttons/neon-ring-down.svg',       orbit: '#40ecff' },
+    'crystal-lens':    { name: 'Crystal Lens',    up: '/tools/soundboard/buttons/crystal-lens-up.svg',    down: '/tools/soundboard/buttons/crystal-lens-down.svg',    orbit: '#c45cff' },
+    'playful-plastic': { name: 'Playful Plastic', up: '/tools/soundboard/buttons/playful-plastic-up.svg', down: '/tools/soundboard/buttons/playful-plastic-down.svg', orbit: '#9df245' },
+    'minimal-gloss':   { name: 'Minimal Gloss',   up: '/tools/soundboard/buttons/minimal-gloss-up.svg',   down: '/tools/soundboard/buttons/minimal-gloss-down.svg',   orbit: '#ffb126' }
+  };
+  // Plastic = CSS-drawn (no artwork); hue + emoji come from the sound's category.
+  BUTTON_STYLES['plastic'] = { name: 'Plastic', css: true };
+  // Category hues — SHARED with the video editor's soundboard panel (keep in sync).
+  var CAT_HUE = { stings: 265, animals: 130, nature: 168, human: 210, comedy: 45, reactions: 320, game: 245, impacts: 5, everyday: 28, misc: 200 };
+  var CAT_EMOJI = { stings: '\u2728', animals: '\u{1F43E}', nature: '\u{1F33F}', human: '\u{1F5E3}\uFE0F', comedy: '\u{1F602}', reactions: '\u{1F389}', game: '\u{1F3AE}', impacts: '\u{1F4A5}', everyday: '\u{1F3E0}', misc: '\u{1F3B2}' };   // R-e3476b spec; user sounds = hue 190
+  // Favorites travel between this page and the video editor: one localStorage key,
+  // ids = frozen-manifest ids ('snip-sfx-likes' — video-editor contract).
+  var LIKES_KEY = 'snip-sfx-likes';
+  function likes() { try { return JSON.parse(localStorage.getItem(LIKES_KEY) || '[]') || []; } catch (e) { return []; } }
+  function toggleLike(id) {
+    var l = likes(); var i = l.indexOf(id);
+    if (i >= 0) l.splice(i, 1); else l.push(id);
+    try { localStorage.setItem(LIKES_KEY, JSON.stringify(l)); } catch (e) {}
+    return i < 0;
+  }
+  var STYLE_KEY = 'snipsound:soundboard:style';
+  var currentStyle = 'arcade';
+  // Point every pad's UP/DOWN <img> at the active style's artwork. Both frames get
+  // a src immediately, so both are loaded before the first press (no swap delay).
+  function syncArt() {
+    var sv = BUTTON_STYLES[currentStyle];
+    if (!sv || sv.css) return;
+    document.querySelectorAll('.sb-pad').forEach(function (p) {
+      var up = p.querySelector('.sb-pad-art.up'), dn = p.querySelector('.sb-pad-art.down');
+      if (!up || !dn) return;
+      if (up.getAttribute('src') !== sv.up) up.src = sv.up;
+      if (dn.getAttribute('src') !== sv.down) dn.src = sv.down;
+    });
+  }
+  function applyStyle(s) {
+    // Retired CSS styles (launchpad/arcade/…) fall back to the default SVG style.
+    if (!s || !BUTTON_STYLES[s]) s = 'plastic';   // DEFAULT (Marc): the editor-panel plastic style — one visual language across both surfaces
+    currentStyle = s;
+    var sv = BUTTON_STYLES[s];
+    var isSvg = sv && !sv.css;
+    $('sb-grid').className = 'sb-grid sb-style-' + s + (isSvg ? ' sb-svg-style' : '');
+    document.body.classList.toggle('sb-style-plastic', !!(sv && sv.css));
+    if (sv) $('sb-grid').style.setProperty('--ring-color', sv.orbit);
+    else $('sb-grid').style.removeProperty('--ring-color');
+    syncArt();
+    renderExplore();   // catalog preview buttons wear the selected style too
+    try { localStorage.setItem(STYLE_KEY, s); } catch (e) {}
+    document.querySelectorAll('.sb-style-opt').forEach(function (b) { var on = b.dataset.style === s; b.classList.toggle('active', on); b.setAttribute('aria-checked', on ? 'true' : 'false'); });
+  }
+  // Warm the cache for all four styles' artwork (8 small SVGs) so switching
+  // styles — and the first press after a switch — is instant.
+  (window.requestIdleCallback || function (f) { setTimeout(f, 1200); })(function () {
+    Object.keys(BUTTON_STYLES).forEach(function (k) {
+      // CSS-only styles ('plastic', the default) have no artwork. Warming them set src = undefined, which
+      // the browser resolves to /tools/soundboard/undefined - two failed requests per visit, ~105/day at
+      // the edge (cloudflare R-c16a44 via architect R-500cb3).
+      [BUTTON_STYLES[k].up, BUTTON_STYLES[k].down].forEach(function (src) { if (!src) return; var im = new Image(); im.src = src; });
+    });
+  });
+  $('sb-style-picker').addEventListener('click', function (e) { var b = e.target.closest('.sb-style-opt'); if (b) { applyStyle(b.dataset.style); styleOpen(false); } });
+  // On-demand style picker — opens from the "Button style" toolbar button.
+  function styleOpen(on) {
+    $('sb-style-picker').hidden = !on;
+    $('sb-style-btn').setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  $('sb-style-btn').addEventListener('click', function (e) { e.stopPropagation(); styleOpen($('sb-style-picker').hidden); });
+  document.addEventListener('click', function (e) {
+    if (!$('sb-style-picker').hidden && !e.target.closest('#sb-style-picker') && !e.target.closest('#sb-style-btn')) styleOpen(false);
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('sb-style-picker').hidden) styleOpen(false); });
+  // Focus mode: any real interaction with the tool collapses the hero.
+  function sbFocus() { document.body.classList.add('sb-focus'); }
+  ['sb-tab-board', 'sb-tab-browse', 'sb-x-search', 'sb-b-chips', 'sb-x-grid', 'sb-grid', 'sb-size-toggle'].forEach(function (id) {
+    var el = $(id); if (!el) return;
+    el.addEventListener('click', sbFocus);
+    if (id === 'sb-x-search') el.addEventListener('input', sbFocus);
+  });
+
+  // Card-size toggle (S/M/L) — persisted; icons/labels scale with the cards.
+  var SIZE_KEY = 'snipsound:soundboard:cardsize';
+  function applyCardSize(sz) {
+    sz = { s: 's', m: 'm', l: 'l' }[sz] || 's';
+    [$('sb-x-grid'), $('sb-grid')].forEach(function (g) {
+      if (!g) return;
+      g.classList.remove('sb-size-m', 'sb-size-l');
+      if (sz !== 's') g.classList.add('sb-size-' + sz);
+    });
+    try { localStorage.setItem(SIZE_KEY, sz); } catch (e) {}
+    document.querySelectorAll('#sb-size-toggle button').forEach(function (b) { b.classList.toggle('active', b.dataset.size === sz); });
+  }
+  $('sb-size-toggle').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-size]'); if (b) applyCardSize(b.dataset.size);
+  });
+  applyCardSize((function () { try { return localStorage.getItem(SIZE_KEY); } catch (e) { return null; } })());
+
+  // Search — live filter over the Explore catalog.
+  $('sb-x-search').addEventListener('input', function () { renderExplore(); sbSearchQueued(); });
+
+  // Dev-preview-only: floating "Copy sound diag" (the video-editor storage-diag
+  // pattern, aimed at audio) — dumps the press/play/failure trace for pasting.
+  if (/\.pages\.dev$/.test(location.hostname)) {
+    var dbtn = document.createElement('button');
+    dbtn.type = 'button';
+    dbtn.textContent = '🔊 Copy sound diag';
+    dbtn.style.cssText = 'position:fixed;bottom:64px;left:16px;z-index:9999;background:var(--surface);border:1px solid var(--accent);color:var(--text);font-family:inherit;font-size:0.8rem;padding:8px 12px;border-radius:9px;cursor:pointer;';
+    dbtn.addEventListener('click', function () {
+      var ctx = null; try { ctx = getCtx(); } catch (e) {}
+      var payload = JSON.stringify({
+        time: new Date().toISOString(), url: location.href, userAgent: navigator.userAgent,
+        audioCtxState: ctx ? ctx.state : 'none', pads: pads.length, catalog: CATALOG.length,
+        trace: sbTrace
+      }, null, 2);
+      (navigator.clipboard ? navigator.clipboard.writeText(payload) : Promise.reject()).then(
+        function () { dbtn.textContent = '✓ copied — paste it'; setTimeout(function () { dbtn.textContent = '🔊 Copy sound diag'; }, 2500); },
+        function () { prompt('Copy this:', payload); });
+    });
+    document.body.appendChild(dbtn);
+  }
+
+  // Report-a-bug — shared diagnostics standard (env + errors auto-captured, PII-scrubbed).
+  var rb = document.getElementById('btn-report-bug');
+  if (rb) rb.addEventListener('click', function () {
+    var dg = window.snipsoundDiagnostics;
+    if (dg && dg.openReport) { dg.openReport({ tool: 'soundboard' }); return; }
+    if (dg && dg.copyLogs) { dg.copyLogs().then(function (ok) { rb.textContent = ok ? '✓ Diagnostics copied — paste them to us' : 'Copy failed — try again'; }); return; }
+    rb.textContent = 'Diagnostics not available';
+  });
+
+  // ── Restore saved board ─────────────────────────────────────────────────────
+  // ?view=mine (or #mine) opens on Your board, upload-first when it is empty - the "make your own soundboard" entry
+  // (seo R-fea151). A returning visitor gets their saved board. Set before render(), which reads it.
+  var VIEW_MINE = false;
+  try { VIEW_MINE = new URLSearchParams(location.search).get('view') === 'mine' || location.hash === '#mine'; } catch (e) {}
+  pads = loadConfig();
+  pads.forEach(function (p, i) { if (!p.color) p.color = PALETTE[i % PALETTE.length]; });   // colour older boards
+  applyStyle((function () { try { return localStorage.getItem(STYLE_KEY); } catch (e) { return null; } })());
+  render();
+  renderChips();
+  // Deep link (?sound=<id>, from the copy-link/share icons) → open Browse focused
+  // on that sound. Otherwise: an empty board lands on Browse (the fun), an
+  // existing board lands on Your board (the instrument).
+  var soundParam = null, fxParam = null;
+  try { var qs = new URLSearchParams(location.search); soundParam = qs.get('sound'); fxParam = qs.get('fx'); } catch (e) {}
+  // ?fx= from a share link: activate that effect so the linked sound (and every
+  // press after it) plays the way the sender heard it. Unknown keys are ignored.
+  if (fxParam && fxParam !== 'normal' && FX_PRESETS.some(function (p) { return p.key === fxParam; })) {
+    currentFx = fxParam;
+    buildFxChips();
+    var fp = fxPreset(fxParam);
+    toast((fp.emoji ? fp.emoji + ' ' : '') + fp.label + ' effect is on — press any sound to hear it');
+  }
+  if (soundParam) {
+    window.__sbPendingSound = soundParam;
+    showTab('browse');
+    var hit = CATALOG.filter(function (d) { return d.id === soundParam; })[0];
+    if (hit) { window.__sbPendingSound = null; openSharedSound(hit); }
+  } else if (VIEW_MINE) {
+    showTab('board');
+  } else {
+    // Everyone lands on Browse — the library is the front door (Marc). Your
+    // board is one tab away and deep-links still open where they point.
+    showTab('browse');
+  }
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51aa6acd904efce',t:'MTc5MzE5Nzk1OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

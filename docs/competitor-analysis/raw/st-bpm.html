@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="https://soundtools.io/bpm-detector/" />
+
+    <link rel="stylesheet" href="../css/tools-style.css">
+    <link rel="icon" href="../favicon.png" type="image/png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2L1GFZ61L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T2L1GFZ61L');
+    </script>
+
+
+    <meta name="description" content="Free online BPM detector and song key finder — instantly detect the tempo, musical key, and Camelot code of any song. Upload MP3, WAV, or FLAC. No account, no upload.">
+
+    <meta name="author" content="SoundTools">
+    <meta property="og:title" content="Free BPM Detector & Song Key Finder - Find the BPM and Key of Any Song | SoundTools">
+    <meta property="og:description" content="Instantly detect the BPM, tempo, and musical key of any song. Upload your audio file for accurate BPM and key analysis. Free, fast, no download required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soundtools.io/bpm-detector/">
+    <title>Free BPM Detector & Key Finder — Find Song BPM & Key | SoundTools</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://soundtools.io/#organization",
+      "name": "SoundTools",
+      "url": "https://soundtools.io/"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://soundtools.io/#website",
+      "name": "SoundTools",
+      "url": "https://soundtools.io/",
+      "publisher": {
+        "@id": "https://soundtools.io/#organization"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://soundtools.io/bpm-detector/#webapp",
+      "name": "SoundTools BPM Detector and Key Finder",
+      "url": "https://soundtools.io/bpm-detector/",
+      "applicationCategory": "MultimediaApplication",
+      "browserRequirements": "Works in any modern web browser on desktop and mobile (Windows, Mac, Linux, iOS, and Android). No install required.",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://soundtools.io/#organization"
+      },
+      "datePublished": "2025",
+      "dateModified": "2026-07-17",
+      "inLanguage": "en",
+      "featureList": [
+        "Detect the BPM (tempo) of any song automatically",
+        "Detect the musical key and scale, with the matching Camelot code for harmonic mixing",
+        "Powered by the Essentia.js music-analysis library (PercivalBpmEstimator and KeyExtractor)",
+        "Reads embedded title and artist metadata when present",
+        "Supports MP3, WAV, FLAC, and other common audio formats",
+        "Processing runs locally in your browser — audio never leaves your device",
+        "Free and unlimited, no account or install required"
+      ],
+      "description": "Free online BPM detector and song key finder that runs in your browser. Detects the tempo (BPM), musical key, and Camelot code of any song using the Essentia.js audio-analysis library. Ideal for DJs, producers, and musicians. No account, and your audio never leaves your device."
+    }
+    </script>
+
+    <!-- HowTo Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Find the BPM and Key of Any Song",
+      "description": "Detect the BPM (beats per minute) and musical key of any song in seconds using our free online BPM detector and key finder",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Upload your audio file",
+          "text": "Select any MP3, FLAC, WAV, AAC, or OGG audio file from your device",
+          "position": 1
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Automatic analysis",
+          "text": "Our BPM detector and key finder instantly analyzes your song and detects the tempo, key, and song information",
+          "position": 2
+        },
+        {
+          "@type": "HowToStep",
+          "name": "View your results",
+          "text": "See the detected BPM, musical key, Camelot code, song title, and artist displayed instantly",
+          "position": 3
+        }
+      ],
+      "totalTime": "PT10S"
+    }
+    </script>
+    
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a BPM detector?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A BPM detector analyzes audio and determines its tempo in beats per minute. Our tool also detects the musical key and Camelot code, and reads metadata like song title and artist. It is used by DJs for beatmatching and harmonic mixing, producers for remix work, and musicians for practice and transcription."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find the BPM of a song?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload your audio file (MP3, WAV, FLAC, AAC, or OGG) and the BPM detector automatically analyzes it within seconds. The detected tempo is displayed as a BPM value. No manual tapping needed – the algorithm detects the beat pattern directly from the audio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find what key a song is in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our BPM detector includes a built-in key finder. When you upload a song, it detects both the BPM and the musical key (e.g. C Major, F# Minor). It also shows the Camelot wheel code for easy DJ harmonic mixing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this BPM finder free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, 100% free with no limits. Analyze as many songs as you want. No accounts, no subscriptions, no file size restrictions. All processing runs in your browser – your audio files never leave your device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is the BPM detection?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our BPM detector uses Essentia.js, a research-grade audio analysis library. It delivers highly accurate results for most genres, especially music with clear rhythmic patterns (electronic, pop, rock, hip-hop). Songs with tempo changes, free time sections, or very sparse arrangements may produce less precise estimates. The detected BPM is typically within 1–2 BPM of the actual tempo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Camelot wheel and why should I care?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Camelot wheel assigns a simple number-letter code to each musical key, making harmonic mixing easy for DJs. Mix songs with the same Camelot code or adjacent codes (one number up/down, or A/B switch) for smooth, harmonically compatible transitions. Our key finder provides the Camelot code alongside the standard musical key."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What audio formats does the BPM detector support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3, FLAC, WAV, AAC, and OGG. Higher quality files (FLAC, WAV) may produce marginally more accurate results, but MP3 files work great for the vast majority of use cases."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this tool read song metadata (title, artist)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! The BPM detector reads embedded metadata from your audio files and displays the song title and artist when available. This helps you confirm you are analyzing the right track and organize your library."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this on my phone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The BPM detector works on all devices – iPhone, Android, iPad, desktop, and laptop. Open it in your mobile browser and analyze songs right from your phone. No app download needed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my BPM show as double or half what I expected?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BPM detection algorithms sometimes report the tempo at double or half the perceived value. For example, a 70 BPM hip-hop track might be reported as 140 BPM (double time), or a 140 BPM house track might show as 70 BPM (half time). Both are technically correct – the algorithm is counting a different rhythmic level. When in doubt, consider whether the detected BPM or its half/double value matches the genre's typical range."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "After finding the BPM, can I change the tempo of my song?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! Use our <a href=\"https://soundtools.io/tempo-changer/\">Tempo Changer</a> to speed up or slow down your song without changing the pitch, or our <a href=\"https://soundtools.io/pitch-shifter/\">Pitch Shifter</a> to change the key without affecting the speed. Both are free and work directly in your browser."
+          }
+        }
+      ]
+    }
+    </script>
+    
+    
+
+    <style>
+        /* Results card styling */
+        .results-card {
+            background: #f8f9fa;
+            border: 2px solid #e0e4e8;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+        .results-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            color: #1a1a1a;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 600px) {
+            .results-grid { grid-template-columns: 1fr; }
+        }
+        .result-item {
+            background: white;
+            border: 1px solid #e0e4e8;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+        }
+        .result-item .result-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+            margin-bottom: 0.35rem;
+        }
+        .result-item .result-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            word-break: break-word;
+        }
+        .result-item.hero {
+            border-color: #4f5aed;
+            border-width: 2px;
+            background: linear-gradient(135deg, #f0f1ff 0%, #e8eaff 100%);
+        }
+        .result-item.hero .result-value {
+            font-size: 2rem;
+            color: #4f5aed;
+        }
+        .result-item.hero .result-label {
+            color: #4f5aed;
+        }
+        .result-item .result-sub {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 0.2rem;
+        }
+        .results-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e4e8;
+        }
+        @media (max-width: 600px) {
+            .results-meta { grid-template-columns: 1fr; }
+        }
+        .meta-item {
+            font-size: 0.875rem;
+            color: #374151;
+        }
+        .meta-item .meta-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #9ca3af;
+            margin-bottom: 0.15rem;
+        }
+
+        /* Analyzing spinner */
+        .analyzing-spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid #e0e4e8;
+            border-top-color: #4f5aed;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Analyze another button */
+        .analyze-another-btn {
+            display: inline-block;
+            margin-top: 1.25rem;
+            padding: 0.75rem 1.5rem;
+            background: #4f5aed;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+        .analyze-another-btn:hover {
+            background: #3d47d9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 90, 237, 0.3);
+        }
+
+        kbd {
+            font-family: monospace;
+            font-size: 0.875rem;
+        }
+
+         /* Styled file upload button */
+        .styled-file-upload {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+        .styled-file-upload input[type="file"] {
+            display: none;
+        }
+        .styled-file-upload .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: #4f5aed;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .styled-file-upload .upload-btn:hover {
+            background: #3d47d9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 90, 237, 0.3);
+        }
+        .styled-file-upload .upload-btn:active {
+            transform: translateY(0);
+        }
+        .styled-file-upload .upload-filename {
+            font-size: 0.9375rem;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+        }
+    </style>
+
+    <!-- ================================================== -->
+    <!--    START - NEW: REPEAT VISITOR TRACKING SYSTEM     -->
+    <!-- ================================================== -->
+    <script>
+        const ToolTracker = {
+            STORAGE_KEY: 'soundtools_usage',
+            CURRENT_TOOL: 'bpm-detector',
+            getUsageData() {
+                try { const data = localStorage.getItem(this.STORAGE_KEY); return data ? JSON.parse(data) : {}; } catch (e) { return {}; }
+            },
+            saveUsageData(data) {
+                try { localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+            },
+            trackToolSuccess(toolName = this.CURRENT_TOOL) {
+                const usage = this.getUsageData();
+                if (!usage[toolName]) { usage[toolName] = { count: 0, firstUsed: new Date().toISOString(), lastUsed: null }; }
+                usage[toolName].count++; usage[toolName].lastUsed = new Date().toISOString();
+                this.saveUsageData(usage); return this.getAnalytics();
+            },
+            getAnalytics() {
+                const usage = this.getUsageData();
+                const ct = usage[this.CURRENT_TOOL] || { count: 0 };
+                return {
+                    lifetime_tool_uses: ct.count, total_tools_used: Object.keys(usage).length,
+                    is_repeat_user: Object.values(usage).some(t => t.count > 1),
+                    is_repeat_tool_user: ct.count > 1,
+                    total_lifetime_uses: Object.values(usage).reduce((s, t) => s + t.count, 0),
+                    days_since_first_use: ct.firstUsed ? Math.floor((Date.now() - new Date(ct.firstUsed)) / 86400000) : 0
+                };
+            },
+            trackFileSelected(fileSize) {
+                const a = this.getAnalytics();
+                gtag('event', `${this.CURRENT_TOOL}-file_selected`, { 'event_category': this.CURRENT_TOOL, 'file_size': fileSize, ...a });
+            },
+            trackSuccess(params = {}) {
+                const a = this.trackToolSuccess();
+                gtag('event', `${this.CURRENT_TOOL}-success`, { 'event_category': this.CURRENT_TOOL, ...params, ...a });
+            },
+            trackError(msg) {
+                const a = this.getAnalytics();
+                gtag('event', `${this.CURRENT_TOOL}-error`, { 'event_category': this.CURRENT_TOOL, 'error_message': msg, ...a });
+            }
+        };
+        console.log('SoundTools Usage Analytics:', ToolTracker.getAnalytics());
+    </script>
+    <!-- ================================================== -->
+    <!--     END - NEW: REPEAT VISITOR TRACKING SYSTEM      -->
+    <!-- ================================================== -->
+
+</head>
+
+<body>
+    
+    <!-- NAV_START -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">SoundTools</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a class="mobile-dropdown-toggle">Tools</a>
+                    <div class="dropdown-menu mega-menu">
+                        <div class="mega-col">
+                            <span class="mega-heading">Effects</span>
+                            <a href="/eq/">EQ</a>
+                            <a href="/8d-audio/">8D Audio</a>
+                            <a href="/add-reverb-to-audio/">Add Reverb</a>
+                            <a href="/bass-boost/">Bass Boost</a>
+                            <a href="/nightcore/">Nightcore</a>
+                            <a href="/nightcore-reverse/">Nightcore Reverse</a>
+                            <a href="/slowed-reverb/">Slowed + Reverb</a>
+                            <a href="/sped-up/">Sped Up Audio</a>
+                            <a href="/tiktok-slowed-reverb/">TikTok Slowed</a>
+                            <a href="/vaporwave/">Vaporwave</a>
+                            <a href="/volume-booster/">Volume Booster</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Voice & AI</span>
+                            <a href="/voice-cloning/">Voice Cloning</a>
+                            <a href="/vocal-tuner/">Vocal Tuner</a>
+                            <a href="/voice-to-instrument/">Voice to Instrument</a>
+                            <a href="/noise-remover/">Noise Remover</a>
+                            <a href="/stem-splitter/">Stem Splitter</a>
+                            <a href="/text-to-speech/">Text to Speech</a>
+                            <a href="/speech-to-text/">Speech to Text</a>
+                            <a href="/speech-to-song/">Speech to Song</a>
+                            <a href="/vocal-remover/">Vocal Remover</a>
+                            <a href="/voice-changer/">Voice Changer</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Edit & Convert</span>
+                            <a href="/audio-converter/">Audio Converter</a>
+                            <a href="/audio-joiner/">Audio Joiner</a>
+                            <a href="/audio-trimmer/">Audio Trimmer</a>
+                            <a href="/flac-cover-art/">FLAC Cover Art</a>
+                            <a href="/audio-metadata-editor/">Metadata Editor</a>
+                            <a href="/pitch-shifter/">Pitch Shifter</a>
+                            <a href="/reverse-audio/">Reverse Audio</a>
+                            <a href="/tempo-changer/">Tempo Changer</a>
+                            <a href="/video-to-audio/">Video to Audio</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Create & Analyze</span>
+                            <a href="/beat-maker/">Beat Maker</a>
+                            <a href="/bpm-detector/">BPM Detector</a>
+                            <a href="/granular-synthesizer/">Granular Synthesizer</a>
+                            <a href="/hearing-test/">Hearing Test</a>
+                            <a href="/music-visualizer/">Music Visualizer</a>
+                            <a href="/soundboard/">Soundboard</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/lab/">The Lab</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- NAV_END -->
+
+
+
+
+    <header>
+        <div class="container">
+            <h1>Free Online BPM Detector &amp; Song Key Finder</h1>
+            <time class="last-updated" datetime="2026-07-17">Updated July 17, 2026</time>
+            <p>Instantly detect the BPM, tempo, and musical key of any song &#8211; find beats per minute and Camelot codes for DJ mixing &#8211; 100% free, runs in your browser</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-section">
+            <div class="intro-text">
+                <p>Upload any audio file and our BPM detector will instantly analyze it to find the tempo (beats per minute), musical key, and Camelot code. It also reads embedded metadata like song title and artist. Perfect for DJs preparing sets, producers looking for remix material, and musicians who need to know what key a song is in. All analysis runs locally in your browser &#8211; your files are never uploaded to any server.</p>
+            </div>
+
+            <!-- File Upload -->
+            <div class="file-input-group">
+                <label for="audioFile">Upload Your Audio File</label>
+
+                <!--
+                <input type="file" id="audioFile" accept="audio/mp3,audio/flac,audio/wav,audio/aac,audio/ogg,.mp3,.flac,.wav,.aac,.ogg" aria-label="Choose audio file to analyze">
+                <div id="fileInfo" class="file-info"></div>
+            -->
+                <label class="styled-file-upload">
+                    <input type="file" id="audioFile" accept="audio/mp3,audio/flac,audio/wav,audio/aac,audio/ogg,.mp3,.flac,.wav,.aac,.ogg" aria-label="Choose audio file">
+                    <span class="upload-btn">📂 Choose File</span>
+
+                    <span class="upload-filename" id="uploadFilename">No file selected</span>
+                    <!--
+                    <div id="fileInfo" class="file-info"></div>
+                    -->
+                </label>
+              
+            </div>
+
+           
+
+            <div id="status" role="status" aria-live="polite"></div>
+
+            <!-- Results Card (hidden until analysis complete) -->
+            <div id="resultsCard" class="results-card" style="display: none;">
+                <h3>&#127925; Analysis Results</h3>
+                <div class="results-grid">
+                    <div class="result-item hero">
+                        <div class="result-label">BPM (Tempo)</div>
+                        <div class="result-value" id="resultBpm">&#8212;</div>
+                        <div class="result-sub" id="resultBpmSub">beats per minute</div>
+                    </div>
+                    <div class="result-item hero">
+                        <div class="result-label">Musical Key</div>
+                        <div class="result-value" id="resultKey">&#8212;</div>
+                        <div class="result-sub" id="resultCamelot">&#8212;</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Song Title</div>
+                        <div class="result-value" id="resultTitle">&#8212;</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Artist</div>
+                        <div class="result-value" id="resultArtist">&#8212;</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Duration</div>
+                        <div class="result-value" id="resultDuration">&#8212;</div>
+                    </div>
+                </div>
+                <div class="results-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">File Name</div>
+                        <div id="resultFilename">&#8212;</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Format</div>
+                        <div id="resultFormat">&#8212;</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">File Size</div>
+                        <div id="resultFilesize">&#8212;</div>
+                    </div>
+                </div>
+                <button class="analyze-another-btn" id="analyzeAnotherBtn">Analyze Another Song</button>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2>What is a BPM Detector?</h2>
+            <p>A BPM detector (also called a BPM finder, tempo finder, or beats per minute counter) is a tool that analyzes audio and determines how fast it is &#8211; measured in beats per minute (BPM). Our BPM detector goes further by also finding the musical key of the song and providing the Camelot wheel code, making it a complete song analyzer for DJs, producers, and musicians. The analysis runs entirely in your browser using <a href="https://essentia.upf.edu/" target="_blank" rel="noopener">Essentia.js</a>, a research-grade music information retrieval library, so your audio files never leave your device.</p>
+
+            <h2>How to Find the BPM and Key of a Song</h2>
+            <ul>
+                <li><strong>Upload Your Audio:</strong> Select any MP3, FLAC, WAV, AAC, or OGG file. The BPM detector accepts songs, loops, stems, podcasts, and any other audio content</li>
+                <li><strong>Automatic Analysis:</strong> As soon as your file loads, the BPM detector analyzes the audio to determine the tempo and musical key. This typically takes just a few seconds</li>
+                <li><strong>View Results:</strong> The detected BPM, musical key (e.g. C Major, A Minor), Camelot code, and song metadata (title, artist) are displayed in a clear results card</li>
+                <li><strong>Analyze More:</strong> Click &#8216;Analyze Another Song&#8217; to detect the BPM and key of additional tracks</li>
+            </ul>
+
+            <h2>Understanding BPM and Musical Key</h2>
+            <p><strong>What is BPM?</strong> BPM stands for beats per minute &#8211; it is the standard measurement of musical tempo. A song at 120 BPM has 120 beats in one minute. Knowing the BPM is essential for DJs (beatmatching and tempo-syncing tracks), producers (setting the correct project tempo for remixes and samples), fitness instructors (matching music to exercise intensity), and musicians (setting metronome speed for practice). Common BPM ranges include: 60&#8211;80 BPM for slow ballads, 100&#8211;120 BPM for pop and R&amp;B, 120&#8211;130 BPM for house music, 130&#8211;150 BPM for techno and trance, and 160&#8211;180 BPM for drum and bass.</p>
+            
+            <p><strong>What is Musical Key?</strong> The key of a song tells you which group of notes form its tonal foundation. A song in C Major uses mostly notes from the C major scale, and will have a bright, uplifting feel. A song in A Minor uses the A minor scale and will sound darker or more melancholic. Knowing the key is critical for DJs doing harmonic mixing, producers looking to remix or sample a track, and musicians who want to play along or transpose a song to match their vocal range.</p>
+
+            <p><strong>What is the Camelot Wheel?</strong> The Camelot wheel is a system DJs use for harmonic mixing. It assigns a number&#8211;letter code to each of the 24 musical keys (12 major, 12 minor). For example, C Major is 8B and A Minor is 8A. The rule is simple: songs with the same Camelot code, or codes that are adjacent on the wheel (one number up or down, or switching between A and B at the same number), will mix harmonically. This makes planning seamless, musical transitions much easier without needing deep music theory knowledge.</p>
+
+            <h2>BPM Detector for DJs</h2>
+            <p><strong>Beatmatching and Tempo Sync:</strong> The foundation of DJ mixing is aligning the tempos of two tracks. Our BPM finder gives you the exact tempo of each song in your library so you can plan transitions, create cue sheets, and organize playlists by BPM range. Knowing the BPM in advance lets you prepare tempo adjustments before stepping up to the decks.</p>
+            
+            <p><strong>Harmonic Mixing with Key and Camelot Codes:</strong> Mixing songs in compatible keys creates smooth, musical transitions that audiences feel even if they cannot explain why. Our key finder provides both the standard musical key (e.g. F Minor) and the Camelot code (e.g. 4A), so you can quickly identify compatible tracks. Stick to the same Camelot number or move one step up or down for seamless key transitions.</p>
+            
+            <p><strong>Set Planning and Library Organization:</strong> Professional DJs tag every track in their library with BPM and key information. Use our BPM detector to analyze your tracks and build organized playlists sorted by tempo and harmonic compatibility. This preparation is what separates a good set from a great one.</p>
+
+            <h2>BPM Finder for Producers and Musicians</h2>
+            <p><strong>Remixing and Sampling:</strong> Before remixing a song or chopping samples, you need to know the exact BPM and key. Our song analyzer gives you both instantly. Set your DAW project to the detected BPM, import the audio, and everything aligns to the grid. Knowing the key tells you which notes and chords will work harmonically with the original material.</p>
+            
+            <p><strong>Playing Along and Transcription:</strong> Want to jam along with a recording? Use our key finder to determine the song&#8217;s key so you know which scale to use. Pair this with our Tempo Changer to slow the song down for practice. Knowing the BPM helps you set your metronome to the exact tempo of the recording.</p>
+            
+            <p><strong>Workout and Fitness Playlists:</strong> BPM is the backbone of workout music selection. Running playlists typically need 150&#8211;180 BPM tracks, cycling works well at 120&#8211;140 BPM, and yoga or stretching benefits from 60&#8211;90 BPM. Use our BPM detector to find the tempo of songs in your library and build playlists that match your target exercise intensity.</p>
+
+            <h2>BPM Ranges by Genre</h2>
+            <p>Different music genres tend to fall within specific BPM ranges. Knowing these ranges helps you identify genres, build themed playlists, and plan DJ sets:</p>
+            <ul>
+                <li><strong>60&#8211;80 BPM:</strong> Slow ballads, downtempo, ambient, lo-fi hip-hop</li>
+                <li><strong>80&#8211;100 BPM:</strong> Hip-hop, trap, R&amp;B, reggae</li>
+                <li><strong>100&#8211;120 BPM:</strong> Pop, indie, funk, disco</li>
+                <li><strong>120&#8211;130 BPM:</strong> House, deep house, garage, electropop</li>
+                <li><strong>130&#8211;145 BPM:</strong> Techno, trance, progressive house</li>
+                <li><strong>145&#8211;160 BPM:</strong> Dubstep (half-time), hardstyle, breakbeat</li>
+                <li><strong>160&#8211;180 BPM:</strong> Drum and bass, jungle, footwork</li>
+                <li><strong>180+ BPM:</strong> Speedcore, gabber, some punk</li>
+            </ul>
+        </section>
+
+        <section class="info-section">
+            <h2>Frequently Asked Questions About BPM Detection</h2>
+            
+            <h3>What is a BPM detector?</h3>
+            <p>A BPM detector analyzes audio and determines its tempo in beats per minute. Our tool also detects the musical key and Camelot code, and reads metadata like song title and artist. It is used by DJs for beatmatching and harmonic mixing, producers for remix work, and musicians for practice and transcription.</p>
+            
+            <h3>How do I find the BPM of a song?</h3>
+            <p>Upload your audio file (MP3, WAV, FLAC, AAC, or OGG) and the BPM detector automatically analyzes it within seconds. The detected tempo is displayed as a BPM value. No manual tapping needed – the algorithm detects the beat pattern directly from the audio.</p>
+            
+            <h3>How do I find what key a song is in?</h3>
+            <p>Our BPM detector includes a built-in key finder. When you upload a song, it detects both the BPM and the musical key (e.g. C Major, F# Minor). It also shows the Camelot wheel code for easy DJ harmonic mixing.</p>
+            
+            <h3>Is this BPM finder free?</h3>
+            <p>Yes, 100% free with no limits. Analyze as many songs as you want. No accounts, no subscriptions, no file size restrictions. All processing runs in your browser – your audio files never leave your device.</p>
+            
+            <h3>How accurate is the BPM detection?</h3>
+            <p>Our BPM detector uses Essentia.js, a research-grade audio analysis library. It delivers highly accurate results for most genres, especially music with clear rhythmic patterns (electronic, pop, rock, hip-hop). Songs with tempo changes, free time sections, or very sparse arrangements may produce less precise estimates. The detected BPM is typically within 1–2 BPM of the actual tempo.</p>
+            
+            <h3>What is the Camelot wheel and why should I care?</h3>
+            <p>The Camelot wheel assigns a simple number-letter code to each musical key, making harmonic mixing easy for DJs. Mix songs with the same Camelot code or adjacent codes (one number up/down, or A/B switch) for smooth, harmonically compatible transitions. Our key finder provides the Camelot code alongside the standard musical key.</p>
+            
+            <h3>What audio formats does the BPM detector support?</h3>
+            <p>MP3, FLAC, WAV, AAC, and OGG. Higher quality files (FLAC, WAV) may produce marginally more accurate results, but MP3 files work great for the vast majority of use cases.</p>
+            
+            <h3>Does this tool read song metadata (title, artist)?</h3>
+            <p>Yes! The BPM detector reads embedded metadata from your audio files and displays the song title and artist when available. This helps you confirm you are analyzing the right track and organize your library.</p>
+            
+            <h3>Can I use this on my phone?</h3>
+            <p>Yes. The BPM detector works on all devices – iPhone, Android, iPad, desktop, and laptop. Open it in your mobile browser and analyze songs right from your phone. No app download needed.</p>
+            
+            <h3>Why does my BPM show as double or half what I expected?</h3>
+            <p>BPM detection algorithms sometimes report the tempo at double or half the perceived value. For example, a 70 BPM hip-hop track might be reported as 140 BPM (double time), or a 140 BPM house track might show as 70 BPM (half time). Both are technically correct – the algorithm is counting a different rhythmic level. When in doubt, consider whether the detected BPM or its half/double value matches the genre's typical range.</p>
+            
+            <h3>After finding the BPM, can I change the tempo of my song?</h3>
+            <p>Absolutely! Use our <a href="https://soundtools.io/tempo-changer/">Tempo Changer</a> to speed up or slow down your song without changing the pitch, or our <a href="https://soundtools.io/pitch-shifter/">Pitch Shifter</a> to change the key without affecting the speed. Both are free and work directly in your browser.</p>
+        </section>
+
+
+         <section class="related-tools-section">
+            <div class="container">
+                <h2 class="related-tools-header">Related Audio Tools</h2>
+                <p class="related-tools-subheader">More tools for DJs, producers, and musicians</p>
+                
+              
+                
+                <!-- Related Tools Grid -->
+                <div class="related-tools-grid">
+                    <a href="/tempo-changer/" class="related-tool-card">
+                        <span class="tool-emoji">&#9201;</span>
+                        <h3>Tempo Changer</h3>
+                        <p>Change speed without changing pitch</p>
+                    </a>
+                    <a href="/pitch-shifter/" class="related-tool-card">
+                        <span class="tool-emoji">&#127908;</span>
+                        <h3>Pitch Shifter</h3>
+                        <p>Change key without changing speed</p>
+                    </a>
+                    <a href="/slowed-reverb/" class="related-tool-card">
+                        <span class="tool-emoji">&#127752;</span>
+                        <h3>Slowed + Reverb</h3>
+                        <p>Dreamy slowed reverb effect</p>
+                    </a>
+                    <a href="/audio-trimmer/" class="related-tool-card">
+                        <span class="tool-emoji">&#9986;&#65039;</span>
+                        <h3>Audio Trimmer</h3>
+                        <p>Cut and trim audio files</p>
+                    </a>
+                </div>
+                
+                <!-- Browse All Tools CTA -->
+                <div class="browse-all-cta">
+                    <a href="/" class="browse-all-btn">
+                        <span class="btn-icon">&#127925;</span>
+                        Browse All Audio Tools
+                        <span class="btn-arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <!-- Footer with Mega Menu -->
+    <!-- FOOTER_START -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Effects</h3>
+                    <ul>
+                        <li><a href="/eq/">EQ</a></li>
+                        <li><a href="/8d-audio/">8D Audio</a></li>
+                        <li><a href="/add-reverb-to-audio/">Add Reverb</a></li>
+                        <li><a href="/bass-boost/">Bass Boost</a></li>
+                        <li><a href="/nightcore/">Nightcore</a></li>
+                        <li><a href="/nightcore-reverse/">Nightcore Reverse</a></li>
+                        <li><a href="/slowed-reverb/">Slowed + Reverb</a></li>
+                        <li><a href="/sped-up/">Sped Up Audio</a></li>
+                        <li><a href="/tiktok-slowed-reverb/">TikTok Slowed</a></li>
+                        <li><a href="/vaporwave/">Vaporwave</a></li>
+                        <li><a href="/volume-booster/">Volume Booster</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Voice & AI</h3>
+                    <ul>
+                        <li><a href="/voice-cloning/">Voice Cloning</a></li>
+                        <li><a href="/vocal-tuner/">Vocal Tuner</a></li>
+                        <li><a href="/voice-to-instrument/">Voice to Instrument</a></li>
+                        <li><a href="/noise-remover/">Noise Remover</a></li>
+                        <li><a href="/stem-splitter/">Stem Splitter</a></li>
+                        <li><a href="/text-to-speech/">Text to Speech</a></li>
+                        <li><a href="/speech-to-text/">Speech to Text</a></li>
+                        <li><a href="/speech-to-song/">Speech to Song</a></li>
+                        <li><a href="/vocal-remover/">Vocal Remover</a></li>
+                        <li><a href="/voice-changer/">Voice Changer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Edit & Convert</h3>
+                    <ul>
+                        <li><a href="/audio-converter/">Audio Converter</a></li>
+                        <li><a href="/audio-joiner/">Audio Joiner</a></li>
+                        <li><a href="/audio-trimmer/">Audio Trimmer</a></li>
+                        <li><a href="/flac-cover-art/">FLAC Cover Art</a></li>
+                        <li><a href="/audio-metadata-editor/">Metadata Editor</a></li>
+                        <li><a href="/pitch-shifter/">Pitch Shifter</a></li>
+                        <li><a href="/reverse-audio/">Reverse Audio</a></li>
+                        <li><a href="/tempo-changer/">Tempo Changer</a></li>
+                        <li><a href="/video-to-audio/">Video to Audio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Create & Analyze</h3>
+                    <ul>
+                        <li><a href="/beat-maker/">Beat Maker</a></li>
+                        <li><a href="/bpm-detector/">BPM Detector</a></li>
+                        <li><a href="/granular-synthesizer/">Granular Synthesizer</a></li>
+                        <li><a href="/hearing-test/">Hearing Test</a></li>
+                        <li><a href="/music-visualizer/">Music Visualizer</a></li>
+                        <li><a href="/soundboard/">Soundboard</a></li>
+                    </ul>
+                </div>
+
+                 <div class="footer-column">
+                    <h3>The Lab</h3>
+                    <ul>
+                        <li><a href="/lab/evaporator/">Evaporator</a></li>
+                        <li><a href="/lab/we-have-the-cherry-point-at-home/">Dead Empires</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service/">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoundTools - Free Audio Tools for Creators</p>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER_END -->
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        const hasDropdownItems = document.querySelectorAll('.has-dropdown');
+        hasDropdownItems.forEach(item => {
+            const toggle = item.querySelector('a, .mobile-dropdown-toggle');
+            const dropdown = item.querySelector('.dropdown-menu');
+            if (toggle && dropdown) {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) { e.preventDefault(); dropdown.classList.toggle('active'); }
+                });
+            }
+        });
+        document.querySelectorAll('.nav-links a:not(.mobile-dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => { document.querySelector('.nav-links').classList.remove('active'); });
+        });
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            if (!nav.contains(event.target)) { document.querySelector('.nav-links').classList.remove('active'); }
+        });
+    </script>
+
+    <!-- Essentia.js WASM + Core -->
+    <script src="https://cdn.jsdelivr.net/npm/essentia.js@0.1.3/dist/essentia-wasm.web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/essentia.js@0.1.3/dist/essentia.js-core.js"></script>
+
+    <!-- BPM Detector Tool Logic -->
+    <script>
+        // ============================================================================
+        // ARCHITECTURE:
+        //   1. FFmpeg reads metadata (title, artist) from audio file tags
+        //   2. Web Audio API decodes audio to AudioBuffer
+        //   3. Essentia.js PercivalBpmEstimator detects BPM
+        //   4. Essentia.js KeyExtractor detects musical key
+        //   All processing is client-side. No server uploads.
+        // ============================================================================
+
+        // ============================================================================
+        // GLOBALS
+        // ============================================================================
+        let essentia = null;
+        let essentiaReady = false;
+        let FFmpeg = null, ffmpeg = null, ffmpegLoaded = false, ffmpegLoading = false;
+
+        const audioInput = document.getElementById('audioFile');
+        const statusDiv = document.getElementById('status');
+        const fileInfoDiv = document.getElementById('uploadFilename');
+        const resultsCard = document.getElementById('resultsCard');
+        const analyzeAnotherBtn = document.getElementById('analyzeAnotherBtn');
+
+        // Result elements
+        const resultBpm = document.getElementById('resultBpm');
+        const resultBpmSub = document.getElementById('resultBpmSub');
+        const resultKey = document.getElementById('resultKey');
+        const resultCamelot = document.getElementById('resultCamelot');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultArtist = document.getElementById('resultArtist');
+        const resultDuration = document.getElementById('resultDuration');
+        const resultFilename = document.getElementById('resultFilename');
+        const resultFormat = document.getElementById('resultFormat');
+        const resultFilesize = document.getElementById('resultFilesize');
+
+        // ============================================================================
+        // CAMELOT WHEEL MAPPING
+        // ============================================================================
+        const CAMELOT_MAP = {
+            'C major': '8B',  'A minor': '8A',
+            'G major': '9B',  'E minor': '9A',
+            'D major': '10B', 'B minor': '10A',
+            'A major': '11B', 'F# minor': '11A',
+            'E major': '12B', 'C# minor': '12A',
+            'B major': '1B',  'G# minor': '1A',
+            'F# major': '2B', 'Eb minor': '2A',  'D# minor': '2A',
+            'Db major': '3B', 'C# major': '3B',  'Bb minor': '3A', 'A# minor': '3A',
+            'Ab major': '4B', 'G# major': '4B',  'F minor': '4A',
+            'Eb major': '5B', 'D# major': '5B',  'C minor': '5A',
+            'Bb major': '6B', 'A# major': '6B',  'G minor': '6A',
+            'F major': '7B',  'D minor': '7A'
+        };
+
+        function getCamelotCode(key, scale) {
+            const lookup = key + ' ' + scale;
+            return CAMELOT_MAP[lookup] || '?';
+        }
+
+        // ============================================================================
+        // UTILITIES
+        // ============================================================================
+        function showStatus(msg, type) {
+            statusDiv.innerHTML = msg;
+            statusDiv.className = type || 'info';
+        }
+
+        function formatFileSize(b) {
+            if (b === 0) return '0 Bytes';
+            const k = 1024, s = ['Bytes','KB','MB','GB'], i = Math.floor(Math.log(b) / Math.log(k));
+            return Math.round(b / Math.pow(k, i) * 100) / 100 + ' ' + s[i];
+        }
+
+        function formatDuration(sec) {
+            const m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+            return m + ':' + (s < 10 ? '0' : '') + s;
+        }
+
+        function getFileExtension(name) {
+            return (name.split('.').pop() || '').toUpperCase();
+        }
+
+        // ============================================================================
+        // ESSENTIA.JS INITIALIZATION
+        // ============================================================================
+        function initEssentia() {
+            if (typeof EssentiaWASM === 'undefined' || typeof Essentia === 'undefined') {
+                console.warn('[BPM] Essentia.js not loaded yet, retrying...');
+                setTimeout(initEssentia, 500);
+                return;
+            }
+            try {
+                EssentiaWASM().then(function(wasmModule) {
+                    essentia = new Essentia(wasmModule);
+                    essentiaReady = true;
+                    console.log('[BPM] Essentia.js initialized. Version:', essentia.version);
+                    showStatus('Ready! Upload an audio file to detect BPM and key.', 'info');
+                }).catch(function(err) {
+                    console.error('[BPM] Essentia WASM init error:', err);
+                    showStatus('Error loading audio analyzer. Please refresh the page.', 'error');
+                });
+            } catch (err) {
+                console.error('[BPM] Essentia init error:', err);
+                showStatus('Error loading audio analyzer. Please refresh the page.', 'error');
+            }
+        }
+
+        // ============================================================================
+        // FFMPEG LOADING
+        // ============================================================================
+        async function loadFFmpeg() {
+            if (ffmpegLoaded) return true;
+            if (ffmpegLoading) { while (ffmpegLoading) await new Promise(r => setTimeout(r, 100)); return ffmpegLoaded; }
+            ffmpegLoading = true;
+            try {
+                const mod = await import('../../ffmpeg/index.js');
+                FFmpeg = mod.FFmpeg; ffmpeg = new FFmpeg();
+                await ffmpeg.load(
+                    { 
+                        coreURL:'../../ffmpeg/ffmpeg-core.js', 
+                        //wasmURL:'../../ffmpeg/ffmpeg-core.wasm' 
+                        wasmURL: 'https://cdn.soundtools.io/ffmpeg/ffmpeg-core.wasm'
+                    });
+                ffmpegLoaded = true;
+                console.log('[BPM] FFmpeg loaded.');
+                return true;
+            } catch (err) {
+                ffmpegLoaded = false;
+                console.error('[BPM] FFmpeg load error:', err);
+                return false;
+            } finally { ffmpegLoading = false; }
+        }
+
+        // ============================================================================
+        // METADATA READING (FFmpeg)
+        // ============================================================================
+        async function readMetadata(file) {
+            const fallback = { title: null, artist: null };
+            try {
+                if (!ffmpegLoaded) {
+                    if (!await loadFFmpeg()) return fallback;
+                }
+                const data = new Uint8Array(await file.arrayBuffer());
+                await ffmpeg.writeFile('probe_input', data);
+
+                // Capture FFmpeg log output which contains metadata
+                let logOutput = '';
+                const logHandler = ({ message }) => { logOutput += message + '\n'; };
+                ffmpeg.on('log', logHandler);
+
+                // Run a no-op FFmpeg command that prints metadata
+                try {
+                    await ffmpeg.exec(['-i', 'probe_input', '-f', 'null', '-']);
+                } catch (e) {
+                    // FFmpeg returns error for -f null but still prints metadata
+                }
+
+                ffmpeg.off('log', logHandler);
+
+                // Parse metadata from log
+                let title = null, artist = null;
+                const lines = logOutput.split('\n');
+                for (const line of lines) {
+                    const trimmed = line.trim();
+                    const titleMatch = trimmed.match(/^\s*title\s*:\s*(.+)/i);
+                    const artistMatch = trimmed.match(/^\s*artist\s*:\s*(.+)/i);
+                    if (titleMatch && !title) title = titleMatch[1].trim();
+                    if (artistMatch && !artist) artist = artistMatch[1].trim();
+                }
+
+                // Clean up
+                try { await ffmpeg.deleteFile('probe_input'); } catch (e) {}
+
+                console.log('[BPM] Metadata:', { title, artist });
+                return { title, artist };
+            } catch (err) {
+                console.warn('[BPM] Metadata read error:', err);
+                return fallback;
+            }
+        }
+
+        // ============================================================================
+        // AUDIO ANALYSIS (Essentia.js)
+        // ============================================================================
+        function audioBufferToMono(audioBuffer) {
+            if (audioBuffer.numberOfChannels === 1) {
+                return audioBuffer.getChannelData(0);
+            }
+            // Average channels to mono
+            const ch0 = audioBuffer.getChannelData(0);
+            const ch1 = audioBuffer.getChannelData(1);
+            const mono = new Float32Array(ch0.length);
+            for (let i = 0; i < ch0.length; i++) {
+                mono[i] = (ch0[i] + ch1[i]) / 2;
+            }
+            return mono;
+        }
+
+        async function analyzeAudio(file) {
+            if (!essentiaReady) {
+                showStatus('Audio analyzer is still loading. Please wait...', 'info');
+                return null;
+            }
+
+            showStatus('<span class="analyzing-spinner"></span> Decoding audio...', 'info');
+
+            // Decode audio
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            let audioBuffer;
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            } catch (err) {
+                console.error('[BPM] Audio decode error:', err);
+                showStatus('Error decoding audio file. The file may be corrupted or in an unsupported format.', 'error');
+                audioContext.close();
+                return null;
+            }
+
+            showStatus('<span class="analyzing-spinner"></span> Analyzing BPM and key...', 'info');
+
+            // Convert to mono
+            const monoData = audioBufferToMono(audioBuffer);
+
+            // Convert to essentia vector
+            const audioVector = essentia.arrayToVector(monoData);
+
+            // Detect BPM
+            let bpm = 0;
+            try {
+                const bpmResult = essentia.PercivalBpmEstimator(audioVector);
+                bpm = Math.round(bpmResult.bpm);
+                console.log('[BPM] Detected BPM:', bpm);
+            } catch (err) {
+                console.error('[BPM] BPM detection error:', err);
+            }
+
+            // Detect Key
+            let key = 'Unknown';
+            let scale = '';
+            let keyStrength = 0;
+            try {
+                const keyResult = essentia.KeyExtractor(audioVector);
+                key = keyResult.key;
+                scale = keyResult.scale;
+                keyStrength = keyResult.strength;
+                console.log('[BPM] Detected Key:', key, scale, '(strength:', keyStrength + ')');
+            } catch (err) {
+                console.error('[BPM] Key detection error:', err);
+            }
+
+            // Clean up
+            audioVector.delete();
+            audioContext.close();
+
+            return {
+                bpm: bpm,
+                key: key,
+                scale: scale,
+                keyStrength: keyStrength,
+                duration: audioBuffer.duration,
+                sampleRate: audioBuffer.sampleRate,
+                channels: audioBuffer.numberOfChannels
+            };
+        }
+
+        // ============================================================================
+        // DISPLAY RESULTS
+        // ============================================================================
+        function displayResults(analysis, metadata, file) {
+            // BPM
+            resultBpm.textContent = analysis.bpm > 0 ? analysis.bpm : 'N/A';
+            resultBpmSub.textContent = analysis.bpm > 0 ? 'beats per minute' : 'Could not detect tempo';
+
+            // Key
+            if (analysis.key && analysis.key !== 'Unknown') {
+                const keyDisplay = analysis.key + ' ' + analysis.scale;
+                resultKey.textContent = keyDisplay;
+                const camelot = getCamelotCode(analysis.key, analysis.scale);
+                resultCamelot.textContent = 'Camelot: ' + camelot;
+            } else {
+                resultKey.textContent = 'N/A';
+                resultCamelot.textContent = 'Could not detect key';
+            }
+
+            // Metadata
+            resultTitle.textContent = metadata.title || 'Not available';
+            resultArtist.textContent = metadata.artist || 'Not available';
+
+            // Duration
+            resultDuration.textContent = formatDuration(analysis.duration);
+
+            // File info
+            resultFilename.textContent = file.name;
+            resultFormat.textContent = getFileExtension(file.name);
+            resultFilesize.textContent = formatFileSize(file.size);
+
+            // Show results
+            resultsCard.style.display = 'block';
+            showStatus('', '');
+
+            // Scroll to results
+            resultsCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // ============================================================================
+        // EVENT HANDLERS
+        // ============================================================================
+        // Preload FFmpeg the moment the user opens the file picker — i.e. when
+        // they press "Choose File" (this fires a click on the file input via the
+        // wrapping <label>), or "Analyze Another Song" (which calls
+        // audioInput.click()). FFmpeg is only needed to read title/artist
+        // metadata; kicking it off here — NOT on page load — means ffmpeg-core.wasm
+        // downloads while the user browses for a file, so metadata is ready by the
+        // time they pick one. Fire-and-forget: readMetadata() awaits loadFFmpeg()
+        // again as the correctness barrier (and its concurrency guard makes this
+        // share one in-flight load rather than starting a second).
+        audioInput.addEventListener('click', () => { loadFFmpeg(); });
+
+        audioInput.addEventListener('change', async function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            ToolTracker.trackFileSelected(file.size);
+            fileInfoDiv.innerHTML = 'Selected: <strong>' + file.name + '</strong> (' + formatFileSize(file.size) + ')';
+            fileInfoDiv.classList.add('show');
+            resultsCard.style.display = 'none';
+
+            // Read metadata and analyze audio in parallel
+            const [metadata, analysis] = await Promise.all([
+                readMetadata(file),
+                analyzeAudio(file)
+            ]);
+
+            if (analysis) {
+                displayResults(analysis, metadata, file);
+                ToolTracker.trackSuccess({
+                    'event_label': 'bpm_' + analysis.bpm + '_key_' + analysis.key + '_' + analysis.scale,
+                    'detected_bpm': analysis.bpm,
+                    'detected_key': analysis.key + ' ' + analysis.scale
+                });
+            }
+        });
+
+        analyzeAnotherBtn.addEventListener('click', function() {
+            audioInput.value = '';
+            audioInput.click();
+        });
+
+        // ============================================================================
+        // INITIALIZATION
+        // ============================================================================
+        showStatus('Loading audio analyzer...', 'info');
+        initEssentia();
+        // NOTE: FFmpeg (ffmpeg-core.wasm) is intentionally NOT loaded here on
+        // page load — doing so fetched the wasm on every visit and hurt Core Web
+        // Vitals. It's only used to read title/artist metadata, and now loads
+        // lazily the moment the user opens the file picker ("Choose File" /
+        // "Analyze Another Song") via the audioInput 'click' handler above, with
+        // readMetadata() awaiting loadFFmpeg() as the correctness barrier.
+        console.log('[BPM] BPM Detector initialized.');
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free 10-Band Audio Equalizer Online — EQ MP3 + Bass Booster | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-notify.js" defer></script>
+<script src="/vendor/snip-decode-gate.js" defer></script>
+<script src="/vendor/snip-audio-decode.js" defer></script>
+<meta name="description" content="Free online 10-band audio equalizer. Boost bass, cut highs, apply genre presets (rock / pop / hip-hop / classical / vocal / podcast) — preview live, download the EQ'd MP3, WAV, FLAC. 100% in your browser.">
+<meta name="keywords" content="audio equalizer online, 10 band equalizer, eq audio online, bass booster online, online eq, mp3 equalizer, free audio equalizer, equalize mp3, audio eq tool, treble booster, mid cut">
+<link rel="canonical" href="https://snipsound.com/tools/audio-equalizer/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/audio-equalizer/">
+<link rel="alternate" hreflang="es" href="https://snipsound.com/es/ecualizador-audio/">
+<link rel="alternate" hreflang="it" href="https://snipsound.com/it/equalizzatore-audio/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/audio-equalizer/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free 10-Band Audio Equalizer Online — EQ MP3 + Bass Booster | SnipSound">
+<meta property="og:description" content="10-band EQ + genre presets + bass booster. Live preview, then download as MP3, WAV, FLAC, OGG, AAC, M4A. 100% client-side — files never leave your device.">
+<meta property="og:url" content="https://snipsound.com/tools/audio-equalizer/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free 10-Band Audio Equalizer Online | SnipSound">
+<meta name="twitter:description" content="Boost bass, cut highs, apply genre presets. Files never leave your device, no sign-up.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+
+  
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 32px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  .privacy-notice { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-dim); margin: 0 0 24px; padding: 0 4px; }
+  .privacy-notice svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
+  .privacy-notice strong { color: var(--text); font-weight: 600; }
+  .privacy-notice a { color: var(--accent); text-decoration: none; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .file-info { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .file-info .file-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; color: var(--text); }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove { margin-left: auto; background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: color 0.2s, border-color 0.2s; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  /* Preset row */
+  .preset-row {
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    padding: 12px 14px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 16px;
+  }
+  .preset-row .label { font-size: 0.85rem; color: var(--text-dim); margin-right: 4px; }
+  .preset-btn {
+    padding: 6px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    border-radius: 999px;
+    font-family: inherit; font-size: 0.8rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* EQ band sliders */
+  .eq-grid {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 8px;
+    padding: 18px 14px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+  }
+  .eq-band {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 6px;
+  }
+  /* Vertical slider — modern cross-browser approach using writing-mode.
+     Chrome is deprecating -webkit-appearance: slider-vertical in favor
+     of this standard. writing-mode rotates the slider 90deg; direction:
+     rtl flips it so max is at the top (boost) and min at the bottom
+     (cut). Works in Chrome, Firefox, and Safari without prefixes. */
+  .eq-slider {
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 22px;
+    height: 140px;
+    background: transparent;
+    accent-color: var(--accent);
+  }
+  .eq-band .gain {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 600;
+    min-height: 1em;
+  }
+  .eq-band .freq {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    line-height: 1.2;
+  }
+  @media (max-width: 700px) {
+    /* 10 vertical sliders don't fit on phones — switch to a 2-col
+       horizontal layout that scrolls within the card. */
+    .eq-grid {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .eq-band {
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 4px;
+    }
+    .eq-band .freq { min-width: 60px; text-align: left; }
+    .eq-slider {
+      writing-mode: horizontal-tb;
+      direction: ltr;
+      width: 100%;
+      height: 22px;
+      flex: 1;
+    }
+    .eq-band .gain { min-width: 50px; text-align: right; }
+  }
+
+  /* EQ response curve visualization */
+  .response-wrap {
+    position: relative;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    height: 120px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .response-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .response-legend {
+    position: absolute; top: 6px; left: 10px;
+    font-size: 0.72rem; color: var(--text-dim);
+    pointer-events: none;
+  }
+
+  /* Preview transport */
+  .transport-row {
+    display: flex; gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .transport-btn {
+    background: var(--accent);
+    color: #fff; border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit; font-size: 0.9rem; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .transport-btn:hover { background: var(--accent-hover); }
+  .transport-btn svg { width: 14px; height: 14px; }
+  .transport-btn.playing { background: var(--surface); border: 1px solid var(--accent); color: var(--accent); }
+  .transport-btn.secondary { background: var(--bg); border: 1px solid var(--border-bright); color: var(--text); }
+  .transport-btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .transport-row .transport-label { font-size: 0.85rem; color: var(--text-dim); }
+
+  /* Output format dropdown */
+  .output-row {
+    display: flex; gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .output-row label { font-size: 0.9rem; color: var(--text-dim); }
+  .output-row select {
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    font-family: inherit; font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .output-row select:focus { outline: none; border-color: var(--accent); }
+  .output-row .hint { font-size: 0.8rem; color: var(--text-dim); margin-left: auto; }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+
+  /* SEO content section */
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul { padding-left: 22px; }
+
+  .preset-table { display: grid; grid-template-columns: 130px 1fr; gap: 10px 18px; margin: 16px 0; align-items: baseline; }
+  .preset-table .pt-name { font-weight: 700; color: var(--accent); }
+  .preset-table .pt-desc { color: var(--text-dim); font-size: 0.9rem; }
+  @media (max-width: 600px) { .preset-table { grid-template-columns: 1fr; gap: 2px 0; } .preset-table .pt-desc { margin-bottom: 10px; } }
+
+  .usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 18px 0 24px; }
+  .usecase-card { padding: 14px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; }
+  .usecase-name { font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .usecase-note { font-size: 0.82rem; color: var(--text-dim); }
+
+  .related-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .related-tool { padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: border-color 0.15s, color 0.15s; }
+  .related-tool:hover { border-color: var(--accent); color: var(--accent); }
+  .related-tool .rt-desc { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+  .related-tool:hover .rt-desc { color: var(--text-dim); }
+
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "SnipSound Audio Equalizer", "url": "https://snipsound.com/tools/audio-equalizer/", "description": "Free 10-band audio equalizer online. Apply genre presets or set custom band gains, preview live, and download the EQ'd audio. Runs entirely in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How does the EQ work?", "acceptedAnswer": { "@type": "Answer", "text": "Ten peaking filters are chained in series at the standard ISO octave centers: 31, 62, 125, 250, 500, 1000, 2000, 4000, 8000, and 16000 Hz. Each slider boosts or cuts its band by up to ±12 dB. The chain is rendered via OfflineAudioContext for the final download, and previewed live through a regular AudioContext as you adjust the sliders." } },
+  { "@type": "Question", "name": "Which genre preset should I pick?", "acceptedAnswer": { "@type": "Answer", "text": "Start with Flat (no change) and adjust from there. Use Bass Booster or Hip-Hop for low-end emphasis. Use Vocal Boost or Podcast for spoken-word clarity (3 kHz lift, slight 200 Hz mud cut). Classical is gentle and balanced; Rock and Pop add bass + treble shelf. None of these are 'correct' — they're starting points." } },
+  { "@type": "Question", "name": "Can I boost just the bass?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Pick the Bass Booster preset (lifts 31 Hz, 62 Hz, and 125 Hz by 6–8 dB), or set those three sliders manually. Watch for clipping on already-loud sources — the live preview keeps you honest." } },
+  { "@type": "Question", "name": "Why does my audio sound distorted after a big boost?", "acceptedAnswer": { "@type": "Answer", "text": "EQ boosts add gain at specific frequencies. If your source was already mastered loud, a big boost pushes the signal past 0 dBFS and clips. Either lower the boosts a bit, or normalize the audio first using our Volume Booster or LUFS Audio Normalizer, then EQ." } },
+  { "@type": "Question", "name": "Will EQ change the file length or format?", "acceptedAnswer": { "@type": "Answer", "text": "Length stays exactly the same — EQ only changes the frequency balance, not the duration. You can pick any output format (MP3 320/256/192/128, WAV, FLAC, OGG, AAC, M4A) — defaults to MP3 320 for size + compatibility." } },
+  { "@type": "Question", "name": "Is my audio uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Decoding, filtering, and re-encoding all happen in your browser using the Web Audio API. Your audio never leaves your device." } },
+  { "@type": "Question", "name": "What input formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Any audio format your browser can decode — MP3, WAV, OGG, FLAC, AAC, M4A. Output formats include MP3 (320, 256, 192, 128 kbps), WAV, FLAC, OGG, AAC and M4A." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Audio Equalizer</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/" class="active">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">10-Band Audio Equalizer</span></h1>
+    <p>Boost the bass, cut the highs, fix muddy vocals, or just dial in a genre preset. Ten peaking filters at the standard ISO octave centers, live preview, and download as MP3, WAV, FLAC, AAC, or M4A. 100% in your browser &mdash; your files never leave your device.</p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="4" y1="9" x2="4" y2="15"/>
+      <line x1="8" y1="6" x2="8" y2="18"/>
+      <line x1="12" y1="3" x2="12" y2="21"/>
+      <line x1="16" y1="6" x2="16" y2="18"/>
+      <line x1="20" y1="9" x2="20" y2="15"/>
+    </svg>
+    <h2>Drop audio file here</h2>
+    <p>or click to browse &mdash; EQ'd in your browser, never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span><span class="format-tag">WAV</span><span class="format-tag">OGG</span>
+      <span class="format-tag">FLAC</span><span class="format-tag">AAC</span><span class="format-tag">M4A</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,video/*,.mp3,.wav,.ogg,.flac,.aac,.m4a,.mp4,.mov,.webm,.mkv,.m4v">
+  </div>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your audio never leaves your device.</strong> Decoding, EQ filtering, and encoding all happen in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Remove file</button>
+    </div>
+
+    <div class="preset-row" id="preset-row">
+      <span class="label">Presets:</span>
+      <button type="button" class="preset-btn active" data-preset="flat">Flat</button>
+      <button type="button" class="preset-btn" data-preset="bass-booster">Bass Booster</button>
+      <button type="button" class="preset-btn" data-preset="treble-booster">Treble Booster</button>
+      <button type="button" class="preset-btn" data-preset="vocal-boost">Vocal Boost</button>
+      <button type="button" class="preset-btn" data-preset="podcast">Podcast</button>
+      <button type="button" class="preset-btn" data-preset="pop">Pop</button>
+      <button type="button" class="preset-btn" data-preset="rock">Rock</button>
+      <button type="button" class="preset-btn" data-preset="hip-hop">Hip-Hop</button>
+      <button type="button" class="preset-btn" data-preset="classical">Classical</button>
+      <button type="button" class="preset-btn" data-preset="loudness">Loudness (V)</button>
+    </div>
+
+    <div class="response-wrap">
+      <canvas class="response-canvas" id="response-canvas"></canvas>
+      <span class="response-legend">Frequency response (+12 / 0 / -12 dB)</span>
+    </div>
+
+    <div class="eq-grid" id="eq-grid"></div>
+
+    <div class="transport-row">
+      <button type="button" class="transport-btn" id="btn-preview">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <span>Preview EQ'd audio</span>
+      </button>
+      <button type="button" class="transport-btn secondary" id="btn-reset">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 11 10 11"/></svg>
+        <span>Reset all</span>
+      </button>
+      <span class="transport-label" id="transport-label">Live preview &mdash; adjust sliders while playing.</span>
+    </div>
+
+    <div class="output-row">
+      <label for="output-format">Output format:</label>
+      <select id="output-format">
+        <option value="mp3-320" selected>MP3 — 320 kbps (best)</option>
+        <option value="mp3-256">MP3 — 256 kbps</option>
+        <option value="mp3-192">MP3 — 192 kbps</option>
+        <option value="mp3-128">MP3 — 128 kbps (smaller)</option>
+        <option value="wav">WAV (lossless)</option>
+        <option value="flac">FLAC (lossless)</option>
+        <option value="ogg">OGG Vorbis</option>
+        <option value="aac">AAC</option>
+        <option value="m4a">M4A</option>
+      </select>
+      <span class="hint">MP3 320 preserves your EQ work with broad compatibility.</span>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="btn-apply">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Apply EQ &amp; Download</span>
+      </button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>10-band audio equalizer + bass booster &mdash; free, private, no sign-up</h2>
+    <p>SnipSound's Audio Equalizer puts ten peaking filters at the standard ISO octave centers (31 Hz to 16 kHz) so you can shape the frequency balance of any audio file. Use the genre presets as starting points, drag individual sliders for fine-tuning, preview the result live, then download as MP3, WAV, FLAC, or any of the other supported formats. Everything runs in your browser; your files never leave your device.</p>
+
+    <h3>Genre presets — what each one does</h3>
+    <div class="preset-table">
+      <div class="pt-name">Flat</div>
+      <div class="pt-desc">No EQ applied — all bands at 0 dB. Use this as the reset / starting point.</div>
+      <div class="pt-name">Bass Booster</div>
+      <div class="pt-desc">+8 dB at 31 Hz, +6 dB at 62 Hz, +4 dB at 125 Hz. Adds weight and warmth to thin-sounding speakers or earbuds. Watch for clipping on already-loud sources.</div>
+      <div class="pt-name">Treble Booster</div>
+      <div class="pt-desc">+3 dB at 4 kHz, +5 dB at 8 kHz, +6 dB at 16 kHz. Adds air, brightness, and crispness to dull-sounding recordings.</div>
+      <div class="pt-name">Vocal Boost</div>
+      <div class="pt-desc">-3 dB at 250 Hz (cuts muddiness), +3 dB at 2 kHz, +4 dB at 4 kHz (presence range). The classic "make vocals cut through" recipe.</div>
+      <div class="pt-name">Podcast</div>
+      <div class="pt-desc">-6 dB at 31 Hz, -3 dB at 62 Hz (HPF substitute), -2 dB at 250 Hz (mud cut), +3 dB at 4 kHz (intelligibility). Tightens spoken-word audio recorded on real-world mics.</div>
+      <div class="pt-name">Pop</div>
+      <div class="pt-desc">+4 dB at 31 Hz / 62 Hz, +2 dB at 4 kHz / 8 kHz. Modern radio-friendly "smile" curve — bass lift + treble shelf, mids untouched.</div>
+      <div class="pt-name">Rock</div>
+      <div class="pt-desc">+5 dB at 31 Hz / 62 Hz, +3 dB at 4 kHz, +4 dB at 8 kHz. Punchier bass + bright cymbals. Pairs well with electric-guitar material.</div>
+      <div class="pt-name">Hip-Hop</div>
+      <div class="pt-desc">+7 dB at 31 Hz (sub-bass), +5 dB at 62 Hz, -2 dB at 500 Hz (clear the muds), +3 dB at 8 kHz. Heavy low-end with sparkle on hats.</div>
+      <div class="pt-name">Classical</div>
+      <div class="pt-desc">+2 dB at 62 Hz, +1 dB at 250 Hz / 500 Hz, +2 dB at 8 kHz. Gentle, balanced lift that respects the original mix.</div>
+      <div class="pt-name">Loudness (V)</div>
+      <div class="pt-desc">+4 dB at 31 Hz, +3 dB at 62 Hz, +3 dB at 4 kHz, +4 dB at 8 kHz, +5 dB at 16 kHz. Classic "loudness contour" — boosts the frequencies that human hearing under-perceives at low playback volumes. Great for background listening on small speakers.</div>
+    </div>
+
+    <h3>Common use cases</h3>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="usecase-name">🔊 Add bass to laptop / earbud audio</div>
+        <div class="usecase-note">Small speakers can't produce sub-bass. Boosting 31&ndash;125 Hz adds the perception of weight without needing a subwoofer.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎙 Clean up a podcast recording</div>
+        <div class="usecase-note">Cut 250 Hz mud, lift 2&ndash;4 kHz presence. Pairs well with the Silence Remover and Volume Booster for a full episode-prep workflow.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎵 Make a dull-sounding MP3 sparkle</div>
+        <div class="usecase-note">Old / low-bitrate MP3s often lose high-end. The Treble Booster preset puts some of that back.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎧 Match the curve a venue wants</div>
+        <div class="usecase-note">DJs prepping for a specific venue can pre-EQ a set to match the room's PA tilt, saving on-the-fly knob-twisting.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">📻 Voice-over for video</div>
+        <div class="usecase-note">High-pass-ish cut at 31&ndash;62 Hz removes rumble; +3&ndash;4 dB at 4 kHz keeps the voice intelligible under music beds.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎮 Twitch / Discord stream audio</div>
+        <div class="usecase-note">Preview captures often have boomy room tone. Cut 100&ndash;250 Hz to tighten, boost 2 kHz for clarity over voice chat.</div>
+      </div>
+    </div>
+
+    <h3>How the EQ works under the hood</h3>
+    <p>Ten <strong>peaking BiquadFilter nodes</strong> are chained in series in a Web Audio graph. Each filter is centered on a standard ISO octave frequency (31, 62, 125, 250, 500, 1000, 2000, 4000, 8000, 16000 Hz) with Q = 1.41 (one-octave bandwidth) and a gain that ranges from -12 dB to +12 dB. The same biquad topology is used in Pro Tools, Logic, and most hardware mixing consoles &mdash; it's the standard graphic-EQ implementation.</p>
+    <p>The live preview routes audio through these filters via a regular AudioContext, so slider moves are reflected immediately as you play. The download is rendered separately via OfflineAudioContext with the exact same filter chain, then handed to the SnipSound encoder for export.</p>
+
+    <h3>Why use SnipSound's equalizer</h3>
+    <ul>
+      <li><strong>100% in your browser.</strong> Most online EQs upload your file to a server (Hearably is a notable exception). We don't &mdash; your audio never leaves your device.</li>
+      <li><strong>10 bands, not 5.</strong> Many free online EQs ship with 3&ndash;5 bands, which can't isolate the muddiness band (~250 Hz) from the warmth band (~125 Hz). Ten bands let you target with precision.</li>
+      <li><strong>Genre presets that aren't lies.</strong> Each preset shows you exactly which bands move and by how much &mdash; no magic, just a starting point you can adjust.</li>
+      <li><strong>Live frequency-response curve.</strong> The graph at the top of the editor shows the combined EQ curve as you adjust sliders, so you can see what you're doing instead of just hearing it.</li>
+      <li><strong>Real BiquadFilterNode math.</strong> Web Audio's BiquadFilter is the same topology as professional DAW EQs. The output sounds like the preview because it IS the preview, just rendered offline.</li>
+    </ul>
+
+    <h3>Related tools</h3>
+    <div class="related-tools">
+      <a href="/tools/volume-booster/" class="related-tool"><strong>Volume Booster</strong><span class="rt-desc">Apply gain after EQ if a big boost dropped the loudness</span></a>
+      <a href="/tools/audio-normalizer/" class="related-tool"><strong>LUFS Audio Normalizer</strong><span class="rt-desc">Normalize loudness to Spotify / podcast / broadcast after EQ</span></a>
+      <a href="/tools/audio-fade/" class="related-tool"><strong>Audio Fade</strong><span class="rt-desc">Add fade-in / fade-out to the EQ'd file</span></a>
+      <a href="/tools/silence-remover/" class="related-tool"><strong>Silence Remover</strong><span class="rt-desc">Strip dead air from a podcast before equalizing</span></a>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Audio equalizer FAQ</h2>
+    <div class="faq-item"><div class="faq-q"><span>How does the EQ work?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Ten peaking filters are chained in series at the standard ISO octave centers: 31, 62, 125, 250, 500, 1000, 2000, 4000, 8000, and 16000 Hz. Each slider boosts or cuts its band by up to ±12 dB. The chain is rendered via OfflineAudioContext for the final download, and previewed live through a regular AudioContext as you adjust the sliders.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Which genre preset should I pick?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Start with Flat (no change) and adjust from there. Use Bass Booster or Hip-Hop for low-end emphasis. Use Vocal Boost or Podcast for spoken-word clarity (3 kHz lift, slight 200 Hz mud cut). Classical is gentle and balanced; Rock and Pop add bass + treble shelf. None of these are "correct" &mdash; they're starting points.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Can I boost just the bass?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Yes. Pick the Bass Booster preset (lifts 31 Hz, 62 Hz, and 125 Hz by 6&ndash;8 dB), or set those three sliders manually. Watch for clipping on already-loud sources &mdash; the live preview keeps you honest.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Why does my audio sound distorted after a big boost?</span><span class="arrow">&#9660;</span></div><div class="faq-a">EQ boosts add gain at specific frequencies. If your source was already mastered loud, a big boost pushes the signal past 0 dBFS and clips. Either lower the boosts a bit, or normalize the audio first using our <a href="/tools/volume-booster/">Volume Booster</a> or <a href="/tools/audio-normalizer/">LUFS Audio Normalizer</a>, then EQ.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Will EQ change the file length or format?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Length stays exactly the same &mdash; EQ only changes the frequency balance, not the duration. You can pick any output format (MP3 320/256/192/128, WAV, FLAC, OGG, AAC, M4A) — defaults to MP3 320 for size + compatibility.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my audio uploaded to a server?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. Decoding, filtering, and re-encoding all happen in your browser using the Web Audio API. Your audio never leaves your device.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What input formats are supported?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Any audio format your browser can decode &mdash; MP3, WAV, OGG, FLAC, AAC, M4A. Output formats include MP3 (320, 256, 192, 128 kbps), WAV, FLAC, OGG, AAC and M4A.</div></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; SnipSound. <a href="/">Snip Editor</a> &middot; <a href="/free-music/">Playlist</a> &middot; <a href="/tools/">All Tools</a> &middot; <a href="/privacy/">Privacy</a></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── DOM ────────────────────────────────────────────────────────────────
+  const dropZone     = document.getElementById('drop-zone');
+  const fileInput    = document.getElementById('file-input');
+  const editor       = document.getElementById('editor');
+  const fileNameEl   = document.getElementById('file-name');
+  const fileMetaEl   = document.getElementById('file-meta');
+  const fileRemove   = document.getElementById('file-remove');
+  const presetRow    = document.getElementById('preset-row');
+  const eqGrid       = document.getElementById('eq-grid');
+  const responseCanvas = document.getElementById('response-canvas');
+  const btnPreview   = document.getElementById('btn-preview');
+  const btnReset     = document.getElementById('btn-reset');
+  const transportLabel = document.getElementById('transport-label');
+  const outputFormat = document.getElementById('output-format');
+  const btnApply     = document.getElementById('btn-apply');
+  const statusText   = document.getElementById('status-text');
+
+  // ── EQ band config (ISO octave centers) ────────────────────────────────
+  // Standard graphic-EQ frequencies. Q=1.41 ≈ 1 octave bandwidth at -3 dB.
+  const BAND_FREQS = [31, 62, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+  const BAND_Q = 1.41;
+  const GAIN_MIN = -12;
+  const GAIN_MAX = 12;
+
+  // ── Genre presets ──────────────────────────────────────────────────────
+  // Gains in dB for each of the 10 bands, in the same order as BAND_FREQS.
+  const PRESETS = {
+    'flat':           [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    'bass-booster':   [ 8,  6,  4,  0,  0,  0,  0,  0,  0,  0],
+    'treble-booster': [ 0,  0,  0,  0,  0,  0,  0,  3,  5,  6],
+    'vocal-boost':    [ 0,  0,  0, -3,  0,  0,  3,  4,  1,  0],
+    'podcast':        [-6, -3,  0, -2,  0,  1,  2,  3,  0, -1],
+    'pop':            [ 4,  4,  0,  0,  0,  0,  0,  2,  2,  0],
+    'rock':           [ 5,  5,  2,  0,  0,  0,  0,  3,  4,  3],
+    'hip-hop':        [ 7,  5,  2,  0, -2,  0,  0,  0,  3,  2],
+    'classical':      [ 0,  2,  0,  1,  1,  0,  0,  0,  2,  2],
+    'loudness':       [ 4,  3,  0,  0,  0,  0,  0,  3,  4,  5],
+  };
+
+  // ── State ──────────────────────────────────────────────────────────────
+  let currentFile    = null;
+  let originalBuffer = null;
+  let durationSec    = 0;
+  let acx            = null;
+  let bandGains      = PRESETS['flat'].slice();
+  // Preview playback state — live filter chain that updates as sliders move
+  let previewSource  = null;
+  let previewGain    = null;
+  let previewFilters = [];
+
+  function getAudioContext() {
+    if (!acx) {
+      const Ctor = window.AudioContext || window.webkitAudioContext;
+      acx = new Ctor();
+    }
+    return acx;
+  }
+
+  // ── Formatting ─────────────────────────────────────────────────────────
+  function formatTime(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    const m = Math.floor(sec / 60);
+    const s = sec - m * 60;
+    return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1);
+  }
+  function formatBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+    return (b / 1024 / 1024).toFixed(1) + ' MB';
+  }
+  function formatHz(hz) {
+    return hz >= 1000 ? (hz / 1000).toFixed(hz % 1000 === 0 ? 0 : 1) + ' kHz' : hz + ' Hz';
+  }
+  function formatGain(db) {
+    const sign = db > 0 ? '+' : '';
+    return sign + db.toFixed(0) + ' dB';
+  }
+
+  // ── UI show/hide ───────────────────────────────────────────────────────
+  function showEditor() { editor.classList.add('active'); dropZone.style.display = 'none'; }
+  function hideEditor() { editor.classList.remove('active'); dropZone.style.display = ''; stopPreview(); }
+
+  // ── Build EQ slider grid ───────────────────────────────────────────────
+  function renderBands() {
+    eqGrid.innerHTML = BAND_FREQS.map((hz, i) =>
+      '<div class="eq-band" data-band="' + i + '">' +
+        '<span class="gain" id="gain-' + i + '">' + formatGain(bandGains[i]) + '</span>' +
+        '<input type="range" class="eq-slider" id="slider-' + i + '"' +
+          ' min="' + GAIN_MIN + '" max="' + GAIN_MAX + '" step="0.5" value="' + bandGains[i] + '">' +
+        '<span class="freq">' + formatHz(hz) + '</span>' +
+      '</div>'
+    ).join('');
+    // Wire change events
+    for (let i = 0; i < BAND_FREQS.length; i++) {
+      const sl = document.getElementById('slider-' + i);
+      sl.addEventListener('input', () => onSliderInput(i, parseFloat(sl.value)));
+    }
+  }
+
+  function onSliderInput(bandIdx, dbValue) {
+    bandGains[bandIdx] = dbValue;
+    document.getElementById('gain-' + bandIdx).textContent = formatGain(dbValue);
+    // Update live filter chain in real time
+    if (previewFilters[bandIdx]) previewFilters[bandIdx].gain.value = dbValue;
+    drawResponse();
+    markPresetActive(matchPreset());
+  }
+
+  function setBandsFromArray(gains) {
+    for (let i = 0; i < BAND_FREQS.length; i++) {
+      bandGains[i] = gains[i];
+      const sl = document.getElementById('slider-' + i);
+      if (sl) sl.value = gains[i];
+      const g = document.getElementById('gain-' + i);
+      if (g) g.textContent = formatGain(gains[i]);
+      if (previewFilters[i]) previewFilters[i].gain.value = gains[i];
+    }
+    drawResponse();
+  }
+
+  function matchPreset() {
+    // Return preset key whose gains match current bandGains, or null
+    for (const key of Object.keys(PRESETS)) {
+      const p = PRESETS[key];
+      let match = true;
+      for (let i = 0; i < p.length; i++) {
+        if (Math.abs(p[i] - bandGains[i]) > 0.25) { match = false; break; }
+      }
+      if (match) return key;
+    }
+    return null;
+  }
+
+  function markPresetActive(key) {
+    document.querySelectorAll('.preset-btn').forEach(b => {
+      b.classList.toggle('active', key && b.dataset.preset === key);
+    });
+  }
+
+  // ── Frequency-response curve drawing ───────────────────────────────────
+  // Combine the analytical magnitude responses of each peaking biquad
+  // and paint the resulting dB curve. Cheap and matches what Biquad
+  // actually does in the audio graph.
+  function drawResponse() {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = responseCanvas.getBoundingClientRect();
+    const w = Math.floor(rect.width * dpr);
+    const h = Math.floor(rect.height * dpr);
+    if (responseCanvas.width !== w || responseCanvas.height !== h) {
+      responseCanvas.width = w; responseCanvas.height = h;
+    }
+    const ctx = responseCanvas.getContext('2d');
+    ctx.clearRect(0, 0, w, h);
+
+    // Reference grid
+    const dbRange = GAIN_MAX - GAIN_MIN; // 24
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.lineWidth = 1 * dpr;
+    for (let db = GAIN_MIN; db <= GAIN_MAX; db += 6) {
+      const y = h - ((db - GAIN_MIN) / dbRange) * h;
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+    }
+    // 0 dB line emphasized
+    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+    const zeroY = h - ((0 - GAIN_MIN) / dbRange) * h;
+    ctx.beginPath(); ctx.moveTo(0, zeroY); ctx.lineTo(w, zeroY); ctx.stroke();
+
+    // Compute combined magnitude (in dB) at each pixel column.
+    // x-axis is log-frequency from 20 Hz to 20 kHz.
+    const fMin = 20, fMax = 20000;
+    const logMin = Math.log10(fMin), logMax = Math.log10(fMax);
+
+    ctx.strokeStyle = '#7c6fff';
+    ctx.lineWidth = 2 * dpr;
+    ctx.beginPath();
+    for (let x = 0; x < w; x++) {
+      const logF = logMin + (x / (w - 1)) * (logMax - logMin);
+      const f = Math.pow(10, logF);
+      // Sum (in dB) the responses of all 10 peaking biquads at this f.
+      let dbTotal = 0;
+      for (let i = 0; i < BAND_FREQS.length; i++) {
+        dbTotal += peakingMagnitudeDb(f, BAND_FREQS[i], BAND_Q, bandGains[i]);
+      }
+      const clipped = Math.max(GAIN_MIN - 3, Math.min(GAIN_MAX + 3, dbTotal));
+      const y = h - ((clipped - GAIN_MIN) / dbRange) * h;
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // Fill below the curve with a translucent gradient — quick visual cue
+    ctx.fillStyle = 'rgba(124,111,255,0.10)';
+    ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+    ctx.fill();
+  }
+
+  // Approximate magnitude (dB) of a peaking biquad at frequency f.
+  // Uses the standard RBJ "audio EQ cookbook" formula. Good enough for
+  // a UI preview; the actual filter math in Web Audio uses the same.
+  function peakingMagnitudeDb(f, f0, Q, gainDb) {
+    if (gainDb === 0) return 0;
+    const A = Math.pow(10, gainDb / 40);
+    const w0 = (f / f0);
+    // |H(f)|^2 for peaking EQ at freq ratio w0, expressed as a closed-form
+    // approximation derived from the analog prototype.
+    const x = w0 - 1 / w0; // -inf at DC, 0 at f0, +inf at Nyquist
+    const denom = 1 + (x * x) * (Q * Q);
+    const numer = 1 + (x * x) * (Q * Q) / (A * A);
+    return 10 * Math.log10(numer / denom * A * A);
+  }
+
+  // ── File handling ──────────────────────────────────────────────────────
+  async function handleFile(file) {
+    if (!file) return;
+    // Decode gate: size heads-up, crash breadcrumb, compress rescue, and (since
+    // gate-refuse-2) it turns away a file that can never be audio and names what
+    // it really is, instead of letting the decoder fail with the wrong reason.
+    if (window.snipDecodeGate) {
+      const decision = await window.snipDecodeGate.check(file, {
+        tool: 'audio-equalizer', dropZone: dropZone, onPick: hideEditor,
+        onCompressed: function (nf) { handleFile(nf); }
+      });
+      if (decision === 'cancel') return;
+    }
+    currentFile = file;
+    statusText.textContent = 'Decoding…';
+    if (window.snipDecodeGate) window.snipDecodeGate.armCrumb('audio-equalizer', file);
+    if (window.snipDecodeGate && window.snipDecodeGate.decodeStarted) window.snipDecodeGate.decodeStarted('audio-equalizer', file, 'native');
+    if (window.snipSharedAudio) window.snipSharedAudio.save(file);
+    try {
+      const ctx = getAudioContext();
+      // Robust decode: FFmpeg->WAV fallback when decodeAudioData refuses the file.
+      const buf = window.snipDecodeAudio
+        ? await window.snipDecodeAudio(file, ctx, { tool: 'audio-equalizer' })
+        : await ctx.decodeAudioData((await file.arrayBuffer()).slice(0));
+      if (window.snipDecodeGate && window.snipDecodeGate.decodeOk) window.snipDecodeGate.decodeOk('audio-equalizer', file, 'native');
+      originalBuffer = buf;
+      durationSec = buf.duration;
+
+      fileNameEl.textContent = file.name;
+      const ch = buf.numberOfChannels === 1 ? 'mono' : buf.numberOfChannels + ' channels';
+      const sr = (buf.sampleRate / 1000).toFixed(1);
+      fileMetaEl.textContent =
+        formatBytes(file.size) + ' · ' + formatTime(durationSec) + ' · ' + ch + ' · ' + sr + ' kHz';
+
+      showEditor();
+      renderBands();
+      drawResponse();
+      statusText.textContent = '';
+      if (window.snipDecodeGate) { window.snipDecodeGate.clearCrumb(); window.snipDecodeGate.clearCard(dropZone); }
+    } catch (err) {
+      console.error('Decode failed', err);
+      if (window.snipDecodeGate && window.snipDecodeGate.decodeFailed) window.snipDecodeGate.decodeFailed('audio-equalizer', file, 'native', (err && err.name) || 'Error', err && err.snipDiag);
+      const _r = (err && err.name === 'NotReadableError') || /could not be read|permission/i.test((err && err.message) || '') ? 'file_read_failed' : 'decode_failed';
+      if (window.snipTrackFailed) window.snipTrackFailed('audio-equalizer', _r, 'decode', err && err.snipDiag);
+      const _m = _r === 'file_read_failed'
+        ? 'Couldn’t read “' + file.name + '” — it may have moved or changed. Please pick it again.'
+        : 'Couldn’t process “' + file.name + '”. If it’s very large it may be too big to load in one piece — split it into parts first with our free Audio Splitter, then apply EQ to each part.';
+      let _rec = null;
+      // worthCompressing (design R-87ddfb) is the ONE rule for whether compress-and-retry can help; the 20 MB
+      // floor posthog measured (R-e391e7) lives beside it in the gate. The locale copies of this page carried
+      // the old rule with no floor, so an ordinary 40 MB failure on iOS got no rescue there.
+      if (_r !== 'file_read_failed' && window.snipDecodeGate && typeof window.snipDecodeGate.worthCompressing === 'function'
+          && window.snipDecodeGate.worthCompressing(file, err)) {
+        _rec = { canCompress: true, file: file, onCompressed: function (nf) { handleFile(nf); } };
+      }
+      // The person sees the gate's vetted sentence; a file that failed BOTH decoders gets the 'may be
+      // incomplete' one. The TRACKED reason stays as it was, so posthog's series grows no false onset.
+      const _shown = (_r === 'decode_failed' && err && err.snipDiag && err.snipDiag.fell_back) ? 'decode_failed_after_fallback' : _r;
+      if (window.snipDecodeGate) {
+        window.snipDecodeGate.clearCrumb();
+        window.snipDecodeGate.showFailure(dropZone, _m, { tool: 'audio-equalizer', report: true, reason: _shown, onPick: hideEditor, recovery: _rec });
+      } else alert(_m);
+      statusText.textContent = '';
+    }
+  }
+
+  // ── Preset row wiring ──────────────────────────────────────────────────
+  presetRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.preset-btn');
+    if (!btn) return;
+    const key = btn.dataset.preset;
+    if (!PRESETS[key]) return;
+    setBandsFromArray(PRESETS[key]);
+    markPresetActive(key);
+  });
+
+  btnReset.addEventListener('click', () => {
+    setBandsFromArray(PRESETS['flat']);
+    markPresetActive('flat');
+  });
+
+  // ── Live preview ───────────────────────────────────────────────────────
+  function stopPreview() {
+    if (previewSource) {
+      try { previewSource.stop(); } catch (e) {}
+      previewSource.disconnect();
+      previewSource = null;
+    }
+    if (previewGain) { previewGain.disconnect(); previewGain = null; }
+    previewFilters.forEach(f => { try { f.disconnect(); } catch (e) {} });
+    previewFilters = [];
+    btnPreview.classList.remove('playing');
+    btnPreview.querySelector('span').textContent = 'Preview EQ\'d audio';
+    transportLabel.textContent = 'Live preview — adjust sliders while playing.';
+  }
+
+  async function startPreview() {
+    if (!originalBuffer) return;
+    stopPreview();
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') await ctx.resume();
+
+    const src = ctx.createBufferSource();
+    src.buffer = originalBuffer;
+
+    // Build filter chain. Keep references so slider input can mutate gains live.
+    const filters = BAND_FREQS.map((hz, i) => {
+      const f = ctx.createBiquadFilter();
+      f.type = 'peaking';
+      f.frequency.value = hz;
+      f.Q.value = BAND_Q;
+      f.gain.value = bandGains[i];
+      return f;
+    });
+    // Connect: src → f0 → f1 → ... → f9 → destination
+    src.connect(filters[0]);
+    for (let i = 0; i < filters.length - 1; i++) filters[i].connect(filters[i + 1]);
+    filters[filters.length - 1].connect(ctx.destination);
+
+    src.start(0);
+    previewSource = src;
+    previewFilters = filters;
+    btnPreview.classList.add('playing');
+    btnPreview.querySelector('span').textContent = 'Stop preview';
+    transportLabel.textContent = 'Playing with live EQ — drag sliders to hear changes.';
+
+    src.onended = () => { if (previewSource === src) stopPreview(); };
+  }
+
+  btnPreview.addEventListener('click', () => {
+    if (previewSource) stopPreview(); else startPreview();
+  });
+
+  // ── Render the EQ'd buffer offline + encode ────────────────────────────
+  async function buildEqualizedBuffer() {
+    const sr = originalBuffer.sampleRate;
+    const nCh = originalBuffer.numberOfChannels;
+    const len = originalBuffer.length;
+    const off = new OfflineAudioContext(nCh, len, sr);
+    const src = off.createBufferSource();
+    src.buffer = originalBuffer;
+
+    const filters = BAND_FREQS.map((hz, i) => {
+      const f = off.createBiquadFilter();
+      f.type = 'peaking';
+      f.frequency.value = hz;
+      f.Q.value = BAND_Q;
+      f.gain.value = bandGains[i];
+      return f;
+    });
+    src.connect(filters[0]);
+    for (let i = 0; i < filters.length - 1; i++) filters[i].connect(filters[i + 1]);
+    filters[filters.length - 1].connect(off.destination);
+    src.start(0);
+    return await off.startRendering();
+  }
+
+  async function applyAndDownload() {
+    if (!originalBuffer) return;
+    if (!window.snipEncoder) { alert('Encoder not loaded yet — try again.'); return; }
+    if (window.snipNotify) window.snipNotify.prime();
+    btnApply.disabled = true;
+    statusText.textContent = 'Applying EQ…';
+    try {
+      const processed = await buildEqualizedBuffer();
+      statusText.textContent = 'Encoding…';
+      const format = outputFormat.value;
+      const { blob, ext } = await window.snipEncoder.encode(processed, format, {
+        onProgress: (frac) => statusText.textContent = 'Encoding… ' + Math.round((frac || 0) * 100) + '%'
+      });
+      // currentFile can be null here (audio restored without its File) - the export must not die on the NAME.
+      const base = ((currentFile && currentFile.name) || 'audio').replace(/\.[^.]+$/, '');
+      const fname = base + '_eq.' + ext;
+      if (window.snipNotify) {
+        window.snipNotify.deliver(blob, fname, { statusEl: statusText, doneStatus: 'Done — ' + formatBytes(blob.size) });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = fname;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+        statusText.textContent = 'Done — ' + formatBytes(blob.size);
+      }
+    } catch (err) {
+      console.error('Encode failed', err);
+      alert('Encoding failed: ' + (err.message || err));
+      statusText.textContent = '';
+    } finally {
+      btnApply.disabled = false;
+    }
+  }
+  btnApply.addEventListener('click', applyAndDownload);
+
+  // ── File upload wiring ─────────────────────────────────────────────────
+  dropZone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (f) handleFile(f);
+    e.target.value = '';
+  });
+  // Cross-tool shared-file handoff — required for theme.js auto-load.
+  // See docs/new-tool-checklist.md §3.
+  document.addEventListener('snipsound:use-shared-file', (e) => {
+    if (e.detail && e.detail.file) handleFile(e.detail.file);
+  });
+  ['dragenter', 'dragover'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); }));
+  ['dragleave', 'drop'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.remove('drag-over'); }));
+  dropZone.addEventListener('drop', (e) => {
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) handleFile(f);
+  });
+
+  fileRemove.addEventListener('click', () => {
+    currentFile = null;
+    originalBuffer = null;
+    durationSec = 0;
+    fileInput.value = '';
+    hideEditor();
+    statusText.textContent = '';
+  });
+
+  // Redraw response on viewport resize
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => { resizeRaf = 0; drawResponse(); });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item .faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a519e83bba78ff06',t:'MTc5MzE5MDE1OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

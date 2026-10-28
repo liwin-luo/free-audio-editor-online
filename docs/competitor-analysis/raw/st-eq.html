@@ -1,0 +1,2822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="canonical" href="https://soundtools.io/eq/" />
+   <link rel="stylesheet" href="../css/tools-style.css">
+   <link rel="icon" href="../favicon.png" type="image/png">
+
+   <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2L1GFZ61L"></script>
+   <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T2L1GFZ61L');
+   </script>
+
+
+   <meta name="description" content="Free online audio equalizer — shape MP3 or WAV with a drag-and-drop graphic EQ and live spectrum analyzer. Real-time preview, vintage presets. No upload, no account.">
+
+   <meta name="author" content="SoundTools">
+   <meta property="og:title" content="Free Online Equalizer — Graphic &amp; Parametric EQ | SoundTools">
+   <meta property="og:description" content="Free online audio equalizer — shape MP3 or WAV with a drag-and-drop graphic EQ and live spectrum analyzer. Real-time preview, vintage presets. No upload, no account.">
+   <meta property="og:type" content="website">
+   <meta property="og:url" content="https://soundtools.io/eq/">
+   <title>Free Online Equalizer — Graphic &amp; Parametric EQ | SoundTools</title>
+
+  <!-- Organization schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://soundtools.io/#organization",
+    "name": "SoundTools",
+    "alternateName": "soundtools.io",
+    "url": "https://soundtools.io",
+    "logo": "https://soundtools.io/logo.png",
+    "description": "SoundTools is a free, browser-based audio toolkit offering 35+ tools for editing, converting, and transforming audio — including creator effects, AI and voice tools, and everyday utilities. Everything runs locally in the browser; files never leave your device.",
+    "foundingDate": "2025",
+    "knowsAbout": [
+      "Audio editing",
+      "Text to speech",
+      "Vocal removal",
+      "Stem separation",
+      "Speech to text",
+      "Voice changing",
+      "Noise reduction",
+      "Audio conversion"
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/company/soundtools-io",
+      "https://www.crunchbase.com/organization/soundtools-8406",
+      "https://www.wikidata.org/wiki/Q140073639"
+    ]
+  }
+  </script>
+
+  <!-- Website schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://soundtools.io/#website",
+    "name": "SoundTools",
+    "alternateName": "soundtools.io",
+    "url": "https://soundtools.io",
+    "publisher": { "@id": "https://soundtools.io/#organization" }
+  }
+  </script>
+
+
+  <!-- WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://soundtools.io/eq/#webapp",
+    "name": "SoundTools Equalizer",
+    "url": "https://soundtools.io/eq/",
+    "applicationCategory": "MultimediaApplication",
+    "browserRequirements": "Works in any modern web browser on desktop and mobile. No install required.",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://soundtools.io/#organization"
+    },
+    "datePublished": "2025",
+    "dateModified": "2026-07-13",
+    "inLanguage": "en",
+    "featureList": [
+      "Graphic (drag-and-drop) parametric equalizer with adjustable frequency, gain, and Q",
+      "Live spectrum analyzer showing the frequency content of your audio",
+      "Four vintage-style channel equalizers modeled on classic studio hardware",
+      "Boost or cut bass, midrange, and treble independently",
+      "Real-time preview — hear EQ changes instantly while audio plays",
+      "High-pass and low-pass filtering",
+      "Supports MP3, WAV, FLAC, OGG, AAC, and M4A input",
+      "Download the processed audio as WAV",
+      "Processing runs locally in your browser — audio never leaves your device",
+      "Free and unlimited, no account or install required"
+    ],
+    "description": "Free online audio equalizer that runs in your browser. Boost or cut bass, midrange, and treble with a drag-and-drop graphic parametric EQ, watch a live spectrum analyzer, and hear changes in real time. Supports MP3, WAV, FLAC and more; audio never leaves your device."
+  }
+  </script>
+
+  <!-- HowTo Schema -->
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Equalize Audio Online for Free",
+        "description": "Apply professional EQ to any audio file in your browser in 4 steps — no software, no account",
+        "totalTime": "PT2M",
+        "step":
+        [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Upload your audio file",
+                "text": "Click the upload zone or drag and drop an MP3, WAV, FLAC, OGG, or AAC file onto the page. The waveform will appear in the preview player."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Choose Graphical EQ or Classic Hardware EQ",
+                "text": "Click the 'Graphical EQ' tab for a drag-and-drop parametric EQ with spectrum analyzer, or 'Classic Parametric EQ' to select a hardware emulation — 1081, 1073, 550b, or  EQP-1A."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Shape your audio",
+                "text": "In Graphical EQ mode: drag filter nodes up/down to boost or cut, left/right to change frequency, and scroll the mouse wheel on a node to adjust Q. In Classic mode: turn the knobs or click the stepped selectors to match the controls of the hardware unit."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Preview and download",
+                "text": "Press Play in the preview player to hear EQ changes instantly during playback. Scrub to any point in the track. When satisfied, click Download EQ'd WAV to save the processed audio file."
+            }
+        ]
+      }
+  </script>
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an online equalizer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An online equalizer (or online EQ) is a browser-based tool that lets you boost or cut specific frequency ranges in an audio file without installing any software. This free online equalizer processes your audio entirely inside your browser using the Web Audio API — nothing is ever uploaded to a server, and no account is required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a graphic EQ and a parametric EQ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A graphic equalizer has a fixed set of frequency bands — commonly a 10-band or 31-band layout — with only the gain (boost or cut) adjustable per band. A parametric equalizer lets you control frequency, gain, and Q (bandwidth) for each band, giving far more surgical control. Most professional mixing is done with parametric EQs. The Graphic EQ tab in this tool is a parametric equalizer displayed graphically: you drag nodes on the response curve to control all three parameters at once."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I boost bass or treble with this equalizer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To boost bass, add or drag a band down in the low frequencies — roughly 60–150Hz for the fundamental weight of a track — and raise its gain. To boost treble, do the same in the 8–16kHz range using a high shelf, which lifts everything above the chosen frequency. Keep boosts modest (3–6dB is usually plenty) and use the spectrum analyzer to see what you're actually changing. If you only want a quick low-end lift, our <a href=\"https://soundtools.io/bass-boost/\">Bass Booster</a> does that in one click."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Q in an equalizer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Q (quality factor) controls the width or bandwidth of a filter's effect. A high Q value (for example Q = 10) creates a very narrow, surgical peak or notch — useful for removing a specific resonance or hum. A low Q value (for example Q = 0.5) creates a broad, gentle curve that affects a wide range of frequencies — useful for tonal shaping and color. In the Graphic EQ, scroll the mouse wheel on any filter node to adjust its Q."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the vintage-style channel EQs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tool includes four channel-strip equalizers whose band layouts, frequency choices, and tonal behavior are modeled on the character of classic studio hardware: the 1081 Style, 1073 Style, 550b Style, and EQP-1A Style. They are emulations of a sonic character, not exact circuit reproductions, and are named only to describe the sound they aim for. Neve, API, and Pultec are trademarks of their respective owners, and SoundTools is not affiliated with or endorsed by them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 1081 Style equalizer based on?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It follows the four-band parametric layout of the Neve 1081, a console module from the early 1970s: a treble shelving band, two midrange peaking bands with a Hi-Q option, and a bass shelving band. The original is known for treble boosts that stay smooth rather than harsh, a quality linked to its inductor-based filters and transformer coloration. The 1081 Style preset mirrors that band structure and broad, forward brightness."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 1073 Style equalizer based on?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It follows the three-band layout of the Neve 1073, a 1970 module widely regarded as one of the finest-sounding equalizers ever built: a treble shelf at 12kHz or 16kHz, a single stepped midrange band (360Hz to 7.2kHz), a bass shelf (35Hz to 220Hz), and a steep high-pass filter. Its limited frequency choices are each chosen to be maximally useful, which is why engineers describe its boosts as \"musical.\""
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 550b Style equalizer based on?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It follows the four-band proportional-Q design of the API 550b, a 500-series module descended from the 1967 API 550a. Its bands overlap across the spectrum with ±12dB of boost or cut, and the proportional-Q behavior automatically narrows the bandwidth as gain increases, keeping heavy boosts focused instead of muddy. The result is the punchy, forward character heard on a great deal of rock, hip-hop, and pop."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the EQP-1A Style equalizer based on?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It follows the passive tube program equalizer designed by Pulse Techniques in the early 1950s. Its signature feature is simultaneous Boost and Attenuate controls on the low band: boosting and cutting the same frequency at once produces an enhanced low end with a tighter, faster-decaying bass response — weight without mud. The EQP-1A Style preset implements the same simultaneous boost/attenuate behavior so you can use the trick yourself."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this equalizer upload my audio to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All audio processing happens entirely inside your browser using the Web Audio API's BiquadFilterNode, AnalyserNode, and OfflineAudioContext. Your audio files never leave your device — nothing is sent to any server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from FabFilter Pro-Q 3?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FabFilter Pro-Q 3 is a professional DAW plugin costing €179, with advanced features including mid/side processing, linear phase mode, dynamic EQ, and a piano-roll display. This equalizer is free, requires no installation, runs entirely in a browser, and is designed for quick tasks — shaping an audio file, applying a vintage-style tone, or learning what EQ actually does. It is not a replacement for Pro-Q 3 in a professional DAW workflow, but it does the common jobs without costing anything."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What audio formats does the online equalizer support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The equalizer accepts MP3, WAV, FLAC, OGG, AAC, and M4A files. The processed output is downloaded as a WAV file (PCM 16-bit or 32-bit float, 44.1kHz)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this online equalizer on vocals?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The equalizer works on any audio content — vocals, music, podcasts, sound effects. For vocals, common techniques include a high-pass filter around 80–100Hz to remove room rumble, a gentle cut around 300–500Hz to reduce muddiness, a presence boost around 2–5kHz for clarity and intelligibility, and an air boost around 10–16kHz for brightness. The 1073 Style and 1081 Style presets are popular starting points for vocal EQ."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I hear the equalizer in real time while the audio plays?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The tool includes a custom preview player. While audio is playing, any adjustment you make — moving a filter node, changing a frequency selector, adjusting gain — updates the processing immediately without stopping or restarting playback. This makes it easy to A/B compare EQ settings by ear."
+        }
+      }
+    ]
+  }
+  </script>
+
+   <!-- ToolTracker -->
+   <script>
+      const ToolTracker = {
+        STORAGE_KEY: 'soundtools_usage',
+        CURRENT_TOOL: 'eq',
+        getUsageData() { try { return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '{}'); } catch(e) { return {}; } },
+        saveUsageData(data) { try { localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data)); } catch(e) {} },
+        trackToolSuccess(toolName = this.CURRENT_TOOL) {
+            const usage = this.getUsageData();
+            if (!usage[toolName]) usage[toolName] = { count: 0, firstUsed: new Date().toISOString(), lastUsed: null };
+            usage[toolName].count++;
+            usage[toolName].lastUsed = new Date().toISOString();
+            this.saveUsageData(usage);
+            return this.getAnalytics();
+        },
+        getAnalytics() {
+            const usage = this.getUsageData();
+            const cur = usage[this.CURRENT_TOOL] || { count: 0 };
+            return { lifetime_tool_uses: cur.count, total_tools_used: Object.keys(usage).length, is_repeat_user: Object.values(usage).some(t => t.count > 1), is_repeat_tool_user: cur.count > 1, total_lifetime_uses: Object.values(usage).reduce((s,t) => s + t.count, 0), days_since_first_use: cur.firstUsed ? Math.floor((Date.now() - new Date(cur.firstUsed)) / 86400000) : 0 };
+        },
+        trackFileSelected(fileSize) { const a = this.getAnalytics(); gtag('event', `${this.CURRENT_TOOL}-file_selected`, { event_category: this.CURRENT_TOOL, file_size: fileSize, ...a }); },
+        trackPresetSelected(presetName) { const a = this.getAnalytics(); gtag('event', `${this.CURRENT_TOOL}-preset_selected`, { event_category: this.CURRENT_TOOL, event_label: presetName, ...a }); },
+        trackSuccess(params = {}) { const a = this.trackToolSuccess(); gtag('event', `${this.CURRENT_TOOL}-success`, { event_category: this.CURRENT_TOOL, ...params, ...a }); },
+        trackError(msg) { const a = this.getAnalytics(); gtag('event', `${this.CURRENT_TOOL}-error`, { event_category: this.CURRENT_TOOL, error_message: msg, ...a }); }
+      };
+   </script>
+
+   <style>
+      /* ═══════════════════════════════════════════════════════════
+         MODE TABS
+      ═══════════════════════════════════════════════════════════ */
+      .mode-tabs { display:flex; gap:.5rem; margin-bottom:1.5rem; }
+      .mode-tab { flex:1; padding:.875rem 1rem; border:2px solid #e0e4e8; background:white; border-radius:10px; font-size:1rem; font-weight:600; cursor:pointer; transition:all .2s; color:#555; }
+      .mode-tab:hover:not(.active) { border-color:#4f5aed; color:#4f5aed; }
+      .mode-tab.active { border-color:#4f5aed; background:#4f5aed; color:white; }
+      .mode-panel { display:none; }
+      .mode-panel.active { display:block; }
+
+      /* ═══════════════════════════════════════════════════════════
+         FILE UPLOAD
+      ═══════════════════════════════════════════════════════════ */
+      .file-upload-box { border:2px dashed #d1d5db; border-radius:12px; padding:2rem 1.5rem; text-align:center; cursor:pointer; transition:all .2s; margin-bottom:1.25rem; background:#f9fafb; }
+      .file-upload-box:hover,.file-upload-box.drag-over { border-color:#4f5aed; background:#f0f1ff; }
+      .file-upload-box .upload-icon { font-size:2.25rem; margin-bottom:.5rem; }
+      .file-upload-box p { color:#555; font-size:.9375rem; margin:0; }
+      .file-upload-box span { color:#4f5aed; font-weight:600; }
+      #fileInput { display:none; }
+      .file-info-bar { background:#f0f4ff; border:1px solid #c7d2fe; border-radius:8px; padding:.625rem 1rem; font-size:.875rem; color:#3730a3; margin-bottom:1rem; display:none; }
+
+      /* ═══════════════════════════════════════════════════════════
+         EQ PREVIEW PLAYER
+      ═══════════════════════════════════════════════════════════ */
+      .eq-player-wrap { background:#0f172a; border-radius:12px; overflow:hidden; margin-bottom:1.25rem; position:relative; }
+      #eqPlayerCanvas { width:100%; height:144px; display:block; cursor:crosshair; }
+      .eq-player-controls { display:flex; align-items:center; gap:.75rem; padding:.625rem 1rem; background:#0f172a; border-top:1px solid rgba(255,255,255,.08); }
+      #eqPlayPauseBtn { padding:.5rem 1.25rem; background:#4f5aed; color:white; border:none; border-radius:8px; font-weight:700; font-size:.9rem; cursor:pointer; transition:background .15s; white-space:nowrap; }
+      #eqPlayPauseBtn:hover { background:#3d47d9; }
+      #eqPlayPauseBtn:disabled { opacity:.4; cursor:not-allowed; }
+      #eqTimeDisplay { font-family:monospace; font-size:.875rem; color:#94a3b8; flex:1; }
+      #eqDownloadBtn { padding:.5rem 1.1rem; background:#16a34a; color:white; border:none; border-radius:8px; font-weight:700; font-size:.85rem; cursor:pointer; transition:all .2s; display:none; white-space:nowrap; }
+      #eqDownloadBtn:hover { background:#15803d; }
+      #eqDownloadBtn:disabled { opacity:.5; cursor:not-allowed; }
+
+      /* ═══════════════════════════════════════════════════════════
+         STATUS
+      ═══════════════════════════════════════════════════════════ */
+      #status { margin:.75rem 0; font-size:.9rem; min-height:1.5rem; border-radius:8px; padding:.5rem .75rem; }
+      #status.info { background:#eff6ff; color:#1d4ed8; }
+      #status.error { background:#fef2f2; color:#dc2626; }
+      #status.success-enhanced { background:transparent; padding:0; }
+      .success-message-enhanced { background:linear-gradient(135deg,#16a34a,#15803d); border-radius:12px; padding:1.25rem 1.5rem; color:white; }
+      .success-text { font-size:1.0625rem; font-weight:700; margin-bottom:.75rem; }
+      .next-tools { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1rem; align-items:center; }
+      .next-label { font-size:.8rem; font-weight:700; opacity:.8; }
+      .next-tool-link { padding:.35rem .8rem; background:rgba(255,255,255,.2); border-radius:6px; color:white; text-decoration:none; font-size:.8rem; font-weight:600; transition:background .15s; }
+      .next-tool-link:hover { background:rgba(255,255,255,.35); }
+      .cta-download-btn { display:block; width:100%; padding:.875rem 1rem; background:white; color:#16a34a; border:none; border-radius:10px; font-size:1rem; font-weight:700; text-align:center; text-decoration:none; cursor:pointer; transition:all .2s; box-sizing:border-box; }
+      .cta-download-btn:hover { background:#f0fdf4; }
+
+      /* Progress bar */
+      .progress-bar-wrap { height:6px; background:#e0e4e8; border-radius:3px; overflow:hidden; margin-bottom:.75rem; display:none; }
+      .progress-bar-fill { height:100%; background:#4f5aed; border-radius:3px; width:0%; transition:width .15s linear; }
+
+      /* ═══════════════════════════════════════════════════════════
+         GRAPHICAL EQ CANVAS
+      ═══════════════════════════════════════════════════════════ */
+      .eq-canvas-wrap { background:#0f172a; border-radius:12px 12px 0 0; position:relative; overflow:hidden; }
+      #graphicEqCanvas { width:100%; height:300px; display:block; cursor:crosshair; }
+      .eq-tooltip { position:absolute; background:rgba(15,23,42,.95); border:1px solid #4f5aed; border-radius:6px; padding:.35rem .6rem; font-size:.75rem; color:white; pointer-events:none; white-space:nowrap; font-family:monospace; z-index:10; display:none; }
+
+      /* GEQ Controls Bar */
+      .geq-controls-bar { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; margin-bottom:.75rem; }
+      .geq-presets { display:flex; flex-wrap:wrap; gap:.375rem; }
+      .geq-preset-btn { padding:.35rem .75rem; border:2px solid #e0e4e8; background:white; border-radius:8px; font-size:.8rem; font-weight:600; cursor:pointer; transition:all .15s; color:#555; }
+      .geq-preset-btn:hover { border-color:#4f5aed; color:#4f5aed; }
+      .geq-preset-btn.active { background:#4f5aed; border-color:#4f5aed; color:white; }
+      .geq-right-controls { display:flex; gap:.5rem; align-items:center; margin-left:auto; }
+      .geq-action-btn { padding:.4rem .875rem; border:2px solid #e0e4e8; background:white; border-radius:8px; font-size:.8rem; font-weight:600; cursor:pointer; transition:all .15s; color:#555; }
+      .geq-action-btn:hover { border-color:#4f5aed; color:#4f5aed; }
+      .geq-action-btn.bypassed { background:#6b7280; border-color:#6b7280; color:white; }
+
+      /* ═══════════════════════════════════════════════════════════
+         BAND STRIP
+      ═══════════════════════════════════════════════════════════ */
+      .band-strip { display:flex; overflow-x:auto; background:#111827; border-radius:0 0 12px 12px; border-top:1px solid rgba(255,255,255,.06); padding:.625rem .375rem; gap:2px; scrollbar-width:thin; margin-bottom:1rem; }
+      .band-col { flex:1 1 80px; min-width:72px; padding:.5rem .3rem; border-radius:8px; display:flex; flex-direction:column; align-items:center; gap:.3rem; border:1px solid rgba(255,255,255,.05); background:rgba(255,255,255,.02); transition:border-color .2s; }
+      .band-col:hover { border-color:rgba(255,255,255,.12); }
+      .band-col.bypassed { opacity:.3; }
+      .band-col.selected { border-color:rgba(79,90,237,.5); background:rgba(79,90,237,.08); }
+      .band-label { font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; }
+      .band-toggle-btn { width:32px; height:16px; background:#374151; border-radius:8px; border:none; cursor:pointer; position:relative; transition:background .2s; flex-shrink:0; }
+      .band-toggle-btn.on { background:#4f5aed; }
+      .band-toggle-btn::after { content:''; position:absolute; width:12px; height:12px; background:white; border-radius:50%; top:2px; left:2px; transition:left .2s; }
+      .band-toggle-btn.on::after { left:18px; }
+      .band-type-select { width:100%; font-size:.68rem; padding:.2rem .2rem; border:1px solid #374151; background:#1e2030; color:#94a3b8; border-radius:4px; }
+      .band-val-row { display:flex; flex-direction:column; align-items:center; gap:.1rem; width:100%; }
+      .band-param-label { font-size:.6rem; color:#64748b; }
+      .band-val { font-size:.7rem; font-family:monospace; color:white; font-weight:700; }
+
+      /* Q editable input in band strip */
+      .band-q-input { width:54px; background:#1e2030; border:1px solid #374151; border-radius:4px; color:white; font-size:.7rem; font-family:monospace; font-weight:700; text-align:center; padding:2px 3px; }
+      .band-q-input:focus { outline:none; border-color:#4f5aed; }
+      .band-q-input::-webkit-inner-spin-button,.band-q-input::-webkit-outer-spin-button { opacity:.4; }
+
+      /* Apply EQ process button */
+      .apply-eq-wrap { margin:1.25rem 0 1rem; }
+      .apply-eq-btn { width:100%; padding:1rem 1.5rem; background:#4f5aed; color:white; border:none; border-radius:12px; font-size:1.05rem; font-weight:700; cursor:pointer; transition:all .2s; letter-spacing:.01em; }
+      .apply-eq-btn:hover:not(:disabled) { background:#3d47d9; transform:translateY(-1px); box-shadow:0 4px 16px rgba(79,90,237,.4); }
+      .apply-eq-btn:disabled { opacity:.35; cursor:not-allowed; transform:none; box-shadow:none; }
+      .apply-eq-btn:active:not(:disabled) { transform:translateY(0); }
+      .apply-eq-hint { font-size:.8rem; color:#888; margin:.5rem 0 0; text-align:center; }
+      .geq-bottom-row { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap; }
+      .geq-output-row { display:flex; align-items:center; gap:.75rem; flex:1; min-width:200px; }
+      .geq-output-row label { font-size:.8rem; font-weight:600; color:#555; white-space:nowrap; }
+      .geq-output-row input[type=range] { flex:1; }
+      .geq-output-row span { font-size:.8rem; font-weight:700; color:#4f5aed; min-width:50px; text-align:right; }
+
+      /* ═══════════════════════════════════════════════════════════
+         CLASSIC EQ
+      ═══════════════════════════════════════════════════════════ */
+      .hw-selector { display:grid; grid-template-columns:repeat(4,1fr); gap:.5rem; margin-bottom:1.25rem; }
+      @media(max-width:600px) { .hw-selector { grid-template-columns:1fr 1fr; } }
+      .hw-btn { padding:.875rem .75rem; border:2px solid #e0e4e8; background:white; border-radius:10px; cursor:pointer; transition:all .2s; text-align:center; }
+      .hw-btn:hover:not(.active) { border-color:#4f5aed; }
+      .hw-btn.active { border-color:#4f5aed; background:#f0f1ff; }
+      .hw-btn .hw-name { font-size:.875rem; font-weight:700; color:#1a1a1a; margin-bottom:.2rem; }
+      .hw-btn .hw-model { font-size:.72rem; color:#888; }
+
+      /* Hardware panels */
+      .hw-panel { border-radius:12px; padding:1.25rem 1rem; margin-bottom:1rem; display:none; }
+      .hw-panel.active { display:block; }
+      .hw-panel.neve1081 { background:#1a1a2e; }
+      .hw-panel.neve1073 { background:#1a2035; }
+      .hw-panel.api550b  { background:#0a0a0a; }
+      .hw-panel.pultec   { background:#2d3d52; }
+
+      .hw-panel-title { font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; margin-bottom:1rem; opacity:.6; }
+      .neve1081 .hw-panel-title, .neve1073 .hw-panel-title { color:#c8d0e7; }
+      .api550b .hw-panel-title { color:#60a5fa; }
+      .pultec .hw-panel-title { color:#c8d8e8; }
+
+      .hw-controls-row { display:flex; gap:1rem; align-items:flex-start; flex-wrap:wrap; justify-content:center; }
+      .hw-band-group { display:flex; flex-direction:column; align-items:center; gap:.5rem; }
+      .hw-band-label { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; text-align:center; }
+      .neve1081 .hw-band-label, .neve1073 .hw-band-label { color:#94a3b8; }
+      .api550b .hw-band-label { color:#60a5fa; }
+      .pultec .hw-band-label { color:#93c5fd; }
+
+      /* Rotary knob */
+      .rotary-knob { cursor:ns-resize; user-select:none; display:block; }
+      .rotary-knob:active { cursor:grabbing; }
+
+      /* Freq selector (stepped) */
+      .freq-selector { background:#1e2030; border:1px solid #374151; border-radius:6px; padding:.25rem .5rem; font-size:.75rem; color:#60a5fa; font-family:monospace; font-weight:700; text-align:center; cursor:pointer; user-select:none; min-width:56px; transition:border-color .15s; }
+      .freq-selector:hover { border-color:#4f5aed; }
+      .neve1081 .freq-selector, .neve1073 .freq-selector { color:#a5b4fc; }
+      .api550b .freq-selector { color:#60a5fa; }
+      .pultec .freq-selector { color:#93c5fd; }
+
+      /* HiQ toggle */
+      .hiq-toggle { padding:.2rem .5rem; background:#1e2030; border:1px solid #374151; border-radius:4px; font-size:.65rem; font-weight:700; color:#94a3b8; cursor:pointer; transition:all .15s; }
+      .hiq-toggle.on { background:#4f5aed; color:white; border-color:#4f5aed; }
+
+      /* HW bypass row */
+      .hw-footer-row { display:flex; gap:.5rem; margin-top:.875rem; justify-content:center; }
+      .hw-footer-btn { padding:.375rem .875rem; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:6px; font-size:.78rem; font-weight:600; color:rgba(255,255,255,.7); cursor:pointer; transition:all .15s; }
+      .hw-footer-btn:hover { background:rgba(255,255,255,.15); }
+      .hw-footer-btn.bypassed { background:#6b7280; border-color:#6b7280; color:white; }
+
+      /* EQ response mini-canvas under classic panel */
+      .hw-response-wrap { background:#0a0f1a; border-radius:8px; overflow:hidden; margin-top:.75rem; }
+      #hwResponseCanvas { width:100%; height:120px; display:block; }
+
+      /* Pultec divider */
+      .pultec-divider { width:2px; background:rgba(255,255,255,.1); align-self:stretch; margin:0 .25rem; border-radius:1px; }
+
+      /* ═══════════════════════════════════════════════════════════
+         COMPARISON TABLE
+      ═══════════════════════════════════════════════════════════ */
+      .comparison-table { width:100%; border-collapse:collapse; font-size:.875rem; }
+      .comparison-table th,.comparison-table td { border:1px solid #e0e4e8; padding:.5rem .75rem; text-align:left; }
+      .comparison-table th { background:#f0f4ff; font-weight:600; }
+      .comparison-table tr:nth-child(even) td { background:#f9fafb; }
+      @media(max-width:640px) { .comparison-table { font-size:.78rem; } .comparison-table th,.comparison-table td { padding:.375rem .4rem; } }
+
+      /* ═══════════════════════════════════════════════════════════
+         TRADEMARK / ADS
+      ═══════════════════════════════════════════════════════════ */
+      .trademark-disclaimer { font-size:.78rem; color:#888; background:#f8f9fa; border:1px solid #e0e4e8; border-radius:6px; padding:.625rem .875rem; margin-top:1rem; }
+      .ad-placeholder { background:#f0f4ff; border:2px dashed #c7d2fe; border-radius:8px; height:90px; display:flex; align-items:center; justify-content:center; color:#6366f1; font-size:.8rem; font-weight:600; margin:1.5rem 0; }
+   </style>
+
+</head>
+
+<body>
+
+   <!-- NAV_START -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">SoundTools</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a class="mobile-dropdown-toggle">Tools</a>
+                    <div class="dropdown-menu mega-menu">
+                        <div class="mega-col">
+                            <span class="mega-heading">Effects</span>
+                            <a href="/eq/">EQ</a>
+                            <a href="/8d-audio/">8D Audio</a>
+                            <a href="/add-reverb-to-audio/">Add Reverb</a>
+                            <a href="/bass-boost/">Bass Boost</a>
+                            <a href="/nightcore/">Nightcore</a>
+                            <a href="/nightcore-reverse/">Nightcore Reverse</a>
+                            <a href="/slowed-reverb/">Slowed + Reverb</a>
+                            <a href="/sped-up/">Sped Up Audio</a>
+                            <a href="/tiktok-slowed-reverb/">TikTok Slowed</a>
+                            <a href="/vaporwave/">Vaporwave</a>
+                            <a href="/volume-booster/">Volume Booster</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Voice & AI</span>
+                            <a href="/voice-cloning/">Voice Cloning</a>
+                            <a href="/vocal-tuner/">Vocal Tuner</a>
+                            <a href="/voice-to-instrument/">Voice to Instrument</a>
+                            <a href="/noise-remover/">Noise Remover</a>
+                            <a href="/stem-splitter/">Stem Splitter</a>
+                            <a href="/text-to-speech/">Text to Speech</a>
+                            <a href="/speech-to-text/">Speech to Text</a>
+                            <a href="/speech-to-song/">Speech to Song</a>
+                            <a href="/vocal-remover/">Vocal Remover</a>
+                            <a href="/voice-changer/">Voice Changer</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Edit & Convert</span>
+                            <a href="/audio-converter/">Audio Converter</a>
+                            <a href="/audio-joiner/">Audio Joiner</a>
+                            <a href="/audio-trimmer/">Audio Trimmer</a>
+                            <a href="/flac-cover-art/">FLAC Cover Art</a>
+                            <a href="/audio-metadata-editor/">Metadata Editor</a>
+                            <a href="/pitch-shifter/">Pitch Shifter</a>
+                            <a href="/reverse-audio/">Reverse Audio</a>
+                            <a href="/tempo-changer/">Tempo Changer</a>
+                            <a href="/video-to-audio/">Video to Audio</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Create & Analyze</span>
+                            <a href="/beat-maker/">Beat Maker</a>
+                            <a href="/bpm-detector/">BPM Detector</a>
+                            <a href="/granular-synthesizer/">Granular Synthesizer</a>
+                            <a href="/hearing-test/">Hearing Test</a>
+                            <a href="/music-visualizer/">Music Visualizer</a>
+                            <a href="/soundboard/">Soundboard</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/lab/">The Lab</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- NAV_END -->
+
+   <header>
+     <div class="container">
+       <h1>Free Online Audio Equalizer</h1>
+       <time class="last-updated" datetime="2026-07-13">Updated July 13, 2026</time>
+       <p class="tagline">A graphic parametric equalizer with a live spectrum analyzer, plus four vintage-style channel EQs. Boost or cut any frequency with drag-and-drop filters and hear changes instantly. Browser-based — nothing uploaded.</p>
+     </div>
+   </header>
+
+   <main>
+      <section class="tool-section">
+
+         <!-- ── FILE UPLOAD ── -->
+         <div class="file-upload-box" id="dropZone">
+             <div class="upload-icon">🎛️</div>
+                <p><span>Click to choose a file</span> or drag &amp; drop here</p>
+                <p style="font-size:.8rem;color:#aaa;margin-top:.375rem;">MP3, WAV, FLAC, OGG, AAC — processed entirely in your browser</p>
+                <input type="file" id="fileInput" accept="audio/mp3,audio/mpeg,audio/wav,audio/flac,audio/ogg,audio/aac,.mp3,.wav,.flac,.ogg,.aac,.m4a">
+            </div>
+         <div class="file-info-bar" id="fileInfoBar"></div>
+
+         <!-- ── MAIN TABS (directly after upload) ── -->
+         <div class="mode-tabs">
+             <button class="mode-tab active" id="tabGraphical">🎛️ Graphical EQ</button>
+             <button class="mode-tab" id="tabClassic">🎚️ Classic Parametric EQ</button>
+         </div>
+
+         <!-- ── EQ PREVIEW PLAYER ── -->
+         <div class="eq-player-wrap" id="eqPlayerWrap">
+            <canvas id="eqPlayerCanvas" height="144" aria-label="Audio waveform and spectrum analyzer — click to scrub"></canvas>
+            <div class="eq-player-controls">
+               <button id="eqPlayPauseBtn" disabled>▶ Play</button>
+               <span id="eqTimeDisplay">0:00 / 0:00</span>
+               <button id="eqDownloadBtn">⬇️ Download EQ'd WAV</button>
+            </div>
+         </div>
+
+         <!-- ════════════════════════════════════════════════════════
+             GRAPHICAL EQ TAB
+         ════════════════════════════════════════════════════════ -->
+         <div id="panelGraphical" class="mode-panel active">
+
+            <!-- Preset buttons row (no Reset/Bypass here — they're below the EQ) -->
+            <div class="geq-controls-bar">
+               <div class="geq-presets" id="geqPresets">
+                  <button class="geq-preset-btn active" data-preset="Factory Default">Default</button>
+                  <button class="geq-preset-btn" data-preset="Vocal Presence">Vocal Presence</button>
+                  <button class="geq-preset-btn" data-preset="Warm Bass">Warm Bass</button>
+                  <button class="geq-preset-btn" data-preset="Air &amp; Brilliance">Air &amp; Brilliance</button>
+                  <button class="geq-preset-btn" data-preset="Low-Cut Clean">Low-Cut Clean</button>
+                  <button class="geq-preset-btn" data-preset="Mid Scoop">Mid Scoop</button>
+               </div>
+            </div>
+
+            <!-- EQ Canvas -->
+            <div class="eq-canvas-wrap">
+               <canvas id="graphicEqCanvas" height="300" aria-label="Graphical EQ — drag nodes to shape frequency response"></canvas>
+               <div class="eq-tooltip" id="eqTooltip"></div>
+            </div>
+
+            <!-- Band Strip -->
+            <div class="band-strip" id="bandStrip"></div>
+
+            <!-- Output Gain + Reset/Bypass row (BELOW the EQ) -->
+            <div class="geq-bottom-row">
+               <div class="geq-output-row">
+                  <label for="outputGainSlider">Output Gain</label>
+                  <input type="range" id="outputGainSlider" min="-12" max="12" step=".5" value="0">
+                  <span id="outputGainLabel">0.0 dB</span>
+               </div>
+               <div class="geq-right-controls">
+                  <button class="geq-action-btn" id="geqResetBtn">↺ Reset All</button>
+                  <button class="geq-action-btn" id="geqBypassBtn">⊘ Bypass EQ</button>
+               </div>
+            </div>
+         </div><!-- /panelGraphical -->
+
+         <!-- ════════════════════════════════════════════════════════
+             CLASSIC PARAMETRIC EQ TAB
+         ════════════════════════════════════════════════════════ -->
+         <div id="panelClassic" class="mode-panel">
+
+            <div class="hw-selector" id="hwSelector">
+               <button class="hw-btn active" data-hw="neve1081">
+                  <div class="hw-name">1081 Style</div>
+                  <div class="hw-model">4-band British console</div>
+               </button>
+               <button class="hw-btn" data-hw="neve1073">
+                  <div class="hw-name">1073 Style</div>
+                  <div class="hw-model">3-band legendary warmth</div>
+               </button>
+               <button class="hw-btn" data-hw="api550b">
+                  <div class="hw-name">550b Style</div>
+                  <div class="hw-model">4-band American punch</div>
+               </button>
+               <button class="hw-btn" data-hw="pultec">
+                  <div class="hw-name">EQP-1A Style</div>
+                  <div class="hw-model">Passive tube mastering</div>
+               </button>
+            </div>
+
+            <!-- Neve 1081 style Panel -->
+            <div class="hw-panel neve1081 active" id="hw-neve1081">
+               <div class="hw-panel-title">1081 Style — 4-Band Parametric Equalizer</div>
+               <div class="hw-controls-row" id="ctrl-neve1081"></div>
+               <div class="hw-footer-row">
+                  <button class="hw-footer-btn" id="bypassNeve1081">⊘ Bypass</button>
+                  <button class="hw-footer-btn" id="resetNeve1081">↺ Reset</button>
+               </div>
+            </div>
+
+            <!-- Neve 1073 style Panel -->
+            <div class="hw-panel neve1073" id="hw-neve1073">
+               <div class="hw-panel-title">1073 Style — 3-Band Classic Equalizer</div>
+               <div class="hw-controls-row" id="ctrl-neve1073"></div>
+               <div class="hw-footer-row">
+                  <button class="hw-footer-btn" id="bypassNeve1073">⊘ Bypass</button>
+                  <button class="hw-footer-btn" id="resetNeve1073">↺ Reset</button>
+               </div>
+            </div>
+
+            <!-- API 550b style Panel -->
+            <div class="hw-panel api550b" id="hw-api550b">
+               <div class="hw-panel-title">550b Style — 4-Band Proportional-Q Equalizer</div>
+               <div class="hw-controls-row" id="ctrl-api550b"></div>
+               <div class="hw-footer-row">
+                  <button class="hw-footer-btn" id="bypassApi550b">⊘ Bypass</button>
+                  <button class="hw-footer-btn" id="resetApi550b">↺ Reset</button>
+               </div>
+            </div>
+
+            <!-- Pultec style Panel -->
+            <div class="hw-panel pultec" id="hw-pultec">
+               <div class="hw-panel-title">EQP-1A Style — Passive Program Equalizer</div>
+               <div class="hw-controls-row" id="ctrl-pultec"></div>
+               <div class="hw-footer-row">
+                  <button class="hw-footer-btn" id="bypassPultec">⊘ Bypass</button>
+                  <button class="hw-footer-btn" id="resetPultec">↺ Reset</button>
+               </div>
+            </div>
+
+            <!-- Response curve under classic panels -->
+            <div class="hw-response-wrap">
+               <canvas id="hwResponseCanvas" height="120" aria-label="Hardware EQ frequency response curve"></canvas>
+            </div>
+         </div><!-- /panelClassic -->
+
+         <!-- Apply EQ Process Button -->
+         <div class="apply-eq-wrap">
+            <button id="applyEqBtn" class="apply-eq-btn" disabled>🎛️ Apply EQ &amp; Download</button>
+            <p class="apply-eq-hint" id="applyEqHint">Upload an audio file above to process it with your EQ settings</p>
+         </div>
+
+         <div class="progress-bar-wrap" id="progressWrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+         <!-- Error / status messages -->
+         <div id="status" role="status" aria-live="polite"></div>
+
+         <!-- Dedicated CTA div — shown after successful render, separate from #status -->
+         <div id="eqCTA" style="display:none; margin-top:1rem;"></div>
+      </section>
+
+      <section class="info-section">
+
+        <h2>What Is an Equalizer?</h2>
+        <p>An equalizer (EQ) is a signal processing tool that adjusts the volume of specific frequency ranges within an audio signal. Unlike a simple volume control, an equalizer lets you selectively boost or cut bass frequencies, midrange frequencies, and treble frequencies — independently and with precise control. This lets you shape the tonal character of any sound: make a voice clearer, add weight to a kick drum, tame harsh treble, remove muddiness from a recording, or give a mix brightness and air.</p>
+        <p>This free online equalizer processes your audio entirely inside your browser using the Web Audio API. Nothing is uploaded to a server, there is no account to create, and there is no software to install — you can open the page, load an MP3 or WAV, adjust bass and treble to taste, and download the result.</p>
+
+        <h2>Graphic EQ vs. Parametric EQ: What's the Difference?</h2>
+        <p>A <strong>graphic equalizer</strong> divides the frequency spectrum into a fixed number of bands — typically a 10-band or 31-band layout — and gives you one gain slider per band. All you control is how much to boost or cut each fixed band. A <strong>parametric equalizer</strong> gives you full control over three parameters per band: <em>frequency</em> (where in the spectrum the filter acts), <em>gain</em> (how much to boost or cut), and <em>Q</em> (the bandwidth — how wide or narrow the filter's effect is).</p>
+        <p>The Graphic EQ tab in this tool is a visual parametric equalizer: you click and drag nodes directly on the frequency response curve to control all three parameters at once, with a live spectrum analyzer running behind the curve so you can see exactly which frequencies are present in your audio as you shape them.</p>
+
+        <h2>Vintage-Style Channel Equalizers Explained</h2>
+        <p>Alongside the graphic EQ, this tool includes four channel-strip equalizers modeled on the character of classic studio hardware. Each one reproduces the band layout, frequency choices, and general tonal behavior of a well-known design — not the exact circuit. They are provided as <em>style</em> emulations to give you a fast starting point with a recognizable sonic character.</p>
+
+        <h3>Neve 1081 Style — The Four-Band British Console Sound</h3>
+        <p>The original Neve 1081, manufactured by Neve Electronics in the early 1970s, is a four-band parametric equalizer and microphone preamplifier. It appeared in large-format consoles used on countless recordings from the golden era of studio production. It features a high-frequency shelving band (10kHz, 12kHz, 16kHz, or 20kHz), a high-midrange peaking band (1.5kHz to 16kHz with a Hi-Q option), a low-midrange peaking band (220Hz to 7.2kHz with a Hi-Q option), and a low-frequency shelving band (35Hz to 220Hz). Its characteristic sound — aggressive treble boosts that stay smooth rather than harsh — comes from an inductor-based filter design and transformer saturation in the signal path. Our <strong>1081 Style</strong> equalizer mirrors that band layout and voicing so you can dial in the same broad, forward brightness.</p>
+
+        <h3>Neve 1073 Style — The Most Famous EQ Ever Built</h3>
+        <p>The original Neve 1073 is a three-band equalizer and microphone preamplifier module from 1970, widely considered one of the most musically pleasing equalizers ever designed. Its high-frequency shelf operates at 12kHz or 16kHz; the single midrange band selects from 360Hz, 700Hz, 1.6kHz, 3.2kHz, 4.8kHz, or 7.2kHz; the low-frequency shelf selects from 35Hz, 60Hz, 110Hz, or 220Hz; and a steep 18dB/octave high-pass filter completes the circuit. Its simplicity is its genius — the limited frequency choices are each chosen to be maximally useful. Engineers describe its boosts as "musical": they enhance without adding harshness. Our <strong>1073 Style</strong> equalizer follows the same three-band structure and stepped frequency choices.</p>
+
+        <h3>API 550b Style — The American Punch Machine</h3>
+        <p>The original API 550b is a four-band proportional-Q equalizer in the 500-series modular format, evolved from the API 550a of 1967. Its four bands have overlapping selectable frequency points: Low (30–300Hz), Low-Mid (75Hz–1.5kHz), High-Mid (800Hz–12.5kHz), and High (2.5kHz–20kHz), each providing ±12dB of boost or cut. The proportional-Q design automatically narrows the bandwidth at higher gain settings, which keeps heavy boosts focused and prevents muddiness. The result is a forward, punchy character heard on countless rock, hip-hop, and pop records — the opposite of the warm British sound. Our <strong>550b Style</strong> equalizer reproduces the proportional-Q behavior and stepped frequency layout.</p>
+
+        <h3>Pultec EQP-1A Style — The Passive Tube Legend</h3>
+        <p>The original Pultec EQP-1A, designed by Pulse Techniques in the early 1950s, is a passive tube program equalizer. Unlike active transistor or op-amp designs, it uses passive filter circuits with a tube amplifier to make up gain. Its most famous feature is the simultaneous Boost and Attenuate controls on the low-frequency section (20, 30, 60, or 100Hz): boosting and attenuating the same frequency at once creates a unique filter shape — an enhanced low end with a tighter, faster-decaying bass response that adds weight without mud. This "low-end trick" is one of the best-known techniques in mixing and mastering. The high-frequency section provides smooth boost and attenuation from 3kHz to 16kHz. Our <strong>EQP-1A Style</strong> equalizer implements the same simultaneous boost/attenuate behavior so you can use the trick yourself.</p>
+
+        <p class="tm-disclaimer" style="font-size:0.85rem;color:#9ca3af;margin-top:1rem;">Neve, API, and Pultec are trademarks of their respective owners. SoundTools is not affiliated with, endorsed by, or sponsored by any of these manufacturers. Preset names are used only to describe the sonic character being emulated.</p>
+
+        <h2>How to EQ Vocals: A Quick Guide</h2>
+        <p>Equalizing vocals is one of the most common audio tasks. Here's a practical workflow using this free online equalizer:</p>
+        <ul>
+          <li><strong>High-pass filter at 80–120Hz:</strong> Nearly all vocals have no musical content below 100Hz — just room noise, handling noise, and proximity-effect buildup. Apply a 12–24dB/octave high-pass at 80–100Hz to clean up the low end without thinning the voice.</li>
+          <li><strong>Cut muddiness at 200–400Hz:</strong> If the voice sounds boxy, cloudy, or like it was recorded in a bathroom, try a gentle cut (3–5dB) with a moderate Q around 250–350Hz.</li>
+          <li><strong>Presence boost at 2–5kHz:</strong> This range controls intelligibility and bite. A gentle boost here (2–4dB, wide Q) helps vocals cut through a mix and improves clarity.</li>
+          <li><strong>Air at 10–16kHz:</strong> A high-shelf boost above 10kHz adds "air" and openness. The 1081 Style and 1073 Style equalizers are good choices here — their treble shelves add brightness without harshness.</li>
+          <li><strong>De-harsh at 3–6kHz if sibilant:</strong> If the vocal is too bright or sibilant, a narrow cut around 4–6kHz can tame the harshness.</li>
+        </ul>
+
+        <h2>How to EQ a Mix: Tips for Common Instruments</h2>
+        <ul>
+          <li><strong>Kick drum:</strong> Boost around 60–80Hz for "thump," cut around 200–300Hz to reduce muddiness, boost around 2–5kHz for "click" and attack.</li>
+          <li><strong>Snare:</strong> Boost around 100–200Hz for body, cut muddiness at 300–500Hz, boost around 5–8kHz for snap and crack.</li>
+          <li><strong>Bass guitar:</strong> High-pass at 30–40Hz to remove sub-rumble, boost around 80–120Hz for the fundamental, boost around 800Hz–1kHz for definition and presence in the mix.</li>
+          <li><strong>Electric guitar:</strong> High-pass at 80–100Hz, cut muddiness at 200–400Hz, add presence and bite at 2–4kHz.</li>
+          <li><strong>Acoustic guitar:</strong> High-pass at 80Hz, gentle boost at 2–5kHz for sparkle, high-shelf boost at 10kHz for air and brightness.</li>
+          <li><strong>Piano:</strong> Cut low mud at 200–300Hz, gentle presence boost at 2–4kHz, air at 8–12kHz.</li>
+        </ul>
+
+        <h2>How This Equalizer Compares to Other EQ Tools</h2>
+        <div style="overflow-x:auto;">
+           <table class="comparison-table">
+             <thead>
+               <tr>
+                 <th>Feature</th><th>SoundTools EQ</th><th>Audioalter</th><th>FabFilter Pro-Q 3</th><th>iZotope Ozone EQ</th><th>Kapwing</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr><td>Price</td><td>✅ Free</td><td>✅ Free</td><td>❌ €179</td><td>❌ $499</td><td>⚠️ Freemium</td></tr>
+               <tr><td>No install required</td><td>✅ Browser-based</td><td>✅ Browser-based</td><td>❌ DAW plugin</td><td>❌ DAW plugin</td><td>✅ Browser-based</td></tr>
+               <tr><td>No account required</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+               <tr><td>Graphic drag-and-drop EQ</td><td>✅ 8 bands</td><td>❌ Sliders only</td><td>✅ Unlimited bands</td><td>✅</td><td>❌ One-click only</td></tr>
+               <tr><td>Spectrum analyzer</td><td>✅ Real-time</td><td>❌</td><td>✅</td><td>✅</td><td>❌</td></tr>
+               <tr><td>Vintage-style channel EQs</td><td>✅ 4 styles</td><td>❌</td><td>❌</td><td>⚠️ Some</td><td>❌</td></tr>
+               <tr><td>Audio stays private (no server upload)</td><td>✅</td><td>❌ Uploads to server</td><td>✅ Local</td><td>✅ Local</td><td>❌ Cloud-based</td></tr>
+               <tr><td>Real-time preview during EQ</td><td>✅ Seamless</td><td>❌ Must reprocess</td><td>✅</td><td>✅</td><td>❌</td></tr>
+               <tr><td>Scrubable waveform preview</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>❌</td></tr>
+               <tr><td>Download processed audio</td><td>✅ WAV</td><td>✅ MP3/WAV</td><td>✅ Via DAW</td><td>✅ Via DAW</td><td>✅</td></tr>
+             </tbody>
+           </table>
+        </div>
+      </section>
+
+      <section class="info-section">
+         <h2>Frequently Asked Questions</h2>
+
+         <h3>What is an online equalizer?</h3>
+         <p>An online equalizer (or online EQ) is a browser-based tool that lets you boost or cut specific frequency ranges in an audio file without installing any software. This free online equalizer processes your audio entirely inside your browser using the Web Audio API — nothing is ever uploaded to a server, and no account is required.</p>
+
+         <h3>What is the difference between a graphic EQ and a parametric EQ?</h3>
+         <p>A graphic equalizer has a fixed set of frequency bands — commonly a 10-band or 31-band layout — with only the gain (boost or cut) adjustable per band. A parametric equalizer lets you control frequency, gain, and Q (bandwidth) for each band, giving far more surgical control. Most professional mixing is done with parametric EQs. The Graphic EQ tab in this tool is a parametric equalizer displayed graphically: you drag nodes on the response curve to control all three parameters at once.</p>
+
+         <h3>How do I boost bass or treble with this equalizer?</h3>
+         <p>To boost bass, add or drag a band down in the low frequencies — roughly 60–150Hz for the fundamental weight of a track — and raise its gain. To boost treble, do the same in the 8–16kHz range using a high shelf, which lifts everything above the chosen frequency. Keep boosts modest (3–6dB is usually plenty) and use the spectrum analyzer to see what you're actually changing. If you only want a quick low-end lift, our <a href="/bass-boost/">Bass Booster</a> does that in one click.</p>
+
+         <h3>What is Q in an equalizer?</h3>
+         <p>Q (quality factor) controls the width or bandwidth of a filter's effect. A high Q value (for example Q = 10) creates a very narrow, surgical peak or notch — useful for removing a specific resonance or hum. A low Q value (for example Q = 0.5) creates a broad, gentle curve that affects a wide range of frequencies — useful for tonal shaping and color. In the Graphic EQ, scroll the mouse wheel on any filter node to adjust its Q.</p>
+
+         <h3>What are the vintage-style channel EQs?</h3>
+         <p>The tool includes four channel-strip equalizers whose band layouts, frequency choices, and tonal behavior are modeled on the character of classic studio hardware: the 1081 Style, 1073 Style, 550b Style, and EQP-1A Style. They are emulations of a sonic character, not exact circuit reproductions, and are named only to describe the sound they aim for. Neve, API, and Pultec are trademarks of their respective owners, and SoundTools is not affiliated with or endorsed by them.</p>
+
+         <h3>What is the 1081 Style equalizer based on?</h3>
+         <p>It follows the four-band parametric layout of the Neve 1081, a console module from the early 1970s: a treble shelving band, two midrange peaking bands with a Hi-Q option, and a bass shelving band. The original is known for treble boosts that stay smooth rather than harsh, a quality linked to its inductor-based filters and transformer coloration. The 1081 Style preset mirrors that band structure and broad, forward brightness.</p>
+
+         <h3>What is the 1073 Style equalizer based on?</h3>
+         <p>It follows the three-band layout of the Neve 1073, a 1970 module widely regarded as one of the finest-sounding equalizers ever built: a treble shelf at 12kHz or 16kHz, a single stepped midrange band (360Hz to 7.2kHz), a bass shelf (35Hz to 220Hz), and a steep high-pass filter. Its limited frequency choices are each chosen to be maximally useful, which is why engineers describe its boosts as "musical."</p>
+
+         <h3>What is the 550b Style equalizer based on?</h3>
+         <p>It follows the four-band proportional-Q design of the API 550b, a 500-series module descended from the 1967 API 550a. Its bands overlap across the spectrum with ±12dB of boost or cut, and the proportional-Q behavior automatically narrows the bandwidth as gain increases, keeping heavy boosts focused instead of muddy. The result is the punchy, forward character heard on a great deal of rock, hip-hop, and pop.</p>
+
+         <h3>What is the EQP-1A Style equalizer based on?</h3>
+         <p>It follows the passive tube program equalizer designed by Pulse Techniques in the early 1950s. Its signature feature is simultaneous Boost and Attenuate controls on the low band: boosting and cutting the same frequency at once produces an enhanced low end with a tighter, faster-decaying bass response — weight without mud. The EQP-1A Style preset implements the same simultaneous boost/attenuate behavior so you can use the trick yourself.</p>
+
+         <h3>Does this equalizer upload my audio to a server?</h3>
+         <p>No. All audio processing happens entirely inside your browser using the Web Audio API's BiquadFilterNode, AnalyserNode, and OfflineAudioContext. Your audio files never leave your device — nothing is sent to any server.</p>
+
+         <h3>How is this different from FabFilter Pro-Q 3?</h3>
+         <p>FabFilter Pro-Q 3 is a professional DAW plugin costing €179, with advanced features including mid/side processing, linear phase mode, dynamic EQ, and a piano-roll display. This equalizer is free, requires no installation, runs entirely in a browser, and is designed for quick tasks — shaping an audio file, applying a vintage-style tone, or learning what EQ actually does. It is not a replacement for Pro-Q 3 in a professional DAW workflow, but it does the common jobs without costing anything.</p>
+
+         <h3>What audio formats does the online equalizer support?</h3>
+         <p>The equalizer accepts MP3, WAV, FLAC, OGG, AAC, and M4A files. The processed output is downloaded as a WAV file (PCM 16-bit or 32-bit float, 44.1kHz).</p>
+
+         <h3>Can I use this online equalizer on vocals?</h3>
+         <p>Yes. The equalizer works on any audio content — vocals, music, podcasts, sound effects. For vocals, common techniques include a high-pass filter around 80–100Hz to remove room rumble, a gentle cut around 300–500Hz to reduce muddiness, a presence boost around 2–5kHz for clarity and intelligibility, and an air boost around 10–16kHz for brightness. The 1073 Style and 1081 Style presets are popular starting points for vocal EQ.</p>
+
+         <h3>Can I hear the equalizer in real time while the audio plays?</h3>
+         <p>Yes. The tool includes a custom preview player. While audio is playing, any adjustment you make — moving a filter node, changing a frequency selector, adjusting gain — updates the processing immediately without stopping or restarting playback. This makes it easy to A/B compare EQ settings by ear.</p>
+      </section>
+
+      <section class="related-tools-section">
+         <div class="container">
+             <h2 class="related-tools-header">Related Audio Tools</h2>
+             <p class="related-tools-subheader">Create more amazing audio with these popular tools</p>
+             
+
+            <div class="related-tools-grid">
+            <a href="/vocal-remover/" class="related-tool-card"><span class="tool-emoji">🎤</span><h3>Vocal Remover</h3><p>Isolate vocals before EQing</p></a>
+            <a href="/noise-remover/" class="related-tool-card"><span class="tool-emoji">🎙️</span><h3>Noise Remover</h3><p>Remove noise before EQing</p></a>
+            <a href="/vocal-tuner/" class="related-tool-card"><span class="tool-emoji">🤖</span><h3>Vocal Tuner</h3><p>Pitch correction online</p></a>
+            <a href="/pitch-shifter/" class="related-tool-card"><span class="tool-emoji">🎵</span><h3>Pitch Shifter</h3><p>Change pitch after EQing</p></a>
+            <a href="/stem-splitter/" class="related-tool-card"><span class="tool-emoji">🎸</span><h3>Stem Splitter</h3><p>Separate drums, bass, vocals</p></a>
+            <a href="/audio-converter/" class="related-tool-card"><span class="tool-emoji">🔄</span><h3>Audio Converter</h3><p>Convert audio formats</p></a>
+          </div>
+             
+            <!-- Browse All Tools CTA -->
+            <div class="browse-all-cta">
+               <a href="/" class="browse-all-btn">
+                  <span class="btn-icon">🎵</span>
+                     Browse All Audio Tools
+                  <span class="btn-arrow">→</span>
+               </a>
+            </div>
+         </div>
+      </section>
+   </main>
+
+   <!-- FOOTER_START -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Effects</h3>
+                    <ul>
+                        <li><a href="/eq/">EQ</a></li>
+                        <li><a href="/8d-audio/">8D Audio</a></li>
+                        <li><a href="/add-reverb-to-audio/">Add Reverb</a></li>
+                        <li><a href="/bass-boost/">Bass Boost</a></li>
+                        <li><a href="/nightcore/">Nightcore</a></li>
+                        <li><a href="/nightcore-reverse/">Nightcore Reverse</a></li>
+                        <li><a href="/slowed-reverb/">Slowed + Reverb</a></li>
+                        <li><a href="/sped-up/">Sped Up Audio</a></li>
+                        <li><a href="/tiktok-slowed-reverb/">TikTok Slowed</a></li>
+                        <li><a href="/vaporwave/">Vaporwave</a></li>
+                        <li><a href="/volume-booster/">Volume Booster</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Voice & AI</h3>
+                    <ul>
+                        <li><a href="/voice-cloning/">Voice Cloning</a></li>
+                        <li><a href="/vocal-tuner/">Vocal Tuner</a></li>
+                        <li><a href="/voice-to-instrument/">Voice to Instrument</a></li>
+                        <li><a href="/noise-remover/">Noise Remover</a></li>
+                        <li><a href="/stem-splitter/">Stem Splitter</a></li>
+                        <li><a href="/text-to-speech/">Text to Speech</a></li>
+                        <li><a href="/speech-to-text/">Speech to Text</a></li>
+                        <li><a href="/speech-to-song/">Speech to Song</a></li>
+                        <li><a href="/vocal-remover/">Vocal Remover</a></li>
+                        <li><a href="/voice-changer/">Voice Changer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Edit & Convert</h3>
+                    <ul>
+                        <li><a href="/audio-converter/">Audio Converter</a></li>
+                        <li><a href="/audio-joiner/">Audio Joiner</a></li>
+                        <li><a href="/audio-trimmer/">Audio Trimmer</a></li>
+                        <li><a href="/flac-cover-art/">FLAC Cover Art</a></li>
+                        <li><a href="/audio-metadata-editor/">Metadata Editor</a></li>
+                        <li><a href="/pitch-shifter/">Pitch Shifter</a></li>
+                        <li><a href="/reverse-audio/">Reverse Audio</a></li>
+                        <li><a href="/tempo-changer/">Tempo Changer</a></li>
+                        <li><a href="/video-to-audio/">Video to Audio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Create & Analyze</h3>
+                    <ul>
+                        <li><a href="/beat-maker/">Beat Maker</a></li>
+                        <li><a href="/bpm-detector/">BPM Detector</a></li>
+                        <li><a href="/granular-synthesizer/">Granular Synthesizer</a></li>
+                        <li><a href="/hearing-test/">Hearing Test</a></li>
+                        <li><a href="/music-visualizer/">Music Visualizer</a></li>
+                        <li><a href="/soundboard/">Soundboard</a></li>
+                    </ul>
+                </div>
+
+                 <div class="footer-column">
+                    <h3>The Lab</h3>
+                    <ul>
+                        <li><a href="/lab/evaporator/">Evaporator</a></li>
+                        <li><a href="/lab/we-have-the-cherry-point-at-home/">Dead Empires</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service/">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoundTools - Free Audio Tools for Creators</p>
+            </div>
+        </div>
+    </footer>
+   <!-- FOOTER_END -->
+
+   <script>
+      'use strict';
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // CONSTANTS & CONFIG
+      // ═══════════════════════════════════════════════════════════════════════════════
+      const BAND_COLORS = ['#94a3b8','#f59e0b','#22c55e','#60a5fa','#4f5aed','#a78bfa','#f97316','#94a3b8'];
+
+      // Band frequencies chosen for both musical utility AND even visual spread
+      // across the 20Hz–22kHz canvas (positions shown as % of canvas width):
+      //   B1  20Hz  →  0%    B2  80Hz  → 19%    B3  250Hz → 36%    B4  800Hz → 52%
+      //   B5  2.5k  → 68%    B6  6.3k  → 81%    B7  12k   → 91%    B8  20k   → 99%
+      const DEFAULT_BANDS = [
+        {type:'highpass', freq:20,    gain:0, Q:0.71, enabled:true},
+        {type:'lowshelf', freq:80,    gain:0, Q:1.00, enabled:true},
+        {type:'peaking',  freq:250,   gain:0, Q:0.60, enabled:true},
+        {type:'peaking',  freq:800,   gain:0, Q:0.30, enabled:true},
+        {type:'peaking',  freq:2500,  gain:0, Q:0.30, enabled:true},
+        {type:'peaking',  freq:6300,  gain:0, Q:0.60, enabled:true},
+        {type:'highshelf',freq:12000, gain:0, Q:0.71, enabled:true},
+        {type:'lowpass',  freq:20000, gain:0, Q:0.71, enabled:true},
+      ];
+
+      const GEQ_PRESETS = {
+        'Factory Default': DEFAULT_BANDS.map(b=>({...b})),
+        'Vocal Presence': [{type:'highpass',freq:100,gain:0,Q:0.71,enabled:true},{type:'lowshelf',freq:200,gain:-2,Q:1,enabled:true},{type:'peaking',freq:320,gain:-2.5,Q:1.2,enabled:true},{type:'peaking',freq:1040,gain:0,Q:0.3,enabled:true},{type:'peaking',freq:3500,gain:3,Q:0.8,enabled:true},{type:'peaking',freq:6000,gain:0,Q:0.6,enabled:true},{type:'highshelf',freq:12000,gain:2,Q:0.71,enabled:true},{type:'lowpass',freq:20000,gain:0,Q:0.71,enabled:true}],
+        'Warm Bass': [{type:'highpass',freq:30,gain:0,Q:0.71,enabled:true},{type:'lowshelf',freq:80,gain:4,Q:0.8,enabled:true},{type:'peaking',freq:280,gain:-2,Q:1,enabled:true},{type:'peaking',freq:1040,gain:0,Q:0.3,enabled:true},{type:'peaking',freq:2800,gain:0,Q:0.3,enabled:true},{type:'peaking',freq:6000,gain:-1,Q:0.6,enabled:true},{type:'highshelf',freq:10000,gain:-2,Q:0.71,enabled:true},{type:'lowpass',freq:20000,gain:0,Q:0.71,enabled:true}],
+        'Air & Brilliance': [{type:'highpass',freq:20,gain:0,Q:0.71,enabled:true},{type:'lowshelf',freq:55,gain:0,Q:1,enabled:true},{type:'peaking',freq:145,gain:0,Q:0.6,enabled:true},{type:'peaking',freq:390,gain:0,Q:0.3,enabled:true},{type:'peaking',freq:1040,gain:0,Q:0.3,enabled:true},{type:'peaking',freq:2800,gain:2,Q:0.6,enabled:true},{type:'highshelf',freq:7500,gain:5,Q:0.71,enabled:true},{type:'lowpass',freq:20000,gain:0,Q:0.71,enabled:true}],
+        'Low-Cut Clean': [{type:'highpass',freq:120,gain:0,Q:0.71,enabled:true},{type:'lowshelf',freq:200,gain:-3,Q:1,enabled:true},{type:'peaking',freq:390,gain:0,Q:0.6,enabled:true},{type:'peaking',freq:1040,gain:0,Q:0.3,enabled:true},{type:'peaking',freq:2800,gain:1,Q:0.3,enabled:true},{type:'peaking',freq:6000,gain:0,Q:0.6,enabled:true},{type:'highshelf',freq:12000,gain:3,Q:0.71,enabled:true},{type:'lowpass',freq:20000,gain:0,Q:0.71,enabled:true}],
+        'Mid Scoop': [{type:'highpass',freq:40,gain:0,Q:0.71,enabled:true},{type:'lowshelf',freq:80,gain:2,Q:1,enabled:true},{type:'peaking',freq:280,gain:-3,Q:0.8,enabled:true},{type:'peaking',freq:900,gain:-4,Q:0.6,enabled:true},{type:'peaking',freq:2800,gain:-2,Q:0.8,enabled:true},{type:'peaking',freq:7000,gain:2,Q:0.6,enabled:true},{type:'highshelf',freq:12000,gain:3,Q:0.71,enabled:true},{type:'lowpass',freq:20000,gain:0,Q:0.71,enabled:true}],
+      };
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // FREQUENCY ↔ X and GAIN ↔ Y MAPPINGS
+      // Display range: 20 Hz – 22 kHz. Using 22kHz (not 20kHz) as the max ensures
+      // the 20kHz label and LPF node appear at ~99% of the canvas width — clearly
+      // visible — rather than clipping off the right edge.
+      // ═══════════════════════════════════════════════════════════════════════════════
+      const FREQ_MIN = 20;
+      const FREQ_MAX = 20000;  // canvas spans exactly 20Hz–20kHz, no empty space
+
+      function freqToX(freq, width) {
+        return (Math.log10(Math.max(FREQ_MIN, freq) / FREQ_MIN) / Math.log10(FREQ_MAX / FREQ_MIN)) * width;
+      }
+      function xToFreq(x, width) {
+        return FREQ_MIN * Math.pow(FREQ_MAX / FREQ_MIN, Math.max(0, Math.min(1, x / width)));
+      }
+      function gainToY(gainDb, height) {
+        const DB_RANGE = 18;
+        return (1 - (gainDb + DB_RANGE) / (DB_RANGE * 2)) * height;
+      }
+      function yToGain(y, height) {
+        const DB_RANGE = 18;
+        return ((1 - y / height) * DB_RANGE * 2) - DB_RANGE;
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // FREQUENCY RESPONSE COMPUTATION
+      // ═══════════════════════════════════════════════════════════════════════════════
+      const NUM_RESP_POINTS = 512;
+      const RESP_FREQS = (() => {
+        const f = new Float32Array(NUM_RESP_POINTS);
+        for (let i = 0; i < NUM_RESP_POINTS; i++) f[i] = 20 * Math.pow(1000, i / (NUM_RESP_POINTS - 1));
+        return f;
+      })();
+
+      function getFilterDbResponse(filter) {
+        const mag = new Float32Array(NUM_RESP_POINTS);
+        const ph  = new Float32Array(NUM_RESP_POINTS);
+        filter.getFrequencyResponse(RESP_FREQS, mag, ph);
+        return mag.map(m => 20 * Math.log10(Math.max(1e-10, m)));
+      }
+
+      function compositeDbResponse(filters) {
+        const result = new Float32Array(NUM_RESP_POINTS);
+        for (const f of filters) {
+          if (!f._bypassed) {
+            const r = getFilterDbResponse(f.node);
+            for (let i = 0; i < NUM_RESP_POINTS; i++) result[i] += r[i];
+          }
+        }
+        return result;
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // EQ PLAYER CLASS
+      // ═══════════════════════════════════════════════════════════════════════════════
+      class EQPlayer {
+        constructor(playerCanvas) {
+          this._canvas    = playerCanvas;
+          this._ctx       = playerCanvas.getContext('2d');
+          this._audioCtx  = null;
+          this._origBuf   = null;
+          this._source    = null;
+          this._analyser  = null;
+          this._masterGain= null;
+          this._isPlaying = false;
+          this._startTime = 0;
+          this._startOff  = 0;
+          this._duration  = 0;
+          this._waveformData = null;
+          this._rafId     = null;
+          this._filters   = [];   // [{node, _bypassed}]
+          this._eqBypassed = false;
+          this._scrubbing = false;
+          this._hoverX    = -1;
+          this._outputGainDb = 0;
+          this._outputGainNode = null;
+
+          this._bindPlayerCanvas();
+        }
+
+        _ensureAudioCtx() {
+          if (!this._audioCtx || this._audioCtx.state === 'closed') {
+            this._audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          }
+          if (this._audioCtx.state === 'suspended') this._audioCtx.resume();
+          return this._audioCtx;
+        }
+
+        async load(audioBuffer) {
+          this._stop(false);
+          this._origBuf  = audioBuffer;
+          this._duration = audioBuffer.duration;
+          this._startOff = 0;
+          this._computeWaveform();
+          this._drawFrame();
+          document.getElementById('eqPlayPauseBtn').disabled = false;
+          document.getElementById('eqDownloadBtn').style.display = '';
+        }
+
+        _computeWaveform() {
+          const buf    = this._origBuf;
+          const steps  = 1500;
+          const data   = new Float32Array(steps);
+          const samplesPerStep = Math.floor(buf.length / steps);
+          const numCh  = buf.numberOfChannels;
+          for (let s = 0; s < steps; s++) {
+            let rms = 0;
+            for (let c = 0; c < numCh; c++) {
+              const ch = buf.getChannelData(c);
+              for (let j = 0; j < samplesPerStep; j++) {
+                const v = ch[s * samplesPerStep + j] || 0;
+                rms += v * v;
+              }
+            }
+            data[s] = Math.sqrt(rms / (samplesPerStep * numCh));
+          }
+          // Normalize
+          const peak = Math.max(...data, 0.001);
+          for (let i = 0; i < steps; i++) data[i] /= peak;
+          this._waveformData = data;
+        }
+
+        _buildFilterChain(bands) {
+          const ctx = this._ensureAudioCtx();
+          this._analyser     = ctx.createAnalyser();
+          this._analyser.fftSize = 2048;
+          this._outputGainNode = ctx.createGain();
+          this._outputGainNode.gain.value = Math.pow(10, this._outputGainDb / 20);
+
+          // Build BiquadFilterNodes
+          // 'notch' is implemented as a 'peaking' filter with negative gain —
+          // this gives a visible, adjustable, finite-depth cut (same approach as FabFilter Pro-Q).
+          // Web Audio's native 'notch' type ignores gain and cuts to -∞, which is
+          // invisible in the display and uncontrollable.
+          const NOTCH_AS = 'peaking';
+          this._filters = bands.map(b => {
+            const node = ctx.createBiquadFilter();
+            node.type = b.type === 'notch' ? NOTCH_AS : b.type;
+            node.frequency.value = Math.max(20, Math.min(20000, b.freq));
+            node.gain.value = b.gain || 0;
+            node.Q.value = b.Q || 1;
+            return { node, _bypassed: !b.enabled };
+          });
+
+          // Connect: source → [filters...] → analyser → outputGain → dest
+          // (source connected in play())
+          this._filterChainInput  = this._filters[0].node;
+          let prev = null;
+          for (const f of this._filters) {
+            if (prev) prev.node.connect(f.node);
+            prev = f;
+          }
+          if (prev) prev.node.connect(this._analyser);
+          this._analyser.connect(this._outputGainNode);
+          this._outputGainNode.connect(ctx.destination);
+        }
+
+        _haltSource() {
+          try {
+            if (this._source) {
+              this._source.onended = null;   // ← kill the callback BEFORE stop() so it can't flip the button
+              this._source.stop(0);
+              this._source.disconnect();
+            }
+          } catch(e) {}
+          this._source = null;
+        }
+
+        play() {
+          const ctx = this._ensureAudioCtx();
+          if (!this._origBuf) return;
+
+          if (!this._filters.length) this._buildFilterChain(DEFAULT_BANDS);
+
+          this._haltSource();
+          this._source = ctx.createBufferSource();
+          this._source.buffer = this._origBuf;
+
+          if (this._eqBypassed) {
+            this._source.connect(this._analyser);
+          } else {
+            this._source.connect(this._filters[0].node);
+          }
+
+          const offset = Math.min(this._startOff, this._duration - 0.01);
+          this._source.start(0, Math.max(0, offset));
+          this._startTime = ctx.currentTime - offset;
+          this._isPlaying = true;
+          this._source.onended = () => {
+            if (this._isPlaying) {
+              this._isPlaying = false;
+              this._startOff  = 0;
+              document.getElementById('eqPlayPauseBtn').textContent = '▶ Play';
+            }
+          };
+          document.getElementById('eqPlayPauseBtn').textContent = '⏸ Pause';
+          if (!this._rafId) this._rafId = requestAnimationFrame(() => this._animLoop());
+        }
+
+        pause() {
+          if (!this._isPlaying) return;
+          const pos = this._audioCtx.currentTime - this._startTime;
+          this._startOff = Math.max(0, Math.min(pos, this._duration));
+          this._haltSource();
+          this._isPlaying = false;
+          document.getElementById('eqPlayPauseBtn').textContent = '▶ Play';
+        }
+
+        _stop(resetPos) {
+          this._haltSource();
+          this._isPlaying = false;
+          if (resetPos) this._startOff = 0;
+          if (this._rafId) { cancelAnimationFrame(this._rafId); this._rafId = null; }
+          document.getElementById('eqPlayPauseBtn').textContent = '▶ Play';
+        }
+
+        seek(seconds) {
+          const wasPlaying = this._isPlaying;
+          this._startOff = Math.max(0, Math.min(seconds, this._duration));
+          if (wasPlaying) {
+            this._haltSource();
+            this._isPlaying = false;
+            this.play();
+          }
+        }
+
+        currentPosition() {
+          if (!this._isPlaying || !this._audioCtx) return this._startOff;
+          return Math.min(this._audioCtx.currentTime - this._startTime + 0, this._duration);
+        }
+
+        // Called live on EQ parameter change — NO restart needed
+        updateFilterParam(index, freq, gainDb, Q) {
+          if (index < 0 || index >= this._filters.length) return;
+          const f = this._filters[index].node;
+          if (freq  !== undefined) f.frequency.value = Math.max(20, Math.min(20000, freq));
+          if (gainDb!== undefined) f.gain.value = gainDb;
+          if (Q     !== undefined) f.Q.value = Math.max(0.1, Math.min(20, Q));
+        }
+
+        updateFilterType(index, type) {
+          if (index < 0 || index >= this._filters.length) return;
+          // Use 'peaking' for 'notch' — gives finite, visible, adjustable depth
+          this._filters[index].node.type = type === 'notch' ? 'peaking' : type;
+        }
+
+        setFilterBypassed(index, bypassed) {
+          if (index < 0 || index >= this._filters.length) return;
+          this._filters[index]._bypassed = bypassed;
+          // Reconnect chain
+          this._reconnectChain();
+        }
+
+        _reconnectChain() {
+          if (!this._filters.length || !this._analyser) return;
+          // Disconnect all
+          for (const f of this._filters) { try { f.node.disconnect(); } catch(e){} }
+          // Reconnect only enabled filters
+          const active = this._eqBypassed ? [] : this._filters.filter(f => !f._bypassed);
+          if (active.length === 0) {
+            // If source exists, reconnect directly
+            if (this._source) { try { this._source.disconnect(); this._source.connect(this._analyser); } catch(e){} }
+          } else {
+            let prev = null;
+            for (const f of active) {
+              if (prev) prev.node.connect(f.node);
+              prev = f;
+            }
+            if (prev) prev.node.connect(this._analyser);
+            if (this._source) {
+              try { this._source.disconnect(); this._source.connect(active[0].node); } catch(e) {}
+            }
+          }
+        }
+
+        setEqBypassed(bypassed) {
+          this._eqBypassed = bypassed;
+          this._reconnectChain();
+        }
+
+        setOutputGain(db) {
+          this._outputGainDb = db;
+          if (this._outputGainNode) this._outputGainNode.gain.value = Math.pow(10, db / 20);
+        }
+
+        rebuildFilters(bands) {
+          const wasPlaying = this._isPlaying;
+          const pos        = this.currentPosition();
+          this._haltSource();
+          // Disconnect old chain
+          if (this._filters.length && this._analyser) {
+            for (const f of this._filters) { try { f.node.disconnect(); } catch(e){} }
+            try { this._analyser.disconnect(); } catch(e) {}
+          }
+          // Build new chain
+          this._buildFilterChain(bands);
+          this._startOff = pos;
+          if (wasPlaying) this.play();
+          if (!this._rafId) this._rafId = requestAnimationFrame(() => this._animLoop());
+        }
+
+        getActiveFilters() { return this._filters; }
+
+        // ── Animation Loop ──────────────────────────────────────────────
+        _animLoop() {
+          this._drawFrame();
+          this._rafId = requestAnimationFrame(() => this._animLoop());
+        }
+
+        _drawFrame() {
+          const canvas = this._canvas;
+          const W = canvas.clientWidth;
+          const H = canvas.clientHeight;
+          if (canvas.width !== W * devicePixelRatio || canvas.height !== H * devicePixelRatio) {
+            canvas.width  = W * devicePixelRatio;
+            canvas.height = H * devicePixelRatio;
+          }
+          const ctx = this._ctx;
+          ctx.save();
+          ctx.scale(devicePixelRatio, devicePixelRatio);
+          const w = W, h = H;
+
+          ctx.clearRect(0, 0, w, h);
+          ctx.fillStyle = '#0f172a';
+          ctx.fillRect(0, 0, w, h);
+
+          // Waveform — very subtle, just a faint shape so spectrum dominates
+          if (this._waveformData) {
+            ctx.save();
+            ctx.globalAlpha = 0.18;
+            ctx.fillStyle = '#94a3b8';
+            const data = this._waveformData;
+            const steps = data.length;
+            const halfH = h / 2;
+            ctx.beginPath();
+            ctx.moveTo(0, halfH);
+            for (let i = 0; i < steps; i++) {
+              const x = (i / steps) * w;
+              const amp = data[i] * halfH * 0.92;
+              ctx.lineTo(x, halfH - amp);
+            }
+            for (let i = steps - 1; i >= 0; i--) {
+              const x = (i / steps) * w;
+              const amp = data[i] * halfH * 0.92;
+              ctx.lineTo(x, halfH + amp);
+            }
+            ctx.closePath();
+            ctx.fill();
+            // Also draw a thin center line for orientation when paused
+            ctx.globalAlpha = 0.12;
+            ctx.strokeStyle = '#94a3b8';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(0, halfH); ctx.lineTo(w, halfH);
+            ctx.stroke();
+            ctx.restore();
+          }
+
+          // Spectrum analyzer — vivid gradient fill, drawn ON TOP of waveform
+          if (this._analyser) {
+            const bufLen  = this._analyser.frequencyBinCount;
+            const freqData = new Uint8Array(bufLen);
+            this._analyser.getByteFrequencyData(freqData);
+            const nyq = (this._audioCtx ? this._audioCtx.sampleRate : 44100) / 2;
+
+            // Build the spectrum path
+            const pts = [];
+            for (let x = 0; x <= w; x++) {
+              const freq   = 20 * Math.pow(1000, x / w);
+              const binIdx = Math.min(Math.round(freq / nyq * bufLen), bufLen - 1);
+              const val    = (freqData[binIdx] || 0) / 255;
+              pts.push({ x, y: h - val * h * 0.88 });
+            }
+
+            // Gradient fill
+            const grad = ctx.createLinearGradient(0, 0, 0, h);
+            grad.addColorStop(0,   'rgba(99, 115, 255, 0.92)');
+            grad.addColorStop(0.5, 'rgba(79,  90, 237, 0.70)');
+            grad.addColorStop(1,   'rgba(59,  70, 200, 0.25)');
+
+            ctx.save();
+            ctx.globalAlpha = 1;
+            ctx.fillStyle   = grad;
+            ctx.beginPath();
+            ctx.moveTo(0, h);
+            pts.forEach(p => ctx.lineTo(p.x, p.y));
+            ctx.lineTo(w, h);
+            ctx.closePath();
+            ctx.fill();
+
+            // Bright top edge line
+            ctx.beginPath();
+            ctx.moveTo(pts[0].x, pts[0].y);
+            for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+            ctx.strokeStyle = 'rgba(140, 155, 255, 0.85)';
+            ctx.lineWidth   = 1.5;
+            ctx.lineJoin    = 'round';
+            ctx.stroke();
+            ctx.restore();
+          }
+
+          // Playhead
+          const pos = this.currentPosition();
+          if (this._duration > 0) {
+            const px = (pos / this._duration) * w;
+            ctx.save();
+            ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+            ctx.lineWidth   = 2;
+            ctx.beginPath();
+            ctx.moveTo(px, 0);
+            ctx.lineTo(px, h);
+            ctx.stroke();
+            ctx.restore();
+
+            // Hover line
+            if (this._hoverX >= 0 && !this._scrubbing) {
+              ctx.save();
+              ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+              ctx.lineWidth = 1;
+              ctx.setLineDash([3, 3]);
+              ctx.beginPath();
+              ctx.moveTo(this._hoverX, 0);
+              ctx.lineTo(this._hoverX, h);
+              ctx.stroke();
+              ctx.restore();
+            }
+          }
+
+          // Time overlay
+          const cur = this.currentPosition();
+          const tot = this._duration;
+          const fmt = s => { const m=Math.floor(s/60),sec=Math.floor(s%60); return `${m}:${sec.toString().padStart(2,'0')}`; };
+          document.getElementById('eqTimeDisplay').textContent = `${fmt(cur)} / ${fmt(tot)}`;
+
+          ctx.restore();
+        }
+
+        // ── Canvas Scrub ───────────────────────────────────────────────
+        _bindPlayerCanvas() {
+          const c = this._canvas;
+          const getSeek = e => {
+            const rect = c.getBoundingClientRect();
+            const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+            return (x / rect.width) * this._duration;
+          };
+
+          c.addEventListener('mousedown', e => {
+            if (!this._origBuf) return;
+            this._scrubbing = true;
+            this.seek(getSeek(e));
+          });
+          window.addEventListener('mousemove', e => {
+            if (!this._scrubbing) {
+              const rect = c.getBoundingClientRect();
+              this._hoverX = e.clientX - rect.left;
+              return;
+            }
+            this.seek(getSeek(e));
+          });
+          window.addEventListener('mouseup', () => { this._scrubbing = false; });
+          c.addEventListener('mouseleave', () => { this._hoverX = -1; });
+
+          // Touch scrub
+          c.addEventListener('touchstart', e => { e.preventDefault(); if (!this._origBuf) return; this._scrubbing = true; this.seek(getSeek(e)); }, {passive:false});
+          c.addEventListener('touchmove',  e => { e.preventDefault(); this.seek(getSeek(e)); }, {passive:false});
+          c.addEventListener('touchend',   e => { this._scrubbing = false; }, {passive:false});
+        }
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // GRAPHICAL EQ ENGINE
+      // ═══════════════════════════════════════════════════════════════════════════════
+      class GraphicalEQ {
+        constructor(canvas, player) {
+          this._canvas   = canvas;
+          this._ctx      = canvas.getContext('2d');
+          this._player   = player;
+          this._bands    = DEFAULT_BANDS.map(b => ({...b}));
+          this._selectedBand = -1;
+          this._dragging = false;
+          this._dragBand = -1;
+          this._hoverBand= -1;
+          this._dirty    = true;
+          this._bypassed = false;
+
+          this._buildStrip();
+          this._bindEvents();
+          this._raf = requestAnimationFrame(() => this._loop());
+        }
+
+        // ── Band Strip ─────────────────────────────────────────────────
+        _buildStrip() {
+          const strip = document.getElementById('bandStrip');
+          strip.innerHTML = '';
+          this._bands.forEach((b, i) => {
+            const col = document.createElement('div');
+            col.className = 'band-col' + (b.enabled ? '' : ' bypassed');
+            col.id = `band-col-${i}`;
+            col.style.borderColor = BAND_COLORS[i] + '44';
+
+            const label = document.createElement('div');
+            label.className = 'band-label';
+            label.style.color = BAND_COLORS[i];
+            label.textContent = `B${i+1}`;
+
+            const tog = document.createElement('button');
+            tog.className = 'band-toggle-btn' + (b.enabled ? ' on' : '');
+            tog.title = 'Enable/disable band';
+            tog.addEventListener('click', () => this._toggleBand(i));
+
+            const typeSelect = document.createElement('select');
+            typeSelect.className = 'band-type-select';
+            ['highpass','lowshelf','peaking','notch','highshelf','lowpass'].forEach(t => {
+              const opt = document.createElement('option');
+              opt.value = t; opt.textContent = {highpass:'HPF',lowshelf:'Lo Shelf',peaking:'Peak',notch:'Notch',highshelf:'Hi Shelf',lowpass:'LPF'}[t];
+              if (t === b.type) opt.selected = true;
+              typeSelect.appendChild(opt);
+            });
+            typeSelect.addEventListener('change', () => {
+              const newType = typeSelect.value;
+              this._bands[i].type = newType;
+              if (newType === 'notch') {
+                // A notch is a very narrow, deep cut. If gain is currently positive
+                // (the band was boosting), flip it to a sensible notch depth.
+                if (this._bands[i].gain >= 0) this._bands[i].gain = -12;
+                // Tighten Q so it looks like a notch, not a wide cut
+                if (this._bands[i].Q < 2) this._bands[i].Q = 4;
+                this._player.updateFilterParam(i, undefined, this._bands[i].gain, this._bands[i].Q);
+              }
+              this._player.updateFilterType(i, newType);
+              this._dirty = true;
+              this._updateStripCol(i);
+            });
+
+            const freqRow = this._makeValRow('Freq', this._fmtFreq(b.freq));
+            const gainRow = this._makeValRow('Gain', this._fmtGain(b.gain));
+
+            // Q — editable number input (updates filter live)
+            const qWrap  = document.createElement('div');
+            qWrap.className = 'band-val-row';
+            const qLbl = document.createElement('div');
+            qLbl.className = 'band-param-label';
+            qLbl.textContent = 'Q';
+            const qInput = document.createElement('input');
+            qInput.type  = 'number';
+            qInput.className = 'band-q-input';
+            qInput.min   = '0.1';
+            qInput.max   = '20';
+            qInput.step  = '0.1';
+            qInput.value = b.Q.toFixed(2);
+            qInput.addEventListener('change', () => {
+              const newQ = Math.max(0.1, Math.min(20, parseFloat(qInput.value) || b.Q));
+              this._bands[i].Q = newQ;
+              this._player.updateFilterParam(i, undefined, undefined, newQ);
+              this._dirty = true;
+              qInput.value = newQ.toFixed(2);
+            });
+            qInput.addEventListener('input', () => {
+              const newQ = Math.max(0.1, Math.min(20, parseFloat(qInput.value) || b.Q));
+              this._bands[i].Q = newQ;
+              this._player.updateFilterParam(i, undefined, undefined, newQ);
+              this._dirty = true;
+            });
+            qWrap.appendChild(qLbl);
+            qWrap.appendChild(qInput);
+
+            col.appendChild(label);
+            col.appendChild(tog);
+            col.appendChild(typeSelect);
+            col.appendChild(freqRow.wrap);
+            col.appendChild(gainRow.wrap);
+            col.appendChild(qWrap);
+            strip.appendChild(col);
+
+            col._freqEl = freqRow.val;
+            col._gainEl = gainRow.val;
+            col._qEl    = qInput;   // input element
+            col._togEl  = tog;
+          });
+          this._updateAllStripCols();
+        }
+
+        _makeValRow(lbl, val) {
+          const wrap = document.createElement('div');
+          wrap.className = 'band-val-row';
+          const lb = document.createElement('div');
+          lb.className = 'band-param-label';
+          lb.textContent = lbl;
+          const vl = document.createElement('div');
+          vl.className = 'band-val';
+          vl.textContent = val;
+          wrap.appendChild(lb);
+          wrap.appendChild(vl);
+          return { wrap, val: vl };
+        }
+
+        _fmtFreq(f) { return f >= 1000 ? (f/1000).toFixed(1)+'k' : Math.round(f)+''; }
+        _fmtGain(g) { return (g >= 0 ? '+':'') + g.toFixed(1)+' dB'; }
+
+        _updateStripCol(i) {
+          const col = document.getElementById(`band-col-${i}`);
+          if (!col) return;
+          const b = this._bands[i];
+          col.className = 'band-col' + (!b.enabled ? ' bypassed' : '') + (this._selectedBand === i ? ' selected' : '');
+          col._freqEl.textContent = this._fmtFreq(b.freq);
+          col._gainEl.textContent = this._fmtGain(b.gain);
+          col._qEl.value          = b.Q.toFixed(2);
+          col._togEl.className    = 'band-toggle-btn' + (b.enabled ? ' on' : '');
+          // Hide gain for HPF/LPF only — Notch shows gain (its depth) and Q
+          const hideGain = ['highpass','lowpass'].includes(b.type);
+          col._gainEl.parentElement.style.display = hideGain ? 'none' : '';
+        }
+
+        _updateAllStripCols() { this._bands.forEach((_, i) => this._updateStripCol(i)); }
+
+        _toggleBand(i) {
+          this._bands[i].enabled = !this._bands[i].enabled;
+          this._player.setFilterBypassed(i, !this._bands[i].enabled);
+          this._dirty = true;
+          this._updateStripCol(i);
+        }
+
+        // ── Canvas Events ──────────────────────────────────────────────
+        _bindEvents() {
+          const c = this._canvas;
+          c.addEventListener('mousedown',  e => this._onMouseDown(e));
+          window.addEventListener('mousemove', e => this._onMouseMove(e));
+          window.addEventListener('mouseup',   e => this._onMouseUp(e));
+          c.addEventListener('dblclick',   e => this._onDblClick(e));
+          c.addEventListener('wheel',      e => this._onWheel(e), {passive:false});
+          c.addEventListener('mouseleave', () => { this._hoverBand = -1; });
+
+          c.addEventListener('touchstart', e => { e.preventDefault(); this._onMouseDown(this._toMouseEvt(e)); }, {passive:false});
+          c.addEventListener('touchmove',  e => { e.preventDefault(); this._onMouseMove(this._toMouseEvt(e)); }, {passive:false});
+          c.addEventListener('touchend',   e => { e.preventDefault(); this._onMouseUp(e); }, {passive:false});
+        }
+
+        _toMouseEvt(e) {
+          const t = e.touches[0] || e.changedTouches[0];
+          return { clientX: t.clientX, clientY: t.clientY, preventDefault: () => e.preventDefault() };
+        }
+
+        _hitTest(mx, my) {
+          const c  = this._canvas;
+          const w  = c.clientWidth, h = c.clientHeight;
+          const RADIUS = 16;
+          let  closest = -1, closestDist = Infinity;
+          for (let i = 0; i < this._bands.length; i++) {
+            const b = this._bands[i];
+            if (!b.enabled) continue;
+            const nx = freqToX(b.freq, w);
+            const ny = gainToY(b.gain, h);
+            const d  = Math.hypot(mx - nx, my - ny);
+            if (d < RADIUS && d < closestDist) { closest = i; closestDist = d; }
+          }
+          return closest;
+        }
+
+        _canvasXY(e) {
+          const rect = this._canvas.getBoundingClientRect();
+          return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+        }
+
+        _onMouseDown(e) {
+          const { x, y } = this._canvasXY(e);
+          const hit = this._hitTest(x, y);
+          if (hit >= 0) {
+            this._dragging  = true;
+            this._dragBand  = hit;
+            this._selectedBand = hit;
+            this._updateAllStripCols();
+          }
+        }
+
+        _onMouseMove(e) {
+          const { x, y } = this._canvasXY(e);
+          if (this._dragging && this._dragBand >= 0) {
+            const c = this._canvas;
+            const b = this._bands[this._dragBand];
+            b.freq = Math.max(20, Math.min(20000, xToFreq(x, c.clientWidth)));
+            const hideGain = ['highpass','lowpass'].includes(b.type);
+            if (!hideGain) b.gain = Math.max(-18, Math.min(18, yToGain(y, c.clientHeight)));
+            this._player.updateFilterParam(this._dragBand, b.freq, b.gain, b.Q);
+            this._dirty = true;
+            this._updateStripCol(this._dragBand);
+            this._showTooltip(x, y, b);
+          } else {
+            const hit = this._hitTest(x, y);
+            if (hit !== this._hoverBand) { this._hoverBand = hit; this._dirty = true; }
+            if (hit >= 0) this._showTooltip(x, y, this._bands[hit]);
+            else          this._hideTooltip();
+          }
+        }
+
+        _onMouseUp() { this._dragging = false; this._dragBand = -1; this._hideTooltip(); }
+
+        _onDblClick(e) {
+          const { x, y } = this._canvasXY(e);
+          const hit = this._hitTest(x, y);
+          if (hit >= 0) {
+            this._bands[hit].gain = 0;
+            this._player.updateFilterParam(hit, undefined, 0, undefined);
+            this._dirty = true;
+            this._updateStripCol(hit);
+          }
+        }
+
+        _onWheel(e) {
+          e.preventDefault();
+          const { x, y } = this._canvasXY(e);
+          const hit = this._hitTest(x, y);
+          if (hit >= 0) {
+            const b = this._bands[hit];
+            const factor = e.deltaY > 0 ? 1.15 : 0.87;
+            b.Q = Math.max(0.1, Math.min(20, b.Q * factor));
+            this._player.updateFilterParam(hit, undefined, undefined, b.Q);
+            this._dirty = true;
+            this._updateStripCol(hit);
+          }
+        }
+
+        _showTooltip(x, y, b) {
+          const tip = document.getElementById('eqTooltip');
+          const rect = this._canvas.getBoundingClientRect();
+          const offsetX = (x + 120 > rect.width) ? x - 125 : x + 10;
+          tip.style.left   = offsetX + 'px';
+          tip.style.top    = Math.max(4, y - 14) + 'px';
+          tip.style.display = '';
+          const fStr = b.freq >= 1000 ? (b.freq/1000).toFixed(2)+'kHz' : Math.round(b.freq)+'Hz';
+          const gStr = (b.gain >= 0 ? '+' : '') + b.gain.toFixed(1)+' dB';
+          tip.textContent = `${fStr}  ${gStr}  Q: ${b.Q.toFixed(2)}`;
+        }
+        _hideTooltip() { document.getElementById('eqTooltip').style.display = 'none'; }
+
+        // ── Drawing ────────────────────────────────────────────────────
+        _loop() {
+          if (this._dirty) { this._draw(); this._dirty = false; }
+          requestAnimationFrame(() => this._loop());
+        }
+
+        _draw() {
+          const canvas = this._canvas;
+          const W = canvas.clientWidth;
+          const H = canvas.clientHeight;
+          if (canvas.width !== W * devicePixelRatio || canvas.height !== H * devicePixelRatio) {
+            canvas.width  = W * devicePixelRatio;
+            canvas.height = H * devicePixelRatio;
+          }
+          const ctx = this._ctx;
+          ctx.save();
+          ctx.scale(devicePixelRatio, devicePixelRatio);
+          const w = W, h = H;
+
+          // Background
+          ctx.fillStyle = '#0f172a';
+          ctx.fillRect(0, 0, w, h);
+
+          // Grid
+          this._drawGrid(ctx, w, h);
+
+          // EQ Curve
+          const filters = this._player.getActiveFilters();
+          if (filters.length) {
+            const resp = compositeDbResponse(filters);
+            this._drawCurve(ctx, w, h, resp);
+          }
+
+          // Nodes
+          for (let i = 0; i < this._bands.length; i++) {
+            const b = this._bands[i];
+            if (!b.enabled) continue;
+            const isHov = this._hoverBand === i;
+            const isSel = this._selectedBand === i || this._dragBand === i;
+            const isEdge = b.type === 'highpass' || b.type === 'lowpass';
+            const baseR = isEdge ? 5 : 7;
+            const r = isSel ? baseR + 2 : (isHov ? baseR + 1 : baseR);
+
+            // Clamp x so the dot never clips against the canvas edge
+            const rawX = freqToX(b.freq, w);
+            const nx   = Math.max(r + 2, Math.min(w - r - 2, rawX));
+            const ny   = gainToY(b.gain, h);
+
+            ctx.save();
+            ctx.globalAlpha = isEdge ? (isSel ? 0.9 : 0.55) : 1;
+            if (isSel) { ctx.shadowColor = BAND_COLORS[i]; ctx.shadowBlur = 12; }
+            ctx.beginPath();
+            ctx.arc(nx, ny, r, 0, Math.PI * 2);
+            ctx.fillStyle = BAND_COLORS[i];
+            ctx.fill();
+            if (isSel || isHov) {
+              ctx.strokeStyle = 'white';
+              ctx.lineWidth = 2;
+              ctx.stroke();
+            }
+            ctx.restore();
+          }
+
+          ctx.restore();
+        }
+
+        _drawGrid(ctx, w, h) {
+          const DB_MARKS = [15, 12, 6, 0, -6, -12, -15];
+          ctx.save();
+          ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+          ctx.lineWidth   = 1;
+          ctx.fillStyle   = 'rgba(148,163,184,0.5)';
+          ctx.font        = '10px sans-serif';
+
+          DB_MARKS.forEach(db => {
+            const y = gainToY(db, h);
+            ctx.beginPath();
+            ctx.globalAlpha = db === 0 ? 0.2 : 0.07;
+            ctx.moveTo(0, y); ctx.lineTo(w, y);
+            ctx.stroke();
+            ctx.globalAlpha = 0.75;
+            ctx.fillText((db > 0 ? '+' : '') + db, 4, y - 2);
+          });
+
+          const FREQ_MARKS = [20,50,100,200,500,1000,2000,5000,10000,20000];
+          ctx.globalAlpha = 0.07;
+          FREQ_MARKS.forEach(f => {
+            const x = freqToX(f, w);
+            ctx.beginPath();
+            ctx.moveTo(x, 0); ctx.lineTo(x, h);
+            ctx.stroke();
+          });
+          ctx.globalAlpha = 0.85;
+          FREQ_MARKS.forEach(f => {
+            const x = freqToX(f, w);
+            const lbl = f >= 1000 ? (f/1000)+'k' : f+'';
+            if (f === 20000) {
+              ctx.textAlign = 'right';
+              ctx.fillText(lbl, w - 2, h - 4);
+              ctx.textAlign = 'left';
+            } else {
+              ctx.fillText(lbl, x + 2, h - 4);
+            }
+          });
+          ctx.restore();
+        }
+
+        _drawCurve(ctx, w, h, resp) {
+          ctx.save();
+          const pts = [];
+          for (let i = 0; i < NUM_RESP_POINTS; i++) {
+            pts.push({ x: freqToX(RESP_FREQS[i], w), y: gainToY(resp[i], h) });
+          }
+          const zeroY = gainToY(0, h);
+
+          // Fill above 0
+          ctx.beginPath();
+          ctx.moveTo(0, zeroY);
+          pts.forEach(p => ctx.lineTo(p.x, p.y));
+          ctx.lineTo(w, zeroY);
+          ctx.closePath();
+          ctx.fillStyle = 'rgba(79,90,237,0.18)';
+          ctx.fill();
+
+          // Fill below 0 (cuts)
+          ctx.beginPath();
+          ctx.moveTo(0, zeroY);
+          pts.forEach(p => ctx.lineTo(p.x, p.y));
+          ctx.lineTo(w, zeroY);
+          ctx.closePath();
+          ctx.fillStyle = 'rgba(220,38,38,0.1)';
+          ctx.fill();
+
+          // Curve line
+          ctx.beginPath();
+          ctx.moveTo(pts[0].x, pts[0].y);
+          for (let i = 1; i < pts.length - 1; i++) {
+            const midX = (pts[i].x + pts[i+1].x) / 2;
+            const midY = (pts[i].y + pts[i+1].y) / 2;
+            ctx.quadraticCurveTo(pts[i].x, pts[i].y, midX, midY);
+          }
+          ctx.lineTo(pts[pts.length-1].x, pts[pts.length-1].y);
+          ctx.strokeStyle = '#4f5aed';
+          ctx.lineWidth   = 2.5;
+          ctx.lineJoin    = 'round';
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        // ── Public API ─────────────────────────────────────────────────
+        applyPreset(name) {
+          const preset = GEQ_PRESETS[name];
+          if (!preset) return;
+          this._bands = preset.map(b => ({...b}));
+          this._player.rebuildFilters(this._bands);
+          this._dirty = true;
+          this._buildStrip();
+        }
+
+        reset() { this.applyPreset('Factory Default'); }
+
+        setBypassed(b) {
+          this._bypassed = b;
+          this._player.setEqBypassed(b);
+        }
+
+        getBands() { return this._bands; }
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // ROTARY KNOB
+      // ═══════════════════════════════════════════════════════════════════════════════
+      class RotaryKnob {
+        constructor({ min=0, max=1, value=0, steps=null, color='#4f5aed', label='', size=68, onChange }) {
+          this.min    = min;
+          this.max    = max;
+          this.value  = value;
+          this.steps  = steps;
+          this.color  = color;
+          this.label  = label;
+          this.size   = size;
+          this.onChange = onChange || (() => {});
+          this._defaultVal = value;
+          this._dragging   = false;
+          this._lastY      = 0;
+          this._el = this._build();
+          this._bindEvents();
+        }
+
+        _build() {
+          const s = this.size;
+          const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+          svg.setAttribute('width', s);
+          svg.setAttribute('height', s + 28);
+          svg.setAttribute('viewBox', `0 0 ${s} ${s + 28}`);
+          svg.setAttribute('class', 'rotary-knob');
+          svg.setAttribute('aria-label', this.label);
+          svg.innerHTML = this._svgContent(s);
+          return svg;
+        }
+
+        _svgContent(s) {
+          const cx = s / 2, cy = s / 2 + 4, r = s / 2 - 5;
+          const trackR = r + 3;
+          // Track arc: -135° to +135°
+          const a1 = -135 * Math.PI / 180, a2 = 135 * Math.PI / 180;
+          const tx1 = cx + trackR * Math.cos(a1), ty1 = cy + trackR * Math.sin(a1);
+          const tx2 = cx + trackR * Math.cos(a2), ty2 = cy + trackR * Math.sin(a2);
+          const t = `M ${tx1} ${ty1} A ${trackR} ${trackR} 0 1 1 ${tx2} ${ty2}`;
+
+          // Value arc (computed dynamically)
+          const valAngle = this._valToAngle();
+          const vx = cx + trackR * Math.cos(valAngle), vy = cy + trackR * Math.sin(valAngle);
+          const large = valAngle > a1 + Math.PI ? 1 : 0;
+          const v = `M ${tx1} ${ty1} A ${trackR} ${trackR} 0 ${large} 1 ${vx} ${vy}`;
+
+          // Indicator dot position
+          const dotAngle = valAngle;
+          const dotR = r - 6;
+          const dx = cx + dotR * Math.cos(dotAngle), dy = cy + dotR * Math.sin(dotAngle);
+
+          // Label and value display
+          const valStr = this._fmtVal();
+
+          return `
+            <path d="${t}" fill="none" stroke="#2a2d3e" stroke-width="4" stroke-linecap="round" class="knob-track"/>
+            <path d="${v}" fill="none" stroke="${this.color}" stroke-width="4" stroke-linecap="round" class="knob-val-arc"/>
+            <circle cx="${cx}" cy="${cy}" r="${r}" fill="#1e2030" stroke="#2a2d3e" stroke-width="2"/>
+            <circle cx="${cx}" cy="${cy}" r="${r-8}" fill="#181c2c"/>
+            <circle cx="${dx}" cy="${dy}" r="3.5" fill="white" class="knob-dot"/>
+            <text x="${cx}" y="${s+10}" text-anchor="middle" fill="#64748b" font-size="10" font-family="sans-serif">${this.label}</text>
+            <text x="${cx}" y="${s+22}" text-anchor="middle" fill="${this.color}" font-size="9" font-family="monospace" font-weight="700" class="knob-val-txt">${valStr}</text>
+          `;
+        }
+
+        _valToAngle() {
+          const norm = (this.value - this.min) / (this.max - this.min);
+          return (-135 + norm * 270) * Math.PI / 180;
+        }
+
+        _fmtVal() {
+          const v = this.value;
+          if (this.max <= 10 && this.min >= 0) return v.toFixed(1);
+          if (Math.abs(v) < 10) return (v >= 0 ? '+' : '') + v.toFixed(1);
+          return (v >= 0 ? '+' : '') + Math.round(v);
+        }
+
+        _update() {
+          this._el.innerHTML = this._svgContent(this.size);
+        }
+
+        _bindEvents() {
+          const el = this._el;
+          el.addEventListener('mousedown', e => {
+            e.preventDefault();
+            this._dragging = true;
+            this._lastY = e.clientY;
+          });
+          window.addEventListener('mousemove', e => {
+            if (!this._dragging) return;
+            const dy = this._lastY - e.clientY;
+            this._lastY = e.clientY;
+            const range = this.max - this.min;
+            const step  = e.shiftKey ? range / 2000 : range / 200;
+            this.value = Math.max(this.min, Math.min(this.max, this.value + dy * step));
+            if (this.steps) this.value = this._snap(this.value);
+            this._update();
+            this.onChange(this.value);
+          });
+          window.addEventListener('mouseup', () => { this._dragging = false; });
+          el.addEventListener('dblclick', () => {
+            this.value = this._defaultVal;
+            if (this.steps) this.value = this._snap(this.value);
+            this._update();
+            this.onChange(this.value);
+          });
+          el.addEventListener('wheel', e => {
+            e.preventDefault();
+            const range = this.max - this.min;
+            const step  = this.steps ? 1 : range / 100;
+            const dir   = e.deltaY < 0 ? 1 : -1;
+            if (this.steps) {
+              const idx = this.steps.indexOf(this.value);
+              const nextIdx = Math.max(0, Math.min(this.steps.length-1, idx + dir));
+              this.value = this.steps[nextIdx];
+            } else {
+              this.value = Math.max(this.min, Math.min(this.max, this.value + dir * step));
+            }
+            this._update();
+            this.onChange(this.value);
+          }, {passive:false});
+          // Touch
+          el.addEventListener('touchstart', e => { e.preventDefault(); this._dragging=true; this._lastY=e.touches[0].clientY; }, {passive:false});
+          el.addEventListener('touchmove', e => { e.preventDefault(); const dy=this._lastY-e.touches[0].clientY; this._lastY=e.touches[0].clientY; const range=this.max-this.min; this.value=Math.max(this.min,Math.min(this.max,this.value+dy*range/200)); if(this.steps)this.value=this._snap(this.value); this._update(); this.onChange(this.value); }, {passive:false});
+          el.addEventListener('touchend', () => { this._dragging=false; });
+        }
+
+        _snap(v) {
+          if (!this.steps || !this.steps.length) return v;
+          return this.steps.reduce((a,b) => Math.abs(b-v) < Math.abs(a-v) ? b : a);
+        }
+
+        setStepByIndex(idx) {
+          if (!this.steps) return;
+          this.value = this.steps[Math.max(0, Math.min(this.steps.length-1, idx))];
+          this._update();
+        }
+
+        get element() { return this._el; }
+      }
+
+      // Stepped frequency display + click-advance
+      function makeFreqSelector(freqValues, initIdx, color, onChange) {
+        const el = document.createElement('div');
+        el.className = 'freq-selector';
+        el.style.color = color;
+        let idx = initIdx || 0;
+        const fmt = f => f >= 1000 ? (f/1000).toFixed(1)+'k' : f+'';
+        el.textContent = fmt(freqValues[idx]);
+        el.title = 'Click to step through frequencies';
+        el.addEventListener('click', () => {
+          idx = (idx + 1) % freqValues.length;
+          el.textContent = fmt(freqValues[idx]);
+          onChange(freqValues[idx], idx);
+        });
+        return { el, getFreq: () => freqValues[idx], getIdx: () => idx };
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // CLASSIC EQ HARDWARE PANELS
+      // ═══════════════════════════════════════════════════════════════════════════════
+      class ClassicEQ {
+        constructor(player) {
+          this._player   = player;
+          this._hw       = 'neve1081';
+          this._bypassed = false;
+          this._hwBands  = {};   // bands keyed by hw name, for rebuild
+          this._hwCanvas = document.getElementById('hwResponseCanvas');
+          this._hwCtx    = this._hwCanvas.getContext('2d');
+          this._buildAll();
+          this._bindHwSelector();
+          this._bindBypassReset();
+          this._setActiveHw('neve1081');
+        }
+
+        _buildAll() {
+          this._buildNeve1081();
+          this._buildNeve1073();
+          this._buildApi550b();
+          this._buildPultec();
+        }
+
+        _mkBandGroup(label, panelClass) {
+          const g = document.createElement('div');
+          g.className = 'hw-band-group';
+          const lbl = document.createElement('div');
+          lbl.className = 'hw-band-label';
+          lbl.textContent = label;
+          g.appendChild(lbl);
+          return g;
+        }
+
+        // ── Neve 1081 ───────────────────────────────────────────────────
+        _buildNeve1081() {
+          const container = document.getElementById('ctrl-neve1081');
+          const COLOR = '#a5b4fc';
+
+          const hpfFreqs  = [18,27,47,82,150];
+          const lfFreqs   = [35,60,110,220];
+          const loMidFreqs= [220,270,330,390,470,560,680,820,1000,1200];
+          const hiMidFreqs= [1500,1800,2200,2700,3300,3900,4700,5600,6800,8200];
+          const hfFreqs   = [10000,12000,16000,20000];
+
+          const state = {
+            hpfFreq:18, hpfOn:false,
+            lfGain:0, lfFreq:35,
+            loMidGain:0, loMidFreq:220, loMidHiQ:false,
+            hiMidGain:0, hiMidFreq:1500, hiMidHiQ:false,
+            hfGain:0, hfFreq:10000,
+          };
+          this._hwBands['neve1081'] = state;
+
+          const update = () => {
+            const bands = [
+              {type:'highpass', freq:state.hpfOn?state.hpfFreq:20,    gain:0, Q:0.71, enabled:state.hpfOn},
+              {type:'lowshelf', freq:state.lfFreq,    gain:state.lfGain,    Q:1.0,  enabled:true},
+              {type:'peaking',  freq:state.loMidFreq, gain:state.loMidGain, Q:state.loMidHiQ?3.0:1.5, enabled:true},
+              {type:'peaking',  freq:state.hiMidFreq, gain:state.hiMidGain, Q:state.hiMidHiQ?3.0:1.5, enabled:true},
+              {type:'highshelf',freq:state.hfFreq,    gain:state.hfGain,    Q:0.71, enabled:true},
+            ];
+            if (this._hw === 'neve1081') { this._player.rebuildFilters(bands); this._drawHwResponse(); }
+          };
+
+          // HPF group
+          const gHpf = this._mkBandGroup('HPF');
+          const hpfSel = makeFreqSelector(hpfFreqs, 0, COLOR, (f) => { state.hpfFreq=f; update(); });
+          const hpfBtn = document.createElement('button');
+          hpfBtn.className = 'hiq-toggle'; hpfBtn.textContent = 'ON';
+          hpfBtn.addEventListener('click', () => { state.hpfOn=!state.hpfOn; hpfBtn.classList.toggle('on',state.hpfOn); update(); });
+          gHpf.appendChild(hpfSel.el); gHpf.appendChild(hpfBtn);
+
+          // LF shelf
+          const gLf = this._mkBandGroup('LF Shelf');
+          const lfKnob = new RotaryKnob({min:-16,max:16,value:0,color:COLOR,label:'GAIN',size:64, onChange:v=>{state.lfGain=v;update();}});
+          const lfSel  = makeFreqSelector(lfFreqs,0,COLOR,(f)=>{state.lfFreq=f;update();});
+          gLf.appendChild(lfKnob.element); gLf.appendChild(lfSel.el);
+
+          // Lo-Mid peak
+          const gLoMid = this._mkBandGroup('Lo-Mid');
+          const loMidKnob = new RotaryKnob({min:-16,max:16,value:0,color:COLOR,label:'GAIN',size:64, onChange:v=>{state.loMidGain=v;update();}});
+          const loMidSel  = makeFreqSelector(loMidFreqs,0,COLOR,(f)=>{state.loMidFreq=f;update();});
+          const loHiQBtn  = document.createElement('button');
+          loHiQBtn.className='hiq-toggle'; loHiQBtn.textContent='Hi-Q';
+          loHiQBtn.addEventListener('click',()=>{state.loMidHiQ=!state.loMidHiQ;loHiQBtn.classList.toggle('on',state.loMidHiQ);update();});
+          gLoMid.appendChild(loMidKnob.element); gLoMid.appendChild(loMidSel.el); gLoMid.appendChild(loHiQBtn);
+
+          // Hi-Mid peak
+          const gHiMid = this._mkBandGroup('Hi-Mid');
+          const hiMidKnob = new RotaryKnob({min:-16,max:16,value:0,color:COLOR,label:'GAIN',size:64, onChange:v=>{state.hiMidGain=v;update();}});
+          const hiMidSel  = makeFreqSelector(hiMidFreqs,0,COLOR,(f)=>{state.hiMidFreq=f;update();});
+          const hiHiQBtn  = document.createElement('button');
+          hiHiQBtn.className='hiq-toggle'; hiHiQBtn.textContent='Hi-Q';
+          hiHiQBtn.addEventListener('click',()=>{state.hiMidHiQ=!state.hiMidHiQ;hiHiQBtn.classList.toggle('on',state.hiMidHiQ);update();});
+          gHiMid.appendChild(hiMidKnob.element); gHiMid.appendChild(hiMidSel.el); gHiMid.appendChild(hiHiQBtn);
+
+          // HF shelf
+          const gHf = this._mkBandGroup('HF Shelf');
+          const hfKnob = new RotaryKnob({min:-16,max:16,value:0,color:COLOR,label:'GAIN',size:64, onChange:v=>{state.hfGain=v;update();}});
+          const hfSel  = makeFreqSelector(hfFreqs,0,COLOR,(f)=>{state.hfFreq=f;update();});
+          gHf.appendChild(hfKnob.element); gHf.appendChild(hfSel.el);
+
+          container.appendChild(gHpf);
+          container.appendChild(gLf);
+          container.appendChild(gLoMid);
+          container.appendChild(gHiMid);
+          container.appendChild(gHf);
+
+          this._neve1081Reset = () => {
+            state.hpfOn=false;state.hpfFreq=18;state.lfGain=0;state.lfFreq=35;state.loMidGain=0;state.loMidFreq=220;state.loMidHiQ=false;state.hiMidGain=0;state.hiMidFreq=1500;state.hiMidHiQ=false;state.hfGain=0;state.hfFreq=10000;
+            update(); container.querySelectorAll('.hiq-toggle').forEach(b=>b.classList.remove('on'));
+          };
+        }
+
+        // ── Neve 1073 ───────────────────────────────────────────────────
+        _buildNeve1073() {
+          const container = document.getElementById('ctrl-neve1073');
+          const COLOR = '#a5b4fc';
+
+          const hpfFreqs = [50,80,160,300];
+          const lfFreqs  = [35,60,110,220];
+          const midFreqs = [360,700,1600,3200,4800,7200];
+          const hfFreqs  = [12000,16000];
+
+          const state = { hpfFreq:50, hpfOn:false, lfGain:0,lfFreq:35, midGain:0,midFreq:360, hfGain:0,hfFreq:12000 };
+
+          const update = () => {
+            const bands = [
+              {type:'highpass',  freq:state.hpfOn?state.hpfFreq:20, gain:0,           Q:0.71, enabled:state.hpfOn},
+              {type:'lowshelf',  freq:state.lfFreq,                  gain:state.lfGain,Q:1.0,  enabled:true},
+              {type:'peaking',   freq:state.midFreq,                 gain:state.midGain,Q:1.8, enabled:true},
+              {type:'highshelf', freq:state.hfFreq,                  gain:state.hfGain,Q:0.71, enabled:true},
+            ];
+            if (this._hw === 'neve1073') { this._player.rebuildFilters(bands); this._drawHwResponse(); }
+          };
+
+          const gHpf = this._mkBandGroup('HPF');
+          const hpfSel = makeFreqSelector(hpfFreqs,0,COLOR,(f)=>{state.hpfFreq=f;update();});
+          const hpfBtn = document.createElement('button');
+          hpfBtn.className='hiq-toggle'; hpfBtn.textContent='ON';
+          hpfBtn.addEventListener('click',()=>{state.hpfOn=!state.hpfOn;hpfBtn.classList.toggle('on',state.hpfOn);update();});
+          gHpf.appendChild(hpfSel.el); gHpf.appendChild(hpfBtn);
+
+          const gLf = this._mkBandGroup('LF Shelf');
+          const lfKnob = new RotaryKnob({min:-16,max:16,value:0,color:COLOR,label:'GAIN',size:64,onChange:v=>{state.lfGain=v;update();}});
+          const lfSel  = makeFreqSelector(lfFreqs,0,COLOR,(f)=>{state.lfFreq=f;update();});
+          gLf.appendChild(lfKnob.element); gLf.appendChild(lfSel.el);
+
+          const gMid = this._mkBandGroup('Mid Peak');
+          const midKnob = new RotaryKnob({min:-16,max:16,value:0,color:COLOR,label:'GAIN',size:64,onChange:v=>{state.midGain=v;update();}});
+          const midSel  = makeFreqSelector(midFreqs,0,COLOR,(f)=>{state.midFreq=f;update();});
+          gMid.appendChild(midKnob.element); gMid.appendChild(midSel.el);
+
+          const gHf = this._mkBandGroup('HF Shelf');
+          const hfKnob = new RotaryKnob({min:-16,max:16,value:0,color:COLOR,label:'GAIN',size:64,onChange:v=>{state.hfGain=v;update();}});
+          const hfSel  = makeFreqSelector(hfFreqs,0,COLOR,(f)=>{state.hfFreq=f;update();});
+          gHf.appendChild(hfKnob.element); gHf.appendChild(hfSel.el);
+
+          container.appendChild(gHpf); container.appendChild(gLf); container.appendChild(gMid); container.appendChild(gHf);
+
+          this._neve1073Reset = () => {
+            state.hpfOn=false;state.hpfFreq=50;state.lfGain=0;state.lfFreq=35;state.midGain=0;state.midFreq=360;state.hfGain=0;state.hfFreq=12000;
+            update(); container.querySelectorAll('.hiq-toggle').forEach(b=>b.classList.remove('on'));
+          };
+        }
+
+        // ── API 550b ────────────────────────────────────────────────────
+        _buildApi550b() {
+          const container = document.getElementById('ctrl-api550b');
+          const COLOR = '#60a5fa';
+
+          const lowFreqs    = [30,40,50,100,150,180,240,300];
+          const loMidFreqs  = [75,150,180,240,500,700,1000,1500];
+          const hiMidFreqs  = [800,1500,3000,5000,8000,10000,12500];
+          const highFreqs   = [2500,5000,7000,10000,12500,15000,20000];
+
+          const state = { lowGain:0,lowFreq:30, loMidGain:0,loMidFreq:75, hiMidGain:0,hiMidFreq:800, highGain:0,highFreq:2500, lfCut:false, hfCut:false };
+
+          const propQ = g => 1.4 + (Math.abs(g)/12)*2.1;
+
+          const update = () => {
+            const bands = [
+              {type:'peaking', freq:state.lfCut?300:state.lowFreq, gain:state.lfCut?0:state.lowGain, Q:propQ(state.lowGain),  enabled:!state.lfCut},
+              {type:'peaking', freq:state.loMidFreq, gain:state.loMidGain, Q:propQ(state.loMidGain), enabled:true},
+              {type:'peaking', freq:state.hiMidFreq, gain:state.hiMidGain, Q:propQ(state.hiMidGain), enabled:true},
+              {type:'peaking', freq:state.hfCut?12500:state.highFreq,gain:state.hfCut?0:state.highGain, Q:propQ(state.highGain),enabled:!state.hfCut},
+            ];
+            if (this._hw === 'api550b') { this._player.rebuildFilters(bands); this._drawHwResponse(); }
+          };
+
+          const mk = (label, freqs, initFreq) => {
+            const g = this._mkBandGroup(label);
+            let gainVal = 0;
+            const knob = new RotaryKnob({min:-12,max:12,value:0,color:COLOR,label:'dB',size:64,onChange:v=>{gainVal=v;update();}});
+            const sel   = makeFreqSelector(freqs,0,COLOR,(f)=>{ update(); });
+            g.appendChild(knob.element); g.appendChild(sel.el);
+            return { g, knob, sel, getGain:()=>gainVal };
+          };
+
+          const low    = mk('Low',    lowFreqs,    30);
+          const loMid  = mk('Lo-Mid', loMidFreqs,  75);
+          const hiMid  = mk('Hi-Mid', hiMidFreqs,  800);
+          const high   = mk('High',   highFreqs,   2500);
+
+          // Wire up onChange properly
+          low.knob.onChange   = v => { state.lowGain=v; update(); };
+          loMid.knob.onChange = v => { state.loMidGain=v; update(); };
+          hiMid.knob.onChange = v => { state.hiMidGain=v; update(); };
+          high.knob.onChange  = v => { state.highGain=v; update(); };
+          low.sel.el.addEventListener('click', () => { state.lowFreq=low.sel.getFreq(); update(); });
+          loMid.sel.el.addEventListener('click', () => { state.loMidFreq=loMid.sel.getFreq(); update(); });
+          hiMid.sel.el.addEventListener('click', () => { state.hiMidFreq=hiMid.sel.getFreq(); update(); });
+          high.sel.el.addEventListener('click', () => { state.highFreq=high.sel.getFreq(); update(); });
+
+          // LF / HF cut toggles
+          const lfCutBtn = document.createElement('button');
+          lfCutBtn.className='hw-footer-btn'; lfCutBtn.textContent='LF Cut';
+          lfCutBtn.addEventListener('click',()=>{state.lfCut=!state.lfCut;lfCutBtn.style.background=state.lfCut?'#4f5aed':'';update();});
+          const hfCutBtn = document.createElement('button');
+          hfCutBtn.className='hw-footer-btn'; hfCutBtn.textContent='HF Cut';
+          hfCutBtn.addEventListener('click',()=>{state.hfCut=!state.hfCut;hfCutBtn.style.background=state.hfCut?'#4f5aed':'';update();});
+
+          container.appendChild(low.g); container.appendChild(loMid.g); container.appendChild(hiMid.g); container.appendChild(high.g);
+          // Add cut toggles to footer
+          document.getElementById('hw-api550b').querySelector('.hw-footer-row').prepend(hfCutBtn);
+          document.getElementById('hw-api550b').querySelector('.hw-footer-row').prepend(lfCutBtn);
+
+          this._api550bReset = () => {
+            state.lowGain=0;state.lowFreq=30;state.loMidGain=0;state.loMidFreq=75;state.hiMidGain=0;state.hiMidFreq=800;state.highGain=0;state.highFreq=2500;state.lfCut=false;state.hfCut=false;
+            update();
+          };
+        }
+
+        // ── Pultec EQP-1A ───────────────────────────────────────────────
+        _buildPultec() {
+          const container = document.getElementById('ctrl-pultec');
+          const COLOR = '#93c5fd';
+
+          const lfFreqs = [20,30,60,100];
+          const hfFreqs = [3000,4000,5000,6000,8000,10000,12000,16000];
+          const attenFreqs = [5000,10000,20000];
+
+          const state = { lfBoost:0,lfAtten:0,lfFreq:20, bandwidth:5, hfBoost:0,hfAtten:0,hfFreq:3000,attenFreq:5000 };
+
+          const update = () => {
+            const lf = state.lfFreq;
+            const bands = [
+              {type:'lowshelf', freq:lf,       gain:state.lfBoost*1.6,          Q:0.71, enabled:true},
+              {type:'peaking',  freq:lf*1.3,   gain:-state.lfAtten*0.8,         Q:0.8,  enabled:state.lfAtten>0},
+              {type:'highshelf',freq:state.hfFreq, gain:state.hfBoost*1.6,      Q:0.5+state.bandwidth*0.08, enabled:true},
+              {type:'highshelf',freq:state.attenFreq, gain:-state.hfAtten*1.2,  Q:0.71, enabled:state.hfAtten>0},
+            ];
+            if (this._hw === 'pultec') { this._player.rebuildFilters(bands); this._drawHwResponse(); }
+          };
+
+          // Left section — LF
+          const gLfBoost = this._mkBandGroup('LF Boost');
+          const lfBoostKnob = new RotaryKnob({min:0,max:10,value:0,color:COLOR,label:'BOOST',size:64,onChange:v=>{state.lfBoost=v;update();}});
+          gLfBoost.appendChild(lfBoostKnob.element);
+
+          const gLfAtten = this._mkBandGroup('LF Atten');
+          const lfAttenKnob = new RotaryKnob({min:0,max:10,value:0,color:COLOR,label:'ATTEN',size:64,onChange:v=>{state.lfAtten=v;update();}});
+          gLfAtten.appendChild(lfAttenKnob.element);
+
+          const gLfFreq = this._mkBandGroup('LF Freq');
+          const lfFreqSel = makeFreqSelector(lfFreqs,0,COLOR,(f)=>{state.lfFreq=f;update();});
+          gLfFreq.appendChild(lfFreqSel.el);
+
+          // Bandwidth (center)
+          const gBw = this._mkBandGroup('Bandwidth');
+          const bwKnob = new RotaryKnob({min:0,max:10,value:5,color:COLOR,label:'BW',size:64,onChange:v=>{state.bandwidth=v;update();}});
+          gBw.appendChild(bwKnob.element);
+
+          // Divider
+          const div = document.createElement('div');
+          div.className = 'pultec-divider';
+
+          // Right section — HF
+          const gHfBoost = this._mkBandGroup('HF Boost');
+          const hfBoostKnob = new RotaryKnob({min:0,max:10,value:0,color:COLOR,label:'BOOST',size:64,onChange:v=>{state.hfBoost=v;update();}});
+          gHfBoost.appendChild(hfBoostKnob.element);
+
+          const gHfAtten = this._mkBandGroup('HF Atten');
+          const hfAttenKnob = new RotaryKnob({min:0,max:10,value:0,color:COLOR,label:'ATTEN',size:64,onChange:v=>{state.hfAtten=v;update();}});
+          gHfAtten.appendChild(hfAttenKnob.element);
+
+          const gHfFreq = this._mkBandGroup('HF Freq');
+          const hfFreqSel = makeFreqSelector(hfFreqs,0,COLOR,(f)=>{state.hfFreq=f;update();});
+          gHfFreq.appendChild(hfFreqSel.el);
+
+          const gAttenSel = this._mkBandGroup('Atten Sel');
+          const attenSel = makeFreqSelector(attenFreqs,0,COLOR,(f)=>{state.attenFreq=f;update();});
+          gAttenSel.appendChild(attenSel.el);
+
+          container.appendChild(gLfBoost); container.appendChild(gLfAtten); container.appendChild(gLfFreq);
+          container.appendChild(gBw); container.appendChild(div);
+          container.appendChild(gHfBoost); container.appendChild(gHfAtten); container.appendChild(gHfFreq); container.appendChild(gAttenSel);
+
+          this._pultecReset = () => {
+            state.lfBoost=0;state.lfAtten=0;state.lfFreq=20;state.bandwidth=5;state.hfBoost=0;state.hfAtten=0;state.hfFreq=3000;state.attenFreq=5000;
+            update();
+          };
+        }
+
+        // ── Hardware selector binding ───────────────────────────────────
+        _bindHwSelector() {
+          document.getElementById('hwSelector').addEventListener('click', e => {
+            const btn = e.target.closest('.hw-btn');
+            if (!btn) return;
+            const hw = btn.dataset.hw;
+            document.getElementById('eqCTA').style.display = 'none';
+            this._setActiveHw(hw);
+            gtag('event', 'eq-hardware_selected', { hardware: hw, ...ToolTracker.getAnalytics() });
+          });
+        }
+
+        _setActiveHw(hw) {
+          this._hw = hw;
+          document.querySelectorAll('.hw-btn').forEach(b => b.classList.toggle('active', b.dataset.hw === hw));
+          document.querySelectorAll('.hw-panel').forEach(p => p.classList.toggle('active', p.id === `hw-${hw}`));
+          // Rebuild player filters for this hw
+          const DEFAULTS = {
+            neve1081: [{type:'highpass',freq:20,gain:0,Q:0.71,enabled:false},{type:'lowshelf',freq:35,gain:0,Q:1,enabled:true},{type:'peaking',freq:220,gain:0,Q:1.5,enabled:true},{type:'peaking',freq:1500,gain:0,Q:1.5,enabled:true},{type:'highshelf',freq:10000,gain:0,Q:0.71,enabled:true}],
+            neve1073: [{type:'highpass',freq:20,gain:0,Q:0.71,enabled:false},{type:'lowshelf',freq:35,gain:0,Q:1,enabled:true},{type:'peaking',freq:360,gain:0,Q:1.8,enabled:true},{type:'highshelf',freq:12000,gain:0,Q:0.71,enabled:true}],
+            api550b:  [{type:'peaking',freq:30,gain:0,Q:1.4,enabled:true},{type:'peaking',freq:75,gain:0,Q:1.4,enabled:true},{type:'peaking',freq:800,gain:0,Q:1.4,enabled:true},{type:'peaking',freq:2500,gain:0,Q:1.4,enabled:true}],
+            pultec:   [{type:'lowshelf',freq:20,gain:0,Q:0.71,enabled:true},{type:'peaking',freq:26,gain:0,Q:0.8,enabled:true},{type:'highshelf',freq:3000,gain:0,Q:0.5,enabled:true},{type:'highshelf',freq:5000,gain:0,Q:0.71,enabled:true}],
+          };
+          this._player.rebuildFilters(DEFAULTS[hw] || DEFAULTS.neve1081);
+          this._drawHwResponse();
+        }
+
+        _bindBypassReset() {
+          ['neve1081','neve1073','api550b','pultec'].forEach(hw => {
+            const bypassId = `bypass${hw.charAt(0).toUpperCase()+hw.slice(1).replace(/\d/g,m=>m)}`;
+            const resetId  = `reset${hw.charAt(0).toUpperCase()+hw.slice(1).replace(/\d/g,m=>m)}`;
+            // normalize IDs
+            const bId = { neve1081:'bypassNeve1081', neve1073:'bypassNeve1073', api550b:'bypassApi550b', pultec:'bypassPultec' }[hw];
+            const rId = { neve1081:'resetNeve1081',  neve1073:'resetNeve1073',  api550b:'resetApi550b',  pultec:'resetPultec'  }[hw];
+
+            document.getElementById(bId).addEventListener('click', (e) => {
+              this._bypassed = !this._bypassed;
+              this._player.setEqBypassed(this._bypassed);
+              e.target.classList.toggle('bypassed', this._bypassed);
+              e.target.textContent = this._bypassed ? '▶ EQ Active' : '⊘ Bypass';
+            });
+            document.getElementById(rId).addEventListener('click', () => {
+              const resetFn = { neve1081:this._neve1081Reset, neve1073:this._neve1073Reset, api550b:this._api550bReset, pultec:this._pultecReset }[hw];
+              if (resetFn) resetFn();
+              this._drawHwResponse();
+            });
+          });
+        }
+
+        // ── HW Response Canvas ──────────────────────────────────────────
+        _drawHwResponse() {
+          const canvas = this._hwCanvas;
+          const W = canvas.clientWidth;
+          const H = canvas.clientHeight;
+          if (canvas.width !== W * devicePixelRatio || canvas.height !== H * devicePixelRatio) {
+            canvas.width = W * devicePixelRatio;
+            canvas.height= H * devicePixelRatio;
+          }
+          const ctx = this._hwCtx;
+          ctx.save();
+          ctx.scale(devicePixelRatio, devicePixelRatio);
+          const w = W, h = H;
+
+          ctx.fillStyle = '#0a0f1a';
+          ctx.fillRect(0, 0, w, h);
+
+          // Grid
+          ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth=1;
+          [6,0,-6].forEach(db => {
+            const y = gainToY(db, h);
+            ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
+          });
+          [100,1000,10000].forEach(f => {
+            const x = freqToX(f,w);
+            ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke();
+          });
+
+          // Curve
+          const filters = this._player.getActiveFilters();
+          if (filters.length) {
+            const resp = compositeDbResponse(filters);
+            const pts = [];
+            for (let i = 0; i < NUM_RESP_POINTS; i++) {
+              pts.push({ x: freqToX(RESP_FREQS[i], w), y: gainToY(resp[i], h) });
+            }
+            const zeroY = gainToY(0, h);
+
+            ctx.beginPath();
+            ctx.moveTo(0, zeroY);
+            pts.forEach(p => ctx.lineTo(p.x, p.y));
+            ctx.lineTo(w, zeroY);
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(79,90,237,0.2)'; ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(pts[0].x, pts[0].y);
+            for (let i = 1; i < pts.length-1; i++) {
+              const mx=(pts[i].x+pts[i+1].x)/2, my=(pts[i].y+pts[i+1].y)/2;
+              ctx.quadraticCurveTo(pts[i].x,pts[i].y,mx,my);
+            }
+            ctx.lineTo(pts[pts.length-1].x, pts[pts.length-1].y);
+            ctx.strokeStyle='#4f5aed'; ctx.lineWidth=2; ctx.lineJoin='round'; ctx.stroke();
+          }
+          ctx.restore();
+        }
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // WAV ENCODER
+      // ═══════════════════════════════════════════════════════════════════════════════
+      function audioBufferToWav(buffer) {
+        const numCh = buffer.numberOfChannels, sr = buffer.sampleRate;
+        const channelData = [];
+        for (let c = 0; c < numCh; c++) channelData.push(buffer.getChannelData(c));
+        const interleaved = new Float32Array(buffer.length * numCh);
+        for (let i = 0; i < buffer.length; i++)
+          for (let c = 0; c < numCh; c++) interleaved[i*numCh+c] = channelData[c][i];
+        const dataLen = interleaved.length * 2;
+        const ab = new ArrayBuffer(44 + dataLen);
+        const v  = new DataView(ab);
+        const ws = (o,s) => { for(let i=0;i<s.length;i++) v.setUint8(o+i,s.charCodeAt(i)); };
+        ws(0,'RIFF'); v.setUint32(4,36+dataLen,true); ws(8,'WAVE'); ws(12,'fmt ');
+        v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,numCh,true);
+        v.setUint32(24,sr,true); v.setUint32(28,sr*numCh*2,true);
+        v.setUint16(32,numCh*2,true); v.setUint16(34,16,true); ws(36,'data'); v.setUint32(40,dataLen,true);
+        let off=44;
+        for(let i=0;i<interleaved.length;i++,off+=2){
+          const s=Math.max(-1,Math.min(1,interleaved[i]));
+          v.setInt16(off,s<0?s*0x8000:s*0x7FFF,true);
+        }
+        return new Blob([ab],{type:'audio/wav'});
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // STATUS + DOWNLOAD SUCCESS
+      // ═══════════════════════════════════════════════════════════════════════════════
+      function showStatus(msg, type='info') {
+        const el = document.getElementById('status');
+        if (el.classList.contains('success-enhanced')) return;
+        el.textContent = msg;
+        el.className = type;
+      }
+
+      function clearStatus() {
+        const el = document.getElementById('status');
+        el.className = '';
+        el.innerHTML = '';
+      }
+
+      function showDownloadSuccess(downloadUrl, downloadName) {
+        const analytics = ToolTracker.getAnalytics();
+        const cta = document.getElementById('eqCTA');
+
+        cta.innerHTML = `
+          <div class="success-message-enhanced">
+            <div class="success-text">✔ EQ applied! Your file is ready.</div>
+            <div class="next-tools">
+              <span class="next-label">Try next:</span>
+              <a href="/add-reverb-to-audio/" class="next-tool-link" data-tool="add-reverb-to-audio">🎧 Add Reverb</a>
+              <a href="/vocal-tuner/" class="next-tool-link" data-tool="vocal-tuner">🤖 Vocal Tuner</a>
+              <a href="/noise-remover/" class="next-tool-link" data-tool="noise-remover">🎙️ Noise Remover</a>
+              <a href="/bass-boost/" class="next-tool-link" data-tool="bass-boost">🔊 Bass Boost</a>
+              <a href="/" class="next-tool-link all-tools" data-tool="all-tools">More tools →</a>
+            </div>
+            <a id="ctaDownloadBtn" class="cta-download-btn" href="${downloadUrl}" download="${downloadName}">⬇️ Download EQ'd WAV</a>
+          </div>`;
+
+        cta.style.display = 'block';
+
+        // Delay scroll so browser has time to paint the new content
+        setTimeout(() => {
+          cta.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 150);
+
+        document.getElementById('ctaDownloadBtn').addEventListener('click', () => {
+          gtag('event', 'cta-download-clicked', { event_category: 'download', source_tool: 'eq' });
+          setTimeout(() => URL.revokeObjectURL(downloadUrl), 60000);
+        });
+
+        document.querySelectorAll('.next-tool-link').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'related-tool-clicked', {
+              event_category: 'cross_tool_engagement',
+              source_tool: 'eq',
+              destination_tool: this.dataset.tool,
+              ...analytics
+            });
+          });
+        });
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // DOWNLOAD — OFFLINE RENDER
+      // ═══════════════════════════════════════════════════════════════════════════════
+      async function downloadEqd() {
+        if (!eqPlayer._origBuf) {
+          showStatus('Please upload a file first.', 'error');
+          document.getElementById('status').scrollIntoView({behavior:'smooth', block:'center'});
+          return;
+        }
+
+        const applyBtn  = document.getElementById('applyEqBtn');
+        const quickBtn  = document.getElementById('eqDownloadBtn');
+        const progWrap  = document.getElementById('progressWrap');
+        const progBar   = document.getElementById('progressBar');
+
+        applyBtn.disabled = true;
+        applyBtn.textContent = '⏳ Processing…';
+        quickBtn.disabled = true;
+        progWrap.style.display = 'block';
+        progBar.style.width = '5%';
+        clearStatus();
+        document.getElementById('eqCTA').style.display = 'none';  // hide previous CTA if any
+
+        const setProgress = pct => { progBar.style.width = pct + '%'; };
+
+        try {
+          console.log('[EQ] Starting offline render…');
+          const origBuf = eqPlayer._origBuf;
+          const numCh   = origBuf.numberOfChannels;
+          const sr      = origBuf.sampleRate;
+          console.log(`[EQ] Buffer: ${numCh}ch, ${sr}Hz, ${origBuf.duration.toFixed(1)}s`);
+
+          const offCtx = new OfflineAudioContext(numCh, origBuf.length, sr);
+          setProgress(10);
+
+          // Build filter chain — map 'notch' to 'peaking' (same as live playback)
+          const bands = currentBandsForMode();
+          const activeBands = bands.filter(b => b.enabled !== false);
+          console.log(`[EQ] ${activeBands.length} active bands:`, activeBands.map(b => `${b.type}@${Math.round(b.freq)}Hz`).join(', '));
+
+          const nodes = activeBands.map(b => {
+            const f = offCtx.createBiquadFilter();
+            f.type             = b.type === 'notch' ? 'peaking' : b.type;
+            f.frequency.value  = Math.max(20, Math.min(20000, b.freq));
+            f.gain.value       = b.gain  || 0;
+            f.Q.value          = b.Q    || 1;
+            return f;
+          });
+
+          const outGain = offCtx.createGain();
+          outGain.gain.value = Math.pow(10, (eqPlayer._outputGainDb || 0) / 20);
+
+          const src = offCtx.createBufferSource();
+          src.buffer = origBuf;
+
+          // Connect: src → [nodes in series] → outGain → destination
+          if (eqPlayer._eqBypassed || nodes.length === 0) {
+            src.connect(outGain);
+          } else {
+            src.connect(nodes[0]);
+            for (let i = 0; i < nodes.length - 1; i++) nodes[i].connect(nodes[i + 1]);
+            nodes[nodes.length - 1].connect(outGain);
+          }
+          outGain.connect(offCtx.destination);
+          src.start(0);
+          setProgress(20);
+
+          console.log('[EQ] Calling startRendering…');
+
+          // Race against a 120s timeout so we never hang silently
+          const rendered = await Promise.race([
+            offCtx.startRendering(),
+            new Promise((_, reject) =>
+              setTimeout(() => reject(new Error('Render timed out — try a shorter file')), 120000)
+            )
+          ]);
+
+          console.log('[EQ] startRendering complete. Encoding WAV…');
+          setProgress(80);
+
+          const wav  = audioBufferToWav(rendered);
+          setProgress(100);
+
+          const url  = URL.createObjectURL(wav);
+          const name = `soundtools-eq-${Date.now()}.wav`;
+          console.log('[EQ] WAV ready, showing CTA');
+
+          setTimeout(() => { progWrap.style.display = 'none'; progBar.style.width = '0%'; }, 500);
+          showDownloadSuccess(url, name);
+
+          ToolTracker.trackSuccess({ tab: currentTab, eq_mode: currentHw || 'graphical' });
+          gtag('event', 'eq-download', { event_category: 'eq', tab: currentTab, ...ToolTracker.getAnalytics() });
+
+        } catch (err) {
+          console.error('[EQ] Render error:', err);
+          progWrap.style.display = 'none';
+          progBar.style.width = '0%';
+          // Force-clear any success state so showStatus works
+          const statusEl = document.getElementById('status');
+          statusEl.className = 'error';
+          statusEl.innerHTML = `❌ Processing failed: ${err.message || err}. Please try again or use a shorter file.`;
+          statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          ToolTracker.trackError('offline_render_failed: ' + (err.message || err));
+        } finally {
+          applyBtn.disabled = false;
+          applyBtn.textContent = '🎛️ Apply EQ & Download';
+          quickBtn.disabled = false;
+          quickBtn.textContent = '⬇️ Download EQ\'d WAV';
+        }
+      }
+
+      function currentBandsForMode() {
+        if (currentTab === 'graphical') return geqEngine.getBands();
+        // For classic, read from player's own filters array
+        const f = eqPlayer.getActiveFilters();
+        return f.map(ff => ({
+          type: ff.node.type, freq: ff.node.frequency.value,
+          gain: ff.node.gain.value, Q: ff.node.Q.value,
+          enabled: !ff._bypassed
+        }));
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // MAIN INIT
+      // ═══════════════════════════════════════════════════════════════════════════════
+      let eqPlayer    = null;
+      let geqEngine   = null;
+      let classicEQ   = null;
+      let currentTab  = 'graphical';
+      let currentHw   = null;
+      let origFileName= '';
+
+      document.addEventListener('DOMContentLoaded', () => {
+
+        // Create player
+        eqPlayer = new EQPlayer(document.getElementById('eqPlayerCanvas'));
+
+        // Build graphical EQ engine (canvas is there but no audio yet)
+        geqEngine = new GraphicalEQ(document.getElementById('graphicEqCanvas'), eqPlayer);
+
+        // Build classic EQ (initializes hardware panels)
+        classicEQ = new ClassicEQ(eqPlayer);
+        currentHw = 'neve1081';
+
+        // Initialize player with default bands for graphical EQ tab
+        // (so filters exist even before file load — they'll be rebuilt on load)
+        eqPlayer.rebuildFilters(DEFAULT_BANDS);
+
+        // ── File upload ─────────────────────────────────────────────────
+        const dropZone  = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', e => handleFile(e.target.files[0]));
+        dropZone.addEventListener('dragover',  e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+        dropZone.addEventListener('drop', e => {
+          e.preventDefault();
+          dropZone.classList.remove('drag-over');
+          if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+        });
+
+        // ── Apply EQ button ───────────────────────────────────────────
+        document.getElementById('applyEqBtn').addEventListener('click', downloadEqd);
+
+        // ── Play / Pause ───────────────────────────────────────────────
+        document.getElementById('eqPlayPauseBtn').addEventListener('click', () => {
+          if (!eqPlayer._origBuf) return;
+          if (eqPlayer._isPlaying) eqPlayer.pause();
+          else eqPlayer.play();
+        });
+
+        // ── Download ───────────────────────────────────────────────────
+        document.getElementById('eqDownloadBtn').addEventListener('click', downloadEqd);
+
+        // ── Tab switching ──────────────────────────────────────────────
+        document.getElementById('tabGraphical').addEventListener('click', () => {
+          currentTab = 'graphical';
+          document.getElementById('tabGraphical').classList.add('active');
+          document.getElementById('tabClassic').classList.remove('active');
+          document.getElementById('panelGraphical').classList.add('active');
+          document.getElementById('panelClassic').classList.remove('active');
+          document.getElementById('eqCTA').style.display = 'none';
+          eqPlayer.rebuildFilters(geqEngine.getBands());
+          gtag('event','eq-tab_switch',{tab:'graphical',...ToolTracker.getAnalytics()});
+        });
+        document.getElementById('tabClassic').addEventListener('click', () => {
+          currentTab = 'classic';
+          document.getElementById('tabClassic').classList.add('active');
+          document.getElementById('tabGraphical').classList.remove('active');
+          document.getElementById('panelClassic').classList.add('active');
+          document.getElementById('panelGraphical').classList.remove('active');
+          document.getElementById('eqCTA').style.display = 'none';
+          classicEQ._setActiveHw(classicEQ._hw);
+          gtag('event','eq-tab_switch',{tab:'classic',...ToolTracker.getAnalytics()});
+        });
+
+        // ── GEQ Presets ────────────────────────────────────────────────
+        document.getElementById('geqPresets').addEventListener('click', e => {
+          const btn = e.target.closest('.geq-preset-btn');
+          if (!btn) return;
+          document.querySelectorAll('.geq-preset-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const name = btn.dataset.preset;
+          geqEngine.applyPreset(name);
+          ToolTracker.trackPresetSelected(name);
+        });
+
+        // ── GEQ Reset + Bypass ─────────────────────────────────────────
+        document.getElementById('geqResetBtn').addEventListener('click', () => {
+          geqEngine.reset();
+          document.querySelectorAll('.geq-preset-btn').forEach(b => b.classList.remove('active'));
+          document.querySelector('[data-preset="Factory Default"]').classList.add('active');
+        });
+
+        document.getElementById('geqBypassBtn').addEventListener('click', e => {
+          const bypassed = e.target.classList.toggle('bypassed');
+          e.target.textContent = bypassed ? '▶ EQ Active' : '⊘ Bypass EQ';
+          geqEngine.setBypassed(bypassed);
+        });
+
+        // ── Output Gain ────────────────────────────────────────────────
+        document.getElementById('outputGainSlider').addEventListener('input', e => {
+          const db = parseFloat(e.target.value);
+          document.getElementById('outputGainLabel').textContent = (db >= 0 ? '+':'') + db.toFixed(1) + ' dB';
+          eqPlayer.setOutputGain(db);
+        });
+
+        // ── Mobile nav ─────────────────────────────────────────────────
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks  = document.querySelector('.nav-links');
+        if (mobileBtn && navLinks) mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+          toggle.addEventListener('click', e => {
+            e.preventDefault();
+            toggle.closest('li')?.classList.toggle('open');
+          });
+        });
+
+        // Start animation for player canvas even before file load
+        eqPlayer._rafId = requestAnimationFrame(() => eqPlayer._animLoop());
+      });
+
+      // ═══════════════════════════════════════════════════════════════════════════════
+      // FILE HANDLING
+      // ═══════════════════════════════════════════════════════════════════════════════
+      async function handleFile(file) {
+        if (!file) return;
+        if (file.size > 150 * 1024 * 1024) { showStatus('⚠️ File too large. Maximum 150 MB.', 'error'); return; }
+
+        clearStatus();
+        origFileName = file.name.replace(/\.[^.]+$/, '');
+        const infoBar = document.getElementById('fileInfoBar');
+        infoBar.textContent = `📁 ${file.name} — ${(file.size/1048576).toFixed(2)} MB`;
+        infoBar.style.display = '';
+
+        showStatus('Decoding audio file...', 'info');
+
+        try {
+          // Create audio context for decoding
+          const tmpCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const ab = await (file.arrayBuffer ? file.arrayBuffer() : new Promise((res,rej)=>{ const fr=new FileReader(); fr.onload=e=>res(e.target.result); fr.onerror=rej; fr.readAsArrayBuffer(file); }));
+          const audioBuffer = await tmpCtx.decodeAudioData(ab);
+          tmpCtx.close();
+
+          // Load into player (rebuilds filters for current tab)
+          await eqPlayer.load(audioBuffer);
+          if (currentTab === 'graphical') eqPlayer.rebuildFilters(geqEngine.getBands());
+          else classicEQ._setActiveHw(classicEQ._hw);
+
+          showStatus('✓ File loaded — press Play to preview. Adjust EQ controls, then click Apply EQ & Download.', 'info');
+          document.getElementById('applyEqBtn').disabled = false;
+          document.getElementById('applyEqHint').style.display = 'none';
+          ToolTracker.trackFileSelected(file.size);
+
+        } catch (err) {
+          console.error(err);
+          showStatus('❌ Could not decode audio. Try MP3 or WAV format. (' + err.message + ')', 'error');
+        }
+      }
+
+      console.log('SoundTools EQ Analytics:', ToolTracker.getAnalytics());
+   </script>
+
+</body>
+</html>

@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Audio Fade In / Fade Out Tool — Add Fades to MP3 Online | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-notify.js" defer></script>
+<script src="/vendor/snip-transport.js" defer></script>
+<meta name="description" content="Free online audio fade in / fade out tool. Add smooth fade-in and fade-out to MP3, WAV, FLAC, AAC, M4A — pick duration and curve (linear or exponential), preview, download. 100% in your browser.">
+<meta name="keywords" content="audio fade, fade in fade out audio, fade audio online, add fade to mp3, fade out mp3, fade in mp3, audio fade tool, mp3 fade tool, audio fader online">
+<link rel="canonical" href="https://snipsound.com/tools/audio-fade/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Audio Fade In / Out Tool — Add Fades to MP3 Online | SnipSound">
+<meta property="og:description" content="Add fade-in and fade-out to any audio file with adjustable duration and curve. Preview before download. 100% client-side — files never leave your device.">
+<meta property="og:url" content="https://snipsound.com/tools/audio-fade/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Audio Fade In / Out Tool | SnipSound">
+<meta name="twitter:description" content="Add fade-in and fade-out to any audio file. Files never leave your device, no sign-up.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+      :root { --fade: rgba(124,111,255,0.25); --fade-edge: rgba(124,111,255,0.85); }
+
+  
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 32px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  .privacy-notice { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-dim); margin: 0 0 24px; padding: 0 4px; }
+  .privacy-notice svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
+  .privacy-notice strong { color: var(--text); font-weight: 600; }
+  .privacy-notice a { color: var(--accent); text-decoration: none; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .file-info { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .file-info .file-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; color: var(--text); }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove { margin-left: auto; background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: color 0.2s, border-color 0.2s; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  /* Waveform with fade overlay regions */
+  .waveform-wrap {
+    position: relative;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    height: 160px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .waveform-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .fade-overlay-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; display: block; }
+  .waveform-empty {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dim); font-size: 0.85rem;
+  }
+  .playhead {
+    position: absolute; top: 0; bottom: 0;
+    width: 2px; background: #fff;
+    pointer-events: none; z-index: 5;
+    display: none;
+  }
+  .playhead.visible { display: block; }
+  .waveform-legend {
+    display: flex; gap: 16px; font-size: 0.8rem;
+    color: var(--text-dim); margin-bottom: 16px; padding: 0 4px;
+    align-items: center; flex-wrap: wrap;
+  }
+  .waveform-legend .swatch {
+    display: inline-block; width: 12px; height: 12px;
+    border-radius: 3px; margin-right: 6px; vertical-align: -2px;
+    background: var(--fade-edge);
+  }
+  .waveform-legend .hint { margin-left: auto; }
+
+  /* Fine-tune split — zoomed intro / outro panels */
+  .fade-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 16px; }
+  .fade-split-panel { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
+  .fsp-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  .fsp-title { font-size: 0.82rem; font-weight: 600; color: var(--text-dim); }
+  .fsp-demo { background: var(--accent); color: #fff; border: none; border-radius: 7px; padding: 5px 12px; font-size: 0.8rem; font-weight: 600; font-family: inherit; cursor: pointer; transition: background .15s; flex-shrink: 0; }
+  .fsp-demo:hover { background: var(--accent-hover); }
+  .fsp-demo.playing { background: var(--surface); border: 1px solid var(--accent); color: var(--accent); }
+  /* touch-action:none so dragging the fade handle isn't hijacked by the
+     browser as a page scroll on mobile (which made the handle hard to grab). */
+  .fsp-wave { position: relative; height: 92px; background: var(--bg); border-radius: 8px; overflow: hidden; cursor: pointer; touch-action: none; }
+  .fsp-wave canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .fsp-wave .fsp-overlay { pointer-events: none; }
+  .fsp-playhead { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; pointer-events: none; display: none; z-index: 5; }
+  .fsp-playhead.visible { display: block; }
+  @media (max-width: 600px) {
+    .fade-split { grid-template-columns: 1fr; }
+    /* Mobile: group each fade preview with its OWN options, stacked —
+       intro preview → fade-in options → outro preview → fade-out options.
+       display:contents flattens the two grid containers so their children
+       become flex items of the wrapper and can be interleaved via order.
+       (On desktop the wrapper is a plain block, so the layout is unchanged.) */
+    .fade-tune-wrap { display: flex; flex-direction: column; gap: 14px; }
+    .fade-tune-wrap > .fade-split,
+    .fade-tune-wrap > .fade-grid { display: contents; }
+    .fade-tune-wrap .preset-row { order: 0; }
+    .fade-tune-wrap .fade-split-panel:first-child { order: 1; } /* intro preview */
+    .fade-tune-wrap .fade-grid .fade-card:first-child { order: 2; } /* fade-in options */
+    .fade-tune-wrap .fade-split-panel:last-child { order: 3; } /* outro preview */
+    .fade-tune-wrap .fade-grid .fade-card:last-child { order: 4; } /* fade-out options */
+  }
+
+  /* Fade control rows */
+  .fade-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .fade-card {
+    padding: 14px 16px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+  }
+  .fade-card-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .fade-card-title { font-weight: 600; color: var(--text); font-size: 0.95rem; }
+  .fade-card-value {
+    color: var(--accent); font-weight: 700;
+    font-variant-numeric: tabular-nums; font-size: 0.95rem;
+  }
+  .fade-card input[type="range"] {
+    width: 100%; accent-color: var(--accent);
+    margin: 4px 0 10px;
+  }
+  .fade-card select {
+    width: 100%;
+    padding: 6px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    font-family: inherit; font-size: 0.85rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .fade-card select:focus { outline: none; border-color: var(--accent); }
+  /* Visual curve picker replaces the dropdown (the select stays as the value store, hidden). */
+  .fade-card select { display: none; }
+  .curve-picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .curve-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 8px 2px 6px; background: var(--bg); border: 1px solid var(--border-bright);
+    border-radius: 8px; color: var(--text-dim); cursor: pointer; font-family: inherit;
+    font-size: 0.68rem; font-weight: 500; transition: border-color .15s, color .15s, background .15s;
+  }
+  .curve-btn svg { width: 100%; height: 22px; }
+  .curve-btn:hover { color: var(--text); border-color: var(--text-dim); }
+  .curve-btn.selected { color: var(--accent); border-color: var(--accent); background: var(--accent-subtle); }
+  @media (max-width: 600px) {
+    .fade-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Preset row */
+  .preset-row {
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    padding: 10px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+  }
+  .preset-row .label { font-size: 0.85rem; color: var(--text-dim); margin-right: 4px; }
+  .preset-btn {
+    padding: 6px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    border-radius: 999px;
+    font-family: inherit; font-size: 0.8rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Preview transport */
+  .transport-row {
+    display: flex; gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .transport-btn {
+    background: var(--accent);
+    color: #fff; border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit; font-size: 0.9rem; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .transport-btn:hover { background: var(--accent-hover); }
+  .transport-btn svg { width: 14px; height: 14px; }
+  .transport-btn.playing { background: var(--surface); border: 1px solid var(--accent); color: var(--accent); }
+  .transport-row .transport-label { font-size: 0.85rem; color: var(--text-dim); }
+
+  /* Output format dropdown */
+  .output-row {
+    display: flex; gap: 12px; align-items: center;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .output-row label { font-size: 0.9rem; color: var(--text-dim); }
+  .output-row select {
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    font-family: inherit; font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .output-row select:focus { outline: none; border-color: var(--accent); }
+  .output-row .hint { font-size: 0.8rem; color: var(--text-dim); margin-left: auto; }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+
+  /* SEO content section */
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul { padding-left: 22px; }
+
+  .usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 18px 0 24px; }
+  .usecase-card { padding: 14px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; }
+  .usecase-name { font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .usecase-note { font-size: 0.82rem; color: var(--text-dim); }
+
+  /* Curve comparison grid */
+  .curve-table { display: grid; grid-template-columns: 140px 1fr; gap: 10px 18px; margin: 16px 0; align-items: baseline; }
+  .curve-table .ct-name { font-weight: 700; color: var(--accent); }
+  .curve-table .ct-desc { color: var(--text-dim); font-size: 0.9rem; }
+  @media (max-width: 600px) { .curve-table { grid-template-columns: 1fr; gap: 2px 0; } .curve-table .ct-desc { margin-bottom: 10px; } }
+
+  .related-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .related-tool { padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: border-color 0.15s, color 0.15s; }
+  .related-tool:hover { border-color: var(--accent); color: var(--accent); }
+  .related-tool .rt-desc { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+  .related-tool:hover .rt-desc { color: var(--text-dim); }
+
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "SnipSound Audio Fade Tool", "url": "https://snipsound.com/tools/audio-fade/", "description": "Free online audio fade in / fade out tool. Add smooth fade-in and fade-out to any audio file with adjustable duration and curve. Runs entirely in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How do I add a fade-in or fade-out to an MP3?", "acceptedAnswer": { "@type": "Answer", "text": "Upload your audio file, drag the Fade In and Fade Out sliders to set the duration (in seconds) for each, pick a curve (Linear is the standard for most music), preview to hear the result, then click Apply Fade & Download. The fades are baked into the new audio file." } },
+  { "@type": "Question", "name": "What's the difference between a linear and an exponential fade?", "acceptedAnswer": { "@type": "Answer", "text": "A linear fade changes volume at a constant rate — half the duration = half the volume. It sounds neutral and is fine for most music. An exponential fade matches how human hearing actually perceives loudness — it ramps up slowly then accelerates (or for fade-out, drops quickly then settles slowly). Exponential fades often sound more natural and musical, especially for longer fade-outs at the end of a song." } },
+  { "@type": "Question", "name": "How long should a fade-in or fade-out be?", "acceptedAnswer": { "@type": "Answer", "text": "Music: 2–8 seconds is typical for song endings; 0.5–2 seconds for fade-ins. Podcasts: 0.3–1 second is usually enough to soften a hard cut. Sound effects: under 0.2 seconds — just enough to avoid clicks at the edges. The tool caps each fade at 10 seconds, which is longer than any natural-sounding fade you'd ever use." } },
+  { "@type": "Question", "name": "Can I crossfade two audio files together?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — use the Audio Merger tool instead. It combines multiple files end-to-end with an optional crossfade between adjacent tracks. This tool fades a single file's beginning and / or end; the Merger fades between two files." } },
+  { "@type": "Question", "name": "Does the fade reduce file size?", "acceptedAnswer": { "@type": "Answer", "text": "The output is the same length as the input — fading only changes the volume curve at the edges, not the duration. File size depends mostly on the output format and bitrate you pick. To shrink the file, run the result through our Audio Compressor afterwards." } },
+  { "@type": "Question", "name": "Is my audio uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Decoding, fade application, and re-encoding all happen in your browser using the Web Audio API. Your audio never leaves your device." } },
+  { "@type": "Question", "name": "What input formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Any audio format your browser can decode — MP3, WAV, OGG, FLAC, AAC, M4A. Output formats include MP3 (320, 256, 192, 128 kbps), WAV, FLAC, OGG, AAC and M4A." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body data-owns-keys="space">
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Audio Fade Tool</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/" class="active">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">Audio Fade In / Out</span> Tool</h1>
+    <p>Add a smooth fade-in to the start of any audio file and / or a fade-out to the end. Tune the duration and curve, preview the result, and download. Works on MP3, WAV, FLAC, AAC, and M4A &mdash; 100% in your browser, your files never leave your device.</p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 20h18"/>
+      <path d="M3 20 L21 6"/>
+      <path d="M21 20 L3 6" opacity="0.4"/>
+    </svg>
+    <h2>Drop audio file here</h2>
+    <p>or click to browse &mdash; faded in your browser, never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span><span class="format-tag">WAV</span><span class="format-tag">OGG</span>
+      <span class="format-tag">FLAC</span><span class="format-tag">AAC</span><span class="format-tag">M4A</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,.mp3,.wav,.ogg,.flac,.aac,.m4a">
+  </div>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your audio never leaves your device.</strong> Decoding, fade application, and encoding all happen in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Remove file</button>
+    </div>
+
+    <div class="waveform-wrap" id="waveform-wrap">
+      <canvas class="waveform-canvas" id="waveform-canvas"></canvas>
+      <canvas class="fade-overlay-canvas" id="fade-overlay-canvas"></canvas>
+      <div class="playhead" id="playhead" style="left:0%;"></div>
+      <div class="waveform-empty" id="waveform-empty" style="display:none;">Loading waveform&hellip;</div>
+    </div>
+    <div class="waveform-legend">
+      <span><span class="swatch"></span>Fade region (volume ramp)</span>
+      <span class="hint">Adjust the sliders below to see the curve update live.</span>
+    </div>
+
+    <!-- Wrapper so mobile can interleave each preview with its own options
+         (see the max-width:600px rules). Plain block on desktop. -->
+    <div class="fade-tune-wrap">
+    <!-- Fine-tune split: zoomed intro (left) + outro (right), each demoable -->
+    <div class="fade-split" id="fade-split">
+      <div class="fade-split-panel">
+        <div class="fsp-head"><span class="fsp-title">Fade in · intro</span><button type="button" class="fsp-demo" data-side="in">&#9654; Demo intro</button></div>
+        <div class="fsp-wave" data-side="in">
+          <canvas id="fsp-canvas-in"></canvas>
+          <canvas id="fsp-overlay-in" class="fsp-overlay"></canvas>
+          <div class="fsp-playhead" id="fsp-playhead-in"></div>
+        </div>
+      </div>
+      <div class="fade-split-panel">
+        <div class="fsp-head"><span class="fsp-title">Fade out · outro</span><button type="button" class="fsp-demo" data-side="out">&#9654; Demo outro</button></div>
+        <div class="fsp-wave" data-side="out">
+          <canvas id="fsp-canvas-out"></canvas>
+          <canvas id="fsp-overlay-out" class="fsp-overlay"></canvas>
+          <div class="fsp-playhead" id="fsp-playhead-out"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preset-row">
+      <span class="label">Quick presets:</span>
+      <button type="button" class="preset-btn" data-preset="off">No fade</button>
+      <button type="button" class="preset-btn" data-preset="podcast">Podcast (0.5s / 0.5s)</button>
+      <button type="button" class="preset-btn" data-preset="song-end">Song ending (0.5s / 5s)</button>
+      <button type="button" class="preset-btn" data-preset="intro-outro">Intro &amp; outro (2s / 3s)</button>
+      <button type="button" class="preset-btn" data-preset="long-fade">Long fade-out (0s / 8s)</button>
+    </div>
+
+    <div class="fade-grid">
+      <div class="fade-card">
+        <div class="fade-card-header">
+          <span class="fade-card-title">Fade In</span>
+          <span class="fade-card-value" id="fade-in-value">2.0 s</span>
+        </div>
+        <input type="range" id="fade-in-slider" min="0" max="10" step="0.1" value="2">
+        <select id="fade-in-curve">
+          <option value="linear" selected>Linear</option>
+          <option value="exponential">Exponential (slow start, fast end)</option>
+          <option value="logarithmic">Logarithmic (fast start, slow end)</option>
+          <option value="smooth">Smooth (S-curve)</option>
+        </select>
+        <div class="curve-picker" id="curve-picker-in" data-target="fade-in-curve"></div>
+      </div>
+      <div class="fade-card">
+        <div class="fade-card-header">
+          <span class="fade-card-title">Fade Out</span>
+          <span class="fade-card-value" id="fade-out-value">3.0 s</span>
+        </div>
+        <input type="range" id="fade-out-slider" min="0" max="10" step="0.1" value="3">
+        <select id="fade-out-curve">
+          <option value="linear" selected>Linear</option>
+          <option value="exponential">Exponential (fast start, slow end)</option>
+          <option value="logarithmic">Logarithmic (slow start, fast end)</option>
+          <option value="smooth">Smooth (S-curve)</option>
+        </select>
+        <div class="curve-picker" id="curve-picker-out" data-target="fade-out-curve" data-out="1"></div>
+      </div>
+    </div>
+    </div><!-- /fade-tune-wrap -->
+
+    <div class="transport-row">
+      <button type="button" class="transport-btn" id="btn-preview">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <span>Preview faded result</span>
+      </button>
+      <span class="transport-label" id="transport-label">Plays the faded version with a moving playhead.</span>
+    </div>
+
+    <div class="output-row">
+      <label for="output-format">Output format:</label>
+      <select id="output-format">
+        <option value="mp3-320" selected>MP3 — 320 kbps (best)</option>
+        <option value="mp3-256">MP3 — 256 kbps</option>
+        <option value="mp3-192">MP3 — 192 kbps</option>
+        <option value="mp3-128">MP3 — 128 kbps (smaller)</option>
+        <option value="wav">WAV (lossless)</option>
+        <option value="flac">FLAC (lossless)</option>
+        <option value="ogg">OGG Vorbis</option>
+        <option value="aac">AAC</option>
+        <option value="m4a">M4A</option>
+      </select>
+      <span class="hint">MP3 320 keeps quality and works everywhere.</span>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="btn-apply">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Apply Fade &amp; Download</span>
+      </button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>Add fade-in and fade-out to MP3, WAV, FLAC &mdash; free, private, no sign-up</h2>
+    <p>SnipSound's Audio Fade tool applies a volume ramp at the start and / or end of your audio file. Pick the duration of each fade independently (0 to 10 seconds), choose a curve (linear, exponential, or logarithmic), preview the result, and download. The original file is never modified &mdash; you get a fresh export with the fades baked in. Everything happens in your browser; your files never leave your device.</p>
+
+    <h3>Linear vs exponential vs logarithmic — which curve to pick</h3>
+    <div class="curve-table">
+      <div class="ct-name">Linear</div>
+      <div class="ct-desc">Constant rate of volume change. Half the duration = half the volume. Sounds neutral and works for almost any material. <strong>Use as your default.</strong></div>
+      <div class="ct-name">Exponential</div>
+      <div class="ct-desc">For <strong>fade-in</strong>: starts very quiet, ramps up faster near the end &mdash; volume "blooms" in. For <strong>fade-out</strong>: drops quickly, then settles slowly into silence. Matches how human hearing perceives loudness; often sounds more musical for longer fades.</div>
+      <div class="ct-name">Logarithmic</div>
+      <div class="ct-desc">The inverse of exponential. <strong>Fade-in</strong>: quick volume rise, then plateaus. <strong>Fade-out</strong>: holds level, then drops fast at the end. Good when you want the fade to feel snappier and end (or start) more decisively.</div>
+    </div>
+
+    <h3>Common use cases</h3>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="usecase-name">🎵 Song endings</div>
+        <div class="usecase-note">3–8 second exponential fade-out is the classic. Adds polish to a track that ends abruptly.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎙 Podcast intros</div>
+        <div class="usecase-note">0.5–1 second linear fade-in on the music bed prevents the harsh "click" of starting at full volume.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎬 Background music for video</div>
+        <div class="usecase-note">2–3 second fade-in and fade-out helps the bed slip under and out from voiceover cleanly.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">📞 Voice memo cleanup</div>
+        <div class="usecase-note">0.2–0.5s fades on each end remove pop / breath artifacts at the start and stop of a recording.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🔊 Sound effects</div>
+        <div class="usecase-note">Sub-100ms fades smooth the edges of a SFX clip so it doesn't click when retriggered.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎧 Sample loops</div>
+        <div class="usecase-note">Match the fade-in and fade-out lengths so a loop point becomes inaudible.</div>
+      </div>
+    </div>
+
+    <h3>How long should a fade be?</h3>
+    <ul>
+      <li><strong>Songs:</strong> fade-outs are usually 3–8 seconds. Fade-ins on songs are rare (most start cold), but 0.5–2s is the range.</li>
+      <li><strong>Podcasts:</strong> 0.3–1 second on each end. Longer fades sound sleepy in spoken-word context.</li>
+      <li><strong>Background music beds:</strong> 2–3 seconds. Long enough to let the bed slip under voice; short enough to not feel slow.</li>
+      <li><strong>Sound effects:</strong> 0.02–0.1 seconds. Just enough to kill the click at the edges. Long fades on SFX kill the impact.</li>
+      <li><strong>Maximum useful length:</strong> 10 seconds. Beyond that, you're approaching "the whole song" — at which point you might want our Volume Booster's manual gain envelope instead.</li>
+    </ul>
+
+    <h3>Why use SnipSound's fade tool</h3>
+    <ul>
+      <li><strong>100% in your browser.</strong> Most online fade tools (audiotrimmer fade, mp3cut fade, online-audio-converter) upload your file to a server. We don't &mdash; the audio never leaves your device.</li>
+      <li><strong>Three curves in one place.</strong> Linear, exponential, logarithmic &mdash; pick what sounds right instead of being stuck with one shape.</li>
+      <li><strong>Live preview.</strong> Hear the faded version with a moving playhead before committing to a download.</li>
+      <li><strong>Real Web Audio fades.</strong> We use OfflineAudioContext + GainNode ramps to apply the fade, not a workaround over the file. The output is bit-exact to what you previewed.</li>
+      <li><strong>Any common audio format in, any common format out.</strong> MP3, WAV, FLAC, OGG, AAC, M4A — all handled by the shared SnipSound encoder pipeline.</li>
+    </ul>
+
+    <h3>Related tools</h3>
+    <div class="related-tools">
+      <a href="/tools/audio-merger/" class="related-tool"><strong>Audio Merger</strong><span class="rt-desc">Combine multiple files with a crossfade between them</span></a>
+      <a href="/tools/audio-trimmer/" class="related-tool"><strong>Audio Trimmer</strong><span class="rt-desc">Cut a section out first, then fade</span></a>
+      <a href="/tools/ringtone-maker/" class="related-tool"><strong>Ringtone Maker</strong><span class="rt-desc">Trim a song to 30s with fades baked in for iPhone or Android</span></a>
+      <a href="/tools/volume-booster/" class="related-tool"><strong>Volume Booster</strong><span class="rt-desc">Normalize loudness before or after fading</span></a>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Audio fade FAQ</h2>
+    <div class="faq-item"><div class="faq-q"><span>How do I add a fade-in or fade-out to an MP3?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Upload your audio file, drag the Fade In and Fade Out sliders to set the duration (in seconds) for each, pick a curve (Linear is the standard for most music), preview to hear the result, then click Apply Fade &amp; Download. The fades are baked into the new audio file.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What's the difference between a linear and an exponential fade?</span><span class="arrow">&#9660;</span></div><div class="faq-a">A linear fade changes volume at a constant rate &mdash; half the duration = half the volume. It sounds neutral and is fine for most music. An exponential fade matches how human hearing actually perceives loudness &mdash; it ramps up slowly then accelerates (or for fade-out, drops quickly then settles slowly). Exponential fades often sound more natural and musical, especially for longer fade-outs at the end of a song.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How long should a fade-in or fade-out be?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Music: 2–8 seconds is typical for song endings; 0.5–2 seconds for fade-ins. Podcasts: 0.3–1 second is usually enough to soften a hard cut. Sound effects: under 0.2 seconds — just enough to avoid clicks at the edges. The tool caps each fade at 10 seconds, which is longer than any natural-sounding fade you'd ever use.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Can I crossfade two audio files together?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Yes &mdash; use the <a href="/tools/audio-merger/">Audio Merger</a> tool instead. It combines multiple files end-to-end with an optional crossfade between adjacent tracks. This tool fades a single file's beginning and / or end; the Merger fades between two files.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Does the fade reduce file size?</span><span class="arrow">&#9660;</span></div><div class="faq-a">The output is the same length as the input — fading only changes the volume curve at the edges, not the duration. File size depends mostly on the output format and bitrate you pick. To shrink the file, run the result through our <a href="/tools/audio-compressor/">Audio Compressor</a> afterwards.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my audio uploaded to a server?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. Decoding, fade application, and re-encoding all happen in your browser using the Web Audio API. Your audio never leaves your device.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What input formats are supported?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Any audio format your browser can decode &mdash; MP3, WAV, OGG, FLAC, AAC, M4A. Output formats include MP3 (320, 256, 192, 128 kbps), WAV, FLAC, OGG, AAC and M4A.</div></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; SnipSound. <a href="/">Snip Editor</a> &middot; <a href="/free-music/">Playlist</a> &middot; <a href="/tools/">All Tools</a> &middot; <a href="/privacy/">Privacy</a></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── DOM ────────────────────────────────────────────────────────────────
+  const dropZone    = document.getElementById('drop-zone');
+  const fileInput   = document.getElementById('file-input');
+  const editor      = document.getElementById('editor');
+  const fileNameEl  = document.getElementById('file-name');
+  const fileMetaEl  = document.getElementById('file-meta');
+  const fileRemove  = document.getElementById('file-remove');
+  const waveWrap    = document.getElementById('waveform-wrap');
+  const waveCanvas  = document.getElementById('waveform-canvas');
+  const fadeCanvas  = document.getElementById('fade-overlay-canvas');
+  const waveEmpty   = document.getElementById('waveform-empty');
+  const playhead    = document.getElementById('playhead');
+  const fadeInSlider= document.getElementById('fade-in-slider');
+  const fadeInValueEl = document.getElementById('fade-in-value');
+  const fadeInCurve = document.getElementById('fade-in-curve');
+  const fadeOutSlider = document.getElementById('fade-out-slider');
+  const fadeOutValueEl = document.getElementById('fade-out-value');
+  const fadeOutCurve = document.getElementById('fade-out-curve');
+  const btnPreview  = document.getElementById('btn-preview');
+  const transportLabel = document.getElementById('transport-label');
+  const outputFormat = document.getElementById('output-format');
+  const btnApply    = document.getElementById('btn-apply');
+  const statusText  = document.getElementById('status-text');
+
+  // ── State ──────────────────────────────────────────────────────────────
+  let currentFile    = null;
+  let originalBuffer = null;
+  let durationSec    = 0;
+  let acx            = null;
+  let previewSource  = null;
+  let previewStartedAt = 0;
+  let transport      = null;   // shared snip-transport (seek/spacebar/playhead)
+  // The main waveform's visible window (seconds). Full track unless a phone pinch zoomed it (touchZoom, design
+  // R-0cc0e3): the waveform and the fade overlay both draw [viewS, viewE]; a new file resets it.
+  let viewS = 0, viewE = 0;
+  function viewWin() { return (viewE > viewS) ? { s: viewS, e: viewE } : { s: 0, e: durationSec || 0 }; }
+  let fadedCache     = null;   // faded buffer built for the current settings
+  let previewRaf     = 0;
+  // Actual fade durations (seconds) — the source of truth, decoupled from the
+  // sliders. The sliders top out at 10s, but DRAGGING a handle can extend a fade
+  // beyond that (up to half the file — the point where the two fades would
+  // overlap). When a value exceeds the slider's max, the slider just shows
+  // "maxed" while these hold the real value.
+  let fadeInSec  = parseFloat(fadeInSlider.value)  || 0;
+  let fadeOutSec = parseFloat(fadeOutSlider.value) || 0;
+  function maxFadeSec() { return durationSec ? durationSec / 2 : (parseFloat(fadeInSlider.max) || 10); }
+  function syncFadeSliders() {
+    fadeInSlider.value  = Math.min(fadeInSec,  parseFloat(fadeInSlider.max)  || 10).toFixed(1);
+    fadeOutSlider.value = Math.min(fadeOutSec, parseFloat(fadeOutSlider.max) || 10).toFixed(1);
+  }
+
+  function getAudioContext() {
+    if (!acx) {
+      const Ctor = window.AudioContext || window.webkitAudioContext;
+      acx = new Ctor();
+    }
+    return acx;
+  }
+  function uiYield() { return new Promise(r => setTimeout(r, 0)); }
+
+  // ── Formatting ─────────────────────────────────────────────────────────
+  function formatTime(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    const m = Math.floor(sec / 60);
+    const s = sec - m * 60;
+    return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1);
+  }
+  function formatBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+    return (b / 1024 / 1024).toFixed(1) + ' MB';
+  }
+
+  // ── UI show/hide ───────────────────────────────────────────────────────
+  function showEditor() { editor.classList.add('active'); dropZone.style.display = 'none'; }
+  function hideEditor() { editor.classList.remove('active'); dropZone.style.display = ''; stopPreview(); }
+
+  // ── File handling ──────────────────────────────────────────────────────
+  async function handleFile(file) {
+    if (!file) return;
+    currentFile = file;
+    statusText.textContent = 'Decoding…';
+    waveEmpty.style.display = 'flex';
+    if (window.snipSharedAudio) window.snipSharedAudio.save(file);
+    try {
+      const ctx = getAudioContext();
+      // The shared decoder, for its FFmpeg->WAV rescue when the browser refuses the file (posthog
+      // R-ae1009). This page called decodeAudioData raw, so a file Edge or Safari would not read
+      // failed outright, with none of the retry the trimmer and the converters already get.
+      const buf = window.snipDecodeAudio
+        ? await window.snipDecodeAudio(file, ctx, { tool: 'audio-fade' })
+        : await ctx.decodeAudioData((await file.arrayBuffer()).slice(0));
+      originalBuffer = buf;
+      durationSec = buf.duration;
+      viewS = viewE = 0;   // a new file starts at the full track (transport.reset() below says the same)
+
+      fileNameEl.textContent = file.name;
+      const ch = buf.numberOfChannels === 1 ? 'mono' : buf.numberOfChannels + ' channels';
+      const sr = (buf.sampleRate / 1000).toFixed(1);
+      fileMetaEl.textContent =
+        formatBytes(file.size) + ' · ' + formatTime(durationSec) + ' · ' + ch + ' · ' + sr + ' kHz';
+
+      // Clamp slider maxes to file duration so the fade can't exceed
+      // half the file (otherwise the two fades overlap and you get a
+      // weird interaction).
+      const halfDur = Math.max(0.1, durationSec / 2);
+      const newMax = Math.min(10, halfDur);
+      fadeInSlider.max = newMax;
+      fadeOutSlider.max = newMax;
+      // Actual fades may run up to half the file (drag); sliders show up to newMax.
+      fadeInSec  = Math.min(fadeInSec,  halfDur);
+      fadeOutSec = Math.min(fadeOutSec, halfDur);
+      syncFadeSliders();
+      onFadeChange();
+
+      showEditor();
+      drawWaveform();
+      ensureTransport();
+      // Build the faded buffer now so the transport has audio immediately —
+      // clicking the waveform plays from there without needing to Preview first.
+      try { fadedCache = await buildFaded(); } catch (e) { fadedCache = null; }
+      if (transport) { transport.reset(); transport.refresh(); }
+      drawFadeOverlay();
+      renderSplit();
+      statusText.textContent = '';
+      waveEmpty.style.display = 'none';
+    } catch (err) {
+      console.error('Decode failed', err);
+      // COUNTED, not only alerted (R-ae1009): this failure sent no tool_failed, so the page's decode
+      // failures were missing from the rate and reached PostHog only as console-captured exceptions.
+      // An empty-after-read file is not a decode failure: the shared decoder already said so and
+      // counted it (upload_rejected), so it gets neither the event nor a second message.
+      const _empty = !!(err && err.name === 'SnipEmptyAfterRead');
+      if (!_empty && window.snipTrackFailed) window.snipTrackFailed('audio-fade', (err && err.name === 'NotReadableError') ? 'file_read_failed' : 'decode_failed', 'decode', err && err.snipDiag);
+      if (!_empty) alert('Could not decode "' + file.name + '". Try a different file or format.');
+      statusText.textContent = '';
+      waveEmpty.style.display = 'none';
+    }
+  }
+
+  // ── Waveform draw ──────────────────────────────────────────────────────
+  function drawWaveform() {
+    if (!originalBuffer) return;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = waveCanvas.getBoundingClientRect();
+    const w = Math.floor(rect.width * dpr);
+    const h = Math.floor(rect.height * dpr);
+    if (waveCanvas.width !== w || waveCanvas.height !== h) {
+      waveCanvas.width = w; waveCanvas.height = h;
+    }
+    const ctx = waveCanvas.getContext('2d');
+    ctx.clearRect(0, 0, w, h);
+
+    const data = originalBuffer.getChannelData(0);
+    const sr = originalBuffer.sampleRate, vw = viewWin();
+    const s0 = Math.max(0, Math.floor(vw.s * sr)), s1 = Math.min(data.length, Math.floor(vw.e * sr) || data.length);
+    const samplesPerPx = Math.max(1, (s1 - s0) / w);
+    const mid = h / 2;
+
+    ctx.fillStyle = '#7c6fff';
+    for (let x = 0; x < w; x++) {
+      const start = s0 + Math.floor(x * samplesPerPx);
+      const end = Math.min(s0 + Math.floor((x + 1) * samplesPerPx), s1);
+      let mn = 1, mx = -1;
+      for (let i = start; i < end; i++) {
+        const v = data[i];
+        if (v < mn) mn = v;
+        if (v > mx) mx = v;
+      }
+      ctx.fillRect(x, mid + mn * mid, 1, Math.max(1, mid + mx * mid - (mid + mn * mid)));
+    }
+  }
+
+  // ── Fade-overlay draw (sits over the waveform canvas) ──────────────────
+  // Shows the volume envelope as a smoky purple region whose top edge
+  // traces the actual gain curve users chose. Updates live with sliders.
+  function drawFadeOverlay() {
+    if (!originalBuffer) return;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = fadeCanvas.getBoundingClientRect();
+    const w = Math.floor(rect.width * dpr);
+    const h = Math.floor(rect.height * dpr);
+    if (fadeCanvas.width !== w || fadeCanvas.height !== h) {
+      fadeCanvas.width = w; fadeCanvas.height = h;
+    }
+    const ctx = fadeCanvas.getContext('2d');
+    ctx.clearRect(0, 0, w, h);
+
+    const inSec = fadeInSec;
+    const outSec = fadeOutSec;
+    const inCurve = fadeInCurve.value;
+    const outCurve = fadeOutCurve.value;
+    if (durationSec <= 0) return;
+
+    // Helper: gain value at fraction f in [0,1] for the given curve, fadeIn or fadeOut
+    function curveValue(f, curve, isFadeIn) {
+      // f is 0 at the silent end, 1 at full volume end
+      if (isFadeIn) {
+        if (curve === 'linear') return f;
+        if (curve === 'exponential') {
+          // Slow start, fast end — y = f^2.5 maps to "audio-natural"
+          return Math.pow(f, 2.5);
+        }
+        if (curve === 'logarithmic') {
+          return 1 - Math.pow(1 - f, 2.5);
+        }
+        if (curve === 'smooth') return f * f * (3 - 2 * f);
+      } else {
+        // Fade-out: f=0 at silent end (right side), f=1 at full volume (left side of fade region)
+        if (curve === 'linear') return f;
+        if (curve === 'exponential') {
+          return 1 - Math.pow(1 - f, 2.5);
+        }
+        if (curve === 'logarithmic') {
+          return Math.pow(f, 2.5);
+        }
+        if (curve === 'smooth') return f * f * (3 - 2 * f);
+      }
+      return f;
+    }
+
+    // Seconds -> canvas x through the visible window (the full track unless a pinch zoomed it).
+    const vw = viewWin(), vspan = Math.max(0.0001, vw.e - vw.s);
+    const t2x = (sec) => ((sec - vw.s) / vspan) * w;
+    // One shaded region + its edge line. x0..x1 is the fade's full extent in canvas px (it may run off either
+    // side when zoomed); gainAt(f) takes f = 0..1 across that extent, so a zoomed view shows the same curve cropped.
+    function region(x0, x1, gainAt) {
+      const a = Math.max(0, Math.floor(x0)), b = Math.min(w, Math.ceil(x1));
+      if (b < a) return;
+      const yAt = (x) => { const f = x1 === x0 ? 1 : Math.min(1, Math.max(0, (x - x0) / (x1 - x0))); return h - gainAt(f) * h; };
+      ctx.beginPath();
+      ctx.moveTo(a, h);
+      for (let x = a; x <= b; x++) ctx.lineTo(x, yAt(x));   // y is inverted (top of canvas = high volume)
+      ctx.lineTo(b, h);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(124,111,255,0.20)';
+      ctx.fill();
+      ctx.beginPath();
+      for (let x = a; x <= b; x++) { const y = yAt(x); if (x === a) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+      ctx.strokeStyle = 'rgba(124,111,255,0.85)';
+      ctx.lineWidth = 2 * dpr;
+      ctx.stroke();
+    }
+
+    // Fade-in (left): f is 0 at silence (t = 0) and 1 at full volume (t = inSec).
+    if (inSec > 0) region(t2x(0), t2x(inSec), (f) => curveValue(f, inCurve, true));
+    // Fade-out (right): full volume at durationSec - outSec down to silence at the end.
+    if (outSec > 0) region(t2x(durationSec - outSec), t2x(durationSec), (f) => curveValue(1 - f, outCurve, false));
+  }
+
+  // ── Build the faded AudioBuffer via OfflineAudioContext ────────────────
+  // Uses GainNode automation. For non-linear curves we use setValueCurveAtTime
+  // with a 64-point sampled curve — Web Audio's built-in
+  // exponentialRampToValueAtTime can't reach 0, so we sample manually.
+  async function buildFaded() {
+    const sr = originalBuffer.sampleRate;
+    const nCh = originalBuffer.numberOfChannels;
+    const len = originalBuffer.length;
+    const dur = len / sr;
+
+    const inSec = Math.min(fadeInSec, dur / 2);
+    const outSec = Math.min(fadeOutSec, dur / 2);
+    const inCurve = fadeInCurve.value;
+    const outCurve = fadeOutCurve.value;
+
+    const off = new OfflineAudioContext(nCh, len, sr);
+    const src = off.createBufferSource();
+    src.buffer = originalBuffer;
+    const gain = off.createGain();
+
+    function makeCurve(steps, mapper) {
+      const arr = new Float32Array(steps);
+      for (let i = 0; i < steps; i++) {
+        const f = i / (steps - 1);
+        arr[i] = mapper(f);
+      }
+      return arr;
+    }
+
+    if (inSec <= 0 && outSec <= 0) {
+      gain.gain.setValueAtTime(1, 0);
+    } else {
+      gain.gain.setValueAtTime(inSec > 0 ? 0 : 1, 0);
+      if (inSec > 0) {
+        const curve = makeCurve(64, function (f) {
+          if (inCurve === 'linear') return f;
+          if (inCurve === 'exponential') return Math.pow(f, 2.5);
+          if (inCurve === 'smooth') return f * f * (3 - 2 * f);
+          return 1 - Math.pow(1 - f, 2.5); // logarithmic
+        });
+        gain.gain.setValueCurveAtTime(curve, 0, inSec);
+      }
+      // Between fade-in end and fade-out start, gain stays at 1 (default).
+      if (outSec > 0) {
+        const curveOut = makeCurve(64, function (f) {
+          // f goes 0..1 over the fade-out duration. Output starts at 1 ends at 0.
+          if (outCurve === 'linear') return 1 - f;
+          if (outCurve === 'exponential') return 1 - (1 - Math.pow(1 - f, 2.5));
+          if (outCurve === 'smooth') { const s = 1 - f; return s * s * (3 - 2 * s); }
+          return 1 - Math.pow(f, 2.5); // logarithmic
+        });
+        gain.gain.setValueCurveAtTime(curveOut, dur - outSec, outSec);
+      }
+    }
+
+    src.connect(gain); gain.connect(off.destination);
+    src.start(0);
+    return await off.startRendering();
+  }
+
+  // ── Preview playback ───────────────────────────────────────────────────
+  function stopPreview() {
+    if (transport) transport.pause();
+    if (previewSource) {
+      try { previewSource.stop(); } catch (e) {}
+      previewSource.disconnect();
+      previewSource = null;
+    }
+    if (previewRaf) { cancelAnimationFrame(previewRaf); previewRaf = 0; }
+    playhead.classList.remove('visible');
+    btnPreview.classList.remove('playing');
+    btnPreview.querySelector('span').textContent = 'Preview faded result';
+    transportLabel.textContent = 'Plays the faded version with a moving playhead.';
+  }
+
+  // Shared transport: spacebar, click/drag-to-seek, ←/→ nudge, Home/End and the
+  // animated playhead — driving playback of the FADED buffer (cached, rebuilt
+  // when the fade settings change).
+  function ensureTransport() {
+    if (transport || !window.snipTransport) return;
+    transport = window.snipTransport.create({
+      waveEl: waveWrap,
+      playheadEl: playhead,
+      clickToPlay: true,   // click the waveform = play the faded result from there
+      // PHONE (Marc 10-20, design R-0cc0e3): one finger dragged along the waveform moves the playhead, two fingers
+      // pinch-zoom the waveform, never the page. The mouse is unchanged (click plays from there, drag scrubs).
+      touchZoom: true,
+      onViewChange: (s, e) => { viewS = s; viewE = e; drawWaveform(); drawFadeOverlay(); },
+      getBuffer: () => fadedCache,
+      getAudioContext: getAudioContext,
+      onState: (playing) => {
+        updateSplitPlayheads(transport.getCurrentTime(), playing);
+        playhead.classList.toggle('visible', playing || transport.getCurrentTime() > 0);
+        btnPreview.classList.toggle('playing', playing);
+        const sp = btnPreview.querySelector('span');
+        if (sp) sp.textContent = playing ? 'Stop preview' : 'Preview faded result';
+        if (!playing) transportLabel.textContent = 'Plays the faded version with a moving playhead.';
+      },
+      onTick: (sec) => {
+        transportLabel.textContent = 'Playing faded version · ' + formatTime(sec) + ' / ' + formatTime(transport.getDuration());
+        updateSplitPlayheads(sec, true);
+      }
+    });
+  }
+
+  async function startPreview() {
+    if (!originalBuffer) return;
+    stopPreview();
+    transportLabel.textContent = 'Building preview…';
+    let buf;
+    try { buf = await buildFaded(); } catch (err) { transportLabel.textContent = 'Preview failed.'; return; }
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') await ctx.resume();
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    src.connect(ctx.destination);
+    src.start(0);
+    previewSource = src;
+    previewStartedAt = ctx.currentTime;
+    btnPreview.classList.add('playing');
+    btnPreview.querySelector('span').textContent = 'Stop preview';
+    transportLabel.textContent = 'Playing faded version (' + formatTime(buf.duration) + ').';
+    playhead.classList.add('visible');
+    src.onended = () => { if (previewSource === src) stopPreview(); };
+    function tick() {
+      if (!previewSource) return;
+      const t = ctx.currentTime - previewStartedAt;
+      if (t >= durationSec) { stopPreview(); return; }
+      playhead.style.left = (t / durationSec * 100) + '%';
+      previewRaf = requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  btnPreview.addEventListener('click', async () => {
+    if (!originalBuffer) return;
+    ensureTransport();
+    if (!transport) { if (previewSource) stopPreview(); else startPreview(); return; } // fallback
+    if (transport.isPlaying()) { transport.pause(); return; }
+    transportLabel.textContent = 'Building preview…';
+    try { fadedCache = await buildFaded(); } catch (e) { transportLabel.textContent = 'Preview failed.'; return; }
+    playhead.classList.add('visible');
+    transport.refresh();
+    transport.play();
+  });
+
+  // ── Apply & download ───────────────────────────────────────────────────
+  async function applyAndDownload() {
+    if (!originalBuffer) return;
+    if (!window.snipEncoder) { alert('Encoder not loaded yet — try again.'); return; }
+    if (window.snipNotify) window.snipNotify.prime();
+    btnApply.disabled = true;
+    statusText.textContent = 'Applying fades…';
+    try {
+      const processed = await buildFaded();
+      statusText.textContent = 'Encoding…';
+      const format = outputFormat.value;
+      const { blob, ext } = await window.snipEncoder.encode(processed, format, {
+        onProgress: (frac) => statusText.textContent = 'Encoding… ' + Math.round((frac || 0) * 100) + '%'
+      });
+      // currentFile can be null here (audio restored without its File) - the export must not die on the NAME.
+      const base = ((currentFile && currentFile.name) || 'audio').replace(/\.[^.]+$/, '');
+      const fname = base + '_faded.' + ext;
+      // Shared delivery: immediate download if the user is here, or hold +
+      // notify if they tabbed away. Falls back to a plain download otherwise.
+      if (window.snipNotify) {
+        window.snipNotify.deliver(blob, fname, { statusEl: statusText, doneStatus: 'Done — ' + formatBytes(blob.size) });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = fname;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+        statusText.textContent = 'Done — ' + formatBytes(blob.size);
+      }
+    } catch (err) {
+      console.error('Encode failed', err);
+      alert('Encoding failed: ' + (err.message || err));
+      statusText.textContent = '';
+    } finally {
+      btnApply.disabled = false;
+    }
+  }
+  btnApply.addEventListener('click', applyAndDownload);
+
+  // ── Slider / curve / preset wiring ─────────────────────────────────────
+  let rebuildTimer = null;
+  function scheduleRebuild() {
+    if (rebuildTimer) clearTimeout(rebuildTimer);
+    rebuildTimer = setTimeout(async function () {
+      rebuildTimer = null;
+      if (!originalBuffer) return;
+      try { fadedCache = await buildFaded(); if (transport) transport.refresh(); } catch (e) { /* keep old */ }
+    }, 220);
+  }
+  function onFadeChange() {
+    fadeInValueEl.textContent = fadeInSec.toFixed(1) + ' s';
+    fadeOutValueEl.textContent = fadeOutSec.toFixed(1) + ' s';
+    drawFadeOverlay();
+    renderSplit();
+    // Settings changed: stop any in-flight playback, then rebuild the faded
+    // buffer shortly (debounced). We KEEP the old buffer until the new one is
+    // ready so the transport never has a null buffer (which would make
+    // click-to-play silently do nothing).
+    if (transport) transport.pause();
+    if (previewSource) stopPreview();
+    scheduleRebuild();
+  }
+  fadeInSlider.addEventListener('input', () => { fadeInSec = parseFloat(fadeInSlider.value) || 0; onFadeChange(); });
+  fadeOutSlider.addEventListener('input', () => { fadeOutSec = parseFloat(fadeOutSlider.value) || 0; onFadeChange(); });
+  fadeInCurve.addEventListener('change', onFadeChange);
+  fadeOutCurve.addEventListener('change', onFadeChange);
+
+  // ── Visual curve pickers (shape icons replace the dropdowns) ──────────
+  // Each button draws the actual fade shape (rising for fade-in, falling for
+  // fade-out) so users can see what each curve does. The hidden <select> stays
+  // as the value store; clicking a button updates it and fires 'change'.
+  const ICON_CURVES = {
+    linear:      { label: 'Linear', fn: (f) => f },
+    exponential: { label: 'Exp.',   fn: (f) => Math.pow(f, 2.5) },          // slow start
+    logarithmic: { label: 'Log.',   fn: (f) => 1 - Math.pow(1 - f, 2.5) },  // fast start
+    smooth:      { label: 'Smooth', fn: (f) => f * f * (3 - 2 * f) }        // S-curve
+  };
+  function curveIconPath(fn, isOut) {
+    const W = 30, H = 22, P = 3, n = 24; let d = '';
+    for (let i = 0; i <= n; i++) {
+      const f = i / n;
+      const g = isOut ? fn(1 - f) : fn(f);
+      const x = (P + f * (W - 2 * P)).toFixed(1);
+      const y = (P + (1 - g) * (H - 2 * P)).toFixed(1);
+      d += (i === 0 ? 'M' : 'L') + x + ',' + y;
+    }
+    return d;
+  }
+  function buildCurvePicker(picker) {
+    const select = document.getElementById(picker.getAttribute('data-target'));
+    if (!select) return;
+    const isOut = picker.getAttribute('data-out') === '1';
+    picker.innerHTML = Object.keys(ICON_CURVES).map((key) => {
+      const c = ICON_CURVES[key];
+      const sel = select.value === key ? ' selected' : '';
+      return '<button type="button" class="curve-btn' + sel + '" data-curve="' + key + '" title="' + c.label + ' ' + (isOut ? 'fade-out' : 'fade-in') + '">' +
+        '<svg viewBox="0 0 30 22" aria-hidden="true"><path d="' + curveIconPath(c.fn, isOut) + '" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '<span>' + c.label + '</span></button>';
+    }).join('');
+    picker.querySelectorAll('.curve-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        select.value = btn.getAttribute('data-curve');
+        picker.querySelectorAll('.curve-btn').forEach((b) => b.classList.toggle('selected', b === btn));
+        select.dispatchEvent(new Event('change'));
+      });
+    });
+  }
+  document.querySelectorAll('.curve-picker').forEach(buildCurvePicker);
+
+  // ── Fine-tune split: zoomed intro / outro panels ──────────────────────
+  const SPLIT_CONTEXT = 5; // seconds of context shown beyond each fade region
+  const splitHandleFrac = { in: null, out: null }; // 0..1 x-position of each drag handle
+  let splitDrag = null;                              // { side, winStart, winEnd } while dragging
+  function splitWindow(side) {
+    // While dragging a handle, freeze the window so the panel doesn't jump as the
+    // fade duration changes — we re-fit on release.
+    if (splitDrag && splitDrag.side === side) return { start: splitDrag.winStart, end: splitDrag.winEnd };
+    const dur = durationSec || 0;
+    if (side === 'in') return { start: 0, end: Math.min(dur, fadeInSec + SPLIT_CONTEXT) };
+    return { start: Math.max(0, dur - (fadeOutSec + SPLIT_CONTEXT)), end: dur };
+  }
+  function sizeCanvas(canvas) {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    const w = Math.max(1, Math.floor(rect.width * dpr));
+    const h = Math.max(1, Math.floor(rect.height * dpr));
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    return { w: w, h: h, dpr: dpr };
+  }
+  function drawSplitWave(canvas, winStart, winEnd) {
+    const { w, h } = sizeCanvas(canvas);
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, w, h);
+    if (!originalBuffer) return;
+    const data = originalBuffer.getChannelData(0);
+    const sr = originalBuffer.sampleRate;
+    const s0 = Math.max(0, Math.floor(winStart * sr));
+    const s1 = Math.min(data.length, Math.floor(winEnd * sr));
+    const spp = Math.max(1, (s1 - s0) / w);
+    const mid = h / 2;
+    ctx.fillStyle = '#7c6fff';
+    for (let x = 0; x < w; x++) {
+      const a = s0 + Math.floor(x * spp);
+      const b = Math.min(s0 + Math.floor((x + 1) * spp), s1);
+      let mn = 1, mx = -1;
+      for (let i = a; i < b; i++) { const v = data[i]; if (v < mn) mn = v; if (v > mx) mx = v; }
+      if (mx < mn) { mn = 0; mx = 0; }
+      ctx.fillRect(x, mid + mn * mid, 1, Math.max(1, (mx - mn) * mid));
+    }
+  }
+  function drawSplitOverlay(canvas, side, winStart, winEnd) {
+    const { w, h, dpr } = sizeCanvas(canvas);
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, w, h);
+    const span = Math.max(0.0001, winEnd - winStart);
+    const t2x = (t) => ((t - winStart) / span) * w;
+    const inSec = fadeInSec, outSec = fadeOutSec;
+    ctx.lineWidth = 2 * dpr;
+    function shape(x0, x1, gainAt) {
+      ctx.beginPath(); ctx.moveTo(x0, h);
+      for (let x = x0; x <= x1; x++) { const f = (x1 === x0) ? 1 : (x - x0) / (x1 - x0); ctx.lineTo(x, h - gainAt(f) * h); }
+      ctx.lineTo(x1, h); ctx.closePath(); ctx.fillStyle = 'rgba(124,111,255,0.20)'; ctx.fill();
+      ctx.beginPath();
+      for (let x = x0; x <= x1; x++) { const f = (x1 === x0) ? 1 : (x - x0) / (x1 - x0); const y = h - gainAt(f) * h; (x === x0) ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+      ctx.strokeStyle = 'rgba(124,111,255,0.85)'; ctx.stroke();
+    }
+    let boundaryTime = null;
+    if (side === 'in') {
+      if (inSec > 0) {
+        const fn = (ICON_CURVES[fadeInCurve.value] || ICON_CURVES.linear).fn;
+        shape(Math.round(t2x(0)), Math.round(t2x(inSec)), (f) => fn(f));
+      }
+      boundaryTime = inSec; // handle always present, even at 0 (drag to add a fade)
+    } else {
+      if (outSec > 0) {
+        const fn = (ICON_CURVES[fadeOutCurve.value] || ICON_CURVES.linear).fn;
+        shape(Math.round(t2x(durationSec - outSec)), Math.round(t2x(durationSec)), (f) => fn(1 - f));
+      }
+      boundaryTime = durationSec - outSec;
+    }
+    // Draggable handle (circle) at the fade boundary — where the fade reaches
+    // full volume. Drag it left/right to change the fade duration directly.
+    if (boundaryTime != null) {
+      const hx = t2x(boundaryTime);
+      ctx.strokeStyle = 'rgba(255,255,255,0.40)'; ctx.lineWidth = 1 * dpr;
+      ctx.beginPath(); ctx.moveTo(hx, 0); ctx.lineTo(hx, h); ctx.stroke();
+      // Bigger, easier-to-grab knob on small/touch screens.
+      const isNarrow = (typeof window !== 'undefined' && window.innerWidth <= 600);
+      const hr = (isNarrow ? 9 : 6) * dpr, hy = hr + 3 * dpr;
+      ctx.beginPath(); ctx.arc(hx, hy, hr, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff'; ctx.fill();
+      ctx.strokeStyle = '#7c6fff'; ctx.lineWidth = 2 * dpr; ctx.stroke();
+      splitHandleFrac[side] = (boundaryTime - winStart) / span;
+    } else {
+      splitHandleFrac[side] = null;
+    }
+  }
+  function renderSplit() {
+    if (!originalBuffer) return;
+    ['in', 'out'].forEach((side) => {
+      const win = splitWindow(side);
+      drawSplitWave(document.getElementById('fsp-canvas-' + side), win.start, win.end);
+      drawSplitOverlay(document.getElementById('fsp-overlay-' + side), side, win.start, win.end);
+    });
+  }
+
+  // ── Zoom-panel playback ────────────────────────────────────────────────
+  // All playback flows through the SHARED transport (it already plays the faded
+  // buffer). That way the intro demo continues seamlessly into the rest of the
+  // track instead of cutting off at the window edge, and spacebar pauses/resumes
+  // whatever's playing. Each panel just shows a playhead while the transport's
+  // position falls inside its window; outside it, the full-waveform playhead
+  // takes over.
+  const SPLIT_LABEL = { in: '▶ Demo intro', out: '▶ Demo outro' };
+  function updateSplitPlayheads(sec, playing) {
+    ['in', 'out'].forEach((side) => {
+      const win = splitWindow(side);
+      const ph = document.getElementById('fsp-playhead-' + side);
+      const btn = document.querySelector('.fsp-demo[data-side="' + side + '"]');
+      const inWin = (playing || sec > 0) && sec >= win.start && sec < win.end;
+      if (ph) {
+        if (inWin) {
+          const wspan = Math.max(0.0001, win.end - win.start);
+          ph.style.left = (Math.max(0, (sec - win.start) / wspan) * 100) + '%';
+          ph.classList.add('visible');
+        } else {
+          ph.classList.remove('visible');
+        }
+      }
+      const active = inWin && playing;
+      if (btn) { btn.classList.toggle('playing', active); btn.innerHTML = active ? '■ Stop' : SPLIT_LABEL[side]; }
+    });
+  }
+  async function playSplit(side, fromTime) {
+    if (!originalBuffer) return;
+    if (previewSource) stopPreview();
+    if (!fadedCache) { try { fadedCache = await buildFaded(); } catch (e) { return; } }
+    ensureTransport();
+    if (!transport) return;
+    const win = splitWindow(side);
+    const start = (fromTime != null) ? Math.max(win.start, Math.min(fromTime, win.end - 0.05)) : win.start;
+    if (start >= win.end) return;
+    transport.seekTo(start);
+    if (!transport.isPlaying()) transport.play();
+    updateSplitPlayheads(start, true);
+  }
+  document.querySelectorAll('.fsp-demo').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const side = btn.getAttribute('data-side');
+      const win = splitWindow(side);
+      const t = transport ? transport.getCurrentTime() : 0;
+      // Toggle: if we're already playing inside this panel's window, pause.
+      if (transport && transport.isPlaying() && t >= win.start && t < win.end) { transport.pause(); return; }
+      playSplit(side, null);
+    });
+  });
+  // Drag the fade handle (the circle at the fade boundary) to change the fade
+  // duration directly; clicking anywhere else in the panel plays from there.
+  // Touch fingers are imprecise, so widen the grab zone for touch pointers.
+  const HANDLE_HIT_PX = 14;
+  const HANDLE_HIT_TOUCH_PX = 30;
+  function fadeFromDrag(side, clientX, rect) {
+    const win = splitWindow(side); // frozen while dragging (see splitWindow)
+    const frac = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    const t = win.start + frac * (win.end - win.start);
+    const dur = durationSec || 0;
+    // Dragging can extend the fade beyond the slider's 10s max — up to half the
+    // file (where the fades would meet). The slider just maxes out visually.
+    const limit = maxFadeSec();
+    if (side === 'in') {
+      fadeInSec = Math.max(0, Math.min(t, limit));
+    } else {
+      fadeOutSec = Math.max(0, Math.min(dur - t, limit));
+    }
+    syncFadeSliders();
+    onFadeChange();
+  }
+  document.querySelectorAll('.fsp-wave').forEach((waveEl) => {
+    waveEl.addEventListener('pointerdown', (e) => {
+      if (!originalBuffer) return;
+      if (e.button != null && e.button !== 0) return;
+      const side = waveEl.getAttribute('data-side');
+      const rect = waveEl.getBoundingClientRect();
+      const frac = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const hFrac = splitHandleFrac[side];
+      const hitPx = (e.pointerType === 'touch') ? HANDLE_HIT_TOUCH_PX : HANDLE_HIT_PX;
+      // Near the handle? Start a drag (and freeze the window).
+      if (hFrac != null && Math.abs(frac - hFrac) * rect.width <= hitPx) {
+        const win = splitWindow(side);
+        splitDrag = { side: side, winStart: win.start, winEnd: win.end };
+        if (transport) transport.pause();
+        try { waveEl.setPointerCapture(e.pointerId); } catch (_) {}
+        waveEl.style.cursor = 'ew-resize';
+        fadeFromDrag(side, e.clientX, rect);
+        e.preventDefault();
+        return;
+      }
+      // Otherwise: click/seek-to-play within the panel.
+      const win = splitWindow(side);
+      playSplit(side, win.start + frac * (win.end - win.start));
+    });
+    waveEl.addEventListener('pointermove', (e) => {
+      const side = waveEl.getAttribute('data-side');
+      if (splitDrag && splitDrag.side === side) {
+        fadeFromDrag(side, e.clientX, waveEl.getBoundingClientRect());
+        e.preventDefault();
+      }
+    });
+    const endDrag = () => {
+      if (!splitDrag) return;
+      splitDrag = null;
+      waveEl.style.cursor = '';
+      renderSplit(); // re-fit the window now that the drag is done
+    };
+    waveEl.addEventListener('pointerup', endDrag);
+    waveEl.addEventListener('pointercancel', endDrag);
+  });
+
+  document.querySelector('.preset-row').addEventListener('click', (e) => {
+    const btn = e.target.closest('.preset-btn');
+    if (!btn) return;
+    const preset = btn.dataset.preset;
+    if (preset === 'off')        { fadeInSec = 0;   fadeOutSec = 0;   }
+    if (preset === 'podcast')    { fadeInSec = 0.5; fadeOutSec = 0.5; }
+    if (preset === 'song-end')   { fadeInSec = 0.5; fadeOutSec = 5;   }
+    if (preset === 'intro-outro'){ fadeInSec = 2;   fadeOutSec = 3;   }
+    if (preset === 'long-fade')  { fadeInSec = 0;   fadeOutSec = 8;   }
+    const limit = maxFadeSec();
+    fadeInSec = Math.min(fadeInSec, limit);
+    fadeOutSec = Math.min(fadeOutSec, limit);
+    syncFadeSliders();
+    onFadeChange();
+  });
+
+  // ── File upload wiring ─────────────────────────────────────────────────
+  dropZone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (f) handleFile(f);
+    e.target.value = '';
+  });
+  // Cross-tool shared-file handoff — required for theme.js auto-load to
+  // populate this tool's editor when the user arrives with a previously-
+  // uploaded file. See docs/new-tool-checklist.md §3.
+  document.addEventListener('snipsound:use-shared-file', (e) => {
+    if (e.detail && e.detail.file) handleFile(e.detail.file);
+  });
+  ['dragenter', 'dragover'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); }));
+  ['dragleave', 'drop'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.remove('drag-over'); }));
+  dropZone.addEventListener('drop', (e) => {
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) handleFile(f);
+  });
+
+  fileRemove.addEventListener('click', () => {
+    currentFile = null;
+    originalBuffer = null;
+    durationSec = 0;
+    fileInput.value = '';
+    hideEditor();
+    statusText.textContent = '';
+  });
+
+  // Init readouts
+  onFadeChange();
+
+  // Redraw on resize
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => {
+      resizeRaf = 0;
+      if (originalBuffer) { drawWaveform(); drawFadeOverlay(); renderSplit(); if (transport) transport.refresh(); }
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item .faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51aa6d52d461a0b',t:'MTc5MzE5Nzk2NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Music Visualizer — Turn Songs into Videos Online | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<meta name="description" content="Free online music visualizer. Turn any song into a stunning video — pick an effect, customize colors, add cover art, and export an MP4 for YouTube, TikTok, or Instagram. No watermark, no signup, 100% in your browser.">
+<meta name="keywords" content="music visualizer, audio visualizer, music video maker, song to video, audio to video, spectrum visualizer, music visualizer online free, visualizer video maker, mp3 to video">
+<link rel="canonical" href="https://snipsound.com/tools/music-visualizer/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/music-visualizer/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/music-visualizer/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Music Visualizer — Turn Songs into Videos Online | SnipSound">
+<meta property="og:description" content="Turn any song into a music video with beat-reactive effects. Pick a preset, customize colors, export an MP4 — free, private, no watermark.">
+<meta property="og:url" content="https://snipsound.com/tools/music-visualizer/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Music Visualizer — Turn Songs into Videos Online | SnipSound">
+<meta name="twitter:description" content="Turn any song into a music video with beat-reactive effects. Free, private, works in your browser, no watermark.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+
+<style type="text/css">@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:400;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:500;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:600;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/cyrillic-ext/wght/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/greek/wght/normal.woff2);unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/greek-ext/wght/normal.woff2);unicode-range:U+1F00-1FFF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/cyrillic/wght/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/latin-ext/wght/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/vietnamese/wght/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:'Inter';font-style:normal;font-weight:700;src:url(/cf-fonts/v/inter/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SnipSound Music Visualizer", "url": "https://snipsound.com/tools/music-visualizer/", "description": "Turn any song into a music video with beat-reactive visual effects. Pick a preset, customize colors and text, add cover art, and export an MP4 — entirely in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How do I make a music visualizer video?", "acceptedAnswer": { "@type": "Answer", "text": "Upload a song (MP3, WAV, OGG, FLAC, AAC, or M4A), pick one of the visual presets, customize the colors, text, and cover art, then click Export Video. You get an MP4 file with your music and the animated visuals — ready for YouTube, TikTok, or Instagram." } },
+  { "@type": "Question", "name": "Is the music visualizer really free and private?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Everything runs in your browser — your song never leaves your device to a server, there is no signup, no watermark, and no export limit." } },
+  { "@type": "Question", "name": "What video sizes can I export?", "acceptedAnswer": { "@type": "Answer", "text": "You can export 1080p or 720p video in 16:9 (YouTube), 9:16 vertical (TikTok, Reels, Shorts), or 1:1 square, at 30 or 60 fps. Chrome, Edge, Brave, and Safari export MP4 faster than real time; other browsers record a WebM in real time." } },
+  { "@type": "Question", "name": "Can I add my own cover art?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — upload any image and it appears as a blurred backdrop behind the visuals, and as circular cover art in the center of the Radial Burst preset." } },
+  { "@type": "Question", "name": "How long does the video export take?", "acceptedAnswer": { "@type": "Answer", "text": "On Chrome, Edge, Brave, or Safari 17+ the export runs faster than real time — a 3-minute song typically renders in well under a minute on a modern device. Browsers without WebCodecs support record in real time instead." } }
+] }
+</script>
+<style>
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+  /* ── Header ── */
+
+  
+  .logo:hover span { color: var(--accent-hover); }
+
+  /* ── Layout ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
+  .hero { max-width: 760px; margin-left: auto; margin-right: auto; }
+
+  /* ── Hero ── */
+  .hero { text-align: center; margin-bottom: 36px; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 12px; }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--accent), #b599ff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; line-height: 1.6; max-width: 640px; margin: 0 auto; }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.7rem; }
+    .hero p { font-size: 14px; }
+  }
+
+  /* ── Drop Zone ── */
+  .drop-zone {
+    border: 2px dashed var(--border-bright); border-radius: 14px;
+    padding: 48px 24px; text-align: center; cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: var(--surface); margin-bottom: 28px; position: relative;
+  }
+  .drop-zone:hover, .drop-zone.dragover { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-zone-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.7; }
+  .drop-zone-label { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+  .drop-zone-hint { font-size: 13px; color: var(--text-dim); }
+  .drop-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+
+  .privacy-notice { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px auto 24px; padding: 10px 14px; color: var(--text-dim); font-size: 0.85rem; line-height: 1.4; max-width: 720px; text-align: center; }
+  .privacy-notice svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--green); }
+  .privacy-notice strong { color: var(--text); font-weight: 600; }
+  .privacy-notice a { color: var(--accent); text-decoration: none; }
+  .privacy-notice a:hover { text-decoration: underline; }
+
+  /* ── Error ── */
+  .error-msg {
+    background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+    color: #f87171; border-radius: 10px; padding: 12px 16px;
+    font-size: 13px; margin-bottom: 16px; display: none;
+  }
+  .error-msg.active { display: block; }
+
+  /* ── Analyzing card ── */
+  .analyzing { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px 24px; text-align: center; margin-bottom: 28px; }
+  .analyzing.active { display: block; }
+  .analyzing-label { font-size: 15px; font-weight: 500; margin-bottom: 14px; }
+  .progress-track { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; max-width: 420px; margin: 0 auto; }
+  .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-hover)); border-radius: 3px; transition: width 0.15s; }
+
+  /* ── Studio ── */
+  .studio { display: none; }
+  .studio.active { display: block; }
+
+  /* ── Split view (wide screens, Marc): tools on the left; video AND its export
+     controls on the right, travelling together so the thing you're exporting is
+     right above the button. Below the breakpoint the page stays one column in its
+     original reading order (the wrapper is display:contents and `order` restores
+     it), with the corner mini-preview taking over. ── */
+  .viz-splitter { display: none; }
+  .studio.active { display: flex; flex-direction: column; }
+  .viz-side { display: contents; }
+  .studio.active > .viz-side > .stage-wrap { order: 1; }
+  .studio.active > .transport { order: 2; }
+  .studio.active > .controls-grid { order: 3; }
+  .studio.active > .viz-side > .export-card { order: 4; }
+  @media (min-width: 1080px) {
+    .studio.split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 14px var(--viz-right, 44%);
+      align-items: start;
+      column-gap: 0;
+    }
+    .studio.split > .transport { grid-column: 1; grid-row: 1; }
+    .studio.split > .controls-grid { grid-column: 1; grid-row: 2; }
+    /* The whole right-hand column sticks as one unit: video, then Export under it. */
+    .studio.split > .viz-side {
+      display: block; grid-column: 3; grid-row: 1 / span 2;
+      position: sticky; top: 84px;
+    }
+    .studio.split > .viz-side > .stage-wrap { max-height: 62vh; margin-bottom: 12px; }
+    .studio.split > .viz-side > .export-card { margin-bottom: 0; }
+    .studio.split .viz-splitter {
+      display: block; grid-column: 2; grid-row: 1 / span 2;
+      position: relative; cursor: col-resize; background: none; border: none; padding: 0;
+      align-self: stretch; min-height: 220px;
+    }
+    .studio.split .viz-splitter::before {
+      content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+      transform: translateX(-50%); background: var(--border); border-radius: 2px; transition: background 0.15s;
+    }
+    .studio.split .viz-splitter:hover::before, .studio.split .viz-splitter.dragging::before { background: var(--accent); width: 3px; }
+    .studio.split.resizing { user-select: none; }
+  }
+  /* The wrap only RESERVES the space (its height comes from its own aspect-ratio),
+     so it stays put whether the picture is docked or not — no placeholder, no
+     layout jump, and nothing for the scroll observer to fight with. */
+  .stage-wrap { position: relative; margin: 0 auto 14px; aspect-ratio: 16 / 9; max-height: 62vh; width: 100%; }
+  .stage-inner {
+    position: absolute; inset: 0; background: #000; border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+  }
+  /* Docked: the picture pins to the corner; the wrap above keeps its place. */
+  .stage-inner.docked {
+    position: fixed; inset: auto; right: 18px; bottom: 18px; z-index: 70;
+    width: min(300px, 42vw); height: auto; aspect-ratio: 16 / 9;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+    animation: stagedock 0.18s ease-out;
+  }
+  .stage-wrap[data-aspect="9:16"] .stage-inner.docked { width: min(168px, 30vw); aspect-ratio: 9 / 16; }
+  .stage-wrap[data-aspect="1:1"] .stage-inner.docked { width: min(220px, 36vw); aspect-ratio: 1 / 1; }
+  @keyframes stagedock { from { transform: translateY(12px) scale(0.94); opacity: 0; } to { transform: none; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .stage-inner.docked { animation: none; } }
+  /* Docked, the picture is for watching — clicks shouldn't pause it by accident. */
+  .stage-inner.docked .stage-overlay { pointer-events: none; }
+  .stage-expand { display: none; position: absolute; top: 6px; right: 6px; z-index: 3;
+    width: 26px; height: 26px; border: none; border-radius: 8px; cursor: pointer;
+    background: rgba(0,0,0,0.55); color: #fff; align-items: center; justify-content: center; padding: 0; }
+  .stage-inner.docked .stage-expand { display: inline-flex; }
+  .stage-expand:hover { background: rgba(0,0,0,0.78); }
+  @media (max-width: 640px) { .stage-inner.docked { right: 10px; bottom: 10px; width: min(190px, 46vw); } }
+  .stage-wrap[data-aspect="9:16"] { aspect-ratio: 9 / 16; max-width: calc(62vh * 9 / 16); }
+  .stage-wrap[data-aspect="1:1"]  { aspect-ratio: 1 / 1;  max-width: 62vh; }
+  .stage-inner canvas { display: block; width: 100%; height: 100%; }
+  .stage-overlay {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.18); cursor: pointer; opacity: 0; transition: opacity 0.2s;
+  }
+  .stage-overlay.visible { opacity: 1; }
+  .stage-overlay-btn {
+    width: 72px; height: 72px; border-radius: 50%; border: 0; cursor: pointer;
+    background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px var(--accent-glow); transition: transform 0.15s, background 0.15s;
+  }
+  .stage-overlay-btn:hover { transform: scale(1.06); background: var(--accent-hover); }
+
+  /* ── Transport ── */
+  .transport { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; margin-bottom: 20px; }
+  .play-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer; flex-shrink: 0;
+    background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .play-btn:hover { background: var(--accent-hover); }
+  .seek { flex: 1; accent-color: var(--accent); height: 6px; cursor: pointer; }
+  .time-display { font-size: 12px; color: var(--text-dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .song-name { font-size: 13px; font-weight: 500; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .new-file-btn {
+    background: transparent; border: 1px solid var(--border-bright); color: var(--text-dim);
+    border-radius: 8px; padding: 7px 12px; font-size: 12px; font-weight: 500; cursor: pointer;
+    font-family: inherit; flex-shrink: 0; transition: color 0.15s, border-color 0.15s;
+  }
+  .new-file-btn:hover { color: var(--text); border-color: var(--accent); }
+  @media (max-width: 580px) {
+    .song-name { display: none; }
+    .transport { flex-wrap: wrap; }
+  }
+
+  /* ── Controls ── */
+  .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 20px; }
+  .control-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .control-card h3 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-dim); margin-bottom: 12px; }
+
+  /* Audio-effects panel — collapsed until opened, so the visual controls stay the star. */
+  .afx-card summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .afx-card summary::-webkit-details-marker { display: none; }
+  .afx-sum-l { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .afx-sum-l h3 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-dim); }
+  .afx-current { font-size: 12.5px; font-weight: 600; color: var(--accent); }
+  .afx-caret { color: var(--text-dim); transition: transform 0.15s; }
+  .afx-card[open] .afx-caret { transform: rotate(180deg); }
+  .afx-note { font-size: 12.5px; color: var(--text-dim); margin: 12px 0 10px; }
+  .afx-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .afx-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 13px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-family: inherit;
+    font-size: 12.5px; font-weight: 600; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+  .afx-chip:hover { border-color: var(--text-dim); }
+  .afx-chip.active { background: var(--accent); border-color: transparent; color: #fff; }
+  .afx-chip:disabled { opacity: 0.5; cursor: default; }
+  .afx-status { font-size: 12.5px; color: var(--text-dim); margin-top: 10px; min-height: 16px; }
+  /* Laser rig controls — only shown while the Laser Show preset is active. */
+  .lz-card[hidden] { display: none; }
+  .lz-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 6px 20px; margin-bottom: 12px; }
+  .lz-val { color: var(--accent); font-weight: 700; }
+  .lz-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .lz-label { font-size: 12px; color: var(--text-dim); font-weight: 600; min-width: 82px; }
+  .lz-seg { display: flex; flex-wrap: wrap; gap: 6px; }
+  .lz-seg button { font-family: inherit; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; }
+  .lz-seg button:hover { border-color: var(--text-dim); }
+  .lz-seg button.active { background: var(--accent); border-color: transparent; color: #fff; }
+  .preset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+  .preset-btn {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+    border-radius: 10px; padding: 10px 8px; cursor: pointer; font-family: inherit;
+    font-size: 12.5px; font-weight: 600; text-align: center; transition: border-color 0.15s, background 0.15s;
+  }
+  .preset-btn { position: relative; }
+  .preset-btn .preset-icon { display: block; font-size: 20px; margin-bottom: 5px; }
+  .preset-btn:hover { border-color: var(--border-bright); }
+  .preset-btn.active { border-color: var(--accent); background: var(--accent-subtle); box-shadow: 0 0 0 1px var(--accent); }
+  /* Cycle (multi-select) mode: single-select highlight is suppressed; membership
+     is shown with the accent ring + a checkmark badge. */
+  .preset-grid.cycle-mode .preset-btn { opacity: 0.5; box-shadow: none; border-color: var(--border); background: var(--surface2); }
+  .preset-grid.cycle-mode .preset-btn.in-cycle { opacity: 1; border-color: var(--accent); background: var(--accent-subtle); }
+  .preset-grid.cycle-mode .preset-btn.in-cycle::after {
+    content: '\2713'; position: absolute; top: 5px; right: 7px; font-size: 11px; font-weight: 700;
+    color: #fff; background: var(--accent); width: 16px; height: 16px; line-height: 16px;
+    text-align: center; border-radius: 50%;
+  }
+
+  /* Cycle controls */
+  .cycle-row { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 14px; }
+  .cycle-toggle { display: flex; align-items: center; gap: 9px; cursor: pointer; font-size: 13.5px; font-weight: 500; user-select: none; }
+  .cycle-toggle input { width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; }
+  .cycle-opts { display: none; margin-top: 12px; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .cycle-opts.visible { display: flex; }
+  .cycle-secs-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim); }
+  .cycle-secs-label input { width: 64px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 7px 10px; font-size: 13px; font-family: inherit; }
+  .cycle-secs-label input:focus { outline: none; border-color: var(--accent); }
+  .cycle-hint { font-size: 12.5px; color: var(--text-dim); }
+  .cycle-hint b { color: var(--accent); font-weight: 600; }
+
+  .swatch-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .swatch {
+    width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+    border: 2px solid transparent; padding: 0; transition: transform 0.12s, border-color 0.12s;
+  }
+  .swatch:hover { transform: scale(1.1); }
+  .swatch.active { border-color: var(--text); transform: scale(1.1); }
+
+  .slider-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .slider-row label { font-size: 12.5px; color: var(--text-dim); width: 78px; flex-shrink: 0; }
+  .slider-row input[type="range"] { flex: 1; accent-color: var(--accent); cursor: pointer; }
+
+  .aspect-row { display: flex; gap: 8px; margin-bottom: 14px; }
+  .aspect-btn {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--text-dim);
+    border-radius: 8px; padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer;
+    font-family: inherit; transition: border-color 0.15s, color 0.15s;
+  }
+  .aspect-btn:hover { border-color: var(--border-bright); }
+  .aspect-btn.active { border-color: var(--accent); color: var(--text); background: var(--accent-subtle); }
+
+  .text-input {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; padding: 9px 12px; font-size: 13px; font-family: inherit; margin-bottom: 10px;
+  }
+  .text-input:focus { outline: none; border-color: var(--accent); }
+  .text-input::placeholder { color: var(--text-dim); }
+
+  .cover-row { display: flex; align-items: center; gap: 10px; }
+  .cover-btn {
+    background: var(--surface2); border: 1px dashed var(--border-bright); color: var(--text-dim);
+    border-radius: 8px; padding: 9px 12px; font-size: 12.5px; cursor: pointer; font-family: inherit;
+    position: relative; overflow: hidden; flex: 1; text-align: center; transition: border-color 0.15s, color 0.15s;
+  }
+  .cover-btn:hover { border-color: var(--accent); color: var(--text); }
+  .cover-btn input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .cover-thumb { width: 38px; height: 38px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border-bright); display: none; }
+  .cover-thumb.visible { display: block; }
+  .cover-remove { background: transparent; border: 0; color: var(--text-dim); cursor: pointer; font-size: 16px; display: none; padding: 4px; }
+  .cover-remove.visible { display: block; }
+  .cover-remove:hover { color: #f87171; }
+
+  /* ── Export card ── */
+  .export-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 28px; }
+  .export-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .export-select {
+    background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+    border-radius: 8px; padding: 9px 12px; font-size: 13px; font-family: inherit; cursor: pointer;
+  }
+  .export-btn {
+    background: var(--accent); border: 0; color: #fff; border-radius: 10px;
+    padding: 12px 26px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+    box-shadow: 0 4px 18px var(--accent-glow); transition: background 0.15s, transform 0.1s;
+  }
+  .export-btn:hover { background: var(--accent-hover); }
+  .export-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+  .cancel-btn {
+    background: transparent; border: 1px solid var(--border-bright); color: var(--text-dim);
+    border-radius: 8px; padding: 9px 14px; font-size: 12.5px; cursor: pointer; font-family: inherit; display: none;
+  }
+  .cancel-btn.visible { display: inline-block; }
+  .cancel-btn:hover { color: #f87171; border-color: #f87171; }
+  .export-status { font-size: 13px; color: var(--text-dim); margin-top: 10px; min-height: 18px; }
+  .export-progress { margin-top: 10px; display: none; }
+  .export-progress.visible { display: block; }
+
+  .result-preview { display: none; margin-top: 16px; }
+  .result-preview.active { display: block; }
+  .result-preview video { display: block; width: auto; height: auto; max-width: 100%; max-height: 380px; margin: 0 auto; background: #000; border: 1px solid var(--border); }
+  .result-actions { display: flex; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+  .download-btn {
+    background: var(--green); border: 0; color: #fff; border-radius: 10px;
+    padding: 11px 22px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+  }
+  .download-btn:hover { filter: brightness(1.1); }
+  .studio-btn {
+    background: transparent; border: 1px solid var(--accent); color: var(--accent);
+    border-radius: 10px; padding: 11px 20px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+    transition: background 0.15s, color 0.15s;
+  }
+  .studio-btn:hover { background: var(--accent-subtle); }
+  .studio-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .result-size { font-size: 12.5px; color: var(--text-dim); }
+  .studio-note { font-size: 12px; color: var(--text-dim); margin-top: 8px; }
+
+  /* ── CTA banner ── */
+  .cta-banner { background: linear-gradient(135deg, var(--accent-subtle), transparent); border: 1px solid var(--border); border-radius: 14px; padding: 24px; text-align: center; margin: 40px 0; }
+  .cta-banner h2 { font-size: 18px; margin-bottom: 6px; }
+  .cta-banner p { color: var(--text-dim); font-size: 14px; margin-bottom: 12px; }
+  .cta-link { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; }
+  .cta-link:hover { color: var(--accent-hover); }
+
+  /* ── FAQ ── */
+  .faq { max-width: 760px; margin: 40px auto 0; }
+  .faq h2 { font-size: 20px; margin-bottom: 16px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; cursor: pointer; }
+  .faq-q { font-size: 14.5px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .faq-q::after { content: '+'; font-size: 20px; color: var(--text-dim); flex-shrink: 0; transition: transform 0.2s; }
+  .faq-item.open .faq-q::after { content: '\2212'; }
+  .faq-a { color: var(--text-dim); font-size: 14px; line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, margin 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 300px; margin-top: 10px; }
+
+  /* ── Footer ── */
+
+  .footer a:hover { color: var(--text); }
+  /* visualizer -> rhythm-run link (viz-rhythm-link); moved out of the demo-hide document.write string, where its line breaks broke the script */
+  .rr-link-row { margin: 10px 0 0; text-align: right; font-size: 0.9rem; }
+  .rr-link-row a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .rr-link-row a:hover, .rr-link-row a:focus-visible { text-decoration: underline; }
+  .rr-link-row[hidden] { display: none; }
+</style>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body data-owns-keys="space">
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Music Visualizer</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/" class="active">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">Music Visualizer</span></h1>
+    <p>Turn any song into a stunning music video. Pick a beat-reactive effect, customize colors and cover art, then export an MP4 — all in your browser, your files never leave your device, no watermark.</p>
+  </section>
+
+  <div class="error-msg" id="errorMsg"></div>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="dropZone">
+    <input type="file" id="fileInput" accept="audio/mpeg,audio/wav,audio/ogg,audio/flac,audio/aac,audio/mp4,audio/x-m4a,.mp3,.wav,.ogg,.flac,.aac,.m4a" aria-label="Upload audio file">
+    <div class="drop-zone-icon">&#127911;</div>
+    <div class="drop-zone-label">Drop a song here or click to browse</div>
+    <div class="drop-zone-hint">Supports MP3, WAV, OGG, FLAC, AAC, M4A</div>
+  </div>
+
+  <div class="analyzing" id="analyzing">
+    <div class="analyzing-label" id="analyzingLabel">Analyzing your song&hellip;</div>
+    <div class="progress-track"><div class="progress-fill" id="analyzingFill"></div></div>
+  </div>
+
+  <p class="privacy-notice" id="privacyNotice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your song never leaves your device.</strong> All processing happens in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <!-- Studio -->
+  <section class="studio" id="studio">
+
+    <div class="viz-side" id="vizSide">
+    <div class="stage-wrap" id="stageWrap" data-aspect="16:9">
+      <div class="stage-inner" id="stageInner">
+      <canvas id="stage"></canvas>
+      <button type="button" class="stage-expand" id="stageExpand" title="Back to the full preview" aria-label="Back to the full preview">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 4 20 10 20"/><polyline points="20 10 20 4 14 4"/><line x1="4" y1="20" x2="10" y2="14"/><line x1="20" y1="4" x2="14" y2="10"/></svg>
+      </button>
+      <div class="stage-overlay visible" id="stageOverlay">
+        <button class="stage-overlay-btn" id="bigPlayBtn" aria-label="Play">
+          <svg width="26" height="26" viewBox="0 0 16 16" fill="currentColor"><polygon points="5,2 14,8 5,14"/></svg>
+        </button>
+      </div>
+      </div>
+    </div>
+    <!-- RHYTHM-RUN WAY IN (design R-fa88e9, Marc 10-22 beta): a plain text link, shown only while the loaded song is
+         from our catalog - rhythm-run loads catalog tracks by path; a person's own file has no path to hand over.
+         Today the only catalog song this page ever holds is the shared demo. -->
+    <p class="rr-link-row" id="rrLinkRow" hidden><a id="rrLink" href="/tools/rhythm-run/">Play this track as a game &rarr;</a></p>
+
+    <div class="export-card">
+      <h3 style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-dim);margin-bottom:12px;">Export Video</h3>
+      <div class="export-row">
+        <select class="export-select" id="resSelect" aria-label="Resolution">
+          <option value="720" selected>720p &middot; faster export &middot; great for social</option>
+          <option value="1080">1080p &middot; best quality &middot; slower</option>
+        </select>
+        <select class="export-select" id="fpsSelect" aria-label="Frame rate">
+          <option value="30">30 fps</option>
+          <option value="60">60 fps</option>
+        </select>
+        <button class="export-btn" id="exportBtn">Export Video</button>
+        <button class="cancel-btn" id="cancelBtn">Cancel</button>
+      </div>
+      <div class="export-status" id="exportStatus"></div>
+      <div class="export-progress" id="exportProgress">
+        <div class="progress-track"><div class="progress-fill" id="exportFill"></div></div>
+      </div>
+      <div class="result-preview" id="resultPreview">
+        <video id="resultVideo" controls playsinline></video>
+        <div class="result-actions">
+          <button class="download-btn" id="downloadBtn">&#11015; Download video</button>
+          <button class="studio-btn" id="studioBtn">&#127916; Send to video editor</button>
+          <span class="result-size" id="resultSize"></span>
+        </div>
+        <div class="studio-note" id="studioNote">Opens your clip in the video editor for trimming, captions &amp; more.</div>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="transport">
+      <button class="play-btn" id="playBtn" aria-label="Play or pause">
+        <svg id="playIcon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><polygon points="4,2 14,8 4,14"/></svg>
+        <svg id="pauseIcon" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" style="display:none"><rect x="3" y="2" width="4" height="12"/><rect x="9" y="2" width="4" height="12"/></svg>
+      </button>
+      <input type="range" class="seek" id="seek" min="0" max="1000" value="0" aria-label="Seek">
+      <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+      <span class="song-name" id="songName"></span>
+      <button class="new-file-btn" id="newFileBtn">New file</button>
+    </div>
+
+    <div class="controls-grid">
+
+      <div class="control-card" style="grid-column: 1 / -1;">
+        <details class="afx-card" id="afxCard" open>
+          <summary><span class="afx-sum-l"><h3 style="margin:0">Audio effects</h3><span class="afx-current" id="afxCurrent">Off &middot; original audio</span></span><span class="afx-caret">&#9662;</span></summary>
+          <p class="afx-note">Change how the song <em>sounds</em> &mdash; switching is instant, and the visuals follow the new speed. The effect is baked into the file when you export.</p>
+          <div class="afx-chips" id="afxChips"></div>
+          <div class="afx-status" id="afxStatus"></div>
+        </details>
+      </div>
+
+      <div class="control-card lz-card" id="laserCard" style="grid-column: 1 / -1;" hidden>
+        <h3>&#128294; Laser rig</h3>
+        <div class="lz-grid">
+          <div class="slider-row"><label for="lzHeads">Laser heads <span class="lz-val" id="lzHeadsVal">3</span></label>
+            <input type="range" id="lzHeads" min="1" max="6" value="3"></div>
+          <div class="slider-row"><label for="lzBeams">Beams each <span class="lz-val" id="lzBeamsVal">7</span></label>
+            <input type="range" id="lzBeams" min="3" max="14" value="7"></div>
+          <div class="slider-row"><label for="lzSpread">Sweep width</label>
+            <input type="range" id="lzSpread" min="10" max="110" value="55"></div>
+          <div class="slider-row"><label for="lzSpeed">Sweep speed</label>
+            <input type="range" id="lzSpeed" min="20" max="220" value="100"></div>
+        </div>
+        <div class="lz-row">
+          <span class="lz-label">Rig position</span>
+          <div class="lz-seg" id="lzMount">
+            <button type="button" data-v="" class="active">Auto</button>
+            <button type="button" data-v="truss">Overhead</button>
+            <button type="button" data-v="corners">Corners</button>
+            <button type="button" data-v="floor">Floor</button>
+          </div>
+        </div>
+        <div class="lz-row">
+          <span class="lz-label">Movement</span>
+          <div class="lz-seg" id="lzMode">
+            <button type="button" data-v="auto" class="active">Auto &middot; changes with the music</button>
+            <button type="button" data-v="fan">Fan sweep</button>
+            <button type="button" data-v="cross">Crossing</button>
+            <button type="button" data-v="scan">Scanner</button>
+            <button type="button" data-v="pulse">Strobe snap</button>
+          </div>
+        </div>
+        <div class="lz-row">
+          <button type="button" class="studio-btn" id="lzReroll">&#127922; New rig</button>
+          <button type="button" class="studio-btn" id="lzReset">Reset to the song&rsquo;s own rig</button>
+        </div>
+      </div>
+
+      <div class="control-card" style="grid-column: 1 / -1;">
+        <h3>Effect</h3>
+        <div class="preset-grid" id="presetGrid"></div>
+        <div class="cycle-row">
+          <label class="cycle-toggle"><input type="checkbox" id="cycleToggle"> &#128260; Auto-cycle effects through the song</label>
+          <div class="cycle-opts" id="cycleOpts">
+            <span class="cycle-secs-label">Seconds per effect <input type="number" id="cycleSecs" min="1" max="60" step="1" value="5"></span>
+            <span class="cycle-hint" id="cycleHint">Tap the effects above to choose which ones are included.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-card">
+        <h3>Style</h3>
+        <div class="swatch-row" id="swatchRow"></div>
+        <div class="slider-row">
+          <label for="sensSlider">Sensitivity</label>
+          <input type="range" id="sensSlider" min="50" max="200" value="100">
+        </div>
+        <div class="slider-row">
+          <label for="glowSlider">Glow</label>
+          <input type="range" id="glowSlider" min="0" max="100" value="60">
+        </div>
+        <div class="slider-row">
+          <label for="motionSlider">Motion</label>
+          <input type="range" id="motionSlider" min="50" max="200" value="100">
+        </div>
+      </div>
+
+      <div class="control-card">
+        <h3>Layout &amp; Text</h3>
+        <div class="aspect-row" id="aspectRow">
+          <button class="aspect-btn active" data-aspect="16:9">16:9 &middot; YouTube</button>
+          <button class="aspect-btn" data-aspect="9:16">9:16 &middot; TikTok</button>
+          <button class="aspect-btn" data-aspect="1:1">1:1</button>
+        </div>
+        <input type="text" class="text-input" id="titleInput" placeholder="Song title — optional, leave blank for none" maxlength="60">
+        <input type="text" class="text-input" id="artistInput" placeholder="Artist name — optional" maxlength="60">
+        <div class="cover-row">
+          <img class="cover-thumb" id="coverThumb" alt="Cover art preview">
+          <div class="cover-btn" id="coverBtn">
+            <input type="file" id="coverInput" accept="image/*" aria-label="Upload cover art">
+            <span id="coverBtnLabel">+ Add cover art (optional)</span>
+          </div>
+          <button class="cover-remove" id="coverRemove" aria-label="Remove cover art" title="Remove cover art">&#10005;</button>
+        </div>
+      </div>
+
+    </div>
+
+    <button type="button" class="viz-splitter" id="vizSplitter" aria-label="Resize the video" title="Drag to resize the video"></button>
+
+
+
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <h2>Need a song for your video?</h2>
+    <p>Browse our curated playlist of free tracks for Instagram Reels, TikTok, and YouTube Shorts.</p>
+    <a href="/free-music" class="cta-link">Browse playlist &#8594;</a>
+  </section>
+
+  <!-- SEO content -->
+  <section class="seo-multilang" style="max-width:760px;margin:32px auto 0;padding:0 16px;color:var(--text-dim);line-height:1.65;">
+    <div id="seo-en" lang="en">
+      <h2 style="color:var(--text);font-size:20px;margin-bottom:12px;">Free Music Visualizer &mdash; Make a Music Video from Any Song</h2>
+      <p>SnipSound's music visualizer turns any audio file into a shareable music video. Drop in an MP3, WAV, OGG, FLAC, AAC, or M4A, choose one of five beat-reactive effects &mdash; spectrum bars, a radial burst around your cover art, flowing waveforms, particle constellations, or a starfield warp &mdash; and export a finished MP4 with your music baked in. Everything runs in your browser with the Web Audio API and WebCodecs; your files never leave your device to a server and there's no watermark.</p>
+      <h3 style="color:var(--text);font-size:16px;margin:16px 0 8px;">How It Works</h3>
+      <p>The visualizer analyzes your whole song up front &mdash; a frequency spectrum and beat map computed on a fixed time grid &mdash; so the preview you see is exactly what gets exported, frame for frame. Effects react to the bass, mids, treble, and detected beats of your track. On Chromium browsers and Safari, the export uses hardware-accelerated video encoding and typically finishes faster than the song plays.</p>
+      <h3 style="color:var(--text);font-size:16px;margin:16px 0 8px;">Made for YouTube, TikTok &amp; Instagram</h3>
+      <p>Export in 16:9 for YouTube, vertical 9:16 for TikTok, Reels, and Shorts, or 1:1 square &mdash; at 720p or 1080p, 30 or 60 fps. Add your song title, artist name, and cover art for a polished, ready-to-post video. Musicians use it to publish audio tracks on video platforms; podcasters and producers use it to turn audio snippets into engaging social clips.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" itemscope itemtype="https://schema.org/FAQPage">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">How do I make a music visualizer video?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">Upload a song (MP3, WAV, OGG, FLAC, AAC, or M4A), pick one of the visual presets, customize the colors, text, and cover art, then click Export Video. You get an MP4 file with your music and the animated visuals — ready for YouTube, TikTok, or Instagram.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">Is the music visualizer really free and private?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">Yes. Everything runs in your browser — your song never leaves your device to a server, there is no signup, no watermark, and no export limit.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">What video sizes can I export?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">You can export 1080p or 720p video in 16:9 (YouTube), 9:16 vertical (TikTok, Reels, Shorts), or 1:1 square, at 30 or 60 fps. Chrome, Edge, Brave, and Safari export MP4 faster than real time; other browsers record a WebM in real time.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">Can I add my own cover art?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">Yes — upload any image and it appears as a blurred backdrop behind the visuals, and as circular cover art in the center of the Radial Burst preset.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">How long does the video export take?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">On Chrome, Edge, Brave, or Safari 17+ the export runs faster than real time — a 3-minute song typically renders in well under a minute on a modern device. Browsers without WebCodecs support record in real time instead.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <a href="/">&copy; SnipSound</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/help/">Help</a> &middot; <a href="/tools/">All Tools</a>
+</footer>
+
+<script src="/vendor/snip-audio-fx.js"></script>
+<script src="/vendor/snip-encode.js"></script>
+<script src="/tools/music-visualizer/viz-engine.js?v=5"></script>
+<script src="/tools/music-visualizer/viz-export.js?v=4"></script>
+<script>
+(function () {
+  'use strict';
+
+  // ── DOM refs ──
+  var dropZone = document.getElementById('dropZone');
+  var fileInput = document.getElementById('fileInput');
+  var errorMsg = document.getElementById('errorMsg');
+  var analyzing = document.getElementById('analyzing');
+  var analyzingLabel = document.getElementById('analyzingLabel');
+  var analyzingFill = document.getElementById('analyzingFill');
+  var privacyNotice = document.getElementById('privacyNotice');
+  var studio = document.getElementById('studio');
+  var stageWrap = document.getElementById('stageWrap');
+  var stage = document.getElementById('stage');
+  var stageOverlay = document.getElementById('stageOverlay');
+  var bigPlayBtn = document.getElementById('bigPlayBtn');
+  var playBtn = document.getElementById('playBtn');
+  var playIcon = document.getElementById('playIcon');
+  var pauseIcon = document.getElementById('pauseIcon');
+  var seek = document.getElementById('seek');
+  var timeDisplay = document.getElementById('timeDisplay');
+  var songName = document.getElementById('songName');
+  var newFileBtn = document.getElementById('newFileBtn');
+  var presetGrid = document.getElementById('presetGrid');
+  var cycleToggle = document.getElementById('cycleToggle');
+  var cycleOpts = document.getElementById('cycleOpts');
+  var cycleSecs = document.getElementById('cycleSecs');
+  var cycleHint = document.getElementById('cycleHint');
+  var swatchRow = document.getElementById('swatchRow');
+  var sensSlider = document.getElementById('sensSlider');
+  var glowSlider = document.getElementById('glowSlider');
+  var motionSlider = document.getElementById('motionSlider');
+  var aspectRow = document.getElementById('aspectRow');
+  var titleInput = document.getElementById('titleInput');
+  var artistInput = document.getElementById('artistInput');
+  var coverInput = document.getElementById('coverInput');
+  var coverThumb = document.getElementById('coverThumb');
+  var coverBtnLabel = document.getElementById('coverBtnLabel');
+  var coverRemove = document.getElementById('coverRemove');
+  var resSelect = document.getElementById('resSelect');
+  var fpsSelect = document.getElementById('fpsSelect');
+  var exportBtn = document.getElementById('exportBtn');
+  var cancelBtn = document.getElementById('cancelBtn');
+  var exportStatus = document.getElementById('exportStatus');
+  var exportProgress = document.getElementById('exportProgress');
+  var exportFill = document.getElementById('exportFill');
+  var resultPreview = document.getElementById('resultPreview');
+  var resultVideo = document.getElementById('resultVideo');
+  var downloadBtn = document.getElementById('downloadBtn');
+  var studioBtn = document.getElementById('studioBtn');
+  var studioNote = document.getElementById('studioNote');
+  var resultSize = document.getElementById('resultSize');
+
+  // ── State ──
+  var audioCtx = null;
+  // ── Error probe (posthog R-7fb90c) ──────────────────────────────────────
+  // A recurring "Cannot read properties of undefined (reading '0')" was showing
+  // up on this page with no stack and no way to segment it. This stamps every
+  // report with a build marker and the lifecycle stage the tool was in, so the
+  // next occurrences arrive attributable instead of anonymous.
+  // NO HAND-TYPED BUILD STAMP. This was var VIZ_BUILD = 'viz-2026-09-07a' and it still said that
+  // on 2026-10-01 - nobody bumps a string that nothing reads back. Worse than useless: a property
+  // set in capture() SHADOWS a PostHog super property of the same name, and theme.js registers the
+  // real CI-maintained build on every event (theme.js: ph.register({ build: SNIP_BUILD })). So this
+  // tool's error events were the ONLY ones on the site carrying a wrong build, and "which build was
+  // the user on" is the exact question that twice decided whether a visualizer crash was already
+  // fixed (R-7fb90c, R-632b99). I told posthog to anchor on the build stamp while my own page was
+  // overwriting it with a month-old literal.
+  // Dropping the key lets the registered value through. A stage marker is still ours to send.
+  var vizStage = 'boot';
+  function vizMark(stage) { vizStage = stage; }
+  // ONCE PER DISTINCT PROBLEM, NOT ONCE PER FRAME (posthog R-49c910). This tool is the worst
+  // events-per-user figure in the fleet - 421 raw events from 12 sessions, 35x, and 402 of them
+  // from 4 people - and the reason my own loop-report sweep could not see it is worth writing
+  // down: the sweep looks for a REPORT INSIDE A LOOP. This is a LOOP INSIDE A REPORT'S REACH.
+  // The window.onerror handler below is registered once, at top level, and nothing about that
+  // call site looks loop-reachable; but what THROWS is in the render loop, so the handler runs
+  // per frame and reports per frame.
+  // Keyed by kind AND message, because two different crashes in one session are two findings
+  // while the same crash 400 times is one. The suppressed count is kept in memory and exposed on
+  // window for the diagnostics paste - a stuck tab's real volume stays visible without a single
+  // extra event (design's rider on R-681261, zero budget).
+  var vizSent = {};
+  window.__vizSuppressed = {};
+  window.__vizReport = function (kind, extra) {
+    var vizKey = kind + '|' + String((extra && (extra.message || extra.reason)) || '').slice(0, 80);
+    if (vizSent[vizKey]) { window.__vizSuppressed[vizKey] = (window.__vizSuppressed[vizKey] || 1) + 1; return; }
+    vizSent[vizKey] = 1;
+    var payload = { stage: vizStage, kind: kind, preset: (settings && settings.preset) || '?' };
+    for (var k in (extra || {})) payload[k] = extra[k];
+    try { if (window.posthog) window.posthog.capture('viz_error', payload); } catch (e) {}
+    try { if (window.snipTrackFailed) window.snipTrackFailed('music-visualizer', kind, vizStage); } catch (e) {}
+    try { console.warn('[viz]', kind, payload); } catch (e) {}
+  };
+  window.addEventListener('error', function (ev) {
+    if (!ev || !ev.message) return;
+    var st = (ev.error && ev.error.stack ? String(ev.error.stack) : '').split('\n').slice(0, 3).join(' | ').slice(0, 400);
+    window.__vizReport('uncaught', { message: String(ev.message).slice(0, 160), stack: st, src: (ev.filename || '').slice(-60), line: ev.lineno });
+  });
+  window.addEventListener('unhandledrejection', function (ev) {
+    var r = ev && ev.reason;
+    window.__vizReport('unhandled_rejection', {
+      message: String((r && r.message) || r || '').slice(0, 160),
+      stack: (r && r.stack ? String(r.stack).split('\n').slice(0, 3).join(' | ') : '').slice(0, 400)
+    });
+  });
+
+  var audioBuffer = null;
+  var srcBuffer = null;       // the untouched decode — every effect bakes from this
+  var afxKey = 'normal';      // active preset key, or 'custom' for deep-linked params
+  var afxCustom = null;       // exact fx params handed over from another tool (?rate=&reverb=…)
+  var analysis = null;
+  var renderer = null;
+  var fileBase = 'visualizer';
+  var tracker = null;
+
+  var settings = {
+    preset: 'bars',
+    palette: SnipViz.palettes[0],
+    sensitivity: 1,
+    glow: 0.6,
+    motion: 1,
+    title: '',
+    artist: '',
+    coverImg: null,
+    bgCanvas: null,
+    cycle: { enabled: false, seconds: 5, presets: [] },
+    // Laser rig overrides — empty means "use the rig generated for this song".
+    laser: { seed: 0, emitters: 0, beams: 0, mount: '', mode: 'auto', spread: 0, speed: 1 }
+  };
+  var aspect = '16:9';
+  var PRESET_NAMES = {};
+  SnipViz.presets.forEach(function (p) { PRESET_NAMES[p.id] = p.name; });
+
+  // Playback
+  var srcNode = null;
+  var isPlaying = false;
+  var startCtxTime = 0;
+  var startOffset = 0;
+  var rafId = 0;
+  var lastRaf = 0;
+  var seekDragging = false;
+  var exporting = false;
+  var abortCtl = null;
+  var lastBlob = null, lastBlobUrl = null, lastExt = 'mp4';
+  var lastExportMeta = null;   // { w, h, durMs } of the most recent export, for the editor handoff
+
+  var RES = {
+    '16:9': { '1080': [1920, 1080], '720': [1280, 720] },
+    '9:16': { '1080': [1080, 1920], '720': [720, 1280] },
+    '1:1':  { '1080': [1080, 1080], '720': [720, 720] }
+  };
+
+  function showError(msg) { errorMsg.textContent = msg; errorMsg.classList.add('active'); }
+  function hideError() { errorMsg.classList.remove('active'); }
+
+  function formatDuration(sec) {
+    if (!sec || !isFinite(sec)) return '0:00';
+    var m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+    return m + ':' + String(s).padStart(2, '0');
+  }
+  function formatBytes(b) {
+    if (window.snipNotify && window.snipNotify.formatBytes) return window.snipNotify.formatBytes(b);
+    return (b / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  // ── Controls: presets ──
+  var PRESET_ICONS = { bars: '📊', radial: '🌀', wave: '🌊', particles: '✨', tunnel: '🌠', lasers: '🔦' };
+  SnipViz.presets.forEach(function (p) {
+    var b = document.createElement('button');
+    b.className = 'preset-btn' + (p.id === settings.preset ? ' active' : '');
+    b.type = 'button';
+    b.title = p.hint;
+    b.dataset.preset = p.id;
+    b.innerHTML = '<span class="preset-icon">' + PRESET_ICONS[p.id] + '</span>' + p.name;
+    b.addEventListener('click', function () {
+      if (settings.cycle.enabled) {
+        b.classList.toggle('in-cycle');
+        rebuildCycleList();
+      } else {
+        settings.preset = p.id;
+        presetGrid.querySelectorAll('.preset-btn').forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        syncLaserCard();
+      }
+    });
+    presetGrid.appendChild(b);
+  });
+
+  // Rebuild the rotation order from which preset buttons are selected, in grid order.
+  function rebuildCycleList() {
+    var ids = [];
+    presetGrid.querySelectorAll('.preset-btn.in-cycle').forEach(function (btn) { ids.push(btn.dataset.preset); });
+    settings.cycle.presets = ids;
+    if (!ids.length) {
+      cycleHint.innerHTML = 'Tap the effects above to choose which ones are included.';
+    } else {
+      cycleHint.innerHTML = 'Rotating <b>' + ids.length + '</b> effect' + (ids.length > 1 ? 's' : '') +
+        ', ' + settings.cycle.seconds + 's each &mdash; about ' + ids.length + ' &times; ' + settings.cycle.seconds + 's per loop.';
+    }
+  }
+
+  cycleToggle.addEventListener('change', function () {
+    settings.cycle.enabled = cycleToggle.checked;
+    presetGrid.classList.toggle('cycle-mode', cycleToggle.checked);
+    cycleOpts.classList.toggle('visible', cycleToggle.checked);
+    if (cycleToggle.checked) {
+      // First time on: include every effect so it works immediately; the user can
+      // deselect any they don't want.
+      if (!presetGrid.querySelector('.preset-btn.in-cycle')) {
+        presetGrid.querySelectorAll('.preset-btn').forEach(function (btn) { btn.classList.add('in-cycle'); });
+      }
+      rebuildCycleList();
+    }
+  });
+
+  cycleSecs.addEventListener('input', function () {
+    var v = parseInt(cycleSecs.value, 10);
+    if (!isFinite(v) || v < 1) v = 1; else if (v > 60) v = 60;
+    settings.cycle.seconds = v;
+    rebuildCycleList();
+  });
+
+  // ── Controls: palettes ──
+  SnipViz.palettes.forEach(function (pal, i) {
+    var b = document.createElement('button');
+    b.className = 'swatch' + (i === 0 ? ' active' : '');
+    b.type = 'button';
+    b.title = pal.name;
+    b.setAttribute('aria-label', 'Color theme: ' + pal.name);
+    b.style.background = 'linear-gradient(135deg, ' + pal.colors[0] + ', ' + pal.colors[2] + ')';
+    b.addEventListener('click', function () {
+      settings.palette = pal;
+      swatchRow.querySelectorAll('.swatch').forEach(function (x) { x.classList.remove('active'); });
+      b.classList.add('active');
+      rebuildBg();
+    });
+    swatchRow.appendChild(b);
+  });
+
+  // ── Laser rig controls ────────────────────────────────────────────────
+  // Everything here is an OVERRIDE: leave it alone and each song keeps the rig
+  // generated from its own sound. Values live in settings, so the export renders
+  // exactly the rig on screen.
+  function syncLaserCard() {
+    var card = document.getElementById('laserCard');
+    if (!card) return;
+    var on = settings.preset === 'lasers' ||
+      (settings.cycle.enabled && settings.cycle.presets.indexOf('lasers') >= 0);
+    card.hidden = !on;
+  }
+  (function laserControls() {
+    var heads = document.getElementById('lzHeads'), beams = document.getElementById('lzBeams');
+    var spread = document.getElementById('lzSpread'), speed = document.getElementById('lzSpeed');
+    var mount = document.getElementById('lzMount'), mode = document.getElementById('lzMode');
+    var reroll = document.getElementById('lzReroll'), reset = document.getElementById('lzReset');
+    if (!heads) return;
+    function label() {
+      document.getElementById('lzHeadsVal').textContent = settings.laser.emitters || 'auto';
+      document.getElementById('lzBeamsVal').textContent = settings.laser.beams || 'auto';
+    }
+    heads.addEventListener('input', function () { settings.laser.emitters = +heads.value; label(); });
+    beams.addEventListener('input', function () { settings.laser.beams = +beams.value; label(); });
+    spread.addEventListener('input', function () { settings.laser.spread = spread.value / 100; });
+    speed.addEventListener('input', function () { settings.laser.speed = speed.value / 100; });
+    function seg(wrap, apply) {
+      wrap.addEventListener('click', function (e) {
+        var b2 = e.target.closest('button[data-v]'); if (!b2) return;
+        wrap.querySelectorAll('button').forEach(function (x) { x.classList.remove('active'); });
+        b2.classList.add('active');
+        apply(b2.dataset.v);
+      });
+    }
+    seg(mount, function (v) { settings.laser.mount = v; });
+    seg(mode, function (v) { settings.laser.mode = v || 'auto'; });
+    reroll.addEventListener('click', function () {
+      settings.laser.seed = (settings.laser.seed || 0) + 1;
+      try { if (window.posthog) window.posthog.capture('viz_laser_reroll'); } catch (e) {}
+    });
+    reset.addEventListener('click', function () {
+      settings.laser = { seed: 0, emitters: 0, beams: 0, mount: '', mode: 'auto', spread: 0, speed: 1 };
+      mount.querySelectorAll('button').forEach(function (x) { x.classList.toggle('active', x.dataset.v === ''); });
+      mode.querySelectorAll('button').forEach(function (x) { x.classList.toggle('active', x.dataset.v === 'auto'); });
+      spread.value = 55; speed.value = 100;
+      label();
+    });
+    label();
+  })();
+  syncLaserCard();
+
+  sensSlider.addEventListener('input', function () { settings.sensitivity = sensSlider.value / 100; });
+  glowSlider.addEventListener('input', function () { settings.glow = glowSlider.value / 100; });
+  motionSlider.addEventListener('input', function () { settings.motion = motionSlider.value / 100; });
+  titleInput.addEventListener('input', function () { settings.title = titleInput.value.trim(); });
+  artistInput.addEventListener('input', function () { settings.artist = artistInput.value.trim(); });
+
+  aspectRow.addEventListener('click', function (e) {
+    var btn = e.target.closest('.aspect-btn');
+    if (!btn) return;
+    aspect = btn.dataset.aspect;
+    aspectRow.querySelectorAll('.aspect-btn').forEach(function (x) { x.classList.remove('active'); });
+    btn.classList.add('active');
+    stageWrap.dataset.aspect = aspect;
+    resizeStage();
+  });
+
+  // ── Cover art ──
+  coverInput.addEventListener('change', function () {
+    var f = coverInput.files && coverInput.files[0];
+    if (!f) return;
+    var url = URL.createObjectURL(f);
+    var img = new Image();
+    img.onload = function () {
+      settings.coverImg = img;
+      coverThumb.src = url;
+      coverThumb.classList.add('visible');
+      coverRemove.classList.add('visible');
+      coverBtnLabel.textContent = 'Change cover art';
+      rebuildBg();
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); showError('Could not read that image.'); };
+    img.src = url;
+  });
+  coverRemove.addEventListener('click', function () {
+    settings.coverImg = null;
+    coverThumb.classList.remove('visible');
+    coverRemove.classList.remove('visible');
+    coverBtnLabel.textContent = '+ Add cover art (optional)';
+    coverInput.value = '';
+    rebuildBg();
+  });
+
+  // ── Stage sizing ──
+  function resizeStage() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    var w = Math.round(stageWrap.clientWidth * dpr);
+    if (w <= 0) return;
+    w = Math.min(w, 1600);
+    var parts = aspect.split(':');
+    var h = Math.round(w * parts[1] / parts[0]);
+    if (stage.width !== w || stage.height !== h) {
+      stage.width = w;
+      stage.height = h;
+      rebuildBg();
+    }
+  }
+  function rebuildBg() {
+    if (!stage.width) return;
+    settings.bgCanvas = SnipViz.buildBackground(stage.width, stage.height, settings.palette, settings.coverImg);
+  }
+  window.addEventListener('resize', resizeStage);
+
+  // ── Upload ──
+  dropZone.addEventListener('dragover', function (e) { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', function () { dropZone.classList.remove('dragover'); });
+  dropZone.addEventListener('drop', function (e) {
+    e.preventDefault(); dropZone.classList.remove('dragover');
+    if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', function () {
+    if (fileInput.files.length > 0) handleFile(fileInput.files[0]);
+  });
+  document.addEventListener('snipsound:use-shared-file', function (e) { if (e.detail && e.detail.file) handleFile(e.detail.file, true); });
+
+  newFileBtn.addEventListener('click', function () {
+    if (exporting) return;
+    stopPlayback();
+    cancelAnimationFrame(rafId);
+    studio.classList.remove('active');
+    dropZone.style.display = '';
+    privacyNotice.style.display = '';
+    hideError();
+    fileInput.value = '';
+    audioBuffer = null; analysis = null;
+    resultPreview.classList.remove('active');
+    exportStatus.textContent = '';
+    if (lastBlobUrl) { URL.revokeObjectURL(lastBlobUrl); lastBlobUrl = null; lastBlob = null; }
+  });
+
+  // The rhythm-run link follows the song: a catalog path when the file IS a catalog track, nothing otherwise.
+  function syncRhythmLink(file) {
+    var row = document.getElementById('rrLinkRow'), a = document.getElementById('rrLink');
+    if (!row || !a) return;
+    var d = window.snipDemo, path = null;
+    try { if (d && d.fileName && d.displayName && file && file.name && file.name.indexOf(d.displayName) === 0) path = d.fileName; } catch (e) {}
+    if (path) a.href = '/tools/rhythm-run/?track=' + encodeURIComponent(path);
+    row.hidden = !path;
+  }
+
+  async function handleFile(file, fromHandoff) {
+    hideError();
+    vizMark('load');
+    syncRhythmLink(file);
+    // Don't re-write the shared record we were just handed — that copy is identical
+    // and the write costs a full file round-trip on arrival.
+    if (window.snipSharedAudio && !fromHandoff) window.snipSharedAudio.save(file);
+    var validExts = ['mp3', 'wav', 'ogg', 'flac', 'aac', 'm4a'];
+    var ext = (file.name.split('.').pop() || '').toLowerCase();
+    if (validExts.indexOf(ext) < 0 && !(file.type || '').startsWith('audio/')) {
+      showError('Unsupported file format. Please upload an MP3, WAV, OGG, FLAC, AAC, or M4A file.');
+      return;
+    }
+
+    stopPlayback();
+    dropZone.style.display = 'none';
+    studio.classList.remove('active');
+    analyzing.classList.add('active');
+    analyzingLabel.textContent = 'Reading your song…';
+    analyzingFill.style.width = '0%';
+
+    tracker = window.snipTrackTool && window.snipTrackTool('music-visualizer', {
+      input_size_kb: Math.round(file.size / 1024),
+      input_type: file.type || 'unknown'
+    });
+
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      var arrayBuffer = await file.arrayBuffer();
+      vizMark('decode');
+      audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+      srcBuffer = audioBuffer;
+      // A tool that sent us here (e.g. Slowed + Reverb) hands the ORIGINAL audio
+      // plus its settings — we bake them here, so nothing is pre-rendered upstream.
+      afxPending = false;   // the effect applies live at playback — nothing to render
+      afxSync();
+      afxBuildChips();
+
+      vizMark('analyze');
+      analyzingLabel.textContent = 'Analyzing beats & frequencies…';
+      analysis = await SnipViz.analyze(audioBuffer, function (p) {
+        analyzingFill.style.width = Math.round(p * 100) + '%';
+      });
+
+      fileBase = (file.name || 'song').replace(/\.[^.]+$/, '');
+      songName.textContent = file.name;
+      // Title/artist text is OFF by default — no text is drawn on the video
+      // unless the user explicitly types it into the fields below.
+
+      analyzing.classList.remove('active');
+      privacyNotice.style.display = 'none';
+      studio.classList.add('active');
+      startOffset = 0;
+      isPlaying = false;
+      updatePlayUI();
+      resizeStage();
+      if (renderer) renderer.resetMotion();
+      else renderer = SnipViz.createRenderer(stage);
+      vizMark('preview');
+      startLoop();
+      // Auto-play as soon as the visual is ready. After a file the person picked here, the page has
+      // their activation and the context resumes. After a hand-off from another tool it may NOT -
+      // and play() now really does leave the big play button showing in that case, rather than
+      // claiming to play in silence (see play()).
+      play();
+    } catch (err) {
+      console.error('Load failed', err);
+      analyzing.classList.remove('active');
+      dropZone.style.display = '';
+      showError('Could not read that audio file. Try a different file or format.');
+      // The sentence above is the remedy, so the row says so (Marc's explained metric, posthog R-f14652: this was the one
+      // row of mine still false on the new build).
+      if (tracker) tracker.failed('decode_error', { message: String(err && err.message || err), explained: true, msg_key: 'decode_try_other' });
+    }
+  }
+
+  // ── Audio effects (shared SnipFX registry) ───────────────────────────────
+  // Effects are BAKED into the buffer the tool plays and exports, because the
+  // beat/frequency analysis has to match what you hear (a slowed track's beats
+  // land in different places). Bake from srcBuffer every time, never from the
+  // already-effected buffer — effects must not stack.
+  var afxPending = false;
+  var afxBaked = null, afxBakedFor = null, afxAnalysis = null;   // export-time bake, cached per effect
+  function afxPreset(k) { return (window.SnipFX && SnipFX.PRESETS && SnipFX.PRESETS[k]) || null; }
+  function afxLabel() {
+    if (afxKey === 'custom') return afxCustom && afxCustom.__label ? afxCustom.__label : 'your settings';
+    var p = afxPreset(afxKey);
+    return p ? p.label : 'Off';
+  }
+  function bufPeak(b) {
+    var pk = 0;
+    for (var c = 0; c < b.numberOfChannels; c++) {
+      var d = b.getChannelData(c);
+      for (var i = 0; i < d.length; i += 997) { var x = Math.abs(d[i]); if (x > pk) pk = x; }
+    }
+    return pk;
+  }
+  function afxWav(buf) {
+    var nCh = Math.min(2, buf.numberOfChannels) || 1, sr = buf.sampleRate, n = buf.length;
+    var bytes = 44 + n * nCh * 2, ab = new ArrayBuffer(bytes), v = new DataView(ab);
+    function s(o, str) { for (var i = 0; i < str.length; i++) v.setUint8(o + i, str.charCodeAt(i)); }
+    s(0, 'RIFF'); v.setUint32(4, bytes - 8, true); s(8, 'WAVE'); s(12, 'fmt ');
+    v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, nCh, true);
+    v.setUint32(24, sr, true); v.setUint32(28, sr * nCh * 2, true); v.setUint16(32, nCh * 2, true); v.setUint16(34, 16, true);
+    s(36, 'data'); v.setUint32(40, n * nCh * 2, true);
+    var o = 44;
+    for (var i = 0; i < n; i++) for (var c = 0; c < nCh; c++) {
+      var x = Math.max(-1, Math.min(1, buf.getChannelData(Math.min(c, buf.numberOfChannels - 1))[i]));
+      v.setInt16(o, x < 0 ? x * 0x8000 : x * 0x7FFF, true); o += 2;
+    }
+    return new Blob([ab], { type: 'audio/wav' });
+  }
+  async function afxBake(buf) {
+    if (afxKey === 'normal') return buf;
+    if (!window.SnipFX) return buf;
+    var fx = afxKey === 'custom' ? afxCustom : afxPreset(afxKey);
+    if (!fx) return buf;
+    var rate = fx.rate || 1;
+    var tail = afxKey === 'custom' ? (fx.reverb ? (fx.reverbTail || 2.8) : 0) : (fx.tailSec || 0);
+    var len = Math.ceil((buf.duration / rate + tail) * buf.sampleRate);
+    var off = new OfflineAudioContext(2, Math.max(1, len), buf.sampleRate);
+    var src = off.createBufferSource(); src.buffer = buf;
+    var starts = [];
+    if (afxKey === 'custom') { src.playbackRate.value = rate; SnipFX.buildChain(off, src, fx, starts); }
+    else SnipFX.connectPreset(off, src, afxKey, starts);
+    src.start(0);
+    for (var i = 0; i < starts.length; i++) { try { starts[i].start(0); } catch (e) {} }
+    var out = await off.startRendering();
+    // Brave's fingerprint farbling can hand back a rendered buffer that reads as
+    // silence. A WAV round-trip through decodeAudioData returns real samples
+    // (field-verified on the soundboard) — only pay for it when it's needed.
+    if (bufPeak(out) < 0.0008 && bufPeak(buf) > 0.0008) {
+      out = await audioCtx.decodeAudioData(await afxWav(out).arrayBuffer());
+    }
+    return out;
+  }
+  function afxSync() {
+    var cur = document.getElementById('afxCurrent');
+    if (cur) cur.textContent = (afxKey === 'normal') ? 'Off \u00b7 original audio' : afxLabel();
+    var chips = document.querySelectorAll('.afx-chip');
+    for (var i = 0; i < chips.length; i++) chips[i].classList.toggle('active', chips[i].dataset.fx === afxKey);
+  }
+  function afxRate() {
+    if (afxKey === 'custom') return (afxCustom && afxCustom.rate) || 1;
+    var p = afxPreset(afxKey);
+    return (p && p.rate) || 1;
+  }
+  // Route the playing source through the active effect. Returns oscillators the
+  // caller must start alongside the source (offline-safe contract, same as export).
+  function afxConnect(ctx, src) {
+    var starts = [];
+    if (!window.SnipFX || (afxKey === 'normal')) { src.connect(ctx.destination); return starts; }
+    if (afxKey === 'custom') {
+      if (!afxCustom) { src.connect(ctx.destination); return starts; }   // never hand null to buildChain
+      src.playbackRate.value = afxRate(); SnipFX.buildChain(ctx, src, afxCustom, starts);
+    }
+    else SnipFX.connectPreset(ctx, src, afxKey, starts);
+    return starts;
+  }
+  // Switching effects is INSTANT: the chain is rebuilt live and the visuals keep
+  // reading the same analysis in song time, so nothing has to be re-computed. The
+  // effect is baked into the audio once, at export.
+  var afxTries = 0, afxTriedOnce = false;   // how many effects were auditioned; see afxApply
+  function afxApply(key) {
+    if (!srcBuffer || key === afxKey) return;
+    var status = document.getElementById('afxStatus');
+    var wasPlaying = isPlaying;
+    var at = curTime();
+    stopPlayback();
+    afxKey = key;
+    // Keep the handed-over settings: the 'Your settings' chip stays on screen, so
+    // wiping them made clicking it again pass null into buildChain -> 'reading bass'
+    // (posthog R-7fb90c, second signature).
+    afxBaked = null; afxBakedFor = null;      // export cache is stale now
+    afxSync();
+    startOffset = Math.max(0, Math.min(audioBuffer ? audioBuffer.duration : 0, at));
+    if (status) status.textContent = (afxKey === 'normal')
+      ? 'Back to the original audio.'
+      : afxLabel() + ' is on \u2014 the preview and the exported video both use it.';
+    updatePlayUI();
+    if (wasPlaying) play();
+    // ONE event per page, not one per click (posthog R-26a7a9). Sixteen chips invite auditioning,
+    // so a curious visitor used to send 32-36 of these in a session - 300+ a day from ten people,
+    // against a tier we are already over. Measured, it was never a stuck loop: one emit per genuine
+    // change, none during playback. The volume was real people trying all sixteen.
+    // What the flicking-through does not tell us is which effect they KEPT, which is the question
+    // worth answering, so that rides tool_completed below at zero event cost. This first-audition
+    // event survives only so non-exporters still prove "people do try the effects".
+    afxTries++;
+    if (!afxTriedOnce) {
+      afxTriedOnce = true;
+      try { if (window.posthog) window.posthog.capture('viz_audio_fx', { fx: key, first: true }); } catch (e) {}
+    }
+  }
+  function afxBuildChips() {
+    var wrap = document.getElementById('afxChips');
+    if (!wrap || !window.SnipFX || !SnipFX.PRESET_ORDER) return;
+    wrap.innerHTML = '';
+    var keys = SnipFX.PRESET_ORDER.slice();
+    if (afxCustom) keys.unshift('custom');
+    keys.forEach(function (k) {
+      var p = k === 'custom' ? { label: afxCustom.__label || 'Your settings', emoji: '\u2728' } : SnipFX.PRESETS[k];
+      if (!p) return;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'afx-chip'; b.dataset.fx = k;
+      b.textContent = (k === 'normal' ? '' : (p.emoji || '') + ' ') + (k === 'normal' ? 'Off' : p.label);
+      b.addEventListener('click', function () { afxApply(k); });
+      wrap.appendChild(b);
+    });
+    afxSync();
+  }
+  // Arriving from another tool: ?fx=<preset> or exact params (?rate=&reverb=&…).
+  (function afxReadUrl() {
+    try {
+      var q = new URLSearchParams(location.search);
+      var key = q.get('fx');
+      if (window.SnipFX && SnipFX.fxFromQuery) {
+        var parsed = SnipFX.fxFromQuery(location.search);
+        if (parsed && parsed.fx && Object.keys(parsed.fx).length && (!key || !afxPreset(key))) {
+          afxCustom = parsed.fx;
+          afxCustom.__label = q.get('fxlabel') || 'Your settings';
+          afxKey = 'custom';
+          afxPending = true;
+          return;
+        }
+      }
+      if (key && afxPreset(key) && key !== 'normal') { afxKey = key; afxPending = true; }
+    } catch (e) {}
+  })();
+  afxBuildChips();
+  // A handoff is in flight (we arrived carrying another tool's settings): the file
+  // is coming from the shared-audio store, so the "drop a file" chooser must never
+  // appear (Marc). Show the progress panel immediately instead — and restore the
+  // chooser only if the file never arrives.
+  if (afxPending) {
+    dropZone.style.display = 'none';
+    if (privacyNotice) privacyNotice.style.display = 'none';
+    analyzing.classList.add('active');
+    analyzingLabel.textContent = 'Bringing your track over…';
+    analyzingFill.style.width = '8%';
+    var afxArrival = setTimeout(function () {
+      if (!srcBuffer) {
+        analyzing.classList.remove('active');
+        dropZone.style.display = '';
+        if (privacyNotice) privacyNotice.style.display = '';
+        afxPending = false;
+      }
+    }, 12000);
+    document.addEventListener('snipsound:use-shared-file', function () { clearTimeout(afxArrival); }, { once: true });
+  }
+
+  // ── Split view + docked mini-preview ───────────────────────────────────
+  // Wide screens get the split layout (video parked on the right, always visible).
+  // Narrow screens keep the single column, where the picture docks to the corner
+  // — but ONLY once its top edge slides under the header, i.e. when the video is
+  // actually being cut off by scrolling (Marc). Sitting below the fold at the top
+  // of the page is not a reason to dock.
+  (function stageLayout() {
+    var inner = document.getElementById('stageInner');
+    var expand = document.getElementById('stageExpand');
+    var splitter = document.getElementById('vizSplitter');
+    if (!inner) return;
+    var wide = window.matchMedia('(min-width: 1080px)');
+    var SPLIT_KEY = 'snip-viz-split';
+
+    function applySplit() {
+      var on = wide.matches;
+      studio.classList.toggle('split', on);
+      if (on) inner.classList.remove('docked');
+    }
+    try {
+      var saved = parseFloat(localStorage.getItem(SPLIT_KEY));
+      if (saved >= 26 && saved <= 64) studio.style.setProperty('--viz-right', saved + '%');
+    } catch (e) {}
+    applySplit();
+    if (wide.addEventListener) wide.addEventListener('change', applySplit);
+    else if (wide.addListener) wide.addListener(applySplit);
+
+    // Drag the divider to resize the video.
+    if (splitter) {
+      var dragging = false;
+      splitter.addEventListener('pointerdown', function (e) {
+        dragging = true;
+        splitter.classList.add('dragging');
+        studio.classList.add('resizing');
+        try { splitter.setPointerCapture(e.pointerId); } catch (_) {}
+        e.preventDefault();
+      });
+      splitter.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var r = studio.getBoundingClientRect();
+        var pct = ((r.right - e.clientX) / r.width) * 100;
+        pct = Math.max(26, Math.min(64, pct));
+        studio.style.setProperty('--viz-right', pct.toFixed(1) + '%');
+      });
+      function endDrag() {
+        if (!dragging) return;
+        dragging = false;
+        splitter.classList.remove('dragging');
+        studio.classList.remove('resizing');
+        resizeStage();
+        try { localStorage.setItem(SPLIT_KEY, parseFloat(studio.style.getPropertyValue('--viz-right')) || 44); } catch (_) {}
+      }
+      splitter.addEventListener('pointerup', endDrag);
+      splitter.addEventListener('pointercancel', endDrag);
+      splitter.addEventListener('lostpointercapture', endDrag);
+      // Keyboard: the divider is a real control, so let arrows move it.
+      splitter.addEventListener('keydown', function (e) {
+        var cur = parseFloat(studio.style.getPropertyValue('--viz-right')) || 44;
+        if (e.key === 'ArrowLeft') cur += 2; else if (e.key === 'ArrowRight') cur -= 2; else return;
+        e.preventDefault();
+        cur = Math.max(26, Math.min(64, cur));
+        studio.style.setProperty('--viz-right', cur + '%');
+        resizeStage();
+        try { localStorage.setItem(SPLIT_KEY, cur); } catch (_) {}
+      });
+    }
+
+    // Single-column docking, driven by the stage's own top edge.
+    var docked = false, ticking = false;
+    function evaluate() {
+      ticking = false;
+      if (wide.matches || !studio.classList.contains('active') || exporting) {
+        if (docked) { docked = false; inner.classList.remove('docked'); }
+        return;
+      }
+      var top = stageWrap.getBoundingClientRect().top;
+      // Hysteresis around the sticky header so the boundary can't flutter.
+      if (!docked && top < 46) { docked = true; inner.classList.add('docked'); }
+      else if (docked && top > 74) { docked = false; inner.classList.remove('docked'); }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(evaluate); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+
+    if (expand) expand.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      try { stageWrap.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+      catch (e) { stageWrap.scrollIntoView(); }
+    });
+  })();
+
+  // ── Playback ──
+  function curTime() {
+    if (!audioBuffer) return 0;
+    if (!isPlaying) return startOffset;
+    // playbackRate changes how fast SONG time advances per second of real time.
+    return Math.min(audioBuffer.duration, (audioCtx.currentTime - startCtxTime) * afxRate() + startOffset);
+  }
+  // VIZ PLAYED - this tool's row-2 north star (registry, design R-bc2a80): the visual DRAWN while
+  // the song plays, per session that loaded one. The only success signal before this was
+  // tool_completed on EXPORT, so a person who loaded a song, watched it and left read as a failure
+  // - the same shape as beat-generator, where 171 of 172 used the tool and never downloaded.
+  // It needs BOTH halves, measured, not inferred from a call:
+  //   - SOUND: the audio clock has advanced 1.5 s past the start with the context running. play()
+  //     calls resume() without waiting, so a start against a suspended context is silence with no
+  //     error, and must not count.
+  //   - PICTURE: at least 20 frames rendered while playing, so a stalled or blank canvas with
+  //     audio underneath does not count as "it drew the track".
+  // Once per session; failures and exports keep their own events.
+  var vizPlayFrames = 0, vizPlayedSent = false, vizPlayTimer = null;
+  function armVizPlayed() {
+    if (vizPlayedSent || !audioCtx) return;
+    var t0 = audioCtx.currentTime, f0 = vizPlayFrames;
+    if (vizPlayTimer) clearTimeout(vizPlayTimer);
+    vizPlayTimer = setTimeout(function check() {
+      vizPlayTimer = null;
+      if (vizPlayedSent || !isPlaying || !audioCtx) return;
+      var heard = audioCtx.state === 'running' && audioCtx.currentTime - t0 >= 1.5;
+      var drawn = vizPlayFrames - f0 >= 20;
+      if (!heard || !drawn) {
+        if (audioCtx.currentTime - t0 < 30) vizPlayTimer = setTimeout(check, 500);
+        return;
+      }
+      vizPlayedSent = true;
+      try {
+        if (window.snipsoundTrack) window.snipsoundTrack('viz_played', {
+          tool: 'music-visualizer',
+          preset: (settings && settings.preset) || null,
+          afx: (typeof afxKey !== 'undefined' && afxKey) ? String(afxKey).slice(0, 24) : null,
+          frames: vizPlayFrames - f0
+        });
+      } catch (e) {}
+    }, 1600);
+  }
+
+  function play() {
+    if (!audioBuffer || isPlaying || exporting) return;
+    // NOTHING IS MARKED PLAYING UNTIL THE CLOCK RUNS. This used to call resume() and carry on, so
+    // when the browser refused to resume - a load with no click on THIS page, e.g. a hand-off from
+    // Slowed + Reverb - the source started against a suspended context: the page showed itself as
+    // playing, the visual drew, the song was silent, and the big play button was hidden because
+    // isPlaying was true. The user's next click on the small button then STOPPED it. Measured in a
+    // real Chrome: context 'suspended' at t=0.00 after load while the overlay read "playing".
+    // The comment on the auto-play below said play() "no-ops" when blocked; it did not. Now it
+    // does: if the context will not run, the UI stays at "press play", and the press - a real
+    // gesture - resumes it.
+    if (audioCtx.state !== 'running') {
+      var pr = null;
+      try { pr = audioCtx.resume(); } catch (e) {}
+      if (pr && typeof pr.then === 'function') {
+        pr.then(function () {
+          if (audioCtx.state === 'running') play(); else updatePlayUI();
+        }, function () { updatePlayUI(); });
+      } else {
+        updatePlayUI();
+      }
+      return;
+    }
+    if (startOffset >= audioBuffer.duration - 0.05) startOffset = 0;
+    srcNode = audioCtx.createBufferSource();
+    srcNode.buffer = audioBuffer;
+    var fxStarts = afxConnect(audioCtx, srcNode);   // live chain — switching is instant
+    srcNode.start(0, startOffset);
+    for (var fi = 0; fi < fxStarts.length; fi++) { try { fxStarts[fi].start(0); } catch (e) {} }
+    startCtxTime = audioCtx.currentTime;
+    isPlaying = true;
+    armVizPlayed();
+    srcNode.onended = function () {
+      if (!isPlaying) return;
+      startOffset = curTime();
+      isPlaying = false;
+      updatePlayUI();
+    };
+    updatePlayUI();
+  }
+  function stopPlayback() {
+    if (srcNode) {
+      var n = srcNode;
+      srcNode = null;
+      n.onended = null;
+      try { n.stop(); } catch (e) {}
+    }
+    if (isPlaying) startOffset = curTime();
+    isPlaying = false;
+    updatePlayUI();
+  }
+  function seekTo(t) {
+    var wasPlaying = isPlaying;
+    if (isPlaying) {
+      isPlaying = false;
+      if (srcNode) { srcNode.onended = null; try { srcNode.stop(); } catch (e) {} srcNode = null; }
+    }
+    startOffset = Math.max(0, Math.min(audioBuffer ? audioBuffer.duration : 0, t));
+    if (wasPlaying) play();
+  }
+  function updatePlayUI() {
+    playIcon.style.display = isPlaying ? 'none' : '';
+    pauseIcon.style.display = isPlaying ? '' : 'none';
+    stageOverlay.classList.toggle('visible', !isPlaying && !exporting);
+  }
+  playBtn.addEventListener('click', function () { isPlaying ? stopPlayback() : play(); });
+  bigPlayBtn.addEventListener('click', function () { play(); });
+  stageOverlay.addEventListener('click', function (e) { if (e.target === stageOverlay) play(); });
+  stage.addEventListener('click', function () { if (isPlaying) stopPlayback(); });
+
+  seek.addEventListener('input', function () {
+    seekDragging = true;
+    if (audioBuffer) {
+      var t = (seek.value / 1000) * audioBuffer.duration;
+      timeDisplay.textContent = formatDuration(t) + ' / ' + formatDuration(audioBuffer.duration);
+    }
+  });
+  seek.addEventListener('change', function () {
+    seekDragging = false;
+    if (audioBuffer) seekTo((seek.value / 1000) * audioBuffer.duration);
+  });
+
+  // ── Preview loop ──
+  var lastUiUpdate = 0;
+  function startLoop() {
+    cancelAnimationFrame(rafId);
+    lastRaf = 0;
+    function frame(ts) {
+      rafId = requestAnimationFrame(frame);
+      if (!analysis || exporting) return;
+      var dt = lastRaf ? (ts - lastRaf) / 1000 : 1 / 60;
+      lastRaf = ts;
+      var t = curTime();
+      renderer.render(analysis, t, settings, dt);
+      if (isPlaying) vizPlayFrames++;              // the PICTURE half of viz_played
+      if (ts - lastUiUpdate > 230) {
+        lastUiUpdate = ts;
+        if (!seekDragging) {
+          seek.value = Math.round((t / audioBuffer.duration) * 1000);
+          timeDisplay.textContent = formatDuration(t) + ' / ' + formatDuration(audioBuffer.duration);
+        }
+        if (settings.cycle.enabled && settings.cycle.presets.length) {
+          var cur = SnipViz.activePresetAt(settings, t);
+          cycleHint.innerHTML = 'Now showing <b>' + (PRESET_NAMES[cur] || cur) + '</b> &middot; ' +
+            settings.cycle.presets.length + ' effect' + (settings.cycle.presets.length > 1 ? 's' : '') +
+            ', ' + settings.cycle.seconds + 's each.';
+        }
+      }
+    }
+    rafId = requestAnimationFrame(frame);
+  }
+
+  // ── Export ──
+  function setExportProgress(p) {
+    exportStatus.textContent = p.phase + (typeof p.percent === 'number' ? ' · ' + Math.round(p.percent) + '%' : '');
+    exportProgress.classList.add('visible');
+    exportFill.style.width = Math.round(p.percent || 0) + '%';
+  }
+
+  exportBtn.addEventListener('click', async function () {
+    if (!analysis || !audioBuffer || exporting) return;
+    vizMark('export');
+    exporting = true;
+    stopPlayback();
+    exportBtn.disabled = true;
+    cancelBtn.classList.add('visible');
+    resultPreview.classList.remove('active');
+    if (lastBlobUrl) { URL.revokeObjectURL(lastBlobUrl); lastBlobUrl = null; lastBlob = null; }
+    abortCtl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    if (window.snipNotify && window.snipNotify.prime) window.snipNotify.prime();
+
+    var dims = RES[aspect][resSelect.value];
+    var fps = parseInt(fpsSelect.value, 10) || 30;
+    var useWebCodecs = window.SnipVizExport.supported();
+    var t0 = performance.now();
+
+    var exTracker = window.snipTrackTool && window.snipTrackTool('music-visualizer-export', {
+      preset: settings.preset, palette: settings.palette.id, aspect: aspect,
+      resolution: resSelect.value, fps: fps,
+      duration_sec: Math.round(audioBuffer.duration),
+      engine: useWebCodecs ? 'webcodecs' : 'mediarecorder'
+    });
+
+    // Render the background at export resolution; restored for the preview after.
+    var exportSettings = {};
+    for (var k in settings) exportSettings[k] = settings[k];
+    exportSettings.bgCanvas = SnipViz.buildBackground(dims[0], dims[1], settings.palette, settings.coverImg);
+
+    // The preview applies effects live; the FILE needs them baked in. Do it once
+    // here (cached per effect) and re-read the beat map from the baked audio so the
+    // exported frames stay exactly in step with it.
+    var exportBuffer = audioBuffer, exportAnalysis = analysis;
+    if (window.SnipFX && (afxKey !== 'normal')) {
+      try {
+        if (afxBaked && afxBakedFor === afxKey) { exportBuffer = afxBaked; exportAnalysis = afxAnalysis; }
+        else {
+          exportStatus.textContent = 'Baking ' + afxLabel() + ' into the audio\u2026';
+          exportBuffer = await afxBake(srcBuffer);
+          exportStatus.textContent = 'Re-reading beats for the effected track\u2026';
+          exportAnalysis = await SnipViz.analyze(exportBuffer, function () {});
+          afxBaked = exportBuffer; afxBakedFor = afxKey; afxAnalysis = exportAnalysis;
+        }
+      } catch (e) {
+        console.error('export fx bake failed', e);
+        exportStatus.textContent = 'Could not bake the audio effect \u2014 exporting the original audio.';
+        exportBuffer = audioBuffer; exportAnalysis = analysis;
+      }
+    }
+
+    var opts = {
+      analysis: exportAnalysis,
+      settings: exportSettings,
+      audioBuffer: exportBuffer,
+      width: dims[0],
+      height: dims[1],
+      fps: fps,
+      onProgress: setExportProgress,
+      signal: abortCtl && abortCtl.signal,
+      failMsgKey: 'viz_export_retry'   // the sentence below; snipEncode's own rows then read explained true
+    };
+
+    try {
+      if (!useWebCodecs) {
+        exportStatus.textContent = 'Fast export not supported in this browser — recording in real time. Keep this tab visible.';
+      }
+      var result = useWebCodecs
+        ? await window.SnipVizExport.exportMP4(opts)
+        : await window.SnipVizExport.exportRealtime(opts);
+
+      lastBlob = result.blob;
+      lastExt = result.ext;
+      lastExportMeta = { w: dims[0], h: dims[1], durMs: Math.round(audioBuffer.duration * 1000), aspect: aspect };
+      lastBlobUrl = URL.createObjectURL(result.blob);
+      resultVideo.src = lastBlobUrl;
+      resultPreview.classList.add('active');
+      resultSize.textContent = formatBytes(result.blob.size) + ' · ' + result.ext.toUpperCase();
+      exportStatus.textContent = 'Done — ' + formatBytes(result.blob.size);
+      exportProgress.classList.remove('visible');
+      if (window.snipShowSuccess) window.snipShowSuccess('Video ready!', { sub: formatBytes(result.blob.size) });
+      if (document.hidden && window.snipNotify && window.snipNotify.notifyReady) {
+        window.snipNotify.notifyReady({ sub: 'Your visualizer video is ready' });
+      }
+      if (exTracker) exTracker.completed({ export_ms: Math.round(performance.now() - t0), size_kb: Math.round(result.blob.size / 1024),
+        audio_fx: afxKey, fx_auditioned: afxTries });
+      if (tracker) { tracker.completed({ preset: settings.preset, exported: true, audio_fx: afxKey, fx_auditioned: afxTries }); tracker = null; }
+      try { resultPreview.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
+    } catch (err) {
+      if (err && err.name === 'AbortError') {
+        exportStatus.textContent = 'Export cancelled.';
+      } else {
+        console.error('Export failed', err);
+        // A sentence the person can act on, not the raw error (Marc's explained metric, posthog R-f14652 / R-bdae91).
+        exportStatus.textContent = 'The video could not be made in this browser. Try again at 720p, or in Chrome or Edge on a computer.';
+        if (exTracker) exTracker.failed('export_error', { message: String(err && err.message || err), explained: true, msg_key: 'viz_export_retry' });
+      }
+      exportProgress.classList.remove('visible');
+    } finally {
+      exporting = false;
+      exportBtn.disabled = false;
+      cancelBtn.classList.remove('visible');
+      abortCtl = null;
+      updatePlayUI();
+    }
+  });
+
+  cancelBtn.addEventListener('click', function () { if (abortCtl) abortCtl.abort(); });
+
+  downloadBtn.addEventListener('click', function () {
+    if (!lastBlob) return;
+    var name = fileBase + '-visualizer.' + lastExt;
+    if (window.snipNotify && window.snipNotify.download) {
+      window.snipNotify.download(lastBlob, name);
+    } else {
+      var a = document.createElement('a');
+      a.href = lastBlobUrl;
+      a.download = name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    }
+  });
+
+  // ── Send the finished clip to the Snip Studio video editor ──
+  // We hand off by writing a complete editor project straight into the editor's
+  // own IndexedDB (reusing its store + model modules), then marking it as the
+  // last-opened project and navigating. Snip Studio's boot() restores that
+  // project, so it opens with this clip already on the timeline — your files stay on your device,
+  // no change to the editor required. Existing projects are untouched (this
+  // creates a NEW one, reachable from the editor's Projects list).
+  studioBtn.addEventListener('click', async function () {
+    if (!lastBlob || !lastExportMeta) return;
+    vizMark('editor_handoff');
+    var origLabel = studioBtn.innerHTML;
+    studioBtn.disabled = true;
+    studioBtn.innerHTML = 'Opening video editor…';
+    studioNote.textContent = 'Saving your clip to the editor…';
+    try {
+      var storeMod = await import('/video-editor/store.js?v=2');
+      var model = await import('/video-editor/model.js?v=2');
+
+      var srcRef = model.uid('blob');
+      await storeMod.putAsset(srcRef, lastBlob);
+
+      var asp = model.ASPECTS[lastExportMeta.aspect] ? lastExportMeta.aspect : '16:9';
+      var doc = model.createProject(asp);
+      doc.name = (fileBase ? fileBase + ' — ' : '') + 'Visualizer';
+      var asset = model.createMediaAsset({
+        kind: 'video',
+        name: fileBase + '-visualizer.' + lastExt,
+        srcRef: srcRef,
+        naturalW: lastExportMeta.w,
+        naturalH: lastExportMeta.h,
+        durationMs: lastExportMeta.durMs,
+        hasAudio: true,
+        source: 'upload'
+      });
+      doc.media[asset.id] = asset;
+      var clip = model.createClip({
+        mediaId: asset.id, kind: 'video',
+        startMs: 0, durationMs: lastExportMeta.durMs, inMs: 0, outMs: lastExportMeta.durMs
+      });
+      doc.tracks[0].clips.push(clip);
+      doc.updatedAt = Date.now();
+
+      await storeMod.saveProject(doc);
+      storeMod.rememberLastProject(doc.id);
+
+      var st = window.snipTrackTool && window.snipTrackTool('music-visualizer-to-studio', { duration_sec: Math.round(lastExportMeta.durMs / 1000) });
+      if (st) st.completed({});
+
+      window.location.href = '/video-editor';
+    } catch (err) {
+      console.error('Send to Studio failed', err);
+      studioBtn.disabled = false;
+      studioBtn.innerHTML = origLabel;
+      studioNote.textContent = '';
+      showError('Couldn’t open the video editor. You can still download the video and import it manually.');
+    }
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    item.addEventListener('click', function () { item.classList.toggle('open'); });
+  });
+
+  // ── Demo ──
+  if (window.snipDemo) {
+    window.snipDemo.renderButton({
+      target: '#snip-demo-row',
+      label: 'Try with demo audio (Handel – Sarabande)',
+      onClick: function (file) { return handleFile(file); }
+    });
+  }
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51aa3002b698e63',t:'MTc5MzE5NzgwOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

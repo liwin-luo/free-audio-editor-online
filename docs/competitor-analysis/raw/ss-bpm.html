@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free BPM Finder — Detect Tempo of Any Song Online | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<meta name="description" content="Free online BPM finder. Upload any audio file and instantly detect its tempo with visual beat markers. Supports MP3, WAV, OGG, FLAC, AAC, and M4A. No signup required, works entirely in your browser.">
+<meta name="keywords" content="bpm finder, tempo detector, beats per minute, bpm counter, song bpm, find bpm of song, bpm analyzer, music tempo finder, free bpm tool">
+<link rel="canonical" href="https://snipsound.com/tools/bpm-finder/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/bpm-finder/">
+<link rel="alternate" hreflang="es" href="https://snipsound.com/es/detector-de-bpm/">
+<link rel="alternate" hreflang="pt-BR" href="https://snipsound.com/pt/detector-de-bpm/">
+<link rel="alternate" hreflang="it" href="https://snipsound.com/it/rilevatore-bpm/">
+<link rel="alternate" hreflang="fr" href="https://snipsound.com/fr/detecteur-de-bpm/">
+<link rel="alternate" hreflang="de" href="https://snipsound.com/de/bpm-finder/">
+<link rel="alternate" hreflang="ru" href="https://snipsound.com/ru/opredelenie-bpm/">
+<link rel="alternate" hreflang="zh-Hans" href="https://snipsound.com/zh/bpm-jiance/">
+<link rel="alternate" hreflang="hi" href="https://snipsound.com/hi/bpm-finder/">
+<link rel="alternate" hreflang="ar" href="https://snipsound.com/ar/bpm-finder/">
+<link rel="alternate" hreflang="ja" href="https://snipsound.com/ja/bpm-検出/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/bpm-finder/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free BPM Finder — Detect Tempo of Any Song Online | SnipSound">
+<meta property="og:description" content="Upload any audio file and instantly detect its BPM with visual beat markers. Free online tempo detection tool — no signup, your files stay on your device to servers.">
+<meta property="og:url" content="https://snipsound.com/tools/bpm-finder/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free BPM Finder — Detect Tempo of Any Song Online | SnipSound">
+<meta name="twitter:description" content="Upload any audio file and instantly detect its BPM with visual beat markers. Free, private, works in your browser.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+  /* ── Header ── */
+
+  
+  .logo:hover span { color: var(--accent-hover); }
+
+  /* ── Layout ── */
+  /* Wider container so the beat-marked waveform has room; hero stays narrow. */
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 20px 60px; }
+  .hero { max-width: 760px; margin-left: auto; margin-right: auto; }
+
+  /* ── Hero ── */
+  .hero { text-align: center; margin-bottom: 36px; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 12px; }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--accent), #b599ff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; line-height: 1.6; max-width: 640px; margin: 0 auto; }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.7rem; }
+    .hero p { font-size: 14px; }
+  }
+
+  /* ── Drop Zone ── */
+  .drop-zone {
+    border: 2px dashed var(--border-bright); border-radius: 14px;
+    padding: 48px 24px; text-align: center; cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: var(--surface); margin-bottom: 28px; position: relative;
+  }
+  .drop-zone:hover, .drop-zone.dragover { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-zone-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.7; }
+  .drop-zone-label { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+  .drop-zone-hint { color: var(--text-dim); font-size: 13px; }
+  .drop-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+  /* ── Results ── */
+  .results { display: none; margin-bottom: 28px; }
+  .results.active { display: block; }
+
+  /* BPM display */
+  .bpm-display {
+    text-align: center; padding: 32px 20px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center; gap: 24px;
+    flex-wrap: wrap;
+  }
+  .bpm-left { flex: 1; min-width: 200px; }
+  .bpm-label {
+    font-size: 13px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--text-dim); margin-bottom: 8px;
+  }
+  .bpm-value {
+    font-size: 80px; font-weight: 700; color: var(--accent);
+    line-height: 1; letter-spacing: -2px; font-variant-numeric: tabular-nums;
+  }
+  .bpm-value.detecting {
+    font-size: 20px; color: var(--text-dim); letter-spacing: 0;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .bpm-unit { font-size: 18px; font-weight: 500; color: var(--text-dim); margin-left: 4px; }
+  .bpm-genre-hint { font-size: 13px; color: var(--text-dim); margin-top: 8px; }
+
+  /* Visual metronome */
+  .metronome {
+    display: none; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .metronome.active { display: flex; }
+  .metronome-dot {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--accent); opacity: 0.3;
+    transition: opacity 0.08s, transform 0.08s;
+  }
+  .metronome-dot.beat { opacity: 1; transform: scale(1.15); box-shadow: 0 0 24px var(--accent-glow); }
+  .metronome-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── Waveform with beat markers ── */
+  .waveform-wrap {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px; margin-bottom: 16px; overflow: hidden;
+    position: relative;
+  }
+  .waveform-wrap canvas { width: 100%; height: 100px; display: block; border-radius: 6px; }
+
+  /* ── File Info & Playback ── */
+  .file-info-bar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .file-info-details { flex: 1; min-width: 0; }
+  .file-info-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .file-info-meta { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+  .play-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: none;
+    background: var(--accent); color: #fff; font-size: 16px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.2s, box-shadow 0.2s;
+  }
+  .play-btn:hover { background: var(--accent-hover); box-shadow: 0 0 16px var(--accent-glow); }
+  .new-file-btn {
+    background: none; border: 1px solid var(--border-bright); color: var(--text-dim);
+    font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 8px;
+    cursor: pointer; transition: color 0.2s, border-color 0.2s; font-family: inherit;
+  }
+  .new-file-btn:hover { color: var(--text); border-color: var(--text-dim); }
+
+  /* ── BPM Reference Guide ── */
+  .bpm-guide { margin-bottom: 28px; }
+  .bpm-guide h2 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+  .bpm-guide > p { color: var(--text-dim); font-size: 14px; margin-bottom: 20px; }
+  .bpm-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .bpm-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .bpm-card:hover { border-color: var(--border-bright); transform: translateY(-1px); }
+  .bpm-card.playing { border-color: var(--accent); background: var(--accent-subtle); }
+  .bpm-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .bpm-card-tempo { font-size: 28px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .bpm-card-pulse {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--accent); opacity: 0.25;
+    transition: opacity 0.06s, transform 0.06s;
+  }
+  .bpm-card.playing .bpm-card-pulse.beat { opacity: 1; transform: scale(1.4); }
+  .bpm-card-genre { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .bpm-card-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+  .bpm-card-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.1s linear;
+  }
+  .bpm-card-action {
+    margin-top: 10px; font-size: 12px; color: var(--accent); font-weight: 500;
+  }
+  .bpm-card.playing .bpm-card-action { color: var(--text-dim); }
+
+  /* ── Try Samples ── */
+  .try-samples { margin-bottom: 28px; }
+  .try-samples h2 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+  .try-samples > p { color: var(--text-dim); font-size: 14px; margin-bottom: 20px; }
+  .sample-list { display: flex; flex-direction: column; gap: 8px; }
+  .sample-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .sample-item:hover { border-color: var(--border-bright); background: var(--surface2); }
+  .sample-item.loading { opacity: 0.6; pointer-events: none; }
+  .sample-play-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent-subtle); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .sample-info { flex: 1; min-width: 0; }
+  .sample-title { font-size: 14px; font-weight: 500; }
+  .sample-meta { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+  .sample-cta { font-size: 12px; color: var(--accent); font-weight: 500; white-space: nowrap; }
+
+  /* ── CTA ── */
+  .cta-banner {
+    background: linear-gradient(135deg, rgba(124,111,255,0.12) 0%, rgba(124,111,255,0.04) 100%);
+    border: 1px solid rgba(124,111,255,0.2); border-radius: 14px;
+    padding: 28px 24px; text-align: center; margin-bottom: 40px;
+  }
+  .cta-banner h2 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  .cta-banner p { color: var(--text-dim); font-size: 14px; margin-bottom: 16px; }
+  .cta-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent); color: #fff; text-decoration: none;
+    font-size: 14px; font-weight: 600; padding: 10px 22px;
+    border-radius: 8px; transition: background 0.2s, box-shadow 0.2s;
+  }
+  .cta-link:hover { background: var(--accent-hover); box-shadow: 0 0 20px var(--accent-glow); }
+
+  /* ── FAQ ── */
+  .faq { margin-bottom: 40px; }
+  .faq h2 { font-size: 22px; font-weight: 600; margin-bottom: 20px; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+  .faq-item:first-of-type { border-top: 1px solid var(--border); }
+  .faq-q {
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    user-select: none;
+  }
+  .faq-q::after { content: '+'; font-size: 20px; color: var(--text-dim); flex-shrink: 0; transition: transform 0.2s; }
+  .faq-item.open .faq-q::after { content: '\2212'; }
+  .faq-a { color: var(--text-dim); font-size: 14px; line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, margin 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 300px; margin-top: 10px; }
+
+  /* ── Error ── */
+  .error-msg {
+    background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+    color: #f87171; border-radius: 10px; padding: 12px 16px;
+    font-size: 13px; margin-bottom: 16px; display: none;
+  }
+  .error-msg.active { display: block; }
+
+  /* ── Footer ── */
+
+  .footer a:hover { color: var(--text); }
+</style>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free BPM Finder</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/" class="active">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">BPM Finder</span></h1>
+    <p>Upload any audio file to instantly detect its tempo with visual beat markers. All processing happens in your browser — your files never leave your device.</p>
+  </section>
+
+  <div class="error-msg" id="errorMsg"></div>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="dropZone">
+    <input type="file" id="fileInput" accept="audio/mpeg,audio/wav,audio/ogg,audio/flac,audio/aac,audio/mp4,audio/x-m4a,.mp3,.wav,.ogg,.flac,.aac,.m4a" aria-label="Upload audio file">
+    <div class="drop-zone-icon">&#127925;</div>
+    <div class="drop-zone-label">Drop an audio file here or click to browse</div>
+    <div class="drop-zone-hint">Supports MP3, WAV, OGG, FLAC, AAC, M4A</div>
+  </div>
+
+  <style>
+    .privacy-notice { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px auto 24px; padding: 10px 14px; color: var(--text-dim); font-size: 0.85rem; line-height: 1.4; max-width: 720px; text-align: center; }
+    .privacy-notice svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--green); }
+    .privacy-notice strong { color: var(--text); font-weight: 600; }
+    .privacy-notice a { color: var(--accent); text-decoration: none; }
+    .privacy-notice a:hover { text-decoration: underline; }
+  </style>
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your file never leaves your device.</strong> All processing happens in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <!-- Results -->
+  <section class="results" id="results">
+    <div class="bpm-display" id="bpmDisplay">
+      <div class="bpm-left">
+        <div class="bpm-label">Detected BPM</div>
+        <div class="bpm-value detecting" id="bpmValue">Analyzing...</div>
+        <div class="bpm-genre-hint" id="bpmGenreHint"></div>
+      </div>
+      <div class="metronome" id="metronome">
+        <div class="metronome-dot" id="metronomeDot"></div>
+        <div class="metronome-label">Visual pulse</div>
+      </div>
+    </div>
+
+    <div class="waveform-wrap">
+      <canvas id="waveformCanvas"></canvas>
+    </div>
+
+    <div class="file-info-bar">
+      <button class="play-btn" id="playBtn" aria-label="Play or pause audio">
+        <svg id="playIcon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><polygon points="4,2 14,8 4,14"/></svg>
+        <svg id="pauseIcon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display:none"><rect x="3" y="2" width="4" height="12"/><rect x="9" y="2" width="4" height="12"/></svg>
+      </button>
+      <div class="file-info-details">
+        <div class="file-info-name" id="fileName">&mdash;</div>
+        <div class="file-info-meta" id="fileMeta">&mdash;</div>
+      </div>
+      <button class="new-file-btn" id="newFileBtn">New file</button>
+    </div>
+  </section>
+
+  <!-- BPM Reference Guide -->
+  <section class="bpm-guide">
+    <h2>What Does Each BPM Feel Like?</h2>
+    <p>Click any tempo to see and feel the pulse. This helps you understand what BPM means visually.</p>
+    <div class="bpm-cards" id="bpmCards">
+      <div class="bpm-card" data-bpm="60">
+        <div class="bpm-card-top">
+          <div class="bpm-card-tempo">60</div>
+          <div class="bpm-card-pulse"></div>
+        </div>
+        <div class="bpm-card-genre">Slow &amp; Calm</div>
+        <div class="bpm-card-desc">Ballads, ambient, meditation music. One beat per second.</div>
+        <div class="bpm-card-bar"></div>
+        <div class="bpm-card-action">Click to feel it</div>
+      </div>
+      <div class="bpm-card" data-bpm="90">
+        <div class="bpm-card-top">
+          <div class="bpm-card-tempo">90</div>
+          <div class="bpm-card-pulse"></div>
+        </div>
+        <div class="bpm-card-genre">Hip-Hop &amp; R&amp;B</div>
+        <div class="bpm-card-desc">Laid-back grooves, lo-fi beats, acoustic songs.</div>
+        <div class="bpm-card-bar"></div>
+        <div class="bpm-card-action">Click to feel it</div>
+      </div>
+      <div class="bpm-card" data-bpm="120">
+        <div class="bpm-card-top">
+          <div class="bpm-card-tempo">120</div>
+          <div class="bpm-card-pulse"></div>
+        </div>
+        <div class="bpm-card-genre">Pop &amp; House</div>
+        <div class="bpm-card-desc">Most pop music lives here. Two beats per second. Energetic but comfortable.</div>
+        <div class="bpm-card-bar"></div>
+        <div class="bpm-card-action">Click to feel it</div>
+      </div>
+      <div class="bpm-card" data-bpm="140">
+        <div class="bpm-card-top">
+          <div class="bpm-card-tempo">140</div>
+          <div class="bpm-card-pulse"></div>
+        </div>
+        <div class="bpm-card-genre">EDM &amp; Dubstep</div>
+        <div class="bpm-card-desc">High-energy dance music, workout tracks, festival anthems.</div>
+        <div class="bpm-card-bar"></div>
+        <div class="bpm-card-action">Click to feel it</div>
+      </div>
+      <div class="bpm-card" data-bpm="170">
+        <div class="bpm-card-top">
+          <div class="bpm-card-tempo">170</div>
+          <div class="bpm-card-pulse"></div>
+        </div>
+        <div class="bpm-card-genre">Drum &amp; Bass</div>
+        <div class="bpm-card-desc">Fast-paced, intense energy. Nearly three beats per second.</div>
+        <div class="bpm-card-bar"></div>
+        <div class="bpm-card-action">Click to feel it</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Try with sample tracks -->
+  <section class="try-samples" id="trySamples">
+    <h2>Try With a Sample Track</h2>
+    <p>Don't have a file handy? Analyze one of these tracks from our free music library.</p>
+    <div class="sample-list" id="sampleList"></div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <h2>Need royalty-free music?</h2>
+    <p>Browse our curated playlist of free tracks for Instagram Reels, TikTok, and YouTube Shorts.</p>
+    <a href="/free-music/" class="cta-link">Browse playlist &#8594;</a>
+  </section>
+
+  <!-- Multi-language SEO content. All language blocks live in the HTML so
+       search engines crawl every locale; the country picker in the footer
+       toggles which one is visible via the snipsound:lang event. -->
+  <section class="seo-multilang" style="max-width:760px;margin:32px auto 0;padding:0 16px;color:var(--text-dim);line-height:1.65;">
+    <div id="seo-en" lang="en">
+      <h2 style="color:var(--text);font-size:20px;margin-bottom:12px;">Free BPM Finder &mdash; Detect Tempo of Any Song</h2>
+      <p>SnipSound's BPM finder analyzes any audio file you drop into it and tells you the tempo (beats per minute) in seconds. It supports MP3, WAV, OGG, FLAC, AAC, and M4A. The whole calculation runs in your browser using the Web Audio API and a beat-detection algorithm &mdash; your files never leave your device to a server.</p>
+      <h3 style="color:var(--text);font-size:16px;margin:16px 0 8px;">How It Works</h3>
+      <p>The detector reads the audio's energy envelope, finds peaks consistent with a steady beat, then estimates BPM by measuring the intervals between those peaks. You see the detected tempo, a confidence score, and visual beat markers laid over the waveform. If the detected BPM is half or double the real tempo (a common ambiguity in detection), you can manually halve or double it with one click.</p>
+      <h3 style="color:var(--text);font-size:16px;margin:16px 0 8px;">Why You Need a BPM Finder</h3>
+      <p>Common uses: matching a song to a treadmill or cycling workout pace, finding tracks that mix well with another song (DJs match BPMs to blend tracks), syncing music to a video edit's cut timing, choosing a tempo-appropriate backing track for a podcast intro, or analyzing your own productions to confirm the tempo is what you intended.</p>
+    </div>
+
+  </section>
+  <script>
+    (function () {
+      var langs = ['en','es','pt','it','fr'];
+      function show(lang) {
+        if (langs.indexOf(lang) < 0) lang = 'en';
+        langs.forEach(function (l) {
+          var el = document.getElementById('seo-' + l);
+          if (el) el.style.display = (l === lang) ? 'block' : 'none';
+        });
+      }
+      show(document.documentElement.getAttribute('lang') || 'en');
+      window.addEventListener('snipsound:lang', function (e) {
+        if (e && e.detail && e.detail.lang) show(e.detail.lang);
+      });
+    })();
+  </script>
+
+  <!-- FAQ -->
+  <section class="faq" itemscope itemtype="https://schema.org/FAQPage">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">What is BPM?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">BPM stands for Beats Per Minute. It measures the tempo of a piece of music — how many beats occur in one minute. A slow ballad might be 60-80 BPM, pop songs are typically 100-130 BPM, and fast electronic dance music can be 140 BPM or more.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">How accurate is this BPM finder?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">The automatic detection uses audio analysis with a low-pass filter to isolate rhythmic elements and autocorrelation to find the dominant tempo. For most music with a clear beat, accuracy is typically within 1-2 BPM. For songs with tempo changes or complex rhythms, results may vary.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">Is my audio file uploaded to a server?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">No. All audio processing happens entirely in your browser using the Web Audio API. Your file never leaves your device. This ensures complete privacy and also means the tool works offline once the page is loaded.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">What do the beat markers on the waveform mean?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">The vertical lines on the waveform show where each beat was detected in the audio. They represent the rhythmic pulse of the music. If the lines are evenly spaced, the track has a steady tempo. Uneven spacing may indicate tempo changes or a complex rhythmic structure.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">What audio formats are supported?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">This tool supports all major audio formats including MP3, WAV, OGG, FLAC, AAC, and M4A. Any audio format that your browser can decode will work with the BPM finder.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <div class="faq-q" itemprop="name">Why would I need to know the BPM of a song?</div>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div itemprop="text">Knowing a song's BPM is useful for DJs matching tempos when mixing, musicians practicing at a specific speed, video editors syncing cuts to the beat, fitness instructors choosing workout music at the right pace, and producers looking to sample or remix a track.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <a href="/">&copy; SnipSound</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/help/">Help</a> &middot; <a href="/tools/">All Tools</a>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ── DOM refs ──
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const results = document.getElementById('results');
+  const bpmValue = document.getElementById('bpmValue');
+  const bpmGenreHint = document.getElementById('bpmGenreHint');
+  const waveformCanvas = document.getElementById('waveformCanvas');
+  const fileName = document.getElementById('fileName');
+  const fileMeta = document.getElementById('fileMeta');
+  const playBtn = document.getElementById('playBtn');
+  const playIcon = document.getElementById('playIcon');
+  const pauseIcon = document.getElementById('pauseIcon');
+  const newFileBtn = document.getElementById('newFileBtn');
+  const errorMsg = document.getElementById('errorMsg');
+  const metronome = document.getElementById('metronome');
+  const metronomeDot = document.getElementById('metronomeDot');
+
+  let audioContext = null;
+  let audioBuffer = null;
+  let sourceNode = null;
+  let isPlaying = false;
+  let playStartTime = 0;
+  let playOffset = 0;
+  let detectedBPM = null;
+  let beatPositions = []; // in seconds
+  let metronomeInterval = null;
+
+  function showError(msg) { errorMsg.textContent = msg; errorMsg.classList.add('active'); }
+  function hideError() { errorMsg.classList.remove('active'); }
+
+  function formatDuration(sec) {
+    if (!sec || !isFinite(sec)) return '--:--';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return m + ':' + String(s).padStart(2, '0');
+  }
+
+  function getFormatFromName(name) {
+    return (name.split('.').pop() || 'Audio').toUpperCase();
+  }
+
+  function getGenreHint(bpm) {
+    if (bpm <= 70) return 'Slow tempo — ballads, ambient, chill';
+    if (bpm <= 95) return 'Moderate — hip-hop, R&B, lo-fi';
+    if (bpm <= 115) return 'Mid-tempo — pop, indie, funk';
+    if (bpm <= 135) return 'Upbeat — pop, house, disco';
+    if (bpm <= 155) return 'Energetic — EDM, dubstep, rock';
+    if (bpm <= 180) return 'Fast — drum & bass, hardcore';
+    return 'Very fast — speedcore, breakcore';
+  }
+
+  // ── Drag & drop ──
+  dropZone.addEventListener('dragover', function(e) { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', function() { dropZone.classList.remove('dragover'); });
+  dropZone.addEventListener('drop', function(e) {
+    e.preventDefault(); dropZone.classList.remove('dragover');
+    if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', function() {
+    if (fileInput.files.length > 0) handleFile(fileInput.files[0]);
+  });
+  document.addEventListener('snipsound:use-shared-file', function (e) { if (e.detail && e.detail.file) handleFile(e.detail.file); });
+  newFileBtn.addEventListener('click', function() {
+    stopPlayback(); stopMetronome();
+    results.classList.remove('active');
+    dropZone.style.display = '';
+    hideError(); fileInput.value = '';
+    audioBuffer = null; detectedBPM = null; beatPositions = [];
+  });
+
+  // ── Handle file ──
+  async function handleFile(file) {
+    hideError();
+    if (window.snipSharedAudio) window.snipSharedAudio.save(file);
+    const validExts = ['mp3', 'wav', 'ogg', 'flac', 'aac', 'm4a'];
+    const ext = file.name.split('.').pop().toLowerCase();
+    if (!validExts.includes(ext) && !file.type.startsWith('audio/')) {
+      showError('Unsupported file format. Please upload an MP3, WAV, OGG, FLAC, AAC, or M4A file.');
+      return;
+    }
+
+    stopPlayback(); stopMetronome();
+    dropZone.style.display = 'none';
+    results.classList.add('active');
+    bpmValue.textContent = 'Analyzing...';
+    bpmValue.className = 'bpm-value detecting';
+    bpmGenreHint.textContent = '';
+    metronome.classList.remove('active');
+    fileName.textContent = file.name;
+
+    const _tracker = window.snipTrackTool && window.snipTrackTool('bpm-finder', {
+      input_size_kb: Math.round(file.size / 1024),
+      input_type: file.type || 'unknown'
+    });
+    try {
+      if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const arrayBuffer = await file.arrayBuffer();
+      audioBuffer = await window.snipDecodeAudio(arrayBuffer, audioContext);
+
+      fileMeta.textContent = getFormatFromName(file.name) + ' \u00B7 ' + formatDuration(audioBuffer.duration) + ' \u00B7 ' + (file.size / (1024 * 1024)).toFixed(1) + ' MB';
+
+      const result = await detectBPM(audioBuffer);
+      detectedBPM = result.bpm;
+      beatPositions = result.beats;
+
+      drawWaveformWithBeats(audioBuffer, beatPositions);
+
+      if (detectedBPM) {
+        bpmValue.textContent = detectedBPM;
+        bpmValue.className = 'bpm-value';
+        const unitSpan = document.createElement('span');
+        unitSpan.className = 'bpm-unit';
+        unitSpan.textContent = ' BPM';
+        bpmValue.appendChild(unitSpan);
+        bpmGenreHint.textContent = getGenreHint(detectedBPM);
+        metronome.classList.add('active');
+        startMetronome(detectedBPM);
+        _tracker && _tracker.completed({
+          bpm: detectedBPM,
+          beat_count: (beatPositions || []).length,
+          input_duration_sec: Math.round(audioBuffer.duration)
+        });
+      } else {
+        bpmValue.textContent = '\u2014';
+        bpmValue.className = 'bpm-value';
+        bpmGenreHint.textContent = 'Could not detect a clear tempo';
+        _tracker && _tracker.failed('no_tempo_detected');
+      }
+    } catch (err) {
+      console.error('Audio processing error:', err);
+      _tracker && _tracker.failed(err.message || 'decode_failed');
+      bpmValue.textContent = 'Error';
+      bpmValue.className = 'bpm-value';
+      showError('Could not process this audio file. The format may not be supported by your browser.');
+    }
+  }
+
+  // ── Waveform with beat markers ──
+  function drawWaveformWithBeats(buffer, beats) {
+    const canvas = waveformCanvas;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    const width = rect.width;
+    const height = rect.height;
+    const data = buffer.getChannelData(0);
+    const step = Math.ceil(data.length / width);
+    const mid = height / 2;
+    const duration = buffer.duration;
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw beat marker lines first (behind waveform)
+    if (beats.length > 0) {
+      ctx.strokeStyle = 'rgba(124, 111, 255, 0.15)';
+      ctx.lineWidth = 1;
+      for (let b = 0; b < beats.length; b++) {
+        const x = (beats[b] / duration) * width;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+    }
+
+    // Draw subtle center line
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, mid);
+    ctx.lineTo(width, mid);
+    ctx.stroke();
+
+    // Draw waveform bars
+    for (let i = 0; i < width; i++) {
+      let min = 1.0, max = -1.0;
+      for (let j = 0; j < step; j++) {
+        const idx = (i * step) + j;
+        if (idx < data.length) {
+          if (data[idx] < min) min = data[idx];
+          if (data[idx] > max) max = data[idx];
+        }
+      }
+      const barHeight = Math.max((max - min) * mid, 1);
+
+      // Color bars near beat markers with accent, others dimmer
+      let nearBeat = false;
+      const timePx = (i / width) * duration;
+      for (let b = 0; b < beats.length; b++) {
+        if (Math.abs(beats[b] - timePx) < (duration / width) * 3) {
+          nearBeat = true;
+          break;
+        }
+      }
+
+      if (nearBeat) {
+        ctx.fillStyle = 'rgba(124, 111, 255, 0.9)';
+      } else {
+        ctx.fillStyle = 'rgba(124, 111, 255, 0.45)';
+      }
+      ctx.fillRect(i, mid - barHeight / 2, 1, barHeight);
+    }
+
+    // Draw beat marker ticks at top
+    if (beats.length > 0) {
+      ctx.fillStyle = 'rgba(124, 111, 255, 0.7)';
+      for (let b = 0; b < beats.length; b++) {
+        const x = (beats[b] / duration) * width;
+        ctx.beginPath();
+        ctx.arc(x, 6, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+
+  // setTimeout(0) lets the browser paint and check for input between
+  // chunks. Cheap insurance against "Page Unresponsive" on long files.
+  function uiYield() { return new Promise(r => setTimeout(r, 0)); }
+
+  // ── BPM Detection (returns bpm + beat positions in seconds) ──
+  async function detectBPM(buffer) {
+    const length = buffer.length;
+    const sampleRate = buffer.sampleRate;
+    const monoData = new Float32Array(length);
+
+    if (buffer.numberOfChannels === 1) {
+      monoData.set(buffer.getChannelData(0));
+    } else {
+      // Chunked mono-mix so the loop yields on multi-hour files.
+      const left = buffer.getChannelData(0);
+      const right = buffer.getChannelData(1);
+      const CHUNK = 1000000;
+      for (let off = 0; off < length; off += CHUNK) {
+        const end = Math.min(off + CHUNK, length);
+        for (let i = off; i < end; i++) monoData[i] = (left[i] + right[i]) / 2;
+        if (end < length) await uiYield();
+      }
+    }
+
+    // Low-pass filter to isolate kick/bass
+    const offlineCtx = new OfflineAudioContext(1, length, sampleRate);
+    const offlineBuffer = offlineCtx.createBuffer(1, length, sampleRate);
+    offlineBuffer.getChannelData(0).set(monoData);
+    const source = offlineCtx.createBufferSource();
+    source.buffer = offlineBuffer;
+    const filter = offlineCtx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 150;
+    filter.Q.value = 1;
+    source.connect(filter);
+    filter.connect(offlineCtx.destination);
+    source.start(0);
+
+    const renderedBuffer = await offlineCtx.startRendering();
+    const filteredData = renderedBuffer.getChannelData(0);
+
+    // Calculate energy in windows
+    const windowSize = 1024;
+    const numWindows = Math.floor(filteredData.length / windowSize);
+    const energy = new Float32Array(numWindows);
+
+    // Yield every ~1000 windows (≈ 23 seconds of audio per chunk at
+    // 44.1 kHz). Each chunk is ~1M multiplications — ~20–40 ms on
+    // modern hardware, well under the input-delay threshold.
+    const YIELD_EVERY = 1000;
+    for (let w = 0; w < numWindows; w++) {
+      let sum = 0;
+      const offset = w * windowSize;
+      for (let s = 0; s < windowSize; s++) {
+        const val = filteredData[offset + s];
+        sum += val * val;
+      }
+      energy[w] = sum;
+      if ((w + 1) % YIELD_EVERY === 0) await uiYield();
+    }
+
+    // Find peaks
+    let avgEnergy = 0;
+    for (let e = 0; e < numWindows; e++) avgEnergy += energy[e];
+    avgEnergy /= numWindows;
+    const threshold = avgEnergy * 1.3;
+
+    const peaks = [];
+    for (let p = 0; p < numWindows; p++) {
+      if (energy[p] > threshold) {
+        if ((p === 0 || energy[p] > energy[p - 1]) &&
+            (p === numWindows - 1 || energy[p] >= energy[p + 1])) {
+          peaks.push(p);
+        }
+      }
+    }
+
+    if (peaks.length < 2) return { bpm: null, beats: [] };
+
+    // Calculate intervals
+    const intervals = [];
+    for (let k = 1; k < peaks.length; k++) intervals.push(peaks[k] - peaks[k - 1]);
+
+    // Build histogram
+    const histogram = {};
+    for (let h = 0; h < intervals.length; h++) {
+      const key = Math.round(intervals[h]);
+      let found = false;
+      const keys = Object.keys(histogram);
+      for (let g = 0; g < keys.length; g++) {
+        if (Math.abs(keys[g] - key) <= 2) {
+          histogram[keys[g]].count++;
+          histogram[keys[g]].sum += intervals[h];
+          found = true;
+          break;
+        }
+      }
+      if (!found) histogram[key] = { count: 1, sum: intervals[h] };
+    }
+
+    // Find most common interval
+    let bestKey = null, bestCount = 0;
+    const histKeys = Object.keys(histogram);
+    for (let b = 0; b < histKeys.length; b++) {
+      if (histogram[histKeys[b]].count > bestCount) {
+        bestCount = histogram[histKeys[b]].count;
+        bestKey = histKeys[b];
+      }
+    }
+
+    if (!bestKey) return { bpm: null, beats: [] };
+
+    const avgInterval = histogram[bestKey].sum / histogram[bestKey].count;
+    const intervalInSeconds = (avgInterval * windowSize) / sampleRate;
+    let bpm = 60 / intervalInSeconds;
+
+    while (bpm > 220) bpm /= 2;
+    while (bpm < 40) bpm *= 2;
+    bpm = Math.round(bpm);
+
+    // Generate beat positions using detected BPM
+    const beatInterval = 60 / bpm;
+    const duration = buffer.duration;
+
+    // Find the best phase offset by testing against detected peaks
+    const peakTimesInSeconds = peaks.map(p => (p * windowSize) / sampleRate);
+    let bestPhaseOffset = 0;
+    let bestPhaseScore = -1;
+
+    // Test 16 phase offsets
+    for (let phase = 0; phase < 16; phase++) {
+      const offset = (beatInterval / 16) * phase;
+      let score = 0;
+      for (let t = offset; t < duration; t += beatInterval) {
+        for (let pk = 0; pk < peakTimesInSeconds.length; pk++) {
+          if (Math.abs(peakTimesInSeconds[pk] - t) < beatInterval * 0.15) {
+            score++;
+            break;
+          }
+        }
+      }
+      if (score > bestPhaseScore) {
+        bestPhaseScore = score;
+        bestPhaseOffset = offset;
+      }
+    }
+
+    // Generate evenly-spaced beats with best phase
+    const beats = [];
+    for (let t = bestPhaseOffset; t < duration; t += beatInterval) {
+      beats.push(t);
+    }
+
+    return { bpm, beats };
+  }
+
+  // ── Click sound generator ──
+  let clickCtx = null;
+  function getClickCtx() {
+    if (!clickCtx) clickCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (clickCtx.state === 'suspended') clickCtx.resume();
+    return clickCtx;
+  }
+
+  function playClick(accent) {
+    const ctx = getClickCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = accent ? 1000 : 800;
+    gain.gain.setValueAtTime(accent ? 0.3 : 0.18, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.06);
+  }
+
+  // ── Visual + audible metronome ──
+  function startMetronome(bpm) {
+    stopMetronome();
+    const intervalMs = 60000 / bpm;
+    let beat = 0;
+    function tick() {
+      beat++;
+      metronomeDot.classList.add('beat');
+      playClick(beat % 4 === 1);
+      setTimeout(() => metronomeDot.classList.remove('beat'), Math.min(intervalMs * 0.3, 120));
+    }
+    tick();
+    metronomeInterval = setInterval(tick, intervalMs);
+  }
+
+  function stopMetronome() {
+    if (metronomeInterval) { clearInterval(metronomeInterval); metronomeInterval = null; }
+    metronomeDot.classList.remove('beat');
+  }
+
+  // ── Playback ──
+  playBtn.addEventListener('click', function() {
+    if (!audioBuffer) return;
+    isPlaying ? stopPlayback() : startPlayback();
+  });
+
+  function startPlayback() {
+    if (!audioBuffer || !audioContext) return;
+    if (audioContext.state === 'suspended') audioContext.resume();
+    sourceNode = audioContext.createBufferSource();
+    sourceNode.buffer = audioBuffer;
+    sourceNode.connect(audioContext.destination);
+    sourceNode.onended = function() {
+      if (isPlaying) { isPlaying = false; playOffset = 0; updatePlayButton(); }
+    };
+    sourceNode.start(0, playOffset);
+    playStartTime = audioContext.currentTime - playOffset;
+    isPlaying = true;
+    updatePlayButton();
+    stopMetronome();
+  }
+
+  function stopPlayback() {
+    if (sourceNode) {
+      try { sourceNode.onended = null; sourceNode.stop(); } catch(e) {}
+      sourceNode = null;
+    }
+    if (isPlaying && audioContext) playOffset = audioContext.currentTime - playStartTime;
+    isPlaying = false;
+    updatePlayButton();
+    if (detectedBPM) startMetronome(detectedBPM);
+  }
+
+  function updatePlayButton() {
+    playIcon.style.display = isPlaying ? 'none' : '';
+    pauseIcon.style.display = isPlaying ? '' : 'none';
+  }
+
+  // ── BPM Reference Cards (interactive pulse demos) ──
+  let activeCard = null;
+  let cardInterval = null;
+
+  document.getElementById('bpmCards').addEventListener('click', function(e) {
+    const card = e.target.closest('.bpm-card');
+    if (!card) return;
+
+    const bpm = parseInt(card.dataset.bpm);
+
+    // Toggle off if already playing
+    if (activeCard === card) {
+      card.classList.remove('playing');
+      clearInterval(cardInterval);
+      activeCard = null;
+      card.querySelector('.bpm-card-action').textContent = 'Click to feel it';
+      return;
+    }
+
+    // Stop previous
+    if (activeCard) {
+      activeCard.classList.remove('playing');
+      activeCard.querySelector('.bpm-card-action').textContent = 'Click to feel it';
+      clearInterval(cardInterval);
+    }
+
+    // Start new
+    activeCard = card;
+    card.classList.add('playing');
+    card.querySelector('.bpm-card-action').textContent = 'Click to stop';
+    const pulse = card.querySelector('.bpm-card-pulse');
+    const bar = card.querySelector('.bpm-card-bar');
+    const intervalMs = 60000 / bpm;
+
+    let beatCount = 0;
+    function tick() {
+      beatCount++;
+      pulse.classList.add('beat');
+      playClick(beatCount % 4 === 1);
+      // Animate bar across the card over 4 beats
+      const progress = (beatCount % 4) / 4;
+      bar.style.transform = 'scaleX(' + ((progress === 0 ? 1 : progress)) + ')';
+      if (beatCount % 4 === 0) {
+        setTimeout(() => { bar.style.transition = 'none'; bar.style.transform = 'scaleX(0)'; }, 50);
+        setTimeout(() => { bar.style.transition = 'transform 0.1s linear'; }, 100);
+      }
+      setTimeout(() => pulse.classList.remove('beat'), Math.min(intervalMs * 0.25, 100));
+    }
+    tick();
+    cardInterval = setInterval(tick, intervalMs);
+  });
+
+  // ── Sample tracks ──
+  const AUDIO_BASE = 'https://media.snipsound.com/audio/';
+
+  async function loadSampleTracks() {
+    try {
+      const res = await fetch('/tracks.json');
+      const tracks = await res.json();
+      // Pick 4 diverse tracks
+      const picks = [];
+      const moods = ['cinematic', 'energetic', 'sad', 'epic'];
+      for (const mood of moods) {
+        const match = tracks.find(t => t.mood && t.mood.includes(mood) && !picks.includes(t));
+        if (match) picks.push(match);
+      }
+      // Fill remaining slots
+      while (picks.length < 4 && picks.length < tracks.length) {
+        const t = tracks[picks.length * 3]; // spread them out
+        if (t && !picks.includes(t)) picks.push(t);
+      }
+
+      const list = document.getElementById('sampleList');
+      picks.forEach(track => {
+        const item = document.createElement('div');
+        item.className = 'sample-item';
+        item.innerHTML =
+          '<div class="sample-play-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><polygon points="4,2 14,8 4,14"/></svg></div>' +
+          '<div class="sample-info"><div class="sample-title">' + escHtml(track.title) + '</div>' +
+          '<div class="sample-meta">' + escHtml(track.composer || track.artist) + ' \u00B7 ' + formatDuration(track.duration) +
+          (track.mood ? ' \u00B7 ' + track.mood.slice(0, 2).join(', ') : '') + '</div></div>' +
+          '<div class="sample-cta">Analyze</div>';
+        item.addEventListener('click', () => loadSampleTrack(track, item));
+        list.appendChild(item);
+      });
+    } catch (e) {
+      // Hide section if tracks can't load
+      document.getElementById('trySamples').style.display = 'none';
+    }
+  }
+
+  function escHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  async function loadSampleTrack(track, item) {
+    if (item.classList.contains('loading')) return;
+    item.classList.add('loading');
+    item.querySelector('.sample-cta').textContent = 'Loading...';
+
+    try {
+      if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+      const audioFile = track.filename || track.audio_filename;
+      const baseName = audioFile.includes('/') ? audioFile.slice(audioFile.lastIndexOf('/') + 1) : audioFile;
+      const url = AUDIO_BASE + baseName;
+
+      const response = await fetch(url);
+      const arrayBuffer = await response.arrayBuffer();
+
+      // Create a pseudo-File object for handleFile-like flow
+      stopPlayback(); stopMetronome();
+      dropZone.style.display = 'none';
+      results.classList.add('active');
+      bpmValue.textContent = 'Analyzing...';
+      bpmValue.className = 'bpm-value detecting';
+      bpmGenreHint.textContent = '';
+      metronome.classList.remove('active');
+      fileName.textContent = track.title;
+
+      audioBuffer = await window.snipDecodeAudio(arrayBuffer, audioContext);
+      fileMeta.textContent = 'OGG \u00B7 ' + formatDuration(audioBuffer.duration) + ' \u00B7 ' + (arrayBuffer.byteLength / (1024 * 1024)).toFixed(1) + ' MB';
+
+      const result = await detectBPM(audioBuffer);
+      detectedBPM = result.bpm;
+      beatPositions = result.beats;
+      drawWaveformWithBeats(audioBuffer, beatPositions);
+
+      if (detectedBPM) {
+        bpmValue.textContent = detectedBPM;
+        bpmValue.className = 'bpm-value';
+        const unitSpan = document.createElement('span');
+        unitSpan.className = 'bpm-unit';
+        unitSpan.textContent = ' BPM';
+        bpmValue.appendChild(unitSpan);
+        bpmGenreHint.textContent = getGenreHint(detectedBPM);
+        metronome.classList.add('active');
+        startMetronome(detectedBPM);
+      } else {
+        bpmValue.textContent = '\u2014';
+        bpmValue.className = 'bpm-value';
+        bpmGenreHint.textContent = 'Could not detect a clear tempo';
+      }
+
+      // Scroll to results
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (err) {
+      console.error('Sample load error:', err);
+      showError('Could not load the sample track. Please try another or upload your own file.');
+    } finally {
+      item.classList.remove('loading');
+      item.querySelector('.sample-cta').textContent = 'Analyze';
+    }
+  }
+
+  // ── FAQ toggles ──
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+
+  // ── Resize waveform ──
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (audioBuffer) drawWaveformWithBeats(audioBuffer, beatPositions);
+    }, 200);
+  });
+
+  // ── Init ──
+  loadSampleTracks();
+
+  if (window.snipDemo) {
+    window.snipDemo.renderButton({
+      target: '#snip-demo-row',
+      label: 'Try with demo audio (Handel – Sarabande)',
+      onClick: function (file) { return handleFile(file); },
+    });
+  }
+
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51a993e5b1950df',t:'MTc5MzE5NzQwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

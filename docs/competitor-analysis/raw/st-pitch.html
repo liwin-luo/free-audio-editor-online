@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="https://soundtools.io/pitch-shifter/" />
+
+    <link rel="stylesheet" href="../css/tools-style.css">
+    <link rel="icon" href="../favicon.png" type="image/png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2L1GFZ61L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-T2L1GFZ61L');
+    </script>
+
+    <meta name="description" content="Free online pitch shifter — change the pitch or transpose any song by semitones, without changing the speed. Shift up or down 12 semitones. No upload, no account.">
+
+    <meta name="author" content="SoundTools">
+    <meta property="og:title" content="Free Pitch Shifter — Change Pitch & Transpose Audio | SoundTools">
+    <meta property="og:description" content="Free online pitch shifter — change the pitch or transpose any song by semitones, without changing the speed. Shift up or down 12 semitones. No upload, no account.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soundtools.io/pitch-shifter/">
+    <title>Free Pitch Shifter — Change Pitch & Transpose Audio | SoundTools</title>
+    
+    <!-- Organization schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://soundtools.io/#organization",
+      "name": "SoundTools",
+      "alternateName": "soundtools.io",
+      "url": "https://soundtools.io",
+      "logo": "https://soundtools.io/logo.png",
+      "description": "SoundTools is a free, browser-based audio toolkit offering 35+ tools for editing, converting, and transforming audio — including creator effects, AI and voice tools, and everyday utilities. Everything runs locally in the browser; files never leave your device.",
+      "foundingDate": "2025",
+      "knowsAbout": [
+        "Audio editing",
+        "Text to speech",
+        "Vocal removal",
+        "Stem separation",
+        "Speech to text",
+        "Voice changing",
+        "Noise reduction",
+        "Audio conversion"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/soundtools-io",
+        "https://www.crunchbase.com/organization/soundtools-8406",
+        "https://www.wikidata.org/wiki/Q140073639"
+      ]
+    }
+    </script>
+
+    <!-- Website schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://soundtools.io/#website",
+      "name": "SoundTools",
+      "alternateName": "soundtools.io",
+      "url": "https://soundtools.io",
+      "publisher": { "@id": "https://soundtools.io/#organization" }
+    }
+    </script>
+
+     <!-- WebApplication schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://soundtools.io/pitch-shifter/#webapp",
+      "name": "SoundTools Pitch Shifter",
+      "url": "https://soundtools.io/pitch-shifter/",
+      "applicationCategory": "MultimediaApplication",
+      "browserRequirements": "Works in any modern web browser on desktop and mobile (Windows, Mac, Linux, iOS, and Android). No install required.",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://soundtools.io/#organization"
+      },
+      "datePublished": "2025",
+      "dateModified": "2026-07-13",
+      "inLanguage": "en",
+      "featureList": [
+        "Change the pitch of any audio file without affecting tempo or duration",
+        "Transpose songs to a different musical key",
+        "Shift from -12 to +12 semitones (a full octave down or up)",
+        "Real-time preview while adjusting the pitch",
+        "Supports MP3, FLAC, WAV, AAC, and OGG",
+        "Tempo and duration are preserved exactly",
+        "Processing runs locally in your browser — audio never leaves your device",
+        "Free and unlimited, no account or install required"
+      ],
+      "description": "Free online pitch shifter and pitch changer that runs in your browser. Change the pitch of any audio file or transpose a song to a different key by up to 12 semitones in either direction, with tempo and duration preserved exactly. No account, and audio never leaves your device."
+    }
+    </script>
+
+    <!-- HowTo Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Shift Pitch Without Changing Tempo",
+      "description": "Change the pitch of any song without affecting tempo in 3 simple steps - perfect for musicians and singers",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Upload your audio or song",
+          "text": "Select the audio file you want to pitch shift",
+          "position": 1
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Adjust pitch shift amount",
+          "text": "Use presets for common shifts (+2 or -2 semitones) or Custom to adjust pitch precisely by semitones",
+          "position": 2
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Download pitch shifted audio",
+          "text": "Preview your pitch shifted audio, then click 'Create Pitch Shifted Audio' and download instantly",
+          "position": 3
+        }
+      ],
+      "totalTime": "PT30S"
+    }
+    </script>
+    
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is pitch shifting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pitch shifting is changing the pitch (how high or low a sound is) of audio without changing its tempo or speed. This allows you to transpose songs to different keys while maintaining the original timing and rhythm. Perfect for musicians practicing songs in different keys or singers adjusting tracks to match their vocal range."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I change the pitch of a song without changing the speed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload your audio file, adjust the pitch shift slider to your desired number of semitones (positive numbers raise pitch, negative numbers lower pitch), preview it to hear the pitch change without tempo change, then click 'Create Pitch Shifted Audio' to download. Your song will be in a different key while maintaining the same tempo and duration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a semitone in music?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A semitone is the smallest interval in Western music - the distance between two adjacent piano keys. 12 semitones equal one octave. Shifting up 2 semitones transposes a song from C major to D major. Shifting down 3 semitones transposes from G to E."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why would I need to shift pitch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Musicians shift pitch to practice songs in their comfortable vocal range, match backing tracks to their instrument's tuning, or transpose difficult passages to easier keys. Singers adjust tracks to fit their voice range. Content creators use pitch shifting for creative effects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this pitch shifter free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, completely free with unlimited use, no file limits, no subscriptions, and no hidden charges. Shift pitch of as many tracks as you want for practice, performance, or content creation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What audio formats work for pitch shifting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our pitch shifter supports MP3, FLAC, WAV, AAC, and OGG audio formats. Upload any of these formats and download your pitch shifted audio in the same format as the input file, maintaining quality."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many semitones can I shift?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can shift pitch from -12 semitones (one octave down) to +12 semitones (one octave up). This covers a full two-octave range. Common shifts are +2 or -2 semitones for vocal range adjustments."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will pitch shifting affect audio quality?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Small pitch shifts (±1-3 semitones) maintain excellent quality. Larger shifts (±6-12 semitones) introduce slight artifacts but remain highly usable for practice and performance. Smaller shifts sound more natural."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does pitch shifting change the key of the song?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Pitch shifting transposes the entire song to a different key. Each semitone shift moves the key up or down by one half-step. A song in C major shifted up 2 semitones becomes D major."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I preview before downloading?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Click the 'Preview Audio' button or press spacebar to hear your pitch-shifted audio before downloading. Adjust the pitch shift slider in real-time while previewing to find the perfect transposition."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between a pitch shifter and a pitch changer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They're the same thing — \"pitch shifter\" and \"pitch changer\" both describe a tool that moves audio to a higher or lower key without affecting playback speed. \"Pitch shifting\" is the technical term used in audio production; \"pitch changing\" is how most casual users describe the same action. This tool does both."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between pitch shifting and speed changing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pitch shifting changes only the pitch (key) while keeping tempo the same. Speed changing affects both pitch AND tempo together - speed up makes it faster AND higher, slow down makes it slower AND lower."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does pitch shifting change the song's duration?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No! Pitch shifting preserves the original tempo and duration. A 3-minute song at 120 BPM remains 3 minutes at 120 BPM regardless of pitch shift. Only the key changes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use pitch-shifted audio for karaoke?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! Pitch shifting is perfect for karaoke. Adjust any backing track to match your vocal range. If the original key is too high, shift down 2-3 semitones to sing comfortably."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does pitch shifting sometimes sound robotic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Large pitch shifts (±7-12 semitones) can introduce artifacts that sound robotic. Small shifts (±1-3 semitones) sound very natural. Use the smallest shift that achieves your goal for best results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the best pitch shift amount for singing practice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most singers find +2 or -2 semitones perfect for adjusting songs to their range. Try shifting in 1-2 semitone increments and preview until challenging notes feel comfortable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this work on mobile devices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Our pitch shifter works on all devices - iPhone, Android, iPad, desktop, and laptop. Just open the page in your mobile browser and create pitch-shifted tracks right from your phone."
+          }
+        }
+      ]
+    }
+    </script>
+    
+   
+
+    <style>
+        kbd {
+            font-family: monospace;
+            font-size: 0.875rem;
+        }
+
+        /* Styled file upload button */
+        .styled-file-upload {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+        .styled-file-upload input[type="file"] {
+            display: none;
+        }
+        .styled-file-upload .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: #4f5aed;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .styled-file-upload .upload-btn:hover {
+            background: #3d47d9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 90, 237, 0.3);
+        }
+        .styled-file-upload .upload-btn:active {
+            transform: translateY(0);
+        }
+        .styled-file-upload .upload-filename {
+            font-size: 0.9375rem;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+        }
+
+        /* CTA download button */
+        .cta-download-btn {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: white;
+            color: #16a34a;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 10px;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            box-sizing: border-box;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .cta-download-btn:hover {
+            background: #f0fdf4;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+    </style>
+
+
+
+    <!-- ================================================== -->
+    <!--    START - NEW: REPEAT VISITOR TRACKING SYSTEM     -->
+    <!-- ================================================== -->
+    <script>
+        // Tool usage tracking utility
+        const ToolTracker = {
+            STORAGE_KEY: 'soundtools_usage',
+            CURRENT_TOOL: 'pitch-shifter', // Set this per tool page
+            
+            // Get all usage data from localStorage
+            getUsageData() {
+                try {
+                    const data = localStorage.getItem(this.STORAGE_KEY);
+                    return data ? JSON.parse(data) : {};
+                } catch (e) {
+                    console.error('Error reading usage data:', e);
+                    return {};
+                }
+            },
+            
+            // Save usage data to localStorage
+            saveUsageData(data) {
+                try {
+                    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+                } catch (e) {
+                    console.error('Error saving usage data:', e);
+                }
+            },
+            
+            // Track that user successfully used a tool
+            trackToolSuccess(toolName = this.CURRENT_TOOL) {
+                const usage = this.getUsageData();
+                
+                // Initialize tool data if it doesn't exist
+                if (!usage[toolName]) {
+                    usage[toolName] = {
+                        count: 0,
+                        firstUsed: new Date().toISOString(),
+                        lastUsed: null
+                    };
+                }
+                
+                // Increment usage count
+                usage[toolName].count++;
+                usage[toolName].lastUsed = new Date().toISOString();
+                
+                this.saveUsageData(usage);
+                
+                return this.getAnalytics();
+            },
+            
+            // Get analytics data for GA4 events
+            getAnalytics() {
+                const usage = this.getUsageData();
+                const currentToolData = usage[this.CURRENT_TOOL] || { count: 0 };
+                
+                return {
+                    // How many times has user used THIS specific tool
+                    lifetime_tool_uses: currentToolData.count,
+                    
+                    // How many DIFFERENT tools has user tried (ever)
+                    total_tools_used: Object.keys(usage).length,
+                    
+                    // Is this a repeat user of ANY tool?
+                    is_repeat_user: Object.values(usage).some(tool => tool.count > 1),
+                    
+                    // Is this a repeat user of THIS SPECIFIC tool?
+                    is_repeat_tool_user: currentToolData.count > 1,
+                    
+                    // Total uses across ALL tools
+                    total_lifetime_uses: Object.values(usage).reduce((sum, tool) => sum + tool.count, 0),
+                    
+                    // Days since first use of this tool (if applicable)
+                    days_since_first_use: currentToolData.firstUsed 
+                        ? Math.floor((Date.now() - new Date(currentToolData.firstUsed)) / (1000 * 60 * 60 * 24))
+                        : 0
+                };
+            },
+            
+            // Track file selection with analytics
+            trackFileSelected(fileSize) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-file_selected`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': 'audio_file',
+                    'file_size': fileSize,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            },
+            
+             // Track preset selection with analytics
+            trackPresetSelected(presetName) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-preset_selected`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': presetName,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            },
+
+            // Track successful conversion with analytics
+            trackSuccess(additionalParams = {}) {
+                const analytics = this.trackToolSuccess(); // Increments count & returns analytics
+                
+                gtag('event', `${this.CURRENT_TOOL}-success`, {
+                    'event_category': this.CURRENT_TOOL,
+                    ...additionalParams,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses,
+                    'days_since_first_use': analytics.days_since_first_use
+                });
+            },
+            
+            // Track errors with analytics
+            trackError(errorMessage) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-error`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': 'processing_failed',
+                    'error_message': errorMessage,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            }
+        };
+        
+        // Log initial analytics on page load (optional - for debugging)
+        console.log('SoundTools Usage Analytics:', ToolTracker.getAnalytics());
+    </script>
+    <!-- ================================================== -->
+    <!--     END - NEW: REPEAT VISITOR TRACKING SYSTEM      -->
+    <!-- ================================================== -->
+
+</head>
+
+<body>
+    
+    <!-- NAV_START -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">SoundTools</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a class="mobile-dropdown-toggle">Tools</a>
+                    <div class="dropdown-menu mega-menu">
+                        <div class="mega-col">
+                            <span class="mega-heading">Effects</span>
+                            <a href="/eq/">EQ</a>
+                            <a href="/8d-audio/">8D Audio</a>
+                            <a href="/add-reverb-to-audio/">Add Reverb</a>
+                            <a href="/bass-boost/">Bass Boost</a>
+                            <a href="/nightcore/">Nightcore</a>
+                            <a href="/nightcore-reverse/">Nightcore Reverse</a>
+                            <a href="/slowed-reverb/">Slowed + Reverb</a>
+                            <a href="/sped-up/">Sped Up Audio</a>
+                            <a href="/tiktok-slowed-reverb/">TikTok Slowed</a>
+                            <a href="/vaporwave/">Vaporwave</a>
+                            <a href="/volume-booster/">Volume Booster</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Voice & AI</span>
+                            <a href="/voice-cloning/">Voice Cloning</a>
+                            <a href="/vocal-tuner/">Vocal Tuner</a>
+                            <a href="/voice-to-instrument/">Voice to Instrument</a>
+                            <a href="/noise-remover/">Noise Remover</a>
+                            <a href="/stem-splitter/">Stem Splitter</a>
+                            <a href="/text-to-speech/">Text to Speech</a>
+                            <a href="/speech-to-text/">Speech to Text</a>
+                            <a href="/speech-to-song/">Speech to Song</a>
+                            <a href="/vocal-remover/">Vocal Remover</a>
+                            <a href="/voice-changer/">Voice Changer</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Edit & Convert</span>
+                            <a href="/audio-converter/">Audio Converter</a>
+                            <a href="/audio-joiner/">Audio Joiner</a>
+                            <a href="/audio-trimmer/">Audio Trimmer</a>
+                            <a href="/flac-cover-art/">FLAC Cover Art</a>
+                            <a href="/audio-metadata-editor/">Metadata Editor</a>
+                            <a href="/pitch-shifter/">Pitch Shifter</a>
+                            <a href="/reverse-audio/">Reverse Audio</a>
+                            <a href="/tempo-changer/">Tempo Changer</a>
+                            <a href="/video-to-audio/">Video to Audio</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Create & Analyze</span>
+                            <a href="/beat-maker/">Beat Maker</a>
+                            <a href="/bpm-detector/">BPM Detector</a>
+                            <a href="/granular-synthesizer/">Granular Synthesizer</a>
+                            <a href="/hearing-test/">Hearing Test</a>
+                            <a href="/music-visualizer/">Music Visualizer</a>
+                            <a href="/soundboard/">Soundboard</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/lab/">The Lab</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- NAV_END -->
+
+
+
+    <header>
+        <div class="container">
+            <h1>Free Online Pitch Shifter, Changer & Transposer</h1>
+            <time class="last-updated" datetime="2026-07-13">Updated July 13, 2026</time>
+            <p>Upload your audio and adjust the pitch to transpose songs to different keys without affecting tempo - 100% free, works in your browser, no software needed</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-section">
+            <div class="intro-text">
+                <p>Our free online pitch shifter lets you shift the pitch of any song up or down without changing its speed! Upload your audio and adjust the pitch to transpose songs to different keys - perfect for musicians practicing in their comfortable range, singers adjusting backing tracks, or content creators. Preview changes in real-time and create pitch-shifted audio instantly!</p>
+            </div>
+
+            <!-- File Upload -->
+            <div class="file-input-group">
+                <label for="audioFile">Upload Your Audio File</label>
+                <label class="styled-file-upload">
+                    <input type="file" id="audioFile" accept="audio/mp3,audio/flac,audio/wav,audio/aac,audio/ogg,.mp3,.flac,.wav,.aac,.ogg" aria-label="Choose audio file">
+                    <span class="upload-btn">📂 Choose File</span>
+                    <span class="upload-filename" id="uploadFilename">No file selected</span>
+                </label>
+            </div>
+
+            <!-- Preview Player (SoundToolsPlayer) -->
+            <div id="previewPlayer" style="display: none;"></div>
+
+            <!-- Preset Buttons -->
+            <div class="preset-buttons">
+                <button class="preset-btn" data-pitch="1">
+                    <span class="preset-name">⬆️ Up Half Step</span>
+                    <span class="preset-desc">Raise pitch one semitone</span>
+                </button>
+                <button class="preset-btn" data-pitch="-1">
+                    <span class="preset-name">⬇️ Down Half Step</span>
+                    <span class="preset-desc">Lower pitch one semitone</span>
+                </button>
+                <button class="preset-btn active" data-pitch="0">
+                    <span class="preset-name">🎛️ Custom</span>
+                    <span class="preset-desc">Adjust pitch shift precisely</span>
+                </button>
+            </div>
+
+            <!-- Pitch Shift Slider -->
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Pitch Shift</span>
+                    <span class="slider-value" id="pitchValue">C → C</span>
+                </div>
+                <input type="range" min="-12" max="12" value="0" step="1" class="slider" id="pitchSlider" aria-label="Adjust pitch shift amount">
+                <div class="slider-hint">
+                    <span>-12 semitones (octave down)</span>
+                    <span>+12 semitones (octave up)</span>
+                </div>
+            </div>
+
+            <button id="processBtn" disabled aria-label="Create pitch shifted audio">Create Pitch Shifted Audio</button>
+            
+            <div id="status" role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="info-section">
+            <h2>What is Pitch Shifting?</h2>
+            <p>Pitch shifting is the process of changing the pitch (how high or low a sound is) of audio without changing its tempo or speed. Unlike simply speeding up or slowing down audio (which affects both pitch and tempo together), pitch shifting allows you to transpose songs to different keys while maintaining the original timing, rhythm, and duration. This makes it an essential tool for musicians who need to practice songs in their comfortable vocal range, singers who want to adjust backing tracks to match their voice, and content creators looking for creative audio effects. Pitch shifting lets you move a song up or down by semitones (half-steps) - for example, shifting a song in C major up 2 semitones transposes it to D major, keeping the same tempo and feel but in a different key that might be easier to sing or play.</p>
+
+            <h2>How to Shift Pitch Without Changing Tempo</h2>
+            <p>Changing the pitch of any song while preserving its original tempo is simple with our free pitch shifter:</p>
+            <ul>
+                <li><strong>Upload Your Song:</strong> Select any MP3, FLAC, WAV, AAC, or OGG audio file - works with any genre, from rock and pop to classical and jazz. Perfect for practice tracks, karaoke backing tracks, or original compositions you want to transpose</li>
+                <li><strong>Choose Pitch Shift Amount:</strong> Use the presets for common shifts (±2 semitones) or click 'Custom' to adjust precisely from -12 to +12 semitones. Positive numbers raise pitch (higher), negative numbers lower pitch (deeper)</li>
+                <li><strong>Preview Instantly:</strong> Press the preview button or spacebar to hear your pitch-shifted audio before downloading. The tempo stays exactly the same while the pitch changes - perfect for checking if the new key works for you</li>
+                <li><strong>Fine-Tune (Optional):</strong> Adjust the pitch shift slider in real-time while previewing. Each semitone is one half-step on a piano - 12 semitones equal one octave. Find the perfect key for your voice or instrument</li>
+                <li><strong>Download & Use:</strong> Click 'Create Pitch Shifted Audio' and your track downloads in the same format as your input file, maintaining quality and ready for practice, performance, or content creation</li>
+            </ul>
+            <p>If you want to change the speed of audio without touching its pitch instead, our <a href="/tempo-changer/">Tempo Changer</a> lets you slow down or speed up any audio file from 50% to 200% with pitch fully preserved.</p>
+
+            <h2>Understanding Semitones and Musical Keys</h2>
+            <p><strong>What is a Semitone?</strong> A semitone (also called a half-step) is the smallest interval in Western music - the distance between two adjacent keys on a piano, whether white or black. For example, C to C# is one semitone, as is E to F (which have no black key between them). Understanding semitones helps you transpose songs effectively.</p>
+            
+            <p><strong>Common Pitch Shifts and Their Uses:</strong></p>
+            <ul>
+                <li><strong>+1 or -1 semitone:</strong> Subtle shift for fine-tuning to match a slightly out-of-tune instrument or making very minor vocal range adjustments</li>
+                <li><strong>+2 or -2 semitones (one whole step):</strong> The most common shift for singers - raises or lowers the key enough to make a noticeable difference in vocal comfort without sounding drastically different. For example, transposing from D to E or from G to F</li>
+                <li><strong>+3 or -3 semitones:</strong> Moves the song a minor third, useful for adapting male vocals to female range (or vice versa) while keeping some of the original character</li>
+                <li><strong>+5 or -5 semitones:</strong> Changes the key by a fourth interval, sometimes used for creative transpositions or dramatic vocal range differences</li>
+                <li><strong>+7 or -7 semitones:</strong> Shifts by a fifth, creating a very different but still musically related key. Sometimes used by content creators to avoid copyright detection</li>
+                <li><strong>+12 or -12 semitones:</strong> One full octave shift. Transposes the song to the exact same key but an octave higher or lower - useful for adapting songs from male to female singers (or vice versa) while staying in the same key</li>
+            </ul>
+
+            <p><strong>How Keys and Semitones Relate:</strong> Music is organized into 12 keys that repeat in octaves. If a song is in C major and you shift up 2 semitones, it becomes D major. Shifting down 3 semitones from G major gives you E major. Each semitone shift moves you to the next key in the chromatic scale: C → C#/Db → D → D#/Eb → E → F → F#/Gb → G → G#/Ab → A → A#/Bb → B → C (repeating). Understanding this helps musicians choose the right transposition for their needs.</p>
+
+            <h2>Why Musicians and Singers Need Pitch Shifting</h2>
+            
+            <p><strong>For Singers - Vocal Range Adaptation:</strong> Every singer has a unique vocal range - the span of notes they can comfortably sing from their lowest to highest note. When a song is recorded in a key that doesn't match your vocal range, you can either strain to reach notes that are too high or too low (risking vocal damage), or you can transpose the song to a more comfortable key using pitch shifting. For example, if a song's chorus has notes that are just slightly too high, shifting down 2 semitones might bring those notes into your sweet spot where your voice sounds best and feels comfortable. This is essential for practice, performance, and recording cover songs.</p>
+            
+            <p><strong>For Musicians - Instrument Transposition:</strong> Different instruments are pitched in different keys. A saxophone player might need to transpose a piano part written in C to fit their B♭ saxophone. A guitarist with a capo on the second fret can use pitch shifting to adjust backing tracks to match. String players who tune differently (like drop D tuning) can transpose songs to avoid awkward fingerings. Brass players in different keys (B♭ trumpet vs. F horn vs. C trumpet) use pitch shifting to adapt music written for other instruments. Instead of manually transposing sheet music or relearning parts, musicians can pitch shift the audio to match their instrument's tuning.</p>
+            
+            <p><strong>Practice and Learning Benefits:</strong> When learning a difficult song, sometimes transposing it to an easier key makes the learning process more manageable. A guitar solo that requires wide stretches might be easier in a lower key. A vocal line with challenging high notes becomes more approachable when shifted down. Once you've mastered the song in the easier key, you can gradually shift it back to the original key, building confidence and skill along the way.</p>
+
+            <h2>Pitch Shifting for Different Use Cases</h2>
+            
+            <p><strong>Karaoke and Singing Practice:</strong> Karaoke tracks are typically recorded in keys that work for professional singers, but might not match your voice. Pitch shifting lets you customize any karaoke track to your exact vocal range. If the chorus notes are too high, shift down 2-3 semitones. If the verses feel too low and airy, shift up 2 semitones. This makes singing more enjoyable and helps you develop better technique by singing in your optimal range.</p>
+            
+            <p><strong>Guitar and Bass Players:</strong> Guitarists often need to transpose songs when using alternate tunings. If you play in drop D tuning (one whole step lower than standard for the lowest string), you can pitch shift the original recording down 2 semitones to match your tuning, making it easier to play along. Bass players practicing with recorded tracks can adjust the pitch to match if their bass is tuned differently.</p>
+            
+            <p><strong>Piano and Keyboard Players:</strong> While keyboards can transpose instantly with a button, recorded backing tracks cannot. If you're learning a piano piece with a recorded orchestra or backing track, pitch shifting ensures the accompaniment matches your key. This is essential for classical pianists practicing concertos with orchestral recordings or pop keyboardists using backing tracks for live performance.</p>
+            
+            <p><strong>Choir and Group Singing:</strong> Choir directors often need to transpose songs to match their singers' ranges. If a piece written for professional adult choir is too high for a high school choir, shifting down 2-4 semitones makes it singable. Our tool lets you create custom practice tracks for each voice section.</p>
+            
+            <p><strong>Music Production and Remixing:</strong> Producers use pitch shifting to create harmonies by shifting a vocal up or down 3, 4, 5, or 7 semitones, match samples from different songs that are in different keys, create mashups where two songs need to be in the same key, or experiment with gender-swapping vocals for creative effects popular in electronic and pop production.</p>
+
+            <h2>Pitch Shifting Best Practices</h2>
+            
+            <p><strong>Start With High-Quality Source Audio:</strong> The better your input audio quality, the better your pitch-shifted output will sound. High-quality MP3s (256-320 kbps), FLAC, or WAV files work best. Low-quality audio will sound worse when pitch shifted because artifacts are magnified.</p>
+            
+            <p><strong>Use the Smallest Shift Necessary:</strong> Don't shift more than you need to. If shifting down 2 semitones makes a song comfortable to sing, don't shift down 3 semitones just to be safe. The smallest effective shift gives the best quality.</p>
+            
+            <p><strong>Preview Before Downloading:</strong> Always use the preview function to test your pitch shift before creating the final file. Play the most challenging parts of the song to ensure the new key works for you. Adjust the shift amount in real-time during preview to dial in the perfect transposition.</p>
+            
+            <p><strong>Consider the Song's Character:</strong> Some songs have their identity tied to their key. A deep, brooding rock song shifted up 5 semitones might lose its power. While pitch shifting is technically possible across wide ranges, think about whether the song maintains its emotional impact in the new key.</p>
+            
+            <p><strong>For Extreme Shifts, Try Octave Shifting:</strong> If you need a song much higher or lower, consider shifting by exactly ±12 semitones (one octave) rather than ±7-10 semitones. Octave shifts maintain the key relationship and often sound more natural.</p>
+        </section>
+
+        <section class="info-section">
+            <h2>Frequently Asked Questions About Pitch Shifting</h2>
+            
+            <h3>What is pitch shifting?</h3>
+            <p>Pitch shifting is changing the pitch (how high or low a sound is) of audio without changing its tempo or speed. This allows you to transpose songs to different keys while maintaining the original timing and rhythm. Perfect for musicians practicing songs in different keys or singers adjusting tracks to match their vocal range.</p>
+            
+            <h3>How do I change the pitch of a song without changing the speed?</h3>
+            <p>Upload your audio file, adjust the pitch shift slider to your desired number of semitones (positive numbers raise pitch, negative numbers lower pitch), preview it to hear the pitch change without tempo change, then click 'Create Pitch Shifted Audio' to download. Your song will be in a different key while maintaining the same tempo and duration.</p>
+            
+            <h3>What is a semitone in music?</h3>
+            <p>A semitone is the smallest interval in Western music - the distance between two adjacent piano keys. 12 semitones equal one octave. Shifting up 2 semitones transposes a song from C major to D major. Shifting down 3 semitones transposes from G to E.</p>
+            
+            <h3>Why would I need to shift pitch?</h3>
+            <p>Musicians shift pitch to practice songs in their comfortable vocal range, match backing tracks to their instrument's tuning, or transpose difficult passages to easier keys. Singers adjust tracks to fit their voice range. Content creators use pitch shifting for creative effects.</p>
+            
+            <h3>Is this pitch shifter free?</h3>
+            <p>Yes, completely free with unlimited use, no file limits, no subscriptions, and no hidden charges. Shift pitch of as many tracks as you want for practice, performance, or content creation.</p>
+            
+            <h3>What audio formats work for pitch shifting?</h3>
+            <p>Our pitch shifter supports MP3, FLAC, WAV, AAC, and OGG audio formats. Upload any of these formats and download your pitch shifted audio in the same format as the input file, maintaining quality.</p>
+            
+            <h3>How many semitones can I shift?</h3>
+            <p>You can shift pitch from -12 semitones (one octave down) to +12 semitones (one octave up). This covers a full two-octave range. Common shifts are +2 or -2 semitones for vocal range adjustments.</p>
+            
+            <h3>Will pitch shifting affect audio quality?</h3>
+            <p>Small pitch shifts (±1-3 semitones) maintain excellent quality. Larger shifts (±6-12 semitones) introduce slight artifacts but remain highly usable for practice and performance. Smaller shifts sound more natural.</p>
+            
+            <h3>Does pitch shifting change the key of the song?</h3>
+            <p>Yes! Pitch shifting transposes the entire song to a different key. Each semitone shift moves the key up or down by one half-step. A song in C major shifted up 2 semitones becomes D major.</p>
+            
+            <h3>Can I preview before downloading?</h3>
+            <p>Yes! Click the 'Preview Audio' button or press spacebar to hear your pitch-shifted audio before downloading. Adjust the pitch shift slider in real-time while previewing to find the perfect transposition.</p>
+            
+            <h3>What's the difference between a pitch shifter and a pitch changer?</h3>
+            <p>They're the same thing — "pitch shifter" and "pitch changer" both describe a tool that moves audio to a higher or lower key without affecting playback speed. "Pitch shifting" is the technical term used in audio production; "pitch changing" is how most casual users describe the same action. This tool does both.</p>
+
+            <h3>What's the difference between pitch shifting and speed changing?</h3>
+            <p>Pitch shifting changes only the pitch (key) while keeping tempo the same. Speed changing affects both pitch AND tempo together - speed up makes it faster AND higher, slow down makes it slower AND lower.</p>
+            
+            <h3>Does pitch shifting change the song's duration?</h3>
+            <p>No! Pitch shifting preserves the original tempo and duration. A 3-minute song at 120 BPM remains 3 minutes at 120 BPM regardless of pitch shift. Only the key changes.</p>
+            
+            <h3>Can I use pitch-shifted audio for karaoke?</h3>
+            <p>Absolutely! Pitch shifting is perfect for karaoke. Adjust any backing track to match your vocal range. If the original key is too high, shift down 2-3 semitones to sing comfortably.</p>
+            
+            <h3>Why does pitch shifting sometimes sound robotic?</h3>
+            <p>Large pitch shifts (±7-12 semitones) can introduce artifacts that sound robotic. Small shifts (±1-3 semitones) sound very natural. Use the smallest shift that achieves your goal for best results.</p>
+            
+            <h3>What's the best pitch shift amount for singing practice?</h3>
+            <p>Most singers find +2 or -2 semitones perfect for adjusting songs to their range. Try shifting in 1-2 semitone increments and preview until challenging notes feel comfortable.</p>
+            
+            <h3>Does this work on mobile devices?</h3>
+            <p>Yes! Our pitch shifter works on all devices - iPhone, Android, iPad, desktop, and laptop. Just open the page in your mobile browser and create pitch-shifted tracks right from your phone.</p>
+        </section>
+
+
+
+
+         <section class="related-tools-section">
+            <div class="container">
+                <h2 class="related-tools-header">Related Audio Tools</h2>
+                <p class="related-tools-subheader">Create more amazing audio with these popular tools</p>
+                
+              
+                
+                <!-- Related Tools Grid -->
+                <div class="related-tools-grid">
+
+                    <a href="/voice-to-instrument/" class="related-tool-card">
+                        <span class="tool-emoji">🎵</span>
+                        <h3>Voice to Instrument</h3>
+                        <p>Got a melody in your head? Hum it and hear it as piano, guitar, or cello</p>
+                    </a>
+
+                     <a href="/bass-boost/" class="related-tool-card">
+                        <span class="tool-emoji">🔊</span>
+                        <h3>Bass Boost</h3>
+                        <p>Add powerful bass to songs</p>
+                    </a>
+                    
+
+                    <a href="/tiktok-slowed-reverb/" class="related-tool-card">
+                        <span class="tool-emoji">🎵</span>
+                        <h3>TikTok Slowed</h3>
+                        <p>Viral 80% slowed + reverb</p>
+                    </a>
+                    
+
+                     <a href="/volume-booster/" class="related-tool-card">
+                        <span class="tool-emoji">📢</span>
+                        <h3>Volume Booster</h3>
+                        <p>Increase audio loudness</p>
+                    </a>
+                    
+
+                    <a href="/nightcore/" class="related-tool-card">
+                        <span class="tool-emoji">🌙</span>
+                        <h3>Nightcore</h3>
+                        <p>Fast tempo + higher pitch effect</p>
+                    </a>
+                </div>
+                
+                <!-- Browse All Tools CTA -->
+                <div class="browse-all-cta">
+                    <a href="/" class="browse-all-btn">
+                        <span class="btn-icon">🎵</span>
+                        Browse All Audio Tools
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer with Mega Menu -->
+    <!-- FOOTER_START -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Effects</h3>
+                    <ul>
+                        <li><a href="/eq/">EQ</a></li>
+                        <li><a href="/8d-audio/">8D Audio</a></li>
+                        <li><a href="/add-reverb-to-audio/">Add Reverb</a></li>
+                        <li><a href="/bass-boost/">Bass Boost</a></li>
+                        <li><a href="/nightcore/">Nightcore</a></li>
+                        <li><a href="/nightcore-reverse/">Nightcore Reverse</a></li>
+                        <li><a href="/slowed-reverb/">Slowed + Reverb</a></li>
+                        <li><a href="/sped-up/">Sped Up Audio</a></li>
+                        <li><a href="/tiktok-slowed-reverb/">TikTok Slowed</a></li>
+                        <li><a href="/vaporwave/">Vaporwave</a></li>
+                        <li><a href="/volume-booster/">Volume Booster</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Voice & AI</h3>
+                    <ul>
+                        <li><a href="/voice-cloning/">Voice Cloning</a></li>
+                        <li><a href="/vocal-tuner/">Vocal Tuner</a></li>
+                        <li><a href="/voice-to-instrument/">Voice to Instrument</a></li>
+                        <li><a href="/noise-remover/">Noise Remover</a></li>
+                        <li><a href="/stem-splitter/">Stem Splitter</a></li>
+                        <li><a href="/text-to-speech/">Text to Speech</a></li>
+                        <li><a href="/speech-to-text/">Speech to Text</a></li>
+                        <li><a href="/speech-to-song/">Speech to Song</a></li>
+                        <li><a href="/vocal-remover/">Vocal Remover</a></li>
+                        <li><a href="/voice-changer/">Voice Changer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Edit & Convert</h3>
+                    <ul>
+                        <li><a href="/audio-converter/">Audio Converter</a></li>
+                        <li><a href="/audio-joiner/">Audio Joiner</a></li>
+                        <li><a href="/audio-trimmer/">Audio Trimmer</a></li>
+                        <li><a href="/flac-cover-art/">FLAC Cover Art</a></li>
+                        <li><a href="/audio-metadata-editor/">Metadata Editor</a></li>
+                        <li><a href="/pitch-shifter/">Pitch Shifter</a></li>
+                        <li><a href="/reverse-audio/">Reverse Audio</a></li>
+                        <li><a href="/tempo-changer/">Tempo Changer</a></li>
+                        <li><a href="/video-to-audio/">Video to Audio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Create & Analyze</h3>
+                    <ul>
+                        <li><a href="/beat-maker/">Beat Maker</a></li>
+                        <li><a href="/bpm-detector/">BPM Detector</a></li>
+                        <li><a href="/granular-synthesizer/">Granular Synthesizer</a></li>
+                        <li><a href="/hearing-test/">Hearing Test</a></li>
+                        <li><a href="/music-visualizer/">Music Visualizer</a></li>
+                        <li><a href="/soundboard/">Soundboard</a></li>
+                    </ul>
+                </div>
+
+                 <div class="footer-column">
+                    <h3>The Lab</h3>
+                    <ul>
+                        <li><a href="/lab/evaporator/">Evaporator</a></li>
+                        <li><a href="/lab/we-have-the-cherry-point-at-home/">Dead Empires</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service/">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoundTools - Free Audio Tools for Creators</p>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER_END -->
+    
+
+     <!-- Mobile Menu Script -->
+    <script>
+        // Toggle main mobile menu
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Mobile dropdown toggle - handle both desktop hover and mobile click
+        const hasDropdownItems = document.querySelectorAll('.has-dropdown');
+        
+        hasDropdownItems.forEach(item => {
+            const toggle = item.querySelector('a, .mobile-dropdown-toggle');
+            const dropdown = item.querySelector('.dropdown-menu');
+            
+            if (toggle && dropdown) {
+                toggle.addEventListener('click', function(e) {
+                    // Only prevent default and toggle on mobile
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a:not(.mobile-dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            if (!nav.contains(event.target)) {
+                document.querySelector('.nav-links').classList.remove('active');
+            }
+        });
+    </script>
+
+    <!-- SoundToolsPlayer - shared preview player component -->
+    <script src="../preview-player/soundtools-player.js"></script>
+
+    <!-- Pitch Shifter Tool Logic -->
+    <script type="module">
+        // Import SoundTouch as ES module
+        import { PitchShifter } from 'https://cdn.jsdelivr.net/npm/soundtouchjs@0.1.30/dist/soundtouch.js';
+
+        // ============================================================================
+        // MUSICAL KEY DETECTION AND UTILITIES
+        // ============================================================================
+
+        const NOTES = ['C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B'];
+        let detectedKey = 'C';
+        let detectedSemitone = 0;
+
+        function frequencyToNote(frequency) {
+            const A4 = 440;
+            const C0 = A4 * Math.pow(2, -4.75);
+            const halfSteps = Math.round(12 * Math.log2(frequency / C0));
+            const noteIndex = halfSteps % 12;
+            return NOTES[noteIndex];
+        }
+
+        function detectPitch(audioBuffer) {
+            const sampleRate = audioBuffer.sampleRate;
+            const audioData = audioBuffer.getChannelData(0);
+            const bufferSize = Math.min(sampleRate, audioData.length);
+            const buffer = audioData.slice(0, bufferSize);
+            let maxCorrelation = 0;
+            let bestOffset = 0;
+            const minPeriod = Math.floor(sampleRate / 1000);
+            const maxPeriod = Math.floor(sampleRate / 50);
+            for (let offset = minPeriod; offset < maxPeriod; offset++) {
+                let correlation = 0;
+                for (let i = 0; i < bufferSize - offset; i++) {
+                    correlation += buffer[i] * buffer[i + offset];
+                }
+                if (correlation > maxCorrelation) {
+                    maxCorrelation = correlation;
+                    bestOffset = offset;
+                }
+            }
+            if (bestOffset === 0) return 'C';
+            const frequency = sampleRate / bestOffset;
+            return frequencyToNote(frequency);
+        }
+
+        function noteToSemitone(note) {
+            const index = NOTES.indexOf(note);
+            return index >= 0 ? index : 0;
+        }
+
+        function semitoneToNote(semitone) {
+            const normalizedSemitone = ((semitone % 12) + 12) % 12;
+            return NOTES[normalizedSemitone];
+        }
+
+        // ============================================================================
+        // PITCH SHIFTER AUDIO TOOL - Change Pitch Without Changing Tempo
+        // ============================================================================
+        // ARCHITECTURE:
+        // Preview:  SoundTouch PitchShifter (offline OfflineAudioContext render)
+        // Download: SoundTouch PitchShifter (offline OfflineAudioContext render)
+        //   Both use the same SoundTouch algorithm, so preview matches download.
+        // ============================================================================
+
+        let FFmpeg = null;
+        let ffmpeg = null;
+        let ffmpegLoaded = false;
+        let ffmpegLoading = false;
+        let audioFile = null;
+
+        // Audio state
+        let audioContext = null;
+        let audioBuffer = null;
+        let previewBuffer = null;
+
+        // SoundToolsPlayer instance
+        let player = null;
+
+        // DOM elements
+        const audioInput = document.getElementById('audioFile');
+        const processBtn = document.getElementById('processBtn');
+        const statusDiv = document.getElementById('status');
+        const uploadFilename = document.getElementById('uploadFilename');
+        const pitchSlider = document.getElementById('pitchSlider');
+        const pitchValue = document.getElementById('pitchValue');
+        const presetButtons = document.querySelectorAll('.preset-btn');
+        const previewPlayerDiv = document.getElementById('previewPlayer');
+
+        // Debounce timer for slider
+        let sliderDebounceTimer = null;
+
+        // ============================================================================
+        // UTILITY FUNCTIONS
+        // ============================================================================
+
+        function showStatus(message, type = 'info') {
+            statusDiv.textContent = message;
+            statusDiv.className = type;
+        }
+
+        // Update pitch display label with key transposition
+        function updatePitchDisplay(semitones) {
+            const sign = semitones >= 0 ? '+' : '';
+            const targetSemitone = detectedSemitone + semitones;
+            const targetKey = semitoneToNote(targetSemitone);
+            if (semitones === 0) {
+                pitchValue.textContent = `${detectedKey} → ${detectedKey}`;
+            } else {
+                pitchValue.textContent = `${detectedKey} → ${targetKey} (${sign}${semitones})`;
+            }
+        }
+
+        // Convert AudioBuffer to WAV blob
+        function audioBufferToWav(audioBuffer) {
+            const numChannels = audioBuffer.numberOfChannels;
+            const sampleRate = audioBuffer.sampleRate;
+            const format = 1;
+            const bitDepth = 16;
+            const bytesPerSample = bitDepth / 8;
+            const blockAlign = numChannels * bytesPerSample;
+            const samples = audioBuffer.length;
+            const dataSize = samples * blockAlign;
+            const buffer = new ArrayBuffer(44 + dataSize);
+            const view = new DataView(buffer);
+            const writeString = (offset, string) => {
+                for (let i = 0; i < string.length; i++) view.setUint8(offset + i, string.charCodeAt(i));
+            };
+            writeString(0, 'RIFF');
+            view.setUint32(4, 36 + dataSize, true);
+            writeString(8, 'WAVE');
+            writeString(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, format, true);
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+            writeString(36, 'data');
+            view.setUint32(40, dataSize, true);
+            const channels = [];
+            for (let i = 0; i < numChannels; i++) channels.push(audioBuffer.getChannelData(i));
+            let offset = 44;
+            for (let i = 0; i < samples; i++) {
+                for (let channel = 0; channel < numChannels; channel++) {
+                    const sample = Math.max(-1, Math.min(1, channels[channel][i]));
+                    view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+                    offset += 2;
+                }
+            }
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        function updateButtonState() {
+            processBtn.disabled = !(ffmpegLoaded && audioFile && audioBuffer);
+            if (statusDiv.classList.contains('success-enhanced')) return;
+            if (audioFile && audioBuffer && !ffmpegLoaded) {
+                processBtn.textContent = ffmpegLoading ? 'Loading processor...' : 'Preparing...';
+                if (ffmpegLoading) showStatus('⏳ Loading audio processor...', 'info');
+            } else {
+                processBtn.textContent = 'Create Pitch Shifted Audio';
+            }
+        }
+
+        // ============================================================================
+        // PREVIEW - SoundToolsPlayer with SoundTouch offline render
+        // ============================================================================
+
+        // Render preview buffer with current pitch setting using SoundTouch offline
+        async function renderPreviewBuffer() {
+            if (!audioBuffer) return null;
+
+            const pitchSemitones = parseInt(pitchSlider.value);
+
+            // Pitch shift doesn't change audio length
+            const offlineContext = new OfflineAudioContext(
+                audioBuffer.numberOfChannels,
+                audioBuffer.length,
+                audioBuffer.sampleRate
+            );
+
+            const offlineShifter = new PitchShifter(offlineContext, audioBuffer, 16384);
+            offlineShifter.tempo = 1.0;
+            offlineShifter.pitchSemitones = pitchSemitones;
+            offlineShifter.connect(offlineContext.destination);
+
+            previewBuffer = await offlineContext.startRendering();
+            return previewBuffer;
+        }
+
+        // Create or update the SoundToolsPlayer with the current preview buffer
+        async function updatePlayer() {
+            if (!audioBuffer) return;
+
+            const wasPlaying = player ? player._isPlaying : false;
+
+            showStatus('Rendering preview...', 'info');
+
+            try {
+                await renderPreviewBuffer();
+
+                if (player) {
+                    player.load(previewBuffer, audioFile.name);
+                } else {
+                    player = new SoundToolsPlayer({
+                        container:   previewPlayerDiv,
+                        audioBuffer: previewBuffer,
+                        filename:    audioFile.name,
+                    });
+                }
+
+                previewPlayerDiv.style.display = '';
+
+                if (wasPlaying) {
+                    player.play();
+                }
+
+                const pitchSemitones = parseInt(pitchSlider.value);
+                const sign = pitchSemitones >= 0 ? '+' : '';
+                const targetKey = semitoneToNote(detectedSemitone + pitchSemitones);
+                const pitchText = pitchSemitones !== 0 ? ` (${detectedKey} → ${targetKey}, ${sign}${pitchSemitones} semitones)` : '';
+                showStatus(`Preview ready${pitchText}. Adjust settings or create your file.`, 'success');
+            } catch (error) {
+                console.error('Preview render error:', error);
+                showStatus('Error rendering preview: ' + error.message, 'error');
+            }
+        }
+
+        // ============================================================================
+        // EVENT HANDLERS - Pitch Slider and Presets
+        // ============================================================================
+
+        pitchSlider.addEventListener('input', (e) => {
+            const semitones = parseInt(e.target.value);
+            updatePitchDisplay(semitones);
+
+            // Set all presets to inactive when manually adjusting
+            presetButtons.forEach(btn => btn.classList.remove('active'));
+            presetButtons[2].classList.add('active'); // Activate "Custom" (index 2)
+
+            // Debounce: re-render preview after user stops moving slider
+            if (audioBuffer) {
+                clearTimeout(sliderDebounceTimer);
+                sliderDebounceTimer = setTimeout(() => {
+                    updatePlayer();
+                }, 300);
+            }
+        });
+
+        presetButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const pitch = parseInt(btn.dataset.pitch);
+
+                pitchSlider.value = pitch;
+                updatePitchDisplay(pitch);
+
+                presetButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Re-render preview with new preset pitch
+                if (audioBuffer) {
+                    updatePlayer();
+                }
+
+                const presetName = btn.querySelector('.preset-name').textContent;
+                ToolTracker.trackPresetSelected(presetName);
+            });
+        });
+
+        // ============================================================================
+        // AUDIO LOADING
+        // ============================================================================
+
+        async function loadAudioForPreview(file) {
+            try {
+                showStatus('Loading audio...', 'info');
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const arrayBuffer = await file.arrayBuffer();
+                audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+                // Detect musical key
+                detectedKey = detectPitch(audioBuffer);
+                detectedSemitone = noteToSemitone(detectedKey);
+                console.log('Detected key:', detectedKey, 'Semitone:', detectedSemitone);
+
+                // Update pitch display with detected key
+                updatePitchDisplay(parseInt(pitchSlider.value));
+
+                // Render preview with pitch effect and create/update the player
+                await updatePlayer();
+
+                updateButtonState();
+            } catch (error) {
+                console.error('Error loading audio:', error);
+                showStatus('Error loading audio for preview: ' + error.message + '. Please insure the file you are attempting to use exists on your physical device, not "online only" / "cloud-only" files in DropBox or iCloud', 'error');
+                audioBuffer = null;
+                previewPlayerDiv.style.display = 'none';
+                updateButtonState();
+            }
+        }
+
+        // ============================================================================
+        // FFMPEG LOADING
+        // ============================================================================
+
+        async function loadFFmpeg() {
+            if (ffmpegLoaded) return true;
+            if (ffmpegLoading) { while (ffmpegLoading) await new Promise(r => setTimeout(r, 100)); return ffmpegLoaded; }
+            ffmpegLoading = true;
+            try {
+                showStatus('Loading audio processor (this may take a moment on slow connections)...', 'info');
+                const module = await import('../../ffmpeg/index.js');
+                FFmpeg = module.FFmpeg;
+                ffmpeg = new FFmpeg();
+                await ffmpeg.load({
+                    coreURL: '../../ffmpeg/ffmpeg-core.js',
+                    wasmURL: 'https://cdn.soundtools.io/ffmpeg/ffmpeg-core.wasm',
+                });
+                ffmpegLoaded = true;
+                showStatus('Ready!', 'success');
+                updateButtonState();
+                return true;
+            } catch (error) {
+                ffmpegLoaded = false;
+                showStatus('Error loading processor: ' + error.message, 'error');
+                console.error('FFmpeg load error:', error);
+                return false;
+            } finally { ffmpegLoading = false; }
+        }
+
+        // ============================================================================
+        // FILE UPLOAD
+        // ============================================================================
+
+        audioInput.addEventListener('change', async (e) => {
+            if (statusDiv.classList.contains('success-enhanced')) { statusDiv.className = ''; statusDiv.innerHTML = ''; }
+            audioFile = e.target.files[0];
+
+            if (audioFile) {
+                ToolTracker.trackFileSelected(audioFile.size);
+
+                uploadFilename.textContent = audioFile.name;
+
+                // Load audio for preview
+                await loadAudioForPreview(audioFile);
+
+                // Load FFmpeg for processing
+                if (!ffmpegLoaded && audioBuffer) {
+                    await loadFFmpeg();
+                    updateButtonState();
+                } else {
+                    updateButtonState();
+                }
+            } else {
+                uploadFilename.textContent = 'No file selected';
+                previewPlayerDiv.style.display = 'none';
+                if (player) { player.destroy(); player = null; }
+                audioBuffer = null;
+                updateButtonState();
+            }
+        });
+
+        // ============================================================================
+        // MAIN PROCESSING - SoundTouch offline render + FFmpeg format conversion
+        // ============================================================================
+
+        processBtn.addEventListener('click', async () => {
+            if (statusDiv.classList.contains('success-enhanced')) { statusDiv.className = ''; statusDiv.innerHTML = ''; }
+            if (!audioFile || !audioBuffer) {
+                showStatus('Please upload an audio file and wait for it to load', 'error');
+                return;
+            }
+
+            if (!ffmpegLoaded) {
+                showStatus('Waiting for audio processor to load... Please be patient on slow connections.', 'info');
+                const loadResult = await loadFFmpeg();
+                if (!loadResult || !ffmpegLoaded) {
+                    showStatus('✗ Error: Audio processor failed to load. Please refresh the page and try again.', 'error');
+                    processBtn.disabled = false;
+                    updateButtonState();
+                    return;
+                }
+            }
+
+            const pitchSemitones = parseInt(pitchSlider.value);
+
+            try {
+                processBtn.disabled = true;
+
+                // Stop preview if playing
+                if (player) {
+                    player.stop();
+                }
+
+                showStatus('Processing pitch shift with SoundTouch...', 'info');
+
+                // Create offline audio context for rendering
+                const offlineContext = new OfflineAudioContext(
+                    audioBuffer.numberOfChannels,
+                    audioBuffer.length,
+                    audioBuffer.sampleRate
+                );
+
+                // Create SoundTouch pitch shifter for offline rendering
+                const offlinePitchShifter = new PitchShifter(offlineContext, audioBuffer, 16384);
+                offlinePitchShifter.tempo = 1.0;
+                offlinePitchShifter.pitchSemitones = pitchSemitones;
+                offlinePitchShifter.connect(offlineContext.destination);
+
+                showStatus('Rendering pitch shifted audio...', 'info');
+                const renderedBuffer = await offlineContext.startRendering();
+
+                showStatus('Converting to WAV format...', 'info');
+                const wavBlob = audioBufferToWav(renderedBuffer);
+                const wavData = new Uint8Array(await wavBlob.arrayBuffer());
+                await ffmpeg.writeFile('input.wav', wavData);
+
+                // Write original file to FFmpeg filesystem for metadata preservation
+                const originalData = new Uint8Array(await audioFile.arrayBuffer());
+                const fileExt = audioFile.name.split('.').pop().toLowerCase();
+                const originalFileName = `original.${fileExt}`;
+                await ffmpeg.writeFile(originalFileName, originalData);
+
+                const outputFileName = `output.${fileExt}`;
+
+                showStatus('Converting to final format...', 'info');
+
+                // -map 0:a = audio from processed WAV, -map 1:v? = cover art from original
+                // -map_metadata 1 = text metadata from original, -c:v copy = passthrough cover art
+                const ffmpegCommand = ['-i', 'input.wav', '-i', originalFileName, '-map', '0:a', '-map', '1:v?', '-map_metadata', '1', '-c:v', 'copy'];
+                if (fileExt === 'mp3') {
+                    ffmpegCommand.push('-codec:a', 'libmp3lame', '-b:a', '320k');
+                } else if (fileExt === 'flac') {
+                    ffmpegCommand.push('-codec:a', 'flac');
+                } else if (fileExt === 'wav') {
+                    ffmpegCommand.push('-codec:a', 'pcm_s16le');
+                } else if (fileExt === 'aac') {
+                    ffmpegCommand.push('-codec:a', 'aac', '-b:a', '256k');
+                } else if (fileExt === 'ogg') {
+                    ffmpegCommand.push('-codec:a', 'libvorbis', '-b:a', '320k');
+                }
+                ffmpegCommand.push(outputFileName);
+
+                await ffmpeg.exec(ffmpegCommand);
+
+                showStatus('Preparing download...', 'info');
+
+                const data = await ffmpeg.readFile(outputFileName);
+
+                const mimeTypes = {
+                    'mp3': 'audio/mpeg', 'flac': 'audio/flac', 'wav': 'audio/wav',
+                    'aac': 'audio/aac', 'ogg': 'audio/ogg'
+                };
+
+                const blob = new Blob([data.buffer], { type: mimeTypes[fileExt] || 'audio/mpeg' });
+                const downloadUrl = URL.createObjectURL(blob);
+
+                const originalName = audioFile.name.substring(0, audioFile.name.lastIndexOf('.')) || audioFile.name;
+                const targetSemitone = detectedSemitone + pitchSemitones;
+                const targetKey = semitoneToNote(targetSemitone);
+                const keyLabel = pitchSemitones !== 0 ? `_${detectedKey}_to_${targetKey}` : '';
+                const downloadName = `${originalName}${keyLabel}.${fileExt}`;
+
+                await ffmpeg.deleteFile('input.wav');
+                await ffmpeg.deleteFile(originalFileName);
+                await ffmpeg.deleteFile(outputFileName);
+
+                const analytics = ToolTracker.getAnalytics();
+
+                statusDiv.innerHTML = `
+                    <div class="success-message-enhanced">
+                        <div class="success-text">✔ Pitch shifted${pitchSemitones !== 0 ? ` from ${detectedKey} to ${targetKey}` : ''}!</div>
+                        <div class="next-tools">
+                            <span class="next-label">Try next:</span>
+                            <a href="/bass-boost/" class="next-tool-link" data-tool="bass-boost">🔊 Bass Boost</a>
+                            <a href="/volume-booster/" class="next-tool-link" data-tool="volume-booster">⚡ Volume Boost</a>
+                            <a href="/8d-audio/" class="next-tool-link" data-tool="8d-audio">🎧 8D Audio</a>
+                            <a href="/" class="next-tool-link all-tools" data-tool="all-tools">More tools →</a>
+                        </div>
+                        <a id="ctaDownloadBtn" class="cta-download-btn" href="${downloadUrl}" download="${downloadName}">⬇️ Download Pitch Shifted Audio</a>
+                    </div>
+                `;
+
+                statusDiv.classList.add('success-enhanced');
+
+                statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.getElementById('ctaDownloadBtn').addEventListener('click', function() {
+                    gtag('event', 'cta-download-clicked', {
+                        'event_category': 'download',
+                        'source_tool': 'pitch-shifter',
+                        'pitch_semitones': pitchSemitones
+                    });
+                    setTimeout(() => URL.revokeObjectURL(downloadUrl), 60000);
+                });
+
+                gtag('event', 'related-tools-cta-shown', {
+                    'event_category': 'cross_tool_engagement',
+                    'event_label': 'success_message_inline',
+                    'source_tool': 'pitch-shifter',
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user
+                });
+
+                document.querySelectorAll('.next-tool-link').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        const destinationTool = this.getAttribute('data-tool');
+                        gtag('event', 'related-tool-clicked', {
+                            'event_category': 'cross_tool_engagement',
+                            'source_tool': 'pitch-shifter',
+                            'destination_tool': destinationTool,
+                            'cta_position': 'inline_success',
+                            'lifetime_tool_uses': analytics.lifetime_tool_uses
+                        });
+                    });
+                });
+
+                ToolTracker.trackSuccess({
+                    'event_label': `pitch_${pitchSemitones}`,
+                    'pitch_semitones': pitchSemitones,
+                    'detected_key': detectedKey,
+                    'target_key': targetKey,
+                    'method': 'soundtouch_offline'
+                });
+
+                processBtn.disabled = false;
+                updateButtonState();
+            } catch (error) {
+                showStatus('✗ Error: ' + error.message, 'error');
+                console.error(error);
+                processBtn.disabled = false;
+                updateButtonState();
+
+                console.log('error.message', error.message);
+                console.log('error.stack', error.stack);
+                const errorMessage = error?.message || error?.toString() || String(error) || 'Unknown error';
+                const stackFirstLine = error?.stack ? error.stack.split('\n')[1]?.trim() : '';
+                const errorForGA4 = stackFirstLine ? `${errorMessage} | ${stackFirstLine}` : errorMessage;
+                ToolTracker.trackError(errorForGA4);
+            }
+        });
+
+        // ============================================================================
+        // INITIALIZATION
+        // ============================================================================
+        showStatus('Select your audio file to shift pitch without changing tempo.', 'info');
+    </script>
+</body>
+</html>

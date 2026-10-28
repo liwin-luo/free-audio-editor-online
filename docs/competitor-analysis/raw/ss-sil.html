@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Silence Remover — Shorten Long Pauses | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-decode-gate.js" defer></script>
+<script src="/vendor/snip-cut-ranges.js" defer></script>
+<script src="/vendor/snip-longjob.js" defer></script>
+<script src="/vendor/snip-audio-decode.js" defer></script>
+<script src="/vendor/snip-notify.js" defer></script>
+<script src="/vendor/snip-transport.js" defer></script>
+<meta name="description" content="Remove silence from audio free: find every long pause, shorten it instead of deleting it, and A/B the result before downloading. Files stay on your device.">
+<meta name="keywords" content="silence remover, remove silence from audio, auto cut silence, podcast silence remover, dead air remover, silence cutter online, remove pauses from audio, audio silence trimmer, mp3 silence remover">
+<link rel="canonical" href="https://snipsound.com/tools/silence-remover/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/silence-remover/">
+<link rel="alternate" hreflang="es" href="https://snipsound.com/es/eliminar-silencios/">
+<link rel="alternate" hreflang="pt-BR" href="https://snipsound.com/pt/removedor-de-silencio/">
+<link rel="alternate" hreflang="it" href="https://snipsound.com/it/rimuovere-silenzi/">
+<link rel="alternate" hreflang="fr" href="https://snipsound.com/fr/supprimer-silences/">
+<link rel="alternate" hreflang="de" href="https://snipsound.com/de/stille-entfernen/">
+<link rel="alternate" hreflang="ru" href="https://snipsound.com/ru/udalenie-tishiny/">
+<link rel="alternate" hreflang="zh-Hans" href="https://snipsound.com/zh/qu-jingyin/">
+<link rel="alternate" hreflang="hi" href="https://snipsound.com/hi/silence-remover/">
+<link rel="alternate" hreflang="ar" href="https://snipsound.com/ar/إزالة-الصمت/">
+<link rel="alternate" hreflang="ja" href="https://snipsound.com/ja/無音-カット/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/silence-remover/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Silence Remover — Shorten Long Pauses">
+<meta property="og:description" content="Remove silence from audio free: find every long pause, shorten it instead of deleting it, and A/B the result before downloading. Files stay on your device.">
+<meta property="og:url" content="https://snipsound.com/tools/silence-remover/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Silence Remover — Shorten Long Pauses">
+<meta name="twitter:description" content="Remove silence from audio free: find every long pause, shorten it instead of deleting it, and A/B the result before downloading. Files stay on your device.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+      :root { --cut: rgba(244,67,54,0.32); --cut-edge: rgba(244,67,54,0.65); }
+
+  
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 32px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  .privacy-notice { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-dim); margin: 0 0 24px; padding: 0 4px; }
+  .privacy-notice svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
+  .privacy-notice strong { color: var(--text); font-weight: 600; }
+  .privacy-notice a { color: var(--accent); text-decoration: none; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .file-info { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .file-info .file-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; color: var(--text); }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove { margin-left: auto; background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: color 0.2s, border-color 0.2s; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  /* Waveform with cut-region overlays */
+  .waveform-wrap {
+    position: relative;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    height: 160px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .waveform-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  /* Shared transport playhead (snip-transport.js positions it). */
+  .playhead { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 4px rgba(0,0,0,0.6); pointer-events: none; z-index: 6; display: none; }
+  .waveform-empty {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-dim); font-size: 0.85rem;
+  }
+  .zoom-bar {
+    display: flex; align-items: center; gap: 8px;
+    margin: -6px 0 14px; padding: 0 2px;
+  }
+  .zoom-btn {
+    flex: 0 0 auto; min-width: 30px; height: 28px; padding: 0 8px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 7px;
+    color: var(--text); font-size: 0.95rem; font-weight: 600; line-height: 1; cursor: pointer;
+  }
+  .zoom-btn:hover { border-color: var(--accent, #7c6fff); }
+  .zoom-btn.zoom-fit { font-size: 0.8rem; }
+  .zoom-readout { flex: 0 0 auto; min-width: 34px; text-align: center; font-size: 0.8rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+  .wave-scroll {
+    flex: 1 1 auto; position: relative; height: 14px; min-width: 60px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 7px;
+    overflow: hidden; touch-action: none;
+  }
+  .wave-thumb {
+    position: absolute; top: 0; bottom: 0; left: 0; width: 100%;
+    background: rgba(124,111,255,0.45); border-radius: 7px; cursor: grab;
+  }
+  .wave-thumb:active { cursor: grabbing; background: rgba(124,111,255,0.65); }
+  .zoom-hint { flex: 0 0 auto; font-size: 0.72rem; color: var(--text-dim); }
+  @media (max-width: 640px) { .zoom-hint { display: none; } }
+  .waveform-legend {
+    display: flex; gap: 16px; font-size: 0.8rem;
+    color: var(--text-dim); margin-bottom: 16px; padding: 0 4px;
+    align-items: center;
+  }
+  .waveform-legend .swatch {
+    display: inline-block; width: 12px; height: 12px;
+    border-radius: 3px; margin-right: 6px; vertical-align: -2px;
+  }
+  .waveform-legend .swatch.keep { background: var(--accent); }
+  .waveform-legend .swatch.cut { background: var(--cut-edge); }
+
+  /* Preview audio controls (raw + cleaned A/B) */
+  .preview-row {
+    display: flex; gap: 12px; align-items: center;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 9px 14px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .preview-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .preview-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .preview-btn:disabled { opacity: 0.45; cursor: default; }
+  .preview-btn svg { width: 14px; height: 14px; }
+  .preview-btn.playing { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
+  .preview-label { font-size: 0.85rem; color: var(--text-dim); }
+  .preview-label strong { color: var(--text); font-weight: 600; }
+  /* Single play/pause button + Original|Cleaned segmented toggle. */
+  .play-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: #fff; border: none; border-radius: 50%; cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s; box-shadow: 0 2px 10px var(--accent-glow);
+  }
+  .play-btn:hover:not(:disabled) { transform: translateY(-1px); }
+  .play-btn:disabled { opacity: 0.45; cursor: default; box-shadow: none; }
+  .play-btn svg { width: 18px; height: 18px; }
+  .ab-seg { display: inline-flex; background: var(--bg); border: 1px solid var(--border-bright); border-radius: 9px; padding: 3px; }
+  .ab-opt {
+    padding: 6px 16px; background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    border-radius: 6px; transition: background 0.15s, color 0.15s;
+  }
+  .ab-opt:hover:not(:disabled):not(.active) { color: var(--text); }
+  .ab-opt.active { background: var(--accent-subtle); color: var(--accent); }
+  .ab-opt:disabled { opacity: 0.4; cursor: default; }
+
+  /* Detection mode (Auto | Manual) in the legend row + manual editing bar. */
+  .detect-mode { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; }
+  .detect-label { color: var(--text-dim); font-size: 0.8rem; }
+  .detect-mode .ab-seg { padding: 2px; }
+  .detect-mode .ab-opt { padding: 4px 12px; font-size: 0.8rem; }
+  .manual-bar {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 8px 12px; margin-bottom: 10px;
+    background: var(--accent-subtle); border: 1px solid var(--border-bright); border-radius: 8px;
+  }
+  .manual-hint { font-size: 0.8rem; color: var(--text-dim); flex: 1; min-width: 200px; }
+  .manual-hint strong { color: var(--text); font-weight: 600; }
+  .mini-btn {
+    background: var(--bg); border: 1px solid var(--border-bright); color: var(--text);
+    padding: 6px 12px; border-radius: 7px; font-family: inherit; font-size: 0.8rem; font-weight: 600;
+    cursor: pointer; transition: border-color 0.15s, color 0.15s; white-space: nowrap;
+  }
+  .mini-btn:hover { border-color: var(--accent); color: var(--accent); }
+  /* In manual mode the auto-detect sliders don't apply — dim + disable them. */
+  .controls-grid.dimmed { opacity: 0.45; pointer-events: none; }
+  .waveform-wrap.editable { cursor: pointer; }
+
+  /* Sliders — one compact card, tighter rows (was 3 separate cards). */
+  .controls-grid {
+    display: grid; gap: 2px; margin-bottom: 10px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 6px 16px;
+  }
+  .cg-header {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-size: .82rem; font-weight: 600; color: var(--text);
+    padding: 6px 2px 8px; border-bottom: 1px solid var(--border); margin-bottom: 6px;
+  }
+  .cg-title { min-width: 0; }
+  .cg-sub { font-weight: 400; color: var(--muted); }
+  .cg-reset {
+    flex: 0 0 auto; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); border-radius: 7px; padding: 5px 10px; font-size: .78rem;
+    font-weight: 600; cursor: pointer; white-space: nowrap;
+  }
+  .cg-reset:hover { border-color: var(--accent, #7c6fff); color: var(--accent, #7c6fff); }
+  .slider-row {
+    display: grid; grid-template-columns: 210px 1fr 70px; gap: 16px;
+    align-items: center;
+    padding: 9px 0;
+  }
+  .slider-row + .slider-row { border-top: 1px solid var(--border); }
+  .slider-row label { font-size: 0.88rem; color: var(--text); font-weight: 500; }
+  .slider-row label .hint { display: block; font-weight: 400; font-size: 0.74rem; color: var(--text-dim); margin-top: 1px; }
+  .slider-row input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+  }
+  .slider-row .value {
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: right;
+  }
+  @media (max-width: 700px) {
+    .slider-row { grid-template-columns: 1fr 60px; row-gap: 8px; }
+    .slider-row label { grid-column: 1 / -1; }
+    .slider-row input[type="range"] { grid-column: 1; }
+    .slider-row .value { grid-column: 2; }
+  }
+
+  /* Stats card */
+  .stats-card {
+    padding: 10px 16px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .stats-info { font-size: 0.9rem; color: var(--text-dim); }
+  .stats-info strong { color: var(--text); font-weight: 600; }
+  .stats-removed {
+    text-align: right; font-size: 1.25rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #b599ff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-variant-numeric: tabular-nums;
+  }
+  .stats-pct { font-size: 0.85rem; font-weight: 500; color: var(--green); }
+  .stats-pct.none { color: var(--text-dim); }
+
+  /* Output format dropdown */
+  .output-row {
+    display: flex; gap: 10px; align-items: center;
+    padding: 9px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .output-row label { font-size: 0.9rem; color: var(--text-dim); }
+  .output-row select {
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border-bright);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .output-row select:focus { outline: none; border-color: var(--accent); }
+  .output-row .hint { font-size: 0.8rem; color: var(--text-dim); margin-left: auto; }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+
+  /* SEO content section */
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul { padding-left: 22px; }
+
+  /* Use-case grid */
+  .usecase-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px; margin: 18px 0 24px;
+  }
+  .usecase-card {
+    padding: 14px 16px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+  }
+  .usecase-name { font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .usecase-note { font-size: 0.82rem; color: var(--text-dim); }
+
+  /* Settings guide */
+  .settings-guide {
+    display: grid; grid-template-columns: 130px 1fr;
+    gap: 10px 18px; margin: 16px 0; align-items: baseline;
+  }
+  .settings-guide .sg-name { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .settings-guide .sg-text { color: var(--text-dim); font-size: 0.9rem; }
+  @media (max-width: 600px) {
+    .settings-guide { grid-template-columns: 1fr; gap: 4px 0; }
+    .settings-guide .sg-text { margin-bottom: 10px; }
+  }
+
+  .related-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .related-tool { padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: border-color 0.15s, color 0.15s; }
+  .related-tool:hover { border-color: var(--accent); color: var(--accent); }
+  .related-tool .rt-desc { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+  .related-tool:hover .rt-desc { color: var(--text-dim); }
+
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .stats-card { flex-direction: column; align-items: flex-start; }
+    .stats-removed { text-align: left; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "SnipSound Silence Remover", "url": "https://snipsound.com/tools/silence-remover/", "description": "Free online silence remover. Auto-detect and cut dead air from podcasts, voice memos, lectures, and ESL recordings. Runs entirely in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How does the silence remover decide what's silent?", "acceptedAnswer": { "@type": "Answer", "text": "It scans the audio in short windows (about 20 milliseconds each) and measures the loudness of each window in decibels. Any window quieter than your chosen threshold counts as silent. Threshold is dB relative to digital full scale — a real, clearly-quiet voice recording typically sits between -50 dB and -35 dB during pauses, so the default of -40 dB is a sensible starting point." } },
+  { "@type": "Question", "name": "What's the difference between threshold, minimum silence, and padding?", "acceptedAnswer": { "@type": "Answer", "text": "Threshold is the loudness ceiling for 'silent' (lower = stricter, fewer regions detected). Minimum silence is how long a quiet stretch has to be before it counts as a real pause worth removing (e.g. 0.5s skips natural inter-word gaps). Padding is how much of the pause to leave intact at each end so the result doesn't sound chopped — a tiny breath on each side prevents the seam from sounding glued together." } },
+  { "@type": "Question", "name": "Will this destroy the natural rhythm of speech?", "acceptedAnswer": { "@type": "Answer", "text": "Only if you set padding too low and minimum silence too short. The defaults (-40 dB / 0.5s min / 0.1s padding) preserve breaths and beats while cutting the long uhh-pauses that bloat a recording. If the output sounds rushed, raise padding to 0.2s or raise minimum silence to 1.0s." } },
+  { "@type": "Question", "name": "Does it work on music?", "acceptedAnswer": { "@type": "Answer", "text": "It can — but you probably want to use the Audio Trimmer instead. Music typically has dynamics and reverb tails that this tool will flag as silence. It's tuned for voice." } },
+  { "@type": "Question", "name": "Is my file uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. All silence detection and audio re-encoding happens in your browser using the Web Audio API. Your audio never leaves your device." } },
+  { "@type": "Question", "name": "What input formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Any audio format your browser can decode — MP3, WAV, OGG, FLAC, AAC, M4A, and several others. Output formats include MP3 (320, 256, 192, 128 kbps), WAV, FLAC, OGG, AAC and M4A." } },
+  { "@type": "Question", "name": "How long can my file be?", "acceptedAnswer": { "@type": "Answer", "text": "There's no hard limit — files run only as long as your device's memory allows. A typical laptop handles a 60-minute podcast in a few seconds. A 4-hour lecture may take 30+ seconds to decode and process." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body data-owns-keys="space">
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Silence Remover</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/" class="active">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">Silence Remover</span> — Shorten Long Pauses</h1>
+    <p>SnipSound's free silence remover cuts the dead air out of podcasts, voice memos, lectures, and language-practice recordings. Detect silent pauses, preview what'll be cut, download the cleaned audio. Runs in your browser &mdash; your files never leave your device.</p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12h2l2-6 4 12 4-12 2 6h4"/>
+    </svg>
+    <h2>Drop audio file here</h2>
+    <p>or click to browse &mdash; processed in your browser &mdash; your file never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span><span class="format-tag">WAV</span><span class="format-tag">OGG</span>
+      <span class="format-tag">FLAC</span><span class="format-tag">AAC</span><span class="format-tag">M4A</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,video/*,.mp3,.wav,.ogg,.flac,.aac,.m4a,.mp4,.mov,.webm,.mkv,.m4v">
+  </div>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your file never leaves your device.</strong> All silence detection happens in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Remove file</button>
+    </div>
+
+    <div class="waveform-wrap">
+      <canvas class="waveform-canvas" id="waveform-canvas"></canvas>
+      <div class="playhead" id="playhead"></div>
+      <div class="waveform-empty" id="waveform-empty" style="display:none;">Loading waveform…</div>
+    </div>
+    <div class="zoom-bar" id="zoom-bar" style="display:none;">
+      <button type="button" class="zoom-btn" id="zoom-out" title="Zoom out" aria-label="Zoom out">–</button>
+      <span class="zoom-readout" id="zoom-readout">1×</span>
+      <button type="button" class="zoom-btn" id="zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+      <button type="button" class="zoom-btn zoom-fit" id="zoom-fit" title="Fit the whole clip">Fit</button>
+      <div class="wave-scroll" id="wave-scroll"><div class="wave-thumb" id="wave-thumb"></div></div>
+      <span class="zoom-hint">Scroll over the waveform to zoom · drag the bar to pan</span>
+    </div>
+    <div class="waveform-legend">
+      <span><span class="swatch keep"></span>Kept</span>
+      <span><span class="swatch cut"></span>Will be cut</span>
+    </div>
+    <div class="manual-bar" id="manual-bar">
+      <span class="manual-hint"><strong>Red = removed.</strong> Drag a band's <strong>edges</strong> to resize or its <strong>middle</strong> to move it; double-click to delete. Your edits become the <strong>Manual</strong> version below.</span>
+      <button type="button" class="mini-btn" id="add-cut" title="Drops a new red 'remove' band at the playhead — then drag its edges over the part you want gone">+ Add a removal band here</button>
+      <button type="button" class="mini-btn" id="reset-cuts" style="display:none;">↺ Reset to auto-detected</button>
+    </div>
+
+    <div class="preview-row">
+      <button type="button" class="play-btn" id="btn-play" aria-label="Play / pause">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="ab-seg" role="group" aria-label="Preview version">
+        <button type="button" class="ab-opt active" id="ab-original">Original</button>
+        <button type="button" class="ab-opt" id="ab-cleaned" title="Auto-detected silence removed">Auto Removal</button>
+        <button type="button" class="ab-opt" id="ab-manual" style="display:none;">Manual</button>
+      </div>
+      <span class="preview-label" id="preview-label">A/B the result before downloading.</span>
+    </div>
+
+    <div class="controls-grid">
+      <div class="cg-header">
+        <span class="cg-title">Auto-detect settings <span class="cg-sub">— tune what counts as silence; the red bands update live as you drag</span></span>
+        <button type="button" class="cg-reset" id="reset-settings" title="Restore the default detection settings">↺ Reset settings</button>
+      </div>
+      <div class="slider-row">
+        <label for="threshold-slider">
+          Silence threshold
+          <span class="hint">Quieter than this counts as silent. Lower = stricter.</span>
+        </label>
+        <input type="range" id="threshold-slider" min="-70" max="-20" step="1" value="-40">
+        <span class="value" id="threshold-value">-40 dB</span>
+      </div>
+      <div class="slider-row">
+        <label for="minsilence-slider">
+          Minimum silence
+          <span class="hint">Pauses shorter than this are kept (preserves natural rhythm).</span>
+        </label>
+        <input type="range" id="minsilence-slider" min="0.1" max="3" step="0.1" value="0.5">
+        <span class="value" id="minsilence-value">0.5 s</span>
+      </div>
+      <div class="slider-row">
+        <label for="padding-slider">
+          Padding
+          <span class="hint">Breath room kept at each end of every cut.</span>
+        </label>
+        <input type="range" id="padding-slider" min="0" max="0.5" step="0.01" value="0.1">
+        <span class="value" id="padding-value">0.10 s</span>
+      </div>
+    </div>
+
+    <div class="stats-card" id="stats-card">
+      <div class="stats-info">
+        <div><strong id="stats-regions">0</strong> silent regions detected</div>
+        <div style="margin-top:4px;">New length: <strong id="stats-newlen">&mdash;</strong> (was <strong id="stats-oldlen">&mdash;</strong>)</div>
+      </div>
+      <div>
+        <div class="stats-removed" id="stats-removed">&mdash;</div>
+        <div class="stats-pct" id="stats-pct">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="output-row">
+      <label for="output-format">Output format:</label>
+      <select id="output-format">
+        <option value="mp3-320" selected>MP3 — 320 kbps (best)</option>
+        <option value="mp3-256">MP3 — 256 kbps</option>
+        <option value="mp3-192">MP3 — 192 kbps</option>
+        <option value="mp3-128">MP3 — 128 kbps (smaller)</option>
+        <option value="wav">WAV (lossless)</option>
+        <option value="flac">FLAC (lossless)</option>
+        <option value="ogg">OGG Vorbis</option>
+        <option value="aac">AAC</option>
+        <option value="m4a">M4A</option>
+      </select>
+      <span class="hint">MP3 320 preserves quality with broad compatibility.</span>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="btn-process">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Remove silence &amp; Download</span>
+      </button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>Remove silence from podcasts, voice memos, and lectures &mdash; free, private, no sign-up</h2>
+    <p>SnipSound's Silence Remover scans your recording for stretches of quiet and cuts them out. It's built for the post-recording cleanup that every podcaster, lecturer, and language learner ends up doing: shortening a 45-minute raw take into a 32-minute publishable episode without manually finding and deleting every awkward pause in a DAW.</p>
+
+    <h3>How the detection actually works</h3>
+    <p>The tool walks through your audio in small windows (about 20 milliseconds each) and computes the loudness of each window in decibels. Any window quieter than your <strong>threshold</strong> is flagged as silent. Adjacent silent windows merge into regions. A region is only removed if it's longer than <strong>minimum silence</strong>, and the cut leaves <strong>padding</strong> seconds on each side so the seam doesn't sound spliced. The defaults are tuned for conversational voice; the sliders let you tighten them for a deadpan podcast or loosen them for a lively interview.</p>
+
+
+    <h3>Shortened, not deleted</h3>
+    <p>When you remove silence from audio here, a long pause is shortened rather than cut out
+    altogether. <strong>Minimum silence</strong> decides how
+    long a pause has to be before it counts &mdash; anything shorter stays exactly as recorded, so
+    the natural rhythm of speech survives &mdash; and <strong>padding</strong> keeps a slice of
+    breath at each end of every cut. That is why a cleaned take still sounds like someone talking
+    rather than a stack of spliced words.</p>
+    <p>Before you download anything you can A/B it: play the original and the cleaned version
+    against each other, with the playhead skipping the removed gaps, and decide from the sound
+    rather than from a number. If you are sending the file on to a paid transcription service,
+    shorter audio is also fewer billable minutes.</p>
+    <h3>What it's great for</h3>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="usecase-name">🎙 Podcast post-production</div>
+        <div class="usecase-note">Shave 10–25% off a raw episode by removing dead air, ums, and re-take pauses. Pair with the Volume Booster to normalize before publishing.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎓 Lecture &amp; class recordings</div>
+        <div class="usecase-note">Strip out long whiteboard-writing silences, equipment fiddling, and the long pause between question and answer.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">📝 Voice memos &amp; interview transcripts</div>
+        <div class="usecase-note">Tighten an ad-hoc recording before sending to a transcription service, or before sharing with a co-worker.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🗣 ESL &amp; pronunciation practice</div>
+        <div class="usecase-note">Remove the gap between attempts when you're rehearsing the same phrase multiple times. The result lines up nicely with shadowing exercises.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">🎧 Audiobook chapter prep</div>
+        <div class="usecase-note">Cut the page-turn pauses and long inter-paragraph breaths from a self-narrated audiobook chapter.</div>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-name">📞 Call recordings &amp; meetings</div>
+        <div class="usecase-note">Compress a 60-min Zoom recording into the meaningful 35 minutes so it's faster to re-listen and share.</div>
+      </div>
+    </div>
+
+    <h3>Suggested settings</h3>
+    <p>If the defaults aren't matching your material, here are starting points:</p>
+    <div class="settings-guide">
+      <div class="sg-name">-40 / 0.5s / 0.10s</div>
+      <div class="sg-text"><strong>Default (general voice).</strong> Works for most podcasts and lectures recorded with a decent microphone in a quiet room.</div>
+
+      <div class="sg-name">-35 / 0.4s / 0.08s</div>
+      <div class="sg-text"><strong>Aggressive.</strong> Cuts more, including some shorter natural pauses. Use when you specifically want a punchy, fast-paced edit.</div>
+
+      <div class="sg-name">-45 / 0.7s / 0.15s</div>
+      <div class="sg-text"><strong>Gentle.</strong> Only removes obvious long pauses. Preserves a more natural rhythm. Good for thoughtful interviews and storytelling.</div>
+
+      <div class="sg-name">-50 / 1.0s / 0.20s</div>
+      <div class="sg-text"><strong>Quiet rooms.</strong> If your recording has very low background noise, you can use a stricter threshold. The longer minimum silence ensures only real pauses get cut.</div>
+
+      <div class="sg-name">-30 / 0.5s / 0.10s</div>
+      <div class="sg-text"><strong>Noisy rooms.</strong> If there's background hum or fan noise, raise the threshold so quiet speech doesn't get mistaken for silence.</div>
+    </div>
+
+    <h3>Why use SnipSound's silence remover</h3>
+    <ul>
+      <li><strong>100% in your browser.</strong> Other tools (Cleanvoice, Descript, Auphonic) upload your file to a server and run cloud DSP. We don't &mdash; your audio never leaves your device.</li>
+      <li><strong>No sign-up, no quota, no watermark.</strong> No monthly minutes limit, no "free until you've processed 30 minutes" trick. The whole tool is free, every time.</li>
+      <li><strong>Adjustable, not magic.</strong> Three transparent sliders. You see exactly what'll be cut before you commit. No mysterious AI "smart cut" that you can't tune.</li>
+      <li><strong>Works on any voice format.</strong> MP3, WAV, M4A from your iPhone Voice Memos app, OGG from a browser recorder, FLAC from a portable recorder &mdash; all decode and process locally.</li>
+    </ul>
+
+    <h3>Related tools</h3>
+    <div class="related-tools">
+      <a href="/tools/audio-trimmer/" class="related-tool"><strong>Audio Trimmer</strong><span class="rt-desc">Cut a single section manually with a waveform editor</span></a>
+      <a href="/tools/volume-booster/" class="related-tool"><strong>Volume Booster</strong><span class="rt-desc">Normalize loudness after removing silences</span></a>
+      <a href="/tools/audio-compressor/" class="related-tool"><strong>Audio Compressor</strong><span class="rt-desc">Shrink the file before uploading to WhatsApp or email</span></a>
+      <a href="/tools/audio-converter/" class="related-tool"><strong>Audio Converter</strong><span class="rt-desc">Change format after editing</span></a>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Silence remover FAQ</h2>
+    <div class="faq-item"><div class="faq-q"><span>How does the silence remover decide what's silent?</span><span class="arrow">&#9660;</span></div><div class="faq-a">It scans the audio in short windows (about 20 milliseconds each) and measures the loudness of each window in decibels. Any window quieter than your chosen threshold counts as silent. Threshold is dB relative to digital full scale &mdash; a real, clearly-quiet voice recording typically sits between -50 dB and -35 dB during pauses, so the default of -40 dB is a sensible starting point.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What's the difference between threshold, minimum silence, and padding?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Threshold is the loudness ceiling for "silent" (lower = stricter, fewer regions detected). Minimum silence is how long a quiet stretch has to be before it counts as a real pause worth removing (e.g. 0.5s skips natural inter-word gaps). Padding is how much of the pause to leave intact at each end so the result doesn't sound chopped &mdash; a tiny breath on each side prevents the seam from sounding glued together.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Will this destroy the natural rhythm of speech?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Only if you set padding too low and minimum silence too short. The defaults (-40 dB / 0.5s min / 0.1s padding) preserve breaths and beats while cutting the long uhh-pauses that bloat a recording. If the output sounds rushed, raise padding to 0.2s or raise minimum silence to 1.0s.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Does it work on music?</span><span class="arrow">&#9660;</span></div><div class="faq-a">It can &mdash; but you probably want to use the <a href="/tools/audio-trimmer/">Audio Trimmer</a> instead. Music typically has dynamics and reverb tails that this tool will flag as silence. It's tuned for voice.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my file uploaded to a server?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. All silence detection and audio re-encoding happens in your browser using the Web Audio API. Your audio never leaves your device.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What input formats are supported?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Any audio format your browser can decode &mdash; MP3, WAV, OGG, FLAC, AAC, M4A, and several others. Output formats include MP3 (320, 256, 192, 128 kbps), WAV, FLAC, OGG, AAC and M4A.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How long can my file be?</span><span class="arrow">&#9660;</span></div><div class="faq-a">There's no hard limit &mdash; files run only as long as your device's memory allows. A typical laptop handles a 60-minute podcast in a few seconds. A 4-hour lecture may take 30+ seconds to decode and process.</div></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; SnipSound. <a href="/">Snip Editor</a> &middot; <a href="/free-music/">Playlist</a> &middot; <a href="/tools/">All Tools</a> &middot; <a href="/privacy/">Privacy</a></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // Use a talking-voice demo here (not the music excerpt) so the demo actually
+  // has silent gaps to detect/remove. Set before theme.js mounts the demo row.
+  window.snipDemoOverride = {
+    url: '/demo/talking-voice-example.mp3',
+    name: 'Talking voice sample',
+    ext: 'mp3',
+    type: 'audio/mpeg'
+  };
+
+  // ── DOM ────────────────────────────────────────────────────────────────
+  const dropZone        = document.getElementById('drop-zone');
+  const fileInput       = document.getElementById('file-input');
+  const editor          = document.getElementById('editor');
+  const fileNameEl      = document.getElementById('file-name');
+  const fileMetaEl      = document.getElementById('file-meta');
+  const fileRemove      = document.getElementById('file-remove');
+  const waveCanvas      = document.getElementById('waveform-canvas');
+  const waveEmpty       = document.getElementById('waveform-empty');
+  const thresholdSlider = document.getElementById('threshold-slider');
+  const thresholdValue  = document.getElementById('threshold-value');
+  const minsilenceSlider= document.getElementById('minsilence-slider');
+  const minsilenceValue = document.getElementById('minsilence-value');
+  const paddingSlider   = document.getElementById('padding-slider');
+  const paddingValue    = document.getElementById('padding-value');
+  const statsRegions    = document.getElementById('stats-regions');
+  const statsNewlen     = document.getElementById('stats-newlen');
+  const statsOldlen     = document.getElementById('stats-oldlen');
+  const statsRemoved    = document.getElementById('stats-removed');
+  const statsPct        = document.getElementById('stats-pct');
+  const outputFormat    = document.getElementById('output-format');
+  const btnProcess      = document.getElementById('btn-process');
+  const statusText      = document.getElementById('status-text');
+  const btnPlay         = document.getElementById('btn-play');
+  const abOriginal      = document.getElementById('ab-original');
+  const abCleaned       = document.getElementById('ab-cleaned');
+  const previewLabel    = document.getElementById('preview-label');
+
+  // ── State ──────────────────────────────────────────────────────────────
+  let currentFile      = null;
+  let originalBuffer   = null;
+  let durationSec      = 0;
+  // Per-window RMS in dB, precomputed once per file. The detection
+  // function reads this + threshold + minSilence and rebuilds the
+  // region list cheaply on every slider drag.
+  let windowDb         = null;
+  const WINDOW_MS      = 20;
+  let windowSamples    = 0;     // samples per window
+  let windowsPerSec    = 0;     // = sampleRate / windowSamples
+  // Current set of silent regions (after threshold + minSilence).
+  // Each region is { startSec, endSec } in source time.
+  let silenceRegions   = [];
+  // Same regions clipped by padding — what actually gets cut.
+  let cutRegions       = [];
+  // Detection mode: 'auto' = sliders drive the cuts; 'manual' = the user drags
+  // the red bands by hand (seeded from the auto result). Download uses whichever
+  // is active. manualCuts persists so Auto↔Manual doesn't lose hand-edits.
+  let cutsMode         = 'auto';   // which cut set is shown/edited: 'auto' (sliders) | 'manual' (hand-edited)
+  let manualCuts       = null;     // the hand-edited "Manual" version; null until the user edits a band
+  let dragState        = null;
+  const waveWrap        = document.querySelector('.waveform-wrap');
+  const controlsGrid    = document.querySelector('.controls-grid');
+  const manualBar       = document.getElementById('manual-bar');
+  const abManual        = document.getElementById('ab-manual');
+  const resetCutsBtn    = document.getElementById('reset-cuts');
+  // Waveform zoom: a visible window [viewStartSec, viewStartSec+viewDur] over
+  // the ORIGINAL timeline. zoom=1 shows the whole clip; higher zooms in.
+  const zoomBar         = document.getElementById('zoom-bar');
+  const zoomReadout     = document.getElementById('zoom-readout');
+  const waveScroll      = document.getElementById('wave-scroll');
+  const waveThumb       = document.getElementById('wave-thumb');
+  let zoom             = 1;
+  let viewStartSec     = 0;
+  // Which red band is hovered / selected — drives the visible drag handles.
+  let hoverRegion      = null;
+  let selectedRegion   = null;
+  // Cached waveform peaks (offscreen) so hover/selection redraws are cheap and
+  // don't re-scan the whole sample buffer on every mousemove.
+  let peaksCanvas      = null;
+  let peaksKey         = '';
+  let waveToken        = 0;   // bumped per file so a new clip invalidates the cache
+  function viewDur()     { return durationSec / zoom; }
+  function maxZoom()     { return durationSec > 0 ? Math.max(1, durationSec / 0.4) : 1; }
+  function clampView()   { viewStartSec = Math.max(0, Math.min(viewStartSec, durationSec - viewDur())); }
+  // original seconds → x (px) within a canvas of width w, accounting for zoom/pan.
+  function origToX(sec, w) { return ((sec - viewStartSec) / viewDur()) * w; }
+  function xToOrig(x, w)   { return viewStartSec + (x / w) * viewDur(); }
+
+  // Preview playback
+  let acx = null;
+  let previewSource    = null;
+  let previewBuffer    = null;
+  let previewKind      = null;   // 'original' | 'cleaned' | null
+  let previewStartedAt = 0;
+  // Shared-transport playback state (declared early so onSliderChange's init
+  // call below doesn't hit a temporal-dead-zone reference).
+  let transport    = null;
+  let playMode     = 'original'; // which buffer the transport plays: 'original' | 'cleaned'
+  let cleanedCache = null;       // cleaned buffer built for the current slider settings
+
+  // ── Audio context (lazy) ───────────────────────────────────────────────
+  function getAudioContext() {
+    if (!acx) {
+      const Ctor = window.AudioContext || window.webkitAudioContext;
+      acx = new Ctor();
+    }
+    return acx;
+  }
+
+  // ── Formatting helpers ─────────────────────────────────────────────────
+  function formatTime(sec) {
+    if (!isFinite(sec) || sec < 0) return '—';
+    const m = Math.floor(sec / 60);
+    const s = sec - m * 60;
+    return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1);
+  }
+  function formatShort(sec) {
+    if (!isFinite(sec) || sec < 0) return '—';
+    if (sec < 60) return sec.toFixed(1) + 's';
+    const m = Math.floor(sec / 60);
+    const s = Math.round(sec - m * 60);
+    return m + 'm ' + s + 's';
+  }
+  function formatBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+    return (b / 1024 / 1024).toFixed(1) + ' MB';
+  }
+
+  // ── UI show/hide ───────────────────────────────────────────────────────
+  function showEditor() {
+    editor.classList.add('active');
+    dropZone.style.display = 'none';
+  }
+  function hideEditor() {
+    editor.classList.remove('active');
+    dropZone.style.display = '';
+    stopPreview();
+  }
+
+  // ── File handling ──────────────────────────────────────────────────────
+  async function handleFile(file) {
+    if (!file) return;
+    currentFile = file;
+    // Decode-OOM gate (design R-b634f8): a big file gets a heads-up + a crash breadcrumb instead of a
+    // silent tab-crash. silence-remover has no streaming path (it rebuilds the whole cleaned buffer), so
+    // there's nothing to auto-fall-back TO — but the gate still stops the surprise crash, and a memory
+    // failure fails gracefully with a "split it first" pointer to the Audio Splitter.
+    if (window.snipDecodeGate) {
+      var decision = await window.snipDecodeGate.check(file, { tool: 'silence-remover', dropZone: dropZone, onPick: hideEditor, onCompressed: function (nf) { handleFile(nf); } });
+      if (decision === 'cancel') return;
+    }
+    statusText.textContent = 'Decoding…';
+    waveEmpty.style.display = 'flex';
+    if (window.snipSharedAudio) window.snipSharedAudio.save(file);
+    if (window.snipDecodeGate) window.snipDecodeGate.armCrumb('silence-remover', file);   // crash breadcrumb
+    if (window.snipDecodeGate && window.snipDecodeGate.decodeStarted) window.snipDecodeGate.decodeStarted('silence-remover', file, 'native');
+    try {
+      const ctx = getAudioContext();
+      // Robust decode: FFmpeg->WAV fallback recovers codec/format rejects (no canStream — no streaming path here).
+      const buf = window.snipDecodeAudio ? await window.snipDecodeAudio(file, ctx, { tool: 'silence-remover' }) : await ctx.decodeAudioData((await file.arrayBuffer()).slice(0));
+      if (window.snipDecodeGate && window.snipDecodeGate.decodeOk) window.snipDecodeGate.decodeOk('silence-remover', file, 'native');
+      originalBuffer = buf;
+      durationSec = buf.duration;
+      zoom = 1; viewStartSec = 0;   // fresh file → fit the whole clip
+      waveToken++; peaksKey = ''; hoverRegion = null; selectedRegion = null;
+
+      fileNameEl.textContent = file.name;
+      const ch = buf.numberOfChannels === 1 ? 'mono' : buf.numberOfChannels + ' channels';
+      const sr = (buf.sampleRate / 1000).toFixed(1);
+      fileMetaEl.textContent =
+        formatBytes(file.size) + ' · ' + formatTime(durationSec) + ' · ' + ch + ' · ' + sr + ' kHz';
+
+      showEditor();
+      await computeWindowDb(buf);
+      resetDetectionToAuto();   // fresh file starts in auto detection
+      recomputeRegions();
+      drawWaveform();
+      updateStats();
+      playMode = 'original'; cleanedCache = null; refreshSegments();
+      ensureTransport();
+      if (transport) transport.reset();
+      statusText.textContent = '';
+      waveEmpty.style.display = 'none';
+      if (window.snipDecodeGate) { window.snipDecodeGate.clearCrumb(); window.snipDecodeGate.clearCard(dropZone); }
+    } catch (err) {
+      console.error('Decode failed', err);
+      if (window.snipDecodeGate && window.snipDecodeGate.decodeFailed) window.snipDecodeGate.decodeFailed('silence-remover', file, 'native', (err && err.name) || 'Error', err && err.snipDiag);
+      var _r = (err && err.name === 'NotReadableError') || /could not be read|permission/i.test((err && err.message) || '') ? 'file_read_failed' : 'decode_failed';
+      if (window.snipTrackFailed) window.snipTrackFailed('silence-remover', _r, 'decode', err && err.snipDiag);
+      var _m = _r === 'file_read_failed'
+        ? 'Couldn’t read “' + file.name + '” — it may have moved or changed. Please pick it again.'
+        : 'Couldn’t process “' + file.name + '”. If it’s very large it may be too big to load in one piece — split it into parts first with our free Audio Splitter, then remove silence from each part.';
+      // Memory-shaped decode failures get the compress-recovery offer (contract R-a66931);
+      // the compressed file re-enters through handleFile — the tool's normal intake.
+      var _rec = null;
+      // worthCompressing (design R-87ddfb) is the ONE rule for whether compress-and-retry can help: the
+      // 20 MB floor posthog measured (R-e391e7) lives beside it in the gate. This page carried its own
+      // copy, and the ten locale copies of it carried the BROKEN one with no floor - so an ordinary
+      // 40 MB file that failed on iOS got no rescue on every silence-remover page but this one.
+      if (_r !== 'file_read_failed' && window.snipDecodeGate && typeof window.snipDecodeGate.worthCompressing === 'function'
+          && window.snipDecodeGate.worthCompressing(file, err)) {
+        _rec = { canCompress: true, file: file, onCompressed: function (nf) { handleFile(nf); } };
+      }
+      // The person sees the gate's vetted sentence; a file that failed BOTH decoders gets the 'incomplete -
+      // try that again' one (design's table, keyed on snipDiag.fell_back). The TRACKED reason stays
+      // decode_failed, so posthog's series does not grow a false onset from a rename.
+      var _shown = (_r === 'decode_failed' && err && err.snipDiag && err.snipDiag.fell_back) ? 'decode_failed_after_fallback' : _r;
+      if (window.snipDecodeGate) { window.snipDecodeGate.clearCrumb(); window.snipDecodeGate.showFailure(dropZone, _m, { tool: 'silence-remover', report: true, reason: _shown, onPick: hideEditor, recovery: _rec }); }
+      else alert(_m);
+      statusText.textContent = '';
+      waveEmpty.style.display = 'none';
+    }
+  }
+
+  // ── RMS-in-dB per window ───────────────────────────────────────────────
+  // setTimeout(0) yield so multi-hour files don't block the main thread.
+  function uiYield() { return new Promise(r => setTimeout(r, 0)); }
+
+  // Computes once per file. We average across channels and store one
+  // dB value per WINDOW_MS chunk. Yields every 500 windows so multi-
+  // hour files don't trigger the "Page Unresponsive" dialog.
+  async function computeWindowDb(buf) {
+    const sr = buf.sampleRate;
+    windowSamples = Math.max(1, Math.round(sr * WINDOW_MS / 1000));
+    windowsPerSec = sr / windowSamples;
+    const numWindows = Math.ceil(buf.length / windowSamples);
+    const out = new Float32Array(numWindows);
+    const nCh = buf.numberOfChannels;
+    const chans = [];
+    for (let c = 0; c < nCh; c++) chans.push(buf.getChannelData(c));
+
+    // 500 windows ≈ 10s of audio at the 20ms window size — keeps each
+    // chunk well under 50ms of CPU on typical hardware.
+    const YIELD_EVERY = 500;
+    for (let w = 0; w < numWindows; w++) {
+      const start = w * windowSamples;
+      const end = Math.min(start + windowSamples, buf.length);
+      let sumSq = 0;
+      let count = 0;
+      for (let i = start; i < end; i++) {
+        for (let c = 0; c < nCh; c++) {
+          const v = chans[c][i];
+          sumSq += v * v;
+          count++;
+        }
+      }
+      const rms = count > 0 ? Math.sqrt(sumSq / count) : 0;
+      // 20*log10(rms / 1.0). Floor at -90 dB so tiny dither doesn't
+      // pull the value to -Infinity (which breaks comparisons).
+      out[w] = rms > 0.00003 ? 20 * Math.log10(rms) : -90;
+      if ((w + 1) % YIELD_EVERY === 0) await uiYield();
+    }
+    windowDb = out;
+  }
+
+  // ── Region detection (cheap, runs on every slider change) ──────────────
+  function recomputeRegions() {
+    // Auto re-detection replaces the band objects, so any prior selection/hover
+    // (which references the old objects) no longer applies.
+    if (cutsMode !== 'manual') { selectedRegion = null; hoverRegion = null; }
+    // In manual mode the user owns the cuts — sliders don't touch them.
+    if (cutsMode === 'manual') { cutRegions = manualCuts || []; return; }
+    if (!windowDb) { silenceRegions = []; cutRegions = []; return; }
+    const thresholdDb = parseFloat(thresholdSlider.value);
+    const minSilenceSec = parseFloat(minsilenceSlider.value);
+    const paddingSec = parseFloat(paddingSlider.value);
+
+    const regions = [];
+    let runStart = -1;
+    for (let w = 0; w < windowDb.length; w++) {
+      const isSilent = windowDb[w] <= thresholdDb;
+      if (isSilent && runStart < 0) runStart = w;
+      else if (!isSilent && runStart >= 0) {
+        // close out the run
+        const startSec = runStart / windowsPerSec;
+        const endSec = w / windowsPerSec;
+        if (endSec - startSec >= minSilenceSec) {
+          regions.push({ startSec: startSec, endSec: endSec });
+        }
+        runStart = -1;
+      }
+    }
+    if (runStart >= 0) {
+      const startSec = runStart / windowsPerSec;
+      const endSec = windowDb.length / windowsPerSec;
+      if (endSec - startSec >= minSilenceSec) {
+        regions.push({ startSec: startSec, endSec: endSec });
+      }
+    }
+    silenceRegions = regions;
+
+    // Apply padding: only cut the interior; leave `padding` seconds on
+    // each end. If region is shorter than 2*padding, drop it entirely
+    // (would produce a 0-length or negative cut).
+    cutRegions = [];
+    for (const r of regions) {
+      const cs = r.startSec + paddingSec;
+      const ce = r.endSec - paddingSec;
+      if (ce > cs) cutRegions.push({ startSec: cs, endSec: ce });
+    }
+  }
+
+  // ── Stats update ───────────────────────────────────────────────────────
+  function updateStats() {
+    if (!originalBuffer) return;
+    const totalCut = cutRegions.reduce((acc, r) => acc + (r.endSec - r.startSec), 0);
+    const newLen = Math.max(0, durationSec - totalCut);
+    statsRegions.textContent = cutRegions.length;
+    statsNewlen.textContent = formatTime(newLen);
+    statsOldlen.textContent = formatTime(durationSec);
+    statsRemoved.textContent = formatShort(totalCut);
+    const hasCuts = totalCut > 0.05;
+    if (hasCuts) {
+      const pct = (totalCut / durationSec) * 100;
+      statsPct.textContent = pct.toFixed(1) + '% shorter';
+      statsPct.classList.remove('none');
+    } else {
+      statsPct.textContent = 'No silence to remove at these settings';
+      statsPct.classList.add('none');
+    }
+    // Keep the Auto toggle always clickable so Original/Auto/Manual switching
+    // is reliable; the "nothing detected" case is conveyed by the stats text.
+    if (abCleaned) {
+      abCleaned.disabled = false;
+      abCleaned.title = hasCuts ? 'Auto-detected silence removed' : 'No silence detected at these settings — Auto would equal the original';
+    }
+  }
+
+  // Render the waveform peaks for the current view into an offscreen canvas,
+  // reusing the cache when nothing that affects the bars has changed (so hover
+  // and selection redraws don't re-scan the sample buffer).
+  function renderPeaks(w, h) {
+    const key = waveToken + ':' + w + 'x' + h + '@' + zoom.toFixed(4) + ':' + viewStartSec.toFixed(4);
+    if (peaksCanvas && peaksKey === key) return peaksCanvas;
+    if (!peaksCanvas) peaksCanvas = document.createElement('canvas');
+    peaksCanvas.width = w; peaksCanvas.height = h;
+    const pctx = peaksCanvas.getContext('2d');
+    pctx.clearRect(0, 0, w, h);
+    // Only the visible window [viewStartSec, viewStartSec+viewDur] is drawn so
+    // zooming in shows real per-sample detail rather than the whole clip.
+    const data = originalBuffer.getChannelData(0);
+    const vStart = viewStartSec, vEnd = viewStartSec + viewDur();
+    const s0 = Math.max(0, Math.floor((vStart / durationSec) * data.length));
+    const s1 = Math.min(data.length, Math.ceil((vEnd / durationSec) * data.length));
+    const visible = Math.max(1, s1 - s0);
+    const samplesPerPx = Math.max(1, Math.floor(visible / w));
+    const mid = h / 2;
+    pctx.fillStyle = '#7c6fff';
+    for (let x = 0; x < w; x++) {
+      const start = s0 + x * samplesPerPx;
+      const end = Math.min(start + samplesPerPx, s1);
+      if (start >= s1) break;
+      let min = 1, max = -1;
+      for (let i = start; i < end; i++) {
+        const v = data[i];
+        if (v < min) min = v;
+        if (v > max) max = v;
+      }
+      const y1 = mid + min * mid;
+      const y2 = mid + max * mid;
+      pctx.fillRect(x, y1, 1, Math.max(1, y2 - y1));
+    }
+    peaksKey = key;
+    return peaksCanvas;
+  }
+
+  // Draw a grab handle (vertical bar + grip dots) at edge x, in device px.
+  function drawHandle(ctx, x, h, dpr, strong) {
+    const bw = Math.round((strong ? 6 : 4) * dpr);       // bar width
+    const bx = Math.round(x - bw / 2);
+    ctx.fillStyle = strong ? '#fff' : 'rgba(255,255,255,0.85)';
+    ctx.fillRect(bx, 0, bw, h);
+    // red core line so it still reads as a cut edge
+    ctx.fillStyle = 'rgba(244,67,54,0.95)';
+    ctx.fillRect(Math.round(x - dpr / 2), 0, Math.max(1, Math.round(dpr)), h);
+    // grip dots centered vertically
+    ctx.fillStyle = 'rgba(60,60,60,0.85)';
+    const dot = Math.max(1, Math.round(1.6 * dpr));
+    const cy = h / 2;
+    for (let i = -1; i <= 1; i++) {
+      ctx.fillRect(bx + Math.round(bw / 2 - dot / 2), Math.round(cy + i * 5 * dpr - dot / 2), dot, dot);
+    }
+  }
+
+  // ── Waveform draw with cut-region overlays + drag handles ──────────────
+  function drawWaveform() {
+    if (!originalBuffer) return;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = waveCanvas.getBoundingClientRect();
+    const w = Math.floor(rect.width * dpr);
+    const h = Math.floor(rect.height * dpr);
+    if (waveCanvas.width !== w || waveCanvas.height !== h) {
+      waveCanvas.width = w;
+      waveCanvas.height = h;
+    }
+    const ctx = waveCanvas.getContext('2d');
+    clampView();
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(renderPeaks(w, h), 0, 0);
+
+    // Overlay cut regions in red (clipped to the visible window). The active
+    // (hovered/selected) band gets a stronger fill so it stands out.
+    for (const r of cutRegions) {
+      const x1 = Math.max(0, Math.floor(origToX(r.startSec, w)));
+      const x2 = Math.min(w, Math.ceil(origToX(r.endSec, w)));
+      if (x2 <= 0 || x1 >= w || x2 <= x1) continue;
+      const active = (r === selectedRegion || r === hoverRegion);
+      ctx.fillStyle = active ? 'rgba(244,67,54,0.45)' : 'rgba(244,67,54,0.32)';
+      ctx.fillRect(x1, 0, Math.max(1, x2 - x1), h);
+    }
+    // Edges: plain red line for idle bands, full grab handles for the
+    // hovered/selected one so it's obvious you can drag the edges.
+    for (const r of cutRegions) {
+      const sx = origToX(r.startSec, w), ex = origToX(r.endSec, w);
+      const active = (r === selectedRegion || r === hoverRegion);
+      if (active) {
+        if (sx >= -6 && sx <= w + 6) drawHandle(ctx, sx, h, dpr, true);
+        if (ex >= -6 && ex <= w + 6) drawHandle(ctx, ex, h, dpr, true);
+      } else {
+        ctx.fillStyle = 'rgba(244,67,54,0.65)';
+        if (sx >= 0 && sx <= w) ctx.fillRect(Math.floor(sx), 0, 1, h);
+        if (ex >= 0 && ex <= w) ctx.fillRect(Math.ceil(ex) - 1, 0, 1, h);
+      }
+    }
+    updateZoomUI();
+  }
+
+  // ── Zoom / pan UI ────────────────────────────────────────────────────────
+  function updateZoomUI() {
+    if (!zoomBar) return;
+    const on = durationSec > 0;
+    zoomBar.style.display = on ? 'flex' : 'none';
+    if (!on) return;
+    zoomReadout.textContent = (zoom < 10 ? zoom.toFixed(1) : Math.round(zoom)) + '×';
+    // Scrollbar thumb reflects the visible fraction + position.
+    const frac = Math.min(1, viewDur() / durationSec);
+    waveThumb.style.width = (frac * 100) + '%';
+    waveThumb.style.left = (durationSec > 0 ? (viewStartSec / durationSec) * 100 : 0) + '%';
+    waveScroll.style.opacity = zoom > 1.001 ? '1' : '0.5';
+  }
+  // Zoom toward an anchor (original seconds) keeping it under the same x.
+  function setZoom(nextZoom, anchorSec) {
+    const prevDur = viewDur();
+    const a = (anchorSec == null) ? viewStartSec + prevDur / 2 : anchorSec;
+    const fracOfView = prevDur > 0 ? (a - viewStartSec) / prevDur : 0.5;
+    zoom = Math.max(1, Math.min(maxZoom(), nextZoom));
+    viewStartSec = a - fracOfView * viewDur();
+    clampView();
+    drawWaveform();
+    if (transport) transport.refresh();
+  }
+  function panTo(startSec) { viewStartSec = startSec; clampView(); drawWaveform(); if (transport) transport.refresh(); }
+  // Keep the playhead in view while playing zoomed in.
+  function followPlayhead(origSec) {
+    if (zoom <= 1.001) return;
+    const dur = viewDur(), margin = dur * 0.12;
+    if (origSec < viewStartSec + margin) panTo(origSec - margin);
+    else if (origSec > viewStartSec + dur - margin) panTo(origSec - dur + margin);
+  }
+
+  // ── Build cleaned AudioBuffer by stitching kept segments ───────────────
+  // Returns null if cutRegions is empty (nothing to do).
+  //
+  // This used to splice hard: dst.set(src.subarray(k.a, k.b), write). That joins two samples
+  // that were never adjacent, and silence cuts land wherever the threshold fell, NOT at zero
+  // crossings — so every join on real material was a click. Measured on a 440 Hz tone cut at a
+  // non-zero crossing: the splice produced a sample-to-sample step of 1.236 where the largest
+  // step that signal can produce is 0.050, about 25x. Inaudible on paper, a tick in the ear, and
+  // invisible to every completion metric we have.
+  // client-side-ML found it (R-29cfa3) while looking for a module to reuse before writing a
+  // fourth copy of this operation. snip-cut-ranges is now that one place; it fades 4 ms into and
+  // out of each join, which is inaudible as a fade and removes the discontinuity, and it keeps
+  // the output length exactly the sum of the kept spans so the duration arithmetic still holds.
+  function buildCleanedBuffer() {
+    if (!originalBuffer || cutRegions.length === 0) return null;
+    const ranges = cutRegions.map(r => ({ t0: r.startSec, t1: r.endSec }));
+    if (window.snipCutRanges) {
+      return window.snipCutRanges(originalBuffer, ranges, { fadeMs: 4, ctx: getAudioContext() });
+    }
+    // Module missing (stale cache): fall back to the old hard splice rather than failing the
+    // export. It clicks, as it always did, but the user still gets their file.
+    const sr = originalBuffer.sampleRate;
+    const nCh = originalBuffer.numberOfChannels;
+    const cuts = cutRegions.map(r => ({ a: Math.floor(r.startSec * sr), b: Math.floor(r.endSec * sr) }));
+    cuts.sort((x, y) => x.a - y.a);
+    const total = originalBuffer.length;
+    const keeps = [];
+    let cursor = 0;
+    for (const c of cuts) {
+      if (c.a > cursor) keeps.push({ a: cursor, b: Math.min(c.a, total) });
+      cursor = Math.max(cursor, c.b);
+    }
+    if (cursor < total) keeps.push({ a: cursor, b: total });
+    const newLen = keeps.reduce((acc, k) => acc + (k.b - k.a), 0);
+    if (newLen <= 0) return null;
+    const ctx = getAudioContext();
+    const out = ctx.createBuffer(nCh, newLen, sr);
+    for (let c = 0; c < nCh; c++) {
+      const src = originalBuffer.getChannelData(c);
+      const dst = out.getChannelData(c);
+      let write = 0;
+      for (const k of keeps) {
+        const seg = src.subarray(k.a, k.b);
+        dst.set(seg, write);
+        write += seg.length;
+      }
+    }
+    return out;
+  }
+
+  // ── Preview playback (A/B original vs cleaned) ─────────────────────────
+  function stopPreview() {
+    if (transport) transport.pause();
+    if (previewSource) {
+      try { previewSource.stop(); } catch (e) {}
+      previewSource.disconnect();
+      previewSource = null;
+    }
+    previewBuffer = null;
+    previewKind = null;
+    previewLabel.textContent = 'A/B the result before downloading.';
+  }
+
+  function playBuffer(buf, kind, button) {
+    stopPreview();
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') ctx.resume();
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    src.connect(ctx.destination);
+    src.start(0);
+    previewSource = src;
+    previewBuffer = buf;
+    previewKind = kind;
+    previewStartedAt = ctx.currentTime;
+    button.classList.add('playing');
+    button.querySelector('span').textContent = 'Stop';
+    previewLabel.innerHTML = 'Playing <strong>' + (kind === 'original' ? 'original' : 'cleaned preview') + '</strong> · ' + formatTime(buf.duration);
+    src.onended = () => {
+      if (previewSource === src) stopPreview();
+    };
+  }
+
+  // ── Process & download ─────────────────────────────────────────────────
+  async function processAndDownload() {
+    if (!originalBuffer) return;
+    if (!window.snipEncoder) { alert('Encoder not loaded yet — try again in a moment.'); return; }
+    if (window.snipNotify) window.snipNotify.prime();
+    const cleaned = buildCleanedBuffer() || originalBuffer; // export original if nothing to cut
+    const format = outputFormat.value;
+    const _tracker = window.snipTrackTool && window.snipTrackTool('silence-remover', {
+      input_duration_sec: Math.round(originalBuffer.duration),
+      output_duration_sec: Math.round(cleaned.duration),
+      output_format: format
+    });
+    btnProcess.disabled = true;
+    statusText.textContent = 'Encoding…';
+    try {
+      const { blob, ext } = await window.snipEncoder.encode(cleaned, format, {
+        onProgress: (frac) => {
+          statusText.textContent = 'Encoding… ' + Math.round((frac || 0) * 100) + '%';
+        }
+      });
+      // currentFile can be null here (audio restored without its File) - the export must not die on the NAME.
+      const base = ((currentFile && currentFile.name) || 'audio').replace(/\.[^.]+$/, '');
+      const fname = base + '_silence-removed.' + ext;
+      if (window.snipNotify) {
+        window.snipNotify.deliver(blob, fname, { statusEl: statusText, doneStatus: 'Done — ' + formatBytes(blob.size) });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = fname;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+        statusText.textContent = 'Done — ' + formatBytes(blob.size);
+      }
+      _tracker && _tracker.completed({ output_size_kb: Math.round(blob.size / 1024), output_ext: ext });
+    } catch (err) {
+      console.error('Encode failed', err);
+      _tracker && _tracker.failed('encode_failed', { err_msg: (((err && err.name) ? err.name + ': ' : '') + ((err && err.message) || String(err || 'unknown'))).slice(0, 160) });
+      alert('Encoding failed: ' + (err.message || err));
+      statusText.textContent = '';
+    } finally {
+      btnProcess.disabled = false;
+    }
+  }
+
+  // ── Wiring ─────────────────────────────────────────────────────────────
+  // Decode-OOM crash breadcrumb (design R-b634f8): if a prior big-file decode crashed the tab, explain
+  // it on reload instead of a mysterious blank state. DOMContentLoaded runs after the deferred vendors.
+  window.addEventListener('DOMContentLoaded', function () {
+    if (window.snipDecodeGate && window.snipDecodeGate.restoreCrumb) window.snipDecodeGate.restoreCrumb(dropZone, { tool: 'silence-remover', onPick: hideEditor, canCopy: true });
+  });
+  dropZone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (f) handleFile(f);
+    e.target.value = '';
+  });
+  // Cross-tool shared-file handoff: theme.js dispatches this event when
+  // a file uploaded on another tool is available. Without this listener,
+  // theme.js hides the drop zone and the tool shows a blank area.
+  document.addEventListener('snipsound:use-shared-file', (e) => {
+    if (e.detail && e.detail.file) handleFile(e.detail.file);
+  });
+  ['dragenter', 'dragover'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); }));
+  ['dragleave', 'drop'].forEach(ev =>
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.remove('drag-over'); }));
+  dropZone.addEventListener('drop', (e) => {
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) handleFile(f);
+  });
+
+  fileRemove.addEventListener('click', () => {
+    playMode = 'original'; cleanedCache = null; refreshSegments();
+    resetDetectionToAuto();
+    if (transport) transport.reset();
+    stopPreview();
+    currentFile = null;
+    originalBuffer = null;
+    durationSec = 0;
+    windowDb = null;
+    silenceRegions = [];
+    cutRegions = [];
+    fileInput.value = '';
+    hideEditor();
+    statusText.textContent = '';
+  });
+
+  function onSliderChange() {
+    thresholdValue.textContent = thresholdSlider.value + ' dB';
+    minsilenceValue.textContent = parseFloat(minsilenceSlider.value).toFixed(1) + ' s';
+    paddingValue.textContent = parseFloat(paddingSlider.value).toFixed(2) + ' s';
+    if (!originalBuffer) return;
+    // The sliders tune the AUTO detection. If the Manual set is showing, the
+    // change would be invisible — so flip the view to Auto to show its effect
+    // live. Your manual edits are preserved (click "Manual" to return).
+    if (cutsMode === 'manual') {
+      cutsMode = 'auto';
+      if (playMode !== 'original') playMode = 'cleaned';
+      refreshSegments();
+    }
+    recomputeRegions();
+    drawWaveform();
+    updateStats();
+    invalidateCleaned();
+    if (transport) transport.refresh();
+  }
+  // The cleaned buffer is stale whenever the cuts change — drop the cache so the
+  // next cleaned playback rebuilds it, and pause if it's currently playing.
+  function invalidateCleaned() {
+    cleanedCache = null;
+    if (playMode === 'cleaned' && transport && transport.isPlaying()) transport.pause();
+    else if (previewKind === 'cleaned') stopPreview();
+  }
+  thresholdSlider.addEventListener('input', onSliderChange);
+  minsilenceSlider.addEventListener('input', onSliderChange);
+  paddingSlider.addEventListener('input', onSliderChange);
+
+  // Reset the auto-detect sliders to their defaults (the HTML `value=` attrs).
+  const resetSettingsBtn = document.getElementById('reset-settings');
+  if (resetSettingsBtn) resetSettingsBtn.addEventListener('click', () => {
+    thresholdSlider.value = thresholdSlider.defaultValue;
+    minsilenceSlider.value = minsilenceSlider.defaultValue;
+    paddingSlider.value = paddingSlider.defaultValue;
+    onSliderChange();
+  });
+
+  // Audible cue for the silence threshold, played when you RELEASE the slider —
+  // a short tone at the cutoff's actual loudness, so you can *hear* the floor:
+  // anything quieter than this ding is treated as silence and removed. Lower
+  // (stricter) threshold → fainter ding; higher (more aggressive) → louder.
+  // Suppressed while a preview is playing so it never talks over the audio.
+  function playThresholdCue() {
+    if (!originalBuffer) return;
+    if (transport && transport.isPlaying()) return;
+    let ctx;
+    try { ctx = getAudioContext(); } catch (_) { return; }
+    if (ctx.state === 'suspended') { try { ctx.resume(); } catch (_) {} }
+    const thr = parseFloat(thresholdSlider.value);            // dBFS, -70..-20
+    const amp = Math.max(0.008, Math.min(0.55, Math.pow(10, (thr + 30) / 20)));
+    const t0 = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = 440;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(amp, t0 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.26);
+    osc.connect(g); g.connect(ctx.destination);
+    osc.start(t0); osc.stop(t0 + 0.28);
+  }
+  thresholdSlider.addEventListener('change', playThresholdCue);
+
+  // ── Detection mode: Auto (sliders) vs Manual (drag the red bands) ──────
+  // ── View model: Original | Cleaned (auto cuts) | Manual (hand-edited cuts) ──
+  function currentView() {
+    if (playMode === 'original') return 'original';
+    return cutsMode === 'manual' ? 'manual' : 'cleaned';
+  }
+  function refreshSegments() {
+    const v = currentView();
+    if (abOriginal) abOriginal.classList.toggle('active', v === 'original');
+    if (abCleaned) abCleaned.classList.toggle('active', v === 'cleaned');
+    if (abManual) abManual.classList.toggle('active', v === 'manual');
+  }
+  function revealManual() {
+    if (abManual) abManual.style.display = '';
+    if (resetCutsBtn) resetCutsBtn.style.display = '';
+  }
+  function setView(view) {
+    if (!originalBuffer) return;
+    ensureTransport();
+    if (view === currentView()) return;
+    const wasPlaying = transport && transport.isPlaying();
+    const cur = transport ? transport.getCurrentTime() : 0;
+    const origT = (playMode === 'cleaned') ? cleanedToOriginal(cur) : cur; // map via the OLD cuts
+    if (view === 'original') {
+      playMode = 'original';
+    } else if (view === 'cleaned') {
+      cutsMode = 'auto'; recomputeRegions();
+      playMode = 'cleaned'; cleanedCache = buildCleanedBuffer() || originalBuffer;
+    } else { // manual
+      if (!manualCuts) manualCuts = (cutRegions || []).map(r => ({ startSec: r.startSec, endSec: r.endSec }));
+      cutsMode = 'manual'; cutRegions = manualCuts;
+      playMode = 'cleaned'; cleanedCache = buildCleanedBuffer() || originalBuffer;
+    }
+    refreshSegments(); drawWaveform(); updateStats();
+    const newT = (view === 'original') ? origT : originalToCleaned(origT); // map via the NEW cuts
+    if (transport) { transport.refresh(); transport.seekTo(newT); }
+    if (!wasPlaying && transport) transport.pause();
+  }
+  // The first time the user edits a band, fork the "Manual" version from
+  // whatever cuts are shown and switch to it; further edits live in Manual.
+  function ensureManual() {
+    if (!manualCuts) manualCuts = (cutRegions || []).map(r => ({ startSec: r.startSec, endSec: r.endSec }));
+    revealManual();
+    if (cutsMode !== 'manual') {
+      cutsMode = 'manual'; cutRegions = manualCuts; playMode = 'cleaned';
+      cleanedCache = buildCleanedBuffer() || originalBuffer;
+      refreshSegments(); if (transport) transport.refresh();
+    }
+  }
+
+  // Reset to a clean Auto state (used on new file / remove).
+  function resetDetectionToAuto() {
+    cutsMode = 'auto'; manualCuts = null; playMode = 'original';
+    if (abManual) abManual.style.display = 'none';
+    if (resetCutsBtn) resetCutsBtn.style.display = 'none';
+    if (controlsGrid) controlsGrid.classList.remove('dimmed');
+    if (waveWrap) waveWrap.classList.remove('editable');
+  }
+
+  if (abOriginal) abOriginal.addEventListener('click', () => setView('original'));
+  if (abCleaned) abCleaned.addEventListener('click', () => setView('cleaned'));
+  if (abManual) abManual.addEventListener('click', () => setView('manual'));
+  if (resetCutsBtn) resetCutsBtn.addEventListener('click', () => {
+    manualCuts = null;
+    if (abManual) abManual.style.display = 'none';
+    resetCutsBtn.style.display = 'none';
+    setView('cleaned');
+  });
+  const addCutBtn = document.getElementById('add-cut');
+  if (addCutBtn) addCutBtn.addEventListener('click', () => {
+    if (!originalBuffer) return;
+    let c = transport ? transport.getCurrentTime() : durationSec / 2;
+    if (playMode === 'cleaned') c = cleanedToOriginal(c); // playhead is cleaned-time → original
+    ensureManual();
+    let ns = Math.max(0, c - 0.25), ne = Math.min(durationSec, c + 0.25);
+    if (ne - ns < 0.05) { ns = Math.max(0, durationSec / 2 - 0.25); ne = Math.min(durationSec, ns + 0.5); }
+    const added = { startSec: ns, endSec: ne };
+    cutRegions.push(added);
+    cutRegions.sort((a, b) => a.startSec - b.startSec);
+    manualCuts = cutRegions;
+    selectedRegion = added;          // select it so its drag handles are visible
+    drawWaveform(); updateStats(); invalidateCleaned();
+  });
+
+  // ── Manual drag-editing of the red cut bands ──────────────────────────
+  const HANDLE_PX = 7;
+  function regionHitAt(clientX) {
+    if (!waveWrap || durationSec <= 0) return null;
+    const rect = waveWrap.getBoundingClientRect();
+    const px = clientX - rect.left;
+    for (let i = 0; i < cutRegions.length; i++) {
+      const r = cutRegions[i];
+      const sx = origToX(r.startSec, rect.width);
+      const ex = origToX(r.endSec, rect.width);
+      if (Math.abs(px - sx) <= HANDLE_PX) return { idx: i, part: 'start' };
+      if (Math.abs(px - ex) <= HANDLE_PX) return { idx: i, part: 'end' };
+      if (px > sx && px < ex) return { idx: i, part: 'body' };
+    }
+    return null;
+  }
+  function timeAtClientX(clientX) {
+    const rect = waveWrap.getBoundingClientRect();
+    return Math.max(0, Math.min(durationSec, xToOrig(clientX - rect.left, rect.width)));
+  }
+  if (waveWrap) {
+    // Capture phase: claim a band-grab BEFORE the transport's bubble-phase
+    // click-to-seek runs (the real target is the canvas child, so our capture
+    // listener on the wrapper fires first; stopPropagation kills the seek).
+    waveWrap.addEventListener('pointerdown', (e) => {
+      if (!originalBuffer) return;
+      const hit = regionHitAt(e.clientX);
+      if (!hit) {                              // empty waveform → let the transport seek
+        if (selectedRegion) { selectedRegion = null; drawWaveform(); }
+        return;
+      }
+      e.stopPropagation(); e.preventDefault();
+      ensureManual();                          // editing a band forks/enters the Manual version
+      selectedRegion = cutRegions[hit.idx];    // select it → handles stay shown
+      dragState = { idx: hit.idx, part: hit.part, startT: timeAtClientX(e.clientX),
+                    orig: { startSec: cutRegions[hit.idx].startSec, endSec: cutRegions[hit.idx].endSec } };
+      drawWaveform();
+      try { waveWrap.setPointerCapture(e.pointerId); } catch (_) {}
+    }, true);
+    waveWrap.addEventListener('pointermove', (e) => {
+      if (!dragState) {
+        const hit = originalBuffer ? regionHitAt(e.clientX) : null;
+        waveWrap.style.cursor = hit ? (hit.part === 'body' ? 'move' : 'ew-resize') : 'pointer';
+        const hr = hit ? cutRegions[hit.idx] : null;
+        if (hr !== hoverRegion) { hoverRegion = hr; drawWaveform(); }
+      }
+      if (!dragState) return;
+      const t = timeAtClientX(e.clientX);
+      const r = cutRegions[dragState.idx];
+      if (!r) { dragState = null; return; }
+      if (dragState.part === 'start') r.startSec = Math.max(0, Math.min(t, r.endSec - 0.03));
+      else if (dragState.part === 'end') r.endSec = Math.min(durationSec, Math.max(t, r.startSec + 0.03));
+      else {
+        const len = dragState.orig.endSec - dragState.orig.startSec;
+        let ns = dragState.orig.startSec + (t - dragState.startT);
+        ns = Math.max(0, Math.min(durationSec - len, ns));
+        r.startSec = ns; r.endSec = ns + len;
+      }
+      drawWaveform(); updateStats();
+    });
+    const endDrag = () => { if (dragState) { dragState = null; cutRegions.sort((a, b) => a.startSec - b.startSec); invalidateCleaned(); if (transport) transport.refresh(); } };
+    waveWrap.addEventListener('pointerup', endDrag);
+    waveWrap.addEventListener('pointercancel', endDrag);
+    waveWrap.addEventListener('pointerleave', () => { if (!dragState && hoverRegion) { hoverRegion = null; drawWaveform(); } });
+    waveWrap.addEventListener('dblclick', (e) => {
+      if (!originalBuffer) return;
+      const hit = regionHitAt(e.clientX);
+      if (hit) { e.stopPropagation(); ensureManual(); const r = cutRegions[hit.idx]; if (r === selectedRegion) selectedRegion = null; if (r === hoverRegion) hoverRegion = null; cutRegions.splice(hit.idx, 1); drawWaveform(); updateStats(); invalidateCleaned(); }
+    });
+    // Wheel over the waveform zooms toward the cursor.
+    waveWrap.addEventListener('wheel', (e) => {
+      if (!originalBuffer) return;
+      e.preventDefault();
+      const rect = waveWrap.getBoundingClientRect();
+      const anchor = xToOrig(e.clientX - rect.left, rect.width);
+      const factor = e.deltaY < 0 ? 1.25 : 1 / 1.25;
+      setZoom(zoom * factor, anchor);
+    }, { passive: false });
+  }
+  // Zoom buttons.
+  const zoomInBtn = document.getElementById('zoom-in');
+  const zoomOutBtn = document.getElementById('zoom-out');
+  const zoomFitBtn = document.getElementById('zoom-fit');
+  if (zoomInBtn) zoomInBtn.addEventListener('click', () => setZoom(zoom * 1.6, null));
+  if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => setZoom(zoom / 1.6, null));
+  if (zoomFitBtn) zoomFitBtn.addEventListener('click', () => { viewStartSec = 0; setZoom(1, 0); });
+  // Scrollbar drag to pan.
+  if (waveScroll) {
+    let panDrag = null;
+    const scrollW = () => waveScroll.getBoundingClientRect().width;
+    waveScroll.addEventListener('pointerdown', (e) => {
+      if (zoom <= 1.001 || durationSec <= 0) return;
+      const rect = waveScroll.getBoundingClientRect();
+      const thumbRect = waveThumb.getBoundingClientRect();
+      const onThumb = e.clientX >= thumbRect.left && e.clientX <= thumbRect.right;
+      // Click outside the thumb jumps it so its center lands under the pointer.
+      const grabOff = onThumb ? (e.clientX - thumbRect.left) : (thumbRect.width / 2);
+      const startLeft = ((e.clientX - rect.left - grabOff) / rect.width) * durationSec;
+      panTo(startLeft);
+      panDrag = { grabOff, rect };
+      try { waveScroll.setPointerCapture(e.pointerId); } catch (_) {}
+    });
+    waveScroll.addEventListener('pointermove', (e) => {
+      if (!panDrag) return;
+      const left = ((e.clientX - panDrag.rect.left - panDrag.grabOff) / panDrag.rect.width) * durationSec;
+      panTo(left);
+    });
+    const endPan = () => { panDrag = null; };
+    waveScroll.addEventListener('pointerup', endPan);
+    waveScroll.addEventListener('pointercancel', endPan);
+  }
+  // Initialize the value labels so they don't show stale placeholders
+  // before any user interaction.
+  onSliderChange();
+
+  // Shared transport: spacebar, click/drag-to-seek, ←/→ nudge, Home/End and an
+  // animated playhead. It plays whichever preview is ACTIVE — original OR the
+  // cleaned A/B — so the waveform always scrubs the thing you're hearing.
+  // Clicking the waveform never jumps you back to the original; only the
+  // "Play original" button switches modes. (In cleaned mode the playhead
+  // tracks the cleaned timeline proportionally over the original waveform.)
+  function labelFor(mode, playing) {
+    if (mode === 'cleaned') return playing ? 'Pause' : 'Play cleaned preview';
+    return playing ? 'Pause' : 'Play original';
+  }
+
+  // Kept (audible) regions in ORIGINAL seconds = the complement of cutRegions.
+  // Used to make the cleaned-preview playhead JUMP past the removed gaps so it
+  // visually matches what the downloaded file will be.
+  function keptRegionsSec() {
+    const cuts = cutRegions.slice().sort((a, b) => a.startSec - b.startSec);
+    const keeps = [];
+    let cursor = 0;
+    for (const c of cuts) {
+      if (c.startSec > cursor) keeps.push({ s: cursor, e: Math.min(c.startSec, durationSec) });
+      cursor = Math.max(cursor, c.endSec);
+    }
+    if (cursor < durationSec) keeps.push({ s: cursor, e: durationSec });
+    return keeps;
+  }
+  // cleaned-time → original-time (steps forward across each cut gap).
+  function cleanedToOriginal(ct) {
+    const keeps = keptRegionsSec();
+    let acc = 0;
+    for (const k of keeps) {
+      const d = k.e - k.s;
+      if (ct <= acc + d) return k.s + (ct - acc);
+      acc += d;
+    }
+    return durationSec;
+  }
+  // original-time → cleaned-time (clicks inside a cut snap to the kept edge).
+  function originalToCleaned(ot) {
+    const keeps = keptRegionsSec();
+    let acc = 0;
+    for (const k of keeps) {
+      if (ot < k.s) return acc;
+      if (ot <= k.e) return acc + (ot - k.s);
+      acc += (k.e - k.s);
+    }
+    return acc;
+  }
+  function ensureTransport() {
+    if (transport || !window.snipTransport) return;
+    transport = window.snipTransport.create({
+      waveEl: document.querySelector('.waveform-wrap'),
+      playheadEl: document.getElementById('playhead'),
+      playBtn: btnPlay,                 // the transport owns the play/pause icon
+      // Lazily (re)build the cleaned/manual buffer from the CURRENT cuts so that
+      // pressing play right after dragging a red band actually drops those parts
+      // (cleanedCache is nulled on every edit — never silently fall back to the
+      // original, which would still play the now-removed audio).
+      getBuffer: () => {
+        if (playMode !== 'cleaned') return originalBuffer;
+        if (!cleanedCache) cleanedCache = buildCleanedBuffer() || originalBuffer;
+        return cleanedCache;
+      },
+      getAudioContext: getAudioContext,
+      onState: (playing) => {
+        if (!playing) previewLabel.textContent = 'A/B the result before downloading.';
+      },
+      onTick: (sec) => {
+        const dur = transport ? transport.getDuration() : 0;
+        previewLabel.innerHTML = 'Playing <strong>' + (currentView() === 'cleaned' ? 'auto removal' : currentView()) +
+          '</strong> · ' + formatTime(sec) + ' / ' + formatTime(dur);
+        // Auto-scroll the zoomed view so the playhead stays visible.
+        const origSec = (playMode === 'cleaned' && originalBuffer && durationSec > 0) ? cleanedToOriginal(sec) : sec;
+        followPlayhead(origSec);
+      },
+      // Geometry hooks: in cleaned mode the transport's time is CLEANED time,
+      // but the waveform shows the ORIGINAL — so map between them. The playhead
+      // then jumps past the cut gaps (matching the downloaded result), and a
+      // click maps the original-waveform x back to the right cleaned position.
+      timeToX: (sec, w) => {
+        if (playMode === 'cleaned' && originalBuffer && durationSec > 0) {
+          return origToX(cleanedToOriginal(sec), w);
+        }
+        return originalBuffer ? origToX(sec, w) : 0;
+      },
+      xToTime: (x, w) => {
+        if (playMode === 'cleaned' && originalBuffer && durationSec > 0) {
+          return originalToCleaned(xToOrig(x, w));
+        }
+        return originalBuffer ? xToOrig(x, w) : 0;
+      }
+    });
+  }
+  // (View switching + segment highlighting are handled by setView/currentView/
+  // refreshSegments defined above — no separate setActiveMode here.)
+
+  // The play/pause button is wired by snip-transport (playBtn) inside
+  // ensureTransport(), which runs when a file is loaded.
+
+  btnProcess.addEventListener('click', processAndDownload);
+
+  // Redraw waveform on viewport size changes so the canvas backing store
+  // matches the rendered CSS box (devicePixelRatio + responsive width).
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => { resizeRaf = 0; if (originalBuffer) { drawWaveform(); if (transport) transport.refresh(); } });
+  });
+
+  // ── FAQ accordion ──────────────────────────────────────────────────────
+  document.querySelectorAll('.faq-item .faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51aa32df92d5012',t:'MTc5MzE5NzgxNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
