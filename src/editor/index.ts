@@ -498,6 +498,45 @@ export class Editor {
       quickMid.addEventListener('change', () => this.commit({ mid: Number(quickMid.value) }));
     }
 
+    const eq10Inputs = this.els.root.querySelectorAll<HTMLInputElement>('[data-eq10]');
+    if (eq10Inputs.length) {
+      const eq10Labels = this.els.root.querySelectorAll<HTMLElement>('[data-eq10-label]');
+      const paintEq10 = () => {
+        (this.state.eq10 ?? []).forEach((v: number, i: number) => {
+          const input = eq10Inputs[i];
+          if (!input) return;
+          input.value = String(v);
+          const label = eq10Labels[i];
+          if (label) label.textContent = `${v > 0 ? '+' : ''}${v} dB`;
+        });
+      };
+      eq10Inputs.forEach((input, i) => {
+        input.addEventListener('input', () => {
+          const v = Number(input.value);
+          const label = eq10Labels[i];
+          if (label) label.textContent = `${v > 0 ? '+' : ''}${v} dB`;
+        });
+        input.addEventListener('change', () => {
+          const next = (this.state.eq10 ?? new Array(10).fill(0)).slice();
+          next[i] = Number(input.value);
+          this.commit({ eq10: next });
+        });
+      });
+      this.els.root.querySelectorAll<HTMLButtonElement>('[data-eq-preset]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const values = (JSON.parse(btn.dataset.eqPreset || '[]') as number[]).slice();
+          eq10Inputs.forEach((input, i) => {
+            const v = values[i] ?? 0;
+            input.value = String(v);
+            const label = eq10Labels[i];
+            if (label) label.textContent = `${v > 0 ? '+' : ''}${v} dB`;
+          });
+          this.commit({ eq10: values });
+        });
+      });
+      paintEq10();
+    }
+
     const quickLpf = this.els.root.querySelector<HTMLInputElement>('[data-quick-lpf]');
     const quickLpfLabel = this.els.root.querySelector<HTMLElement>('[data-quick-lpf-label]');
     if (quickLpf && quickLpfLabel) {
@@ -1203,6 +1242,10 @@ export class Editor {
       const quickMidLabel = this.els.root.querySelector<HTMLElement>('[data-quick-mid-label]');
       if (quickMid) quickMid.value = String(state.mid);
       if (quickMidLabel) quickMidLabel.textContent = `${state.mid > 0 ? '+' : ''}${state.mid} dB`;
+      const eq10Inputs = this.els.root.querySelectorAll<HTMLInputElement>('[data-eq10]');
+      eq10Inputs.forEach((input, i) => {
+        input.value = String(state.eq10?.[i] ?? 0);
+      });
       const quickLpf = this.els.root.querySelector<HTMLInputElement>('[data-quick-lpf]');
       const quickLpfLabel = this.els.root.querySelector<HTMLElement>('[data-quick-lpf-label]');
       if (quickLpf) quickLpf.value = String(state.lpf);
@@ -1270,6 +1313,7 @@ export class Editor {
       this.config.bitcrush ? `${this.crushBits}:${this.crushHold}` : '',
       this.config.hz432 ? '432' : '',
       this.config.mono ? 'mono' : '',
+      (this.state.eq10 ?? []).map((g) => `${g}`).join(','),
     ].join('|');
   }
 
@@ -1308,6 +1352,7 @@ export class Editor {
       this.state.bass !== 0 ||
       this.state.treble !== 0 ||
       this.state.mid !== 0 ||
+      (this.state.eq10 ?? []).some((g) => g !== 0) ||
       this.state.hpf > 25 ||
       this.state.lpf < 19000 ||
       this.config.mono ||

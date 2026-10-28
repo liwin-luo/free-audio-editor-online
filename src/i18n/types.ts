@@ -71,6 +71,12 @@ export interface EditorText {
   bass: string;
   treble: string;
   mid: string;
+  eqPresetFlat: string;
+  eqPresetRock: string;
+  eqPresetPop: string;
+  eqPresetHiphop: string;
+  eqPresetClassical: string;
+  eqPresetVocal: string;
   cutoff: string;
   volume: string;
   /** Shown under the volume slider. */

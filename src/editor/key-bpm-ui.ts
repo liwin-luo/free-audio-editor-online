@@ -4,6 +4,10 @@ import { bindFileOpen, setEmptyHidden } from './delivery';
 import { PITCHES, readKeyBpm } from './key-bpm';
 import type { EditorText } from '../i18n/types';
 
+// Mixed In Key Camelot codes by pitch index (C…B), for harmonic-mixing workflows.
+const CAMELOT_MAJOR = ['8B', '3B', '10B', '5B', '12B', '7B', '2B', '9B', '4B', '11B', '6B', '1B'];
+const CAMELOT_MINOR = ['5A', '12A', '7A', '2A', '9A', '4A', '11A', '6A', '1A', '8A', '3A', '10A'];
+
 function requireEl<T extends Element>(root: ParentNode, selector: string): T {
   const el = root.querySelector<T>(selector);
   if (!el) throw new Error(`missing ${selector}`);
@@ -72,7 +76,9 @@ class KeyBpmFinder {
       this.fileMetaEl.textContent = `${formatBytes(file.size)} · ${formatTime(buffer.duration, true)} · ${Math.round(buffer.sampleRate / 1000)} kHz`;
       this.bpmEl.textContent = read.bpm == null ? this.text.keyUnread : String(read.bpm);
       this.keyEl.textContent =
-        read.tonic == null ? this.text.keyUnread : `${PITCHES[read.tonic]} ${read.mode === 'minor' ? this.text.keyMinor : this.text.keyMajor}`;
+        read.tonic == null || read.mode == null
+          ? this.text.keyUnread
+          : `${PITCHES[read.tonic]} ${read.mode === 'minor' ? this.text.keyMinor : this.text.keyMajor} · ${read.mode === 'minor' ? CAMELOT_MINOR[read.tonic] : CAMELOT_MAJOR[read.tonic]}`;
       setEmptyHidden(this.dropzone, true);
       this.workspace.classList.remove('hidden');
     } catch (err) {

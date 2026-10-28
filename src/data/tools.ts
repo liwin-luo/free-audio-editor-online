@@ -108,7 +108,7 @@ export interface EditorConfig {
   /** Max gain slider percent (default 200) */
   maxGainPercent?: number;
   /** Headline controls surfaced outside the Adjust drawer */
-  quickControls?: ('reverse' | 'speed' | 'tempo' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'lpf' | 'hpf' | 'compress' | 'echo' | 'distort' | 'pan' | 'circle' | 'fade')[];
+  quickControls?: ('reverse' | 'speed' | 'tempo' | 'gain' | 'normalize' | 'reverb' | 'pitch' | 'bass' | 'treble' | 'mid' | 'eq10' | 'lpf' | 'hpf' | 'compress' | 'echo' | 'distort' | 'pan' | 'circle' | 'fade')[];
   /** file input accept attribute (default: audio + common video containers) */
   accept?: string;
   /** Export format ids offered in the select, in order. Default: everything except M4R. */
@@ -3026,24 +3026,24 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'equalizer',
-    cardLine: 'Shape low, mid and high shelves with a straightforward three-knob ±15 dB EQ.',
+    cardLine: 'Ten bands from 31 Hz to 16 kHz, ±15 dB each, with one-tap genre presets.',
     name: 'Audio Equalizer',
     shortName: 'Equalizer',
     icon: 'waveform',
     category: 'edit',
-    title: 'Audio Equalizer — 3-Band EQ Online Free',
+    title: 'Audio Equalizer — 10-Band EQ Online Free',
     description:
-      'Shape low, mid and high with a real 3-band EQ (shelf–peak–shelf) in your browser. ±15 dB per band, export MP3 or WAV. Free, nothing uploaded.',
-    h1: 'Audio Equalizer — Adjust Bass, Mids and Treble, Online Free',
+      'Ten EQ bands from 31 Hz to 16 kHz, ±15 dB each, with genre presets. Run it in your browser and export MP3 or WAV. Free, nothing uploaded.',
+    h1: 'Audio Equalizer — Ten Bands, Online Free',
     hero: {
       src: '/equalizer.svg',
       alt: 'Shape the tone of a song or a voice recording',
       width: 32,
       height: 32,
     },
-    subtitle: 'Low, mid and high shelves with ±15 dB per band — the honest three-knob EQ.',
+    subtitle: 'Ten bands, ±15 dB each, genre presets one tap away — still an honest EQ.',
     intro:
-      'Three bands: a low shelf at 150 Hz, a peaking band at 1 kHz with Q 1, and a high shelf at 3 kHz. Each runs from −15 to +15 dB. There are no more bands. A boost also applies the limiter: threshold −2 dB, knee 3, ratio 20, attack 0.002 seconds, release 0.15 seconds.',
+      'Ten peaking bands from 31 Hz to 16 kHz, each −15 to +15 dB, an octave apart. A band left at 0 dB is bypassed. A boost also applies the limiter: threshold −2 dB, knee 3, ratio 20, attack 0.002 seconds, release 0.15 seconds.',
     usesHeading: 'What the three bands do',
     uses: [
       'Cut mud: −3 to −6 dB in the mids cleans up crowded voice recordings.',
@@ -3056,8 +3056,8 @@ export const TOOLS: ToolDef[] = [
         text: 'Any MP3, WAV, M4A, OGG or FLAC file. Processing stays on your device.',
       },
       {
-        name: 'Shape the three bands',
-        text: 'Low below 150 Hz, mid around 1 kHz, highs above 3 kHz — ±15 dB each. Small cuts beat big boosts.',
+        name: 'Shape the bands',
+        text: 'Ten sliders from 31 Hz to 16 kHz, ±15 dB each. The preset chips give you a starting point; small cuts beat big boosts.',
       },
       {
         name: 'A/B and export',
@@ -3075,11 +3075,11 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'How is this different from the bass and treble boosters?',
-        a: 'The boosters are single-purpose shelves with boost-only ranges. The equalizer gives you all three bands with cut and boost in one place — use the boosters when you know exactly which end you need.',
+        a: 'The boosters are single-purpose shelves with boost-only ranges. The equalizer gives you ten bands with cut and boost in one place — use the boosters when you know exactly which end you need.',
       },
       {
         q: 'What are the exact band frequencies?',
-        a: 'Low shelf at 150 Hz, peaking at 1 kHz (unit width), high shelf at 3 kHz — the standard three-band layout. Bands at 0 dB are bypassed, so an untouched band never colors the sound.',
+        a: 'Ten peaking bands an octave apart: 31, 63, 125, 250, and 500 Hz, then 1, 2, 4, 8, and 16 kHz, each ±15 dB. Bands at 0 dB are bypassed, so an untouched band never colors the sound.',
       },
       {
         q: 'Why do voices get strange when I cut the mids?',
@@ -3092,21 +3092,21 @@ export const TOOLS: ToolDef[] = [
     ],
     sections: [
       {
-        heading: 'Three bands, cut or boost',
+        heading: 'Ten bands, cut or boost',
         paragraphs: [
-          'The equalizer is a low shelf at 150 Hz, a peak at 1 kHz, and a high shelf at 3 kHz. Each band runs about ±15 dB. A band left at 0 dB is bypassed, so it does not color the sound.',
+          'The bands are peaking filters an octave apart from 31 Hz to 16 kHz. Each runs about ±15 dB. A band left at 0 dB is bypassed, so it does not color the sound.',
           'Cutting is the safer move. A −4 dB cut in a muddy band often does more than a +6 dB boost somewhere else. Big boosts push the signal toward the limiter and can soften peaks.',
         ],
       },
       {
-        heading: 'What each band is for',
+        heading: 'What the ranges are for',
         paragraphs: [
-          'The three bands are the usual split, not a surgical EQ:',
+          'The octave bands group into the usual three regions, not a surgical EQ:',
         ],
         bullets: [
-          '150 Hz: weight and mud. Cut if the file is boomy. The bass booster only lifts this region, up to +15 dB, and cannot cut.',
-          '1 kHz: presence. Cutting the mids makes voices sound distant.',
-          '3 kHz: air and edge. The treble booster only lifts above this point.',
+          '31–250 Hz: weight and mud. Cut if the file is boomy. The bass booster only lifts this region, up to +15 dB, and cannot cut.',
+          '500 Hz–2 kHz: presence. Cutting here makes voices sound distant.',
+          '4–16 kHz: air and edge. The treble booster only lifts above 3 kHz.',
         ],
       },
       {
@@ -3123,7 +3123,7 @@ export const TOOLS: ToolDef[] = [
       defaultFormat: 'mp3-320',
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
-      quickControls: ['bass', 'mid', 'treble'],
+      quickControls: ['eq10'],
     },
   },
   {

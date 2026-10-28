@@ -42,6 +42,8 @@ export interface EditState {
   treble: number;
   /** peaking gain in dB (1 kHz, Q 1, −15…+15) */
   mid: number;
+  /** ten peaking bands, octave spaced 31 Hz…16 kHz, −15…+15 dB each (equalizer page) */
+  eq10: number[];
   /** high-pass cutoff in Hz; 20 ≈ transparent */
   hpf: number;
   /** low-pass cutoff in Hz; 20000 ≈ transparent */
@@ -70,6 +72,7 @@ export function defaultEditState(): EditState {
     bass: 0,
     treble: 0,
     mid: 0,
+    eq10: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     hpf: 20,
     lpf: 20000,
   };

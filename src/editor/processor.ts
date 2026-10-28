@@ -70,10 +70,11 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
   const bassDb = clamp(state.bass, -15, 15);
   const trebleDb = clamp(state.treble, -15, 15);
   const midDb = clamp(state.mid, -15, 15);
+  const eq10 = (state.eq10 ?? []).map((g) => clamp(g, -15, 15));
   const hpfHz = clamp(state.hpf, 20, 5000);
   const lpfHz = clamp(state.lpf, 300, 20000);
   // only gain-adding stages can push samples past full scale
-  const boosts = bassDb > 0 || trebleDb > 0 || midDb > 0;
+  const boosts = bassDb > 0 || trebleDb > 0 || midDb > 0 || eq10.some((g) => g > 0);
   const master = ctx.createGain();
   let bus: AudioNode = master;
   const distortAmt = clamp(state.distort, 0, 1);
@@ -98,6 +99,15 @@ export async function renderEdit(buffer: AudioBuffer, state: EditState): Promise
     bus && ((bus as BiquadFilterNode).Q.value = 1);
   }
   if (trebleDb !== 0) shelf('highshelf', 3000, trebleDb);
+  if (eq10.some((g) => g !== 0)) {
+    // Ten peaking bands, octave spaced 31 Hz…16 kHz, Q set for ~1-octave width.
+    const EQ10_HZ = [31.25, 62.5, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+    eq10.forEach((gainDb, i) => {
+      if (gainDb === 0) return;
+      shelf('peaking', EQ10_HZ[i], gainDb);
+      bus && ((bus as BiquadFilterNode).Q.value = 1.414);
+    });
+  }
   if (hpfHz > 25) shelf('highpass', hpfHz, 0);
   if (lpfHz < 19000) shelf('lowpass', lpfHz, 0);
   const compressAmt = clamp(state.compress, 0, 1);
