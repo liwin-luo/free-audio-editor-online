@@ -42,7 +42,12 @@ const GUIDE_DATES = guideDates();
 function gitFileDates() {
   const dates = new Map();
   try {
-    const out = execSync('git log --name-only --format=%cI', { encoding: 'utf8', maxBuffer: 1 << 26 });
+    // -c safe.directory: CI containers often check out the repo as a different
+    // user, and git refuses to touch it without this.
+    const out = execSync("git -c safe.directory='*' log --name-only --format=%cI", {
+      encoding: 'utf8',
+      maxBuffer: 1 << 26,
+    });
     let cur = null;
     for (const line of out.split('\n')) {
       const l = line.trim();
@@ -52,8 +57,9 @@ function gitFileDates() {
         dates.set(l, cur);
       }
     }
-  } catch {
+  } catch (err) {
     // No usable git history here — the sitemap keeps its previous shape.
+    console.warn(`[sitemap] git history unavailable, lastmod limited to guides: ${err.message.split('\n')[0]}`);
   }
   return dates;
 }
