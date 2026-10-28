@@ -129,6 +129,11 @@ export interface ToolDef {
   h1: string;
   /** Illustration above the H1. Locales override alt via ToolCopy.heroAlt. */
   hero?: { src: string; alt: string; width: number; height: number };
+  /** Real UI captures from scripts/capture-screenshots.mjs, served from
+   *  /screenshots/ (docs/seo.md 证据资产). Locales override alt via
+   *  ToolCopy.screenshotsAlt, else the English alt ships. Regenerate the files
+   *  whenever the editor UI changes — a stale screenshot is fake evidence. */
+  screenshots?: { src: string; alt: string; width: number; height: number }[];
   /** One-line subtitle under the H1 */
   subtitle: string;
   /** Scenario line for home/hub cards; locales may override via ToolCopy.cardLine, else falls back to subtitle */
@@ -502,6 +507,20 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/ringtone-maker-1.webp',
+        alt: 'Ringtone Maker dropzone: drop a song, up to 40 seconds, with the M4R and MP3 toggle',
+        width: 1464,
+        height: 606,
+      },
+      {
+        src: '/screenshots/ringtone-maker-2.webp',
+        alt: 'Ringtone Maker with a 12-second file: selection handles, Start 00:00.00 and End 00:12.00, fade sliders at 0.0 seconds, and MP3 192 kbps',
+        width: 1464,
+        height: 1019,
+      },
+    ],
     subtitle: 'Save up to 40 seconds of a song as a file you can download.',
     intro:
       'Drag a span of a song. A drag longer than 40 seconds is shortened to 40, and the page says: Selection capped at 40 seconds — the classic ringtone length. Fade each end from 0 to 5 seconds. The page downloads the file. It does not install it on the phone.',
@@ -565,6 +584,15 @@ export const TOOLS: ToolDef[] = [
           'Otherwise the menu is MP3 at 320, 192, or 128 kbps, or 16-bit WAV.',
           'The menu does not include 64 or 96 kbps. This page only downloads the file.',
         ],
+        table: {
+          headers: ['Tone type', 'Length that works', 'Why'],
+          rows: [
+            ['Ringtone', '40 seconds or less', 'This page clamps the drag at 40 s — the classic ringtone length'],
+            ['Text and alert tones', 'A few seconds', 'An alert should identify itself, not play the song'],
+            ['Alarm', 'As long as you like', 'Export MP3 or 16-bit WAV; this page sets no cap'],
+            ['Android ringtone', 'Short, so the loop stays clean', 'The MP3 from this page works; the phone loops from the top'],
+          ],
+        },
       },
       {
         heading: 'What this page does not do',
@@ -1132,6 +1160,20 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/compress-audio-1.webp',
+        alt: 'Compress Audio dropzone with the bitrate chips 320, 192, 128, 96 and 64 kbps, and the local-processing line',
+        width: 1464,
+        height: 606,
+      },
+      {
+        src: '/screenshots/compress-audio-2.webp',
+        alt: 'A 12-second, 1.1 MB test file loaded in Compress Audio: waveform, playhead, format menu at MP3 128 kbps, and the Compress button',
+        width: 1464,
+        height: 591,
+      },
+    ],
     subtitle: 'Re-encode at a lower MP3 bitrate. This page starts at 128 kbps.',
     intro:
       'This page re-encodes at a lower MP3 bitrate. The menu is 320, 192, 128, 96, or 64 kbps, and it starts at 128. There is no WAV in the menu. An MP3 encoded again loses detail again. This is not the [level compressor](/compressor).',
@@ -1203,6 +1245,17 @@ export const TOOLS: ToolDef[] = [
           '192 or 320 kbps for music you will still listen to closely.',
           '128 kbps for speech, a voice memo, or a copy you need to send.',
           '64 or 96 kbps only when the destination is tiny and speech is enough.',
+        ],
+        table: {
+          headers: ['Where the file goes', 'Cap', 'Suggested setting'],
+          rows: [
+            ['Gmail attachment', '25 MB (personal accounts)', '128 kbps — a 10-minute memo lands near 10 MB'],
+            ['Telegram', '2 GB, or 4 GB with Premium', 'Any bitrate fits; pick 128 kbps to save mobile data'],
+            ['Your own target', 'You decide', 'One minute is about 1 MB at 128 kbps, about 0.5 at 64'],
+          ],
+        },
+        outro: [
+          'Caps move: these two were checked in October 2026. Chat apps keep audio media under tighter caps than documents, and the caps change without notice — the per-minute math above holds either way.',
         ],
       },
       {
@@ -2837,6 +2890,20 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/slowed-reverb-1.webp',
+        alt: 'Slowed Reverb dropzone: drop a song, or click to browse, with the local-processing line',
+        width: 1464,
+        height: 606,
+      },
+      {
+        src: '/screenshots/slowed-reverb-2.webp',
+        alt: 'Slowed Reverb workspace: the Speed slider at 1.00 with a note that pitch moves with it, Reverb at 0%, and MP3 192 kbps selected',
+        width: 1464,
+        height: 1100,
+      },
+    ],
     subtitle: 'Speed from 0.50 to 2.00, pitch follows, plus a 2.2 second room.',
     intro:
       'Speed runs from 0.50 to 2.00 in steps of 0.05, and the pitch follows. Reverb uses a 2.2 second impulse. Wet at 0 adds no room. Above 1.00 the file gets faster and the pitch rises with it. A speed change that keeps the pitch is the [tempo changer](/tempo-changer).',
@@ -2893,6 +2960,15 @@ export const TOOLS: ToolDef[] = [
           'Speed runs from 0.50 to 2.00 in steps of 0.05, and the pitch follows. Keeping the pitch is the tempo changer, and that page stops at 0.75 and 1.25.',
           'The room is a 2.2 second impulse. Wet at 0 adds no room.',
         ],
+        table: {
+          headers: ['Speed', 'What it sounds like', 'Common use'],
+          rows: [
+            ['0.95', 'Barely slower; the pitch dips a touch', 'Edits that should not announce themselves'],
+            ['0.90', 'The classic slowed sound — relaxed, darker', 'The slowed-and-reverb trend sound'],
+            ['0.85', 'Heavy and dreamy, clearly pitched down', 'Mood edits and loops'],
+            ['Above 1.00', 'Faster and brighter — nightcore territory', 'The same page, the other direction'],
+          ],
+        },
       },
       {
         heading: 'Nightcore is the same page, the other direction',
@@ -4869,7 +4945,7 @@ export const TOOLS: ToolDef[] = [
     },
     subtitle: 'Two numbers. No button that moves the pitch.',
     intro:
-      'Drop a file. The page reads BPM from 60 to 180, and a key: a pitch plus major or minor. BPM is the strongest gap between onsets. A gap outside that range is halved or doubled until it lands inside. The key is the major or minor profile with the highest weight among the twelve. Silence shows “Can’t read”, not 0 BPM and not C major. Only the first 60 seconds are read. A file shorter than 2 seconds has no BPM. This page does not change the file. Moving the pitch is the pitch changer. Nothing is uploaded.',
+      'Drop a file. The page reads BPM from 60 to 180, and a key: a pitch plus major or minor. Each key also shows its Camelot code, the notation DJs use for harmonic mixing. BPM is the strongest gap between onsets. A gap outside that range is halved or doubled until it lands inside. The key is the major or minor profile with the highest weight among the twelve. Silence shows “Can’t read”, not 0 BPM and not C major. Only the first 60 seconds are read. A file shorter than 2 seconds has no BPM. This page does not change the file. Moving the pitch is the pitch changer. Nothing is uploaded.',
     usesHeading: 'What you can read',
     uses: [
       'The tempo of a loop before you change its speed.',

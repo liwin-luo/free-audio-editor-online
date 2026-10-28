@@ -24,7 +24,7 @@ import Faq from './Faq.astro';
 import RelatedTools from './RelatedTools.astro';
 import Icon from './Icon.astro';
 import CopyText from './CopyText.astro';
-import { webAppSchema, faqSchema, howToSchema, breadcrumbSchema } from '../lib/jsonld';
+import { webAppSchema, faqSchema, howToSchema, breadcrumbSchema, imageObjectSchema } from '../lib/jsonld';
 import { getShell } from '../i18n';
 import { fill } from '../i18n/inline';
 import { localeMeta, localePath, type Locale } from '../i18n/locales';
@@ -60,6 +60,9 @@ const jsonLd = [
     { name: ui.categories[tool.category], path: localePath(locale, `/tools/${tool.category}`) },
     { name: tool.name, path: localePath(locale, `/${tool.slug}`) },
   ]),
+  ...(tool.screenshots ?? []).map((shot) =>
+    imageObjectSchema(shot.src, shot.alt, `${tool.name} screenshot`, lang),
+  ),
 ];
 ---
 
@@ -128,6 +131,28 @@ const jsonLd = [
     <div class="mt-5">
       <TrustBadge locale={locale} offline={!tool.editor.transcribe && !tool.editor.midi} />
     </div>
+
+    {
+      tool.screenshots && tool.screenshots.length > 0 && (
+        <section class="pt-12">
+          <div class="grid gap-4 md:grid-cols-2">
+            {tool.screenshots.map((shot, i) => (
+              <figure class="overflow-hidden rounded-2xl border border-line bg-surface">
+                <img
+                  src={shot.src}
+                  alt={shot.alt}
+                  width={shot.width}
+                  height={shot.height}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  class="h-auto w-full"
+                />
+              </figure>
+            ))}
+          </div>
+        </section>
+      )
+    }
 
     <section class="pt-14">
       <p class="max-w-[65ch] text-[17px] leading-relaxed text-ink2"><CopyText text={tool.intro} locale={locale} /></p>

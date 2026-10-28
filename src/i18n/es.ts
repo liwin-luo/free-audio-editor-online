@@ -1544,6 +1544,15 @@ export const es: Catalog = {
             'Firefox no codifica AAC. Exporta MP3 y crea el tono en GarageBand.',
             'MP3 a 320, 192 o 128 kbps, o WAV, cuando el teléfono o la app aceptan eso en lugar de M4R.',
           ],
+          table: {
+            headers: ['Tipo de tono', 'Duración que funciona', 'Por qué'],
+            rows: [
+              ['Tono de llamada', '40 segundos o menos', 'Esta página recorta el arrastre a 40 s — la longitud clásica'],
+              ['Tonos de aviso', 'Unos segundos', 'Un aviso debe identificarse, no sonar la canción'],
+              ['Alarma', 'La que quieras', 'Exporta MP3 o WAV de 16 bits; esta página no pone límite'],
+              ['Tono en Android', 'Corto, para que el bucle quede limpio', 'El MP3 de esta página sirve; el teléfono repite desde el principio'],
+            ],
+          },
         },
         {
           heading: 'Qué no hace esta página',
@@ -2007,6 +2016,17 @@ export const es: Catalog = {
             '192 o 320 kbps para música que vas a escuchar con atención.',
             '128 kbps para voz, una nota de voz o una copia que tienes que enviar.',
             '64 o 96 kbps solo cuando el destino es muy pequeño y basta con la voz.',
+          ],
+          table: {
+            headers: ['Destino del archivo', 'Límite', 'Ajuste sugerido'],
+            rows: [
+              ['Adjunto de Gmail', '25 MB (cuentas personales)', '128 kbps — un memo de 10 minutos ronda los 10 MB'],
+              ['Telegram', '2 GB, u 4 GB con Premium', 'Cualquier bitrate cabe; elige 128 kbps para ahorrar datos móviles'],
+              ['Tu propio objetivo', 'Tú decides', 'Un minuto son unos 1 MB a 128 kbps, unos 0,5 a 64'],
+            ],
+          },
+          outro: [
+            'Los límites se mueven: estos dos se comprobaron en octubre de 2026. Las apps de chat mantienen el audio por debajo del límite de documentos, y los límites cambian sin aviso — las cuentas por minuto de arriba valen igual.',
           ],
         },
         {
@@ -2917,6 +2937,15 @@ export const es: Catalog = {
             'Slowed + reverb baja la velocidad, normalmente a algún punto entre el 80 y el 90 por ciento, con el 85 por ciento como punto de partida habitual. El tono baja en la misma proporción, como un disco a la velocidad equivocada. No hay time-stretch que conserve la tonalidad.',
             'La reverberación es una cola de caída sintetizada. Empieza cerca del 20 al 30 por ciento. Pasado el 50 por ciento el tema se vuelve un baño y las palabras se oyen mal.',
           ],
+          table: {
+            headers: ['Velocidad', 'Cómo suena', 'Uso habitual'],
+            rows: [
+              ['0.95', 'Apenas más lento; el tono baja un toque', 'Ediciones que no deben anunciarse'],
+              ['0.90', 'El sonido slowed clásico — relajado, más oscuro', 'El sonido de la tendencia slowed and reverb'],
+              ['0.85', 'Denso y onírico, claramente más grave', 'Ediciones de ambiente y bucles'],
+              ['Más de 1.00', 'Más rápido y brillante — territorio nightcore', 'La misma página, en la otra dirección'],
+            ],
+          },
         },
         {
           heading: 'Nightcore es la misma página, en la otra dirección',

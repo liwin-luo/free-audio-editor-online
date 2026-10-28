@@ -41,6 +41,10 @@ export function localizeTool(slug: string, locale: Locale): ToolDef | undefined 
     description: copy.description,
     h1: copy.h1,
     hero: tool.hero ? { ...tool.hero, alt: copy.heroAlt ?? tool.hero.alt } : undefined,
+    screenshots: tool.screenshots?.map((shot, i) => ({
+      ...shot,
+      alt: copy.screenshotsAlt?.[i] ?? shot.alt,
+    })),
     subtitle: copy.subtitle,
     cardLine: copy.cardLine ?? tool.cardLine,
     intro: copy.intro,

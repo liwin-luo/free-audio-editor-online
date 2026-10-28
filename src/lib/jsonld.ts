@@ -68,6 +68,18 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
+/** One node per real UI capture (docs/seo.md 证据资产). */
+export function imageObjectSchema(src: string, alt: string, name: string, inLanguage?: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ImageObject',
+    contentUrl: new URL(src, SITE.url).href,
+    name,
+    description: alt,
+    inLanguage,
+  };
+}
+
 const ORGANIZATION = {
   '@type': 'Organization',
   '@id': `${SITE.url}/#organization`,

@@ -8,6 +8,8 @@ export interface ToolCopy {
   h1: string;
   /** Alt for ToolDef.hero. Required when the English tool has a hero image. */
   heroAlt?: string;
+  /** Alt overrides for ToolDef.screenshots, in the same order. Falls back to English. */
+  screenshotsAlt?: string[];
   subtitle: string;
   /** Scenario line for hub/home cards. Falls back to subtitle when a locale omits it. */
   cardLine?: string;

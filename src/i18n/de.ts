@@ -1545,6 +1545,15 @@ export const de: Catalog = {
             'Firefox kodiert kein AAC. Exportiere dort MP3 und mach den Klingelton in GarageBand.',
             'MP3 mit 320, 192 oder 128 kbps, oder WAV, wenn das Telefon das statt M4R nimmt.',
           ],
+          table: {
+            headers: ['Tontyp', 'Passende Länge', 'Warum'],
+            rows: [
+              ['Klingelton', '40 Sekunden oder weniger', 'Diese Seite kürzt den gezogenen Bereich auf 40 s — die klassische Länge'],
+              ['Hinweistöne', 'Ein paar Sekunden', 'Ein Hinweis soll kennzeichnen, nicht den Song abspielen'],
+              ['Alarm', 'So lang du willst', 'Als MP3 oder 16-Bit-WAV exportieren; diese Seite setzt kein Limit'],
+              ['Klingelton auf Android', 'Kurz, damit der Loop sauber bleibt', 'Das MP3 von dieser Seite funktioniert; das Telefon looppt von vorn'],
+            ],
+          },
         },
         {
           heading: 'Was diese Seite nicht tut',
@@ -2008,6 +2017,17 @@ export const de: Catalog = {
             '192 oder 320 kbps für Musik, die du noch genau hörst.',
             '128 kbps für Sprache, eine Sprachnotiz oder eine Kopie zum Verschicken.',
             '64 oder 96 kbps nur, wenn das Ziel winzig ist und Sprache reicht.',
+          ],
+          table: {
+            headers: ['Wohin die Datei geht', 'Limit', 'Empfohlene Einstellung'],
+            rows: [
+              ['Gmail-Anhang', '25 MB (private Konten)', '128 kbps — eine 10-Minuten-Notiz landet bei etwa 10 MB'],
+              ['Telegram', '2 GB, mit Premium 4 GB', 'Jede Bitrate passt; nimm 128 kbps, um mobiles Datenvolumen zu sparen'],
+              ['Dein eigenes Ziel', 'Du entscheidest', 'Eine Minute sind etwa 1 MB bei 128 kbps, etwa 0,5 bei 64'],
+            ],
+          },
+          outro: [
+            'Grenzen verschieben sich: Diese zwei wurden im Oktober 2026 geprüft. Chat-Apps halten Audio unter strengeren Grenzen als Dokumente, und die Grenzen ändern sich ohne Ankündigung — die Minuten-Rechnung oben gilt trotzdem.',
           ],
         },
         {
@@ -2918,6 +2938,15 @@ export const de: Catalog = {
             'Slowed + Reverb senkt das Tempo, meist irgendwo zwischen 80 und 90 Prozent, mit 85 Prozent als üblichem Start. Die Tonhöhe sinkt im selben Verhältnis, wie eine Platte in der falschen Geschwindigkeit. Es gibt kein Time-Stretch, das die Tonart halten würde.',
             'Der Hall ist ein synthetisierter Abkling-Schweif. Starte um 20 bis 30 Prozent. Ab etwa 50 Prozent wird der Track zu einem Wasch und Wörter werden schwer verständlich.',
           ],
+          table: {
+            headers: ['Tempo', 'Wie es klingt', 'Übliche Nutzung'],
+            rows: [
+              ['0.95', 'Kaum langsamer; die Tonlage sinkt leicht', 'Bearbeitungen, die sich nicht selbst ankündigen'],
+              ['0.90', 'Der klassische Slowed-Sound — entspannt, dunkler', 'Der Sound des Slowed-and-Reverb-Trends'],
+              ['0.85', 'Dicht und verträumt, deutlich tiefer', 'Stimmungs-Bearbeitungen und Loops'],
+              ['Über 1.00', 'Schneller und heller — Nightcore-Gebiet', 'Dieselbe Seite, die andere Richtung'],
+            ],
+          },
         },
         {
           heading: 'Nightcore ist dieselbe Seite, die andere Richtung',
