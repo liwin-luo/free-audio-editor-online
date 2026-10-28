@@ -85,6 +85,15 @@ Shape to copy (`wav-to-mp3` already does this; the bitrate is the fact):
 
 Do not write `Works offline` in the title. The on-page mark is the trust row under the tool (`TrustBadge`): `Offline after load`, next to free and no watermark. Omit it when the tool still needs a download after the page opens (the transcription model). The description or the privacy FAQ can add the rest: WAV exports immediately; MP3 exports after the encoder has loaded once.
 
+### 3.2 Evidence assets (every tool page, from 2026-10-29)
+
+Spec lives in `docs/seo.md` (证据资产 section); audit trail: `docs/competitor-analysis/039-bulkpictools-gif-compressor.md`.
+
+- **Screenshots:** 2–3 real UI captures (webp; first eager, rest lazy; alt text carries a number). Generate them with a script against the preview build and re-run whenever the UI changes — a stale screenshot is fake evidence, worse than none.
+- **One table of real numbers.** On "fit under a limit" pages that is the platform-limits table: verify every cell against the platform's current value before shipping, and add a recommended-target column with a buffer (bulkpictools' Discord 8 MB row looks outdated — don't copy it). On every other page it is the three questions users ask before using this tool (metronome: common BPM; key-bpm-finder: key against tempo). Every cell must be provable on the page.
+- **Schema:** add `ImageObject` nodes for the screenshots.
+- **Density, not length.** The 900–1,400 word budget stands. New sections carry facts unique to this page; sentences never repeat across pages (scaled-content rule).
+
 ## 4. Technical implementation
 
 - **Thin EN wrapper:** create `src/pages/{slug}.astro` re-exporting `ToolPage` with
@@ -119,6 +128,9 @@ Do not write `Works offline` in the title. The on-page mark is the trust row und
   `title`/`description` around the **localized query**, not a word-for-word translate
   of the English title. Check a real search suggestion in that language before
   settling the wording.
+- Head pages with real demand in a locale get scenario-based rewrites in that
+  locale (zh: WeChat / QQ-mail file limits), not translated EN FAQ wording — see
+  `docs/seo.md` 证据资产 section. Other locales stay as quality translations.
 - hreflang, canonical, sitemap alternates are automatic via `Base.astro` + the
   sitemap integration. Nothing to do — verify in the audit output.
 
@@ -132,6 +144,8 @@ node scripts/seo-audit.mjs <preview-url>   # zero HIGH issues
 ```
 
 - [ ] `llms.txt` — add the tool line under `## Tools` (one sentence, factual).
+- [ ] Evidence assets shipped (§3.2): screenshots + the numbers table; screenshot
+      script still green against the current UI.
 - [ ] Nav dropdown + footer pick the tool up from `TOOLS` automatically — confirm both.
 - [ ] ≥ 2 sibling tools now link to the new page via their `related` array.
 - [ ] Manual pass on a real phone: EN + one locale, plus one 10-minute file and (if

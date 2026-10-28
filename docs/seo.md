@@ -43,6 +43,29 @@ H1 用和标题相同的主词。不要在 H1 里换成第二个主词。H2 写�
 
 结构化数据：工具页 `WebApplication` + `HowTo` + `FAQPage` + `BreadcrumbList`。HowTo 富结果 Google 已停用，留给其他引擎和 AI 搜索。指南用 `Article`。`/tools` 用 `CollectionPage` + `ItemList`。
 
+## 证据资产和页面独有的知识表
+
+2026-10-29 起。来源是 bulkpictools gif-compressor 页的审计（[competitor-analysis/039](competitor-analysis/039-bulkpictools-gif-compressor.md)），分通用层和条件层。
+
+通用层，每个工具页都要有：
+
+- 真实 UI 截图 2–3 张，webp，第一张 eager 其余 lazy，alt 带数字。截图用脚本对着 preview build 生成（复用 check 脚本的 puppeteer 设施），UI 改版后重跑。过期的截图是假证据，比没有更糟。
+- 至少一张真实数字的表。条件层不适用时，这张表就是「用这页之前最常被问的 3 个问题」：metronome 是常用 BPM，key-bpm-finder 是调性对曲速。数字必须能在页内坐实，不许编。
+- 截图进 Schema，补 `ImageObject`。
+
+条件层，意图匹配的页面才有，硬抄是模板噪声：
+
+- 平台大小限制表：只给「装进某个限制」意图的页（compress-audio、ringtone-maker、split-mp3、bitrate-converter、voice-recorder、mp4-to-mp3、music-visualizer）。每格数值上线前逐行核实，加建议目标列并留 buffer——竞品表里的 Discord 8MB 就疑似过时，别照抄。
+- 场景 how-to 小节：只给意图带场景的页（slowed-reverb 对 TikTok，volume-booster 对配视频，audio-to-text 对会议和播客）。每节 2–3 段。
+
+红线：
+
+- 新增小节只能写这一页独有的事实，句子不跨页复用。字数预算不变（900–1,400），加的是密度不是长度。
+- 不学竞品的友链区、徽章墙、size 卫星工具页（和「一条意图一个 URL」冲突）、URL 改嵌套。
+- zh 只给中文需求存在的头部页按场景重写（微信文件太大、QQ 邮箱附件上限），不是翻英语 FAQ；其余页保持合格翻译。各语言平台名不同（ja 对 LINE，ko 对 KakaoTalk，de 对 WhatsApp），逐语言另议。
+
+推行：先改 3 页试点——compress-audio（限制表形态）、ringtone-maker（限制表形态）、slowed-reverb（泛化知识表形态），GSC 看 2–4 周，数据成立再排批量计划。新工具从第一天就带通用层（见 [new-tool-spec §3.2](new-tool-spec.md)）。
+
 ## 抓取和语言
 
 - canonical 自引用。英语无前缀，翻译页 `/{locale}/...`。`x-default` 指向英语。
