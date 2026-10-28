@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import { readFileSync, readdirSync } from 'node:fs';
+import { execSync } from 'node:child_process';
 import { imageSize } from 'image-size';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
@@ -31,6 +32,61 @@ function guideDates() {
   return dates;
 }
 const GUIDE_DATES = guideDates();
+
+/**
+ * Last-commit date per tracked file (one git pass at config load), so
+ * non-guide routes carry a real lastmod too. Falls back to no lastmod when
+ * git history is unavailable (e.g. a very shallow CI clone) — same output
+ * shape as before, nothing invented.
+ */
+function gitFileDates() {
+  const dates = new Map();
+  try {
+    const out = execSync('git log --name-only --format=%cI', { encoding: 'utf8', maxBuffer: 1 << 26 });
+    let cur = null;
+    for (const line of out.split('\n')) {
+      const l = line.trim();
+      if (/^\d{4}-\d{2}-\d{2}T/.test(l)) {
+        cur = l;
+      } else if (l && cur && !dates.has(l)) {
+        dates.set(l, cur);
+      }
+    }
+  } catch {
+    // No usable git history here — the sitemap keeps its previous shape.
+  }
+  return dates;
+}
+const FILE_DATES = gitFileDates();
+const TOOL_SLUGS = new Set(
+  (readFileSync(new URL('./src/data/tools.ts', import.meta.url), 'utf8').match(/^ {4}slug: '([a-z0-9-]+)',$/gm) ?? []).map(
+    (line) => line.match(/'([a-z0-9-]+)'/)[1],
+  ),
+);
+
+/** Files whose last commit can honestly date this route's content. */
+function routeLastmod(pathname) {
+  const p = pathname.replace(/\/$/, '') || '/';
+  const m = p.match(/^\/(es|pt|id|de|ko|ja|zh|fr|ru|ar)(?=\/|$)/);
+  const locale = m?.[1];
+  const bare = locale ? p.slice(1 + locale.length) || '/' : p;
+  const slug = bare.replace(/^\//, '');
+  const files = [];
+  if (TOOL_SLUGS.has(slug)) {
+    files.push(`src/pages/${slug}.astro`, 'src/data/tools.ts', 'src/data/tool-facts.ts', 'src/components/ToolPage.astro');
+  } else if (bare === '/') {
+    files.push('src/pages/index.astro');
+  } else {
+    files.push(`src/pages${bare}.astro`, `src/pages${bare}/index.astro`);
+  }
+  if (locale) files.push(`src/i18n/${locale}.ts`);
+  let newest = null;
+  for (const f of files) {
+    const d = FILE_DATES.get(f);
+    if (d && (!newest || d > newest)) newest = d;
+  }
+  return newest;
+}
 
 /**
  * Guide markdown images are static files under public/, so Astro won't touch
@@ -135,7 +191,7 @@ export default defineConfig({
             links = [...links, { url: en.url, lang: 'x-default' }];
           }
         }
-        const lastmod = GUIDE_DATES.get(path.replace(/\/$/, ''));
+        const lastmod = GUIDE_DATES.get(path.replace(/\/$/, '')) ?? (FILE_DATES.size ? routeLastmod(path) : undefined);
         return { ...item, priority, links, ...(lastmod ? { lastmod } : {}) };
       },
     }),
