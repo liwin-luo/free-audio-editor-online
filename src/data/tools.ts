@@ -8,6 +8,10 @@ export interface ToolSection {
   heading: string;
   paragraphs?: string[];
   bullets?: string[];
+  /** Comparison table. Rendered after paragraphs, before outro. */
+  table?: { headers: string[]; rows: string[][] };
+  /** Closing paragraphs, rendered after the table. */
+  outro?: string[];
 }
 
 export interface HowToStep {
@@ -65,6 +69,8 @@ export interface EditorConfig {
   showAdjust?: boolean;
   /** Trimmer layout: span readout, always-visible times, labeled play. */
   trimLayout?: boolean;
+  /** Edge-fade sliders inside the trim layout (uses the shared fade pipeline). */
+  trimFades?: boolean;
   /** Volume percents shown as buttons next to the gain slider. */
   gainPresets?: number[];
   /** Speed multiples shown as buttons next to the speed slider. */
@@ -325,6 +331,10 @@ export const TOOLS: ToolDef[] = [
         q: 'Does it work on my phone?',
         a: 'The waveform accepts a touch drag. A file over 300 MB is rejected. A file over one hour still opens, with a memory warning.',
       },
+      {
+      q: 'Can I cut a song from YouTube?',
+      a: 'This page works on a file from this device and cannot take a URL. Ripping audio from streaming platforms usually breaks their terms, so keep to songs you own or have permission to use.',
+      },
     ],
     sections: [
       {
@@ -369,8 +379,10 @@ export const TOOLS: ToolDef[] = [
       defaultFormat: 'mp3-192',
       showAdjust: false,
       trimLayout: true,
+      trimFades: true,
+      accept: 'audio/*,video/mp4,video/webm,video/quicktime,.mkv,.m4a,.opus',
       exportLabel: 'Cut and download',
-      dropHint: 'Drop an MP3 file, or click to browse',
+      dropHint: 'Drop an MP3 or video file, or click to browse',
     },
   },
   {
@@ -787,7 +799,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'Convert WAV to MP3 Online Free — 320 kbps',
     description:
-      'Convert a WAV to MP3 in this browser. The menu is 64, 96, 128, 192, or 320 kbps, and it starts at 320. Nothing is uploaded.',
+      'Convert a WAV to MP3 in this browser. The menu is 64, 96, 128, 192, or 320 kbps, and it starts at 320. Batch files download as one ZIP. Nothing is uploaded.',
     h1: 'Convert WAV to MP3 — Online, Free',
     hero: {
       src: '/wav-to-mp3.svg',
@@ -904,7 +916,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'FLAC to MP3 Converter — Convert FLAC Files Online Free',
     description:
-      'Decode a FLAC and encode MP3 at 320, 192, or 128 kbps. This page starts at 320. Nothing is uploaded.',
+      'Decode a FLAC and encode MP3 at 320, 192, or 128 kbps. This page starts at 320. Batch files download as one ZIP. Nothing is uploaded.',
     h1: 'FLAC to MP3 Converter — Convert FLAC to MP3, Online Free',
     hero: {
       src: '/flac-to-mp3.svg',
@@ -1008,7 +1020,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'MP3 to WAV Converter — Convert MP3 to WAV Online Free',
     description:
-      'Convert MP3 to lossless WAV in your browser — for editing, archiving and apps that want PCM. Free, no signup, nothing uploaded.',
+      'Convert MP3 to lossless WAV in your browser — for editing, archiving and apps that want PCM. Batch files return as one ZIP. Free, no signup, nothing uploaded.',
     h1: 'MP3 to WAV Converter — Turn an MP3 into a WAV File, Online Free',
     hero: {
       src: '/mp3-to-wav.svg',
@@ -1112,7 +1124,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'Compress Audio — Reduce MP3 & WAV File Size Online',
     description:
-      'Shrink MP3, WAV and other audio files to a smaller size in your browser — pick a lower bitrate, listen, download. Free, nothing uploaded.',
+      'Shrink MP3, WAV and other audio files in your browser. Pick a lower bitrate, listen, download. Batch files download as one ZIP. Nothing is uploaded.',
     h1: 'Compress Audio — Reduce an MP3 File’s Size, Online Free',
     hero: {
       src: '/compress-audio.svg',
@@ -1220,7 +1232,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'Bitrate Converter — MP3 at 64 to 320 kbps',
     description:
-      'Change an audio file to 64, 96, 128, 192, or 320 kbps MP3 in the browser. A higher bitrate does not restore detail. Nothing is uploaded.',
+      'Change an audio file to 64, 96, 128, 192, or 320 kbps MP3 in the browser. A higher bitrate does not restore detail. Batch files download as one ZIP.',
     h1: 'Bitrate Converter: set an MP3 to 64–320 kbps',
     hero: {
       src: '/bitrate-converter.svg',
@@ -1633,7 +1645,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'MP4 to MP3 — Convert Video to MP3 Online Free',
     description:
-      'Convert MP4 to MP3 in your browser. The soundtrack is extracted on your device and the video is never uploaded. Free, no signup.',
+      'Convert MP4 to MP3 in your browser. The soundtrack is extracted on your device and never uploaded. Batch several files and download one ZIP. Free, no signup.',
     h1: 'MP4 to MP3 — Convert a Video to MP3, Online Free',
     hero: {
       src: '/mp4-to-mp3.svg',
@@ -1643,7 +1655,7 @@ export const TOOLS: ToolDef[] = [
     },
     subtitle: 'Pull the soundtrack out of any video — right in your browser, nothing uploaded.',
     intro:
-      'Turn MP4 videos into MP3 audio without installing anything. This browser reads the file from disk and decodes the soundtrack. A file over 300 MB is rejected. The picture is not encoded.',
+      'Turn MP4 videos into MP3 audio without installing anything. The browser reads the file from your disk and decodes the soundtrack. Nothing is uploaded. Several files convert one after another and come back as one ZIP. A file over 300 MB is rejected. The picture is not encoded.',
     usesHeading: 'Videos people convert for the sound',
     uses: [
       'Save a lecture, concert, or interview as audio you can play with the screen off.',
@@ -1686,6 +1698,14 @@ export const TOOLS: ToolDef[] = [
         q: 'Does 4K or 8K video slow it down?',
         a: 'No. Video resolution is irrelevant — the video track is ignored entirely. A 4K file and a 240p file with the same soundtrack convert identically.',
       },
+      {
+        q: 'Can I convert a video from YouTube or another platform?',
+        a: 'This page reads a file you pick from this device. It cannot take a URL. Downloading audio from streaming platforms usually breaks their terms, so keep to videos you recorded or have permission to use.',
+      },
+      {
+        q: 'Do I need to install an app?',
+        a: 'No. The converter runs in this browser tab, on desktop and on phones. Nothing is installed, and there is no account to create.',
+      },
     ],
     sections: [
       {
@@ -1720,6 +1740,26 @@ export const TOOLS: ToolDef[] = [
           'The MP3 does not keep a video title or thumbnail. Set the track name afterwards in the [MP3 tag editor](/mp3-tag-editor) if you need it to show up in a player.',
         ],
       },
+      {
+        heading: 'This page, VLC, or an upload site',
+        paragraphs: [
+          'Three routes turn a video into an MP3. Pick by file size and by how often you convert. Details checked against the live services on 2026-10-28.',
+        ],
+        table: {
+          headers: ['', 'This page', 'VLC on the desktop', 'Upload sites'],
+          rows: [
+            ['Install', 'Nothing', 'Yes', 'No'],
+            ['File leaves the device', 'No', 'No', 'Yes'],
+            ['Size limit', '300 MB per file', 'Free disk space', 'Varies by service'],
+            ['Several files', 'Yes, one ZIP', 'One at a time', 'Varies by service'],
+            ['Cost', 'Free', 'Free', 'Free tier limits'],
+          ],
+        },
+        outro: [
+          'A nightly batch of hour-long recordings fits a desktop program better.',
+          'A one-off soundtrack fits this page: nothing to install, and the video never leaves the device.',
+        ],
+      },
     ],
     related: ['extract-audio', 'audio-trimmer', 'mp3-tag-editor'],
     editor: {
@@ -1740,7 +1780,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'Audio Extractor — Extract Audio from Video Online Free',
     description:
-      'Extract the audio track from any video in your browser and save it as MP3 or lossless WAV. Free, private, no upload — even for large files.',
+      'Extract the audio track from any video in your browser and save it as MP3 or lossless WAV. Batch files download as one ZIP. Nothing is uploaded.',
     h1: 'Audio Extractor — Soundtrack as WAV or MP3',
     hero: {
       src: '/extract-audio.svg',
@@ -1800,6 +1840,10 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Can I extract a local soundtrack from Claude or Cursor?',
         a: 'This page extracts a soundtrack this browser can decode. If it cannot, the message does not name the codec. /mcp uses ffmpeg on your computer, and a format opens only when that ffmpeg build includes the decoder. It does not fetch a video from a link. The chat app still sees the path.',
+      },
+      {
+        q: 'Can I extract audio from a YouTube video?',
+        a: 'This page reads a file you pick from this device and cannot take a URL. Saving audio from streaming platforms usually breaks their terms, so keep to videos you recorded or have permission to use.',
       }],
     sections: [
       {
@@ -1944,7 +1988,7 @@ export const TOOLS: ToolDef[] = [
     category: 'record',
     title: 'Audio to Text — Transcribe Audio & Video Online Free',
     description:
-      'Transcribe a file to TXT or SRT in this browser. About 10 minutes per file. Thirty language codes. Nothing is uploaded.',
+      'Transcribe files to TXT or SRT in this browser. About 10 minutes per file. Thirty language codes. Batch files run one after another. Nothing is uploaded.',
     h1: 'Audio to Text — Transcribe a Recording, Online Free',
     hero: {
       src: '/audio-to-text.svg',
@@ -2169,7 +2213,7 @@ export const TOOLS: ToolDef[] = [
     category: 'edit',
     title: 'Audio Normalizer — Normalize MP3 Volume Online Free',
     description:
-      'Normalize audio to a consistent peak level in your browser — MP3, WAV, M4A and more. One click, free, nothing uploaded.',
+      'Normalize audio to a consistent peak level in your browser — MP3, WAV, M4A and more. Batch files download as one ZIP. One click, free, nothing uploaded.',
     h1: 'Audio Normalizer — Normalize MP3 Volume, Online Free',
     hero: {
       src: '/normalize-audio.svg',
@@ -2580,7 +2624,7 @@ export const TOOLS: ToolDef[] = [
     category: 'edit',
     title: 'Remove Silence from Audio — Cut Dead Air Online Free',
     description:
-      'Remove long silences from any audio in your browser. Set how quiet and how long a gap must be. Free, nothing uploaded.',
+      'Remove long silences from any audio in your browser. Set how quiet and how long a gap must be. Batch files download as one ZIP. Free, nothing uploaded.',
     h1: 'Remove Silence from Audio — Cut Dead Air, Online Free',
     hero: {
       src: '/silence-remover.svg',
@@ -4020,7 +4064,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'M4A to MP3 Converter — Convert M4A & AAC Online Free',
     description:
-      'Convert M4A or AAC to MP3 in this browser. The menu starts at 320 kbps. Nothing is uploaded.',
+      'Convert M4A or AAC to MP3 in this browser. The menu starts at 320 kbps. Batch files download as one ZIP. Nothing is uploaded.',
     h1: 'M4A to MP3 Converter — Convert M4A to MP3, Online Free',
     hero: {
       src: '/m4a-to-mp3.svg',
@@ -4120,7 +4164,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'OGG to MP3 Converter — Vorbis & Opus in OGG Online Free',
     description:
-      'Convert OGG to MP3 in this browser. The menu starts at 320 kbps. A file over 300 MB is rejected. Nothing is uploaded.',
+      'Convert OGG to MP3 in this browser. The menu starts at 320 kbps. Batch files download as one ZIP. A file over 300 MB is rejected. Nothing is uploaded.',
     h1: 'OGG to MP3 Converter — Convert OGG to MP3, Online Free',
     hero: {
       src: '/ogg-to-mp3.svg',
@@ -4220,7 +4264,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'Opus to MP3 Converter — WhatsApp Voice Notes to MP3',
     description:
-      'Convert an Opus file to MP3 in this browser. The menu starts at 192 kbps. If this tab cannot play the file, this page cannot decode it.',
+      'Convert an Opus file to MP3 in this browser. The menu starts at 192 kbps. Batch files download as one ZIP. A file this tab cannot play cannot be decoded.',
     h1: 'Opus to MP3 Converter — Convert Opus to MP3, Online Free',
     hero: {
       src: '/opus-to-mp3.svg',

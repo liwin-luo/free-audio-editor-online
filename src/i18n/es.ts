@@ -1333,6 +1333,10 @@ export const es: Catalog = {
           q: '¿Funciona en el teléfono?',
           a: 'Sí. Arrastras la forma de onda con el dedo. Chrome, Edge, Firefox y Safari actuales decodifican los formatos habituales en iPhone y Android. Un archivo largo usa más memoria, así que a partir de una hora el ordenador va más estable.',
         },
+        {
+        q: '¿Puedo cortar una canción de YouTube?',
+        a: 'No. Esta página procesa un archivo de este dispositivo y no acepta enlaces. Cortar el audio de una plataforma de streaming suele romper sus condiciones: usa solo canciones que te pertenecen o para las que tienes permiso.',
+        },
       ],
       sections: [
         {
@@ -1372,7 +1376,7 @@ export const es: Catalog = {
           ],
         },
       ],
-      dropHint: 'Suelta un archivo MP3 o haz clic para elegirlo',
+      dropHint: 'Suelta un archivo MP3 o un video, o haz clic para elegirlo',
       exportLabel: 'Cortar y descargar',
     },
     'mp3-editor': {
@@ -2403,6 +2407,14 @@ export const es: Catalog = {
           q: '¿Un video 4K u 8K lo hace más lento?',
           a: 'No. La resolución del video no importa: la pista de video se ignora por completo. Un archivo 4K y uno de 240p con la misma pista de audio se convierten igual.',
         },
+        {
+          q: '¿Puedo convertir un video de YouTube u otra plataforma?',
+          a: 'No. Esta página lee un archivo que eliges en este dispositivo y no acepta enlaces. Descargar el audio de una plataforma de streaming suele romper sus condiciones: convierte solo videos que grabaste tú o para los que tienes permiso.',
+        },
+        {
+          q: '¿Necesito instalar una aplicación?',
+          a: 'No. El conversor funciona en esta pestaña del navegador, en computadora y en teléfono. Nada que instalar y ninguna cuenta que crear.',
+        },
       ],
       sections: [
         {
@@ -2435,6 +2447,26 @@ export const es: Catalog = {
           paragraphs: [
             'Las pistas AC3 y DTS no las decodifica el navegador. Esos archivos se detienen con un error claro, no con un MP3 en silencio. Un MP4 normal de un teléfono, una grabación de pantalla o una descarga corriente es AAC, y ese sí funciona.',
             'El MP3 no se queda con el título del video ni con la miniatura. Pon el nombre de la pista después en el editor de etiquetas MP3 si necesitas que aparezca en un reproductor.',
+          ],
+        },
+        {
+          heading: 'Esta página, VLC o un sitio de subida',
+          paragraphs: [
+            'Hay tres caminos para pasar un video a MP3. Elige según el tamaño del archivo y cada cuánto conviertes. Detalles verificados contra los servicios en vivo el 2026-10-28.',
+          ],
+          table: {
+            headers: ['', 'Esta página', 'VLC en escritorio', 'Sitios de subida'],
+            rows: [
+              ['Instalar', 'Nada', 'Sí', 'No'],
+              ['El archivo sale del equipo', 'No', 'No', 'Sí'],
+              ['Límite de tamaño', '300 MB por archivo', 'Espacio en disco', 'Varía según el sitio'],
+              ['Varios archivos', 'Sí, un ZIP', 'De uno en uno', 'Varía según el sitio'],
+              ['Costo', 'Gratis', 'Gratis', 'Límites del plan gratis'],
+            ],
+          },
+          outro: [
+            'Un lote nocturno de grabaciones largas va mejor en un programa de escritorio.',
+            'Una conversión de vez en cuando va aquí: nada que instalar y el video nunca sale del equipo.',
           ],
         },
       ],
@@ -2502,6 +2534,10 @@ export const es: Catalog = {
       {
         q: '¿Puedo extraer una pista local desde Claude o Cursor?',
         a: 'Esta página extrae una pista que el navegador puede decodificar. AC3 y DTS se rechazan aquí. /mcp usa ffmpeg, así que un formato se abre solo si tu compilación de ffmpeg incluye ese decodificador. No descarga un vídeo desde un enlace. La app de chat igual ve la ruta.',
+      },
+      {
+        q: '¿Puedo extraer el audio de un video de YouTube?',
+        a: 'No. Esta página lee un archivo que eliges en este dispositivo y no acepta enlaces. Guardar el audio de una plataforma de streaming suele romper sus condiciones: trabaja solo con videos que grabaste tú o para los que tienes permiso.',
       }],
       sections: [
         {

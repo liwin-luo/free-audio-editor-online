@@ -1030,8 +1030,12 @@ export const fr: Catalog = {
           q: 'Ça marche sur un téléphone ?',
           a: 'Oui. Vous faites glisser la forme d\'onde au doigt. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier long prend plus de mémoire, donc au-delà d\'environ une heure l\'ordinateur est plus stable.',
         },
+        {
+        q: 'Peut-on couper une chanson depuis YouTube ?',
+        a: 'Non. Cette page traite un fichier de cet appareil et n’accepte pas de lien. Extraire l’audio d’une plateforme de streaming va généralement contre leurs conditions. Ne coupez que des chansons que vous possédez ou pour lesquelles vous avez l’autorisation.',
+        },
       ],
-      dropHint: 'Déposez un fichier MP3 ou cliquez pour le parcourir',
+      dropHint: 'Déposez un fichier MP3 ou vidéo, ou cliquez pour le parcourir',
       exportLabel: 'Couper et télécharger',
     },
     'mp3-editor': {
@@ -1753,8 +1757,16 @@ export const fr: Catalog = {
           a: 'Cette page est un convertisseur direct : elle traite toute la bande-son. Pour un extrait, convertissez d’abord l’audio complet, puis rognez-le avec le rogneur audio.',
         },
         {
-          q: 'Une vidéo 4K ou 8K le ralentit-elle ?',
+          q: 'Une vidéo 4K ou 8K le ralentit-elle ?',
           a: 'Non. La résolution vidéo n’a aucune importance — la piste vidéo est entièrement ignorée. Un fichier 4K et un fichier 240p avec la même bande-son se convertissent à l’identique.',
+        },
+        {
+          q: 'Peut-on convertir une vidéo depuis YouTube ou une autre plateforme ?',
+          a: 'Non. Cette page lit un fichier choisi sur cet appareil et n’accepte pas de lien. Télécharger l’audio d’une plateforme de streaming va généralement contre leurs conditions. Ne convertissez que des vidéos que vous avez tournées ou pour lesquelles vous avez l’autorisation.',
+        },
+        {
+          q: 'Faut-il installer une application ?',
+          a: 'Non. Le convertisseur fonctionne dans cet onglet du navigateur, sur ordinateur comme sur téléphone. Rien à installer, aucun compte à créer.',
         },
       ],
       dropHint: 'Déposez des MP4 ou des fichiers vidéo, ou cliquez pour les parcourir',
@@ -1821,7 +1833,12 @@ export const fr: Catalog = {
       {
         q: 'Puis-je extraire une piste locale depuis Claude ou Cursor ?',
         a: 'Cette page extrait une piste que le navigateur sait décoder. AC3 et DTS sont refusés ici. /mcp utilise ffmpeg, donc un format s’ouvre seulement si votre build ffmpeg contient ce décodeur. Il ne récupère pas une vidéo depuis un lien. L’application de chat voit quand même le chemin.',
-      }],
+      },
+        {
+          q: 'Peut-on extraire l’audio d’une vidéo YouTube ?',
+          a: 'Non. Cette page lit un fichier choisi sur cet appareil et n’accepte pas de lien. Enregistrer l’audio d’une plateforme de streaming va généralement contre leurs conditions. Ne traitez que des vidéos que vous avez tournées ou pour lesquelles vous avez l’autorisation.',
+        },
+      ],
       dropHint: 'Déposez des fichiers vidéo ou cliquez pour les parcourir',
       exportLabel: 'Extraire l’audio',
     },

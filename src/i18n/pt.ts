@@ -1093,8 +1093,12 @@ export const pt: Catalog = {
           q: 'Funciona no celular?',
           a: 'Sim. Você arrasta a forma de onda com o dedo. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
         },
+        {
+        q: 'Dá para cortar uma música do YouTube?',
+        a: 'Não. Esta página trabalha com um arquivo deste aparelho e não aceita link. Cortar o áudio de uma plataforma de streaming geralmente quebra os termos de uso: use só músicas que você possui ou para as quais tem permissão.',
+        },
       ],
-      dropHint: 'Solte um arquivo MP3 ou clique para procurar',
+      dropHint: 'Solte um arquivo MP3 ou vídeo, ou clique para procurar',
       exportLabel: 'Cortar e baixar',
     },
     'mp3-editor': {
@@ -1819,6 +1823,14 @@ export const pt: Catalog = {
           q: 'Vídeo 4K ou 8K deixa mais lento?',
           a: 'Não. A resolução do vídeo não importa — a faixa de vídeo é ignorada por completo. Um arquivo 4K e um 240p com a mesma trilha sonora convertem igual.',
         },
+        {
+          q: 'Dá para converter um vídeo do YouTube ou de outra plataforma?',
+          a: 'Não. Esta página lê um arquivo escolhido neste aparelho e não aceita link. Baixar áudio de plataforma de streaming geralmente quebra os termos de uso: converta só vídeos que você gravou ou para os quais tem permissão.',
+        },
+        {
+          q: 'Preciso instalar um aplicativo?',
+          a: 'Não. O conversor funciona nesta aba do navegador, no computador e no celular. Nada para instalar e nenhuma conta para criar.',
+        },
       ],
       dropHint: 'Solte MP4 ou arquivos de vídeo, ou clique para procurar',
       exportLabel: 'Converter para MP3',
@@ -1884,7 +1896,12 @@ export const pt: Catalog = {
       {
         q: 'Posso extrair uma trilha local pelo Claude ou pelo Cursor?',
         a: 'Esta página extrai uma trilha que o navegador consegue decodificar. AC3 e DTS são recusados aqui. /mcp usa ffmpeg, então um formato abre só quando a sua build do ffmpeg inclui esse decodificador. Não busca um vídeo por um link. O app de chat ainda vê o caminho.',
-      }],
+      },
+        {
+          q: 'Dá para extrair o áudio de um vídeo do YouTube?',
+          a: 'Não. Esta página lê um arquivo escolhido neste aparelho e não aceita link. Salvar o áudio de uma plataforma de streaming geralmente quebra os termos de uso: trabalhe só com vídeos que você gravou ou para os quais tem permissão.',
+        },
+      ],
       dropHint: 'Solte arquivos de vídeo ou clique para procurar',
       exportLabel: 'Extrair áudio',
     },

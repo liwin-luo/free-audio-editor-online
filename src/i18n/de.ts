@@ -1334,6 +1334,10 @@ export const de: Catalog = {
           q: 'Geht das auf dem Handy?',
           a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
         },
+        {
+        q: 'Kann ich einen Song aus YouTube schneiden?',
+        a: 'Nein. Diese Seite verarbeitet eine Datei von diesem Gerät und nimmt keine Links. Audio von Streaming-Plattformen herauszuschneiden verstößt meist gegen deren Bedingungen. Nimm nur Songs, die dir gehören oder für die du eine Erlaubnis hast.',
+        },
       ],
       sections: [
         {
@@ -1373,7 +1377,7 @@ export const de: Catalog = {
           ],
         },
       ],
-      dropHint: 'MP3-Datei ablegen oder klicken zum Auswählen',
+      dropHint: 'MP3- oder Videodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Schneiden und laden',
     },
     'mp3-editor': {
@@ -2404,6 +2408,14 @@ export const de: Catalog = {
           q: 'Verlangsamt 4K oder 8K das Ganze?',
           a: 'Nein. Die Videoauflösung spielt keine Rolle — die Videospur wird komplett ignoriert. Eine 4K-Datei und eine 240p-Datei mit derselben Tonspur werden identisch umgewandelt.',
         },
+        {
+          q: 'Kann ich ein Video per YouTube-Link umwandeln?',
+          a: 'Nein. Diese Seite liest eine Datei, die du auf diesem Gerät auswählst, und nimmt keine Links. Audio von Streaming-Plattformen herunterzuladen verstößt meist gegen deren Bedingungen. Wandle nur Videos um, die du selbst aufgenommen hast oder für die du eine Erlaubnis hast.',
+        },
+        {
+          q: 'Muss ich eine App installieren?',
+          a: 'Nein. Der Konverter läuft in diesem Browser-Tab, auf dem Computer wie auf dem Telefon. Nichts zu installieren und kein Konto nötig.',
+        },
       ],
       sections: [
         {
@@ -2436,6 +2448,26 @@ export const de: Catalog = {
           paragraphs: [
             'AC3- und DTS-Tonspuren dekodiert der Browser nicht. Diese Dateien stoppen mit einer klaren Fehlermeldung, nicht mit einer stillen MP3. Eine normale MP4 vom Handy, eine Bildschirmaufnahme oder ein üblicher Download ist AAC, und das funktioniert.',
             'Die MP3 behält keinen Videotitel und kein Vorschaubild. Trag den Titel danach im MP3-Tag-Editor ein, wenn er im Player erscheinen soll.',
+          ],
+        },
+        {
+          heading: 'Diese Seite, VLC oder eine Upload-Website',
+          paragraphs: [
+            'Drei Wege führen ein Video zu einer MP3. Wähle nach Dateigröße und danach, wie oft du umwandelst. Details am 2026-10-28 gegen die Live-Dienste geprüft.',
+          ],
+          table: {
+            headers: ['', 'Diese Seite', 'VLC am Desktop', 'Upload-Websites'],
+            rows: [
+              ['Installation', 'Nichts', 'Ja', 'Nein'],
+              ['Datei verlässt das Gerät', 'Nein', 'Nein', 'Ja'],
+              ['Größenlimit', '300 MB pro Datei', 'Freier Speicherplatz', 'Je nach Anbieter'],
+              ['Mehrere Dateien', 'Ja, ein ZIP', 'Einzeln', 'Je nach Anbieter'],
+              ['Kosten', 'Kostenlos', 'Kostenlos', 'Grenzen des Gratis-Tarifs'],
+            ],
+          },
+          outro: [
+            'Ein nächtlicher Stapel langer Aufnahmen passt besser in ein Desktop-Programm.',
+            'Eine einmalige Umwandlung passt hier: nichts zu installieren, und das Video verlässt das Gerät nie.',
           ],
         },
       ],
@@ -2503,6 +2535,10 @@ export const de: Catalog = {
       {
         q: 'Kann ich eine lokale Tonspur aus Claude oder Cursor herausziehen?',
         a: 'Diese Seite zieht eine Tonspur, die der Browser dekodieren kann. AC3 und DTS werden hier abgelehnt. /mcp nutzt ffmpeg, eine Form geht also nur auf, wenn dein ffmpeg-Build den Decoder hat. Ein Video von einem Link holt es nicht. Die Chat-App sieht den Pfad trotzdem.',
+      },
+      {
+        q: 'Kann ich das Audio aus einem YouTube-Video extrahieren?',
+        a: 'Nein. Diese Seite liest eine Datei, die du auf diesem Gerät auswählst, und nimmt keine Links. Audio von Streaming-Plattformen zu speichern verstößt meist gegen deren Bedingungen. Nimm nur Videos, die du selbst aufgenommen hast oder für die du eine Erlaubnis hast.',
       }],
       sections: [
         {

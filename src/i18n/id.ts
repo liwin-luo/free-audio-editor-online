@@ -1094,8 +1094,12 @@ export const id: Catalog = {
           q: 'Apakah bisa di ponsel?',
           a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
         },
+        {
+        q: 'Bisakah memotong lagu dari YouTube?',
+        a: 'Tidak. Halaman ini memproses file dari perangkat ini dan tidak menerima tautan. Memotong audio dari platform streaming biasanya melanggar ketentuannya — gunakan hanya lagu yang Anda miliki atau yang Anda punya izinnya.',
+        },
       ],
-      dropHint: 'Jatuhkan file MP3, atau klik untuk memilih',
+      dropHint: 'Jatuhkan file MP3 atau video, atau klik untuk memilih',
       exportLabel: 'Potong dan unduh',
     },
     'mp3-editor': {
@@ -1820,6 +1824,14 @@ export const id: Catalog = {
           q: 'Apakah video 4K atau 8K memperlambat prosesnya?',
           a: 'Tidak. Resolusi video tidak berpengaruh — trek video diabaikan seluruhnya. File 4K dan file 240p dengan soundtrack yang sama dikonversi dengan cara yang identik.',
         },
+        {
+          q: 'Bisakah mengubah video dari YouTube atau platform lain?',
+          a: 'Tidak. Halaman ini membaca file yang dipilih di perangkat ini dan tidak menerima tautan. Mengunduh audio dari platform streaming biasanya melanggar ketentuannya — konversilah video yang Anda rekam sendiri atau yang Anda punya izinnya.',
+        },
+        {
+          q: 'Apakah harus memasang aplikasi?',
+          a: 'Tidak perlu. Konverter berjalan di tab browser ini, di desktop maupun ponsel. Tidak ada yang perlu dipasang dan tidak ada akun yang harus dibuat.',
+        },
       ],
       dropHint: 'Jatuhkan beberapa file MP4 atau video, atau klik untuk memilih',
       exportLabel: 'Konversi ke MP3',
@@ -1885,7 +1897,12 @@ export const id: Catalog = {
       {
         q: 'Bisakah Anda mengekstrak jalur suara lokal dari Claude atau Cursor?',
         a: 'Halaman ini mengekstrak jalur suara yang bisa didekode browser. AC3 dan DTS ditolak di sini. /mcp memakai ffmpeg, jadi sebuah format terbuka hanya jika build ffmpeg Anda memuat dekoder itu. Tidak mengambil video dari tautan. Aplikasi chat tetap melihat jalur berkas.',
-      }],
+      },
+        {
+          q: 'Bisakah mengekstrak audio dari video YouTube?',
+          a: 'Tidak. Halaman ini membaca file yang dipilih di perangkat ini dan tidak menerima tautan. Menyimpan audio dari platform streaming biasanya melanggar ketentuannya — pakailah video yang Anda rekam sendiri atau yang Anda punya izinnya.',
+        },
+      ],
       dropHint: 'Jatuhkan beberapa file video, atau klik untuk memilih',
       exportLabel: 'Ekstrak Audio',
     },
