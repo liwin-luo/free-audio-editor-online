@@ -1,12 +1,12 @@
 import { defineConfig } from 'astro/config';
 import { readFileSync, readdirSync } from 'node:fs';
-import { execSync } from 'node:child_process';
 import { imageSize } from 'image-size';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { guideAlternates, localesWithGuides } from './src/data/guides.ts';
 import { localeMeta } from './src/i18n/locales.ts';
 import { packMcpZip } from './scripts/pack-mcp.mjs';
+import { gitFileDates } from './scripts/git-dates.mjs';
 
 packMcpZip();
 
@@ -34,36 +34,21 @@ function guideDates() {
 const GUIDE_DATES = guideDates();
 
 /**
- * Last-commit date per tracked file (one git pass at config load), so
- * non-guide routes carry a real lastmod too. Falls back to no lastmod when
- * git history is unavailable (e.g. a very shallow CI clone) — same output
- * shape as before, nothing invented.
+ * Last-commit date per tracked file, so non-guide routes carry a real lastmod.
+ * Live git wins; CI builds without .git (Vercel) fall back to the committed
+ * snapshot refreshed by `node scripts/write-git-dates.mjs`. With neither, the
+ * sitemap keeps its previous guide-only shape — nothing invented.
  */
-function gitFileDates() {
-  const dates = new Map();
+let FILE_DATES = gitFileDates();
+if (FILE_DATES.size === 0) {
   try {
-    // -c safe.directory: CI containers often check out the repo as a different
-    // user, and git refuses to touch it without this.
-    const out = execSync("git -c safe.directory='*' log --name-only --format=%cI", {
-      encoding: 'utf8',
-      maxBuffer: 1 << 26,
-    });
-    let cur = null;
-    for (const line of out.split('\n')) {
-      const l = line.trim();
-      if (/^\d{4}-\d{2}-\d{2}T/.test(l)) {
-        cur = l;
-      } else if (l && cur && !dates.has(l)) {
-        dates.set(l, cur);
-      }
-    }
-  } catch (err) {
-    // No usable git history here — the sitemap keeps its previous shape.
-    console.warn(`[sitemap] git history unavailable, lastmod limited to guides: ${err.message.split('\n')[0]}`);
+    FILE_DATES = new Map(
+      Object.entries(JSON.parse(readFileSync(new URL('./src/data/git-dates.json', import.meta.url), 'utf8'))),
+    );
+  } catch {
+    // No snapshot either — lastmod stays limited to guides.
   }
-  return dates;
 }
-const FILE_DATES = gitFileDates();
 const TOOL_SLUGS = new Set(
   (readFileSync(new URL('./src/data/tools.ts', import.meta.url), 'utf8').match(/^ {4}slug: '([a-z0-9-]+)',$/gm) ?? []).map(
     (line) => line.match(/'([a-z0-9-]+)'/)[1],
