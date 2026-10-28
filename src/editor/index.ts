@@ -1047,6 +1047,20 @@ export class Editor {
     this.els.exportBtn.disabled = !this.buffer || this.busy;
   }
 
+  /** Spinner plus label while export runs. `label` omitted keeps the current text. */
+  private setExportBusy(busy: boolean, label?: string): void {
+    const btn = this.els.exportBtn;
+    btn.classList.toggle('is-busy', busy);
+    if (busy) btn.setAttribute('aria-busy', 'true');
+    else btn.removeAttribute('aria-busy');
+    const icon = btn.querySelector<HTMLElement>('[data-export-icon]');
+    const spinner = btn.querySelector<HTMLElement>('[data-export-spinner]');
+    if (icon) icon.hidden = busy;
+    if (spinner) spinner.hidden = !busy;
+    const text = btn.querySelector('[data-export-label]');
+    if (text && label !== undefined) text.textContent = label;
+  }
+
   // ---------- Edit state ----------
 
   private setMode(mode: 'keep' | 'delete'): void {
@@ -1481,8 +1495,9 @@ export class Editor {
     if (!this.buffer || this.busy) return;
     this.busy = true;
     this.updateExportState();
-    const original = this.els.exportBtn.innerHTML;
-    this.els.exportBtn.textContent = this.text.rendering;
+    const label = this.els.exportBtn.querySelector('[data-export-label]');
+    const original = label?.textContent ?? '';
+    this.setExportBusy(true, this.text.rendering);
     this.setStatus(this.text.renderingStatus);
 
     const encodersReady = loadEncoders();
@@ -1531,7 +1546,7 @@ export class Editor {
       this.setStatus('');
       showToast(this.toastRoot(), 'error', this.text.exportFail);
     } finally {
-      this.els.exportBtn.innerHTML = original;
+      this.setExportBusy(false, original);
       this.busy = false;
       this.updateExportState();
     }

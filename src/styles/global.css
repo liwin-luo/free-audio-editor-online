@@ -294,6 +294,28 @@
     font-size: 1rem;
   }
 
+  /* Disabled opacity means unavailable. A busy export stays solid, with a spinner. */
+  .btn.is-busy:disabled {
+    opacity: 1;
+    cursor: progress;
+  }
+
+  .btn-spinner {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    border-inline-end-color: transparent;
+    animation: btn-spin 0.7s linear infinite;
+  }
+
+  @keyframes btn-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   /* Fingers are less precise than a cursor: every button clears 44×44 on
      touch, while mouse users keep the tighter 40px default. Dense text-link
      lists stay readable but reach the 24px floor from WCAG 2.5.8. */

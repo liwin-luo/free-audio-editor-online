@@ -610,8 +610,11 @@ const jobChrome = Boolean(
         </select>
       </label>
       <button type="button" class="btn btn-primary btn-lg ms-auto" data-export disabled>
-        <Icon name="download-simple" size={18} />
-        {config.exportLabel ?? t.export}
+        <span data-export-icon class="inline-flex" aria-hidden="true">
+          <Icon name="download-simple" size={18} />
+        </span>
+        <span class="btn-spinner" data-export-spinner hidden aria-hidden="true"></span>
+        <span data-export-label>{config.exportLabel ?? t.export}</span>
       </button>
     </div>
   </div>
