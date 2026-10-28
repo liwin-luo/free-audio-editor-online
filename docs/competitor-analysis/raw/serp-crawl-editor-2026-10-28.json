@@ -1,0 +1,115 @@
+[
+ {
+  "query": "mp3 editor",
+  "pos": 3,
+  "url": "https://audiomass.co",
+  "code": "200",
+  "title": "AudioMass - Audio Editor",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "feats": {
+   "recording": false,
+   "spectrogram": false,
+   "multitrack": false,
+   "opensource": true,
+   "fades": false
+  }
+ },
+ {
+  "query": "mp3 editor",
+  "pos": 6,
+  "url": "https://notevibes.com/mp3-editor",
+  "code": "200",
+  "title": "MP3 Editor Online — Edit MP3 Files Free, No Sign Up | Notevibes",
+  "h2": [
+   "Try the Notevibes MP3 Editor",
+   "Everything You Need to Edit MP3",
+   "What the MP3 Editor Looks Like",
+   "How to Edit MP3 Online",
+   "Your MP3 Files Stay Private",
+   "Keyboard Shortcuts",
+   "Edit MP3 for Any Project",
+   "Free MP3 Editor — Start Editing, No Sign-Up",
+   "Convert Any Audio Format",
+   "Related Audio Tools"
+  ],
+  "words": 1521,
+  "schema": [
+   "AggregateRating",
+   "Answer",
+   "FAQPage",
+   "HowTo",
+   "HowToStep",
+   "HowToTool",
+   "Offer",
+   "Question"
+  ],
+  "feats": {
+   "recording": true,
+   "spectrogram": false,
+   "multitrack": true,
+   "opensource": false,
+   "fades": true
+  }
+ },
+ {
+  "query": "mp3 editor",
+  "pos": 7,
+  "url": "https://www.veed.io/tools/audio-editor",
+  "code": "200",
+  "title": "Online Audio Editor - Make Your Audio Sound Professional - VEED",
+  "h2": [
+   "A professional audio editor for studio-quality recordings",
+   "How to edit audio files:",
+   "Watch this video to learn how to clean audio:",
+   "FAQ",
+   "Loved by creators.",
+   "More from VEED",
+   "When it comes to amazing videos, all you need is VEED",
+   "More than an audio editing software"
+  ],
+  "words": 1727,
+  "schema": [
+   "AggregateRating",
+   "Answer",
+   "BreadcrumbList",
+   "FAQPage",
+   "HowTo",
+   "HowToDirection",
+   "HowToStep",
+   "ListItem"
+  ],
+  "feats": {
+   "recording": true,
+   "spectrogram": false,
+   "multitrack": true,
+   "opensource": false,
+   "fades": false
+  }
+ },
+ {
+  "query": "mp3 editor",
+  "pos": 9,
+  "url": "https://www.audacityteam.org",
+  "code": "200",
+  "title": "Audacity | Free, Open Source Audio Editor and Recorder",
+  "h2": [
+   "Our latest release",
+   "Top-5 trending plugins for Audacity",
+   "All you need to create",
+   "Level up your Audacity",
+   "New from our blog",
+   "Popular in the FAQ"
+  ],
+  "words": 518,
+  "schema": [],
+  "feats": {
+   "recording": true,
+   "spectrogram": true,
+   "multitrack": false,
+   "opensource": true,
+   "fades": false
+  }
+ }
+]

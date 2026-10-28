@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Online Audio Editor — Trim, Fade & Effects | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<script>
+/* Pre-paint: when we're going to reopen the last project (and no cross-tool
+   shared file is incoming), the resume card REPLACES the drop zone from the
+   first frame — no "drop your audio" flash before the editor appears. */
+try{
+  var _lp=localStorage.getItem('snip-audio-editor:last-project');
+  var _sz=parseInt(localStorage.getItem('snip-audio-editor:last-project-size')||'0',10);
+  var _sm=null;try{_sm=JSON.parse(localStorage.getItem('snipsound:shared-audio-meta')||'null')}catch(_e){}
+  var _smFresh=_sm&&_sm.ts&&(Date.now()-_sm.ts<3600000);
+  if(_lp&&_sz<=12582912&&!_smFresh)document.write('<style id="ae-pre-resume">#ae-drop-zone{display:none!important}#ae-resume-card{display:flex!important}</style>');
+}catch(e){}
+</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-decode-gate.js" defer></script>
+<script src="/vendor/snip-audio-decode.js" defer></script>
+<script src="/vendor/snip-notify.js" defer></script>
+<script src="/vendor/snip-shimmer.js" defer></script>
+<script src="/vendor/snip-transport.js" defer></script>
+<script src="/vendor/snip-audio-fx.js" defer></script>
+<script src="store.js?v=2" defer></script>
+<script src="core.js?v=6" defer></script>
+<script src="tools.js?v=6" defer></script>
+<script src="app.js?v=21" defer></script>
+<meta name="description" content="Free online audio editor. Trim, cut, fade and add effects to MP3, WAV, OGG and more — with undo, autosave and no watermark. Files never leave your device — 100% private.">
+<link rel="canonical" href="https://snipsound.com/tools/audio-editor/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Online Audio Editor — Trim, Fade & Effects | SnipSound">
+<meta property="og:description" content="Edit audio free in your browser: trim, cut, fade, effects, undo/redo, autosave. 100% private — files never leave your device.">
+<meta property="og:url" content="https://snipsound.com/tools/audio-editor/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Online Audio Editor | SnipSound">
+<meta name="twitter:description" content="Trim, fade and add effects to audio free in your browser. Your files stay on your device, no signup.">
+<link rel="preconnect" href="https://media.snipsound.com">
+<style>
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 28px; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  #ae-drop-status { margin-top: 12px; min-height: 1.2em; color: var(--text-dim); }
+  #file-input { display: none; }
+  .ae-hide { display: none !important; }
+  /* Same look as .file-remove but its OWN class — .file-remove is a live
+     contract: theme.js AND app.js treat any .file-remove click as "remove
+     the file", which is exactly what Start over must not do. */
+  .ae-ghost-btn { background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; }
+  .ae-ghost-btn:hover:not(:disabled) { color: var(--text); border-color: var(--text-dim); }
+  .ae-ghost-btn:disabled { opacity: 0.35; cursor: default; }
+
+  #ae-resume-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 24px; }
+  .ae-resume-spinner { width: 42px; height: 42px; border: 3px solid var(--border-bright); border-top-color: var(--accent); border-radius: 50%; animation: ae-spin 0.8s linear infinite; }
+  @keyframes ae-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .ae-resume-spinner { animation: none; } }
+  #ae-resume-text { color: var(--text-dim); font-size: 0.95rem; min-height: 1.2em; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .editor { position: relative; }
+  .editor.ae-loading > :not(#ae-load-overlay) { opacity: 0.35; pointer-events: none; }
+  #ae-load-overlay { display: none; position: absolute; inset: 0; z-index: 5; flex-direction: column; align-items: center; justify-content: center; gap: 14px; border-radius: 16px; }
+  #ae-load-text { color: var(--text); font-weight: 600; font-size: 1rem; background: var(--surface); padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border); max-width: 90%; overflow-wrap: anywhere; text-align: center; }
+
+  .file-info { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .file-info .file-icon { width: 38px; height: 38px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.82rem; margin-top: 2px; }
+  .ae-toolbar { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .ae-icon-btn { background: var(--surface2); border: 1px solid var(--border-bright); color: var(--text); width: 36px; height: 36px; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+  .ae-icon-btn:disabled { opacity: 0.35; cursor: default; }
+  .ae-icon-btn:not(:disabled):hover { border-color: var(--accent); }
+  #ae-save-ind { color: var(--text-dim); font-size: 0.78rem; min-width: 90px; text-align: right; }
+  .file-info .file-remove { background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  #ae-wave-wrap { position: relative; height: 160px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; touch-action: none; cursor: crosshair; }
+  #ae-wave { width: 100%; height: 100%; display: block; }
+  #ae-playhead { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--text); opacity: 0.9; pointer-events: none; left: 0; }
+  #ae-sel-box { position: absolute; top: 0; bottom: 0; background: var(--accent-glow); border-left: 1px solid var(--accent); border-right: 1px solid var(--accent); pointer-events: none; display: none; }
+  #ae-sel-close { display: none; position: absolute; top: 4px; width: 18px; height: 18px; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--border-bright); color: var(--text); border-radius: 50%; cursor: pointer; font-size: 12px; line-height: 1; padding: 0; z-index: 4; }
+  #ae-sel-close:hover { border-color: var(--accent); color: var(--accent); }
+  .ae-sel-handle { display: none; position: absolute; top: 0; bottom: 0; width: 14px; cursor: ew-resize; z-index: 3; touch-action: none; }
+  .ae-sel-handle::after { content: ''; position: absolute; top: 0; bottom: 0; left: 4px; width: 6px; border-radius: 3px; background: var(--accent); border: 1px solid rgba(255,255,255,0.55); box-shadow: 0 0 6px var(--accent-glow); }
+  .ae-sel-handle::before { content: '⋮'; position: absolute; top: 50%; left: 5px; transform: translateY(-50%); color: #fff; font-size: 11px; z-index: 1; line-height: 1; }
+  .ae-sel-handle:hover::after { background: var(--accent-hover); }
+  #ae-zoom-fit-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
+  .ae-part-card { position: absolute; top: 6px; bottom: 6px; background: rgba(124,111,255,0.06); border: 1px solid var(--border-bright); border-radius: 10px; pointer-events: none; overflow: hidden; z-index: 1; }
+  .ae-part-card.selected { border-color: var(--accent); background: var(--accent-subtle); box-shadow: 0 0 10px var(--accent-glow); }
+  .ae-part-canvas { width: 100%; height: 100%; display: block; }
+  .ae-part-label { position: absolute; bottom: 4px; left: 8px; font-size: 0.7rem; color: var(--text-dim); }
+  .ae-part-x { pointer-events: auto; position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--border-bright); background: var(--surface); color: var(--text); font-size: 13px; line-height: 1; padding: 0; cursor: pointer; z-index: 6; }
+  .ae-part-x:hover { color: var(--red); border-color: var(--red); }
+  .ae-part-heal { pointer-events: auto; position: absolute; top: -1px; width: 14px; height: 14px; padding: 0; border: none; background: none; color: var(--orange); font-size: 11px; line-height: 1; cursor: pointer; z-index: 6; }
+  .ae-part-heal:hover { color: var(--text); transform: scale(1.3); }
+  #ae-sel-box { z-index: 2; }
+  #ae-markers { z-index: 3; }
+  #ae-playhead { z-index: 5; }
+  #ae-wave-style { padding: 5px 8px; background: var(--surface2); border: 1px solid var(--border-bright); color: var(--text-dim); font-family: inherit; font-size: 0.78rem; border-radius: 6px; }
+  .ae-shortcuts { display: flex; flex-wrap: wrap; gap: 12px; color: var(--text-dim); font-size: 0.75rem; margin: -6px 0 14px; }
+  .ae-shortcuts kbd { background: var(--surface2); border: 1px solid var(--border-bright); border-radius: 4px; padding: 1px 5px; font-family: inherit; font-size: 0.72rem; color: var(--text); }
+  @media (hover: none) { .ae-shortcuts { display: none; } }
+  .ae-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; align-items: center; }
+  .ae-chips-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); width: 100%; }
+  .ae-chip { background: var(--bg); border: 1px solid var(--border-bright); color: var(--text); border-radius: 999px; padding: 5px 12px; cursor: pointer; font-family: inherit; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 6px; }
+  .ae-chip:hover { border-color: var(--accent); }
+  .ae-chip.active { border-color: var(--accent); background: var(--accent-subtle); color: var(--accent); }
+  .ae-chip-x { color: var(--text-dim); font-size: 0.9rem; padding: 0 2px; }
+  .ae-chip-x:hover { color: var(--red); }
+  #ae-fx-save { margin-bottom: 10px; }
+  #ae-preview-btn { margin-right: 8px; }
+  #ae-markers { position: absolute; left: 0; right: 0; bottom: 0; height: 16px; pointer-events: none; }
+  .ae-marker { position: absolute; top: 2px; bottom: 2px; pointer-events: auto; background: var(--orange); opacity: 0.55; border: none; border-radius: 4px; cursor: pointer; padding: 0; }
+  .ae-marker:hover, .ae-marker:focus-visible { opacity: 0.95; outline: 2px solid var(--orange); }
+
+  .ae-transport { display: flex; align-items: center; gap: 12px; margin: 12px 0 16px; flex-wrap: wrap; }
+  #ae-play-btn { width: 44px; height: 44px; border-radius: 50%; border: none; background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px var(--accent-glow); flex-shrink: 0; }
+  #ae-play-btn svg { width: 20px; height: 20px; }
+  #ae-time { font-variant-numeric: tabular-nums; color: var(--text); font-size: 0.95rem; }
+  #ae-time .snip-tp-total { color: var(--text-dim); }
+  #ae-sel-info { color: var(--accent); font-size: 0.85rem; }
+  .ae-hint { color: var(--text-dim); font-size: 0.78rem; margin-left: auto; }
+
+  .ae-main { display: grid; grid-template-columns: 200px 1fr; gap: 16px; align-items: start; }
+  .ae-rail-group { margin-bottom: 14px; }
+  .ae-rail-head { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 6px; }
+  .ae-tool-btn { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 9px 10px; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.88rem; margin-bottom: 6px; }
+  .ae-tool-btn:hover:not(:disabled) { border-color: var(--accent); }
+  .ae-tool-btn.active { border-color: var(--accent); background: var(--accent-subtle); }
+  .ae-tool-btn:disabled { opacity: 0.4; cursor: default; }
+  .ae-tool-ico { width: 20px; text-align: center; }
+
+  #ae-params-panel { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: none; }
+  #ae-params-panel.active { display: block; }
+  #ae-params-title { font-weight: 600; margin-bottom: 10px; }
+  .ae-param-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; font-size: 0.88rem; color: var(--text-dim); }
+  .ae-param-row b { color: var(--text); }
+  .ae-param-row select, .ae-param-row input[type=range] { accent-color: var(--accent); }
+  .ae-param-row select { padding: 6px 10px; background: var(--bg); border: 1px solid var(--border-bright); color: var(--text); font-family: inherit; border-radius: 6px; }
+  .ae-param-check span { flex-direction: row; display: flex; align-items: center; gap: 8px; color: var(--text); }
+  #ae-loop-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
+  .ae-export-sel { display: inline-flex; align-items: center; gap: 6px; color: var(--text-dim); font-size: 0.9rem; }
+  .ae-export-sel input { accent-color: var(--accent); }
+  .ae-params-hint { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 12px; }
+
+  .ae-history { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; min-height: 26px; }
+  .ae-hist-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; font-size: 0.75rem; color: var(--text-dim); }
+  .ae-hist-empty { color: var(--text-dim); font-size: 0.78rem; }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .controls select { padding: 8px 10px; background: var(--surface2); border: 1px solid var(--border-bright); color: var(--text); font-family: inherit; border-radius: 8px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; }
+  .seo-section p { color: var(--text-dim); margin-bottom: 10px; }
+
+  @media (max-width: 760px) {
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .ae-main { grid-template-columns: 1fr; }
+    .ae-rail-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .ae-rail-head { width: 100%; }
+    .ae-tool-btn { width: auto; }
+    .btn { flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; }
+  }
+</style>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body data-owns-keys="space">
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Audio Editor</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/" class="active">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+  <section class="hero">
+    <h1>Free <span class="accent">Audio Editor</span></h1>
+    <p>Trim, cut, fade and add effects — with undo, redo and autosave. Your files never leave your device, no signup, no install: your audio never leaves your device.</p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row"></div>
+
+  <div class="drop-zone drop-zone-audio" id="ae-drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+    <h2>Drop an audio file here to start editing</h2>
+    <p>MP3, WAV, OGG, FLAC, M4A, AAC — or click to browse</p>
+    <div id="ae-drop-status"></div>
+    <input type="file" id="file-input" accept="audio/*,video/*,.mp3,.wav,.ogg,.flac,.aac,.m4a,.mp4,.mov,.webm,.mkv,.m4v">
+  </div>
+
+  <div id="ae-resume-card" style="display:none">
+    <div class="ae-resume-spinner"></div>
+    <div id="ae-resume-text">Reopening your project…</div>
+  </div>
+
+  <p class="privacy-notice"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> <span><strong>100% in your browser.</strong> Your file stays local. Audio never leaves your device — we can't even access it ourselves. <a href="/privacy/">Privacy policy</a>.</span></p>
+
+  <div class="editor" id="ae-editor">
+    <div id="ae-load-overlay">
+      <div class="ae-resume-spinner"></div>
+      <div id="ae-load-text">Loading…</div>
+    </div>
+    <div class="file-info">
+      <div class="file-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+      <div>
+        <div class="file-name" id="ae-file-name"></div>
+        <div class="file-meta" id="ae-file-meta"></div>
+      </div>
+      <div class="ae-toolbar">
+        <span id="ae-save-ind"></span>
+        <button class="ae-icon-btn" id="ae-undo-btn" title="Undo (Ctrl+Z)" aria-label="Undo">↩</button>
+        <button class="ae-icon-btn" id="ae-redo-btn" title="Redo (Ctrl+Y)" aria-label="Redo">↪</button>
+        <button class="ae-ghost-btn" type="button" id="ae-reset-btn" title="Remove all edits, keep the file">Start over</button>
+        <button class="file-remove" type="button">Remove file</button>
+      </div>
+    </div>
+
+    <div id="ae-wave-wrap">
+      <canvas id="ae-wave"></canvas>
+      <div id="ae-sel-box"></div>
+      <button type="button" id="ae-sel-close" title="Clear selection" aria-label="Clear selection">&times;</button>
+      <div id="ae-sel-l" class="ae-sel-handle" title="Drag to adjust selection start"></div>
+      <div id="ae-sel-r" class="ae-sel-handle" title="Drag to adjust selection end"></div>
+      <div id="ae-markers"></div>
+      <div id="ae-playhead"></div>
+    </div>
+
+    <div class="ae-transport">
+      <button id="ae-play-btn" aria-label="Play or pause"></button>
+      <button class="ae-icon-btn" id="ae-cut-btn" title="Cut into parts at the playhead (C)" aria-label="Cut into parts at the playhead">✂</button>
+      <button class="ae-icon-btn" id="ae-loop-btn" title="Play the selection on repeat" aria-label="Play the selection on repeat">∞</button>
+      <button class="ae-icon-btn" id="ae-zoom-sel-btn" title="Zoom to selection" aria-label="Zoom to selection" disabled>🔍</button>
+      <button class="ae-icon-btn" id="ae-zoom-fit-btn" title="Zoom out to the whole file" aria-label="Zoom out to the whole file">⤢</button>
+      <span id="ae-time">0:00 / <span id="ae-dur-label">0:00</span></span>
+      <span id="ae-sel-info"></span>
+      <select id="ae-wave-style" title="Waveform style">
+        <option value="classic">Wave: Classic</option>
+        <option value="bars">Wave: Bars</option>
+        <option value="line">Wave: Outline</option>
+      </select>
+      <span class="ae-hint">Drag to select · click to seek (selection stays — × or Esc clears it) · Space to play · orange strips = applied effects</span>
+    </div>
+
+    <div class="ae-shortcuts">
+      <span><kbd>Space</kbd> play/pause</span>
+      <span><kbd>[</kbd> <kbd>]</kbd> selection start/end at playhead</span>
+      <span><kbd>C</kbd> cut into pieces at playhead · click a piece = select it · × = remove · ◆ = rejoin</span>
+      <span><kbd>Scroll</kbd> zoom · sideways = pan · 🔍 zoom to selection</span>
+      <span><kbd>Delete</kbd> cut selection</span>
+      <span><kbd>Ctrl</kbd>+<kbd>Z</kbd>/<kbd>Y</kbd> undo/redo</span>
+      <span><kbd>Esc</kbd> clear selection</span>
+      <span>drag selection edges to fine-tune</span>
+    </div>
+
+    <div class="ae-main">
+      <div id="ae-rail"></div>
+      <div>
+        <div id="ae-params-panel">
+          <div id="ae-params-title"></div>
+          <div id="ae-params-body"></div>
+          <button class="ae-ghost-btn" id="ae-preview-btn" type="button">▶ Preview</button>
+          <button class="btn btn-primary" id="ae-apply-btn">Apply</button>
+        </div>
+        <div class="ae-history" id="ae-history"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label for="ae-format" style="color:var(--text-dim);font-size:0.9rem">Export as</label>
+      <select id="ae-format"></select>
+      <label class="ae-export-sel"><input type="checkbox" id="ae-export-sel"> Selection only</label>
+      <button class="btn btn-primary" id="ae-export-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        Download
+      </button>
+      <button class="ae-ghost-btn" id="ae-send-video-btn" type="button">🎬 Send to Video Editor</button>
+      <span class="status-text" id="ae-status"></span>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>How do I edit an audio file online for free?</h2>
+    <p>Drop your file into the editor above, drag on the waveform to select the part you want to change, then trim, cut, fade or add effects. Every edit is non-destructive with full undo/redo, your project autosaves in your browser, and you can download the result as MP3, WAV, FLAC, OGG or M4A — free, no watermark, no signup.</p>
+    <p>Need a single quick job instead? SnipSound also has focused one-task tools: <a href="/tools/audio-trimmer/">Audio Trimmer</a>, <a href="/tools/audio-converter/">Audio Converter</a> and <a href="/tools/volume-booster/">Volume Booster</a>.</p>
+  </section>
+</main>
+
+<footer class="footer"></footer>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51956be9e4f88dc',t:'MTc5MzE4NDE5OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

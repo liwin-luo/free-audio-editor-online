@@ -1,0 +1,163 @@
+[
+ {
+  "query": "mp3 cutter",
+  "pos": 1,
+  "url": "https://mp3cut.net/",
+  "code": "200",
+  "title": "Online MP3 Cutter - Cut Songs, Make Ringtones",
+  "h2": [
+   "Trim or cut any audio file online"
+  ],
+  "words": 962,
+  "schema": [
+   "AggregateRating",
+   "ImageObject",
+   "Offer",
+   "Organization",
+   "SoftwareApplication"
+  ],
+  "feats": {
+   "fade": true,
+   "ringtone": true,
+   "crossfade": false,
+   "lossless": true,
+   "upload-based": true,
+   "video-input": true
+  }
+ },
+ {
+  "query": "mp3 cutter",
+  "pos": 2,
+  "url": "https://clideo.com/cut-audio",
+  "code": "200",
+  "title": "MP3 Cutter Online & Free — Cut Audio of any Format — Clideo",
+  "h2": [
+   "Edit your music with ease",
+   "Trim audio online",
+   "How to crop MP3 online and fast",
+   "Frequently Asked Questions",
+   "FAQ",
+   "Get Clideo for iPhone",
+   "Resources"
+  ],
+  "words": 1088,
+  "schema": [],
+  "feats": {
+   "fade": true,
+   "ringtone": true,
+   "crossfade": true,
+   "lossless": false,
+   "upload-based": true,
+   "video-input": true
+  }
+ },
+ {
+  "query": "mp3 cutter",
+  "pos": 5,
+  "url": "https://vocalremover.org/cutter",
+  "code": "403",
+  "title": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "feats": {}
+ },
+ {
+  "query": "mp3 cutter",
+  "pos": 6,
+  "url": "https://www.happyscribe.com/tools/audio-trimmer",
+  "code": "403",
+  "title": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "feats": {}
+ },
+ {
+  "query": "mp3 cutter",
+  "pos": 7,
+  "url": "https://audiotrimmer.com",
+  "code": "200",
+  "title": "Online Mp3 Cutter - Audio Trimmer",
+  "h2": [
+   "Select the part to trim",
+   "Download your file",
+   "Supported audio formats",
+   "Mp3 Cutter Online",
+   "Easy To Use",
+   "Mobile Friendly",
+   "How to cut mp3 files online?",
+   "Online Ringtone Maker",
+   "How to"
+  ],
+  "words": 476,
+  "schema": [],
+  "feats": {
+   "fade": true,
+   "ringtone": true,
+   "crossfade": false,
+   "lossless": false,
+   "upload-based": true,
+   "video-input": true
+  }
+ },
+ {
+  "query": "mp3 cutter",
+  "pos": 9,
+  "url": "https://www.onlineconverter.com/cut-mp3",
+  "code": "200",
+  "title": "Cut MP3: Split Audio Into Short Clips (Free)",
+  "h2": [
+   "Introduction",
+   "How To Use",
+   "Duration Options",
+   "Remarks",
+   "Related Audio Converter",
+   "Other Audio Tools"
+  ],
+  "words": 408,
+  "schema": [],
+  "feats": {
+   "fade": false,
+   "ringtone": false,
+   "crossfade": false,
+   "lossless": false,
+   "upload-based": true,
+   "video-input": true
+  }
+ },
+ {
+  "query": "cut mp3",
+  "pos": 5,
+  "url": "https://audio.com/tools/mp3-cutter",
+  "code": "403",
+  "title": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "feats": {}
+ },
+ {
+  "query": "cut mp3",
+  "pos": 6,
+  "url": "https://ezgif.com/cut-audio",
+  "code": "200",
+  "title": "Online Audio Cutter",
+  "h2": [
+   "Free Online Audio Cutter & Trimmer"
+  ],
+  "words": 276,
+  "schema": [
+   "Offer",
+   "WebApplication"
+  ],
+  "feats": {
+   "fade": true,
+   "ringtone": false,
+   "crossfade": false,
+   "lossless": false,
+   "upload-based": true,
+   "video-input": true
+  }
+ }
+]

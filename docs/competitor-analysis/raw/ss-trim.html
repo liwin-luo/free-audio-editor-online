@@ -1,0 +1,3328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free MP3 Cutter — Cut and Trim MP3 Online | SnipSound</title>
+<link rel="preload" href="/fonts/inter/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-decode-gate.js" defer></script>
+<script src="/vendor/snip-longjob.js" defer></script>
+<script src="/vendor/snip-audio-decode.js" defer></script>
+<script src="/vendor/snip-bigfile.js" defer></script>
+<meta name="description" content="Free MP3 cutter: cut and trim MP3, WAV, FLAC or M4A in your browser, delete the parts you don't want, and export. Files stay on your device.">
+<meta name="keywords" content="audio trimmer, audio cutter, trim mp3, cut audio online, free audio editor, trim wav, cut mp3 online, audio clipper, waveform editor, trim music">
+<link rel="canonical" href="https://snipsound.com/tools/audio-trimmer/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/audio-trimmer/">
+<link rel="alternate" hreflang="es" href="https://snipsound.com/es/recortar-audio/">
+<link rel="alternate" hreflang="pt-BR" href="https://snipsound.com/pt/cortar-audio/">
+<link rel="alternate" hreflang="it" href="https://snipsound.com/it/tagliare-audio/">
+<link rel="alternate" hreflang="fr" href="https://snipsound.com/fr/decouper-audio/">
+<link rel="alternate" hreflang="de" href="https://snipsound.com/de/audio-cutter/">
+<link rel="alternate" hreflang="ru" href="https://snipsound.com/ru/obrezka-audio/">
+<link rel="alternate" hreflang="zh-Hans" href="https://snipsound.com/zh/yinpin-jianqie/">
+<link rel="alternate" hreflang="hi" href="https://snipsound.com/hi/mp3-cutter/">
+<link rel="alternate" hreflang="ar" href="https://snipsound.com/ar/قص-الصوت/">
+<link rel="alternate" hreflang="ja" href="https://snipsound.com/ja/audio-trimmer/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/audio-trimmer/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free MP3 Cutter — Cut and Trim MP3 Online">
+<meta property="og:description" content="Free MP3 cutter: cut and trim MP3, WAV, FLAC or M4A in your browser, delete the parts you don't want, and export. Files stay on your device.">
+<meta property="og:url" content="https://snipsound.com/tools/audio-trimmer/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free MP3 Cutter — Cut and Trim MP3 Online">
+<meta name="twitter:description" content="Free MP3 cutter: cut and trim MP3, WAV, FLAC or M4A in your browser, delete the parts you don't want, and export. Files stay on your device.">
+<link rel="preconnect" href="https://media.snipsound.com">
+<style>
+
+  
+
+  /* Merger uses a wider container than the other tools — the timeline
+     editor needs as much horizontal canvas as possible so users can see
+     all their clips at once without side-scrolling. */
+  .container { max-width: 1280px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 32px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+
+  /* Transport: play / pause / stop / split + time readout. */
+  .transport-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 12px; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 8px; flex-wrap: wrap;
+  }
+  .transport-btn {
+    width: 38px; height: 38px; padding: 0;
+    background: transparent; border: 1px solid var(--border-bright);
+    border-radius: 8px; color: var(--text);
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: color 0.15s, border-color 0.15s, background 0.15s;
+    font-family: inherit;
+  }
+  .transport-btn:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); background: var(--accent-subtle); }
+  .transport-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .transport-btn svg { width: 16px; height: 16px; }
+  .transport-btn.primary { background: var(--accent-subtle); color: var(--accent); border-color: rgba(124,111,255,0.4); }
+  .transport-btn.primary:hover:not(:disabled) { background: var(--accent); color: #fff; }
+  .transport-btn.split { width: auto; padding: 0 14px; gap: 6px; font-size: 13px; font-weight: 600; }
+  /* "Add files" is the primary intent on this page — colored green so it
+     stands out from the transport controls and signals "do this first". */
+  .transport-btn.add-files {
+    width: auto; padding: 0 16px; gap: 8px; font-size: 13px; font-weight: 600;
+    background: var(--green); color: #fff;
+    border-color: var(--green);
+    box-shadow: 0 2px 8px rgba(76,175,80,0.25);
+  }
+  .transport-btn.add-files:hover:not(:disabled) {
+    filter: brightness(1.1);
+    background: var(--green); color: #fff; border-color: var(--green);
+  }
+  .transport-btn.add-files svg { width: 16px; height: 16px; }
+  /* Add-file popover — opens when the user clicks Add file IF their
+     library has saved tracks. Top option is always "Upload new"; the
+     rest are library files they can drop into the current clip set
+     without leaving the tool. */
+  .transport-add-wrap { position: relative; }
+  .transport-add-popup {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    min-width: 260px; max-width: 320px;
+    max-height: 320px; overflow-y: auto;
+    background: var(--surface); border: 1px solid var(--border-bright);
+    border-radius: 10px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+    padding: 6px; z-index: 50;
+    display: none;
+  }
+  .transport-add-wrap.open .transport-add-popup { display: block; }
+  .add-popup-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px; border-radius: 6px;
+    color: var(--text); cursor: pointer;
+    font-family: inherit; font-size: 0.85rem;
+    background: transparent; border: none; text-align: left; width: 100%;
+  }
+  .add-popup-item:hover { background: rgba(124,111,255,0.12); color: var(--accent); }
+  .add-popup-item svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--accent); }
+  .add-popup-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .add-popup-meta { font-size: 0.72rem; color: var(--text-dim); flex-shrink: 0; }
+  .add-popup-sep { height: 1px; background: var(--border); margin: 4px 6px; }
+  .add-popup-header { padding: 4px 10px; font-size: 0.7rem; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+  /* Thin vertical divider between the green Add-files button and the
+     neutral transport controls — visually separates the two groups. */
+  .transport-divider { width: 1px; align-self: stretch; background: var(--border); margin: 4px 4px; flex-shrink: 0; }
+  .transport-time { font-family: monospace; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--text); padding: 0 6px; min-width: 90px; }
+  .transport-time .total { color: var(--text-dim); margin-left: 4px; }
+  .transport-time .files { color: var(--text-dim); margin-left: 8px; font-size: 12px; font-family: 'Inter', sans-serif; font-weight: 500; }
+  .transport-spacer { flex: 1; }
+
+  /* Timeline editor — clips laid out horizontally, drag to reorder. */
+  .timeline-hint { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 8px; flex-wrap: wrap; }
+  .timeline-hint svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.7; }
+  .zoom-row {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-left: auto; font-size: 0.78rem; color: var(--text-dim);
+    user-select: none;
+  }
+  .zoom-row svg { width: 12px; height: 12px; opacity: 0.7; }
+  .zoom-row input[type="range"] {
+    width: 120px; accent-color: var(--accent); cursor: pointer; vertical-align: middle;
+  }
+  .zoom-value { font-variant-numeric: tabular-nums; min-width: 36px; text-align: right; font-weight: 600; color: var(--text); }
+  @media (max-width: 600px) { .zoom-row input[type="range"] { width: 80px; } }
+  /* Minimap / overview line: a single thin horizontal bar above the
+     editor that always shows the full timeline regardless of zoom. Tap
+     anywhere on it to jump the playhead to that position. Modelled on
+     the snip editor's progress line. */
+  .snip-minimap {
+    position: relative;
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 3px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    overflow: visible;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .snip-minimap-clips { display: flex; height: 100%; gap: 1px; border-radius: 3px; overflow: hidden; }
+  .snip-minimap-clip {
+    flex-shrink: 0;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(124,111,255,0.55), rgba(145,132,255,0.38));
+    position: relative;
+  }
+  .snip-minimap-trim-wing {
+    position: absolute; top: 0; bottom: 0;
+    background: rgba(244, 67, 54, 0.55);
+    pointer-events: none;
+  }
+  .snip-minimap-trim-wing.left { left: 0; }
+  .snip-minimap-trim-wing.right { right: 0; }
+  .snip-minimap-playhead {
+    position: absolute; top: -3px; bottom: -3px;
+    width: 2px;
+    background: #fff;
+    border-radius: 1px;
+    pointer-events: none;
+    left: 0;
+    transition: left 0.08s linear;
+  }
+  .snip-minimap-playhead::after {
+    content: ''; position: absolute;
+    top: -3px; left: -3px;
+    width: 8px; height: 8px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  /* Viewport indicator: only meaningful when the editor is scrolled past
+     a single page. Hidden on the thin minimap by default — kept in the
+     DOM so the JS can still update its position if we want it back. */
+  .snip-minimap-viewport { display: none !important; }
+  .timeline-container {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-bright) transparent;
+  }
+  .timeline-container::-webkit-scrollbar { height: 8px; }
+  .timeline-container::-webkit-scrollbar-track { background: transparent; }
+  .timeline-container::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 4px; }
+  /* Time ruler that sits above the clips, scrolling in sync via shared
+     parent. Major ticks every 30s (or 10s if zoomed in), labels at major. */
+  .timeline-ruler {
+    position: relative;
+    height: 22px;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    color: var(--text-dim);
+    font-size: 10px;
+    font-family: monospace;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .timeline-ruler .ruler-tick {
+    position: absolute; top: 0; bottom: 0;
+    border-left: 1px solid var(--border-bright);
+    padding-left: 4px;
+    line-height: 1.4;
+  }
+  .timeline-ruler .ruler-tick.minor {
+    border-color: var(--border);
+    top: 8px;
+  }
+
+  .timeline-track {
+    display: flex; align-items: stretch; gap: 4px;
+    min-height: 100px;
+    white-space: nowrap;
+    position: relative; /* anchor for the playhead overlay */
+  }
+  .timeline-playhead {
+    position: absolute; top: 0; bottom: 0; width: 2px;
+    background: var(--orange); z-index: 7;
+    transform: translateX(-1px);
+    box-shadow: 0 0 6px rgba(255,152,0,0.6);
+    cursor: ew-resize;
+    touch-action: none;
+  }
+  .timeline-playhead::before {
+    content: ''; position: absolute; top: -2px; left: -5px;
+    width: 0; height: 0;
+    border-left: 6px solid transparent; border-right: 6px solid transparent;
+    border-top: 8px solid var(--orange);
+  }
+  /* Invisible grab zone extending the playhead so a fingertip can catch
+     it without pixel-perfect aim. The line itself stays 2px wide visually. */
+  .timeline-playhead::after {
+    content: ''; position: absolute; top: 0; bottom: 0;
+    left: -10px; right: -10px;
+  }
+  .clip {
+    position: relative;
+    flex-shrink: 0;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(124,111,255,0.15), rgba(145,132,255,0.10));
+    border: 1px solid rgba(124,111,255,0.35);
+    border-radius: 8px;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    overflow: hidden;
+    /* pan-x lets the browser handle horizontal scrolling natively on
+       touch devices, so dragging a finger across the waveform slides the
+       visible portion left/right (when zoomed in). The trim handles keep
+       touch-action: none so a finger-drag on them resizes the clip. */
+    touch-action: pan-x;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  }
+  .clip-edge {
+    position: absolute; top: 0; bottom: 0; width: 8px;
+    cursor: ew-resize; z-index: 6;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.0));
+    touch-action: none;
+  }
+  /* When the clip has been trimmed, mark the handle so the user spots where
+     the kept region begins/ends — a thin accent line. */
+  .clip.has-trim .clip-edge::before {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 2px;
+    background: var(--accent); opacity: 0.85;
+  }
+  .clip.has-trim .clip-edge.left::before { left: 0; }
+  .clip.has-trim .clip-edge.right::before { right: 0; }
+  /* Faded "trimmed away" regions painted over the waveform. They DON'T
+     consume layout — the clip's full visible width still shows the source
+     buffer underneath. */
+  .clip-trim-wing {
+    position: absolute; top: 0; bottom: 0;
+    background: rgba(244, 67, 54, 0.18);
+    z-index: 3; pointer-events: none;
+    border-top: 1px dashed rgba(244, 67, 54, 0.35);
+    border-bottom: 1px dashed rgba(244, 67, 54, 0.35);
+  }
+  .clip-trim-wing.left { left: 0; border-right: 1px solid rgba(244,67,54,0.55); }
+  .clip-trim-wing.right { right: 0; border-left: 1px solid rgba(244,67,54,0.55); }
+  /* Discard-trim button inside a wing. Clicking commits the trim by
+     deleting just the red trimmed-off audio, leaving the kept portion
+     in place. Visible on hover/selection only so the wing stays readable. */
+  .clip-trim-discard {
+    position: absolute;
+    top: 4px;
+    width: 20px; height: 20px; padding: 0;
+    border: none; border-radius: 50%;
+    background: rgba(244, 67, 54, 0.85);
+    color: #fff; cursor: pointer; opacity: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.15s, background 0.15s, transform 0.15s;
+    pointer-events: auto;
+    z-index: 4;
+  }
+  .clip-trim-wing.left .clip-trim-discard { left: 4px; }
+  .clip-trim-wing.right .clip-trim-discard { right: 4px; }
+  .clip:hover .clip-trim-discard,
+  .clip.selected .clip-trim-discard { opacity: 1; }
+  .clip-trim-discard:hover { background: var(--red); transform: scale(1.1); }
+  .clip-trim-discard svg { width: 11px; height: 11px; pointer-events: none; }
+  /* Always visible on touch — there's no hover state to discover it. */
+  @media (hover: none) {
+    .clip-trim-discard { opacity: 1; }
+  }
+  .clip-edge::after {
+    content: ''; position: absolute; top: 25%; bottom: 25%;
+    width: 2px; background: rgba(255,255,255,0.5); border-radius: 1px;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .clip-edge.left::after { left: 3px; }
+  .clip-edge.right::after { right: 3px; }
+  .clip:hover .clip-edge::after, .clip.selected .clip-edge::after { opacity: 1; }
+  .clip-edge:hover::after { opacity: 1; background: var(--accent); height: 60%; top: 20%; }
+  .clip:hover { border-color: var(--accent); }
+  .clip.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-glow); background: linear-gradient(135deg, rgba(124,111,255,0.28), rgba(145,132,255,0.18)); }
+  .clip.dragging { cursor: grabbing; opacity: 0.85; transform: scale(0.98); z-index: 10; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .clip-label { position: absolute; top: 6px; left: 8px; right: 36px; font-size: 11px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+  .clip-duration { position: absolute; bottom: 4px; left: 8px; font-size: 10px; color: var(--text-dim); font-variant-numeric: tabular-nums; pointer-events: none; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+  .clip-remove {
+    position: absolute; top: 4px; right: 4px;
+    width: 26px; height: 26px; padding: 0;
+    background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.25); border-radius: 50%;
+    color: #fff; cursor: pointer; opacity: 0.9;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.15s, background 0.15s, transform 0.15s;
+  }
+  /* Always visible (incl. touch devices, which can't hover); fully opaque + red on hover/select. */
+  .clip:hover .clip-remove, .clip.selected .clip-remove { opacity: 1; }
+  .clip-remove:hover { background: var(--red); border-color: var(--red); transform: scale(1.12); }
+  .clip-remove svg { width: 16px; height: 16px; pointer-events: none; }
+  .clip-waveform {
+    position: absolute; left: 4px; right: 4px; top: 22px; bottom: 18px;
+    display: flex; align-items: center; gap: 1px; pointer-events: none;
+  }
+  .clip-waveform .wf-bar {
+    flex: 1; min-width: 1px;
+    background: rgba(255,255,255,0.55);
+    border-radius: 1px;
+  }
+  .clip.selected .clip-waveform .wf-bar { background: rgba(255,255,255,0.75); }
+  .clip-drop-indicator {
+    flex-shrink: 0; width: 0; align-self: stretch;
+    border-left: 3px solid var(--accent);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--accent-glow);
+    animation: clipDropPulse 0.6s ease-in-out infinite alternate;
+  }
+  @keyframes clipDropPulse { from { opacity: 0.5; } to { opacity: 1; } }
+  .empty-timeline { color: var(--text-dim); font-size: 0.85rem; padding: 24px 12px; text-align: center; width: 100%; }
+
+  /* "+ Add files" button now lives in the transport row at the top of
+     the editor — see .transport-btn.add-files above. The old below-the-
+     timeline add-more-row was removed entirely to make the editor more
+     compact and to make adding files the visually-primary action. */
+
+  .options-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--surface2); border-radius: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .options-row label { font-size: 0.9rem; color: var(--text-dim); }
+  .crossfade-control { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 220px; }
+  .crossfade-control input[type="range"] { flex: 1; accent-color: var(--accent); cursor: pointer; }
+  .crossfade-value { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--text); min-width: 56px; text-align: right; }
+  .crossfade-hint { font-size: 0.8rem; color: var(--text-dim); }
+  .crossfade-help-link {
+    margin-left: auto;
+    background: transparent; border: none;
+    color: var(--accent); font: inherit; font-size: 0.85rem; font-weight: 500;
+    cursor: pointer; padding: 4px 0;
+  }
+  .crossfade-help-link:hover { color: var(--accent-hover); text-decoration: underline; }
+  .crossfade-explainer {
+    background: var(--surface2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .crossfade-explainer p { margin: 0 0 10px; }
+  .crossfade-explainer p:last-child { margin-bottom: 0; }
+  .crossfade-explainer strong { color: var(--text); font-weight: 600; }
+  .crossfade-explainer .cfs-listen-label { color: var(--text); font-weight: 500; }
+  .crossfade-samples { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 10px; }
+  .crossfade-samples .cfs-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--bg); border: 1px solid var(--border-bright); border-radius: 8px;
+    color: var(--text); cursor: pointer; font: inherit; font-size: 0.85rem;
+    padding: 7px 12px;
+    transition: border-color 0.15s, background 0.15s, transform 0.15s;
+  }
+  .crossfade-samples .cfs-btn svg { width: 12px; height: 12px; flex-shrink: 0; color: var(--accent); }
+  .crossfade-samples .cfs-btn:hover { border-color: var(--accent); background: rgba(124,111,255,0.08); }
+  .crossfade-samples .cfs-btn.playing { border-color: var(--accent); background: rgba(124,111,255,0.18); }
+  .crossfade-samples .cfs-btn:disabled { opacity: 0.5; cursor: wait; }
+  .cfs-hint { font-size: 0.78rem; opacity: 0.8; }
+
+  .quality-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 16px; background: var(--surface2); border-radius: 10px; margin-bottom: 16px; }
+  .quality-row label { font-size: 0.9rem; color: var(--text-dim); }
+  .quality-row select { padding: 6px 10px; background: var(--bg); border: 1px solid var(--border-bright); color: var(--text); font-family: inherit; font-size: 14px; border-radius: 6px; }
+  .quality-row select:focus { outline: none; border-color: var(--accent); }
+  .quality-row .qhint { color: var(--text-dim); font-size: 0.8rem; margin-left: auto; }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border-bright); }
+  .btn-secondary:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+
+  /* Ready-banner: shown when export finishes while the user was on
+     another tab. Sits at the top so it's visible immediately on return
+     without competing with the bottom-anchored success toast. */
+  .snip-ready-banner {
+    position: fixed; top: 12px; left: 50%; transform: translate(-50%, -16px);
+    z-index: 100000;
+    display: flex; align-items: center; gap: 12px;
+    background: linear-gradient(135deg, var(--accent, #7c6fff), var(--accent-hover, #9184ff));
+    color: #fff; padding: 12px 14px 12px 16px; border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35), 0 4px 14px rgba(124,111,255,0.45);
+    font-size: 14px; max-width: 92vw;
+    opacity: 0; transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.18,0.89,0.32,1.28);
+  }
+  .snip-ready-banner.show { opacity: 1; transform: translate(-50%, 0); }
+  .snip-ready-banner .srb-emoji { font-size: 22px; flex-shrink: 0; }
+  .snip-ready-banner .srb-msg { line-height: 1.25; min-width: 0; }
+  .snip-ready-banner .srb-msg strong { display: block; font-weight: 700; }
+  .snip-ready-banner .srb-sub { display: block; font-size: 12px; opacity: 0.9; font-weight: 500; margin-top: 1px; max-width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .snip-ready-banner .srb-btn {
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.95); color: var(--accent, #7c6fff);
+    border: none; border-radius: 8px;
+    padding: 8px 14px; font-weight: 700; font-size: 13px; cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.15s, background 0.15s;
+  }
+  .snip-ready-banner .srb-btn:hover { transform: translateY(-1px); background: #fff; }
+  .snip-ready-banner .srb-close {
+    flex-shrink: 0;
+    background: transparent; border: none; color: rgba(255,255,255,0.85);
+    cursor: pointer; font-size: 18px; line-height: 1; padding: 4px 6px;
+  }
+  .snip-ready-banner .srb-close:hover { color: #fff; }
+
+  /* Notification pre-prompt — shown the first time the user hits Export,
+     before the browser's own permission dialog. Explains why we're about
+     to ask so the OS prompt arrives with context. Styled like an inline
+     info bar rather than the success-purple ready-banner. */
+  .snip-notif-prompt {
+    position: fixed; top: 12px; left: 50%; transform: translate(-50%, -16px);
+    z-index: 100001;
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface, #14141f);
+    color: var(--text, #f0f0f5);
+    padding: 12px 14px 12px 16px;
+    border: 1px solid var(--accent, #7c6fff);
+    border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+    font-size: 14px; max-width: 92vw;
+    opacity: 0; transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.18,0.89,0.32,1.28);
+  }
+  .snip-notif-prompt.show { opacity: 1; transform: translate(-50%, 0); }
+  .snip-notif-prompt .snp-emoji { font-size: 22px; flex-shrink: 0; }
+  .snip-notif-prompt .snp-msg { line-height: 1.3; min-width: 0; max-width: 320px; }
+  .snip-notif-prompt .snp-msg strong { display: block; font-weight: 700; }
+  .snip-notif-prompt .snp-sub { display: block; font-size: 12px; color: var(--text-dim, #8888a0); margin-top: 2px; }
+  .snip-notif-prompt .snp-yes {
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent, #7c6fff), var(--accent-hover, #9184ff));
+    color: #fff; border: none; border-radius: 8px;
+    padding: 8px 14px; font-weight: 700; font-size: 13px; cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .snip-notif-prompt .snp-yes:hover { transform: translateY(-1px); opacity: 0.92; }
+  .snip-notif-prompt .snp-no {
+    flex-shrink: 0;
+    background: transparent; border: 1px solid var(--border-bright);
+    color: var(--text-dim); border-radius: 8px;
+    padding: 8px 12px; font-weight: 500; font-size: 13px; cursor: pointer;
+    font-family: inherit;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .snip-notif-prompt .snp-no:hover { color: var(--text); border-color: var(--text-dim); }
+  @media (max-width: 600px) {
+    .snip-notif-prompt { flex-wrap: wrap; max-width: calc(100vw - 24px); }
+    .snip-notif-prompt .snp-msg { flex-basis: 100%; }
+    .snip-notif-prompt .snp-yes, .snip-notif-prompt .snp-no { flex: 1 1 0; }
+  }
+
+  /* Mobile-only utility: hidden on desktop, shown on the mobile breakpoint
+     via @media (max-width: 700px). Used for the magnifying-glass zoom
+     toggle in the transport row. */
+  .snip-mobile-only { display: none; }
+  /* Keyboard shortcuts legend — discovery aid below the merge button. */
+  .shortcuts {
+    margin-top: 16px; padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex; flex-wrap: wrap;
+    align-items: center; gap: 6px 18px;
+    font-size: 0.78rem; color: var(--text-dim);
+  }
+  .shortcuts-title { font-weight: 600; color: var(--text); text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.7rem; margin-right: 4px; }
+  .shortcut { display: inline-flex; align-items: center; gap: 4px; line-height: 1.5; }
+  .shortcut kbd {
+    display: inline-block; padding: 2px 6px; margin: 0 1px;
+    background: var(--surface); border: 1px solid var(--border-bright);
+    border-bottom-width: 2px; border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.72rem; color: var(--text); font-weight: 600;
+    line-height: 1; min-width: 18px; text-align: center;
+  }
+  .shortcuts-mod { color: var(--text-dim); opacity: 0.8; margin-left: 2px; }
+
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul { padding-left: 22px; }
+
+  .related-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .related-tool { padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: border-color 0.15s, color 0.15s; }
+  .related-tool:hover { border-color: var(--accent); color: var(--accent); }
+  .related-tool .rt-desc { display: block; font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+  .related-tool:hover .rt-desc { color: var(--text-dim); }
+
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .clip { height: 86px; }
+    .clip-label { font-size: 10px; right: 24px; }
+    .timeline-track { min-height: 86px; }
+    /* On mobile the transport row wraps; keep things readable when it does. */
+    .transport-btn.add-files,
+    .transport-btn.split { font-size: 12px; padding: 0 12px; }
+    /* Drop the "Split at playhead" label on mobile — the scissor icon
+       is unambiguous and saving the horizontal space lets the transport
+       row stay on a single line. */
+    .transport-btn.split .split-label { display: none; }
+    .transport-btn.split { width: 38px; padding: 0; gap: 0; }
+    .transport-btn.add-files span { display: none; }
+    .transport-btn.add-files { width: 38px; padding: 0; gap: 0; }
+    /* Time readout duplicates what the minimap shows; hide it on mobile
+       to claim back room in the transport row. */
+    .transport-time { display: none; }
+    /* Drop the whole "drag clip body to reorder…" hint row on mobile —
+       text is irrelevant on touch and the zoom slider lives behind the
+       magnifying glass toggle now. */
+    .timeline-hint { display: none; }
+    body.snip-show-zoom .timeline-hint { display: flex; margin-bottom: 4px; }
+    body.snip-show-zoom .timeline-hint > svg,
+    body.snip-show-zoom .timeline-hint > span:not(.zoom-row) { display: none; }
+    /* Magnifying-glass toggle visible on mobile only; pressed state uses
+       the accent color so the user sees the toggle is active. */
+    .snip-mobile-only { display: inline-flex; }
+    .transport-btn#btn-zoom-toggle[aria-pressed="true"] { color: var(--accent); background: rgba(124,111,255,0.12); }
+    /* Keyboard shortcuts panel is useless without a keyboard — hide on touch. */
+    .shortcuts { display: none !important; }
+    /* Crossfade value pill was overflowing its surface2 box on narrow
+       widths because the value span had a 56px min-width and the parent
+       fixed its width to 100%. Tighten the spacing and let the slider
+       shrink under the value. */
+    .options-row { gap: 8px; padding: 12px; }
+    .crossfade-control { gap: 8px; }
+    .crossfade-control input[type="range"] { min-width: 0; flex: 1 1 0; }
+    .crossfade-value { min-width: 40px; flex-shrink: 0; }
+    .crossfade-hint { flex-basis: 100%; }
+    .crossfade-control { min-width: 0; width: 100%; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+  /* Big-file trim (snip-bigfile): a file too big to load gets typed start/end times instead of a waveform. */
+  .bigtrim { max-width: 640px; margin: 8px auto 24px; padding: 22px 22px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+  .bigtrim[hidden] { display: none; }
+  .bigtrim h3 { margin: 0 0 4px; font-size: 1.15rem; }
+  .bigtrim .bt-meta { margin: 0 0 16px; color: var(--text-dim); font-size: 0.9rem; word-break: break-word; }
+  .bigtrim .bt-keep { margin: 0 0 14px; font-size: 0.9rem; color: var(--text-dim); }
+  .bigtrim .bt-keep strong { color: var(--text); }
+  .bigtrim .bt-format { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; font-size: 0.9rem; }
+  .bigtrim .bt-format select { min-width: 240px; }
+  .bigtrim .bt-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .bigtrim .bt-progress { margin-top: 14px; }
+  .bigtrim .bt-bar { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; }
+  .bigtrim .bt-bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+  .bigtrim .bt-status { margin: 8px 0 0; font-size: 0.88rem; color: var(--text-dim); }
+  .bigtrim .bt-note { margin: 14px 0 0; font-size: 0.82rem; color: var(--text-dim); }
+  .bigtrim .bt-link { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0; font: inherit; text-decoration: underline; }
+  /* Big-file player (Marc 2026-10-16/17): the whole width to click in, handles to drag, play from the start, hear the end. */
+  .bigtrim { max-width: min(1100px, 100%); }
+  .bigtrim .bt-player { margin: 0 0 16px; }
+  .bigtrim .bt-player[hidden] { display: none; }
+  .bigtrim .bt-line { position: relative; height: 72px; border-radius: 12px; background: var(--bg); border: 1px solid var(--border-bright, var(--border)); cursor: pointer; touch-action: none; user-select: none; overflow: visible; margin-bottom: 10px; outline-offset: 3px; }
+  .bigtrim .bt-kept { position: absolute; top: 0; bottom: 0; left: 0; width: 100%; background: rgba(124,111,255,0.22); border-radius: 10px; pointer-events: none; }
+  .bigtrim .bt-head { position: absolute; top: -6px; bottom: -6px; width: 2px; margin-left: -1px; background: var(--text); pointer-events: none; }
+  .bigtrim .bt-h { position: absolute; top: 0; bottom: 0; width: 24px; margin-left: -12px; cursor: ew-resize; z-index: 2; }
+  .bigtrim .bt-h::after { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 4px; border-radius: 2px; background: var(--accent); }
+  .bigtrim .bt-h::before { content: ''; position: absolute; left: 4px; top: -8px; width: 16px; height: 14px; border-radius: 4px; background: var(--accent); }
+  .bigtrim .bt-transport { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .bigtrim .bt-play { width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer; background: var(--accent); color: #fff; font-size: 16px; flex: none; }
+  .bigtrim .bt-now { font: 600 0.95rem ui-monospace, SFMono-Regular, Menlo, monospace; margin-left: auto; }
+  .bigtrim .bt-edge { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .bigtrim .bt-edge label { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; color: var(--text-dim); }
+  .bigtrim .bt-edge input { width: 9.5em; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border-bright, var(--border)); background: var(--bg); color: var(--text); font: 600 1rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .bigtrim .bt-edge input[aria-invalid="true"] { border-color: var(--danger, #e5484d); }
+  .bigtrim .bt-nudge { display: flex; gap: 4px; }
+  .bigtrim .bt-nudge button, .bigtrim .bt-btn { padding: 9px 11px; border-radius: 9px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; font: 600 0.85rem inherit; }
+  .bigtrim .bt-go-btn { border-color: var(--accent); color: var(--accent); }
+  .bigtrim.bt-no-player .bt-needs-player { display: none; }
+  /* Listening helpers on the normal timeline (Marc 2026-10-17: "Should we apply these to the files that aren't long too").
+     The waveform already shows where to cut; these let you HEAR the cut. */
+  .ed-edges { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 36px; margin: 12px 0 4px; padding: 12px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); }
+  .ed-edges[hidden] { display: none; }
+  .ed-clip { flex: 1 0 100%; font-size: 0.85rem; color: var(--text-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ed-clip:empty { display: none; }
+  .ed-edge { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; }
+  .ed-field { display: flex; flex-direction: column; gap: 6px; }
+  .ed-lab { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-dim); }
+  .ed-hear { padding: 2px 9px; border-radius: 999px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; font: 600 0.78rem inherit; }
+  .ed-hear:hover { background: var(--accent); color: #fff; }
+  .ed-edge input { width: 8.5em; padding: 9px 11px; border-radius: 10px; border: 1px solid var(--border-bright, var(--border)); background: var(--bg); color: var(--text); font: 600 1rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .ed-edge input[aria-invalid="true"] { border-color: var(--danger, #e5484d); }
+  .ed-nudge { display: flex; gap: 4px; }
+  .ed-nudge button, .ed-btn { padding: 8px 10px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; font: 600 0.85rem inherit; }
+  .ed-go { border-color: var(--accent); color: var(--accent); }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "SnipSound Audio Trimmer", "url": "https://snipsound.com/tools/audio-trimmer/", "description": "Free online audio trimmer and cutter. Upload an audio file, split it into segments, delete the parts you don't want, and download the result. Runs entirely in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How do I trim an audio file online?", "acceptedAnswer": { "@type": "Answer", "text": "Drop your audio file onto the page (or click to browse). Press C at the playhead to split, Delete to remove a segment, then pick an output format and click Export. The trimmed file downloads to your device." } },
+  { "@type": "Question", "name": "Can I cut multiple sections out of a single file?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the playhead to position the cursor, press C to split, then Delete any segments you don't want. Repeat as many times as needed. The remaining segments are stitched back together on export with a short crossfade so cuts are inaudible." } },
+  { "@type": "Question", "name": "What audio formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Upload MP3, WAV, OGG, FLAC, AAC or M4A. The trimmer decodes each file independently and you can export to MP3, WAV, OGG, FLAC or AAC." } },
+  { "@type": "Question", "name": "Is my audio uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. SnipSound's trimmer runs entirely in your browser using the Web Audio API. Your files never leave your device." } },
+  { "@type": "Question", "name": "Is there a file size limit?", "acceptedAnswer": { "@type": "Answer", "text": "No hard limit — the only constraint is your device's available memory. Most trims of a song-length file complete in seconds." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body>
+
+<div id="focus-sink" tabindex="-1" aria-hidden="true" style="position:fixed;top:0;left:0;width:0;height:0;opacity:0;pointer-events:none;outline:none;"></div>
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Audio Trimmer</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/" class="active">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">MP3 Cutter</span> and Audio Trimmer</h1>
+    <p>A free MP3 cutter that runs in your browser: cut, trim and delete sections of any MP3, WAV, OGG, FLAC, AAC or M4A file. Split the waveform at any point, drop the parts you don't want, export what's left. 100% in your browser — your audio never leaves your device.</p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14M5 12h14"/>
+    </svg>
+    <h2>Drop an audio file here</h2>
+    <p>or click to browse &mdash; trimmed in your browser &mdash; your file never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span><span class="format-tag">WAV</span><span class="format-tag">OGG</span>
+      <span class="format-tag">FLAC</span><span class="format-tag">AAC</span><span class="format-tag">M4A</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,video/*,.mp3,.wav,.ogg,.flac,.aac,.m4a,.mp4,.mov,.webm,.mkv,.m4v" multiple tabindex="-1" aria-hidden="true">
+  </div>
+
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your file never leaves your device.</strong> All trimming happens in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <div class="bigtrim" id="big-trim" hidden>
+    <h3>Big file &mdash; trimmed without loading it all</h3>
+    <p class="bt-meta" id="bt-meta"></p>
+    <div class="bt-player" id="bt-player" hidden>
+      <div class="bt-line" id="bt-line" role="slider" tabindex="0" aria-label="Position in the file" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="bt-kept" id="bt-kept"></div>
+        <div class="bt-head" id="bt-head"></div>
+        <div class="bt-h bt-h-start" id="bt-h-start" title="Drag to set the start"></div>
+        <div class="bt-h bt-h-end" id="bt-h-end" title="Drag to set the end"></div>
+      </div>
+      <div class="bt-transport">
+        <button type="button" class="bt-play" id="bt-play" aria-label="Play">&#9654;</button>
+        <button type="button" class="bt-btn" id="bt-back">&#8634; Back to start</button>
+        <span class="bt-now"><span id="bt-now">0:00</span> / <span id="bt-total">0:00</span></span>
+      </div>
+    </div>
+    <div class="bt-edge">
+      <label>Start<input type="text" id="bt-start" inputmode="decimal" autocomplete="off" value="0:00"></label>
+      <div class="bt-nudge" data-edge="start"><button type="button" data-d="-1">&minus;1s</button><button type="button" data-d="-0.1">&minus;0.1s</button><button type="button" data-d="0.1">+0.1s</button><button type="button" data-d="1">+1s</button></div>
+      <button type="button" class="bt-btn bt-needs-player" id="bt-set-start">Set to playhead</button>
+      <button type="button" class="bt-btn bt-go-btn bt-needs-player" id="bt-play-start">&#9654; Play from start</button>
+    </div>
+    <div class="bt-edge">
+      <label>End<input type="text" id="bt-end" inputmode="decimal" autocomplete="off"></label>
+      <div class="bt-nudge" data-edge="end"><button type="button" data-d="-1">&minus;1s</button><button type="button" data-d="-0.1">&minus;0.1s</button><button type="button" data-d="0.1">+0.1s</button><button type="button" data-d="1">+1s</button></div>
+      <button type="button" class="bt-btn bt-needs-player" id="bt-set-end">Set to playhead</button>
+      <button type="button" class="bt-btn bt-go-btn bt-needs-player" id="bt-play-end">&#9654; Hear the ending</button>
+    </div>
+    <p class="bt-keep" id="bt-keep"></p>
+    <div class="bt-format">
+      <label for="bt-format">Output format:</label>
+      <select id="bt-format"></select>
+    </div>
+    <div class="bt-actions">
+      <button type="button" class="btn btn-primary" id="bt-go"><span>Trim</span></button>
+      <button type="button" class="bt-link" id="bt-pick">Pick a different file</button>
+    </div>
+    <div class="bt-progress" id="bt-progress" hidden><div class="bt-bar"><i id="bt-fill"></i></div><p class="bt-status" id="bt-status"></p><div id="bt-lj"></div><p class="bt-status" id="bt-ljl"></p></div>
+    <p class="bt-note">This file is too big to show as a waveform here, so type the times (for example 1:05 or 1:02:30). Only the part you keep is written.</p>
+  </div>
+  <div class="editor" id="editor">
+
+    <div class="transport-row">
+      <div class="transport-add-wrap" id="add-more-wrap">
+        <button type="button" class="transport-btn add-files" id="add-more-btn" title="Add another audio file" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>Add file</span>
+        </button>
+        <div class="transport-add-popup" id="add-more-popup"></div>
+      </div>
+      <div class="transport-divider"></div>
+      <button type="button" class="transport-btn primary" id="btn-play" title="Play / Pause">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </button>
+      <button type="button" class="transport-btn" id="ed-back" title="Back to start" aria-label="Back to start" disabled>
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="2.5" height="14" rx="0.5"/><polygon points="19 5 9 12 19 19 19 5"/></svg>
+      </button>
+      <span class="transport-time" id="transport-time">0:00.0<span class="total"> / 0:00.0</span><span class="files" id="transport-files"></span></span>
+      <button type="button" class="transport-btn split" id="btn-split" title="Split the clip at the playhead (C)" aria-label="Split at playhead">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+        <span class="split-label">Split at playhead</span>
+      </button>
+      <button type="button" class="transport-btn" id="btn-undo" title="Undo last edit (Ctrl/Cmd+Z)" aria-label="Undo" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M3 13c0-5 4-9 9-9a9 9 0 0 1 0 18 9 9 0 0 1-8-5"/></svg>
+      </button>
+      <button type="button" class="transport-btn" id="btn-redo" title="Redo (Ctrl/Cmd+Shift+Z)" aria-label="Redo" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7v6h-6"/><path d="M21 13c0-5-4-9-9-9a9 9 0 0 0 0 18 9 9 0 0 0 8-5"/></svg>
+      </button>
+      <button type="button" class="transport-btn snip-mobile-only" id="btn-zoom-toggle" title="Toggle zoom" aria-label="Toggle zoom" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+      </button>
+    </div>
+
+    <div class="timeline-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Drag clip body to reorder &middot; drag edges to trim &middot; click timeline to move the playhead &middot; &times; or Delete to remove a clip</span>
+      <span class="zoom-row" id="zoom-row" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        <span>Zoom</span>
+        <input type="range" id="zoom-slider" min="1" max="6" step="0.1" value="1" aria-label="Timeline zoom">
+        <span class="zoom-value" id="zoom-value">1.0&times;</span>
+      </span>
+    </div>
+    <div class="snip-minimap" id="snip-minimap" style="display:none">
+      <div class="snip-minimap-clips" id="snip-minimap-clips"></div>
+      <div class="snip-minimap-viewport" id="snip-minimap-viewport"></div>
+      <div class="snip-minimap-playhead" id="snip-minimap-playhead"></div>
+    </div>
+    <div class="timeline-container" id="timeline-container">
+      <div class="timeline-ruler" id="timeline-ruler"></div>
+      <div class="timeline-track" id="timeline-track">
+        <div class="empty-timeline">Drop audio files above to start.</div>
+        <div class="timeline-playhead" id="timeline-playhead" style="display:none;left:0px"></div>
+      </div>
+    </div>
+
+    <div class="ed-edges" id="ed-edges" hidden>
+      <span class="ed-clip" id="ed-clip"></span>
+      <div class="ed-edge">
+        <div class="ed-field"><div class="ed-lab"><label for="ed-start">Start</label><button type="button" class="ed-hear" id="ed-hear-start">&#9654; Hear it</button></div><input id="ed-start" inputmode="decimal" autocomplete="off" spellcheck="false"></div>
+        <div class="ed-nudge" data-edge="start"><button type="button" data-d="-1">&minus;1s</button><button type="button" data-d="-0.1">&minus;0.1s</button><button type="button" data-d="0.1">+0.1s</button><button type="button" data-d="1">+1s</button></div>
+        <button type="button" class="ed-btn" id="ed-set-start">Set to playhead</button>
+      </div>
+      <div class="ed-edge">
+        <div class="ed-field"><div class="ed-lab"><label for="ed-end">End</label><button type="button" class="ed-hear" id="ed-hear-end">&#9654; Hear it</button></div><input id="ed-end" inputmode="decimal" autocomplete="off" spellcheck="false"></div>
+        <div class="ed-nudge" data-edge="end"><button type="button" data-d="-1">&minus;1s</button><button type="button" data-d="-0.1">&minus;0.1s</button><button type="button" data-d="0.1">+0.1s</button><button type="button" data-d="1">+1s</button></div>
+        <button type="button" class="ed-btn" id="ed-set-end">Set to playhead</button>
+      </div>
+    </div>
+
+    <div class="options-row">
+      <label for="crossfade-slider">Crossfade:</label>
+      <div class="crossfade-control">
+        <input type="range" id="crossfade-slider" min="0" max="3" step="0.1" value="0">
+        <span class="crossfade-value" id="crossfade-value">0.0 s</span>
+      </div>
+      <span class="crossfade-hint">0 = hard cut between segments</span>
+      <button type="button" class="crossfade-help-link" id="crossfade-help-link" aria-expanded="false">What's crossfade?</button>
+    </div>
+    <div class="crossfade-explainer" id="crossfade-explainer" hidden>
+      <p><strong>Crossfade</strong> smoothly blends the end of one segment into the start of the next instead of an abrupt cut. The longer the fade, the more gradual the blend. Use it for DJ-style mixes, podcast intros that flow into a music bed, or to hide a cut where two takes meet.</p>
+      <p class="cfs-listen-label">Listen to the same two segments transition at different durations:</p>
+      <div class="crossfade-samples">
+        <button type="button" class="cfs-btn" data-cf="0"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>0 s · hard cut</span></button>
+        <button type="button" class="cfs-btn" data-cf="0.5"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>0.5 s</span></button>
+        <button type="button" class="cfs-btn" data-cf="1.5"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>1.5 s</span></button>
+        <button type="button" class="cfs-btn" data-cf="3"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>3 s · long fade</span></button>
+      </div>
+      <p class="cfs-hint" id="cfs-hint">Examples use the demo Handel track — first 3 seconds blended into the last 3 seconds.</p>
+    </div>
+
+    <div class="quality-row">
+      <label for="output-format">Output format:</label>
+      <select id="output-format" style="min-width:220px;"></select>
+      <a href="/audio-formats/" target="_blank" style="margin-left:auto;font-size:0.85rem;color:var(--accent);text-decoration:none;">Not sure what audio type is best? &rarr;</a>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="btn-merge" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Export Trimmed Audio</span>
+      </button>
+      <button type="button" class="btn btn-secondary" id="btn-clear">Clear all</button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+
+    <div class="shortcuts">
+      <span class="shortcuts-title">Keyboard shortcuts</span>
+      <span class="shortcut"><kbd>Space</kbd> Play / Pause</span>
+      <span class="shortcut"><kbd>C</kbd> Cut at playhead</span>
+      <span class="shortcut"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> Nudge playhead <span class="shortcuts-mod">(Shift = 1 s)</span></span>
+      <span class="shortcut"><kbd>Home</kbd> <kbd>End</kbd> Start / End</span>
+      <span class="shortcut"><kbd>Delete</kbd> Remove selected clip</span>
+      <span class="shortcut"><kbd>Ctrl</kbd>+<kbd>Z</kbd> Undo</span>
+      <span class="shortcut"><kbd>Scroll</kbd> Zoom in / out</span>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>Trim & Cut Audio Online — Free, Private, No Sign-up</h2>
+    <p>SnipSound's audio trimmer is a full waveform editor that runs entirely in your web browser. Drop in an MP3, WAV, OGG, FLAC, AAC or M4A file, split it at any point, delete the segments you don't want, and download the result. Your files never leave your device.</p>
+
+    <h3>What you can do</h3>
+    <ul>
+      <li><strong>Trim the start and end</strong> &mdash; chop off silence, intros, or ad reads.</li>
+      <li><strong>Cut a section out of the middle</strong> &mdash; split with <kbd>C</kbd>, delete the unwanted segment, the rest stitches back together with a short crossfade so seams are inaudible.</li>
+      <li><strong>Make multiple cuts</strong> &mdash; split as many times as you want; remove every segment you don't need.</li>
+      <li><strong>Combine multiple files</strong> &mdash; drop additional clips in and concatenate them with optional crossfade.</li>
+      <li><strong>Export to any format</strong> &mdash; MP3, WAV, OGG, FLAC or AAC.</li>
+      <li><strong>Cut MP3 without a re-encode of the parts you keep</strong> &mdash; the segments you keep are joined and exported once, so you are not stacking lossy passes.</li>
+    </ul>
+
+    <h3>Why trim audio in the browser</h3>
+    <ul>
+      <li><strong>100% client-side.</strong> Other trimmers upload your files to a server. We don't &mdash; the audio never leaves your device.</li>
+      <li><strong>No cap imposed by us.</strong> Large files stream in pieces rather than loading, so memory is not the ceiling it is in most browser tools.</li>
+      <li><strong>No sign-up, no ads, no watermarks.</strong></li>
+      <li><strong>Lossless waveform editing.</strong> Decoding happens once; export re-encodes only the segments you keep.</li>
+    </ul>
+
+    <h3>Related tools</h3>
+    <div class="related-tools">
+      <a href="/tools/audio-merger/" class="related-tool"><strong>Audio Merger</strong><span class="rt-desc">Combine multiple files end-to-end with crossfade</span></a>
+      <a href="/tools/audio-converter/" class="related-tool"><strong>Audio Converter</strong><span class="rt-desc">Convert the output to a different format</span></a>
+      <a href="/tools/silence-remover/" class="related-tool"><strong>Silence Remover</strong><span class="rt-desc">Auto-detect and strip silent sections</span></a>
+      <a href="/tools/audio-reverser/" class="related-tool"><strong>Audio Reverser</strong><span class="rt-desc">Reverse any clip before exporting</span></a>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Audio trimmer FAQ</h2>
+    <div class="faq-item"><div class="faq-q"><span>How do I trim an audio file online?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Drop your audio file onto the page (or click to browse). Use the playhead and press <kbd>C</kbd> at the split point, then <kbd>Delete</kbd> any segment you don't want. Pick an output format and click Export. The trimmed file downloads to your device.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Can I cut multiple sections out of a single file?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Yes. Split as many times as you need with <kbd>C</kbd>, then delete every segment you want gone. The remaining segments are stitched back together on export with a short crossfade so cuts are inaudible.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What audio formats can I trim?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Upload MP3, WAV, OGG, FLAC, AAC or M4A. Export to MP3, WAV, OGG, FLAC or AAC.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my audio uploaded to a server?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. SnipSound's trimmer runs entirely in your browser using the Web Audio API. Your files never leave your device.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is there a file size limit?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No hard limit &mdash; the only constraint is your device's available memory. Most trims of a song-length file complete in seconds.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Will my cuts sound clean or will I hear a click?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Clean. The trimmer applies a short crossfade at each seam so the audio glides through cuts without the pop you sometimes get from a hard splice.</div></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; SnipSound. <a href="/">Snip Editor</a> &middot; <a href="/free-music/">Playlist</a> &middot; <a href="/tools/">All Tools</a> &middot; <a href="/privacy/">Privacy</a></p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input');
+  const addMoreBtn = document.getElementById('add-more-btn');
+  const editor = document.getElementById('editor');
+  const timelineContainer = document.getElementById('timeline-container');
+  const timelineTrack = document.getElementById('timeline-track');
+  const transportFilesEl = document.getElementById('transport-files');
+  const crossfadeSlider = document.getElementById('crossfade-slider');
+  const crossfadeValue = document.getElementById('crossfade-value');
+  const outputFormatSel = document.getElementById('output-format');
+  const btnMerge = document.getElementById('btn-merge');
+  const btnClear = document.getElementById('btn-clear');
+  const statusText = document.getElementById('status-text');
+
+  // Transport / playhead UI
+  const transportTime = document.getElementById('transport-time');
+  const btnPlay = document.getElementById('btn-play');
+  const btnSplit = document.getElementById('btn-split');
+  const btnUndo = document.getElementById('btn-undo');
+  const btnRedo = document.getElementById('btn-redo');
+  const playheadEl = document.getElementById('timeline-playhead');
+
+  // Undo history. We snapshot clip state (id, file/buffer refs, source range)
+  // before each destructive action: split, trim, delete, reorder, add, clear.
+  // AudioBuffers are immutable so we share references — only the clip
+  // bookkeeping is cloned. Bounded so a long session doesn't keep megabytes
+  // of buffer-ref objects in the closure.
+  /** @type {Array<Array<object>>} */
+  let history = [];
+  let redoStack = [];
+  const HISTORY_MAX = 50;
+
+  function cloneClips(arr) {
+    return arr.map(c => ({
+      id: c.id, file: c.file, buffer: c.buffer,
+      bufferStart: c.bufferStart, bufferEnd: c.bufferEnd,
+      sourceStart: c.sourceStart, sourceEnd: c.sourceEnd, peaks: [],
+    }));
+  }
+
+  function refreshHistoryButtons() {
+    if (btnUndo) btnUndo.disabled = history.length === 0;
+    if (btnRedo) btnRedo.disabled = redoStack.length === 0;
+  }
+
+  function snapshot() {
+    history.push(cloneClips(clips));
+    if (history.length > HISTORY_MAX) history.shift();
+    redoStack = []; // new edit invalidates the redo path
+    refreshHistoryButtons();
+  }
+
+  function undo() {
+    if (history.length === 0) return;
+    const prev = history.pop();
+    redoStack.push(cloneClips(clips));
+    if (redoStack.length > HISTORY_MAX) redoStack.shift();
+    stopPlayback();
+    clips = prev;
+    selectedId = null;
+    playheadSec = Math.max(0, Math.min(totalTimelineDuration(), playheadSec));
+    renderTimeline();
+    refreshHistoryButtons();
+  }
+
+  function redo() {
+    if (redoStack.length === 0) return;
+    const next = redoStack.pop();
+    history.push(cloneClips(clips));
+    if (history.length > HISTORY_MAX) history.shift();
+    stopPlayback();
+    clips = next;
+    selectedId = null;
+    playheadSec = Math.max(0, Math.min(totalTimelineDuration(), playheadSec));
+    renderTimeline();
+    refreshHistoryButtons();
+  }
+
+  /** Clip data model.
+   *
+   *   bufferStart/bufferEnd  → the VISIBLE range of the source buffer
+   *                            (what the user can see on the timeline,
+   *                            including faded "trimmed" regions). When a
+   *                            clip is split, the two halves get disjoint
+   *                            buffer ranges so neither shows the other
+   *                            half's audio.
+   *   sourceStart/sourceEnd  → the KEPT subrange within [bufferStart..End].
+   *                            Audio outside this range plays silence and
+   *                            is omitted from the export.
+   *
+   * Invariant: bufferStart <= sourceStart <= sourceEnd <= bufferEnd, all in
+   * the SOURCE buffer's seconds. Trim drags adjust sourceStart/sourceEnd;
+   * the timeline visual width is (bufferEnd - bufferStart) * pps.
+   * @type {Array<{ id: number, file: File, buffer: AudioBuffer,
+   *               bufferStart: number, bufferEnd: number,
+   *               sourceStart: number, sourceEnd: number, peaks: number[] }>} */
+  let clips = [];
+  let nextId = 1;
+  let ctx = null;
+  let selectedId = null;
+  // Playback state
+  let playing = false;
+  let playStartCtxTime = 0;     // audioContext.currentTime when play started
+  let playStartTimelineSec = 0; // timeline position at play start
+  let scheduledSources = [];    // active BufferSource nodes
+  let playheadSec = 0;          // current playhead, timeline seconds
+  let rafId = 0;
+
+  // Visual scale. PPS (pixels per second) is COMPUTED at render time so
+  // all clips fit the editor width at zoom = 1×. Zooming in (up to 6×)
+  // grows the timeline past the container and the user gets horizontal
+  // scroll for precision editing. With this we never overflow at default
+  // zoom no matter how long the user's content is.
+  const MIN_CLIP_PX = 40;   // visual minimum so trim handles stay grabbable (>1× zoom only)
+  const MIN_CLIP_SEC = 0.1; // can't trim below 100 ms
+  const MAX_PPS = 240;      // ceiling so a tiny clip doesn't render at 10,000 px
+  let zoom = 1;             // user-controlled zoom multiplier (1×–6×)
+  let currentPPS = 60;      // updated by recomputePPS()
+
+  const zoomSliderRow = document.getElementById('zoom-row');
+  const zoomSlider = document.getElementById('zoom-slider');
+  const zoomValueEl = document.getElementById('zoom-value');
+  const rulerEl = document.getElementById('timeline-ruler');
+
+  function recomputePPS() {
+    if (clips.length === 0) { currentPPS = 60; return; }
+    const total = totalTimelineDuration();
+    if (total <= 0) { currentPPS = 60; return; }
+    // Width budget the clips can actually claim: container client width
+    // minus its 24 px padding minus the (N-1) × 4 px inter-clip gaps.
+    const gapsPx = Math.max(0, (clips.length - 1) * 4);
+    const containerWidth = Math.max(320, timelineContainer.clientWidth - 24 - gapsPx);
+    const fitPPS = containerWidth / total;
+    // At zoom = 1× the fit always wins so the entire arrangement is
+    // visible — no MIN_PPS floor, because clamping up below the fit value
+    // would push the last clip off the right edge (which is exactly what
+    // Marc reported). At higher zoom we scale up; MAX_PPS only caps the
+    // upper end so a tiny clip doesn't render as a 10,000 px monster.
+    currentPPS = Math.min(MAX_PPS, fitPPS * zoom);
+  }
+
+  function getAudioContext() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      // Pin to 44.1 kHz so all decoded buffers share a sample rate; the
+      // browser resamples on decode automatically. This lets us concat
+      // without writing a resampler.
+      ctx = new AC({ sampleRate: 44100 });
+    }
+    return ctx;
+  }
+
+  function formatTime(sec) {
+    if (!isFinite(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.round(sec - m * 60);
+    return m + ':' + String(s).padStart(2, '0');
+  }
+
+  function formatBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(0) + ' KB';
+    return (b / 1024 / 1024).toFixed(1) + ' MB';
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  // VISIBLE duration of a clip on the timeline — the full buffer-window
+  // the user can see, INCLUDING faded "trimmed" wings. (Was previously the
+  // kept-only duration; that's now clipKeptDuration.)
+  function clipDisplayDuration(c) { return Math.max(0, c.bufferEnd - c.bufferStart); }
+  // KEPT duration — what will actually play and export.
+  function clipKeptDuration(c) { return Math.max(0, c.sourceEnd - c.sourceStart); }
+
+  function clipWidthPx(c) {
+    // At zoom 1× we deliberately drop the MIN_CLIP_PX floor — clamping
+    // short clips up to 40 px would push the total width past the
+    // container and break the "everything fits" invariant. The user can
+    // zoom in to gain a grabbable edge. Above 1× we restore the floor so
+    // a clip is always at least clickable.
+    const raw = clipDisplayDuration(c) * currentPPS;
+    return zoom > 1.01 ? Math.max(MIN_CLIP_PX, raw) : raw;
+  }
+
+  // Bin the audio buffer into N peak values (0–1) over a sample range so
+  // the waveform thumbnail can show either the FULL clip range or just the
+  // kept range. Recomputed on every render; tight loop, runs fast.
+  function computePeaks(buffer, sourceStart, sourceEnd, numBars) {
+    const sr = buffer.sampleRate;
+    const startFrame = Math.max(0, Math.floor(sourceStart * sr));
+    const endFrame = Math.min(buffer.length, Math.floor(sourceEnd * sr));
+    const total = Math.max(1, endFrame - startFrame);
+    const barFrames = Math.max(1, Math.floor(total / numBars));
+    const ch0 = buffer.getChannelData(0);
+    const peaks = new Array(numBars);
+    for (let i = 0; i < numBars; i++) {
+      const s = startFrame + i * barFrames;
+      const e = Math.min(s + barFrames, endFrame);
+      let max = 0;
+      for (let j = s; j < e; j++) {
+        const v = ch0[j];
+        const a = v < 0 ? -v : v;
+        if (a > max) max = a;
+      }
+      peaks[i] = max;
+    }
+    let m = 0;
+    for (let i = 0; i < numBars; i++) if (peaks[i] > m) m = peaks[i];
+    if (m > 0) for (let i = 0; i < numBars; i++) peaks[i] = peaks[i] / m;
+    return peaks;
+  }
+
+  // Sum of all clip display durations.
+  function totalTimelineDuration() {
+    let t = 0;
+    for (const c of clips) t += clipDisplayDuration(c);
+    return t;
+  }
+
+  // Walk the clips and find the one containing the given timeline second,
+  // plus the in-clip offset (in clip-local timeline seconds). Used by split
+  // and by the playhead-clicked-on-timeline UX.
+  function clipAtTimelineSec(sec) {
+    let acc = 0;
+    for (let i = 0; i < clips.length; i++) {
+      const d = clipDisplayDuration(clips[i]);
+      if (sec >= acc && sec < acc + d) return { index: i, offsetSec: sec - acc };
+      acc += d;
+    }
+    return null;
+  }
+
+  // Convert timeline seconds → pixels (sum of clip widths up to that
+  // position). Used to position the playhead element.
+  function timelineSecToPx(sec) {
+    let acc = 0;
+    let px = 0;
+    const gap = 4;
+    for (let i = 0; i < clips.length; i++) {
+      const d = clipDisplayDuration(clips[i]);
+      const w = clipWidthPx(clips[i]);
+      if (sec < acc + d) {
+        px += w * ((sec - acc) / d);
+        return px;
+      }
+      acc += d;
+      px += w + gap;
+    }
+    return px;
+  }
+  // Inverse: pixel offset on the timeline → timeline seconds.
+  function pxToTimelineSec(px) {
+    let acc = 0;
+    let curPx = 0;
+    const gap = 4;
+    for (let i = 0; i < clips.length; i++) {
+      const d = clipDisplayDuration(clips[i]);
+      const w = clipWidthPx(clips[i]);
+      if (px < curPx + w) {
+        return acc + d * ((px - curPx) / w);
+      }
+      acc += d;
+      curPx += w + gap;
+    }
+    return acc;
+  }
+
+  function renderTimeline() {
+    if (clips.length === 0) {
+      editor.classList.remove('active');
+      dropZone.style.display = '';
+      timelineTrack.innerHTML = '<div class="empty-timeline">Drop audio files above to start.</div>' +
+        '<div class="timeline-playhead" id="timeline-playhead" style="display:none;left:0px"></div>';
+      if (rulerEl) rulerEl.innerHTML = '';
+      if (zoomSliderRow) zoomSliderRow.style.display = 'none';
+      if (transportFilesEl) transportFilesEl.textContent = '';
+      btnMerge.disabled = true;
+      btnPlay.disabled = true;
+      btnSplit.disabled = true;
+      refreshHistoryButtons();
+      updateTransportTime();
+      _edSync();
+      return;
+    }
+    editor.classList.add('active');
+    dropZone.style.display = 'none';
+    if (zoomSliderRow) zoomSliderRow.style.display = '';
+
+    // Compute pixels-per-second BEFORE we read clip widths anywhere else
+    // this render — they depend on it.
+    recomputePPS();
+
+    const clipHtml = clips.map(c => {
+      const w = Math.round(clipWidthPx(c));
+      const numBars = Math.max(8, Math.min(80, Math.floor(w / 4)));
+      // Peaks span the full visible buffer window, so the waveform stays
+      // anchored under both kept and trimmed regions.
+      const peaks = computePeaks(c.buffer, c.bufferStart, c.bufferEnd, numBars);
+      c.peaks = peaks;
+      const bars = peaks.map(p => '<div class="wf-bar" style="height:' + Math.max(2, p * 80) + '%"></div>').join('');
+      const isSelected = c.id === selectedId;
+      const keptDur = clipKeptDuration(c);
+      // Pixel positions of the kept-region boundaries inside this clip.
+      // Used to place the trim handles and the faded "trimmed wing" overlays.
+      const leftTrimPx = Math.max(0, Math.round((c.sourceStart - c.bufferStart) * currentPPS));
+      const rightTrimPx = Math.max(0, Math.round((c.bufferEnd - c.sourceEnd) * currentPPS));
+      const safeLeft = Math.min(leftTrimPx, Math.max(0, w - 12));
+      const safeRight = Math.min(rightTrimPx, Math.max(0, w - safeLeft - 12));
+      const hasTrim = safeLeft > 0 || safeRight > 0;
+      return (
+        '<div class="clip' + (isSelected ? ' selected' : '') + (hasTrim ? ' has-trim' : '') + '" data-id="' + c.id + '" style="width:' + w + 'px">' +
+          '<div class="clip-waveform">' + bars + '</div>' +
+          (safeLeft > 0 ? '<div class="clip-trim-wing left" style="width:' + safeLeft + 'px">' +
+              (safeLeft >= 20 ? '<button type="button" class="clip-trim-discard" data-discard-id="' + c.id + '" data-discard-side="left" title="Delete trimmed portion" aria-label="Delete trimmed portion">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+              '</button>' : '') +
+            '</div>' : '') +
+          (safeRight > 0 ? '<div class="clip-trim-wing right" style="width:' + safeRight + 'px">' +
+              (safeRight >= 20 ? '<button type="button" class="clip-trim-discard" data-discard-id="' + c.id + '" data-discard-side="right" title="Delete trimmed portion" aria-label="Delete trimmed portion">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+              '</button>' : '') +
+            '</div>' : '') +
+          '<div class="clip-edge left" data-edge-id="' + c.id + '" data-edge-side="left" style="left:' + safeLeft + 'px"></div>' +
+          '<div class="clip-label" style="left:' + (safeLeft + 8) + 'px;right:' + (safeRight + 28) + 'px">' + escapeHtml(c.file.name) + '</div>' +
+          '<div class="clip-duration" style="left:' + (safeLeft + 8) + 'px">' + formatTime(keptDur) + '</div>' +
+          '<button type="button" class="clip-remove" data-remove-id="' + c.id + '" aria-label="Remove clip">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+          '</button>' +
+          '<div class="clip-edge right" data-edge-id="' + c.id + '" data-edge-side="right" style="right:' + safeRight + 'px"></div>' +
+        '</div>'
+      );
+    }).join('');
+    timelineTrack.innerHTML = clipHtml +
+      '<div class="timeline-playhead" id="timeline-playhead" style="display:' + (playing || playheadSec > 0 ? 'block' : 'none') + ';left:' + timelineSecToPx(playheadSec) + 'px"></div>';
+
+    // File count lives inline with the time readout in the transport row
+    // now; "Total" text is redundant because the time readout already
+    // shows current / total.
+    if (transportFilesEl) {
+      transportFilesEl.textContent = '· ' + clips.length + ' file' + (clips.length === 1 ? '' : 's');
+    }
+    btnMerge.disabled = clips.length < 1;
+    btnPlay.disabled = false;
+    btnSplit.disabled = clipAtTimelineSec(playheadSec) == null;
+    refreshHistoryButtons();
+    updateTransportTime();
+    renderRuler();
+    renderMinimap();
+    _edSync();
+  }
+
+  // Draw the time ruler above the clips: ticks every 30/10/5/2/1 second
+  // depending on how zoomed in we are, labels at major ticks. Width
+  // matches the timeline-track so it scrolls in lockstep.
+  function renderRuler() {
+    if (!rulerEl) return;
+    const total = totalTimelineDuration();
+    if (total <= 0) { rulerEl.innerHTML = ''; return; }
+    // Pick a tick interval that gives ~40–80 px between ticks at current zoom.
+    const targetPxPerTick = 80;
+    const candidateSecs = [0.5, 1, 2, 5, 10, 15, 30, 60, 120, 300];
+    let majorSec = 30;
+    for (const s of candidateSecs) {
+      if (s * currentPPS >= targetPxPerTick) { majorSec = s; break; }
+    }
+    const minorSec = majorSec / 2;
+    let html = '';
+    // Track total width = sum of clip widths + gaps (one gap between each pair).
+    let widthPx = 0;
+    for (let i = 0; i < clips.length; i++) {
+      widthPx += clipWidthPx(clips[i]);
+      if (i < clips.length - 1) widthPx += 4;
+    }
+    rulerEl.style.width = widthPx + 'px';
+    // Place ticks based on time (which we convert to px via timelineSecToPx).
+    for (let t = 0; t <= total + 0.0001; t += minorSec) {
+      const isMajor = Math.abs((t / majorSec) - Math.round(t / majorSec)) < 0.001;
+      const x = timelineSecToPx(t);
+      const label = isMajor ? formatTime(t) : '';
+      html += '<div class="ruler-tick' + (isMajor ? '' : ' minor') + '" style="left:' + x.toFixed(1) + 'px">' + label + '</div>';
+    }
+    rulerEl.innerHTML = html;
+  }
+
+  function getPlayheadEl() { return document.getElementById('timeline-playhead'); }
+
+  function updatePlayheadVisual() {
+    const el = getPlayheadEl();
+    if (!el) return;
+    const x = timelineSecToPx(playheadSec);
+    el.style.left = x + 'px';
+    el.style.display = (playing || playheadSec > 0) ? 'block' : 'none';
+    updateMinimapPlayhead();
+  }
+
+  // ── Minimap (overview bar) ───────────────────────────────────────────
+  // Renders a thin, always-fits-the-container summary of the full
+  // timeline above the scrollable editor. Useful when zoomed in: tap or
+  // drag anywhere on it to jump the playhead to that position.
+  const minimapEl = document.getElementById('snip-minimap');
+  const minimapClipsEl = document.getElementById('snip-minimap-clips');
+  const minimapViewportEl = document.getElementById('snip-minimap-viewport');
+  const minimapPlayheadEl = document.getElementById('snip-minimap-playhead');
+
+  function renderMinimap() {
+    if (!minimapEl) return;
+    if (clips.length === 0) {
+      minimapEl.style.display = 'none';
+      return;
+    }
+    minimapEl.style.display = '';
+    const total = totalTimelineDuration();
+    if (total <= 0) { minimapClipsEl.innerHTML = ''; return; }
+    minimapClipsEl.innerHTML = clips.map(c => {
+      const full = clipDisplayDuration(c);
+      if (full <= 0) return '';
+      const leftPct = ((c.sourceStart - c.bufferStart) / full) * 100;
+      const rightPct = ((c.bufferEnd - c.sourceEnd) / full) * 100;
+      return (
+        '<div class="snip-minimap-clip" style="flex: ' + full.toFixed(4) + ' 0 0">' +
+          (leftPct > 0 ? '<div class="snip-minimap-trim-wing left" style="width:' + leftPct.toFixed(2) + '%"></div>' : '') +
+          (rightPct > 0 ? '<div class="snip-minimap-trim-wing right" style="width:' + rightPct.toFixed(2) + '%"></div>' : '') +
+        '</div>'
+      );
+    }).join('');
+    updateMinimapPlayhead();
+    updateMinimapViewport();
+  }
+
+  function updateMinimapPlayhead() {
+    if (!minimapPlayheadEl) return;
+    const total = totalTimelineDuration();
+    if (total <= 0) { minimapPlayheadEl.style.display = 'none'; return; }
+    minimapPlayheadEl.style.display = '';
+    const pct = Math.max(0, Math.min(100, (playheadSec / total) * 100));
+    minimapPlayheadEl.style.left = pct + '%';
+  }
+
+  function updateMinimapViewport() {
+    if (!minimapViewportEl || !timelineContainer || !timelineTrack) return;
+    const total = totalTimelineDuration();
+    const trackW = timelineTrack.scrollWidth || timelineTrack.getBoundingClientRect().width;
+    const visibleW = timelineContainer.clientWidth;
+    if (total <= 0 || trackW <= 0 || visibleW >= trackW) {
+      minimapViewportEl.classList.remove('shown');
+      return;
+    }
+    minimapViewportEl.classList.add('shown');
+    const startPct = (timelineContainer.scrollLeft / trackW) * 100;
+    const widthPct = (visibleW / trackW) * 100;
+    minimapViewportEl.style.left = startPct + '%';
+    minimapViewportEl.style.width = widthPct + '%';
+  }
+
+  function minimapSeek(clientX) {
+    if (!minimapEl) return;
+    const rect = minimapEl.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    const total = totalTimelineDuration();
+    playheadSec = pct * total;
+    if (timelineContainer && timelineTrack) {
+      const targetPx = timelineSecToPx(playheadSec);
+      const visibleW = timelineContainer.clientWidth;
+      timelineContainer.scrollLeft = Math.max(0, targetPx - visibleW / 2);
+    }
+    updatePlayheadVisual();
+    updateTransportTime();
+    if (btnSplit) btnSplit.disabled = clipAtTimelineSec(playheadSec) == null;
+  }
+
+  if (minimapEl) {
+    let mmDragging = false;
+    let mmDragWasPlaying = false;
+    minimapEl.addEventListener('pointerdown', function (e) {
+      mmDragging = true;
+      mmDragWasPlaying = playing;
+      try { minimapEl.setPointerCapture(e.pointerId); } catch (err) {}
+      // Stop scheduled sources defensively but DON'T flip the play UI —
+      // we want to resume on pointerup from the dropped position.
+      if (mmDragWasPlaying) {
+        for (const s of scheduledSources) { try { s.stop(); } catch (_) {} }
+        scheduledSources = [];
+        if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+        playing = false;
+      }
+      minimapSeek(e.clientX);
+      e.preventDefault();
+    });
+    minimapEl.addEventListener('pointermove', function (e) {
+      if (!mmDragging) return;
+      minimapSeek(e.clientX);
+    });
+    function mmEnd() {
+      mmDragging = false;
+      if (mmDragWasPlaying) { mmDragWasPlaying = false; startPlayback(); }
+    }
+    minimapEl.addEventListener('pointerup', mmEnd);
+    minimapEl.addEventListener('pointercancel', mmEnd);
+    if (timelineContainer) {
+      timelineContainer.addEventListener('scroll', updateMinimapViewport);
+    }
+    window.addEventListener('resize', updateMinimapViewport);
+  }
+
+  function formatTimeMs(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec - m * 60);
+    const t = Math.floor((sec - Math.floor(sec)) * 10);
+    return m + ':' + String(s).padStart(2, '0') + '.' + t;
+  }
+
+  function updateTransportTime() {
+    transportTime.innerHTML = formatTimeMs(playheadSec) + '<span class="total"> / ' + formatTimeMs(totalTimelineDuration()) + '</span>';
+  }
+
+  // Load generation token. Incremented whenever the clip set is cleared
+  // (Start over / Upload new / Library pick with replace:true / etc.).
+  // addFiles checks the token before pushing each decoded buffer — if a
+  // newer load started while we were decoding, the stale buffer is
+  // dropped instead of joining the new clip set. Fixes Marc's "auto-load
+  // + Upload new race" where both files ended up in the trimmer.
+  let _loadGen = 0;
+  function _bumpLoadGen() { _loadGen++; }
+
+  // ── BIG-FILE TRIM (snip-bigfile, R-86ce8a adopter 2) ─────────────────────────────────────────────
+  // posthog R-fa08c6: 58 trimmer users a month were shown the big-file card and none could trim - this page
+  // decoded every file whatever its size, and its only escape was a LINK to a different tool. A file the gate
+  // calls too big now opens here instead: typed start/end, FFmpeg reads the file by reference (no decode, no
+  // waveform), and a format that names no bitrate copies the kept range without re-encoding it.
+  let _btFile = null, _btDur = 0, _btBusy = false;
+  const btEl = document.getElementById('big-trim');
+  const btStart = document.getElementById('bt-start'), btEnd = document.getElementById('bt-end');
+  const btKeep = document.getElementById('bt-keep'), btFormat = document.getElementById('bt-format');
+  const btGo = document.getElementById('bt-go'), btProgress = document.getElementById('bt-progress');
+  const btFill = document.getElementById('bt-fill'), btStatus = document.getElementById('bt-status');
+  function _btFmt(sec) {
+    sec = Math.max(0, sec || 0);
+    const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), x = sec - h * 3600 - m * 60;
+    const ss = (x < 10 ? '0' : '') + (Math.round(x * 10) / 10).toFixed(x % 1 ? 1 : 0);
+    return h ? h + ':' + String(m).padStart(2, '0') + ':' + ss : m + ':' + ss;
+  }
+  // "1:02:30", "65", "1:05.5" -> seconds; NaN when it is not a time.
+  function _btParse(v) {
+    v = String(v || '').trim().replace(',', '.');
+    if (!/^\d+(?::\d{1,2}){0,2}(?:\.\d+)?$/.test(v)) return NaN;
+    return v.split(':').reduce(function (acc, part) { return acc * 60 + parseFloat(part); }, 0);
+  }
+  function _btRange() {
+    const a = _btParse(btStart.value), b = _btParse(btEnd.value);
+    const okA = isFinite(a) && a >= 0 && (!_btDur || a < _btDur);
+    const okB = isFinite(b) && b > (isFinite(a) ? a : 0) && (!_btDur || b <= _btDur + 0.05);
+    btStart.setAttribute('aria-invalid', okA ? 'false' : 'true');
+    btEnd.setAttribute('aria-invalid', okB ? 'false' : 'true');
+    return (okA && okB) ? { startSec: a, endSec: Math.min(b, _btDur || b) } : null;
+  }
+  function _btSync() {
+    const r = _btRange();
+    btKeep.innerHTML = r ? 'Keeps <strong>' + _btFmt(r.endSec - r.startSec) + '</strong>' + (_btDur ? ' of ' + _btFmt(_btDur) : '')
+      : 'Type a start before the end' + (_btDur ? ', both within ' + _btFmt(_btDur) : '') + '.';
+    btGo.disabled = !r || _btBusy;
+  }
+  // A format that names no bitrate COPIES the kept range when the container allows - no quality lost.
+  // THE SHARED LIST (Marc 2026-10-17: "we had some universal thing that allowed users to select many different
+  // output formats so why aren't we using that here too?"): snipEncoder.FORMATS, the same nine the normal trimmer
+  // offers, its slow ones marked the same way - with "Same quality as the original" on top as the default, since a
+  // copy loses nothing and is the fastest thing to do to a big file. The label is design's (R-002ef0), as on the
+  // splitter. A bare container already in the list is that same copy, so it is not offered twice.
+  function _btFormats(file) {
+    const ext = ((file && file.name) || '').split('.').pop().toLowerCase();
+    const same = { mp3: 'mp3-original', wav: 'wav', flac: 'flac', ogg: 'ogg', m4a: 'm4a' }[ext];
+    const opts = [];
+    if (same) opts.push([same, ext.toUpperCase() + ' · Same quality as the original']);
+    const list = (window.snipEncoder && window.snipEncoder.FORMATS) || [
+      { value: 'mp3-320', label: 'MP3 — 320 kbps' }, { value: 'mp3-128', label: 'MP3 — 128 kbps' }, { value: 'wav', label: 'WAV (lossless)' }];
+    list.forEach(function (f) { if (f.value !== same) opts.push([f.value, f.label + (f.tier === 'ffmpeg' ? ' · slower' : '')]); });
+    btFormat.innerHTML = opts.map(function (o) { return '<option value="' + o[0] + '">' + o[1] + '</option>'; }).join('');
+  }
+  // ── THE PLAYER (Marc, 2026-10-16/17). A plain <audio> reads the file from disk through a blob URL and seeks by
+  // itself - it streams, never decoding the whole file (what the waveform needed and this panel avoids). Around it:
+  //   - a timeline the full width of the panel: click anywhere to jump; the kept part is shaded; drag its handles
+  //   - change the START (type it, nudge it, drag it, or set it to the playhead) -> it jumps there and plays
+  //   - change the END -> it plays the last few seconds before it, so you hear how it ends
+  //   - "Back to start" plays from the start time again; "Play from start" plays the kept part and stops at the end
+  // A format the browser cannot play hides the player; typing the times still works.
+  const btPlayer = document.getElementById('bt-player'), btLine = document.getElementById('bt-line');
+  const btKept = document.getElementById('bt-kept'), btHead = document.getElementById('bt-head');
+  const btHS = document.getElementById('bt-h-start'), btHE = document.getElementById('bt-h-end');
+  const btPlay = document.getElementById('bt-play'), btNow = document.getElementById('bt-now'), btTotal = document.getElementById('bt-total');
+  const END_PREVIEW_SEC = 3;   // how much of the run-up to the end "Hear the ending" plays
+  let _btAudio = null, _btUrl = '', _btStopAt = 0, _btDrag = null;
+  function _btLen() { return _btDur || (_btAudio && isFinite(_btAudio.duration) ? _btAudio.duration : 0); }
+  function _btPct(t) { const len = _btLen(); return len ? Math.max(0, Math.min(100, t / len * 100)) : 0; }
+  function _btPaint() {
+    const len = _btLen();
+    const a = _btParse(btStart.value), b = _btParse(btEnd.value);
+    const st = isFinite(a) ? a : 0, en = isFinite(b) ? b : len;
+    btKept.style.left = _btPct(st) + '%'; btKept.style.width = Math.max(0, _btPct(en) - _btPct(st)) + '%';
+    btHS.style.left = _btPct(st) + '%'; btHE.style.left = _btPct(en) + '%';
+    btTotal.textContent = _btFmt(len);
+    if (!_btAudio) return;
+    const t = _btAudio.currentTime || 0;
+    btHead.style.left = _btPct(t) + '%';
+    btLine.setAttribute('aria-valuenow', String(Math.round(_btPct(t))));
+    btNow.textContent = _btFmt(t);
+    btPlay.innerHTML = _btAudio.paused ? '&#9654;' : '&#10073;&#10073;';
+    btPlay.setAttribute('aria-label', _btAudio.paused ? 'Play' : 'Pause');
+  }
+  function _btSeek(t, andPlay, stopAt) {
+    if (!_btAudio) return;
+    const len = _btLen();
+    _btAudio.currentTime = Math.max(0, len ? Math.min(len, t) : t);
+    _btStopAt = stopAt || 0;
+    if (andPlay) _btAudio.play().catch(function () {});
+    _btPaint();
+  }
+  function _btFromStart() { const r = _btRange(); if (r) _btSeek(r.startSec, true, r.endSec); }
+  function _btHearEnd() { const r = _btRange(); if (r) _btSeek(Math.max(r.startSec, r.endSec - END_PREVIEW_SEC), true, r.endSec); }
+  // One place for "an edge moved": the numbers re-check, then you HEAR the edge you moved.
+  function _btEdgeChanged(edge) { _btSync(); _btPaint(); if (edge === 'start') _btFromStart(); else _btHearEnd(); }
+  function _btPlayerOpen(file) {
+    _btPlayerClose();
+    btEl.classList.add('bt-no-player');
+    try {
+      _btUrl = URL.createObjectURL(file);
+      _btAudio = new Audio();
+      _btAudio.preload = 'metadata';
+      _btAudio.addEventListener('loadedmetadata', function () {
+        btPlayer.hidden = false; btEl.classList.remove('bt-no-player');
+        if (!_btDur && isFinite(_btAudio.duration)) { _btDur = _btAudio.duration; if (!btEnd.value) btEnd.value = _btFmt(_btDur); _btSync(); }
+        _btPaint();
+      });
+      _btAudio.addEventListener('timeupdate', function () {
+        if (_btStopAt && _btAudio.currentTime >= _btStopAt) { _btAudio.pause(); _btStopAt = 0; }
+        _btPaint();
+      });
+      _btAudio.addEventListener('play', _btPaint); _btAudio.addEventListener('pause', _btPaint);
+      _btAudio.addEventListener('error', function () { btPlayer.hidden = true; btEl.classList.add('bt-no-player'); });
+      _btAudio.src = _btUrl;
+    } catch (e) { btPlayer.hidden = true; }
+  }
+  function _btPlayerClose() {
+    btPlayer.hidden = true;
+    if (_btAudio) { try { _btAudio.pause(); _btAudio.removeAttribute('src'); _btAudio.load(); } catch (e) {} }
+    if (_btUrl) { try { URL.revokeObjectURL(_btUrl); } catch (e) {} }
+    _btAudio = null; _btUrl = ''; _btStopAt = 0; _btDrag = null;
+  }
+  btPlay.addEventListener('click', function () { if (!_btAudio) return; _btStopAt = 0; if (_btAudio.paused) _btAudio.play().catch(function () {}); else _btAudio.pause(); });
+  document.getElementById('bt-back').addEventListener('click', _btFromStart);
+  document.getElementById('bt-play-start').addEventListener('click', _btFromStart);
+  document.getElementById('bt-play-end').addEventListener('click', _btHearEnd);
+  document.getElementById('bt-set-start').addEventListener('click', function () { if (!_btAudio) return; btStart.value = _btFmt(_btAudio.currentTime || 0); _btEdgeChanged('start'); });
+  document.getElementById('bt-set-end').addEventListener('click', function () { if (!_btAudio) return; btEnd.value = _btFmt(_btAudio.currentTime || 0); _btEdgeChanged('end'); });
+  btStart.addEventListener('change', function () { if (_btRange()) _btEdgeChanged('start'); });
+  btEnd.addEventListener('change', function () { if (_btRange()) _btEdgeChanged('end'); });
+  btStart.addEventListener('input', _btPaint); btEnd.addEventListener('input', _btPaint);
+  Array.prototype.forEach.call(document.querySelectorAll('#big-trim .bt-nudge button'), function (b) {
+    b.addEventListener('click', function () {
+      const edge = b.parentNode.getAttribute('data-edge'), inp = edge === 'start' ? btStart : btEnd;
+      const cur = _btParse(inp.value), len = _btLen();
+      let v = Math.round(((isFinite(cur) ? cur : 0) + parseFloat(b.getAttribute('data-d'))) * 10) / 10;
+      v = Math.max(0, len ? Math.min(len, v) : v);
+      inp.value = _btFmt(v);
+      _btEdgeChanged(edge);
+    });
+  });
+  // The timeline: click to jump; grab a handle to move that edge; arrows step 5 s.
+  function _btTimeAt(clientX) { const r = btLine.getBoundingClientRect(); return Math.max(0, Math.min(1, (clientX - r.left) / r.width)) * _btLen(); }
+  btLine.addEventListener('pointerdown', function (e) {
+    if (!_btAudio || !_btLen()) return;
+    const r = btLine.getBoundingClientRect(), x = e.clientX - r.left;
+    const near = function (h) { return Math.abs(x - (parseFloat(h.style.left) || 0) / 100 * r.width) <= 14; };
+    _btDrag = near(btHS) ? 'start' : (near(btHE) ? 'end' : 'seek');
+    try { btLine.setPointerCapture(e.pointerId); } catch (_) {}
+    if (_btDrag === 'seek') _btSeek(_btTimeAt(e.clientX), !_btAudio.paused, 0);
+    e.preventDefault();
+  });
+  btLine.addEventListener('pointermove', function (e) {
+    if (!_btDrag) return;
+    const t = _btTimeAt(e.clientX);
+    if (_btDrag === 'seek') { _btSeek(t, !_btAudio.paused, 0); return; }
+    (_btDrag === 'start' ? btStart : btEnd).value = _btFmt(Math.round(t * 10) / 10);
+    _btSync(); _btPaint();
+  });
+  function _btDragEnd() { const d = _btDrag; _btDrag = null; if (d === 'start' || d === 'end') _btEdgeChanged(d); }
+  btLine.addEventListener('pointerup', _btDragEnd); btLine.addEventListener('pointercancel', function () { _btDrag = null; });
+  btLine.addEventListener('keydown', function (e) {
+    if (!_btAudio) return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); _btSeek((_btAudio.currentTime || 0) + (e.key === 'ArrowRight' ? 5 : -5), !_btAudio.paused, 0); }
+    else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); btPlay.click(); }
+  });
+
+  function enterBigTrim(file, dur, why) {
+    _btFile = file; _btDur = dur || 0; _btBusy = false;
+    if (window.snipBigFile) window.snipBigFile.entered('audio-trimmer', file, why);
+    if (window.snipDecodeGate && window.snipDecodeGate.clearCard) window.snipDecodeGate.clearCard(dropZone);
+    document.getElementById('bt-meta').textContent = (file.name || 'audio') + ' · ' + formatBytes(file.size) + (_btDur ? ' · ' + _btFmt(_btDur) : '');
+    btStart.value = '0:00';
+    btEnd.value = _btDur ? _btFmt(_btDur) : '';
+    _btFormats(file);
+    btProgress.hidden = true; btFill.style.width = '0%'; btStatus.textContent = '';
+    dropZone.style.display = 'none';
+    editor.classList.remove('active');
+    btEl.hidden = false;
+    statusText.textContent = '';
+    _btSync();
+    _btPlayerOpen(file);
+  }
+  function leaveBigTrim() {
+    if (_btBusy) return;
+    _btPlayerClose();
+    btEl.hidden = true; _btFile = null; _btDur = 0;
+    dropZone.style.display = '';
+  }
+  btStart.addEventListener('input', _btSync); btEnd.addEventListener('input', _btSync);
+  document.getElementById('bt-pick').addEventListener('click', function () { leaveBigTrim(); fileInput.click(); });
+  btGo.addEventListener('click', async function () {
+    const r = _btRange();
+    if (!r || !_btFile || _btBusy || !window.snipBigFile) return;
+    _btBusy = true; _btSync();
+    const fmt = btFormat.value, file = _btFile;
+    btProgress.hidden = false; btFill.style.width = '2%'; btStatus.textContent = 'Preparing…';
+    const job = (window.snipLongJob && window.snipLongJob.start) ? window.snipLongJob.start({
+      tool: 'audio-trimmer', total: 1, unit: 'file', stage: 'encoding',
+      mountEl: document.getElementById('bt-lj'), resultEl: document.getElementById('bt-ljl') }) : null;   // own boxes: longjob writes INTO both
+    try {
+      const out = await window.snipBigFile.trim(file, r, { format: fmt, durationSec: _btDur,
+        onProgress: function (p) {
+          const pc = (p && typeof p.percent === 'number') ? p.percent : 0;
+          btFill.style.width = Math.max(2, Math.min(100, pc)) + '%';
+          btStatus.textContent = (p && p.phase === 'writing-input') ? 'Opening the file…' : 'Trimming… ' + Math.round(pc) + '%';
+        } });
+      const base = (file.name || 'audio').replace(/\.[^.]+$/, '');
+      const fname = base + '_trimmed.' + out.ext;
+      btFill.style.width = '100%';
+      btStatus.textContent = 'Done - ' + formatBytes(out.blob.size) + (out.copied ? ', original quality kept' : '');
+      if (job) { job.progress(1); job.done({ label: 'Trimmed' }); }
+      if (window.snipTrackCompleted) window.snipTrackCompleted('audio-trimmer', 'stream_trim', { streamed: true, copied: !!out.copied, kept_s: Math.round(r.endSec - r.startSec) });
+      if (window.snipSave) window.snipSave(out.blob, fname, { tool: 'audio-trimmer', format: out.ext });
+      else { const a = document.createElement('a'); a.href = URL.createObjectURL(out.blob); a.download = fname; document.body.appendChild(a); a.click(); a.remove(); }
+    } catch (err) {
+      console.error('Big-file trim failed', err);
+      const reason = (err && err.name === 'SnipStreamEmpty') ? 'trim_empty' : 'trim_failed';
+      if (job) job.failed(reason, { label: 'Trim failed' });
+      if (window.snipTrackFailed) window.snipTrackFailed('audio-trimmer', reason, 'stream', { streamed: true,
+        err_msg: (((err && err.name) ? err.name + ': ' : '') + ((err && err.message) || String(err || 'unknown'))).slice(0, 160),
+        out_ext: String(fmt).slice(0, 16) });
+      btStatus.textContent = 'That trim did not finish: ' + ((err && err.message) || 'unknown error') + ' Try MP3 as the output format, or a shorter range.';
+    } finally {
+      _btBusy = false; _btSync();
+    }
+  });
+
+  async function addFiles(files) {
+    // ROUTE BEFORE DECODING: one file the gate calls too big for this device goes to the big-file trim, never
+    // into decodeAudioData (that is where the tab died). Several files keep today's path - the timeline needs them.
+    if (files.length === 1 && window.snipBigFile && window.snipBigFile.canStream()) {
+      statusText.textContent = 'Reading file…';
+      const _dur = await window.snipBigFile.probeDuration(files[0]);
+      if (window.snipBigFile.route(files[0], _dur) === 'stream') { enterBigTrim(files[0], _dur, 'gate'); return; }
+    }
+    statusText.textContent = 'Decoding ' + files.length + ' file' + (files.length === 1 ? '' : 's') + '...';
+    const acx = getAudioContext();
+    let firstFile = null;
+    const myGen = _loadGen;
+    const before = clips.length;
+    let _goBig = null;   // a single file that would not decode goes to the big-file trim (see the catch)
+    for (const file of files) {
+      try {
+        // Robust decode w/ FFmpeg fallback for decodeAudioData rejects (P-AN-10).
+        const buffer = window.snipDecodeAudio ? await window.snipDecodeAudio(file, acx, { tool: 'audio-trimmer' }) : await acx.decodeAudioData((await file.arrayBuffer()).slice(0));
+        // Stale load — the user kicked off a fresh load (Upload new /
+        // Library / Start over) while we were still decoding. Drop the
+        // buffer instead of joining the new clip set.
+        if (_loadGen !== myGen) {
+          statusText.textContent = '';
+          return;
+        }
+        clips.push({
+          id: nextId++, file: file, buffer: buffer,
+          bufferStart: 0, bufferEnd: buffer.duration,
+          sourceStart: 0, sourceEnd: buffer.duration, peaks: [],
+        });
+        // Closes the compress-recovery rescue funnel when this decode was the retry (no-op otherwise).
+        if (window.snipDecodeGate && window.snipDecodeGate.recoveryOk) window.snipDecodeGate.recoveryOk('audio-trimmer', file);
+        if (!firstFile) firstFile = file;
+      } catch (err) {
+        console.error('Decode failed for ' + file.name, err);
+        var _r = (err && err.name === 'NotReadableError') || /could not be read|permission/i.test((err && err.message) || '') ? 'file_read_failed' : 'decode_failed';
+        // Forward the shared decoder's diagnostic (err_msg/detected_type/memory_pressure) so the
+        // tool_failed event + the bug report explain WHY it failed, not just that it did.
+        if (window.snipTrackFailed) window.snipTrackFailed('audio-trimmer', _r, 'decode', err && err.snipDiag);
+        var _m;
+        if (_r === 'file_read_failed') {
+          _m = 'Couldn’t read “' + file.name + '” — skipping. It may have moved or changed.';
+        } else {
+          // R-e54f01: a decode failure does NOT mean the file is a video. Sniff the file DIRECTLY
+          // (robust) so mislabeled files are caught; fall back to the decoder's detected_type, then
+          // ext/MIME. Only suggest the video path when it's actually video; honest for real audio.
+          // The gate's verdict for THIS device, so the message can name size-for-this-machine
+          // instead of guessing at the format (see the 'hard' branch below).
+          var _gateTier = '';
+          try { if (window.snipDecodeGate && window.snipDecodeGate.tier) _gateTier = window.snipDecodeGate.tier(file) || ''; } catch (_te) { _gateTier = ''; }
+          var _dt = '';
+          if (window.snipSniffType) { try { _dt = await window.snipSniffType(file); } catch (_se) { _dt = ''; } }
+          if (!_dt || _dt === 'unknown') _dt = (err && err.snipDetectedType) || _dt;
+          var _isVid = /video/.test(_dt) || /^video\//i.test(file.type || '') || /\.(mp4|mov|mkv|webm|avi|m4v|wmv|flv|mpe?g|3gp)$/i.test(file.name || '');
+          var _isImg = /image/.test(_dt);
+          var _isAud = /^(wav|mp3|ogg|flac)$/.test(_dt) || /^audio\//i.test(file.type || '') || /\.(wav|mp3|m4a|aac|ogg|oga|opus|flac|aiff?|wma|caf|amr)$/i.test(file.name || '');
+          if (_isImg) {
+            _m = '“' + file.name + '” looks like an image, not an audio file — skipping. Upload an audio (or video) file to trim.';
+          } else if (_isVid && !_isAud) {
+            _m = 'Couldn’t decode “' + file.name + '” — skipping. It looks like a video; use our free Video to Audio tool to extract the track first.';
+          } else if (_isAud && _gateTier === 'hard') {
+            // posthog R-c26527: a Korean user reported "download not working" on a 25-100 MB m4a
+            // on an 8 GB machine. The real cause was the gate rating the file 'hard' for the
+            // device - but this page told them it was "too large or an unusual format" and sent
+            // them to the Audio Converter, which cannot help. Converting does not shrink what the
+            // DECODER must hold. The splitter streams this exact case (1,427 users/30d), so say
+            // that instead of guessing at the format. Third time in this lane that a failure
+            // message named the wrong cause.
+            _m = '“' + file.name + '” is too large for this device to trim here. Try a shorter clip, or split it first with our free Audio Splitter — it handles large files without loading the whole thing.';
+          } else if (_isAud) {
+            _m = 'Couldn’t read the audio in “' + file.name + '” — skipping. It may be too large or an unusual format; you can try converting it first with our free Audio Converter.';
+          } else {
+            _m = 'Couldn’t decode “' + file.name + '” — skipping. It may be too large or an unusual format. If it’s a video, use our free Video to Audio tool to extract the track first.';
+          }
+        }
+        // NOT A DEAD END (posthog R-0931a0: trimmer decode_failed on 5.2% of uploaders vs the splitter's 0.9%,
+        // mostly plain .mp3 "Unable to decode audio data"). Both decoders failed - but TRIMMING needs no decode:
+        // the big-file panel cuts the file by reference, and its player lets the person listen. So one audio
+        // file that will not open goes straight there, memory-shaped or not. (A card cannot carry this: the
+        // gate's failure cards ignore a caller's own action.)
+        if (files.length === 1 && _r === 'decode_failed' && !_isImg && !(_isVid && !_isAud)
+            && window.snipBigFile && window.snipBigFile.canStream()) { _goBig = file; continue; }
+        // Compress-recovery (contract R-a66931): single-file, real-audio, memory-shaped failures get
+        // the one-click rescue card in the gate region; the compressed file re-enters via addFiles —
+        // the tool's normal intake. Multi-file adds keep the toast (one region can't stack cards).
+        var _gate = window.snipDecodeGate;
+        // The gate's ui:fail breadcrumb defaults to the literal 'unknown' when the CALLER omits
+        // this (snip-decode-gate.js:951). Every failure card in this lane omitted it, so every
+        // one logged 'unknown' and posthog could not tell what any user actually read.
+        var _cardReason = _isImg ? 'wrong_kind_image'
+          : (_isVid && !_isAud) ? 'wrong_kind_video'
+          : (_r === 'file_read_failed') ? 'file_read_failed'
+          : (_gateTier === 'hard') ? 'too_big_for_device'
+          : (err && err.snipDiag && err.snipDiag.fell_back) ? 'decode_failed_after_fallback'
+          : 'decode_failed';
+        // R-7b7756 (mine since 2026-10-07). This USED to require the file to look big to the
+        // memory budget, and that is precisely the bug the architect fixed on the splitter in
+        // 88f9fdc89: on iOS a 40 MB podcast sits comfortably inside the budget, so a
+        // decodeAudioData rejection on an ordinary file was "memory-shaped: no" and the user got
+        // a bare toast with no way forward. posthog R-e391e7 measured where the failures really
+        // are - 274 users a month clustered at 100-500 MB, EncodingError on 265 of 270, NOT on
+        // the huge files (6 users). The budget was never the predictor.
+        // So the rescue is offered on SIZE THE COMPRESSION CAN ACTUALLY HELP, not on what the
+        // budget guessed: compress downsamples to 22.05 kHz mono and decoded PCM is
+        // rate x channels x duration, so it genuinely shrinks what the decoder must hold. Below
+        // ~20 MB compression cannot be the difference and offering it would be a false promise -
+        // that file is refused for some other reason.
+        // worthCompressing (design R-87ddfb): the ONE rule, in the gate, beside the 20 MB floor posthog measured.
+        // The ten locale copies of this page still ran the rule with no floor - no rescue for an ordinary
+        // 40 MB failure on iOS - because each page carried its own copy.
+        var _memShaped = !!(_gate && typeof _gate.worthCompressing === 'function' && _gate.worthCompressing(file, err));
+        // On the trimmer the escape hatch is the SPLITTER's streaming equal-parts split (no full
+        // load) — "trim a section" here would be circular.
+        // The escape hatch TRIMS now, on this page, without loading the file (snip-bigfile) - it used to be a
+        // link to the splitter, a different tool doing a different job. The link stays where streaming cannot run.
+        var _canBig = !!(window.snipBigFile && window.snipBigFile.canStream());
+        var _hatch = _canBig
+          ? { trimLabel: 'Trim it without loading →', onTrim: function () { window.snipBigFile.probeDuration(file).then(function (d) { enterBigTrim(file, d, 'fallback'); }); } }
+          : { trimLabel: 'Split into equal parts (no loading) →', onTrim: function () { location.href = '/tools/audio-splitter/'; } };
+        if (_gate && _gate.recoveryPending && _gate.recoveryPending('audio-trimmer')) {
+          _gate.recoveryFailed('audio-trimmer', file);
+          _gate.showFailure(dropZone, _m, { tool: 'audio-trimmer', reason: _cardReason,
+            recovery: { canCompress: false, file: file, trimLabel: _hatch.trimLabel, onTrim: _hatch.onTrim } });
+        } else if (_gate && files.length === 1 && _r === 'decode_failed' && !_isImg && !(_isVid && !_isAud) && _memShaped) {
+          _gate.showFailure(dropZone, _m, { tool: 'audio-trimmer', reason: _cardReason,
+            recovery: { canCompress: true, file: file, trimLabel: _hatch.trimLabel, onTrim: _hatch.onTrim,
+                        onCompressed: function (nf) { addFiles([nf]); } } });
+        } else if (window.snipShowError) window.snipShowError(_m); else alert(_m);
+      }
+    }
+    if (_goBig) {
+      const _d = await window.snipBigFile.probeDuration(_goBig);
+      enterBigTrim(_goBig, _d, 'fallback');
+      const _bm = document.getElementById('bt-meta');
+      if (_bm) _bm.textContent += ' · it would not open as a waveform here, so you can trim it this way';
+      return;
+    }
+    // Snapshot AFTER the loop but reflecting the BEFORE state, so undo
+    // removes the just-added clips in one shot. Skip if nothing actually
+    // got decoded.
+    if (clips.length > before) {
+      history.push(cloneClips(clips.slice(0, before)));
+      if (history.length > HISTORY_MAX) history.shift();
+      redoStack = []; // new edit invalidates the redo path
+      refreshHistoryButtons();
+      // Adding files should always snap zoom back to 1× so the user
+      // sees the whole arrangement again. Without this reset the new
+      // clips can land off-screen because the previous zoom level was
+      // already wider than the container.
+      zoom = 1;
+      if (zoomSlider) zoomSlider.value = '1';
+      if (zoomValueEl) zoomValueEl.textContent = '1×';
+      timelineContainer.scrollLeft = 0;
+    }
+    statusText.textContent = '';
+    renderTimeline();
+    // Save first added file as the shared-audio anchor so other tools
+    // can pick up "the file the user is working with".
+    if (firstFile && window.snipSharedAudio) window.snipSharedAudio.save(firstFile);
+  }
+
+  // Drop / file input wiring. After triggering the file dialog we
+  // blur() the button so the next Space keypress doesn't re-fire it —
+  // without that, Space activates the focused button (HTML default)
+  // and the dialog re-opens instead of triggering play/pause.
+  // After triggering the OS file picker the browser tends to restore focus
+  // to whichever element launched it (button or drop-zone). If we leave that
+  // focus in place, the next Space keypress re-activates the button and
+  // re-opens the picker. Shift focus to a focus-sink element so Space can't
+  // accidentally re-fire the dialog or any other button.
+  function siphonFocus() {
+    setTimeout(() => {
+      try {
+        var sink = document.getElementById('focus-sink');
+        if (sink) sink.focus({ preventScroll: true });
+        else if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      } catch (_) {}
+    }, 0);
+    // Repeat after the OS dialog has had time to close so any browser-side
+    // focus restoration also gets neutralised.
+    setTimeout(() => {
+      try {
+        var sink = document.getElementById('focus-sink');
+        if (sink) sink.focus({ preventScroll: true });
+      } catch (_) {}
+    }, 250);
+  }
+  dropZone.addEventListener('click', () => { fileInput.click(); siphonFocus(); });
+
+  // Add-file dropdown: when the user has saved files in their library,
+  // clicking "Add file" opens a popover with "Upload new" + every
+  // library track. Tracks ADD to the current clip set (no replace),
+  // matching the merger's multi-clip workflow. Empty-library shortcut:
+  // skip the menu and open the file picker directly.
+  const addMoreWrap = document.getElementById('add-more-wrap');
+  const addMorePopup = document.getElementById('add-more-popup');
+
+  function closeAddPopup() {
+    if (addMoreWrap) addMoreWrap.classList.remove('open');
+    addMoreBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  async function openAddPopup() {
+    if (!addMorePopup) return;
+    let lib = [];
+    try { if (window.snipUserTracks) lib = await window.snipUserTracks.list(); } catch (_) {}
+    if (!lib || lib.length === 0) {
+      // No library — just open the file picker straight away.
+      fileInput.click();
+      siphonFocus();
+      return;
+    }
+    const escapeAttr = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const truncate = (s, max) => {
+      s = String(s || '');
+      if (s.length <= max) return s;
+      const dot = s.lastIndexOf('.');
+      const ext = dot > -1 && dot >= s.length - 6 ? s.slice(dot) : '';
+      return s.slice(0, Math.max(4, max - ext.length - 1)) + '…' + ext;
+    };
+    addMorePopup.innerHTML =
+      '<button type="button" class="add-popup-item" id="add-popup-upload">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>' +
+        '<span class="add-popup-name">Upload new</span>' +
+      '</button>' +
+      '<div class="add-popup-sep"></div>' +
+      '<div class="add-popup-header">Add from library</div>' +
+      lib.map(t => (
+        '<button type="button" class="add-popup-item add-popup-library" data-id="' + t.id + '" title="' + escapeAttr(t.name || '') + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>' +
+          '<span class="add-popup-name">' + escapeAttr(truncate(t.name || 'untitled', 38)) + '</span>' +
+          '<span class="add-popup-meta">' + formatBytes(t.size) + '</span>' +
+        '</button>'
+      )).join('');
+    addMoreWrap.classList.add('open');
+    addMoreBtn.setAttribute('aria-expanded', 'true');
+
+    document.getElementById('add-popup-upload').addEventListener('click', () => {
+      closeAddPopup();
+      fileInput.click();
+      siphonFocus();
+    });
+    addMorePopup.querySelectorAll('.add-popup-library').forEach(btn => {
+      btn.addEventListener('click', () => {
+        closeAddPopup();
+        const id = parseInt(btn.dataset.id, 10);
+        const track = lib.find(t => t.id === id);
+        if (!track) return;
+        try {
+          const file = window.snipUserTracks.toFile(track);
+          if (file) addFiles([file]); // ADD, not replace
+        } catch (err) { console.error('Add from library failed:', err); }
+      });
+    });
+  }
+
+  addMoreBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (addMoreWrap && addMoreWrap.classList.contains('open')) { closeAddPopup(); return; }
+    await openAddPopup();
+  });
+  document.addEventListener('click', (e) => {
+    if (addMoreWrap && !addMoreWrap.contains(e.target)) closeAddPopup();
+  });
+  // Classify an upload by MIME+extension so we can help BEFORE trying to decode. Dropping an
+  // image/video into an audio tool is USER ERROR, not a bug — give clear guidance, never the
+  // "that didn't work → report a bug" path (which is for genuine failures).
+  function _atKind(f) {
+    const n = (f.name || '').toLowerCase(), t = (f.type || '').toLowerCase();
+    if (t.indexOf('image/') === 0 || /\.(jpe?g|png|gif|webp|bmp|svg|heic|heif|tiff?|avif|ico)$/.test(n)) return 'image';
+    if (t.indexOf('audio/') === 0 || /\.(mp3|wav|ogg|oga|opus|flac|aac|m4a|m4b|wma|aiff?|caf|amr|weba|mp4)$/.test(n)) return 'audio';
+    if (t.indexOf('video/') === 0 || /\.(mov|mkv|webm|avi|m4v|wmv|flv|mpe?g|3gp)$/.test(n)) return 'video';
+    return 'other';
+  }
+  function _atUnsupportedMsg(kind, name) {
+    if (kind === 'image') return '“' + name + '” looks like an image. Audio Trimmer works with audio files — upload an MP3, WAV, M4A, OGG, or FLAC.';
+    if (kind === 'video') return '“' + name + '” is a video. Extract the audio first with our free Video to Audio tool, then trim it here.';
+    return '“' + name + '” doesn’t look like an audio file. Please upload an audio file (MP3, WAV, M4A, OGG, FLAC…).';
+  }
+  // Accept audio; for a wrong file type show helpful guidance (NOT a failure/report nudge).
+  function acceptFiles(files) {
+    const ok = [], bad = [];
+    files.forEach((f) => (_atKind(f) === 'audio' ? ok : bad).push(f));
+    if (ok.length) { addFiles(ok); return; }
+    if (bad.length) {
+      const msg = _atUnsupportedMsg(_atKind(bad[0]), bad[0].name);
+      if (window.snipShowError) window.snipShowError(msg); else alert(msg);
+    }
+  }
+
+  fileInput.addEventListener('change', (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length) acceptFiles(files);
+    e.target.value = ''; // allow re-picking the same file later
+    siphonFocus();
+  });
+
+  ['dragenter', 'dragover'].forEach(ev => {
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  });
+  ['dragleave', 'drop'].forEach(ev => {
+    dropZone.addEventListener(ev, (e) => { e.preventDefault(); dropZone.classList.remove('drag-over'); });
+  });
+  dropZone.addEventListener('drop', (e) => {
+    // Pass ALL dropped files to the gate (don't silently filter) so a wrong type gets
+    // helpful guidance instead of nothing happening (Marc: dragging an image = no feedback).
+    const files = Array.from(e.dataTransfer.files || []);
+    if (files.length) acceptFiles(files);
+  });
+  // Also accept drops on the editor (once it's visible) so users can drop
+  // more files onto the existing list rather than having to find the
+  // "Add more" button.
+  editor.addEventListener('dragover', (e) => { e.preventDefault(); });
+  editor.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const files = Array.from(e.dataTransfer.files || []);
+    if (files.length) acceptFiles(files);
+  });
+
+  // ── Timeline interaction ─────────────────────────────────────────────
+  // Selection + playhead are handled in pointerdown (so clicks set both
+  // synchronously). This click listener only handles the × button removal.
+  timelineTrack.addEventListener('click', (e) => {
+    // Discard-trim button inside a red wing: collapse the buffer bound on
+    // that side to commit the trim and remove the trimmed-off audio from
+    // view. The kept (audible) portion stays exactly as it was.
+    const discardBtn = e.target.closest('.clip-trim-discard');
+    if (discardBtn) {
+      const id = Number(discardBtn.dataset.discardId);
+      const side = discardBtn.dataset.discardSide;
+      const c = clips.find(c => c.id === id);
+      if (!c) return;
+      stopPlayback();
+      snapshot();
+      if (side === 'left') {
+        c.bufferStart = c.sourceStart;
+      } else {
+        c.bufferEnd = c.sourceEnd;
+      }
+      playheadSec = Math.max(0, Math.min(totalTimelineDuration(), playheadSec));
+      renderTimeline();
+      return;
+    }
+
+    const removeBtn = e.target.closest('.clip-remove');
+    if (!removeBtn) return;
+    const id = Number(removeBtn.dataset.removeId);
+    const idx = clips.findIndex(c => c.id === id);
+    if (idx !== -1) {
+      stopPlayback();
+      snapshot();
+      clips.splice(idx, 1);
+      if (selectedId === id) selectedId = null;
+      renderTimeline();
+    }
+  });
+
+  // Drag-to-reorder OR drag-edge-to-trim. Uses pointer events for cross-
+  // device support. The handler dispatches based on what was hit: an edge
+  // hit-zone enters trim mode, the body of a clip enters reorder mode.
+  let drag = null;     // reorder drag state
+  let trim = null;     // trim drag state: { id, side, startX, startSourceStart, startSourceEnd }
+
+  function setPlayheadFromEvent(e) {
+    // timelineTrack's bbox already reflects the container's scroll offset
+    // (when scrolled right, rect.left goes negative). Subtracting it from
+    // clientX yields the click position relative to the START of the track —
+    // which is what pxToTimelineSec expects. Adding scrollLeft on top would
+    // double-count the scroll and break click-to-seek when zoomed in.
+    const rect = timelineTrack.getBoundingClientRect();
+    const px = e.clientX - rect.left;
+    playheadSec = Math.max(0, Math.min(totalTimelineDuration(), pxToTimelineSec(px)));
+    updatePlayheadVisual();
+    updateTransportTime();
+    btnSplit.disabled = clipAtTimelineSec(playheadSec) == null;
+  }
+
+  // Active playhead-drag state. When set, every pointermove updates the
+  // playhead to follow the cursor / finger. On pointerup, if playback was
+  // running when the drag started, we restart it from the new position
+  // so the audio resumes from wherever the user dropped the playhead.
+  let playheadDrag = null;
+
+  function seekKeepingPlay(sec) {
+    const wasPlaying = playing;
+    playheadSec = Math.max(0, Math.min(totalTimelineDuration(), sec));
+    if (wasPlaying) {
+      // Stop the currently-scheduled sources (without flipping the Play
+      // button to ▶), then re-schedule from the new position.
+      for (const s of scheduledSources) { try { s.stop(); } catch (_) {} }
+      scheduledSources = [];
+      if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+      playing = false;
+      startPlayback();
+    } else {
+      updatePlayheadVisual();
+      updateTransportTime();
+      if (btnSplit) btnSplit.disabled = clipAtTimelineSec(playheadSec) == null;
+    }
+  }
+
+  function pxToTimelineSecFromClient(clientX) {
+    const rect = timelineTrack.getBoundingClientRect();
+    const px = clientX - rect.left;
+    return Math.max(0, Math.min(totalTimelineDuration(), pxToTimelineSec(px)));
+  }
+
+  function clipPointerDown(e) {
+    if (e.target.closest('.clip-remove')) return; // let click handle delete
+    if (e.target.closest('.clip-trim-discard')) return; // wing X commits the trim — let click handle it
+
+    // Playhead grab → start a scrub. Works for both mouse and touch.
+    // The waveform underneath should NOT also start a tap-to-seek, so we
+    // stopPropagation after capturing.
+    if (e.target.closest('.timeline-playhead')) {
+      playheadDrag = { wasPlaying: playing, pointerId: e.pointerId, target: e.target };
+      try { e.target.setPointerCapture(e.pointerId); } catch (_) {}
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    // Edge hit-zone → trim (always wins over reorder / seek).
+    const edgeEl = e.target.closest('.clip-edge');
+    if (edgeEl) {
+      const id = Number(edgeEl.dataset.edgeId);
+      const c = clips.find(c => c.id === id);
+      if (!c) return;
+      const side = edgeEl.dataset.edgeSide;
+      // Snapshot pre-trim so a single undo restores the original handle
+      // position, regardless of how far the drag moved.
+      snapshot();
+      trim = {
+        id: id, side: side, startX: e.clientX,
+        startSourceStart: c.sourceStart, startSourceEnd: c.sourceEnd,
+      };
+      try { edgeEl.setPointerCapture(e.pointerId); } catch (err) {}
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    // Touch path — tap to seek, drag to pan the scroll container.
+    // Defer the seek to pointerup so we can tell a tap from a horizontal
+    // swipe: if the finger moved past the threshold we treat the whole
+    // interaction as a scroll and leave the playhead alone.
+    if (e.pointerType === 'touch') {
+      // If a finger is already down, this is a 2nd-finger pinch start.
+      // Don't begin a new drag — the pinch handler takes over zoom.
+      // Mark the existing drag as moved so its pointerup doesn't seek.
+      if (pinchPointers && pinchPointers.size >= 1) {
+        if (drag) drag.moved = true;
+        return;
+      }
+      const clipEl0 = e.target.closest('.clip');
+      drag = {
+        isTouch: true,
+        id: clipEl0 ? Number(clipEl0.dataset.id) : null,
+        startX: e.clientX, startY: e.clientY,
+        startScroll: timelineContainer ? timelineContainer.scrollLeft : 0,
+        pointerEvent: e, // remember the original target/coords for tap-seek
+        moved: false,
+      };
+      // No preventDefault — let the browser's native horizontal pan
+      // (touch-action: pan-x on .clip) handle the scroll natively.
+      return;
+    }
+
+    // Mouse / pen path — set the playhead immediately (preserving play
+    // state so a click while playing jumps the audio rather than pausing
+    // it), then arm reorder so a drag past the threshold becomes reorder.
+    const playheadPxBeforeClick = timelineSecToPx(playheadSec);
+    seekKeepingPlay(pxToTimelineSecFromClient(e.clientX));
+
+    const clipEl = e.target.closest('.clip');
+    if (clipEl) {
+      const id = Number(clipEl.dataset.id);
+      selectedId = id;
+      drag = {
+        id: id, startX: e.clientX, startY: e.clientY,
+        started: false, dropIndex: -1, indicator: null,
+        playheadBefore: playheadPxBeforeClick,
+      };
+      renderTimeline();
+    }
+  }
+
+  function clipPointerMove(e) {
+    // Playhead drag: just move the playhead to follow the pointer.
+    // Audio scheduling is left alone here — we resume on pointerup so we
+    // don't restart playback dozens of times per second.
+    if (playheadDrag) {
+      playheadSec = pxToTimelineSecFromClient(e.clientX);
+      updatePlayheadVisual();
+      updateTransportTime();
+      if (btnSplit) btnSplit.disabled = clipAtTimelineSec(playheadSec) == null;
+      e.preventDefault();
+      return;
+    }
+    // Edge-trim drag: adjust clip.sourceStart or sourceEnd as the pointer moves.
+    if (trim) {
+      const c = clips.find(c => c.id === trim.id);
+      if (!c) { trim = null; return; }
+      const dxSec = (e.clientX - trim.startX) / currentPPS;
+      if (trim.side === 'left') {
+        let newStart = trim.startSourceStart + dxSec;
+        // Clamp inside the clip's visible buffer window.
+        newStart = Math.max(c.bufferStart, Math.min(c.sourceEnd - MIN_CLIP_SEC, newStart));
+        c.sourceStart = newStart;
+      } else {
+        let newEnd = trim.startSourceEnd + dxSec;
+        newEnd = Math.max(c.sourceStart + MIN_CLIP_SEC, Math.min(c.bufferEnd, newEnd));
+        c.sourceEnd = newEnd;
+      }
+      e.preventDefault();
+      renderTimeline();
+      return;
+    }
+
+    if (!drag) return;
+    const dx = e.clientX - drag.startX;
+    const dy = e.clientY - drag.startY;
+    // Touch path — let the browser pan the scroll container natively.
+    // We just flip `moved` once the finger has gone far enough that the
+    // pointerup should NOT be treated as a tap-to-seek.
+    if (drag.isTouch) {
+      if (Math.abs(dx) > 8 || Math.abs(dy) > 8) drag.moved = true;
+      return;
+    }
+    if (!drag.started) {
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return; // still a tap
+      drag.started = true;
+      const srcEl = timelineTrack.querySelector('.clip[data-id="' + drag.id + '"]');
+      if (srcEl) {
+        srcEl.classList.add('dragging');
+        try { srcEl.setPointerCapture(e.pointerId); } catch (err) {}
+      }
+      drag.indicator = document.createElement('div');
+      drag.indicator.className = 'clip-drop-indicator';
+      timelineTrack.appendChild(drag.indicator);
+    }
+    e.preventDefault();
+    const rect = timelineTrack.getBoundingClientRect();
+    const localX = e.clientX - rect.left;
+    let acc = 0;
+    let dropIndex = clips.length;
+    for (let i = 0; i < clips.length; i++) {
+      const w = clipWidthPx(clips[i]);
+      const center = acc + w / 2;
+      if (localX < center) { dropIndex = i; break; }
+      acc += w + 4;
+    }
+    drag.dropIndex = dropIndex;
+    const clipEls = timelineTrack.querySelectorAll('.clip');
+    const ind = drag.indicator;
+    if (dropIndex >= clipEls.length) {
+      timelineTrack.appendChild(ind);
+    } else {
+      timelineTrack.insertBefore(ind, clipEls[dropIndex]);
+    }
+  }
+
+  function clipPointerUp(e) {
+    if (playheadDrag) {
+      const wasPlaying = playheadDrag.wasPlaying;
+      playheadDrag = null;
+      if (wasPlaying) {
+        // Re-arm playback at the new position so the user can resume
+        // from wherever they dropped the playhead. Stop the (already
+        // dead) scheduled sources defensively first.
+        for (const s of scheduledSources) { try { s.stop(); } catch (_) {} }
+        scheduledSources = [];
+        if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+        playing = false;
+        startPlayback();
+      } else {
+        updatePlayheadVisual();
+        updateTransportTime();
+      }
+      return;
+    }
+    if (trim) {
+      const _t = trim;
+      trim = null;
+      // After trim, the playhead may now sit past the end of the new total —
+      // clamp it.
+      playheadSec = Math.max(0, Math.min(totalTimelineDuration(), playheadSec));
+      renderTimeline();
+      _edAfterTrim(_t);   // let them hear where the cut landed
+      return;
+    }
+    if (!drag) return;
+    // Touch-tap-or-pan release: if the finger barely moved, treat it as
+    // a tap and seek to the pointer position. If it did move, the browser
+    // already panned the timeline and we leave the playhead where it was.
+    // The seek preserves the play/pause state — if audio was playing, it
+    // jumps to the new position and keeps playing; if paused, it stays paused.
+    if (drag.isTouch) {
+      if (!drag.moved) {
+        if (drag.id != null) selectedId = drag.id;
+        seekKeepingPlay(pxToTimelineSecFromClient(e.clientX));
+        renderTimeline();
+      }
+      drag = null;
+      return;
+    }
+    if (drag.started) {
+      const fromIdx = clips.findIndex(c => c.id === drag.id);
+      let toIdx = drag.dropIndex;
+      if (toIdx > fromIdx) toIdx -= 1;
+      if (fromIdx !== -1 && toIdx !== fromIdx && toIdx >= 0 && toIdx <= clips.length - 1) {
+        // Only snapshot if a real move is happening.
+        snapshot();
+        const [moved] = clips.splice(fromIdx, 1);
+        clips.splice(toIdx, 0, moved);
+      }
+      if (drag.indicator && drag.indicator.parentNode) drag.indicator.parentNode.removeChild(drag.indicator);
+      renderTimeline();
+    }
+    drag = null;
+  }
+
+  timelineTrack.addEventListener('pointerdown', clipPointerDown);
+  window.addEventListener('pointermove', clipPointerMove);
+  window.addEventListener('pointerup', clipPointerUp);
+  window.addEventListener('pointercancel', clipPointerUp);
+
+  // Space handling — bullet-proof against re-opening the file picker.
+  //
+  // Why this is more than a single keydown handler: when a button or a
+  // <input type="file"> has focus, the browser turns Space into a "click"
+  // on KEYUP (not keydown). So preventDefault on keydown alone is not
+  // enough to stop the activation — we need capture-phase preventDefault
+  // on BOTH keydown and keyup, before the element's own activation kicks in.
+  function spaceTargetIsTextField(target) {
+    var tag = target && target.tagName;
+    if (tag === 'TEXTAREA') return true;
+    if (tag === 'INPUT') {
+      var t = target.type;
+      return t !== 'file' && t !== 'range' && t !== 'checkbox' && t !== 'radio' && t !== 'button' && t !== 'submit' && t !== 'reset';
+    }
+    return false;
+  }
+  window.addEventListener('keydown', (e) => {
+    if (e.key !== ' ' && e.code !== 'Space') return;
+    if (spaceTargetIsTextField(e.target) || (e.target && e.target.tagName === 'SELECT')) return;
+    e.preventDefault();
+    e.stopPropagation();
+    // Move focus off any button/file-input so subsequent Space taps don't
+    // re-activate them either.
+    try {
+      var sink = document.getElementById('focus-sink');
+      if (sink) sink.focus({ preventScroll: true });
+      else if (e.target && e.target.blur) e.target.blur();
+    } catch (_) {}
+    if (clips.length === 0) return;
+    if (playing) stopPlayback();
+    else startPlayback();
+  }, true);
+  // Keyup capture — the actual button "click" default fires on keyup, so
+  // this is the one that actually cancels the picker re-open.
+  window.addEventListener('keyup', (e) => {
+    if (e.key !== ' ' && e.code !== 'Space') return;
+    if (spaceTargetIsTextField(e.target) || (e.target && e.target.tagName === 'SELECT')) return;
+    e.preventDefault();
+    e.stopPropagation();
+  }, true);
+
+  // Other keyboard shortcuts. Skip when focus is in a form control so typing
+  // in the crossfade slider or format dropdown isn't hijacked.
+  document.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.code === 'Space') return; // handled above in capture phase
+    const tag = e.target.tagName;
+    if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+    // Cmd/Ctrl + Z — undo. Cmd/Ctrl + Shift + Z OR Cmd/Ctrl + Y — redo.
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z')) {
+      e.preventDefault();
+      if (e.shiftKey) redo(); else undo();
+      return;
+    }
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || e.key === 'Y')) {
+      e.preventDefault();
+      redo();
+      return;
+    }
+    // C — split (cut) the clip under the playhead in two
+    if (!e.ctrlKey && !e.metaKey && (e.key === 'c' || e.key === 'C')) {
+      if (clips.length > 0 && clipAtTimelineSec(playheadSec)) {
+        e.preventDefault();
+        btnSplit.click();
+      }
+      return;
+    }
+    // Arrow keys — nudge playhead. Shift = bigger step.
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      if (clips.length === 0) return;
+      e.preventDefault();
+      const step = e.shiftKey ? 1.0 : 0.1; // seconds
+      const dir = e.key === 'ArrowLeft' ? -1 : 1;
+      const wasPlaying = playing;
+      if (wasPlaying) stopPlayback();
+      playheadSec = Math.max(0, Math.min(totalTimelineDuration(), playheadSec + dir * step));
+      updatePlayheadVisual();
+      updateTransportTime();
+      btnSplit.disabled = clipAtTimelineSec(playheadSec) == null;
+      return;
+    }
+    // Home / End — jump to start / end of timeline
+    if (e.key === 'Home') {
+      if (clips.length === 0) return;
+      e.preventDefault();
+      stopPlayback();
+      playheadSec = 0;
+      updatePlayheadVisual();
+      updateTransportTime();
+      btnSplit.disabled = clipAtTimelineSec(playheadSec) == null;
+      return;
+    }
+    if (e.key === 'End') {
+      if (clips.length === 0) return;
+      e.preventDefault();
+      stopPlayback();
+      playheadSec = totalTimelineDuration();
+      updatePlayheadVisual();
+      updateTransportTime();
+      btnSplit.disabled = false; // end is just past the last clip; harmless
+      return;
+    }
+    // Delete / Backspace — remove the selected clip
+    if (selectedId != null && (e.key === 'Delete' || e.key === 'Backspace')) {
+      e.preventDefault();
+      const idx = clips.findIndex(c => c.id === selectedId);
+      if (idx !== -1) {
+        stopPlayback();
+        snapshot();
+        clips.splice(idx, 1);
+        selectedId = null;
+        renderTimeline();
+      }
+    }
+  });
+
+  // Undo button click → same as Cmd/Ctrl+Z.
+  btnUndo.addEventListener('click', undo);
+  if (btnRedo) btnRedo.addEventListener('click', redo);
+
+  // Zoom slider — 1× fits the container, 6× zooms in for precision work.
+  function setZoom(newZoom) {
+    zoom = Math.max(1, Math.min(6, newZoom));
+    if (zoomSlider) zoomSlider.value = String(zoom);
+    if (zoomValueEl) zoomValueEl.textContent = zoom.toFixed(1).replace(/\.0$/, '') + '×';
+  }
+  if (zoomSlider) {
+    zoomSlider.addEventListener('input', () => {
+      setZoom(parseFloat(zoomSlider.value) || 1);
+      renderTimeline();
+    });
+  }
+
+  // Mobile-only zoom toggle: clicking the magnifying-glass button in the
+  // transport row shows/hides the zoom slider row (it's hidden by default
+  // on mobile because the user can pinch-zoom instead).
+  const btnZoomToggle = document.getElementById('btn-zoom-toggle');
+  if (btnZoomToggle) {
+    btnZoomToggle.addEventListener('click', () => {
+      const on = document.body.classList.toggle('snip-show-zoom');
+      btnZoomToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  // Pinch-to-zoom on the timeline. Two fingers spread/pinch apart over
+  // the waveform scale the zoom multiplier the same way the slider does.
+  // We track active pointers in a Map; once we see two simultaneously we
+  // intercept the move events to keep the page from doing native
+  // pinch-zoom on top of our app-level zoom.
+  const pinchPointers = new Map();
+  let pinchState = null;
+  function pinchDistance() {
+    const pts = Array.from(pinchPointers.values());
+    if (pts.length < 2) return 0;
+    const dx = pts[0].x - pts[1].x;
+    const dy = pts[0].y - pts[1].y;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+  timelineContainer.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'touch') return;
+    pinchPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pinchPointers.size === 2 && !pinchState) {
+      pinchState = { startDist: pinchDistance(), startZoom: zoom };
+    }
+  });
+  timelineContainer.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'touch') return;
+    const p = pinchPointers.get(e.pointerId);
+    if (!p) return;
+    p.x = e.clientX; p.y = e.clientY;
+    if (pinchPointers.size === 2 && pinchState && pinchState.startDist > 10) {
+      e.preventDefault();
+      const dist = pinchDistance();
+      const scale = dist / pinchState.startDist;
+      setZoom(pinchState.startZoom * scale);
+      renderTimeline();
+    }
+  }, { passive: false });
+  function pinchEnd(e) {
+    if (e.pointerType !== 'touch') return;
+    pinchPointers.delete(e.pointerId);
+    if (pinchPointers.size < 2) pinchState = null;
+  }
+  timelineContainer.addEventListener('pointerup', pinchEnd);
+  timelineContainer.addEventListener('pointercancel', pinchEnd);
+
+  // Mouse-wheel zoom on the timeline (desktop). Anchors the zoom to the
+  // pixel under the cursor so the spot the user is focused on stays put
+  // when zooming in — image-viewer / DAW convention. Horizontal trackpad
+  // gestures (deltaX dominant) pass through so two-finger scroll still
+  // pans the timeline naturally.
+  timelineContainer.addEventListener('wheel', (e) => {
+    if (clips.length === 0) return;
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // horizontal swipe → let browser scroll
+    e.preventDefault();
+    // Capture the timeline-second under the cursor BEFORE zoom changes.
+    const rect = timelineContainer.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const trackPxBefore = mouseX + timelineContainer.scrollLeft;
+    const secAtMouse = pxToTimelineSec(trackPxBefore);
+
+    // Multiplicative step feels more natural than additive across the
+    // 1×–6× range — same proportional change whether you're at 1.2× or 5×.
+    const factor = e.deltaY < 0 ? 1.15 : (1 / 1.15);
+    setZoom(zoom * factor);
+    renderTimeline();
+
+    // Restore the cursor anchor: after re-rendering at the new zoom, find
+    // where secAtMouse lives now and shift scrollLeft so it lines up with
+    // the same mouse position.
+    const trackPxAfter = timelineSecToPx(secAtMouse);
+    timelineContainer.scrollLeft = Math.max(0, trackPxAfter - mouseX);
+  }, { passive: false });
+
+  // Recompute fit when the viewport changes (window resize, mobile rotate,
+  // sidebar toggle). Throttled with rAF so we don't thrash.
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) return;
+    resizeRaf = requestAnimationFrame(() => {
+      resizeRaf = 0;
+      if (clips.length > 0) renderTimeline();
+    });
+  });
+
+  btnClear.addEventListener('click', () => {
+    stopPlayback();
+    if (clips.length) snapshot();
+    _bumpLoadGen(); // cancel any in-flight decode from a prior load
+    clips = [];
+    selectedId = null;
+    playheadSec = 0;
+    renderTimeline();
+    statusText.textContent = '';
+  });
+
+  // Crossfade slider live readout
+  crossfadeSlider.addEventListener('input', () => {
+    crossfadeValue.textContent = parseFloat(crossfadeSlider.value).toFixed(1) + ' s';
+  });
+
+  // ── Playback ─────────────────────────────────────────────────────────
+  // Schedule each clip's TRIMMED range as a BufferSource starting at the
+  // appropriate offset in the AudioContext's clock. A rAF loop updates the
+  // visual playhead. Pause stops + remembers the timeline position; Stop
+  // resets the playhead to 0.
+  function stopPlayback() {
+    const wasPlaying = playing;
+    for (const s of scheduledSources) {
+      try { s.stop(); } catch (e) {}
+    }
+    scheduledSources = [];
+    playing = false;
+    if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+    btnPlay.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+    if (wasPlaying && statusText.textContent.indexOf('Playing') === 0) statusText.textContent = '';
+  }
+
+  async function startPlayback(stopAt) {
+    if (clips.length === 0) return;
+    const acx = getAudioContext();
+    // CRITICAL: many browsers (Chrome/Safari/Firefox especially on mobile)
+    // create the AudioContext in 'suspended' state until a user gesture
+    // explicitly resumes it. We await it here so the scheduled sources
+    // line up against a running clock, not a paused one — without this
+    // src.start() queues against a frozen currentTime and the user gets
+    // silence.
+    if (acx.state !== 'running') {
+      try { await acx.resume(); } catch (err) { console.warn('AudioContext resume failed', err); }
+    }
+    stopPlayback();
+    _edStopAt = stopAt > 0 ? stopAt : 0;   // every other caller plays on to the end, as before
+    const total = totalTimelineDuration();
+    if (playheadSec >= total) playheadSec = 0;
+
+    playStartCtxTime = acx.currentTime + 0.05;
+    playStartTimelineSec = playheadSec;
+
+    let scheduled = 0;
+    let acc = 0;
+    for (const c of clips) {
+      const fullDur = clipDisplayDuration(c);          // full visible window
+      const keptDur = clipKeptDuration(c);             // audible portion
+      // Where the kept (audible) region sits on the timeline. Trimmed
+      // regions become silent gaps inside [acc..acc+fullDur].
+      const audioStart = acc + (c.sourceStart - c.bufferStart);
+      const audioEnd = acc + (c.sourceEnd - c.bufferStart);
+      if (audioEnd > playStartTimelineSec && keptDur > 0) {
+        const lateBy = Math.max(0, playStartTimelineSec - audioStart);
+        const bufOffset = c.sourceStart + lateBy;
+        const remaining = keptDur - lateBy;
+        const when = playStartCtxTime + Math.max(0, audioStart - playStartTimelineSec);
+        try {
+          const src = acx.createBufferSource();
+          src.buffer = c.buffer;
+          src.connect(acx.destination);
+          src.start(when, bufOffset, remaining);
+          scheduledSources.push(src);
+          scheduled++;
+        } catch (err) {
+          console.error('Failed to schedule clip', c.file.name, err);
+        }
+      }
+      acc += fullDur;
+    }
+
+    if (scheduled === 0) {
+      statusText.textContent = 'Nothing to play at this position.';
+      return;
+    }
+
+    playing = true;
+    btnPlay.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="0.5"/><rect x="14" y="5" width="4" height="14" rx="0.5"/></svg>';
+    statusText.textContent = 'Playing… (space bar to pause)';
+
+    function tick() {
+      if (!playing) return;
+      const elapsed = acx.currentTime - playStartCtxTime;
+      playheadSec = playStartTimelineSec + Math.max(0, elapsed);
+      if (_edStopAt && playheadSec >= _edStopAt) {
+        playheadSec = _edStopAt; _edStopAt = 0;
+        stopPlayback(); updatePlayheadVisual(); updateTransportTime();
+        return;
+      }
+      const total = totalTimelineDuration();
+      if (playheadSec >= total) {
+        playheadSec = total;
+        stopPlayback();
+        updatePlayheadVisual();
+        updateTransportTime();
+        return;
+      }
+      updatePlayheadVisual();
+      updateTransportTime();
+      btnSplit.disabled = clipAtTimelineSec(playheadSec) == null;
+      rafId = requestAnimationFrame(tick);
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  btnPlay.addEventListener('click', () => {
+    if (playing) stopPlayback();
+    else startPlayback();
+  });
+
+  // ── SAME QUALITY AS THE ORIGINAL (Marc 2026-10-19: "didn't we realize there was a way to offer the same file type
+  // to make the process faster without needing to do all this re-encoding stuff? Should we default to the same file
+  // type"). When the export is ONE continuous piece of ONE file (one clip, unsplit), the original file is cut by
+  // reference - the big-file route (snipBigFile.trim -> snipEncoder.trimAudio): no re-encode, so nothing is lost, its
+  // tags and cover are kept and it stays its own size. It is the default whenever it applies, unless the person picked
+  // a format themselves. Split or add a file and the export has to be rebuilt from the decoded audio, so the option
+  // steps aside (back to MP3 320 if it was selected) and comes back when it applies again.
+  var _sameFmtTouched = false;
+  var SAME_FOR_EXT = { mp3: 'mp3-original', wav: 'wav', flac: 'flac', ogg: 'ogg', m4a: 'm4a' };
+  function _sameApplies() {
+    if (clips.length !== 1 || !window.snipBigFile || !window.snipBigFile.canStream || !window.snipBigFile.canStream()) return null;
+    const ext = ((clips[0].file && clips[0].file.name) || '').split('.').pop().toLowerCase();
+    return SAME_FOR_EXT[ext] ? ext : null;
+  }
+  function _syncSameOption() {
+    if (!outputFormatSel || !outputFormatSel.options.length) return;
+    let opt = outputFormatSel.querySelector('option[value="same"]');
+    const ext = _sameApplies();
+    if (ext) {
+      const label = ext.toUpperCase() + ' · Same quality as the original';
+      if (!opt) { opt = document.createElement('option'); opt.value = 'same'; outputFormatSel.insertBefore(opt, outputFormatSel.firstChild); }
+      opt.textContent = label;
+      if (!_sameFmtTouched) outputFormatSel.value = 'same';
+    } else if (opt) {
+      const was = outputFormatSel.value === 'same';
+      opt.remove();
+      if (was) outputFormatSel.value = 'mp3-320';
+    }
+  }
+  if (outputFormatSel) outputFormatSel.addEventListener('change', function (e) { if (e.isTrusted) _sameFmtTouched = true; });
+
+  // ── LISTENING HELPERS (Marc 2026-10-17, after the big-file player: "Should we apply these to the files that
+  // aren't long too to help people find the right spot to trim their files"). The waveform shows where to cut;
+  // these let you HEAR it: letting go of a trim edge plays from the new start, or the last 3 s up to the new end;
+  // "Back to start" / "Hear the ending" on demand; typed times with nudges for when a drag is not precise enough.
+  // Times are in the FILE's own seconds (what a person reads off a player), for the selected clip - or the clip
+  // under the playhead, or the first one. var, not let: renderTimeline() can run before this block executes.
+  var ED_END_PREVIEW_SEC = 3, _edStopAt = 0;
+  function _edE(id) { return document.getElementById(id); }
+  function _edClip() {
+    let c = selectedId != null ? clips.find(function (x) { return x.id === selectedId; }) : null;
+    if (!c) { const at = clipAtTimelineSec(playheadSec); if (at) c = clips[at.index]; }
+    return c || clips[0] || null;
+  }
+  function _edOffset(c) { let acc = 0; for (const x of clips) { if (x === c) return acc; acc += clipDisplayDuration(x); } return 0; }
+  // The kept part of clip c, in timeline seconds.
+  function _edKept(c) { const o = _edOffset(c); return { start: o + (c.sourceStart - c.bufferStart), end: o + (c.sourceEnd - c.bufferStart) }; }
+  // The playhead jumps on screen at once; the audio follows as soon as the AudioContext is running.
+  function _edPlayFrom(sec, stopAt) { playheadSec = sec; updatePlayheadVisual(); updateTransportTime(); startPlayback(stopAt); }
+  function _edFromStart(c) { const k = _edKept(c); _edPlayFrom(k.start, k.end); }
+  function _edHearEnd(c) { const k = _edKept(c); _edPlayFrom(Math.max(k.start, k.end - ED_END_PREVIEW_SEC), k.end); }
+  // How it STARTS: the first 3 s from the start (the back button plays the whole kept part).
+  function _edHearStart(c) { const k = _edKept(c); _edPlayFrom(k.start, Math.min(k.end, k.start + ED_END_PREVIEW_SEC)); }
+  function _edSync() {
+    try { _syncSameOption(); } catch (e) {}
+    const box = _edE('ed-edges'); if (!box) return;
+    const c = _edClip();
+    box.hidden = !c;
+    const back = _edE('ed-back'); if (back) back.disabled = !c;
+    if (!c) return;
+    const a = _edE('ed-start'), b = _edE('ed-end');
+    // Hold a box only while the person is TYPING in it - not merely because it has focus: a trim-edge drag does not
+    // take focus away (its pointerdown is preventDefault-ed), and a focused box that ignored the drag showed a stale
+    // start (Marc's preview, 10-19).
+    if (a.dataset.typing !== '1') { a.value = _btFmt(c.sourceStart); a.setAttribute('aria-invalid', 'false'); }
+    if (b.dataset.typing !== '1') { b.value = _btFmt(c.sourceEnd); b.setAttribute('aria-invalid', 'false'); }
+    _edE('ed-clip').textContent = clips.length > 1 ? c.file.name : '';
+  }
+  // Move an edge of the target clip to `val` (the file's seconds), clamped the way a drag is; then let them hear it.
+  function _edSet(edge, val) {
+    const c = _edClip(); if (!c || !isFinite(val)) return false;
+    snapshot();
+    if (edge === 'start') c.sourceStart = Math.max(c.bufferStart, Math.min(c.sourceEnd - MIN_CLIP_SEC, val));
+    else c.sourceEnd = Math.max(c.sourceStart + MIN_CLIP_SEC, Math.min(c.bufferEnd, val));
+    selectedId = c.id;
+    renderTimeline();
+    if (edge === 'start') _edFromStart(c); else _edHearEnd(c);
+    return true;
+  }
+  // A trim drag just ended: if the edge moved, play the result.
+  function _edAfterTrim(t) {
+    const c = clips.find(function (x) { return x.id === t.id; }); if (!c) return;
+    const moved = t.side === 'left' ? Math.abs(c.sourceStart - t.startSourceStart) > 0.005 : Math.abs(c.sourceEnd - t.startSourceEnd) > 0.005;
+    if (!moved) return;
+    selectedId = c.id; _edSync();
+    if (t.side === 'left') _edFromStart(c); else _edHearEnd(c);
+  }
+  ['start', 'end'].forEach(function (edge) {
+    const inp = _edE('ed-' + edge);
+    inp.addEventListener('input', function () { inp.dataset.typing = '1'; });
+    inp.addEventListener('blur', function () { delete inp.dataset.typing; });
+    inp.addEventListener('change', function () {
+      delete inp.dataset.typing;
+      const v = _btParse(inp.value);
+      if (!isFinite(v)) { inp.setAttribute('aria-invalid', 'true'); return; }
+      inp.blur(); _edSet(edge, v);
+    });
+    inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') inp.dispatchEvent(new Event('change')); });
+    document.querySelector('.ed-nudge[data-edge="' + edge + '"]').addEventListener('click', function (e) {
+      const btn = e.target.closest('button[data-d]'); const c = _edClip(); if (!btn || !c) return;
+      _edSet(edge, (edge === 'start' ? c.sourceStart : c.sourceEnd) + parseFloat(btn.getAttribute('data-d')));
+    });
+    _edE('ed-set-' + edge).addEventListener('click', function () {
+      const c = _edClip(); if (!c) return;
+      _edSet(edge, c.bufferStart + (playheadSec - _edOffset(c)));
+    });
+  });
+  _edE('ed-back').addEventListener('click', function () { const c = _edClip(); if (c) _edFromStart(c); });
+  _edE('ed-hear-end').addEventListener('click', function () { const c = _edClip(); if (c) _edHearEnd(c); });
+  _edE('ed-hear-start').addEventListener('click', function () { const c = _edClip(); if (c) _edHearStart(c); });
+
+  // ── Split ─────────────────────────────────────────────────────────────
+  // Splits the clip containing the playhead at that exact position. The
+  // original clip and the new clip share the same AudioBuffer; only their
+  // sourceStart / sourceEnd differ.
+  btnSplit.addEventListener('click', () => {
+    const hit = clipAtTimelineSec(playheadSec);
+    if (!hit) return;
+    const idx = hit.index;
+    const c = clips[idx];
+    // hit.offsetSec is measured from the clip's left edge in FULL-duration
+    // seconds, so the split point in buffer-coordinates is bufferStart + offset.
+    const splitInBuffer = c.bufferStart + hit.offsetSec;
+    // Each half needs MIN_CLIP_SEC of visible (buffer) range to remain
+    // grabbable. We split the visible range regardless of where the kept
+    // region is — the halves keep whatever overlap they have with [sourceStart, sourceEnd].
+    if (splitInBuffer - c.bufferStart < MIN_CLIP_SEC || c.bufferEnd - splitInBuffer < MIN_CLIP_SEC) return;
+    stopPlayback();
+    snapshot();
+    const right = {
+      id: nextId++, file: c.file, buffer: c.buffer,
+      bufferStart: splitInBuffer, bufferEnd: c.bufferEnd,
+      sourceStart: Math.max(splitInBuffer, c.sourceStart),
+      sourceEnd: c.sourceEnd,
+      peaks: [],
+    };
+    c.bufferEnd = splitInBuffer;
+    c.sourceEnd = Math.min(splitInBuffer, c.sourceEnd);
+    // If the split fell inside an already-trimmed region, snap the kept
+    // range to be at least a zero-length point inside the new buffer window.
+    if (right.sourceStart > right.sourceEnd) right.sourceStart = right.sourceEnd;
+    if (c.sourceStart > c.sourceEnd) c.sourceStart = c.sourceEnd;
+    clips.splice(idx + 1, 0, right);
+    selectedId = right.id;
+    renderTimeline();
+  });
+
+  // ── Merging logic ────────────────────────────────────────────────────
+  // Concatenate clip RANGES (respecting sourceStart/sourceEnd from trims and
+  // splits), optionally with crossfade. All source buffers share the
+  // AudioContext's sample rate (44.1 kHz) because we pinned the context's
+  // rate when decoding. Channel counts can differ — we promote each to the
+  // maximum channel count, duplicating the mono channel as needed.
+  function concatClips(clips, crossfadeSec) {
+    const sr = clips[0].buffer.sampleRate;
+    const channels = Math.max.apply(null, clips.map(c => c.buffer.numberOfChannels));
+    const xfFrames = Math.max(0, Math.floor((crossfadeSec || 0) * sr));
+
+    // Per-clip range in frames within its source buffer.
+    const ranges = clips.map(c => {
+      const s = Math.max(0, Math.floor(c.sourceStart * sr));
+      const e = Math.min(c.buffer.length, Math.floor(c.sourceEnd * sr));
+      return { start: s, len: Math.max(0, e - s) };
+    });
+
+    // Total output length = sum(lengths) - overlap*(n-1).
+    let totalFrames = 0;
+    for (let i = 0; i < ranges.length; i++) {
+      totalFrames += ranges[i].len;
+      if (i > 0) totalFrames -= Math.min(xfFrames, ranges[i - 1].len, ranges[i].len);
+    }
+    if (totalFrames <= 0) throw new Error('Nothing to export — every clip is empty after trimming.');
+
+    const acx = getAudioContext();
+    const out = acx.createBuffer(channels, totalFrames, sr);
+
+    // Cache the output channel arrays once. Indexing getChannelData() per
+    // sample (as the old code did) meant millions of calls for a multi-minute
+    // clip, which blocked the main thread for seconds ("Page Unresponsive").
+    const outChans = [];
+    for (let ch = 0; ch < channels; ch++) outChans.push(out.getChannelData(ch));
+
+    let writeFrame = 0;
+    for (let i = 0; i < clips.length; i++) {
+      const b = clips[i].buffer;
+      const range = ranges[i];
+      const overlapWithPrev = i > 0 ? Math.min(xfFrames, ranges[i - 1].len, range.len) : 0;
+      const inClipStart = overlapWithPrev; // skip past the overlap when copying the body
+
+      // Grab each source channel array once (hoisted out of the sample loops).
+      const inChans = [];
+      for (let ch = 0; ch < channels; ch++) {
+        inChans.push(b.getChannelData(Math.min(ch, b.numberOfChannels - 1)));
+      }
+
+      if (overlapWithPrev > 0) {
+        // Equal-power-ish linear crossfade over the (small) overlap window.
+        for (let ch = 0; ch < channels; ch++) {
+          const outData = outChans[ch];
+          const inData = inChans[ch];
+          const base = writeFrame - overlapWithPrev;
+          for (let n = 0; n < overlapWithPrev; n++) {
+            const t = (n + 1) / overlapWithPrev;
+            const tail = outData[base + n];
+            const head = inData[range.start + n];
+            outData[base + n] = tail * (1 - t) + head * t;
+          }
+        }
+      }
+
+      // Body copy: a single typed-array set() per channel — a fast memcpy
+      // instead of a per-sample JS loop.
+      const bodyLen = range.len - inClipStart;
+      if (bodyLen > 0) {
+        const srcStart = range.start + inClipStart;
+        for (let ch = 0; ch < channels; ch++) {
+          outChans[ch].set(inChans[ch].subarray(srcStart, srcStart + bodyLen), writeFrame);
+        }
+      }
+      writeFrame += bodyLen;
+    }
+
+    return out;
+  }
+
+  // ── Crossfade explainer + previewable samples ───────────────────────
+  // Toggle the panel on the "What's crossfade?" link, and let the user
+  // play the same two short segments stitched at 0s / 0.5s / 1.5s / 3s
+  // so they can hear what each crossfade duration actually does.
+  const crossfadeHelpLink = document.getElementById('crossfade-help-link');
+  const crossfadeExplainer = document.getElementById('crossfade-explainer');
+  const cfsHint = document.getElementById('cfs-hint');
+  let cfsBuffer = null;        // cached demo AudioBuffer
+  let cfsLoading = false;
+  let cfsCurrentSource = null; // currently-playing BufferSource
+  let cfsCurrentBtn = null;    // currently-playing button (for visual state)
+
+  if (crossfadeHelpLink && crossfadeExplainer) {
+    crossfadeHelpLink.addEventListener('click', () => {
+      const willShow = crossfadeExplainer.hasAttribute('hidden');
+      if (willShow) crossfadeExplainer.removeAttribute('hidden');
+      else crossfadeExplainer.setAttribute('hidden', '');
+      crossfadeHelpLink.setAttribute('aria-expanded', willShow ? 'true' : 'false');
+    });
+  }
+
+  function stopCfsPlayback() {
+    if (cfsCurrentSource) {
+      try { cfsCurrentSource.stop(); } catch (_) {}
+      cfsCurrentSource = null;
+    }
+    if (cfsCurrentBtn) { cfsCurrentBtn.classList.remove('playing'); cfsCurrentBtn = null; }
+  }
+
+  async function loadCfsBuffer() {
+    if (cfsBuffer) return cfsBuffer;
+    // Prefer the user's current clip — playing their own audio with
+    // crossfade demos is more instantly meaningful. Fall back to the demo.
+    if (clips.length > 0 && clips[0].buffer) return clips[0].buffer;
+    if (!window.snipDemo || !window.snipDemo.fetchAudioFile) {
+      throw new Error('Demo loader unavailable');
+    }
+    cfsLoading = true;
+    try {
+      const file = await window.snipDemo.fetchAudioFile();
+      const arrayBuf = await file.arrayBuffer();
+      const acx = getAudioContext();
+      cfsBuffer = await acx.decodeAudioData(arrayBuf.slice(0));
+      return cfsBuffer;
+    } finally { cfsLoading = false; }
+  }
+
+  async function playCrossfadeSample(crossfadeSec, btn) {
+    stopCfsPlayback();
+    if (cfsHint) cfsHint.textContent = (clips.length > 0 ? 'Using your audio' : 'Using the demo Handel track') + ' — loading…';
+    try {
+      btn.disabled = true;
+      const buf = await loadCfsBuffer();
+      btn.disabled = false;
+      const dur = buf.duration;
+      // Two segments, ~3 s each, taken from contrasting parts of the
+      // buffer (start and end) so the transition is audibly distinct.
+      const segLen = Math.min(3, dur / 2 - 0.2);
+      if (segLen < 0.4) {
+        if (cfsHint) cfsHint.textContent = 'Audio is too short to demo a crossfade.';
+        return;
+      }
+      const fakeClips = [
+        { buffer: buf, bufferStart: 0, bufferEnd: segLen, sourceStart: 0, sourceEnd: segLen },
+        { buffer: buf, bufferStart: dur - segLen, bufferEnd: dur, sourceStart: dur - segLen, sourceEnd: dur }
+      ];
+      const combined = concatClips(fakeClips, crossfadeSec);
+      const acx = getAudioContext();
+      if (acx.state !== 'running') try { await acx.resume(); } catch (_) {}
+      const src = acx.createBufferSource();
+      src.buffer = combined;
+      src.connect(acx.destination);
+      cfsCurrentSource = src;
+      cfsCurrentBtn = btn;
+      btn.classList.add('playing');
+      const startedAt = src;
+      src.onended = function () {
+        if (cfsCurrentSource === startedAt) cfsCurrentSource = null;
+        if (cfsCurrentBtn === btn) { cfsCurrentBtn.classList.remove('playing'); cfsCurrentBtn = null; }
+      };
+      src.start(0);
+      if (cfsHint) cfsHint.textContent = (clips.length > 0 ? 'Your audio' : 'Demo (Handel Sarabande)') + ' · ' + crossfadeSec + 's crossfade.';
+    } catch (err) {
+      console.error('Crossfade sample failed', err);
+      if (cfsHint) cfsHint.textContent = 'Could not load preview audio. Try uploading a file first.';
+      btn.disabled = false;
+    }
+  }
+
+  document.querySelectorAll('.crossfade-samples .cfs-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cf = parseFloat(btn.dataset.cf) || 0;
+      playCrossfadeSample(cf, btn);
+    });
+  });
+
+  // Output format dropdown (delegated to snipEncoder)
+  function initFormatSelect() {
+    if (!window.snipEncoder) return setTimeout(initFormatSelect, 50);
+    window.snipEncoder.fillFormatSelect(outputFormatSel, 'mp3-320');
+    try { _syncSameOption(); } catch (e) {}
+  }
+  initFormatSelect();
+
+  // ── Export-completion UX ────────────────────────────────────────────
+  // If the user is still looking at the page when encode finishes we
+  // trigger the download immediately. If they walked away (tab hidden),
+  // we DON'T pop the Save dialog under them — it appears on whichever
+  // tab they're on now and feels jumpy. Instead we hold the blob, flash
+  // the tab title so the alert is visible in the tab bar, and show a
+  // banner the moment they come back so they can decide when to save.
+  const _origTitle = document.title;
+  function _setTitle(t) { try { document.title = t; } catch (_) {} }
+
+  function _triggerDownload(blob, fname) {
+    // Shared iOS-aware save (posthog R-468a9e): iOS Share sheet on iOS Safari, a.download on desktop.
+    if (window.snipSave) { window.snipSave(blob, fname, { tool: 'audio-trimmer' }); return; }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = fname;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => { try { URL.revokeObjectURL(url); } catch (_) {} }, 5000);
+  }
+
+  // OS-level notification — appears in the system notification area (bottom-
+  // right on Windows, top-right on macOS) even when the browser tab is
+  // hidden or the window is minimized. Falls back silently when the user
+  // hasn't granted permission so the in-page banner is always the floor.
+  let _pendingNotification = null;
+  let _notifPromptShownThisSession = false;
+  const NOTIF_PROMPT_DECLINED_KEY = 'snipsound:notif-prompt-declined';
+
+  // Pre-prompt: explain why we want the permission BEFORE Brave / Chrome
+  // shows the OS dialog. Skips itself if permission is already granted /
+  // denied, if the user dismissed it earlier (saved in localStorage), or
+  // if we already showed it this session.
+  // Mobile suspends background tabs (the encode pauses, not finishes) and
+  // mostly can't fire web Notifications, so the "switch tabs / notify you"
+  // flow is misleading there — we keep quiet and tell users to stay put.
+  function _isMobileDevice() {
+    try {
+      if (/Android|iPhone|iPod|iPad|Mobile|Silk|Kindle/i.test(navigator.userAgent || '')) return true;
+      return (navigator.maxTouchPoints > 1) && window.matchMedia('(pointer: coarse)').matches;
+    } catch (_) { return false; }
+  }
+  function _maybeShowNotifPrePrompt() {
+    if (_notifPromptShownThisSession) return;
+    if (_isMobileDevice()) return;
+    if (!('Notification' in window)) return;
+    if (Notification.permission !== 'default') return;
+    try { if (localStorage.getItem(NOTIF_PROMPT_DECLINED_KEY) === 'true') return; } catch (_) {}
+    _notifPromptShownThisSession = true;
+
+    const banner = document.createElement('div');
+    banner.id = 'snip-notif-prompt';
+    banner.className = 'snip-notif-prompt';
+    banner.innerHTML =
+      '<span class="snp-emoji">🔔</span>' +
+      '<div class="snp-msg"><strong>Want us to notify you when your file is ready?</strong>' +
+      '<span class="snp-sub">Useful if you want to switch tabs while we work — your browser will pop a notification when the export finishes.</span></div>' +
+      '<button type="button" class="snp-yes">Allow notifications</button>' +
+      '<button type="button" class="snp-no" aria-label="Dismiss">No thanks</button>';
+    document.body.appendChild(banner);
+    requestAnimationFrame(() => banner.classList.add('show'));
+
+    function dismiss() {
+      banner.classList.remove('show');
+      setTimeout(() => { try { banner.parentNode.removeChild(banner); } catch (_) {} }, 300);
+    }
+    banner.querySelector('.snp-yes').addEventListener('click', () => {
+      // Real user click satisfies the gesture requirement for
+      // Notification.requestPermission. The browser's own dialog appears
+      // immediately after this — and the user already knows why.
+      try { Notification.requestPermission(); } catch (_) {}
+      dismiss();
+    });
+    banner.querySelector('.snp-no').addEventListener('click', () => {
+      try { localStorage.setItem(NOTIF_PROMPT_DECLINED_KEY, 'true'); } catch (_) {}
+      dismiss();
+    });
+  }
+  function _showOSNotification(title, body, onClick) {
+    if (!('Notification' in window)) return false;
+    if (Notification.permission !== 'granted') return false;
+    try {
+      if (_pendingNotification) { try { _pendingNotification.close(); } catch (_) {} }
+      const n = new Notification(title, {
+        body: body,
+        icon: '/favicon.png',
+        badge: '/favicon.png',
+        tag: 'snipsound-export',
+        requireInteraction: false,
+      });
+      _pendingNotification = n;
+      n.onclick = function () {
+        try { window.focus(); } catch (_) {}
+        try { n.close(); } catch (_) {}
+        if (typeof onClick === 'function') try { onClick(); } catch (_) {}
+      };
+      return true;
+    } catch (_) { return false; }
+  }
+
+  function _showReadyBanner(blob, fname, sizeBytes) {
+    // Replace any existing banner so a second export doesn't stack.
+    const existing = document.getElementById('snip-ready-banner');
+    if (existing) try { existing.parentNode.removeChild(existing); } catch (_) {}
+
+    const banner = document.createElement('div');
+    banner.id = 'snip-ready-banner';
+    banner.className = 'snip-ready-banner';
+    banner.innerHTML =
+      '<span class="srb-emoji">✅</span>' +
+      '<div class="srb-msg"><strong>Your file is ready!</strong>' +
+      '<span class="srb-sub">' + fname + ' · ' + formatBytes(sizeBytes) + '</span></div>' +
+      '<button type="button" class="srb-btn">Download</button>' +
+      '<button type="button" class="srb-close" aria-label="Dismiss">×</button>';
+    document.body.appendChild(banner);
+    requestAnimationFrame(() => banner.classList.add('show'));
+
+    function dismiss() {
+      banner.classList.remove('show');
+      setTimeout(() => { try { banner.parentNode.removeChild(banner); } catch (_) {} }, 300);
+      _setTitle(_origTitle);
+    }
+    banner.querySelector('.srb-btn').addEventListener('click', () => {
+      _triggerDownload(blob, fname);
+      dismiss();
+    });
+    banner.querySelector('.srb-close').addEventListener('click', dismiss);
+  }
+
+  // Export trimmed audio
+  btnMerge.addEventListener('click', async () => {
+    if (clips.length < 1) return;
+    if (!window.snipEncoder) { alert('Encoder not loaded yet — try again.'); return; }
+
+    // Show our own pre-prompt FIRST explaining what we'll use notifications
+    // for. The browser's OS dialog only fires after the user clicks
+    // "Allow notifications" in our banner — they show up with context
+    // instead of out-of-the-blue.
+    _maybeShowNotifPrePrompt();
+
+    btnMerge.disabled = true;
+    statusText.textContent = clips.length > 1 ? 'Combining clips…' : 'Exporting…';
+    // If the user is still here ~2.5s in, tell them they can switch tabs —
+    // we'll flag them when it's ready. Clears on completion or error.
+    const slowTimer = setTimeout(() => {
+      statusText.innerHTML = _isMobileDevice()
+        ? 'Still working… <strong>keep this tab open</strong> while it finishes.'
+        : 'Still working… <strong>you can switch tabs</strong> — we\'ll flag this tab when the file is ready.';
+    }, 2500);
+    try {
+      stopPlayback();
+      const crossfadeSec = parseFloat(crossfadeSlider.value) || 0;
+      let format = outputFormatSel.value;
+      let copied = null, sameExt = format === 'same' ? _sameApplies() : null;
+      if (sameExt) {
+        // One piece of one file: cut the original by reference. Any failure falls through to the encode below,
+        // in the same container, so the person still gets their file.
+        const c0 = clips[0];
+        try {
+          copied = await window.snipBigFile.trim(c0.file, { startSec: c0.sourceStart, endSec: c0.sourceEnd }, {
+            format: SAME_FOR_EXT[sameExt], durationSec: c0.buffer.duration,
+            onProgress: function (p) { clearTimeout(slowTimer); if (p && typeof p.percent === 'number') statusText.textContent = 'Exporting… ' + Math.round(p.percent) + '%'; },
+          });
+        } catch (e) { console.warn('same-quality copy failed, encoding instead', e); copied = null; }
+      }
+      if (format === 'same') format = sameExt === 'mp3' || !sameExt ? 'mp3-320' : SAME_FOR_EXT[sameExt];
+      const combined = copied ? null : concatClips(clips, crossfadeSec);
+      // Live progress: the encoder reports { phase, percent } as it runs in
+      // the worker. Surface a percentage so the export never looks frozen.
+      const { blob, ext } = copied ? { blob: copied.blob, ext: copied.ext } : await window.snipEncoder.encode(combined, format, {
+        onProgress: (p) => {
+          clearTimeout(slowTimer); // real progress supersedes the generic hint
+          const pct = p && typeof p.percent === 'number'
+            ? Math.max(0, Math.min(100, Math.round(p.percent)))
+            : null;
+          statusText.innerHTML = pct != null
+            ? (_isMobileDevice()
+                ? 'Exporting… ' + pct + '% · <strong>keep this tab open</strong>.'
+                : 'Exporting… ' + pct + '% · <strong>you can switch tabs</strong> — we\'ll flag this tab when it\'s ready.')
+            : 'Exporting…';
+        },
+      });
+      clearTimeout(slowTimer);
+      // Build a sensible filename from the first clip's name.
+      const firstName = (clips[0].file.name || 'trimmed').replace(/\.[^.]+$/, '');
+      const fname = firstName + '_trimmed.' + ext;
+
+      const totalSec = combined ? combined.length / combined.sampleRate : (clips[0].sourceEnd - clips[0].sourceStart);
+      const ready = 'Your file is ready! ' + fname + ' · ' + formatBytes(blob.size);
+      const wasHidden = document.hidden;
+
+      if (wasHidden) {
+        // Hold the download — don't pop a Save dialog under whatever tab
+        // the user is on now. Three notification surfaces, layered:
+        //   1. Browser tab title flashes (visible in the tab bar).
+        //   2. OS-level notification (system tray) if permission was granted.
+        //   3. In-page banner + chime when the user comes back to the tab.
+        _setTitle('✅ Ready! — ' + _origTitle);
+        _showReadyBanner(blob, fname, blob.size);
+        _showOSNotification('Your file is ready', fname + ' · ' + formatBytes(blob.size));
+        statusText.textContent = 'Done — switch back to this tab to download.';
+        const onVis = function () {
+          if (!document.hidden) {
+            document.removeEventListener('visibilitychange', onVis);
+            if (window.snipShowSuccess) window.snipShowSuccess('Your file is ready', { emoji: '✅', sub: fname });
+          }
+        };
+        document.addEventListener('visibilitychange', onVis);
+      } else {
+        _triggerDownload(blob, fname);
+        if (window.snipShowSuccess) window.snipShowSuccess('Exported!', { emoji: '✅', sub: fname });
+        statusText.textContent = 'Done — ' + formatTime(totalSec) + ' / ' + formatBytes(blob.size) + (copied && copied.copied ? ', original quality kept' : '');
+      }
+      setTimeout(() => { if (statusText.textContent.indexOf('switch back') === -1) statusText.textContent = ''; }, 8000);
+    } catch (err) {
+      clearTimeout(slowTimer);
+      console.error('Export failed', err);
+      statusText.textContent = 'Failed: ' + (err && err.message ? err.message : 'unknown error');
+    } finally {
+      btnMerge.disabled = clips.length < 1;
+    }
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Demo button — uses the shared demo audio.
+  if (window.snipDemo && window.snipDemo.renderButton) {
+    window.snipDemo.renderButton({
+      target: '#snip-demo-row',
+      label: 'Try with demo audio (Handel – Sarabande)',
+      onClick: (file) => addFiles([file]),
+    });
+  }
+
+  // Pick up audio shared from another tool / the snip editor. If the
+  // event detail asks for a replace (Switch audio / Try demo from the
+  // loaded-file bar above the editor), wipe the current clips first so
+  // the new file lands in a clean tool instead of joining the queue.
+  document.addEventListener('snipsound:use-shared-file', (e) => {
+    const file = e.detail && e.detail.file;
+    if (!file) return;
+    if (e.detail && e.detail.replace && clips.length > 0) {
+      stopPlayback();
+      snapshot();
+      _bumpLoadGen();
+      clips = [];
+      selectedId = null;
+      playheadSec = 0;
+    } else if (e.detail && e.detail.replace) {
+      // No clips to clear, but bump anyway so any decode-in-flight from a
+      // previous auto-load doesn't graft itself onto this fresh file.
+      _bumpLoadGen();
+    }
+    addFiles([file]);
+  });
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51931891b6e5ec6',t:'MTc5MzE4MjY3NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

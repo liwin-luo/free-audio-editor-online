@@ -1,0 +1,197 @@
+[
+ {
+  "query": "wav to mp3",
+  "pos": 1,
+  "url": "https://cloudconvert.com/wav-to-mp3",
+  "code": "200",
+  "title": "WAV to MP3 | CloudConvert",
+  "h1": "WAV to MP3 Converter",
+  "h2": [
+   "Select your file to convert"
+  ],
+  "words": 169,
+  "schema": [],
+  "upload": false
+ },
+ {
+  "query": "wav to mp3",
+  "pos": 2,
+  "url": "https://www.freeconvert.com/wav-to-mp3",
+  "code": "200",
+  "title": "WAV to MP3 Converter - FreeConvert.com",
+  "h1": "WAV to MP3 Converter",
+  "h2": [
+   "How to Convert WAV to MP3?",
+   "Easy to Use",
+   "Best Quality",
+   "Free & Secure",
+   "What is a WAV (Waveform Audio) file?",
+   "How to open a WAV file?",
+   "What is an MP3 (MPEG-1 Audio Layer III or MPEG-2 Audio Layer III) file",
+   "How to open an MP3 file?",
+   "Convert other files to  MP3 format",
+   "Convert Your  WAV files to other formats"
+  ],
+  "words": 1613,
+  "schema": [
+   "BreadcrumbList",
+   "ListItem",
+   "Organization",
+   "WebApplication",
+   "WebSite"
+  ],
+  "upload": true
+ },
+ {
+  "query": "wav to mp3",
+  "pos": 3,
+  "url": "https://soundandgo.com/en/wav-to-mp3/",
+  "code": "200",
+  "title": "WAV to MP3 Converter - convert wav to MP3 for free - Ad free",
+  "h1": "WAV to MP3 Converter online and for free",
+  "h2": [
+   "Convert your MP3 to WAV for free. How it works:",
+   "Which bitrate should you use?",
+   "Why you should use our web app for your conversion",
+   "Technical details about WAV to MP3 conversion",
+   "Why convert WAV to MP3?",
+   "Need to convert other formats?",
+   "Frequently asked questions about WAV to MP3 conversion",
+   "Newsletter Anmeldung"
+  ],
+  "words": 1521,
+  "schema": [
+   "Answer",
+   "BlogPosting",
+   "BreadcrumbList",
+   "FAQPage",
+   "ImageObject",
+   "ListItem",
+   "Person",
+   "Question"
+  ],
+  "upload": true
+ },
+ {
+  "query": "wav to mp3",
+  "pos": 4,
+  "url": "https://www.adobe.com/express/feature/audio/convert/wav-to-mp3",
+  "code": "403",
+  "title": "-",
+  "h1": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "upload": false
+ },
+ {
+  "query": "wav to mp3",
+  "pos": 5,
+  "url": "https://play.google.com/store/apps/details?id=com.granville.wavtomp3converter",
+  "code": "404",
+  "title": "-",
+  "h1": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "upload": false
+ },
+ {
+  "query": "wav to mp3",
+  "pos": 6,
+  "url": "https://convertio.co/wav-mp3/",
+  "code": "200",
+  "title": "Convert WAV to MP3 Online — Convertio",
+  "h1": "WAV to MP3 Converter",
+  "h2": [
+   "Compress WAV audio into compact MP3 format online",
+   "How to convert WAV to MP3",
+   "About formats",
+   "Frequently Asked Questions",
+   "Related Conversions",
+   "Specific converters"
+  ],
+  "words": 1532,
+  "schema": [
+   "AggregateRating",
+   "Product"
+  ],
+  "upload": true
+ },
+ {
+  "query": "wav to mp3",
+  "pos": 7,
+  "url": "https://www.happyscribe.com/tools/audio-converter",
+  "code": "403",
+  "title": "-",
+  "h1": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "upload": false
+ },
+ {
+  "query": "wav to mp3",
+  "pos": 8,
+  "url": "https://restream.io/tools/wav-to-mp3",
+  "code": "404",
+  "title": "-",
+  "h1": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "upload": false
+ },
+ {
+  "query": "wav to mp3",
+  "pos": 9,
+  "url": "https://www.zamzar.com/convert/wav-to-mp3/",
+  "code": "200",
+  "title": "Convert WAV to MP3 Free – Quick & Secure | Zamzar",
+  "h1": "WAV to MP3",
+  "h2": [
+   "Trusted by employees at these brands",
+   "From your personal desktop to your business files, we've got you cover",
+   "Why choose Zamzar?",
+   "Tools to suit your file conversion and file compression needs",
+   "How to convert a WAV to a MP3 file?",
+   "Frequently asked questions"
+  ],
+  "words": 2056,
+  "schema": [
+   "Answer",
+   "BreadcrumbList",
+   "FAQPage",
+   "ImageObject",
+   "ListItem",
+   "Offer",
+   "Organization",
+   "Person"
+  ],
+  "upload": true
+ },
+ {
+  "query": "convert wav to mp3",
+  "pos": 9,
+  "url": "https://audio.online-convert.com/convert/wav-to-mp3",
+  "code": "200",
+  "title": "WAV to MP3 - online-convert.com",
+  "h1": "WAV to MP3 converter",
+  "h2": [
+   "How to convert a WAV file to a MP3 file",
+   "Converter",
+   "File format"
+  ],
+  "words": 925,
+  "schema": [
+   "AggregateRating",
+   "HowTo",
+   "HowToStep",
+   "ImageObject",
+   "Offer",
+   "Organization",
+   "WebApplication"
+  ],
+  "upload": true
+ }
+]

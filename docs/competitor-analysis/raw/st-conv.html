@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="https://soundtools.io/audio-converter/" />
+
+    <link rel="stylesheet" href="../css/tools-style.css">
+    <link rel="icon" href="../favicon.png" type="image/png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2L1GFZ61L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-T2L1GFZ61L');
+    </script>
+
+
+    <meta name="description" content="Free online audio converter — convert audio to MP3, WAV, FLAC, AAC, M4A, OGG, or WMA in your browser. Files never upload. No software, no account, no watermark.">
+
+    <meta name="author" content="SoundTools">
+    <meta property="og:title" content="Free Audio Converter - MP3, FLAC, WAV, M4A, OGG | SoundTools">
+    <meta property="og:description" content="Convert between MP3, FLAC, WAV, AAC, M4A, OGG, and WMA formats instantly. No software needed. Professional quality audio conversion.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soundtools.io/audio-converter/">
+    
+    <title>Free Audio Converter — Convert to MP3, WAV, FLAC | SoundTools</title>
+
+     <!-- Organization schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://soundtools.io/#organization",
+      "name": "SoundTools",
+      "alternateName": "soundtools.io",
+      "url": "https://soundtools.io",
+      "logo": "https://soundtools.io/logo.png",
+      "description": "SoundTools is a free, browser-based audio toolkit offering 35+ tools for editing, converting, and transforming audio — including creator effects, AI and voice tools, and everyday utilities. Everything runs locally in the browser; files never leave your device.",
+      "foundingDate": "2025",
+      "knowsAbout": [
+        "Audio editing",
+        "Text to speech",
+        "Vocal removal",
+        "Stem separation",
+        "Speech to text",
+        "Voice changing",
+        "Noise reduction",
+        "Audio conversion"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/soundtools-io",
+        "https://www.crunchbase.com/organization/soundtools-8406",
+        "https://www.wikidata.org/wiki/Q140073639"
+      ]
+    }
+    </script>
+
+    <!-- Website schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://soundtools.io/#website",
+      "name": "SoundTools",
+      "alternateName": "soundtools.io",
+      "url": "https://soundtools.io",
+      "publisher": { "@id": "https://soundtools.io/#organization" }
+    }
+    </script>
+    
+    <!-- WebApplication schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://soundtools.io/audio-converter/#webapp",
+      "name": "SoundTools Audio Converter",
+      "url": "https://soundtools.io/audio-converter/",
+      "applicationCategory": "MultimediaApplication",
+      "browserRequirements": "Works in any modern web browser on desktop and mobile (Windows, Mac, Linux, iOS, and Android). No install required.",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://soundtools.io/#organization"
+      },
+      "datePublished": "2025",
+      "dateModified": "2026-07-17",
+      "inLanguage": "en",
+      "featureList": [
+        "Convert audio between MP3, FLAC, WAV, AAC, M4A, OGG, and WMA",
+        "Convert in any direction between the supported formats",
+        "MP3 encoded at 320kbps; FLAC and WAV are lossless",
+        "Powered by FFmpeg running locally via WebAssembly",
+        "No file size limit imposed by the tool",
+        "Processing runs in your browser — files never leave your device",
+        "Free and unlimited, no account, no watermark, no install"
+      ],
+      "description": "Free online audio converter that runs in your browser. Convert audio files between MP3, FLAC, WAV, AAC, M4A, OGG, and WMA in any direction, using FFmpeg compiled to WebAssembly so your files never leave your device. MP3 at 320kbps, lossless FLAC and WAV. No account, no watermark."
+    }
+    </script>
+
+    <!-- HowTo Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Convert Audio Files Online",
+      "description": "Convert audio files between MP3, FLAC, WAV, AAC, OGG, and other formats in 3 simple steps",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Upload your audio file",
+          "text": "Select the audio file you want to convert from your device",
+          "position": 1
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Select conversion format",
+          "text": "Choose the format you want to convert to",
+          "position": 2
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Convert and download",
+          "text": "Click 'Convert Audio' and download your converted file instantly",
+          "position": 3
+        }
+      ],
+      "totalTime": "PT30S"
+    }
+    </script>
+    
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What audio formats can I convert?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our converter supports MP3, FLAC, WAV, AAC, M4A, OGG, and WMA. You can convert between any combination of these formats."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will converting reduce my audio quality?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the formats. Converting from lossless (FLAC, WAV) to lossy (MP3, AAC, OGG) will reduce quality slightly. Converting between lossy formats may degrade quality. For best results, always keep your original files in a lossless format."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does conversion take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most files convert in under 30 seconds. Very large files may take up to a minute depending on file size and your internet connection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a file size limit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most audio files up to several hundred MB work perfectly. Extremely large files (1GB+) may take longer to process or may need more RAM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install any software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No! This converter works instantly with no downloads or installations required. Just visit this page and start converting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my files uploaded to your servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Everything runs locally in your browser using WebAssembly. Your audio files never leave your device — no upload, no server processing, no cloud storage. This makes conversion faster than server-based tools (no upload/download wait) and completely private."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What bitrate should I use for MP3 conversion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our converter uses high-quality default settings (320kbps for MP3, which is the highest quality). This ensures excellent audio quality while keeping reasonable file sizes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I convert multiple files at once?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Currently, the tool processes one file at a time. However, there are no limits on how many files you can convert - just convert them one after another."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which format should I choose?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For archiving or maximum quality: FLAC or WAV. For everyday listening on phones/computers: MP3 or M4A. For smaller file sizes with good quality: AAC or OGG."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this a Zamzar alternative?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Zamzar is one of the oldest and most trusted online file converters — it supports a huge range of formats well beyond audio. For audio conversion specifically, the free tier limits you to 5 files per day and 50MB per file, and requires uploading your audio to their servers. SoundTools converts audio in your browser with no upload, no file caps, and no daily limits — completely free. If you need to convert an obscure audio format that SoundTools doesn't support, Zamzar's broader format library is the right fallback. For the common formats (MP3, FLAC, WAV, AAC, M4A, OGG), SoundTools is faster and more private."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this a CloudConvert alternative?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, for audio conversion. CloudConvert is a powerful cloud-based conversion platform supporting 200+ formats with a polished API — excellent for developers and power users who need bulk or automated conversion. The free tier is limited to 25 conversions per day and uploads files to their servers. SoundTools is narrower in scope (7 audio formats) but converts entirely in your browser with no upload, no account, and no conversion limits. For everyday audio format conversion without server involvement, SoundTools gets the job done for free with no friction."
+          }
+        }
+      ]
+    }
+    </script>
+    
+  
+
+
+    <!-- ================================================== -->
+    <!--    START - NEW: REPEAT VISITOR TRACKING SYSTEM     -->
+    <!-- ================================================== -->
+    <script>
+        // Tool usage tracking utility
+        const ToolTracker = {
+            STORAGE_KEY: 'soundtools_usage',
+            CURRENT_TOOL: 'audio-converter', // Set this per tool page
+            
+            // Get all usage data from localStorage
+            getUsageData() {
+                try {
+                    const data = localStorage.getItem(this.STORAGE_KEY);
+                    return data ? JSON.parse(data) : {};
+                } catch (e) {
+                    console.error('Error reading usage data:', e);
+                    return {};
+                }
+            },
+            
+            // Save usage data to localStorage
+            saveUsageData(data) {
+                try {
+                    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+                } catch (e) {
+                    console.error('Error saving usage data:', e);
+                }
+            },
+            
+            // Track that user successfully used a tool
+            trackToolSuccess(toolName = this.CURRENT_TOOL) {
+                const usage = this.getUsageData();
+                
+                // Initialize tool data if it doesn't exist
+                if (!usage[toolName]) {
+                    usage[toolName] = {
+                        count: 0,
+                        firstUsed: new Date().toISOString(),
+                        lastUsed: null
+                    };
+                }
+                
+                // Increment usage count
+                usage[toolName].count++;
+                usage[toolName].lastUsed = new Date().toISOString();
+                
+                this.saveUsageData(usage);
+                
+                return this.getAnalytics();
+            },
+            
+            // Get analytics data for GA4 events
+            getAnalytics() {
+                const usage = this.getUsageData();
+                const currentToolData = usage[this.CURRENT_TOOL] || { count: 0 };
+                
+                return {
+                    // How many times has user used THIS specific tool
+                    lifetime_tool_uses: currentToolData.count,
+                    
+                    // How many DIFFERENT tools has user tried (ever)
+                    total_tools_used: Object.keys(usage).length,
+                    
+                    // Is this a repeat user of ANY tool?
+                    is_repeat_user: Object.values(usage).some(tool => tool.count > 1),
+                    
+                    // Is this a repeat user of THIS SPECIFIC tool?
+                    is_repeat_tool_user: currentToolData.count > 1,
+                    
+                    // Total uses across ALL tools
+                    total_lifetime_uses: Object.values(usage).reduce((sum, tool) => sum + tool.count, 0),
+                    
+                    // Days since first use of this tool (if applicable)
+                    days_since_first_use: currentToolData.firstUsed 
+                        ? Math.floor((Date.now() - new Date(currentToolData.firstUsed)) / (1000 * 60 * 60 * 24))
+                        : 0
+                };
+            },
+            
+            // Track file selection with analytics
+            trackFileSelected(fileSize) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-file_selected`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': 'audio_file',
+                    'file_size': fileSize,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            },
+            
+             // Track preset selection with analytics
+            trackPresetSelected(presetName) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-preset_selected`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': presetName,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            },
+
+            // Track successful conversion with analytics
+            trackSuccess(additionalParams = {}) {
+                const analytics = this.trackToolSuccess(); // Increments count & returns analytics
+                
+                gtag('event', `${this.CURRENT_TOOL}-success`, {
+                    'event_category': this.CURRENT_TOOL,
+                    ...additionalParams,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses,
+                    'days_since_first_use': analytics.days_since_first_use
+                });
+            },
+            
+            // Track errors with analytics
+            trackError(errorMessage) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-error`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': 'processing_failed',
+                    'error_message': errorMessage,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            }
+        };
+        
+        // Log initial analytics on page load (optional - for debugging)
+        console.log('SoundTools Usage Analytics:', ToolTracker.getAnalytics());
+    </script>
+    <!-- ================================================== -->
+    <!--     END - NEW: REPEAT VISITOR TRACKING SYSTEM      -->
+    <!-- ================================================== -->
+
+
+    <style>
+        /* Styled file upload button */
+        .styled-file-upload {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+        .styled-file-upload input[type="file"] {
+            display: none;
+        }
+        .styled-file-upload .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: #4f5aed;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .styled-file-upload .upload-btn:hover {
+            background: #3d47d9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 90, 237, 0.3);
+        }
+        .styled-file-upload .upload-btn:active {
+            transform: translateY(0);
+        }
+        .styled-file-upload .upload-filename {
+            font-size: 0.9375rem;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+        }
+
+        /* CTA download button */
+        .cta-download-btn {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: white;
+            color: #16a34a;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 10px;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            box-sizing: border-box;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .cta-download-btn:hover {
+            background: #f0fdf4;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+
+         /* ── Comparison table ── */
+        .comparison-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .comparison-table th, .comparison-table td { border: 1px solid #e0e4e8; padding: 0.5rem 0.75rem; text-align: left; }
+        .comparison-table th { background: #f0f4ff; font-weight: 600; }
+        .comparison-table tr:nth-child(even) td { background: #f9fafb; }
+        @media (max-width: 640px) {
+            .comparison-table { font-size: 0.8rem; }
+            .comparison-table th, .comparison-table td { padding: 0.375rem 0.5rem; }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- NAV_START -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">SoundTools</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a class="mobile-dropdown-toggle">Tools</a>
+                    <div class="dropdown-menu mega-menu">
+                        <div class="mega-col">
+                            <span class="mega-heading">Effects</span>
+                            <a href="/eq/">EQ</a>
+                            <a href="/8d-audio/">8D Audio</a>
+                            <a href="/add-reverb-to-audio/">Add Reverb</a>
+                            <a href="/bass-boost/">Bass Boost</a>
+                            <a href="/nightcore/">Nightcore</a>
+                            <a href="/nightcore-reverse/">Nightcore Reverse</a>
+                            <a href="/slowed-reverb/">Slowed + Reverb</a>
+                            <a href="/sped-up/">Sped Up Audio</a>
+                            <a href="/tiktok-slowed-reverb/">TikTok Slowed</a>
+                            <a href="/vaporwave/">Vaporwave</a>
+                            <a href="/volume-booster/">Volume Booster</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Voice & AI</span>
+                            <a href="/voice-cloning/">Voice Cloning</a>
+                            <a href="/vocal-tuner/">Vocal Tuner</a>
+                            <a href="/voice-to-instrument/">Voice to Instrument</a>
+                            <a href="/noise-remover/">Noise Remover</a>
+                            <a href="/stem-splitter/">Stem Splitter</a>
+                            <a href="/text-to-speech/">Text to Speech</a>
+                            <a href="/speech-to-text/">Speech to Text</a>
+                            <a href="/speech-to-song/">Speech to Song</a>
+                            <a href="/vocal-remover/">Vocal Remover</a>
+                            <a href="/voice-changer/">Voice Changer</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Edit & Convert</span>
+                            <a href="/audio-converter/">Audio Converter</a>
+                            <a href="/audio-joiner/">Audio Joiner</a>
+                            <a href="/audio-trimmer/">Audio Trimmer</a>
+                            <a href="/flac-cover-art/">FLAC Cover Art</a>
+                            <a href="/audio-metadata-editor/">Metadata Editor</a>
+                            <a href="/pitch-shifter/">Pitch Shifter</a>
+                            <a href="/reverse-audio/">Reverse Audio</a>
+                            <a href="/tempo-changer/">Tempo Changer</a>
+                            <a href="/video-to-audio/">Video to Audio</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Create & Analyze</span>
+                            <a href="/beat-maker/">Beat Maker</a>
+                            <a href="/bpm-detector/">BPM Detector</a>
+                            <a href="/granular-synthesizer/">Granular Synthesizer</a>
+                            <a href="/hearing-test/">Hearing Test</a>
+                            <a href="/music-visualizer/">Music Visualizer</a>
+                            <a href="/soundboard/">Soundboard</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/lab/">The Lab</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- NAV_END -->
+
+
+
+
+
+    <header>
+        <div class="container">
+            <h1>Free Audio Converter</h1>
+            <time class="last-updated" datetime="2026-07-17">Updated July 17, 2026</time>
+            <p class="tagline">Convert MP3, FLAC, WAV, AAC, M4A, OGG, and WMA - instantly!</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Ad Slot 1: Top Leaderboard -->
+        <!--
+        <div class="ad-placeholder leaderboard">
+            AD SLOT 1: Leaderboard (728x90 or 320x50 mobile)
+        </div>
+        -->
+
+        <section class="tool-section">
+            <div class="intro-text">
+                <p>Upload your audio file and select the file format you would like to convert to. High-quality conversion happens instantly - fast, secure, and private.</p>
+            </div>
+
+            <div class="file-input-group">
+                <label for="audioFile">Upload Your Audio File</label>
+                <label class="styled-file-upload">
+                    <input type="file" id="audioFile" accept="audio/*,.wav,.mp3,.m4a,.ogg,.flac,.aac,.wma" aria-label="Choose audio file to convert">
+                    <span class="upload-btn">📂 Choose File</span>
+                    <span class="upload-filename" id="uploadFilename">No file selected</span>
+                </label>
+            </div>
+
+            <!-- Preview Player (SoundToolsPlayer) -->
+            <div id="previewPlayer" style="display: none;"></div>
+
+            <div class="conversion-selectors">
+                <div class="selector-group">
+                    <label for="fromFormat">From Format:</label>
+                    <select id="fromFormat" aria-label="Select source audio format">
+                        <option value="mp3">MP3</option>
+                        <option value="flac">FLAC</option>
+                        <option value="wav">WAV</option>
+                        <option value="aac">AAC</option>
+                        <option value="m4a">M4A</option>
+                        <option value="ogg">OGG</option>
+                        <option value="wma">WMA</option>
+                    </select>
+                </div>
+                
+                <div class="arrow-icon">→</div>
+                
+                <div class="selector-group">
+                    <label for="toFormat">To Format:</label>
+                    <select id="toFormat" aria-label="Select target audio format">
+                        <option value="mp3">MP3</option>
+                        <option value="flac">FLAC</option>
+                        <option value="wav">WAV</option>
+                        <option value="aac">AAC</option>
+                        <option value="m4a">M4A</option>
+                        <option value="ogg">OGG</option>
+                    </select>
+                </div>
+            </div>
+           
+          
+
+            <button id="convertBtn" disabled aria-label="Convert audio file">Convert Audio</button>
+            
+            <div id="status" role="status" aria-live="polite"></div>
+        </section>
+
+        <!-- Ad Slot 2: During Processing -->
+        <!--
+        <div id="processingAd" class="ad-placeholder rectangle" style="display: none;">
+            AD SLOT 2: Rectangle (300x250) - Shown during processing
+        </div>
+        -->
+        <!--
+        <section class="info-section">
+            <h2>Why Use This Audio Converter?</h2>
+            <p>Need to convert audio files between different formats? This free online tool makes it simple and fast.</p>
+            <ul>
+                <li><strong>Universal Format Support:</strong> Convert between MP3, FLAC, WAV, AAC, M4A, OGG, and WMA formats with ease.</li>
+                <li><strong>Lightning Fast:</strong> Conversion happens instantly - no waiting, no delays.</li>
+                <li><strong>High Quality Audio:</strong> Professional-grade conversion ensures the best possible audio quality.</li>
+                <li><strong>100% Private & Secure:</strong> Your audio files are processed securely and privately.</li>
+                <li><strong>No Software Required:</strong> No apps, plugins, or installations needed - just upload and convert.</li>
+                <li><strong>Completely Free:</strong> No limits, no subscriptions, no watermarks. Convert unlimited files for free.</li>
+                <li><strong>Works Everywhere:</strong> Use it on Windows, Mac, Linux, or even your mobile device.</li>
+            </ul>
+        </section>
+        -->
+        <section class="info-section">
+            <h2>About This Audio Converter</h2>
+            <p>SoundTools Audio Converter converts between the seven formats that cover virtually every real-world audio need — MP3, FLAC, WAV, AAC, M4A, OGG, and WMA — entirely in your browser. There's no upload, no server, and no wait for a remote queue. 
+            You select your file, pick a format, and conversion starts immediately. 
+            Powered by <a href="https://github.com/ffmpeg/ffmpeg" target="_blank" rel="noopener">FFmpeg</a>, the open-source engine behind most professional audio software, 
+            compiled to <a href="https://developer.mozilla.org/en-US/docs/WebAssembly" target="_blank" rel="noopener">WebAssembly</a> so it runs entirely in your browser.
+            
+            Your audio never leaves your computer.</p>
+
+            <p>The most common use cases: converting FLAC to MP3 for a device that doesn't support lossless playback, converting WMA files you've had sitting around since Windows Media Player days, converting M4A to MP3 for wider compatibility, or converting MP3 to WAV before importing into a DAW. All of these take under 30 seconds.</p>
+
+            <p>A note on quality: converting from a lossless format (FLAC or WAV) to a lossy format (MP3, AAC, OGG) will always involve some quality reduction — that's the nature of lossy compression. Conversely, converting from a lossy format to FLAC or WAV produces a larger file but does not recover lost quality. For best results, always keep your original files in FLAC or WAV and convert from those originals rather than from already-compressed copies. When converting to MP3, SoundTools uses 320 kbps — the highest standard bitrate — which is indistinguishable from lossless for most listeners on most playback systems.</p>
+        </section>
+
+        <!-- Ad Slot 3: Bottom Rectangle -->
+        <!--
+        <div class="ad-placeholder rectangle">
+            AD SLOT 3: Rectangle (300x250) - Bottom of page
+        </div>
+        -->
+
+        <section class="info-section">
+            <h2>Supported Audio Formats</h2>
+            
+            <p><strong>MP3 (MPEG Audio Layer 3)</strong><br>
+            The most popular lossy audio format. Perfect for music players, phones, and sharing. Excellent balance of file size and quality.</p>
+            
+            <p><strong>FLAC (Free Lossless Audio Codec)</strong><br>
+            Lossless compression that preserves perfect audio quality while reducing file size. Ideal for archiving your music collection or audiophile listening.</p>
+            
+            <p><strong>WAV (Waveform Audio File Format)</strong><br>
+            Uncompressed audio format with perfect quality. Used in professional audio production and when maximum quality is required.</p>
+            
+            <p><strong>AAC (Advanced Audio Coding)</strong><br>
+            Modern lossy format that provides better quality than MP3 at the same bitrate. Used by Apple Music, YouTube, and many streaming services.</p>
+            
+            <p><strong>M4A (MPEG-4 Audio)</strong><br>
+            Container format typically using AAC encoding. Common in iTunes and Apple devices.</p>
+            
+            <p><strong>OGG (Ogg Vorbis)</strong><br>
+            Open-source lossy format with quality comparable to MP3. Used in gaming and open-source applications.</p>
+            
+            <p><strong>WMA (Windows Media Audio)</strong><br>
+            Microsoft's audio format. Can be converted to more universal formats for better compatibility.</p>
+        </section>
+
+        <section class="info-section">
+            <h2>How SoundTools Compares to Other Online Audio Converters</h2>
+            <p>The best-known online audio converters — Zamzar and CloudConvert — have been around for years and support hundreds of formats. They work by uploading your file to their servers, converting it remotely, and sending it back. That means a wait for upload and download, file size caps on free tiers, and your audio passing through their infrastructure. SoundTools converts entirely in your browser using WebAssembly — nothing is uploaded, conversion starts instantly, and there's no file size limit imposed by a server. The tradeoff is format breadth: Zamzar and CloudConvert support 100+ formats while SoundTools covers the seven formats that account for the vast majority of real-world audio conversion needs (MP3, FLAC, WAV, AAC, M4A, OGG, WMA).</p>
+            <div style="overflow-x:auto;">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>SoundTools.io</th>
+                        <th>Zamzar</th>
+                        <th>CloudConvert</th>
+                        <th>FreeConvert</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>No file upload</td><td>✅ Browser-only</td><td>❌ Server upload</td><td>❌ Server upload</td><td>❌ Server upload</td></tr>
+                    <tr><td>No account required</td><td>✅</td><td>✅ Basic use</td><td>⚠️ Free tier limited</td><td>✅ Basic use</td></tr>
+                    <tr><td>Free with no caps</td><td>✅ Unlimited</td><td>⚠️ 5 files/day free</td><td>⚠️ 25 conversions/day free</td><td>⚠️ 1GB/day free</td></tr>
+                    <tr><td>No file size limit</td><td>✅ (browser memory)</td><td>⚠️ 50MB free</td><td>⚠️ Varies by plan</td><td>⚠️ 1GB free</td></tr>
+                    <tr><td>Instant conversion (no upload wait)</td><td>✅</td><td>❌ Upload + queue</td><td>❌ Upload + queue</td><td>❌ Upload + queue</td></tr>
+                    <tr><td>Supported audio formats</td><td>7 formats</td><td>✅ 100+ formats</td><td>✅ 200+ formats</td><td>✅ Many formats</td></tr>
+                    <tr><td>Works on mobile</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                    <tr><td>Watermark-free output</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                </tbody>
+            </table>
+            </div>
+        </section>
+
+       
+        <section class="info-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>What audio formats can I convert?</h3>
+            <p>Our converter supports MP3, FLAC, WAV, AAC, M4A, OGG, and WMA. You can convert between any combination of these formats.</p>
+            
+            <h3>Will converting reduce my audio quality?</h3>
+            <p>It depends on the formats. Converting from lossless (FLAC, WAV) to lossy (MP3, AAC, OGG) will reduce quality slightly. Converting between lossy formats may degrade quality. For best results, always keep your original files in a lossless format.</p>
+            
+            <h3>How long does conversion take?</h3>
+            <p>Most files convert in under 30 seconds. Very large files may take up to a minute depending on file size and your internet connection.</p>
+            
+            <h3>Is there a file size limit?</h3>
+            <p>Most audio files up to several hundred MB work perfectly. Extremely large files (1GB+) may take longer to process or may need more RAM.</p>
+            
+            <h3>Do I need to install any software?</h3>
+            <p>No! This converter works instantly with no downloads or installations required. Just visit this page and start converting.</p>
+            
+            <h3>Are my files uploaded to your servers?</h3>
+            <p>No. Everything runs locally in your browser using WebAssembly. Your audio files never leave your device — no upload, no server processing, no cloud storage. This makes conversion faster than server-based tools (no upload/download wait) and completely private.</p>
+            
+            <h3>What bitrate should I use for MP3 conversion?</h3>
+            <p>Our converter uses high-quality default settings (320kbps for MP3, which is the highest quality). This ensures excellent audio quality while keeping reasonable file sizes.</p>
+            
+            <h3>Can I convert multiple files at once?</h3>
+            <p>Currently, the tool processes one file at a time. However, there are no limits on how many files you can convert - just convert them one after another.</p>
+            
+            <h3>Which format should I choose?</h3>
+            <p>For archiving or maximum quality: FLAC or WAV. For everyday listening on phones/computers: MP3 or M4A. For smaller file sizes with good quality: AAC or OGG.</p>
+
+            <h3>Is this a Zamzar alternative?</h3>
+            <p>Yes. Zamzar is one of the oldest and most trusted online file converters — it supports a huge range of formats well beyond audio. For audio conversion specifically, the free tier limits you to 5 files per day and 50MB per file, and requires uploading your audio to their servers. SoundTools converts audio in your browser with no upload, no file caps, and no daily limits — completely free. If you need to convert an obscure audio format that SoundTools doesn't support, Zamzar's broader format library is the right fallback. For the common formats (MP3, FLAC, WAV, AAC, M4A, OGG), SoundTools is faster and more private.</p>
+
+            <h3>Is this a CloudConvert alternative?</h3>
+            <p>Yes, for audio conversion. CloudConvert is a powerful cloud-based conversion platform supporting 200+ formats with a polished API — excellent for developers and power users who need bulk or automated conversion. The free tier is limited to 25 conversions per day and uploads files to their servers. SoundTools is narrower in scope (7 audio formats) but converts entirely in your browser with no upload, no account, and no conversion limits. For everyday audio format conversion without server involvement, SoundTools gets the job done for free with no friction.</p>
+        </section>
+
+
+
+         <section class="related-tools-section">
+            <div class="container">
+                <h2 class="related-tools-header">Related Audio Tools</h2>
+                <p class="related-tools-subheader">Create more amazing audio with these popular tools</p>
+                
+              
+                
+                <!-- Related Tools Grid -->
+                <div class="related-tools-grid">
+
+                    <a href="/video-to-audio/" class="related-tool-card">
+                        <span class="tool-emoji">🎬</span>
+                        <h3>Video to Audio</h3>
+                        <p>Extract audio from video files</p>
+                    </a>
+                    
+
+                    <a href="/audio-metadata-editor/" class="related-tool-card">
+                        <span class="tool-emoji">🏷️</span>
+                        <h3>Metadata Editor</h3>
+                        <p>Edit tags and cover art</p>
+                    </a>
+                    
+
+                    <a href="/bass-boost/" class="related-tool-card">
+                        <span class="tool-emoji">🔊</span>
+                        <h3>Bass Boost</h3>
+                        <p>Powerful low-end enhancement</p>
+                    </a>
+                    
+
+                     <a href="/sped-up/" class="related-tool-card">
+                        <span class="tool-emoji">⚡</span>
+                        <h3>Sped Up Audio</h3>
+                        <p>Speed up songs without pitch change</p>
+                    </a>
+                </div>
+                
+                <!-- Browse All Tools CTA -->
+                <div class="browse-all-cta">
+                    <a href="/" class="browse-all-btn">
+                        <span class="btn-icon">🎵</span>
+                        Browse All Audio Tools
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+
+      
+
+        
+    </main>
+
+   <!-- Footer with Mega Menu -->
+    <!-- FOOTER_START -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Effects</h3>
+                    <ul>
+                        <li><a href="/eq/">EQ</a></li>
+                        <li><a href="/8d-audio/">8D Audio</a></li>
+                        <li><a href="/add-reverb-to-audio/">Add Reverb</a></li>
+                        <li><a href="/bass-boost/">Bass Boost</a></li>
+                        <li><a href="/nightcore/">Nightcore</a></li>
+                        <li><a href="/nightcore-reverse/">Nightcore Reverse</a></li>
+                        <li><a href="/slowed-reverb/">Slowed + Reverb</a></li>
+                        <li><a href="/sped-up/">Sped Up Audio</a></li>
+                        <li><a href="/tiktok-slowed-reverb/">TikTok Slowed</a></li>
+                        <li><a href="/vaporwave/">Vaporwave</a></li>
+                        <li><a href="/volume-booster/">Volume Booster</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Voice & AI</h3>
+                    <ul>
+                        <li><a href="/voice-cloning/">Voice Cloning</a></li>
+                        <li><a href="/vocal-tuner/">Vocal Tuner</a></li>
+                        <li><a href="/voice-to-instrument/">Voice to Instrument</a></li>
+                        <li><a href="/noise-remover/">Noise Remover</a></li>
+                        <li><a href="/stem-splitter/">Stem Splitter</a></li>
+                        <li><a href="/text-to-speech/">Text to Speech</a></li>
+                        <li><a href="/speech-to-text/">Speech to Text</a></li>
+                        <li><a href="/speech-to-song/">Speech to Song</a></li>
+                        <li><a href="/vocal-remover/">Vocal Remover</a></li>
+                        <li><a href="/voice-changer/">Voice Changer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Edit & Convert</h3>
+                    <ul>
+                        <li><a href="/audio-converter/">Audio Converter</a></li>
+                        <li><a href="/audio-joiner/">Audio Joiner</a></li>
+                        <li><a href="/audio-trimmer/">Audio Trimmer</a></li>
+                        <li><a href="/flac-cover-art/">FLAC Cover Art</a></li>
+                        <li><a href="/audio-metadata-editor/">Metadata Editor</a></li>
+                        <li><a href="/pitch-shifter/">Pitch Shifter</a></li>
+                        <li><a href="/reverse-audio/">Reverse Audio</a></li>
+                        <li><a href="/tempo-changer/">Tempo Changer</a></li>
+                        <li><a href="/video-to-audio/">Video to Audio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Create & Analyze</h3>
+                    <ul>
+                        <li><a href="/beat-maker/">Beat Maker</a></li>
+                        <li><a href="/bpm-detector/">BPM Detector</a></li>
+                        <li><a href="/granular-synthesizer/">Granular Synthesizer</a></li>
+                        <li><a href="/hearing-test/">Hearing Test</a></li>
+                        <li><a href="/music-visualizer/">Music Visualizer</a></li>
+                        <li><a href="/soundboard/">Soundboard</a></li>
+                    </ul>
+                </div>
+
+                 <div class="footer-column">
+                    <h3>The Lab</h3>
+                    <ul>
+                        <li><a href="/lab/evaporator/">Evaporator</a></li>
+                        <li><a href="/lab/we-have-the-cherry-point-at-home/">Dead Empires</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service/">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoundTools - Free Audio Tools for Creators</p>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER_END -->
+    
+    
+
+    <!-- Mobile Menu Script -->
+    <script>
+        // Toggle main mobile menu
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Mobile dropdown toggle - handle both desktop hover and mobile click
+        const hasDropdownItems = document.querySelectorAll('.has-dropdown');
+        
+        hasDropdownItems.forEach(item => {
+            const toggle = item.querySelector('a, .mobile-dropdown-toggle');
+            const dropdown = item.querySelector('.dropdown-menu');
+            
+            if (toggle && dropdown) {
+                toggle.addEventListener('click', function(e) {
+                    // Only prevent default and toggle on mobile
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a:not(.mobile-dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            if (!nav.contains(event.target)) {
+                document.querySelector('.nav-links').classList.remove('active');
+            }
+        });
+    </script>
+
+    <!-- SoundToolsPlayer - shared preview player component -->
+    <script src="../preview-player/soundtools-player.js"></script>
+
+    <!-- Audio Converter Logic -->
+    <script type="module">
+        // Lazy-load FFmpeg
+        let FFmpeg = null;
+        let ffmpeg = null;
+        let ffmpegLoaded = false;  // Track if FFmpeg is fully loaded
+        let ffmpegLoading = false; // Track if FFmpeg is currently loading
+        let audioFile = null;
+
+        // Audio preview state
+        let audioBuffer = null;
+        let player = null;
+
+        const fromFormatSelect = document.getElementById('fromFormat');
+        const toFormatSelect = document.getElementById('toFormat');
+        const audioInput = document.getElementById('audioFile');
+        const convertBtn = document.getElementById('convertBtn');
+        const statusDiv = document.getElementById('status');
+        const uploadFilename = document.getElementById('uploadFilename');
+        const previewPlayerDiv = document.getElementById('previewPlayer');
+        const processingAd = document.getElementById('processingAd');
+
+        // Format configurations
+        const formatConfig = {
+            mp3: {
+                mimeType: 'audio/mpeg',
+                extensions: ['.mp3'],
+                ffmpegArgs: ['-codec:a', 'libmp3lame', '-b:a', '320k']
+            },
+            flac: {
+                mimeType: 'audio/flac',
+                extensions: ['.flac'],
+                ffmpegArgs: ['-codec:a', 'flac']
+            },
+            wav: {
+                mimeType: 'audio/wav',
+                extensions: ['.wav'],
+                ffmpegArgs: ['-codec:a', 'pcm_s16le']
+            },
+            aac: {
+                mimeType: 'audio/aac',
+                extensions: ['.aac'],
+                ffmpegArgs: ['-codec:a', 'aac', '-b:a', '256k']
+            },
+            m4a: {
+                mimeType: 'audio/mp4',
+                extensions: ['.m4a', '.mp4'],
+                ffmpegArgs: ['-codec:a', 'aac', '-b:a', '256k']
+            },
+            ogg: {
+                mimeType: 'audio/ogg',
+                extensions: ['.ogg'],
+                ffmpegArgs: ['-codec:a', 'libvorbis', '-q:a', '6']
+            },
+            wma: {
+                mimeType: 'audio/x-ms-wma',
+                extensions: ['.wma'],
+                ffmpegArgs: ['-codec:a', 'wmav2', '-b:a', '192k']
+            }
+        };
+
+        // Show status message
+        function showStatus(message, type = 'info') {
+            statusDiv.textContent = message;
+            statusDiv.className = type;
+        }
+
+        // Load audio for preview
+        async function loadAudioPreview(file) {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const arrayBuffer = await file.arrayBuffer();
+                audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+                if (player) {
+                    player.load(audioBuffer, file.name);
+                } else {
+                    player = new SoundToolsPlayer({
+                        container:   previewPlayerDiv,
+                        audioBuffer: audioBuffer,
+                        filename:    file.name,
+                    });
+                }
+
+                previewPlayerDiv.style.display = '';
+            } catch (error) {
+                console.warn('Could not decode audio for preview:', error.message);
+                previewPlayerDiv.style.display = 'none';
+            }
+        }
+
+        // Detect format from filename
+        function detectFormatFromFilename(filename) {
+            const extension = filename.substring(filename.lastIndexOf('.')).toLowerCase();
+            for (const [format, config] of Object.entries(formatConfig)) {
+                if (config.extensions.includes(extension)) {
+                    return format;
+                }
+            }
+            return null;
+        }
+
+        // Lazy load FFmpeg
+        async function loadFFmpeg() {
+            if (ffmpegLoaded) return true;  // Already loaded
+            if (ffmpegLoading) {
+                // Wait for existing load to complete
+                while (ffmpegLoading) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                return ffmpegLoaded;
+            }
+
+            ffmpegLoading = true;
+
+            try {
+                showStatus('Loading converter (this may take a moment on slow connections)...', 'info');
+                
+                const module = await import('../../ffmpeg/index.js');
+                FFmpeg = module.FFmpeg;
+                
+                ffmpeg = new FFmpeg();
+                
+                // This is the critical part - wait for load to complete
+                await ffmpeg.load({
+                    coreURL: '../../ffmpeg/ffmpeg-core.js',
+                    //wasmURL: '../../ffmpeg/ffmpeg-core.wasm',
+                    wasmURL: 'https://cdn.soundtools.io/ffmpeg/ffmpeg-core.wasm',
+                });
+
+                // used to test ffmpeg load on slow 2G connections
+                //await new Promise(resolve => setTimeout(resolve, 10000)); 
+                
+                ffmpegLoaded = true;  // Set flag AFTER load completes
+                showStatus('Ready! Select your target format and click "Convert Audio".', 'success');
+                updateButtonState();
+                return true;
+            } catch (error) {
+                ffmpegLoaded = false;
+                showStatus('Error loading converter: ' + error.message, 'error');
+                console.error('FFmpeg load error:', error);
+                return false;
+            } finally {
+                ffmpegLoading = false;
+            }
+        }
+
+        // Update button state
+        /*
+        function updateButtonState() {
+            const fromFormat = fromFormatSelect.value;
+            const toFormat = toFormatSelect.value;
+            const sameFormat = fromFormat === toFormat;
+            convertBtn.disabled = !(ffmpeg && audioFile && !sameFormat);
+            
+            if (sameFormat && audioFile) {
+                showStatus('Please select a different target format.', 'error');
+            } else if (audioFile && ffmpeg && !sameFormat) {
+                showStatus(`Ready to convert from ${fromFormat.toUpperCase()} to ${toFormat.toUpperCase()}. Click "Convert Audio" to begin.`, 'success');
+            } else if (audioFile && !ffmpeg) {
+                // FFmpeg is still loading, don't override the loading message
+                return;
+            }
+        }
+        */
+        function updateButtonState() {
+            const fromFormat = fromFormatSelect.value;
+            const toFormat = toFormatSelect.value;
+            const sameFormat = fromFormat === toFormat;
+            // Enable only if FFmpeg is loaded AND file selected AND different format
+            convertBtn.disabled = !(ffmpegLoaded && audioFile && !sameFormat);
+            
+            // Don't override the success message with tool recommendations
+            if (statusDiv.classList.contains('success-enhanced')) {
+                return; // Exit early, keep the enhanced success message
+            }
+            
+            // Handle same format validation (check this BEFORE generic error check)
+            if (sameFormat && audioFile) {
+                showStatus('Please select a different target format.', 'error');
+                return;
+            }
+            
+            // If we got here, same format is false
+            // Clear error class in case it was from a previous same-format error
+            // This allows the status to update when format changes
+            if (!sameFormat && statusDiv.classList.contains('error')) {
+                statusDiv.classList.remove('error');
+            }
+            
+            // Don't override other error messages (from processing failures)
+            // Note: we cleared same-format errors above, so this only applies to processing errors
+            if (statusDiv.classList.contains('error')) {
+                return; // Exit early, keep the error message
+            }
+            
+            // Update button text based on state
+            if (audioFile && !ffmpegLoaded) {
+                if (ffmpegLoading) {
+                    convertBtn.textContent = 'Loading converter...';
+                    showStatus('⏳ Loading converter... This may take a moment on slow connections.', 'info');
+                } else {
+                    convertBtn.textContent = 'Preparing...';
+                    showStatus('Preparing converter...', 'info');
+                }
+            } else if (audioFile && ffmpegLoaded && !sameFormat) {
+                convertBtn.textContent = 'Convert Audio';
+                showStatus(`Ready to convert from ${fromFormat.toUpperCase()} to ${toFormat.toUpperCase()}. Click "Convert Audio" to begin.`, 'success');
+            } else {
+                convertBtn.textContent = 'Convert Audio';
+                if (audioFile && !ffmpegLoaded) {
+                    // FFmpeg is still loading, don't override the loading message
+                    return;
+                }
+            }
+        }
+
+
+        // Handle format selection changes
+        toFormatSelect.addEventListener('change', () => {
+            updateButtonState();
+        });
+
+        // Handle file selection
+        audioInput.addEventListener('change', async (e) => {
+            audioFile = e.target.files[0];
+
+            if (audioFile) {
+                // Clear any previous error or success state
+                statusDiv.classList.remove('error', 'success-enhanced');
+                
+                // Track file selection
+                ToolTracker.trackFileSelected(audioFile.size);
+
+                // Detect and set format from filename
+                const detectedFormat = detectFormatFromFilename(audioFile.name);
+                if (detectedFormat) {
+                    fromFormatSelect.value = detectedFormat;
+                }
+
+                // Disable the From Format dropdown once file is selected
+                fromFormatSelect.disabled = true;
+
+                // Show filename next to button
+                uploadFilename.textContent = audioFile.name;
+
+                // Load audio preview (works directly for audio files)
+                showStatus('Loading audio preview...', 'info');
+                await loadAudioPreview(audioFile);
+                
+                // Load FFmpeg
+                if (!ffmpegLoaded && audioFile) {
+                    await loadFFmpeg();
+                    updateButtonState();
+                } else {
+                    updateButtonState();
+                }
+            } else {
+                // Reset when no file is selected
+                uploadFilename.textContent = 'No file selected';
+                previewPlayerDiv.style.display = 'none';
+                if (player) { player.destroy(); player = null; }
+                audioBuffer = null;
+                fromFormatSelect.disabled = false;
+                audioFile = null;
+                showStatus('Upload an audio file to begin.', 'info');
+                updateButtonState();
+            }
+        });
+
+        // Convert audio
+        convertBtn.addEventListener('click', async () => {
+            if (statusDiv.classList.contains('success-enhanced')) { statusDiv.className = ''; statusDiv.innerHTML = ''; }
+            if (!audioFile) {
+                showStatus('Please upload an audio file first', 'error');
+                return;
+            }
+
+            // Wait for FFmpeg if not loaded yet
+            if (!ffmpegLoaded) {
+                showStatus('Waiting for converter to load... Please be patient on slow connections.', 'info');
+                const loadResult = await loadFFmpeg();
+                if (!loadResult || !ffmpegLoaded) {
+                    showStatus('✗ Error: Converter failed to load. Please refresh the page and try again.', 'error');
+                    convertBtn.disabled = false;
+                    updateButtonState();
+                    return;
+                }
+            }
+
+            const fromFormat = fromFormatSelect.value;
+            const toFormat = toFormatSelect.value;
+
+            if (fromFormat === toFormat) {
+                showStatus('Source and target formats cannot be the same.', 'error');
+                return;
+            }
+
+            try {
+                convertBtn.disabled = true;
+
+                // Stop preview if playing
+                if (player) {
+                    player.stop();
+                }
+
+                showStatus(`Converting from ${fromFormat.toUpperCase()} to ${toFormat.toUpperCase()}...`, 'info');
+                
+                // Validate file is accessible and not empty
+                if (!audioFile.size || audioFile.size === 0) {
+                    throw new Error('Audio file is empty or no longer accessible. Please re-select the file.');
+                }
+                
+                // Show processing ad
+                //processingAd.style.display = 'flex';
+
+                // Read audio file
+                const audioData = new Uint8Array(await audioFile.arrayBuffer());
+
+                // Write input file
+                const inputFileName = `input.${fromFormat}`;
+                await ffmpeg.writeFile(inputFileName, audioData);
+
+                showStatus('Processing audio...', 'info');
+
+                // Get output configuration
+                const outputConfig = formatConfig[toFormat];
+                const outputFileName = `output.${toFormat}`;
+
+                // Build FFmpeg command
+                const ffmpegCommand = [
+                    '-i', inputFileName,
+                    ...outputConfig.ffmpegArgs,
+                    outputFileName
+                ];
+
+                // Execute conversion
+                await ffmpeg.exec(ffmpegCommand);
+
+                showStatus('Preparing download...', 'info');
+
+                // Read output file with error handling
+                let data;
+                try {
+                    data = await ffmpeg.readFile(outputFileName);
+                    
+                    if (!data || data.length === 0) {
+                        console.error('Empty output file detected - FFmpeg may be in corrupted state');
+                        console.error('Debug info:', {
+                            audioFileSize: audioFile ? audioFile.size : 'unknown',
+                            fromFormat: fromFormat,
+                            toFormat: toFormat
+                        });
+                        
+                        // Clear potentially corrupted FFmpeg instance so next retry will reload it
+                        ffmpeg = null;
+                        
+                        throw new Error('Processing failed. Please try again or reload the page if the issue persists.');
+                    }
+                } catch (outputError) {
+                    console.error('Output file read error:', outputError);
+                    
+                    // If it's the empty file error we threw above, just re-throw it
+                    if (outputError.message.includes('Processing failed')) {
+                        throw outputError;
+                    }
+                    
+                    // Otherwise, it's a different read error - don't clear ffmpeg for these
+                    throw new Error(`Cannot read processed file: ${outputError.message}`);
+                }
+
+                // Create download
+                const blob = new Blob([data.buffer], { type: outputConfig.mimeType });
+                const downloadUrl = URL.createObjectURL(blob);
+                
+                const originalName = audioFile.name.substring(0, audioFile.name.lastIndexOf('.')) || audioFile.name;
+                const downloadName = `${originalName}.${toFormat}`;
+
+                // Clean up
+                await ffmpeg.deleteFile(inputFileName);
+                await ffmpeg.deleteFile(outputFileName);
+
+                const analytics = ToolTracker.getAnalytics();
+
+                statusDiv.innerHTML = `
+                    <div class="success-message-enhanced">
+                        <div class="success-text">✔ Converted to ${toFormat.toUpperCase()}!</div>
+                        <div class="next-tools">
+                            <span class="next-label">Try next:</span>
+                            <a href="/volume-booster/" class="next-tool-link" data-tool="volume-booster">📈 Volume Booster</a>
+                            <a href="/audio-metadata-editor/" class="next-tool-link" data-tool="metadata">🏷️ Metadata Editor</a>
+                            <a href="/audio-trimmer/" class="next-tool-link" data-tool="audio-trimmer">✂️ Audio Trimmer</a>
+                            <a href="/" class="next-tool-link all-tools" data-tool="all-tools">More tools →</a>
+                        </div>
+                        <a id="ctaDownloadBtn" class="cta-download-btn" href="${downloadUrl}" download="${downloadName}">⬇️ Download ${toFormat.toUpperCase()} File</a>
+                    </div>
+                `;
+
+                statusDiv.classList.add('success-enhanced');
+
+                statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.getElementById('ctaDownloadBtn').addEventListener('click', function() {
+                    gtag('event', 'cta-download-clicked', {
+                        'event_category': 'download',
+                        'source_tool': 'audio-converter',
+                        'format': toFormat
+                    });
+                    setTimeout(() => URL.revokeObjectURL(downloadUrl), 60000);
+                });
+
+                // Track and add click handlers
+                gtag('event', 'related-tools-cta-shown', {
+                    'event_category': 'cross_tool_engagement',
+                    'event_label': 'success_message_inline',
+                    'source_tool': 'audio-converter',
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user
+                });
+
+                document.querySelectorAll('.next-tool-link').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        const destinationTool = this.getAttribute('data-tool');
+                        gtag('event', 'related-tool-clicked', {
+                            'event_category': 'cross_tool_engagement',
+                            'source_tool': 'audio-converter',
+                            'destination_tool': destinationTool,
+                            'cta_position': 'inline_success',
+                            'lifetime_tool_uses': analytics.lifetime_tool_uses
+                        });
+                    });
+                });
+                // END - Create enhanced success message with tool recommendations
+
+                // Track conversion
+                // ============================================
+                //    MODIFIED: Use new tracking system
+                // ============================================
+                ToolTracker.trackSuccess({
+                    'event_label': `${fromFormat}_to_${toFormat}`,
+                    'conversion_type': `${fromFormat}-${toFormat}`
+                });
+                // ============================================
+                
+                // Hide processing ad
+                setTimeout(() => {
+                    //processingAd.style.display = 'none';
+                }, 2000);
+                
+                convertBtn.disabled = false;
+                updateButtonState();
+            } catch (error) {
+                showStatus('✗ Error: ' + error.message, 'error');
+                console.error(error);
+                //processingAd.style.display = 'none';
+                convertBtn.disabled = false;
+                // The error will persist until user selects a new file or changes format
+
+                console.log('error.message', error.message); // "" (empty string)
+                console.log('error.stack', error.stack);   // Full stack trace
+
+                const errorMessage = error?.message || error?.toString() || String(error) || 'Unknown error';   
+                console.log('errorMessage', errorMessage); // "" (empty string)    
+                // Extract first line of stack trace (most relevant) - Second line usually has the location
+                const stackFirstLine = error?.stack ? error.stack.split('\n')[1]?.trim()  : ''; 
+                console.log('stackFirstLine', stackFirstLine);
+                // Combine for GA4 (keeps it concise)
+                const errorForGA4 = stackFirstLine  ? `${errorMessage} | ${stackFirstLine}`  : errorMessage;
+                console.log('errorForGA4', errorForGA4);
+                ToolTracker.trackError(errorForGA4);
+            }
+        });
+
+        // Initialize
+        showStatus('Upload an audio file to begin.', 'info');
+    </script>
+</body>
+</html>

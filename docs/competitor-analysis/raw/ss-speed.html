@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Music Speed Changer — Speed Up a Song | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-notify.js" defer></script>
+<meta name="description" content="Speed up or slow down any song free, from 0.25x to 4x, keeping or shifting the pitch. Runs in your browser, and files stay on your device.">
+<meta name="keywords" content="audio speed changer, change audio speed, slow down mp3, speed up audio, nightcore maker, sped up song maker, make a song slower, slow down a song, speed up song online, audio tempo changer, change tempo of mp3">
+<link rel="canonical" href="https://snipsound.com/tools/tempo-changer/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/tempo-changer/">
+<link rel="alternate" hreflang="es" href="https://snipsound.com/es/cambiar-velocidad-audio/">
+<link rel="alternate" hreflang="pt-BR" href="https://snipsound.com/pt/mudar-velocidade-audio/">
+<link rel="alternate" hreflang="it" href="https://snipsound.com/it/cambiare-velocita-audio/">
+<link rel="alternate" hreflang="fr" href="https://snipsound.com/fr/changer-vitesse-audio/">
+<link rel="alternate" hreflang="de" href="https://snipsound.com/de/audio-geschwindigkeit/">
+<link rel="alternate" hreflang="ru" href="https://snipsound.com/ru/izmenenie-skorosti-audio/">
+<link rel="alternate" hreflang="zh-Hans" href="https://snipsound.com/zh/yinpin-biansu/">
+<link rel="alternate" hreflang="hi" href="https://snipsound.com/hi/audio-speed-changer/">
+<link rel="alternate" hreflang="ar" href="https://snipsound.com/ar/تغيير-سرعة-الصوت/">
+<link rel="alternate" hreflang="ja" href="https://snipsound.com/ja/音声-速度-変更/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/tempo-changer/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Music Speed Changer — Speed Up a Song">
+<meta property="og:description" content="Speed up or slow down any song free, from 0.25x to 4x, keeping or shifting the pitch. Runs in your browser, and files stay on your device.">
+<meta property="og:url" content="https://snipsound.com/tools/tempo-changer/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Music Speed Changer — Speed Up a Song">
+<meta name="twitter:description" content="Speed up or slow down any song free, from 0.25x to 4x, keeping or shifting the pitch. Runs in your browser, and files stay on your device.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+
+  
+
+  .container { max-width: 980px; margin: 0 auto; padding: 24px; }
+
+  .hero { text-align: center; padding: 0 0 32px; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone {
+    background: var(--surface); border: 2px dashed var(--border-bright);
+    border-radius: 16px; padding: 64px 32px; text-align: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px;
+  }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .file-info { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .file-info .file-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; color: var(--text); }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove { margin-left: auto; background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: color 0.2s, border-color 0.2s; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  /* Rate slider */
+  .rate-section { padding: 20px 0; }
+  .rate-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .rate-label { font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; min-width: 90px; }
+  .rate-display {
+    font-variant-numeric: tabular-nums;
+    font-size: 2rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #b599ff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    min-width: 92px;
+  }
+  .rate-slider {
+    flex: 1; min-width: 200px;
+    -webkit-appearance: none; appearance: none;
+    height: 6px; background: var(--surface2); border-radius: 3px;
+    outline: none;
+  }
+  .rate-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--accent); cursor: pointer;
+    box-shadow: 0 2px 8px var(--accent-glow);
+    border: 3px solid var(--surface);
+  }
+  .rate-slider::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 3px solid var(--surface); }
+  .rate-presets { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin: 12px 0; }
+  .rate-preset { padding: 5px 14px; border-radius: 999px; background: var(--surface2); border: 1px solid var(--border-bright); color: var(--text-dim); font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .rate-preset:hover { color: var(--text); border-color: var(--accent); }
+  .rate-preset.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+  .vibe-label { text-align: center; font-size: 11px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--text-dim); margin: 14px 0 6px; }
+  .vibe-presets { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 6px; }
+  .vibe-preset { padding: 8px 16px; border-radius: 999px; background: var(--surface2); border: 1px solid var(--border-bright); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .vibe-preset:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .vibe-preset.active { color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-hover)); border-color: var(--accent); box-shadow: 0 2px 12px var(--accent-glow); }
+  .reverb-row { margin-top: 8px; }
+  .rate-meta { display: flex; gap: 24px; justify-content: center; margin-top: 10px; font-size: 0.85rem; color: var(--text-dim); flex-wrap: wrap; }
+  .rate-meta strong { color: var(--text); font-weight: 600; }
+
+  canvas.wave { display: block; width: 100%; height: 100px; background: var(--bg); border-radius: 6px; margin: 16px 0; }
+
+  /* Controls */
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border-bright); }
+  .btn-secondary:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .skip-btn { padding-left: 14px; padding-right: 14px; gap: 4px; font-variant-numeric: tabular-nums; }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+
+  /* SEO copy */
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul { padding-left: 22px; }
+
+  /* FAQ */
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  @media (max-width: 700px) {
+
+    .hero { padding: 0 0 20px; }
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    /* ON A PHONE THE WAVEFORM AND PLAY SIT HIGHER (Marc, 2026-10-17, via architect R-caca4a): each
+       value shares its label's line (SPEED 1x, REVERB Off) instead of taking a line of its own, and
+       the speed and vibe chips are one row each that scrolls sideways instead of wrapping to two.
+       The right padding inside a strip lets the last chip scroll clear of the edge fade. */
+    .rate-section { padding: 12px 0; }
+    .rate-row { gap: 4px 12px; margin-bottom: 10px; }
+    .rate-label { min-width: 0; flex: 0 0 auto; }
+    .rate-display { font-size: 1.35rem; min-width: 0; }
+    .rate-slider { flex: 1 0 100%; min-width: 0; }
+    .rate-presets, .vibe-presets {
+      flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto;
+      scrollbar-width: none; scroll-snap-type: x proximity; overscroll-behavior-x: contain;
+      gap: 6px; padding: 2px 20px 2px 0; margin: 8px 0;
+      -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 20px), transparent);
+      mask-image: linear-gradient(to right, #000 calc(100% - 20px), transparent);
+    }
+    .rate-presets::-webkit-scrollbar, .vibe-presets::-webkit-scrollbar { display: none; }
+    /* Slimmer vibe chips so the next one PEEKS past the edge - at full padding the second chip ended
+       exactly at the edge on a 390 px phone and nothing said the row went on. */
+    .rate-preset, .vibe-preset { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: center; }
+    .vibe-preset { padding: 7px 12px; }
+    .vibe-label { text-align: left; margin: 10px 0 2px; }
+    canvas.wave { height: 80px; margin: 10px 0; }
+    .controls { gap: 8px; margin-top: 8px; }
+    /* back | play | forward fill the first row; format + download wrap below as before */
+    .controls .skip-btn { flex: 0 0 auto; }
+    .controls .transport-btn { flex: 1 1 0; }
+    /* Marc's phone picks (2026-10-20): 3 - no Original/New duration line (Play's time is the new length);
+       5 - format + Download share the second row. The ::before is a zero-height line break ordered between
+       the play row and the save row, so no markup changes. theme.js forces #export-format to a full row on
+       phones (!important) so a long label cannot spill; this outranks it and keeps that with a 48% cap. */
+    .rate-meta { display: none; }
+    .controls::before { content: ''; order: 1; flex-basis: 100%; height: 0; }
+    .controls #export-format, .controls #btn-download, .controls .status-text { order: 2; }
+    .controls #btn-download { flex: 1 1 0 !important; min-width: 0 !important; }
+    .controls #export-format { flex: 0 1 auto !important; max-width: 48% !important; min-width: 0 !important; text-overflow: ellipsis; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "SnipSound Audio Speed Changer", "url": "https://snipsound.com/tools/tempo-changer/", "description": "Free online audio speed changer. Slow down or speed up audio files 0.25x to 4x in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How do I slow down or speed up audio online?", "acceptedAnswer": { "@type": "Answer", "text": "Drop your audio file onto the page, drag the speed slider (or click a preset like 0.5x or 1.5x), preview the result, and download. Everything runs in your browser." } },
+  { "@type": "Question", "name": "How do I make audio or an MP3 slower online?", "acceptedAnswer": { "@type": "Answer", "text": "Drop your MP3 (or WAV/M4A/OGG) in and drag the speed slider below 1x — try 0.8x or 0.5x — to make the audio slower. Preview it, then download the slowed file. Free, your files stay on your device, no sign-up." } },
+  { "@type": "Question", "name": "How do I make a slowed + reverb song?", "acceptedAnswer": { "@type": "Answer", "text": "Drop your audio in, click the 'Slowed + Reverb' vibe (or set the speed near 0.8x and raise the Reverb slider), preview it, and download. The reverb is baked into the exported file." } },
+  { "@type": "Question", "name": "How do I make a nightcore (sped up) version?", "acceptedAnswer": { "@type": "Answer", "text": "Click the 'Nightcore' vibe — it speeds the track up to about 1.3x, which also raises the pitch for that classic nightcore sound. Adjust the speed slider to taste, then download." } },
+  { "@type": "Question", "name": "Does the pitch change when I change the speed?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. This tool uses simple resampling, so slowing down lowers the pitch and speeding up raises it — the classic 'tape effect'. A pitch-preserving mode is on the roadmap." } },
+  { "@type": "Question", "name": "Is my file uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. All processing happens entirely in your browser via the Web Audio API. Your files never leave your device." } },
+  { "@type": "Question", "name": "What formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Any format your browser can decode — MP3, WAV, OGG, FLAC, AAC, M4A, and more." } },
+  { "@type": "Question", "name": "What format is the output?", "acceptedAnswer": { "@type": "Answer", "text": "WAV (16-bit PCM, original sample rate). Lossless." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body data-owns-keys="space">
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Audio Speed Changer</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/" class="active">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Music <span class="accent">Speed Changer</span></h1>
+    <p>Slow a song down, speed it up to <strong>nightcore</strong>, or set any speed from 0.25× to 4× — with one-click vibe presets, live preview and instant download. Your file never leaves your browser. Looking for the dreamy reverb sound? Use our <a href="/tools/slowed-reverb/" style="color:var(--accent);"><strong>Slowed + Reverb Maker</strong></a>.</p>
+  </section>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="13 19 22 12 13 5 13 19"/>
+      <polygon points="2 19 11 12 2 5 2 19"/>
+    </svg>
+    <h2>Drop audio file here</h2>
+    <p>or click to browse &mdash; processed in your browser &mdash; your file never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span><span class="format-tag">WAV</span><span class="format-tag">OGG</span>
+      <span class="format-tag">FLAC</span><span class="format-tag">AAC</span><span class="format-tag">M4A</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,.mp3,.wav,.ogg,.flac,.aac,.m4a">
+  </div>
+
+  <style>
+    .privacy-notice { display: flex; align-items: center; justify-content: center; gap: 8px; margin: -8px auto 24px; padding: 10px 14px; color: var(--text-dim); font-size: 0.85rem; line-height: 1.4; max-width: 720px; text-align: center; }
+    .privacy-notice svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--green); }
+    .privacy-notice strong { color: var(--text); font-weight: 600; }
+    .privacy-notice a { color: var(--accent); text-decoration: none; }
+    .privacy-notice a:hover { text-decoration: underline; }
+  </style>
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your file never leaves your device.</strong> All processing happens in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Remove file</button>
+    </div>
+
+    <div class="rate-section">
+      <div class="rate-row">
+        <span class="rate-label">Speed</span>
+        <span class="rate-display" id="rate-display">1.00&times;</span>
+        <input type="range" class="rate-slider" id="rate-slider" min="0.25" max="4" step="0.05" value="1">
+      </div>
+      <div class="rate-presets">
+        <button type="button" class="rate-preset" data-rate="0.5">0.5&times; (Half)</button>
+        <button type="button" class="rate-preset" data-rate="0.75">0.75&times;</button>
+        <button type="button" class="rate-preset active" data-rate="1">1&times; (Original)</button>
+        <button type="button" class="rate-preset" data-rate="1.25">1.25&times;</button>
+        <button type="button" class="rate-preset" data-rate="1.5">1.5&times;</button>
+        <button type="button" class="rate-preset" data-rate="2">2&times; (Double)</button>
+      </div>
+
+      <!-- One-click "vibe" presets for the slowed+reverb / nightcore trend. -->
+      <div class="vibe-label">One-click vibes</div>
+      <div class="vibe-presets">
+        <button type="button" class="vibe-preset" data-vibe="slowed-reverb">🌙 Slowed + Reverb</button>
+        <button type="button" class="vibe-preset" data-vibe="nightcore">⚡ Nightcore</button>
+        <button type="button" class="vibe-preset" data-vibe="slowed">🐢 Slowed</button>
+        <button type="button" class="vibe-preset" data-vibe="spedup">🚀 Sped Up</button>
+      </div>
+      <div class="rate-row reverb-row">
+        <span class="rate-label">Reverb</span>
+        <span class="rate-display" id="reverb-display">Off</span>
+        <input type="range" class="rate-slider" id="reverb-slider" min="0" max="1" step="0.05" value="0">
+      </div>
+      <div class="rate-meta">
+        <span>Original: <strong id="orig-duration">&mdash;</strong></span>
+        <span>New duration: <strong id="new-duration">&mdash;</strong></span>
+      </div>
+      <div class="wave-stage" style="position:relative;cursor:pointer;">
+        <canvas class="wave" id="wave-canvas" width="1600" height="200"></canvas>
+        <div class="playhead" id="playhead"></div>
+      </div>
+      <div class="wave-under">
+        <span class="wave-hint" id="wave-hint">Drag to move the playhead &middot; pinch to zoom</span>
+        <button type="button" class="wave-full" id="wave-full" hidden>Whole track</button>
+      </div>
+      <style>
+        .wave-stage canvas.wave { cursor: pointer; }
+        /* The waveform owns sideways drags and pinches; an up/down swipe still scrolls the page
+           (Marc, 2026-10-17: a pinch zoomed the whole page, and a finger could not drag the playhead). */
+        .wave-stage canvas.wave { touch-action: pan-y; }
+        /* Under the waveform, never on it: a button over the waveform eats the taps meant for it. */
+        .wave-under { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 0; margin: -4px 0 4px; }
+        .wave-full {
+          margin-left: auto;
+          padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; font-family: inherit;
+          background: var(--surface2); color: var(--text); border: 1px solid var(--border-bright); cursor: pointer;
+        }
+        .wave-full[hidden] { display: none; }
+        /* WORKING DOTS: "." ".." "..." and round again, so a wait reads as work (Marc, 2026-10-19).
+           visibility, not removal, so the space stays and the line never shifts. */
+        .busy-dots i { font-style: normal; animation: busy-dot 1.2s steps(1, end) infinite; }
+        .busy-dots i:nth-child(2) { animation-name: busy-dot2; }
+        .busy-dots i:nth-child(3) { animation-name: busy-dot3; }
+        @keyframes busy-dot  { 0% { visibility: visible; } }
+        @keyframes busy-dot2 { 0% { visibility: hidden; } 33.3% { visibility: visible; } }
+        @keyframes busy-dot3 { 0% { visibility: hidden; } 66.6% { visibility: visible; } }
+        @media (prefers-reduced-motion: reduce) { .busy-dots i { animation: none; } }
+        .wave-hint { display: none; font-size: 12px; color: var(--text-dim); }
+        @media (hover: none) and (pointer: coarse) { .wave-hint { display: inline; } }
+        /* High-contrast orange so it stands out over the --accent waveform. */
+        .playhead {
+          position: absolute; top: 0; bottom: 0; width: 2px;
+          background: #ff9800;
+          box-shadow: 0 0 0 1px rgba(0,0,0,0.35), 0 0 6px rgba(255,152,0,0.55);
+          pointer-events: none; display: none; left: 0;
+          will-change: left; z-index: 2;
+        }
+        .playhead.active { display: block; }
+        .playhead::before {
+          content: ''; position: absolute; top: -3px; left: -4px;
+          width: 10px; height: 10px; border-radius: 50%;
+          background: #ff9800; box-shadow: 0 0 0 1px rgba(0,0,0,0.35), 0 0 6px rgba(255,152,0,0.6);
+        }
+      </style>
+    </div>
+
+    <div class="controls">
+      <!-- Skip back / forward 5 s replaces "Reset to 1x" (Marc, 2026-10-17): the 1x (Original) chip
+           already resets the speed, and moving around the track was the thing missing on a phone. -->
+      <button type="button" class="btn btn-secondary skip-btn" id="btn-back" title="Back 5 seconds" aria-label="Back 5 seconds">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+        <span>5s</span>
+      </button>
+      <button type="button" class="btn btn-primary transport-btn" id="btn-play">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span>Play</span>
+      </button>
+      <button type="button" class="btn btn-secondary skip-btn" id="btn-fwd" title="Forward 5 seconds" aria-label="Forward 5 seconds">
+        <span>5s</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+      </button>
+      <select class="btn btn-secondary" id="export-format" title="Output format" style="padding:11px 14px;font-size:0.95rem;font-family:inherit;font-weight:600;cursor:pointer;background:var(--surface2);"></select>
+      <button type="button" class="btn btn-primary" id="btn-download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Download</span>
+      </button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+  </div>
+
+  <section class="seo-section">
+    <h2>Slow Down or Speed Up Audio Online &mdash; Free, Private, No Sign-up</h2>
+    <p>SnipSound's Audio Speed Changer lets you slow down or speed up any audio file directly in your web browser. Drop in an MP3, WAV, OGG, FLAC, AAC or M4A, drag the speed slider from 0.25x (a quarter speed) to 4x (four times faster), preview the result, and save it as a WAV. Your files never leave your device.</p>
+
+    <h3>Common use cases</h3>
+    <ul>
+      <li><strong>Transcription &amp; lyric work.</strong> Slow down a song to 0.5x or 0.75x to catch fast lyrics, drum patterns, or guitar lines you want to learn.</li>
+      <li><strong>Language learning.</strong> Slow down a foreign-language podcast or audiobook for better comprehension.</li>
+      <li><strong>Podcast time-saving.</strong> Speed up a long-form podcast to 1.25x or 1.5x to fit it into a commute.</li>
+      <li><strong>Sound design.</strong> Half-speed a drum loop for a slow, heavy texture, or double-time it for chipmunk effects and creative transitions.</li>
+      <li><strong>Tempo testing for video.</strong> Try a track at 0.9x or 1.1x to see if it fits the cut of a video better than the original tempo.</li>
+    </ul>
+
+    <h3>Why use SnipSound</h3>
+    <ul>
+      <li><strong>100% browser-side.</strong> Other speed changers upload your audio to a server. We don't.</li>
+      <li><strong>No cap imposed by us.</strong>; we don't.</li>
+      <li><strong>Wide range.</strong> 0.25x to 4x covers everything from extreme slow-mo transcription to fast-forward podcast skimming.</li>
+      <li><strong>WAV export.</strong> Lossless output you can drop straight into any DAW or editor.</li>
+    </ul>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q"><span>How do I slow down or speed up audio online?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Drop your audio file onto the page, drag the speed slider (or click a preset like 0.5x or 1.5x), preview the result, and download. Everything runs in your browser.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How do I make audio or an MP3 slower online?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Drop your MP3 (or WAV/M4A/OGG) in and drag the speed slider below 1&times; &mdash; try 0.8&times; or 0.5&times; &mdash; to make the audio slower. Preview, then download the slowed file. Free, your files stay on your device, no sign-up.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How do I make a slowed + reverb song?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Drop your audio in, click the <strong>Slowed + Reverb</strong> vibe (or set the speed near 0.8&times; and raise the Reverb slider), preview, and download &mdash; the reverb is baked into the exported file.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>How do I make a nightcore / sped-up version?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Click the <strong>Nightcore</strong> vibe &mdash; it speeds the track to ~1.3&times;, which also raises the pitch for that classic nightcore sound. Tweak the speed slider to taste, then download.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Does the pitch change when I change the speed?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Yes. This tool uses simple resampling, so slowing down lowers the pitch and speeding up raises it &mdash; the classic &ldquo;tape effect&rdquo;. Pitch-preserving (time-stretch) mode is on the roadmap.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my file uploaded to a server?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. All processing happens entirely in your browser via the Web Audio API. See our <a href="/privacy/" style="color:var(--accent);">privacy policy</a>.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What formats are supported?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Any format your browser can decode &mdash; MP3, WAV, OGG, FLAC, AAC, M4A, and more.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What format is the output?</span><span class="arrow">&#9660;</span></div><div class="faq-a">WAV (16-bit PCM, original sample rate). Lossless.</div></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <a href="/">SnipSound</a> &mdash; Free tools for creators &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/help/">Help</a> &middot; <a href="/tools/">All Tools</a>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  let originalBuffer = null;
+  let processedBuffer = null;
+  let audioContext = null;
+  let sourceNode = null;
+  let wetGainNode = null;   // persistent reverb wet-gain → reverb changes apply LIVE (no restart)
+  let isPlaying = false;
+  let pausedAt = null;      // playback position (sec) remembered on pause → resume from here
+  let currentRate = 1.0;
+  let reverbAmount = 0;   // 0 = dry. Drives the "slowed + reverb" vibe.
+  let _liveReverbIR = null;
+  let fileName = '';
+
+  const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input');
+  const editor = document.getElementById('editor');
+  const fileNameEl = document.getElementById('file-name');
+  const fileMetaEl = document.getElementById('file-meta');
+  const fileRemove = document.getElementById('file-remove');
+  const rateSlider = document.getElementById('rate-slider');
+  const rateDisplay = document.getElementById('rate-display');
+  const ratePresets = document.querySelectorAll('.rate-preset');
+  const reverbSlider = document.getElementById('reverb-slider');
+  const reverbDisplay = document.getElementById('reverb-display');
+  const vibePresets = document.querySelectorAll('.vibe-preset');
+  const origDuration = document.getElementById('orig-duration');
+  const newDuration = document.getElementById('new-duration');
+  const canvas = document.getElementById('wave-canvas');
+  const playheadEl = document.getElementById('playhead');
+  const btnPlay = document.getElementById('btn-play');
+  const btnBack = document.getElementById('btn-back');
+  const btnFwd = document.getElementById('btn-fwd');
+  const btnDownload = document.getElementById('btn-download');
+  const statusText = document.getElementById('status-text');
+
+  function getAudioContext() {
+    if (!audioContext) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      audioContext = new Ctx();
+    }
+    return audioContext;
+  }
+
+  function formatTime(s) {
+    if (!isFinite(s)) return '–';
+    const m = Math.floor(s / 60);
+    const sec = (s % 60).toFixed(1).padStart(4, '0');
+    return m + ':' + sec;
+  }
+  function formatFileSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+    return (b / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', (e) => { if (e.target.files.length) handleFile(e.target.files[0]); });
+  document.addEventListener('snipsound:use-shared-file', (e) => { if (e.detail && e.detail.file) handleFile(e.detail.file); });
+
+  if (window.snipDemo) {
+    window.snipDemo.renderButton({
+      target: '#snip-demo-row',
+      label: 'Try with demo audio (Handel – Sarabande)',
+      onClick: (file) => handleFile(file),
+    });
+  }
+  fileRemove.addEventListener('click', () => {
+    stopPlayback();
+    originalBuffer = null; processedBuffer = null;
+    fileInput.value = '';
+    editor.classList.remove('active'); dropZone.style.display = '';
+  });
+
+  // A status that means "still working": the words, then three dots that keep moving.
+  function setBusy(words) {
+    statusText.textContent = words;
+    const dots = document.createElement('span');
+    dots.className = 'busy-dots'; dots.setAttribute('aria-hidden', 'true');
+    dots.innerHTML = '<i>.</i><i>.</i><i>.</i>';
+    statusText.appendChild(dots);
+  }
+
+  async function handleFile(file) {
+    fileName = file.name;
+    setBusy('Decoding');
+    // Default the download format to the input file type — user can change.
+    if (window.snipEncoder && window.snipEncoder.defaultFormatForFile) {
+      fillTempoFormats(window.snipEncoder.defaultFormatForFile(file.name));
+    }
+    // Persist for cross-tool continuity
+    if (window.snipSharedAudio) window.snipSharedAudio.save(file);
+    try {
+      const ctx = getAudioContext();
+      // The shared decoder, for its FFmpeg->WAV rescue when the browser refuses the file (posthog
+      // R-ae1009). This page called decodeAudioData raw, so a file Edge or Safari would not read
+      // failed outright, with none of the retry the trimmer and the converters already get.
+      const buf = window.snipDecodeAudio
+        ? await window.snipDecodeAudio(file, ctx, { tool: 'tempo-changer' })
+        : await ctx.decodeAudioData((await file.arrayBuffer()).slice(0));
+      originalBuffer = buf;
+      fileNameEl.textContent = fileName;
+      fileMetaEl.textContent = formatFileSize(file.size) + ' · ' + formatTime(buf.duration) + ' · ' + buf.numberOfChannels + 'ch · ' + buf.sampleRate + ' Hz';
+      origDuration.textContent = formatTime(buf.duration);
+      applyRate(currentRate);
+      // Editor must be visible BEFORE drawing — canvas.clientWidth is 0 while parent is display:none.
+      dropZone.style.display = 'none';
+      editor.classList.add('active');
+      viewStart = 0; viewEnd = buf.duration;
+      drawWaveform(canvas, buf, waveColor());
+      statusText.textContent = '';
+      // Auto-play immediately so the user gets instant feedback from the slider.
+      playFrom(0);
+    } catch (err) {
+      console.error(err);
+      // COUNTED, not only alerted (R-ae1009): this failure sent no tool_failed, so the page's decode
+      // failures were missing from the rate and reached PostHog only as console-captured exceptions.
+      // An empty-after-read file is not a decode failure: the shared decoder already said so and
+      // counted it (upload_rejected), so it gets neither the event nor a second message.
+      const _empty = !!(err && err.name === 'SnipEmptyAfterRead');
+      if (!_empty && window.snipTrackFailed) window.snipTrackFailed('tempo-changer', (err && err.name === 'NotReadableError') ? 'file_read_failed' : 'decode_failed', 'decode', Object.assign({}, (err && err.snipDiag) || {}, { explained: true, msg_key: 'decode_try_format' }));
+      statusText.textContent = '';
+      if (!_empty) alert('Could not decode this audio file. Make sure it is a supported format (MP3, WAV, OGG, FLAC, AAC, M4A).');
+    }
+  }
+
+  function applyRate(rate) {
+    if (sourceNode && isPlaying) {
+      // Capture current buffer position BEFORE the rate change so playhead math stays correct.
+      const ctx = getAudioContext();
+      const elapsedReal = ctx.currentTime - playStartCtxTime;
+      const curPos = playStartBufferOffset + elapsedReal * sourceNode.playbackRate.value;
+      try { sourceNode.playbackRate.value = rate; } catch (e) {}
+      playStartCtxTime = ctx.currentTime;
+      playStartBufferOffset = curPos;
+    }
+    currentRate = rate;
+    rateDisplay.innerHTML = rate.toFixed(2).replace(/\.?0+$/, '') + '&times;';
+    rateSlider.value = String(rate);
+    ratePresets.forEach(b => b.classList.toggle('active', parseFloat(b.dataset.rate) === rate));
+    if (originalBuffer) {
+      const newDur = originalBuffer.duration / rate;
+      newDuration.textContent = formatTime(newDur);
+    }
+  }
+
+  rateSlider.addEventListener('input', () => applyRate(parseFloat(rateSlider.value)));
+  // A tapped chip slides to the CENTRE of its sideways row, so the options either side of it stay in
+  // view (Marc, 2026-10-17). Only where the row actually scrolls - on a phone; desktop rows wrap.
+  function centerChip(btn) {
+    const strip = btn && btn.parentElement;
+    if (!strip || strip.scrollWidth <= strip.clientWidth + 1) return;
+    const s = strip.getBoundingClientRect(), r = btn.getBoundingClientRect();
+    const left = strip.scrollLeft + (r.left - s.left) - (strip.clientWidth - r.width) / 2;
+    const smooth = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    try { strip.scrollTo({ left: Math.max(0, left), behavior: smooth ? 'smooth' : 'auto' }); } catch (e) { strip.scrollLeft = Math.max(0, left); }
+  }
+  ratePresets.forEach(b => b.addEventListener('click', () => { applyRate(parseFloat(b.dataset.rate)); centerChip(b); }));
+
+  // ── Reverb (powers the "slowed + reverb" vibe) ───────────────────────
+  function makeReverbIR(ctx, seconds, decay) {
+    const rate = ctx.sampleRate, len = Math.max(1, Math.floor(seconds * rate));
+    const ir = ctx.createBuffer(2, len, rate);
+    for (let ch = 0; ch < 2; ch++) {
+      const d = ir.getChannelData(ch);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay);
+    }
+    return ir;
+  }
+  function liveReverbIR(ctx) { if (!_liveReverbIR) _liveReverbIR = makeReverbIR(ctx, 2.6, 2.2); return _liveReverbIR; }
+  // Offline render of the (already speed-changed) buffer through a convolver
+  // reverb — used for the downloaded file so the reverb is baked in.
+  async function renderReverb(buffer, wet) {
+    if (!wet) return buffer;
+    const tail = 2.6;
+    const off = new OfflineAudioContext(buffer.numberOfChannels,
+      buffer.length + Math.floor(buffer.sampleRate * tail), buffer.sampleRate);
+    const src = off.createBufferSource(); src.buffer = buffer;
+    const dry = off.createGain(); dry.gain.value = 1;
+    const wetG = off.createGain(); wetG.gain.value = wet;
+    const conv = off.createConvolver(); conv.buffer = makeReverbIR(off, tail, 2.2);
+    src.connect(dry); dry.connect(off.destination);
+    src.connect(conv); conv.connect(wetG); wetG.connect(off.destination);
+    src.start(0);
+    return await off.startRendering();
+  }
+  function setReverb(amt) {
+    reverbAmount = Math.max(0, Math.min(1, amt || 0));
+    if (reverbSlider) reverbSlider.value = String(reverbAmount);
+    if (reverbDisplay) reverbDisplay.textContent = reverbAmount > 0 ? Math.round(reverbAmount * 100) + '%' : 'Off';
+    // Apply LIVE while playing — no restart from the beginning.
+    if (wetGainNode && isPlaying) wetGainNode.gain.setTargetAtTime(reverbAmount, getAudioContext().currentTime, 0.03);
+  }
+
+  // One-click vibes for the slowed+reverb / nightcore trend.
+  const VIBES = {
+    'slowed-reverb': { rate: 0.80, reverb: 0.55 },
+    'nightcore':     { rate: 1.30, reverb: 0 },
+    'slowed':        { rate: 0.82, reverb: 0 },
+    'spedup':        { rate: 1.25, reverb: 0 },
+  };
+  function applyVibe(key) {
+    const v = VIBES[key]; if (!v) return;
+    applyRate(v.rate);      // live
+    setReverb(v.reverb);    // live
+    vibePresets.forEach(b => b.classList.toggle('active', b.dataset.vibe === key));
+    // rate + reverb both apply live now — the song keeps playing, no restart.
+  }
+  vibePresets.forEach(b => b.addEventListener('click', () => { applyVibe(b.dataset.vibe); centerChip(b); }));
+  if (reverbSlider) reverbSlider.addEventListener('input', () => {
+    setReverb(parseFloat(reverbSlider.value));
+    vibePresets.forEach(b => b.classList.remove('active')); // manual tweak clears the vibe pill
+  });
+
+  function resampleBuffer(ctx, src, rate) {
+    // Linear-interp resampling: output[i] = lerp(src[floor(i*rate)], src[floor(i*rate)+1])
+    const outFrames = Math.max(1, Math.floor(src.length / rate));
+    const dst = ctx.createBuffer(src.numberOfChannels, outFrames, src.sampleRate);
+    for (let ch = 0; ch < src.numberOfChannels; ch++) {
+      const s = src.getChannelData(ch);
+      const d = dst.getChannelData(ch);
+      for (let i = 0; i < outFrames; i++) {
+        const srcIdx = i * rate;
+        const i0 = Math.floor(srcIdx);
+        const i1 = Math.min(i0 + 1, s.length - 1);
+        const frac = srcIdx - i0;
+        d[i] = s[i0] * (1 - frac) + s[i1] * frac;
+      }
+    }
+    return dst;
+  }
+
+  // THE VISIBLE SPAN of the track, in seconds: the whole track until a pinch zooms in. Every waveform
+  // x <-> time mapping goes through viewToTime / timeToView, so taps, drags, skips and the playhead all
+  // agree with what is drawn.
+  let viewStart = 0, viewEnd = 0;
+  const MIN_VIEW_SEC = 1;
+  function viewSpan() { return Math.max(1e-3, viewEnd - viewStart); }
+  function viewToTime(frac) { return viewStart + Math.max(0, Math.min(1, frac)) * viewSpan(); }
+  function timeToView(sec) { return (sec - viewStart) / viewSpan(); }
+  function isZoomed() { return !!originalBuffer && viewSpan() < originalBuffer.duration - 0.01; }
+  function waveColor() { return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#7c6fff'; }
+
+  function drawWaveform(canvas, buffer, color) {
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = canvas.clientWidth; const cssH = canvas.clientHeight;
+    canvas.width = cssW * dpr; canvas.height = cssH * dpr;
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, cssW, cssH);
+    const data = buffer.getChannelData(0);
+    if (!(viewEnd > viewStart)) { viewStart = 0; viewEnd = buffer.duration; }
+    const s0 = Math.floor(viewStart * buffer.sampleRate);
+    const s1 = Math.min(data.length, Math.ceil(viewEnd * buffer.sampleRate));
+    const step = Math.max(1, (s1 - s0) / cssW);
+    const mid = cssH / 2;
+    ctx.fillStyle = color;
+    for (let x = 0; x < cssW; x++) {
+      const start = s0 + Math.floor(x * step);
+      let min = 1.0, max = -1.0;
+      const end = Math.min(s0 + Math.floor((x + 1) * step), s1, data.length);
+      for (let i = start; i < end; i++) {
+        const v = data[i];
+        if (v < min) min = v;
+        if (v > max) max = v;
+      }
+      if (end <= start) continue;
+      const yTop = mid + min * mid; const yBot = mid + max * mid;
+      ctx.fillRect(x, yTop, 1, Math.max(1, yBot - yTop));
+    }
+    const full = document.getElementById('wave-full');
+    if (full) full.hidden = !isZoomed();
+  }
+  function redrawWave() { if (originalBuffer) drawWaveform(canvas, originalBuffer, waveColor()); }
+
+  // Playback state for the single-button model.
+  let playStartCtxTime = 0;        // ctx.currentTime when current segment started
+  let playStartBufferOffset = 0;   // position in originalBuffer at segment start (seconds)
+  let playheadRafId = null;
+
+  function tickPlayhead() {
+    if (!isPlaying || !sourceNode || !originalBuffer) return;
+    const ctx = getAudioContext();
+    const elapsedReal = ctx.currentTime - playStartCtxTime;
+    const pos = playStartBufferOffset + elapsedReal * sourceNode.playbackRate.value;
+    if (pos >= originalBuffer.duration) {
+      hidePlayhead();
+      return;
+    }
+    if (!scrubbing) {
+      if (isZoomed() && (pos > viewEnd || pos < viewStart)) {   // page the zoomed view along with the song
+        const span = viewSpan();
+        viewStart = Math.max(0, Math.min(originalBuffer.duration - span, pos - span * 0.1));
+        viewEnd = viewStart + span;
+        redrawWave();
+      }
+      placePlayhead(pos);
+    }
+    playheadRafId = requestAnimationFrame(tickPlayhead);
+  }
+  // frac is a fraction of the WHOLE track (every caller's unit); it is placed within the visible span.
+  function showPlayheadAt(frac) {
+    playheadEl.classList.add('active');
+    placePlayhead(frac * (originalBuffer ? originalBuffer.duration : 0));
+  }
+  function placePlayhead(sec) {
+    const v = timeToView(sec);
+    playheadEl.style.visibility = (v < -0.001 || v > 1.001) ? 'hidden' : '';
+    playheadEl.style.left = (Math.max(0, Math.min(1, v)) * 100) + '%';
+  }
+  function hidePlayhead() {
+    playheadEl.classList.remove('active');
+    if (playheadRafId) { cancelAnimationFrame(playheadRafId); playheadRafId = null; }
+  }
+
+  // Current playback position in seconds (accounts for the live rate).
+  function currentPos() {
+    if (!isPlaying || !sourceNode || !originalBuffer) return pausedAt || 0;
+    const ctx = getAudioContext();
+    const elapsed = ctx.currentTime - playStartCtxTime;
+    return Math.max(0, Math.min(originalBuffer.duration - 0.01, playStartBufferOffset + elapsed * sourceNode.playbackRate.value));
+  }
+
+  function playFrom(offsetSec) {
+    stopPlayback();
+    if (!originalBuffer) return;
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') ctx.resume();
+    offsetSec = Math.max(0, Math.min(offsetSec || 0, originalBuffer.duration - 0.001));
+    sourceNode = ctx.createBufferSource();
+    sourceNode.buffer = originalBuffer;
+    sourceNode.playbackRate.value = currentRate;
+    // Persistent dry + wet(reverb) graph so reverb can change LIVE without a restart:
+    // the convolver + wet-gain are ALWAYS wired; wet gain = reverbAmount (0 = pure dry).
+    sourceNode.connect(ctx.destination);                    // dry (full)
+    const conv = ctx.createConvolver(); conv.buffer = liveReverbIR(ctx);
+    wetGainNode = ctx.createGain(); wetGainNode.gain.value = reverbAmount;
+    sourceNode.connect(conv); conv.connect(wetGainNode); wetGainNode.connect(ctx.destination);
+    sourceNode.onended = () => { isPlaying = false; hidePlayhead(); resetPlayButton(); };
+    sourceNode.start(0, offsetSec);
+    isPlaying = true;
+    pausedAt = null;   // any explicit play establishes fresh state
+    playStartCtxTime = ctx.currentTime;
+    playStartBufferOffset = offsetSec;
+    showPlayheadAt(offsetSec / originalBuffer.duration);
+    playheadRafId = requestAnimationFrame(tickPlayhead);
+    setPlayButtonPlaying();
+  }
+  function stopPlayback() {
+    if (sourceNode) { try { sourceNode.onended = null; sourceNode.stop(); } catch (e) {} sourceNode = null; }
+    isPlaying = false; hidePlayhead(); resetPlayButton();
+  }
+  function setPlayButtonPlaying() {
+    btnPlay.querySelector('svg').innerHTML = '<rect x="6" y="5" width="4" height="14" /><rect x="14" y="5" width="4" height="14" />';
+    // 'Pause', not 'Stop' (posthog R-6a3526). This press PAUSES - the next Play resumes where it
+    // left off - and the icon beside it is already two bars, a pause glyph. Only the word was
+    // wrong, and it is what sent a user away believing the tool only plays the middle.
+    btnPlay.querySelector('span').textContent = 'Pause';
+  }
+  function resetPlayButton() {
+    btnPlay.querySelector('svg').innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    btnPlay.querySelector('span').textContent = 'Play';
+  }
+
+  btnPlay.addEventListener('click', () => {
+    if (!originalBuffer) return;
+    if (isPlaying) { pausedAt = currentPos(); stopPlayback(); showPlayheadAt(pausedAt / originalBuffer.duration); return; }   // pause: keep the playhead visible where we stopped
+    playFrom(pausedAt != null ? pausedAt : 0);                            // resume from there (or the start)
+  });
+  // Spacebar = play/pause from anywhere (unless typing / a button has focus).
+  document.addEventListener('keydown', (e) => {
+    if (e.code !== 'Space' && e.key !== ' ' && e.keyCode !== 32) return;
+    const t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.tagName === 'BUTTON' || t.tagName === 'A' || t.isContentEditable)) return;
+    if (!originalBuffer) return;
+    e.preventDefault();
+    btnPlay.click();
+  });
+
+  // Skip 5 s of SONG time either way. Playing: carry on playing from the new spot. Paused: only move
+  // the playhead, so the next Play starts there - the same rule as a finger tap on the waveform.
+  const SKIP_SEC = 5;
+  function skipBy(delta) {
+    if (!originalBuffer) return;
+    const dur = originalBuffer.duration;
+    const to = Math.max(0, Math.min(dur - 0.05, currentPos() + delta));
+    if (isPlaying) { playFrom(to); return; }
+    pausedAt = to;
+    showPlayheadAt(to / dur);
+  }
+  btnBack.addEventListener('click', () => skipBy(-SKIP_SEC));
+  btnFwd.addEventListener('click', () => skipBy(SKIP_SEC));
+
+  // Click on waveform to seek. A 'click' on iOS carries no pointerType, so a touchstart just before
+  // it is what says the tap came from a finger.
+  let lastTouchAt = 0;
+  canvas.addEventListener('touchstart', () => { lastTouchAt = Date.now(); }, { passive: true });
+  canvas.addEventListener('click', (e) => {
+    if (!originalBuffer) return;
+    const rect = canvas.getBoundingClientRect();
+    const frac = (e.clientX - rect.left) / rect.width;
+    const offsetSec = viewToTime(frac);
+    if (Date.now() - lastTouchAt < 800 && !isPlaying) {
+      // ON A PHONE, A TAP WHILE PAUSED MOVES THE PLAYHEAD - it does not start the song there
+      // (posthog R-6a3526: "Why I give me only middle of my audio?", iPhone). A tap meant to
+      // scroll started playback mid-way. The next Play starts from here and the playhead shows
+      // it. With a mouse, click-to-play stays; while playing, a tap still seeks.
+      pausedAt = offsetSec;
+      showPlayheadAt(offsetSec / originalBuffer.duration);   // this page's helper takes a FRACTION
+      return;
+    }
+    playFrom(offsetSec);
+  });
+
+  // FINGER GESTURES ON THE WAVEFORM (Marc, 2026-10-17, on his phone):
+  //   one finger dragged sideways -> the playhead follows it (a scrub). Paused: the next Play starts
+  //     there. Playing: playback carries on from where the finger lifts.
+  //   two fingers -> a pinch zooms the waveform around the fingers, not the page; moving them pans.
+  // An up/down swipe is left to the browser (touch-action: pan-y), so the page still scrolls.
+  let scrubbing = false, scrubAt = 0, gesture = null;
+  function fracAt(clientX) { const r = canvas.getBoundingClientRect(); return r.width ? (clientX - r.left) / r.width : 0; }
+  function touchDist(a, b) { return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); }
+  canvas.addEventListener('touchstart', (e) => {
+    if (!originalBuffer) return;
+    if (e.touches.length >= 2) {
+      const a = e.touches[0], b = e.touches[1];
+      if (scrubbing) { scrubbing = false; placePlayhead(currentPos()); }   // a second finger cancels a scrub
+      gesture = { kind: 'pinch', d0: Math.max(10, touchDist(a, b)), span0: viewSpan(),
+                  tMid: viewToTime(fracAt((a.clientX + b.clientX) / 2)) };
+    } else if (e.touches.length === 1) {
+      gesture = { kind: 'maybe', x0: e.touches[0].clientX, y0: e.touches[0].clientY };
+    }
+  }, { passive: true });
+  canvas.addEventListener('touchmove', (e) => {
+    if (!originalBuffer || !gesture) return;
+    if (gesture.kind === 'pinch' && e.touches.length >= 2) {
+      e.preventDefault();                         // with touch-action: never zoom the page from here
+      const a = e.touches[0], b = e.touches[1], dur = originalBuffer.duration;
+      const span = Math.max(Math.min(MIN_VIEW_SEC, dur), Math.min(dur, gesture.span0 * gesture.d0 / Math.max(10, touchDist(a, b))));
+      const midFrac = Math.max(0, Math.min(1, fracAt((a.clientX + b.clientX) / 2)));
+      viewStart = Math.max(0, Math.min(dur - span, gesture.tMid - midFrac * span));
+      viewEnd = viewStart + span;
+      redrawWave();
+      placePlayhead(isPlaying ? currentPos() : (pausedAt || 0));
+      return;
+    }
+    if (e.touches.length !== 1) return;
+    const f = e.touches[0];
+    if (gesture.kind === 'maybe') {
+      const dx = f.clientX - gesture.x0, dy = f.clientY - gesture.y0;
+      if (Math.abs(dx) < 8 || Math.abs(dx) < Math.abs(dy)) return;   // not (yet) a sideways drag
+      gesture.kind = 'scrub'; scrubbing = true;
+    }
+    if (gesture.kind === 'scrub') {
+      e.preventDefault();
+      scrubAt = viewToTime(fracAt(f.clientX));
+      playheadEl.classList.add('active');
+      placePlayhead(scrubAt);
+    }
+  }, { passive: false });
+  function endGesture(e) {
+    if (!gesture) return;
+    if (gesture.kind === 'scrub' && scrubbing) {
+      scrubbing = false;
+      lastTouchAt = Date.now();                   // the tap rule must not also act on this touch
+      if (isPlaying) playFrom(scrubAt);
+      else { pausedAt = scrubAt; showPlayheadAt(scrubAt / originalBuffer.duration); }
+    }
+    if (!e.touches || e.touches.length === 0 || (gesture.kind === 'pinch' && e.touches.length < 2)) gesture = null;
+  }
+  canvas.addEventListener('touchend', endGesture);
+  canvas.addEventListener('touchcancel', endGesture);
+  document.getElementById('wave-full').addEventListener('click', () => {
+    if (!originalBuffer) return;
+    viewStart = 0; viewEnd = originalBuffer.duration;
+    redrawWave();
+    placePlayhead(isPlaying ? currentPos() : (pausedAt || 0));
+  });
+
+  function bufferToWav(buffer) {
+    const numCh = buffer.numberOfChannels, sr = buffer.sampleRate, n = buffer.length;
+    const bps = 2, bA = numCh * bps, bR = sr * bA, dSize = n * bA, hSize = 44, tSize = hSize + dSize;
+    const ab = new ArrayBuffer(tSize); const view = new DataView(ab);
+    function s(o, str) { for (let i = 0; i < str.length; i++) view.setUint8(o + i, str.charCodeAt(i)); }
+    s(0,'RIFF'); view.setUint32(4, tSize-8, true); s(8,'WAVE');
+    s(12,'fmt '); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+    view.setUint16(22, numCh, true); view.setUint32(24, sr, true);
+    view.setUint32(28, bR, true); view.setUint16(32, bA, true); view.setUint16(34, 16, true);
+    s(36,'data'); view.setUint32(40, dSize, true);
+    const chs = []; for (let c = 0; c < numCh; c++) chs.push(buffer.getChannelData(c));
+    let off = 44;
+    for (let i = 0; i < n; i++) {
+      for (let c = 0; c < numCh; c++) {
+        let v = Math.max(-1, Math.min(1, chs[c][i]));
+        v = v < 0 ? v * 0x8000 : v * 0x7FFF;
+        view.setInt16(off, v | 0, true); off += 2;
+      }
+    }
+    return new Blob([ab], { type: 'audio/wav' });
+  }
+
+  function bufferToMp3(buffer, kbps) {
+    const numCh = buffer.numberOfChannels, sr = buffer.sampleRate, n = buffer.length;
+    const i16 = [];
+    for (let c = 0; c < numCh; c++) {
+      const f32 = buffer.getChannelData(c);
+      const out = new Int16Array(n);
+      for (let i = 0; i < n; i++) {
+        let v = Math.max(-1, Math.min(1, f32[i]));
+        out[i] = v < 0 ? v * 0x8000 : v * 0x7FFF;
+      }
+      i16.push(out);
+    }
+    const encChannels = numCh >= 2 ? 2 : 1;
+    const enc = new lamejs.Mp3Encoder(encChannels, sr, kbps);
+    const blockSize = 1152;
+    const parts = [];
+    for (let i = 0; i < n; i += blockSize) {
+      const left = i16[0].subarray(i, i + blockSize);
+      let chunk;
+      if (encChannels === 2) {
+        const right = i16[1].subarray(i, i + blockSize);
+        chunk = enc.encodeBuffer(left, right);
+      } else {
+        chunk = enc.encodeBuffer(left);
+      }
+      if (chunk && chunk.length > 0) parts.push(chunk);
+    }
+    const tail = enc.flush();
+    if (tail && tail.length > 0) parts.push(tail);
+    return new Blob(parts, { type: 'audio/mpeg' });
+  }
+
+  const exportFormatSel = document.getElementById('export-format');
+  function fillTempoFormats(defaultValue) {
+    if (window.snipEncoder) window.snipEncoder.fillFormatSelect(exportFormatSel, defaultValue || 'mp3-320');
+    else setTimeout(() => fillTempoFormats(defaultValue), 100);
+  }
+  fillTempoFormats();
+
+  btnDownload.addEventListener('click', async () => {
+    if (!originalBuffer) return;
+    if (!window.snipEncoder) { alert('Encoder not loaded yet — try again.'); return; }
+    if (window.snipNotify) window.snipNotify.prime();
+    const format = exportFormatSel.value;
+    btnDownload.disabled = true;
+    setBusy(window.snipEncoder.isFFmpegFormat(format)
+      ? 'Loading FFmpeg & encoding ' + format.toUpperCase()
+      : 'Rendering at ' + currentRate.toFixed(2).replace(/\.?0+$/, '') + 'x');
+    try {
+      let rendered = resampleBuffer(getAudioContext(), originalBuffer, currentRate);
+      if (reverbAmount > 0) rendered = await renderReverb(rendered, reverbAmount);
+      const { blob, ext } = await window.snipEncoder.encode(rendered, format, {
+        onProgress: (p) => { if (p && p.phase) statusText.textContent = 'Encoding ' + format.toUpperCase() + '... ' + p.phase + ' (' + p.percent + '%)'; }
+      });
+      const base = fileName.replace(/\.[^/.]+$/, '');
+      const fname = base + ' (' + currentRate.toFixed(2).replace(/\.?0+$/, '') + 'x).' + ext;
+      const msg = 'Saved ' + formatFileSize(blob.size);
+      const sub = 'Speed ' + currentRate.toFixed(2).replace(/\.?0+$/, '') + 'x · ' + ext.toUpperCase();
+      if (window.snipNotify) {
+        window.snipNotify.deliver(blob, fname, { statusEl: statusText, doneStatus: msg + '.', sub: sub });
+        setTimeout(() => { statusText.textContent = ''; }, 2500);
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fname;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        statusText.textContent = msg + '.';
+        if (window.snipShowSuccess) window.snipShowSuccess(msg + '!', { sub: sub });
+        setTimeout(() => { statusText.textContent = ''; }, 2500);
+      }
+    } catch (e) {
+      console.error(e); statusText.textContent = 'Failed: ' + e.message;
+    } finally { btnDownload.disabled = false; }
+  });
+
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    item.querySelector('.faq-q').addEventListener('click', () => item.classList.toggle('open'));
+  });
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5199246c9ddb84b',t:'MTc5MzE4NjYzNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

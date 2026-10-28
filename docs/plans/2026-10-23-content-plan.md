@@ -53,6 +53,7 @@ GSC 满 4 周(约 11-11)跑第一轮,此后每 4 周一次:
 
 1. **翻译优先于新英语文**:每个市场从 6–8 篇补到 ~15 篇,第一批只译转换集群——convert-wav-to-mp3、convert-flac-to-mp3、convert-m4a-to-mp3、convert-video-to-mp3、compress-audio-for-email。按 i18n 翻译规范以各市场真实搜索词重写(不机翻),hreflang 自动成簇。理由:零新关键词押注,同样一小时期望值高于赌一篇新英语文。
 2. **Best 清单 4 篇 / Pillar 3 篇 / device 类**:维持原门槛不松动——行级数据 KD<30 / Keyword Magic 集群证据 / 与母篇 40% 差异,数据到了才立项。
+3. **reverse-audio 指南候选 ×2(2026-10-28 竞品审计交入,见 docs/competitor-analysis/008)**:「reverse singing challenge 怎么做」「backmasking:名曲里的隐藏信息」,锚定 /reverse-audio。依据:该词头部被挑战趋势统治(倒放挑战 EMD×2、社交视频进主 SERP、ST 挑战内容页 #6),通用工具页全部不在场。前置条件:排期前核实趋势热度(YouTube/TikTok 近 90 天);英语新文冻结期只入队不动笔。
 
 ## 蚕食红线(唯一出处,每篇动笔前逐条核对)
 

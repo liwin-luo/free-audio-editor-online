@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link rel="canonical" href="https://soundtools.io/tempo-changer/" />
+
+    <link rel="stylesheet" href="../css/tools-style.css">
+    <link rel="icon" href="../favicon.png" type="image/png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2L1GFZ61L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-T2L1GFZ61L');
+    </script>
+
+
+    <meta name="description" content="Free music speed changer and BPM changer — slow down or speed up any song without changing the pitch. We detect the BPM automatically. No upload, no account.">
+
+    <meta name="author" content="SoundTools">
+    <meta property="og:title" content="Music Speed Changer &amp; BPM Changer — Slow Down Songs | SoundTools">
+    <meta property="og:description" content="Free music speed changer and BPM changer — slow down or speed up any song without changing the pitch. We detect the BPM automatically. No upload, no account.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soundtools.io/tempo-changer/">
+    <title>Music Speed Changer &amp; BPM Changer — Slow Down Songs | SoundTools</title>
+    
+    <!-- Organization schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://soundtools.io/#organization",
+      "name": "SoundTools",
+      "alternateName": "soundtools.io",
+      "url": "https://soundtools.io",
+      "logo": "https://soundtools.io/logo.png",
+      "description": "SoundTools is a free, browser-based audio toolkit offering 35+ tools for editing, converting, and transforming audio — including creator effects, AI and voice tools, and everyday utilities. Everything runs locally in the browser; files never leave your device.",
+      "foundingDate": "2025",
+      "knowsAbout": [
+        "Audio editing",
+        "Text to speech",
+        "Vocal removal",
+        "Stem separation",
+        "Speech to text",
+        "Voice changing",
+        "Noise reduction",
+        "Audio conversion"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/soundtools-io",
+        "https://www.crunchbase.com/organization/soundtools-8406",
+        "https://www.wikidata.org/wiki/Q140073639"
+      ]
+    }
+    </script>
+
+    <!-- Website schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://soundtools.io/#website",
+      "name": "SoundTools",
+      "alternateName": "soundtools.io",
+      "url": "https://soundtools.io",
+      "publisher": { "@id": "https://soundtools.io/#organization" }
+    }
+    </script>
+
+    <!-- WebApplication schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://soundtools.io/tempo-changer/#webapp",
+      "name": "SoundTools Music Speed Changer",
+      "url": "https://soundtools.io/tempo-changer/",
+      "applicationCategory": "MultimediaApplication",
+      "browserRequirements": "Works in any modern web browser on desktop and mobile (Windows, Mac, Linux, iOS, and Android). No install required.",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@id": "https://soundtools.io/#organization"
+      },
+      "datePublished": "2025",
+      "dateModified": "2026-07-14",
+      "inLanguage": "en",
+      "featureList": [
+        "Slow down or speed up any song without changing the pitch or key",
+        "Automatic BPM detection on upload, with a correctable BPM field",
+        "Set the tempo by percentage (50%–200%) or by exact target BPM",
+        "Linked tempo and BPM sliders — adjust either and the other follows",
+        "One-click halve/double correction if the detected BPM is off",
+        "Presets for half speed, 75% practice speed, and 125% speed-up",
+        "Real-time preview before download",
+        "Supports MP3, FLAC, WAV, AAC, and OGG",
+        "Processing runs locally in your browser — audio never leaves your device",
+        "Free and unlimited, no account or install required"
+      ],
+      "description": "Free online music speed changer and BPM changer that runs in your browser. Slow a song down or speed it up from 50% to 200% without changing the pitch or key. The tool detects the song's BPM automatically, so you can set the tempo by percentage or by exact target BPM. No account, and audio never leaves your device."
+    }
+    </script>
+
+
+    <!-- HowTo Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Change the Speed of a Song Without Changing Pitch",
+      "description": "Use this free music speed changer to slow down or speed up any song without affecting pitch - perfect for musicians, dancers, and language learners",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Upload your audio or song",
+          "text": "Select the audio file you want to change the tempo of. The song's BPM is detected automatically and displayed",
+          "position": 1
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Adjust tempo or BPM",
+          "text": "Drag the tempo slider to set a percentage from 50% to 200%, or drag the BPM slider to set an exact target BPM. The two sliders stay in sync, and presets are available for common practice speeds",
+          "position": 2
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Download tempo-changed audio",
+          "text": "Preview your tempo-changed audio, then click 'Change Tempo' and download instantly",
+          "position": 3
+        }
+      ],
+      "totalTime": "PT30S"
+    }
+    </script>
+    
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a music speed changer / tempo changer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A music speed changer (also called a tempo changer or audio speed changer) adjusts the speed of audio without changing its pitch or key. Unlike simply speeding up or slowing down a recording (which affects pitch), time-stretching preserves the original pitch so voices and instruments sound natural at any speed. Perfect for musicians practicing, dancers choreographing, and language learners."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I change the speed of a song without changing the pitch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload your audio file, adjust the tempo slider to your desired speed (below 100% to slow down, above 100% to speed up), preview it to hear the change, then click &#8216;Change Tempo' to download. Your song will play at the new speed while keeping the same pitch and key."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I slow down a song for practice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload your song and drag the tempo slider below 100%. Try 75% for a comfortable practice pace, or 50% to hear every note clearly. The pitch remains unchanged so you can play along in the original key. Use our &#8216;Slow Down (75%)' preset for the most popular practice speed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this music speed changer free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, completely free with unlimited use, no file limits, no subscriptions, and no hidden charges. Change the speed of as many tracks as you want for practice, choreography, language learning, or any purpose."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What audio formats does the speed changer support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our audio speed changer supports MP3, FLAC, WAV, AAC, and OGG formats. Use it as an MP3 speed changer, FLAC speed changer, or WAV speed changer – upload any of these formats and download your tempo-changed audio in the same format as the input file."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much can I slow down or speed up?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can adjust tempo from 50% (half speed) to 200% (double speed). The most common practice speeds are 50% (half speed) and 75% (three-quarter speed). For speed training, try 110–125%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will tempo changing affect audio quality?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our tool uses advanced time-stretching algorithms for high-quality results even at extreme speeds. Moderate changes (60–150%) sound virtually transparent. Half speed (50%) remains clean and artifact-free."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does changing tempo change the song's duration?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Slowing down makes the song longer, speeding up makes it shorter. At 50% tempo, a 3-minute song becomes 6 minutes. At 200%, it becomes 1.5 minutes. The pitch stays the same regardless."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I preview before downloading?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Click the &#8216;Preview Audio' button or press spacebar to hear your tempo-changed audio before downloading. The preview uses the exact same algorithm as the download, so what you hear is what you get."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this as a BPM changer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Upload your file and we detect its BPM automatically, then show a BPM slider alongside the tempo slider. Drag the BPM slider straight to your target tempo – there's no percentage math to do. The two sliders are linked, so moving either one updates the other, the preview updates as you drag, and your download reflects whichever slider you used. If the detected BPM is off by an octave, use the &divide;2 / &times;2 buttons or type the correct value."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the automatic BPM detection work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When you upload a track, we low-pass filter it to isolate the kick and bass transients that carry the beat, detect the peaks, and find the interval that repeats most consistently. All of it runs in your browser – your audio is never uploaded anywhere. Detection works best on music with a steady beat. Speech, ambient, and rubato classical often have no consistent pulse to find, in which case you can just type a BPM in yourself, or ignore BPM entirely and use the tempo slider."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between tempo changing and pitch shifting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tempo changing adjusts speed while keeping pitch the same. Pitch shifting changes pitch while keeping speed the same. Our tempo changer only changes speed – voices and instruments stay in the same key."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can dancers use this for choreography?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! Slow down music while learning choreography, then gradually increase speed as you master the moves. Since the pitch stays the same, the music sounds natural at any speed – perfect for rehearsal and competition prep."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this to slow down speech for language learning?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Slow down podcasts, audiobooks, or recorded conversations to 60–80% to clearly hear every word. The pitch stays natural so voices sound like themselves, just slower. This is one of the best techniques for training your ear in a new language."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this work on mobile devices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Our tempo changer works on all devices – iPhone, Android, iPad, desktop, and laptop. Just open the page in your mobile browser and change tempos right from your phone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I speed up a podcast or audiobook without the chipmunk effect?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Our audio speed changer uses time-stretching to increase playback speed while keeping the pitch completely natural. Voices sound like themselves even at 150% or 200% speed – no chipmunk squeakiness, no robotic distortion. Speed up lectures, podcasts, and audiobooks to save time without sacrificing clarity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I slow down a song so I can learn to play guitar along with it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload the song, then slow it down to 50–75% using the slider or presets. The pitch stays in the original key, so you can play along on your guitar without retuning. Start slow, nail the part, then gradually bump the speed up until you're at full tempo. This is the number one technique guitar teachers recommend for learning fast solos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I look for in a free online music speed changer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The things that matter most are pitch preservation, no file size cap, and no account wall. SoundTools' music speed changer is free with no account required, no file size limits, and no software to install. Slow down or speed up MP3, FLAC, WAV, AAC, or OGG files from 50% to 200% with instant preview and download in the original format. Everything runs in your browser – your audio never leaves your device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this as a song slower to slow down music for dance practice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. Our song slower feature lets you reduce any track to 50–75% speed while keeping the pitch and feel of the original music intact. Dance instructors use this daily to teach choreography step by step, then gradually bring the tempo back up as students master the routine."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I speed up an MP3 without changing the pitch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload your MP3, drag the tempo slider above 100% (try 125% for a moderate boost or 150–200% for faster playback), then click &#8216;Change Tempo' to download your sped-up MP3. The pitch is preserved automatically – no chipmunk voices, no distortion. Great for speeding up podcasts, lectures, and workout music."
+          }
+        }
+      ]
+    }
+    </script>
+    
+
+
+    <style>
+        kbd {
+            font-family: monospace;
+            font-size: 0.875rem;
+        }
+
+        /* Styled file upload button */
+        .styled-file-upload {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+        .styled-file-upload input[type="file"] {
+            display: none;
+        }
+        .styled-file-upload .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: #4f5aed;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .styled-file-upload .upload-btn:hover {
+            background: #3d47d9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 90, 237, 0.3);
+        }
+        .styled-file-upload .upload-btn:active {
+            transform: translateY(0);
+        }
+        .styled-file-upload .upload-filename {
+            font-size: 0.9375rem;
+            color: #6b7280;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+        }
+
+        /* ---- BPM panel (detected BPM + manual correction) ---- */
+        .bpm-panel {
+            background: #f5f6ff;
+            border: 1px solid #e0e3fb;
+            border-radius: 12px;
+            padding: 1rem 1.125rem;
+            margin: 1.25rem 0;
+        }
+        .bpm-panel-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .bpm-panel-label {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        .bpm-edit {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+        .bpm-input {
+            width: 5rem;
+            padding: 0.5rem 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            color: #111827;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+        .bpm-input:focus {
+            outline: none;
+            border-color: #4f5aed;
+            box-shadow: 0 0 0 3px rgba(79, 90, 237, 0.15);
+        }
+        .bpm-unit {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #6b7280;
+            margin-right: 0.25rem;
+        }
+        .bpm-adjust-btn {
+            padding: 0.5rem 0.625rem;
+            min-width: 2.5rem;
+            background: white;
+            color: #4f5aed;
+            border: 1px solid #c7cbf7;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            line-height: 1.2;
+        }
+        .bpm-adjust-btn:hover {
+            background: #4f5aed;
+            border-color: #4f5aed;
+            color: white;
+        }
+        .bpm-panel-hint {
+            font-size: 0.8125rem;
+            line-height: 1.5;
+            color: #6b7280;
+            margin: 0.75rem 0 0;
+        }
+        .bpm-panel.detecting .bpm-panel-hint { color: #4f5aed; }
+        .bpm-panel.failed {
+            background: #fffbeb;
+            border-color: #fde68a;
+        }
+        .bpm-panel.failed .bpm-panel-hint { color: #92400e; }
+
+        /* CTA download button */
+        .cta-download-btn {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: white;
+            color: #16a34a;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 10px;
+            font-size: 1.0625rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            box-sizing: border-box;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .cta-download-btn:hover {
+            background: #f0fdf4;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+    </style>
+
+
+
+    <!-- ================================================== -->
+    <!--    START - NEW: REPEAT VISITOR TRACKING SYSTEM     -->
+    <!-- ================================================== -->
+    <script>
+        // Tool usage tracking utility
+        const ToolTracker = {
+            STORAGE_KEY: 'soundtools_usage',
+            CURRENT_TOOL: 'tempo-changer', // Set this per tool page
+            
+            // Get all usage data from localStorage
+            getUsageData() {
+                try {
+                    const data = localStorage.getItem(this.STORAGE_KEY);
+                    return data ? JSON.parse(data) : {};
+                } catch (e) {
+                    console.error('Error reading usage data:', e);
+                    return {};
+                }
+            },
+            
+            // Save usage data to localStorage
+            saveUsageData(data) {
+                try {
+                    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+                } catch (e) {
+                    console.error('Error saving usage data:', e);
+                }
+            },
+            
+            // Track that user successfully used a tool
+            trackToolSuccess(toolName = this.CURRENT_TOOL) {
+                const usage = this.getUsageData();
+                
+                // Initialize tool data if it doesn't exist
+                if (!usage[toolName]) {
+                    usage[toolName] = {
+                        count: 0,
+                        firstUsed: new Date().toISOString(),
+                        lastUsed: null
+                    };
+                }
+                
+                // Increment usage count
+                usage[toolName].count++;
+                usage[toolName].lastUsed = new Date().toISOString();
+                
+                this.saveUsageData(usage);
+                
+                return this.getAnalytics();
+            },
+            
+            // Get analytics data for GA4 events
+            getAnalytics() {
+                const usage = this.getUsageData();
+                const currentToolData = usage[this.CURRENT_TOOL] || { count: 0 };
+                
+                return {
+                    // How many times has user used THIS specific tool
+                    lifetime_tool_uses: currentToolData.count,
+                    
+                    // How many DIFFERENT tools has user tried (ever)
+                    total_tools_used: Object.keys(usage).length,
+                    
+                    // Is this a repeat user of ANY tool?
+                    is_repeat_user: Object.values(usage).some(tool => tool.count > 1),
+                    
+                    // Is this a repeat user of THIS SPECIFIC tool?
+                    is_repeat_tool_user: currentToolData.count > 1,
+                    
+                    // Total uses across ALL tools
+                    total_lifetime_uses: Object.values(usage).reduce((sum, tool) => sum + tool.count, 0),
+                    
+                    // Days since first use of this tool (if applicable)
+                    days_since_first_use: currentToolData.firstUsed 
+                        ? Math.floor((Date.now() - new Date(currentToolData.firstUsed)) / (1000 * 60 * 60 * 24))
+                        : 0
+                };
+            },
+            
+            // Track file selection with analytics
+            trackFileSelected(fileSize) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-file_selected`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': 'audio_file',
+                    'file_size': fileSize,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            },
+            
+             // Track preset selection with analytics
+            trackPresetSelected(presetName) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-preset_selected`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': presetName,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            },
+
+            // Track successful conversion with analytics
+            trackSuccess(additionalParams = {}) {
+                const analytics = this.trackToolSuccess(); // Increments count & returns analytics
+                
+                gtag('event', `${this.CURRENT_TOOL}-success`, {
+                    'event_category': this.CURRENT_TOOL,
+                    ...additionalParams,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses,
+                    'days_since_first_use': analytics.days_since_first_use
+                });
+            },
+            
+            // Track errors with analytics
+            trackError(errorMessage) {
+                const analytics = this.getAnalytics();
+                
+                gtag('event', `${this.CURRENT_TOOL}-error`, {
+                    'event_category': this.CURRENT_TOOL,
+                    'event_label': 'processing_failed',
+                    'error_message': errorMessage,
+                    // NEW TRACKING DIMENSIONS
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'total_tools_used': analytics.total_tools_used,
+                    'is_repeat_user': analytics.is_repeat_user,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user,
+                    'total_lifetime_uses': analytics.total_lifetime_uses
+                });
+            }
+        };
+        
+        // Log initial analytics on page load (optional - for debugging)
+        console.log('SoundTools Usage Analytics:', ToolTracker.getAnalytics());
+    </script>
+    <!-- ================================================== -->
+    <!--     END - NEW: REPEAT VISITOR TRACKING SYSTEM      -->
+    <!-- ================================================== -->
+
+</head>
+
+<body>
+    
+    <!-- NAV_START -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">SoundTools</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">&#9776;</button>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a class="mobile-dropdown-toggle">Tools</a>
+                    <div class="dropdown-menu mega-menu">
+                        <div class="mega-col">
+                            <span class="mega-heading">Effects</span>
+                            <a href="/eq/">EQ</a>
+                            <a href="/8d-audio/">8D Audio</a>
+                            <a href="/add-reverb-to-audio/">Add Reverb</a>
+                            <a href="/bass-boost/">Bass Boost</a>
+                            <a href="/nightcore/">Nightcore</a>
+                            <a href="/nightcore-reverse/">Nightcore Reverse</a>
+                            <a href="/slowed-reverb/">Slowed + Reverb</a>
+                            <a href="/sped-up/">Sped Up Audio</a>
+                            <a href="/tiktok-slowed-reverb/">TikTok Slowed</a>
+                            <a href="/vaporwave/">Vaporwave</a>
+                            <a href="/volume-booster/">Volume Booster</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Voice & AI</span>
+                            <a href="/voice-cloning/">Voice Cloning</a>
+                            <a href="/vocal-tuner/">Vocal Tuner</a>
+                            <a href="/voice-to-instrument/">Voice to Instrument</a>
+                            <a href="/noise-remover/">Noise Remover</a>
+                            <a href="/stem-splitter/">Stem Splitter</a>
+                            <a href="/text-to-speech/">Text to Speech</a>
+                            <a href="/speech-to-text/">Speech to Text</a>
+                            <a href="/speech-to-song/">Speech to Song</a>
+                            <a href="/vocal-remover/">Vocal Remover</a>
+                            <a href="/voice-changer/">Voice Changer</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Edit & Convert</span>
+                            <a href="/audio-converter/">Audio Converter</a>
+                            <a href="/audio-joiner/">Audio Joiner</a>
+                            <a href="/audio-trimmer/">Audio Trimmer</a>
+                            <a href="/flac-cover-art/">FLAC Cover Art</a>
+                            <a href="/audio-metadata-editor/">Metadata Editor</a>
+                            <a href="/pitch-shifter/">Pitch Shifter</a>
+                            <a href="/reverse-audio/">Reverse Audio</a>
+                            <a href="/tempo-changer/">Tempo Changer</a>
+                            <a href="/video-to-audio/">Video to Audio</a>
+                        </div>
+                        <div class="mega-col">
+                            <span class="mega-heading">Create & Analyze</span>
+                            <a href="/beat-maker/">Beat Maker</a>
+                            <a href="/bpm-detector/">BPM Detector</a>
+                            <a href="/granular-synthesizer/">Granular Synthesizer</a>
+                            <a href="/hearing-test/">Hearing Test</a>
+                            <a href="/music-visualizer/">Music Visualizer</a>
+                            <a href="/soundboard/">Soundboard</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/lab/">The Lab</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- NAV_END -->
+
+
+
+
+    <header>
+        <div class="container">
+            <h1>Free Music Speed Changer &amp; BPM Changer — Slow Down Any Song</h1>
+            <time class="last-updated" datetime="2026-07-14">Updated July 14, 2026</time>
+            <p>Slow down or speed up any song without changing the pitch. We detect the song&#8217;s BPM automatically, so you can set the tempo by percentage or by exact BPM &#8211; 100% free, works in your browser, no software needed</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="tool-section">
+            <div class="intro-text">
+                <p>Upload your audio file and change playback speed without affecting the pitch. We&#8217;ll detect the song&#8217;s BPM automatically, then you can work whichever way you think: drag the <strong>tempo slider</strong> for a percentage, or drag the <strong>BPM slider</strong> straight to the beats-per-minute you want. The two stay in sync. Preview your changes as you go, then download in the same format you uploaded — MP3, WAV, FLAC, AAC, or OGG.</p>
+            </div>
+
+            <!-- File Upload -->
+            <div class="file-input-group">
+                <label for="audioFile">Upload Your Audio File</label>
+                <label class="styled-file-upload">
+                    <input type="file" id="audioFile" accept="audio/mp3,audio/flac,audio/wav,audio/aac,audio/ogg,.mp3,.flac,.wav,.aac,.ogg" aria-label="Choose audio file">
+                    <span class="upload-btn">📂 Choose File</span>
+                    <span class="upload-filename" id="uploadFilename">No file selected</span>
+                </label>
+            </div>
+
+            <!-- Preview Player (SoundToolsPlayer) -->
+            <div id="previewPlayer" style="display: none;"></div>
+
+            <!-- Detected BPM (auto-filled after upload, user-correctable) -->
+            <div class="bpm-panel" id="bpmPanel" style="display: none;">
+                <div class="bpm-panel-row">
+                    <span class="bpm-panel-label" id="bpmPanelLabel">Detected BPM</span>
+                    <div class="bpm-edit">
+                        <span class="bpm-unit">BPM</span>
+                        <input type="number" id="origBpmInput" class="bpm-input" min="40" max="300" step="1" placeholder="—" aria-label="Original BPM of this song">
+                        <button type="button" class="bpm-adjust-btn" id="bpmHalveBtn" title="Halve the original BPM" aria-label="Halve the original BPM">&divide;2</button>
+                        <button type="button" class="bpm-adjust-btn" id="bpmDoubleBtn" title="Double the original BPM" aria-label="Double the original BPM">&times;2</button>
+                    </div>
+                </div>
+                <p class="bpm-panel-hint" id="bpmPanelHint">Detecting BPM&hellip;</p>
+            </div>
+
+            <!-- Preset Buttons -->
+            <div class="preset-buttons">
+                <button class="preset-btn" data-tempo="75">
+                    <span class="preset-name">&#128034; Slow Down (75%)</span>
+                    <span class="preset-desc">Three-quarter speed for practice</span>
+                </button>
+                <button class="preset-btn" data-tempo="50">
+                    <span class="preset-name">&#129494; Half Speed (50%)</span>
+                    <span class="preset-desc">Half speed for learning details</span>
+                </button>
+                <button class="preset-btn active" data-tempo="100">
+                    <span class="preset-name">&#127899;&#65039; Custom</span>
+                    <span class="preset-desc">Adjust tempo precisely</span>
+                </button>
+                <button class="preset-btn" data-tempo="125">
+                    <span class="preset-name">&#9889; Speed Up (125%)</span>
+                    <span class="preset-desc">Faster for a challenge</span>
+                </button>
+            </div>
+
+            <!-- Tempo Slider -->
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>Tempo</span>
+                    <span class="slider-value" id="tempoValue">100%</span>
+                </div>
+                <input type="range" min="50" max="200" value="100" step="1" class="slider" id="tempoSlider" aria-label="Adjust tempo speed">
+                <div class="slider-hint">
+                    <span>50% (half speed)</span>
+                    <span>200% (double speed)</span>
+                </div>
+            </div>
+
+            <!-- BPM Slider (appears once we know the song's original BPM) -->
+            <div class="slider-group" id="bpmSliderGroup" style="display: none;">
+                <div class="slider-label">
+                    <span>Target BPM</span>
+                    <span class="slider-value" id="bpmValue">&mdash;</span>
+                </div>
+                <input type="range" min="50" max="200" value="100" step="1" class="slider" id="bpmSlider" aria-label="Adjust target BPM">
+                <div class="slider-hint">
+                    <span id="bpmMinHint">&mdash;</span>
+                    <span id="bpmMaxHint">&mdash;</span>
+                </div>
+            </div>
+
+            <button id="processBtn" disabled aria-label="Change tempo of audio">Change Tempo</button>
+            
+            <div id="status" role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="info-section">
+            <h2>What is a Music Speed Changer?</h2>
+            <p>A music speed changer (also called a tempo changer, audio speed changer, or time stretcher) is a tool that speeds up or slows down audio without changing its pitch or key. Unlike simply pressing fast-forward or slow-motion (which makes audio sound higher or lower pitched), a speed changer uses time-stretching algorithms to preserve the original pitch while adjusting only the speed. This means a singer&#8217;s voice sounds natural whether you play a song at 50% or 150% speed &#8211; only the pace changes. This makes a music speed changer an essential tool for musicians who need to slow down difficult passages to learn them note by note, dancers who need to practice choreography at different speeds, language learners who want to slow down native speech to catch every word, and DJs who need to match tempos between tracks.</p>
+
+            <h2>How to Change Audio Speed Without Changing Pitch</h2>
+            <p>Slowing down or speeding up any song while preserving its original pitch is simple with our free audio speed changer:</p>
+            <ul>
+                <li><strong>Upload Your Song:</strong> Select any MP3, FLAC, WAV, AAC, or OGG audio file &#8211; works with any genre, from rock and pop to classical, podcasts, and language recordings. We detect and display the song&#8217;s BPM automatically</li>
+                <li><strong>Choose Tempo Speed:</strong> Use the presets for common speeds (75% to slow down, 50% for half speed, 125% to speed up) or click &#8216;Custom&#8217; to adjust precisely from 50% to 200%. Below 100% slows down, above 100% speeds up</li>
+                <li><strong>Or Set an Exact BPM:</strong> Prefer to think in beats per minute? Drag the BPM slider instead and the tempo percentage follows automatically. Both sliders control the same thing, so use whichever one suits the job</li>
+                <li><strong>Preview Instantly:</strong> Press the preview button or spacebar to hear your tempo-changed audio before downloading. The pitch stays exactly the same while the speed changes</li>
+                <li><strong>Fine-Tune (Optional):</strong> Adjust the tempo slider and click Preview again to hear the new speed. Find the perfect speed for your practice session, choreography, or learning pace</li>
+                <li><strong>Download &amp; Use:</strong> Click &#8216;Change Tempo&#8217; and your track downloads in the same format as your input file, ready for practice, performance, or study</li>
+            </ul>
+            <p>If you want to add a reverb effect alongside your speed change, our <a href="/slowed-reverb/">Slowed + Reverb Maker</a> combines both in a single step.</p>
+
+            <h2>Understanding Tempo and BPM</h2>
+            <p><strong>What is Tempo?</strong> Tempo is the speed at which music is played, typically measured in BPM (beats per minute). A song at 120 BPM has 120 beats in one minute. When you slow a song to 75% tempo, a 120 BPM song becomes 90 BPM. At 50%, it becomes 60 BPM. Understanding this helps you set the right practice speed for your needs.</p>
+            
+            <p><strong>Common Tempo Adjustments and Their Uses:</strong></p>
+            <ul>
+                <li><strong>90&#8211;95% (slight slowdown):</strong> Subtle reduction that makes fast passages just a bit more manageable. Great for nearly performance-ready pieces where you need a small edge</li>
+                <li><strong>75% (three-quarter speed):</strong> The most popular practice speed. Slows music enough to clearly hear and play along with every note, while still maintaining the musical feel and groove. Ideal for learning new songs</li>
+                <li><strong>50% (half speed):</strong> Perfect for learning extremely fast passages note by note. Guitar solos, rapid piano runs, and complex drum patterns become accessible at half speed. Also excellent for language learners trying to catch every syllable</li>
+                <li><strong>110&#8211;125% (moderate speedup):</strong> Challenges you to play faster than the original. Once you can play along at 110&#8211;125%, the original tempo feels comfortable. A proven practice technique for building speed</li>
+                <li><strong>150&#8211;200% (fast):</strong> For advanced practice, creating uptempo remixes, or quickly scanning through long audio recordings like lectures or podcasts</li>
+            </ul>
+
+            <h2>Why Musicians Need a Music Speed Changer</h2>
+            
+            <p><strong>For Instrumentalists &#8211; Slow Practice Method:</strong> The most effective way to learn a difficult piece is to slow it down to a tempo where you can play it perfectly, then gradually increase the speed. This builds muscle memory correctly from the start. Whether you&#8217;re learning a fast guitar solo, a complex piano passage, a challenging drum fill, or an intricate bass line, slowing down the original recording lets you hear exactly what needs to be played while keeping the pitch in the correct key for your instrument.</p>
+            
+            <p><strong>For Dancers &#8211; Choreography at Any Speed:</strong> Dance instructors and students use tempo changers constantly. When learning new choreography, slowing the music to 50&#8211;75% lets you focus on each move without rushing. As you master the routine, gradually bring the tempo back to 100%. Competition dancers often practice at 110&#8211;125% speed so the actual performance tempo feels effortless. Since the pitch stays the same, the music sounds natural at every speed, keeping the mood and feel intact for artistic expression.</p>
+            
+            <p><strong>For Language Learners &#8211; Slow Down Native Speech:</strong> Native speakers often talk too fast for learners to catch every word. Slowing down podcasts, audiobooks, songs, or recorded conversations to 60&#8211;80% makes it much easier to hear individual words, recognize pronunciation patterns, and understand connected speech. The pitch stays natural, so voices don&#8217;t sound distorted &#8211; just slower and clearer.</p>
+            
+            <p><strong>For Vocalists &#8211; Learn Complex Vocal Runs:</strong> R&amp;B, gospel, and pop vocalists often perform rapid vocal runs and melismas. Slowing these passages to 50&#8211;75% lets you hear each individual note in the run, making it possible to learn and practice these ornaments accurately before performing at full speed.</p>
+
+            <h2>Audio Speed Changer for Different Use Cases</h2>
+            
+            <p><strong>Music Transcription:</strong> Musicians who transcribe music by ear rely heavily on tempo changers. Slowing a recording to 50% reveals notes that are impossible to hear at full speed. Complex jazz solos, fast metal riffs, and intricate orchestral passages become decipherable when slowed down enough. Our tool preserves the original pitch, so every note remains in the correct key for accurate transcription.</p>
+            
+            <p><strong>Exercise and Workout:</strong> Fitness instructors and athletes match music tempo to exercise intensity. Slowing down high-energy tracks creates the right pace for warm-ups and cool-downs. Speeding up moderate tracks creates intense workout music. With pitch-preserved tempo changes, your favorite songs sound great at any workout speed.</p>
+            
+            <p><strong>Podcast and Lecture Review:</strong> Speed up recorded lectures and podcasts to 125&#8211;150% to review material faster without missing content. The pitch stays natural, so speakers sound like themselves &#8211; just faster. This is a popular study technique for students reviewing recorded classes.</p>
+            
+            <p><strong>DJ Preparation:</strong> DJs use tempo matching to seamlessly blend tracks. Adjusting one track&#8217;s tempo to match another&#8217;s BPM without pitch change ensures smooth transitions. Our tool helps DJs prepare tracks at matching tempos before a set.</p>
+            
+            <p><strong>Accessibility:</strong> People with auditory processing differences or hearing impairments often benefit from slowed-down audio. Reducing tempo to 70&#8211;85% can make speech significantly clearer and easier to follow without the unnatural pitch shift that comes from simple slow-motion playback.</p>
+
+            <h2>Music Speed Changer Best Practices</h2>
+            
+            <p><strong>Start Slow and Build Up Gradually:</strong> When using tempo changes for practice, start at a speed where you can play or follow along perfectly (even if that&#8217;s 30% speed). Then increase by 5&#8211;10% increments as you gain confidence. Jumping from 50% straight to 100% is less effective than gradual progression.</p>
+            
+            <p><strong>Use High-Quality Source Audio:</strong> The better your input audio quality, the better your tempo-changed output will sound. High-quality MP3s (256&#8211;320 kbps), FLAC, or WAV files work best. Low-quality audio may sound worse when the tempo is changed significantly because compression artifacts can become more noticeable.</p>
+            
+            <p><strong>Preview Before Downloading:</strong> Always use the preview function to test your tempo change before creating the final file. Play the most challenging sections to ensure the speed works for you. Adjust the tempo slider and click Preview to hear new speeds.</p>
+            
+            <p><strong>Consider the Musical Feel:</strong> Very slow tempos (below 40%) can make it hard to feel the musical groove or beat. If you need extreme slow-down for learning individual notes, that&#8217;s fine, but be aware that the &#8220;feel&#8221; of the music changes at very low speeds. Moderate slowdowns (60&#8211;85%) usually preserve the rhythmic feel while being slow enough to practice effectively.</p>
+            
+            <p><strong>Progressive Practice Technique:</strong> Professional musicians often use a specific progression: start at 50%, master it, then go to 60%, then 70%, then 80%, then 90%, and finally 100%. Some even practice at 105&#8211;110% so that 100% feels easy during performance. This methodical approach builds solid technique.</p>
+        </section>
+
+        <section class="info-section">
+            <h2>BPM Changer — Set Your Exact Tempo</h2>
+            <p>If you think in BPM rather than percentages, you don&#8217;t have to do any conversion — this tool does it for you. BPM (beats per minute) is how musicians measure tempo: a song at 120 BPM has 120 beats in one minute. The moment you upload a file, we analyse the track and detect its BPM, then show you a <strong>BPM slider</strong> right underneath the tempo slider. Drag it straight to the tempo you want. No dividing, no multiplying, no calculator.</p>
+            <p><strong>The two sliders are linked.</strong> Drag the BPM slider from 128 to 140 and the tempo slider follows to 109.4%. Drag the tempo slider to 75% and the BPM readout drops from 128 to 96. Whichever one you touch, the other updates, the preview player re-renders so you can hear it immediately, and the file you download reflects exactly what you set.</p>
+            <p><strong>If the detected BPM looks wrong, fix it in one click.</strong> Automatic beat detection is genuinely hard, and every detector on earth occasionally lands an octave off — reporting 140 for a 70 BPM hip-hop track, because the two have identical beat grids at the eighth note. If that happens, hit the &divide;2 or &times;2 button next to the detected value, or simply type the correct BPM. The sliders re-scale around your correction instantly, and your audio is untouched — you&#8217;re relabelling the reference point, not re-processing the song.</p>
+            <p>Common BPM changes for musicians and DJs: slowing a 140 BPM drum and bass track to 105 BPM for learning, matching a 128 BPM house track to a 120 BPM pop song, or pushing an 80 BPM ballad to 100 BPM for a more energetic feel. The pitch stays in the original key regardless of BPM change, so harmonic mixing and key-matched practice sessions work perfectly.</p>
+            <p>If you only want to identify a track&#8217;s tempo without changing it, our dedicated <a href="/bpm-detector/">BPM Detector</a> does exactly that. To change pitch independently without touching the tempo, use our <a href="/pitch-shifter/">Pitch Shifter</a>.</p>
+
+            <h2>Song Slower — Learn Any Song at Half Speed</h2>
+            <p>The most common reason people use a music speed changer is as a song slower — to slow down a track so they can learn to play along with it. Guitar players learning solos, pianists working through fast passages, drummers practicing complex fills, and vocalists learning rapid runs all use the same technique: slow it down, learn it perfectly, then speed it back up.</p>
+            <p>Our song slower preserves the original pitch and key, so you can play along on your instrument without retuning. Start at 50% to hear every note clearly, then work your way up in 5–10% increments. By the time you reach 100%, the passage feels comfortable because you've built correct muscle memory from the start. This is the practice method recommended by nearly every music teacher, and it works because your brain needs time to process fast passages — slowing down gives it that time without sacrificing accuracy.</p>
+        </section>
+
+       
+        <section class="info-section">
+            <h2>Frequently Asked Questions About Music Speed Changing</h2>
+            
+           <h3>What is a music speed changer / tempo changer?</h3>
+            <p>A music speed changer (also called a tempo changer or audio speed changer) adjusts the speed of audio without changing its pitch or key. Unlike simply speeding up or slowing down a recording (which affects pitch), time-stretching preserves the original pitch so voices and instruments sound natural at any speed. Perfect for musicians practicing, dancers choreographing, and language learners.</p>
+            
+           <h3>How do I change the speed of a song without changing the pitch?</h3>
+            <p>Upload your audio file, adjust the tempo slider to your desired speed (below 100% to slow down, above 100% to speed up), preview it to hear the change, then click &#8216;Change Tempo&#8217; to download. Your song will play at the new speed while keeping the same pitch and key.</p>
+            
+           <h3>How do I slow down a song for practice?</h3>
+            <p>Upload your song and drag the tempo slider below 100%. Try 75% for a comfortable practice pace, or 50% to hear every note clearly. The pitch remains unchanged so you can play along in the original key. Use our &#8216;Slow Down (75%)&#8217; preset for the most popular practice speed.</p>
+            
+           <h3>Is this music speed changer free?</h3>
+            <p>Yes, completely free with unlimited use, no file limits, no subscriptions, and no hidden charges. Change the speed of as many tracks as you want for practice, choreography, language learning, or any purpose.</p>
+            
+           <h3>What audio formats does the speed changer support?</h3>
+            <p>Our audio speed changer supports MP3, FLAC, WAV, AAC, and OGG formats. Use it as an MP3 speed changer, FLAC speed changer, or WAV speed changer &#8211; upload any of these formats and download your tempo-changed audio in the same format as the input file.</p>
+            
+           <h3>How much can I slow down or speed up?</h3>
+            <p>You can adjust tempo from 50% (half speed) to 200% (double speed). The most common practice speeds are 50% (half speed) and 75% (three-quarter speed). For speed training, try 110&#8211;125%.</p>
+            
+           <h3>Will tempo changing affect audio quality?</h3>
+            <p>Our tool uses advanced time-stretching algorithms for high-quality results even at extreme speeds. Moderate changes (60&#8211;150%) sound virtually transparent. Half speed (50%) remains clean and artifact-free.</p>
+            
+           <h3>Does changing tempo change the song&#8217;s duration?</h3>
+            <p>Yes. Slowing down makes the song longer, speeding up makes it shorter. At 50% tempo, a 3-minute song becomes 6 minutes. At 200%, it becomes 1.5 minutes. The pitch stays the same regardless.</p>
+            
+           <h3>Can I preview before downloading?</h3>
+            <p>Yes! Click the &#8216;Preview Audio&#8217; button or press spacebar to hear your tempo-changed audio before downloading. The preview uses the exact same algorithm as the download, so what you hear is what you get.</p>
+            
+           <h3>Can I use this as a BPM changer?</h3>
+            <p>Yes. Upload your file and we detect its BPM automatically, then show a BPM slider alongside the tempo slider. Drag the BPM slider straight to your target tempo &#8211; there&#8217;s no percentage math to do. The two sliders are linked, so moving either one updates the other, the preview updates as you drag, and your download reflects whichever slider you used. If the detected BPM is off by an octave, use the &divide;2 / &times;2 buttons or type the correct value.</p>
+
+           <h3>How does the automatic BPM detection work?</h3>
+            <p>When you upload a track, we low-pass filter it to isolate the kick and bass transients that carry the beat, detect the peaks, and find the interval that repeats most consistently. All of it runs in your browser &#8211; your audio is never uploaded anywhere. Detection works best on music with a steady beat. Speech, ambient, and rubato classical often have no consistent pulse to find, in which case you can just type a BPM in yourself, or ignore BPM entirely and use the tempo slider.</p>
+
+           <h3>What&#8217;s the difference between tempo changing and pitch shifting?</h3>
+            <p>Tempo changing adjusts speed while keeping pitch the same. Pitch shifting changes pitch while keeping speed the same. Our tempo changer only changes speed &#8211; voices and instruments stay in the same key.</p>
+            
+           <h3>Can dancers use this for choreography?</h3>
+            <p>Absolutely! Slow down music while learning choreography, then gradually increase speed as you master the moves. Since the pitch stays the same, the music sounds natural at any speed &#8211; perfect for rehearsal and competition prep.</p>
+            
+           <h3>Can I use this to slow down speech for language learning?</h3>
+            <p>Yes! Slow down podcasts, audiobooks, or recorded conversations to 60&#8211;80% to clearly hear every word. The pitch stays natural so voices sound like themselves, just slower. This is one of the best techniques for training your ear in a new language.</p>
+            
+           <h3>Does this work on mobile devices?</h3>
+            <p>Yes! Our tempo changer works on all devices &#8211; iPhone, Android, iPad, desktop, and laptop. Just open the page in your mobile browser and change tempos right from your phone.</p>
+            
+           <h3>Can I speed up a podcast or audiobook without the chipmunk effect?</h3>
+            <p>Yes! Our audio speed changer uses time-stretching to increase playback speed while keeping the pitch completely natural. Voices sound like themselves even at 150% or 200% speed &#8211; no chipmunk squeakiness, no robotic distortion. Speed up lectures, podcasts, and audiobooks to save time without sacrificing clarity.</p>
+            
+           <h3>How do I slow down a song so I can learn to play guitar along with it?</h3>
+            <p>Upload the song, then slow it down to 50&#8211;75% using the slider or presets. The pitch stays in the original key, so you can play along on your guitar without retuning. Start slow, nail the part, then gradually bump the speed up until you&#8217;re at full tempo. This is the number one technique guitar teachers recommend for learning fast solos.</p>
+            
+           <h3>What should I look for in a free online music speed changer?</h3>
+            <p>The things that matter most are pitch preservation, no file size cap, and no account wall. SoundTools&#8217; music speed changer is free with no account required, no file size limits, and no software to install. Slow down or speed up MP3, FLAC, WAV, AAC, or OGG files from 50% to 200% with instant preview and download in the original format. Everything runs in your browser &#8211; your audio never leaves your device.</p>
+            
+           <h3>Can I use this as a song slower to slow down music for dance practice?</h3>
+            <p>Absolutely. Our song slower feature lets you reduce any track to 50&#8211;75% speed while keeping the pitch and feel of the original music intact. Dance instructors use this daily to teach choreography step by step, then gradually bring the tempo back up as students master the routine.</p>
+            
+           <h3>How do I speed up an MP3 without changing the pitch?</h3>
+            <p>Upload your MP3, drag the tempo slider above 100% (try 125% for a moderate boost or 150&#8211;200% for faster playback), then click &#8216;Change Tempo&#8217; to download your sped-up MP3. The pitch is preserved automatically &#8211; no chipmunk voices, no distortion. Great for speeding up podcasts, lectures, and workout music.</p>
+        </section>
+
+
+
+
+         <section class="related-tools-section">
+            <div class="container">
+                <h2 class="related-tools-header">Related Audio Tools</h2>
+                <p class="related-tools-subheader">Create more amazing audio with these popular tools</p>
+                
+               
+                
+                <!-- Related Tools Grid -->
+                <div class="related-tools-grid">
+
+                     <a href="/pitch-shifter/" class="related-tool-card">
+                        <span class="tool-emoji">&#127908;</span>
+                        <h3>Pitch Shifter</h3>
+                        <p>Change key without changing speed</p>
+                    </a>
+                    
+
+                    <a href="/sped-up/" class="related-tool-card">
+                        <span class="tool-emoji">&#9889;</span>
+                        <h3>Sped Up Audio</h3>
+                        <p>Speed up with pitch change</p>
+                    </a>
+                    
+
+                     <a href="/slowed-reverb/" class="related-tool-card">
+                        <span class="tool-emoji">&#127752;</span>
+                        <h3>Slowed + Reverb</h3>
+                        <p>Dreamy slowed reverb effect</p>
+                    </a>
+                    
+
+                    <a href="/nightcore/" class="related-tool-card">
+                        <span class="tool-emoji">&#127769;</span>
+                        <h3>Nightcore</h3>
+                        <p>Fast tempo + higher pitch effect</p>
+                    </a>
+                </div>
+                
+                <!-- Browse All Tools CTA -->
+                <div class="browse-all-cta">
+                    <a href="/" class="browse-all-btn">
+                        <span class="btn-icon">&#127925;</span>
+                        Browse All Audio Tools
+                        <span class="btn-arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <!-- Footer with Mega Menu -->
+    <!-- FOOTER_START -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Effects</h3>
+                    <ul>
+                        <li><a href="/eq/">EQ</a></li>
+                        <li><a href="/8d-audio/">8D Audio</a></li>
+                        <li><a href="/add-reverb-to-audio/">Add Reverb</a></li>
+                        <li><a href="/bass-boost/">Bass Boost</a></li>
+                        <li><a href="/nightcore/">Nightcore</a></li>
+                        <li><a href="/nightcore-reverse/">Nightcore Reverse</a></li>
+                        <li><a href="/slowed-reverb/">Slowed + Reverb</a></li>
+                        <li><a href="/sped-up/">Sped Up Audio</a></li>
+                        <li><a href="/tiktok-slowed-reverb/">TikTok Slowed</a></li>
+                        <li><a href="/vaporwave/">Vaporwave</a></li>
+                        <li><a href="/volume-booster/">Volume Booster</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Voice & AI</h3>
+                    <ul>
+                        <li><a href="/voice-cloning/">Voice Cloning</a></li>
+                        <li><a href="/vocal-tuner/">Vocal Tuner</a></li>
+                        <li><a href="/voice-to-instrument/">Voice to Instrument</a></li>
+                        <li><a href="/noise-remover/">Noise Remover</a></li>
+                        <li><a href="/stem-splitter/">Stem Splitter</a></li>
+                        <li><a href="/text-to-speech/">Text to Speech</a></li>
+                        <li><a href="/speech-to-text/">Speech to Text</a></li>
+                        <li><a href="/speech-to-song/">Speech to Song</a></li>
+                        <li><a href="/vocal-remover/">Vocal Remover</a></li>
+                        <li><a href="/voice-changer/">Voice Changer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Edit & Convert</h3>
+                    <ul>
+                        <li><a href="/audio-converter/">Audio Converter</a></li>
+                        <li><a href="/audio-joiner/">Audio Joiner</a></li>
+                        <li><a href="/audio-trimmer/">Audio Trimmer</a></li>
+                        <li><a href="/flac-cover-art/">FLAC Cover Art</a></li>
+                        <li><a href="/audio-metadata-editor/">Metadata Editor</a></li>
+                        <li><a href="/pitch-shifter/">Pitch Shifter</a></li>
+                        <li><a href="/reverse-audio/">Reverse Audio</a></li>
+                        <li><a href="/tempo-changer/">Tempo Changer</a></li>
+                        <li><a href="/video-to-audio/">Video to Audio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Create & Analyze</h3>
+                    <ul>
+                        <li><a href="/beat-maker/">Beat Maker</a></li>
+                        <li><a href="/bpm-detector/">BPM Detector</a></li>
+                        <li><a href="/granular-synthesizer/">Granular Synthesizer</a></li>
+                        <li><a href="/hearing-test/">Hearing Test</a></li>
+                        <li><a href="/music-visualizer/">Music Visualizer</a></li>
+                        <li><a href="/soundboard/">Soundboard</a></li>
+                    </ul>
+                </div>
+
+                 <div class="footer-column">
+                    <h3>The Lab</h3>
+                    <ul>
+                        <li><a href="/lab/evaporator/">Evaporator</a></li>
+                        <li><a href="/lab/we-have-the-cherry-point-at-home/">Dead Empires</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service/">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoundTools - Free Audio Tools for Creators</p>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER_END -->
+    
+    
+
+     <!-- Mobile Menu Script -->
+    <script>
+        // Toggle main mobile menu
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Mobile dropdown toggle - handle both desktop hover and mobile click
+        const hasDropdownItems = document.querySelectorAll('.has-dropdown');
+        
+        hasDropdownItems.forEach(item => {
+            const toggle = item.querySelector('a, .mobile-dropdown-toggle');
+            const dropdown = item.querySelector('.dropdown-menu');
+            
+            if (toggle && dropdown) {
+                toggle.addEventListener('click', function(e) {
+                    // Only prevent default and toggle on mobile
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a:not(.mobile-dropdown-toggle)').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            if (!nav.contains(event.target)) {
+                document.querySelector('.nav-links').classList.remove('active');
+            }
+        });
+    </script>
+
+
+    <!-- SoundToolsPlayer - shared preview player component -->
+    <script src="../preview-player/soundtools-player.js"></script>
+
+    <!-- Tempo Changer Tool Logic -->
+    <script type="module">
+        // ============================================================================
+        // ARCHITECTURE:
+        //   Preview:  SoundTouch PitchShifter (offline OfflineAudioContext render)
+        //   Download: SoundTouch PitchShifter (offline OfflineAudioContext render)
+        //
+        //   Both use the same SoundTouch algorithm, so preview matches download.
+        //   Preview renders offline to an AudioBuffer, fed to SoundToolsPlayer.
+        //   Download renders offline to an AudioBuffer, converts to WAV, then
+        //   FFmpeg converts to the original input format.
+        // ============================================================================
+
+        import { PitchShifter } from 'https://cdn.jsdelivr.net/npm/soundtouchjs@0.1.30/dist/soundtouch.js';
+
+        // ============================================================================
+        // GLOBALS
+        // ============================================================================
+        let FFmpeg = null, ffmpeg = null, ffmpegLoaded = false, ffmpegLoading = false;
+        let audioFile = null;
+
+        // Audio state
+        let audioContext = null;
+        let audioBuffer = null;       // Original decoded buffer (unprocessed)
+        let previewBuffer = null;     // Rendered preview buffer (with tempo applied)
+
+        // SoundToolsPlayer instance
+        let player = null;
+
+        // --------------------------------------------------------------------
+        // TEMPO / BPM STATE
+        //
+        // tempoRatio is the SINGLE SOURCE OF TRUTH for everything: preview
+        // render, download render, and both sliders. It is a float, NOT an
+        // integer percent -- that matters. If tempo were forced to whole
+        // percents, the BPM slider would fight the user: on a 128 BPM track,
+        // dragging BPM to 130 needs 101.5625% tempo; rounding that to 102%
+        // yields 130.56 BPM, which displays as 131 while the slider reads 130.
+        //
+        // Instead: whichever slider you touched last is the exact one. The
+        // other slider's THUMB snaps to the nearest integer, but its displayed
+        // VALUE is always the true value.
+        // --------------------------------------------------------------------
+        const MIN_RATIO = 0.5;   // 50%  - matches the tempo slider's min
+        const MAX_RATIO = 2.0;   // 200% - matches the tempo slider's max
+
+        let tempoRatio  = 1.0;    // float, clamped to [MIN_RATIO, MAX_RATIO]
+        let originalBpm = null;   // number | null (null = unknown / not detected)
+        let renderToken = 0;      // guards against a stale render clobbering a newer one
+
+        // DOM
+        const audioInput = document.getElementById('audioFile');
+        const processBtn = document.getElementById('processBtn');
+        const statusDiv = document.getElementById('status');
+        const uploadFilename = document.getElementById('uploadFilename');
+        const tempoSlider = document.getElementById('tempoSlider');
+        const tempoValueEl = document.getElementById('tempoValue');
+        const presetButtons = document.querySelectorAll('.preset-btn');
+        const previewPlayerDiv = document.getElementById('previewPlayer');
+
+        // BPM DOM
+        const bpmPanel        = document.getElementById('bpmPanel');
+        const bpmPanelLabel   = document.getElementById('bpmPanelLabel');
+        const bpmPanelHint    = document.getElementById('bpmPanelHint');
+        const origBpmInput    = document.getElementById('origBpmInput');
+        const bpmHalveBtn     = document.getElementById('bpmHalveBtn');
+        const bpmDoubleBtn    = document.getElementById('bpmDoubleBtn');
+        const bpmSliderGroup  = document.getElementById('bpmSliderGroup');
+        const bpmSlider       = document.getElementById('bpmSlider');
+        const bpmValueEl      = document.getElementById('bpmValue');
+        const bpmMinHint      = document.getElementById('bpmMinHint');
+        const bpmMaxHint      = document.getElementById('bpmMaxHint');
+
+        // Debounce timer for slider
+        let sliderDebounceTimer = null;
+
+        // ============================================================================
+        // UTILITIES
+        // ============================================================================
+        function showStatus(msg, type) { statusDiv.textContent = msg; statusDiv.className = type || 'info'; }
+        function formatDuration(sec) {
+            const m = Math.floor(sec/60), s = Math.floor(sec%60);
+            return m + ':' + (s < 10 ? '0' : '') + s;
+        }
+        function updateButtonState() {
+            const ready = !!(audioBuffer && audioFile && ffmpegLoaded);
+            processBtn.disabled = !ready;
+            if (statusDiv.classList.contains('success-enhanced')) return;
+            if (audioBuffer && audioFile && !ffmpegLoaded) {
+                processBtn.textContent = ffmpegLoading ? 'Loading processor...' : 'Preparing...';
+                if (ffmpegLoading) showStatus('\u23F3 Loading audio processor...', 'info');
+            } else {
+                processBtn.textContent = 'Change Tempo';
+            }
+        }
+
+        // Convert AudioBuffer to WAV blob
+        function audioBufferToWav(audioBuffer) {
+            const numChannels = audioBuffer.numberOfChannels;
+            const sampleRate = audioBuffer.sampleRate;
+            const format = 1;
+            const bitDepth = 16;
+            const bytesPerSample = bitDepth / 8;
+            const blockAlign = numChannels * bytesPerSample;
+            const samples = audioBuffer.length;
+            const dataSize = samples * blockAlign;
+            const buffer = new ArrayBuffer(44 + dataSize);
+            const view = new DataView(buffer);
+            const writeString = (offset, string) => {
+                for (let i = 0; i < string.length; i++) view.setUint8(offset + i, string.charCodeAt(i));
+            };
+            writeString(0, 'RIFF');
+            view.setUint32(4, 36 + dataSize, true);
+            writeString(8, 'WAVE');
+            writeString(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, format, true);
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+            writeString(36, 'data');
+            view.setUint32(40, dataSize, true);
+            const channels = [];
+            for (let i = 0; i < numChannels; i++) channels.push(audioBuffer.getChannelData(i));
+            let offset = 44;
+            for (let i = 0; i < samples; i++) {
+                for (let channel = 0; channel < numChannels; channel++) {
+                    const sample = Math.max(-1, Math.min(1, channels[channel][i]));
+                    view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+                    offset += 2;
+                }
+            }
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        // ============================================================================
+        // BPM DETECTION  (100% client-side, no library, no network)
+        //
+        //   1. Offline-render a mono, low-passed, downsampled copy of the audio.
+        //      The low-pass isolates kick/bass transients, which carry the beat.
+        //   2. Pick peaks using a descending amplitude threshold + refractory gap.
+        //   3. Histogram the inter-peak intervals, folded into one BPM octave so
+        //      that 65 / 130 / 260 all vote for the same tempo.
+        //   4. Winner = the most-supported interval.
+        //
+        //   Octave ambiguity is inherent to beat tracking -- a 70 BPM hip-hop
+        //   track and a 140 BPM track have identical beat grids at the eighth
+        //   note. That is what the editable field and the /2 and x2 buttons are
+        //   for: one click fixes it, and the sliders re-scale around the new value.
+        // ============================================================================
+        const BPM_FOLD_MIN = 90;    // fold detected tempi into [90, 180]
+        const BPM_FOLD_MAX = 180;
+
+        async function analyzeBpm(buffer) {
+            const ANALYSIS_SECONDS = 90;     // enough beats for a stable histogram
+            const ANALYSIS_RATE    = 11025;  // plenty for a kick envelope, and fast
+
+            const duration    = buffer.duration;
+            if (!duration || duration < 2) return null;
+
+            const analysisDur = Math.min(duration, ANALYSIS_SECONDS);
+            // Analyse from the middle of the track: intros and outros are often
+            // sparse or beatless and skew the histogram.
+            const startOffset = duration > analysisDur ? (duration - analysisDur) / 2 : 0;
+
+            const frames  = Math.max(1, Math.ceil(analysisDur * ANALYSIS_RATE));
+            const offline = new OfflineAudioContext(1, frames, ANALYSIS_RATE);
+
+            const source = offline.createBufferSource();
+            source.buffer = buffer;
+
+            const lowpass = offline.createBiquadFilter();
+            lowpass.type = 'lowpass';
+            lowpass.frequency.value = 150;
+            lowpass.Q.value = 1;
+
+            const highpass = offline.createBiquadFilter();
+            highpass.type = 'highpass';
+            highpass.frequency.value = 30;   // kill DC offset and sub rumble
+            highpass.Q.value = 1;
+
+            source.connect(lowpass);
+            lowpass.connect(highpass);
+            highpass.connect(offline.destination);
+            source.start(0, startOffset, analysisDur);
+
+            const rendered = await offline.startRendering();
+            const peaks    = findPeaks(rendered.getChannelData(0), ANALYSIS_RATE);
+
+            if (peaks.length < 8) return null;
+            return histogramTempo(peaks, ANALYSIS_RATE);
+        }
+
+        function findPeaks(data, sampleRate) {
+            let max = 0;
+            for (let i = 0; i < data.length; i++) {
+                const v = Math.abs(data[i]);
+                if (v > max) max = v;
+            }
+            if (max === 0) return [];   // silence
+
+            // 0.2s minimum gap between peaks => hard ceiling of 300 BPM
+            const refractory = Math.floor(sampleRate * 0.2);
+
+            // Walk the threshold down until we have a workable number of peaks.
+            let fallback = [];
+            for (let mult = 0.90; mult >= 0.25; mult -= 0.05) {
+                const threshold = max * mult;
+                const peaks = [];
+                for (let i = 0; i < data.length; i++) {
+                    if (Math.abs(data[i]) > threshold) {
+                        peaks.push(i);
+                        i += refractory;
+                    }
+                }
+                if (peaks.length >= 30) return peaks;
+                if (peaks.length > fallback.length) fallback = peaks;
+            }
+            return fallback;   // quiet or very dynamic track: take the best we got
+        }
+
+        function histogramTempo(peaks, sampleRate) {
+            const counts = new Map();
+
+            for (let i = 0; i < peaks.length; i++) {
+                // Compare each peak against the next 10, not just its neighbour.
+                // This still finds the beat interval when individual beats are missed.
+                for (let j = 1; j < 10 && i + j < peaks.length; j++) {
+                    const intervalSamples = peaks[i + j] - peaks[i];
+                    if (intervalSamples <= 0) continue;
+
+                    let bpm = 60 / (intervalSamples / sampleRate);
+                    if (!isFinite(bpm) || bpm < 20 || bpm > 400) continue;
+
+                    while (bpm < BPM_FOLD_MIN) bpm *= 2;
+                    while (bpm > BPM_FOLD_MAX) bpm /= 2;
+
+                    const rounded = Math.round(bpm);
+                    counts.set(rounded, (counts.get(rounded) || 0) + 1);
+                }
+            }
+            if (counts.size === 0) return null;
+
+            // Smooth +/-1 BPM so near-misses reinforce each other instead of splitting the vote.
+            let best = null, bestScore = -1;
+            counts.forEach(function(count, bpm) {
+                const score = count
+                    + (counts.get(bpm - 1) || 0) * 0.5
+                    + (counts.get(bpm + 1) || 0) * 0.5;
+                if (score > bestScore) { bestScore = score; best = bpm; }
+            });
+            return best;
+        }
+
+        // ============================================================================
+        // TEMPO <-> BPM SYNC
+        //
+        // Every control funnels through setTempoRatio(). Nothing else writes
+        // tempoRatio, and nothing reads slider .value for the actual render.
+        //
+        // No feedback loop is possible: assigning to input.value programmatically
+        // does NOT dispatch an 'input' event, so syncing one slider from the other
+        // can never re-trigger the handler that started it.
+        // ============================================================================
+        function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
+        // "101%", "100.8%", "75%" -- exact, with a decimal only when there is one.
+        function formatTempoPercent(ratio) {
+            const p = Math.round(ratio * 1000) / 10;
+            return (Number.isInteger(p) ? p.toFixed(0) : p.toFixed(1)) + '%';
+        }
+
+        function targetBpm() {
+            return originalBpm ? Math.round(originalBpm * tempoRatio) : null;
+        }
+
+        // source = 'tempo' | 'bpm' | 'preset' | 'init'
+        // The originating slider is left alone so the thumb doesn't jump under the
+        // user's finger mid-drag; every other control is refreshed from tempoRatio.
+        function syncControls(source) {
+            if (source !== 'tempo') {
+                tempoSlider.value = String(Math.round(tempoRatio * 100));
+            }
+            tempoValueEl.textContent = formatTempoPercent(tempoRatio);
+
+            if (originalBpm) {
+                const bpm = targetBpm();
+                if (source !== 'bpm') {
+                    bpmSlider.value = String(clamp(bpm, Number(bpmSlider.min), Number(bpmSlider.max)));
+                }
+                bpmValueEl.textContent = bpm + ' BPM';
+            } else {
+                bpmValueEl.textContent = '\u2014';
+            }
+        }
+
+        function setTempoRatio(ratio, source) {
+            tempoRatio = clamp(ratio, MIN_RATIO, MAX_RATIO);
+            syncControls(source);
+        }
+
+        function markCustomPreset() {
+            presetButtons.forEach(function(b) { b.classList.remove('active'); });
+            const customBtn = document.querySelector('.preset-btn[data-tempo="100"]');
+            if (customBtn) customBtn.classList.add('active');
+        }
+
+        // Debounced re-render so dragging either slider stays responsive.
+        function scheduleRender() {
+            if (!audioBuffer) return;
+            clearTimeout(sliderDebounceTimer);
+            sliderDebounceTimer = setTimeout(function() { updatePlayer(); }, 300);
+        }
+
+        // ============================================================================
+        // BPM PANEL / SLIDER WIRING
+        // ============================================================================
+
+        // Rebuild the BPM slider's range around the current originalBpm.
+        // ceil/floor (not round) guarantee every reachable BPM maps to a ratio
+        // inside [0.5, 2.0] -- the exact same span as the tempo slider.
+        function applyOriginalBpm(bpm, detected) {
+            originalBpm = bpm;
+
+            if (!originalBpm) {
+                bpmSliderGroup.style.display = 'none';
+                origBpmInput.value = '';
+                syncControls('init');
+                return;
+            }
+
+            const lo = Math.ceil(originalBpm * MIN_RATIO);
+            const hi = Math.floor(originalBpm * MAX_RATIO);
+
+            bpmSlider.min = String(lo);
+            bpmSlider.max = String(hi);
+            bpmMinHint.textContent = lo + ' BPM (half speed)';
+            bpmMaxHint.textContent = hi + ' BPM (double speed)';
+
+            origBpmInput.value = String(originalBpm);
+            bpmSliderGroup.style.display = '';
+
+            bpmPanel.classList.remove('detecting', 'failed');
+            bpmPanelLabel.textContent = detected ? 'Detected BPM' : 'Original BPM';
+            bpmPanelHint.innerHTML = detected
+                ? 'Detected automatically from your file. Beat detection can land an octave off (half or double the real tempo) &mdash; if that happened, hit &divide;2 or &times;2, or just type the correct BPM. The sliders re-scale instantly and your audio is not touched.'
+                : 'Using the BPM you entered. Change it any time &mdash; the sliders re-scale around it.';
+
+            // Re-derive the target BPM from the unchanged tempoRatio. Correcting the
+            // ORIGINAL BPM re-labels the controls; it must never alter the audio.
+            syncControls('init');
+        }
+
+        bpmSlider.addEventListener('input', function(e) {
+            if (!originalBpm) return;
+            const bpm = parseInt(e.target.value, 10);
+            setTempoRatio(bpm / originalBpm, 'bpm');   // exact -- no rounding through tempo
+            markCustomPreset();
+            scheduleRender();
+        });
+
+        origBpmInput.addEventListener('change', function() {
+            const v = parseInt(origBpmInput.value, 10);
+            if (!isFinite(v) || v < 40 || v > 300) {
+                // Reject nonsense, restore the previous value.
+                origBpmInput.value = originalBpm ? String(originalBpm) : '';
+                return;
+            }
+            applyOriginalBpm(v, false);
+            gtag('event', 'tempo-changer-bpm_corrected', {
+                'event_category': 'tempo-changer',
+                'event_label': 'manual_entry',
+                'bpm_original': v
+            });
+        });
+
+        bpmHalveBtn.addEventListener('click', function() {
+            if (!originalBpm) return;
+            const v = Math.round(originalBpm / 2);
+            if (v < 40) return;
+            applyOriginalBpm(v, false);
+            gtag('event', 'tempo-changer-bpm_corrected', {
+                'event_category': 'tempo-changer', 'event_label': 'halved', 'bpm_original': v
+            });
+        });
+
+        bpmDoubleBtn.addEventListener('click', function() {
+            if (!originalBpm) return;
+            const v = Math.round(originalBpm * 2);
+            if (v > 300) return;
+            applyOriginalBpm(v, false);
+            gtag('event', 'tempo-changer-bpm_corrected', {
+                'event_category': 'tempo-changer', 'event_label': 'doubled', 'bpm_original': v
+            });
+        });
+
+        // Run detection for a freshly decoded buffer. Never fatal: if detection
+        // fails the tool keeps working exactly as it did before, minus the BPM slider.
+        async function runBpmDetection(buffer) {
+            bpmPanel.style.display = '';
+            bpmPanel.classList.add('detecting');
+            bpmPanel.classList.remove('failed');
+            bpmPanelLabel.textContent = 'Detected BPM';
+            bpmPanelHint.textContent = 'Detecting BPM\u2026';
+            origBpmInput.value = '';
+            bpmSliderGroup.style.display = 'none';
+
+            const t0 = performance.now();
+            let bpm = null;
+            try {
+                bpm = await analyzeBpm(buffer);
+            } catch (err) {
+                console.error('[TC] BPM detection failed:', err);
+            }
+            const ms = Math.round(performance.now() - t0);
+            console.log('[TC] BPM detection: ' + (bpm || 'none') + ' (' + ms + 'ms)');
+
+            bpmPanel.classList.remove('detecting');
+
+            if (bpm) {
+                applyOriginalBpm(bpm, true);
+            } else {
+                originalBpm = null;
+                bpmPanel.classList.add('failed');
+                bpmPanelLabel.textContent = 'Original BPM';
+                bpmPanelHint.textContent = 'We could not find a steady beat in this file (speech, ambient and rubato music often have none). Type the BPM yourself to unlock the BPM slider \u2014 the tempo slider works regardless.';
+                bpmSliderGroup.style.display = 'none';
+                syncControls('init');
+            }
+
+            gtag('event', 'tempo-changer-bpm_detected', {
+                'event_category': 'tempo-changer',
+                'event_label': bpm ? 'success' : 'not_found',
+                'bpm_original': bpm || 0,
+                'detect_ms': ms
+            });
+        }
+
+        // ============================================================================
+        // PREVIEW - SoundToolsPlayer with SoundTouch offline render
+        // ============================================================================
+
+        // Render preview buffer at the given tempo ratio using SoundTouch offline
+        async function renderPreviewBuffer(ratio) {
+            if (!audioBuffer) return null;
+
+            const outputLength = Math.ceil(audioBuffer.length / ratio);
+            const offlineContext = new OfflineAudioContext(
+                audioBuffer.numberOfChannels,
+                outputLength,
+                audioBuffer.sampleRate
+            );
+
+            const offlineShifter = new PitchShifter(offlineContext, audioBuffer, 16384);
+            offlineShifter.tempo = ratio;
+            offlineShifter.pitchSemitones = 0;
+            offlineShifter.connect(offlineContext.destination);
+
+            return await offlineContext.startRendering();
+        }
+
+        // Create or update the SoundToolsPlayer with the current preview buffer
+        async function updatePlayer() {
+            if (!audioBuffer) return;
+
+            const wasPlaying = player ? player._isPlaying : false;
+            const ratio = tempoRatio;          // snapshot: the user can keep dragging
+            const token = ++renderToken;       // stale-render guard
+
+            showStatus('Rendering preview...', 'info');
+
+            try {
+                const rendered = await renderPreviewBuffer(ratio);
+
+                // A newer render started while this one was in flight -- drop this result.
+                if (token !== renderToken) return;
+
+                previewBuffer = rendered;
+
+                if (player) {
+                    player.load(previewBuffer, audioFile.name);
+                } else {
+                    player = new SoundToolsPlayer({
+                        container:   previewPlayerDiv,
+                        audioBuffer: previewBuffer,
+                        filename:    audioFile.name,
+                    });
+                }
+
+                previewPlayerDiv.style.display = '';
+
+                if (wasPlaying) {
+                    player.play();
+                }
+
+                const origDur = audioBuffer.duration;
+                const newDur  = origDur / ratio;
+                const bpm     = targetBpm();
+                const bpmPart = bpm ? ' \u00B7 ' + bpm + ' BPM' : '';
+                showStatus('Preview ready at ' + formatTempoPercent(ratio) + ' tempo' + bpmPart +
+                           ' (' + formatDuration(origDur) + ' \u2192 ' + formatDuration(newDur) +
+                           '). Adjust settings or create your file.', 'success');
+            } catch (error) {
+                if (token !== renderToken) return;
+                console.error('Preview render error:', error);
+                showStatus('Error rendering preview: ' + error.message, 'error');
+            }
+        }
+
+        // ============================================================================
+        // EVENT HANDLERS - Tempo Slider and Presets
+        // ============================================================================
+        tempoSlider.addEventListener('input', function(e) {
+            setTempoRatio(parseInt(e.target.value, 10) / 100, 'tempo');
+            markCustomPreset();
+            scheduleRender();
+        });
+
+        presetButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const t = parseInt(btn.dataset.tempo);
+                if (t === 100 && btn.querySelector('.preset-name').textContent.indexOf('Custom') !== -1) {
+                    presetButtons.forEach(function(b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    ToolTracker.trackPresetSelected('Custom');
+                    return;
+                }
+                setTempoRatio(t / 100, 'preset');
+                presetButtons.forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+
+                // Re-render preview with new preset tempo
+                if (audioBuffer) {
+                    updatePlayer();
+                }
+
+                ToolTracker.trackPresetSelected(btn.querySelector('.preset-name').textContent);
+            });
+        });
+
+        // ============================================================================
+        // AUDIO LOADING
+        // ============================================================================
+        async function loadAudioForPreview(file) {
+            try {
+                showStatus('Loading audio...', 'info');
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                const ab = await file.arrayBuffer();
+                audioBuffer = await audioContext.decodeAudioData(ab);
+
+                // Detect the song's BPM and build the BPM slider around it.
+                // Fast (a downsampled offline render), and non-fatal if it fails.
+                showStatus('Detecting BPM...', 'info');
+                await runBpmDetection(audioBuffer);
+
+                // Render preview with tempo and create/update the player
+                await updatePlayer();
+
+                updateButtonState();
+            } catch (err) {
+                console.error('[TC] Load error:', err);
+                showStatus('Error loading audio: ' + err.message + '. Please insure the file you are attempting to use exists on your physical device, not "online only" / "cloud-only" files in DropBox or iCloud', 'error');
+                audioBuffer = null;
+                previewPlayerDiv.style.display = 'none';
+                bpmPanel.style.display = 'none';
+                bpmSliderGroup.style.display = 'none';
+                originalBpm = null;
+                updateButtonState();
+            }
+        }
+
+        // ============================================================================
+        // FFMPEG LOADING
+        // ============================================================================
+        async function loadFFmpeg() {
+            if (ffmpegLoaded) return true;
+            if (ffmpegLoading) { while (ffmpegLoading) await new Promise(r => setTimeout(r, 100)); return ffmpegLoaded; }
+            ffmpegLoading = true;
+            try {
+                showStatus('Loading audio processor...', 'info');
+                const mod = await import('../../ffmpeg/index.js');
+                FFmpeg = mod.FFmpeg; ffmpeg = new FFmpeg();
+                await ffmpeg.load(
+                    { 
+                        coreURL:'../../ffmpeg/ffmpeg-core.js', 
+                        wasmURL: 'https://cdn.soundtools.io/ffmpeg/ffmpeg-core.wasm',
+                    });
+                ffmpegLoaded = true;
+                showStatus('Ready!', 'success');
+                updateButtonState(); return true;
+            } catch (err) {
+                ffmpegLoaded = false;
+                showStatus('Error loading processor: ' + err.message, 'error');
+                return false;
+            } finally { ffmpegLoading = false; }
+        }
+
+        // ============================================================================
+        // FILE UPLOAD
+        // ============================================================================
+        audioInput.addEventListener('change', async function(e) {
+            if (statusDiv.classList.contains('success-enhanced')) { statusDiv.className = ''; statusDiv.innerHTML = ''; }
+            audioFile = e.target.files[0];
+            if (audioFile) {
+                ToolTracker.trackFileSelected(audioFile.size);
+                uploadFilename.textContent = audioFile.name;
+                await loadAudioForPreview(audioFile);
+                if (!ffmpegLoaded && audioBuffer) { await loadFFmpeg(); updateButtonState(); }
+                else updateButtonState();
+            } else {
+                uploadFilename.textContent = 'No file selected';
+                previewPlayerDiv.style.display = 'none';
+                if (player) { player.destroy(); player = null; }
+                audioBuffer = null;
+                originalBpm = null;
+                bpmPanel.style.display = 'none';
+                bpmSliderGroup.style.display = 'none';
+                syncControls('init');
+                updateButtonState();
+            }
+        });
+
+        // ============================================================================
+        // DOWNLOAD - SoundTouch offline render + FFmpeg format conversion
+        // ============================================================================
+        processBtn.addEventListener('click', async function() {
+            if (statusDiv.classList.contains('success-enhanced')) { statusDiv.className = ''; statusDiv.innerHTML = ''; }
+            if (!audioFile || !audioBuffer) { showStatus('Please upload an audio file first.', 'error'); return; }
+            if (!ffmpegLoaded) {
+                showStatus('Waiting for audio processor...', 'info');
+                if (!await loadFFmpeg()) { showStatus('\u2717 Audio processor failed to load. Please refresh.', 'error'); return; }
+            }
+
+            // Read the SAME float state the preview used -- never the slider's
+            // rounded DOM value. This is what makes the download match what the
+            // user heard, no matter which slider they touched last.
+            const ratio        = tempoRatio;
+            const tempoPercent = Math.round(ratio * 100);   // display / filename only
+            const outBpm       = targetBpm();               // null if BPM unknown
+
+            try {
+                processBtn.disabled = true;
+                if (player) { player.stop(); }
+
+                showStatus('Processing tempo change with SoundTouch...', 'info');
+
+                // Output length changes with tempo: slower = longer, faster = shorter
+                const outputLength = Math.ceil(audioBuffer.length / ratio);
+
+                // Create offline audio context for rendering
+                const offlineContext = new OfflineAudioContext(
+                    audioBuffer.numberOfChannels,
+                    outputLength,
+                    audioBuffer.sampleRate
+                );
+
+                // Create SoundTouch PitchShifter for offline rendering
+                const offlineShifter = new PitchShifter(offlineContext, audioBuffer, 16384);
+                offlineShifter.tempo = ratio;
+                offlineShifter.pitchSemitones = 0;
+
+                // Connect to offline context destination
+                offlineShifter.connect(offlineContext.destination);
+
+                // Render the audio
+                showStatus('Rendering tempo-changed audio...', 'info');
+                console.log('[TC] Offline render: tempo=' + formatTempoPercent(ratio) + ', bpm=' + (outBpm || 'n/a') + ', outputLength=' + outputLength);
+                const renderedBuffer = await offlineContext.startRendering();
+                console.log('[TC] Render complete. Duration: ' + renderedBuffer.duration.toFixed(2) + 's');
+
+                // Convert AudioBuffer to WAV
+                showStatus('Converting to WAV...', 'info');
+                const wavBlob = audioBufferToWav(renderedBuffer);
+                const wavData = new Uint8Array(await wavBlob.arrayBuffer());
+                await ffmpeg.writeFile('input.wav', wavData);
+
+                // Write original file to FFmpeg filesystem for metadata preservation
+                const originalData = new Uint8Array(await audioFile.arrayBuffer());
+                const fileExt = audioFile.name.split('.').pop().toLowerCase();
+                const originalFileName = `original.${fileExt}`;
+                await ffmpeg.writeFile(originalFileName, originalData);
+
+                const outputFileName = 'output.' + fileExt;
+                // -map 0:a = audio from processed WAV, -map 1:v? = cover art from original
+                // -map_metadata 1 = text metadata from original, -c:v copy = passthrough cover art
+                let ffmpegCommand = ['-i', 'input.wav', '-i', originalFileName, '-map', '0:a', '-map', '1:v?', '-map_metadata', '1', '-c:v', 'copy'];
+
+                if (fileExt === 'mp3') {
+                    ffmpegCommand.push('-codec:a', 'libmp3lame', '-b:a', '320k', outputFileName);
+                } else if (fileExt === 'flac') {
+                    ffmpegCommand.push('-codec:a', 'flac', outputFileName);
+                } else if (fileExt === 'ogg') {
+                    ffmpegCommand.push('-codec:a', 'libvorbis', '-q:a', '8', outputFileName);
+                } else if (fileExt === 'aac' || fileExt === 'm4a') {
+                    ffmpegCommand.push('-codec:a', 'aac', '-b:a', '256k', outputFileName);
+                } else if (fileExt === 'wav') {
+                    ffmpegCommand.push('-codec:a', 'pcm_s16le', outputFileName);
+                } else {
+                    ffmpegCommand.push('-codec:a', 'libmp3lame', '-b:a', '320k', 'output.mp3');
+                }
+
+                showStatus('Converting to ' + fileExt.toUpperCase() + '...', 'info');
+                await ffmpeg.exec(ffmpegCommand);
+
+                showStatus('Processing complete!', 'info');
+                const finalFileName = ['mp3','flac','ogg','wav','aac','m4a'].includes(fileExt) ? outputFileName : 'output.mp3';
+                const data = await ffmpeg.readFile(finalFileName);
+
+                const mimeTypes = { mp3:'audio/mpeg', flac:'audio/flac', ogg:'audio/ogg', wav:'audio/wav', aac:'audio/aac', m4a:'audio/mp4' };
+                const blob = new Blob([data.buffer], { type: mimeTypes[fileExt] || 'audio/mpeg' });
+                const downloadUrl = URL.createObjectURL(blob);
+                const originalName = audioFile.name.substring(0, audioFile.name.lastIndexOf('.')) || audioFile.name;
+                const downloadExt = ['mp3','flac','ogg','wav','aac','m4a'].includes(fileExt) ? fileExt : 'mp3';
+                const bpmSuffix = outBpm ? '_' + outBpm + 'bpm' : '';
+                const downloadName = originalName + '_tempo_' + tempoPercent + bpmSuffix + '.' + downloadExt;
+
+                await ffmpeg.deleteFile('input.wav');
+                await ffmpeg.deleteFile(originalFileName);
+                await ffmpeg.deleteFile(finalFileName);
+
+                const origDur = formatDuration(audioBuffer.duration);
+                const newDur = formatDuration(audioBuffer.duration / ratio);
+                const bpmText = outBpm ? ' \u00B7 ' + originalBpm + ' \u2192 ' + outBpm + ' BPM' : '';
+                const successText = '\u2714 Tempo changed to ' + formatTempoPercent(ratio) + bpmText + ' (' + origDur + ' \u2192 ' + newDur + ')';
+
+                const analytics = ToolTracker.getAnalytics();
+
+                statusDiv.innerHTML = '<div class="success-message-enhanced"><div class="success-text">' + successText + '</div><div class="next-tools"><span class="next-label">Try next:</span><a href="/pitch-shifter/" class="next-tool-link" data-tool="pitch-shifter">\uD83C\uDFB5 Pitch Shifter</a><a href="/bass-boost/" class="next-tool-link" data-tool="bass-boost">\uD83D\uDD0A Bass Boost</a><a href="/audio-trimmer/" class="next-tool-link" data-tool="audio-trimmer">\u2702\uFE0F Audio Trimmer</a><a href="/" class="next-tool-link all-tools" data-tool="all-tools">More tools \u2192</a></div><a id="ctaDownloadBtn" class="cta-download-btn" href="' + downloadUrl + '" download="' + downloadName + '">\u2B07\uFE0F Download Tempo Changed Audio</a></div>';
+
+                statusDiv.classList.add('success-enhanced');
+
+                statusDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.getElementById('ctaDownloadBtn').addEventListener('click', function() {
+                    gtag('event', 'cta-download-clicked', {
+                        'event_category': 'download',
+                        'source_tool': 'tempo-changer',
+                        'tempo': tempoPercent,
+                        'bpm_original': originalBpm || 0,
+                        'bpm_target': outBpm || 0
+                    });
+                    setTimeout(function() { URL.revokeObjectURL(downloadUrl); }, 60000);
+                });
+
+                gtag('event', 'related-tools-cta-shown', {
+                    'event_category': 'cross_tool_engagement',
+                    'event_label': 'success_message_inline',
+                    'source_tool': 'tempo-changer',
+                    'lifetime_tool_uses': analytics.lifetime_tool_uses,
+                    'is_repeat_tool_user': analytics.is_repeat_tool_user
+                });
+
+                document.querySelectorAll('.next-tool-link').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        const destinationTool = this.getAttribute('data-tool');
+                        gtag('event', 'related-tool-clicked', {
+                            'event_category': 'cross_tool_engagement',
+                            'source_tool': 'tempo-changer',
+                            'destination_tool': destinationTool,
+                            'cta_position': 'inline_success',
+                            'lifetime_tool_uses': analytics.lifetime_tool_uses
+                        });
+                    });
+                });
+
+                ToolTracker.trackSuccess({
+                    'event_label': 'tempo_' + tempoPercent,
+                    'tempo': tempoPercent,
+                    'bpm_original': originalBpm || 0,
+                    'bpm_target': outBpm || 0,
+                    'used_bpm_slider': outBpm ? 'yes' : 'no',
+                    'method': 'soundtouch_offline'
+                });
+
+                processBtn.disabled = false;
+                updateButtonState();
+            } catch (error) {
+                showStatus('\u2717 Error: ' + error.message, 'error');
+                console.error(error);
+                processBtn.disabled = false;
+                updateButtonState();
+
+                console.log('error.message', error.message);
+                console.log('error.stack', error.stack);
+                const errorMessage = error?.message || error?.toString() || String(error) || 'Unknown error';
+                const stackFirstLine = error?.stack ? error.stack.split('\n')[1]?.trim() : '';
+                const errorForGA4 = stackFirstLine ? errorMessage + ' | ' + stackFirstLine : errorMessage;
+                ToolTracker.trackError(errorForGA4);
+            }
+        });
+
+        // ============================================================================
+        // INITIALIZATION
+        // ============================================================================
+        setTempoRatio(parseInt(tempoSlider.value, 10) / 100, 'init');
+        showStatus('Select your audio file \u2014 we\u2019ll detect its BPM, then you can change tempo by percentage or by BPM. Pitch stays put either way.', 'info');
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+[
+ {
+  "query": "increase mp3 volume",
+  "pos": 1,
+  "url": "https://www.mp3louder.com/",
+  "code": "200",
+  "title": "Increase MP3 Volume Online, MP3 Volume Booster Online | MP3Louder",
+  "h2": [
+   "Why Should You Need to Increase MP3 Volume?",
+   "How to Increase the Volume of MP3 Songs?"
+  ],
+  "words": 501,
+  "schema": [],
+  "simple": true
+ },
+ {
+  "query": "increase mp3 volume",
+  "pos": 2,
+  "url": "https://mp3cut.net/change-volume",
+  "code": "200",
+  "title": "Volume Changer - Increase or decrease loudness online",
+  "h2": [
+   "Increase and decrease the volume of audio files"
+  ],
+  "words": 929,
+  "schema": [
+   "AggregateRating",
+   "ImageObject",
+   "Offer",
+   "Organization",
+   "SoftwareApplication"
+  ],
+  "simple": false
+ },
+ {
+  "query": "increase mp3 volume",
+  "pos": 5,
+  "url": "https://freebeat.ai/tools/increase-mp3-volume",
+  "code": "429",
+  "title": "-",
+  "h2": [],
+  "words": 0,
+  "schema": [],
+  "simple": false
+ }
+]

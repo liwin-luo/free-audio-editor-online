@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Audio Reverser — Reverse MP3 Online | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-notify.js" defer></script>
+<script src="/vendor/snip-decode-gate.js" defer></script>
+<script src="/vendor/snip-audio-decode.js" defer></script>
+<meta name="description" content="Reverse an MP3 or any audio file free and hear it backwards instantly. Play it, trim it, download it. Files stay on your device, no sign-up.">
+<meta name="keywords" content="audio reverser, reverse audio, mp3 reverser, reverse mp3, play audio backwards, reverse audio online, audio backwards, reverse cymbal, reverse sound effect, online mp3 reverser, reverse song, backwards music">
+<link rel="canonical" href="https://snipsound.com/tools/audio-reverser/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Audio Reverser — Reverse MP3 Online">
+<meta property="og:description" content="Reverse an MP3 or any audio file free and hear it backwards instantly. Play it, trim it, download it. Files stay on your device, no sign-up.">
+<meta property="og:url" content="https://snipsound.com/tools/audio-reverser/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Audio Reverser — Reverse MP3 Online">
+<meta name="twitter:description" content="Reverse an MP3 or any audio file free and hear it backwards instantly. Play it, trim it, download it. Files stay on your device, no sign-up.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+
+  /* Header */
+
+  
+
+  /* Container — wider than form-only tools so the waveform display
+     and scrubbing target are easier to use on big screens. */
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .hero { max-width: 760px; margin-left: auto; margin-right: auto; }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 0 0 32px;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--accent), #b599ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* Drop zone */
+  .drop-zone {
+    background: var(--surface);
+    border: 2px dashed var(--border-bright);
+    border-radius: 16px;
+    padding: 64px 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 24px;
+  }
+  .drop-zone:hover {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+  }
+  .drop-zone.drag-over {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+  }
+  .drop-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    color: var(--accent);
+  }
+  .drop-zone h2 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .drop-zone p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+  .drop-zone .formats {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .format-tag {
+    padding: 3px 10px;
+    background: var(--surface2);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+  #file-input { display: none; }
+
+  /* Editor */
+  .editor {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .editor.active { display: block; }
+
+  .file-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .file-info .file-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-subtle);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .file-info .file-name { font-weight: 600; color: var(--text); }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove {
+    margin-left: auto;
+    background: none;
+    border: 1px solid var(--border-bright);
+    color: var(--text-dim);
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .wave-block { background: var(--surface2); border-radius: 10px; padding: 16px; }
+  .wave-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .wave-label .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--text-dim);
+    transition: background 0.15s;
+  }
+  .wave-block.playing-reversed .wave-label .dot { background: var(--accent); }
+  .wave-label .dir-hint {
+    margin-left: auto;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+  canvas.wave {
+    display: block;
+    width: 100%;
+    height: 140px;
+    background: var(--bg);
+    border-radius: 6px;
+  }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s, background 0.15s;
+    font-family: inherit;
+  }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: #fff;
+    box-shadow: 0 2px 12px var(--accent-glow);
+  }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .btn-secondary {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border-bright);
+  }
+  .btn-secondary:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .status-text {
+    margin-left: auto;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  /* Loading bar */
+  .progress {
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 16px;
+    display: none;
+  }
+  .progress.active { display: block; }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    width: 0%;
+    transition: width 0.2s;
+  }
+
+  /* SEO copy */
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .seo-section h3 {
+    font-size: 1.05rem;
+    margin: 20px 0 6px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .seo-section p, .seo-section li {
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .seo-section ul { padding-left: 22px; }
+
+  /* FAQ */
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 14px 18px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-q .arrow {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    transition: transform 0.2s;
+  }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a {
+    padding: 0 18px 16px;
+    color: var(--text-dim);
+    display: none;
+  }
+  .faq-item.open .faq-a { display: block; }
+
+  /* Footer */
+
+  /* Responsive */
+  @media (max-width: 700px) {
+
+    .hero { padding: 0 0 20px; }
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    canvas.wave { height: 110px; }
+    .wave-label .dir-hint { display: none; }
+    .controls { gap: 8px; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SnipSound Audio Reverser",
+  "url": "https://snipsound.com/tools/audio-reverser/",
+  "description": "Free online audio reverser. Upload any audio file and play it backwards. Visual waveform preview, instant playback, and WAV download.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I reverse an audio file?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Drop your audio file onto the page, wait a second while it decodes, then press Play Reversed to preview the backwards version. Click Download to save it as a WAV file." } },
+    { "@type": "Question", "name": "What file formats can I reverse?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Any format your browser can decode — MP3, WAV, OGG, FLAC, AAC, M4A, and others. The tool uses the Web Audio API, which supports the same formats your browser plays natively." } },
+    { "@type": "Question", "name": "Is my audio uploaded to a server?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. All audio processing happens entirely in your browser using the Web Audio API. Your files never leave your device, ensuring complete privacy." } },
+    { "@type": "Question", "name": "Why would I want to reverse audio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Reverse audio is widely used in sound design — reverse cymbals, reverse reverb tails, noise risers, and transitions. Musicians use it for creative sampling. Curious listeners use it to hear what songs or speech sound like played backwards." } },
+    { "@type": "Question", "name": "What format is the downloaded file?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The reversed audio is exported as a WAV file (16-bit PCM, original sample rate). WAV is lossless so no quality is lost during the export." } }
+  ]
+}
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Audio Reverser</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/" class="active">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Reverse <span class="accent">MP3 &amp; Audio</span> Online</h1>
+    <p>An MP3 reverser and audio reverser in one — reverse any audio file and play it backwards. Perfect for sound design &mdash; reverse cymbals, noise risers, hidden-message hunts, or just creative fun. Your file never leaves your browser.</p>
+  </section>
+
+  <style>
+    .demo-row { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 0 auto 20px; max-width: 720px; }
+    .demo-label { color: var(--text-dim); font-size: 0.9rem; }
+    .demo-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border-bright);
+      color: var(--text); font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; transition: border-color 0.15s, color 0.15s, background 0.15s;
+      font-family: inherit;
+    }
+    .demo-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
+    .demo-btn:disabled { opacity: 0.6; cursor: wait; }
+    .demo-btn svg { width: 14px; height: 14px; }
+
+    /* Loop-bounce toggle in the controls bar */
+    .loop-bounce-toggle {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 12px; border-radius: 10px;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text-dim); font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; user-select: none;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .loop-bounce-toggle:hover { color: var(--text); border-color: var(--text-dim); }
+    .loop-bounce-toggle input { accent-color: var(--accent); cursor: pointer; }
+    .loop-bounce-toggle:has(input:checked) { color: var(--accent); border-color: var(--accent); background: var(--accent-subtle); }
+
+    /* Recent uploads row — chips representing each persisted user upload. */
+    .recent-uploads-row {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 4px auto 18px;
+      max-width: 880px;
+      padding: 0 12px;
+    }
+    .recent-uploads-row.has-items { display: flex; }
+    .recent-uploads-label { color: var(--text-dim); font-size: 0.85rem; }
+    .recent-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 6px 6px 12px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.08);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      color: #22d3ee;
+      font-size: 0.82rem;
+      font-weight: 500;
+      max-width: 320px;
+    }
+    .recent-chip button.chip-load {
+      background: none; border: none; padding: 0;
+      color: inherit; cursor: pointer; font-family: inherit; font-weight: inherit;
+      font-size: inherit;
+      max-width: 240px;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .recent-chip button.chip-load:hover { text-decoration: underline; }
+    .recent-chip button.chip-remove {
+      width: 22px; height: 22px; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; border: none;
+      background: rgba(255,255,255,0.06); color: var(--text-dim);
+      font-size: 14px; cursor: pointer; font-family: inherit;
+      transition: background 0.15s, color 0.15s;
+    }
+    .recent-chip button.chip-remove:hover { background: rgba(244, 67, 54, 0.18); color: #ff6b6b; }
+    .recent-chip.loading { opacity: 0.6; pointer-events: none; }
+    .recent-uploads-hint {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin: -4px auto 14px;
+      max-width: 880px;
+      padding: 0 12px;
+      color: var(--text-dim);
+      font-size: 11px;
+      line-height: 1.4;
+      opacity: 0.85;
+    }
+    .recent-uploads-hint.has-items { display: flex; }
+    .recent-uploads-hint svg { color: #22d3ee; flex-shrink: 0; opacity: 0.85; }
+  </style>
+  <div class="demo-row">
+    <span class="demo-label">Try it instantly:</span>
+    <button type="button" class="demo-btn" id="demo-handel">
+      <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Reverse 10s of Handel&rsquo;s Sarabande
+    </button>
+  </div>
+
+  <div class="recent-uploads-row" id="recent-uploads-row">
+    <span class="recent-uploads-label">Recent uploads:</span>
+  </div>
+  <p class="recent-uploads-hint" id="recent-uploads-hint">
+    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Saved in your browser only &middot; up to 5 tracks (oldest replaced).
+  </p>
+
+  <!-- Drop zone -->
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="11 17 6 12 11 7"/>
+      <polyline points="18 17 13 12 18 7"/>
+    </svg>
+    <h2>Drop audio file here</h2>
+    <p>or click to browse &mdash; processed entirely in your browser, never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span>
+      <span class="format-tag">WAV</span>
+      <span class="format-tag">OGG</span>
+      <span class="format-tag">FLAC</span>
+      <span class="format-tag">AAC</span>
+      <span class="format-tag">M4A</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,video/*,.mp3,.wav,.ogg,.flac,.aac,.m4a,.mp4,.mov,.webm,.mkv,.m4v">
+    <div class="progress" id="progress"><div class="progress-bar" id="progress-bar"></div></div>
+  </div>
+
+  <style>
+    .privacy-notice { display: flex; align-items: center; justify-content: center; gap: 8px; margin: -8px auto 24px; padding: 10px 14px; color: var(--text-dim); font-size: 0.85rem; line-height: 1.4; max-width: 720px; text-align: center; }
+    .privacy-notice svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--green); }
+    .privacy-notice strong { color: var(--text); font-weight: 600; }
+    .privacy-notice a { color: var(--accent); text-decoration: none; }
+    .privacy-notice a:hover { text-decoration: underline; }
+  </style>
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your file never leaves your device.</strong> All processing happens in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <!-- Editor -->
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Remove file</button>
+    </div>
+
+    <style>
+      .wave-block { position: relative; }
+      .wave-stage { position: relative; cursor: pointer; }
+      .wave-stage canvas.wave { cursor: pointer; }
+      .playhead {
+        position: absolute; top: 0; bottom: 0; width: 2px;
+        background: linear-gradient(180deg, transparent, var(--accent), transparent);
+        box-shadow: 0 0 8px var(--accent-glow);
+        pointer-events: none; display: none;
+        will-change: left;
+        transition: left 0.08s linear;
+      }
+      .playhead.active { display: block; }
+      .playhead.playing { transition: none; }
+      .playhead::before {
+        content: ''; position: absolute; top: -2px; left: -4px;
+        width: 10px; height: 10px; border-radius: 50%;
+        background: var(--accent); box-shadow: 0 0 8px var(--accent-glow);
+      }
+    </style>
+    <div class="compare-row">
+      <div class="wave-block">
+        <div class="wave-label">
+          <span class="dot" id="dir-dot"></span>
+          <span id="dir-label">Audio</span>
+          <span class="dir-hint" id="dir-hint">Click anywhere on the waveform to set the play position</span>
+        </div>
+        <div class="wave-stage">
+          <canvas class="wave" id="wave-original" width="1600" height="200"></canvas>
+          <div class="playhead" id="playhead-original"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn btn-secondary transport-btn" id="btn-play-original">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span>Play Original</span>
+      </button>
+      <button type="button" class="btn btn-primary" id="btn-play-reversed">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="19 3 5 12 19 21 19 3"/></svg>
+        <span>Play Reversed</span>
+      </button>
+      <select class="btn btn-secondary" id="export-format" title="Output format" style="padding:11px 14px;font-size:0.95rem;font-family:inherit;font-weight:600;cursor:pointer;background:var(--surface2);"></select>
+      <button type="button" class="btn btn-primary" id="btn-download">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Download</span>
+      </button>
+      <label class="loop-bounce-toggle" id="loop-bounce-toggle" title="Auto-play in the opposite direction when playback reaches the end">
+        <input type="checkbox" id="loop-bounce-check">
+        <span>🔁 Loop bounce</span>
+      </label>
+      <span class="status-text" id="status-text"></span>
+    </div>
+  </div>
+
+  <!-- SEO content -->
+  <section class="seo-section">
+    <h2>Reverse Audio Online &mdash; Free, Private, No Sign-up</h2>
+    <p>SnipSound's Audio Reverser flips any audio file end-to-end. Drop in an MP3, WAV, OGG, FLAC, AAC or M4A, hear it played backwards instantly, then download the reversed result as a WAV file. Everything happens in your browser using the Web Audio API &mdash; your files never leave your device, nothing is stored.</p>
+
+    <h3>What creators use a reverser for</h3>
+    <ul>
+      <li><strong>Sound design.</strong> Reverse cymbals, reverse reverb tails, noise risers, and pre-impact swells are everywhere in modern film, trailer, and EDM production. Take a regular cymbal hit, reverse it, and you have an instant build-up.</li>
+      <li><strong>Sampling and remixing.</strong> Musicians often reverse short vocal phrases or one-shot samples to create new textures and hooks. Many famous tracks hide reversed melodic lines in the background.</li>
+      <li><strong>Speech and lyric exploration.</strong> Curious what a song or spoken phrase sounds like played backwards? Drop it in and find out &mdash; no install required.</li>
+      <li><strong>Audio puzzles &amp; ARGs.</strong> Reversed audio is a common puzzle mechanic. Use the reverser to decode messages hidden in fan content or alternate reality games.</li>
+      <li><strong>Educational use.</strong> Phoneticians, language teachers, and music students use reversed audio to study symmetry, articulation, and waveform shape.</li>
+    </ul>
+
+    <h3>Why use SnipSound instead of other reversers</h3>
+    <ul>
+      <li><strong>Your files stay on your device.</strong> Most online reversers upload your file to a server and delete it &ldquo;within a few hours.&rdquo; SnipSound never uploads anything &mdash; processing happens locally in your browser.</li>
+      <li><strong>No cap imposed by us.</strong> Here, large files stream in pieces rather than loading, so memory is not the ceiling it is in most browser tools.</li>
+      <li><strong>No ads, no sign-up, no paywall.</strong> Just the tool.</li>
+      <li><strong>Visual before/after preview.</strong> See the original and reversed waveforms side by side and switch between playback at the click of a button.</li>
+    </ul>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q"><span>How do I reverse an audio file?</span><span class="arrow">&#9660;</span></div>
+      <div class="faq-a">Drop your audio file onto the page (or click to browse), wait a moment while it decodes, then press <strong>Play Reversed</strong> to preview the backwards version. Click <strong>Download WAV</strong> to save it.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span>What file formats can I reverse?</span><span class="arrow">&#9660;</span></div>
+      <div class="faq-a">Any format your browser can decode &mdash; MP3, WAV, OGG, FLAC, AAC, M4A, and others. The tool uses the Web Audio API, which supports the same formats your browser plays natively.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span>Is my audio uploaded to a server?</span><span class="arrow">&#9660;</span></div>
+      <div class="faq-a">No. All audio processing happens entirely in your browser using the Web Audio API. Your files never leave your device. See our <a href="/privacy/" style="color:var(--accent);">privacy policy</a> for details.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span>What format is the downloaded file?</span><span class="arrow">&#9660;</span></div>
+      <div class="faq-a">The reversed audio is exported as a WAV file (16-bit PCM, same sample rate as the input). WAV is lossless, so the export does not introduce additional compression. You can convert it to MP3 or another format using any audio converter.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span>Does it work on mobile?</span><span class="arrow">&#9660;</span></div>
+      <div class="faq-a">Yes. The page is fully responsive and the Web Audio API works on modern iOS and Android browsers. Processing time depends on your device.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span>Is there a file size limit?</span><span class="arrow">&#9660;</span></div>
+      <div class="faq-a">There is no hard limit imposed by SnipSound. The effective limit is your device's available memory &mdash; reversing very long files (over an hour) on a low-memory device may be slow.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <a href="/">SnipSound</a> &mdash; Free tools for creators &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/help/">Help</a> &middot; <a href="/tools/">All Tools</a>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // State
+  let originalBuffer = null;
+  let reversedBuffer = null;
+  let audioContext = null;
+  let sourceNode = null;
+  let fileName = '';
+  let isPlaying = false;
+
+  // DOM
+  const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input');
+  const editor = document.getElementById('editor');
+  const fileNameEl = document.getElementById('file-name');
+  const fileMetaEl = document.getElementById('file-meta');
+  const fileRemove = document.getElementById('file-remove');
+  const btnPlayOrig = document.getElementById('btn-play-original');
+  const btnPlayRev = document.getElementById('btn-play-reversed');
+  const btnDownload = document.getElementById('btn-download');
+  const statusText = document.getElementById('status-text');
+  const progress = document.getElementById('progress');
+  const progressBar = document.getElementById('progress-bar');
+  const canvasOrig = document.getElementById('wave-original');
+  const waveBlock = document.querySelector('.wave-block');
+  const dirLabel = document.getElementById('dir-label');
+
+  function getAudioContext() {
+    if (!audioContext) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      audioContext = new Ctx();
+    }
+    return audioContext;
+  }
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60).toString().padStart(2, '0');
+    return m + ':' + sec;
+  }
+  function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  // ── Drop zone ──
+  dropZone.addEventListener('click', (e) => {
+    if (e.target.closest('.progress')) return;
+    fileInput.click();
+  });
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length) handleFile(e.target.files[0]);
+  });
+  document.addEventListener('snipsound:use-shared-file', (e) => { if (e.detail && e.detail.file) handleFile(e.detail.file); });
+  fileRemove.addEventListener('click', () => {
+    stopPlayback();
+    originalBuffer = null;
+    reversedBuffer = null;
+    fileInput.value = '';
+    editor.classList.remove('active');
+    dropZone.style.display = '';
+  });
+
+  // ── Demo: "Try it on a free track" ──
+  function demoAudioUrl(filename) {
+    const local = location.hostname === 'localhost' && location.port === '8080';
+    return local ? '/audio/' + filename : 'https://media.snipsound.com/audio/' + filename;
+  }
+
+  async function loadDemoSegment(opts) {
+    const { url, displayName, startSec, durSec } = opts;
+    const demoBtn = document.getElementById('demo-handel');
+    if (demoBtn) { demoBtn.disabled = true; demoBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3"/></svg> Loading&hellip;'; }
+    statusText.textContent = '';
+    progress.classList.add('active');
+    progressBar.style.width = '20%';
+    try {
+      // mode:'cors' + cache:'no-store' avoids hitting a CORS-poisoned
+      // HTTP cache entry left behind by a non-CORS <audio> preload.
+      const resp = await fetch(url, { mode: 'cors', cache: 'no-store' });
+      if (!resp.ok) throw new Error('Failed to fetch demo (' + resp.status + ')');
+      const arrayBuf = await resp.arrayBuffer();
+      progressBar.style.width = '55%';
+
+      const ctx = getAudioContext();
+      const fullBuf = await ctx.decodeAudioData(arrayBuf.slice(0));
+      progressBar.style.width = '75%';
+
+      // Slice the segment we want
+      const sr = fullBuf.sampleRate;
+      const startFrame = Math.max(0, Math.floor(startSec * sr));
+      const wantedFrames = Math.floor(durSec * sr);
+      const lenFrames = Math.min(wantedFrames, fullBuf.length - startFrame);
+      const segment = ctx.createBuffer(fullBuf.numberOfChannels, lenFrames, sr);
+      for (let ch = 0; ch < fullBuf.numberOfChannels; ch++) {
+        segment.getChannelData(ch).set(fullBuf.getChannelData(ch).subarray(startFrame, startFrame + lenFrames));
+      }
+      originalBuffer = segment;
+      reversedBuffer = reverseBuffer(ctx, segment);
+      progressBar.style.width = '100%';
+
+      // Render UI
+      fileName = displayName;
+      fileNameEl.textContent = fileName + ' (demo segment)';
+      const sep = ' · ';
+      fileMetaEl.textContent =
+        'demo' + sep +
+        formatTime(segment.duration) + sep +
+        segment.numberOfChannels + 'ch' + sep +
+        segment.sampleRate + ' Hz';
+
+      // Editor must be visible BEFORE drawing.
+      dropZone.style.display = 'none';
+      editor.classList.add('active');
+      drawWaveform(canvasOrig, originalBuffer, getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#7c6fff');
+      // Auto-play reverses the whole clip, so start the icon at the end.
+      // After playback ends, onended will snap the icon back to 0.
+      seekFrac = 1;
+      showSeekPlayhead();
+      setTimeout(() => { progress.classList.remove('active'); progressBar.style.width = '0%'; }, 300);
+      // Auto-play the reversed segment so the demo is instant
+      play(reversedBuffer, btnPlayRev);
+    } catch (err) {
+      console.error(err);
+      progress.classList.remove('active');
+      progressBar.style.width = '0%';
+      alert('Demo failed to load: ' + err.message);
+    } finally {
+      if (demoBtn) {
+        demoBtn.disabled = false;
+        demoBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Reverse 10s of Handel&rsquo;s Sarabande';
+      }
+    }
+  }
+
+  document.getElementById('demo-handel')?.addEventListener('click', () => {
+    loadDemoSegment({
+      // The SHARED demo track (theme.js window.snipDemo), not a filename of this page's own. This page
+      // kept the .m4a name after theme.js went back to the .mp3, and that .m4a was never on
+      // the CDN: the button 404'd for everyone who pressed it (posthog R-12a791, 15 users / 30 days).
+      // One name, in one place, so a future format migration cannot leave this page behind again.
+      url: (window.snipDemo && window.snipDemo.audioUrl) ? window.snipDemo.audioUrl() : demoAudioUrl('rf_handel_sarabande.mp3'),
+      displayName: 'Handel – Sarabande, HWV 437',
+      startSec: 0,
+      durSec: 10,
+    });
+  });
+
+  // ── File handling ──
+  async function handleFile(file, opts) {
+    opts = opts || {};
+    // Decode gate (snip-decode-gate): size heads-up, crash breadcrumb and the
+    // compress rescue. This page had none of it and read the whole file into
+    // memory with arrayBuffer() before deciding anything, so a phone-sized file
+    // just took the tab down.
+    if (window.snipDecodeGate) {
+      const decision = await window.snipDecodeGate.check(file, {
+        tool: 'audio-reverser', dropZone: dropZone,
+        onPick: () => { editor.classList.remove('active'); dropZone.style.display = ''; },
+        onCompressed: function (nf) { handleFile(nf); }
+      });
+      if (decision === 'cancel') return;
+    }
+    fileName = file.name;
+    statusText.textContent = '';
+    progress.classList.add('active');
+    progressBar.style.width = '15%';
+    if (window.snipDecodeGate) window.snipDecodeGate.armCrumb('audio-reverser', file);
+    if (window.snipDecodeGate && window.snipDecodeGate.decodeStarted) window.snipDecodeGate.decodeStarted('audio-reverser', file, 'native');
+    // Match the download format to whatever the user uploaded — they
+    // can still change it from the dropdown.
+    if (window.snipEncoder && window.snipEncoder.defaultFormatForFile) {
+      fillFormats(window.snipEncoder.defaultFormatForFile(file.name));
+    }
+    if (window.snipSharedAudio) window.snipSharedAudio.save(file);
+    // Persist into the user's recent-uploads library (skip if we're re-loading
+    // an existing recent upload, otherwise we'd add a duplicate).
+    if (!opts.fromRecent && window.snipUserTracks) {
+      window.snipUserTracks.add(file).then(refreshRecentUploadsUI).catch(() => {});
+    }
+
+    try {
+      const ctx = getAudioContext();
+      // Robust decode (snip-audio-decode): falls back to FFmpeg->WAV when
+      // decodeAudioData refuses a file. This page used to call decodeAudioData
+      // raw, so anything the browser's own decoder rejected — the iOS Safari
+      // case in R-7b7756 among them — died in an alert with nowhere to go.
+      const buf = window.snipDecodeAudio
+        ? await window.snipDecodeAudio(file, ctx, { tool: 'audio-reverser' })
+        : await ctx.decodeAudioData((await file.arrayBuffer()).slice(0));
+      if (window.snipDecodeGate && window.snipDecodeGate.decodeOk) window.snipDecodeGate.decodeOk('audio-reverser', file, 'native');
+      progressBar.style.width = '70%';
+      originalBuffer = buf;
+
+      // Reverse
+      reversedBuffer = reverseBuffer(ctx, buf);
+      progressBar.style.width = '100%';
+
+      // Render UI
+      fileNameEl.textContent = fileName;
+      const sep = ' · ';
+      fileMetaEl.textContent =
+        formatFileSize(file.size) + sep +
+        formatTime(buf.duration) + sep +
+        buf.numberOfChannels + 'ch' + sep +
+        buf.sampleRate + ' Hz';
+
+      // Editor must be visible BEFORE drawing — canvas.clientWidth is 0 while parent is display:none.
+      dropZone.style.display = 'none';
+      editor.classList.add('active');
+      drawWaveform(canvasOrig, originalBuffer, getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#7c6fff');
+      // Auto-play reverses the whole clip, so start the icon at the end.
+      // After playback ends, onended will snap the icon back to 0.
+      seekFrac = 1;
+      showSeekPlayhead();
+
+      setTimeout(() => { progress.classList.remove('active'); progressBar.style.width = '0%'; }, 300);
+      if (window.snipDecodeGate) { window.snipDecodeGate.clearCrumb(); window.snipDecodeGate.clearCard(dropZone); }
+      // Auto-play the reversed version so the user immediately hears the result.
+      play(reversedBuffer, btnPlayRev);
+    } catch (err) {
+      console.error(err);
+      progress.classList.remove('active');
+      progressBar.style.width = '0%';
+      if (window.snipDecodeGate && window.snipDecodeGate.decodeFailed) window.snipDecodeGate.decodeFailed('audio-reverser', file, 'native', (err && err.name) || 'Error', err && err.snipDiag);
+      const _r = (err && err.name === 'NotReadableError') || /could not be read|permission/i.test((err && err.message) || '') ? 'file_read_failed' : 'decode_failed';
+      if (window.snipTrackFailed) window.snipTrackFailed('audio-reverser', _r, 'decode', err && err.snipDiag);
+      const _m = _r === 'file_read_failed'
+        ? 'Couldn’t read “' + file.name + '” — it may have moved or changed. Please pick it again.'
+        : 'Couldn’t process “' + file.name + '”. If it’s very large it may be too big to load in one piece — split it into parts first with our free Audio Splitter, then reverse each part.';
+      // A memory-shaped failure gets the compress offer; the compressed file
+      // re-enters through handleFile, the tool's normal intake (R-a66931).
+      let _rec = null;
+      // R-7b7756: the budget is NOT the predictor. On iOS a 40 MB file sits comfortably inside
+      // it, so a decodeAudioData rejection on an ordinary file used to be "memory-shaped: no" and
+      // the user got a dead end - the bug the architect fixed on the splitter (88f9fdc89).
+      // posthog R-e391e7: 274 users/month cluster at 100-500 MB, EncodingError on 265 of 270, and
+      // NOT on the huge files (6 users). So offer the rescue on a size compression can actually
+      // help (it downsamples to 22.05 kHz mono, and decoded PCM is rate x channels x duration);
+      // under ~20 MB compression cannot be the difference and the offer would be a false promise.
+      var _mb = (file && file.size || 0) / 1048576;
+      if (_r !== 'file_read_failed' && window.snipDecodeGate && window.snipDecodeGate.tier
+          && (window.snipDecodeGate.tier(file) !== 'ok' || _mb >= 20 || (err && err.snipDiag && err.snipDiag.memory_pressure))) {
+        _rec = { canCompress: true, file: file, onCompressed: function (nf) { handleFile(nf); } };
+      }
+      if (window.snipDecodeGate) {
+        window.snipDecodeGate.clearCrumb();
+        window.snipDecodeGate.showFailure(dropZone, _m, { tool: 'audio-reverser', report: true, reason: _r, onPick: () => { editor.classList.remove('active'); dropZone.style.display = ''; }, recovery: _rec });
+      } else alert(_m);
+    }
+  }
+
+  function reverseBuffer(ctx, srcBuffer) {
+    const dst = ctx.createBuffer(
+      srcBuffer.numberOfChannels,
+      srcBuffer.length,
+      srcBuffer.sampleRate
+    );
+    for (let ch = 0; ch < srcBuffer.numberOfChannels; ch++) {
+      const srcData = srcBuffer.getChannelData(ch);
+      const dstData = dst.getChannelData(ch);
+      const len = srcData.length;
+      for (let i = 0; i < len; i++) {
+        dstData[i] = srcData[len - 1 - i];
+      }
+    }
+    return dst;
+  }
+
+  // ── Waveform rendering ──
+  function drawWaveform(canvas, buffer, color) {
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = canvas.clientWidth;
+    const cssH = canvas.clientHeight;
+    canvas.width = cssW * dpr;
+    canvas.height = cssH * dpr;
+    ctx.scale(dpr, dpr);
+
+    ctx.clearRect(0, 0, cssW, cssH);
+    const data = buffer.getChannelData(0);
+    const step = Math.max(1, Math.floor(data.length / cssW));
+    const mid = cssH / 2;
+
+    ctx.fillStyle = color;
+    for (let x = 0; x < cssW; x++) {
+      const start = x * step;
+      let min = 1.0, max = -1.0;
+      const end = Math.min(start + step, data.length);
+      for (let i = start; i < end; i++) {
+        const v = data[i];
+        if (v < min) min = v;
+        if (v > max) max = v;
+      }
+      const yTop = mid + min * mid;
+      const yBot = mid + max * mid;
+      ctx.fillRect(x, yTop, 1, Math.max(1, yBot - yTop));
+    }
+  }
+
+  // ── Playback ──
+  // Single waveform shows the ORIGINAL audio's shape.
+  // - Play Original: playhead moves L→R from seek position to the right edge.
+  // - Play Reversed: playhead moves R→L from seek position to the left edge.
+  //   (We seek into the reversed buffer at (1 - seekFrac) * duration, so the
+  //    audio you hear corresponds to the song position under the playhead.)
+  const playhead = document.getElementById('playhead-original');
+  let playStartTime = 0;
+  let playOffsetSec = 0;       // seconds into the playing buffer at start
+  let playBufferDur = 0;
+  let playMode = null;         // 'original' or 'reversed'
+  let playheadRafId = null;
+  // Single seek position (fraction 0..1 from left edge of the canvas,
+  // representing the song position - same as original-buffer position).
+  let seekFrac = 0;
+  // Ping-pong: when ON, hitting the natural edge auto-plays the opposite
+  // direction so the audio bounces back and forth. Persisted in localStorage.
+  let loopBounce = localStorage.getItem('reverser-loop-bounce') !== '0';
+
+  function setPlayheadFrac(frac) {
+    playhead.classList.add('active');
+    playhead.style.left = (frac * 100) + '%';
+  }
+
+  function showSeekPlayhead() {
+    playhead.classList.remove('playing');
+    setPlayheadFrac(seekFrac);
+    if (dirLabel) dirLabel.textContent = 'Audio';
+    if (waveBlock) waveBlock.classList.remove('playing-reversed');
+  }
+
+  function tickPlayhead() {
+    if (!isPlaying || !sourceNode) return;
+    const ctx = getAudioContext();
+    const elapsed = ctx.currentTime - playStartTime;
+    const bufferTime = Math.max(0, Math.min(playBufferDur, playOffsetSec + elapsed));
+    const bufFrac = playBufferDur > 0 ? bufferTime / playBufferDur : 0;
+    // Convert buffer position to song position (visual frac on canvas).
+    // For original: songFrac == bufFrac.
+    // For reversed: songFrac == 1 - bufFrac (reversed[i] == original[N-1-i]).
+    const visualFrac = (playMode === 'original') ? bufFrac : (1 - bufFrac);
+    playhead.style.left = (visualFrac * 100) + '%';
+    // Keep seekFrac in sync so if playback is stopped early the icon stays put.
+    seekFrac = visualFrac;
+    playheadRafId = requestAnimationFrame(tickPlayhead);
+  }
+
+  function play(buffer, btn) {
+    stopPlayback({ keepSeekVisible: false });
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') ctx.resume();
+
+    const isOrig = (buffer === originalBuffer);
+    // remaining = how much audio there is to play in this direction
+    // from the icon's current position.
+    const remaining = isOrig ? (1 - seekFrac) : seekFrac;
+    if (remaining <= 0.001) {
+      // Nothing to play in this direction from the current icon position.
+      // (e.g. icon at start → Reverse, or icon at end → Play).
+      return;
+    }
+    // For original: buffer offset matches the icon position (song position).
+    // For reversed: reversed[i] == original[N-1-i], so to start playback at
+    //   song position seekFrac we offset into the reversed buffer by (1 - seekFrac).
+    const bufFrac = isOrig ? seekFrac : (1 - seekFrac);
+    const offsetSec = Math.max(0, Math.min(buffer.duration - 0.01, bufFrac * buffer.duration));
+
+    sourceNode = ctx.createBufferSource();
+    sourceNode.buffer = buffer;
+    sourceNode.connect(ctx.destination);
+    sourceNode.onended = () => {
+      const justPlayed = playMode;
+      isPlaying = false;
+      if (playheadRafId) { cancelAnimationFrame(playheadRafId); playheadRafId = null; }
+      // Snap to the natural end of playback so the user can hit the OPPOSITE
+      // button next and immediately play the rest of the song the other way.
+      seekFrac = (justPlayed === 'original') ? 1 : 0;
+      showSeekPlayhead();
+      resetButtonLabels();
+      // Ping-pong: auto-play the opposite direction from the natural edge.
+      if (loopBounce && originalBuffer && reversedBuffer) {
+        const nextBuf = (justPlayed === 'original') ? reversedBuffer : originalBuffer;
+        const nextBtn = (justPlayed === 'original') ? btnPlayRev : btnPlayOrig;
+        // Defer slightly so the UI gets to repaint between bounces.
+        setTimeout(() => {
+          // Only continue if the user hasn't started something else.
+          if (!isPlaying) play(nextBuf, nextBtn);
+        }, 80);
+      }
+    };
+    sourceNode.start(0, offsetSec);
+
+    isPlaying = true;
+    playStartTime = ctx.currentTime;
+    playOffsetSec = offsetSec;
+    playBufferDur = buffer.duration;
+    playMode = isOrig ? 'original' : 'reversed';
+
+    playhead.classList.add('playing', 'active');
+    playhead.style.left = (seekFrac * 100) + '%';
+    if (dirLabel) dirLabel.textContent = isOrig ? 'Playing forward →' : '← Playing reversed';
+    if (waveBlock) waveBlock.classList.toggle('playing-reversed', !isOrig);
+
+    playheadRafId = requestAnimationFrame(tickPlayhead);
+    setButtonPlaying(btn);
+  }
+
+  function stopPlayback(opts) {
+    opts = opts || {};
+    if (sourceNode) {
+      try { sourceNode.onended = null; sourceNode.stop(); } catch (e) {}
+      sourceNode = null;
+    }
+    isPlaying = false;
+    if (playheadRafId) { cancelAnimationFrame(playheadRafId); playheadRafId = null; }
+    if (opts.keepSeekVisible !== false) showSeekPlayhead();
+    resetButtonLabels();
+  }
+
+  // ── Click-to-seek on the waveform ──
+  function fracFromPointer(e, el) {
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    return Math.max(0, Math.min(1, x));
+  }
+  canvasOrig.addEventListener('click', (e) => {
+    if (!originalBuffer || !reversedBuffer) return;
+    seekFrac = fracFromPointer(e, canvasOrig);
+    if (isPlaying) {
+      // Re-trigger playback from the new seek position, keeping current direction.
+      const buf = (playMode === 'original') ? originalBuffer : reversedBuffer;
+      const btn = (playMode === 'original') ? btnPlayOrig : btnPlayRev;
+      play(buf, btn);
+    } else {
+      setPlayheadFrac(seekFrac);
+    }
+  });
+
+  // Loop-bounce toggle persistence
+  (function wireLoopBounce() {
+    const check = document.getElementById('loop-bounce-check');
+    if (!check) return;
+    check.checked = loopBounce;
+    check.addEventListener('change', () => {
+      loopBounce = check.checked;
+      localStorage.setItem('reverser-loop-bounce', loopBounce ? '1' : '0');
+    });
+  })();
+
+  // ── Recent uploads (persisted in IndexedDB via window.snipUserTracks) ──
+  function escHtml(s) { return String(s).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  async function refreshRecentUploadsUI() {
+    const row = document.getElementById('recent-uploads-row');
+    const hint = document.getElementById('recent-uploads-hint');
+    if (!row || !window.snipUserTracks) return;
+    const records = await window.snipUserTracks.list();
+    // Reset row: keep the label, drop existing chips.
+    row.querySelectorAll('.recent-chip').forEach((c) => c.remove());
+    if (!records.length) {
+      row.classList.remove('has-items');
+      if (hint) hint.classList.remove('has-items');
+      return;
+    }
+    row.classList.add('has-items');
+    if (hint) hint.classList.add('has-items');
+    records.forEach((rec) => {
+      const chip = document.createElement('div');
+      chip.className = 'recent-chip';
+      chip.dataset.id = String(rec.id);
+      const sizeKb = rec.size ? ` · ${Math.round(rec.size / 1024)} KB` : '';
+      chip.innerHTML =
+        `<button type="button" class="chip-load" title="Load this audio">${escHtml(rec.name)}${sizeKb ? `<span style="opacity:0.6">${escHtml(sizeKb)}</span>` : ''}</button>` +
+        `<button type="button" class="chip-remove" title="Remove from saved uploads">&times;</button>`;
+      chip.querySelector('.chip-load').addEventListener('click', async () => {
+        chip.classList.add('loading');
+        try {
+          const file = window.snipUserTracks.toFile(rec);
+          if (file) await handleFile(file, { fromRecent: true });
+        } finally { chip.classList.remove('loading'); }
+      });
+      chip.querySelector('.chip-remove').addEventListener('click', async (e) => {
+        e.stopPropagation();
+        await window.snipUserTracks.remove(rec.id);
+        refreshRecentUploadsUI();
+      });
+      row.appendChild(chip);
+    });
+  }
+
+  // Populate on load (deferred — snipUserTracks needs theme.js to finish booting).
+  setTimeout(refreshRecentUploadsUI, 100);
+
+  function setButtonPlaying(btn) {
+    resetButtonLabels();
+    const label = btn.querySelector('span');
+    btn.querySelector('svg').innerHTML = '<rect x="6" y="5" width="4" height="14" /><rect x="14" y="5" width="4" height="14" />';
+    if (btn === btnPlayOrig) label.textContent = 'Stop Original';
+    else label.textContent = 'Stop Reversed';
+  }
+
+  function resetButtonLabels() {
+    btnPlayOrig.querySelector('svg').innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    btnPlayRev.querySelector('svg').innerHTML = '<polygon points="19 3 5 12 19 21 19 3"/>';
+    btnPlayOrig.querySelector('span').textContent = 'Play Original';
+    btnPlayRev.querySelector('span').textContent = 'Play Reversed';
+  }
+
+  btnPlayOrig.addEventListener('click', () => {
+    if (isPlaying && sourceNode && sourceNode.buffer === originalBuffer) {
+      stopPlayback();
+      return;
+    }
+    if (originalBuffer) play(originalBuffer, btnPlayOrig);
+  });
+  btnPlayRev.addEventListener('click', () => {
+    if (isPlaying && sourceNode && sourceNode.buffer === reversedBuffer) {
+      stopPlayback();
+      return;
+    }
+    if (reversedBuffer) play(reversedBuffer, btnPlayRev);
+  });
+
+  // ── WAV export ──
+  function bufferToWav(buffer) {
+    const numChannels = buffer.numberOfChannels;
+    const sampleRate = buffer.sampleRate;
+    const numSamples = buffer.length;
+    const bytesPerSample = 2; // 16-bit PCM
+    const blockAlign = numChannels * bytesPerSample;
+    const byteRate = sampleRate * blockAlign;
+    const dataSize = numSamples * blockAlign;
+    const headerSize = 44;
+    const totalSize = headerSize + dataSize;
+
+    const ab = new ArrayBuffer(totalSize);
+    const view = new DataView(ab);
+
+    function writeStr(off, s) {
+      for (let i = 0; i < s.length; i++) view.setUint8(off + i, s.charCodeAt(i));
+    }
+
+    // RIFF header
+    writeStr(0, 'RIFF');
+    view.setUint32(4, totalSize - 8, true);
+    writeStr(8, 'WAVE');
+    // fmt chunk
+    writeStr(12, 'fmt ');
+    view.setUint32(16, 16, true);          // chunk size
+    view.setUint16(20, 1, true);           // PCM
+    view.setUint16(22, numChannels, true);
+    view.setUint32(24, sampleRate, true);
+    view.setUint32(28, byteRate, true);
+    view.setUint16(32, blockAlign, true);
+    view.setUint16(34, 16, true);          // bits per sample
+    // data chunk
+    writeStr(36, 'data');
+    view.setUint32(40, dataSize, true);
+
+    // Interleave + convert
+    const channels = [];
+    for (let c = 0; c < numChannels; c++) channels.push(buffer.getChannelData(c));
+
+    let offset = 44;
+    for (let i = 0; i < numSamples; i++) {
+      for (let c = 0; c < numChannels; c++) {
+        let s = Math.max(-1, Math.min(1, channels[c][i]));
+        s = s < 0 ? s * 0x8000 : s * 0x7FFF;
+        view.setInt16(offset, s | 0, true);
+        offset += 2;
+      }
+    }
+
+    return new Blob([ab], { type: 'audio/wav' });
+  }
+
+  function bufferToMp3(buffer, kbps) {
+    const numCh = buffer.numberOfChannels, sr = buffer.sampleRate, n = buffer.length;
+    const i16 = [];
+    for (let c = 0; c < numCh; c++) {
+      const f32 = buffer.getChannelData(c);
+      const out = new Int16Array(n);
+      for (let i = 0; i < n; i++) {
+        let v = Math.max(-1, Math.min(1, f32[i]));
+        out[i] = v < 0 ? v * 0x8000 : v * 0x7FFF;
+      }
+      i16.push(out);
+    }
+    const encChannels = numCh >= 2 ? 2 : 1;
+    const enc = new lamejs.Mp3Encoder(encChannels, sr, kbps);
+    const blockSize = 1152;
+    const parts = [];
+    for (let i = 0; i < n; i += blockSize) {
+      const left = i16[0].subarray(i, i + blockSize);
+      let chunk;
+      if (encChannels === 2) {
+        const right = i16[1].subarray(i, i + blockSize);
+        chunk = enc.encodeBuffer(left, right);
+      } else {
+        chunk = enc.encodeBuffer(left);
+      }
+      if (chunk && chunk.length > 0) parts.push(chunk);
+    }
+    const tail = enc.flush();
+    if (tail && tail.length > 0) parts.push(tail);
+    return new Blob(parts, { type: 'audio/mpeg' });
+  }
+
+  // Populate format select via shared encoder (lazy-loads on first FFmpeg encode)
+  const exportFormatSel = document.getElementById('export-format');
+  function fillFormats(defaultValue) {
+    if (window.snipEncoder) {
+      window.snipEncoder.fillFormatSelect(exportFormatSel, defaultValue || 'wav');
+    } else {
+      setTimeout(() => fillFormats(defaultValue), 100);
+    }
+  }
+  fillFormats();
+
+  btnDownload.addEventListener('click', async () => {
+    if (!reversedBuffer) return;
+    if (!window.snipEncoder) { alert('Encoder not loaded yet — try again.'); return; }
+    if (window.snipNotify) window.snipNotify.prime();
+    const format = exportFormatSel.value;
+    btnDownload.disabled = true;
+    statusText.textContent = window.snipEncoder.isFFmpegFormat(format)
+      ? 'Loading FFmpeg & encoding ' + format.toUpperCase() + '...'
+      : 'Encoding...';
+    try {
+      const { blob, ext } = await window.snipEncoder.encode(reversedBuffer, format, {
+        onProgress: (p) => { if (p && p.phase) statusText.textContent = 'Encoding... ' + p.phase + ' (' + p.percent + '%)'; }
+      });
+      const base = fileName.replace(/\.[^/.]+$/, '');
+      const fname = base + ' (reversed).' + ext;
+      const msg = 'Saved ' + formatFileSize(blob.size);
+      if (window.snipNotify) {
+        window.snipNotify.deliver(blob, fname, { statusEl: statusText, doneStatus: msg + '.', sub: 'Reversed audio downloaded as ' + ext.toUpperCase() });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fname;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        statusText.textContent = msg + '.';
+        if (window.snipShowSuccess) window.snipShowSuccess(msg + '!', { sub: 'Reversed audio downloaded as ' + ext.toUpperCase() });
+      }
+      setTimeout(() => { statusText.textContent = ''; }, 2500);
+    } catch (e) {
+      console.error(e);
+      statusText.textContent = 'Failed: ' + e.message;
+    } finally {
+      btnDownload.disabled = false;
+    }
+  });
+
+  // FAQ
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
+  });
+
+})();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a51989211923816e',t:'MTc5MzE4NjI2Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -49,7 +49,7 @@
 |---|---|
 | 每周 | GSC 看查询词与排名变化；E2E smoke test 回归（依赖升级后必跑） |
 | 每 4 周 | 内容计划阶段 2 数据循环一轮：查询回填 FAQ、加深赢家、修剪零展示 |
-| 双周 | GSC 蚕食裁定：volume-booster vs increase-volume、speed vs tempo，出现双排名或展示拆开就收紧定位或 301 合并 |
+| 双周 | GSC 蚕食裁定：speed vs tempo、audio-trimmer vs mp3-cutter，出现双排名或展示拆开就收紧定位或 301 合并。volume-booster vs increase-volume 已确认分工（2026-10-28 SERP 实证：increase mp3 volume=Web 工具簇、volume booster=应用/扩展簇，见 docs/competitor-analysis/010），双周扫一眼 GSC 双排名即可 |
 | 每月 | 关键词扩展 20–30 个新词入候选池；CWV 复测。新英语文冻结期间为 0，翻译只走内容计划阶段 3 队列 |
 | 每季 | 竞品复盘（cut.audio / soundtools 上了什么新功能）；技术栈小版本升级 |
 
@@ -59,7 +59,7 @@
 2. **大依赖吓跑移动用户** → 视频音轨用浏览器解码，不装 ffmpeg.wasm。MP3 / M4R 编码器在点下载时才加载
 3. **竞品 cut.audio 先做内容营销** → 我们的护城河是内容深度 + 多语言速度；每月复盘一次它的 /blog 和新落地页
 4. **变现过早伤信任** → 所有变现严格走触发条件；工具区永远零广告
-5. **volume-booster 与 increase-volume 互相蚕食** → 双周看 GSC。同一查询出现双排名或展示被拆开时，强化差异（视频/手机 vs 安静音频文件），或 301 合并到排名更好的那一页
+5. **volume-booster 与 increase-volume 互相蚕食** → 已确认分工（2026-10-28 SERP 实证：`increase mp3 volume` 是 Web 工具簇、`volume booster` 是应用/扩展簇，双页一一对应）。双周扫一眼 GSC 双排名即可，预期无动作；证据见 docs/competitor-analysis/010
 
 ## 里程碑目标（仅供参考，以数据为准）
 

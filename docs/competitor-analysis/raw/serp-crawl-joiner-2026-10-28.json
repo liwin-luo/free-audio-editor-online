@@ -1,0 +1,73 @@
+[
+ {
+  "query": "audio joiner",
+  "pos": 1,
+  "url": "https://audio-joiner.com/",
+  "code": "200",
+  "title": "Merge songs online, combine mp3 - Audio Joiner",
+  "h2": [],
+  "words": 768,
+  "schema": [
+   "ImageObject",
+   "Organization"
+  ],
+  "feats": {
+   "crossfade": true,
+   "upload": true,
+   "fades": true,
+   "order": true
+  }
+ },
+ {
+  "query": "audio joiner",
+  "pos": 2,
+  "url": "https://clideo.com/merge-audio",
+  "code": "200",
+  "title": "Online Audio Joiner — Merge Audio Files for Free — Clideo",
+  "h2": [
+   "Use the audio merger to quickly edit your music",
+   "Combine audio online",
+   "How to merge audio files online",
+   "Frequently Asked Questions",
+   "FAQ",
+   "Get Clideo for iPhone",
+   "Resources"
+  ],
+  "words": 1143,
+  "schema": [],
+  "feats": {
+   "crossfade": true,
+   "upload": true,
+   "fades": true,
+   "order": true
+  }
+ },
+ {
+  "query": "audio joiner",
+  "pos": 8,
+  "url": "https://cleanvoice.ai/merge-audio",
+  "code": "200",
+  "title": "Audio Joiner Free - Merge Multiple Audio in Seconds, in 2 Clicks | Cleanvoice AI",
+  "h2": [
+   "What's For You in Our Audio Merger?",
+   "How to Combine Audio Files?",
+   "Combine Multiple Audio into One. For Audiobook, Podcast, or Music Trac",
+   "Edit multiple tracks at once. Before you combine them into one audio.",
+   "Frequently asked Questions.",
+   "Clean 30 minutes of audio or video for free.\nTry without signup. No cr",
+   "Clean 30 minutes for free."
+  ],
+  "words": 946,
+  "schema": [
+   "ImageObject",
+   "Organization",
+   "WebSite"
+  ],
+  "feats": {
+   "crossfade": true,
+   "upload": true,
+   "fades": true,
+   "order": true
+  }
+ }
+]

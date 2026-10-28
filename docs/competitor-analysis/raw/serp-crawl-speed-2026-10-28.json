@@ -1,0 +1,80 @@
+[
+ {
+  "query": "change audio speed",
+  "pos": 1,
+  "url": "https://app.musicspeedchanger.com",
+  "code": "200",
+  "title": "Music Speed Changer Web App Online Music Tempo & Pitch Changer",
+  "h2": [
+   "Enter adjustment",
+   "Edit loop points",
+   "Save edited track"
+  ],
+  "words": 240,
+  "schema": [
+   "Offer",
+   "WebApplication"
+  ],
+  "preserv": 0
+ },
+ {
+  "query": "change audio speed",
+  "pos": 3,
+  "url": "https://www.audiospeedchanger.com",
+  "code": "200",
+  "title": "Change music speed and pitch online | AudioSpeedChanger.com",
+  "h2": [
+   "1 Load your track",
+   "2 Tempo & key",
+   "3 Output options",
+   "How to change the speed of a song",
+   "Who uses an audio speed changer?",
+   "Pitch vs. tempo — what's the difference?",
+   "Frequently asked questions"
+  ],
+  "words": 683,
+  "schema": [
+   "Answer",
+   "FAQPage",
+   "Question"
+  ],
+  "preserv": 0
+ },
+ {
+  "query": "change audio speed",
+  "pos": 8,
+  "url": "https://29a.ch/timestretch",
+  "code": "200",
+  "title": "TimeStretch Audio Player - 29a.ch",
+  "h2": [
+   "Settings",
+   "Usage",
+   "Keyboard Shortcuts",
+   "FAQ",
+   "Changelog",
+   "Credits"
+  ],
+  "words": 1174,
+  "schema": [],
+  "preserv": 0
+ },
+ {
+  "query": "change audio speed",
+  "pos": 2,
+  "url": "https://mp3cut.net/change-speed",
+  "code": "200",
+  "title": "Audio Speed Changer - Change Tempo Online",
+  "h2": [
+   "Increase or decrease the playback speed of any audio file"
+  ],
+  "words": 1024,
+  "schema": [
+   "AggregateRating",
+   "ImageObject",
+   "Offer",
+   "Organization",
+   "SoftwareApplication"
+  ],
+  "preserv": 0
+ }
+]

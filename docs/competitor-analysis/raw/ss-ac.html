@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Audio & Video Converter — MP3, WAV, MP4, MOV | SnipSound</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<script>try{var _u=localStorage.getItem("snipsound:has-uploaded")||sessionStorage.getItem("snipsound:has-uploaded");if(_u)document.write("<style>.snip-demo-row,.demo-row{display:none!important}</style>")}catch(e){}</script>
+<link rel="stylesheet" href="/chrome.css">
+<script src="/theme.js"></script>
+<script src="/vendor/lamejs.iife.js" defer></script>
+<script src="/vendor/snip-encoder.js" defer></script>
+<script src="/vendor/snip-decode-gate.js" defer></script>
+<script src="/vendor/snip-longjob.js" defer></script>
+<script src="/vendor/snip-audio-decode.js" defer></script>
+<script src="/vendor/snip-notify.js" defer></script>
+<meta name="description" content="Free online audio & video converter. Convert MP3, WAV, M4A, FLAC, OGG, AAC and extract audio from MP4, MOV, WebM, MKV — right in your browser. Files never leave your device — 100% private.">
+<meta name="keywords" content="audio converter, video converter, mp3 converter, wav converter, convert mp4 to mp3, convert mov to mp3, extract audio from video, convert flac to mp3, convert m4a to mp3, free online converter, private converter">
+<link rel="canonical" href="https://snipsound.com/tools/audio-converter/">
+<link rel="alternate" hreflang="en" href="https://snipsound.com/tools/audio-converter/">
+<link rel="alternate" hreflang="es" href="https://snipsound.com/es/convertir-audio/">
+<link rel="alternate" hreflang="pt-BR" href="https://snipsound.com/pt/converter-audio/">
+<link rel="alternate" hreflang="it" href="https://snipsound.com/it/convertire-audio/">
+<link rel="alternate" hreflang="fr" href="https://snipsound.com/fr/convertir-audio/">
+<link rel="alternate" hreflang="de" href="https://snipsound.com/de/audio-konverter/">
+<link rel="alternate" hreflang="ru" href="https://snipsound.com/ru/konverter-audio/">
+<link rel="alternate" hreflang="zh-Hans" href="https://snipsound.com/zh/yinpin-zhuanhuan/">
+<link rel="alternate" hreflang="hi" href="https://snipsound.com/hi/audio-converter/">
+<link rel="alternate" hreflang="ar" href="https://snipsound.com/ar/تحويل-الصوت/">
+<link rel="alternate" hreflang="ja" href="https://snipsound.com/ja/音声-変換/">
+<link rel="alternate" hreflang="x-default" href="https://snipsound.com/tools/audio-converter/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Audio & Video Converter — MP3, WAV, MP4, MOV | SnipSound">
+<meta property="og:description" content="Convert any audio or video file free, in your browser. Drop it in, pick a format, download. 100% client-side.">
+<meta property="og:url" content="https://snipsound.com/tools/audio-converter/">
+<meta property="og:site_name" content="SnipSound">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Audio & Video Converter | SnipSound">
+<meta name="twitter:description" content="Convert any audio or video file, free — 100% browser-based.">
+<link rel="preconnect" href="https://media.snipsound.com">
+
+<style>
+  .container { max-width: 980px; margin: 0 auto; padding: 24px; }
+  .hero { text-align: center; padding: 0 0 28px; }
+  .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -1px; }
+  .hero h1 .accent { background: linear-gradient(135deg, var(--accent), #b599ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+
+  .drop-zone { background: var(--surface); border: 2px dashed var(--border-bright); border-radius: 16px; padding: 64px 32px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--accent); background: var(--accent-subtle); }
+  .drop-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--accent); }
+  .drop-zone h2 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 600; }
+  .drop-zone p { color: var(--text-dim); font-size: 0.9rem; }
+  .formats { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .format-tag { padding: 3px 10px; background: var(--surface2); border-radius: 4px; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; font-weight: 500; }
+  #file-input { display: none; }
+
+  /* ── S2 configure ── */
+  .editor { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  .editor.active { display: block; }
+  .file-info { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .file-info .file-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+  .file-info .file-name { font-weight: 600; color: var(--text); word-break: break-word; }
+  .file-info .file-meta { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .file-info .file-remove { margin-left: auto; background: none; border: 1px solid var(--border-bright); color: var(--text-dim); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-family: inherit; transition: color 0.2s, border-color 0.2s; flex-shrink: 0; }
+  .file-info .file-remove:hover { color: var(--text); border-color: var(--text-dim); }
+
+  .convert-to-label { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 10px; font-weight: 500; }
+  .out-group { margin-bottom: 16px; }
+  .out-group-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-dim); margin-bottom: 8px; font-weight: 600; }
+  .out-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .out-chip { padding: 9px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; font-size: 0.92rem; font-weight: 600; color: var(--text); transition: border-color 0.15s, background 0.15s, color 0.15s; font-family: inherit; }
+  .out-chip:hover { border-color: var(--accent); }
+  .out-chip.selected { border-color: var(--accent); background: var(--accent-subtle); color: var(--accent); }
+
+  .quality-details { margin: 4px 0 16px; }
+  .quality-details summary { cursor: pointer; font-size: 0.88rem; color: var(--text-dim); list-style: none; display: inline-flex; align-items: center; gap: 6px; }
+  .quality-details summary::-webkit-details-marker { display: none; }
+  .quality-details summary::before { content: '▸'; font-size: 0.7rem; transition: transform 0.15s; }
+  .quality-details[open] summary::before { transform: rotate(90deg); }
+  .quality-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0 0; }
+  .quality-row label { font-size: 0.88rem; color: var(--text-dim); }
+  .quality-row select { padding: 6px 10px; background: var(--bg); border: 1px solid var(--border-bright); color: var(--text); font-family: inherit; font-size: 14px; border-radius: 6px; }
+  .quality-row select:focus { outline: none; border-color: var(--accent); }
+
+  .controls { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, opacity 0.15s, background 0.15s; font-family: inherit; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: #fff; box-shadow: 0 2px 12px var(--accent-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 18px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .btn-ghost { background: var(--surface2); color: var(--text); border: 1px solid var(--border-bright); }
+  .btn-ghost:hover { border-color: var(--accent); }
+  .status-text { margin-left: auto; color: var(--text-dim); font-size: 0.85rem; }
+  .size-estimate { margin-top: 12px; font-size: 0.85rem; color: var(--text-dim); }
+  .size-estimate strong { color: var(--text); font-variant-numeric: tabular-nums; }
+  .arrival-note { max-width: 720px; margin: 0 auto 16px; padding: 10px 14px; background: var(--accent-subtle); border: 1px solid var(--accent); border-radius: 10px; color: var(--text); font-size: 0.9rem; text-align: center; display: none; }
+
+  /* ── S4 done ── */
+  .done-card { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; margin-bottom: 24px; text-align: center; }
+  .done-card.active { display: block; }
+  .done-check { width: 48px; height: 48px; margin: 0 auto 12px; color: var(--green, #4caf50); }
+  .done-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; word-break: break-word; }
+  .done-meta { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; }
+  .done-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+  .next-label { font-size: 0.82rem; color: var(--text-dim); margin: 14px 0 8px; }
+  .next-chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .next-chip { padding: 7px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; cursor: pointer; font-size: 0.85rem; color: var(--text); text-decoration: none; transition: border-color 0.15s, color 0.15s; }
+  .next-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  .seo-section { margin: 48px 0; }
+  .seo-section h2 { font-size: 1.5rem; margin-bottom: 14px; letter-spacing: -0.3px; }
+  .seo-section h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+  .seo-section p, .seo-section li { color: var(--text-dim); margin-bottom: 10px; }
+  .seo-section ul { padding-left: 22px; }
+  .conversion-table { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 16px 0; }
+  .conversion-link { padding: 10px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); text-decoration: none; font-size: 0.9rem; transition: border-color 0.15s, color 0.15s; }
+  .conversion-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  .faq h2 { font-size: 1.5rem; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+  .faq-q { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q .arrow { color: var(--text-dim); font-size: 0.75rem; transition: transform 0.2s; }
+  .faq-item.open .arrow { transform: rotate(180deg); }
+  .faq-a { padding: 0 18px 16px; color: var(--text-dim); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  @media (max-width: 700px) {
+    .hero { padding: 0 0 20px; }
+    .hero h1 { font-size: 1.6rem; }
+    .drop-zone { padding: 40px 20px; }
+    .btn { padding: 10px 16px; font-size: 0.9rem; flex: 1 1 auto; justify-content: center; }
+    .status-text { margin-left: 0; flex-basis: 100%; text-align: center; margin-top: 8px; }
+  }
+</style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebApplication", "name": "SnipSound Audio & Video Converter", "url": "https://snipsound.com/tools/audio-converter/", "description": "Free online audio and video converter. Convert MP3, WAV, M4A, FLAC, OGG, AAC and extract audio from MP4, MOV, WebM, MKV in your browser.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "creator": { "@type": "Organization", "name": "SnipSound", "url": "https://snipsound.com" } }
+</script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+  { "@type": "Question", "name": "How do I convert audio or video files online?", "acceptedAnswer": { "@type": "Answer", "text": "Drop any audio or video file onto the page. The converter detects what you dropped and shows the formats you can convert to. Pick one, choose quality if you like, and click Convert — the file downloads to your device." } },
+  { "@type": "Question", "name": "Can I extract audio from a video?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Drop in an MP4, MOV, WebM, MKV, AVI or other video and choose MP3, WAV, M4A, OGG, FLAC or AAC under Extract audio — the audio track is pulled out and converted in your browser." } },
+  { "@type": "Question", "name": "Is my file uploaded?", "acceptedAnswer": { "@type": "Answer", "text": "No. All decoding, converting and encoding happens in your browser. Nothing is sent to a server." } },
+  { "@type": "Question", "name": "What formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Audio in: MP3, WAV, M4A, AAC, OGG, FLAC and more. Video in: MP4, MOV, WebM, MKV, AVI, WMV and more. Audio out: MP3, WAV, M4A, AAC, OGG, FLAC. Video out: MP4, WebM, MOV. GIF: turn any video into a GIF, or convert a GIF to MP4, WebM or PNG. Image conversions are coming soon." } },
+  { "@type": "Question", "name": "Can I convert a video to GIF, or a GIF to MP4?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Drop in a video and choose GIF under Animated — you can pick the frame rate and size. Or drop in a GIF and convert it to MP4, WebM, or grab the first frame as a PNG. Everything runs in your browser." } }
+] }
+</script>
+<!-- share-card: generated by scripts/gen_share_meta.py, do not hand-edit -->
+<meta property="og:image" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:secure_url" content="https://snipsound.com/share-card-2026-09.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SnipSound. Free audio and video tools. Your files never leave your device.">
+<meta name="twitter:image" content="https://snipsound.com/share-card-2026-09.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- /share-card -->
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <a href="/" class="logo"><img src="/favicon.svg" alt="" style="width:24px;height:24px;vertical-align:-4px;margin-right:6px;border-radius:4px;">Snip<span>Sound</span></a>
+    <span class="header-subtitle">Free Audio &amp; Video Converter</span>
+  </div>
+  <nav class="header-nav">
+    <a href="/tools/">All Tools</a>
+    <a href="/">Snip Editor</a>
+    <a href="/free-music/">Browse Music</a>
+  </nav>
+</header>
+
+<nav class="tools-subnav" aria-label="Audio tools">
+  <div class="tools-subnav-inner">
+    <a href="/tools/voice-recorder/">Voice Recorder</a>
+    <a href="/tools/mic-test/">Mic Test<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-transcription/">AI Transcription<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-translator/">Audio Translator<span class="badge-new">NEW</span></a>
+    <a href="/tools/text-to-speech/">Text to Speech<span class="badge-new">NEW</span></a>
+    <a href="/tools/video-to-text/">Video to Text</a>
+    <a href="/tools/srt-generator/">SRT Generator</a>
+    <a href="/tools/caption-generator/">Caption Generator<span class="badge-new">NEW</span></a>
+    <a href="/tools/add-subtitles-to-video/">Add Subtitles to Video<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-word-finder/">Audio Word Finder<span class="badge-new">NEW</span></a>
+    <a href="/tools/audio-to-json/">Audio to JSON<span class="badge-new">NEW</span></a>
+    <a href="/tools/profanity-remover/">Profanity Remover</a>
+    <a href="/tools/audio-to-video/">MP3 to MP4</a>
+    <a href="/tools/audio-effects/">Audio Effects</a>
+    <a href="/tools/soundboard/">Soundboard<span class="badge-new">NEW</span></a>
+    <a href="/tools/music-visualizer/">Music Visualizer</a>
+    <a href="/tools/binaural-beats/">Binaural Beats</a>
+    <a href="/tools/nightcore/">Nightcore Maker</a>
+    <a href="/tools/bass-booster/">Bass Booster</a>
+    <a href="/tools/vaporwave/">Vaporwave Generator</a>
+    <a href="/tools/8d-audio/">8D Audio Converter</a>
+    <a href="/tools/432hz-converter/">432 Hz Converter</a>
+    <a href="/tools/sped-up-audio/">Sped-Up Audio</a>
+    <a href="/tools/phonk/">Phonk Maker</a>
+    <a href="/tools/chopped-and-screwed/">Chopped &amp; Screwed</a>
+    <a href="/tools/audio-editor/">Audio Editor</a>
+    <a href="/tools/audio-converter/" class="active">Audio &amp; Video Converter</a>
+    <a href="/tools/audio-trimmer/">Audio Trimmer</a>
+    <a href="/tools/audio-splitter/">Audio Splitter</a>
+    <a href="/tools/ringtone-maker/">Ringtone Maker</a>
+    <a href="/tools/video-to-audio/">Video to Audio</a>
+    <a href="/tools/audio-compressor/">Audio Compressor</a>
+    <a href="/tools/audio-merger/">Audio Merger</a>
+    <a href="/tools/audio-fade/">Audio Fade</a>
+    <a href="/tools/silence-remover/">Silence Remover</a>
+    <a href="/tools/bpm-finder/">BPM Finder</a>
+    <a href="/tools/volume-booster/">Volume Booster</a>
+    <a href="/tools/audio-normalizer/">Audio Normalizer</a>
+    <a href="/tools/audio-equalizer/">Audio Equalizer</a>
+    <a href="/tools/id3-editor/">MP3 Tag Editor</a>
+    <a href="/tools/tempo-changer/">Speed Changer</a>
+    <a href="/tools/slowed-reverb/">Slowed + Reverb</a>
+    <a href="/tools/pitch-shifter/">Pitch Shifter</a>
+    <a href="/tools/key-finder/">Key Finder</a>
+    <a href="/tools/vocal-tuner/">Vocal Tuner</a>
+    <a href="/tools/beat-generator/">Beat Generator</a>
+    <a href="/tools/audio-reverser/">Audio Reverser</a>
+    <a href="/tools/gif-maker/">GIF Maker</a>
+    <a href="/tools/crop-video/">Crop Video</a>
+    <a href="/tools/video-splitter/">Video Splitter</a>
+    <a href="/tools/highlight-clipper/">Highlight Clipper</a>
+    <a href="/tools/background-remover/">Background Remover<span class="badge-new">NEW</span></a>
+    <a href="/tools/find-words-in-video/">Find Words in Video</a>
+    <a href="/tools/filler-word-remover/">Filler Word Remover</a>
+    <a href="/tools/change-song-key/">Change Song Key</a>
+    <a href="/tools/speaking-time-calculator/">Speaking Time Calculator</a>
+    <a href="/video-editor/">Video Editor</a>
+    <a href="/snip-editor/">Snip Editor</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Free <span class="accent">Audio &amp; Video Converter</span></h1>
+    <p>Convert any audio or video file, free — right in your browser. Files never leave your device.</p>
+  </section>
+
+  <div class="arrival-note" id="arrival-note"></div>
+
+  <div class="snip-demo-row" id="snip-demo-row">
+    <span class="snip-demo-row-label">No file handy?</span>
+  </div>
+
+  <div class="drop-zone drop-zone-audio" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+      <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+    </svg>
+    <h2>Drop any audio, video, or GIF file</h2>
+    <p>or click to browse &mdash; converted in your browser &mdash; your file never leaves your device</p>
+    <div class="formats">
+      <span class="format-tag">MP3</span><span class="format-tag">WAV</span><span class="format-tag">M4A</span>
+      <span class="format-tag">FLAC</span><span class="format-tag">MP4</span><span class="format-tag">MOV</span><span class="format-tag">WebM</span><span class="format-tag">GIF</span>
+    </div>
+    <input type="file" id="file-input" accept="audio/*,video/*,image/gif,.mp3,.wav,.ogg,.flac,.aac,.m4a,.wma,.opus,.aiff,.amr,.m4b,.mp4,.mov,.webm,.mkv,.avi,.wmv,.3gp,.m4v,.flv,.gif">
+  </div>
+
+  <style>
+    .privacy-notice { display: flex; align-items: center; justify-content: center; gap: 8px; margin: -8px auto 24px; padding: 10px 14px; color: var(--text-dim); font-size: 0.85rem; line-height: 1.4; max-width: 720px; text-align: center; }
+    .privacy-notice svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--green); }
+    .privacy-notice strong { color: var(--text); font-weight: 600; }
+    .privacy-notice a { color: var(--accent); text-decoration: none; }
+    .privacy-notice a:hover { text-decoration: underline; }
+  </style>
+  <p class="privacy-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span><strong>Your file never leaves your device.</strong> All processing happens in your browser &mdash; nothing is sent to a server. <a href="/privacy/">Privacy policy</a>.</span>
+  </p>
+
+  <!-- S2 CONFIGURE -->
+  <div class="editor" id="editor">
+    <div class="file-info">
+      <div class="file-icon" id="file-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="file-name" id="file-name">&mdash;</div>
+        <div class="file-meta" id="file-meta">&mdash;</div>
+      </div>
+      <button type="button" class="file-remove" id="file-remove">Different file</button>
+    </div>
+
+    <div class="convert-to-label">Convert to</div>
+    <div id="out-groups"></div>
+
+    <details class="quality-details" id="quality-details">
+      <summary>Quality</summary>
+      <div class="quality-row">
+        <label for="quality-select" id="quality-label">MP3 bitrate:</label>
+        <select id="quality-select"></select>
+        <a href="/audio-formats/" target="_blank" style="margin-left:auto;font-size:0.85rem;color:var(--accent);text-decoration:none;">Not sure which format? &rarr;</a>
+      </div>
+    </details>
+
+    <details class="quality-details" id="gif-details" style="display:none;">
+      <summary>GIF settings</summary>
+      <div class="quality-row">
+        <label for="gif-fps">Frame rate:</label>
+        <select id="gif-fps">
+          <option value="10">10 fps (smaller)</option>
+          <option value="12" selected>12 fps (recommended)</option>
+          <option value="15">15 fps (smoother)</option>
+        </select>
+        <label for="gif-width" style="margin-left:12px;">Size:</label>
+        <select id="gif-width">
+          <option value="320">320 px</option>
+          <option value="480" selected>480 px (recommended)</option>
+          <option value="640">640 px</option>
+        </select>
+      </div>
+    </details>
+
+    <div class="controls">
+      <button type="button" class="btn btn-primary" id="btn-convert" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span id="btn-convert-label">Pick a format above</span>
+      </button>
+      <span class="status-text" id="status-text"></span>
+    </div>
+    <div class="size-estimate" id="size-estimate" style="display:none;"></div>
+  </div>
+
+  <!-- S4 DONE -->
+  <div class="done-card" id="done-card">
+    <svg class="done-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <div class="done-title" id="done-title">Your file is ready</div>
+    <div class="done-meta" id="done-meta"></div>
+    <div class="done-actions">
+      <button type="button" class="btn btn-primary" id="done-save">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Save file</span>
+      </button>
+      <button type="button" class="btn btn-ghost" id="done-again">Convert another file</button>
+    </div>
+    <div class="next-label">Or keep going — no re-upload needed</div>
+    <div class="next-chips" id="next-chips"></div>
+  </div>
+
+  <section class="seo-section">
+    <h2>Convert Audio &amp; Video — Free, Private, No Sign-up</h2>
+    <p>SnipSound's converter changes the format of any audio, video, or GIF file directly in your web browser. Drop in an MP3, WAV, FLAC or M4A and convert between audio formats; drop in an MP4, MOV, WebM or MKV and convert it to another video format, extract the audio, or turn it into a GIF; or drop in a GIF and convert it to MP4 or WebM. Pick a quality level and the converted file downloads to your device. Your files never leave your device.</p>
+
+    <h3>Popular conversions</h3>
+    <div class="conversion-table">
+      <a href="/tools/convert-mp4-to-mp3/" class="conversion-link">MP4 &rarr; MP3</a>
+      <a href="/tools/convert-mov-to-mp3/" class="conversion-link">MOV &rarr; MP3</a>
+      <a href="/tools/convert-webm-to-mp3/" class="conversion-link">WebM &rarr; MP3</a>
+      <a href="/tools/convert-wav-to-mp3/" class="conversion-link">WAV &rarr; MP3</a>
+      <a href="/tools/convert-flac-to-mp3/" class="conversion-link">FLAC &rarr; MP3</a>
+      <a href="/tools/convert-m4a-to-mp3/" class="conversion-link">M4A &rarr; MP3</a>
+      <a href="/tools/convert-ogg-to-mp3/" class="conversion-link">OGG &rarr; MP3</a>
+      <a href="/tools/convert-mp3-to-wav/" class="conversion-link">MP3 &rarr; WAV</a>
+      <a href="/tools/convert-mpeg-to-mp3/" class="conversion-link">MPEG &rarr; MP3</a>
+      <a href="/tools/convert-wma-to-mp3/" class="conversion-link">WMA &rarr; MP3</a>
+      <a href="/tools/convert-aiff-to-mp3/" class="conversion-link">AIFF &rarr; MP3</a>
+      <a href="/tools/convert-opus-to-mp3/" class="conversion-link">Opus &rarr; MP3</a>
+      <a href="/tools/convert-amr-to-mp3/" class="conversion-link">AMR &rarr; MP3</a>
+    </div>
+
+    <h3>Convert video to MP4</h3>
+    <div class="conversion-table">
+      <a href="/tools/convert-mov-to-mp4/" class="conversion-link">MOV &rarr; MP4</a>
+      <a href="/tools/convert-mkv-to-mp4/" class="conversion-link">MKV &rarr; MP4</a>
+      <a href="/tools/convert-webm-to-mp4/" class="conversion-link">WebM &rarr; MP4</a>
+      <a href="/tools/convert-avi-to-mp4/" class="conversion-link">AVI &rarr; MP4</a>
+      <a href="/tools/convert-wmv-to-mp4/" class="conversion-link">WMV &rarr; MP4</a>
+      <a href="/tools/convert-m4v-to-mp4/" class="conversion-link">M4V &rarr; MP4</a>
+      <a href="/tools/convert-3gp-to-mp4/" class="conversion-link">3GP &rarr; MP4</a>
+    </div>
+
+    <h3>Make a GIF</h3>
+    <div class="conversion-table">
+      <a href="/tools/convert-mp4-to-gif/" class="conversion-link">MP4 &rarr; GIF</a>
+      <a href="/tools/convert-mov-to-gif/" class="conversion-link">MOV &rarr; GIF</a>
+      <a href="/tools/convert-webm-to-gif/" class="conversion-link">WebM &rarr; GIF</a>
+      <a href="/tools/convert-webp-to-gif/" class="conversion-link">WebP &rarr; GIF</a>
+      <a href="/tools/gif-to-mp4/" class="conversion-link">GIF &rarr; MP4</a>
+      <a href="/tools/gif-maker/" class="conversion-link">GIF maker</a>
+    </div>
+
+    <h3>Why use SnipSound's converter</h3>
+    <ul>
+      <li><strong>100% in your browser.</strong> Other converters upload your file to a server. We don't &mdash; your file never leaves your device.</li>
+      <li><strong>No cap imposed by us.</strong> Large files stream in pieces rather than loading, so memory is not the ceiling it is in most browser tools.</li>
+      <li><strong>One tool for audio, video, and GIF.</strong> Convert audio formats, convert video to MP4/WebM/MOV, pull audio out of video, make GIFs from videos, or turn GIFs into videos &mdash; all in one place.</li>
+      <li><strong>No sign-up, no ads, no watermarks.</strong></li>
+    </ul>
+  </section>
+
+  <section class="seo-multilang" style="max-width:760px;margin:32px auto 0;padding:0 16px;color:var(--text-dim);line-height:1.65;">
+    <div id="seo-en" lang="en">
+      <h2 style="color:var(--text);font-size:20px;margin-bottom:12px;">Free Online Audio &amp; Video Converter</h2>
+      <p>SnipSound's converter turns any audio or video file into the format you need, directly in your browser. Drop in an MP3, WAV, OGG, FLAC, AAC or M4A to convert between audio formats, or drop in an MP4, MOV, WebM, MKV, AVI or WMV to convert it to another video format, extract the audio as MP3, WAV or M4A, or turn it into a GIF. GIFs convert to MP4 or WebM. Choose your output and quality, and download the converted file. Files never leave your device, no signup, no watermark.</p>
+      <h3 style="color:var(--text);font-size:16px;margin:16px 0 8px;">How It Works</h3>
+      <p>For audio, the converter decodes your file with the Web Audio API and re-encodes it to the target format (MP3 via LAME, WAV as direct PCM, and OGG/FLAC/AAC/M4A via in-browser FFmpeg). For video, it runs in-browser FFmpeg: a single pass to pull out and encode the audio track, a remux or re-encode for video-to-video, and a two-pass palette pipeline for high-quality GIFs. The whole conversion happens locally &mdash; your file never leaves your computer.</p>
+      <h3 style="color:var(--text);font-size:16px;margin:16px 0 8px;">Why Convert Files?</h3>
+      <p>Common reasons: pulling an MP3 out of a recorded MP4 for a podcast, making a FLAC archive playable on phones as MP3 or AAC, converting voice memos from M4A to MP3 for platforms that reject M4A, or producing a lossless WAV master from a compressed source for editing. Browser-side conversion means no upload service in the middle.</p>
+    </div>
+  </section>
+  <script>
+    (function () {
+      var langs = ['en','es','pt','it','fr'];
+      function show(lang) {
+        if (langs.indexOf(lang) < 0) lang = 'en';
+        langs.forEach(function (l) {
+          var el = document.getElementById('seo-' + l);
+          if (el) el.style.display = (l === lang) ? 'block' : 'none';
+        });
+      }
+      show(document.documentElement.getAttribute('lang') || 'en');
+      window.addEventListener('snipsound:lang', function (e) {
+        if (e && e.detail && e.detail.lang) show(e.detail.lang);
+      });
+    })();
+  </script>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q"><span>How do I convert audio or video files online?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Drop any audio or video file onto the page. The converter detects what you dropped and shows the formats you can convert to. Pick one, choose quality if you like, and click Convert &mdash; the file downloads to your device.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Can I extract audio from a video?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Yes. Drop in an MP4, MOV, WebM, MKV, AVI or other video and choose MP3, WAV, M4A, OGG, FLAC or AAC under &ldquo;Extract audio&rdquo; &mdash; the audio track is pulled out and converted in your browser.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>Is my file uploaded?</span><span class="arrow">&#9660;</span></div><div class="faq-a">No. All processing happens in your browser. See our <a href="/privacy/" style="color:var(--accent);">privacy policy</a>.</div></div>
+    <div class="faq-item"><div class="faq-q"><span>What about converting video to another video format, or to GIF?</span><span class="arrow">&#9660;</span></div><div class="faq-a">Both work now. Drop in a video and choose MP4, WebM or MOV under &ldquo;Video&rdquo;, or GIF under &ldquo;Animated&rdquo; (pick a frame rate and size under GIF settings). You can also drop in a GIF and turn it into an MP4 or WebM video, or grab its first frame as a PNG.</div></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <a href="/">SnipSound</a> &mdash; Free tools for creators &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/help/">Help</a> &middot; <a href="/tools/">All Tools</a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var CURRENT_PHASE = 2;   // phase-gate: only output groups whose phase <= this are enabled (design R-019134; phase 2 = M-39 GIF family + video↔video)
+
+  // Phase-2 fallback matrix (used if /data/converter-matrix.json can't be fetched). The engine's
+  // source of truth is the committed file; this keeps the tool functional offline/on fetch failure.
+  var FALLBACK = {
+    families: {
+      audio: { inputs: ['mp3','wav','m4a','aac','ogg','flac','wma','opus','aiff','amr','m4b'],
+               outputs: { 'Audio': ['mp3','wav','m4a','aac','ogg','flac'] }, phase: 1 },
+      video: { inputs: ['mp4','mov','webm','mkv','avi','wmv','3gp','m4v','flv'],
+               outputs: { 'Video': ['mp4','webm','mov'], 'Extract audio': ['mp3','wav','m4a','aac','ogg','flac'], 'Animated': ['gif'] },
+               phase: 1, outputPhases: { 'Video': 2, 'Animated': 2 } },
+      gif:   { inputs: ['gif'],
+               outputs: { 'Video': ['mp4','webm'], 'Image': ['png'] }, phase: 2 }
+    }
+  };
+  var MATRIX = FALLBACK;
+
+  var currentFile = null, currentFamily = null, selectedExt = null, lastBlob = null, lastName = null;
+  var VIDEO_RE = /\.(mp4|mov|webm|mkv|avi|wmv|3gp|m4v|flv)$/i;
+  var AUDIO_RE = /\.(mp3|wav|ogg|oga|flac|aac|m4a|wma|opus|aiff|aif|amr|m4b)$/i;
+  var GIF_RE = /\.gif$/i;
+  var MP3_BITRATES = ['320','192','128'];
+  var GIF_FPS_DEFAULT = 12, GIF_WIDTH_DEFAULT = 480;   // opinionated GIF defaults (design R-3999c9)
+
+  var params = new URLSearchParams(location.search);
+  var presetTo = (params.get('to') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  var fromSpoke = (params.get('from') || '').toLowerCase();
+
+  var dropZone = document.getElementById('drop-zone');
+  var fileInput = document.getElementById('file-input');
+  var editor = document.getElementById('editor');
+  var doneCard = document.getElementById('done-card');
+  var fileNameEl = document.getElementById('file-name');
+  var fileMetaEl = document.getElementById('file-meta');
+  var fileRemove = document.getElementById('file-remove');
+  var outGroups = document.getElementById('out-groups');
+  var qualityDetails = document.getElementById('quality-details');
+  var qualitySelect = document.getElementById('quality-select');
+  var qualityLabel = document.getElementById('quality-label');
+  var btnConvert = document.getElementById('btn-convert');
+  var btnConvertLabel = document.getElementById('btn-convert-label');
+  var statusText = document.getElementById('status-text');
+  var arrivalNote = document.getElementById('arrival-note');
+
+  function track(ev, props) { try { if (window.snipsoundTrack) window.snipsoundTrack(ev, props || {}); else if (window.snipTrackTool) window.snipTrackTool('audio-converter', ev, props || {}); } catch (e) {} }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]; }); }
+  function fmtBytes(b) { if (!b && b !== 0) return ''; if (b < 1024) return b + ' B'; if (b < 1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(1)+' MB'; }
+  function extOf(name) { var m = String(name||'').toLowerCase().match(/\.([a-z0-9]+)$/); return m ? m[1] : ''; }
+  function baseName(name) { return String(name||'file').replace(/\.[^.]+$/, ''); }
+
+  function detectFamily(file) {
+    var n = (file && file.name) || '', t = (file && file.type) || '';
+    if (GIF_RE.test(n) || t === 'image/gif') return 'gif';
+    if (VIDEO_RE.test(n) || /^video\//.test(t)) return 'video';
+    if (AUDIO_RE.test(n) || /^audio\//.test(t)) return 'audio';
+    return null;
+  }
+
+  // Map a chosen output extension + quality to the snipEncoder format string.
+  function encoderFormat(ext) {
+    if (ext === 'mp3') return 'mp3-' + (qualitySelect.value || '320');
+    return ext;
+  }
+
+  function groupPhase(fam, groupName) {
+    var op = fam.outputPhases || {};
+    return (op[groupName] != null) ? op[groupName] : (fam.phase || 1);
+  }
+
+  // Build the "Convert to" chips for the detected family, phase-gated.
+  function renderOutputs(family) {
+    var fam = (MATRIX.families && MATRIX.families[family]) || FALLBACK.families[family];
+    outGroups.innerHTML = '';
+    selectedExt = null;
+    var groups = fam.outputs || {};
+    var names = Object.keys(groups).filter(function (g) { return groupPhase(fam, g) <= CURRENT_PHASE; });
+    var showTitles = names.length > 1;
+    var firstChip = null, preselectChip = null;
+
+    names.forEach(function (gname) {
+      var wrap = document.createElement('div');
+      wrap.className = 'out-group';
+      if (showTitles) {
+        var t = document.createElement('div');
+        t.className = 'out-group-title';
+        t.textContent = gname;
+        wrap.appendChild(t);
+      }
+      var chips = document.createElement('div');
+      chips.className = 'out-chips';
+      groups[gname].forEach(function (ext) {
+        // Don't offer converting to the same format the file already is.
+        if (ext === extOf(currentFile.name)) return;
+        var chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'out-chip';
+        chip.textContent = ext.toUpperCase();
+        chip.setAttribute('data-ext', ext);
+        chip.addEventListener('click', function () { selectExt(ext, chip); });
+        chips.appendChild(chip);
+        if (!firstChip) firstChip = chip;
+        if (presetTo && ext === presetTo) preselectChip = chip;
+      });
+      wrap.appendChild(chips);
+      outGroups.appendChild(wrap);
+    });
+
+    // Deep-link / default preselection.
+    if (preselectChip) selectExt(presetTo, preselectChip);
+    else if (firstChip && family === 'audio') { /* leave unselected so the user chooses; button stays disabled */ }
+  }
+
+  function selectExt(ext, chip) {
+    selectedExt = ext;
+    var all = outGroups.querySelectorAll('.out-chip');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('selected');
+    if (chip) chip.classList.add('selected');
+    // MP3 quality only meaningful for mp3 output; GIF settings only for gif output.
+    qualityDetails.style.display = (ext === 'mp3') ? '' : 'none';
+    var gifDetails = document.getElementById('gif-details');
+    if (gifDetails) gifDetails.style.display = (ext === 'gif') ? '' : 'none';
+    btnConvert.disabled = false;
+    btnConvertLabel.textContent = 'Convert to ' + ext.toUpperCase();
+  }
+
+  function fillQuality() {
+    qualitySelect.innerHTML = '';
+    MP3_BITRATES.forEach(function (b) {
+      var o = document.createElement('option');
+      o.value = b; o.textContent = b + ' kbps' + (b === '320' ? ' (best)' : '');
+      qualitySelect.appendChild(o);
+    });
+    qualityLabel.textContent = 'MP3 bitrate:';
+  }
+
+  function showState(which) {
+    dropZone.style.display = (which === 'drop') ? '' : 'none';
+    editor.classList.toggle('active', which === 'configure');
+    doneCard.classList.toggle('active', which === 'done');
+  }
+
+  function resetToDrop() {
+    currentFile = null; currentFamily = null; selectedExt = null; lastBlob = null; lastName = null;
+    fileInput.value = '';
+    showState('drop');
+    dropZone.style.removeProperty('display');
+  }
+
+  function handleFile(file) {
+    if (!file) return;
+    var fam = detectFamily(file);
+    if (!fam) {
+      // Unknown type — route to the shared intake card if present, else a plain notice.
+      if (window.snipDecodeGate && window.snipDecodeGate.showFailure) {
+        window.snipDecodeGate.showFailure(dropZone, "That doesn't look like an audio, video, or GIF file we can convert.", { tool: 'audio-converter', report: false, onPick: resetToDrop });
+      } else { alert("That doesn't look like an audio, video, or GIF file."); }
+      return;
+    }
+    currentFile = file;
+    currentFamily = fam;
+    if (window.snipSharedAudio && fam === 'audio') { try { window.snipSharedAudio.save(file); } catch (e) {} }
+
+    // File card
+    fileNameEl.textContent = file.name;
+    var parts = [ (extOf(file.name) || fam).toUpperCase(), fmtBytes(file.size) ];
+    fileMetaEl.textContent = parts.join(' · ');
+
+    renderOutputs(fam);
+    showState('configure');
+    track('converter_file_added', { family: fam, in_ext: extOf(file.name), size_bucket: sizeBucket(file.size) });
+  }
+
+  function sizeBucket(sz) { return !sz ? '0' : sz < 5*1048576 ? '<5MB' : sz < 25*1048576 ? '5-25MB' : sz < 100*1048576 ? '25-100MB' : sz < 524288000 ? '100-500MB' : '500MB+'; }
+
+  async function doConvert() {
+    if (!currentFile || !selectedExt || !window.snipEncoder) return;
+    var fmt = encoderFormat(selectedExt);
+    var outExt = selectedExt;
+    btnConvert.disabled = true;
+    statusText.textContent = 'Starting…';
+    var onProgress = function (p) { if (p && p.phase) statusText.textContent = String(p.phase) + (p.percent != null ? ' (' + p.percent + '%)' : '…'); };
+    try {
+      var res;
+      if (currentFamily === 'gif') {
+        // Phase 2: GIF -> mp4 / webm / png.
+        res = await window.snipEncoder.convertGif(currentFile, selectedExt, { onProgress: onProgress });
+      } else if (currentFamily === 'video' && (selectedExt === 'mp4' || selectedExt === 'webm' || selectedExt === 'mov')) {
+        // Phase 2: video -> video (remux when possible, re-encode otherwise).
+        res = await window.snipEncoder.convertVideo(currentFile, selectedExt, { onProgress: onProgress });
+      } else if (currentFamily === 'video' && selectedExt === 'gif') {
+        // Phase 2: video -> GIF, two-pass palette.
+        res = await window.snipEncoder.videoToGif(currentFile, {
+          fps: parseInt((document.getElementById('gif-fps') || {}).value, 10) || 12,
+          width: parseInt((document.getElementById('gif-width') || {}).value, 10) || 480,
+          onProgress: onProgress
+        });
+      } else if (currentFamily === 'video') {
+        // Phase 1: video -> extract audio (mp3/wav/m4a).
+        res = await window.snipEncoder.extractFromVideo(currentFile, fmt, { onProgress: onProgress });
+      } else {
+        // Audio -> audio. Two routes, chosen by size.
+        //
+        // posthog R-624d70 (codec matrix, 2026-10-09): a 60-minute 24.7 MB m4a produced NO status
+        // change for two minutes and locked the main thread hard enough that a harness could not
+        // close the tab for 100 minutes, while a 25-minute 23 MB file converted in 70 s with
+        // updates. The converter's onProgress writes statusText for ANY phase, and both encoder
+        // paths (worker and the yielding main-thread fallback) emit a phase first - so the lock
+        // sat UPSTREAM of any encode: in decodeAudioData materialising ~635 MB of PCM, or in the
+        // per-channel copy before the worker hand-off. The route that sidesteps both is to never
+        // decode in the browser at all: FFmpeg reads the container and writes the target directly.
+        // extractFromVideo is that route - it checks nothing about its input being video, only
+        // the extension and the bytes - and it is what the video family already uses. Size, not
+        // duration, is the trigger because size is known synchronously; 20 MB sits under both of
+        // posthog's problem files and above the everyday upload. A direct-route failure falls
+        // back to today's decode->encode path, so nothing that worked before stops working.
+        var DIRECT_MB = 20;
+        var _direct = window.snipEncoder.extractFromVideo && currentFile.size >= DIRECT_MB * 1048576;
+        res = null;
+        if (_direct) {
+          try {
+            res = await window.snipEncoder.extractFromVideo(currentFile, fmt, { onProgress: onProgress });
+            track('convert_route', { route: 'ffmpeg_direct', out: fmt, size_bucket: currentFile.size < 104857600 ? '25-100mb' : currentFile.size < 524288000 ? '100-500mb' : '500mb+' });
+          } catch (_de) {
+            res = null;   // fall through to the decode path, and say so
+            track('convert_route', { route: 'ffmpeg_direct_failed', out: fmt, err_name: (_de && _de.name) || 'Error' });
+          }
+        }
+        if (!res) {
+          var Ctx = window.AudioContext || window.webkitAudioContext;
+          var ctx = new Ctx();
+          var buf = window.snipDecodeAudio
+            ? await window.snipDecodeAudio(currentFile, ctx, { tool: 'audio-converter' })
+            : await ctx.decodeAudioData((await currentFile.arrayBuffer()).slice(0));
+          try { ctx.close(); } catch (e) {}
+          res = await window.snipEncoder.encode(buf, fmt, { onProgress: onProgress });
+        }
+      }
+      var ext = (res && res.ext) || outExt;
+      var blob = res && res.blob;
+      if (!blob) throw new Error('no output');
+      lastBlob = blob; lastName = baseName(currentFile.name) + '.' + ext;
+      statusText.textContent = '';
+      track('converter_convert', { in_ext: extOf(currentFile.name), out_ext: ext, size_bucket: sizeBucket(currentFile.size), via: (presetTo ? 'spoke' : 'direct') });
+      // A conversion that succeeds on a compress-recovered file closes the rescue funnel (no-op otherwise).
+      if (window.snipDecodeGate && window.snipDecodeGate.recoveryOk) window.snipDecodeGate.recoveryOk('audio-converter', currentFile);
+      showDone(blob, lastName, ext);
+      // Desktop: auto-download immediately (classic). iOS: do NOT auto-fire — navigator.share needs a
+      // live user gesture and a second affordance double-saves, so the done-card [Save] is the SINGLE
+      // save on iOS (design R-019134 land fix).
+      var _ios = /iP(hone|ad|od)/.test(navigator.userAgent || '') || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if (!_ios) {
+        if (window.snipNotify) window.snipNotify.deliver(blob, lastName, { statusEl: statusText });
+        else if (window.snipSave) window.snipSave(blob, lastName, { tool: 'audio-converter', format: ext });
+      }
+    } catch (err) {
+      btnConvert.disabled = false;
+      // posthog R-624d70: this card showed "Unable to decode audio data" verbatim - the
+      // DOMException's text - where the six dedicated converter pages now show the gate's own
+      // sentence. Same file, two sentences, and the raw one blames nothing the user can act on.
+      // A decode-shaped failure gets the gate's words (design's). Anything else keeps its message,
+      // because an encode or FFmpeg failure's text is usually the useful part.
+      // The GATE owns the failure words (design R-87ddfb: a vetted sentence per reason, and a guard that
+      // stops a bare exception name reaching a person). posthog's harness proved it: the page-local
+      // sentence I put here never rendered - the gate's did. So this page passes a REASON and lets the
+      // one table speak. The "incomplete - try downloading again" clause went to design's table as
+      // decode_failed_after_fallback, keyed by err.snipDiag.fell_back, so every page gets it at once.
+      var _isDecodeFail = !!(err && (err.name === 'EncodingError' || /unable to decode|decodeAudioData|could not be decoded/i.test(err.message || '')));
+      var _r = _isDecodeFail
+        ? ((err && err.snipDiag && err.snipDiag.fell_back) ? 'decode_failed_after_fallback' : 'decode_failed')
+        : (((err && err.name) === 'NotReadableError') ? 'file_read_failed' : 'convert_failed');
+      var msg = _isDecodeFail ? 'This file could not be opened.' : ((err && err.message) || 'Conversion failed');   // fallback text only; the gate's table wins when it knows the reason
+      // Memory-shaped failures on big audio inputs get the compress-recovery offer (contract
+      // R-a66931): compress in place, then the file re-enters through handleFile (normal intake).
+      if (window.snipDecodeGate && window.snipDecodeGate.recoveryPending && window.snipDecodeGate.recoveryPending('audio-converter')) {
+        window.snipDecodeGate.recoveryFailed('audio-converter', currentFile);
+      }
+      var _rec = null;
+      // worthCompressing (design R-87ddfb): the one place that decides whether a compress-and-retry
+      // could plausibly help. This page used to read the gate's tier directly - the budget-gate bug
+      // the architect fixed on the splitter and I then found on six more pages.
+      if (currentFamily === 'audio' && window.snipDecodeGate && typeof window.snipDecodeGate.worthCompressing === 'function'
+          && window.snipDecodeGate.worthCompressing(currentFile, err)) {
+        _rec = { canCompress: true, file: currentFile, onCompressed: function (nf) { handleFile(nf); } };
+      }
+      if (window.snipDecodeGate && window.snipDecodeGate.showFailure) {
+        window.snipDecodeGate.showFailure(dropZone, msg, { tool: 'audio-converter', report: true, reason: _r, onPick: resetToDrop, recovery: _rec });
+        showState('drop');
+      } else { statusText.textContent = msg; }
+      // reason is the CODE, err_msg the cause (posthog R-0931a0): reason used to be the message's first 60
+      // characters, and an FFmpeg failure's message opens "FFmpeg exec failed with code 1" + the version
+      // banner, so every such row read as the banner. The cause is FFmpeg's last meaningful line, found the
+      // way the encoder finds it (the banner, build config and progress lines are skipped).
+      track('converter_failed', { in_ext: extOf(currentFile.name), out_ext: outExt, reason: _r, err_msg: _convCause(err).slice(0, 200) });
+    }
+  }
+
+  // The cause line for converter_failed.err_msg: the encoder's own parser (snipEncoder.ffReason, architect R-28bcc1,
+  // live 10-19) on the run's log - FFmpeg's last meaningful line, never the banner - else the message's first line.
+  function _convCause(err) {
+    var log = (err && err.ffmpegLog) || null;
+    try { if (log && window.snipEncoder && typeof window.snipEncoder.ffReason === 'function') { var r = window.snipEncoder.ffReason(log); if (r) return r; } } catch (e) {}
+    return String((err && err.message) || 'Conversion failed').split(String.fromCharCode(10))[0];
+  }
+
+  function showDone(blob, name, ext) {
+    document.getElementById('done-title').textContent = name + ' is ready';
+    document.getElementById('done-meta').textContent = fmtBytes(blob.size) + ' · ' + ext.toUpperCase();
+    // "Keep going" chips per family (no re-upload).
+    var chips = document.getElementById('next-chips');
+    chips.innerHTML = '';
+    var next = [];
+    // Next steps keyed on the OUTPUT kind, not the input family — a GIF made from a
+    // video shouldn't offer "Transcribe" (audio tools only fit audio outputs).
+    var audioOuts = ['mp3','wav','m4a','aac','ogg','flac'];
+    if (audioOuts.indexOf(ext) !== -1) {
+      next.push({ label: 'Trim', to: '/tools/audio-trimmer', kind: 'trim' });
+      next.push({ label: 'Compress', to: '/tools/audio-compressor', kind: 'compress' });
+      next.push({ label: 'Transcribe', to: '/tools/audio-transcription', kind: 'transcribe' });
+    }
+    next.push({ label: 'Edit in video editor →', to: '__editor', kind: 'editor' });
+    next.forEach(function (n) {
+      var a = document.createElement(n.to === '__editor' ? 'button' : 'a');
+      a.className = 'next-chip';
+      a.textContent = n.label;
+      if (n.to === '__editor') {
+        a.type = 'button';
+        a.addEventListener('click', function () {
+          track('converter_next_step', { to_tool: 'video-editor', out_kind: currentFamily });
+          if (window.snipSendToEditor && lastBlob) {
+            try { window.snipSendToEditor(new File([lastBlob], lastName, { type: lastBlob.type }), {}); return; } catch (e) {}
+          }
+          location.href = '/video-editor/';
+        });
+      } else {
+        a.href = n.to;
+        a.addEventListener('click', function () { track('converter_next_step', { to_tool: n.kind, out_kind: currentFamily }); });
+      }
+      chips.appendChild(a);
+    });
+    showState('done');
+  }
+
+  // ── wiring ──
+  fillQuality();
+  qualitySelect.addEventListener('change', function () { if (selectedExt === 'mp3') btnConvertLabel.textContent = 'Convert to MP3'; });
+  btnConvert.addEventListener('click', doConvert);
+  fileRemove.addEventListener('click', resetToDrop);
+  document.getElementById('done-again').addEventListener('click', resetToDrop);
+  document.getElementById('done-save').addEventListener('click', function () {
+    if (lastBlob && window.snipSave) window.snipSave(lastBlob, lastName, { tool: 'audio-converter', format: extOf(lastName) });
+    else if (lastBlob && window.snipNotify) window.snipNotify.deliver(lastBlob, lastName, {});
+  });
+
+  dropZone.addEventListener('click', function () { fileInput.click(); });
+  fileInput.addEventListener('change', function (e) { var f = e.target.files && e.target.files[0]; if (f) handleFile(f); });
+  dropZone.addEventListener('dragover', function (e) { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', function () { dropZone.classList.remove('drag-over'); });
+  dropZone.addEventListener('drop', function (e) {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    var f = e.dataTransfer.files && e.dataTransfer.files[0]; if (f) handleFile(f);
+  });
+  // Cross-tool handoff (library / use-shared-file).
+  document.addEventListener('snipsound:use-shared-file', function (e) { if (e.detail && e.detail.file) handleFile(e.detail.file); });
+
+  // Deep-link arrival note.
+  if (presetTo) {
+    arrivalNote.style.display = '';
+    arrivalNote.innerHTML = fromSpoke
+      ? 'You came from <strong>' + esc(fromSpoke) + '</strong> — <strong>' + esc(presetTo.toUpperCase()) + '</strong> is preselected. Just drop a file and hit Convert.'
+      : '<strong>' + esc(presetTo.toUpperCase()) + '</strong> output is preselected. Drop a file and hit Convert.';
+  }
+
+  // Load the real matrix (single source of truth); fall back silently to the inlined phase-1 copy.
+  fetch('/data/converter-matrix.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (m) {
+    if (m && m.families) MATRIX = m;
+  }).catch(function () {});
+
+  // FAQ toggles
+  document.querySelectorAll('.faq-q').forEach(function (q) {
+    q.addEventListener('click', function () { q.parentElement.classList.toggle('open'); });
+  });
+})();
+</script>
+
+<script>
+// ── Converter self-test harness (M-39 phase 2) ──────────────────────────────
+// One-tap probe: synthesizes its own test media (440Hz TONE + canvas image —
+// tone-based on purpose: silence-based probes can't catch layout/metadata bugs,
+// see the Safari silent-export incident R-5b3d96), runs every phase-2 path
+// through the REAL engine, byte-verifies each output, and offers Copy logs.
+// Inert unless the page is opened with ?selftest=1 — zero cost in production.
+(function () {
+  'use strict';
+  if (!/[?&]selftest=1/.test(location.search)) return;
+
+  var LOG = [];
+  function log(line) {
+    LOG.push(line);
+    var el = document.getElementById('st-log');
+    if (el) { el.textContent = LOG.join('\n'); el.scrollTop = el.scrollHeight; }
+  }
+
+  // UI card above the drop zone.
+  var card = document.createElement('div');
+  card.style.cssText = 'background:var(--surface);border:1px solid var(--accent);border-radius:16px;padding:20px;margin-bottom:24px;';
+  card.innerHTML =
+    '<div style="font-weight:700;margin-bottom:4px;">Converter self-test</div>' +
+    '<div style="font-size:0.85rem;color:var(--text-dim);margin-bottom:12px;">Runs all phase-2 conversions on a generated test clip (tone + image) and verifies every output. First run loads FFmpeg (~10–20s).</div>' +
+    '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">' +
+    '<button type="button" class="btn btn-primary" id="st-run">Run self-test</button>' +
+    '<button type="button" class="btn btn-ghost" id="st-copy" style="display:none;">Copy logs</button>' +
+    '<span id="st-summary" style="font-weight:700;"></span></div>' +
+    '<pre id="st-log" style="display:none;max-height:260px;overflow:auto;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:0.78rem;line-height:1.5;margin-top:12px;white-space:pre-wrap;"></pre>';
+  var dz = document.getElementById('drop-zone');
+  dz.parentNode.insertBefore(card, dz);
+
+  function magic(blob, bytes, offset) {
+    return blob.slice(offset || 0, (offset || 0) + bytes.length).arrayBuffer().then(function (ab) {
+      var u = new Uint8Array(ab);
+      for (var i = 0; i < bytes.length; i++) {
+        var want = typeof bytes[i] === 'string' ? bytes[i].charCodeAt(0) : bytes[i];
+        if (u[i] !== want) return false;
+      }
+      return true;
+    });
+  }
+  function videoMeta(blob) {
+    return new Promise(function (resolve) {
+      var v = document.createElement('video');
+      v.preload = 'metadata'; v.muted = true;
+      var url = URL.createObjectURL(blob);
+      var to = setTimeout(function () { URL.revokeObjectURL(url); resolve(null); }, 8000);
+      v.onloadedmetadata = function () {
+        clearTimeout(to); URL.revokeObjectURL(url);
+        resolve({ duration: v.duration, w: v.videoWidth, h: v.videoHeight });
+      };
+      v.onerror = function () { clearTimeout(to); URL.revokeObjectURL(url); resolve(null); };
+      v.src = url;
+    });
+  }
+  function toneBuffer() {
+    var Ctx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    var ctx = new Ctx(1, 44100 * 2, 44100);
+    var osc = ctx.createOscillator();
+    osc.frequency.value = 440; osc.connect(ctx.destination);
+    osc.start(0); osc.stop(2);
+    return ctx.startRendering();
+  }
+  function rmsOf(buf) {
+    var d = buf.getChannelData(0), sum = 0, step = Math.max(1, Math.floor(d.length / 50000));
+    var n = 0;
+    for (var i = 0; i < d.length; i += step) { sum += d[i] * d[i]; n++; }
+    return Math.sqrt(sum / n);
+  }
+
+  var pass = 0, fail = 0;
+  function report(name, ok, detail) {
+    if (ok) pass++; else fail++;
+    log((ok ? 'PASS ' : 'FAIL ') + name + (detail ? ' — ' + detail : ''));
+  }
+
+  async function step(name, fn) {
+    var t0 = performance.now();
+    try {
+      var detail = await fn();
+      report(name, true, (detail || '') + ' [' + Math.round(performance.now() - t0) + 'ms]');
+      return true;
+    } catch (e) {
+      report(name, false, (e && e.message ? e.message.split('\n')[0] : String(e)) + ' [' + Math.round(performance.now() - t0) + 'ms]');
+      try {
+        var tail = window.snipEncoder.getLastLog().slice(-6).join(' | ');
+        if (tail) log('   ffmpeg tail: ' + tail.slice(0, 400));
+      } catch (e2) {}
+      return false;
+    }
+  }
+
+  async function run() {
+    var btn = document.getElementById('st-run');
+    btn.disabled = true; btn.textContent = 'Running…';
+    document.getElementById('st-log').style.display = '';
+    LOG.length = 0; pass = 0; fail = 0;
+    log('converter self-test · ' + new Date().toISOString());
+    log('UA: ' + navigator.userAgent);
+    log('page: ' + location.href);
+    log('');
+
+    var enc = window.snipEncoder;
+    var wavFile, mp4File, gifFile;
+
+    await step('1. generate 2s 440Hz tone → WAV', async function () {
+      var buf = await toneBuffer();
+      var r = await enc.encode(buf, 'wav');
+      wavFile = new File([r.blob], 'tone.wav', { type: 'audio/wav' });
+      if (r.blob.size < 50000) throw new Error('wav too small: ' + r.blob.size);
+      return (r.blob.size / 1024).toFixed(0) + ' KB';
+    });
+
+    await step('2. audioToVideo → test MP4 (loads FFmpeg on first run)', async function () {
+      var r = await enc.audioToVideo(wavFile, null, { resolution: '720p' });
+      mp4File = new File([r.blob], 'test.mp4', { type: 'video/mp4' });
+      if (!(await magic(r.blob, ['f','t','y','p'], 4))) throw new Error('no ftyp box');
+      var m = await videoMeta(r.blob);
+      if (!m || !(m.duration > 1)) throw new Error('metadata unreadable');
+      return m.w + 'x' + m.h + ' · ' + m.duration.toFixed(1) + 's · ' + (r.blob.size / 1024).toFixed(0) + ' KB';
+    });
+
+    await step('3. convertVideo mp4 → MOV', async function () {
+      var r = await enc.convertVideo(mp4File, 'mov');
+      if (!(await magic(r.blob, ['f','t','y','p'], 4))) throw new Error('no ftyp box');
+      return (r.blob.size / 1024).toFixed(0) + ' KB';
+    });
+
+    await step('4. convertVideo mp4 → WEBM (libvpx probe)', async function () {
+      var r = await enc.convertVideo(mp4File, 'webm');
+      if (!(await magic(r.blob, [0x1a, 0x45, 0xdf, 0xa3], 0))) throw new Error('no EBML magic');
+      if (r.blob.size < 5000) throw new Error('webm too small: ' + r.blob.size);
+      var m = await videoMeta(r.blob);
+      return (r.blob.size / 1024).toFixed(0) + ' KB' + (m ? ' · plays ' + m.w + 'x' + m.h : ' · (this browser can’t preview webm — bytes OK)');
+    });
+
+    await step('5. videoToGif (fps 12, w 320)', async function () {
+      var r = await enc.videoToGif(mp4File, { fps: 12, width: 320 });
+      gifFile = new File([r.blob], 'test.gif', { type: 'image/gif' });
+      if (!(await magic(r.blob, ['G','I','F','8'], 0))) throw new Error('no GIF magic');
+      if (r.blob.size < 5000) throw new Error('gif too small: ' + r.blob.size);
+      return (r.blob.size / 1024).toFixed(0) + ' KB';
+    });
+
+    await step('6. convertGif gif → MP4', async function () {
+      var r = await enc.convertGif(gifFile, 'mp4');
+      if (!(await magic(r.blob, ['f','t','y','p'], 4))) throw new Error('no ftyp box');
+      var m = await videoMeta(r.blob);
+      if (!m || !(m.w > 0)) throw new Error('mp4 metadata unreadable');
+      return m.w + 'x' + m.h + ' · ' + (r.blob.size / 1024).toFixed(0) + ' KB';
+    });
+
+    await step('7. convertGif gif → WEBM', async function () {
+      var r = await enc.convertGif(gifFile, 'webm');
+      if (!(await magic(r.blob, [0x1a, 0x45, 0xdf, 0xa3], 0))) throw new Error('no EBML magic');
+      return (r.blob.size / 1024).toFixed(0) + ' KB';
+    });
+
+    await step('8. convertGif gif → PNG (first frame)', async function () {
+      var r = await enc.convertGif(gifFile, 'png');
+      if (!(await magic(r.blob, [0x89, 0x50, 0x4e, 0x47], 0))) throw new Error('no PNG magic');
+      return (r.blob.size / 1024).toFixed(0) + ' KB';
+    });
+
+    await step('9. regression: extract mp4 → MP3, tone survives (RMS)', async function () {
+      var r = await enc.extractFromVideo(mp4File, 'mp3-192');
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      var ctx = new Ctx();
+      var buf = await ctx.decodeAudioData(await r.blob.arrayBuffer());
+      try { ctx.close(); } catch (e) {}
+      var rms = rmsOf(buf);
+      if (rms < 0.005) throw new Error('decoded audio is silent (rms ' + rms.toFixed(5) + ')');
+      return 'rms ' + rms.toFixed(3) + ' · ' + (r.blob.size / 1024).toFixed(0) + ' KB';
+    });
+
+    log('');
+    var verdict = fail === 0 ? 'ALL ' + pass + ' PASS ✅' : pass + ' pass / ' + fail + ' FAIL ❌';
+    log('RESULT: ' + verdict);
+    document.getElementById('st-summary').textContent = verdict;
+    document.getElementById('st-copy').style.display = '';
+    btn.disabled = false; btn.textContent = 'Run again';
+  }
+
+  document.getElementById('st-run').addEventListener('click', function () {
+    run().catch(function (e) { log('HARNESS ERROR: ' + (e && e.message || e)); });
+  });
+  document.getElementById('st-copy').addEventListener('click', function () {
+    var text = LOG.join('\n');
+    var btn = document.getElementById('st-copy');
+    function done() { btn.textContent = '✓ Copied'; setTimeout(function () { btn.textContent = 'Copy logs'; }, 1500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done);
+    else { var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }
+  });
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5186d69efefef1c',t:'MTc5MzE3NDY0Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
