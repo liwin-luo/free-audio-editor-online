@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://freeaudioeditor.online/sitemap-index.xml
+Sitemap: https://freeaudioeditor.online/sitemap.xml

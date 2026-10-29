@@ -90,6 +90,6 @@ English walkthroughs. Spanish, Brazilian Portuguese, and Indonesian have the tri
 
 ## For crawlers
 
-- Sitemap: https://freeaudioeditor.online/sitemap-index.xml
+- Sitemap: https://freeaudioeditor.online/sitemap.xml
 - Languages: English at `/`, plus `/es/` `/pt/` `/id/` `/de/` `/fr/` `/ko/` `/ja/` `/zh/` `/ru/` `/ar/` for the same tools. Guides live at `/guides` in each language and list only articles written in that language. Trim, MP3 editing, merge, and ringtone guides exist in English plus German, Japanese, Korean, Chinese, French, Russian, and Arabic. Trim, pitch, MP3, and WAV guides are also in Spanish, Brazilian Portuguese, and Indonesian. The pitch guide is also in French, Russian, and Arabic. Spanish also has OGG and Opus guides.
 - Content may be quoted with attribution and a link.

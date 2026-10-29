@@ -17,19 +17,17 @@ const note = (severity, page, msg) => issues.push({ severity, page, msg });
 const robots = await fetch(`${BASE}/robots.txt`).then((r) => r.text());
 console.log('=== robots.txt ===\n' + robots);
 
-// Localhost audits read the built dist/sitemap-0.xml directly: it matches what
+// Localhost audits read the built dist/sitemap.xml directly: it matches what
 // will deploy, and HTTP sitemap discovery can land on the production file.
 // Production audits go over HTTP as before.
 const isLocal = /(?:localhost|127\.0\.0\.1)/.test(BASE);
 let sitemap;
 if (isLocal) {
-  sitemap = readFileSync(new URL('../dist/sitemap-0.xml', import.meta.url), 'utf8');
-  console.log('(local audit: sitemap read from dist/sitemap-0.xml)');
+  sitemap = readFileSync(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');
+  console.log('(local audit: sitemap read from dist/sitemap.xml)');
 } else {
-  const sitemapIdx = await fetch(`${BASE}/sitemap-index.xml`).then((r) => r.text()).catch(() => '');
-  const sitemapUrl = sitemapIdx.match(/<loc>([^<]+)<\/loc>/)?.[1];
-  if (!sitemapUrl) throw new Error(`no sitemap found at ${BASE}/sitemap-index.xml`);
-  sitemap = await fetch(sitemapUrl).then((r) => r.text());
+  sitemap = await fetch(`${BASE}/sitemap.xml`).then((r) => r.text()).catch(() => '');
+  if (!sitemap.includes('<urlset')) throw new Error(`no sitemap found at ${BASE}/sitemap.xml`);
 }
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 console.log(`\n=== sitemap: ${urls.length} URLs ===`);

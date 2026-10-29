@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs';
 import { imageSize } from 'image-size';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
@@ -108,6 +108,32 @@ function markdownImageAttrs() {
   };
 }
 
+/**
+ * @astrojs/sitemap hardcodes the sitemap-index.xml + sitemap-N.xml pair, but
+ * conventional discovery (robots.txt, Search Console, audit tools) expects a
+ * single /sitemap.xml. This site stays far under the 50k-URL single-file cap,
+ * so flatten the one chunk into sitemap.xml and drop the index; a future build
+ * with multiple chunks keeps the index pair untouched.
+ */
+function flattenSitemap() {
+  return {
+    name: 'flatten-sitemap',
+    hooks: {
+      'astro:build:done': ({ dir, logger }) => {
+        const chunks = readdirSync(dir).filter((f) => /^sitemap-\d+\.xml$/.test(f));
+        if (chunks.length !== 1) {
+          logger.warn(`sitemap has ${chunks.length} chunks; keeping sitemap-index.xml`);
+          return;
+        }
+        writeFileSync(new URL('sitemap.xml', dir), readFileSync(new URL(chunks[0], dir)));
+        rmSync(new URL(chunks[0], dir));
+        rmSync(new URL('sitemap-index.xml', dir), { force: true });
+        logger.info('wrote sitemap.xml (flattened the sitemap index)');
+      },
+    },
+  };
+}
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://freeaudioeditor.online',
@@ -186,6 +212,7 @@ export default defineConfig({
         return { ...item, priority, links, ...(lastmod ? { lastmod } : {}) };
       },
     }),
+    flattenSitemap(),
   ],
   // Desktop dev is pinned so Tauri's webview and the dev server stay on the same origin.
   ...(process.env.DESKTOP === '1'

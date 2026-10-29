@@ -70,7 +70,7 @@ H1 用和标题相同的主词。不要在 H1 里换成第二个主词。H2 写�
 
 - canonical 自引用。英语无前缀，翻译页 `/{locale}/...`。`x-default` 指向英语。
 - hreflang 在 head 和 sitemap 里都要成簇，含 `x-default`。没有这篇指南的语言不进这篇文章的簇，也不进语言切换器。
-- 404 `noindex`。`robots.txt` 放行，提交 `sitemap-index.xml`。
+- 404 `noindex`。`robots.txt` 放行，提交 `sitemap.xml`。
 - 干净 URL，无尾斜杠。`/zh/` 这种带斜杠的请求会跳到无斜杠，不要把它当成坏页。
 - 新工具加一行 `public/llms.txt`，一句事实。
 - 导航和页脚从 `TOOLS` 输出全部工具，不要只在客户端插入链接。

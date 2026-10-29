@@ -77,7 +77,7 @@ for (const [lang, pages] of byLang) {
 }
 
 // Sitemap: every cluster carries x-default and only indexable local URLs
-const smPath = path.join(dist, 'sitemap-0.xml');
+const smPath = path.join(dist, 'sitemap.xml');
 if (fs.existsSync(smPath)) {
   const xml = fs.readFileSync(smPath, 'utf8');
   const urls = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => m[1]);
@@ -102,7 +102,7 @@ if (fs.existsSync(smPath)) {
   if (badHref > 0) fail(`sitemap: ${badHref} alternate/self refs not matching built pages`);
   console.log(`sitemap: ${urls.length} URLs checked`);
 } else {
-  fail('dist/sitemap-0.xml not found (run npm run build first)');
+  fail('dist/sitemap.xml not found (run npm run build first)');
 }
 
 console.log(`${failures === 0 ? 'PASS' : 'FAIL'} — ${files.length} pages, ${failures} issue(s)`);
