@@ -45,6 +45,7 @@ Free Audio Editor (https://freeaudioeditor.online) is a suite of privacy-first a
 - [Echo](https://freeaudioeditor.online/echo): timed repeats with delay up to 0.8 s and feedback capped at 55%. Not a reverb wash.
 - [Audio Distorter](https://freeaudioeditor.online/audio-distorter): tanh overdrive, drive 0–100% (start 40%). 0% leaves the file unchanged. Not a bitcrusher and not a volume boost.
 - [Silence Remover](https://freeaudioeditor.online/silence-remover): cuts stretches quieter than a threshold (default −40 dBFS) and longer than a minimum gap, on one file or several that share those settings. Short breaths stay. Two or more download as a ZIP. Not a hand trim.
+- [Noise Remover](https://freeaudioeditor.online/noise-remover): RNNoise gating for steady background noise (hiss, hum, fans) around speech, strength 0–100%, one 150 KB local model. The timeline never moves. Trained on speech, so it does not clean music.
 - [Audio Looper](https://freeaudioeditor.online/audio-looper): repeats one clip 2 to 16 times with a linear crossfade at each join (default 0.01 s). Stops if the result would pass 10 minutes. Not a live overdub and not a joiner.
 - [Split MP3](https://freeaudioeditor.online/split-mp3): cuts one file into 2 to 16 equal parts and downloads them as one zip. Cuts fall on sample boundaries. Not a silence scan and not a single-span trim.
 - [Stereo to Mono](https://freeaudioeditor.online/stereo-to-mono): writes one channel, each sample the average of the source channels. A mono file is copied. It does not invent a second channel.

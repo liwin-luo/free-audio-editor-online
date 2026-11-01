@@ -140,6 +140,10 @@ export const es: Catalog = {
     silenceGap: 'Pausa mínima',
     silenceRemove: 'Se quitarán unos {time} de silencio',
     silenceKeepFile: 'Nada supera el umbral, así que la exportación conserva el archivo entero',
+    noiseStrength: 'Intensidad',
+    noiseExport: 'La reducción se aplica al exportar. El modelo de 150 KB se carga una sola vez.',
+    denoiseProgress: 'Quitando el ruido… {p} %',
+    hintNoise: 'La intensidad se aplica al exportar. Un modelo de 150 KB se carga la primera vez.',
     loopTimes: 'Repeticiones',
     loopCrossfade: 'Unión',
     loopExport: 'La exportación dura unos {time}',
@@ -3738,6 +3742,70 @@ export const es: Catalog = {
       ],
       dropHint: 'Suelta archivos de audio o haz clic para elegirlos',
       exportLabel: 'Quitar silencios',
+    },
+    'noise-remover': {
+      cardLine: 'Baja el ruido de fondo constante de una grabación de voz, en el navegador.',
+      name: 'Quitar ruido de fondo',
+      shortName: 'Quitar ruido',
+      title: 'Quitar ruido de audio — elimina el ruido de fondo online',
+      description: 'Reduce el ruido de fondo constante alrededor de la voz en tu navegador. RNNoise funciona en tu dispositivo y un modelo de 150 KB se carga una vez. Gratis, MP3 o WAV.',
+      h1: 'Quitar ruido de audio — elimina el siseo del fondo',
+      heroAlt: 'El ruido de fondo constante bajo una grabación de voz baja',
+      subtitle: 'El siseo, zumbido y ruido de ventilador constante baja 20 dB o más alrededor de la voz. La línea de tiempo no se mueve.',
+      intro: 'Esta página pasa RNNoise por la grabación que sueltes, una compuerta de ruido entrenada con voz. El ruido constante como el siseo, el zumbido o un ventilador baja 20 dB o más alrededor de la voz, y las palabras conservan su nivel. La compuerta es un modelo de 150 KB que corre en tu navegador, así que el audio nunca sale de tu dispositivo.',
+      usesHeading: 'De dónde sale realmente el ruido de fondo',
+      uses: ['Rescatar una nota de voz grabada junto a un ventilador o un aire acondicionado.', 'Limpiar una toma de podcast o entrevista antes de publicarla, sin editor de escritorio.', 'Bajar el siseo de una grabación de clase y luego igualar la sonoridad.'],
+      howTo: [
+        { name: 'Suelta tu audio', text: 'Cualquier archivo MP3, WAV, M4A, OGG o FLAC. Se decodifica en tu dispositivo. El deslizador de intensidad empieza en 75 por ciento.' },
+        { name: 'Ajusta la intensidad', text: '100 por ciento es la supresión máxima. Bájalo hacia 50 cuando el resultado suene apagado y prefieras conservar algo de sala. El modelo se descarga en la primera exportación, no al abrir la página.' },
+        { name: 'Exporta', text: 'La exportación pasa el archivo entero por la compuerta en tramas de 10 milisegundos, y la línea de estado muestra el progreso. El MP3 se exporta a la tasa que elijas y el WAV conserva exactamente las muestras procesadas.' },
+      ],
+      faqs: [
+        { q: '¿Se sube mi audio?', a: 'No. La decodificación y la compuerta ocurren en tu navegador. En la primera exportación se descarga el modelo RNNoise, un archivo WebAssembly de 150 KB, desde este sitio. Después queda en la caché y la página funciona sin conexión.' },
+        { q: '¿Qué le pasa al archivo?', a: 'El audio pasa por la compuerta a 48 kHz en tramas de 10 milisegundos. Un archivo de 44,1 kHz se remuestrea al entrar y otra vez al salir. En nuestra mezcla de prueba, un piso de ruido a −31 dBFS salió a −61 dBFS y la voz se movió menos de 1 dB. La exportación a MP3 recodifica una vez a la tasa que elijas.' },
+        { q: '¿Qué no elimina?', a: 'El ruido que parece voz. Otra persona hablando, un televisor de fondo o una multitud se quedan, porque ocupan las mismas bandas de frecuencia que el hablante. Para eso hace falta reparación espectral en un DAW de escritorio. El ruido constante como el siseo, el zumbido y los ventiladores es lo que trata esta página.' },
+        { q: '¿En qué se diferencia del removedor de silencios?', a: 'El [removedor de silencios](/silence-remover) corta los tramos silenciosos de la línea de tiempo. Esta página no mueve ninguna muestra y baja el ruido constante bajo la voz. Usa ambos en ese orden: primero el ruido, luego el silencio.' },
+        { q: '¿Funciona en el teléfono?', a: 'Sí. El deslizador y el botón de exportar son del tamaño de un dedo, y la línea de estado muestra el progreso en archivos largos. El tiempo de procesamiento crece con la duración, media hora de grabación tarda un rato en un teléfono de gama media.' },
+        { q: '¿Limpia música?', a: 'No, y es un límite honesto, no un ajuste que falte. RNNoise está entrenado con voz, así que con música toma instrumentos por voz y apaga el detalle. Para música usa un [filtro paso alto](/high-pass-filter) contra el retumbo o el [ecualizador](/equalizer) para un recorte puntual.' },
+        { q: '¿Puedo conservar algo de ambiente?', a: 'Sí. Baja el deslizador hacia 50 por ciento para mezclar el original. En nuestra mezcla de prueba, 100 por ciento bajó el piso de ruido 30 dB y 50 por ciento lo bajó 6 dB. A 0 por ciento la exportación es el archivo original.' },
+      ],
+      sections: [
+        {
+          heading: 'La compuerta bajo la voz',
+          paragraphs: [
+            'RNNoise sigue el piso de ruido de la grabación y calcula una ganancia para cada banda de frecuencia unas cien veces por segundo. Las bandas que llevan voz quedan abiertas. Las bandas que llevan ruido constante se cierran.',
+            'Los números de esta página vienen de una medición repetible, no de una afirmación de marketing. Nuestra mezcla de prueba une un tono parecido a la voz con ruido blanco a −31 dBFS. Tras la compuerta al 100 por ciento, el piso queda a −61 dBFS, la banda de voz se movió menos de 1 dB y un clic a plena escala cayó en la muestra exacta donde empezó.',
+          ],
+          table: {
+            headers: ['Intensidad', 'Qué obtienes', 'Piso de ruido en nuestra prueba'],
+            rows: [
+              ['100 %', 'Supresión máxima. El resultado más limpio; las grabaciones brillantes pueden sonar apagadas.', '−30 dB'],
+              ['50 %', 'Mezcla a la mitad. Conserva algo de sala bajo la voz.', '−6 dB'],
+              ['0 %', 'Sin procesar. La exportación es el archivo original.', 'sin cambio'],
+            ],
+          },
+        },
+        {
+          heading: 'Voz, no música',
+          paragraphs: [
+            'La compuerta está entrenada con voz, así que trata todo lo que suena a voz como lo que hay que conservar. Para grabaciones habladas es una ventaja; en el resto, un límite:',
+          ],
+          bullets: [
+            'Se va: siseo, zumbido, ventiladores y aire acondicionado, ruido del previo de un micrófono barato.',
+            'Se queda: otra voz, un televisor de fondo, una multitud. Eso parece el hablante.',
+            'Para música: un [filtro paso alto](/high-pass-filter) contra el retumbo o el [ecualizador](/equalizer) para un recorte puntual.',
+          ],
+        },
+        {
+          heading: 'Primero el ruido, luego el corte',
+          paragraphs: [
+            'Quitar ruido cambia lo que ve una medición de silencio, así que el orden importa. Pasa antes por esta página. Cuando el piso queda 40 dB bajo la voz, el [removedor de silencios](/silence-remover) distingue mucho mejor el aire muerto de una palabra baja.',
+            'Después de ambos, iguala la sonoridad de tu episodio con el [medidor de sonoridad](/loudness-meter) antes de publicar.',
+          ],
+        },
+      ],
+      dropHint: 'Suelta un archivo de audio o haz clic para buscarlo',
+      exportLabel: 'Quitar ruido',
     },
     'audio-looper': {
       cardLine: 'Repite un clip hasta 16 veces y cruza cada unión.',

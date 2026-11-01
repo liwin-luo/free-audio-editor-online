@@ -85,6 +85,8 @@ export interface EditorConfig {
   converter?: boolean;
   /** Remove long silences on export. Hides the cut UI. */
   silence?: boolean;
+  /** RNNoise denoise on export. Strength slider on the page, cut UI hidden. */
+  noise?: boolean;
   /** Repeat the kept selection, or the whole file, on export. */
   loop?: boolean;
   /** Cut the kept selection, or the whole file, into equal parts and zip them. */
@@ -2024,7 +2026,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['soundboard', 'metronome', 'multi-track-audio-editor'],
+    related: ['noise-remover', 'silence-remover', 'multi-track-audio-editor'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: true,
@@ -2762,7 +2764,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['audio-trimmer', 'mp3-cutter', 'voice-recorder'],
+    related: ['audio-trimmer', 'noise-remover', 'voice-recorder'],
     editor: {
       exportLabel: 'Remove silence',
       defaultFormat: 'mp3-192',
@@ -2770,6 +2772,134 @@ export const TOOLS: ToolDef[] = [
       silence: true,
       batch: true,
       dropHint: 'Drop audio files, or click to browse',
+    },
+  },
+  {
+    slug: 'noise-remover',
+    cardLine: 'Turn down steady background noise around a voice recording, in the browser.',
+    name: 'Remove Background Noise',
+    shortName: 'Denoise',
+    icon: 'voice',
+    category: 'edit',
+    title: 'Noise Remover — Strip Background Hiss from Voice Online',
+    description:
+      'Reduce steady background noise around speech in your browser. RNNoise runs on your device, one 150 KB model loads once. Free, MP3 or WAV.',
+    h1: 'Noise Remover — Cut Background Hiss from a Recording',
+    hero: {
+      src: '/noise-remover.svg',
+      alt: 'Steady background noise under a voice recording, turned down',
+      width: 32,
+      height: 32,
+    },
+    screenshots: [
+      {
+        src: '/screenshots/noise-remover-1.webp',
+        alt: 'Noise Remover dropzone: one audio file, strength slider at 75 percent, WAV or MP3 export',
+        width: 1464,
+        height: 606,
+      },
+      {
+        src: '/screenshots/noise-remover-2.webp',
+        alt: 'Noise Remover workspace with a noisy recording loaded and the strength slider under the waveform',
+        width: 1464,
+        height: 743,
+      },
+    ],
+    subtitle: 'Steady hiss, hum and fan noise drop by 20 dB or more around speech. The timeline never moves.',
+    intro:
+      'This page runs RNNoise, a noise gate trained on speech, over the recording you drop. Steady noise like hiss, hum, or a fan drops by 20 dB or more around the voice, and the words keep their level. The gate is a 150 KB model that runs in your browser, so the audio never leaves your device.',
+    usesHeading: 'Where background noise actually comes from',
+    uses: [
+      'Rescue a voice memo recorded next to a fan or an air conditioner.',
+      'Clean a podcast or interview take before you publish, without a desktop editor.',
+      'Quiet the hiss under a lecture recording, then match the loudness afterwards.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device. The strength slider starts at 75 percent.',
+      },
+      {
+        name: 'Set the strength',
+        text: '100 percent is maximum suppression. Lower it toward 50 when the result sounds closed-in and you would rather keep some room tone. The model fetches on the first export, not when the page opens.',
+      },
+      {
+        name: 'Export',
+        text: 'Export runs the whole file through the gate in 10 millisecond frames, and the status line shows progress. MP3 exports at the bitrate you pick. WAV keeps the processed samples exactly.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The file is decoded and gated in your browser. The first export fetches the RNNoise model, a 150 KB WebAssembly file, from this site. After that it stays cached and the page works offline.',
+      },
+      {
+        q: 'What happens to the file?',
+        a: 'Audio runs through the gate at 48 kHz in 10 millisecond frames. A 44.1 kHz file is resampled on the way in and back on the way out. In our test mix, a noise floor at −31 dBFS came out at −61 dBFS while the voice level moved less than 1 dB. An MP3 export re-encodes once at the bitrate you pick.',
+      },
+      {
+        q: 'What does it not remove?',
+        a: 'Noise that looks like speech. Another voice, a TV in the background, or a crowd stays, because those sit in the same frequency bands as the speaker. For that you need spectral repair in a desktop DAW. Steady noise like hiss, hum, and fans is what this page is for.',
+      },
+      {
+        q: 'How is this different from the silence remover?',
+        a: 'The [silence remover](/silence-remover) cuts quiet stretches out of the timeline. This page keeps every sample where it is and turns the steady noise under the voice down. Use both in that order: remove the noise first, then cut the dead air.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The slider and the export button are touch-sized, and the status line shows progress on long files. Processing time grows with the length of the file, so a half-hour recording takes a while on a mid-range phone.',
+      },
+      {
+        q: 'Will it clean up music?',
+        a: 'No, and that is honest, not a missing setting. RNNoise is trained on speech, so on music it hears instruments where voice should be and dulls the detail. For music, target rumble with a [high-pass filter](/high-pass-filter) or shape the balance with the [equalizer](/equalizer) instead.',
+      },
+      {
+        q: 'Can I keep some room tone?',
+        a: 'Yes. Pull the strength slider toward 50 percent to blend the original back in. On our test mix, 100 percent dropped the noise floor by 30 dB and 50 percent dropped it by 6 dB. At 0 percent the export is the original file.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'The gate under the voice',
+        paragraphs: [
+          'RNNoise tracks the noise floor of the recording and computes a gain for every frequency band about a hundred times a second. Bands that carry voice stay open. Bands that carry steady noise close.',
+          'The numbers on this page come from a repeatable measurement, not a marketing claim. Our test mix pairs a voice-like tone with white noise at −31 dBFS. After the gate at 100 percent strength the floor sits at −61 dBFS, the voice band moved less than 1 dB, and a full-scale click landed on the exact sample it started on.',
+        ],
+        table: {
+          headers: ['Strength', 'What you get', 'Noise floor in our test mix'],
+          rows: [
+            ['100 %', 'Maximum suppression. The cleanest result; bright recordings can sound closed-in.', '−30 dB'],
+            ['50 %', 'Half mix. Keeps some room tone under the voice.', '−6 dB'],
+            ['0 %', 'Bypass. The export is the original file.', 'no change'],
+          ],
+        },
+      },
+      {
+        heading: 'Voice, not music',
+        paragraphs: [
+          'The gate is trained on speech, so it treats anything speech-shaped as the thing to keep. That is a feature for talking recordings and a limit everywhere else:',
+        ],
+        bullets: [
+          'Gone: hiss, hum, fan and air-conditioner noise, cheap microphone preamp noise.',
+          'Kept: a second voice, a TV in the background, a crowd. Those look like the speaker.',
+          'Instead for music: a [high-pass filter](/high-pass-filter) for rumble, or the [equalizer](/equalizer) for a targeted cut.',
+        ],
+      },
+      {
+        heading: 'Denoise first, then cut',
+        paragraphs: [
+          'Noise removal changes what a silence measurement sees, so the order matters. Run this page first. Once the floor sits 40 dB under the voice, the [silence remover](/silence-remover) can tell dead air from a quiet word far more reliably.',
+          'After both, match the loudness of your episode with the [loudness meter](/loudness-meter) before you publish.',
+        ],
+      },
+    ],
+    related: ['voice-recorder', 'silence-remover', 'normalize-audio'],
+    editor: {
+      exportLabel: 'Remove noise',
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      noise: true,
+      dropHint: 'Drop an audio file, or click to browse',
     },
   },
   {

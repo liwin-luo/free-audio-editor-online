@@ -105,6 +105,14 @@ export interface EditorText {
   silenceGap: string;
   silenceRemove: string;
   silenceKeepFile: string;
+  /** Slider label, 0–100 percent */
+  noiseStrength: string;
+  /** Status line under the strength slider */
+  noiseExport: string;
+  /** Placeholder: {p} */
+  denoiseProgress: string;
+  /** Dropzone hint line on the noise-remover page */
+  hintNoise: string;
   loopTimes: string;
   loopCrossfade: string;
   loopExport: string;

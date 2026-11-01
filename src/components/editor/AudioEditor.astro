@@ -41,6 +41,7 @@ const jobChrome = Boolean(
   config.trimLayout ||
     config.ringtone ||
     config.silence ||
+    config.noise ||
     config.loop ||
     config.bitcrush ||
     config.split ||
@@ -176,7 +177,7 @@ const jobChrome = Boolean(
         00:00.00 / 00:00.00
       </p>
       <p data-hint class="ms-auto hidden text-xs text-ink3 md:block">
-        {config.silence ? t.hintSilence : config.converter ? t.hintConvert : t.hintSelect}
+        {config.noise ? t.hintNoise : config.silence ? t.hintSilence : config.converter ? t.hintConvert : t.hintSelect}
       </p>
     </div>
 
@@ -606,7 +607,22 @@ const jobChrome = Boolean(
     }
 
     {
-      !config.converter && !config.silence && !config.quickControls?.includes('tempo') && (
+      config.noise && (
+        <div class="border-b border-line px-4 py-3.5 md:px-5">
+          <label class="block">
+            <span class="mb-2 flex items-center justify-between text-sm text-ink2">
+              {t.noiseStrength}
+              <span class="font-mono text-xs tabular-nums" data-noise-strength-label>75 %</span>
+            </span>
+            <input type="range" data-noise-strength min="0" max="100" step="5" value="75" class="w-full accent-(--color-accent)" />
+            <span class="mt-1 block text-xs text-ink3" data-noise-status>{t.noiseExport}</span>
+          </label>
+        </div>
+      )
+    }
+
+    {
+      !config.converter && !config.silence && !config.noise && !config.quickControls?.includes('tempo') && (
         <div class="grid gap-3 px-4 pt-3 sm:grid-cols-2 md:px-5">
           <label class="block text-xs text-ink2">
             {t.startSec}
@@ -621,7 +637,7 @@ const jobChrome = Boolean(
     }
 
     {
-      !config.converter && !config.silence && !config.quickControls?.includes('tempo') && (
+      !config.converter && !config.silence && !config.noise && !config.quickControls?.includes('tempo') && (
         <div class="flex flex-wrap items-center gap-3 px-4 py-3 md:px-5" data-modes-row>
           {!config.loop && !config.split && (
             <div class="inline-flex rounded-lg border border-line-strong p-0.5" role="group" aria-label={t.cutMode}>

@@ -140,6 +140,10 @@ export const de: Catalog = {
     silenceGap: 'Mindestpause',
     silenceRemove: 'Entfernt etwa {time} Stille',
     silenceKeepFile: 'Nichts liegt über der Schwelle, der Export behält die ganze Datei',
+    noiseStrength: 'Stärke',
+    noiseExport: 'Das Rauschen wird beim Export entfernt. Das 150-KB-Modell lädt einmal.',
+    denoiseProgress: 'Rauschen wird entfernt… {p} %',
+    hintNoise: 'Die Stärke greift beim Export. Ein 150-KB-Modell lädt beim ersten Mal.',
     loopTimes: 'Wiederholungen',
     loopCrossfade: 'Übergang',
     loopExport: 'Export dauert etwa {time}',
@@ -3735,6 +3739,70 @@ export const de: Catalog = {
       ],
       dropHint: 'Audiodateien ablegen oder klicken zum Auswählen',
       exportLabel: 'Stille entfernen',
+    },
+    'noise-remover': {
+      cardLine: 'Ständiges Hintergrundrauschen unter einer Sprachaufnahme direkt im Browser absenken.',
+      name: 'Hintergrundrauschen entfernen',
+      shortName: 'Entrauschen',
+      title: 'Rauschen entfernen — Hintergrundrauschen online mindern',
+      description: 'Ständiges Rauschen um die Sprache direkt im Browser absenken. RNNoise läuft auf deinem Gerät, ein 150-KB-Modell lädt einmal. Kostenlos, MP3 oder WAV.',
+      h1: 'Rauschen entfernen — Zischen und Brummen aus Aufnahmen nehmen',
+      heroAlt: 'Das ständige Hintergrundrauschen unter einer Sprachaufnahme wird leiser',
+      subtitle: 'Ständiges Zischen, Brummen und Lüfterrauschen fallen um 20 dB oder mehr, wo Sprache ist. Die Zeitleiste bleibt, wo sie ist.',
+      intro: 'Diese Seite legt RNNoise über deine Aufnahme, ein Rauschengate, das auf Sprache trainiert ist. Ständiges Rauschen wie Zischen, Brummen oder ein Lüfter fällt um 20 dB oder mehr, und die Worte behalten ihre Lautstärke. Das Gate ist ein 150-KB-Modell und läuft in deinem Browser, deine Audiodatei verlässt das Gerät nicht.',
+      usesHeading: 'Wo Hintergrundrauschen wirklich herkommt',
+      uses: ['Eine Sprachmemo retten, die neben einem Lüfter oder einer Klimaanlage entstanden ist.', 'Einen Podcast oder ein Interview vor der Veröffentlichung säubern, ohne ein Desktopprogramm.', 'Das Zischen unter einer Vorlesung leiser stellen und danach die Lautheit angleichen.'],
+      howTo: [
+        { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Datei wird auf deinem Gerät dekodiert. Der Stärkeregler startet bei 75 Prozent.' },
+        { name: 'Stärke setzen', text: '100 Prozent ist maximale Unterdrückung. Dreh ihn Richtung 50 zurück, wenn das Ergebnis dumpf klingt und du etwas Raumton behalten willst. Das Modell lädt beim ersten Export, nicht beim Öffnen der Seite.' },
+        { name: 'Exportieren', text: 'Der Export legt die ganze Datei in 10-Millisekunden-Blöcken durch das Gate, die Statuszeile zeigt den Fortschritt. MP3 wird mit der gewählten Bitrate exportiert, WAV behält die bearbeiteten Samples genau.' },
+      ],
+      faqs: [
+        { q: 'Wird meine Datei hochgeladen?', a: 'Nein. Dekodierung und Rauschengate laufen in deinem Browser. Beim ersten Export holt die Seite das RNNoise-Modell, eine 150-KB-WebAssembly-Datei, von dieser Website. Danach bleibt es im Cache und die Seite funktioniert offline.' },
+        { q: 'Was passiert mit der Datei?', a: 'Das Audio läuft mit 48 kHz in 10-Millisekunden-Blöcken durch das Gate. Eine 44,1-kHz-Datei wird auf dem Weg hinein und zurück resampelt. In unserem Testmix fiel ein Rauschen von −31 dBFS auf −61 dBFS, die Sprache bewegte sich um weniger als 1 dB. Ein MP3-Export kodiert einmal mit der gewählten Bitrate neu.' },
+        { q: 'Was wird nicht entfernt?', a: 'Rauschen, das wie Sprache aussieht. Eine zweite Stimme, ein Fernseher im Hintergrund oder eine Menschenmenge bleibt, weil es in denselben Frequenzbändern liegt wie der Sprecher. Dafür brauchst du Spektralreparatur in einer Desktop-DAW. Ständiges Rauschen wie Zischen, Brummen und Lüfter ist das Thema dieser Seite.' },
+        { q: 'Was ist der Unterschied zum Stille-Entferner?', a: 'Der [Stille-Entferner](/silence-remover) schneidet stille Abschnitte aus der Zeitleiste. Diese Seite bewegt kein Sample und senkt nur das ständige Rauschen unter der Sprache ab. Nutze beide in dieser Reihenfolge: erst das Rauschen, dann die toten Passagen.' },
+        { q: 'Funktioniert das auf dem Handy?', a: 'Ja. Regler und Export-Button sind touchgroß, und die Statuszeile zeigt bei langen Dateien den Fortschritt. Die Bearbeitungszeit wächst mit der Länge der Datei, eine halbe Stunde Aufnahme dauert auf einem Mittelklasse-Handy eine Weile.' },
+        { q: 'Säubert das auch Musik?', a: 'Nein, und das ist eine ehrliche Grenze, keine fehlende Einstellung. RNNoise ist auf Sprache trainiert, bei Musik hält es Instrumente für die Stimme und das Detail wird dumpf. Für Musik nimm einen [Highpass](/high-pass-filter) gegen Rumpeln oder den [Equalizer](/equalizer) für eine gezielte Senkung.' },
+        { q: 'Kann ich etwas Raumton behalten?', a: 'Ja. Zieh den Stärkeregler Richtung 50 Prozent, dann mischt sich das Original zurück. In unserem Testmix fiel der Rauschpegel bei 100 Prozent um 30 dB und bei 50 Prozent um 6 dB. Bei 0 Prozent ist der Export die Originaldatei.' },
+      ],
+      sections: [
+        {
+          heading: 'Das Gate unter der Sprache',
+          paragraphs: [
+            'RNNoise verfolgt den Rauschpegel der Aufnahme und berechnet für jedes Frequenzband eine Verstärkung, etwa hundertmal pro Sekunde. Bänder mit Sprache bleiben offen. Bänder mit ständischem Rauschen schließen.',
+            'Die Zahlen auf dieser Seite stammen aus einer wiederholbaren Messung, nicht aus dem Marketing. Unser Testmix paart einen sprachähnlichen Ton mit weißem Rauschen bei −31 dBFS. Nach dem Gate bei 100 Prozent Stärke liegt der Pegel bei −61 dBFS, das Sprachband bewegte sich um weniger als 1 dB, und ein Vollaussteuerungsklick landete auf genau dem Sample, auf dem er startete.',
+          ],
+          table: {
+            headers: ['Stärke', 'Was du bekommst', 'Rauschen im Testmix'],
+            rows: [
+              ['100 %', 'Maximale Unterdrückung. Das sauberste Ergebnis; helle Aufnahmen können dumpf klingen.', '−30 dB'],
+              ['50 %', 'Halbe Mischung. Behält etwas Raumton unter der Sprache.', '−6 dB'],
+              ['0 %', 'Umgehung. Der Export ist die Originaldatei.', 'keine Änderung'],
+            ],
+          },
+        },
+        {
+          heading: 'Sprache, keine Musik',
+          paragraphs: [
+            'Das Gate ist auf Sprache trainiert und behandelt alles Sprachförmige als das, was bleiben soll. Für Gespräche ist das ein Vorteil, überall sonst eine Grenze:',
+          ],
+          bullets: [
+            'Weg: Zischen, Brummen, Lüfter- und Klimaanlagenrauschen, Vorstufenrauschen billiger Mikrofone.',
+            'Bleibt: eine zweite Stimme, ein Fernseher im Hintergrund, eine Menschenmenge. Das sieht wie der Sprecher aus.',
+            'Stattdessen bei Musik: ein [Highpass](/high-pass-filter) gegen Rumpeln oder der [Equalizer](/equalizer) für eine gezielte Senkung.',
+          ],
+        },
+        {
+          heading: 'Erst entrauschen, dann schneiden',
+          paragraphs: [
+            'Rauschentfernung verändert, was eine Stille-Messung sieht, also zählt die Reihenfolge. Nimm zuerst diese Seite. Liegt der Pegel erst 40 dB unter der Sprache, kann der [Stille-Entferner](/silence-remover) tote Luft viel zuverlässiger von einem leisen Wort unterscheiden.',
+            'Gleiche danach die Lautheit deiner Folge mit dem [Lautheitsmesser](/loudness-meter) an, bevor du veröffentlichst.',
+          ],
+        },
+      ],
+      dropHint: 'Audiodatei hierher ziehen oder klicken',
+      exportLabel: 'Rauschen entfernen',
     },
     'audio-looper': {
       cardLine: 'Wiederhole einen Clip bis zu 16-mal und blende jede Naht über.',

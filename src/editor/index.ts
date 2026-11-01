@@ -35,6 +35,9 @@ function loadEncoders() {
 function loadSilence() {
   return import('./silence');
 }
+function loadDenoise() {
+  return import('./denoise-browser');
+}
 function loadLoop() {
   return import('./loop');
 }
@@ -128,6 +131,7 @@ export class Editor {
   private splitParts = 2;
   private crushBits = 8;
   private crushHold = 2;
+  private noiseStrength = 0.75;
   private drag: { kind: 'new' | 'start' | 'end'; x0: number; anchor: number; sel: { start: number; end: number } } | null = null;
 
   constructor(root: HTMLElement, config: EditorConfig) {
@@ -228,6 +232,15 @@ export class Editor {
         this.splitParts = Number(parts.value);
         if (partsLabel) partsLabel.textContent = String(Math.round(this.splitParts));
         this.updateSplitStatus();
+      });
+    }
+
+    if (this.config.noise) {
+      const strength = els.root.querySelector<HTMLInputElement>('[data-noise-strength]');
+      const strengthLabel = els.root.querySelector('[data-noise-strength-label]');
+      strength?.addEventListener('input', () => {
+        this.noiseStrength = Number(strength.value) / 100;
+        if (strengthLabel) strengthLabel.textContent = `${strength.value} %`;
       });
     }
 
@@ -843,12 +856,19 @@ export class Editor {
   private updatePageStatus(): void {
     if (!this.buffer) return;
     if (this.config.mono) this.setStatus(this.text.monoExport);
+    if (this.config.noise) this.setStatus(this.text.noiseExport);
     if (this.config.bitcrush) this.updateCrushStatus();
     if (this.config.hz432) this.setStatus(this.text.hz432Export);
   }
 
   private async pageEffect(buffer: AudioBuffer): Promise<AudioBuffer> {
     if (this.config.mono) return monoAudioBuffer(buffer);
+    if (this.config.noise) {
+      const { denoiseAudioBuffer } = await loadDenoise();
+      return denoiseAudioBuffer(buffer, this.noiseStrength, (percent) =>
+        this.setStatus(fill(this.text.denoiseProgress, { p: String(percent) })),
+      );
+    }
     if (this.config.bitcrush) return crushAudioBuffer(buffer, this.crushBits, this.crushHold);
     if (this.config.hz432) return shiftAudioBuffer(buffer);
     return buffer;
@@ -884,7 +904,7 @@ export class Editor {
 
   private onPointerDown(e: PointerEvent): void {
     if (!this.buffer || this.busy) return;
-    if (this.config.converter || this.config.silence) return;
+    if (this.config.converter || this.config.silence || this.config.noise) return;
     const target = e.target as HTMLElement;
     const time = this.timeAtEvent(e);
     let kind: 'new' | 'start' | 'end' = 'new';

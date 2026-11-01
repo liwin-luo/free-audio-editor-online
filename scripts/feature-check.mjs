@@ -428,13 +428,14 @@ try {
     trebleDry && trebleBoosted ? `dry=${trebleDry.peak.toFixed(3)} boosted=${trebleBoosted.peak.toFixed(3)}` : '(missing wav)',
   );
 
-  // --- Equalizer on /equalizer: mid band cut and boost both provable on a 1 kHz tone ---
+  // --- Equalizer on /equalizer: the 1 kHz band of the ten-band EQ cuts and boosts a 1 kHz tone ---
   await client.goto(`${BASE}/equalizer`, { waitUntil: 'networkidle0' });
   await (await client.$('[data-file-input]')).uploadFile(TEST_WAV);
   await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
   await client.select('[data-format]', 'wav');
   const setMid = async (v) =>
-    client.$eval('[data-quick-mid]', (el, val) => {
+    client.$$eval('[data-eq10]', (els, val) => {
+      const el = els[5]; // band 6 of EQ10_HZ = 1 kHz
       el.value = String(val);
       el.dispatchEvent(new Event('change', { bubbles: true }));
     }, v);
@@ -743,5 +744,80 @@ try {
   await recBrowser.close();
 }
 failures += recFailures;
+
+// --- Phase 3: noise remover (RNNoise runs on export; the gap floor drops) ---
+{
+  const NOISY_WAV = '/tmp/test-noise.wav';
+  const noiseRate = 48000, noiseSeconds = 6, noiseN = noiseRate * noiseSeconds;
+  const pcm = new Int16Array(noiseN);
+  let seed = 42;
+  const rnd = () => {
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    return seed / 0x3fffffff - 1;
+  };
+  for (let i = 0; i < noiseN; i++) {
+    const t = i / noiseRate, burst = t % 1 < 0.5 ? 1 : 0;
+    const env = burst * (0.6 + 0.4 * Math.sin(2 * Math.PI * 3 * t));
+    const v = env * 0.28 * Math.sin(2 * Math.PI * 220 * t) + 0.06 * rnd();
+    pcm[i] = Math.max(-32767, Math.min(32767, Math.round(v * 32767)));
+  }
+  const hdr = Buffer.alloc(44);
+  hdr.write('RIFF', 0); hdr.writeUInt32LE(36 + noiseN * 2, 4); hdr.write('WAVE', 8);
+  hdr.write('fmt ', 12); hdr.writeUInt32LE(16, 16); hdr.writeUInt16LE(1, 20); hdr.writeUInt16LE(1, 22);
+  hdr.writeUInt32LE(noiseRate, 24); hdr.writeUInt32LE(noiseRate * 2, 28); hdr.writeUInt16LE(2, 32); hdr.writeUInt16LE(16, 34);
+  hdr.write('data', 36); hdr.writeUInt32LE(noiseN * 2, 40);
+  writeFileSync(NOISY_WAV, Buffer.concat([hdr, Buffer.from(pcm.buffer)]));
+  const gapRms = (buf) => {
+    const one = (a, b) => {
+      let acc = 0, count = 0;
+      for (let i = 44 + a * noiseRate * 2; i < 44 + b * noiseRate * 2 && i < buf.length - 1; i += 2) {
+        const v = buf.readInt16LE(i) / 32768;
+        acc += v * v; count++;
+      }
+      return count ? Math.sqrt(acc / count) : 0;
+    };
+    return Math.max(one(1.6, 1.9), one(3.6, 3.9));
+  };
+  const inGap = gapRms(readFileSync(NOISY_WAV));
+  const denoiseWav = join(DOWNLOAD_DIR, 'test-noise-edited.wav');
+  rmSync(denoiseWav, { force: true });
+  const denBrowser = await puppeteer.launch({
+    executablePath: CHROME,
+    headless: true,
+    args: ['--autoplay-policy=no-user-gesture-required'],
+  });
+  try {
+    const page = await denBrowser.newPage();
+    const cdp = await page.createCDPSession();
+    await cdp.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: DOWNLOAD_DIR });
+    await page.goto(`${BASE}/noise-remover`, { waitUntil: 'networkidle0' });
+    check('noise page strength slider', (await page.$('[data-noise-strength]')) !== null);
+    await (await page.$('[data-file-input]')).uploadFile(NOISY_WAV);
+    await page.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+    await page.select('[data-format]', 'wav');
+    let status = '';
+    for (let i = 0; i < 120 && !/Exported/.test(status); i++) {
+      if (i % 4 === 0) { try { await page.click('[data-export]'); } catch {} }
+      await new Promise((r) => setTimeout(r, 500));
+      status = await page.evaluate(() => document.querySelector('[data-status]')?.textContent ?? '');
+    }
+    let out = null;
+    for (let i = 0; i < 20 && !out; i++) {
+      await new Promise((r) => setTimeout(r, 500));
+      try { out = readFileSync(denoiseWav); } catch {}
+    }
+    const outGap = out ? gapRms(out) : 0;
+    const drop = inGap > 0 && outGap > 0 ? 20 * Math.log10(inGap / outGap) : 0;
+    check(
+      'noise remover gates the gap floor',
+      Boolean(out) && drop >= 10,
+      out ? `gap rms ${inGap.toFixed(4)} → ${outGap.toFixed(4)} (−${drop.toFixed(1)} dB)` : '(missing wav)',
+    );
+  } catch (e) {
+    check('noise remover flow', false, e.message.slice(0, 120));
+  } finally {
+    await denBrowser.close();
+  }
+}
 console.log(failures === 0 ? '\nFEATURES: ALL PASS' : `\nFEATURES: ${failures} FAILURE(S)`);
 process.exit(failures === 0 ? 0 : 1);
