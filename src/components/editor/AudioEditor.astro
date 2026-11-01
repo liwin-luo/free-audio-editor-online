@@ -42,6 +42,7 @@ const jobChrome = Boolean(
     config.ringtone ||
     config.silence ||
     config.noise ||
+    config.voice ||
     config.loop ||
     config.bitcrush ||
     config.split ||
@@ -177,7 +178,7 @@ const jobChrome = Boolean(
         00:00.00 / 00:00.00
       </p>
       <p data-hint class="ms-auto hidden text-xs text-ink3 md:block">
-        {config.noise ? t.hintNoise : config.silence ? t.hintSilence : config.converter ? t.hintConvert : t.hintSelect}
+        {config.voice ? t.hintVoice : config.noise ? t.hintNoise : config.silence ? t.hintSilence : config.converter ? t.hintConvert : t.hintSelect}
       </p>
     </div>
 
@@ -622,7 +623,25 @@ const jobChrome = Boolean(
     }
 
     {
-      !config.converter && !config.silence && !config.noise && !config.quickControls?.includes('tempo') && (
+      config.voice && (
+        <div class="flex flex-wrap items-center gap-2 border-b border-line px-4 py-3.5 md:px-5">
+          {([
+            ['high', t.voiceHigh],
+            ['deep', t.voiceDeep],
+            ['robot', t.voiceRobot],
+            ['radio', t.voiceRadio],
+            ['ghost', t.voiceGhost],
+          ] as const).map(([id, label]) => (
+            <button type="button" class="btn btn-secondary h-10 px-4" data-voice={id} aria-pressed="false">
+              {label}
+            </button>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      !config.converter && !config.silence && !config.noise && !config.voice && !config.quickControls?.includes('tempo') && (
         <div class="grid gap-3 px-4 pt-3 sm:grid-cols-2 md:px-5">
           <label class="block text-xs text-ink2">
             {t.startSec}
@@ -637,7 +656,7 @@ const jobChrome = Boolean(
     }
 
     {
-      !config.converter && !config.silence && !config.noise && !config.quickControls?.includes('tempo') && (
+      !config.converter && !config.silence && !config.noise && !config.voice && !config.quickControls?.includes('tempo') && (
         <div class="flex flex-wrap items-center gap-3 px-4 py-3 md:px-5" data-modes-row>
           {!config.loop && !config.split && (
             <div class="inline-flex rounded-lg border border-line-strong p-0.5" role="group" aria-label={t.cutMode}>

@@ -46,6 +46,26 @@ for (const { slug } of TOOLS) {
   try {
     await page.goto(`${BASE}/${slug}`, { waitUntil: 'networkidle0', timeout: 30000 });
 
+    if (slug === 'tap-tempo') {
+      // No-file island: capture the fresh island, then a settled readout.
+      await page.waitForSelector('[data-tap-tempo]', { timeout: 10000 });
+      const section = await page.$('section[aria-label]');
+      await section.screenshot({ path: join(OUT_DIR, `${slug}-1.webp`), type: 'webp', quality: 82 });
+      console.log(`PASS  ${slug}-1.webp (fresh island)`);
+      await page.evaluate(() => new Promise((resolve) => {
+        let i = 0;
+        const t = setInterval(() => {
+          document.querySelector('[data-tap]')?.click();
+          if (++i >= 7) { clearInterval(t); resolve(null); }
+        }, 500);
+      }));
+      await new Promise((r) => setTimeout(r, 300));
+      await section.screenshot({ path: join(OUT_DIR, `${slug}-2.webp`), type: 'webp', quality: 82 });
+      console.log(`PASS  ${slug}-2.webp (settled readout)`);
+      await page.close();
+      continue;
+    }
+
     // 1 — dropzone state, editor section only
     await page.waitForSelector('[data-dropzone]', { timeout: 10000 });
     const section = await page.$('section[aria-label]');

@@ -14,6 +14,7 @@ import MidiEditor from './editor/MidiEditor.astro';
 import TagEditor from './editor/TagEditor.astro';
 import LoudnessEditor from './editor/LoudnessEditor.astro';
 import MetronomeEditor from './editor/MetronomeEditor.astro';
+import TapTempoEditor from './editor/TapTempoEditor.astro';
 import SoundboardEditor from './editor/SoundboardEditor.astro';
 import KeyBpmEditor from './editor/KeyBpmEditor.astro';
 import MixerEditor from './editor/MixerEditor.astro';
@@ -115,6 +116,8 @@ const jsonLd = [
         <KeyBpmEditor config={tool.editor} locale={locale} />
       ) : tool.editor.metronome ? (
         <MetronomeEditor config={tool.editor} locale={locale} />
+      ) : tool.editor.tapTempo ? (
+        <TapTempoEditor config={tool.editor} locale={locale} />
       ) : tool.editor.soundboard ? (
         <SoundboardEditor config={tool.editor} locale={locale} />
       ) : tool.editor.loudness ? (

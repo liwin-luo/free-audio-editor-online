@@ -1,0 +1,39 @@
+---
+/**
+ * Tap tempo island. No file: tap the beat (button or space), read the BPM.
+ */
+import { getShell } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { EditorConfig } from '../../data/tools';
+
+interface Props {
+  config: EditorConfig;
+  locale?: Locale;
+}
+const { config, locale = 'en' } = Astro.props;
+const { editor: t } = getShell(locale);
+---
+
+<div
+  data-tap-tempo
+  data-i18n={JSON.stringify(t)}
+  class="overflow-clip rounded-(--radius-tool) border border-line bg-surface"
+>
+  <div class="grid place-items-center gap-4 px-4 py-10 md:px-5">
+    <p class="font-mono text-6xl font-semibold tabular-nums text-ink" data-tap-bpm>—</p>
+    <p class="text-sm text-ink3" data-tap-count>0</p>
+    <button type="button" class="btn btn-primary h-16 w-full max-w-xs text-lg" data-tap>
+      {t.tapTempoTap}
+    </button>
+    <button type="button" class="btn btn-ghost h-9 px-3" data-tap-reset>
+      {t.tapTempoReset}
+    </button>
+    <p class="max-w-md text-center text-xs text-ink3">{t.tapTempoHint}</p>
+  </div>
+</div>
+
+<script>
+  import { initTapTempo } from '../../editor/tap-tempo-ui';
+
+  initTapTempo();
+</script>

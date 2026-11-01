@@ -819,5 +819,84 @@ failures += recFailures;
     await denBrowser.close();
   }
 }
+// --- Phase 4: add-reverb, voice-changer, tap-tempo (dedicated browser) ---
+{
+  const fxBrowser = await puppeteer.launch({
+    executablePath: CHROME,
+    headless: true,
+    args: ['--autoplay-policy=no-user-gesture-required'],
+  });
+  const client = await fxBrowser.newPage();
+  const fxCdp = await client.createCDPSession();
+  await fxCdp.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: DOWNLOAD_DIR });
+  const editedWav = join(DOWNLOAD_DIR, 'test-tone-edited.wav');
+  try {
+  // Reverb: the export grows the 2.2 s decay tail.
+  await client.goto(`${BASE}/add-reverb`, { waitUntil: 'networkidle0' });
+  await (await client.$('[data-file-input]')).uploadFile(TEST_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.select('[data-format]', 'wav');
+  await client.$eval('[data-quick-reverb]', (el) => {
+    el.value = '1';
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  rmSync(editedWav, { force: true });
+  await client.click('[data-export]');
+  await waitExported(client);
+  const revStats = await waitForStats(editedWav);
+  check(
+    'reverb export grows the decay tail',
+    revStats !== null && revStats.duration > 11,
+    revStats ? `${revStats.duration.toFixed(2)}s (source 10s)` : '(missing wav)',
+  );
+
+  // Voice changer: High preset = pitch +4, length unchanged, spectrum shifts up.
+  const zcr = (buf) => {
+    const rate = buf.readUInt32LE(24);
+    const size = buf.readUInt32LE(40);
+    let crossings = 0, n = 0;
+    const end = Math.min(44 + size, buf.length - 1);
+    for (let i = 44 + rate * 2; i < end && n < rate * 4; i += 2) {
+      if ((buf.readInt16LE(i) > 0) !== (buf.readInt16LE(i + 2) > 0)) crossings++;
+      n++;
+    }
+    return n ? crossings / n : 0;
+  };
+  await client.goto(`${BASE}/voice-changer`, { waitUntil: 'networkidle0' });
+  await (await client.$('[data-file-input]')).uploadFile(TEST_WAV);
+  await client.waitForSelector('[data-workspace]:not(.hidden)', { timeout: 10000 });
+  await client.select('[data-format]', 'wav');
+  await client.$eval('[data-voice="high"]', (el) => el.click());
+  rmSync(editedWav, { force: true });
+  await client.click('[data-export]');
+  await waitExported(client);
+  const voiceStats = await waitForStats(editedWav);
+  const inWav = readFileSync(TEST_WAV);
+  const okVoice = voiceStats !== null && Math.abs(voiceStats.duration - 10) < 0.3 && zcr(readFileSync(editedWav)) > zcr(inWav) * 1.15;
+  check(
+    'voice preset High shifts the spectrum up, length stays',
+    okVoice,
+    voiceStats ? `${voiceStats.duration.toFixed(2)}s` : '(missing wav)',
+  );
+
+  // Tap tempo: scripted taps at 500 ms read ~120 BPM.
+  await client.goto(`${BASE}/tap-tempo`, { waitUntil: 'networkidle0' });
+  await client.evaluate(() => new Promise((resolve) => {
+    let i = 0;
+    const t = setInterval(() => {
+      document.querySelector('[data-tap]')?.click();
+      if (++i >= 8) { clearInterval(t); resolve(null); }
+    }, 500);
+  }));
+  const bpm = await client.$eval('[data-tap-bpm]', (el) => parseFloat(el.textContent));
+  check('tap tempo reads 500 ms taps as ~120 BPM', bpm >= 118 && bpm <= 122, String(bpm));
+  } catch (e) {
+    check('reverb / voice / tap flow', false, e.message.slice(0, 120));
+  } finally {
+    await client.close();
+    await fxBrowser.close();
+  }
+}
 console.log(failures === 0 ? '\nFEATURES: ALL PASS' : `\nFEATURES: ${failures} FAILURE(S)`);
 process.exit(failures === 0 ? 0 : 1);

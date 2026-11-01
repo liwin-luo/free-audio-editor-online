@@ -132,6 +132,7 @@ export class Editor {
   private crushBits = 8;
   private crushHold = 2;
   private noiseStrength = 0.75;
+  private voiceCrushBits = 0;
   private drag: { kind: 'new' | 'start' | 'end'; x0: number; anchor: number; sel: { start: number; end: number } } | null = null;
 
   constructor(root: HTMLElement, config: EditorConfig) {
@@ -241,6 +242,16 @@ export class Editor {
       strength?.addEventListener('input', () => {
         this.noiseStrength = Number(strength.value) / 100;
         if (strengthLabel) strengthLabel.textContent = `${strength.value} %`;
+      });
+    }
+
+    if (this.config.voice) {
+      const presetButtons = Array.from(els.root.querySelectorAll<HTMLButtonElement>('[data-voice]'));
+      presetButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          this.applyVoicePreset(btn.dataset.voice ?? '');
+          presetButtons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        });
       });
     }
 
@@ -853,6 +864,30 @@ export class Editor {
     this.setStatus(fill(this.text.crushExport, { bits: Math.round(this.crushBits), hold: Math.round(this.crushHold) }));
   }
 
+  /** Presets swap, not stack: each starts from a clean state and keeps the selection. */
+  private applyVoicePreset(id: string): void {
+    const presets: Record<string, { pitch?: number; hpf?: number; lpf?: number; distort?: number; reverb?: number; compress?: number; crush?: number }> = {
+      high: { pitch: 4 },
+      deep: { pitch: -4 },
+      robot: { distort: 0.25, hpf: 150, lpf: 4000, crush: 5 },
+      radio: { hpf: 500, lpf: 3000, distort: 0.35, compress: 0.4 },
+      ghost: { pitch: -2, reverb: 0.55 },
+    };
+    const preset = presets[id] ?? {};
+    const next = defaultEditState();
+    next.sel = this.state.sel;
+    next.pitch = preset.pitch ?? 0;
+    next.hpf = preset.hpf ?? 20;
+    next.lpf = preset.lpf ?? 20000;
+    next.distort = preset.distort ?? 0;
+    next.reverb = preset.reverb ?? 0;
+    next.compress = preset.compress ?? 0;
+    this.voiceCrushBits = preset.crush ?? 0;
+    this.pitchPreview = null;
+    this.applyState(next, true);
+    this.updatePageStatus();
+  }
+
   private updatePageStatus(): void {
     if (!this.buffer) return;
     if (this.config.mono) this.setStatus(this.text.monoExport);
@@ -862,6 +897,7 @@ export class Editor {
   }
 
   private async pageEffect(buffer: AudioBuffer): Promise<AudioBuffer> {
+    if (this.config.voice && this.voiceCrushBits > 0) return crushAudioBuffer(buffer, this.voiceCrushBits, 1);
     if (this.config.mono) return monoAudioBuffer(buffer);
     if (this.config.noise) {
       const { denoiseAudioBuffer } = await loadDenoise();
@@ -904,7 +940,7 @@ export class Editor {
 
   private onPointerDown(e: PointerEvent): void {
     if (!this.buffer || this.busy) return;
-    if (this.config.converter || this.config.silence || this.config.noise) return;
+    if (this.config.converter || this.config.silence || this.config.noise || this.config.voice) return;
     const target = e.target as HTMLElement;
     const time = this.timeAtEvent(e);
     let kind: 'new' | 'start' | 'end' = 'new';

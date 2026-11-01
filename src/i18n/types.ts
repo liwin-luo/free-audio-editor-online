@@ -113,6 +113,20 @@ export interface EditorText {
   denoiseProgress: string;
   /** Dropzone hint line on the noise-remover page */
   hintNoise: string;
+  /** Voice-changer preset labels */
+  voiceHigh: string;
+  voiceDeep: string;
+  voiceRobot: string;
+  voiceRadio: string;
+  voiceGhost: string;
+  /** Dropzone hint line on the voice-changer page */
+  hintVoice: string;
+  /** Tap-tempo island */
+  tapTempoTap: string;
+  tapTempoReset: string;
+  tapTempoHint: string;
+  /** Placeholder: {n} */
+  tapTempoBeats: string;
   loopTimes: string;
   loopCrossfade: string;
   loopExport: string;

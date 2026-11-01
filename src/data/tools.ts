@@ -87,6 +87,10 @@ export interface EditorConfig {
   silence?: boolean;
   /** RNNoise denoise on export. Strength slider on the page, cut UI hidden. */
   noise?: boolean;
+  /** Voice-changer presets. Buttons on the page swap pitch/filter/crush presets. */
+  voice?: boolean;
+  /** Tap-tempo island. No file. Tap the beat, read the BPM. */
+  tapTempo?: boolean;
   /** Repeat the kept selection, or the whole file, on export. */
   loop?: boolean;
   /** Cut the kept selection, or the whole file, into equal parts and zip them. */
@@ -2561,7 +2565,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['audio-distorter', 'slowed-reverb', 'bitcrusher'],
+    related: ['audio-distorter', 'slowed-reverb', 'add-reverb'],
     editor: {
       exportLabel: 'Add echo',
       defaultFormat: 'mp3-192',
@@ -2661,7 +2665,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['echo', 'low-pass-filter', 'reverse-audio'],
+    related: ['echo', 'low-pass-filter', 'voice-changer'],
     editor: {
       exportLabel: 'Distort and download',
       defaultFormat: 'mp3-192',
@@ -3119,7 +3123,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['echo', 'auto-panner', '3d-audio'],
+    related: ['echo', 'auto-panner', 'add-reverb'],
     editor: {
       exportLabel: 'Slow and download',
       defaultFormat: 'mp3-192',
@@ -4152,7 +4156,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['change-audio-speed', 'audio-to-midi', 'tempo-changer'],
+    related: ['change-audio-speed', 'voice-changer', 'tempo-changer'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: false,
@@ -5048,12 +5052,119 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['voice-recorder', 'change-audio-speed', 'key-bpm-finder'],
+    related: ['voice-recorder', 'key-bpm-finder', 'tap-tempo'],
     editor: {
       defaultFormat: 'mp3-192',
       showAdjust: false,
       dropHint: 'No file. Press play.',
       metronome: true,
+    },
+  },
+  {
+    slug: 'tap-tempo',
+    cardLine: 'Tap the beat and read the BPM of anything, no file needed.',
+    name: 'Tap Tempo',
+    shortName: 'Tap tempo',
+    icon: 'clock-counter-clockwise',
+    category: 'record',
+    title: 'Tap Tempo — Find a Song BPM by Tapping',
+    description:
+      'Tap along with a song and read its BPM. One stray tap does not move the number, and it settles after about four taps. Free, nothing uploaded.',
+    h1: 'Tap Tempo — Find the BPM of a Song by Tapping',
+    hero: {
+      src: '/tap-tempo.svg',
+      alt: 'A beat tapped out as ripples around a dot',
+      width: 32,
+      height: 32,
+    },
+    screenshots: [
+      {
+        src: '/screenshots/tap-tempo-1.webp',
+        alt: 'Tap Tempo island: the readout at a dash before the first tap',
+        width: 1464,
+        height: 537,
+      },
+      {
+        src: '/screenshots/tap-tempo-2.webp',
+        alt: 'Tap Tempo after seven taps: the readout settled at 120.2 BPM',
+        width: 1464,
+        height: 537,
+      },
+    ],
+    subtitle: 'Tap any key or button on the beat. The number settles in about four taps.',
+    intro:
+      'Play the song anywhere, tap this page on every beat, and read the tempo in BPM. The readout takes a trimmed mean of your tapping intervals, so one early or missed tap does not drag it, and 2.5 seconds without a tap starts a fresh count. There is no file to open and nothing to upload; the taps never leave this page.',
+    usesHeading: 'What a tapped BPM is for',
+    uses: [
+      'Set a practice loop or a metronome to the tempo of a song you are learning.',
+      'Check whether two tracks will sit together before you try a blend.',
+      'Read the tempo of a melody in your head faster than describing it to a tool.',
+    ],
+    howTo: [
+      {
+        name: 'Play the song',
+        text: 'Anywhere you like. This page does not need the audio file, so a phone speaker next to a laptop works fine.',
+      },
+      {
+        name: 'Tap the beat',
+        text: 'Tap the button, or hold focus on the page and hit the space bar on every beat. The readout firms up after about four taps and keeps refining as you keep tapping.',
+      },
+      {
+        name: 'Read and reset',
+        text: 'The number is beats per minute to one decimal. Stop tapping for 2.5 seconds and the next tap starts a fresh count, or hit Reset to clear it right away.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Does my music get uploaded?',
+        a: 'No, and there is no file at all. The page counts the milliseconds between your taps. Nothing about the song, the taps, or anything else leaves this page.',
+      },
+      {
+        q: 'How accurate is it?',
+        a: 'As accurate as your tapping, within limits that do not matter for music. Under a measured test, tapping jitter of plus or minus 20 milliseconds keeps the readout within about 2 BPM of the true tempo. The readout uses a trimmed mean of your intervals, so one stray or missed tap does not move it.',
+      },
+      {
+        q: 'How is this different from the BPM finder?',
+        a: 'The [key and BPM finder](/key-bpm-finder) analyzes an audio file and reads its tempo and key from the waveform, which is exact for produced music. This page reads whatever you tap, so it works on a live band, a melody in your head, or a song you cannot upload or do not have as a file.',
+      },
+      {
+        q: 'I tapped a beat that does not exist. What now?',
+        a: 'Nothing broke. One stray tap lands in the trimmed mean\u2019s discard pile, and 2.5 seconds of silence clears the count anyway. For an immediate start over, hit Reset.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The tap button is the size of a thumb and the whole page weighs almost nothing. Tapping the beat on the same device that plays the music is fine; the page does not listen to the audio.',
+      },
+      {
+        q: 'What tempos can it read?',
+        a: 'Anything with taps between 2.5 seconds apart and effectively instant, so roughly 24 to 999 BPM. Music lives between 40 and 240, where the readout is at its steadiest. For very slow pieces, tap the subdivisions and halve the number.',
+      },
+      {
+        q: 'Can it slow the song down to match the BPM?',
+        a: 'Not here; this page only reads. Take the number to the [metronome](/metronome) to practice against it, or to the [speed changer](/change-audio-speed) to move a file to a target tempo.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'How the number is computed',
+        paragraphs: [
+          'Every tap stores one timestamp. The gaps between your recent taps get sorted, the fastest and slowest quarter drop out, and the remaining gaps are averaged. Sixty thousand divided by that average is the BPM, shown to one decimal.',
+          'The trim is the whole trick. Human tapping has outliers: one tap a hair early, one beat where you listened instead of counting. A plain mean lets either drag the number; the trimmed mean treats both tails as noise and reads the tempo you actually kept.',
+        ],
+      },
+      {
+        heading: 'Tap tempo or the file analyzer',
+        paragraphs: [
+          'Use this page when the tempo lives in your ears: a live band, an acoustic melody, a track you cannot feed to a tool. Use the [key and BPM finder](/key-bpm-finder) when you have the file and want the produced, exact tempo plus the key. When the two disagree, trust the file.',
+        ],
+      },
+    ],
+    related: ['key-bpm-finder', 'metronome', 'change-audio-speed'],
+    editor: {
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      dropHint: 'No file. Tap the beat.',
+      tapTempo: true,
     },
   },
   {
@@ -5145,7 +5256,7 @@ export const TOOLS: ToolDef[] = [
         ],
       },
     ],
-    related: ['pitch-changer', 'audio-to-midi', 'tempo-changer'],
+    related: ['pitch-changer', 'tap-tempo', 'tempo-changer'],
     editor: {
       showAdjust: false,
       dropHint: 'Drop an audio file, or click to browse',
@@ -5344,6 +5455,253 @@ export const TOOLS: ToolDef[] = [
       exportLabel: 'Download mono',
       converter: true,
       mono: true,
+    },
+  },
+  {
+    slug: 'add-reverb',
+    cardLine: 'Give a dry recording the sound of a room, from a touch to a wash.',
+    name: 'Add Reverb to Audio',
+    shortName: 'Reverb',
+    icon: 'layers',
+    category: 'effects',
+    title: 'Add Reverb to Audio — Room Sound Online, Free',
+    description:
+      'Add room reverb to a voice or an instrument track in your browser. One wet slider, preview before export. Free, no upload, MP3 or WAV.',
+    h1: 'Add Reverb to Audio — Give a Recording Room Sound',
+    hero: {
+      src: '/add-reverb.svg',
+      alt: 'A dry recording gaining the reflections of a room',
+      width: 32,
+      height: 32,
+    },
+    screenshots: [
+      {
+        src: '/screenshots/add-reverb-1.webp',
+        alt: 'Add Reverb dropzone: one audio file, the wet slider starts at 0 percent',
+        width: 1464,
+        height: 606,
+      },
+      {
+        src: '/screenshots/add-reverb-2.webp',
+        alt: 'Add Reverb workspace: the wet slider at 60 percent under the waveform',
+        width: 1464,
+        height: 939,
+      },
+    ],
+    subtitle: 'One wet slider from bone dry to a small hall. You hear the result before you export.',
+    intro:
+      'Reverb is the sound a room adds after the source stops: reflections piling up and decaying. This page runs a synthesized room over the file you drop, with one wet slider from dry to washed. You hear the reverb on the waveform before you export, and the processing stays in your browser.',
+    usesHeading: 'What a room fixes',
+    uses: [
+      'Put a dry voice memo or vocal take into a space so it stops sounding pasted on.',
+      'Add depth to a game or video sound effect before you drop it into the edit.',
+      'Soften a harsh close-miked recording without touching its level.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device. The wet slider starts at zero, which is the dry file.',
+      },
+      {
+        name: 'Set the wet level',
+        text: 'The slider blends the room into the dry signal, 0 to 100 percent. Around 25 percent is where a voice stops sounding close-miked. The play button previews the blended result.',
+      },
+      {
+        name: 'Export',
+        text: 'The export adds the decay after your last sample, about 2.2 seconds of tail. MP3 exports at the bitrate you pick, WAV keeps the processed samples exactly.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. The file is decoded and the reverb is rendered in your browser with the Web Audio API. After the page has loaded, decode and WAV export do not need the network.',
+      },
+      {
+        q: 'What happens to the file?',
+        a: 'The wet slider crossfades your dry file into a synthesized room: about 2.2 seconds of exponentially decaying stereo reflections. The export runs one re-encode to MP3 at the bitrate you pick, or writes WAV losslessly from the processed samples. A reverb tail extends the file, so the export is about 2.2 seconds longer at 100 percent wet.',
+      },
+      {
+        q: 'Is this a real hall or a cathedral?',
+        a: 'No, and saying so is the honest part. This is a synthesized room with a 2.2 second decay, not a convolution with a sampled space. For named spaces with scanned impulse responses you want a desktop DAW or a convolution plugin. What this page does, it does in a second or two, in your browser.',
+      },
+      {
+        q: 'How is this different from the echo page?',
+        a: 'The [echo page](/echo) repeats the signal as discrete timed copies you can hear one by one. Reverb is a dense crowd of reflections that melts into a decay. They both add space; the [slowed and reverb](/slowed-reverb) page is the third stop when you want the slowdown bundled in.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The slider, the play button and the export are touch-sized, and the preview renders before you commit to an export.',
+      },
+      {
+        q: 'How much wet for a voice?',
+        a: 'Start at 20 to 30 percent. Dry enough that every word stays clear, wet enough that the close-miked edge softens. Music pads and sound effects take 40 to 60 percent before they turn distant.',
+      },
+      {
+        q: 'Can I remove reverb instead?',
+        a: 'Not on this page, and not honestly in a browser. Once reflections are baked into a recording, separating them from the source is dereverberation research, not a slider going backwards. Prevent it at recording time: a blanket fort, a closet, a mic close to the mouth.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'Room reverb, not a sampled hall',
+        paragraphs: [
+          'The impulse response behind this page is synthesized: decaying stereo noise with a 2.2 second tail, the same shape a small room stamps on a sound. That is why the page is instant and works offline. It is also why the room has no name; there is no Westminster Abbey inside this file.',
+          'The wet slider is a plain crossfade between your dry file and that room. At 0 percent the export is the original file, sample for sample. The decay after your last sample keeps sounding after the audio ends, which is why the export runs about 2.2 seconds longer than the source.',
+        ],
+        table: {
+          headers: ['Wet', 'What you hear', 'Good for'],
+          rows: [
+            ['10 %', 'A tight, almost invisible room.', 'Podcast voice that is too close-miked.'],
+            ['25 %', 'The voice sits in a small room and stops sounding pasted on.', 'Vocals, voice memos, foley.'],
+            ['60 %', 'Washed and distant; the source recedes behind the space.', 'Pads, ghosts, transitions.'],
+            ['100 %', 'All room, no source. A wash with the melody left in it.', 'Sound design, texture beds.'],
+          ],
+        },
+      },
+      {
+        heading: 'Reverb or echo',
+        paragraphs: [
+          'Both effects add space, and they fail differently. Echo gives you distinct repeats at a delay you choose; it reads as an effect on top of the sound. Reverb gives thousands of reflections so tightly packed they read as the room the sound happened in.',
+          'If you can count the repeats, you want the [echo page](/echo). If you want the listener to stop noticing the recording was dry, you want this page. And when the job is a slowed-down TikTok sound with space behind it, the [slowed and reverb](/slowed-reverb) page does both moves at once.',
+        ],
+      },
+      {
+        heading: 'Reverb first, loudness last',
+        paragraphs: [
+          'Reverb changes the average level of a file, so set it before any loudness work. Add the room here, then check the result against a target with the [loudness meter](/loudness-meter), and only then publish.',
+        ],
+      },
+    ],
+    related: ['echo', 'slowed-reverb', 'normalize-audio'],
+    editor: {
+      quickControls: ['reverb'],
+      showAdjust: false,
+      defaultFormat: 'mp3-192',
+      dropHint: 'Drop an audio file, or click to browse',
+    },
+  },
+  {
+    slug: 'voice-changer',
+    cardLine: 'Swap a recorded voice with five presets: high, deep, robot, radio, ghost.',
+    name: 'Change Your Voice',
+    shortName: 'Voice changer',
+    icon: 'mic',
+    category: 'effects',
+    title: 'Voice Changer — Deep, High, Robot and Radio Presets',
+    description:
+      'Change a recording with five voice presets: high, deep, robot, radio, ghost. Pitch, filters and crush run in your browser. Free, MP3 or WAV.',
+    h1: 'Voice Changer — Five Presets for Any Recording',
+    hero: {
+      src: '/voice-changer.svg',
+      alt: 'One recording passing through five voice presets',
+      width: 32,
+      height: 32,
+    },
+    screenshots: [
+      {
+        src: '/screenshots/voice-changer-1.webp',
+        alt: 'Voice Changer dropzone: one recording, five preset buttons, MP3 or WAV export',
+        width: 1464,
+        height: 606,
+      },
+      {
+        src: '/screenshots/voice-changer-2.webp',
+        alt: 'Voice Changer workspace with the five preset buttons above the export bar',
+        width: 1464,
+        height: 695,
+      },
+    ],
+    subtitle: 'Tap High, Deep, Robot, Radio or Ghost and hear it before you export.',
+    intro:
+      'This page applies five fixed voice presets to a recording. High lifts the pitch four semitones, Deep drops it four, Robot flattens it through a bit crusher, Radio squeezes it through a band-pass the way an intercom does, and Ghost spreads it with reverb. Tap a preset and the preview plays your file through it. Everything runs in your browser, so the recording never leaves your device.',
+    usesHeading: 'What people do with it',
+    uses: [
+      'Give a character a different voice in an audiobook clip or a game mod.',
+      'Mask a source voice in a demo or a screen recording before you share it.',
+      'Hear a deeper or brighter read of a podcast intro without re-recording it.',
+    ],
+    howTo: [
+      {
+        name: 'Drop your audio',
+        text: 'Any MP3, WAV, M4A, OGG or FLAC file with a voice in it. It is decoded on your device. No preset is active until you tap one.',
+      },
+      {
+        name: 'Tap a preset',
+        text: 'High, Deep, Robot, Radio or Ghost. The preview plays through the preset right away, and tapping another preset swaps it instead of stacking. Tap the active one again to go back to dry.',
+      },
+      {
+        name: 'Export',
+        text: 'Export writes the preset into the file. MP3 exports at the bitrate you pick, WAV keeps the processed samples exactly. The length never changes.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Is my audio uploaded?',
+        a: 'No. Decode, pitch shift, filters and the bit crusher all run in your browser with the Web Audio API. After this page has loaded, preview and WAV export work without the network.',
+      },
+      {
+        q: 'What does each preset actually do?',
+        a: 'High shifts pitch up four semitones. Deep shifts down four. Robot quantizes to 5-bit steps inside a 150 Hz to 4 kHz band. Radio is a 500 Hz to 3 kHz band-pass with a light drive, the way a small speaker sounds. Ghost drops the pitch two semitones and adds 55 percent room reverb. None of them change the length of the file.',
+      },
+      {
+        q: 'Is this an AI voice clone?',
+        a: 'No. These presets reshape the voice you recorded; they do not generate somebody else\u2019s voice. A clone needs a trained model and usually consent you do not have. What this page does is instant, offline, and it keeps the original speaker recognizable underneath.',
+      },
+      {
+        q: 'How is this different from the pitch changer?',
+        a: 'The [pitch changer](/pitch-changer) gives you a free slider from −12 to +12 semitones for musical work. This page bundles pitch with filters, drive and crush into five one-tap settings for voice. Presets swap instead of stack; for full control, use the pitch changer and the [distorter](/audio-distorter) by hand.',
+      },
+      {
+        q: 'Does it work on a phone?',
+        a: 'Yes. The preset buttons and the export are touch-sized, and the preview renders before you export, so you never pay for a preset you did not hear.',
+      },
+      {
+        q: 'Will it work on music?',
+        a: 'It will process music, but the presets are tuned for voice. High and Deep act like any pitch shifter on a song, Robot eats the detail, and Radio makes it sound like a 1940s broadcast, which is sometimes exactly the point.',
+      },
+      {
+        q: 'Can I fine-tune a preset?',
+        a: 'Not here. One tap, one setting, no sliders, by design. When a preset is close but not right, take the manual route: the [pitch changer](/pitch-changer) for the shift, the [distorter](/audio-distorter) for the grit, the [high-pass filter](/high-pass-filter) and [low-pass filter](/low-pass-filter) for the band.',
+      },
+    ],
+    sections: [
+      {
+        heading: 'What each preset does',
+        paragraphs: [
+          'Every preset is a small stack of the same parts this site uses everywhere: a phase-vocoder pitch shifter that keeps the length, biquad filters, a tanh drive, a bit crusher, and the same synthesized room the reverb page uses. The table is the whole recipe; there is nothing else in the box.',
+        ],
+        table: {
+          headers: ['Preset', 'What changes', 'The setting'],
+          rows: [
+            ['High', 'Pitch up, length unchanged.', '+4 semitones'],
+            ['Deep', 'Pitch down, length unchanged.', '−4 semitones'],
+            ['Robot', 'Quantized steps inside a narrow band.', '5-bit crush, 150 Hz–4 kHz, light drive'],
+            ['Radio', 'Thin band-pass with a pushed edge.', '500 Hz–3 kHz, 35% drive'],
+            ['Ghost', 'Darker pitch with the room behind it.', '−2 semitones, 55% reverb'],
+          ],
+        },
+      },
+      {
+        heading: 'A preset, not a clone',
+        paragraphs: [
+          'Voice changing has two very different meanings in 2026. One is reshaping a recording, which is what this page does in a second, offline, for free. The other is generating a named person\u2019s voice, which is a model, a license question and, done to someone without consent, abuse.',
+          'These presets keep the original speaker recognizable underneath. That is a limit and a safety property at once: nobody gets impersonated by a pitch knob.',
+        ],
+      },
+      {
+        heading: 'Record first, change second',
+        paragraphs: [
+          'The presets amplify what the recording already is. A clean, close recording shifts cleanly; a noisy room comes out noisy in a new shape. Record in the [voice recorder](/voice-recorder), clean the hiss with the [noise remover](/noise-remover), then change the voice here.',
+        ],
+      },
+    ],
+    related: ['voice-recorder', 'pitch-changer', 'audio-distorter'],
+    editor: {
+      exportLabel: 'Change voice',
+      defaultFormat: 'mp3-192',
+      showAdjust: false,
+      voice: true,
+      dropHint: 'Drop an audio file, or click to browse',
     },
   },
   {
