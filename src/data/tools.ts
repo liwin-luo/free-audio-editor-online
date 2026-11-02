@@ -1609,7 +1609,7 @@ export const TOOLS: ToolDef[] = [
       'Fix recordings that are too quiet: phone voice memos, lectures recorded from the back row, video soundtracks ripped at low level. Push the volume up to 4× (12 dB) and a built-in limiter catches the peaks, so the result gets louder without turning into distortion.',
     usesHeading: 'Recordings that need a lift',
     uses: [
-      'Raise a phone voice memo that was recorded too far from the mic.',
+      'Raise a phone voice memo that was recorded too far from the mic — the [quiet Voice Memo guide](/guides/why-is-my-voice-memo-so-quiet) walks through the iPhone steps.',
       'Boost a lecture from the back of the room and let the limiter hold the peaks.',
       'Make a quiet MP3 loud enough to sit under video without clipping the whole file.',
     ],

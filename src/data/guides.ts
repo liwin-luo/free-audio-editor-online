@@ -95,8 +95,8 @@ export const GUIDES: GuideCard[] = [
     href: '/guides/why-is-my-voice-memo-so-quiet',
     title: 'Why Is My Voice Memo So Quiet?',
     description:
-      'The memo plays but you need silence around it. Why phone recordings end up quiet, the 4\u00d7 boost with a limiter, and how the next one records louder.',
-    minutes: 4,
+      'Voice Memos cannot permanently raise a saved file — Enhance Recording is playback-only. Save the memo to Files, boost it in Safari, and record louder next time.',
+    minutes: 5,
   },
   {
     locale: 'en',

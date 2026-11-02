@@ -27,6 +27,11 @@ export function webAppSchema(
   };
 }
 
+/** Schema Answer text is plain text: a markdown link collapses to its label. */
+function plainAnswerText(text: string): string {
+  return text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+}
+
 export function faqSchema(faqs: FaqItem[], inLanguage?: string) {
   return {
     '@context': 'https://schema.org',
@@ -35,7 +40,7 @@ export function faqSchema(faqs: FaqItem[], inLanguage?: string) {
     mainEntity: faqs.map((f) => ({
       '@type': 'Question',
       name: f.q,
-      acceptedAnswer: { '@type': 'Answer', text: f.a },
+      acceptedAnswer: { '@type': 'Answer', text: plainAnswerText(f.a) },
     })),
   };
 }

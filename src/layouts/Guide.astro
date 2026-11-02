@@ -7,7 +7,7 @@ import '../i18n/catalogs';
 import Base from './Base.astro';
 import Icon from '../components/Icon.astro';
 import { SITE } from '../data/site';
-import { organizationRef } from '../lib/jsonld';
+import { faqSchema, organizationRef } from '../lib/jsonld';
 import { getShell, localizeTool } from '../i18n';
 import { isLocale, localeMeta, localePath, type Locale } from '../i18n/locales';
 
@@ -23,6 +23,8 @@ interface Props {
     poster?: string;
     locale?: string;
     sources?: { label: string; url: string }[];
+    /** Visible FAQ + FAQPage JSON-LD from the same strings, so they can't drift. */
+    faq?: { q: string; a: string }[];
   };
   /** Markdown file url, e.g. "/guides/how-to-cut-a-song" */
   file: string;
@@ -196,6 +198,7 @@ const jsonLd = [
       { '@type': 'ListItem', position: 3, name: frontmatter.title, item: pageUrl },
     ],
   },
+  ...(frontmatter.faq?.length ? [faqSchema(frontmatter.faq, localeMeta(locale).hreflang)] : []),
   ...(frontmatter.youtube
     ? [
         {
@@ -322,6 +325,22 @@ const jsonLd = [
       <div class="guide-prose mt-8 max-w-[65ch]">
         <slot />
       </div>
+
+      {
+        frontmatter.faq && frontmatter.faq.length > 0 && (
+          <section class="mt-10 max-w-[65ch]" aria-labelledby="guide-faq-heading">
+            <h2 id="guide-faq-heading" class="text-lg font-semibold text-ink">FAQ</h2>
+            <div class="mt-4 space-y-6">
+              {frontmatter.faq.map((item) => (
+                <div>
+                  <h3 class="text-base font-semibold text-ink">{item.q}</h3>
+                  <p class="mt-2 text-[15px] leading-relaxed text-ink2">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
 
       {
         (frontmatter.sources?.length ?? 0) > 0 && (

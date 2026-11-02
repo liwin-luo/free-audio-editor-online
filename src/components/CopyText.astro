@@ -7,7 +7,7 @@ interface Props {
   locale?: Locale;
 }
 const { text, locale = 'en' } = Astro.props;
-const parts = splitCopy(text);
+const parts = splitCopy(text, locale);
 ---
 
 {
