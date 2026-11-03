@@ -3366,6 +3366,20 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/loudness-meter-1.webp',
+        alt: 'Loudness Meter island: the page before any file or input',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/loudness-meter-2.webp',
+        alt: 'Loudness Meter island after reading the file or taps',
+        width: 1464,
+        height: 524
+      },
+    ],
     subtitle: 'Integrated LUFS of the file you drop — not the loudness of the room.',
     intro:
       'Drop a file and read its integrated loudness in LUFS, plus the sample peak. Then match one delivery target: podcast −16, streaming −14, or broadcast −23. The gain is one number for the whole file. If that gain would push the loudest sample past −1 dBFS, it stops there and the page tells you the LUFS you actually reached. This is not a room sound-level meter, and it is not peak normalize. −16, −14, and −23 are common delivery targets, not a legal limit. Processing stays in your browser.',
@@ -4087,6 +4101,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/waveform-generator-1.webp',
+        alt: 'Audio Waveform Generator island: the page before any file or input',
+        width: 1464,
+        height: 543
+      },
+      {
+        src: '/screenshots/waveform-generator-2.webp',
+        alt: 'Audio Waveform Generator island after reading the file or taps',
+        width: 1464,
+        height: 1434
+      },
+      {
+        src: '/screenshots/waveform-generator-3.webp',
+        alt: 'Audio Waveform Generator after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1443
+      },
+    ],
     subtitle: 'A waveform picture of your audio — colors, size and a transparent PNG, drawn on your device.',
     intro:
       'This page downloads a PNG of the amplitude. It does not change the audio, and the PNG does not play back as a song. A video of the same file is the [music visualizer](/music-visualizer). Preset sizes export at 2×. A custom side runs from 100 to 8000. Over about 2 million pixels, the export is at 1×.',
@@ -4187,6 +4221,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/spectrogram-generator-1.webp',
+        alt: 'Spectrogram Generator island: the page before any file or input',
+        width: 1464,
+        height: 543
+      },
+      {
+        src: '/screenshots/spectrogram-generator-2.webp',
+        alt: 'Spectrogram Generator island after reading the file or taps',
+        width: 1464,
+        height: 1434
+      },
+      {
+        src: '/screenshots/spectrogram-generator-3.webp',
+        alt: 'Spectrogram Generator after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1443
+      },
+    ],
     subtitle: 'See the frequencies in a song or a recording, then download the picture — drawn on your device.',
     intro:
       'This page downloads a PNG of the file. Preview uses at most 480 columns. Export uses at most 3000. The PNG does not play back as a song. Drawing a picture into a WAV is [image to audio](/image-to-audio).',
@@ -4287,6 +4341,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/image-to-audio-1.webp',
+        alt: 'Image to Audio island: the page before any file or input',
+        width: 1464,
+        height: 597
+      },
+      {
+        src: '/screenshots/image-to-audio-2.webp',
+        alt: 'Image to Audio island after reading the file or taps',
+        width: 1464,
+        height: 861
+      },
+      {
+        src: '/screenshots/image-to-audio-3.webp',
+        alt: 'Image to Audio after export: the status line names the downloaded file',
+        width: 1464,
+        height: 861
+      },
+    ],
     subtitle: 'Paint a picture or a line of text into a WAV. A spectrogram shows it back.',
     intro:
       'Type up to 32 characters, or drop a PNG, JPG, or WebP. The picture is scaled to at most 360 by 140. The file is a 44.1 kHz, 16-bit, mono WAV, not an MP3. Open it on the [spectrogram generator](/spectrogram-generator) to see the shape.',
@@ -5251,6 +5325,20 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/mp3-tag-editor-1.webp',
+        alt: 'MP3 Tag Editor island: the page before any file or input',
+        width: 1464,
+        height: 543
+      },
+      {
+        src: '/screenshots/mp3-tag-editor-2.webp',
+        alt: 'MP3 Tag Editor island after reading the file or taps',
+        width: 1464,
+        height: 1260
+      },
+    ],
     subtitle: 'Edit ID3v2.3 on an MP3. The audio frames are copied, not decoded.',
     intro:
       'This page reads an MP3 and writes ID3v2.3: title, artist, album, album artist, year, genre, track number, disc number, composer, comment, and a JPG or PNG cover. The audio frames are copied, not decoded. The file stays in this tab.',
@@ -5710,6 +5798,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/metronome-1.webp',
+        alt: 'Metronome island: the page before any file or input',
+        width: 1464,
+        height: 347
+      },
+      {
+        src: '/screenshots/metronome-2.webp',
+        alt: 'Metronome island after reading the file or taps',
+        width: 1464,
+        height: 347
+      },
+      {
+        src: '/screenshots/metronome-3.webp',
+        alt: 'Metronome after export: the status line names the downloaded file',
+        width: 1464,
+        height: 347
+      },
+    ],
     subtitle: 'Hear the click, or save 4, 8, or 16 bars. It does not mix into a song.',
     intro:
       'Set a tempo from 40 to 240 BPM. Pick 2/4, 3/4, 4/4, or 6/8. The first beat of each bar is louder. Press play and the click runs until you stop it. Export writes 4, 8, or 16 bars as WAV or MP3. 6/8 is six clicks in the bar at that BPM, not two. This page does not take a file and does not lay the click under a song. That mix is the multi-track editor. Nothing is uploaded.',
@@ -5915,6 +6023,20 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/key-bpm-finder-1.webp',
+        alt: 'Key and BPM Finder island: the page before any file or input',
+        width: 1464,
+        height: 543
+      },
+      {
+        src: '/screenshots/key-bpm-finder-2.webp',
+        alt: 'Key and BPM Finder island after reading the file or taps',
+        width: 1464,
+        height: 317
+      },
+    ],
     subtitle: 'Two numbers. No button that moves the pitch.',
     intro:
       'Drop a file. The page reads BPM from 60 to 180, and a key: a pitch plus major or minor. Each key also shows its Camelot code, the notation DJs use for harmonic mixing. BPM is the strongest gap between onsets. A gap outside that range is halved or doubled until it lands inside. The key is the major or minor profile with the highest weight among the twelve. Silence shows “Can’t read”, not 0 BPM and not C major. Only the first 60 seconds are read. A file shorter than 2 seconds has no BPM. This page does not change the file. Moving the pitch is the pitch changer. Nothing is uploaded.',

@@ -8,13 +8,14 @@
  * a stale screenshot is fake evidence.
  */
 import puppeteer from 'puppeteer-core';
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { generateTestWav } from './make-test-tone.mjs';
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const BASE = process.env.BASE_URL ?? 'http://localhost:4321';
 const MELODY = '/tmp/screenshot-melody.wav';
+const TEST_MP3 = '/tmp/screenshot-tone.mp3';
 const OUT_DIR = 'public/screenshots';
 const DOWNLOAD_DIR = '/tmp/capture-downloads';
 
@@ -56,10 +57,76 @@ const ADJUST = {
   'tap-tempo': null, // custom branch below
 };
 
+/** No-file / non-editor islands: root selector, optional prep, optional result
+ *  wait, optional export. Falls back to a plain two-shot capture. */
+const ISLANDS = {
+  'metronome': {
+    root: '[data-metronome]',
+    prep: [{ selector: '[data-metro-bpm]', value: '140' }],
+    export: true,
+  },
+  'loudness-meter': {
+    root: '[data-loudness]',
+    file: MELODY,
+    settle: 3000,
+    export: true,
+  },
+  'key-bpm-finder': {
+    root: '[data-key-bpm]',
+    file: MELODY,
+    settle: 4000,
+  },
+  'mp3-tag-editor': {
+    root: '[data-config]',
+    file: TEST_MP3,
+    waitResult: '[data-fields]',
+  },
+  'waveform-generator': {
+    root: '[data-config]',
+    file: MELODY,
+    settle: 3000,
+    export: true,
+  },
+  'spectrogram-generator': {
+    root: '[data-config]',
+    file: MELODY,
+    settle: 4000,
+    export: true,
+  },
+  'image-to-audio': {
+    root: '[data-spec-paint]',
+    type: { selector: '[data-paint-text]', value: 'FREE AUDIO EDITOR' },
+    settle: 1500,
+    export: true,
+  },
+};
+
+/** A short tone as a real MP3, for the tag editor (WAV files carry no ID3). */
+async function ensureTestMp3() {
+  if (existsSync(TEST_MP3)) return;
+  const { Mp3Encoder } = await import('@breezystack/lamejs');
+  const rate = 44100, seconds = 5;
+  const pcm = new Int16Array(rate * seconds);
+  for (let i = 0; i < pcm.length; i++) {
+    pcm[i] = Math.round(0.3 * 32767 * Math.sin((2 * Math.PI * 440 * i) / rate));
+  }
+  const enc = new Mp3Encoder(1, rate, 128);
+  const chunks = [];
+  for (let i = 0; i < pcm.length; i += 1152) {
+    const buf = enc.encodeBuffer(pcm.subarray(i, i + 1152));
+    if (buf.length) chunks.push(Buffer.from(buf));
+  }
+  const end = enc.flush();
+  if (end.length) chunks.push(Buffer.from(end));
+  writeFileSync(TEST_MP3, Buffer.concat(chunks));
+  console.log('Generated test MP3 at', TEST_MP3);
+}
+
 if (!existsSync(CHROME)) {
   console.error('Chrome not found at', CHROME);
   process.exit(2);
 }
+if (TOOLS.includes('mp3-tag-editor')) await ensureTestMp3();
 if (!existsSync(MELODY)) {
   generateTestWav(MELODY, 12);
   console.log('Generated test melody at', MELODY);
@@ -106,6 +173,63 @@ for (const slug of TOOLS) {
     }
 
     const section = await page.$('section[aria-label]');
+
+    const island = ISLANDS[slug];
+    if (island && !existsSync(join(OUT_DIR, `${slug}-1.webp`))) {
+      // Island flow: initial state, the fed/prepared state, optionally the
+      // exported state (a new download appears in DOWNLOAD_DIR).
+      await page.waitForSelector(island.root, { timeout: 10000 });
+      const dlDir = join(DOWNLOAD_DIR, slug);
+      mkdirSync(dlDir, { recursive: true });
+      const before = readdirSync(dlDir).length;
+      await section.screenshot({ path: join(OUT_DIR, `${slug}-1.webp`), type: 'webp', quality: 82 });
+      console.log(`PASS  ${slug}-1.webp (initial)`);
+
+      if (island.file) {
+        const input = await page.$('[data-file-input]');
+        await input.uploadFile(island.file);
+      }
+      for (const step of island.prep ?? []) {
+        await page.$eval(step.selector, (el, v) => {
+          el.value = String(v);
+          el.dispatchEvent(new Event('input', { bubbles: true }));
+          el.dispatchEvent(new Event('change', { bubbles: true }));
+        }, step.value).catch(() => {});
+      }
+      if (island.type) {
+        await page.type(island.type.selector, island.type.value).catch(() => {});
+      }
+      if (island.waitResult) {
+        await page.waitForFunction(
+          (sel) => (document.querySelector(sel)?.textContent ?? '').trim().length > 0,
+          { timeout: 20000 },
+          island.waitResult,
+        ).catch(() => {});
+      }
+      await new Promise((r) => setTimeout(r, island.settle ?? 1200));
+      await section.screenshot({ path: join(OUT_DIR, `${slug}-2.webp`), type: 'webp', quality: 82 });
+      console.log(`PASS  ${slug}-2.webp (result state)`);
+
+      if (island.export) {
+        const cdp2 = await page.createCDPSession();
+        await cdp2.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: dlDir });
+        let done = false;
+        for (let i = 0; i < 60 && !done; i++) {
+          if (i % 4 === 0) { try { await page.click('[data-export]'); } catch {} }
+          await new Promise((r) => setTimeout(r, 500));
+          done = readdirSync(dlDir).length > before;
+        }
+        if (done) {
+          await new Promise((r) => setTimeout(r, 500));
+          await section.screenshot({ path: join(OUT_DIR, `${slug}-3.webp`), type: 'webp', quality: 82 });
+          console.log(`PASS  ${slug}-3.webp (export finished)`);
+        } else {
+          console.log(`SKIP  ${slug}-3.webp (export did not produce a download)`);
+        }
+      }
+      await page.close();
+      continue;
+    }
 
     // 1 — dropzone state, editor section only
     await page.waitForSelector('[data-dropzone]', { timeout: 10000 });
