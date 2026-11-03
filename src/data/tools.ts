@@ -180,6 +180,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/audio-trimmer-1.webp',
+        alt: 'Audio Trimmer dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/audio-trimmer-2.webp',
+        alt: 'Audio Trimmer workspace with the file loaded',
+        width: 1464,
+        height: 885
+      },
+      {
+        src: '/screenshots/audio-trimmer-3.webp',
+        alt: 'Audio Trimmer after export: the status line names the downloaded file',
+        width: 1464,
+        height: 885
+      },
+    ],
     subtitle: 'Trim audio online — free, right in your browser. Nothing is uploaded.',
     intro:
       'Cut the exact part you need from any song, voice memo, podcast or recording. Drag on the waveform to select, listen back, and save — the whole trim happens on your device, so even long recordings stay private and start instantly.',
@@ -296,6 +316,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/mp3-cutter-1.webp',
+        alt: 'MP3 Cutter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/mp3-cutter-2.webp',
+        alt: 'MP3 Cutter workspace with the file loaded',
+        width: 1464,
+        height: 998
+      },
+      {
+        src: '/screenshots/mp3-cutter-3.webp',
+        alt: 'MP3 Cutter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 998
+      },
+    ],
     subtitle: 'Cut songs and MP3 files online — keep the part you want, delete the rest.',
     intro:
       'Cut a song down to the chorus, remove a long intro, or split out a highlight — right in your browser. Choose to keep the selected part or delete it, preview the result, and then export. MP3 encodes the cut once.',
@@ -415,6 +455,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/mp3-editor-1.webp',
+        alt: 'MP3 Editor dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/mp3-editor-2.webp',
+        alt: 'MP3 Editor workspace with the file loaded',
+        width: 1464,
+        height: 893
+      },
+      {
+        src: '/screenshots/mp3-editor-3.webp',
+        alt: 'MP3 Editor after export: the status line names the downloaded file',
+        width: 1464,
+        height: 893
+      },
+    ],
     subtitle: 'Cut, fade, reverse and speed up audio — all in one browser tab.',
     intro:
       'A compact audio editor for quick jobs: cut sections out, apply fade in and fade out, boost or lower volume, speed tracks up or down, and reverse playback. Every edit is applied on your device when you export — the original file always stays untouched on your disk.',
@@ -519,15 +579,21 @@ export const TOOLS: ToolDef[] = [
     screenshots: [
       {
         src: '/screenshots/ringtone-maker-1.webp',
-        alt: 'Ringtone Maker dropzone: drop a song, up to 40 seconds, with the M4R and MP3 toggle',
+        alt: 'Ringtone Maker dropzone: drop a file or browse, nothing uploaded',
         width: 1464,
-        height: 606,
+        height: 606
       },
       {
         src: '/screenshots/ringtone-maker-2.webp',
-        alt: 'Ringtone Maker with a 12-second file: selection handles, Start 00:00.00 and End 00:12.00, fade sliders at 0.0 seconds, and MP3 192 kbps',
+        alt: 'Ringtone Maker workspace with the file loaded',
         width: 1464,
-        height: 1019,
+        height: 1019
+      },
+      {
+        src: '/screenshots/ringtone-maker-3.webp',
+        alt: 'Ringtone Maker after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1019
       },
     ],
     subtitle: 'Save up to 40 seconds of a song as a file you can download.',
@@ -640,6 +706,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/audio-joiner-1.webp',
+        alt: 'Audio Joiner dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/audio-joiner-2.webp',
+        alt: 'Audio Joiner workspace with the file loaded',
+        width: 1464,
+        height: 702
+      },
+      {
+        src: '/screenshots/audio-joiner-3.webp',
+        alt: 'Audio Joiner after export: the status line names the downloaded file',
+        width: 1464,
+        height: 702
+      },
+    ],
     subtitle: 'Put files in order and export one track. Nothing is uploaded.',
     intro:
       'Combine multiple songs, podcast episodes or voice recordings into a single file. Add as many tracks as you like, reorder them, and optionally fade the beginning and end. Merging happens on your device — even large libraries join instantly and stay private.',
@@ -744,6 +830,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/multi-track-audio-editor-1.webp',
+        alt: 'Multi-Track Audio Editor dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/multi-track-audio-editor-2.webp',
+        alt: 'Multi-Track Audio Editor workspace with the file loaded',
+        width: 1464,
+        height: 633
+      },
+      {
+        src: '/screenshots/multi-track-audio-editor-3.webp',
+        alt: 'Multi-Track Audio Editor after export: the status line names the downloaded file',
+        width: 1464,
+        height: 633
+      },
+    ],
     subtitle: 'Stack up to 8 files, balance each one, and export a single mix.',
     intro:
       'Put a vocal on a beat, or a voiceover on music, and hear them together. Each file is its own track: level, pan, mute, solo, and where it starts. The mix is summed in your browser. Nothing is uploaded, and closing the tab ends the session.',
@@ -844,6 +950,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/wav-to-mp3-1.webp',
+        alt: 'Convert WAV to MP3 dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/wav-to-mp3-2.webp',
+        alt: 'Convert WAV to MP3 workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/wav-to-mp3-3.webp',
+        alt: 'Convert WAV to MP3 after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'Convert a WAV to MP3 in this browser. Nothing is uploaded.',
     intro:
       'This browser decodes the file and encodes an MP3. The menu is 64, 96, 128, 192, or 320 kbps. This page starts at 320. MP3 encodes the decoded samples once, and only the first two channels. Tags are not copied.',
@@ -961,6 +1087,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/flac-to-mp3-1.webp',
+        alt: 'FLAC to MP3 Converter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/flac-to-mp3-2.webp',
+        alt: 'FLAC to MP3 Converter workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/flac-to-mp3-3.webp',
+        alt: 'FLAC to MP3 Converter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'Decode a FLAC and encode an MP3 in this browser. Nothing is uploaded.',
     intro:
       'This browser decodes the FLAC and encodes an MP3. The menu is 320, 192, or 128 kbps. This page starts at 320. WAV, 96, and 64 are not in this menu. Tags are not copied.',
@@ -1065,6 +1211,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/mp3-to-wav-1.webp',
+        alt: 'MP3 to WAV Converter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 543
+      },
+      {
+        src: '/screenshots/mp3-to-wav-2.webp',
+        alt: 'MP3 to WAV Converter workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/mp3-to-wav-3.webp',
+        alt: 'MP3 to WAV Converter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'Decode an MP3 to 16-bit WAV in this browser. Nothing is uploaded.',
     intro:
       'This page writes 16-bit PCM of the decoded samples. It cannot restore samples the MP3 already dropped. The menu is WAV only.',
@@ -1173,15 +1339,21 @@ export const TOOLS: ToolDef[] = [
     screenshots: [
       {
         src: '/screenshots/compress-audio-1.webp',
-        alt: 'Compress Audio dropzone with the bitrate chips 320, 192, 128, 96 and 64 kbps, and the local-processing line',
+        alt: 'Compress Audio dropzone: drop a file or browse, nothing uploaded',
         width: 1464,
-        height: 606,
+        height: 606
       },
       {
         src: '/screenshots/compress-audio-2.webp',
-        alt: 'A 12-second, 1.1 MB test file loaded in Compress Audio: waveform, playhead, format menu at MP3 128 kbps, and the Compress button',
+        alt: 'Compress Audio workspace with the file loaded',
         width: 1464,
-        height: 591,
+        height: 591
+      },
+      {
+        src: '/screenshots/compress-audio-3.webp',
+        alt: 'Compress Audio after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
       },
     ],
     subtitle: 'Re-encode at a lower MP3 bitrate. This page starts at 128 kbps.',
@@ -1303,6 +1475,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/bitrate-converter-1.webp',
+        alt: 'Bitrate Converter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/bitrate-converter-2.webp',
+        alt: 'Bitrate Converter workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/bitrate-converter-3.webp',
+        alt: 'Bitrate Converter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'Set an MP3 to 64, 96, 128, 192, or 320 kbps. A higher number does not restore detail.',
     intro:
       'Pick one of 64, 96, 128, 192, or 320 kbps. This page starts at 192. A higher number does not restore detail the file already lost.',
@@ -1407,6 +1599,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/reverse-audio-1.webp',
+        alt: 'Reverse Audio dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/reverse-audio-2.webp',
+        alt: 'Reverse Audio workspace with the file loaded',
+        width: 1464,
+        height: 905
+      },
+      {
+        src: '/screenshots/reverse-audio-3.webp',
+        alt: 'Reverse Audio after export: the status line names the downloaded file',
+        width: 1464,
+        height: 905
+      },
+    ],
     subtitle: 'Play any song or recording backwards — one click, right in your browser.',
     intro:
       'Flip any track so it plays from the end to the start: hunt for hidden messages in songs, build backwards-cymbal effects for a mix, or just hear what your voice sounds like in reverse. The whole file is reversed on your device and only written out when you export.',
@@ -1505,6 +1717,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/change-audio-speed-1.webp',
+        alt: 'Change Audio Speed dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/change-audio-speed-2.webp',
+        alt: 'Change Audio Speed workspace with the file loaded',
+        width: 1464,
+        height: 1044
+      },
+      {
+        src: '/screenshots/change-audio-speed-3.webp',
+        alt: 'Change Audio Speed after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1044
+      },
+    ],
     subtitle: 'Speed up or slow down any audio from 0.5× to 2× — right in your browser.',
     intro:
       'Turn a 40-minute lecture into 20 fast minutes, slow a guitar solo down to half speed for practice, or fit a track into a shorter video slot. Drag the speed slider, hear the change instantly, and export — the audio is resampled on your device and never uploaded.',
@@ -1608,6 +1840,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/increase-volume-1.webp',
+        alt: 'Increase MP3 Volume dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/increase-volume-2.webp',
+        alt: 'Increase MP3 Volume workspace with the file loaded',
+        width: 1464,
+        height: 1044
+      },
+      {
+        src: '/screenshots/increase-volume-3.webp',
+        alt: 'Increase MP3 Volume after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1044
+      },
+    ],
     subtitle: 'Gain from 10% to 400%. Above 100% a limiter is applied.',
     intro:
       'Fix recordings that are too quiet: phone voice memos, lectures recorded from the back row, video soundtracks ripped at low level. Push the volume up to 4× (12 dB) and a built-in limiter catches the peaks, so the result gets louder without turning into distortion.',
@@ -1716,6 +1968,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/mp4-to-mp3-1.webp',
+        alt: 'MP4 to MP3 Converter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/mp4-to-mp3-2.webp',
+        alt: 'MP4 to MP3 Converter workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/mp4-to-mp3-3.webp',
+        alt: 'MP4 to MP3 Converter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'Pull the soundtrack out of any video — right in your browser, nothing uploaded.',
     intro:
       'Turn MP4 videos into MP3 audio without installing anything. The browser reads the file from your disk and decodes the soundtrack. Nothing is uploaded. Several files convert one after another and come back as one ZIP. A file over 300 MB is rejected. The picture is not encoded.',
@@ -1851,6 +2123,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/extract-audio-1.webp',
+        alt: 'Audio Extractor dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/extract-audio-2.webp',
+        alt: 'Audio Extractor workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/extract-audio-3.webp',
+        alt: 'Audio Extractor after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'Save the soundtrack as MP3 or 16-bit WAV. Nothing is uploaded.',
     intro:
       'Separate the sound from the pictures: pull interviews out of video calls, save a concert film as an album, or reuse a soundtrack in your own edit. The audio track is decoded on your device and can be saved as 16-bit WAV of the decoded samples, or as MP3.',
@@ -1962,6 +2254,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/voice-recorder-1.webp',
+        alt: 'Voice Recorder dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 741
+      },
+      {
+        src: '/screenshots/voice-recorder-2.webp',
+        alt: 'Voice Recorder workspace with the file loaded',
+        width: 1464,
+        height: 1028
+      },
+      {
+        src: '/screenshots/voice-recorder-3.webp',
+        alt: 'Voice Recorder after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1028
+      },
+    ],
     subtitle: 'Record your microphone, trim the take, save it as MP3 — nothing leaves your device.',
     intro:
       'A recorder with a trimming studio attached: capture voice memos, interviews, practice takes or meeting notes, then cut the dead air and export a clean file. Recording and editing both happen in your browser — the audio is never sent anywhere, which makes this comfortable even for confidential conversations.',
@@ -2162,6 +2474,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/volume-booster-1.webp',
+        alt: 'Audio Volume Booster dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/volume-booster-2.webp',
+        alt: 'Audio Volume Booster workspace with the file loaded',
+        width: 1464,
+        height: 1044
+      },
+      {
+        src: '/screenshots/volume-booster-3.webp',
+        alt: 'Audio Volume Booster after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1044
+      },
+    ],
     subtitle: 'Gain from 10% to 400% on a file that may include video. Above 100% a limiter is applied.',
     intro:
       'For everything that plays too quietly: quiet phone videos, gentle acoustic recordings, podcasts mastered at whisper level. Load a file, push the volume up to 4×, and let the built-in limiter hold the peaks back so the loud parts stay clean. Works on audio and video files alike — only the soundtrack is processed.',
@@ -2284,6 +2616,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/normalize-audio-1.webp',
+        alt: 'Audio Normalizer dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/normalize-audio-2.webp',
+        alt: 'Audio Normalizer workspace with the file loaded',
+        width: 1464,
+        height: 899
+      },
+      {
+        src: '/screenshots/normalize-audio-3.webp',
+        alt: 'Audio Normalizer after export: the status line names the downloaded file',
+        width: 1464,
+        height: 899
+      },
+    ],
     subtitle: 'Peak normalize to 0.98. The gain stops at 4×. Nothing is uploaded.',
     intro:
       'Normalizing scans your file to find its loudest peak, then raises the entire file by exactly the amount needed to bring that peak just below clipping. The result: a file that uses the full volume range it was given, with no manual guesswork. It is the right fix when a recording is consistently too quiet — voice memos, field recordings, exports from other apps that came out at −18 dB.',
@@ -2391,6 +2743,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/compressor-1.webp',
+        alt: 'Level Compressor dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/compressor-2.webp',
+        alt: 'Level Compressor workspace with the file loaded',
+        width: 1464,
+        height: 939
+      },
+      {
+        src: '/screenshots/compressor-3.webp',
+        alt: 'Level Compressor after export: the status line names the downloaded file',
+        width: 1464,
+        height: 939
+      },
+    ],
     subtitle: 'A broadband compressor that tames jumps in level — the peak of the file stays where it was.',
     intro:
       'A voice memo that shouts one sentence and whispers the next needs compression, not a volume knob. This page runs a single broadband compressor: loud moments get turned down, quiet moments come up, then the export is scaled so the peak matches the file you started with. It all happens in your browser. The file is never uploaded.',
@@ -2493,6 +2865,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/echo-1.webp',
+        alt: 'Add Echo to Audio dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/echo-2.webp',
+        alt: 'Add Echo to Audio workspace with the file loaded',
+        width: 1464,
+        height: 869
+      },
+      {
+        src: '/screenshots/echo-3.webp',
+        alt: 'Add Echo to Audio after export: the status line names the downloaded file',
+        width: 1464,
+        height: 869
+      },
+    ],
     subtitle: 'Discrete repeats at a delay you set — from a short slap to a long repeat.',
     intro:
       'Echo is a copy of the sound that comes back after a gap you can count. Set the delay from a few hundredths of a second up to 0.8 seconds, and how strongly each repeat feeds the next. The wet signal is mixed at 45%. Delay at zero leaves the file untouched. Processing stays in your browser.',
@@ -2595,6 +2987,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/audio-distorter-1.webp',
+        alt: 'Audio Distorter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/audio-distorter-2.webp',
+        alt: 'Audio Distorter workspace with the file loaded',
+        width: 1464,
+        height: 939
+      },
+      {
+        src: '/screenshots/audio-distorter-3.webp',
+        alt: 'Audio Distorter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 939
+      },
+    ],
     subtitle: 'One slider. The start value is 40%. 0% leaves the file as you dropped it.',
     intro:
       'This page runs each sample through a tanh curve. At the 40% start, a sample of 0.25 becomes about 0.69. At 100% that same sample is pushed to about 1. Drive at 0 skips the curve, so the file stays as decoded. Processing stays in your browser.',
@@ -2695,6 +3107,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/silence-remover-1.webp',
+        alt: 'Remove Silence from Audio dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/silence-remover-2.webp',
+        alt: 'Remove Silence from Audio workspace with the file loaded',
+        width: 1464,
+        height: 713
+      },
+      {
+        src: '/screenshots/silence-remover-3.webp',
+        alt: 'Remove Silence from Audio after export: the status line names the downloaded file',
+        width: 1464,
+        height: 713
+      },
+    ],
     subtitle: 'Drop the dead air. Keep the breaths that are shorter than the gap you set.',
     intro:
       'This finds stretches quieter than the threshold and longer than the minimum gap, then cuts them. The default threshold is −40 dBFS, which suits speech and voice memos. Each cut keeps 0.08 seconds at both edges so a word is not clipped. A pause shorter than the gap stays. Quiet music and fading tails sit under −40 dBFS and will be cut too — draw the part you want on the audio trimmer instead. If the whole file is under the threshold, the export is the original file. Processing stays in your browser.',
@@ -2803,15 +3235,21 @@ export const TOOLS: ToolDef[] = [
     screenshots: [
       {
         src: '/screenshots/noise-remover-1.webp',
-        alt: 'Noise Remover dropzone: one audio file, strength slider at 75 percent, WAV or MP3 export',
+        alt: 'Remove Background Noise dropzone: drop a file or browse, nothing uploaded',
         width: 1464,
-        height: 606,
+        height: 606
       },
       {
         src: '/screenshots/noise-remover-2.webp',
-        alt: 'Noise Remover workspace with a noisy recording loaded and the strength slider under the waveform',
+        alt: 'Remove Background Noise workspace with the file loaded',
         width: 1464,
-        height: 743,
+        height: 743
+      },
+      {
+        src: '/screenshots/noise-remover-3.webp',
+        alt: 'Remove Background Noise after export: the status line names the downloaded file',
+        width: 1464,
+        height: 743
       },
     ],
     subtitle: 'Steady hiss, hum and fan noise drop by 20 dB or more around speech. The timeline never moves.',
@@ -3033,15 +3471,21 @@ export const TOOLS: ToolDef[] = [
     screenshots: [
       {
         src: '/screenshots/slowed-reverb-1.webp',
-        alt: 'Slowed Reverb dropzone: drop a song, or click to browse, with the local-processing line',
+        alt: 'Slowed Reverb Maker dropzone: drop a file or browse, nothing uploaded',
         width: 1464,
-        height: 606,
+        height: 606
       },
       {
         src: '/screenshots/slowed-reverb-2.webp',
-        alt: 'Slowed Reverb workspace: the Speed slider at 1.00 with a note that pitch moves with it, Reverb at 0%, and MP3 192 kbps selected',
+        alt: 'Slowed Reverb Maker workspace with the file loaded',
         width: 1464,
-        height: 1100,
+        height: 1100
+      },
+      {
+        src: '/screenshots/slowed-reverb-3.webp',
+        alt: 'Slowed Reverb Maker after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1100
       },
     ],
     subtitle: 'Speed from 0.50 to 2.00, pitch follows, plus a 2.2 second room.',
@@ -3155,6 +3599,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/treble-booster-1.webp',
+        alt: 'Treble Booster dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/treble-booster-2.webp',
+        alt: 'Treble Booster workspace with the file loaded',
+        width: 1464,
+        height: 939
+      },
+      {
+        src: '/screenshots/treble-booster-3.webp',
+        alt: 'Treble Booster after export: the status line names the downloaded file',
+        width: 1464,
+        height: 939
+      },
+    ],
     subtitle: 'A real high-shelf EQ: up to +15 dB above 3 kHz, preview and export — nothing leaves your device.',
     intro:
       'This page is a high-shelf at 3 kHz, from 0 to +15 dB, in steps of 1. It cannot cut. At 0 the filter is not inserted. A guitar pedal is a different device, and this page does not drive an amp. A file over 300 MB is rejected.',
@@ -3257,6 +3721,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/equalizer-1.webp',
+        alt: 'Audio Equalizer dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/equalizer-2.webp',
+        alt: 'Audio Equalizer workspace with the file loaded',
+        width: 1464,
+        height: 1113
+      },
+      {
+        src: '/screenshots/equalizer-3.webp',
+        alt: 'Audio Equalizer after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1113
+      },
+    ],
     subtitle: 'Ten bands, ±15 dB each, genre presets one tap away — still an honest EQ.',
     intro:
       'Ten peaking bands from 31 Hz to 16 kHz, each −15 to +15 dB, an octave apart. A band left at 0 dB is bypassed. A boost also applies the limiter: threshold −2 dB, knee 3, ratio 20, attack 0.002 seconds, release 0.15 seconds.',
@@ -3359,6 +3843,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/low-pass-filter-1.webp',
+        alt: 'Low Pass Filter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/low-pass-filter-2.webp',
+        alt: 'Low Pass Filter workspace with the file loaded',
+        width: 1464,
+        height: 939
+      },
+      {
+        src: '/screenshots/low-pass-filter-3.webp',
+        alt: 'Low Pass Filter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 939
+      },
+    ],
     subtitle: 'Sweep the cutoff from 20 kHz down to 300 Hz and keep only the frequencies you want.',
     intro:
       'A low-pass filter keeps the low end and rolls off everything above the cutoff — the honest way to remove hiss, sharp sibilance, squeaks and harsh digital edge. Unlike a noise remover, it never guesses what is noise: everything above your cutoff simply goes. Drop a file, sweep the cutoff down until the annoyance disappears, export. Everything runs in your browser: the file is never uploaded.',
@@ -3461,6 +3965,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/high-pass-filter-1.webp',
+        alt: 'High Pass Filter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/high-pass-filter-2.webp',
+        alt: 'High Pass Filter workspace with the file loaded',
+        width: 1464,
+        height: 939
+      },
+      {
+        src: '/screenshots/high-pass-filter-3.webp',
+        alt: 'High Pass Filter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 939
+      },
+    ],
     subtitle: 'Sweep the cutoff from 20 Hz up to 5 kHz and strip everything below it.',
     intro:
       'Rumble, traffic, handling noise, desk thumps — unwanted low end is baked into most real-world recordings. A high-pass filter keeps everything above your cutoff and rolls off everything below: the honest fix that never guesses. Drop a file, sweep the cutoff up until the rumble disappears and the voice stays full, export. Everything runs in your browser: the file is never uploaded.',
@@ -3863,6 +4387,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/bass-booster-1.webp',
+        alt: 'Bass Booster dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/bass-booster-2.webp',
+        alt: 'Bass Booster workspace with the file loaded',
+        width: 1464,
+        height: 939
+      },
+      {
+        src: '/screenshots/bass-booster-3.webp',
+        alt: 'Bass Booster after export: the status line names the downloaded file',
+        width: 1464,
+        height: 939
+      },
+    ],
     subtitle: 'A real low-shelf EQ: up to +15 dB below 150 Hz, preview and export — nothing leaves your device.',
     intro:
       'This page is a low shelf at 150 Hz, from 0 to +15 dB. It cannot cut. It only raises lows that are already in the file. At 0 the filter is not inserted.',
@@ -3977,6 +4521,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/fade-audio-1.webp',
+        alt: 'Fade Out Music dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/fade-audio-2.webp',
+        alt: 'Fade Out Music workspace with the file loaded',
+        width: 1464,
+        height: 929
+      },
+      {
+        src: '/screenshots/fade-audio-3.webp',
+        alt: 'Fade Out Music after export: the status line names the downloaded file',
+        width: 1464,
+        height: 929
+      },
+    ],
     subtitle: 'Fade in and fade out, each from 0 to 5 seconds. Nothing is uploaded.',
     intro:
       'A fade in eases a track in from silence; a fade out eases it back out — the difference between an abrupt cut and an ending that sounds finished. Load a file here, set each fade length to a tenth of a second, and listen before you export. Everything runs in your browser: the file is never uploaded.',
@@ -4082,6 +4646,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/pitch-changer-1.webp',
+        alt: 'Pitch Changer dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/pitch-changer-2.webp',
+        alt: 'Pitch Changer workspace with the file loaded',
+        width: 1464,
+        height: 1044
+      },
+      {
+        src: '/screenshots/pitch-changer-3.webp',
+        alt: 'Pitch Changer after export: the status line names the downloaded file',
+        width: 1464,
+        height: 1044
+      },
+    ],
     subtitle: 'Move the pitch up or down by semitones — the length of the file stays the same.',
     intro:
       'Drop a song or a voice recording and drag the pitch slider. The key changes and the timing stays put. Unlike the speed changer, this does not make the file shorter or longer. The shift runs on your device.',
@@ -4189,6 +4773,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/tempo-changer-1.webp',
+        alt: 'Tempo Changer dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/tempo-changer-2.webp',
+        alt: 'Tempo Changer workspace with the file loaded',
+        width: 1464,
+        height: 771
+      },
+      {
+        src: '/screenshots/tempo-changer-3.webp',
+        alt: 'Tempo Changer after export: the status line names the downloaded file',
+        width: 1464,
+        height: 771
+      },
+    ],
     subtitle: '0.75× to 1.25×, in steps of 0.01. The key stays put.',
     intro:
       'Drop a file and drag the speed. The file gets shorter or longer, and the pitch is shifted back to where it was. The slider stops at 0.75× and 1.25×. 1× leaves the samples alone and does not run the stretch. Dense harmony can sound thin. That is the limit of this shifter. Nothing is uploaded.',
@@ -4288,6 +4892,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/m4a-to-mp3-1.webp',
+        alt: 'M4A to MP3 Converter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/m4a-to-mp3-2.webp',
+        alt: 'M4A to MP3 Converter workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/m4a-to-mp3-3.webp',
+        alt: 'M4A to MP3 Converter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'Turn M4A and AAC files into MP3 — in your browser, nothing uploaded.',
     intro:
       'Voice memos and AAC recordings are often M4A. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
@@ -4388,6 +5012,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/ogg-to-mp3-1.webp',
+        alt: 'OGG to MP3 Converter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/ogg-to-mp3-2.webp',
+        alt: 'OGG to MP3 Converter workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/ogg-to-mp3-3.webp',
+        alt: 'OGG to MP3 Converter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'Turn OGG audio into MP3 — in your browser, nothing uploaded.',
     intro:
       'OGG is a container, usually Vorbis, sometimes Opus. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
@@ -4488,6 +5132,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/opus-to-mp3-1.webp',
+        alt: 'Opus to MP3 Converter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/opus-to-mp3-2.webp',
+        alt: 'Opus to MP3 Converter workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/opus-to-mp3-3.webp',
+        alt: 'Opus to MP3 Converter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'Turn Opus audio into MP3 — in your browser, nothing uploaded.',
     intro:
       'Voice notes and some downloads are Opus: a .opus file, or Opus inside OGG or WebM. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
@@ -4696,6 +5360,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/audio-looper-1.webp',
+        alt: 'Audio Looper dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/audio-looper-2.webp',
+        alt: 'Audio Looper workspace with the file loaded',
+        width: 1464,
+        height: 860
+      },
+      {
+        src: '/screenshots/audio-looper-3.webp',
+        alt: 'Audio Looper after export: the status line names the downloaded file',
+        width: 1464,
+        height: 860
+      },
+    ],
     subtitle: 'Loop the selection, or the whole file, and download one longer file.',
     intro:
       'Set how many times the clip plays, from 2 to 16. The default is 4. Each join uses a linear crossfade, 0.01 seconds unless you move it, up to 0.1 seconds. Drag a selection to loop only that part. With no selection, the whole file repeats. The export stops at 10 minutes. Pitch and speed stay as they are. Processing stays in your browser.',
@@ -4794,6 +5478,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/auto-panner-1.webp',
+        alt: 'Auto Panner dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/auto-panner-2.webp',
+        alt: 'Auto Panner workspace with the file loaded',
+        width: 1464,
+        height: 869
+      },
+      {
+        src: '/screenshots/auto-panner-3.webp',
+        alt: 'Auto Panner after export: the status line names the downloaded file',
+        width: 1464,
+        height: 869
+      },
+    ],
     subtitle: 'Set the depth and the rate. The sweep does not follow the beat.',
     intro:
       'Depth runs from 0 to 100%. The start value is 70%. Rate runs from 0.05 Hz to 2 Hz. The start value is 0.2 Hz. Position is depth times a sine of that rate, so 0.2 Hz takes 5 seconds to go left and right and back. It does not follow the drums. Depth at 0 leaves the file as it is. Processing stays in your browser.',
@@ -4890,6 +5594,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/3d-audio-1.webp',
+        alt: '3D Audio dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/3d-audio-2.webp',
+        alt: '3D Audio workspace with the file loaded',
+        width: 1464,
+        height: 899
+      },
+      {
+        src: '/screenshots/3d-audio-3.webp',
+        alt: '3D Audio after export: the status line names the downloaded file',
+        width: 1464,
+        height: 899
+      },
+    ],
     subtitle: 'Depth, rate, and the room are already set. You only flip the switch.',
     intro:
       'The circle is fixed. Depth is 100%. The rate is 0.1 Hz, so one trip around takes about 10 seconds. The direct sound moves. A reverb send at 25% adds the same short room used on the slowed + reverb page. Speed and pitch stay as they are. The switch off leaves the file as you dropped it. Processing stays in your browser.',
@@ -5288,6 +6012,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/split-mp3-1.webp',
+        alt: 'Split MP3 dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/split-mp3-2.webp',
+        alt: 'Split MP3 workspace with the file loaded',
+        width: 1464,
+        height: 860
+      },
+      {
+        src: '/screenshots/split-mp3-3.webp',
+        alt: 'Split MP3 after export: the status line names the downloaded file',
+        width: 1464,
+        height: 860
+      },
+    ],
     subtitle: 'Equal parts, from 2 to 16, saved together in one zip.',
     intro:
       'This audio splitter cuts one file into equal parts. The count runs from 2 to 16, and it starts at 2, which is a split into two parts. Each part is the same length, give or take one sample. Drag a selection to split only that span. With no selection, the whole file is split. The parts download as one zip. Decoding and the cuts stay in your browser.',
@@ -5384,6 +6128,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/stereo-to-mono-1.webp',
+        alt: 'Stereo to Mono dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/stereo-to-mono-2.webp',
+        alt: 'Stereo to Mono workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/stereo-to-mono-3.webp',
+        alt: 'Stereo to Mono after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'One channel: the average of every channel in the file.',
     intro:
       'This page writes one channel. Each sample is the average of the channels in the file, so left and right meet in the middle. A file that is already one channel is copied. Decoding and the average stay in your browser.',
@@ -5485,15 +6249,21 @@ export const TOOLS: ToolDef[] = [
     screenshots: [
       {
         src: '/screenshots/add-reverb-1.webp',
-        alt: 'Add Reverb dropzone: one audio file, the wet slider starts at 0 percent',
+        alt: 'Add Reverb to Audio dropzone: drop a file or browse, nothing uploaded',
         width: 1464,
-        height: 606,
+        height: 606
       },
       {
         src: '/screenshots/add-reverb-2.webp',
-        alt: 'Add Reverb workspace: the wet slider at 60 percent under the waveform',
+        alt: 'Add Reverb to Audio workspace with the file loaded',
         width: 1464,
-        height: 939,
+        height: 939
+      },
+      {
+        src: '/screenshots/add-reverb-3.webp',
+        alt: 'Add Reverb to Audio after export: the status line names the downloaded file',
+        width: 1464,
+        height: 939
       },
     ],
     subtitle: 'One wet slider from bone dry to a small hall. You hear the result before you export.',
@@ -5609,15 +6379,21 @@ export const TOOLS: ToolDef[] = [
     screenshots: [
       {
         src: '/screenshots/voice-changer-1.webp',
-        alt: 'Voice Changer dropzone: one recording, five preset buttons, MP3 or WAV export',
+        alt: 'Change Your Voice dropzone: drop a file or browse, nothing uploaded',
         width: 1464,
-        height: 606,
+        height: 606
       },
       {
         src: '/screenshots/voice-changer-2.webp',
-        alt: 'Voice Changer workspace with the five preset buttons above the export bar',
+        alt: 'Change Your Voice workspace with the file loaded',
         width: 1464,
-        height: 695,
+        height: 695
+      },
+      {
+        src: '/screenshots/voice-changer-3.webp',
+        alt: 'Change Your Voice after export: the status line names the downloaded file',
+        width: 1464,
+        height: 695
       },
     ],
     subtitle: 'Tap High, Deep, Robot, Radio or Ghost and hear it before you export.',
@@ -5730,6 +6506,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/bitcrusher-1.webp',
+        alt: 'Bitcrusher dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/bitcrusher-2.webp',
+        alt: 'Bitcrusher workspace with the file loaded',
+        width: 1464,
+        height: 917
+      },
+      {
+        src: '/screenshots/bitcrusher-3.webp',
+        alt: 'Bitcrusher after export: the status line names the downloaded file',
+        width: 1464,
+        height: 917
+      },
+    ],
     subtitle: 'Bits from 1 to 16, and a hold of 1 to 32 samples.',
     intro:
       'This bitcrusher online reduces how many levels each sample can take, then holds that level for a run of samples. Stereo stays stereo: each channel is crushed on its own. Drag a selection to crush only that span. Decoding and the crush stay in your browser.',
@@ -5826,6 +6622,26 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    screenshots: [
+      {
+        src: '/screenshots/432-hz-converter-1.webp',
+        alt: '432 Hz Converter dropzone: drop a file or browse, nothing uploaded',
+        width: 1464,
+        height: 606
+      },
+      {
+        src: '/screenshots/432-hz-converter-2.webp',
+        alt: '432 Hz Converter workspace with the file loaded',
+        width: 1464,
+        height: 591
+      },
+      {
+        src: '/screenshots/432-hz-converter-3.webp',
+        alt: '432 Hz Converter after export: the status line names the downloaded file',
+        width: 1464,
+        height: 591
+      },
+    ],
     subtitle: 'The whole file moves down by about 0.32 semitones. The length stays.',
     intro:
       'This converter shifts the whole file by 12 times log2 of 432 over 440, which is about 0.32 semitones down. A 440 Hz tone moves toward 432 Hz. The length does not change, and notes are not tuned one by one. Decoding and the shift stay in your browser.',

@@ -21,13 +21,9 @@ interface Props {
 }
 const { title, steps, intro, shots, locale = 'en' } = Astro.props;
 
-/** First step gets the dropzone capture, the last step the workspace one. */
-const shotFor = (i: number): Shot | undefined => {
-  if (!shots || shots.length === 0) return undefined;
-  if (i === 0) return shots[0];
-  if (i === steps.length - 1 && shots.length > 1) return shots[shots.length - 1];
-  return undefined;
-};
+/** Step i carries capture i. Pages with fewer captures leave the trailing
+ *  steps imageless rather than repeat a shot on adjacent cards. */
+const shotFor = (i: number): Shot | undefined => shots?.[i];
 ---
 
 <section class="py-16" aria-labelledby="howto-heading">
