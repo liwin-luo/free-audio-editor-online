@@ -135,6 +135,8 @@ export interface ToolDef {
   h1: string;
   /** Illustration above the H1. Locales override alt via ToolCopy.heroAlt. */
   hero?: { src: string; alt: string; width: number; height: number };
+  /** One line under the how-to heading. Locales override via ToolCopy. */
+  howToIntro?: string;
   /** Real UI captures from scripts/capture-screenshots.mjs, served from
    *  /screenshots/ (docs/seo.md 证据资产). Locales override alt via
    *  ToolCopy.screenshotsAlt, else the English alt ships. Regenerate the files
@@ -513,6 +515,7 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    howToIntro: 'A song going in, a ringtone coming out',
     screenshots: [
       {
         src: '/screenshots/ringtone-maker-1.webp',
@@ -1166,6 +1169,7 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    howToIntro: 'The compressor on a real file',
     screenshots: [
       {
         src: '/screenshots/compress-audio-1.webp',
@@ -2795,6 +2799,7 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    howToIntro: 'A noisy file, one strength slider',
     screenshots: [
       {
         src: '/screenshots/noise-remover-1.webp',
@@ -3024,6 +3029,7 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    howToIntro: 'Slower, and inside a room',
     screenshots: [
       {
         src: '/screenshots/slowed-reverb-1.webp',
@@ -5077,6 +5083,7 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    howToIntro: 'Tap, and watch the readout settle',
     screenshots: [
       {
         src: '/screenshots/tap-tempo-1.webp',
@@ -5474,6 +5481,7 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    howToIntro: 'The wet slider on a real file',
     screenshots: [
       {
         src: '/screenshots/add-reverb-1.webp',
@@ -5597,6 +5605,7 @@ export const TOOLS: ToolDef[] = [
       width: 32,
       height: 32,
     },
+    howToIntro: 'The five presets on a real recording',
     screenshots: [
       {
         src: '/screenshots/voice-changer-1.webp',

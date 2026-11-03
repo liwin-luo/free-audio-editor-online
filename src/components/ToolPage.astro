@@ -135,27 +135,6 @@ const jsonLd = [
       <TrustBadge locale={locale} offline={!tool.editor.transcribe && !tool.editor.midi} />
     </div>
 
-    {
-      tool.screenshots && tool.screenshots.length > 0 && (
-        <section class="pt-12">
-          <div class="grid gap-4 md:grid-cols-2">
-            {tool.screenshots.map((shot, i) => (
-              <figure class="overflow-hidden rounded-2xl border border-line bg-surface">
-                <img
-                  src={shot.src}
-                  alt={shot.alt}
-                  width={shot.width}
-                  height={shot.height}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  class="h-auto w-full"
-                />
-              </figure>
-            ))}
-          </div>
-        </section>
-      )
-    }
 
     <section class="pt-14">
       <p class="max-w-[65ch] text-[17px] leading-relaxed text-ink2"><CopyText text={tool.intro} locale={locale} /></p>
@@ -238,7 +217,13 @@ const jsonLd = [
     }
   </div>
 
-  <HowTo title={fill(ui.howTo, { name: tool.name })} steps={tool.howTo} locale={locale} />
+  <HowTo
+      title={fill(ui.howTo, { name: tool.name })}
+      steps={tool.howTo}
+      intro={tool.howToIntro}
+      shots={tool.screenshots}
+      locale={locale}
+    />
 
   {
     tool.sections && tool.sections.length > 0 && (

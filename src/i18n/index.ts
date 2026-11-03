@@ -46,6 +46,7 @@ export function localizeTool(slug: string, locale: Locale): ToolDef | undefined 
       alt: copy.screenshotsAlt?.[i] ?? shot.alt,
     })),
     subtitle: copy.subtitle,
+    howToIntro: copy.howToIntro ?? tool.howToIntro,
     cardLine: copy.cardLine ?? tool.cardLine,
     intro: copy.intro,
     usesHeading: copy.usesHeading,

@@ -10,6 +10,8 @@ export interface ToolCopy {
   heroAlt?: string;
   /** Alt overrides for ToolDef.screenshots, in the same order. Falls back to English. */
   screenshotsAlt?: string[];
+  /** One line under the how-to heading. Falls back to English when omitted. */
+  howToIntro?: string;
   subtitle: string;
   /** Scenario line for hub/home cards. Falls back to subtitle when a locale omits it. */
   cardLine?: string;

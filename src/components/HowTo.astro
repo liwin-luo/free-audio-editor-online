@@ -3,12 +3,31 @@ import type { HowToStep } from '../data/tools';
 import CopyText from './CopyText.astro';
 import type { Locale } from '../i18n/locales';
 
+interface Shot {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 interface Props {
   title: string;
   steps: HowToStep[];
+  /** One line under the heading — the transformation this page performs. */
+  intro?: string;
+  /** Real UI captures. The first and the last step carry one each. */
+  shots?: Shot[];
   locale?: Locale;
 }
-const { title, steps, locale = 'en' } = Astro.props;
+const { title, steps, intro, shots, locale = 'en' } = Astro.props;
+
+/** First step gets the dropzone capture, the last step the workspace one. */
+const shotFor = (i: number): Shot | undefined => {
+  if (!shots || shots.length === 0) return undefined;
+  if (i === 0) return shots[0];
+  if (i === steps.length - 1 && shots.length > 1) return shots[shots.length - 1];
+  return undefined;
+};
 ---
 
 <section class="py-16" aria-labelledby="howto-heading">
@@ -16,22 +35,43 @@ const { title, steps, locale = 'en' } = Astro.props;
     <h2 id="howto-heading" class="text-[28px] font-semibold tracking-tight">
       {title}
     </h2>
+    {
+      intro && (
+        <p class="mt-2 max-w-[65ch] text-[15px] leading-relaxed text-ink3">
+          <CopyText text={intro} locale={locale} />
+        </p>
+      )
+    }
     <ol class="mt-8 grid gap-6 md:grid-cols-3">
       {
-        steps.map((step, i) => (
-          <li class="relative rounded-xl border border-line bg-surface p-6">
-            <span
-              class="grid size-8 place-items-center rounded-full bg-accent-soft font-mono text-sm font-medium text-accent"
-              aria-hidden="true"
-            >
-              {i + 1}
-            </span>
-            <h3 class="mt-4 font-medium">{step.name}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-ink2">
-              <CopyText text={step.text} locale={locale} />
-            </p>
-          </li>
-        ))
+        steps.map((step, i) => {
+          const shot = shotFor(i);
+          return (
+            <li class="relative rounded-xl border border-line bg-surface p-6">
+              <span
+                class="grid size-8 place-items-center rounded-full bg-accent-soft font-mono text-sm font-medium text-accent"
+                aria-hidden="true"
+              >
+                {i + 1}
+              </span>
+              {shot && (
+                <img
+                  src={shot.src}
+                  alt={shot.alt}
+                  width={shot.width}
+                  height={shot.height}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  class="mt-4 h-auto w-full rounded-lg border border-line"
+                />
+              )}
+              <h3 class:list={['font-medium', shot ? 'mt-4' : 'mt-4']}>{step.name}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink2">
+                <CopyText text={step.text} locale={locale} />
+              </p>
+            </li>
+          );
+        })
       }
     </ol>
   </div>
