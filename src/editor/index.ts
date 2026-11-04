@@ -11,6 +11,7 @@ import type { SilenceFrames, TimeRange } from './silence';
 import type { Peaks } from './waveform';
 import { bindDeliveryChips, bindFileOpen, setEmptyHidden } from './delivery';
 import { readEditorText, showToast } from './messages';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
@@ -719,6 +720,7 @@ export class Editor {
       if (this.config.split) this.updateSplitStatus();
       this.updatePageStatus();
       this.renderQueue();
+      trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
 
       if (this.duration > 3600) {
         showToast(this.toastRoot(), 'info', this.text.hourWarning);
@@ -726,6 +728,7 @@ export class Editor {
     } catch {
       this.setStatus('');
       showToast(this.toastRoot(), 'error', this.text.decodeFail);
+      trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } finally {
       this.busy = false;
       // Re-evaluate now that busy is false — the update inside loadFile ran
@@ -1495,6 +1498,7 @@ export class Editor {
     if (pieces.length === 0) {
       this.setStatus(this.text.splitTooShort);
       showToast(this.toastRoot(), 'error', this.text.splitTooShort);
+      trackEvent('processing_failed', { tool: toolSlugFromPath() });
       return;
     }
     const { encodeFor } = await loadEncoders();
@@ -1506,6 +1510,7 @@ export class Editor {
         data: new Uint8Array(await blob.arrayBuffer()),
       });
     }
+    trackEvent('processing_completed', { tool: toolSlugFromPath() });
     const { storeZip } = await loadSplit();
     const zipName = `${this.fileName}-parts.zip`;
     const zip = new Blob([storeZip(files)], { type: 'application/zip' });
@@ -1517,6 +1522,7 @@ export class Editor {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
+    trackEvent('download_completed', { tool: toolSlugFromPath(), ext: 'zip' });
     this.setStatus(fill(this.text.exported, { file: zipName }));
     showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: zipName }));
   }
@@ -1562,6 +1568,7 @@ export class Editor {
       } catch (err) {
         console.error(err);
         skipped++;
+        trackEvent('processing_failed', { tool: toolSlugFromPath() });
       }
     }
     if (ready.length === 0) {
@@ -1575,6 +1582,7 @@ export class Editor {
         ? new Blob([ready[0]!.data], { type: 'application/octet-stream' })
         : new Blob([(await loadSplit()).storeZip(ready)], { type: 'application/zip' });
     const filename = ready.length === 1 ? ready[0]!.name : zipName;
+    trackEvent('processing_completed', { tool: toolSlugFromPath() });
     this.saveDownload(blob, filename);
     const note = skipped > 0 ? ` ${fill(this.text.batchSkipped, { n: skipped })}` : '';
     this.setStatus(`${fill(this.text.exported, { file: filename })}${note}`);
@@ -1590,10 +1598,12 @@ export class Editor {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
+    trackEvent('download_completed', { tool: toolSlugFromPath(), ext: filename.split('.').pop() ?? '' });
   }
 
   private async doExport(): Promise<void> {
     if (!this.buffer || this.busy) return;
+    trackEvent('export_started', { tool: toolSlugFromPath(), batch: this.config.batch && this.queue.length > 1 ? 1 : 0 });
     this.busy = true;
     this.updateExportState();
     const label = this.els.exportBtn.querySelector('[data-export-label]');
@@ -1628,6 +1638,7 @@ export class Editor {
         return;
       }
       const blob = await encodeFor(fmt, out);
+      trackEvent('processing_completed', { tool: toolSlugFromPath() });
 
       const suffix = this.config.converter ? 'converted' : this.config.ringtone ? 'ringtone' : 'edited';
       const filename = `${this.fileName}-${suffix}.${fmt.ext}`;
@@ -1639,6 +1650,7 @@ export class Editor {
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 5000);
+      trackEvent('download_completed', { tool: toolSlugFromPath(), ext: fmt.ext });
 
       this.setStatus(fill(this.text.exported, { file: filename }));
       showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: filename }));
@@ -1646,6 +1658,7 @@ export class Editor {
       console.error(err);
       this.setStatus('');
       showToast(this.toastRoot(), 'error', this.text.exportFail);
+      trackEvent('processing_failed', { tool: toolSlugFromPath() });
     } finally {
       this.setExportBusy(false, original);
       this.busy = false;

@@ -12,6 +12,9 @@ export { shouldLoadClarity, shouldLoadFeedback };
 const CONSENT_EVENT = 'fae-consent';
 const USERBACK_TOKEN = 'A-cawCPZd8Mqr5Qea3QzjeqN8lP';
 const CLARITY_ID = 'z15k2kvoqo';
+// 90-day plan §11 — GA4 loads only behind an accepted consent and only when
+// an ID is configured (PUBLIC_GA4_ID in the environment / Vercel project).
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID as string | undefined;
 
 function readConsent(): string | null {
   try {
@@ -44,6 +47,7 @@ export function installConsent(doc: Document): void {
 
   let loaded = false;
   let clarityLoaded = false;
+  let ga4Loaded = false;
   let armed = false;
 
   function loadClarity() {
@@ -62,6 +66,25 @@ export function installConsent(doc: Document): void {
     const first = doc.getElementsByTagName('script')[0];
     if (first?.parentNode) first.parentNode.insertBefore(s, first);
     else (doc.head || doc.body).appendChild(s);
+  }
+
+  // GA4 — same consent gate as Clarity. Mirrors the official gtag stub.
+  function loadGa4() {
+    if (!view || !GA4_ID || ga4Loaded) return;
+    if (readConsent() !== 'accepted') return;
+    ga4Loaded = true;
+    const w = view as Window & { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void };
+    w.dataLayer = w.dataLayer || [];
+    const gtag = function () {
+      w.dataLayer!.push(arguments);
+    };
+    w.gtag = gtag as (...args: unknown[]) => void;
+    const s = doc.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    (doc.head || doc.body).appendChild(s);
+    w.gtag('js', new Date());
+    w.gtag('config', GA4_ID, { anonymize_ip: true, allow_google_signals: false });
   }
 
   function load() {
@@ -92,8 +115,10 @@ export function installConsent(doc: Document): void {
   doc.addEventListener(CONSENT_EVENT, () => {
     load();
     loadClarity();
+    loadGa4();
   });
   loadClarity();
+  loadGa4();
   arm();
 }
 

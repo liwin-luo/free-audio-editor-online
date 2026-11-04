@@ -170,6 +170,24 @@ const alternates = hasAlternates(path) && !noindex && alternateList.length > 1;
       installConsent(document);
     </script>
     <script>
+      // Product analytics click events (90-day plan §11.2): language
+      // switches, related tools and tool-page guides. One delegated capture
+      // listener; sections opt in via data-analytics attributes.
+      import { trackEvent } from '../lib/analytics';
+      document.addEventListener(
+        'click',
+        (event) => {
+          const link = (event.target as Element | null)?.closest?.('a[href]');
+          if (!(link instanceof Element)) return;
+          const kind = link.closest('[data-analytics]')?.getAttribute('data-analytics');
+          if (kind !== 'related-tool' && kind !== 'tool-guide' && kind !== 'language') return;
+          const name = kind === 'related-tool' ? 'related_tool_click' : kind === 'tool-guide' ? 'guide_click' : 'language_switch';
+          trackEvent(name, { to: link.getAttribute('hreflang') ?? link.getAttribute('href') ?? '' });
+        },
+        { capture: true },
+      );
+    </script>
+    <script>
       // Vercel Web Analytics — cookieless, aggregate-only. Only inject on the
       // production host so local previews and staging deploys stay clean.
       if (location.hostname.endsWith('freeaudioeditor.online')) {

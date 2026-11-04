@@ -16,7 +16,7 @@ const related = current.related
   .filter((t): t is ToolDef => Boolean(t));
 ---
 
-<section class="py-16" aria-labelledby="related-heading">
+<section class="py-16" data-analytics="related-tool" aria-labelledby="related-heading">
   <div class="container-page">
     <h2 id="related-heading" class="text-[28px] font-semibold tracking-tight">
       {ui.related}
