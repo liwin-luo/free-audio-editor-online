@@ -99,7 +99,7 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
         <svg viewBox="0 0 600 96" class="wave-stage mt-4 h-20 w-full" preserveAspectRatio="none" aria-hidden="true">
           <g class="wave-left">
             {heroBars.slice(0, 21).map((h, j) => (
-              <rect x={j * 8} y={48 - h / 2} width={5} height={h} rx={2.5} class:list={j === 20 ? 'wave-joint' : null} />
+              <rect x={j * 8} y={48 - h / 2} width={5} height={h} rx={2.5} class:list={{ 'wave-joint': j === 20 }} />
             ))}
           </g>
           <g class="wave-cut">
@@ -109,7 +109,7 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
           </g>
           <g class="wave-right">
             {heroBars.slice(48).map((h, j) => (
-              <rect x={(48 + j) * 8} y={48 - h / 2} width={5} height={h} rx={2.5} class:list={j === 0 ? 'wave-joint' : null} />
+              <rect x={(48 + j) * 8} y={48 - h / 2} width={5} height={h} rx={2.5} class:list={{ 'wave-joint': j === 0 }} />
             ))}
           </g>
           <rect class="wave-line" x="166" y="6" width="2.5" height="84" rx="1.25" />
