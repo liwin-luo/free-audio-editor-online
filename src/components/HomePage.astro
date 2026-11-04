@@ -35,9 +35,9 @@ const POPULAR_SLUGS = ['mp4-to-mp3', 'wav-to-mp3', 'audio-joiner', 'increase-vol
 const featured = FEATURED_SLUGS.map((slug) => tools.find((t) => t.slug === slug)!);
 const popular = POPULAR_SLUGS.map((slug) => tools.find((t) => t.slug === slug)!);
 const categoryIcon = { cut: 'scissors', convert: 'convert', join: 'layers', edit: 'volume', effects: 'waveform', record: 'mic' } as const;
-// Decorative hero waveform: deterministic heights, selection highlighted in accent
+// Decorative hero waveform: deterministic heights. The CSS animation below
+// cuts out the middle section and splices the ends back together on a loop.
 const heroBars = Array.from({ length: 75 }, (_, i) => 14 + Math.abs(Math.sin(i * 1.7)) * 46 + (i % 5) * 3);
-const heroSel = [21, 47] as const;
 const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-slash'] as const;
 ---
 
@@ -96,26 +96,24 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
           </span>
           <span>MP3 · WAV · M4A · OGG · FLAC</span>
         </div>
-        <svg viewBox="0 0 600 96" class="mt-4 h-20 w-full" preserveAspectRatio="none" aria-hidden="true">
-          <rect
-            x={heroSel[0] * 8 - 2}
-            y="2"
-            width={(heroSel[1] - heroSel[0] + 1) * 8 + 4}
-            height="92"
-            rx="8"
-            class="fill-accent-soft"
-          />
-          {heroBars.map((h, i) => (
-            <rect
-              x={i * 8}
-              y={48 - h / 2}
-              width={5}
-              height={h}
-              rx={2.5}
-              class:list={['hero-bar', i >= heroSel[0] && i <= heroSel[1] ? 'fill-accent' : 'fill-line']}
-              style={`--d:${(1.1 + ((i * 7) % 5) * 0.17).toFixed(2)}s;--t:${(-((i * 13) % 11) * 0.11).toFixed(2)}s;--a:${(0.4 + ((i * 3) % 4) * 0.09).toFixed(2)}`}
-            />
-          ))}
+        <svg viewBox="0 0 600 96" class="wave-stage mt-4 h-20 w-full" preserveAspectRatio="none" aria-hidden="true">
+          <g class="wave-left">
+            {heroBars.slice(0, 21).map((h, j) => (
+              <rect x={j * 8} y={48 - h / 2} width={5} height={h} rx={2.5} class:list={j === 20 ? 'wave-joint' : null} />
+            ))}
+          </g>
+          <g class="wave-cut">
+            {heroBars.slice(21, 48).map((h, j) => (
+              <rect x={(21 + j) * 8} y={48 - h / 2} width={5} height={h} rx={2.5} />
+            ))}
+          </g>
+          <g class="wave-right">
+            {heroBars.slice(48).map((h, j) => (
+              <rect x={(48 + j) * 8} y={48 - h / 2} width={5} height={h} rx={2.5} class:list={j === 0 ? 'wave-joint' : null} />
+            ))}
+          </g>
+          <rect class="wave-line" x="166" y="6" width="2.5" height="84" rx="1.25" />
+          <rect class="wave-line" x="382" y="6" width="2.5" height="84" rx="1.25" />
         </svg>
       </div>
     </div>
@@ -252,24 +250,121 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
 </Base>
 
 <style>
-  /* Decorative hero waveform "plays": each bar breathes around its center on a
-     deterministic per-bar phase so the pattern is identical on every load. */
-  .hero-bar {
+  /* Decorative hero waveform plays a cut-and-splice story: two cut lines mark
+     a middle section, the section lifts out, the ends join, the splice flashes.
+     Loop length is 7s; every track resets while the stage is faded out (79%–91%).
+     With prefers-reduced-motion the waveform stays a static gray strip. */
+  .wave-stage {
+    animation: wave-cycle 7s linear infinite;
+  }
+  .wave-left,
+  .wave-right {
+    fill: var(--color-line);
+  }
+  .wave-right {
+    animation: wave-splice 7s linear infinite;
+  }
+  .wave-cut {
+    fill: var(--color-line);
+    animation: wave-cut 7s linear infinite;
+  }
+  .wave-joint {
+    fill: var(--color-line);
+    animation: wave-joint 7s linear infinite;
+  }
+  .wave-line {
+    fill: var(--color-accent);
+    opacity: 0;
     transform-box: fill-box;
     transform-origin: center;
-    animation: hero-bounce var(--d, 1.4s) ease-in-out var(--t, 0s) infinite;
+    animation: wave-line 7s linear infinite;
   }
-  @keyframes hero-bounce {
+  @keyframes wave-cycle {
     0%,
+    70% {
+      opacity: 1;
+    }
+    79%,
+    91% {
+      opacity: 0;
+    }
     100% {
+      opacity: 1;
+    }
+  }
+  @keyframes wave-line {
+    0% {
+      opacity: 0;
+      transform: scaleY(0.2);
+    }
+    5%,
+    18% {
+      opacity: 0.9;
       transform: scaleY(1);
     }
-    50% {
-      transform: scaleY(var(--a, 0.55));
+    26%,
+    100% {
+      opacity: 0;
+      transform: scaleY(1);
+    }
+  }
+  @keyframes wave-cut {
+    0%,
+    8% {
+      transform: translateY(0);
+      opacity: 1;
+      fill: var(--color-line);
+    }
+    13% {
+      fill: var(--color-accent);
+    }
+    26%,
+    84% {
+      transform: translateY(-16px);
+      opacity: 0;
+      fill: var(--color-accent);
+    }
+    88%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+      fill: var(--color-line);
+    }
+  }
+  @keyframes wave-splice {
+    0%,
+    28% {
+      transform: translateX(0);
+      animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+    }
+    42%,
+    84% {
+      transform: translateX(-216px);
+    }
+    88%,
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes wave-joint {
+    0%,
+    44% {
+      fill: var(--color-line);
+    }
+    52% {
+      fill: var(--color-accent);
+    }
+    66%,
+    100% {
+      fill: var(--color-line);
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero-bar {
+    .wave-stage,
+    .wave-cut,
+    .wave-right,
+    .wave-joint,
+    .wave-line {
       animation: none;
     }
   }
