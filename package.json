@@ -12,6 +12,7 @@
     "audit:preview": "node scripts/seo-audit.mjs http://localhost:4321",
     "check:serp": "node scripts/serp-check.mjs",
     "check:pages": "node scripts/pages-check.mjs",
+    "check:hero": "node scripts/hero-wave-check.mjs",
     "check:features": "node scripts/feature-check.mjs",
     "check:smoke": "node scripts/smoke-test.mjs",
     "check:pitch": "node_modules/.bin/esbuild scripts/pitch-check.mjs --bundle --platform=node --format=esm --outfile=/tmp/pitch-check.mjs && node /tmp/pitch-check.mjs",

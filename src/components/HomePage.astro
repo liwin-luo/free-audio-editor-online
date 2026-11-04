@@ -112,7 +112,8 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
               width={5}
               height={h}
               rx={2.5}
-              class:list={[i >= heroSel[0] && i <= heroSel[1] ? 'fill-accent' : 'fill-line']}
+              class:list={['hero-bar', i >= heroSel[0] && i <= heroSel[1] ? 'fill-accent' : 'fill-line']}
+              style={`--d:${(1.1 + ((i * 7) % 5) * 0.17).toFixed(2)}s;--t:${(-((i * 13) % 11) * 0.11).toFixed(2)}s;--a:${(0.4 + ((i * 3) % 4) * 0.09).toFixed(2)}`}
             />
           ))}
         </svg>
@@ -249,3 +250,27 @@ const highlightIcon = ['lock-simple', 'check', 'clock-counter-clockwise', 'wifi-
 
   <Faq faqs={home.faqs} locale={locale} />
 </Base>
+
+<style>
+  /* Decorative hero waveform "plays": each bar breathes around its center on a
+     deterministic per-bar phase so the pattern is identical on every load. */
+  .hero-bar {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: hero-bounce var(--d, 1.4s) ease-in-out var(--t, 0s) infinite;
+  }
+  @keyframes hero-bounce {
+    0%,
+    100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(var(--a, 0.55));
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bar {
+      animation: none;
+    }
+  }
+</style>
