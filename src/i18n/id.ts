@@ -413,12 +413,12 @@ export const id: Catalog = {
     mvRealtime: "Rekaman berjalan real-time: lagu 3 menit butuh 3 menit.",
   },
   home: {
-    title: 'Edit Audio Online Gratis — Potong, Gabung, Konversi',
+    title: 'Alat Edit Audio Online Gratis — Potong, Gabung, Konversi',
     description:
-      'Editor audio online gratis: pangkas, potong, gabung, putar balik, dan konversi audio di browser. Tanpa daftar, tanpa unggah — file tetap di perangkat.',
-    appBlurb: 'Editor audio online gratis — potong, pangkas, gabung, dan edit audio di browser Anda.',
+      'Alat edit audio online gratis: pangkas, potong, gabung, putar balik, dan konversi audio di browser. Tanpa daftar, tanpa unggah — file tetap di perangkat.',
+    appBlurb: 'Alat edit audio online gratis — potong, pangkas, gabung, dan edit audio di browser Anda.',
     badge: 'Pemrosesan 100% lokal · tidak ada yang diunggah',
-    h1: 'Editor audio online gratis',
+    h1: 'Alat audio online gratis',
     lede: 'Pangkas, potong, gabung, dan edit audio langsung di browser. Tanpa mendaftar, tanpa watermark, tanpa unggah — file Anda tidak pernah meninggalkan perangkat.',
     ctaTrim: 'Pangkas file audio',
     ctaMerge: 'Gabungkan lagu',

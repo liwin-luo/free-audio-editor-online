@@ -413,12 +413,12 @@ export const es: Catalog = {
     mvRealtime: "Graba en tiempo real: una canción de 3 minutos tarda 3 minutos.",
   },
   home: {
-    title: 'Editor de audio online gratis — Corta, une y convierte',
+    title: 'Herramientas de audio online gratis — Corta, une y convierte',
     description:
-      'Editor de audio online gratis: recorta, corta, une, invierte y convierte audio en tu navegador. Sin registro, sin subir archivos.',
-    appBlurb: 'Editor de audio en línea gratis: corta, recorta, une y edita audio en tu navegador.',
+      'Herramientas de audio online gratis: recorta, corta, une, invierte y convierte audio en tu navegador. Sin registro, sin subir archivos.',
+    appBlurb: 'Herramientas de audio en línea gratis: corta, recorta, une y edita audio en tu navegador.',
     badge: 'Procesamiento 100% local · nada se sube',
-    h1: 'Editor de audio en línea gratis',
+    h1: 'Herramientas de audio en línea gratis',
     lede: 'Recorta, corta, une y edita audio en tu navegador. Sin registro, sin marcas de agua y sin subir archivos: nunca salen de tu dispositivo.',
     ctaTrim: 'Recortar un archivo de audio',
     ctaMerge: 'Unir canciones',

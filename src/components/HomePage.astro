@@ -30,8 +30,8 @@ const jsonLd = [
   faqSchema(home.faqs, lang),
 ];
 
-const FEATURED_SLUGS = ['mp4-to-mp3', 'audio-trimmer'];
-const POPULAR_SLUGS = ['audio-joiner', 'mp3-cutter', 'voice-recorder', 'increase-volume'];
+const FEATURED_SLUGS = ['audio-trimmer', 'mp3-cutter'];
+const POPULAR_SLUGS = ['mp4-to-mp3', 'wav-to-mp3', 'audio-joiner', 'increase-volume'];
 const featured = FEATURED_SLUGS.map((slug) => tools.find((t) => t.slug === slug)!);
 const popular = POPULAR_SLUGS.map((slug) => tools.find((t) => t.slug === slug)!);
 const categoryIcon = { cut: 'scissors', convert: 'convert', join: 'layers', edit: 'volume', effects: 'waveform', record: 'mic' } as const;

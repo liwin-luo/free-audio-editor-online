@@ -413,13 +413,13 @@ export const en: Shell = {
     mvRealtime: 'Records in real time: a 3-minute song takes 3 minutes.',
   },
   home: {
-    title: 'Free Online Audio Editor — Cut, Convert & Edit, No Upload',
+    title: 'Free Online Audio Tools — Trim, Convert & Merge, No Upload',
     description:
-      'Free online audio editor: trim, cut, merge, reverse and convert audio in your browser. No signup and no upload. The file stays on your device.',
-    appBlurb: 'Free online audio editor. Cut, trim, merge and edit audio in your browser.',
+      'Free online audio tools: trim, cut, merge, reverse and convert audio in your browser. No signup and no upload. The file stays on your device.',
+    appBlurb: 'Free online audio tools. Trim, cut, merge and edit audio in your browser.',
     badge: '100% local processing · nothing uploaded',
-    h1: 'Free online audio editor',
-    lede: 'Trim, cut, merge and edit audio in the browser. No signup, no watermark, no upload. The file stays on your device.',
+    h1: 'Free online audio tools',
+    lede: 'Trim, convert, merge and edit audio directly in your browser. Your audio files stay on your device.',
     ctaTrim: 'Trim an audio file',
     ctaMerge: 'Merge songs together',
     highlightsLabel: 'Why it works this way',

@@ -412,12 +412,12 @@ export const pt: Catalog = {
     mvRealtime: "Grava em tempo real: uma música de 3 minutos leva 3 minutos.",
   },
   home: {
-    title: 'Editor de áudio online grátis — Corte, junte, converta',
+    title: 'Ferramentas de áudio online grátis — Corte, junte, converta',
     description:
-      'Editor de áudio online e grátis: corte, recorte, junte, reverta e converta no navegador. Sem cadastro, sem envio — seus arquivos não saem do aparelho.',
-    appBlurb: 'Editor de áudio online e grátis — corte, recorte, junte e edite áudio no navegador.',
+      'Ferramentas de áudio online e grátis: corte, recorte, junte, reverta e converta no navegador. Sem cadastro, sem envio — seus arquivos não saem do aparelho.',
+    appBlurb: 'Ferramentas de áudio online e grátis — corte, recorte, junte e edite áudio no navegador.',
     badge: '100% no aparelho · nada é enviado',
-    h1: 'Editor de áudio online e grátis',
+    h1: 'Ferramentas de áudio online e grátis',
     lede: 'Corte, recorte, junte e edite áudio direto no navegador. Sem cadastro, sem marca d\'água, sem envio — seus arquivos não saem do aparelho.',
     ctaTrim: 'Cortar um arquivo de áudio',
     ctaMerge: 'Juntar músicas',

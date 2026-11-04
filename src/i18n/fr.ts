@@ -413,12 +413,12 @@ export const fr: Catalog = {
     mvRealtime: "L'enregistrement se fait en temps réel : une chanson de 3 minutes prend 3 minutes.",
   },
   home: {
-    title: 'Éditeur audio en ligne — montage audio gratuit sans upload',
+    title: 'Outils audio en ligne — montage audio gratuit sans upload',
     description:
-      'Éditeur audio en ligne gratuit : coupez, fusionnez, inversez et convertissez dans votre navigateur. Sans inscription, sans téléversement.',
-    appBlurb: 'Éditeur audio en ligne gratuit — coupez, rognez, fusionnez et montez l’audio dans votre navigateur.',
-    badge: 'Traitement 100 % local · aucun téléversement',
-    h1: 'Éditeur audio en ligne gratuit',
+      'Outils audio en ligne gratuits : coupez, fusionnez, inversez et convertissez dans votre navigateur. Sans inscription, sans téléversement.',
+    appBlurb: 'Outils audio en ligne gratuits — coupez, rognez, fusionnez et montez l’audio dans votre navigateur.',
+    badge: 'Traitement 100 % local · aucun téléversement',
+    h1: 'Outils audio en ligne gratuits',
     lede: 'Rognez, coupez, fusionnez et montez l’audio directement dans votre navigateur. Sans inscription, sans filigrane, sans téléversement — vos fichiers ne quittent jamais votre appareil.',
     ctaTrim: 'Rogner un fichier audio',
     ctaMerge: 'Fusionner des chansons',

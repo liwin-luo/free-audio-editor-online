@@ -414,12 +414,12 @@ export const de: Catalog = {
     mvRealtime: "Die Aufnahme läuft in Echtzeit: ein 3-Minuten-Song dauert 3 Minuten.",
   },
   home: {
-    title: 'Audio online bearbeiten — kostenloser Audio-Editor',
+    title: 'Audio online bearbeiten — kostenlose Online-Audio-Tools',
     description:
-      'Kostenloser Online-Audio-Editor: kürzen, schneiden, zusammenfügen, umwandeln — direkt im Browser, ohne Anmeldung. Deine Dateien verlassen dein Gerät nie.',
-    appBlurb: 'Kostenloser Audio-Editor online — Audio im Browser schneiden, kürzen, zusammenfügen und bearbeiten.',
+      'Kostenlose Online-Audio-Tools: kürzen, schneiden, zusammenfügen, umwandeln — direkt im Browser, ohne Anmeldung. Deine Dateien verlassen dein Gerät nie.',
+    appBlurb: 'Kostenlose Online-Audio-Tools — Audio im Browser schneiden, kürzen, zusammenfügen und bearbeiten.',
     badge: '100 % lokal verarbeitet · nichts wird hochgeladen',
-    h1: 'Kostenloser Audio-Editor online',
+    h1: 'Kostenlose Online-Audio-Tools',
     lede: 'Kürze, schneide, füge zusammen und bearbeite Audio direkt im Browser. Ohne Anmeldung, ohne Wasserzeichen, ohne Upload — deine Dateien verlassen dein Gerät nie.',
     ctaTrim: 'Audiodatei kürzen',
     ctaMerge: 'Songs zusammenfügen',
