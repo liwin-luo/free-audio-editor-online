@@ -100,7 +100,8 @@ try {
   const bpmNum = Number(onPage.bpm);
   if (!Number.isFinite(bpmNum) || Math.abs(bpmNum - 120) > 2) throw new Error(`page bpm ${onPage.bpm}`);
   const a = await read(sinePath);
-  if (a.key !== 'A major') throw new Error(`page key ${a.key}`);
+  // the page appends the Camelot code to the key text ("A major · 11B")
+  if (!a.key.startsWith('A major')) throw new Error(`page key ${a.key}`);
   if (a.bpm !== "Can't read") throw new Error(`sine bpm ${a.bpm}`);
   const z = await read(zeroPath);
   if (z.bpm !== "Can't read" || z.key !== "Can't read") throw new Error(`page zeros ${z.bpm} ${z.key}`);
