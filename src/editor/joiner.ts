@@ -4,6 +4,7 @@
  * the single-file editor.
  */
 import { formatBytes, formatTime, clamp } from '../lib/format';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import { computePeaks, concatPeaks, drawWaveform, MAX_CANVAS_WIDTH, type Peaks } from './waveform';
 import { renderMerge } from './processor';
 import { encodeFor, getFormat } from './encoders';
@@ -116,8 +117,10 @@ class Joiner {
           buffer,
           peaks,
         });
+        trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
       } catch {
         showToast(this.toastRoot(), 'error', `${file.name} could not be decoded — unsupported format?`);
+        trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
       }
     }
     this.busy = false;
@@ -223,6 +226,7 @@ class Joiner {
   private async doExport(): Promise<void> {
     if (this.clips.length === 0 || this.busy) return;
     this.busy = true;
+    trackEvent('export_started', { tool: toolSlugFromPath() });
     const exportBtn = this.q<HTMLButtonElement>('[data-export]');
     exportBtn.disabled = true;
     const original = exportBtn.innerHTML;
@@ -243,6 +247,7 @@ class Joiner {
       const fmt = getFormat(this.q<HTMLSelectElement>('[data-format]').value);
       status.textContent = fill(this.text.encoding, { ext: fmt.ext.toUpperCase() });
       const blob = await encodeFor(fmt, out);
+      trackEvent('processing_completed', { tool: toolSlugFromPath() });
 
       const filename = `merged.${fmt.ext}`;
       const url = URL.createObjectURL(blob);
@@ -253,6 +258,7 @@ class Joiner {
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 5000);
+      trackEvent('download_completed', { tool: toolSlugFromPath(), ext: fmt.ext });
 
       status.textContent = fill(this.text.exported, { file: filename });
       showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: filename }));
@@ -260,6 +266,7 @@ class Joiner {
       console.error(err);
       status.textContent = '';
       showToast(this.toastRoot(), 'error', this.text.exportFail);
+      trackEvent('processing_failed', { tool: toolSlugFromPath() });
     } finally {
       exportBtn.innerHTML = original;
       this.busy = false;

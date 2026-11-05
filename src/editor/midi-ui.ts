@@ -3,6 +3,7 @@
  * The model chunk loads on the first convert, not with the page.
  */
 import { formatBytes, formatTime } from '../lib/format';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
 import { fileStem } from './batch';
@@ -115,11 +116,13 @@ class MidiConverter {
       this.tooLongEl.classList.toggle('hidden', !this.tooLong);
       this.runBtn.disabled = this.tooLong;
       this.samples = this.tooLong ? null : await (await import('./midi-infer')).toMono22050(buffer);
+      trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } catch (err) {
       console.error(err);
       this.samples = null;
       this.runBtn.disabled = true;
       showToast(this.toastRoot(), 'error', this.text.decodeFail);
+      trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } finally {
       this.busy = false;
     }
@@ -136,6 +139,7 @@ class MidiConverter {
     this.progressRow.classList.remove('hidden');
     this.setProgress(0);
     this.statusEl.textContent = fill(this.text.midiWorking, { percent: 0 });
+    trackEvent('export_started', { tool: toolSlugFromPath() });
     try {
       const { audioToMidi } = await import('./midi-infer');
       const { notes, bytes } = await audioToMidi(this.samples, (percent) => {
@@ -163,11 +167,13 @@ class MidiConverter {
         this.result.classList.remove('hidden');
         this.downloadBtn.disabled = false;
         this.statusEl.textContent = fill(this.text.midiNotes, { count: notes.length });
+        trackEvent('processing_completed', { tool: toolSlugFromPath(), notes: notes.length });
       }
     } catch (err) {
       console.error(err);
       showToast(this.toastRoot(), 'error', this.text.midiFail);
       this.statusEl.textContent = this.text.midiFail;
+      trackEvent('processing_failed', { tool: toolSlugFromPath() });
     } finally {
       this.progressRow.classList.add('hidden');
       this.runBtn.disabled = this.tooLong || !this.samples;
@@ -184,6 +190,7 @@ class MidiConverter {
     a.download = `${this.fileName}.mid`;
     a.click();
     URL.revokeObjectURL(url);
+    trackEvent('download_completed', { tool: toolSlugFromPath(), ext: 'mid' });
   }
 
   private setProgress(percent: number): void {

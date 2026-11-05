@@ -1,4 +1,5 @@
 import { formatBytes, formatTime } from '../lib/format';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import { readEditorText, showToast } from './messages';
 import { bindFileOpen, setEmptyHidden } from './delivery';
 import { PITCHES, readKeyBpm } from './key-bpm';
@@ -81,11 +82,14 @@ class KeyBpmFinder {
           : `${PITCHES[read.tonic]} ${read.mode === 'minor' ? this.text.keyMinor : this.text.keyMajor} · ${read.mode === 'minor' ? CAMELOT_MINOR[read.tonic] : CAMELOT_MAJOR[read.tonic]}`;
       setEmptyHidden(this.dropzone, true);
       this.workspace.classList.remove('hidden');
+      trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
+      trackEvent('processing_completed', { tool: toolSlugFromPath() });
     } catch (err) {
       console.error(err);
       this.bpmEl.textContent = '—';
       this.keyEl.textContent = '—';
       showToast(this.toastRoot(), 'error', this.text.decodeFail);
+      trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } finally {
       this.busy = false;
     }

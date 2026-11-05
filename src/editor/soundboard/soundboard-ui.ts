@@ -6,6 +6,7 @@
 import { ensureSynth, SOUND_LABELS } from './synth-defaults';
 import { buildBoardJson, encodeWavBase64, parseBoardJson, PALETTE } from './board-file';
 import { showToast } from '../messages';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../../lib/analytics';
 import { fill } from '../../i18n/inline';
 
 interface SbText {
@@ -404,8 +405,10 @@ class Board {
           continue;
         }
         this.pushSound(buf, cleanName(f.name));
+        trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(f.size) });
       } catch {
         this.toast('error', `${f.name}: ${this.text.decodeFail}`);
+        trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(f.size) });
       }
     }
   }
@@ -640,6 +643,7 @@ class Board {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    trackEvent('download_completed', { tool: toolSlugFromPath(), ext: name.split('.').pop() ?? '' });
   }
 
   /* ---------- board file ---------- */

@@ -8,6 +8,7 @@
 import { readEditorText, showToast } from './messages';
 import { bindFileOpen, setEmptyHidden } from './delivery';
 import { clamp, formatBytes, formatTime } from '../lib/format';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import { fill } from '../i18n/inline';
 import {
   LIVE_BAR_COUNT,
@@ -204,9 +205,11 @@ class MusicVisualizerApp {
       if (canRecordVideo()) this.els.exportBtn.disabled = false;
       this.resizeCanvas();
       this.setStatus('');
+      trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } catch {
       this.setStatus('');
       showToast(this.toastRoot(), 'error', this.text.decodeFail);
+      trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } finally {
       this.busy = false;
     }
@@ -390,6 +393,7 @@ class MusicVisualizerApp {
     this.recorder.onstop = () => this.finishExport(canvasStream, mime);
     this.recorder.start(1000);
     this.recording = true;
+    trackEvent('export_started', { tool: toolSlugFromPath() });
 
     this.setControlsEnabled(false);
     this.els.exportBtn.disabled = true;
@@ -437,14 +441,17 @@ class MusicVisualizerApp {
     if (blob.size === 0) {
       this.setStatus('');
       showToast(this.toastRoot(), 'error', this.text.mvFail);
+      trackEvent('processing_failed', { tool: toolSlugFromPath() });
       return;
     }
+    trackEvent('processing_completed', { tool: toolSlugFromPath() });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = `${this.baseName}-visualizer.${mime.ext}`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 10_000);
+    trackEvent('download_completed', { tool: toolSlugFromPath(), ext: mime.ext });
     this.setStatus('');
     showToast(this.toastRoot(), 'success', this.text.mvSaved);
   }

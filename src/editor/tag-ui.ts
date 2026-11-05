@@ -6,6 +6,7 @@ import { buildTaggedMp3, parseId3, type AudioTags, type PictureData } from './ta
 import { downloadStem, fileStem, uniqueFileNames } from './batch';
 import { storeZip } from './split';
 import { formatBytes } from '../lib/format';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import { showToast } from './messages';
 import { bindFileOpen, setEmptyHidden } from './delivery';
 import type { EditorConfig } from '../data/tools';
@@ -246,6 +247,7 @@ class TagForm {
     this.fillFrom({ ...first, title: '', track: '' });
     this.els.fileName.textContent = tracks[0]!.fileName;
     this.els.fileMeta.textContent = `${tracks.length} MP3 · ${formatBytes(bytes)}`;
+    trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(bytes) });
     this.refreshCover();
     this.refreshNoTags();
     this.renderRows();
@@ -323,6 +325,7 @@ class TagForm {
     this.els.workspace.classList.remove('hidden');
     this.els.save.disabled = false;
     this.setStatus('');
+    trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
   }
 
   // Reflect the current picture in the preview and the Save-cover button.
@@ -381,6 +384,7 @@ class TagForm {
     this.busy = true;
     els.save.disabled = true;
     this.setStatus(this.i18n.saving);
+    trackEvent('export_started', { tool: toolSlugFromPath() });
     try {
       if (this.tracks.length > 1) {
         const shared = this.collect();
@@ -404,6 +408,7 @@ class TagForm {
         }));
         const zipName = `${fileStem(this.tracks[0]!.fileName)}-tags.zip`;
         download(new Blob([storeZip(files)], { type: 'application/zip' }), zipName);
+        trackEvent('download_completed', { tool: toolSlugFromPath(), ext: 'zip' });
         this.setStatus(this.i18n.saved);
         return;
       }
@@ -413,10 +418,12 @@ class TagForm {
       const title = this.els.fieldsByName.title.value.trim();
       const safe = title.replace(/[\\/:*?"<>|]/g, '_') || 'audio';
       download(new Blob([out], { type: 'audio/mpeg' }), `${safe}.mp3`);
+      trackEvent('download_completed', { tool: toolSlugFromPath(), ext: 'mp3' });
       this.setStatus(this.i18n.saved);
     } catch {
       this.setStatus(this.i18n.writeFail);
       showToast(this.toastRoot(), 'error', this.i18n.writeFail);
+      trackEvent('processing_failed', { tool: toolSlugFromPath() });
     } finally {
       this.busy = false;
       els.save.disabled = false;

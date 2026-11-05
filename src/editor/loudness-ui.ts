@@ -1,4 +1,5 @@
 import { formatBytes, formatTime } from '../lib/format';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import { encodeFor, getFormat } from './encoders';
 import { fill } from '../i18n/inline';
 import { readEditorText, showToast } from './messages';
@@ -117,10 +118,13 @@ class LoudnessMeter {
       }
       this.exportBtn.disabled = true;
       this.noteEl.textContent = silent ? this.text.lufsSilent : '';
+      trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
+      trackEvent('processing_completed', { tool: toolSlugFromPath() });
     } catch (err) {
       console.error(err);
       this.noteEl.textContent = '';
       showToast(this.toastRoot(), 'error', this.text.decodeFail);
+      trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } finally {
       this.busy = false;
     }
@@ -149,6 +153,7 @@ class LoudnessMeter {
     this.exportBtn.disabled = true;
     const original = this.exportBtn.innerHTML;
     this.exportBtn.textContent = this.text.rendering;
+    trackEvent('export_started', { tool: toolSlugFromPath() });
     try {
       const match = matchLufsGain(this.measured, this.target, this.peakLinear);
       const out = new AudioBuffer({
@@ -163,6 +168,7 @@ class LoudnessMeter {
       }
       const fmt = getFormat(this.formatEl.value);
       const blob = await encodeFor(fmt, out);
+      trackEvent('processing_completed', { tool: toolSlugFromPath() });
       const filename = `${this.fileName}-lufs.${fmt.ext}`;
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -172,10 +178,12 @@ class LoudnessMeter {
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 5000);
+      trackEvent('download_completed', { tool: toolSlugFromPath(), ext: fmt.ext });
       showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: filename }));
     } catch (err) {
       console.error(err);
       showToast(this.toastRoot(), 'error', this.text.exportFail);
+      trackEvent('processing_failed', { tool: toolSlugFromPath() });
     } finally {
       this.exportBtn.innerHTML = original;
       this.exportBtn.disabled = this.target === null;

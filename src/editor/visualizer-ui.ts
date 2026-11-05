@@ -15,6 +15,7 @@ import { mixMono, paintSpec, specColumnDb, type ColormapName, type SpecAxis } fr
 import { readEditorText, showToast } from './messages';
 import { bindFileOpen, setEmptyHidden } from './delivery';
 import { clamp, formatBytes, formatTime } from '../lib/format';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
@@ -207,9 +208,11 @@ export class VisualizerApp {
       requestAnimationFrame(() => this.renderPreview());
       this.setStatus(this.text.vizReady);
       if (buffer.duration > 3600) showToast(this.toastRoot(), 'info', this.text.hourWarning);
+      trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } catch {
       this.setStatus('');
       showToast(this.toastRoot(), 'error', this.text.decodeFail);
+      trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } finally {
       this.busy = false;
     }
@@ -344,6 +347,7 @@ export class VisualizerApp {
     const original = label?.textContent ?? '';
     if (label) label.textContent = this.text.vizRendering;
     this.setStatus(this.text.renderingStatus);
+    trackEvent('export_started', { tool: toolSlugFromPath() });
     try {
       const { w, h, custom } = this.exportSize();
       // Presets render at 2× for a crisp result; large custom sizes at 1× to
@@ -357,6 +361,7 @@ export class VisualizerApp {
       const off = document.createElement('canvas');
       renderWaveformImage(off, peaks, { ...this.imageOptions(), width, height });
       const blob = await canvasToPng(off);
+      trackEvent('processing_completed', { tool: toolSlugFromPath() });
 
       const filename = `${this.fileName}-waveform.png`;
       const url = URL.createObjectURL(blob);
@@ -367,12 +372,14 @@ export class VisualizerApp {
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 5000);
+      trackEvent('download_completed', { tool: toolSlugFromPath(), ext: 'png' });
 
       this.setStatus(fill(this.text.exported, { file: filename }));
       showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: filename }));
     } catch {
       this.setStatus('');
       showToast(this.toastRoot(), 'error', this.text.vizExportFail);
+      trackEvent('processing_failed', { tool: toolSlugFromPath() });
     } finally {
       if (label) label.textContent = original;
       this.els.exportBtn.disabled = false;
