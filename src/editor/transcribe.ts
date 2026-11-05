@@ -12,6 +12,7 @@ import { chunksToSrt, type TranscriptChunk } from './srt';
 import { fileStem, uniqueFileNames } from './batch';
 import { storeZip } from './split';
 import { fill } from '../i18n/inline';
+import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
 
@@ -268,6 +269,7 @@ class Transcriber {
       return;
     }
     const note = skipped > 0 ? ` ${fill(this.text.batchSkipped, { n: skipped })}` : '';
+    trackEvent('processing_completed', { tool: toolSlugFromPath() });
     if (ok === 1) {
       this.setStatus(`${fill(this.text.trDone, { count: String(this.els.transcript.value.length) })}${note}`);
       return;
@@ -282,6 +284,7 @@ class Transcriber {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
+    trackEvent('download_completed', { tool: toolSlugFromPath(), ext: 'zip' });
     this.setStatus(`${fill(this.text.exported, { file: zipName })}${note}`);
     showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: zipName }));
   }
@@ -322,9 +325,11 @@ class Transcriber {
       this.setExportState(false);
       this.renderQueue();
       this.setStatus(this.text.ready);
+      trackEvent('file_selected', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } catch {
       this.setStatus('');
       showToast(this.toastRoot(), 'error', this.text.decodeFail);
+      trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     }
   }
 
@@ -354,10 +359,14 @@ class Transcriber {
     this.els.progressRow.classList.remove('hidden');
     this.setProgress(0);
     this.setStatus(this.text.trPreparing);
+    trackEvent('export_started', { tool: toolSlugFromPath() });
 
     if (!this.worker) {
       this.worker = new Worker(new URL('./transcribe-worker.ts', import.meta.url), { type: 'module' });
       this.worker.addEventListener('message', (e: MessageEvent<WorkerResponse>) => this.onMessage(e.data));
+      // Script load failures and unhandled worker exceptions fire 'error', not
+      // 'message' — without this the run dies silently with zero user feedback.
+      this.worker.addEventListener('error', (e: ErrorEvent) => this.onWorkerFailure(e.message));
     }
     if (queued) {
       try {
@@ -387,6 +396,25 @@ class Transcriber {
       model: (this.els.model.value as TranscribeModel) ?? 'base',
       language: this.els.language.value || null,
     });
+  }
+
+  /** A dead worker cannot serve later runs: drop it and surface the failure. */
+  private onWorkerFailure(message: string | undefined): void {
+    console.error('transcribe worker:', message);
+    trackEvent('processing_failed', { tool: toolSlugFromPath() });
+    this.worker = null;
+    if (this.job) {
+      const job = this.job;
+      this.job = null;
+      job.reject(new Error(message || 'transcribe worker'));
+      return;
+    }
+    showToast(this.toastRoot(), 'error', this.text.trFail);
+    this.els.progressRow.classList.add('hidden');
+    this.els.progressBar.style.transform = 'scaleX(0)';
+    this.busy = false;
+    this.els.runBtn.disabled = false;
+    this.setStatus('');
   }
 
   private onMessage(msg: WorkerResponse): void {
@@ -421,6 +449,7 @@ class Transcriber {
         this.busy = false;
         this.els.runBtn.disabled = false;
         this.els.progressRow.classList.add('hidden');
+        trackEvent('processing_completed', { tool: toolSlugFromPath() });
         break;
       }
       case 'error':
@@ -467,6 +496,7 @@ class Transcriber {
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
+    trackEvent('download_completed', { tool: toolSlugFromPath(), ext: kind });
   }
 
   /** Result buttons unlock once a transcript exists; the run button follows busy. */
