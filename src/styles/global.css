@@ -70,6 +70,12 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Korean wraps at word boundaries, not between syllables. */
+  html:lang(ko) {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
   ::selection {
     background-color: var(--color-accent);
     color: var(--color-on-accent);

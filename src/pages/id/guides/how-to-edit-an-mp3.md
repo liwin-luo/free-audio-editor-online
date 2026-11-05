@@ -1,6 +1,6 @@
 ---
 title: Cara mengedit file MP3 di browser
-description: Potong, pangkas, fade, atau keraskan MP3 tanpa memasang aplikasi. Halaman mana untuk tiap pekerjaan, dan kapan mengekspor WAV agar tidak dikode ulang dua kali.
+description: Potong, pangkas, fade, atau keraskan MP3 tanpa memasang aplikasi. Halaman mana untuk tiap pekerjaan, dan kapan mengekspor WAV agar tidak dikode ulang.
 tool: mp3-editor
 locale: id
 date: 2026-10-16

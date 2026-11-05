@@ -1,6 +1,6 @@
 ---
 title: Audio in MIDI umwandeln – ein Instrument, bis zu 3 Minuten
-description: Melodie, Stimme oder Soloklavier im Browser in eine MIDI-Datei umwandeln. Was das Modell gut erkennt, was schiefgeht, und was in der .mid steckt. Kein Upload.
+description: Melodie, Stimme oder Soloklavier im Browser in MIDI umwandeln. Was das Modell gut erkennt, was schiefgeht, und was in der .mid steckt. Kein Upload.
 tool: audio-to-midi
 locale: de
 date: 2026-10-21

@@ -1,6 +1,6 @@
 ---
 title: Cómo editar un archivo WAV en el navegador
-description: Recorta y edita un WAV antes de convertirlo. Cuándo quedarte en PCM de 16 bits, cuándo basta un MP3 a 320 kbps, y por qué pasar de MP3 a WAV no devuelve calidad.
+description: Recorta y edita un WAV antes de convertirlo. Cuándo quedarte en PCM de 16 bits, cuándo basta un MP3 a 320 kbps, y por qué MP3 a WAV no devuelve calidad.
 tool: mp3-editor
 locale: es
 date: 2026-10-16

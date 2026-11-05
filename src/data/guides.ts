@@ -433,14 +433,14 @@ export const GUIDES: GuideCard[] = [
     locale: 'pt',
     href: '/pt/guides/convert-audio-to-midi',
     title: 'Converter áudio em MIDI online - um instrumento, 3 minutos',
-    description: 'Transforme uma melodia cantarolada, uma voz ou um piano solo em arquivo MIDI no navegador. O que funciona, o que sai errado e o que há no .mid. Sem enviar nada.',
+    description: 'Transforme uma melodia cantarolada, uma voz ou um piano solo em MIDI no navegador. O que funciona, o que sai errado e o que há no .mid. Sem enviar nada.',
     minutes: 4,
   },
   {
     locale: 'id',
     href: '/id/guides/convert-audio-to-midi',
     title: 'Konversi audio ke MIDI online - satu instrumen, 3 menit',
-    description: 'Ubah melodi yang dihumming, suara, atau piano solo menjadi file MIDI di browser. Apa yang terbaca dengan baik, apa yang salah, dan isi file .mid. Tanpa unggah.',
+    description: 'Ubah melodi yang dihumming, suara, atau piano solo menjadi MIDI di browser. Apa yang terbaca baik, apa yang salah, dan isi file .mid. Tanpa unggah.',
     minutes: 4,
   },
   {
@@ -589,7 +589,7 @@ export const GUIDES: GuideCard[] = [
     href: '/id/guides/how-to-edit-an-mp3',
     title: 'Cara mengedit file MP3 di browser',
     description:
-      'Potong, pangkas, fade, atau keraskan MP3 tanpa memasang aplikasi. Halaman mana untuk tiap pekerjaan, dan kapan mengekspor WAV agar tidak dikode ulang dua kali.',
+      'Potong, pangkas, fade, atau keraskan MP3 tanpa memasang aplikasi. Halaman mana untuk tiap pekerjaan, dan kapan mengekspor WAV agar tidak dikode ulang.',
     minutes: 5,
   },
   {

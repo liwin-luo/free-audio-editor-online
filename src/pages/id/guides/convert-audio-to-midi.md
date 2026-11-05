@@ -1,6 +1,6 @@
 ---
 title: Konversi audio ke MIDI online - satu instrumen, 3 menit
-description: Ubah melodi yang dihumming, suara, atau piano solo menjadi file MIDI di browser. Apa yang terbaca dengan baik, apa yang salah, dan isi file .mid. Tanpa unggah.
+description: Ubah melodi yang dihumming, suara, atau piano solo menjadi MIDI di browser. Apa yang terbaca baik, apa yang salah, dan isi file .mid. Tanpa unggah.
 tool: audio-to-midi
 locale: id
 date: 2026-10-21

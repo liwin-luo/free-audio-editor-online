@@ -620,6 +620,33 @@ export const pt: Catalog = {
           a: 'Sim — Chrome, Edge, Firefox e Safari recentes, no desktop e no celular. Navegadores com WebGPU (Chrome, Edge) transcrevem muito mais rápido; nos outros roda na CPU, então escolha Tiny para arquivos longos e espere alguns minutos para dez minutos de áudio. O download único do modelo também é menor no Tiny.',
         },
       ],
+      sections: [
+        {
+          heading: 'Uma transcrição local, não legenda ao vivo',
+          paragraphs: [
+            'Áudio para texto roda um modelo Whisper no navegador. O modelo baixa uma vez de um CDN, depois o arquivo é transcrito no aparelho. O áudio não é enviado para a transcrição.',
+            'O limite é de cerca de 10 minutos. Não há rótulos de quem fala. Ele não escuta o microfone ao vivo. Grave primeiro no gravador de voz, exporte, e solte o arquivo aqui.',
+          ],
+        },
+        {
+          heading: 'Modelo e idioma',
+          paragraphs: [
+            'A página lista trinta códigos de idioma. Escolha um, ou deixe a detecção ligada:',
+          ],
+          bullets: [
+            'Os modelos são onnx-community/whisper-tiny e onnx-community/whisper-base.',
+            'Sem WebGPU, a página começa no Tiny.',
+            'Os tamanhos na tela não foram medidos para esta página.',
+          ],
+        },
+        {
+          heading: 'O que o texto vai errar',
+          paragraphs: [
+            'Nomes, falas sobrepostas e música sob uma voz saem confusos. Ele não marca quem falou. Limpe o arquivo primeiro se as pontas são silêncio longo: corte, ou passe o removedor de silêncio, e transcreva o arquivo mais curto.',
+            'Você pode editar as palavras antes de baixar, como texto simples ou como SRT com marcações de tempo. Ele não traduz para outro idioma.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos de áudio ou vídeo, ou clique para procurar',
       exportLabel: 'Transcrever',
     },
@@ -679,6 +706,50 @@ export const pt: Catalog = {
         {
           q: 'Funciona no celular?',
           a: 'Sim. O editor é feito para toque — arraste, mexa no controle e exporte. Funciona no Chrome, Edge, Firefox e Safari atuais, no computador e no celular.',
+        },
+      ],
+      screenshotsAlt: [
+        'Realce de graves: área de soltar, nada é enviado a um servidor',
+        'Realce de graves: área de trabalho com o arquivo carregado',
+        'Realce de graves: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'O que o controle de graves realmente levanta',
+          paragraphs: [
+            'É um filtro low-shelf. Ele sobe as frequências abaixo de 150 Hz na quantidade que você definir, até +15 dB. Médios e agudos ficam onde estavam. Não é um controle de volume.',
+            'Um shelf só amplifica graves que o arquivo já tem. Uma gravação de voz de celular tem muito pouca energia abaixo de 80 Hz, então um realce grande não produz um subgrave. Julgue o resultado em fones ou caixas de som de verdade. A caixa de som de um celular não reproduz essa faixa, então um realce pesado pode soar como nada, ou como lama.',
+          ],
+        },
+        {
+          heading: 'Quanto grave adicionar',
+          paragraphs: [
+            'A faixa útil é pequena. Passar dela já é fazer um efeito.',
+          ],
+          bullets: [
+            '+3 a +6 dB: recados de voz finos, entrevistas e faixas só de médios.',
+            '+6 a +9 dB: bateria e baixo que precisam ficar à frente. Confira se as vozes ainda atravessam.',
+            '+9 a +15 dB: um efeito de graves deliberado. A fala costuma ficar difícil de acompanhar aqui.',
+            'Se o grave estala, o shelf ficou sem margem. Recue o controle.',
+          ],
+        },
+        {
+          heading: 'Realce de graves, amplificador de volume e o equalizador',
+          paragraphs: [
+            'Escolha a página que corresponde ao problema.',
+          ],
+          bullets: [
+            'Realce de graves, esta página: só o grave abaixo de 150 Hz. O arquivo soa fino, não baixo.',
+            'Amplificador de volume: o arquivo inteiro, até 4×, com um limitador. O arquivo é baixo em todas as frequências.',
+            'Equalizador: graves, médios e agudos como shelves separados. Use quando 150 Hz é o corte errado.',
+          ],
+        },
+        {
+          heading: 'Onde um realce de graves erra',
+          paragraphs: [
+            'Grave pesado esconde fala. Ouça em um volume normal, não com as caixas já abaixadas, ou você salva algo que retumba no carro e enterra a voz.',
+            'Exporte WAV se você vai continuar editando. MP3 a 320 kbps é a escolha certa quando o arquivo está pronto. O filtro não reamostra nem muda o tom. Se o realce empurrar picos acima da escala cheia, um limitador suaviza esses picos para a exportação não distorcer forte.',
+          ],
         },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
@@ -742,6 +813,38 @@ export const pt: Catalog = {
           a: 'Sim. O editor é feito para toque — arraste, mexa no controle e exporte. Funciona no Chrome, Edge, Firefox e Safari atuais, no computador e no celular.',
         },
       ],
+      screenshotsAlt: [
+        'Realce de agudos: área de soltar, nada é enviado a um servidor',
+        'Realce de agudos: área de trabalho com o arquivo carregado',
+        'Realce de agudos: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Um shelf de agudos acima de 3 kHz',
+          paragraphs: [
+            'O realce de agudos é um filtro high-shelf, até +15 dB acima de 3 kHz. Ele amplifica agudos que o arquivo já tem. Não inventa detalhe que uma codificação de bitrate baixo descartou.',
+            'Um limitador segura os picos para um realce grande não distorcer forte. O realce também levanta chiado e sibilância que já estavam no arquivo.',
+          ],
+        },
+        {
+          heading: 'Até onde forçar',
+          paragraphs: [
+            'Ouça uma vez de fone antes de exportar:',
+          ],
+          bullets: [
+            '+3 a +6 dB abre a maioria das gravações opacas.',
+            'Acima de +9 dB, sons de s, ch e t podem ficar estridentes.',
+            'Se o arquivo foi codificado em bitrate baixo, nenhum shelf traz os agudos que faltam de volta.',
+          ],
+        },
+        {
+          heading: 'Agudos, graves e o equalizador',
+          paragraphs: [
+            'O realce de graves levanta abaixo de 150 Hz. Esta página levanta acima de 3 kHz. Opaco e abafado aponta para cá. Fino e pequeno aponta para os graves.',
+            'O equalizador é as mesmas três regiões com corte além de realce: low shelf em 150 Hz, um pico em 1 kHz, e este high shelf em 3 kHz. Use o realce quando você já sabe que só quer mais agudos.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Reforçar os agudos',
     },
@@ -801,6 +904,38 @@ export const pt: Catalog = {
         {
           q: 'Funciona no celular?',
           a: 'Sim. O editor é feito para toque — arraste, mexa nos controles e exporte. Funciona no Chrome, Edge, Firefox e Safari atuais, no computador e no celular.',
+        },
+      ],
+      screenshotsAlt: [
+        'Equalizador de áudio: área de soltar, nada é enviado a um servidor',
+        'Equalizador de áudio: área de trabalho com o arquivo carregado',
+        'Equalizador de áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Dez bandas, corte ou realce',
+          paragraphs: [
+            'As bandas são filtros de pico separados por uma oitava, de 31 Hz a 16 kHz. Cada uma vai cerca de ±15 dB. Uma banda deixada em 0 dB fica em bypass, então não colore o som.',
+            'Cortar é a jogada mais segura. Um corte de −4 dB em uma banda lamacenta costuma fazer mais que um realce de +6 dB em outro lugar. Realces grandes empurram o sinal para o limitador e podem suavizar picos.',
+          ],
+        },
+        {
+          heading: 'Para que servem as faixas',
+          paragraphs: [
+            'As bandas de oitava se agrupam nas três regiões usuais, não em um EQ cirúrgico:',
+          ],
+          bullets: [
+            '31–250 Hz: peso e lama. Corte se o arquivo está com excesso de graves. O realce de graves só levanta esta região, até +15 dB, e não corta.',
+            '500 Hz–2 kHz: presença. Cortar aqui deixa as vozes distantes.',
+            '4–16 kHz: ar e brilho. O realce de agudos só levanta acima de 3 kHz.',
+          ],
+        },
+        {
+          heading: 'Quando um único realce basta',
+          paragraphs: [
+            'Se você já sabe que só quer mais graves ou mais agudos, o realce de graves e o realce de agudos são as páginas mais curtas. Eles não cortam.',
+            'Um filtro passa-baixa ou passa-alta é uma varredura de corte, não estes shelves. Use um filtro quando você quer tudo acima ou abaixo de uma frequência fora, não alguns decibéis movidos.',
+          ],
         },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
@@ -864,6 +999,38 @@ export const pt: Catalog = {
           a: 'Sim. O editor é feito para toque — arraste, varra o corte e exporte. Funciona no Chrome, Edge, Firefox e Safari atuais, no computador e no celular.',
         },
       ],
+      screenshotsAlt: [
+        'Filtro passa-baixa: área de soltar, nada é enviado a um servidor',
+        'Filtro passa-baixa: área de trabalho com o arquivo carregado',
+        'Filtro passa-baixa: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Tudo acima do corte vai embora',
+          paragraphs: [
+            'Um filtro passa-baixa atenua o que está acima do corte. Não é um removedor de ruído. Ele não separa chiado do sinal. Ele abaixa cada frequência além do ponto que você define, incluindo consoantes e pratos se você definir baixo demais.',
+            'Não há reamostragem nem mudança de tom. A exportação ainda codifica uma vez: MP3, ou WAV se você quer o áudio filtrado sem outra geração com perdas.',
+          ],
+        },
+        {
+          heading: 'Cortes que combinam com o trabalho',
+          paragraphs: [
+            'O número é um ponto de partida. Ouça, porque o mesmo corte abafa um arquivo e só suaviza outro:',
+          ],
+          bullets: [
+            'Voz: tente 8–12 kHz primeiro. Abaixo de cerca de 5 kHz a fala soa abafada. Abaixo de 2 kHz soa como telefone.',
+            'Um efeito lo-fi suave para música: 4–8 kHz.',
+            'Pratos agudos que você só quer domar: 12–16 kHz. Abaixo de 3 kHz a música soa claramente opaca.',
+          ],
+        },
+        {
+          heading: 'O passa-alta é o outro sentido',
+          paragraphs: [
+            'O filtro passa-alta remove ronco e reforço de graves abaixo do corte. Esta página remove chiado e aspereza acima do corte. Usar os dois deixa uma banda no meio.',
+            'Alguns decibéis de agudos, em vez de remover o topo de vez, são o realce de agudos ou o equalizador. Esses shelves não fazem uma varredura de corte rígida.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Aplicar passa-baixa',
     },
@@ -923,6 +1090,38 @@ export const pt: Catalog = {
         {
           q: 'Funciona no celular?',
           a: 'Sim. O editor é feito para toque — arraste, varra o corte e exporte. Funciona no Chrome, Edge, Firefox e Safari atuais, no computador e no celular.',
+        },
+      ],
+      screenshotsAlt: [
+        'Filtro passa-alta: área de soltar, nada é enviado a um servidor',
+        'Filtro passa-alta: área de trabalho com o arquivo carregado',
+        'Filtro passa-alta: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Tudo abaixo do corte vai embora',
+          paragraphs: [
+            'Um filtro passa-alta atenua o que está abaixo do corte: ronco, vento, batidas de manuseio e o grave de um ambiente com excesso. Ele não muda o tom e não reamostra.',
+            'O zumbido da rede fica em 50 ou 60 Hz, com harmônicos acima. Um passa-alta em torno de 80–120 Hz remove a fundamental e boa parte do zumbido. Harmônicos teimosos ainda ficam. Combine com o filtro passa-baixa se precisar estreitar mais a banda.',
+          ],
+        },
+        {
+          heading: 'Até onde subir antes da voz ficar fina',
+          paragraphs: [
+            'A fala tem corpo nos médios-graves. Empurre o corte longe demais e a voz fica fina:',
+          ],
+          bullets: [
+            'Vozes masculinas mantêm o corpo até cerca de 100 Hz.',
+            'Vozes femininas até cerca de 150–200 Hz.',
+            'Passando de 300 Hz, a fala começa a soar como telefone. Isso pode ser um estilo, então ouça antes de exportar.',
+          ],
+        },
+        {
+          heading: 'Não é o realce de graves nem um shelf de corte',
+          paragraphs: [
+            'O realce de graves adiciona nível abaixo de 150 Hz. Esta página remove nível abaixo de um corte que você varre. Eles resolvem problemas opostos.',
+            'O equalizador pode cortar alguns decibéis em 150 Hz e deixar o resto do grave. Use ele quando o arquivo está um pouco lamacento e você ainda quer o peso. Use esta página quando o ronco deve sumir.',
+          ],
         },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
@@ -989,6 +1188,38 @@ export const pt: Catalog = {
         q: 'Posso aplicar fade num arquivo local pelo Claude ou pelo Cursor?',
         a: 'Esta página faz fade de um arquivo no navegador, de 0 a 5 segundos, em passos de 0.1. /mcp aplica o afade do ffmpeg de 0 a 30 segundos em cada ponta. O MP3 é codificado uma vez. O app de chat ainda vê o caminho.',
       }],
+      screenshotsAlt: [
+        'Fade de entrada e saída: área de soltar, nada é enviado a um servidor',
+        'Fade de entrada e saída: área de trabalho com o arquivo carregado',
+        'Fade de entrada e saída: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'As bordas ficam baixas, o meio fica',
+          paragraphs: [
+            'O fade de áudio molda o volume ao longo do tempo em um arquivo: um fade de entrada no começo, um fade de saída no fim, ou os dois. O meio fica intacto. Não há reverb nem mudança de tom.',
+            'Para músicas, 1–3 segundos costuma soar natural. Gravações ao vivo podem aceitar 4–5 segundos. Loops e toques querem 0,2–0,5 segundos para o ataque ficar. Ouça o começo e o fim antes de exportar.',
+          ],
+        },
+        {
+          heading: 'Para que serve um fade',
+          paragraphs: [
+            'Use quando o corte já está feito e a borda estala ou para de repente:',
+          ],
+          bullets: [
+            'Um toque ou um loop que não deve estalar quando repete.',
+            'O fim de uma música ou recado de voz que para duro demais.',
+            'O começo de uma gravação que entra em volume cheio.',
+          ],
+        },
+        {
+          heading: 'Não é um crossfade nem um amplificador de volume',
+          paragraphs: [
+            'Misturar o fim de uma faixa no começo de outra é o [juntador de áudio](/audio-joiner). Esta página faz fade em um único arquivo.',
+            'O [amplificador de volume](/volume-booster) levanta o arquivo inteiro em uma quantidade constante, de 10% a 400%. Um fade é baixo nas bordas e cheio no meio. A exportação é MP3, começando em 320 kbps, ou WAV de 16 bits. O arquivo que você soltou não é modificado.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Aplicar fade e baixar',
     },
@@ -1053,6 +1284,49 @@ export const pt: Catalog = {
         q: 'Posso cortar um arquivo local pelo Claude ou pelo Cursor?',
         a: 'Esta página corta no navegador com a Web Audio API. Você não instala nada. /mcp roda no seu computador e chama o ffmpeg. Início e fim são em segundos. WAV são as amostras decodificadas. O MP3 é codificado uma vez. O app de chat ainda vê o caminho e os argumentos.',
       }],
+      screenshotsAlt: [
+        'Cortar áudio: área de soltar, nada é enviado a um servidor',
+        'Cortar áudio: área de trabalho com o arquivo carregado',
+        'Cortar áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Marque a parte que você quer manter',
+          paragraphs: [
+            'Arraste sobre a forma de onda. O início e o fim mudam enquanto você arrasta, e dá para digitar os dois tempos quando o dedo ou o mouse não é preciso o bastante. Aperte play para ouvir só esse trecho antes de salvar.',
+            'Exporte WAV se você vai cortar de novo ou editar mais. Exporte MP3 quando o clipe está pronto. Um corte em WAV mantém as amostras que você selecionou. Um corte em MP3 codifica uma vez, no bitrate que você escolher.',
+          ],
+        },
+        {
+          heading: 'Corte uma gravação ou uma música',
+          paragraphs: [
+            'Esta página serve para uma gravação que você precisa encurtar: uma resposta de podcast, um recado de voz, uma aula, o meio de um arquivo longo.',
+          ],
+          bullets: [
+            'Esta página e o [cortador de MP3](/mp3-cutter) são o mesmo editor. Os dois podem manter a seleção ou apagá-la. A página do cortador é a escrita para um refrão ou uma introdução.',
+            'Um toque de celular, limitado a 40 segundos, com M4R só quando este navegador codifica AAC, é o [criador de toque](/ringtone-maker). Esta página não instala o toque no celular.',
+            'Um fade de 0 a 5 segundos em um arquivo é o [fade de áudio](/fade-audio). Esta página não aplica fade.',
+          ],
+        },
+        {
+          heading: 'O que o corte faz com o som',
+          paragraphs: [
+            'O arquivo é decodificado, o trecho é retirado e a exportação é escrita de novo. WAV é PCM de 16 bits desse trecho. MP3 codifica uma vez. O bitrate padrão desta página é 192 kbps.',
+            'Esta página não altera o volume. Um arquivo mais baixo, de 10% a 400%, é o [aumentar volume](/increase-volume).',
+          ],
+        },
+        {
+          heading: 'Qual o tamanho máximo de arquivo',
+          paragraphs: [
+            'Um arquivo acima de 300 MB é recusado. Um arquivo acima de uma hora ainda abre, e a página avisa que a aba pode ficar sem memória. Esse aviso não é um limite de duração.',
+          ],
+          bullets: [
+            'Um recado de voz ou uma resposta de podcast: corte aqui, no celular se quiser.',
+            'Um episódio completo: o computador é o lugar mais estável para ouvir e exportar.',
+            'Um vídeo: o que é cortado é a trilha sonora. A imagem não é salva.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Recortar e baixar',
     },
@@ -1118,6 +1392,49 @@ export const pt: Catalog = {
         a: 'Não. Esta página trabalha com um arquivo deste aparelho e não aceita link. Cortar o áudio de uma plataforma de streaming geralmente quebra os termos de uso: use só músicas que você possui ou para as quais tem permissão.',
         },
       ],
+      screenshotsAlt: [
+        'Cortar MP3: área de soltar, nada é enviado a um servidor',
+        'Cortar MP3: área de trabalho com o arquivo carregado',
+        'Cortar MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Mantenha a parte marcada ou apague',
+          paragraphs: [
+            'Arraste sobre a forma de onda para marcar um trecho. Os tempos mudam enquanto você arrasta, e dá para digitar início e fim quando o ponteiro não é preciso.',
+            'Os dois modos fazem trabalhos opostos.',
+          ],
+          bullets: [
+            'Manter seleção: o arquivo salvo é só o trecho marcado. É o refrão, a batida ou a única resposta que você quer de uma gravação longa.',
+            'Apagar seleção: o arquivo salvo é tudo menos esse trecho. É assim que você tira os primeiros 30 segundos, uma introdução ou um anúncio lido.',
+          ],
+        },
+        {
+          heading: 'Corte um MP3 ou encurte uma gravação',
+          paragraphs: [
+            'Esta página corta um trecho de uma música. O seletor também aceita vídeos MP4, WebM e MOV: o que é cortado é a trilha sonora. O resultado é um novo MP3 ou um WAV de 16 bits.',
+            'O [cortador de áudio](/audio-trimmer) é o mesmo editor, escrito para um podcast ou um recado de voz. Use esta página para cortar um MP3. Use o cortador quando o arquivo não é uma música.',
+          ],
+        },
+        {
+          heading: 'O que o corte faz com o som',
+          paragraphs: [
+            'WAV é PCM de 16 bits das amostras que você manteve. MP3 codifica esse trecho uma vez. O bitrate padrão desta página é 192 kbps.',
+            'O arquivo é decodificado, o trecho é retirado e a exportação é escrita de novo. Se você vai editar o arquivo outra vez, exporte WAV. Os dois controles de fade suavizam as bordas do corte quando o clipe precisa de um começo ou um fim mais suave.',
+          ],
+        },
+        {
+          heading: 'O que este cortador não faz',
+          paragraphs: [
+            'Ele corta um arquivo. Não faz crossfade de uma playlist nem empilha várias faixas uma sobre a outra.',
+          ],
+          bullets: [
+            'Juntar várias músicas em um arquivo é o [juntador de áudio](/audio-joiner).',
+            'Um clipe limitado a 40 segundos, baixado como toque, é o [criador de toque](/ringtone-maker). Esta página não instala o toque no celular.',
+            'Título, artista e capa são o [editor de tags MP3](/mp3-tag-editor), depois que o corte estiver pronto.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo MP3 ou vídeo, ou clique para procurar',
       exportLabel: 'Cortar e baixar',
     },
@@ -1179,6 +1496,38 @@ export const pt: Catalog = {
           a: 'Sim. Você arrasta a forma de onda com o dedo. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
         },
       ],
+      screenshotsAlt: [
+        'Editor de MP3: área de soltar, nada é enviado a um servidor',
+        'Editor de MP3: área de trabalho com o arquivo carregado',
+        'Editor de MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'O que este editor realmente muda',
+          paragraphs: [
+            'Esta página é o editor de MP3 geral: corte um trecho, faça fade nas pontas, mude o volume ou a velocidade, ou reverta o arquivo, e exporte um novo MP3. O arquivo que você soltou nunca é sobrescrito.',
+            'A velocidade aqui acompanha o tom com o tempo. Uma voz mais aguda ou mais grave com a mesma duração é o [alterador de tom](/pitch-changer). Um arquivo menor, sem esta edição, é [comprimir áudio](/compress-audio).',
+          ],
+        },
+        {
+          heading: 'Quando abrir uma página específica',
+          paragraphs: [
+            'O editor é o começo certo quando o trabalho é uma mistura de cortes pequenos e mudanças de nível. Trabalhos únicos têm um caminho mais curto:',
+          ],
+          bullets: [
+            'Uma música, manter um refrão: o [cortador de MP3](/mp3-cutter) é o mesmo editor de manter ou apagar.',
+            'Um podcast ou recado de voz: o [cortador de áudio](/audio-trimmer) é esse mesmo editor.',
+            'Só título, artista ou capa: o [editor de tags MP3](/mp3-tag-editor) copia os bytes do áudio e muda apenas as tags.',
+          ],
+        },
+        {
+          heading: 'Exportar e desfazer',
+          paragraphs: [
+            'Exportar grava um novo MP3. WAV no menu é PCM de 16 bits das amostras editadas.',
+            'Ctrl+Z (Cmd+Z no Mac) volta pelas edições recentes. Redefinir recarrega o arquivo que você soltou. Fechar a aba descarta a sessão, porque nada é armazenado em um servidor.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
     },
     'ringtone-maker': {
@@ -1234,6 +1583,67 @@ export const pt: Catalog = {
         {
           q: 'Tem marca d\'água ou limite?',
           a: 'Sem marca d\'água, sem cadastro, sem limite diário. O toque é renderizado no seu próprio aparelho e baixado direto do navegador.',
+        },
+      ],
+      screenshotsAlt: [
+        'Criar toque: área de soltar, nada é enviado a um servidor',
+        'Criar toque: área de trabalho com o arquivo carregado',
+        'Criar toque: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Como uma música vira toque',
+          paragraphs: [
+            'Um arrasto maior que 40 segundos é encurtado para 40. A página então avisa: seleção limitada a 40 segundos, a duração clássica de toque.',
+            'Faça fade em cada ponta de 0 a 5 segundos, em passos de 0,1. Em 0, aquela ponta fica inalterada.',
+          ],
+        },
+        {
+          heading: 'Qual arquivo o celular aceita',
+          paragraphs: [
+            'O menu começa em MP3 192 kbps.',
+          ],
+          bullets: [
+            'M4R é AAC-LC, no máximo dois canais, a 192 kbps. Ele só aparece quando este navegador codifica AAC.',
+            'Caso contrário, o menu traz MP3 a 320, 192 ou 128 kbps, ou WAV de 16 bits.',
+            'O menu não inclui 64 ou 96 kbps. Esta página apenas baixa o arquivo.',
+          ],
+          table: {
+            headers: [
+              'Tipo de toque',
+              'Duração que funciona',
+              'Por quê',
+            ],
+            rows: [
+              [
+                'Toque',
+                '40 segundos ou menos',
+                'Esta página limita o arrasto a 40 s: a duração clássica de toque',
+              ],
+              [
+                'Toques de texto e alerta',
+                'Alguns segundos',
+                'Um alerta deve se identificar, não tocar a música',
+              ],
+              [
+                'Alarme',
+                'O quanto você quiser',
+                'Exporte MP3 ou WAV de 16 bits; esta página não impõe limite',
+              ],
+              [
+                'Toque do Android',
+                'Curto, para o loop ficar limpo',
+                'O MP3 desta página funciona; o celular repete do começo',
+              ],
+            ],
+          },
+        },
+        {
+          heading: 'O que esta página não faz',
+          paragraphs: [
+            'Ela não envia a música e não instala o toque no celular. Você baixa um arquivo.',
+            'Uma música inteira, sem o limite de 40 segundos, é o [cortador de MP3](/mp3-cutter).',
+          ],
         },
       ],
       dropHint: 'Solte uma música ou clique para procurar',
@@ -1300,6 +1710,38 @@ export const pt: Catalog = {
         q: 'Posso juntar arquivos locais pelo Claude ou pelo Cursor?',
         a: 'Esta página junta no navegador. O controle de crossfade vai de 0 a 5 segundos, em passos de 0.5. /mcp junta de 2 a 20 arquivos locais com ffmpeg, com crossfade de 0 a 5 segundos, e grava estéreo a 44100 Hz. Não mostra uma forma de onda. O app de chat ainda vê os caminhos.',
       }],
+      screenshotsAlt: [
+        'Juntar músicas: área de soltar, nada é enviado a um servidor',
+        'Juntar músicas: área de trabalho com o arquivo carregado',
+        'Juntar músicas: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Juntar significa um arquivo depois do outro',
+          paragraphs: [
+            'O juntador coloca arquivos inteiros em fila: música, depois recado de voz, depois o próximo capítulo. Você pode reordenar a lista e definir um crossfade para o fim de um sobrepor o começo do outro.',
+            'Deixe o crossfade em zero para um corte seco, sem intervalo. Formatos diferentes são decodificados e escritos em uma única exportação. Isso não é uma mesa de mixagem: as faixas não tocam ao mesmo tempo.',
+          ],
+        },
+        {
+          heading: 'Trabalhos que esta página atende',
+          paragraphs: [
+            'Use quando o resultado precisa ser um arquivo único que um player abre sem playlist:',
+          ],
+          bullets: [
+            'Um recado de voz antes de uma música, na ordem que você escolher.',
+            'Gravações de capítulos juntas para um player sem playlist.',
+            'Clipes em sequência com um crossfade curto para as emendas não estalarem.',
+          ],
+        },
+        {
+          heading: 'Quando você precisa de camadas',
+          paragraphs: [
+            'Voz sobre música, volume e pan por clipe, mudo e solo: isso é o editor multipista, com até oito faixas. O juntador não abaixa a música sob a fala.',
+            'Não há um número fixo de arquivos. O teto é a memória do aparelho, porque a junção fica no navegador. Nada é enviado.',
+          ],
+        },
+      ],
       dropHint: 'Solte dois ou mais arquivos de áudio, ou clique para procurar',
     },
     'wav-to-mp3': {
@@ -1364,6 +1806,49 @@ export const pt: Catalog = {
         q: 'Posso converter um WAV local pelo Claude ou pelo Cursor?',
         a: 'Esta página converte no navegador a 128-320 kbps. /mcp chama o ffmpeg num arquivo que já está no seu computador. MP3, M4A e OGG podem ser 64, 96, 128, 192, 256 ou 320 kbps, e o padrão é 192. WAV é PCM de 16 bits. FLAC não tem perda. O app de chat ainda vê o caminho.',
       }],
+      screenshotsAlt: [
+        'Converter WAV para MP3: área de soltar, nada é enviado a um servidor',
+        'Converter WAV para MP3: área de trabalho com o arquivo carregado',
+        'Converter WAV para MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Qual bitrate escolher',
+          paragraphs: [
+            'O MP3 descarta parte do WAV. O bitrate é quanto ele mantém.',
+          ],
+          bullets: [
+            'O menu é 64, 96, 128, 192 e 320 kbps.',
+            'Esta página começa em 320.',
+            'O MP3 codifica as amostras decodificadas uma vez. As tags não são copiadas.',
+          ],
+        },
+        {
+          heading: 'Quanto menor fica o MP3',
+          paragraphs: [
+            'Um WAV guarda cada amostra. Um MP3 guarda uma versão comprimida do que você consegue ouvir. Um WAV de 50 MB fica em torno de 4–5 MB a 192 kbps, e cerca de 11 MB a 320 kbps. O tamanho exato segue a duração e a taxa de amostragem.',
+            'Se você ainda precisa do original, guarde o WAV. Esta página existe para a cópia que você compartilha tocar no celular, no carro e em uma caixa de som antiga, e para o arquivo ficar pequeno o bastante para enviar.',
+          ],
+        },
+        {
+          heading: 'Título, artista e capa não são copiados',
+          paragraphs: [
+            'O MP3 é escrito sem os metadados do WAV. Título da música, artista e capa não passam. Adicione depois no editor de tags MP3 se o player mostraria um nome vazio.',
+            'Arquivos M4A, FLAC e OGG soltos aqui convertem do mesmo jeito. O FLAC tem página própria se esse é o formato de origem. Esta página é a do WAV.',
+          ],
+        },
+        {
+          heading: 'Converta primeiro, corte depois',
+          paragraphs: [
+            'Esta página converte o arquivo inteiro. Ela não recorta um trecho do WAV.',
+          ],
+          bullets: [
+            'Precisa só de um minuto de uma gravação longa: converta, depois abra o cortador de áudio.',
+            'O arquivo já é um MP3 e você só precisa dele menor: use comprimir áudio, não esta página.',
+            'Você vai editar de novo depois da conversão: 320 kbps, ou mantenha o WAV e edite ele.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos WAV ou clique para procurar',
       exportLabel: 'Converter para MP3',
     },
@@ -1426,6 +1911,38 @@ export const pt: Catalog = {
           a: 'Sim. Você escolhe o arquivo e a conversão fica nesta aba. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
         },
       ],
+      screenshotsAlt: [
+        'Converter FLAC em MP3: área de soltar, nada é enviado a um servidor',
+        'Converter FLAC em MP3: área de trabalho com o arquivo carregado',
+        'Converter FLAC em MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Por que converter FLAC em MP3',
+          paragraphs: [
+            'FLAC é sem perdas e grande. MP3 é o que a maioria dos celulares, carros e players antigos realmente abre. Um FLAC de 25 MB costuma ficar perto de 12 MB a 320 kbps, e menor a 192 ou 128.',
+            'A conversão decodifica o FLAC e codifica um novo MP3. Guarde o FLAC se você ainda precisa dele.',
+          ],
+        },
+        {
+          heading: 'Bitrate e o que fica de fora',
+          paragraphs: [
+            'O menu de formato é só MP3, em três bitrates:',
+          ],
+          bullets: [
+            '320 kbps quando o arquivo deve ficar perto do FLAC para ouvir.',
+            '192 kbps para fala ou uma cópia menor para reproduzir em streaming.',
+            '128 kbps quando o tamanho importa mais que a oitava aguda.',
+          ],
+        },
+        {
+          heading: 'Tags, capa e a próxima edição',
+          paragraphs: [
+            'Título, artista e capa não são copiados. O MP3 é escrito sem metadados. Recoloque com o editor de tags MP3 depois de exportar.',
+            'Corte ou recorte depois da conversão, não antes, se você quer a edição no arquivo menor. WAV para MP3 é a página irmã quando a origem é WAV, não FLAC.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos FLAC ou clique para procurar',
       exportLabel: 'Converter para MP3',
     },
@@ -1486,6 +2003,38 @@ export const pt: Catalog = {
         {
           q: 'Funciona no celular?',
           a: 'Sim. Você escolhe o arquivo e a conversão fica nesta aba. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
+        },
+      ],
+      screenshotsAlt: [
+        'Converter MP3 em WAV: área de soltar, nada é enviado a um servidor',
+        'Converter MP3 em WAV: área de trabalho com o arquivo carregado',
+        'Converter MP3 em WAV: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'MP3 para WAV não recupera o que o MP3 descartou',
+          paragraphs: [
+            'A página decodifica o MP3 em WAV PCM de 16 bits. Editores e DAWs que recusam MP3 abrem esse WAV. Os agudos que faltam da codificação original não voltam.',
+            'Use quando o próximo passo não pode somar outra geração de MP3: corte, faça fade ou mixe o WAV, e codifique uma vez no final.',
+          ],
+        },
+        {
+          heading: 'Quando a conversão vale a pena',
+          paragraphs: [
+            'O menu de formato exporta só WAV. É a escolha certa em alguns casos concretos:',
+          ],
+          bullets: [
+            'Um programa ou gravador de hardware que só aceita WAV.',
+            'Uma edição que você vai codificar uma vez depois, para não empilhar MP3 sobre MP3.',
+            'Uma entrega para alguém que pediu PCM, não um MP3 menor.',
+          ],
+        },
+        {
+          heading: 'Tamanho e o outro sentido',
+          paragraphs: [
+            'O WAV é muito maior que o MP3. Esse tamanho é o PCM sem compressão, não detalhe novo.',
+            'Ir no outro sentido, WAV para MP3, é outra página, e ela escolhe um bitrate. Deixar um MP3 menor sem mudar para WAV é o compressor de áudio.',
+          ],
         },
       ],
       dropHint: 'Solte arquivos MP3 ou clique para procurar',
@@ -1555,6 +2104,65 @@ export const pt: Catalog = {
           a: 'Sim. Você escolhe o arquivo e a conversão fica nesta aba. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
         },
       ],
+      screenshotsAlt: [
+        'Comprimir áudio: área de soltar, nada é enviado a um servidor',
+        'Comprimir áudio: área de trabalho com o arquivo carregado',
+        'Comprimir áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Este compressor encolhe o arquivo, não a dinâmica',
+          paragraphs: [
+            'Comprimir áudio recodifica em um bitrate MP3 menor. Um arquivo de 320 kbps a 128 kbps fica com cerca de 40 por cento do tamanho. As partes baixas e altas continuam na mesma relação.',
+            'Igualar uma voz alta e uma baixa é o compressor de nível, outra página. Ele não deixa o arquivo menor.',
+          ],
+        },
+        {
+          heading: 'Qual bitrate escolher',
+          paragraphs: [
+            'O menu vai de 320 até 64 kbps. Escolha pelo que o arquivo é:',
+          ],
+          bullets: [
+            '192 ou 320 kbps para música que você ainda vai ouvir com atenção.',
+            '128 kbps para fala, um recado de voz ou uma cópia que precisa enviar.',
+            '64 ou 96 kbps só quando o destino é minúsculo e a fala basta.',
+          ],
+          table: {
+            headers: [
+              'Para onde o arquivo vai',
+              'Limite',
+              'Ajuste sugerido',
+            ],
+            rows: [
+              [
+                'Anexo do Gmail',
+                '25 MB (contas pessoais)',
+                '128 kbps: um recado de 10 minutos fica perto de 10 MB',
+              ],
+              [
+                'Telegram',
+                '2 GB, ou 4 GB com Premium',
+                'Qualquer bitrate cabe; escolha 128 kbps para economizar dados móveis',
+              ],
+              [
+                'Seu próprio alvo',
+                'Você decide',
+                'Um minuto tem cerca de 1 MB a 128 kbps, e cerca de 0,5 a 64',
+              ],
+            ],
+          },
+          outro: [
+            'Os limites mudam: estes dois foram verificados em outubro de 2026. Aplicativos de conversa mantêm mídia de áudio sob limites mais apertados que documentos, e os limites mudam sem aviso. A conta por minuto acima continua valendo dos dois jeitos.',
+          ],
+        },
+        {
+          heading: 'O que uma segunda codificação custa',
+          paragraphs: [
+            'Cada passagem descarta um pouco mais. Se o arquivo já está em 128 kbps, codificar de novo em 128 não ajuda, e codificar mais baixo deixa o som mais opaco.',
+            'Tags e capa não fazem parte deste encolhimento. Se o MP3 já é pequeno e você só precisa de um novo título ou capa, use o editor de tags MP3, que copia os bytes do áudio sem mudança.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos de áudio ou clique para procurar',
       exportLabel: 'Comprimir',
     },
@@ -1606,6 +2214,38 @@ export const pt: Catalog = {
         {
           q: 'Funciona no celular?',
           a: 'Sim. Escolha o arquivo e a conversão fica nesta aba. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo muito longo usa mais memória, então um computador fica mais estável depois de cerca de uma hora.',
+        },
+      ],
+      screenshotsAlt: [
+        'Conversor de bitrate: área de soltar, nada é enviado a um servidor',
+        'Conversor de bitrate: área de trabalho com o arquivo carregado',
+        'Conversor de bitrate: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'O que as cinco taxas pesam',
+          paragraphs: [
+            'O menu é 320, 192, 128, 96 e 64 kbps, taxa constante. Um minuto de estéreo tem cerca de 2,4 MB, 1,4 MB, 1 MB, 0,7 MB e 0,5 MB nessa ordem. A página abre em 192 kbps.',
+            'Um WAV não tem bitrate próprio, então o número que você escolhe é a primeira passagem com perdas. Um arquivo MP3, M4A, OGG ou Opus já perdeu algo, e esta passagem perde um pouco mais.',
+          ],
+        },
+        {
+          heading: 'Qual taxa serve ao trabalho',
+          paragraphs: [
+            'Escolha pelo que acontece com o arquivo depois, não pelo maior número do menu.',
+          ],
+          bullets: [
+            '320 kbps quando a origem é um WAV e você ainda quer perto do original.',
+            '192 kbps como a taxa comum para música, que é onde o menu começa.',
+            '128, 96 ou 64 kbps para fala, um recado ou uma cópia que precisa ser pequena.',
+          ],
+        },
+        {
+          heading: 'Um número maior não é uma restauração',
+          paragraphs: [
+            'Codificar um MP3 de 128 kbps em 320 kbps guarda as mesmas lacunas em um arquivo maior. A única forma de recuperar os agudos que faltam é uma fonte que ainda os tenha.',
+            'É o mesmo codificador de comprimir áudio. Use aquela página quando o objetivo é um arquivo menor e não importa em qual das cinco taxas ele começa. Use WAV para MP3 quando a origem é WAV e você quer 320 kbps sem escolher.',
+          ],
         },
       ],
       dropHint: 'Solte arquivos de áudio ou clique para escolher',
@@ -1663,6 +2303,38 @@ export const pt: Catalog = {
         {
           q: 'Reverter é mesmo grátis e privado?',
           a: 'Sim — sem cadastro, sem marca d\'água, sem limites. A reversão acontece no navegador com a Web Audio API, então o arquivo nunca é enviado para lugar nenhum.',
+        },
+      ],
+      screenshotsAlt: [
+        'Reverter áudio: área de soltar, nada é enviado a um servidor',
+        'Reverter áudio: área de trabalho com o arquivo carregado',
+        'Reverter áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Reverter toca as amostras de trás para frente',
+          paragraphs: [
+            'A página inverte o áudio selecionado para o fim tocar primeiro. Você pode reverter o arquivo inteiro ou só a seleção. Reverter não muda volume nem tom.',
+            'A exportação ainda é uma codificação. WAV mantém o PCM revertido sem geração de MP3. MP3 grava um novo arquivo do áudio revertido.',
+          ],
+        },
+        {
+          heading: 'Para que as pessoas usam',
+          paragraphs: [
+            'É uma reversão direta, não um decodificador de mensagem escondida nem um separador de faixas:',
+          ],
+          bullets: [
+            'Um prato ou impacto revertido como entrada.',
+            'Conferir uma frase de ouvido, só a seleção, e depois desfazer.',
+            'Um arquivo inteiro virado para uma passagem de design de som.',
+          ],
+        },
+        {
+          heading: 'O que continua igual',
+          paragraphs: [
+            'Desfazer volta atrás. Redefinir recarrega o arquivo que você soltou. O arquivo original no disco não é sobrescrito.',
+            'Se o objetivo é uma música mais lenta ou uma voz mais grave, reverter é o controle errado. A velocidade muda o tom com o tempo. O alterador de tom mantém a duração.',
+          ],
         },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
@@ -1726,6 +2398,38 @@ export const pt: Catalog = {
           a: 'Sim. Você arrasta a forma de onda com o dedo. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
         },
       ],
+      screenshotsAlt: [
+        'Acelerar áudio: área de soltar, nada é enviado a um servidor',
+        'Acelerar áudio: área de trabalho com o arquivo carregado',
+        'Acelerar áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Velocidade e tom andam juntos',
+          paragraphs: [
+            'Este controle toca o arquivo mais rápido ou mais lento como uma fita, de 0,5× a 2×. Mais rápido significa arquivo mais curto e tom mais alto. Mais lento significa arquivo mais longo e tom mais baixo. 2× fica cerca de uma oitava acima, 0,5× cerca de uma oitava abaixo.',
+            'Manter o tom enquanto a duração muda é o [mudar tempo](/tempo-changer), de 0,75× a 1,25×. Esta página ainda move o tom com a velocidade. Uma voz mais aguda ou mais grave com a mesma duração é o [alterador de tom](/pitch-changer), até 12 semitons.',
+          ],
+        },
+        {
+          heading: 'Onde o controle é útil',
+          paragraphs: [
+            'Use quando a mudança de tom é aceitável ou até o ponto:',
+          ],
+          bullets: [
+            'Uma aula ou recado de voz que você quer passar mais rápido, com o tom de esquilo incluso.',
+            'Uma passagem mais lenta para transcrever, com a voz descendo.',
+            'Uma prévia rápida de um clipe em outro tempo antes de exportar.',
+          ],
+        },
+        {
+          heading: 'Músicas slowed são a outra página',
+          paragraphs: [
+            'A página [slowed + reverb](/slowed-reverb) é este mesmo controle de velocidade mais uma reverb de 2,2 segundos. O tom ainda segue a velocidade. Esta página é só o controle de velocidade.',
+            'Acima de 100 por cento na página slowed é a direção nightcore. Faça isso lá se você também quer o controle de reverb. Exporte aqui se só quer a nova duração.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Mudar a velocidade e baixar',
     },
@@ -1786,6 +2490,38 @@ export const pt: Catalog = {
         {
           q: 'Funciona no celular?',
           a: 'Sim. Você arrasta a forma de onda com o dedo. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
+        },
+      ],
+      screenshotsAlt: [
+        'Aumentar volume do MP3: área de soltar, nada é enviado a um servidor',
+        'Aumentar volume do MP3: área de trabalho com o arquivo carregado',
+        'Aumentar volume do MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Um MP3 baixo demais',
+          paragraphs: [
+            'Aumentar volume do MP3 multiplica o arquivo, até 400 por cento, cerca de +12 dB. Acima de 100 por cento um limitador impede que os picos distorçam forte.',
+            'O mesmo tipo de ganho para a trilha de um vídeo ou qualquer outro formato é o amplificador de volume. Esta página é a do MP3. Arquivos de vídeo muitas vezes ainda decodificam aqui.',
+          ],
+        },
+        {
+          heading: 'O que o multiplicador não faz',
+          paragraphs: [
+            'É um ganho para o arquivo inteiro. Não é um padrão de loudness e não iguala a dinâmica:',
+          ],
+          bullets: [
+            'Um alvo de podcast de −16 LUFS: meça no [medidor de loudness](/loudness-meter). Se o pico da amostra passar de −1 dBFS, aquela página barra o ganho.',
+            'Um pico já perto da escala cheia e o resto baixo demais: [normalizar áudio](/normalize-audio) põe esse pico em 0,98, limitado a 4×. Ele não levanta mais as partes baixas.',
+            'Passagens altas e baixas que devem se aproximar: o [compressor de nível](/compressor), não este controle.',
+          ],
+        },
+        {
+          heading: 'Exportação',
+          paragraphs: [
+            'Você recebe um novo arquivo. O MP3 que você soltou fica onde estava. Empurrar um arquivo que já é alto bate quase todo no limitador e pode soar chapado.',
+            'Se o MP3 está baixo porque é um silêncio longo com uma frase curta, corte primeiro, depois aumente o que sobrou.',
+          ],
         },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
@@ -1852,6 +2588,95 @@ export const pt: Catalog = {
         {
           q: 'Preciso instalar um aplicativo?',
           a: 'Não. O conversor funciona nesta aba do navegador, no computador e no celular. Nada para instalar e nenhuma conta para criar.',
+        },
+      ],
+      screenshotsAlt: [
+        'Converter vídeo em MP3: área de soltar, nada é enviado a um servidor',
+        'Converter vídeo em MP3: área de trabalho com o arquivo carregado',
+        'Converter vídeo em MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Só a trilha sonora é convertida',
+          paragraphs: [
+            'Um MP4 é um contêiner. A imagem e o som são faixas separadas. Esta página decodifica o som e grava um MP3. A imagem nunca é codificada, enviada ou salva.',
+            'A imagem não é decodificada, então a resolução não faz parte da conversão. O arquivo fica neste aparelho. Um arquivo acima de 300 MB é recusado.',
+          ],
+        },
+        {
+          heading: 'Qual bitrate MP3 usar',
+          paragraphs: [
+            'A trilha sonora é codificada uma vez, na taxa que você escolher.',
+          ],
+          bullets: [
+            'O menu é 64, 96, 128, 192 e 320 kbps. Esta página começa em 320.',
+            'WAV é PCM de 16 bits das amostras decodificadas. MP3 codifica essas amostras uma vez.',
+            'Título, artista e capa não são copiados.',
+          ],
+        },
+        {
+          heading: 'MP4 para MP3, ou extrair o áudio',
+          paragraphs: [
+            'A exportação começa em MP3 a 320 kbps. WebM e MOV só abrem se este navegador consegue decodificar a trilha sonora. Troque o formato para WAV para uma cópia de 16 bits. A página feita para WAV como escolha padrão é [extrair áudio](/extract-audio).',
+            'Se você só precisa de um minuto, converta a trilha inteira aqui e depois use o [cortador de áudio](/audio-trimmer). Esta página não recorta um trecho do vídeo.',
+          ],
+        },
+        {
+          heading: 'Arquivos que o navegador não consegue ler',
+          paragraphs: [
+            'Se este navegador não consegue decodificar a trilha sonora, a mensagem é: não foi possível decodificar este arquivo, ele pode estar corrompido, ou o codec não é compatível com seu navegador. A mensagem não diz qual é o codec.',
+            'O MP3 não guarda título nem miniatura do vídeo. Defina o nome da faixa depois no [editor de tags MP3](/mp3-tag-editor) se precisar que ele apareça em um player.',
+          ],
+        },
+        {
+          heading: 'Esta página, o VLC ou um site de envio',
+          paragraphs: [
+            'Três caminhos transformam um vídeo em MP3. Escolha pelo tamanho do arquivo e pela frequência com que você converte. Detalhes conferidos nos serviços ao vivo em 2026-10-28.',
+          ],
+          table: {
+            headers: [
+              '',
+              'Esta página',
+              'VLC no computador',
+              'Sites de envio',
+            ],
+            rows: [
+              [
+                'Instalação',
+                'Nada',
+                'Sim',
+                'Não',
+              ],
+              [
+                'Arquivo sai do aparelho',
+                'Não',
+                'Não',
+                'Sim',
+              ],
+              [
+                'Limite de tamanho',
+                '300 MB por arquivo',
+                'Espaço livre em disco',
+                'Varia por serviço',
+              ],
+              [
+                'Vários arquivos',
+                'Sim, um ZIP',
+                'Um de cada vez',
+                'Varia por serviço',
+              ],
+              [
+                'Custo',
+                'Grátis',
+                'Grátis',
+                'Limites do plano grátis',
+              ],
+            ],
+          },
+          outro: [
+            'A produção noturna de gravações de uma hora cabe melhor em um programa de computador.',
+            'Uma trilha sonora avulsa cabe nesta página: nada para instalar, e o vídeo nunca sai do aparelho.',
+          ],
         },
       ],
       dropHint: 'Solte MP4 ou arquivos de vídeo, ou clique para procurar',
@@ -1924,6 +2749,38 @@ export const pt: Catalog = {
           a: 'Não. Esta página lê um arquivo escolhido neste aparelho e não aceita link. Salvar o áudio de uma plataforma de streaming geralmente quebra os termos de uso: trabalhe só com vídeos que você gravou ou para os quais tem permissão.',
         },
       ],
+      screenshotsAlt: [
+        'Extrair áudio: área de soltar, nada é enviado a um servidor',
+        'Extrair áudio: área de trabalho com o arquivo carregado',
+        'Extrair áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Tire a trilha sonora de um vídeo',
+          paragraphs: [
+            'Extrair áudio decodifica a trilha sonora e descarta a imagem. A exportação começa em MP3 a 192 kbps. O menu também inclui WAV.',
+            '[MP4 para MP3](/mp4-to-mp3) é o mesmo caminho de decodificação, começando em 320 kbps.',
+          ],
+        },
+        {
+          heading: 'O que sai e o que não sai',
+          paragraphs: [
+            'Só a faixa de áudio é decodificada. Os quadros do vídeo são descartados:',
+          ],
+          bullets: [
+            'Um vídeo de celular ou uma gravação de tela vira um arquivo que você pode cortar, juntar ou marcar.',
+            'WAV é PCM de 16 bits das amostras decodificadas. MP3 codifica essas amostras uma vez.',
+            'Se este navegador não consegue decodificar a trilha, a mensagem não diz qual é o codec.',
+          ],
+        },
+        {
+          heading: 'Ele não silencia o vídeo',
+          paragraphs: [
+            'Esta página mantém o som e descarta as imagens. Ela não devolve um vídeo.',
+            'Um arquivo acima de 300 MB é recusado. A imagem não é decodificada, então a resolução não faz parte da conversão. Nada é enviado.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos de vídeo ou clique para procurar',
       exportLabel: 'Extrair áudio',
     },
@@ -1979,6 +2836,38 @@ export const pt: Catalog = {
         {
           q: 'Por quanto tempo posso gravar?',
           a: 'Pelo tempo que a memória do aparelho permitir — minutos de fala ocupam muito pouco espaço (a compressão Opus é eficiente). Para gravações de várias horas, exporte em partes.',
+        },
+      ],
+      screenshotsAlt: [
+        'Gravador de voz: área de soltar, nada é enviado a um servidor',
+        'Gravador de voz: área de trabalho com o arquivo carregado',
+        'Gravador de voz: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'O microfone fica no navegador',
+          paragraphs: [
+            'O gravador de voz usa o MediaRecorder nesta aba. A tomada não é enviada. Se você fechar a aba antes de exportar, a gravação se perde.',
+            'O formato de captura depende do navegador. A exportação escolhe MP3 ou WAV, então o arquivo que você guarda é o que você escolheu, não o que o navegador gravou internamente.',
+          ],
+        },
+        {
+          heading: 'Depois da tomada',
+          paragraphs: [
+            'Você pode cortar mantendo uma seleção e exportar esse trecho:',
+          ],
+          bullets: [
+            'Corte a respiração antes da primeira palavra e o silêncio depois da última.',
+            'Exporte WAV se você vai editar a tomada de novo e quer codificar uma vez.',
+            'Exporte MP3 se o recado só precisa ser enviado ou guardado pequeno.',
+          ],
+        },
+        {
+          heading: 'O que ela não faz',
+          paragraphs: [
+            'Precisa de um navegador que implemente o MediaRecorder e de permissão para usar o microfone. Ela não transcreve. Fala para texto é a página de áudio para texto, e ela recebe um arquivo, não um microfone ao vivo.',
+            'Uma gravação baixa demais continua baixa depois da exportação. Aumente com o amplificador de volume, ou confira o nível no medidor de loudness se o destino é um alvo de podcast.',
+          ],
         },
       ],
       dropHint: 'Ou solte uma gravação existente para editar',
@@ -2041,6 +2930,51 @@ export const pt: Catalog = {
           a: 'Esta página multiplica o arquivo inteiro, então o alto e o baixo continuam à mesma distância. O compressor de nível encurta essa distância e depois devolve o pico. Use esta quando tudo está baixo demais. Use o compressor quando um trecho grita e outro some.',
         },
         { q: "Qual a diferença para o medidor de loudness?", a: "Arrastar este controle multiplica cada amostra. O medidor de loudness mede LUFS integrado e oferece podcast −16, streaming −14 e broadcast −23. Se o pico de amostra passasse de −1 dBFS, o ganho para. Não é um medidor de sala." },
+      ],
+      screenshotsAlt: [
+        'Aumentar volume: área de soltar, nada é enviado a um servidor',
+        'Aumentar volume: área de trabalho com o arquivo carregado',
+        'Aumentar volume: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Deixe o áudio mais alto sem o estalo',
+          paragraphs: [
+            'Um arquivo distorce quando uma amostra tenta passar do teto digital, 0 dBFS. Amplificar multiplica cada amostra. Se o momento mais alto já estava perto desse teto, uma amplificação grande corta o topo e você ouve estalo.',
+            'Acima de 100% esta página aplica um limitador: limiar −2 dB, knee 3, razão 20, ataque 0,002 segundos, liberação 0,15 segundos. O controle vai de 10% a 400%.',
+          ],
+          bullets: [
+            'O controle vai de 10% a 400%, em passos de 5.',
+            'Acima de 100%, o limitador do parágrafo acima é aplicado. Em 100% ou menos, não.',
+            'Um pico medido, limitado a 4×, é [normalizar áudio](/normalize-audio).',
+            'Esta página grava um arquivo mais alto. Ela não muda o volume da caixa de som do computador.',
+          ],
+        },
+        {
+          heading: 'Um pico mais alto não é um arquivo mais alto',
+          paragraphs: [
+            'O nível de pico é a amostra mais alta. Uma entrevista sussurrada com uma tosse pode chegar perto da escala cheia e ainda soar baixa, porque o resto do arquivo é baixo. Multiplicar o arquivo levanta o sussurro e a tosse juntos.',
+            'Quão alto um arquivo parece ao longo da duração é o que o LUFS mede. Esta página não mira um número de LUFS. O medidor de loudness mira: ele lê LUFS integrado e pode pôr um arquivo perto de −16 para podcasts, −14 para streaming ou −23 para transmissão, e para se o pico da amostra passar de −1 dBFS.',
+          ],
+        },
+        {
+          heading: 'Amplificar, normalizar ou comprimir',
+          paragraphs: [
+            'Três páginas deste site mudam o nível, e elas não se substituem.',
+          ],
+          bullets: [
+            'Amplificador de volume, esta página: você escolhe o multiplicador, de 10% a 400%, e acima de 100% o limitador da seção anterior segura os picos. Arquivos de vídeo são aceitos aqui. A imagem não é salva.',
+            '[Normalizar áudio](/normalize-audio): um ganho medido para o pico mais alto chegar a 0,98, limitado a 4×.',
+            '[Compressor de nível](/compressor): puxa os momentos altos para baixo e as palavras baixas para cima, depois recoloca o pico, limitado a 0,98. Uma amplificação não faz isso.',
+          ],
+        },
+        {
+          heading: 'Trilhas de vídeo e gravações de celular',
+          paragraphs: [
+            'Solte um MP4, WebM ou MOV e só a trilha sonora é decodificada, amplificada e salva como MP3 ou WAV. A imagem é ignorada. Se o navegador não consegue ler o codec de áudio, extraia o áudio primeiro.',
+            'Um arquivo amplificado fica mais alto em todo aparelho que o reproduz. O volume da caixa de som só ajuda o aparelho na sua frente. Exporte WAV se você vai editar de novo. MP3 codifica uma vez. A amplificação não inventa detalhe que um microfone de celular baixo nunca capturou, e também levanta o chiado que já estava lá.',
+          ],
+        },
       ],
       dropHint: 'Solte um arquivo de áudio ou vídeo, ou clique para procurar',
       exportLabel: 'Aumentar e baixar',
@@ -2107,6 +3041,38 @@ export const pt: Catalog = {
         q: 'Posso normalizar um arquivo local pelo Claude ou pelo Cursor?',
         a: 'Esta página eleva o pico no navegador, para cerca de -0.2 dB. /mcp roda o loudnorm do ffmpeg uma vez, em -16 LUFS, -1.5 dBTP e LRA 11. É uma passagem, não uma segunda passagem medida. O app de chat ainda vê o caminho.',
       }],
+      screenshotsAlt: [
+        'Normalizar áudio: área de soltar, nada é enviado a um servidor',
+        'Normalizar áudio: área de trabalho com o arquivo carregado',
+        'Normalizar áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Um ganho, mirando no pico',
+          paragraphs: [
+            'Normalizar encontra a amostra mais alta e aplica um ganho para esse pico chegar perto de −0,2 dB. Todas as outras amostras se movem na mesma quantidade. As partes baixas não recebem um aumento separado.',
+            'Não é LUFS. Um alvo de podcast de −16 LUFS, um stream perto de −14 ou transmissão perto de −23 é o medidor de loudness. Ele também barra o ganho sugerido se o pico da amostra passar de −1 dBFS.',
+          ],
+        },
+        {
+          heading: 'Quando normalizar é a escolha certa',
+          paragraphs: [
+            'Use quando o arquivo inteiro está simplesmente baixo demais e nada já está no pico:',
+          ],
+          bullets: [
+            'Um recado de voz gravado longe do microfone, com margem sobrando.',
+            'Uma faixa que deve ficar perto da escala cheia antes de você enviar.',
+            'Um arquivo que você vai comprimir ou amplificar depois, para o pico ser um teto conhecido.',
+          ],
+        },
+        {
+          heading: 'Quando vai decepcionar',
+          paragraphs: [
+            'Se um clique ou uma respiração já está perto da escala cheia, normalizar quase não faz nada, porque esse pico define o ganho. O compressor de nível é o que aproxima altos e baixos e depois iguala o pico.',
+            'Deixar um arquivo mais alto por um fator que você escolhe, inclusive acima de 100 por cento com limitador, é o amplificador de volume. Normalizar não oferece esse multiplicador.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos de áudio ou clique para procurar',
       exportLabel: 'Normalizar e baixar',
     },
@@ -2169,6 +3135,67 @@ export const pt: Catalog = {
           a: 'Sim. Você arrasta a forma de onda com o dedo. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
         },
       ],
+      screenshotsAlt: [
+        'Slowed + Reverb: área de soltar, nada é enviado a um servidor',
+        'Slowed + Reverb: área de trabalho com o arquivo carregado',
+        'Slowed + Reverb: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'O tom afunda porque a velocidade afunda',
+          paragraphs: [
+            'A velocidade vai de 0,50 a 2,00 em passos de 0,05, e o tom segue. Manter o tom é o mudar tempo, e aquela página para em 0,75 e 1,25.',
+            'O ambiente é uma resposta de impulso de 2,2 segundos. Wet em 0 não adiciona ambiente.',
+          ],
+          table: {
+            headers: [
+              'Velocidade',
+              'Como soa',
+              'Uso comum',
+            ],
+            rows: [
+              [
+                '0,95',
+                'Quase nada mais lento; o tom cai um pouco',
+                'Edições que não devem se anunciar',
+              ],
+              [
+                '0,90',
+                'O som slowed clássico: relaxado, mais escuro',
+                'O som da tendência slowed e reverb',
+              ],
+              [
+                '0,85',
+                'Pesado e sonhador, claramente mais grave',
+                'Edições de clima e loops',
+              ],
+              [
+                'Acima de 1,00',
+                'Mais rápido e mais brilhante: território nightcore',
+                'A mesma página, no outro sentido',
+              ],
+            ],
+          },
+        },
+        {
+          heading: 'Nightcore é a mesma página, no outro sentido',
+          paragraphs: [
+            'Empurre a velocidade acima de 100 por cento e o tom sobe junto:',
+          ],
+          bullets: [
+            'Acima de 1,00 o arquivo fica mais rápido, e o tom sobe junto.',
+            'Reverb em 0 não adiciona ambiente.',
+            'A faixa para em 0,50 e em 2,00.',
+          ],
+        },
+        {
+          heading: 'Direito autoral e as ferramentas vizinhas',
+          paragraphs: [
+            'Esta página muda a velocidade e adiciona um ambiente de 2,2 segundos. Ela não verifica se você pode publicar o arquivo.',
+            'Só a velocidade, de 0,5× a 2× e sem o controle de reverb, é o controle de velocidade. Um tom mais alto ou mais baixo com a mesma duração é o alterador de tom. Um eco contado que não muda a velocidade é a página de eco.',
+          ],
+        },
+      ],
       dropHint: 'Solte uma música ou clique para procurar',
       exportLabel: 'Deixar lento e baixar',
     },
@@ -2203,6 +3230,38 @@ export const pt: Catalog = {
         q: 'Posso mudar o tempo de um arquivo local pelo Claude ou pelo Cursor?',
         a: 'Esta página estica de 0.75× a 1.25× e mantém o tom. /mcp usa o atempo do ffmpeg de 0.5× a 2× e também mantém o tom. O MP3 é codificado uma vez. O app de chat ainda vê o caminho.',
       }],
+      screenshotsAlt: [
+        'Mudar tempo: área de soltar, nada é enviado a um servidor',
+        'Mudar tempo: área de trabalho com o arquivo carregado',
+        'Mudar tempo: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'A duração muda, o tom fica',
+          paragraphs: [
+            'A página primeiro reamostra o arquivo, então a duração e o tom andam juntos. Depois desloca o tom de volta na mesma proporção. 0,8× fica 1,25 vezes mais longo, e o tom volta para onde começou.',
+            'O controle vai de 0,75× a 1,25× em passos de 0,01. Não há controle fora dessa faixa. Em 1× a esticada não roda, e a exportação fica com as amostras que você soltou.',
+          ],
+        },
+        {
+          heading: 'Onde o limite aparece',
+          paragraphs: [
+            'Harmonia densa pode soar fina. Uma voz sozinha ou uma nota única ficam mais perto.',
+          ],
+          bullets: [
+            'O passo maior deste controle é cerca de 5 semitons. Passando de cerca de 7, este deslocador fica metálico.',
+            'Um empilhamento de acordes é onde o som fino aparece primeiro.',
+            '1× é o arquivo que você soltou. A esticada é pulada.',
+          ],
+        },
+        {
+          heading: 'A página de velocidade e o alterador de tom',
+          paragraphs: [
+            'A página de velocidade vai de 0,5× a 2× e o tom se move com o tempo. Use quando essa mudança de tom é o ponto.',
+            'O alterador de tom move o tom e mantém a duração, até 12 semitons. Esta página faz o contrário: a duração se move, e o tom fica.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Mudar o tempo',
     },
@@ -2239,6 +3298,38 @@ export const pt: Catalog = {
           a: 'Sim. Você arrasta a forma de onda com o dedo. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
         },
       ],
+      screenshotsAlt: [
+        'Alterador de tom: área de soltar, nada é enviado a um servidor',
+        'Alterador de tom: área de trabalho com o arquivo carregado',
+        'Alterador de tom: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'O tom muda, a duração fica',
+          paragraphs: [
+            'O alterador de tom muda o tom de −12 a +12 semitons, um passo por vez. Isso é uma oitava para cada lado. O arquivo fica com a mesma duração.',
+            'Fala e um instrumento único continuam usáveis por mais tempo que uma mixagem densa. Um deslocamento grande soa artificial. Não é uma burla de direito autoral: a gravação continua sendo a mesma gravação.',
+          ],
+        },
+        {
+          heading: 'Quando usar o controle',
+          paragraphs: [
+            'Manter a duração no lugar é o ponto:',
+          ],
+          bullets: [
+            'Uma faixa de karaokê movida para um tom que você consegue cantar.',
+            'Uma voz ajustada um ou dois semitons para encaixar com outra tomada.',
+            'Um deslocamento de design de som em que o tempo do clipe não pode mudar.',
+          ],
+        },
+        {
+          heading: 'A velocidade é o outro controle',
+          paragraphs: [
+            'O controle de velocidade vai de 0,5× a 2× e move o tom com o tempo, como um disco. 2× fica cerca de uma oitava acima e metade da duração. Esta página não faz isso.',
+            'Slowed + reverb também afunda o tom ao desacelerar o arquivo, e adiciona uma cauda. Se você quer o som nightcore ou slowed, é aquela página. Se quer a mesma duração e um novo tom, fique aqui.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Mudar o tom e baixar',
     },
@@ -2271,6 +3362,38 @@ export const pt: Catalog = {
         { q: 'As tags e a capa são mantidas?', a: 'Não. O MP3 sai sem metadados, como no conversor de WAV. Título, artista e capa não são copiados.' },
         { q: 'O arquivo é enviado?', a: 'Não. O navegador decodifica o M4A e codifica o MP3 localmente. O áudio fica no seu aparelho.' },
       ],
+      screenshotsAlt: [
+        'M4A para MP3: área de soltar, nada é enviado a um servidor',
+        'M4A para MP3: área de trabalho com o arquivo carregado',
+        'M4A para MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Recados de voz e AAC, não um vídeo',
+          paragraphs: [
+            'Esta página decodifica um arquivo M4A ou AAC e codifica MP3. O seletor também aceita MP4. Se esta aba não consegue decodificar o arquivo, a mensagem não diz qual é o codec. Um arquivo de vídeo vai para [MP4 para MP3](/mp4-to-mp3).',
+            'Um vídeo MP4 pertence ao MP4 para MP3. Aquela página tira a trilha sonora da imagem. Esta página é só áudio.',
+          ],
+        },
+        {
+          heading: 'O que o MP3 mantém',
+          paragraphs: [
+            'MP3 tem perdas. O menu é a escolha usual de bitrate:',
+          ],
+          bullets: [
+            '320 kbps quando o recado ou a música devem ficar perto do AAC.',
+            '192 kbps para fala que você ainda vai ouvir.',
+            '128 kbps quando o arquivo principalmente precisa ser pequeno o bastante para enviar.',
+          ],
+        },
+        {
+          heading: 'As tags não são copiadas',
+          paragraphs: [
+            'Título, artista e capa não passam. O MP3 é escrito sem metadados. Recoloque com o editor de tags MP3 se o player precisa de um nome.',
+            'Guarde o M4A se você ainda precisa do original. A conversão não envia o arquivo. Corte ou recorte depois de ter o MP3, no cortador de áudio ou no cortador de MP3, se o recado tem silêncio nas pontas.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos M4A ou AAC, ou clique para procurar',
       exportLabel: 'Converter para MP3',
     },
@@ -2279,7 +3402,7 @@ export const pt: Catalog = {
       name: 'Converter OGG para MP3',
       shortName: 'OGG para MP3',
       title: 'Converter OGG para MP3 — online e grátis',
-      description: 'Converta arquivos OGG para MP3 no navegador, sem limite de tamanho. Grátis, sem cadastro e sem enviar nada. Vorbis ou Opus dentro do OGG, em 128, 192 ou 320 kbps.',
+      description: 'Converta OGG para MP3 no navegador, sem limite de tamanho. Grátis, sem cadastro e sem enviar nada. Vorbis ou Opus dentro do OGG, em 128, 192 ou 320 kbps.',
       h1: 'Converter OGG para MP3 — Converter OGG em MP3',
       heroAlt: 'Converter o Vorbis ou o Opus de um OGG em MP3',
       subtitle: 'Transforme áudio OGG em MP3, no navegador, sem enviar nada.',
@@ -2302,6 +3425,38 @@ export const pt: Catalog = {
         { q: 'Converter OGG para MP3 perde qualidade?', a: 'MP3 tem perda. Em 320 kbps a diferença é pequena para quase todo mundo. Fique com o OGG se precisar do arquivo original.' },
         { q: 'As tags e a capa são mantidas?', a: 'Não. O MP3 sai sem metadados. Título, artista e capa não são copiados.' },
         { q: 'O arquivo é enviado?', a: 'Não. O navegador decodifica o OGG e codifica o MP3 localmente. O áudio fica no seu aparelho.' },
+      ],
+      screenshotsAlt: [
+        'Converter OGG para MP3: área de soltar, nada é enviado a um servidor',
+        'Converter OGG para MP3: área de trabalho com o arquivo carregado',
+        'Converter OGG para MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Vorbis ou Opus dentro de um OGG',
+          paragraphs: [
+            'OGG é um contêiner. Arquivos de música nele costumam usar Vorbis. Alguns arquivos de voz usam Opus. Esta página converte qualquer um dos dois quando o navegador consegue decodificar.',
+            'Se esta aba não consegue tocar o arquivo, esta página não consegue decodificar. O menu começa em 320 kbps. As tags não são copiadas.',
+          ],
+        },
+        {
+          heading: 'Bitrate e o que você abre mão',
+          paragraphs: [
+            'MP3 tem perdas. A 320 kbps a diferença é pequena para a maioria das audições. Guarde o OGG se você precisa do original:',
+          ],
+          bullets: [
+            '320 kbps para música que você vai manter.',
+            '192 kbps para um arquivo de voz ou uma cópia menor.',
+            '128 kbps quando o destino só precisa de inteligibilidade da fala.',
+          ],
+        },
+        {
+          heading: 'Um arquivo .opus é a outra página',
+          paragraphs: [
+            'Recados de voz do WhatsApp e do Telegram costumam ser um arquivo .opus, ou Opus dentro de WebM. Esses pertencem ao Opus para MP3. Esta página é o contêiner OGG.',
+            'Título, artista e capa não são copiados. O MP3 é escrito sem metadados. Nada é enviado.',
+          ],
+        },
       ],
       dropHint: 'Solte arquivos OGG ou clique para procurar',
       exportLabel: 'Converter para MP3',
@@ -2335,6 +3490,38 @@ export const pt: Catalog = {
         { q: 'As tags são mantidas?', a: 'Não. O MP3 sai sem metadados. Título e artista não são copiados.' },
         { q: 'O arquivo é enviado?', a: 'Não. O navegador decodifica o Opus e codifica o MP3 localmente. O áudio fica no seu aparelho.' },
       ],
+      screenshotsAlt: [
+        'Converter Opus para MP3: área de soltar, nada é enviado a um servidor',
+        'Converter Opus para MP3: área de trabalho com o arquivo carregado',
+        'Converter Opus para MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Recados de voz que só alguns players abrem',
+          paragraphs: [
+            'Opus é o codec dentro de muitos recados de voz do WhatsApp e do Telegram, salvos como .opus. Ele também fica dentro de OGG e WebM. Esta página transforma esse áudio em um MP3 que um carro, um celular ou um player antigo abre.',
+            'O seletor aceita .opus, Opus em OGG e Opus em WebM. Se esta aba não consegue tocar o arquivo, esta página não consegue decodificar. O menu começa em 192 kbps.',
+          ],
+        },
+        {
+          heading: 'Fala não precisa de 320',
+          paragraphs: [
+            'Um recado de voz é fala. Escolha o bitrate para isso:',
+          ],
+          bullets: [
+            '128 kbps basta para um recado de voz que você vai enviar ou guardar.',
+            '192 kbps se o recado tem música sob a voz e isso importa.',
+            '320 kbps só quando o arquivo Opus é música e você quer o MP3 perto dele.',
+          ],
+        },
+        {
+          heading: 'Tags e a página de OGG',
+          paragraphs: [
+            'Título e artista não são copiados. O MP3 é escrito sem metadados. Um OGG que na verdade é música Vorbis pertence ao OGG para MP3, que é a página com o nome desse contêiner.',
+            'Nada é enviado. Se o recado tem silêncio longo nas pontas, converta primeiro, depois corte. O removedor de silêncio é a ferramenta errada em uma base musical baixa, mas cai bem em um recado de voz com pausas longas.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos Opus ou clique para procurar',
       exportLabel: 'Converter para MP3',
     },
@@ -2366,6 +3553,38 @@ export const pt: Catalog = {
         { q: 'É a mesma coisa que um espectrograma?', a: 'Não. Uma forma de onda mostra o volume no tempo — o contorno do player. Um espectrograma mostra quais frequências existem. Para vê-las, use o gerador de espectrograma.' },
         { q: 'Dá para ter fundo transparente?', a: 'Sim. Deixe «Fundo transparente» ligado e o PNG não tem fundo, então cabe sobre um vídeo ou outra imagem. Desligue para pintar uma cor sólida.' },
         { q: 'Funciona no celular?', a: 'Sim. Numa tela estreita os controles empilham e o botão de download fica ao alcance. Chrome, Edge, Firefox e Safari atuais, no computador e no celular.' },
+      ],
+      screenshotsAlt: [
+        'Gerador de forma de onda: a página antes de qualquer arquivo ou entrada',
+        'Gerador de forma de onda: depois de ler o arquivo ou os toques',
+        'Gerador de forma de onda: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Uma imagem do volume, não uma edição',
+          paragraphs: [
+            'O gerador de forma de onda desenha o volume ao longo do tempo: barras espelhadas ou uma forma preenchida, nas cores que você escolher. O download é um PNG. Tamanhos predefinidos exportam no dobro dos pixels listados, então uma capa de 1920×1080 sai como 3840×2160.',
+            'Tamanhos personalizados acima de cerca de dois milhões de pixels exportam em 1× para a aba não ficar sem memória. PNG é sem perdas. Esta página não corta, não aplica fade nem amplifica o áudio.',
+          ],
+        },
+        {
+          heading: 'Formatos que as pessoas baixam',
+          paragraphs: [
+            'Escolha o quadro para onde a imagem vai ficar:',
+          ],
+          bullets: [
+            'Tamanho de vídeo para um fundo ou um cartão final.',
+            'Quadrado para capa de podcast ou de música.',
+            'Um banner largo para cabeçalho. Deixe o fundo transparente se você vai sobrepor o PNG a um vídeo ou outra imagem.',
+          ],
+        },
+        {
+          heading: 'Não é um espectrograma',
+          paragraphs: [
+            'Uma forma de onda é o desenho que um player de música mostra. Um espectrograma mostra quais frequências estão presentes. Para essa imagem, use o gerador de espectrograma.',
+            'Para cortar o arquivo primeiro, use o cortador de áudio, e volte para a imagem. Você não consegue tocar o PNG de volta dentro da música. Colocar uma imagem em um WAV é imagem para áudio, o outro sentido.',
+          ],
+        },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Baixar PNG',
@@ -2399,6 +3618,38 @@ export const pt: Catalog = {
         { q: 'Funciona no celular?', a: 'Sim. Numa tela estreita os controles empilham e o download fica ao alcance. Chrome, Edge, Firefox e Safari atuais, no computador e no celular. Um arquivo longo demora um pouco porque cada coluna é uma FFT.' },
         { q: 'Por que algumas músicas escondem uma imagem?', a: 'Algumas faixas, o caso famoso é Aphex Twin, desenham uma imagem pondo energia em frequências escolhidas. Suba o teto em dB se a imagem estiver pálida e mantenha o eixo log. Esta página só mostra. Criar é Imagem para áudio.' },
       ],
+      screenshotsAlt: [
+        'Espectrograma online: a página antes de qualquer arquivo ou entrada',
+        'Espectrograma online: depois de ler o arquivo ou os toques',
+        'Espectrograma online: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Frequência ao longo do tempo, em PNG',
+          paragraphs: [
+            'Cada coluna é um momento. A altura é a frequência, notas agudas no topo. Cor mais brilhante significa mais energia. Viridis, inferno e cinza são os mesmos dados com uma escala diferente. O piso e o teto em dB definem o que conta como baixo e alto.',
+            'A imagem é uma FFT do arquivo, desenhada nesta aba. Não é áudio. Você não consegue tocar o PNG de volta dentro da música.',
+          ],
+        },
+        {
+          heading: 'Como ler uma imagem escondida',
+          paragraphs: [
+            'Algumas faixas desenham uma imagem colocando energia em frequências escolhidas. Esta página consegue mostrar isso. Ela não cria:',
+          ],
+          bullets: [
+            'Mantenha o eixo log para a visão usual de música. Ele estica o grave.',
+            'Suba o teto em dB se uma imagem escondida está fraca.',
+            'Encurte o intervalo de tempo se você só quer um trecho do arquivo.',
+          ],
+        },
+        {
+          heading: 'Forma de onda e o truque reverso',
+          paragraphs: [
+            'O gerador de forma de onda é o volume ao longo do tempo, o desenho para uma capa. Esta página é quais frequências estão lá.',
+            'Para montar um WAV que mostre sua imagem ou uma linha curta de texto em um espectrograma, use imagem para áudio, depois abra esse WAV aqui. Frequência log, teto em torno de −20 dB. A forma fica entre cerca de 400 Hz e 12 kHz. Esta página só exibe.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Baixar PNG',
     },
@@ -2430,6 +3681,38 @@ export const pt: Catalog = {
         { q: 'Qual a diferença para o gerador de espectrograma?', a: 'O gerador de espectrograma desenha um áudio que você já tem. Esta página faz o inverso: constrói áudio para um espectrograma mostrar sua imagem ou sua linha. O gerador de forma de onda só mostra o volume, então a forma escondida mal aparece lá.' },
         { q: 'Funciona no celular?', a: 'Sim. Digite, escolha uma foto, baixe. Chrome, Edge, Firefox e Safari atuais, no computador e no celular. Uma foto muito detalhada é reduzida para o arquivo continuar curto.' },
         { q: 'Isso é um código secreto?', a: 'Não. Quem abrir um espectrograma do WAV vê a imagem. É um desenho visível no som, não criptografia.' },
+      ],
+      screenshotsAlt: [
+        'Imagem para áudio: a página antes de qualquer arquivo ou entrada',
+        'Imagem para áudio: depois de ler o arquivo ou os toques',
+        'Imagem para áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Uma imagem escrita em frequências',
+          paragraphs: [
+            'Digite até 32 caracteres, ou solte um PNG, JPG ou WebP. A página escreve essa forma nas frequências de um WAV mono a 44,1 kHz, 16 bits, com alguns segundos. Pixels brilhantes viram frequências mais altas.',
+            'Não é uma música nem fala. Você ouve chirps e ruído, não as palavras faladas em voz alta. Uma foto muito detalhada é reduzida para o arquivo ficar curto.',
+          ],
+        },
+        {
+          heading: 'Como ver o que você escreveu',
+          paragraphs: [
+            'A forma é invisível em uma forma de onda normal. Abra o WAV no gerador de espectrograma:',
+          ],
+          bullets: [
+            'Frequência log, teto em torno de −20 dB.',
+            'O desenho fica entre cerca de 400 Hz e 12 kHz.',
+            'Guarde o WAV. Um MP3 de bitrate baixo pode borrar a forma.',
+          ],
+        },
+        {
+          heading: 'Não é um código nem a página de espectrograma',
+          paragraphs: [
+            'Quem abrir um espectrograma do WAV consegue ver a imagem. É um desenho no som, não criptografia.',
+            'O gerador de espectrograma desenha uma imagem de um áudio que você já tem. Esta página constrói áudio para essa imagem mostrar sua figura ou sua linha. O gerador de forma de onda só mostra volume, então a forma escondida não fica óbvia lá.',
+          ],
+        },
       ],
       dropHint: 'Ou solte uma imagem',
       exportLabel: 'Baixar WAV',
@@ -2469,6 +3752,37 @@ export const pt: Catalog = {
         q: 'Posso editar tags de MP3 locais pelo Claude ou pelo Cursor?',
         a: 'Esta página edita ID3 no navegador, inclusive a capa, e não recodifica. /mcp grava title, artist, album, date, genre, track e comment com ffmpeg, copia o áudio sem mudança e grava ID3v2.3. Não edita a capa. O app de chat ainda vê o caminho.',
       }],
+      screenshotsAlt: [
+        'Editor de tags MP3: a página antes de qualquer arquivo ou entrada',
+        'Editor de tags MP3: depois de ler o arquivo ou os toques',
+      ],
+      sections: [
+        {
+          heading: 'O rótulo muda, o áudio não',
+          paragraphs: [
+            'O editor de tags grava ID3v2.3 e copia os quadros de áudio. Ele não os decodifica.',
+            'Os campos são título, artista, álbum, artista do álbum, ano, gênero, número da faixa, número do disco, compositor, comentário, e uma capa JPG ou PNG.',
+          ],
+        },
+        {
+          heading: 'O que você pode definir e o que não',
+          paragraphs: [
+            'Vários MP3, ou um. Só campos comuns. Artista, álbum, ano, gênero e capa valem para todos os arquivos. Título e número da faixa ficam em cada arquivo:',
+          ],
+          bullets: [
+            'Título, artista, álbum e os outros campos do dia a dia, mais a capa.',
+            'Não FLAC, M4A ou WAV. Esses formatos de tag não são gravados aqui.',
+            'Não capítulos de podcast nem quadros personalizados incomuns. Salvar reescreve o bloco de tags, e esses quadros não passam.',
+          ],
+        },
+        {
+          heading: 'Por que o carro ainda mostra Faixa 01',
+          paragraphs: [
+            'Muitos aparelhos ignoram as tags e voltam para o nome do arquivo, e a maioria guarda a informação antiga em cache até você reimportar o pendrive ou reescanear. Renomeie o arquivo para algo como 01 - Nome da Música.mp3, e reescaneie.',
+            'Cortar, fazer fade ou mudar a velocidade é o editor de MP3, que decodifica e recodifica. Esta página nunca toca o som. Use aquele para editar a música. Use esta para rotulá-la.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos MP3 aqui ou clique para escolher',
       exportLabel: 'Salvar MP3',
     },
@@ -2503,6 +3817,38 @@ export const pt: Catalog = {
         { q: 'Dá para sumir com o ruído da sala?', a: 'Não. Subir as partes baixas também sobe o chiado e o ruído da sala. Se o problema é o ruído, a compressão deixa ele mais óbvio. Corte o silêncio ou grave de novo.' },
         { q: 'Funciona no celular?', a: 'Sim. O controle e a exportação funcionam no toque no Chrome, Edge, Firefox e Safari atuais. Alguns minutos de fala exportam em um ou dois segundos num celular recente.' },
       ],
+      screenshotsAlt: [
+        'Compressor de nível: área de soltar, nada é enviado a um servidor',
+        'Compressor de nível: área de trabalho com o arquivo carregado',
+        'Compressor de nível: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Dinâmica, não tamanho de arquivo',
+          paragraphs: [
+            'O compressor de nível é um compressor de banda larga. O limiar vai de −18 dB até −36 dB, e a razão de pouco acima de 1:1 até 8:1. Momentos altos descem, momentos baixos sobem em relação a eles.',
+            'Não há ganho de compensação dentro do compressor. Depois, a exportação é escalada para o pico bater com o pico da fonte, ou −0,2 dBFS se a fonte já era mais quente que isso. Ele não encolhe o arquivo. Um MP3 menor é a página de comprimir áudio.',
+          ],
+        },
+        {
+          heading: 'O que ele corrige e o que não',
+          paragraphs: [
+            'Ele estreita a distância entre alto e baixo. É uma banda, não uma cadeia vocal:',
+          ],
+          bullets: [
+            'Um recado de voz que grita uma frase e sussurra a seguinte.',
+            'Uma mixagem em que os impactos altos enterram as frases baixas, e você quer aproximá-las.',
+            'Não remove ruído. Levantar as partes baixas também levanta chiado e ambiente.',
+          ],
+        },
+        {
+          heading: 'Como ele difere de um controle de volume',
+          paragraphs: [
+            'O amplificador de volume multiplica o arquivo inteiro. Normalizar sobe tudo até a amostra mais alta atingir um pico. Os dois deixam a distância entre alto e baixo igual. Esta página estreita essa distância.',
+            'WAV mantém a mudança de nível sem outra geração com perdas. MP3 recodifica uma vez. Se o problema é só o arquivo baixo e a dinâmica está boa, use o amplificador de volume.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Comprimir e baixar',
     },
@@ -2530,6 +3876,38 @@ export const pt: Catalog = {
         { q: 'Por que as repetições não ficam mais altas?', a: 'O retorno tem teto de 55% e a cauda renderizada, de 4 segundos. Dá para ouvir várias cópias. Não vira um ruído que se alimenta sozinho.' },
         { q: 'Dá para ecoar só um pedaço?', a: 'Sim. Selecione o trecho na forma de onda e mantenha essa seleção. As repetições entram no que você exporta, não no resto do arquivo.' },
         { q: 'Funciona no celular?', a: 'Sim. Os dois controles e o botão de exportar funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
+      ],
+      screenshotsAlt: [
+        'Adicionar eco ao áudio: área de soltar, nada é enviado a um servidor',
+        'Adicionar eco ao áudio: área de trabalho com o arquivo carregado',
+        'Adicionar eco ao áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Cópias separadas, não uma lavagem',
+          paragraphs: [
+            'O eco atrasa uma cópia do sinal pelo tempo que você define, de alguns centésimos de segundo até 0,8 segundos, e mistura essa cópia de volta a 45 por cento. Cada cópia volta ao atraso na intensidade de repetição que você define.',
+            'O feedback é limitado a 0,55 e a cauda renderizada a 4 segundos, para as repetições ficarem mais baixas em vez de uivar. Atraso em zero deixa o arquivo intacto. Velocidade e tom ficam como estavam.',
+          ],
+        },
+        {
+          heading: 'Como usar os dois controles',
+          paragraphs: [
+            'Atraso é o intervalo antes da primeira cópia. Repetições é quanto de cada cópia volta:',
+          ],
+          bullets: [
+            'Um atraso curto para um slap que você ainda ouve como um segundo golpe.',
+            'Um atraso maior, ainda abaixo de 0,8 segundos, quando você quer contar as cópias uma a uma.',
+            'Só uma seleção, se o eco deve ficar em uma frase e não no resto do arquivo.',
+          ],
+        },
+        {
+          heading: 'Eco não é slowed + reverb',
+          paragraphs: [
+            'Slowed + reverb desce o tom com a velocidade e espalha a cauda em um ambiente. Esta página mantém o tempo original e adiciona cópias que você ouve separadas.',
+            'Fazer fade no começo ou no fim de um arquivo é a página de fade. Sobrepor duas músicas é o juntador de áudio. Nenhum dos dois é eco.',
+          ],
+        },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Adicionar eco',
@@ -2561,6 +3939,62 @@ export const pt: Catalog = {
         { q: 'Quanto de wet para uma voz?', a: 'Comece entre 20% e 30%. Seco o bastante para cada palavra ficar clara, molhado o bastante para a borda de microfone muito próximo amolecer. Pads musicais e efeitos aguentam 40% a 60% antes de ficarem distantes.' },
         { q: 'Dá para remover o reverb em vez de adicionar?', a: 'Nesta página não, e no navegador ninguém faz isso com honestidade. Uma vez que as reflexões estão gravadas no arquivo, separá-las da fonte é pesquisa de dereverberação, não um controle andado para trás. Previna na hora de gravar: um quarto forrado de cobertor, um armário, o microfone perto da boca.' },
       ],
+      screenshotsAlt: [
+        'Adicionar reverb: área de soltar, nada é enviado a um servidor',
+        'Adicionar reverb: área de trabalho com o arquivo carregado',
+        'Adicionar reverb: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Reverb de sala, não um salão amostrado',
+          paragraphs: [
+            'A resposta de impulso atrás desta página é sintetizada: ruído estéreo em decaimento com cauda de 2,2 segundos, a mesma forma que uma sala pequena marca em um som. É por isso que a página é instantânea e funciona offline. Também é por isso que a sala não tem nome; não há uma Abadia de Westminster dentro deste arquivo.',
+            'O controle wet é um crossfade simples entre o seu arquivo seco e essa sala. Em 0 por cento a exportação é o arquivo original, amostra por amostra. O decaimento depois da sua última amostra continua soando depois do fim do áudio, e é por isso que a exportação fica cerca de 2,2 segundos mais longa que a fonte.',
+          ],
+          table: {
+            headers: [
+              'Wet',
+              'O que você ouve',
+              'Bom para',
+            ],
+            rows: [
+              [
+                '10 %',
+                'Uma sala apertada, quase invisível.',
+                'Voz de podcast gravada perto demais do microfone.',
+              ],
+              [
+                '25 %',
+                'A voz fica em uma sala pequena e para de soar colada.',
+                'Vozes, recados de voz, foley.',
+              ],
+              [
+                '60 %',
+                'Lavado e distante; a fonte recua atrás do espaço.',
+                'Pads, fantasmas, transições.',
+              ],
+              [
+                '100 %',
+                'Só sala, sem fonte. Uma lavagem com a melodia dentro.',
+                'Design de som, camadas de textura.',
+              ],
+            ],
+          },
+        },
+        {
+          heading: 'Reverb ou eco',
+          paragraphs: [
+            'Os dois efeitos adicionam espaço, e falham de jeitos diferentes. O eco dá repetições distintas em um atraso que você escolhe; ele soa como um efeito em cima do som. A reverb dá milhares de reflexões tão juntas que soam como a sala em que o som aconteceu.',
+            'Se você consegue contar as repetições, você quer a [página de eco](/echo). Se você quer que o ouvinte pare de notar que a gravação era seca, você quer esta página. E quando o trabalho é um som slowed do TikTok com espaço atrás, a página [slowed + reverb](/slowed-reverb) faz as duas coisas de uma vez.',
+          ],
+        },
+        {
+          heading: 'Reverb primeiro, loudness por último',
+          paragraphs: [
+            'A reverb muda o nível médio de um arquivo, então defina antes de qualquer trabalho de loudness. Adicione a sala aqui, depois confira o resultado contra um alvo com o [medidor de loudness](/loudness-meter), e só então publique.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Adicionar reverb',
     },
@@ -2588,6 +4022,38 @@ export const pt: Catalog = {
         { q: 'Qual a diferença para o aumento de volume?', a: 'O aumento de volume multiplica o arquivo inteiro e um limitador segura os picos para eles não virarem onda quadrada. Esta página achata os picos de propósito. O eco acrescenta uma cópia depois de um atraso. Nenhum dos dois achata a forma de onda.' },
         { q: 'Dá para distorcer só um pedaço?', a: 'Sim. Selecione o trecho na forma de onda e mantenha essa seleção. A curva entra no que você exporta, não no resto do arquivo.' },
         { q: 'Funciona no celular?', a: 'Sim. O controle e o botão de exportar funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
+      ],
+      screenshotsAlt: [
+        'Distorcer áudio: área de soltar, nada é enviado a um servidor',
+        'Distorcer áudio: área de trabalho com o arquivo carregado',
+        'Distorcer áudio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Uma curva, não um controle de volume',
+          paragraphs: [
+            'O drive vai de 0% a 100%. O valor inicial é 40%. Em 0% o waveshaper não entra no grafo, então a exportação é igual ao arquivo decodificado.',
+            'Acima de 0, cada amostra x vira tanh(k·x) / tanh(k). k é 10^(drive × 1,6) − 1. Em 40%, k é cerca de 3,4 e uma amostra de 0,25 vira cerca de 0,69. Em 100%, k é cerca de 39 e essa amostra vai para cerca de 1. Uma amostra na escala cheia continua na escala cheia. Velocidade, tom e duração ficam como estavam.',
+          ],
+        },
+        {
+          heading: 'Quanto forçar',
+          paragraphs: [
+            'A faixa útil é pequena. Passar dela já é fazer um efeito:',
+          ],
+          bullets: [
+            '10–30%: um clip quente em uma voz ou guitarra limpa.',
+            '40–70%: a aspereza fica evidente. Picos achatam e notas baixas sobem.',
+            '80–100%: perto de uma onda quadrada. A fala fica difícil de acompanhar.',
+          ],
+        },
+        {
+          heading: 'Não é um reforço de volume nem um bitcrusher',
+          paragraphs: [
+            'O amplificador de volume deixa um arquivo baixo mais alto e usa um limitador para os picos não quadrarem. Esta página os quadra de propósito. O eco adiciona uma cópia depois de um atraso que você define. É outra página.',
+            'Esta curva não reduz a profundidade de bits nem corta os agudos. O nó faz oversampling de 2×, o que só reduz o aliasing dos novos harmônicos. Um tom lo-fi opaco é esta página, depois o filtro passa-baixa.',
+          ],
+        },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Distorcer e baixar',
@@ -2619,6 +4085,66 @@ export const pt: Catalog = {
         { q: 'Funciona com música?', a: 'Processa, mas os presets são afinados para voz. Agudo e Grave agem como qualquer alterador de tom numa música, Robô come o detalhe, e Rádio deixa tudo como uma transmissão dos anos 1940 — o que às vezes é exatamente a ideia.' },
         { q: 'Dá para ajustar um preset com precisão?', a: 'Aqui não. Um toque, um ajuste, sem controles, de propósito. Quando um preset chega perto mas não é isso, vá pelo caminho manual: o [alterador de tom](/pitch-changer) para o tom, o [distorcedor](/audio-distorter) para a textura, os filtros [passa-alta](/high-pass-filter) e [passa-baixa](/low-pass-filter) para a faixa.' },
       ],
+      screenshotsAlt: [
+        'Mudar a voz: área de soltar, nada é enviado a um servidor',
+        'Mudar a voz: área de trabalho com o arquivo carregado',
+        'Mudar a voz: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'O que cada predefinição faz',
+          paragraphs: [
+            'Cada predefinição é uma pilha pequena das mesmas peças que este site usa em todo lugar: um deslocador de tom por vocoder de fase que mantém a duração, filtros biquad, um drive tanh, um bitcrusher, e a mesma sala sintetizada que a página de reverb usa. A tabela é a receita inteira; não há mais nada na caixa.',
+          ],
+          table: {
+            headers: [
+              'Predefinição',
+              'O que muda',
+              'O ajuste',
+            ],
+            rows: [
+              [
+                'Aguda',
+                'Tom mais alto, duração inalterada.',
+                '+4 semitons',
+              ],
+              [
+                'Grave',
+                'Tom mais baixo, duração inalterada.',
+                '−4 semitons',
+              ],
+              [
+                'Robô',
+                'Passos quantizados dentro de uma banda estreita.',
+                'Crush de 5 bits, 150 Hz–4 kHz, drive leve',
+              ],
+              [
+                'Rádio',
+                'Passa-banda fino com a borda empurrada.',
+                '500 Hz–3 kHz, 35% de drive',
+              ],
+              [
+                'Fantasma',
+                'Tom mais escuro com a sala atrás.',
+                '−2 semitons, 55% de reverb',
+              ],
+            ],
+          },
+        },
+        {
+          heading: 'Uma predefinição, não um clone',
+          paragraphs: [
+            'Mudar a voz tem dois significados muito diferentes em 2026. Um é remodelar uma gravação, que é o que esta página faz em um segundo, offline, de graça. O outro é gerar a voz de uma pessoa conhecida, que é um modelo, uma questão de licença e, feito a alguém sem consentimento, abuso.',
+            'Estas predefinições mantêm o falante original reconhecível por baixo. Isso é um limite e uma propriedade de segurança ao mesmo tempo: ninguém é imitado por um controle de tom.',
+          ],
+        },
+        {
+          heading: 'Grave primeiro, mude depois',
+          paragraphs: [
+            'As predefinições amplificam o que a gravação já é. Uma gravação limpa e próxima muda de forma limpa; uma sala barulhenta sai barulhenta em uma forma nova. Grave no [gravador de voz](/voice-recorder), limpe o chiado com o [removedor de ruído](/noise-remover), depois mude a voz aqui.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Mudar a voz',
     },
@@ -2648,6 +4174,38 @@ export const pt: Catalog = {
         { q: "Qual a diferença para o aparador?", a: "O aparador de áudio e o cortador de MP3 guardam a região que você desenha na forma de onda. Esta página acha os silêncios longos pelo nível e remove todos numa exportação. Não muda a velocidade, o tom nem o volume do que resta." },
         { q: "Funciona no celular?", a: "Sim. Os dois controles e o botão de exportar respondem ao toque no Chrome, Edge, Firefox e Safari atuais." },
       ],
+      screenshotsAlt: [
+        'Remover silêncio: área de soltar, nada é enviado a um servidor',
+        'Remover silêncio: área de trabalho com o arquivo carregado',
+        'Remover silêncio: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Ela corta trechos longos de silêncio, não respirações',
+          paragraphs: [
+            'Um trecho só é removido quando é mais baixo que o limiar e mais longo que o intervalo mínimo. O padrão é −40 dBFS e 0,35 segundos. Cada corte mantém 0,08 segundos nas duas pontas para a emenda não estalar.',
+            'Intervalos mais curtos, incluindo a maioria das respirações, ficam. O que resta não fica mais alto, mais lento ou mais agudo. Se o arquivo inteiro está abaixo do limiar, nada é cortado e a exportação é o arquivo original.',
+          ],
+        },
+        {
+          heading: 'Fala, não uma música baixa',
+          paragraphs: [
+            '−40 dBFS mira a fala. Música vai perder as partes que você queria manter se elas ficarem tão baixas:',
+          ],
+          bullets: [
+            'Um recado de voz ou entrevista com pausas longas entre respostas.',
+            'Suba o limiar para perto de −20 dBFS se você só quer tirar o silêncio quase digital.',
+            'Um fade, uma base baixa ou o ambiente de uma mixagem: saia desta página e corte à mão.',
+          ],
+        },
+        {
+          heading: 'Cortador versus esta página',
+          paragraphs: [
+            'O cortador de áudio e o cortador de MP3 mantêm uma região que você desenha. Esta página encontra cada trecho longo de silêncio pelo nível e os remove em uma exportação.',
+            'Use o cortador quando a parte baixa é algo que você ainda quer, ou quando precisa manter um trecho e descartar o resto de ouvido. Use esta página quando as pausas são o problema e são longas o bastante para medir.',
+          ],
+        },
+      ],
       dropHint: 'Solte arquivos de áudio ou clique para procurar',
       exportLabel: 'Remover silêncio',
     },
@@ -2656,7 +4214,7 @@ export const pt: Catalog = {
       name: 'Remover ruído de fundo',
       shortName: 'Tirar ruído',
       title: 'Remover ruído do áudio — elimine o ruído de fundo online',
-      description: 'Reduza o ruído de fundo constante ao redor da voz no seu navegador. O RNNoise roda no seu dispositivo e um modelo de 150 KB é carregado uma vez. Grátis, MP3 ou WAV.',
+      description: 'Reduza o ruído de fundo constante ao redor da voz no navegador. O RNNoise roda no dispositivo e um modelo de 150 KB carrega uma vez. Grátis, MP3 ou WAV.',
       h1: 'Remover ruído do áudio — tire o chiado do fundo da gravação',
       heroAlt: 'O ruído de fundo constante sob uma gravação de voz diminui',
       howToIntro: 'Um arquivo com ruído, um controle de intensidade',
@@ -2677,6 +4235,62 @@ export const pt: Catalog = {
         { q: 'Funciona no celular?', a: 'Sim. O controle e o botão de exportar têm tamanho de toque, e a linha de status mostra o progresso em arquivos longos. O tempo de processamento cresce com a duração; meia hora de gravação demora um pouco num celular intermediário.' },
         { q: 'Limpa música?', a: 'Não, e esse é um limite honesto, não um ajuste que falta. O RNNoise é treinado com voz, então na música toma instrumentos por voz e abafa o detalhe. Para música, use um [filtro passa-alta](/high-pass-filter) contra o retumbo ou o [equalizador](/equalizer) para um corte pontual.' },
         { q: 'Posso manter um pouco do som da sala?', a: 'Pode. Baixe o controle rumo a 50 por cento para misturar o original de volta. No nosso mix de teste, 100 por cento abaixou o piso de ruído 30 dB e 50 por cento o abaixou 6 dB. A 0 por cento a exportação é o arquivo original.' },
+      ],
+      screenshotsAlt: [
+        'Remover ruído de fundo: área de soltar, nada é enviado a um servidor',
+        'Remover ruído de fundo: área de trabalho com o arquivo carregado',
+        'Remover ruído de fundo: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'O gate sob a voz',
+          paragraphs: [
+            'O RNNoise acompanha o piso de ruído da gravação e calcula um ganho para cada banda de frequência cerca de cem vezes por segundo. As bandas que carregam voz ficam abertas. As bandas que carregam ruído constante fecham.',
+            'Os números desta página vêm de uma medição repetível, não de uma promessa de marketing. Nossa mixagem de teste junta um tom parecido com voz e ruído branco a −31 dBFS. Depois do gate a 100 por cento de força, o piso fica em −61 dBFS, a banda da voz se moveu menos de 1 dB, e um clique na escala cheia chegou na amostra exata em que começou.',
+          ],
+          table: {
+            headers: [
+              'Força',
+              'O que você obtém',
+              'Piso de ruído na nossa mixagem de teste',
+            ],
+            rows: [
+              [
+                '100 %',
+                'Supressão máxima. O resultado mais limpo; gravações brilhantes podem soar fechadas.',
+                '−30 dB',
+              ],
+              [
+                '50 %',
+                'Mistura pela metade. Mantém um pouco do ambiente sob a voz.',
+                '−6 dB',
+              ],
+              [
+                '0 %',
+                'Bypass. A exportação é o arquivo original.',
+                'sem mudança',
+              ],
+            ],
+          },
+        },
+        {
+          heading: 'Voz, não música',
+          paragraphs: [
+            'O gate é treinado em fala, então trata tudo com forma de fala como o que deve manter. Isso é uma vantagem em gravações faladas e um limite em todo o resto:',
+          ],
+          bullets: [
+            'Vai embora: chiado, zumbido, ruído de ventilador e ar-condicionado, ruído de pré-amplificador de microfone barato.',
+            'Fica: uma segunda voz, uma TV ao fundo, uma multidão. Essas coisas parecem o falante.',
+            'Para música, em vez disso: um [filtro passa-alta](/high-pass-filter) para ronco, ou o [equalizador](/equalizer) para um corte direcionado.',
+          ],
+        },
+        {
+          heading: 'Reduza o ruído primeiro, corte depois',
+          paragraphs: [
+            'A remoção de ruído muda o que uma medição de silêncio vê, então a ordem importa. Rode esta página primeiro. Quando o piso fica 40 dB abaixo da voz, o [removedor de silêncio](/silence-remover) distingue silêncio morto de uma palavra baixa com muito mais confiança.',
+            'Depois dos dois, iguale o loudness do seu episódio com o [medidor de loudness](/loudness-meter) antes de publicar.',
+          ],
+        },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Remover ruído',
@@ -2705,6 +4319,38 @@ export const pt: Catalog = {
         { q: 'Qual a diferença para cortar, juntar e fade?', a: 'O corte guarda um trecho uma vez. A junção coloca arquivos diferentes em fila. O fade abaixa o começo ou o fim de um arquivo. Esta página escreve o mesmo clipe de novo, e o crossfade só fica entre as cópias.' },
         { q: 'Funciona no celular?', a: 'Sim. Os dois controles, a forma de onda e o botão de exportar funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
       ],
+      screenshotsAlt: [
+        'Audio looper: área de soltar, nada é enviado a um servidor',
+        'Audio looper: área de trabalho com o arquivo carregado',
+        'Audio looper: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'As cópias se sobrepõem na emenda',
+          paragraphs: [
+            'As repetições vão de 2 a 16. O padrão é 4. Cada emenda se sobrepõe pelo controle de junção: 0,01 segundos a menos que você mexa, e nunca mais de 0,1 segundos.',
+            'A sobreposição é um crossfade linear, então um tom contínuo não salta. A duração exportada é uma passagem vezes o número de repetições, menos a sobreposição vezes um a menos que a contagem. Tom e velocidade ficam como estavam. WAV são essas amostras. MP3 codifica o loop uma vez.',
+          ],
+        },
+        {
+          heading: 'Um clipe, escrito de novo',
+          paragraphs: [
+            'Um extensor de MP3 grava um clipe de novo para o arquivo durar mais. Use quando a próxima cópia deve ser o mesmo áudio:',
+          ],
+          bullets: [
+            'Um riff de um compasso que você quer como arquivo de estudo.',
+            'Um aviso de voz curto que precisa durar por uma cena mais longa.',
+            'Uma amostra cuja emenda estala se as cópias se encontram sem sobreposição.',
+          ],
+        },
+        {
+          heading: 'Não é um corte nem uma junção',
+          paragraphs: [
+            'O cortador de áudio mantém um trecho uma vez. O juntador de áudio coloca arquivos diferentes em fila. O fade de áudio abaixa o começo ou o fim de um arquivo. O crossfade desta página fica só entre cópias do mesmo clipe.',
+            'Esta página não grava em cima de si mesma. Se o resultado passar de 10 minutos, a exportação para. Encurte a seleção ou diminua as repetições.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Repetir e baixar',
     },
@@ -2732,6 +4378,38 @@ export const pt: Catalog = {
         { q: 'Qual a diferença para eco, slowed reverb e equalizador?', a: 'O eco acrescenta uma cópia depois de um atraso. Slowed + Reverb muda a velocidade e o tom, e depois acrescenta uma sala. O equalizador de áudio muda faixas de frequência. Esta página só move o mesmo áudio para a esquerda e a direita. Um círculo fixo de uns 10 segundos, com uma cauda curta de reverb, é a página de áudio 3D.' },
         { q: 'Funciona no celular?', a: 'Sim. Os dois controles, a onda e o botão de exportar funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
       ],
+      screenshotsAlt: [
+        'Auto panner: área de soltar, nada é enviado a um servidor',
+        'Auto panner: área de trabalho com o arquivo carregado',
+        'Auto panner: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Onde o som fica',
+          paragraphs: [
+            'A profundidade vai de 0 a 100%. O valor inicial é 70%. A taxa vai de 0,05 Hz a 2 Hz. O valor inicial é 0,2 Hz.',
+            'A posição é a profundidade vezes um seno dessa taxa. Em 0,2 Hz um ciclo completo da esquerda para a direita leva 5 segundos. Profundidade em 0 deixa o arquivo como está. Tom e velocidade de reprodução ficam como estavam.',
+          ],
+        },
+        {
+          heading: 'Uma varredura constante',
+          paragraphs: [
+            'Use quando o movimento deve ser uniforme:',
+          ],
+          bullets: [
+            'Um pad ou uma voz que deve atravessar as caixas devagar.',
+            'Uma tomada mono que deve se mover, sem virar duas faixas diferentes.',
+            'Uma taxa que você define em hertz, não uma varredura que tenta seguir a bateria.',
+          ],
+        },
+        {
+          heading: 'Não é um eco nem uma mudança de tempo',
+          paragraphs: [
+            'O eco adiciona uma cópia depois de um atraso que você define. Slowed + reverb muda a velocidade e o tom, depois adiciona um ambiente. O equalizador muda bandas de frequência. Nenhum deles move a imagem em um relógio.',
+            'Esta página não segue uma batida. Um arquivo estéreo continua uma imagem. Os canais esquerdo e direito não são enviados em caminhos separados.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Aplicar pan e baixar',
     },
@@ -2758,6 +4436,38 @@ export const pt: Catalog = {
         { q: 'O que ele não faz?', a: 'Nesta página você não define outra taxa, outra profundidade nem outra sala. Não segue uma batida. Não aponta o som para um ângulo ao redor da sua cabeça. Com o interruptor desligado não há círculo nem cauda.' },
         { q: 'Qual a diferença para o auto panner e o slowed reverb?', a: 'Para definir você a taxa e a profundidade, use o auto panner. Esta página é o círculo pronto, cerca de 10 segundos, com o reverb já ligado. Slowed + Reverb muda a velocidade e o tom. Esta página não.' },
         { q: 'Funciona no celular?', a: 'Sim. O interruptor, a onda e o botão de exportar funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
+      ],
+      screenshotsAlt: [
+        'Áudio 3D: área de soltar, nada é enviado a um servidor',
+        'Áudio 3D: área de trabalho com o arquivo carregado',
+        'Áudio 3D: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Um círculo com os números já escolhidos',
+          paragraphs: [
+            'A profundidade é 100%. A taxa é 0,1 Hz. Uma viagem do meio, para um lado, e de volta pelo outro lado leva cerca de 10 segundos.',
+            'O som direto é o que se move. A reverb é um envio a 25%, o mesmo ambiente curto da página slowed + reverb. A cauda é o motivo da exportação passar do fim do arquivo que você soltou.',
+          ],
+        },
+        {
+          heading: 'Quando a predefinição é o trabalho',
+          paragraphs: [
+            'Use esta página quando você quer o movimento pronto:',
+          ],
+          bullets: [
+            'Uma voz ou um pad que deve vagar sem um controle de taxa.',
+            'Um ambiente curto atrás desse movimento, não uma lavagem que você mixa.',
+            'A velocidade original e o tom original, deixados onde estavam.',
+          ],
+        },
+        {
+          heading: 'Não é um panner que você ajusta nem uma desaceleração',
+          paragraphs: [
+            'O auto panner é onde você define profundidade de 0 a 100% e taxa de 0,05 Hz a 2 Hz, sem reverb. Esta página trava os dois números e adiciona o ambiente.',
+            'Slowed + reverb muda a velocidade, e o tom se move com ela. Esta página não. Desligar a chave deixa o arquivo como você soltou.',
+          ],
+        },
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Aplicar 3D',
@@ -2790,6 +4500,38 @@ export const pt: Catalog = {
         { q: 'Qual a diferença para a multitrilha e para a velocidade?', a: 'Esta página é só o clique. Colocar o clique debaixo de uma música é o editor multitrilha. Mudar a duração de uma gravação é a página de velocidade, e o tom anda junto. O microfone é o gravador de voz.' },
         { q: 'Funciona no celular?', a: 'Sim. O controle de BPM, o compasso, tocar e exportar funcionam no toque no Chrome, Edge, Firefox e Safari atuais. O clique usa um oscilador Web Audio. O arquivo exportado usa o mesmo intervalo.' },
       ],
+      screenshotsAlt: [
+        'Metrônomo: a página antes de qualquer arquivo ou entrada',
+        'Metrônomo: depois de ler o arquivo ou os toques',
+        'Metrônomo: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'O clique',
+          paragraphs: [
+            'A 100 BPM os cliques ficam a 0,60 segundos de distância. O primeiro tempo do compasso é mais alto. Cada clique é o mesmo tom curto.',
+            '2/4 clica duas vezes por compasso, 3/4 três vezes, 4/4 quatro vezes, e 6/8 seis vezes. O BPM é a taxa de cliques em cada um desses compassos.',
+          ],
+        },
+        {
+          heading: 'Um arquivo dos mesmos cliques',
+          paragraphs: [
+            'A exportação grava 4, 8 ou 16 compassos. WAV mantém os cliques como estão. MP3 codifica esse resultado uma vez.',
+          ],
+          bullets: [
+            'Quatro compassos de 4/4 a 100 BPM são 16 cliques.',
+            'Solte esse WAV no editor multipista se você quer ele sob uma música.',
+            'Fique no play se você só precisava ouvir o tempo.',
+          ],
+        },
+        {
+          heading: 'O que ele não faz',
+          paragraphs: [
+            'Ele não alinha os cliques a uma música. Não há arquivo para soltar nem forma de onda para cortar.',
+            'Ele não muda a duração de uma gravação. A página acelerar áudio faz isso, e o tom se move com a velocidade.',
+          ],
+        },
+      ],
       dropHint: 'Sem arquivo. Toque em tocar.',
     },
     'tap-tempo': {
@@ -2818,6 +4560,25 @@ export const pt: Catalog = {
         { q: 'Funciona no celular?', a: 'Sim. O botão de bater é do tamanho de um polegar e a página pesa quase nada. Bater no mesmo aparelho que toca a música funciona bem; a página não escuta o áudio.' },
         { q: 'Quais tempos ele lê?', a: 'Qualquer coisa com batidas de 2,5 segundos de distância para cá, o que dá cerca de 24 a 999 BPM. A música vive entre 40 e 240, onde a leitura é mais estável. Para peças muito lentas, bata as subdivisões e divida o número por dois.' },
         { q: 'Ele deixa a música mais lenta para bater com o BPM?', a: 'Aqui não; esta página só lê. Leve o número ao [metrônomo](/metronome) para treinar com ele, ou à página de [velocidade](/change-audio-speed) para levar um arquivo a um tempo alvo.' },
+      ],
+      screenshotsAlt: [
+        'Tap tempo: o mostrador em um traço antes do primeiro toque',
+        'Tap tempo depois de sete toques: o mostrador parou em 120,2 BPM',
+      ],
+      sections: [
+        {
+          heading: 'Como o número é calculado',
+          paragraphs: [
+            'Cada toque guarda um carimbo de tempo. Os intervalos entre seus toques recentes são ordenados, o quarto mais rápido e o mais lento saem, e a média dos intervalos restantes é calculada. Sessenta mil dividido por essa média é o BPM, mostrado com uma casa decimal.',
+            'O corte é todo o truque. O toque humano tem outliers: um toque um fio adiantado, um tempo em que você ouviu em vez de contar. Uma média simples deixa qualquer um dos dois puxar o número; a média com corte trata as duas pontas como ruído e lê o tempo que você realmente manteve.',
+          ],
+        },
+        {
+          heading: 'Tap tempo ou o analisador de arquivo',
+          paragraphs: [
+            'Use esta página quando o tempo mora nos seus ouvidos: uma banda ao vivo, uma melodia acústica, uma faixa que você não consegue alimentar em uma ferramenta. Use o [tom e BPM](/key-bpm-finder) quando você tem o arquivo e quer o tempo produzido, exato, mais o tom. Quando os dois discordam, confie no arquivo.',
+          ],
+        },
       ],
       dropHint: 'Sem arquivo. Bata no ritmo.',
       exportLabel: 'Tap tempo',
@@ -2850,6 +4611,37 @@ export const pt: Catalog = {
         { q: 'Qual a diferença para o alterador de tom e a página de velocidade?', a: 'Esta página só lê. O alterador de tom move o tom e mantém a duração. A página de velocidade muda a duração, e o tom anda junto. O alterador de tempo muda a duração e o tom fica, de 0,75× a 1,25×.' },
         { q: 'Funciona no celular?', a: 'Sim. Solte o arquivo e leia os dois números. A área de soltar e o botão de recomeçar funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
       ],
+      screenshotsAlt: [
+        'Tom e BPM: a página antes de qualquer arquivo ou entrada',
+        'Tom e BPM: depois de ler o arquivo ou os toques',
+      ],
+      sections: [
+        {
+          heading: 'O que os dois números são',
+          paragraphs: [
+            'BPM é o intervalo mais forte entre ataques, de 60 a 180. Um intervalo fora dessa faixa é dividido ou dobrado até cair dentro.',
+            'O tom é o perfil maior ou menor que melhor combina com a energia das classes de nota. Cada perfil é um conjunto fixo de 12 pesos.',
+          ],
+        },
+        {
+          heading: 'Quando a leitura é fraca',
+          paragraphs: [
+            'Ritmo livre, fala e ruído de ambiente não têm intervalo constante, então o BPM pode ficar no múltiplo errado. Um maior relativo e um menor compartilham muitas notas, então os dois podem trocar.',
+          ],
+          bullets: [
+            'Um arquivo silencioso mostra Não consigo ler nos dois números.',
+            'Um arquivo com menos de 2 segundos ainda pode mostrar um tom, e não mostra BPM.',
+            'Só os primeiros 60 segundos são lidos.',
+          ],
+        },
+        {
+          heading: 'O que ele não faz',
+          paragraphs: [
+            'Ele não move o tom. Não há botão para um novo tom. Isso é o alterador de tom, e a duração fica igual.',
+            'Ele não muda a velocidade. A página de velocidade faz isso, e o tom se move com a velocidade.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
     },
     'loudness-meter': {
@@ -2876,6 +4668,37 @@ export const pt: Catalog = {
         { q: "−16, −14 e −23 são limites legais?", a: "Não. São metas comuns de entrega: podcasts costumam pedir cerca de −16 LUFS, streaming de música cerca de −14 e broadcast cerca de −23. A página não promete que seu arquivo passe numa plataforma ou numa emissora." },
         { q: "O pico é um pico verdadeiro?", a: "Não. Pico de amostra é a maior amostra do arquivo. Um pico verdadeiro precisa de sobreamostragem e pode ficar um pouco mais alto entre as amostras. Esta página segura o pico de amostra em −1 dBFS e não informa dBTP." },
         { q: "Funciona no celular?", a: "Sim. As três metas e o botão de exportar respondem ao toque no Chrome, Edge, Firefox e Safari atuais." },
+      ],
+      screenshotsAlt: [
+        'Medidor de loudness: a página antes de qualquer arquivo ou entrada',
+        'Medidor de loudness: depois de ler o arquivo ou os toques',
+      ],
+      sections: [
+        {
+          heading: 'Uma leitura do arquivo, não um medidor de sala',
+          paragraphs: [
+            'O número é LUFS integrado: quão alto o arquivo é ao longo da duração, depois da ponderação K do ITU-R BS.1770. É uma propriedade do arquivo. Não é uma leitura da sala, e não é um nível de pressão sonora com ponderação A.',
+            'A página também mostra o pico de amostra. Esse pico não é o pico verdadeiro. Picos entre amostras ainda podem passar do teto em alguns caminhos de reprodução.',
+          ],
+        },
+        {
+          heading: 'Alvos que as pessoas realmente usam',
+          paragraphs: [
+            'Os pontos de referência usuais são convenções, não limites legais:',
+          ],
+          bullets: [
+            'Cerca de −16 LUFS para um podcast falado.',
+            'Cerca de −14 LUFS para boa parte do streaming de música.',
+            'Cerca de −23 LUFS para loudness de programa no estilo transmissão.',
+          ],
+        },
+        {
+          heading: 'O ganho para no pico',
+          paragraphs: [
+            'Se você aplica o ganho sugerido, ele para quando o pico da amostra passaria de −1 dBFS. Um arquivo pode já estar normalizado no pico e ainda ficar longe de −16 LUFS, porque uma tosse define o pico enquanto o resto fica baixo.',
+            'Normalizar só persegue esse pico, até cerca de −0,2 dB. O compressor de nível é o que estreita a distância entre alto e baixo. Esta página mede. Ela não finge que um único número faz um master.',
+          ],
+        },
       ],
       dropHint: "Solte um arquivo de áudio ou clique para procurar",
     },
@@ -2908,6 +4731,38 @@ export const pt: Catalog = {
         { q: 'Funciona no celular?', a: 'Sim. A linha do tempo rola para o lado. Nível, pan, entrada e corte são controles e números, sem um arraste preciso. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns. Se um arquivo não decodificar, ele é pulado e os outros ficam.' },
         { q: 'Por que só 8 faixas?', a: 'Cada faixa é decodificada na memória antes de tocar. Oito arquivos estéreo já são muito para uma aba no celular. Uma produção de 16 faixas com plugins é outra ferramenta.' },
       ],
+      screenshotsAlt: [
+        'Editor multipista: área de soltar, nada é enviado a um servidor',
+        'Editor multipista: área de trabalho com o arquivo carregado',
+        'Editor multipista: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Uma mixer pequena, não uma DAW',
+          paragraphs: [
+            'Cada arquivo é um clipe na própria faixa. Você define volume, pan, mudo, solo e onde o clipe começa. Até oito faixas tocam juntas e são exportadas como um arquivo.',
+            'Esta página não carrega plugins e não salva um projeto que você possa reabrir. Até 8 faixas.',
+          ],
+        },
+        {
+          heading: 'Para que usar',
+          paragraphs: [
+            'Serve para pilhas curtas que você faria em um programa maior:',
+          ],
+          bullets: [
+            'Uma faixa de voz sobre uma base musical, com a voz mais alta.',
+            'Duas tomadas alinhadas pelo tempo de início, uma em solo enquanto você compara.',
+            'Uma imagem estéreo ajustada com pan, e uma exportação única.',
+          ],
+        },
+        {
+          heading: 'A sessão termina com a aba',
+          paragraphs: [
+            'Nada é enviado e não existe arquivo de projeto. Se você fechar a aba antes de exportar, a mixagem se perde.',
+            'Arquivos que devem tocar em sequência, não em cima um do outro, ficam no [juntador de áudio](/audio-joiner). Lá o crossfade vai de 0 a 5 segundos, em passos de 0,5. Esta página empilha faixas.',
+          ],
+        },
+      ],
       dropHint: 'Solte dois ou mais áudios para empilhar',
     },
     'split-mp3': {
@@ -2933,6 +4788,38 @@ export const pt: Catalog = {
         { q: 'Corta no silêncio ou em capítulos?', a: 'Não. Os cortes são de tempo igual, não uma busca por pausas, marcas de capítulo ou uma música nova. Um compasso quieto é cortado onde o relógio diz. As partes só vão de 2 a 16. Um arquivo com menos amostras do que partes é recusado.' },
         { q: 'Qual a diferença para cortar?', a: 'Cortar áudio e Cortar MP3 guardam um trecho, ou apagam um trecho, e salvam um arquivo. Esta página escreve vários arquivos do mesmo tamanho. Juntar músicas faz o contrário: coloca arquivos diferentes em fila. Remover silêncio é a página que segue as pausas.' },
         { q: 'Funciona no celular?', a: 'Sim. O controle de partes, a forma de onda e o download funcionam no toque no Chrome, Edge, Firefox e Safari atuais. No iPhone, o Safari guarda o zip no app Arquivos.' },
+      ],
+      screenshotsAlt: [
+        'Dividir MP3: área de soltar, nada é enviado a um servidor',
+        'Dividir MP3: área de trabalho com o arquivo carregado',
+        'Dividir MP3: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Cortes iguais, nas amostras',
+          paragraphs: [
+            'As partes vão de 2 a 16. Começa em 2. Cada parte tem a mesma duração, exceto que as primeiras partes podem ter uma amostra a mais quando a duração não divide por igual. A próxima parte começa na amostra seguinte ao fim da anterior. Não há sobreposição nem intervalo.',
+            'Arraste uma seleção para dividir só aquele trecho. Sem seleção, o arquivo inteiro é dividido. WAV são essas amostras. Uma exportação MP3 codifica cada parte uma vez, no bitrate que você escolher, até 320 kbps. Tocar os MP3 em sequência pode mostrar alguns milissegundos de preenchimento do codec na emenda. As amostras em si não foram sobrepostas.',
+          ],
+        },
+        {
+          heading: 'Um arquivo, vários downloads',
+          paragraphs: [
+            'O zip é como as partes saem do navegador:',
+          ],
+          bullets: [
+            'Um recado de voz longo cortado em pedaços iguais que você pode enviar um por vez.',
+            'Uma música dividida em duas partes quando um app de mensagem recusa o arquivo inteiro.',
+            'Uma tomada que você quer como arquivos separados, não um clipe cortado.',
+          ],
+        },
+        {
+          heading: 'Não é o cortador nem uma varredura de silêncio',
+          paragraphs: [
+            'O cortador de áudio e o cortador de MP3 mantêm um trecho, ou apagam um trecho, e salvam um arquivo. Esta página grava vários arquivos de duração igual. O juntador de áudio faz o inverso: coloca arquivos diferentes em fila.',
+            'Ele não procura silêncio, marcas de capítulo nem uma nova música. Um compasso baixo é cortado onde o relógio disser. Se você precisa que os cortes sigam as pausas, use o removedor de silêncio, depois corte o que sobrar.',
+          ],
+        },
       ],
       dropHint: 'Solte um arquivo de áudio, ou clique para escolher',
       exportLabel: 'Baixar partes',
@@ -2965,6 +4852,38 @@ export const pt: Catalog = {
         { q: 'Qual a diferença para cortar?', a: 'Cortar áudio guarda um trecho de tempo e deixa o número de canais. Converter MP3 para WAV muda o recipiente e também deixa os canais. Esta página muda o número de canais e mantém a duração.' },
         { q: 'Funciona no celular?', a: 'Sim. Soltar, tocar e baixar funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
       ],
+      screenshotsAlt: [
+        'Estéreo para mono: área de soltar, nada é enviado a um servidor',
+        'Estéreo para mono: área de trabalho com o arquivo carregado',
+        'Estéreo para mono: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'A média, amostra por amostra',
+          paragraphs: [
+            'Cada amostra de saída é a soma dos canais naquele momento, dividida por quantos canais o arquivo tem. Dois canais significa (esquerdo + direito) / 2. Um canal é copiado para um novo buffer. A duração não muda.',
+            'A página não constrói uma imagem estéreo, um controle de largura nem um segundo arquivo. A exportação é um canal. WAV são essas amostras. Um MP3 codifica esse arquivo mono uma vez, no bitrate que você escolher, até 320 kbps.',
+          ],
+        },
+        {
+          heading: 'Para que serve o canal único',
+          paragraphs: [
+            'A média é todo o trabalho:',
+          ],
+          bullets: [
+            'Um recado de voz que deve tocar igual em uma caixa só.',
+            'Um arquivo que um app só mono recusou porque ainda tinha dois canais.',
+            'Uma mixagem que você quer no meio, não espalhada entre esquerda e direita.',
+          ],
+        },
+        {
+          heading: 'Não é um corte nem um estéreo falso',
+          paragraphs: [
+            'O cortador de áudio mantém um trecho e deixa os canais como estavam. MP3 para WAV muda o formato e também deixa os canais. Esta página mantém a duração e grava um canal.',
+            'Ela não transforma um canal em dois. Duplicar um canal para um player mostrar estéreo ainda carrega um sinal. Não é isso que esta exportação faz.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio, ou clique para escolher',
       exportLabel: 'Baixar mono',
     },
@@ -2995,6 +4914,38 @@ export const pt: Catalog = {
         { q: 'O MP3 guarda os degraus?', a: 'O WAV são as amostras esmagadas. Um MP3 as codifica uma vez, no bitrate que você escolhe, até 320 kbps. O codificador pode arredondar os degraus agudos. Se os degraus têm de ficar, exporte WAV.' },
         { q: 'Qual a diferença para distorcer?', a: 'Distorcer áudio dobra a onda por uma curva suave. Esta página troca as amostras por uma lista curta de níveis e depois os segura. Eco acrescenta cópias mais tarde. O filtro passa-baixa abaixa os agudos. Nenhum desses é um controle de profundidade de bits.' },
         { q: 'Funciona no celular?', a: 'Sim. O controle de bits, o de espera, a forma de onda e o download funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
+      ],
+      screenshotsAlt: [
+        'Bitcrusher: área de soltar, nada é enviado a um servidor',
+        'Bitcrusher: área de trabalho com o arquivo carregado',
+        'Bitcrusher: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Níveis, depois uma retenção',
+          paragraphs: [
+            'Os bits vão de 1 a 16. Começa em 8. Uma amostra é arredondada para o nível mais próximo nessa faixa. Em 1 bit o nível é só cima, baixo ou silêncio. Em 16 bits uma amostra na escala cheia continua na escala cheia quando a retenção é 1.',
+            'A retenção vai de 1 a 32 e começa em 2. O nível atual é repetido por essa quantidade de amostras, então a próxima amostra define um novo nível. Esquerdo e direito são esmagados separadamente. A duração não muda.',
+          ],
+        },
+        {
+          heading: 'O que ouvir',
+          paragraphs: [
+            'Os dois números fazem trabalhos diferentes:',
+          ],
+          bullets: [
+            'Os bits vão de 1 a 16 e começam em 8.',
+            'A retenção vai de 1 a 32 amostras e começa em 2. Retenção 1 mantém cada amostra.',
+            'Arraste uma seleção quando só uma frase deve ser esmagada. Sem seleção, o arquivo inteiro é esmagado.',
+          ],
+        },
+        {
+          heading: 'Não é o distorcedor',
+          paragraphs: [
+            'O distorcedor de áudio é uma curva suave, de clip leve a clip duro. Esta página é degraus e uma retenção. O eco adiciona cópias posteriores. O filtro passa-baixa só abaixa os agudos.',
+            'WAV mantém as amostras esmagadas. Um MP3 as codifica uma vez, até 320 kbps, e pode suavizar os cantos. Se os degraus precisam sobreviver, use WAV.',
+          ],
+        },
       ],
       dropHint: 'Solte um arquivo de áudio, ou clique para escolher',
       exportLabel: 'Exportar esmagado',
@@ -3027,6 +4978,38 @@ export const pt: Catalog = {
         { q: 'Dá para reafinar uma nota?', a: 'Não. O arquivo inteiro se move junto. Um acorde não tem as notas puxadas para 432 Hz uma a uma. Um arquivo com menos de 32 amostras volta igual, porque o deslocamento precisa desse áudio. Esta página não diz que o resultado é mais saudável, mais calmo ou melhor.' },
         { q: 'Funciona no celular?', a: 'Sim. Soltar, tocar e baixar funcionam no toque no Chrome, Edge, Firefox e Safari atuais.' },
       ],
+      screenshotsAlt: [
+        'Conversor 432 Hz: área de soltar, nada é enviado a um servidor',
+        'Conversor 432 Hz: área de trabalho com o arquivo carregado',
+        'Conversor 432 Hz: depois de exportar, a linha de status mostra o nome do arquivo baixado',
+      ],
+      sections: [
+        {
+          heading: 'Um deslocamento para o arquivo inteiro',
+          paragraphs: [
+            'A quantidade é 12 vezes log2 de 432 sobre 440, cerca de 0,32 semitons para baixo. A página passa essa fração adiante. Arredondar para um semitom inteiro faria zero, e o arquivo não se moveria.',
+            'Um tom de 440 Hz se move para perto de 432 Hz. Todo outro tom se move na mesma fração. A duração fica igual. WAV são as amostras deslocadas. Um MP3 as codifica uma vez, no bitrate que você escolher, até 320 kbps.',
+          ],
+        },
+        {
+          heading: 'O que fica no lugar',
+          paragraphs: [
+            'O deslocamento é todo o trabalho:',
+          ],
+          bullets: [
+            'A duração bate com o arquivo que você soltou.',
+            'Um acorde se move junto. As notas não são puxadas para 432 Hz uma a uma.',
+            'Um arquivo com menos de 32 amostras é devolvido sem mudança.',
+          ],
+        },
+        {
+          heading: 'Não é uma mudança de tempo',
+          paragraphs: [
+            'O alterador de tom deste site move em semitons inteiros. Esta página usa a fração, cerca de 0,32 para baixo, então o resultado não é o mesmo que deixar aquele controle em zero.',
+            'O mudar tempo e o acelerar áudio mudam a duração. Esta página não. Ela também não diz que o resultado é mais saudável ou melhor. Ela só move o tom.',
+          ],
+        },
+      ],
       dropHint: 'Solte um arquivo de áudio, ou clique para escolher',
       exportLabel: 'Baixar 432 Hz',
     },
@@ -3058,6 +5041,33 @@ export const pt: Catalog = {
         { q: 'Qual a diferença para o tom e o BPM?', a: 'O tom e o BPM leem dois números e não escrevem arquivo. Esta página escreve notas. Ela não diz o tom nem o BPM. Leia isso no tom e BPM. Mover o tom do áudio original, sem fazer notas, é o alterador de tom.' },
         { q: 'Funciona no celular?', a: 'Sim, no Chrome, Edge, Firefox e Safari atuais. O limite é 3 minutos porque o modelo segura as notas na memória. Um celular com pouca memória pode falhar a conversão. O arquivo não muda, e você pode tentar um trecho mais curto. O download é um .mid.' },
         { q: 'Pesquisei isso no Logic Pro. É a mesma coisa?', a: 'Não. O Logic tem o próprio comando de áudio para MIDI na faixa. Esta página é para o navegador, quando o Logic não está aberto. O .mid pode ser arrastado para o Logic depois. Ela não remove um dispositivo MIDI no macOS e não edita um projeto do Logic.' },
+      ],
+      sections: [
+        {
+          heading: 'Um instrumento, na aba',
+          paragraphs: [
+            'O Basic Pitch escuta um canal a 22050 Hz. O estéreo é mixado para mono antes do modelo rodar. Os pesos têm menos de 1 MB e vêm deste site uma vez.',
+            'Ele é feito para uma melodia, uma voz ou um piano solo. Uma mixagem completa, bateria ou um empilhamento grosso de acordes está fora do que este modelo segura.',
+          ],
+        },
+        {
+          heading: 'O que o arquivo realmente contém',
+          paragraphs: [
+            'O download é um arquivo MIDI padrão, não áudio:',
+          ],
+          bullets: [
+            'Tom, início, duração e velocidade. Nenhuma curva de pitch bend.',
+            'Marca de tempo 120, então os tempos batem com a gravação em segundos. Esse não é o BPM da música.',
+            'Uma faixa, começando no piano General MIDI, para uma DAW ter um som para tocar.',
+          ],
+        },
+        {
+          heading: 'O que esta página não faz',
+          paragraphs: [
+            'Ela não toca o MIDI de volta, não imprime partitura e não divide uma música em stems. Não nomeia acordes.',
+            'Mais de 3 minutos é recusado. Corte primeiro. O conversor do próprio Logic fica no Logic. Esta página não abre um projeto do Logic.',
+          ],
+        },
       ],
       dropHint: 'Solte um arquivo de áudio, ou clique para escolher',
       exportLabel: 'Converter para MIDI',
@@ -3092,6 +5102,34 @@ export const pt: Catalog = {
         { q: "Quais arquivos, e de que duração?", a: "Enviar aceita MP3, WAV, M4A, OGG, FLAC e AAC, o que o navegador conseguir decodificar. Um arquivo com mais de 60 segundos é ignorado: corte antes no cortador de áudio. A duração útil no painel vai de meio segundo a cinco segundos. Não há um número fixo de quadrados. O teto é a memória da aba." },
         { q: "Posso mudar o tom ou colocar eco?", a: "Não nesta página. Exporte o WAV do quadrado e abra esse arquivo no alterador de tom (o tom muda, a duração fica) ou na página de slowed e reverb. Traga o resultado de volta com Enviar áudio ou Substituir áudio." },
       ],
+      sections: [
+        {
+          heading: 'Como o painel funciona',
+          paragraphs: [
+            'Um soundboard é um trabalho só: o som curto certo, agora, sem procurar em uma pasta. Cada quadrado é um clipe. Toque nele e ele toca na hora. Toque em outro enquanto ele ainda toca e os dois tocam. Essa sobreposição é o ponto.',
+            'As teclas seguem a ordem do painel: 1 a 9, depois 0, depois a fileira de letras de cima. Esc para tudo. Uma predefinição acima da grade substitui o conjunto inteiro por um inicial para streaming, podcast, sala de aula ou um painel vazio.',
+          ],
+        },
+        {
+          heading: 'Faça seus próprios clipes',
+          paragraphs: [
+            'O envio aceita MP3, WAV, M4A, OGG, FLAC ou AAC e decodifica no navegador. O gravar usa o microfone. O lápis então abre o editor de corte: arraste as duas alças, reproduza a seleção em loop e aplique.',
+            'Curto é o ponto. Meio segundo a cinco segundos cobre uma piada, uma buzina ou um boom. Substituir áudio troca o som sob um quadrado e mantém o nome, a cor e a tecla. Um arquivo com mais de 60 segundos é pulado no envio.',
+          ],
+          bullets: [
+            'Exportar WAV em um som grava PCM de 16 bits na taxa de amostragem daquele clipe.',
+            'A cor em um quadrado está lá para você achar a tecla durante uma transmissão.',
+            'Os onze sons embutidos são sintetizados na página. Sem download, sem biblioteca, sem gravação de outra pessoa.',
+          ],
+        },
+        {
+          heading: 'O que ele não faz',
+          paragraphs: [
+            'Ele não coloca sons em uma chamada. Discord, jogos e chat de voz ouvem o microfone. Colocar o painel nesse caminho exige um app de desktop com um dispositivo de áudio virtual, como Voicemod ou Resanance no Windows. Para uma transmissão, o caminho honesto é o áudio do desktop: os sons saem da máquina, e o OBS captura isso.',
+            'Ele não lembra o painel entre visitas. Exporte o painel antes de fechar a aba, depois importe na próxima vez, incluindo um arquivo de painel do soundtools.io. Ele não pesquisa uma biblioteca de memes. Os sons embutidos são efeitos genéricos sintetizados aqui. Todo o resto é um arquivo que você traz.',
+          ],
+        },
+      ],
       dropHint: "Sem arquivo — toque num quadrado ou adicione o seu",
     },
     "music-visualizer": {
@@ -3122,6 +5160,34 @@ export const pt: Catalog = {
         { q: "Qual a diferença para o gerador de forma de onda?", a: "O gerador de forma de onda desenha um PNG parado do volume ao longo do tempo — uma imagem para capa ou post. Esta página anima o espectro de frequências enquanto a música toca e grava um vídeo. O mesmo arquivo entra e saem resultados opostos: imagem parada contra imagem em movimento." },
         { q: "Funciona no celular ou no iPhone?", a: "Chrome no Android toca e grava. Chrome, Edge e Firefox no computador gravam todos. O Safari no iPhone e iPad sabe tocar e mostrar a animação, mas não consegue gravar a tela, então o botão de gravar sai de lá — o caminho honesto é uma gravação de tela ou o computador." },
         { q: "Posso usar o vídeo comercialmente?", a: "O vídeo não tem marca d'água nem licença nossa: é seu arquivo. A música dentro dele é responsabilidade sua. Visualizadores feitos com suas próprias faixas, música licenciada ou áudio livre de royalties são seus para publicar." },
+      ],
+      sections: [
+        {
+          heading: 'O que a página realmente grava',
+          paragraphs: [
+            'A animação é desenhada em um canvas no tamanho que você escolheu, e o próprio gravador do navegador captura esse canvas mais o áudio que toca nele. Não há render em servidor nem marca d\'água: o arquivo é escrito pela aba, no momento em que a música termina.',
+            'A gravação dura o mesmo que a música. Não há marca d\'água.',
+          ],
+        },
+        {
+          heading: 'Os quatro estilos',
+          paragraphs: [
+            'A imagem usa 64 bandas. Os temas definem as cores. O lado vai de 200 a 2160.',
+          ],
+          bullets: [
+            'Barras de espectro sobem da borda inferior com um degradê para os picos.',
+            'Barras espelhadas dobram as mesmas barras em torno do meio: o visual clássico de player.',
+            'Anel organiza as bandas em um círculo.',
+            'Osciloscópio desenha a própria forma de onda, uma linha que respira com a faixa.',
+          ],
+        },
+        {
+          heading: 'Onde os vídeos servem',
+          paragraphs: [
+            'As predefinições incluem 16:9 e 9:16. Um lado personalizado vai de 200 a 2160.',
+            'O vídeo é sempre tão longo quanto o áudio, então corte a música primeiro se você só quer uma seção. Para uma imagem parada de uma faixa em vez de um vídeo, o gerador de forma de onda desenha uma a partir do mesmo arquivo.',
+          ],
+        },
       ],
       dropHint: "Solte um arquivo de áudio ou clique para procurar",
       exportLabel: "Gravar vídeo",

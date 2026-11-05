@@ -521,14 +521,14 @@ export const de: Catalog = {
   about: {
     title: 'Über Free Audio Editor — lokale Online-Audio-Tools',
     description:
-      'Free Audio Editor ist eine Sammlung datenschutzfreundlicher Audio-Tools, die komplett in deinem Browser laufen — ohne Upload, ohne Anmeldung, ohne Wasserzeichen.',
+      'Free Audio Editor ist eine Sammlung datenschutzfreundlicher Audio-Tools, die komplett im Browser laufen. Ohne Upload, ohne Anmeldung, ohne Wasserzeichen.',
     h1: 'Über uns',
     p1: 'Free Audio Editor gibt es, weil eine Sprachnotiz zu bearbeiten nicht heißen sollte, sie auf einen fremden Server hochzuladen. Jedes Tool hier — der {trimmer}, der {cutter}, der {joiner} und der Rest — funktioniert gleich: dein Browser liest die Datei, bearbeitet sie im Speicher und schreibt das Ergebnis direkt zurück auf dein Gerät.',
     linkTrimmer: 'Audio schneiden',
     linkCutter: 'MP3-Cutter',
     linkJoiner: 'Audio-Joiner',
     p2: 'Genau deshalb sind die Tools schnell und kostenlos. Es gibt keine Upload-Warteschlange, keine Serverfarm und keine Speicherkosten — nur dein Gerät, das die Arbeit macht, die es ohnehin kann.',
-    p3: 'Die Seite ist eine statische Web-App mit der Web Audio API. Sie wird aktiv weiterentwickelt; Konverter, ein Sprachrekorder und weitere Bearbeitungstools sind unterwegs.',
+    p3: 'Die Seite ist eine statische Web-App mit der Web Audio API. Das Projekt wird aktiv weiterentwickelt; Konverter, ein Sprachrekorder und weitere Bearbeitungstools sind unterwegs.',
   },
   privacy: {
     title: 'Datenschutzerklärung — Free Audio Editor',
@@ -596,14 +596,14 @@ export const de: Catalog = {
         },
       ],
       faqs: [
-        { q: 'Kann ich mehr als eine Aufnahme transkribieren?', a: 'Ja. Mehrere Aufnahmen teilen sich Sprache und Modell. Sie laufen nacheinander auf diesem Gerät, und jede bleibt bei etwa 10 Minuten. Ein Transkript bleibt im Feld, damit du es ändern kannst. Zwei oder mehr kommen als ZIP aus TXT und SRT. Ein Handy ist früher ohne Zeit und Speicher.' },
+        { q: 'Kann ich mehr als eine Aufnahme transkribieren?', a: 'Ja. Mehrere Aufnahmen teilen sich Sprache und Modell. Die Aufnahmen laufen nacheinander auf diesem Gerät, und jede bleibt bei etwa 10 Minuten. Ein Transkript bleibt im Feld, damit du es ändern kannst. Zwei oder mehr kommen als ZIP aus TXT und SRT. Ein Handy ist früher ohne Zeit und Speicher.' },
         {
           q: 'Wird mein Audio hochgeladen?',
           a: 'Nein. Die Datei wird im Browser dekodiert und von einem Whisper-Modell transkribiert, das lokal über WebAssembly oder WebGPU läuft. Die einzige Netzwerkanfrage ist der einmalige Modell-Download von einem öffentlichen CDN — danach funktioniert die Transkription offline. Von deinem Audio erreicht niemals etwas einen Server.',
         },
         {
           q: 'Wie genau ist die Transkription?',
-          a: 'Sie nutzt die Whisper-Modelle von OpenAI, die bei klarer Sprache nahe an menschlichem Niveau liegen. Lauter Hintergrundlärm, starke Akzente, sich überlappende Sprecher oder laute Musik senken die Genauigkeit. Bei schwierigem Audio ist Base deutlich besser als Tiny — und sowieso landet das Ergebnis in einem bearbeitbaren Feld, sodass du Namen und Zeichensetzung vor dem Download korrigieren kannst.',
+          a: 'Die Transkription nutzt die Whisper-Modelle von OpenAI, die bei klarer Sprache nahe an menschlichem Niveau liegen. Lauter Hintergrundlärm, starke Akzente, sich überlappende Sprecher oder laute Musik senken die Genauigkeit. Bei schwierigem Audio ist Base deutlich besser als Tiny — und sowieso landet das Ergebnis in einem bearbeitbaren Feld, sodass du Namen und Zeichensetzung vor dem Download korrigieren kannst.',
         },
         {
           q: 'Welche Grenzen gibt es?',
@@ -611,7 +611,7 @@ export const de: Catalog = {
         },
         {
           q: 'Was ist der Unterschied zum Sprachrekorder?',
-          a: 'Der Sprachrekorder nimmt dein Mikrofon als Audiodatei auf; diese Seite liest eine vorhandene Datei und schreibt die Wörter auf. Sie passen gut zusammen: dort aufnehmen, hier transkribieren. Beides läuft in deinem Browser.',
+          a: 'Der Sprachrekorder nimmt dein Mikrofon als Audiodatei auf; diese Seite liest eine vorhandene Datei und schreibt die Wörter auf. Beide passen gut zusammen: dort aufnehmen, hier transkribieren. Beides läuft in deinem Browser.',
         },
         {
           q: 'Welche Sprachen werden unterstützt?',
@@ -749,6 +749,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Bass verstärken: Ablagefläche, nichts wird hochgeladen',
+        'Bass verstärken: Arbeitsbereich mit geladener Datei',
+        'Bass verstärken: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei hierher ziehen oder klicken',
       exportLabel: 'Bass anheben',
     },
@@ -837,6 +842,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Höhen-Booster: Ablagefläche, nichts wird hochgeladen',
+        'Höhen-Booster: Arbeitsbereich mit geladener Datei',
+        'Höhen-Booster: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei hierher ziehen oder klicken',
       exportLabel: 'Höhen anheben',
     },
@@ -920,10 +930,15 @@ export const de: Catalog = {
         {
           heading: 'Wann ein einzelner Booster reicht',
           paragraphs: [
-            'Wenn du schon weißt, dass du nur mehr Bass oder mehr Höhen willst, sind Bass-Booster und Höhen-Booster die kürzeren Seiten. Sie senken nicht ab.',
+            'Wenn du schon weißt, dass du nur mehr Bass oder mehr Höhen willst, sind Bass-Booster und Höhen-Booster die kürzeren Seiten. Beide senken nicht ab.',
             'Ein Tiefpass oder Hochpass ist ein Cutoff-Sweep, nicht diese Shelves. Nimm einen Filter, wenn alles über oder unter einer Frequenz weg soll, nicht ein paar Dezibel verschoben.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Audio-Equalizer: Ablagefläche, nichts wird hochgeladen',
+        'Audio-Equalizer: Arbeitsbereich mit geladener Datei',
+        'Audio-Equalizer: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei hierher ziehen oder klicken',
       exportLabel: 'Equalizer anwenden',
@@ -1013,6 +1028,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Tiefpassfilter: Ablagefläche, nichts wird hochgeladen',
+        'Tiefpassfilter: Arbeitsbereich mit geladener Datei',
+        'Tiefpassfilter: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei hierher ziehen oder klicken',
       exportLabel: 'Tiefpass anwenden',
     },
@@ -1096,10 +1116,15 @@ export const de: Catalog = {
         {
           heading: 'Nicht der Bass-Booster, und kein Cut-Shelf',
           paragraphs: [
-            'Der Bass-Booster legt Pegel unter 150 Hz dazu. Diese Seite nimmt Pegel unter einem Cutoff weg, den du schiebst. Sie lösen entgegengesetzte Probleme.',
+            'Der Bass-Booster legt Pegel unter 150 Hz dazu. Diese Seite nimmt Pegel unter einem Cutoff weg, den du schiebst. Beide lösen entgegengesetzte Probleme.',
             'Der Equalizer kann ein paar Dezibel bei 150 Hz absenken und den Rest des Tiefbasses lassen. Nimm ihn, wenn die Datei etwas mulmig ist und du das Gewicht noch willst. Nimm diese Seite, wenn das Rumpeln weg soll.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Hochpassfilter: Ablagefläche, nichts wird hochgeladen',
+        'Hochpassfilter: Arbeitsbereich mit geladener Datei',
+        'Hochpassfilter: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei hierher ziehen oder klicken',
       exportLabel: 'Hochpass anwenden',
@@ -1191,6 +1216,11 @@ export const de: Catalog = {
             'Audio lauter machen hebt die ganze Datei um einen festen Betrag an. Ein Fade ist an den Kanten leise und in der Mitte voll. Der Export ist MP3, standardmäßig 320 kbps, oder WAV. Die abgelegte Datei wird nicht verändert.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Audio ein- und ausblenden: Ablagefläche, nichts wird hochgeladen',
+        'Audio ein- und ausblenden: Arbeitsbereich mit geladener Datei',
+        'Audio ein- und ausblenden: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei hierher ziehen oder klicken',
       exportLabel: 'Ein- und ausblenden und laden',
@@ -1293,6 +1323,11 @@ export const de: Catalog = {
             'Ein Video: gekürzt wird die Tonspur. Das Bild wird nicht gespeichert.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Audio schneiden: Ablagefläche, nichts wird hochgeladen',
+        'Audio schneiden: Arbeitsbereich mit geladener Datei',
+        'Audio schneiden: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Zuschneiden und laden',
@@ -1397,6 +1432,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'MP3 schneiden: Ablagefläche, nichts wird hochgeladen',
+        'MP3 schneiden: Arbeitsbereich mit geladener Datei',
+        'MP3 schneiden: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'MP3- oder Videodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Schneiden und laden',
     },
@@ -1421,7 +1461,7 @@ export const de: Catalog = {
       howTo: [
         {
           name: 'Datei öffnen',
-          text: 'Lege eine MP3, WAV, M4A oder eine andere Audiodatei auf den Editor. Sie wird sofort auf deinem Gerät dekodiert.',
+          text: 'Lege eine MP3, WAV, M4A oder eine andere Audiodatei auf den Editor. Die Datei wird sofort auf deinem Gerät dekodiert.',
         },
         {
           name: 'Bearbeiten',
@@ -1485,6 +1525,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'MP3-Editor: Ablagefläche, nichts wird hochgeladen',
+        'MP3-Editor: Arbeitsbereich mit geladener Datei',
+        'MP3-Editor: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
     },
     'ringtone-maker': {
@@ -1509,7 +1554,7 @@ export const de: Catalog = {
       howTo: [
         {
           name: 'Song hinzufügen',
-          text: 'Ziehe eine MP3, M4A, WAV oder eine andere Audiodatei hierher. Sie verlässt dein Gerät nie.',
+          text: 'Ziehe eine MP3, M4A, WAV oder eine andere Audiodatei hierher. Die Datei verlässt dein Gerät nie.',
         },
         {
           name: 'Deinen Moment wählen',
@@ -1573,10 +1618,15 @@ export const de: Catalog = {
         {
           heading: 'Was diese Seite nicht tut',
           paragraphs: [
-            'Sie lädt den Song nicht hoch und installiert den Ton nicht auf dem Telefon. Du lädst eine Datei herunter und überträgst sie so, wie das Telefon es schon erwartet.',
+            'Die Seite lädt den Song nicht hoch und installiert den Ton nicht auf dem Telefon. Du lädst eine Datei herunter und überträgst sie so, wie das Telefon es schon erwartet.',
             'Einen langen Song zum Hören kürzen, nicht als Klingelton, gehört zu MP3 schneiden. Diese Seite ist nicht auf 40 Sekunden begrenzt.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Klingelton erstellen: Ablagefläche, nichts wird hochgeladen',
+        'Klingelton erstellen: Arbeitsbereich mit geladener Datei',
+        'Klingelton erstellen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Song ablegen oder klicken zum Auswählen',
       exportLabel: 'Klingelton erstellen',
@@ -1669,6 +1719,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'MP3 zusammenfügen: Ablagefläche, nichts wird hochgeladen',
+        'MP3 zusammenfügen: Arbeitsbereich mit geladener Datei',
+        'MP3 zusammenfügen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Zwei oder mehr Audiodateien ablegen oder klicken zum Auswählen',
     },
     'wav-to-mp3': {
@@ -1704,7 +1759,7 @@ export const de: Catalog = {
         },
       ],
       faqs: [
-        { q: 'Kann ich mehr als eine WAV umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich mehr als eine WAV umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         {
           q: 'Geht bei WAV in MP3 Qualität verloren?',
           a: 'MP3 ist verlustbehaftet, deshalb wird ein Teil der Information verworfen — bei 320 kbps kann in einem Blindtest aber praktisch niemand den Unterschied zur WAV hören. Wenn du gar keinen Verlust willst, behalte die WAV; dieser Konverter ist dafür da, Platz zu sparen und überall abspielbar zu sein.',
@@ -1762,7 +1817,7 @@ export const de: Catalog = {
         {
           heading: 'Erst umwandeln, dann kürzen',
           paragraphs: [
-            'Diese Seite wandelt die ganze Datei um. Sie schneidet keinen Abschnitt aus der WAV.',
+            'Diese Seite wandelt die ganze Datei um. Die Seite schneidet keinen Abschnitt aus der WAV.',
           ],
           bullets: [
             'Du brauchst nur eine Minute einer langen Aufnahme: umwandeln, dann den Audio-Trimmer öffnen.',
@@ -1770,6 +1825,11 @@ export const de: Catalog = {
             'Du bearbeitest nach der Umwandlung weiter: 320 kbps, oder behalte die WAV und bearbeite die.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'WAV in MP3 umwandeln: Ablagefläche, nichts wird hochgeladen',
+        'WAV in MP3 umwandeln: Arbeitsbereich mit geladener Datei',
+        'WAV in MP3 umwandeln: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'WAV-Dateien ablegen oder klicken zum Auswählen',
       exportLabel: 'In MP3 umwandeln',
@@ -1807,7 +1867,7 @@ export const de: Catalog = {
         },
       ],
       faqs: [
-        { q: 'Kann ich mehr als eine FLAC umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich mehr als eine FLAC umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         {
           q: 'Verliert FLAC zu MP3 an Qualität?',
           a: 'MP3 ist verlustbehaftet, es werden also Informationen weggelassen — bei 320 kbps kann es aber praktisch niemand im Blindtest vom FLAC unterscheiden. Behalte das FLAC als Archiv und behandle das MP3 als die tragbare Kopie.',
@@ -1860,6 +1920,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'FLAC in MP3 umwandeln: Ablagefläche, nichts wird hochgeladen',
+        'FLAC in MP3 umwandeln: Arbeitsbereich mit geladener Datei',
+        'FLAC in MP3 umwandeln: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'FLAC-Dateien ablegen oder klicken zum Auswählen',
       exportLabel: 'In MP3 umwandeln',
     },
@@ -1896,7 +1961,7 @@ export const de: Catalog = {
         },
       ],
       faqs: [
-        { q: 'Kann ich mehr als eine MP3 nach WAV umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich mehr als eine MP3 nach WAV umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         {
           q: 'Wird MP3 zu WAV besser klingen?',
           a: 'Nein — und misstraue jedem Konverter, der das verspricht. Was der Encoder weggeworfen hat, ist weg. Das WAV enthält exakt das, was die MP3 dekodiert, und genau deshalb ist es das richtige Format zum Weiterbearbeiten: keine zusätzliche verlustbehaftete Generation.',
@@ -1949,6 +2014,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'MP3 in WAV umwandeln: Ablagefläche, nichts wird hochgeladen',
+        'MP3 in WAV umwandeln: Arbeitsbereich mit geladener Datei',
+        'MP3 in WAV umwandeln: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'MP3-Dateien ablegen oder klicken zum Auswählen',
       exportLabel: 'In WAV umwandeln',
     },
@@ -1974,7 +2044,7 @@ export const de: Catalog = {
       howTo: [
         {
           name: 'Datei ablegen',
-          text: 'Füg eine MP3-, WAV-, M4A- oder andere Audiodatei hinzu. Sie wird auf deinem Gerät dekodiert und nie hochgeladen. Mehrere Dateien teilen sich die Einstellung, die du als Nächstes wählst. Eine Datei kommt allein, zwei oder mehr als ein ZIP.',
+          text: 'Füg eine MP3-, WAV-, M4A- oder andere Audiodatei hinzu. Die Datei wird auf deinem Gerät dekodiert und nie hochgeladen. Mehrere Dateien teilen sich die Einstellung, die du als Nächstes wählst. Eine Datei kommt allein, zwei oder mehr als ein ZIP.',
         },
         {
           name: 'Zielgröße wählen',
@@ -1986,7 +2056,7 @@ export const de: Catalog = {
         },
       ],
       faqs: [
-        { q: 'Kann ich mehr als eine Datei verkleinern?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich mehr als eine Datei verkleinern?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         {
           q: 'Wie funktioniert die Audiokomprimierung hier?',
           a: 'Die Datei wird dekodiert und mit der gewählten Bitrate als MP3 neu kodiert. Die Größe skaliert mit der Bitrate: eine Minute Stereo sind etwa 2,4 MB bei 320 kbps, 1 MB bei 128 und 0,5 MB bei 64.',
@@ -2054,6 +2124,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Audio komprimieren: Ablagefläche, nichts wird hochgeladen',
+        'Audio komprimieren: Arbeitsbereich mit geladener Datei',
+        'Audio komprimieren: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodateien ablegen oder klicken zum Auswählen',
       exportLabel: 'Komprimieren',
     },
@@ -2081,7 +2156,7 @@ export const de: Catalog = {
         { name: 'MP3 exportieren', text: 'Die Datei wird mit der Rate kodiert, die du gewählt hast. Tags und Cover werden nicht übernommen.' },
       ],
       faqs: [
-        { q: 'Kann ich die Bitrate von mehr als einer Datei ändern?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich die Bitrate von mehr als einer Datei ändern?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         {
           q: 'Klingt ein 128-kbps-MP3 bei 320 kbps besser?',
           a: 'Nein. Der Encoder behält nur, was die Quelle noch hat. Ein 128-kbps-MP3, das du noch einmal mit 320 kbps speicherst, ist eine größere Datei derselben Aufnahme. Starte von der WAV oder der Originalaufnahme, wenn du das Detail brauchst.',
@@ -2131,6 +2206,11 @@ export const de: Catalog = {
             'Das ist derselbe Encoder wie Audio komprimieren. Nimm Audio komprimieren, wenn du nur eine kleinere Datei willst und die Startrate egal ist. Nimm WAV zu MP3, wenn die Quelle eine WAV ist und du 320 kbps willst, ohne sie zu wählen.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Bitrate ändern: Ablagefläche, nichts wird hochgeladen',
+        'Bitrate ändern: Arbeitsbereich mit geladener Datei',
+        'Bitrate ändern: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodateien hierher ziehen oder klicken zum Auswählen',
       exportLabel: 'Umwandeln',
@@ -2215,6 +2295,11 @@ export const de: Catalog = {
             'Wenn das Ziel ein langsamerer Song oder eine tiefere Stimme ist, ist Rückwärts der falsche Regler. Tempo verschiebt die Tonhöhe mit. Der Tonhöhen-Regler hält die Länge.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Audio rückwärts: Ablagefläche, nichts wird hochgeladen',
+        'Audio rückwärts: Arbeitsbereich mit geladener Datei',
+        'Audio rückwärts: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Umkehren und laden',
@@ -2303,6 +2388,11 @@ export const de: Catalog = {
             'Über 100 Prozent auf der Slowed-Seite geht in Richtung Nightcore. Mach das dort, wenn du auch den Hall-Regler willst. Exportiere hier, wenn du nur die neue Länge willst.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Audio schneller machen: Ablagefläche, nichts wird hochgeladen',
+        'Audio schneller machen: Arbeitsbereich mit geladener Datei',
+        'Audio schneller machen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Tempo ändern und laden',
@@ -2393,6 +2483,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'MP3 lauter machen: Ablagefläche, nichts wird hochgeladen',
+        'MP3 lauter machen: Arbeitsbereich mit geladener Datei',
+        'MP3 lauter machen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Lauter machen und laden',
     },
@@ -2429,7 +2524,7 @@ export const de: Catalog = {
         },
       ],
       faqs: [
-        { q: 'Kann ich mehr als ein Video umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich mehr als ein Video umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         {
           q: 'Wird das Video irgendwo hochgeladen?',
           a: 'Nein — und bei Video lohnt es sich, das extra zu sagen, weil die Dateien groß sind. Der Browser liest die Datei von deiner Festplatte, dekodiert nur die Audiospur und schreibt die MP3 lokal. Videobilder werden weder verarbeitet noch übertragen.',
@@ -2513,6 +2608,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'MP4 in MP3 umwandeln: Ablagefläche, nichts wird hochgeladen',
+        'MP4 in MP3 umwandeln: Arbeitsbereich mit geladener Datei',
+        'MP4 in MP3 umwandeln: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'MP4- oder Videodateien ablegen oder klicken zum Auswählen',
       exportLabel: 'In MP3 umwandeln',
     },
@@ -2522,7 +2622,7 @@ export const de: Catalog = {
       shortName: 'Audio extrahieren',
       title: 'Audio aus Video — Tonspur als MP3 oder WAV speichern',
       description:
-        'Extrahiere die Audiospur aus jedem Video im Browser und speichere sie als MP3 oder verlustfreies WAV. Kostenlos, privat, kein Upload — auch bei großen Dateien.',
+        'Extrahiere die Audiospur aus jedem Video im Browser und speichere sie als MP3 oder verlustfreies WAV. Kostenlos, ohne Upload, auch bei großen Dateien.',
       h1: 'Audio aus Video extrahieren – Tonspur als WAV oder MP3',
       heroAlt: 'Eine Videotonspur als MP3 oder WAV speichern',
       subtitle: 'Speichere die Tonspur jedes Videos als MP3 oder WAV — lokal, in Sekunden.',
@@ -2549,7 +2649,7 @@ export const de: Catalog = {
         },
       ],
       faqs: [
-        { q: 'Kann ich den Ton aus mehr als einem Video holen?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich den Ton aus mehr als einem Video holen?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         {
           q: 'Was ist der Unterschied zu einem MP4-zu-MP3-Konverter?',
           a: 'Unter der Haube dieselbe lokale Extraktion — diese Seite ist dafür da, Audio in dem Format aus einem Video zu holen, das du brauchst, einschließlich verlustfreiem WAV. Die Konverterseite ist auf MP3-Ausgabe ausgelegt.',
@@ -2604,10 +2704,15 @@ export const de: Catalog = {
         {
           heading: 'Es macht das Video nicht stumm',
           paragraphs: [
-            'Audio aus einem Video entfernen und das Bild behalten ist der umgekehrte Auftrag. Diese Seite behält den Ton und wirft die Bilder weg. Sie schreibt kein neues Video.',
+            'Audio aus einem Video entfernen und das Bild behalten ist der umgekehrte Auftrag. Diese Seite behält den Ton und wirft die Bilder weg. Die Seite schreibt kein neues Video.',
             'Es gibt keine Größengrenze außer dem Speicher des Geräts. Ein 4K-Bild macht die Audio-Dekodierung nicht langsamer, weil die Bilder nicht verwendet werden. Nichts wird hochgeladen.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Audio aus Video: Ablagefläche, nichts wird hochgeladen',
+        'Audio aus Video: Arbeitsbereich mit geladener Datei',
+        'Audio aus Video: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Videodateien ablegen oder klicken zum Auswählen',
       exportLabel: 'Audio extrahieren',
@@ -2692,6 +2797,11 @@ export const de: Catalog = {
             'Eine zu leise Aufnahme bleibt nach dem Export leise. Heb sie mit Audio lauter machen an, oder prüfe den Pegel am Lautheitsmesser, wenn das Ziel ein Podcast-Sollwert ist.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Sprachrekorder: Ablagefläche, nichts wird hochgeladen',
+        'Sprachrekorder: Arbeitsbereich mit geladener Datei',
+        'Sprachrekorder: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Oder eine vorhandene Aufnahme zum Bearbeiten ablegen',
     },
@@ -2794,6 +2904,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Audio lauter machen: Ablagefläche, nichts wird hochgeladen',
+        'Audio lauter machen: Arbeitsbereich mit geladener Datei',
+        'Audio lauter machen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audio- oder Videodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Lauter machen und laden',
     },
@@ -2818,7 +2933,7 @@ export const de: Catalog = {
       howTo: [
         {
           name: 'Audio ablegen',
-          text: 'Jede MP3, WAV, M4A oder eine andere Audiodatei. Sie wird lokal dekodiert und ausgewertet — nichts verlässt dein Gerät. Mehrere Dateien teilen sich den Normalisieren-Schalter. Jede Datei wird auf ihren eigenen Peak angehoben. Eine Datei kommt allein, zwei oder mehr als ein ZIP.',
+          text: 'Jede MP3, WAV, M4A oder eine andere Audiodatei. Die Datei wird lokal dekodiert und ausgewertet — nichts verlässt dein Gerät. Mehrere Dateien teilen sich den Normalisieren-Schalter. Jede Datei wird auf ihren eigenen Peak angehoben. Eine Datei kommt allein, zwei oder mehr als ein ZIP.',
         },
         {
           name: 'Auf Normalisieren klicken',
@@ -2885,6 +3000,11 @@ export const de: Catalog = {
             'Eine Datei lauter machen mit einem Faktor, den du wählst, auch über 100 Prozent mit Limiter, ist Audio lauter machen. Normalisieren bietet diesen Multiplikator nicht.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Audio normalisieren: Ablagefläche, nichts wird hochgeladen',
+        'Audio normalisieren: Arbeitsbereich mit geladener Datei',
+        'Audio normalisieren: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodateien ablegen oder klicken zum Auswählen',
       exportLabel: 'Normalisieren und laden',
@@ -2984,6 +3104,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Slowed + Reverb: Ablagefläche, nichts wird hochgeladen',
+        'Slowed + Reverb: Arbeitsbereich mit geladener Datei',
+        'Slowed + Reverb: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Song ablegen oder klicken zum Auswählen',
       exportLabel: 'Verlangsamen und laden',
     },
@@ -3043,6 +3168,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Tempo ändern: Ablagefläche, nichts wird hochgeladen',
+        'Tempo ändern: Arbeitsbereich mit geladener Datei',
+        'Tempo ändern: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Tempo ändern',
     },
@@ -3063,7 +3193,7 @@ export const de: Catalog = {
         'Der schneller-und-höher-Effekt ist der Geschwindigkeitswechsler. Diese Seite kürzt das Audio nicht.',
       ],
       howTo: [
-        { name: 'Datei ablegen', text: 'Füg eine MP3-, WAV-, M4A- oder andere Audiodatei hinzu. Sie bleibt auf deinem Gerät.' },
+        { name: 'Datei ablegen', text: 'Füg eine MP3-, WAV-, M4A- oder andere Audiodatei hinzu. Die Datei bleibt auf deinem Gerät.' },
         { name: 'Tonhöhe einstellen', text: 'Zieh von −12 bis +12 Halbtöne. +12 ist eine Oktave höher, −12 eine Oktave tiefer. 0 lässt die Datei, wie sie ist.' },
         { name: 'Anhören und exportieren', text: 'Spiel ab, um die neue Tonart in der ursprünglichen Länge zu hören, und speichere als MP3 oder WAV.' },
       ],
@@ -3106,6 +3236,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Tonhöhe ändern: Ablagefläche, nichts wird hochgeladen',
+        'Tonhöhe ändern: Arbeitsbereich mit geladener Datei',
+        'Tonhöhe ändern: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'Tonhöhe ändern und laden',
     },
@@ -3131,7 +3266,7 @@ export const de: Catalog = {
         { name: 'Umwandeln und laden', text: 'Klick auf In MP3 umwandeln. Dekodieren und Kodieren passiert auf deinem Gerät, danach startet der Download.' },
       ],
       faqs: [
-        { q: 'Kann ich mehr als eine M4A umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich mehr als eine M4A umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         { q: 'Kann ich M4A auf iPhone, Android oder Mac in MP3 umwandeln?', a: 'Ja — der Konverter läuft in jedem Browser, das Gerät ist egal. AAC-Audio in einer M4A, so wie Sprachmemos und die meisten AAC-Downloads. Apple Lossless (ALAC) in einer M4A dekodiert der Browser oft nicht. Wandle die Datei zuerst in AAC oder WAV um und bring sie dann hierher.' },
         { q: 'Was ist mit MP4-Video?', a: 'Für Videos nimm den MP4-in-MP3-Wandler. Diese Seite ist für Audio: M4A und AAC.' },
         { q: 'Verliert die Umwandlung in MP3 Qualität?', a: 'MP3 ist verlustbehaftet. Bei 320 kbps ist der Unterschied zum AAC-Original für fast alle klein. Behalt die M4A, wenn du die Originaldatei unangetastet brauchst.' },
@@ -3165,6 +3300,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'M4A in MP3: Ablagefläche, nichts wird hochgeladen',
+        'M4A in MP3: Arbeitsbereich mit geladener Datei',
+        'M4A in MP3: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'M4A- oder AAC-Dateien ablegen oder klicken zum Auswählen',
       exportLabel: 'In MP3 umwandeln',
     },
@@ -3173,7 +3313,7 @@ export const de: Catalog = {
       name: 'OGG in MP3 umwandeln',
       shortName: 'OGG zu MP3',
       title: 'OGG in MP3 umwandeln — kostenlos im Browser',
-      description: 'Wandle OGG-Dateien im Browser in MP3 um, ohne Größenlimit. Kostenlos, ohne Konto, nichts wird hochgeladen. Vorbis oder Opus in OGG, mit 128, 192 oder 320 kbps.',
+      description: 'Wandle OGG-Dateien im Browser in MP3 um, ohne Größenlimit. Kostenlos, ohne Konto, ohne Upload. Vorbis oder Opus in OGG, mit 128, 192 oder 320 kbps.',
       h1: 'OGG in MP3 umwandeln',
       heroAlt: 'Vorbis oder Opus in einer OGG-Datei in MP3 umwandeln',
       subtitle: 'Mach aus OGG-Audio eine MP3 — im Browser, nichts wird hochgeladen.',
@@ -3190,7 +3330,7 @@ export const de: Catalog = {
         { name: 'Umwandeln und laden', text: 'Klick auf In MP3 umwandeln. Dekodieren und Kodieren passieren auf deinem Gerät, dann lädt die MP3 herunter.' },
       ],
       faqs: [
-        { q: 'Kann ich mehr als eine OGG umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich mehr als eine OGG umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         { q: 'Was ist eine OGG-Datei?', a: 'OGG ist ein Container. Musik darin nutzt meist Vorbis. Manche Sprachdateien nutzen Opus. Wenn dein Browser die Datei dekodieren kann, macht diese Seite eine MP3 daraus.' },
         { q: 'Welche Browser wandeln OGG um?', a: 'Chrome und Firefox dekodieren Vorbis und Opus in OGG. Safari dekodiert Opus und lehnt Vorbis oft ab. Wenn die Datei in einem normalen Tab nicht abspielt, kann diese Seite sie auch nicht umwandeln.' },
         { q: 'Verliert OGG zu MP3 an Qualität?', a: 'MP3 ist verlustbehaftet. Bei 320 kbps ist der Unterschied für fast alle klein. Behalt die OGG, wenn du die Originaldatei brauchst.' },
@@ -3224,6 +3364,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'OGG in MP3 umwandeln: Ablagefläche, nichts wird hochgeladen',
+        'OGG in MP3 umwandeln: Arbeitsbereich mit geladener Datei',
+        'OGG in MP3 umwandeln: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'OGG-Dateien ablegen oder klicken zum Auswählen',
       exportLabel: 'In MP3 umwandeln',
     },
@@ -3249,7 +3394,7 @@ export const de: Catalog = {
         { name: 'Umwandeln und laden', text: 'Klick auf In MP3 umwandeln. Dekodieren und Kodieren passieren auf deinem Gerät, dann lädt die MP3 herunter.' },
       ],
       faqs: [
-        { q: 'Kann ich mehr als eine Opus-Datei umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Sie laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
+        { q: 'Kann ich mehr als eine Opus-Datei umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },
         { q: 'Was ist das Opus-Format?', a: 'Opus ist ein Audio-Codec. WhatsApp- und Telegram-Sprachnachrichten sind oft .opus. Opus steckt auch in OGG und WebM. Diese Seite macht daraus eine MP3, die überall abspielt.' },
         { q: 'Welche Opus-Dateien funktionieren?', a: 'Dateien, die dein Browser schon abspielen kann: .opus, OGG mit Opus und WebM mit Opus, in Chrome, Firefox und aktuellem Safari. Bleibt ein normaler Tab stumm, kann diese Seite die Datei auch nicht dekodieren.' },
         { q: 'Verliert Opus zu MP3 an Qualität?', a: 'MP3 ist verlustbehaftet, Opus auch. Bei 320 kbps ist die MP3 so klar, wie MP3 wird. Sprachnachrichten sind bei 128 kbps in Ordnung. Behalt die Opus-Datei, wenn du das Original brauchst.' },
@@ -3282,6 +3427,11 @@ export const de: Catalog = {
             'Nichts wird hochgeladen. Hat die Notiz an den Enden lange Stille, wandle zuerst und kürze danach. Stille entfernen passt zu einer Sprachnotiz mit langen Pausen, nicht zu einem leisen Musikbett.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Opus in MP3 umwandeln: Ablagefläche, nichts wird hochgeladen',
+        'Opus in MP3 umwandeln: Arbeitsbereich mit geladener Datei',
+        'Opus in MP3 umwandeln: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Opus-Dateien ablegen oder klicken zum Auswählen',
       exportLabel: 'In MP3 umwandeln',
@@ -3342,6 +3492,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Wellenform-Generator: die Seite vor Datei oder Eingabe',
+        'Wellenform-Generator: nach dem Einlesen der Datei oder der Schläge',
+        'Wellenform-Generator: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei ablegen oder klicken zum Auswählen',
       exportLabel: 'PNG herunterladen',
     },
@@ -3385,10 +3540,10 @@ export const de: Catalog = {
         {
           heading: 'Wie du ein verstecktes Bild liest',
           paragraphs: [
-            'Einige Tracks zeichnen ein Bild, indem sie Energie auf gewählte Frequenzen legen. Diese Seite kann das zeigen. Sie erzeugt es nicht:',
+            'Einige Tracks zeichnen ein Bild, indem sie Energie auf gewählte Frequenzen legen. Diese Seite kann das zeigen. Die Seite erzeugt es nicht:',
           ],
           bullets: [
-            'Lass die log-Achse für die übliche Musikansicht. Sie streckt das Tiefe.',
+            'Lass die log-Achse für die übliche Musikansicht. Die Achse streckt das Tiefe.',
             'Heb die dB-Decke an, wenn ein verstecktes Bild blass ist.',
             'Kürze den Zeitbereich, wenn du nur einen Abschnitt der Datei willst.',
           ],
@@ -3400,6 +3555,11 @@ export const de: Catalog = {
             'Um eine WAV zu bauen, deren Spektrogramm dein Bild oder eine kurze Textzeile zeigt, nimm Bild zu Audio und öffne diese WAV hier. Log-Frequenz, Decke um −20 dB. Die Form sitzt zwischen etwa 400 Hz und 12 kHz. Diese Seite zeigt nur.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Spektrogramm erstellen: die Seite vor Datei oder Eingabe',
+        'Spektrogramm erstellen: nach dem Einlesen der Datei oder der Schläge',
+        'Spektrogramm erstellen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
       exportLabel: 'PNG herunterladen',
@@ -3422,7 +3582,7 @@ export const de: Catalog = {
       ],
       howTo: [
         { name: 'Tippen oder ablegen', text: 'Bis zu 32 Zeichen, oder PNG, JPG, WebP. Die Vorschau ist das Bild, das geschrieben wird. Helle Pixel sind lautere Frequenzen.' },
-        { name: 'WAV laden', text: 'Du bekommst eine WAV mit 44,1 kHz, 16 Bit. Sie klingt nach Zwitschern und Rauschen, nicht nach dem Bild vorgelesen.' },
+        { name: 'WAV laden', text: 'Du bekommst eine WAV mit 44,1 kHz, 16 Bit. Die WAV klingt nach Zwitschern und Rauschen, nicht nach dem Bild vorgelesen.' },
         { name: 'Spektrum ansehen', text: 'Öffne die WAV im Spektrogramm-Generator. Log-Achse, Decke um −20 dB. Die Form liegt ungefähr zwischen 400 Hz und 12 kHz.' },
       ],
       faqs: [
@@ -3459,6 +3619,11 @@ export const de: Catalog = {
             'Spektrogramm erstellen zeichnet ein Bild von Audio, das du schon hast. Diese Seite baut Audio, damit dieses Bild dein Motiv oder deine Zeile zeigt. Der Wellenform-Generator zeigt nur Lautstärke, die versteckte Form ist dort nicht offensichtlich.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Bild zu Audio: die Seite vor Datei oder Eingabe',
+        'Bild zu Audio: nach dem Einlesen der Datei oder der Schläge',
+        'Bild zu Audio: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Oder ein Bild ablegen',
       exportLabel: 'WAV herunterladen',
@@ -3525,6 +3690,10 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'MP3-Tags online bearbeiten: die Seite vor Datei oder Eingabe',
+        'MP3-Tags online bearbeiten: nach dem Einlesen der Datei oder der Schläge',
+      ],
       dropHint: 'MP3-Dateien hierher ziehen oder klicken zum Auswählen',
       exportLabel: 'MP3 speichern',
     },
@@ -3586,6 +3755,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Pegelkompressor: Ablagefläche, nichts wird hochgeladen',
+        'Pegelkompressor: Arbeitsbereich mit geladener Datei',
+        'Pegelkompressor: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei hierher ziehen oder klicken zum Auswählen',
       exportLabel: 'Komprimieren und laden',
     },
@@ -3640,6 +3814,11 @@ export const de: Catalog = {
             'Den Anfang oder das Ende einer Datei ein- und auszublenden ist die Fade-Seite. Zwei Songs zu überlappen ist der Audio-Joiner. Beides ist kein Echo.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Echo: Ablagefläche, nichts wird hochgeladen',
+        'Echo: Arbeitsbereich mit geladener Datei',
+        'Echo: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei hierher ziehen oder klicken zum Auswählen',
       exportLabel: 'Echo hinzufügen',
@@ -3702,6 +3881,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Reverb hinzufügen: Ablagefläche, nichts wird hochgeladen',
+        'Reverb hinzufügen: Arbeitsbereich mit geladener Datei',
+        'Reverb hinzufügen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei hierher ziehen oder klicken zum Auswählen',
       exportLabel: 'Reverb hinzufügen',
     },
@@ -3725,7 +3909,7 @@ export const de: Catalog = {
       faqs: [
         { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Der Clip ist ein Web-Audio-Waveshaper in diesem Tab. Nach dem Laden der Seite kannst du offline gehen und trotzdem exportieren. WAV geht sofort. MP3 geht, nachdem der Encoder einmal geladen wurde.' },
         { q: 'Was macht der Regler wirklich?', a: 'Stärke 0 setzt keinen Waveshaper ein, die Samples bleiben wie dekodiert. Über 0 wird jedes Sample x zu tanh(k·x) / tanh(k), mit k = 10^(Stärke × 1,6) − 1. Beim Start von 40 % ist k etwa 3,4, und ein Sample von 0,25 wird etwa 0,69. Bei 100 % ist k etwa 39, und dieses Sample wird auf etwa 1 gedrückt. Ein Sample auf Vollausschlag bleibt auf Vollausschlag. Der Knoten überabtastet mit 2×. WAV behält diese Kurve. MP3 wird einmal neu kodiert, mit der Bitrate, die du wählst. Die Länge ändert sich nicht.' },
-        { q: 'Was macht diese Seite nicht?', a: 'Sie ist kein Bitcrusher und fügt kein Wow, kein Flutter und keine Radiobandbreite hinzu. Ein dumpfer Lo-Fi-Ton ist diese Seite, danach der Tiefpass. Ein Amp mit Box ist eine DAW-Aufgabe.' },
+        { q: 'Was macht diese Seite nicht?', a: 'Diese Seite ist kein Bitcrusher und fügt kein Wow, kein Flutter und keine Radiobandbreite hinzu. Ein dumpfer Lo-Fi-Ton ist diese Seite, danach der Tiefpass. Ein Amp mit Box ist eine DAW-Aufgabe.' },
         { q: 'Worin unterscheidet sich das vom Lautstärke-Booster?', a: 'Der Lautstärke-Booster multipliziert die ganze Datei, dann hält ein Limiter die Spitzen, damit sie nicht rechteckig werden. Diese Seite flacht sie absichtlich ab. Echo legt eine Kopie nach einer Verzögerung dazu. Beides flacht die Wellenform nicht ab.' },
         { q: 'Kann ich nur einen Teil verzerren?', a: 'Ja. Markiere den Abschnitt auf der Wellenform und behalte diese Auswahl. Die Kurve gilt für das, was du exportierst, nicht für den Rest der Datei.' },
         { q: 'Geht das auf dem Handy?', a: 'Ja. Regler und Export funktionieren mit dem Finger in aktuellem Chrome, Edge, Firefox und Safari.' },
@@ -3754,6 +3938,11 @@ export const de: Catalog = {
             'Diese Kurve senkt nicht die Bittiefe und schneidet die Höhen nicht ab. Der Knoten überabtastet mit 2×, das mindert nur das Aliasing der neuen Obertöne. Ein dumpfer Lo-Fi-Ton ist diese Seite, danach der Tiefpass.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Audio verzerren: Ablagefläche, nichts wird hochgeladen',
+        'Audio verzerren: Arbeitsbereich mit geladener Datei',
+        'Audio verzerren: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei hierher ziehen oder klicken zum Auswählen',
       exportLabel: 'Verzerren und laden',
@@ -3816,6 +4005,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Stimme ändern: Ablagefläche, nichts wird hochgeladen',
+        'Stimme ändern: Arbeitsbereich mit geladener Datei',
+        'Stimme ändern: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei hierher ziehen oder klicken zum Auswählen',
       exportLabel: 'Stimme ändern',
     },
@@ -3823,7 +4017,7 @@ export const de: Catalog = {
       cardLine: "Schneide lange stille Stellen weg und lass kurze Atemzüge stehen.",
       name: "Stille entfernen",
       shortName: "Stille",
-      title: "Stille aus Audio entfernen — Pausen online kostenlos schneiden",
+      title: "Stille aus Audio entfernen — Pausen kostenlos schneiden",
       description: "Entferne lange Stille aus jeder Audiodatei im Browser. Du bestimmst, wie leise und wie lang. Kostenlos, nichts wird hochgeladen.",
       h1: 'Kostenloser Online-Stille-Entferner — Stille aus Audio entfernen',
       heroAlt: 'Die langen Pausen aus einer Sprachaufnahme schneiden',
@@ -3871,6 +4065,11 @@ export const de: Catalog = {
             'Nimm das Kürzen, wenn die leise Stelle etwas ist, das du noch willst, oder wenn du einen Abschnitt behältst und den Rest nach Gehör wegwirfst. Nimm diese Seite, wenn die Pausen das Problem sind und lang genug zum Messen.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Stille entfernen: Ablagefläche, nichts wird hochgeladen',
+        'Stille entfernen: Arbeitsbereich mit geladener Datei',
+        'Stille entfernen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodateien ablegen oder klicken zum Auswählen',
       exportLabel: 'Stille entfernen',
@@ -3937,6 +4136,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Hintergrundrauschen entfernen: Ablagefläche, nichts wird hochgeladen',
+        'Hintergrundrauschen entfernen: Arbeitsbereich mit geladener Datei',
+        'Hintergrundrauschen entfernen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei hierher ziehen oder klicken',
       exportLabel: 'Rauschen entfernen',
     },
@@ -3989,6 +4193,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Audio Looper: Ablagefläche, nichts wird hochgeladen',
+        'Audio Looper: Arbeitsbereich mit geladener Datei',
+        'Audio Looper: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
       exportLabel: 'Schleife und laden',
     },
@@ -4001,7 +4210,7 @@ export const de: Catalog = {
       h1: 'Auto-Panner, eine Datei von links nach rechts schwenken',
       heroAlt: 'Eine Aufnahme von links nach rechts schwenken',
       subtitle: 'Setz Tiefe und Frequenz. Der Schwenk folgt nicht dem Beat.',
-      intro: 'Die Tiefe geht von 0 bis 100 %, Start ist 70 %. Die Frequenz geht von 0,05 Hz bis 2 Hz, Start ist 0,2 Hz. Die Position ist die Tiefe mal ein Sinus dieser Frequenz. Bei 0,2 Hz dauert eine volle Links-rechts-Runde 5 Sekunden. Sie folgt nicht dem Schlagzeug. Tiefe 0 lässt die Datei, wie sie ist. Die Verarbeitung bleibt im Browser.',
+      intro: 'Die Tiefe geht von 0 bis 100 %, Start ist 70 %. Die Frequenz geht von 0,05 Hz bis 2 Hz, Start ist 0,2 Hz. Die Position ist die Tiefe mal ein Sinus dieser Frequenz. Bei 0,2 Hz dauert eine volle Links-rechts-Runde 5 Sekunden. Die Bewegung folgt nicht dem Schlagzeug. Tiefe 0 lässt die Datei, wie sie ist. Die Verarbeitung bleibt im Browser.',
       usesHeading: 'Wofür der Schwenk da ist',
       uses: ['Schieb ein Pad oder eine Stimme langsam von einem Lautsprecher zum anderen.', 'Gib einer Mono-Aufnahme eine gleichmäßige Links-rechts-Bewegung.', 'Wähl die Frequenz in Hertz, statt den Drums hinterherzulaufen.'],
       howTo: [
@@ -4040,6 +4249,11 @@ export const de: Catalog = {
             'Diese Seite folgt keinem Beat. Eine Stereodatei bleibt ein Bild. Links und rechts laufen nicht auf getrennten Bahnen.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Auto-Panner: Ablagefläche, nichts wird hochgeladen',
+        'Auto-Panner: Arbeitsbereich mit geladener Datei',
+        'Auto-Panner: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
       exportLabel: 'Schwenken und laden',
@@ -4092,6 +4306,11 @@ export const de: Catalog = {
             'Slowed + Reverb ändert das Tempo, und die Tonhöhe geht mit. Diese Seite nicht. Schalter aus lässt die Datei, wie du sie abgelegt hast.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        '3D-Audio: Ablagefläche, nichts wird hochgeladen',
+        '3D-Audio: Arbeitsbereich mit geladener Datei',
+        '3D-Audio: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
       exportLabel: '3D anwenden',
@@ -4151,6 +4370,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Metronom: die Seite vor Datei oder Eingabe',
+        'Metronom: nach dem Einlesen der Datei oder der Schläge',
+        'Metronom: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Keine Datei. Drück Start.',
     },
     'tap-tempo': {
@@ -4194,6 +4418,10 @@ export const de: Catalog = {
             'Nimm diese Seite, wenn das Tempo in deinen Ohren lebt: eine Live-Band, eine gesummte Melodie, ein Stück, das du einem Tool nicht geben kannst. Nimm den [Key- und BPM-Finder](/key-bpm-finder), wenn du die Datei hast und das produzierte, exakte Tempo plus die Tonart willst. Wenn die beiden sich streiten, glaube der Datei.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Tap Tempo: die Anzeige steht vor dem ersten Schlag auf einem Strich',
+        'Tap Tempo nach sieben Schlägen: die Anzeige bleibt bei 120,2 BPM stehen',
       ],
       dropHint: 'Keine Datei. Tipp den Beat.',
       exportLabel: 'Tap Tempo',
@@ -4253,6 +4481,10 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Tonart und BPM: die Seite vor Datei oder Eingabe',
+        'Tonart und BPM: nach dem Einlesen der Datei oder der Schläge',
+      ],
       dropHint: 'Audiodatei ablegen oder zum Durchsuchen klicken',
     },
     'loudness-meter': {
@@ -4306,6 +4538,10 @@ export const de: Catalog = {
             'Normalisieren jagt nur diesen Peak, bis etwa −0,2 dB. Der Pegelkompressor verkürzt den Abstand zwischen laut und leise. Diese Seite misst. Eine einzelne Zahl ist keine Mastering-Session.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Lautheitsmesser: die Seite vor Datei oder Eingabe',
+        'Lautheitsmesser: nach dem Einlesen der Datei oder der Schläge',
       ],
       dropHint: "Audiodatei hier ablegen oder zum Auswählen klicken",
     },
@@ -4365,6 +4601,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Mehrspur-Audioeditor: Ablagefläche, nichts wird hochgeladen',
+        'Mehrspur-Audioeditor: Arbeitsbereich mit geladener Datei',
+        'Mehrspur-Audioeditor: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Zwei oder mehr Audiodateien ablegen, um sie zu stapeln',
     },
     'split-mp3': {
@@ -4380,7 +4621,7 @@ export const de: Catalog = {
       usesHeading: 'Wofür die Teile da sind',
       uses: ['Teile ein MP3 in mehrere Dateien, wenn eine Datei zu lang zum Senden ist.', 'Zerlege eine Sprachnotiz in gleiche Stücke, die du einzeln schicken kannst.', 'Teile eine Audiodatei in Teile, ohne nach Stille zu suchen.'],
       howTo: [
-        { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Sie wird auf deinem Gerät dekodiert.' },
+        { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Die Datei wird auf deinem Gerät dekodiert.' },
         { name: 'Zahl festlegen', text: 'Teile laufen von 2 bis 16. Die Statuszeile sagt, wie viele Dateien du bekommst und wie lang jede ungefähr ist. Zieh die Wellenform, wenn nur ein Abschnitt geteilt werden soll.' },
         { name: 'Zip laden', text: 'Exportiere MP3 oder WAV. Der Download ist ein Zip mit dem Namen der Datei, und darin liegen Teil 1, Teil 2 und der Rest.' },
       ],
@@ -4416,6 +4657,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'MP3 teilen: Ablagefläche, nichts wird hochgeladen',
+        'MP3 teilen: Arbeitsbereich mit geladener Datei',
+        'MP3 teilen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei ablegen, oder klicken zum Auswählen',
       exportLabel: 'Teile laden',
     },
@@ -4436,7 +4682,7 @@ export const de: Catalog = {
         'Ein Mix, dessen links und rechts zusammenliegen sollen, nicht als breites Bild.',
       ],
       howTo: [
-        { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Sie wird auf deinem Gerät dekodiert.' },
+        { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Die Datei wird auf deinem Gerät dekodiert.' },
         { name: 'Mittelwert exportieren', text: 'Es gibt keinen Breitenregler. Der Export schreibt einen Kanal. Spiel ihn zuerst ab, wenn du den Mittelwert hören willst.' },
         { name: 'Datei öffnen', text: 'Ein Player, der die Kanalzahl zeigt, sollte eins sagen. WAV sind diese gemittelten Samples. MP3 kodiert sie einmal, bis 320 kbps.' },
       ],
@@ -4468,9 +4714,14 @@ export const de: Catalog = {
           heading: 'Kein Schnitt, und kein falsches Stereo',
           paragraphs: [
             'Der Audio-Trimmer behält eine Spanne und lässt die Kanäle, wie sie waren. MP3 zu WAV wechselt das Format und lässt die Kanäle ebenfalls. Diese Seite behält die Länge und schreibt einen Kanal.',
-            'Sie macht aus einem Kanal keine zwei. Einen Kanal zu verdoppeln, damit ein Player Stereo zeigt, trägt immer noch ein Signal. Das tut dieser Export nicht.',
+            'Die Seite macht aus einem Kanal keine zwei. Einen Kanal zu verdoppeln, damit ein Player Stereo zeigt, trägt immer noch ein Signal. Das tut dieser Export nicht.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        'Stereo zu Mono: Ablagefläche, nichts wird hochgeladen',
+        'Stereo zu Mono: Arbeitsbereich mit geladener Datei',
+        'Stereo zu Mono: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei ablegen, oder klicken zum Auswählen',
       exportLabel: 'Mono laden',
@@ -4492,7 +4743,7 @@ export const de: Catalog = {
         'Ein Satz in der Datei, der Rest bleibt.',
       ],
       howTo: [
-        { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Sie wird auf deinem Gerät dekodiert.' },
+        { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Die Datei wird auf deinem Gerät dekodiert.' },
         { name: 'Bits und Halten setzen', text: 'Bits gehen von 1 bis 16 und starten bei 8. Halten geht von 1 bis 32 und startet bei 2. Spiel ab, um es zu hören. Zieh die Welle, wenn nur eine Spanne zerstuft werden soll.' },
         { name: 'Exportieren', text: 'WAV behält die gestuften Samples. MP3 kodiert sie einmal, bis 320 kbps, und kann die Stufen weichzeichnen.' },
       ],
@@ -4528,6 +4779,11 @@ export const de: Catalog = {
           ],
         },
       ],
+      screenshotsAlt: [
+        'Bitcrusher: Ablagefläche, nichts wird hochgeladen',
+        'Bitcrusher: Arbeitsbereich mit geladener Datei',
+        'Bitcrusher: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
+      ],
       dropHint: 'Audiodatei ablegen, oder klicken zum Auswählen',
       exportLabel: 'Stufen exportieren',
     },
@@ -4548,13 +4804,13 @@ export const de: Catalog = {
         'Eine Datei, die du neben andere Tracks legst, die schon Richtung 432 Hz verschoben sind.',
       ],
       howTo: [
-        { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Sie wird auf deinem Gerät dekodiert.' },
+        { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Die Datei wird auf deinem Gerät dekodiert.' },
         { name: 'Verschiebung hören', text: 'Die Vorschau ist die verschobene Datei. Auf dieser Seite gibt es keinen Halbtonregler, weil ein gerundeter Halbton null wäre und die Datei sich nicht bewegen würde.' },
         { name: 'Exportieren', text: 'Die Länge entspricht der Datei, die du abgelegt hast. WAV sind die verschobenen Samples. MP3 kodiert sie einmal, bis 320 kbps.' },
       ],
       faqs: [
         { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Die Datei wird in deinem Browser dekodiert und dort verschoben. Nach dem Laden der Seite kannst du offline gehen, und der Export läuft weiter. WAV braucht keinen weiteren Download. MP3 kodiert offline, nachdem der Encoder einmal geladen wurde.' },
-        { q: 'Wie weit bewegt sie sich?', a: 'Die Verschiebung ist das 12-fache von log2 aus 432 durch 440, etwa 0,3177 Halbtöne nach unten, und die Seite benutzt diesen Bruch. Sie rundet nicht auf den nächsten ganzen Halbton, der null wäre und die Datei unverändert ließe. Ein 440-Hz-Ton rückt Richtung 432 Hz. Der Rest der Datei bewegt sich um denselben Betrag. WAV sind die verschobenen Samples. Ein MP3 kodiert sie einmal, mit der Bitrate, die du wählst, bis 320 kbps.' },
+        { q: 'Wie weit bewegt sie sich?', a: 'Die Verschiebung ist das 12-fache von log2 aus 432 durch 440, etwa 0,3177 Halbtöne nach unten, und die Seite benutzt diesen Bruch. Die Seite rundet nicht auf den nächsten ganzen Halbton, der null wäre und die Datei unverändert ließe. Ein 440-Hz-Ton rückt Richtung 432 Hz. Der Rest der Datei bewegt sich um denselben Betrag. WAV sind die verschobenen Samples. Ein MP3 kodiert sie einmal, mit der Bitrate, die du wählst, bis 320 kbps.' },
         { q: 'Ändert sich die Länge?', a: 'Nein. Das ist eine Tonhöhenverschiebung, keine Tempoänderung. Der Tempo-Wechsler ändert die Länge. Audio-Geschwindigkeit ändern ändert die Länge auch, außer du hältst die Tonhöhe. Hier bleibt die Länge, und die Tonhöhe geht runter.' },
         { q: 'Kann es eine Note nachstimmen?', a: 'Nein. Die ganze Datei bewegt sich zusammen. Ein Akkord bekommt seine Noten nicht einzeln auf 432 Hz gezogen. Eine Datei kürzer als 32 Samples kommt unverändert zurück, weil die Verschiebung so viel Audio braucht. Diese Seite behauptet nicht, das Ergebnis sei gesünder, ruhiger oder besser.' },
         { q: 'Geht das auf dem Handy?', a: 'Ja. Ablegen, Abspielen und Laden gehen per Touch in aktuellem Chrome, Edge, Firefox und Safari.' },
@@ -4580,9 +4836,14 @@ export const de: Catalog = {
           heading: 'Keine Tempoänderung',
           paragraphs: [
             'Der Tonhöhen-Regler auf dieser Seite bewegt sich in ganzen Halbtönen. Diese Seite benutzt den Bruch, etwa 0,32 nach unten, also ist das Ergebnis nicht dasselbe wie der Regler auf null.',
-            'Der Tempo-Wechsler und Audio-Geschwindigkeit ändern ändern die Länge. Diese Seite lässt die Länge gleich. Sie sagt auch nicht, das Ergebnis sei gesünder oder besser. Sie bewegt nur die Tonhöhe.',
+            'Der Tempo-Wechsler und Audio-Geschwindigkeit ändern ändern die Länge. Diese Seite lässt die Länge gleich. Die Seite sagt auch nicht, das Ergebnis sei gesünder oder besser. Die Seite bewegt nur die Tonhöhe.',
           ],
         },
+      ],
+      screenshotsAlt: [
+        '432-Hz-Konverter: Ablagefläche, nichts wird hochgeladen',
+        '432-Hz-Konverter: Arbeitsbereich mit geladener Datei',
+        '432-Hz-Konverter: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
       ],
       dropHint: 'Audiodatei ablegen, oder klicken zum Auswählen',
       exportLabel: '432 Hz laden',
@@ -4612,9 +4873,9 @@ export const de: Catalog = {
         { q: 'Wird mein Audio hochgeladen?', a: 'Nein. Der Browser dekodiert die Datei und lässt Basic Pitch im Tab laufen. Die einzige Netzwerkanfrage ist das Modell, unter 1 MB, von dieser Seite, beim ersten Mal. Danach kann der Browser seine Kopie wiederverwenden. Das Audio selbst geht nirgendwohin.' },
         { q: 'Was steht in der MIDI-Datei?', a: 'Eine Spur, MIDI-Typ 0. Jede Note hat eine Tonhöhe von 21 bis 108, einen Start, eine Länge und eine Velocity. Die Tempobezeichnung ist 120, damit die Zeiten zu den Sekunden der Aufnahme passen. Diese 120 ist nicht das BPM des Stücks. Die Spur beginnt auf dem General-MIDI-Klavier, damit eine DAW einen Klang hat. Es ist keine Aufnahme des ursprünglichen Instruments. WAV und MP3 gibt es hier nicht.' },
         { q: 'Was kommt falsch heraus?', a: 'Ein voller Mix, Drums und dichte Akkorde. Basic Pitch ist für ein Instrument auf einmal gebaut, und eine volle Aufnahme wird zu Extra-Noten oder zu gar keinen. Die Datei hat keine Pitch-Bend-Kurve, also wird ein Glissando eine stehende Note. Keine Wiedergabe, keine Notenblätter, keine Stem-Trennung. Über 3 Minuten wird abgelehnt. Schneide im Audio-Trimmer und komm zurück.' },
-        { q: 'Was ist der Unterschied zum Tonart- und BPM-Finder?', a: 'Der Tonart- und BPM-Finder liest zwei Zahlen und schreibt keine Datei. Diese Seite schreibt Noten. Sie nennt dir weder Tonart noch BPM. Die liest du beim Tonart- und BPM-Finder. Die Tonhöhe der Originaldatei zu verschieben, ohne Noten zu machen, ist der Tonhöhen-Wechsler.' },
+        { q: 'Was ist der Unterschied zum Tonart- und BPM-Finder?', a: 'Der Tonart- und BPM-Finder liest zwei Zahlen und schreibt keine Datei. Diese Seite schreibt Noten. Die Seite nennt dir weder Tonart noch BPM. Die liest du beim Tonart- und BPM-Finder. Die Tonhöhe der Originaldatei zu verschieben, ohne Noten zu machen, ist der Tonhöhen-Wechsler.' },
         { q: 'Geht das auf dem Handy?', a: 'Ja, in aktuellem Chrome, Edge, Firefox und Safari. Die Grenze sind 3 Minuten, weil das Modell die Noten im Speicher hält. Ein Handy mit wenig Speicher kann die Umwandlung abbrechen. Die Datei bleibt unverändert, und du kannst einen kürzeren Clip versuchen. Der Download ist eine .mid-Datei.' },
-        { q: 'Ich habe das in Logic Pro gesucht. Ist das dasselbe?', a: 'Nein. Logic hat auf der Spur einen eigenen Befehl von Audio zu MIDI. Diese Seite ist für den Browser, wenn Logic nicht offen ist. Die .mid-Datei kannst du danach in Logic ziehen. Sie entfernt kein MIDI-Gerät in macOS und bearbeitet kein Logic-Projekt.' },
+        { q: 'Ich habe das in Logic Pro gesucht. Ist das dasselbe?', a: 'Nein. Logic hat auf der Spur einen eigenen Befehl von Audio zu MIDI. Diese Seite ist für den Browser, wenn Logic nicht offen ist. Die .mid-Datei kannst du danach in Logic ziehen. Die Seite entfernt kein MIDI-Gerät in macOS und bearbeitet kein Logic-Projekt.' },
       ],
       sections: [
         {
@@ -4636,7 +4897,7 @@ export const de: Catalog = {
         {
           heading: 'Was diese Seite nicht tut',
           paragraphs: [
-            'Sie spielt das MIDI nicht ab, druckt keine Notenblätter und trennt ein Stück nicht in Stems. Sie benennt keine Akkorde.',
+            'Die Seite spielt das MIDI nicht ab, druckt keine Notenblätter und trennt ein Stück nicht in Stems. Die Seite benennt keine Akkorde.',
             'Länger als 3 Minuten wird abgelehnt. Schneide zuerst. Logics eigene Umwandlung bleibt in Logic. Diese Seite öffnet kein Logic-Projekt.',
           ],
         },
@@ -4668,7 +4929,7 @@ export const de: Catalog = {
         { q: "Wird etwas hochgeladen?", a: "Nein. Dateien werden mit der Web Audio API in diesem Tab dekodiert, die Aufnahme bleibt auf deinem Gerät, und die Wiedergabe ist lokal. Board exportieren schreibt die JSON-Datei direkt auf deine Festplatte. Nach dem Laden der Seite läuft alles auch offline weiter." },
         { q: "Wie klingen die Sounds qualitativ?", a: "Clips behalten die Sample-Rate ihrer Dekodierung. WAV exportieren schreibt bei einem einzelnen Sound 16-Bit-PCM mit dieser Rate. Die Board-Datei legt jeden Sound als WAV-Text im JSON ab — nichts wird ein zweites Mal kodiert." },
         { q: "Spielt das in Discord oder einen Spiel-Call?", a: "Nein. Discord, Zoom und Spiele hören dein Mikrofon, nicht diese Seite. Apps wie Voicemod und Resanance installieren unter Windows ein virtuelles Mikrofon, damit andere das Board hören. Das kann diese Seite nicht. Die Sounds kommen aus Lautsprechern oder Desktop-Audio, und OBS kann genau das aufnehmen. Am Handy spielt das Board auf dem Gerät." },
-        { q: "Was ist der Unterschied zum Voice Recorder?", a: "Der Voice Recorder nimmt einen Clip auf und gibt ihn an einen Editor zum Schneiden und Exportieren. Diese Seite hält viele Clips und spielt sie live über Tasten. Sie ist zum Auslösen da, nicht zum Bearbeiten einer Datei." },
+        { q: "Was ist der Unterschied zum Voice Recorder?", a: "Der Voice Recorder nimmt einen Clip auf und gibt ihn an einen Editor zum Schneiden und Exportieren. Diese Seite hält viele Clips und spielt sie live über Tasten. Diese Seite ist zum Auslösen da, nicht zum Bearbeiten einer Datei." },
         { q: "Funktioniert es am Handy?", a: "Ja. Quadrate antippen, aufnehmen und der Zuschnitt laufen in aktuellem Chrome, Edge, Firefox und Safari, auch auf iPhone und Android. Tastenkürzel brauchen eine Tastatur, also Desktop. Am iPhone folgt die Wiedergabe dem Stummschalter." },
         { q: "Wie speichere ich das Board?", a: "Im Browser wird nichts gespeichert. Exportiere das Board, bevor du den Tab schließt, sonst ist es weg. Importieren bringt die JSON-Datei auf diesem oder einem anderen Gerät zurück. Derselbe Knopf liest ein Board von soundtools.io: jeder Knopf mit Audio kommt mit, eine Verlaufsfarbe wird auf die nächste Farbe dieses Boards gelegt." },
         { q: "Welche Dateien, und wie lang?", a: "Hochladen nimmt MP3, WAV, M4A, OGG, FLAC und AAC, was der Browser dekodieren kann. Länger als 60 Sekunden wird übersprungen. Schneide den Song vorher im Audio-Trimmer. Brauchbar auf dem Board sind eine halbe bis fünf Sekunden. Es gibt keine feste Zahl an Quadraten. Die Grenze ist der Speicher im Tab." },

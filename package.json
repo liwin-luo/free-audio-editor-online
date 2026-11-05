@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "check:i18n": "node_modules/.bin/esbuild scripts/i18n-audit.ts --bundle --platform=node --format=esm --outfile=/tmp/i18n-audit.mjs && node /tmp/i18n-audit.mjs",
     "audit": "node scripts/seo-audit.mjs https://freeaudioeditor.online",
     "audit:preview": "node scripts/seo-audit.mjs http://localhost:4321",
     "check:serp": "node scripts/serp-check.mjs",
