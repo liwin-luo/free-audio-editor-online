@@ -601,6 +601,7 @@ export class Editor {
       if (!this.buffer) return;
       this.pushHistory();
       this.state.sel = { start: 0, end: this.duration };
+      this.enforceRingtoneCap();
       this.updateSelectionOverlay();
       this.updatePreciseInputs();
     });
@@ -695,6 +696,7 @@ export class Editor {
       this.history = [];
       this.state = defaultEditState();
       if (this.config.trimLayout) this.state.sel = { start: 0, end: this.duration };
+      this.enforceRingtoneCap();
       this.applyCircleIfOn();
       this.applyTempoIfOn();
       this.applyDistortIfOn();
@@ -999,6 +1001,15 @@ export class Editor {
     this.commitSelection();
   }
 
+  /** Ringtone pages never hold a selection longer than 40 s — iOS rejects those files. */
+  private enforceRingtoneCap(): void {
+    if (!this.config.ringtone || !this.state.sel) return;
+    if (this.state.sel.end - this.state.sel.start > 40) {
+      this.state.sel.end = this.state.sel.start + 40;
+      showToast(this.toastRoot(), 'info', this.text.ringtoneCap);
+    }
+  }
+
   private commitSelection(): void {
     if (!this.state.sel) return;
     // Enforce a minimum selection length
@@ -1008,10 +1019,7 @@ export class Editor {
       this.updateExportState();
       return;
     }
-    if (this.config.ringtone && this.state.sel.end - this.state.sel.start > 40) {
-      this.state.sel.end = this.state.sel.start + 40;
-      showToast(this.toastRoot(), 'info', this.text.ringtoneCap);
-    }
+    this.enforceRingtoneCap();
     this.updateSelectionOverlay();
     this.updatePreciseInputs();
     this.updateExportState();
@@ -1029,7 +1037,9 @@ export class Editor {
     }
     this.pushHistory();
     this.state.sel = { start: s, end: e };
+    this.enforceRingtoneCap();
     this.updateSelectionOverlay();
+    this.updatePreciseInputs();
     this.updateExportState();
   }
 
@@ -1134,9 +1144,14 @@ export class Editor {
   }
 
   private updatePreciseInputs(): void {
-    if (this.state.sel && this.els.preciseStart && this.els.preciseEnd) {
+    if (!this.els.preciseStart || !this.els.preciseEnd) return;
+    if (this.state.sel) {
       this.els.preciseStart.value = this.state.sel.start.toFixed(2);
       this.els.preciseEnd.value = this.state.sel.end.toFixed(2);
+    } else if (this.buffer) {
+      // No selection: mirror the fresh-load display instead of stale values.
+      this.els.preciseStart.value = '0.00';
+      this.els.preciseEnd.value = this.duration.toFixed(2);
     }
   }
 
@@ -1603,6 +1618,9 @@ export class Editor {
 
   private async doExport(): Promise<void> {
     if (!this.buffer || this.busy) return;
+    this.enforceRingtoneCap();
+    this.updateSelectionOverlay();
+    this.updatePreciseInputs();
     trackEvent('export_started', { tool: toolSlugFromPath(), batch: this.config.batch && this.queue.length > 1 ? 1 : 0 });
     this.busy = true;
     this.updateExportState();
