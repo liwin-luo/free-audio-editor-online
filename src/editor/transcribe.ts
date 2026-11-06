@@ -15,6 +15,7 @@ import { fill } from '../i18n/inline';
 import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
+import { upgradeSelects } from './custom-select';
 
 /** Beyond this, trim first — model memory and wait time get unreasonable. */
 const MAX_DURATION_S = 600;
@@ -525,6 +526,7 @@ export function initTranscribers(): void {
   document.querySelectorAll<HTMLElement>('[data-transcribe]').forEach((root) => {
     if (root.dataset.initialized) return;
     root.dataset.initialized = '1';
+    upgradeSelects(root);
     const config = JSON.parse(root.dataset.config ?? '{}') as EditorConfig;
     new Transcriber(root, config);
   });

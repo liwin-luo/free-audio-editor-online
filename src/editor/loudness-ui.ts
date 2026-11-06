@@ -6,6 +6,7 @@ import { readEditorText, showToast } from './messages';
 import { bindDeliveryChips, bindFileOpen, setEmptyHidden } from './delivery';
 import { integratedLufs, matchLufsGain, samplePeakDb, samplePeakLinear } from './loudness';
 import type { EditorText } from '../i18n/types';
+import { upgradeSelects } from './custom-select';
 
 function dbText(value: number): string {
   if (!Number.isFinite(value)) return '−∞';
@@ -208,5 +209,8 @@ class LoudnessMeter {
 }
 
 export function initLoudness(): void {
-  document.querySelectorAll<HTMLElement>('[data-loudness]').forEach((root) => new LoudnessMeter(root));
+  document.querySelectorAll<HTMLElement>('[data-loudness]').forEach((root) => {
+    upgradeSelects(root);
+    new LoudnessMeter(root);
+  });
 }

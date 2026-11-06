@@ -14,6 +14,7 @@ import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
+import { upgradeSelects } from './custom-select';
 
 interface Clip {
   id: number;
@@ -299,6 +300,7 @@ export function initJoiners(): void {
   document.querySelectorAll<HTMLElement>('[data-audio-joiner]').forEach((root) => {
     if (root.dataset.initialized) return;
     root.dataset.initialized = '1';
+    upgradeSelects(root);
     const config = JSON.parse(root.dataset.config ?? '{}') as EditorConfig;
     new Joiner(root, config);
   });

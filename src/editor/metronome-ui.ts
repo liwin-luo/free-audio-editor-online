@@ -3,6 +3,7 @@ import { encodeFor, getFormat } from './encoders';
 import { showToast } from './messages';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
+import { upgradeSelects } from './custom-select';
 
 class Metronome {
   private ctx: AudioContext | null = null;
@@ -166,6 +167,7 @@ class Metronome {
 
 export function initMetronome(): void {
   document.querySelectorAll<HTMLElement>('[data-metronome]').forEach((root) => {
+    upgradeSelects(root);
     const text = JSON.parse(root.dataset.i18n || '{}') as EditorText;
     new Metronome(root, text);
   });

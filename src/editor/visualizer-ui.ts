@@ -19,6 +19,7 @@ import { sizeBucket, toolSlugFromPath, trackEvent } from '../lib/analytics';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
+import { upgradeSelects } from './custom-select';
 
 const MAX_EXPORT_HEIGHT = 8000;
 /** Columns of FFT, not pixels. A long file stays inside this. */
@@ -516,6 +517,7 @@ export function initVisualizers(): void {
   document.querySelectorAll<HTMLElement>('[data-visualizer]').forEach((root) => {
     if (root.dataset.initialized) return;
     root.dataset.initialized = '1';
+    upgradeSelects(root);
     const config = JSON.parse(root.dataset.config ?? '{}') as EditorConfig;
     new VisualizerApp(root, config);
   });

@@ -12,6 +12,7 @@ import { readEditorText, showToast } from './messages';
 import { fill } from '../i18n/inline';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
+import { upgradeSelects } from './custom-select';
 
 const MAX_TRACKS = 8;
 const MIN_SPAN = 0.05;
@@ -548,6 +549,7 @@ export function initMixers(): void {
   document.querySelectorAll<HTMLElement>('[data-audio-mixer]').forEach((root) => {
     if (root.dataset.initialized) return;
     root.dataset.initialized = '1';
+    upgradeSelects(root);
     const config = JSON.parse(root.dataset.config ?? '{}') as EditorConfig;
     new Mixer(root, config);
   });

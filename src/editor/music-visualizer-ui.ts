@@ -23,6 +23,7 @@ import {
 } from './music-visualizer';
 import type { EditorText } from '../i18n/types';
 import type { EditorConfig } from '../data/tools';
+import { upgradeSelects } from './custom-select';
 
 const MAX_FILE_BYTES = 300 * 1024 * 1024;
 const FFT_SIZE = 2048;
@@ -468,6 +469,7 @@ export function initMusicVisualizers(): void {
   document.querySelectorAll<HTMLElement>('[data-music-visualizer]').forEach((root) => {
     if (root.dataset.initialized) return;
     root.dataset.initialized = '1';
+    upgradeSelects(root);
     const config = JSON.parse(root.dataset.config ?? '{}') as EditorConfig;
     new MusicVisualizerApp(root, config);
   });
