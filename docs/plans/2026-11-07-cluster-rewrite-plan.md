@@ -239,3 +239,11 @@ audacity audio recording (202k)、record chrome audio (153k)、audacity audio re
   - **split-mp3**：title `MP3 分段工具 — 在线把 MP3 分割成 2–16 段，打包 ZIP`（splitter/分割 词根 + TDK-08 区间）。
 - 门禁：astro check 0、check:i18n OK（zh budget 全过）、smoke ALL PASS、八页 200 + 程序化验收（title/h1/4 卡 why/6 场景卡/无"您"全过）。
 - PENDING_I18N 现有 9 个 slug（含 audio-trimmer/silence-remover 既有项）。**用户检查通过后：按 §六 启动全量翻译（en+9 语种），逐 slug 翻完清 PENDING。**
+
+### 其余 39 页 zh 全套完成（2026-11-07，aeb14f2 后续批次）
+- 转换簇 8 页（mp3-to-wav/m4a/flac/ogg/opus→mp3、extract-audio、bitrate-converter、compress-audio）、响度簇 5 页（normalize/increase-volume/volume-booster/loudness-meter/compressor）、EQ 簇 5 页（equalizer/bass/treble/hpf/lpf）、效果簇 12 页（fade/echo/reverb×2/slowed/distorter/bitcrusher/panner/mono/reverse/432hz/3d/looper）、变速调 4 页（speed/tempo/pitch/voice-changer）、分析工具 11 页（keybpm/metronome/taptempo/waveform/spectrogram/music-visualizer/image-to-audio/tag-editor/audio-to-midi/audio-to-text/soundboard）、multi-track + mp3-editor。**至此全部 57 个工具页 zh 全套完成。**
+- echo 事故与修复：compressor 批量应用时条目结束检测被无引号键（echo: {）破坏，替换范围越界把压缩内容写进 echo——全目录键↔标题完整性扫描定位后，从 git HEAD 恢复 echo 原条目再应用 echo 自己的簇重写。脚本已修（结束检测兼容无引号键 + 最后条目兜底 len(lines)）。
+- loudness-meter（双引号条目）、compressor（无引号键）手改/脚本各一处；wav-to-mp3 档位数修正为五档。
+- PENDING_I18N 扩为全部 57 个 slug（zh 全套完成、en+9 待翻译的忠实记账）。
+- 门禁：astro check 0、check:i18n OK（audit 跳过 PENDING slug）、smoke ALL PASS（注意：本机 4321 端口存在并行会话服务，smoke 必须用 `BASE_URL=http://127.0.0.1:4321`）、八页+多语种程序化验收全过（57 页 title/why/场景卡完整性扫描 NONE 异常）。
+- **等用户检查全部 zh；通过后启动全量翻译批次（en+9，逐 slug 清 PENDING）。**
