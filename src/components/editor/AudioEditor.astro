@@ -7,6 +7,7 @@
 import Icon from '../Icon.astro';
 import LocalBadge from './LocalBadge.astro';
 import DropPromise from './DropPromise.astro';
+import DropWell from './DropWell.astro';
 import { EXPORT_FORMATS } from '../../editor/encoders';
 import { getShell } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
@@ -112,36 +113,7 @@ const selectable = !config.converter && !config.silence && !config.noise && !con
   <!-- Empty state: drop well, format chips, privacy line. Hidden once a file is loaded. -->
   <div data-empty>
   <DropPromise config={config} locale={locale}>
-    <div
-      data-open
-      tabindex="0"
-      role="button"
-      aria-label={config.dropHint}
-      class="group relative flex w-full flex-col items-center overflow-hidden rounded-2xl px-6 py-12"
-    >
-      <div
-        class="pointer-events-none absolute inset-y-0 left-10 flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
-        aria-hidden="true"
-      >
-        {[10, 22, 36, 52, 36, 22, 10].map((h) => (
-          <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
-        ))}
-      </div>
-      <div
-        class="pointer-events-none absolute inset-y-0 right-10 flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
-        aria-hidden="true"
-      >
-        {[10, 22, 36, 52, 36, 22, 10].map((h) => (
-          <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
-        ))}
-      </div>
-      <span
-        class="relative z-10 mx-auto grid size-14 place-items-center rounded-2xl bg-accent-soft text-accent ring-4 ring-accent/10 transition-transform duration-200 group-hover:scale-105"
-      >
-        <Icon name="upload-simple" size={24} />
-      </span>
-      <p class="relative z-10 mt-4 text-lg font-semibold">{config.dropHint}</p>
-    </div>
+    <DropWell icon="upload-simple" hint={config.dropHint} />
     <div class="relative z-10 mt-3 pb-1">
       <LocalBadge text={t.dropLocal} />
     </div>

@@ -1,0 +1,45 @@
+---
+/**
+ * The shared drop-well front door: decorative wave bars, a large ringed icon
+ * and the drop hint. Slot it inside <DropPromise>; pair it with a LocalBadge
+ * rendered the same way for every island.
+ */
+import Icon from '../Icon.astro';
+
+interface Props {
+  icon: string;
+  hint: string;
+}
+const { icon, hint } = Astro.props;
+---
+
+<div
+  data-open
+  tabindex="0"
+  role="button"
+  aria-label={hint}
+  class="group relative flex w-full flex-col items-center overflow-hidden rounded-2xl px-6 py-12"
+>
+  <div
+    class="pointer-events-none absolute inset-y-0 left-10 flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
+    aria-hidden="true"
+  >
+    {[10, 22, 36, 52, 36, 22, 10].map((h) => (
+      <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
+    ))}
+  </div>
+  <div
+    class="pointer-events-none absolute inset-y-0 right-10 flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
+    aria-hidden="true"
+  >
+    {[10, 22, 36, 52, 36, 22, 10].map((h) => (
+      <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
+    ))}
+  </div>
+  <span
+    class="relative z-10 mx-auto grid size-14 place-items-center rounded-2xl bg-accent-soft text-accent ring-4 ring-accent/10 transition-transform duration-200 group-hover:scale-105"
+  >
+    <Icon name={icon} size={24} />
+  </span>
+  <p class="relative z-10 mt-4 text-lg font-semibold">{hint}</p>
+</div>

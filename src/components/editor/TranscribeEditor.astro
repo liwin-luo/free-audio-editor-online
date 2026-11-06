@@ -7,6 +7,7 @@
 import Icon from '../Icon.astro';
 import LocalBadge from './LocalBadge.astro';
 import DropPromise from './DropPromise.astro';
+import DropWell from './DropWell.astro';
 import { getShell } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import type { EditorConfig } from '../../data/tools';
@@ -27,14 +28,11 @@ const { editor: t } = getShell(locale);
 >
   <div data-empty>
   <DropPromise config={config} locale={locale}>
-    <div data-open tabindex="0" role="button" aria-label={config.dropHint}>
-      <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
-        <Icon name="voice" size={20} />
-      </span>
-      <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
+    <DropWell icon="voice" hint={config.dropHint} />
+    <div class="relative z-10 mt-3 pb-1">
+      <LocalBadge text={t.dropLocal} />
     </div>
   </DropPromise>
-  <LocalBadge text={t.dropLocal} />
   </div>
   <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input {...(config.batch ? { multiple: true } : {})} />
 
