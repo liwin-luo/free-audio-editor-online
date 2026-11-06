@@ -185,3 +185,12 @@ audacity audio recording (202k)、record chrome audio (153k)、audacity audio re
 | split-mp3 | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 （audio-trimmer 的 trimmer 重做轮已完成大部分内容工作——该页只需 trim mp3 词根补齐，工作量最小，可作流程试运行第一页。）
+
+## 九、执行日志
+
+### noise-remover zh（2026-11-07，待用户确认；确认后进翻译流程）
+- **词根归属核对**：全站查重通过——"去除背景噪音/降噪/RNNoise"归本页，"静音段"归 silence-remover（FAQ 已互链），无第二页持有。
+- **zh 改写落地**：title `去除背景噪音 — RNNoise 本地降噪，免费`（主词根前置 + TDK-02 具名引擎 + 本地机制）；h1 `去除背景噪音 — 在线音频降噪，免费`；description 三段式（机制 20 dB → 限制 300 MB/音乐边界 → 承诺免费导出）；usesHeading 关键词式；uses 3→6 场景卡（语音备忘/播客/讲座/采访=voice cleaner 意图/视频旁白/会议）；howTo 3→4 步（点名「降噪强度」「去背景噪音」「播放」，带 30 dB/6 dB/10 毫秒/150 KB 页内已核实数字）；why 卡 ×2（RNNoise 本地跑 + 诚实的边界=TDK-06 失败说明）；sections 标题两个改带词根（RNNoise 怎么去除背景噪音 / 人声净化，不是音乐降噪），段落内容保持（原数字表/边界清单已达标）。FAQ 7 条不动。
+- **蚕食防护**：§3.5 表已入方案；9 簇近义意图全部归本页，未侵占 silence-remover/trimmer 词根。
+- 门禁：astro check 0、check:i18n OK、smoke ALL PASS、/zh/noise-remover 渲染验收全项通过。PENDING_I18N += noise-remover。
+- **等确认后**：翻译 en + 9 语种（EN 侧词根目标：Noise Remover — RNNoise Removes Background Noise Locally / background noise / denoise / voice cleaner），然后清 PENDING。
