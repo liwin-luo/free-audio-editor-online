@@ -1343,8 +1343,8 @@ export class Editor {
         this.els.exitDelLabel.textContent = fill(this.text.saveWithoutSelection, { time: formatTime(rest, true) });
         this.els.exitDel.disabled = !this.buffer || this.busy || rest < 0.05;
       }
-      this.updateResultLine();
     }
+    this.updateResultLine();
   }
 
   private toggleFormatDropdown(): void {
@@ -1393,7 +1393,6 @@ export class Editor {
 
   /** Immersive mobile editing: the editor card becomes the whole viewport. */
   private toggleImmersive(): void {
-    if (!this.dualExits) return;
     const on = this.els.root.classList.toggle('fae-fullscreen');
     this.els.fullscreenBtn?.setAttribute('aria-pressed', String(on));
     document.documentElement.classList.toggle('fae-page-lock', on);
@@ -1975,7 +1974,6 @@ export class Editor {
 
       const suffix = this.config.converter ? 'converted' : this.config.ringtone ? 'ringtone' : 'edited';
       const filename = `${this.fileName}-${suffix}.${fmt.ext}`;
-      this.downloadBlob(blob, filename);
       this.downloadBlob(blob, filename);
       this.setStatus(fill(this.text.exported, { file: filename }));
       showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: filename }));

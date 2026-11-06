@@ -50,6 +50,8 @@ const jobChrome = Boolean(
     (config.quickControls?.length ?? 0) > 0,
 );
 const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
+// Pages where the pointer can draw a selection — mirrors the kernel gate in onPointerDown.
+const selectable = !config.converter && !config.silence && !config.noise && !config.voice;
 ---
 
 <style is:global>
@@ -78,6 +80,10 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
     border: none;
     overflow-y: auto;
     overscroll-behavior: contain;
+  }
+  /* Body scroll lock while immersive mode is on (toggled on documentElement). */
+  .fae-page-lock {
+    overflow: hidden;
   }
   .fae-fullscreen [data-workspace] {
     display: flex;
@@ -183,18 +189,17 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
     <div
       data-stage
       class:list={[
-        'relative h-[200px] touch-pan-y overflow-x-auto overflow-y-hidden md:h-[220px]',
-        config.trimLayout && 'fae-noscroll rounded-xl',
+        'fae-noscroll relative h-[200px] touch-pan-y overflow-x-auto overflow-y-hidden rounded-xl md:h-[220px]',
       ]}
       aria-label={t.waveform}
     >
       <div data-stage-content class="relative h-full select-none cursor-crosshair">
         <canvas data-wave class="absolute inset-0 h-full w-full text-ink3" aria-hidden="true"></canvas>
         {
-          config.trimLayout && (
+          selectable && (
             <>
-              <div data-dim-l class="pointer-events-none absolute inset-y-0 left-0 hidden w-0 bg-ink/15" aria-hidden="true"></div>
-              <div data-dim-r class="pointer-events-none absolute inset-y-0 right-0 hidden w-0 bg-ink/15" aria-hidden="true"></div>
+              <div data-dim-l class="pointer-events-none absolute inset-y-0 left-0 w-0 bg-ink/15" hidden aria-hidden="true"></div>
+              <div data-dim-r class="pointer-events-none absolute inset-y-0 right-0 w-0 bg-ink/15" hidden aria-hidden="true"></div>
               <div
                 data-fade-in-vis
                 class="pointer-events-none absolute inset-y-0 left-0 hidden w-0 bg-accent/30"
@@ -215,16 +220,16 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
           class="pointer-events-none absolute inset-y-0 left-0 hidden border-x-2 border-accent bg-accent-soft"
         >
           <span data-handle-start class="pointer-events-auto absolute inset-y-0 left-0 w-6 -translate-x-1/2 cursor-ew-resize pointer-coarse:w-11" aria-hidden="true">
-            {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
+            {selectable && <span class="absolute top-1/2 left-1/2 h-7 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
           </span>
           <span data-handle-end class="pointer-events-auto absolute inset-y-0 right-0 w-6 translate-x-1/2 cursor-ew-resize pointer-coarse:w-11" aria-hidden="true">
-            {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
+            {selectable && <span class="absolute top-1/2 left-1/2 h-7 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
           </span>
         </div>
         <div data-playhead class="pointer-events-none absolute inset-y-0 w-0.5 bg-ink opacity-0" aria-hidden="true">
           <span class="absolute -top-0 -left-[5px] size-0 border-x-[6px] border-t-[8px] border-x-transparent border-t-ink"></span>
         </div>
-        {config.trimLayout && (
+        {selectable && (
           <>
             <span
               data-sel-time-start
@@ -239,6 +244,15 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
           </>
         )}
       </div>
+    </div>
+
+    <!-- Time ruler: adaptive ticks, doubles as a pan strip. Shared by every tool page. -->
+    <div
+      data-ruler
+      class="relative mx-1 mb-1 h-7 cursor-grab select-none overflow-hidden rounded-lg border border-line bg-surface2/40 active:cursor-grabbing"
+      aria-hidden="true"
+    >
+      <div data-ruler-content class="absolute inset-y-0 left-0 will-change-transform"></div>
     </div>
 
     {
@@ -278,18 +292,6 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
         {config.voice ? t.hintVoice : config.noise ? t.hintNoise : config.silence ? t.hintSilence : config.converter ? t.hintConvert : t.hintSelect}
       </p>
     </div>
-
-    {
-      config.trimLayout && (
-        <div
-          data-ruler
-          class="relative mx-1 mb-1 h-7 cursor-grab select-none overflow-hidden rounded-lg border border-line bg-surface2/40 active:cursor-grabbing"
-          aria-hidden="true"
-        >
-          <div data-ruler-content class="absolute inset-y-0 left-0 will-change-transform"></div>
-        </div>
-      )
-    }
 
     <!-- Quick controls: headline features surfaced per tool -->
     {
@@ -758,11 +760,11 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
               <input
                 type="number"
                 data-precise-start
-                class:list={['h-10 w-full rounded-lg border border-line-strong bg-bg pl-2.5 pr-[82px] font-mono text-sm tabular-nums', config.trimLayout && 'fae-nospin']}
+                class:list={['h-10 w-full rounded-lg border border-line-strong bg-bg pl-2.5 pr-[82px] font-mono text-sm tabular-nums fae-nospin']}
                 min="0"
                 step="0.01"
               />
-              {config.trimLayout && (
+              {selectable && (
                 <div class="absolute inset-y-0 right-0 flex items-stretch overflow-hidden rounded-r-lg" data-steppers="start">
                   {['0.01', '0.1', '1'].map((step) => (
                     <div class="flex w-[26px] flex-col items-center border-l border-line text-ink2">
@@ -797,11 +799,11 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
               <input
                 type="number"
                 data-precise-end
-                class:list={['h-10 w-full rounded-lg border border-line-strong bg-bg pl-2.5 pr-[82px] font-mono text-sm tabular-nums', config.trimLayout && 'fae-nospin']}
+                class:list={['h-10 w-full rounded-lg border border-line-strong bg-bg pl-2.5 pr-[82px] font-mono text-sm tabular-nums fae-nospin']}
                 min="0"
                 step="0.01"
               />
-              {config.trimLayout && (
+              {selectable && (
                 <div class="absolute inset-y-0 right-0 flex items-stretch overflow-hidden rounded-r-lg" data-steppers="end">
                   {['0.01', '0.1', '1'].map((step) => (
                     <div class="flex w-[26px] flex-col items-center border-l border-line text-ink2">
@@ -886,14 +888,12 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
     <div
       data-export-bar
       class:list={[
-        'export-bar',
+        'export-bar max-md:z-20 max-md:bg-surface',
         config.quickControls?.includes('tempo') ? 'flex-nowrap' : 'flex-wrap',
-        config.trimLayout && 'max-md:sticky max-md:bottom-0 max-md:z-20 max-md:bg-surface [&>*]:whitespace-nowrap',
+        config.trimLayout && '[&>*]:whitespace-nowrap',
       ]}
     >
-      {dualExits && (
-        <div data-result-line class="hidden w-full rounded-lg bg-accent-soft px-3 py-1.5 font-mono text-xs tabular-nums text-accent" aria-live="polite"></div>
-      )}
+      <div data-result-line class="hidden w-full rounded-lg bg-accent-soft px-3 py-1.5 font-mono text-xs tabular-nums text-accent" aria-live="polite"></div>
       {
         jobChrome && (
           <button type="button" class="btn btn-primary" data-play aria-label={t.play} disabled>
@@ -915,46 +915,33 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
           <Icon name="repeat" size={16} />
         </button>
       )}
-      {dualExits ? (
-        <div class="relative" data-format-dropdown>
-          <button
-            type="button"
-            class="flex h-10 items-center gap-2 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink"
-            data-format-btn
-            aria-haspopup="listbox"
-            aria-expanded="false"
-            disabled
-          >
-            <span class="text-ink2">{t.format}</span>
-            <span data-format-btn-label class="tabular-nums">—</span>
-            <Icon name="caret-down" size={14} />
-          </button>
-          <div
-            data-format-popup
-            class="absolute bottom-full left-0 z-30 mb-1 hidden min-w-[230px] rounded-lg border border-line-strong bg-surface py-1 shadow-xl"
-            role="listbox"
-            aria-label={t.format}
-          ></div>
-          <select data-format class="sr-only" tabindex="-1" disabled>
-            {formats.map((f) => (
-              <option value={f.id} selected={f.id === config.defaultFormat}>
-                {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      ) : (
-        <label class="flex items-center gap-2 text-sm text-ink2">
-          {t.format}
-          <select data-format class="h-10 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" disabled>
-            {formats.map((f) => (
-              <option value={f.id} selected={f.id === config.defaultFormat}>
-                {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
-              </option>
-            ))}
-          </select>
-        </label>
-      )}
+      <div class="relative" data-format-dropdown>
+        <button
+          type="button"
+          class="flex h-10 items-center gap-2 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink"
+          data-format-btn
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          disabled
+        >
+          <span class="text-ink2">{t.format}</span>
+          <span data-format-btn-label class="tabular-nums">—</span>
+          <Icon name="caret-down" size={14} />
+        </button>
+        <div
+          data-format-popup
+          class="absolute bottom-full left-0 z-30 mb-1 hidden min-w-[230px] rounded-lg border border-line-strong bg-surface py-1 shadow-xl"
+          role="listbox"
+          aria-label={t.format}
+        ></div>
+        <select data-format class="sr-only" tabindex="-1" disabled>
+          {formats.map((f) => (
+            <option value={f.id} selected={f.id === config.defaultFormat}>
+              {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
+            </option>
+          ))}
+        </select>
+      </div>
       {dualExits ? (
         <>
           {!config.ringtone && (
@@ -981,21 +968,17 @@ const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
       )}
     </div>
 
-    {config.trimLayout && (
-      <>
-        <div data-error-card class="hidden border-b border-line px-5 py-6 text-center">
-          <span class="mx-auto mb-3 grid size-10 place-items-center rounded-full border border-line text-ink2">
-            <Icon name="warning-triangle" size={18} />
-          </span>
-          <h3 class="text-sm font-semibold">{t.errorDecodeTitle}</h3>
-          <p class="mx-auto mt-1 max-w-sm text-xs text-ink2">{t.decodeFail}</p>
-          <p class="mx-auto mt-1 max-w-sm text-xs text-ink3">{t.errorDecodeHow}</p>
-          <button type="button" class="btn btn-primary mt-4" data-error-change>
-            {t.changeFile}
-          </button>
-        </div>
-      </>
-    )}
+    <div data-error-card class="hidden border-b border-line px-5 py-6 text-center">
+      <span class="mx-auto mb-3 grid size-10 place-items-center rounded-full border border-line text-ink2">
+        <Icon name="warning-triangle" size={18} />
+      </span>
+      <h3 class="text-sm font-semibold">{t.errorDecodeTitle}</h3>
+      <p class="mx-auto mt-1 max-w-sm text-xs text-ink2">{t.decodeFail}</p>
+      <p class="mx-auto mt-1 max-w-sm text-xs text-ink3">{t.errorDecodeHow}</p>
+      <button type="button" class="btn btn-primary mt-4" data-error-change>
+        {t.changeFile}
+      </button>
+    </div>
   </div>
 
   <p data-status class="sr-only" role="status" aria-live="polite"></p>
