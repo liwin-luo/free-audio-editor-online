@@ -345,3 +345,20 @@
 **HowTo 呈现方式改版（2026-11-05，用户选 A 纯文字步骤）**：ToolPage 的 HowTo 调用移除 shots 传参——全站工具页 howTo 三卡片改纯文字编号步骤（数字+标题+一句话），与竞品主流一致（audiotrimmer #1/mp3cut/vocalremover 均纯文字或零 how-to）。HowTo 组件 shots 参数本就可选（零组件改动）；screenshots 数组保留供 ImageObject schema 与 blog 复用。验证：astro check 0 错误、smoke ALL PASS、渲染确认。**三张 webp 截图资产保留在 public/screenshots/（blog/指南可复用），页面不再展示。**
 
 **终检（2026-11-05 晚）**：1440/375 双端全页检查通过——编辑器区（filebar/声轨+选区+胶囊+刻度尺/内嵌箭头输入/双出口/Loop/Fade 按钮/结果行）、投放区（装饰柱/内嵌 chips+隐私）、内容区（纯文字 HowTo→Why us→场景+规格→FAQ→Guides+Related）全部正常，无裁切无重叠，禁用态正确（全选时 Save without · 00:00.00 正确禁用）。对照竞品（003/004 SERP 报告）逐项复核：精度主张/零上传/双出口/循环/纯文字 HowTo 均已落地且为在场页独有或主流形态。**trimmer 重做闭环完成，待用户最终验收。**
+
+## 全站风格与结构统一（2026-11-06，用户指令"继续把所有的页面都统一风格和结构"）
+
+用户在 trimmer 闭环后下达全站统一指令。本轮把 trimmer 立起来的外壳风格泛化到全部 AudioEditor 页面（约 40 页），并把 10 个独立岛的门面统一到同一组件；每工具的**交互层重做**仍按 tracker #2–#10 逐个进行，不受本轮影响。
+
+**三个提交**：
+1. `ad36314` trimmer 十七轮重做本体（未提交状态保护入库）。
+2. `1b78afc` 外壳泛化：AudioEditor.astro + index.ts 把 trimLayout/dualExits 门控的纯视觉元素改为全站生效——自适应刻度尺（移到声轨正下方）、选区边界胶囊、把手圆粒、选区外降暗、结果预告行（Output · ≈体积）、站点风格格式下拉（原生 select 转 sr-only，内核联动零改动）、精确输入微调箭头组、移动端导出条吸底强化、内联错误卡、全屏模式；新增 `selectable` 常量（= 内核 onPointerDown 的选择门控：非 converter/silence/noise/voice），选择类视觉只在可选择的页面渲染。**顺带修复三个真 bug**：①doExport 里 downloadBlob 连调两次（每次导出双下载）②toggleImmersive 对非 dualExits 直接 return（按钮可点无反应）③dim-l/dim-r 用 Tailwind `hidden` class + 内核用 `el.hidden` 属性切换——降暗层从未真正显示过（trimmer 轮已知坑的二刷，class/属性混淆）④`.fae-page-lock` CSS 从未定义（全屏滚动锁是空操作）。
+3. `9ae2ce2` i18n 目录修复 + `0969874` 门面统一（见下）。
+
+**门面统一**：新增 `DropWell.astro`（装饰波形柱 + size-14 ring 图标 + 标题，即 R12 投放区视觉）替换 AudioEditor 内联块；Joiner/Loudness/Midi/Mixer/Visualizer/Tag/MusicVisualizer/Transcribe 八个 DropPromise 岛 + KeyBpm（自有 dashed 井，刻意不接 DropPromise 避免格式 chips 误导）全部接入；LocalBadge 统一移入井内。SpecPaint 是绘画范式（自带画布井）不适用，跳过。Soundboard/VoiceRecorder/Metronome/TapTempo 范式不同，留给各自轮次。
+
+**trimmer 内容提交引爆的 i18n 事故与修复（重要）**：2026-11-05 的内容三动作只做了 en+zh，`assertCatalogs` 硬校验对 9 语言全红（trimmer faqs 7≠11 等 74 错）——**9 个语言的 trimmer 页和 fr/ru/ar/es 首页在 dev/生产直接 500**，已随 ad36314 带上 main。修复：①audio-trimmer 加入 `PENDING_I18N` 豁免集合（i18n/index.ts 为过渡状态设计的现成机制，旧译本继续正常渲染；注释注明翻译落地后必须清空）并导出；②zh.ts mp3-cutter 里残留的 4 条 trimmer FAQ（11-05 tools.ts 事故"混入"的另一半——en 侧重放清掉了、zh 侧漏了）删除，顺带修复 YouTube FAQ 被事故弄乱的缩进；③check:i18n 审计脚本同步跳过 PENDING_I18N slug，过渡期保持绿。**check:i18n 现在真正反映剩余工作：9 语言 trimmer 内容翻译（tracker 遗留项）。**
+
+**验证**：astro check 0 错误、smoke ALL PASS、check:pages ALL PASS、check:i18n OK、hero/analytics PASS。浏览器真跑：bass-booster（quickControls 类）拖选→胶囊/降暗/结果行/精确输入全联动、格式下拉选 128→内核值+触发器+结果行三联动；wav-to-mp3（converter 类）无选择交互但刻度尺/下拉/结果行齐全；mp3-editor 旧流程保留+新元素齐全；375px 导出条吸底（bottom=812）、全屏铺满 375×812、page-lock 生效、退出恢复。joiner 新门面截图比对一致。
+
+**遗留**：①9 语言 trimmer 内容翻译（check:i18n 的工作清单，落地后清空 PENDING_I18N）②各岛导出条仍是原生 select + 各自的 workspace 风格——属 tracker #4–#10 各自轮次 ③其余 56 工具 howTo 截图重拍 ④product-facts.md M4A 补记。
