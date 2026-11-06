@@ -1240,63 +1240,87 @@ export const id: Catalog = {
       cardLine: 'Tarik pegangan untuk menyimpan tepat bagian yang Anda butuhkan — podcast, memo suara, trek apa pun.',
       name: 'Potong Audio',
       shortName: 'Potong Audio',
-      title: 'Potong audio — podcast atau memo suara',
+      title: 'Audio trimmer — potong MP3 online dengan presisi 0,01 s',
       description:
-        'Sisakan satu bagian podcast, memo suara, atau rekaman, lalu simpan MP3 atau WAV. Pemangkasan di browser, tidak ada yang diunggah.',
+        'Potong MP3, podcast, atau memo suara: seleksi gelombang, nudge 0,01 s, audisi loop, simpan MP3 (128–320 kbps) atau WAV lossless. Semua lokal, tanpa unggah.',
       h1: 'Potong audio online gratis — Pangkas file audio',
       heroAlt: 'Potong MP3 atau podcast sampai tersisa bagian yang Anda butuhkan',
       subtitle: 'Pangkas audio online — gratis, langsung di browser. Tidak ada yang diunggah.',
       intro:
         'Ambil persis bagian yang dibutuhkan dari lagu, memo suara, podcast, atau rekaman apa pun. Seret di gelombang audio untuk memilih, dengarkan kembali, lalu simpan — pemangkasan seluruhnya terjadi di perangkat Anda, jadi rekaman yang panjang pun tetap privat dan langsung bisa dikerjakan.',
-      usesHeading: 'Potongan yang menyelesaikan edit',
+      usesHeading: 'Kasus umum pemangkasan audio',
       uses: [
-        'Ambil jawaban podcast dan tinggalkan “ehm” di kedua sisinya.',
-        'Angkat chorus atau loop dari lagu utuh, tanpa editor desktop.',
-        'Pendekkan memo suara sebelum dikirim, supaya file hanya berisi intinya.',
+        'Klip podcast: potong jawaban terbaik dan tinggalkan smooth-nya.',
+        'Pemangkasan MP3: ambil refrain atau loop dari lagu utuh, tanpa editor desktop.',
+        'Memo suara: persingkat sebelum dikirim, file hanya berisi intisari.',
+        'Notulen rapat: potong obrolan pembuka, simpan keputusannya.',
+        'Persiapan ringtone: potong bagian yang diinginkan, lalu selesaikan di [pembuat ringtone](/ringtone-maker).',
+        'Sample dan loop: pangkas kandidat dan simpan take terbaik.',
+      ],
+      why: [
+        {
+          icon: 'zoom-in',
+          title: 'Potongan jatuh di 0,01 s',
+          text: 'Penggaris waktu mengubah skala saat zoom, kedua tepi digeser dalam langkah 0,01/0,1/1 s, dan seleksi diputar berulang saat menyesuaikan — dengar potongannya sebelum final.',
+        },
+        {
+          icon: 'scissors',
+          title: 'Dua pintu, tanpa ganti mode',
+          text: '“Simpan seleksi” mempertahankannya, “Simpan tanpa seleksi” menghapusnya — tiap tombol menampilkan durasi hasil dan mengunduh dalam satu klik.',
+        },
       ],
       howTo: [
-        {
-          name: 'Jatuhkan file Anda',
-          text: 'Seret file audio atau video ke area gelombang, atau klik untuk memilih. MP3, WAV, M4A, OGG, FLAC, dan format lain didukung.',
-        },
-        {
-          name: 'Pilih yang ingin disimpan',
-          text: 'Seret di gelombang audio untuk menandai bagian yang diinginkan. Seret ujung pilihan untuk menyesuaikan, atau ketik waktu mulai dan akhir yang persis.',
-        },
-        {
-          name: 'Dengarkan dan simpan',
-          text: 'Tekan putar untuk mendengar hanya pilihan Anda, lalu klik Ekspor untuk mengunduh file yang sudah dipangkas sebagai MP3 atau WAV.',
-        },
+        { name: 'Letakkan file', text: 'Geser file ke bingkai putus-putus, atau klik untuk menelusuri. MP3, WAV, M4A, OGG, FLAC, dan video didekode di perangkat Anda.' },
+        { name: 'Tandai yang disimpan', text: 'Tarik seleksi pada gelombang, haluskan kedua tepi dengan langkah 0,01/0,1/1 s, atau ketik waktu mulai dan akhir persis.' },
+        { name: 'Audisi loop', text: 'Nyalakan loop untuk mendengar seleksi saja; mengubah tepi memulai lagi dari atas — haluskan dengan telinga. Lalu simpan dengan atau tanpa seleksi.' },
+        { name: 'Bawa file', text: '“Pangkas dan unduh” untuk MP3 (128–320 kbps) atau WAV lossless; nama membawa -edited.' },
       ],
       faqs: [
         {
           q: 'Apakah pemangkas audio ini benar-benar gratis?',
-          a: 'Ya. Setiap pemangkasan dan ekspor gratis, tanpa mendaftar dan tanpa watermark. Alat ini berjalan sepenuhnya di browser Anda, jadi tidak ada biaya server yang dibebankan kepada Anda.',
+          a: 'Ya. Tanpa akun, dan ekspor tanpa watermark. File didekode di browser ini.',
         },
         {
           q: 'Apakah audio Anda diunggah ke server?',
-          a: 'Tidak. File didekode dan diproses oleh browser Anda sendiri dengan Web Audio API. Setelah halaman termuat, Anda bisa offline dan pemangkasnya tetap berjalan — tidak ada yang pernah dikirim ke mana pun.',
+          a: 'Tidak. File didekode di tab ini dengan Web Audio API. Setelah skrip halaman dimuat, dekode dan ekspor WAV tidak butuh jaringan. Ekspor MP3 membutuhkan encoder MP3 yang sudah dimuat sekali.',
         },
         {
           q: 'Format apa yang bisa dipangkas?',
-          a: 'Browser Anda dapat mendekode MP3, WAV, M4A/AAC, OGG, FLAC, dan audio WebM. Hasilnya bisa disimpan sebagai MP3 (128–320 kbps) atau WAV lossless.',
+          a: 'Apa pun yang sudah bisa didekode browser ini. Menu simpan menawarkan MP3 64, 96, 128, 192, atau 320 kbps, M4A (AAC) jika browser mendukung, atau WAV 16-bit. MP3 hanya mengodekan dua kanal pertama.',
         },
         {
           q: 'Apakah memangkas menurunkan kualitas audio?',
-          a: 'Menyimpan sebagai WAV menjaga bagian yang Anda pertahankan tetap utuh bit demi bit — tanpa kompresi ulang. Menyimpan sebagai MP3 mengodekan ulang satu kali; pada 192 kbps atau lebih, bedanya praktis tidak terdengar bagi sebagian besar pendengar.',
+          a: 'WAV adalah PCM 16-bit dari sampel yang Anda simpan. MP3 mengodekan bagian itu sekali, pada bitrate pilihan. Judul, artis, dan sampul tidak disalin.',
         },
         {
           q: 'Bisakah audio dipangkas di ponsel?',
-          a: 'Ya. Gelombang audio mendukung sentuhan, dan tombol ekspor tetap mudah dijangkau di bagian bawah layar. Alat ini berjalan di Safari pada iPhone, serta di Chrome atau Firefox pada Android.',
+          a: 'Gelombang menerima seret sentuh. Berkas lebih dari 300 MB ditolak. Berkas lebih dari satu jam tetap terbuka, dan halaman memperingatkan bahwa tab bisa kehabisan memori.',
         },
         {
-          q: 'Berapa panjang file yang bisa diproses?',
-          a: 'Rekaman hingga sekitar satu jam berjalan nyaman di komputer modern. Batas praktisnya adalah memori perangkat Anda, bukan batas buatan. Mengulang bagian yang Anda simpan, 2 sampai 16 kali, adalah pengulang audio.',
+          q: 'Berapa panjang file yang bisa dipakai?',
+          a: 'Lebih dari 300 MB ditolak. Lebih dari satu jam tetap terbuka, dengan peringatan memori. Mengulang bagian yang disimpan 2 sampai 16 kali, hingga 10 menit, adalah [audio looper](/audio-looper).',
         },
-      {
-        q: 'Bisakah Anda memotong berkas lokal dari Claude atau Cursor?',
-        a: 'Halaman ini memotong di browser dengan Web Audio API. Anda tidak memasang apa pun. /mcp berjalan di komputer Anda dan memanggil ffmpeg. Awal dan akhir dalam detik. WAV adalah sampel hasil dekode. MP3 dikodekan sekali. Aplikasi chat tetap melihat jalur berkas dan argumen.',
-      }],
+        {
+          q: 'Bisakah memangkas file lokal dari Claude atau Cursor?',
+          a: 'Halaman ini memangkas di browser dengan Web Audio API. Tidak ada yang dipasang. /mcp berjalan di komputer Anda dan memanggil ffmpeg. Berikan awal dan akhir dalam detik. WAV adalah sampel yang didekode. MP3 dikodekan sekali. Aplikasi chat tetap melihat path dan argumennya.',
+        },
+        {
+          q: 'Seberapa presisi potongannya?',
+          a: 'Kontrol panah menggeser tiap batas dalam langkah 0,01 s, 0,1 s, dan 1 s, dan kedua waktu bisa diketik manual. Penggaris di bawah gelombang mengikuti zoom, jadi potongan jatuh di tempat yang Anda mau.',
+        },
+        {
+          q: 'Bisakah memangkas layar penuh di ponsel?',
+          a: 'Bisa. Ikon perluas di bilah alat membuka editor di seluruh layar, jadi gelombang mendapat seluruh tampilan. Ketuk lagi atau tekan Escape untuk kembali.',
+        },
+        {
+          q: 'Format apa untuk WhatsApp atau email?',
+          a: 'MP3 128 atau 192 kbps tetap kecil dan diputar di mana saja. WhatsApp menerima dokumen hingga 2 GB, dan Gmail membatasi pesan 25 MB, jadi potongan yang sudah dipangkas masuk dengan lega.',
+        },
+        {
+          q: 'Kenapa nama file ekspor punya sufiks?',
+          a: 'Tiap ekspor menambah tag pendek seperti -edited agar versi mudah dibedakan. Ganti nama file setelah diunduh; audionya tidak berubah.',
+        },
+      ],
       screenshotsAlt: [
         'Potong Audio: area jatuhkan, tidak ada yang dikirim ke server',
         'Potong Audio: area kerja dengan berkas yang sudah dimuat',
@@ -1306,37 +1330,63 @@ export const id: Catalog = {
         {
           heading: 'Tandai bagian yang ingin Anda simpan',
           paragraphs: [
-            'Seret di sepanjang bentuk gelombang. Waktu mulai dan akhir berubah saat Anda menyeret, dan Anda bisa mengetik kedua waktu itu jika jari atau tetikus tidak cukup presisi. Tekan putar untuk mendengarkan hanya rentang itu sebelum menyimpan.',
-            'Ekspor WAV jika Anda akan memotong lagi atau mengedit lebih lanjut. Ekspor MP3 saat klipnya sudah jadi. Potongan WAV menyimpan sampel yang Anda pilih. Potongan MP3 dienkode sekali, pada bitrate yang Anda pilih.',
+            'Seret di atas gelombang untuk menandai bagian. Penggaris di bawah trek menunjukkan skala, dan label di tiap batas menunjukkan waktu pastinya. Tekan putar untuk mendengar hanya bagian itu sebelum menyimpan.',
+            'Ekspor WAV jika Anda akan memangkas lagi atau lanjut mengedit. Ekspor MP3 saat klip sudah selesai. Pangkas ke WAV menjaga sampel yang dipilih. Pangkas ke MP3 mengodekan sekali, pada bitrate pilihan.',
+          ],
+        },
+        {
+          heading: 'Geser potongan hingga seperseratus detik',
+          paragraphs: [
+            'Grup panah di samping tiap kolom waktu menggeser batas 0,1 s, 0,01 s, atau 1 s per klik. Kedua waktu juga bisa diketik manual.',
+            'Putar ulang loop memutar bagian itu terus-menerus. Tiap penyesuaian memulai ulang dari awal, jadi perubahannya langsung terdengar.',
           ],
         },
         {
           heading: 'Potong rekaman, atau potong lagu',
           paragraphs: [
-            'Halaman ini untuk rekaman yang perlu dipersingkat: jawaban podcast, memo suara, kuliah, atau bagian tengah berkas panjang.',
+            'Halaman ini untuk rekaman yang perlu dipendekkan: jawaban podcast, memo suara, kuliah, bagian tengah file panjang.',
           ],
           bullets: [
-            'Halaman ini dan [pemotong MP3](/mp3-cutter) adalah editor yang sama. Keduanya bisa mempertahankan atau menghapus pilihan. Halaman pemotong ditujukan untuk reff atau intro.',
-            'Nada dering, dibatasi 40 detik, dengan M4R hanya jika browser ini bisa mengenkode AAC, ada di [pembuat nada dering](/ringtone-maker). Halaman ini tidak memasangnya di ponsel.',
-            'Fade dari 0 sampai 5 detik pada satu berkas ada di [fade audio](/fade-audio). Halaman ini tidak menerapkan fade.',
+            'Halaman ini dan [pemotong MP3](/mp3-cutter) adalah editor yang sama. Keduanya bisa menyimpan pilihan atau menghapusnya. Halaman pemotong adalah yang ditulis untuk refrain atau intro.',
+            'Nada dering, dibatasi 40 detik, dengan M4R hanya saat browser ini bisa mengodekan AAC, adalah [pembuat nada dering](/ringtone-maker). Halaman ini tidak memasangnya ke ponsel.',
+            'Fade 0 sampai 5 detik pada satu file adalah [fade audio](/fade-audio). Halaman ini tidak melakukan fade.',
           ],
         },
         {
           heading: 'Apa yang dilakukan pemotongan pada suara',
           paragraphs: [
-            'Berkas didekode, rentangnya diambil, lalu ekspor ditulis ulang. WAV adalah PCM 16-bit dari rentang itu. MP3 dienkode sekali. Bitrate bawaan di halaman ini 192 kbps.',
-            'Halaman ini tidak mengubah kenyaringan. Berkas yang lebih pelan, dari 10% sampai 400%, ada di [perbesar volume](/increase-volume).',
+            'File didekode, bagian diambil, dan ekspor ditulis ulang. WAV adalah PCM 16-bit dari bagian itu. MP3 mengodekannya sekali, pada bitrate pilihan. M4A menyimpan salinan AAC untuk aplikasi Apple saat browser ini bisa mengodekan AAC.',
+            'Halaman ini tidak mengubah volume. File yang terlalu pelan, dari 10% hingga 400%, adalah [naikkan volume](/increase-volume).',
           ],
         },
         {
           heading: 'Seberapa panjang berkas yang bisa dipakai',
           paragraphs: [
-            'Berkas di atas 300 MB ditolak. Berkas di atas satu jam tetap terbuka, dan halaman memperingatkan bahwa tab mungkin kehabisan memori. Peringatan itu bukan batas durasi.',
+            'Berkas lebih dari 300 MB ditolak. Berkas lebih dari satu jam tetap terbuka, dan halaman memperingatkan bahwa tab bisa kehabisan memori. Peringatan itu bukan batas durasi.',
           ],
           bullets: [
-            'Memo suara atau jawaban podcast: potong di sini, di ponsel pun boleh.',
-            'Episode penuh: komputer lebih stabil untuk pratinjau dan ekspor.',
-            'Video: yang dipotong adalah trek suaranya. Gambarnya tidak disimpan.',
+            'Memo suara atau jawaban podcast: pangkas di sini, di ponsel pun bisa.',
+            'Satu episode penuh: komputer adalah tempat yang lebih stabil untuk pratinjau dan ekspor.',
+            'Video: yang dipangkas adalah trek suaranya. Gambarnya tidak disimpan.',
+          ],
+        },
+        {
+          heading: 'Pilih keluaran sesuai tujuan klip',
+          paragraphs: [
+            'Tiap tujuan punya prioritas berbeda: aplikasi chat ingin file kecil, email punya batas ukuran, dan edit berikutnya tidak ingin kerugian tambahan.',
+          ],
+          table: {
+            headers: ['Tujuan', 'Pilih', 'Kenapa cocok'],
+            rows: [
+              ['Aplikasi chat seperti WhatsApp', 'MP3 128 atau 192 kbps', 'File kecil, diputar di mana saja. Dokumen hingga 2 GB diterima, jadi potongan masuk dengan lega.'],
+              ['Email', 'MP3 128 kbps', 'Potongan 12 menit sekitar 12 MB, di bawah batas pesan Gmail 25 MB.'],
+              ['Aplikasi Apple (GarageBand, iMovie)', 'M4A dengan AAC', 'Masuk ke aplikasi Apple tanpa konversi lagi.'],
+              ['Edit lagi di situs ini', 'WAV, lossless', 'Tanpa tahap lossy kedua. Fade dan volume menumpuk tanpa artefak MP3.'],
+              ['Video sosial (TikTok, Reels)', 'WAV, lossless', 'Platform tetap mengodekan ulang, jadi serahkan file paling bersih.'],
+            ],
+          },
+          outro: [
+            'Batas berubah seiring pembaruan aplikasi. Dicek terhadap halaman bantuan tiap aplikasi pada November 2026.',
           ],
         },
       ],

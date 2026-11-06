@@ -1144,63 +1144,87 @@ export const fr: Catalog = {
       cardLine: 'Déplacez les poignées pour garder exactement le passage voulu — podcasts, mémos vocaux, toute piste.',
       name: 'Couper l’audio',
       shortName: 'Rogneur',
-      title: 'Couper l’audio — podcast ou mémo vocal',
+      title: 'Rogneur audio — rogner MP3 en ligne au centième de seconde',
       description:
-        'Gardez un passage de podcast, de mémo vocal ou d’enregistrement, en MP3 ou WAV. Le rognage se fait dans le navigateur, sans téléversement.',
+        'Rognez MP3, podcasts ou mémos vocaux : sélection sur l’onde, pas de 0,01 s, boucle, export MP3 (128–320 kbps) ou WAV sans perte. Tout en local.',
       h1: 'Couper l’audio — Couper des fichiers audio',
       heroAlt: 'Couper un MP3 ou un podcast pour n’en garder que le passage voulu',
       subtitle: 'Rognez l’audio en ligne, gratuitement, dans votre navigateur. Rien n’est téléversé.',
       intro:
         'Coupez le passage exact dont vous avez besoin dans n’importe quelle chanson, mémo vocal, podcast ou enregistrement. Glissez sur la forme d’onde pour sélectionner, écoutez, enregistrez : le rognage se déroule entièrement sur votre appareil, si bien que même les longs enregistrements restent privés et démarrent instantanément.',
-      usesHeading: 'Des coupes qui terminent le montage',
+      usesHeading: 'Cas courants de recadrage audio',
       uses: [
-        'Extrayez la réponse d’un podcast en laissant les « euh » de chaque côté.',
-        'Prélevez un refrain ou une boucle d’une chanson complète, sans éditeur de bureau.',
-        'Raccourcissez un mémo vocal avant de l’envoyer, pour que le fichier n’ait que l’essentiel.',
+        'Clips de podcast : découper la meilleure réponse et laisser les euh de côté.',
+        'Recadrer un MP3 : sortir un refrain ou une boucle d’un morceau complet, sans éditeur desktop.',
+        'Mémos vocaux : raccourcir avant l’envoi, le fichier ne garde que l’essentiel.',
+        'Réunions : couper la papotage, garder les décisions.',
+        'Préparer une sonnerie : recadrer un passage puis le finir dans le [créateur de sonneries](/ringtone-maker).',
+        'Samples et boucles : recadrer les candidats, garder la meilleure prise.',
+      ],
+      why: [
+        {
+          icon: 'zoom-in',
+          title: 'La coupe au centième de seconde',
+          text: 'La règle temporelle change d’échelle avec le zoom, les deux bords s’ajustent par pas de 0,01/0,1/1 s et la sélection tourne en boucle pendant l’ajustement — entend la coupe avant de valider.',
+        },
+        {
+          icon: 'scissors',
+          title: 'Deux sorties, sans changer de mode',
+          text: '«Garder la sélection» la conserve, «Supprimer la sélection» l’enlève — chaque bouton affiche la durée en direct et télécharge en un clic.',
+        },
       ],
       howTo: [
-        {
-          name: 'Déposez votre fichier',
-          text: 'Glissez un fichier audio ou vidéo sur la zone de forme d’onde, ou cliquez pour parcourir. MP3, WAV, M4A, OGG, FLAC et bien plus sont pris en charge.',
-        },
-        {
-          name: 'Sélectionnez ce que vous gardez',
-          text: 'Glissez sur la forme d’onde pour surligner la section souhaitée. Ajustez les poignées pour affiner, ou saisissez des temps de début et de fin exacts.',
-        },
-        {
-          name: 'Écoutez et enregistrez',
-          text: 'Lancez la lecture pour n’entendre que votre sélection, puis cliquez sur Exporter pour télécharger le fichier rogné en MP3 ou WAV.',
-        },
+        { name: 'Dépose ton fichier', text: 'Dépose un fichier dans le cadre pointillé ou clique pour parcourir. MP3, WAV, M4A, OGG, FLAC et vidéo se décodent sur ton appareil.' },
+        { name: 'Marque ce que tu gardes', text: 'Trace la sélection sur la forme d’onde, ajuste les deux bords par pas de 0,01/0,1/1 s, ou tape les temps exacts.' },
+        { name: 'Écoute en boucle', text: 'Active la boucle pour n’entendre que la sélection ; changer un bord relance depuis le début pour affiner à l’oreille. Puis garde ou supprime la sélection.' },
+        { name: 'Récupère le fichier', text: '«Recadrer et télécharger» pour MP3 (128–320 kbps) ou WAV sans pertes ; le nom porte -edited.' },
       ],
       faqs: [
         {
-          q: 'Ce rogneur audio est-il vraiment gratuit ?',
-          a: 'Oui. Chaque rognage et chaque export sont gratuits, sans inscription et sans filigrane. L’outil fonctionne entièrement dans votre navigateur : il n’y a donc aucun coût de serveur à vous refacturer.',
+          q: 'Ce rogneur audio est-il vraiment gratuit ?',
+          a: 'Oui. Pas de compte, et l’export n’a pas de filigrane. Le fichier est décodé dans ce navigateur.',
         },
         {
-          q: 'Mon audio est-il envoyé sur un serveur ?',
-          a: 'Non. Votre fichier est décodé et traité par votre propre navigateur avec la Web Audio API. Vous pouvez passer hors ligne après le chargement de la page, le rogneur continue de fonctionner : rien n’est jamais envoyé nulle part.',
+          q: 'Mon audio est-il envoyé sur un serveur ?',
+          a: 'Non. Le fichier est décodé dans cet onglet avec la Web Audio API. Une fois les scripts de la page chargés, le décodage et l’export WAV n’ont pas besoin de réseau. Un export MP3 demande que l’encodeur MP3 ait été chargé une fois.',
         },
         {
-          q: 'Quels formats puis-je rogner ?',
-          a: 'Votre navigateur décode l’audio MP3, WAV, M4A/AAC, OGG, FLAC et WebM. Vous pouvez enregistrer le résultat en MP3 (128–320 kbps) ou en WAV sans perte.',
+          q: 'Quels formats puis-je rogner ?',
+          a: 'Tout ce que ce navigateur sait déjà décoder. Le menu d’enregistrement propose MP3 à 64, 96, 128, 192 ou 320 kbps, M4A (AAC) quand le navigateur le permet, ou WAV 16 bits. MP3 n’encode que les deux premiers canaux.',
         },
         {
-          q: 'Le rognage réduit-il la qualité de l’audio ?',
-          a: 'Un enregistrement en WAV reste identique au bit près pour la partie conservée — aucune recompression. Un enregistrement en MP3 réencode une seule fois ; à 192 kbps ou plus, la différence est pratiquement inaudible pour la plupart des auditeurs.',
+          q: 'Le rognage réduit-il la qualité audio ?',
+          a: 'Le WAV est du PCM 16 bits des échantillons gardés. Le MP3 encode ce passage une seule fois, au débit choisi. Titre, artiste et pochette ne sont pas copiés.',
         },
         {
-          q: 'Puis-je rogner de l’audio sur mon téléphone ?',
-          a: 'Oui. La forme d’onde répond au tactile et le bouton d’export reste accessible en bas de l’écran. Ça marche dans Safari sur iPhone et dans Chrome ou Firefox sur Android.',
+          q: 'Puis-je rogner de l’audio sur mobile ?',
+          a: 'La forme d’onde accepte le glisser tactile. Un fichier de plus de 300 MB est refusé. Un fichier de plus d’une heure s’ouvre quand même, et la page avertit que l’onglet peut manquer de mémoire.',
         },
         {
-          q: 'Quelle longueur peut avoir mon fichier ?',
-          a: 'Les enregistrements d’environ une heure passent sans problème sur un ordinateur moderne. La vraie limite est la mémoire de votre appareil, pas un plafond artificiel. Répéter la partie gardée, de 2 à 16 fois, c’est la boucle audio.',
+          q: 'Quelle longueur peut avoir mon fichier ?',
+          a: 'Plus de 300 MB : refusé. Plus d’une heure : s’ouvre quand même, avec un avertissement mémoire. Répéter le passage gardé de 2 à 16 fois, jusqu’à 10 minutes, c’est le [boucleur audio](/audio-looper).',
         },
-      {
-        q: 'Puis-je couper un fichier local depuis Claude ou Cursor ?',
-        a: 'Cette page coupe dans le navigateur avec la Web Audio API. Vous n’installez rien. /mcp tourne sur votre ordinateur et appelle ffmpeg. Le début et la fin sont en secondes. Le WAV correspond aux échantillons décodés. Le MP3 est encodé une fois. L’application de chat voit quand même le chemin et les arguments.',
-      }],
+        {
+          q: 'Puis-je rogner un fichier local depuis Claude ou Cursor ?',
+          a: 'Cette page rogne dans le navigateur avec la Web Audio API. Rien n’est installé. /mcp tourne sur votre ordinateur et appelle ffmpeg. Passez un début et une fin en secondes. Le WAV, ce sont les échantillons décodés. Le MP3 est encodé une fois. L’app de chat voit toujours le chemin et les arguments.',
+        },
+        {
+          q: 'Quelle est la précision de la coupe ?',
+          a: 'Les flèches déplacent chaque bord par pas de 0,01 s, 0,1 s et 1 s, et les deux temps peuvent être saisis à la main. La règle sous la forme d’onde suit le zoom : la coupe tombe où vous voulez.',
+        },
+        {
+          q: 'Puis-je rogner en plein écran sur mobile ?',
+          a: 'Oui. L’icône d’agrandissement dans la barre ouvre l’éditeur sur tout l’écran : la forme d’onde occupe tout l’affichage. Touchez-la encore ou appuyez sur Échap pour revenir.',
+        },
+        {
+          q: 'Quel format pour WhatsApp ou un e-mail ?',
+          a: 'Le MP3 à 128 ou 192 kbps reste léger et se lit partout. WhatsApp accepte des documents jusqu’à 2 GB, Gmail limite les messages à 25 MB : une coupe tient largement.',
+        },
+        {
+          q: 'Pourquoi le fichier exporté a-t-il un suffixe ?',
+          a: 'Chaque export ajoute une courte étiquette comme -edited pour distinguer les versions. Renommez le fichier après le téléchargement ; l’audio ne change pas.',
+        },
+      ],
       screenshotsAlt: [
         'Couper l’audio : zone de dépôt, rien n’est envoyé sur un serveur',
         'Couper l’audio : espace de travail avec le fichier chargé',
@@ -1210,37 +1234,63 @@ export const fr: Catalog = {
         {
           heading: 'Marquez la partie à garder',
           paragraphs: [
-            'Faites glisser sur la forme d’onde. Le début et la fin se mettent à jour pendant le glissement, et vous pouvez saisir les deux temps quand la souris ou le doigt n’est pas assez précis. Appuyez sur lecture pour n’entendre que ce passage avant d’enregistrer.',
-            'Exportez en WAV si vous comptez rogner ou modifier encore. Exportez en MP3 quand le clip est terminé. Une découpe en WAV garde les échantillons sélectionnés. Une découpe en MP3 encode une fois, au débit que vous choisissez.',
+            'Glissez sur la forme d’onde pour marquer le passage. La règle sous la piste montre l’échelle, et une petite étiquette sur chaque bord affiche son temps exact. Appuyez sur lecture pour n’entendre que ce passage avant d’enregistrer.',
+            'Exportez en WAV si vous devez rogner à nouveau ou poursuivre le montage. Exportez en MP3 quand le clip est final. Un rognage vers WAV garde les échantillons choisis. Un rognage vers MP3 encode une fois, au débit choisi.',
+          ],
+        },
+        {
+          heading: 'Ajuster la coupe au centième de seconde',
+          paragraphs: [
+            'Les groupes de flèches près de chaque champ de temps déplacent un bord de 0,1 s, 0,01 s ou 1 s par clic. Les deux temps peuvent aussi être saisis à la main.',
+            'La lecture en boucle rejoue le passage en continu. Chaque ajustement repart du début : le changement s’entend à l’instant même.',
           ],
         },
         {
           heading: 'Rogner un enregistrement ou couper une chanson',
           paragraphs: [
-            'Cette page sert à raccourcir un enregistrement : une réponse de podcast, une note vocale, un cours, le milieu d’un fichier long.',
+            'Cette page sert à raccourcir un enregistrement : une réponse de podcast, un mémo vocal, un cours, le milieu d’un long fichier.',
           ],
           bullets: [
-            'Cette page et la page [couper un MP3](/mp3-cutter) sont le même éditeur. Les deux gardent ou suppriment la sélection. La page du coupeur est celle écrite pour un refrain ou une intro.',
-            'Une sonnerie, limitée à 40 secondes, avec M4R seulement quand ce navigateur sait encoder l’AAC, c’est la page [créer une sonnerie iPhone](/ringtone-maker). Cette page ne l’installe pas sur un téléphone.',
+            'Cette page et le [coupeur MP3](/mp3-cutter) sont le même éditeur. Les deux peuvent garder la sélection ou la supprimer. La page du coupeur est celle écrite pour un refrain ou une intro.',
+            'Une sonnerie, plafonnée à 40 secondes, avec M4R seulement quand ce navigateur peut encoder l’AAC, c’est le [créateur de sonneries](/ringtone-maker). Cette page ne l’installe pas sur le téléphone.',
             'Un fondu de 0 à 5 secondes sur un fichier, c’est [fondu audio](/fade-audio). Cette page ne fait pas de fondu.',
           ],
         },
         {
           heading: 'Ce que la découpe fait au son',
           paragraphs: [
-            'Le fichier est décodé, le passage est extrait, et l’export est réécrit. Le WAV est du PCM 16 bits de ce passage. Le MP3 l’encode une fois. Le débit par défaut de cette page est 192 kbps.',
-            'Cette page ne change pas la puissance sonore. Un fichier plus fort, de 10 % à 400 %, c’est [augmenter le volume](/increase-volume).',
+            'Le fichier est décodé, le passage est extrait, et l’export est réécrit. Le WAV est du PCM 16 bits de ce passage. Le MP3 l’encode une fois, au débit choisi. Le M4A enregistre une copie AAC pour les apps Apple quand ce navigateur peut encoder l’AAC.',
+            'Cette page ne change pas le volume. Un fichier trop faible, de 10% à 400%, c’est [augmenter le volume](/increase-volume).',
           ],
         },
         {
           heading: 'Quelle durée un fichier peut avoir',
           paragraphs: [
-            'Un fichier de plus de 300 Mo est refusé. Un fichier de plus d’une heure s’ouvre quand même, et la page prévient que l’onglet peut manquer de mémoire. Cet avertissement n’est pas une limite de durée.',
+            'Un fichier de plus de 300 MB est refusé. Un fichier de plus d’une heure s’ouvre quand même, et la page avertit que l’onglet peut manquer de mémoire. Cet avertissement n’est pas un plafond de durée.',
           ],
           bullets: [
-            'Une note vocale ou une réponse de podcast : rognez-la ici, sur le téléphone si vous préférez.',
-            'Un épisode complet : un ordinateur est l’endroit le plus stable pour prévisualiser et exporter.',
-            'Une vidéo : c’est la bande sonore qui est rognée. L’image n’est pas enregistrée.',
+            'Un mémo vocal ou une réponse de podcast : rognez-le ici, sur mobile si vous voulez.',
+            'Un épisode entier : l’ordinateur est l’endroit le plus stable pour prévisualiser et exporter.',
+            'Une vidéo : c’est la piste sonore qui est rognée. L’image n’est pas enregistrée.',
+          ],
+        },
+        {
+          heading: 'Choisir une sortie selon la destination du clip',
+          paragraphs: [
+            'Chaque destination a ses exigences : une app de chat veut un fichier léger, un e-mail a un plafond de taille, et un autre montage ne veut pas de perte supplémentaire.',
+          ],
+          table: {
+            headers: ['Destination', 'Choix', 'Pourquoi ça colle'],
+            rows: [
+              ['Une app de chat comme WhatsApp', 'MP3 à 128 ou 192 kbps', 'Fichier léger, lu partout. Les documents jusqu’à 2 GB sont acceptés : une coupe passe largement.'],
+              ['Un e-mail', 'MP3 à 128 kbps', 'Une coupe de 12 minutes reste vers 12 MB, sous le plafond de 25 MB de Gmail.'],
+              ['Apps Apple (GarageBand, iMovie)', 'M4A avec AAC', 'Arrive dans les apps Apple sans autre conversion.'],
+              ['Un autre montage sur ce site', 'WAV, sans perte', 'Pas de seconde étape avec perte. Fondus et volume s’empilent sans artefacts MP3.'],
+              ['Vidéo sociale (TikTok, Reels)', 'WAV, sans perte', 'La plateforme réencode de toute façon : livrez le fichier le plus propre.'],
+            ],
+          },
+          outro: [
+            'Les plafonds changent au fil des mises à jour. Vérifié sur les pages d’aide de chaque app en novembre 2026.',
           ],
         },
       ],

@@ -247,3 +247,13 @@ audacity audio recording (202k)、record chrome audio (153k)、audacity audio re
 - PENDING_I18N 扩为全部 57 个 slug（zh 全套完成、en+9 待翻译的忠实记账）。
 - 门禁：astro check 0、check:i18n OK（audit 跳过 PENDING slug）、smoke ALL PASS（注意：本机 4321 端口存在并行会话服务，smoke 必须用 `BASE_URL=http://127.0.0.1:4321`）、八页+多语种程序化验收全过（57 页 title/why/场景卡完整性扫描 NONE 异常）。
 - **等用户检查全部 zh；通过后启动全量翻译批次（en+9，逐 slug 清 PENDING）。**
+
+### 监控会话接手（2026-11-07 02:52）
+- 02:42 与 02:47 两次检查：无新 commit（HEAD 6d8355b）、无 i18n 新改动（最后 02:32:41）、PENDING_I18N 55 项不变 → 判定 GLM 停摆，监控会话接手翻译。工作区已有 audio-trimmer 的 EN（tools.ts）+ es/de/fr/pt/ru/ja/ko/id 半成品，先补完该页（ar 未翻、各语种缺 ad36314 的 4 条 FAQ 与 2 个 section、zh 缺 4 条 FAQ），再按 PENDING 顺序继续。
+
+### audio-trimmer 翻译轮完成（2026-11-07 03:15，监控会话接手）
+- 接手时工作区已有 EN（tools.ts）+ es/de/fr/pt/ru/ja/ko/id 主字段半成品（GLM 02:32 停摆前写入）；本轮补完：ar 全套主字段（title/desc/usesHeading/uses×6/why×2/howTo×4）。
+- **parity 缺口**：该页 EN 基线（ad36314 重做轮）有 11 条 FAQ + 6 个 section（含输出格式表），zh/9 语种只有 7 条 + 4 个。本轮全 10 语种补齐 4 条 FAQ（精度/全屏/WhatsApp 格式/-edited 后缀）+ 2 个 section（百分之一秒微调/按用途选输出表），section 顺序与形状对齐 EN；zh 两条旧 FAQ 答案同步 300 MB 与五档码率事实。
+- **预算修复**：GLM 半成品 de/es/fr/pt/ru description 超 155、fr title 超 60，重写为达标版本（机制→限制→承诺三段式保持）。
+- **顺带修复（HEAD 既有缺陷）**：zh.ts 16 个条目有重复 why: 块（批量脚本残留，其中 4 个第二块为两卡同标题的坏块），astro check 报 ts1117×16——删除第二块保留风格正确的第一块；另修 ko uses 里 ASCII 引号断句、zh faqs 尾部 `}],` 闭合。
+- audio-trimmer 移出 PENDING_I18N（剩 54）。门禁：astro check 0、check:i18n 全 10 语种 OK、smoke ALL PASS（BASE_URL=http://127.0.0.1:4321）、zh/ja/de/ar/ko 渲染抽查（新 H2/表格/新 FAQ/why 卡）全过。

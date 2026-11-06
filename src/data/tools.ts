@@ -180,9 +180,9 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Audio Trimmer',
     icon: 'trimmer',
     category: 'cut',
-    title: 'Audio Trimmer — Trim a Podcast or Voice Memo',
+    title: 'Audio Trimmer — Trim MP3 Online with 0.01 s Precision',
     description:
-      'Keep one span of a podcast, voice memo, or recording and save MP3 or WAV. The trim runs in your browser, so nothing is uploaded.',
+      'Trim MP3s, podcasts or voice memos: waveform selection, 0.01 s nudges, loop audition, then save as MP3 (128–320 kbps) or lossless WAV. All local, nothing uploads.',
     h1: 'Audio Trimmer — Trim a Recording, Online Free',
     hero: {
       src: '/audio-trimmer.svg',
@@ -213,24 +213,43 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Trim audio online — free, right in your browser. Nothing is uploaded.',
     intro:
       'Cut the exact part you need from any song, voice memo, podcast or recording. Drag on the waveform to select, listen back, and save — the whole trim happens on your device, so even long recordings stay private and start instantly.',
-    usesHeading: 'Jobs a trim actually finishes',
+    usesHeading: 'Common uses for audio trimming',
     uses: [
-      'Cut a podcast answer out and leave the ums on either side behind.',
-      'Lift a chorus or a loop out of a full song without a desktop editor.',
-      'Shorten a voice memo before you send it, so the file is only the point.',
+      'Podcast clips: cut the great answer out and leave the ums behind.',
+      'MP3 trimming: lift a chorus or a loop from a full song, no desktop editor.',
+      'Voice memos: shorten before sending, so the file is only the point.',
+      'Meeting records: cut the small talk, keep the decisions.',
+      'Ringtone prep: trim a section, then finish it in the [ringtone maker](/ringtone-maker).',
+      'Sample loops: trim a candidate, keep the best pass for your project.',
+    ],
+    why: [
+      {
+        icon: 'zoom-in',
+        title: 'The cut lands to 0.01 s',
+        text: 'The time ruler rescales as you zoom, both edges nudge in 0.01/0.1/1 s steps, and the selection loops as you adjust — hear the cut before you commit.',
+      },
+      {
+        icon: 'scissors',
+        title: 'Two exits, no mode switching',
+        text: 'Save selected keeps the span, Save without selection removes it — each button shows the export length live, then downloads in one click.',
+      },
     ],
     howTo: [
       {
         name: 'Drop your file',
-        text: 'Drop a file, or click to browse. It opens only if this browser can decode it. If it cannot, the page says the file could not be decoded.',
+        text: 'Drop a file into the dashed frame or click to browse. MP3, WAV, M4A, OGG, FLAC and video decode right on your device.',
       },
       {
         name: 'Select what to keep',
-        text: 'Drag across the waveform to highlight the section you want. Drag the handles to fine-tune, or type exact start and end times.',
+        text: 'Drag a selection on the waveform, fine-tune both handles with 0.01/0.1/1 s steppers, or type exact start and end times.',
       },
       {
-        name: 'Preview and save',
-        text: 'Press play to hear only your selection, then click Export to download the trimmed file as MP3 or WAV.',
+        name: 'Loop the audition',
+        text: 'Turn Loop on to hear only the selection; changing an edge restarts from the top so you can fine-tune by ear. Then choose Save selected or Save without selection.',
+      },
+      {
+        name: 'Take the file',
+        text: 'Click Trim and download for MP3 (128–320 kbps) or lossless WAV. The name carries an -edited suffix.',
       },
     ],
     faqs: [

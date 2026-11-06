@@ -1241,98 +1241,148 @@ export const de: Catalog = {
       cardLine: 'Ziehe die Griffe, um genau den Teil zu behalten, den du brauchst — Podcasts, Sprachmemos, jeder Track.',
       name: 'Audio schneiden',
       shortName: 'Audio schneiden',
-      title: 'Audio schneiden – Podcast oder Sprachnotiz',
+      title: 'Audio-Trimmer — MP3 online schneiden mit 0,01 s Genauigkeit',
       description:
-        'Eine Stelle aus Podcast, Sprachnotiz oder Aufnahme behalten und als MP3 oder WAV speichern. Der Schnitt läuft im Browser, nichts wird hochgeladen.',
+        'MP3s, Podcasts oder Sprachmemos schneiden: Wellenform, 0,01-s-Schritte, Schleife, MP3 (128–320 kbps) oder WAV verlustfrei. Alles lokal, kein Upload.',
       h1: 'Audio schneiden – einen Abschnitt behalten',
       heroAlt: 'Eine MP3 oder einen Podcast auf die passende Stelle schneiden',
       subtitle: 'Audio online schneiden — kostenlos, direkt im Browser. Nichts wird hochgeladen.',
       intro:
         'Schneide genau den Teil heraus, den du brauchst, aus jedem Song, jeder Sprachnotiz, jedem Podcast oder jeder Aufnahme. Ziehe auf der Wellenform, um auszuwählen, höre ihn an und speichere. Das Kürzen passiert komplett auf deinem Gerät, deshalb bleiben auch lange Aufnahmen privat und starten sofort.',
-      usesHeading: 'Schnitte, die den Edit erledigen',
+      usesHeading: 'Häufige Anlässe zum Zuschneiden',
       uses: [
-        'Schneide die Antwort aus einem Podcast und lass das Äh-Äh links und rechts weg.',
-        'Hol einen Refrain oder einen Loop aus dem ganzen Song, ohne Desktop-Editor.',
-        'Kürze eine Sprachnotiz vor dem Senden, damit die Datei nur den Punkt enthält.',
+        'Podcast-Clips: die beste Antwort herausschneiden, die Ähm bleiben außen vor.',
+        'MP3 schneiden: Refrain oder Loop aus einem ganzen Song, ohne Desktop-Editor.',
+        'Sprachmemos: vor dem Senden kürzen, damit die Datei nur die Pointe enthält.',
+        'Besprechungen: das Smalltalk-Gespräch schneiden, die Entscheidungen bleiben.',
+        'Klingelton-Vorbereitung: einen Teil schneiden und im [Klingelton-Ersteller](/ringtone-maker) fertigstellen.',
+        'Sample-Loops: Kandidaten schneiden und den besten Durchgang behalten.',
+      ],
+      why: [
+        {
+          icon: 'zoom-in',
+          title: 'Der Schnitt sitzt auf 0,01 s',
+          text: 'Die Zeitskala skaliert mit dem Zoom, beide Kanten rasten in 0,01/0,1/1-s-Schritten, und die Auswahl läuft als Schleife, während du feinstellst — den Schnitt hören, bevor er sitzt.',
+        },
+        {
+          icon: 'scissors',
+          title: 'Zwei Ausgänge, kein Modus',
+          text: '„Auswahl speichern“ behält ihn, „Ohne Auswahl speichern“ entfernt ihn — jeder Knopf zeigt die Länge live und lädt mit einem Klick.',
+        },
       ],
       howTo: [
-        {
-          name: 'Datei ablegen',
-          text: 'Ziehe eine Audio- oder Videodatei auf die Wellenform oder klicke, um sie auszuwählen. MP3, WAV, M4A, OGG, FLAC und weitere Formate werden unterstützt.',
-        },
-        {
-          name: 'Behalten, was du brauchst',
-          text: 'Ziehe über die Wellenform, um den Abschnitt zu markieren. Ziehe die Anfasser zum Feinjustieren oder tippe genaue Start- und Endzeiten ein.',
-        },
-        {
-          name: 'Anhören und speichern',
-          text: 'Spiel die Auswahl ab, um nur diesen Teil zu hören, und klicke dann auf Exportieren. Die gekürzte Datei lädt als MP3 oder WAV herunter.',
-        },
+        { name: 'Datei ablegen', text: 'Datei in den gestrichelten Rahmen ziehen oder durchsuchen. MP3, WAV, M4A, OGG, FLAC und Video dekodieren auf deinem Gerät.' },
+        { name: 'Auswahl markieren', text: 'Auswahl auf der Wellenform ziehen, beide Griffe mit 0,01/0,1/1-s-Schritten feinjustieren oder Start und Ende genau tippen.' },
+        { name: 'Schleife anhören', text: 'Loop einschalten, um nur die Auswahl zu hören; jede Kantenänderung startet oben neu — feinjustieren nach Gehör. Dann speichern mit oder ohne Auswahl.' },
+        { name: 'Datei mitnehmen', text: '«Schneiden und herunterladen» für MP3 (128–320 kbps) oder verlustfreies WAV; der Name trägt -edited.' },
       ],
       faqs: [
         {
-          q: 'Ist Audio schneiden wirklich kostenlos?',
-          a: 'Ja. Jedes Kürzen und jeder Export ist kostenlos, ohne Anmeldung und ohne Wasserzeichen. Das Tool läuft vollständig in deinem Browser, deshalb gibt es keine Serverkosten, die an dich weitergegeben werden.',
+          q: 'Ist dieser Audio-Trimmer wirklich kostenlos?',
+          a: 'Ja. Es gibt kein Konto, und der Export hat kein Wasserzeichen. Die Datei wird in diesem Browser dekodiert.',
         },
         {
           q: 'Wird mein Audio auf einen Server hochgeladen?',
-          a: 'Nein. Deine Datei wird von deinem eigenen Browser mit der Web Audio API dekodiert und verarbeitet. Du kannst offline gehen, nachdem die Seite geladen ist, und der Trimmer funktioniert weiter — es wird nie etwas irgendwohin geschickt.',
+          a: 'Nein. Die Datei wird in diesem Tab mit der Web Audio API dekodiert. Sobald die Skripte der Seite geladen sind, brauchen Dekodieren und WAV-Export kein Netz. Ein MP3-Export braucht den MP3-Encoder, der einmal geladen sein muss.',
         },
         {
-          q: 'Welche Formate kann ich kürzen?',
-          a: 'Dein Browser kann MP3, WAV, M4A/AAC, OGG, FLAC und WebM-Audio dekodieren. Das Ergebnis speicherst du als MP3 (128–320 kbps) oder als verlustfreies WAV.',
+          q: 'Welche Formate kann ich schneiden?',
+          a: 'Alles, was dieser Browser schon dekodieren kann. Das Speichern-Menü bietet MP3 mit 64, 96, 128, 192 oder 320 kbps, M4A (AAC), wenn der Browser es unterstützt, oder 16-Bit-WAV. MP3 kodiert nur die ersten zwei Kanäle.',
         },
         {
-          q: 'Wird die Audioqualität durch das Kürzen schlechter?',
-          a: 'Als WAV gespeichert ist der behaltene Teil bitgenau — ohne erneute Kompression. Als MP3 wird einmal neu kodiert; ab 192 kbps ist der Unterschied für die meisten praktisch nicht hörbar.',
+          q: 'Mindert Schneiden die Audioqualität?',
+          a: 'WAV ist 16-Bit-PCM der Samples, die du behältst. MP3 kodiert diesen Abschnitt einmal, mit der gewählten Bitrate. Titel, Interpret und Cover werden nicht kopiert.',
         },
         {
-          q: 'Kann ich Audio auf dem Handy kürzen?',
-          a: 'Ja. Die Wellenform unterstützt Touch, und der Export-Button bleibt unten auf dem Bildschirm erreichbar. Es funktioniert in Safari auf dem iPhone und in Chrome oder Firefox auf Android.',
+          q: 'Kann ich Audio auf dem Handy schneiden?',
+          a: 'Die Wellenform nimmt Touch-Ziehen an. Eine Datei über 300 MB wird abgelehnt. Eine Datei über einer Stunde öffnet trotzdem, und die Seite warnt, dass dem Tab der Speicher ausgehen kann.',
         },
         {
           q: 'Wie lang darf meine Datei sein?',
-          a: 'Aufnahmen bis etwa einer Stunde laufen auf einem modernen Computer problemlos. Die praktische Grenze ist der Speicher deines Geräts, kein künstliches Limit. Den behaltenen Teil 2- bis 16-mal zu wiederholen ist der Audio-Looper.',
+          a: 'Über 300 MB wird abgelehnt. Über eine Stunde öffnet trotzdem, mit Speicherwarnung. Den behaltenen Abschnitt 2- bis 16-mal zu wiederholen, bis zu 10 Minuten, ist der [Audio-Looper](/audio-looper).',
         },
-      {
-        q: 'Kann ich eine lokale Datei aus Claude oder Cursor schneiden?',
-        a: 'Diese Seite schneidet im Browser mit der Web Audio API. Du installierst nichts. /mcp läuft auf deinem Computer und ruft ffmpeg auf. Start und Ende sind Sekunden. WAV sind die dekodierten Samples. MP3 wird einmal neu kodiert. Die Chat-App sieht Pfad und Argumente trotzdem.',
-      }],
+        {
+          q: 'Kann ich eine lokale Datei aus Claude oder Cursor schneiden?',
+          a: 'Diese Seite schneidet im Browser mit der Web Audio API. Nichts wird installiert. /mcp läuft auf deinem Rechner und ruft ffmpeg auf. Übergib Start und Ende in Sekunden. WAV sind die dekodierten Samples. MP3 wird einmal kodiert. Die Chat-App sieht weiterhin Pfad und Argumente.',
+        },
+        {
+          q: 'Wie genau sitzt der Schnitt?',
+          a: 'Die Pfeile verschieben jede Grenze in Schritten von 0,01 s, 0,1 s und 1 s, und beide Zeiten lassen sich von Hand eingeben. Das Lineal unter der Wellenform folgt dem Zoom, damit der Schnitt dort sitzt, wo du ihn willst.',
+        },
+        {
+          q: 'Kann ich auf dem Handy im Vollbild schneiden?',
+          a: 'Ja. Das Expandieren-Symbol in der Leiste öffnet den Editor über den ganzen Bildschirm, die Wellenform bekommt das gesamte Display. Tipp noch einmal oder drücke Escape, um zurückzugehen.',
+        },
+        {
+          q: 'Welches Format für WhatsApp oder E-Mail?',
+          a: 'MP3 mit 128 oder 192 kbps bleibt klein und läuft überall. WhatsApp nimmt Dokumente bis 2 GB an, Gmail begrenzt Nachrichten auf 25 MB — ein geschnittener Clip passt locker hinein.',
+        },
+        {
+          q: 'Warum hat die exportierte Datei ein Suffix?',
+          a: 'Jeder Export hängt ein kurzes Tag wie -edited an, damit Versionen leicht auseinanderzuhalten sind. Benenne die Datei nach dem Download um; das Audio ändert sich nicht.',
+        },
+      ],
       sections: [
         {
           heading: 'Den Teil markieren, den du behalten willst',
           paragraphs: [
-            'Ziehe über die Wellenform. Start und Ende aktualisieren sich beim Ziehen, und du kannst beide Zeiten eintippen, wenn Finger oder Maus nicht genau genug sind. Hör nur diesen Abschnitt an, bevor du speicherst.',
-            'Exportiere WAV, wenn du noch einmal kürzen oder weiter bearbeiten willst. Exportiere MP3, wenn der Clip fertig ist. Ein Schnitt nach WAV behält die Samples, die du gewählt hast. Ein Schnitt nach MP3 kodiert einmal, mit der Bitrate, die du wählst.',
+            'Zieh über die Wellenform, um den Abschnitt zu markieren. Das Lineal unter der Spur zeigt die Skala, und ein kleines Label an jeder Grenze zeigt die genaue Zeit. Drück Abspielen, um vor dem Speichern nur diesen Abschnitt zu hören.',
+            'Exportiere WAV, wenn du erneut schneiden oder weiterbearbeiten willst. Exportiere MP3, wenn der Clip fertig ist. Ein Schnitt nach WAV behält die gewählten Samples. Ein Schnitt nach MP3 kodiert einmal, mit der gewählten Bitrate.',
+          ],
+        },
+        {
+          heading: 'Den Schnitt auf die Hundertstelsekunde bringen',
+          paragraphs: [
+            'Die Pfeilgruppen neben jedem Zeitfeld verschieben eine Grenze um 0,1 s, 0,01 s oder 1 s pro Klick. Beide Zeiten lassen sich auch von Hand eingeben.',
+            'Die Schleifenwiedergabe spielt den Abschnitt immer wieder. Jede Anpassung startet den Abschnitt von vorn, sodass eine Änderung sofort zu hören ist.',
           ],
         },
         {
           heading: 'Eine Aufnahme kürzen oder einen Song schneiden',
           paragraphs: [
-            'Diese Seite ist für eine Aufnahme, die kürzer werden soll: eine Podcast-Antwort, eine Sprachnotiz, eine Vorlesung, die Mitte einer langen Datei.',
+            'Diese Seite ist für eine Aufnahme, die du kürzen musst: eine Podcast-Antwort, eine Sprachmemo, eine Vorlesung, die Mitte einer langen Datei.',
           ],
           bullets: [
-            'Audio schneiden, diese Seite: du behältst einen Abschnitt von beliebigem Audio oder einer Videotonspur und speicherst ihn als MP3 oder WAV.',
-            'MP3 schneiden: dieselbe Art Auswahl, geschrieben für einen Song. Die Seite erklärt, wie du einen Refrain behältst oder ein Intro löschst.',
-            'Stille entfernen: wirft lange Pausen von selbst raus. Nimm das, wenn das Problem tote Luft ist, nicht ein Abschnitt, den du von Hand markieren musst.',
+            'Diese Seite und der [MP3-Cutter](/mp3-cutter) sind derselbe Editor. Beide können die Auswahl behalten oder löschen. Die Cutter-Seite ist die für Refrain oder Intro geschriebene.',
+            'Ein Klingelton, begrenzt auf 40 Sekunden, mit M4R nur wenn dieser Browser AAC kodieren kann, ist der [Klingelton-Ersteller](/ringtone-maker). Diese Seite installiert ihn nicht aufs Handy.',
+            'Ein Fade von 0 bis 5 Sekunden auf eine Datei ist [Audio-Fade](/fade-audio). Diese Seite blendet nicht ein oder aus.',
           ],
         },
         {
           heading: 'Was das Kürzen mit dem Klang macht',
           paragraphs: [
-            'Die Datei wird dekodiert, der Abschnitt genommen und der Export neu geschrieben. WAV ist die saubere Kopie dessen, was du behalten hast. MP3 ab 192 kbps reicht für Sprache, und 320 kbps ist die Einstellung, wenn die Quelle Musik ist.',
-            'Kürzen macht eine leise Aufnahme nicht lauter. Heb sie mit dem Lautstärke-Booster an, wenn der Clip die richtige Länge hat.',
+            'Die Datei wird dekodiert, der Abschnitt entnommen und der Export neu geschrieben. WAV ist 16-Bit-PCM dieses Abschnitts. MP3 kodiert ihn einmal, mit der gewählten Bitrate. M4A speichert eine AAC-Kopie für Apple-Apps, wenn dieser Browser AAC kodieren kann.',
+            'Diese Seite ändert die Lautstärke nicht. Eine zu leise Datei, von 10% bis 400%, ist [Lautstärke erhöhen](/increase-volume).',
           ],
         },
         {
           heading: 'Wie lang eine Datei sein darf',
           paragraphs: [
-            'Etwa eine Stunde ist auf einem aktuellen Computer angenehm. Die Grenze ist der Speicher im Tab, kein Limit, das wir setzen. Ein Handy schafft ein paar Minuten leicht und wird unruhiger, je länger die Datei ist.',
+            'Eine Datei über 300 MB wird abgelehnt. Eine Datei über einer Stunde öffnet trotzdem, und die Seite warnt, dass dem Tab der Speicher ausgehen kann. Diese Warnung ist keine Längenbegrenzung.',
           ],
           bullets: [
-            'Eine Sprachnotiz oder eine Podcast-Antwort: hier kürzen, auf dem Handy, wenn du willst.',
-            'Eine ganze Folge: der Computer ist der ruhigere Ort zum Anhören und Exportieren.',
-            'Ein Video: gekürzt wird die Tonspur. Das Bild wird nicht gespeichert.',
+            'Eine Sprachmemo oder eine Podcast-Antwort: schneide sie hier, gern auf dem Handy.',
+            'Eine ganze Folge: der Rechner ist der stabilere Ort für Vorschau und Export.',
+            'Ein Video: geschnitten wird die Tonspur. Das Bild wird nicht gespeichert.',
+          ],
+        },
+        {
+          heading: 'Die Ausgabe passend zum Ziel des Clips wählen',
+          paragraphs: [
+            'Verschiedene Ziele achten auf Verschiedenes: eine Chat-App will eine kleine Datei, eine E-Mail hat ein Größenlimit, und ein weiterer Schnitt will keinen zusätzlichen Verlust.',
+          ],
+          table: {
+            headers: ['Ziel', 'Wähle', 'Warum es passt'],
+            rows: [
+              ['Eine Chat-App wie WhatsApp', 'MP3 mit 128 oder 192 kbps', 'Kleine Datei, läuft überall. Dokumente bis 2 GB werden angenommen, ein Schnitt passt locker hinein.'],
+              ['Eine E-Mail', 'MP3 mit 128 kbps', 'Ein 12-Minuten-Schnitt bleibt bei etwa 12 MB, unter dem 25-MB-Limit von Gmail.'],
+              ['Apple-Apps (GarageBand, iMovie)', 'M4A mit AAC', 'Landet ohne weitere Konvertierung in Apple-Apps.'],
+              ['Ein weiterer Schnitt auf dieser Seite', 'WAV, verlustfrei', 'Kein zweiter verlustbehafteter Schritt. Fades und Lautstärke stapeln sich ohne MP3-Artefakte.'],
+              ['Social Video (TikTok, Reels)', 'WAV, verlustfrei', 'Die Plattform kodiert ohnehin neu — liefer die sauberste Datei ab.'],
+            ],
+          },
+          outro: [
+            'Limits ändern sich mit App-Updates. Im November 2026 anhand der Hilfeseiten der Apps geprüft.',
           ],
         },
       ],

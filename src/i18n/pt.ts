@@ -1239,63 +1239,87 @@ export const pt: Catalog = {
       cardLine: 'Arraste as alças para guardar exatamente o trecho que precisa — podcasts, áudios de voz, qualquer faixa.',
       name: 'Cortar áudio',
       shortName: 'Cortar áudio',
-      title: 'Cortar áudio — podcast ou recado de voz',
+      title: 'Editor de áudio — apare MP3 online com precisão de 0,01 s',
       description:
-        'Fique com um trecho de podcast, recado de voz ou gravação e salve em MP3 ou WAV. O corte roda no navegador e nada é enviado.',
+        'Apare MP3s, podcasts ou memos de voz: seleção na onda, passos de 0,01 s, loop, salve em MP3 (128–320 kbps) ou WAV sem perdas. Tudo local.',
       h1: 'Cortar áudio — Cortar arquivos de áudio',
       heroAlt: 'Cortar um MP3 ou podcast até ficar só o trecho que você precisa',
       subtitle: 'Recorte áudio online — grátis, direto no navegador. Nada é enviado.',
       intro:
         'Corte exatamente o trecho que você precisa de qualquer música, recado de voz, podcast ou gravação. Arraste na forma de onda para selecionar, ouça de volta e salve — o recorte inteiro acontece no seu aparelho, então até gravações longas ficam privadas e começam na hora.',
-      usesHeading: 'Cortes que terminam a edição',
+      usesHeading: 'Casos comuns de aparo de áudio',
       uses: [
-        'Tire a resposta de um podcast e deixe os “ahn” dos dois lados de fora.',
-        'Tire um refrão ou um loop da música inteira, sem um editor de desktop.',
-        'Encurte um recado de voz antes de enviar, para o arquivo ser só o que importa.',
+        'Clipes de podcast: corte a melhor resposta e deixe os êns fora.',
+        'Aparar MP3: tire um refrão ou loop de uma música inteira, sem editor de desktop.',
+        'Memos de voz: encurte antes de enviar, o arquivo fica só com a mensagem.',
+        'Atas de reunião: corte o papo furado, mantenha as decisões.',
+        'Preparar toque: apare um trecho e finalize no [criador de toque](/ringtone-maker).',
+        'Samples e loops: apare candidatos e fique com a melhor passada.',
+      ],
+      why: [
+        {
+          icon: 'zoom-in',
+          title: 'O corte cai no 0,01 s',
+          text: 'A régua de tempo muda de escala no zoom, as duas bordas ajustam em passos de 0,01/0,1/1 s e a seleção toca em loop enquanto ajusta — ouça o corte antes de confirmar.',
+        },
+        {
+          icon: 'scissors',
+          title: 'Duas saídas, sem trocar de modo',
+          text: '“Salvar seleção” mantém e “Salvar sem seleção” remove — cada botão mostra a duração ao vivo e baixa em um clique.',
+        },
       ],
       howTo: [
-        {
-          name: 'Solte o arquivo',
-          text: 'Arraste um arquivo de áudio ou vídeo para a área da forma de onda, ou clique para procurar. MP3, WAV, M4A, OGG, FLAC e outros são aceitos.',
-        },
-        {
-          name: 'Selecione o que manter',
-          text: 'Arraste pela forma de onda para marcar o trecho que você quer. Arraste as alças para ajustar, ou digite os tempos exatos de início e fim.',
-        },
-        {
-          name: 'Ouça e salve',
-          text: 'Aperte play para ouvir só a seleção e clique em Exportar para baixar o arquivo recortado em MP3 ou WAV.',
-        },
+        { name: 'Solte o áudio', text: 'Arraste um arquivo até o quadro tracejado ou clique para procurar. MP3, WAV, M4A, OGG, FLAC e vídeo decodificam no seu dispositivo.' },
+        { name: 'Marque o que manter', text: 'Desenhe a seleção na onda e ajuste as duas bordas em passos de 0,01/0,1/1 s, ou digite início e fim exatos.' },
+        { name: 'Ouça em loop', text: 'Ative o loop para ouvir só a seleção; mudar uma borda reinicia do topo para ajustar de ouvido. Depois mantenha ou remova a seleção.' },
+        { name: 'Leve o arquivo', text: '“Aparar e baixar” para MP3 (128–320 kbps) ou WAV sem perdas; o nome leva -edited.' },
       ],
       faqs: [
         {
-          q: 'Esse cortador de áudio é mesmo grátis?',
-          a: 'Sim. Cada recorte e cada exportação são grátis, sem cadastro e sem marca d\'água. A ferramenta roda inteiramente no navegador, então não há custo de servidor para repassar a você.',
+          q: 'Esse cortador de áudio é realmente grátis?',
+          a: 'Sim. Não há conta, e a exportação não tem marca d’água. O arquivo é decodificado neste navegador.',
         },
         {
           q: 'Meu áudio é enviado para um servidor?',
-          a: 'Não. O arquivo é decodificado e processado pelo seu próprio navegador, com a Web Audio API. Você pode ficar offline depois de carregar a página e o cortador continua funcionando — nada é enviado para lugar nenhum.',
+          a: 'Não. O arquivo é decodificado nesta aba com a Web Audio API. Depois que os scripts da página carregam, decodificar e exportar WAV não precisam de rede. Exportar MP3 exige que o codificador MP3 tenha carregado uma vez.',
         },
         {
-          q: 'Quais formatos eu posso recortar?',
-          a: 'O navegador decodifica MP3, WAV, M4A/AAC, OGG, FLAC e áudio em WebM. Você pode salvar o resultado como MP3 (128–320 kbps) ou WAV sem perdas.',
+          q: 'Quais formatos posso recortar?',
+          a: 'Os que este navegador já consegue decodificar. O menu de salvar oferece MP3 a 64, 96, 128, 192 ou 320 kbps, M4A (AAC) quando o navegador suporta, ou WAV de 16 bits. O MP3 codifica só os dois primeiros canais.',
         },
         {
           q: 'Recortar reduz a qualidade do áudio?',
-          a: 'Salvar em WAV é bit a bit no trecho que você mantém — sem recompactar. Salvar em MP3 recodifica uma vez; em 192 kbps ou acima, a diferença é praticamente inaudível para a maioria das pessoas.',
+          a: 'WAV é PCM de 16 bits das amostras que você mantém. O MP3 codifica esse trecho uma vez, no bitrate escolhido. Título, artista e capa não são copiados.',
         },
         {
           q: 'Dá para recortar áudio no celular?',
-          a: 'Sim. A forma de onda aceita toque, e o botão de exportar fica ao alcance na parte de baixo da tela. Funciona no Safari no iPhone e no Chrome ou Firefox no Android.',
+          a: 'A forma de onda aceita arrasto por toque. Um arquivo com mais de 300 MB é rejeitado. Um arquivo com mais de uma hora abre mesmo assim, e a página avisa que a aba pode ficar sem memória.',
         },
         {
           q: 'Qual o tamanho máximo do arquivo?',
-          a: 'Gravações de até cerca de uma hora rodam bem num computador atual. O limite prático é a memória do aparelho, não um teto artificial. Repetir a parte que você guardou, de 2 a 16 vezes, é o repetidor de áudio.',
+          a: 'Mais de 300 MB é rejeitado. Mais de uma hora abre mesmo assim, com aviso de memória. Repetir o trecho mantido de 2 a 16 vezes, até 10 minutos, é o [loop de áudio](/audio-looper).',
         },
-      {
-        q: 'Posso cortar um arquivo local pelo Claude ou pelo Cursor?',
-        a: 'Esta página corta no navegador com a Web Audio API. Você não instala nada. /mcp roda no seu computador e chama o ffmpeg. Início e fim são em segundos. WAV são as amostras decodificadas. O MP3 é codificado uma vez. O app de chat ainda vê o caminho e os argumentos.',
-      }],
+        {
+          q: 'Posso cortar um arquivo local pelo Claude ou Cursor?',
+          a: 'Esta página corta no navegador com a Web Audio API. Nada é instalado. O /mcp roda no seu computador e chama o ffmpeg. Passe um início e um fim em segundos. WAV são as amostras decodificadas. MP3 é codificado uma vez. O app de chat ainda vê o caminho e os argumentos.',
+        },
+        {
+          q: 'Qual a precisão do corte?',
+          a: 'As setas movem cada borda em passos de 0,01 s, 0,1 s e 1 s, e os dois tempos podem ser digitados à mão. A régua sob a onda acompanha o zoom, então o corte cai onde você quer.',
+        },
+        {
+          q: 'Dá para recortar em tela cheia no celular?',
+          a: 'Dá. O ícone de expandir na barra abre o editor na tela toda, e a onda ocupa o display inteiro. Toque de novo ou aperte Escape para voltar.',
+        },
+        {
+          q: 'Qual formato salvar para WhatsApp ou e-mail?',
+          a: 'MP3 a 128 ou 192 kbps fica pequeno e toca em qualquer lugar. O WhatsApp aceita documentos de até 2 GB, e o Gmail limita mensagens a 25 MB — um corte cabe com folga.',
+        },
+        {
+          q: 'Por que o arquivo exportado tem um sufixo?',
+          a: 'Cada exportação adiciona uma tag curta como -edited para distinguir versões. Renomeie o arquivo depois de baixar; o áudio não muda.',
+        },
+      ],
       screenshotsAlt: [
         'Cortar áudio: área de soltar, nada é enviado a um servidor',
         'Cortar áudio: área de trabalho com o arquivo carregado',
@@ -1305,37 +1329,63 @@ export const pt: Catalog = {
         {
           heading: 'Marque a parte que você quer manter',
           paragraphs: [
-            'Arraste sobre a forma de onda. O início e o fim mudam enquanto você arrasta, e dá para digitar os dois tempos quando o dedo ou o mouse não é preciso o bastante. Aperte play para ouvir só esse trecho antes de salvar.',
-            'Exporte WAV se você vai cortar de novo ou editar mais. Exporte MP3 quando o clipe está pronto. Um corte em WAV mantém as amostras que você selecionou. Um corte em MP3 codifica uma vez, no bitrate que você escolher.',
+            'Arraste sobre a onda para marcar o trecho. A régua sob a faixa mostra a escala, e uma etiqueta em cada borda mostra o tempo exato. Aperte reproduzir para ouvir só esse trecho antes de salvar.',
+            'Exporte WAV se for recortar de novo ou continuar editando. Exporte MP3 quando o clip estiver pronto. Um corte para WAV mantém as amostras escolhidas. Um corte para MP3 codifica uma vez, no bitrate escolhido.',
+          ],
+        },
+        {
+          heading: 'Ajuste o corte ao centésimo de segundo',
+          paragraphs: [
+            'Os grupos de setas ao lado de cada campo de tempo movem uma borda em 0,1 s, 0,01 s ou 1 s por clique. Os dois tempos também podem ser digitados à mão.',
+            'A reprodução em loop repete o trecho sem parar. Cada ajuste reinicia o trecho do começo, então a mudança é ouvida na hora.',
           ],
         },
         {
           heading: 'Corte uma gravação ou uma música',
           paragraphs: [
-            'Esta página serve para uma gravação que você precisa encurtar: uma resposta de podcast, um recado de voz, uma aula, o meio de um arquivo longo.',
+            'Esta página é para uma gravação que precisa ser encurtada: uma resposta de podcast, um memo de voz, uma aula, o meio de um arquivo longo.',
           ],
           bullets: [
-            'Esta página e o [cortador de MP3](/mp3-cutter) são o mesmo editor. Os dois podem manter a seleção ou apagá-la. A página do cortador é a escrita para um refrão ou uma introdução.',
-            'Um toque de celular, limitado a 40 segundos, com M4R só quando este navegador codifica AAC, é o [criador de toque](/ringtone-maker). Esta página não instala o toque no celular.',
-            'Um fade de 0 a 5 segundos em um arquivo é o [fade de áudio](/fade-audio). Esta página não aplica fade.',
+            'Esta página e o [cortador de MP3](/mp3-cutter) são o mesmo editor. Ambos podem manter a seleção ou apagá-la. A página do cortador é a escrita para um refrão ou uma intro.',
+            'Um toque, limitado a 40 segundos, com M4R só quando este navegador consegue codificar AAC, é o [criador de toques](/ringtone-maker). Esta página não instala no celular.',
+            'Um fade de 0 a 5 segundos em um arquivo é o [fade de áudio](/fade-audio). Esta página não faz fade.',
           ],
         },
         {
           heading: 'O que o corte faz com o som',
           paragraphs: [
-            'O arquivo é decodificado, o trecho é retirado e a exportação é escrita de novo. WAV é PCM de 16 bits desse trecho. MP3 codifica uma vez. O bitrate padrão desta página é 192 kbps.',
-            'Esta página não altera o volume. Um arquivo mais baixo, de 10% a 400%, é o [aumentar volume](/increase-volume).',
+            'O arquivo é decodificado, o trecho é retirado e a exportação é reescrita. WAV é PCM de 16 bits desse trecho. MP3 o codifica uma vez, no bitrate escolhido. M4A salva uma cópia AAC para apps da Apple quando este navegador consegue codificar AAC.',
+            'Esta página não muda o volume. Um arquivo baixo, de 10% a 400%, é o [aumentar volume](/increase-volume).',
           ],
         },
         {
           heading: 'Qual o tamanho máximo de arquivo',
           paragraphs: [
-            'Um arquivo acima de 300 MB é recusado. Um arquivo acima de uma hora ainda abre, e a página avisa que a aba pode ficar sem memória. Esse aviso não é um limite de duração.',
+            'Um arquivo com mais de 300 MB é rejeitado. Um com mais de uma hora abre mesmo assim, e a página avisa que a aba pode ficar sem memória. Esse aviso não é um limite de duração.',
           ],
           bullets: [
-            'Um recado de voz ou uma resposta de podcast: corte aqui, no celular se quiser.',
-            'Um episódio completo: o computador é o lugar mais estável para ouvir e exportar.',
-            'Um vídeo: o que é cortado é a trilha sonora. A imagem não é salva.',
+            'Um memo de voz ou uma resposta de podcast: recorte aqui, no celular se quiser.',
+            'Um episódio inteiro: o computador é o lugar mais estável para pré-visualizar e exportar.',
+            'Um vídeo: o que é cortado é a trilha de som. A imagem não é salva.',
+          ],
+        },
+        {
+          heading: 'Escolha a saída conforme o destino do clip',
+          paragraphs: [
+            'Cada destino se importa com coisas diferentes: um app de chat quer arquivo pequeno, um e-mail tem limite de tamanho, e outra edição não quer perda extra.',
+          ],
+          table: {
+            headers: ['Destino', 'Escolha', 'Por que encaixa'],
+            rows: [
+              ['Um app de chat como WhatsApp', 'MP3 a 128 ou 192 kbps', 'Arquivo pequeno, toca em todo lugar. Documentos de até 2 GB são aceitos, então um corte cabe com folga.'],
+              ['Um e-mail', 'MP3 a 128 kbps', 'Um corte de 12 minutos fica perto de 12 MB, abaixo do limite de 25 MB do Gmail.'],
+              ['Apps da Apple (GarageBand, iMovie)', 'M4A com AAC', 'Entra nos apps da Apple sem outra conversão.'],
+              ['Outra edição neste site', 'WAV, sem perdas', 'Sem uma segunda etapa com perda. Fades e volume se somam sem artefatos de MP3.'],
+              ['Vídeo social (TikTok, Reels)', 'WAV, sem perdas', 'A plataforma recodifica de qualquer jeito: entregue o arquivo mais limpo.'],
+            ],
+          },
+          outro: [
+            'Os limites mudam conforme os apps atualizam. Conferido nas páginas de ajuda de cada app em novembro de 2026.',
           ],
         },
       ],
