@@ -201,3 +201,27 @@ audacity audio recording (202k)、record chrome audio (153k)、audacity audio re
 - 机制变更：`assertCatalogs` 的 uses 检查放宽为 ≥3（簇重写把场景卡扩到 6）；**noise-remover 移出 PENDING_I18N**——parity 门禁已恢复对该页强制（uses 6/6、howTo 4/4、faqs 7/7 全语种对齐）。
 - 教训（skill 素材）：批量翻译脚本按"第 1/2 个 heading"替换时发生了**槽位偏移**（替换了第 2/3 个，第 1 个残留旧文案、第 3 个被覆盖）——用 git HEAD 原文恢复第 3 标题后按槽位 0/1/2 重设。批量脚本替换"第 N 个出现"必须先断言总数再用 0 基索引。
 - 验证：astro check 0、check:i18n OK（含 ja/ko/de/es 的 budget 与禁词表）、smoke ALL PASS、ja/de/ar 三语种页面 H2 链与 why/场景卡渲染抽查通过。
+
+## 十、标准流程与易错清单（剩余页面照此执行，2026-11-07 固化）
+
+用户指令：不再逐页询问，按本清单一口气做完 §五 全部页面。
+
+### 每页六步（顺序固定）
+1. **蚕食查重**：§3.5 表 + 全站 `grep` 词根（改写前后各一次）。
+2. **zh 全套**：title（主词根前置 + 机制 + 限定；han ≤20）/ h1（确认式）/ description（三段式：机制数字→限制兼容→承诺；han ≤75）/ usesHeading（关键词式）/ uses 场景卡 ×6（场景名：收益）/ howTo ×4（先 grep zh.ts 核对控件 label，一字不差）/ why 卡 ×2（第二张常为"诚实的边界"）/ sections 标题带词根（内容段落只在证据不足时改）；禁"您"、禁 emoji；TDK-01：TDK 里每个数字同页正文有原句。
+3. **EN 全套**：title ≤60（词根+机制+限定）/ description 138–155 三段式 / 其余同构 zh；新数字若正文缺失 → 同批补 FAQ。
+4. **9 语种翻译批**：可复用脚本 `python3 /tmp/cluster_translate.py <spec.json>`；控件 label 用占位符从各语种文件插值（strength/export/play/keep/delete 等，先在 spec 里声明 key）；语种禁词（de 无 Sie、es 无 usted、ru 无 Вы、ko 无 합니다）与预算（ja 35/80、ko 30/75、zh 20/75、默认 60/155）过 i18n-audit。
+5. **记账**：slug 加 PENDING_I18N（zh 落地时）→ 翻译完成移除（parity 门禁恢复强制）；方案 §八 状态行 + §九 日志。
+6. **门禁 + 提交**：astro check 0、check:i18n OK、smoke ALL PASS、`/zh` + 一个非英语种页面抽查；每页独立 commit。
+
+### 易错清单（已发生过的坑，写码前过一遍）
+1. **批量脚本"第 N 个出现"替换必槽位偏移**（noise-remover 轮实锤：替换了第 2/3 个 heading、第 1 个残留）——先断言 heading 总数，再用 0 基槽位数组明确指定改哪几个。
+2. **脚本生成的多行数组项漏尾逗号**（9 语种全炸）——生成器里带逗号，astro check 兜底。
+3. **TDK 新数字必须同批补正文**（300 MB 首轮漏了 FAQ，TDK-01 违例）——EN/zh/9 语种四处一起补。
+4. **assertCatalogs 的 uses 检查已放宽为 ≥3**；场景卡 6 个是合规形状。PENDING_I18N 期间豁免、翻译完成必须移出恢复强制。
+5. **i18n 同名键**（title/h1 等在 ui 与 tools 两区都有）——行替换只在 entry slice 内做，禁止全文件 replace。
+6. **控件点名**先 grep zh.ts 对应 label；不要凭记忆写。
+7. **tools.ts 大改禁止多轮增量修补**——一次综合替换；出错回 git 基线重放。
+8. **description 三段式顺序**：机制数字 → 限制/兼容 → 承诺；红海词 online/free 只作词根不当卖点。
+9. **语种禁词/预算**由 i18n-audit 硬校验：de 无 Sie/Ihnen、es 无 usted、ru 无 Вы/Вас、ko 无 합니다、zh 无 您。
+10. **zh.ts 与 tools.ts 成对核对**——单查 en 侧会漏 zh（11-05 事故教训）。
