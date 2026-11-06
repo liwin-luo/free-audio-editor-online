@@ -28,7 +28,6 @@ export const PENDING_I18N = new Set<string>([
   'reverse-audio',
   'change-audio-speed',
   'increase-volume',
-  'mp4-to-mp3',
   'extract-audio',
   'voice-recorder',
   'audio-to-text',

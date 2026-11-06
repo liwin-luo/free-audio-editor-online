@@ -1349,7 +1349,7 @@ export const es: Catalog = {
       shortName: 'Cortar MP3',
       title: 'Cortar MP3 online — conserva o elimina el fragmento',
       description:
-        'Corta música MP3 online: conserva el estribillo o elimina la intro. El WAV es idéntico bit a bit, el MP3 se codifica una sola vez hasta 320 kbps. Se rechazan archivos de más de 300 MB.',
+        'Corta música MP3 online: conserva el estribillo o elimina la intro. WAV sin pérdidas extra, MP3 a hasta 320 kbps. Más de 300 MB se rechaza.',
       h1: 'Cortar MP3 — corta un MP3 online, gratis',
       heroAlt: 'Cortar MP3 online gratis',
       subtitle: 'Corta canciones y archivos MP3 en línea: quédate con la parte que quieres y borra el resto.',
@@ -2513,33 +2513,40 @@ export const es: Catalog = {
       cardLine: 'Guarda la banda sonora de un vídeo, grabación de pantalla o archivo de cámara como MP3.',
       name: 'Convertidor de MP4 a MP3',
       shortName: 'MP4 a MP3',
-      title: 'Convertir MP4 a MP3 online gratis, sin subir',
+      title: 'MP4 a MP3 — convierte vídeo MP4, MOV y WebM a MP3 online',
       description:
-        'Convierte MP4 a MP3 en tu navegador. La pista se extrae en tu dispositivo y el video nunca se sube. Gratis, sin registro.',
+        'Extrae la pista de audio de vídeo MP4, MOV o WebM como MP3, decodificada localmente en tu navegador. 64–320 kbps, lotes como un ZIP. Las pistas AC3/DTS no se pueden decodificar.',
       h1: 'Convertir MP4 a MP3 online gratis, sin subir — Convertir MP4 a MP3 online, gratis',
       heroAlt: 'Convertir la pista de un MP4, MOV o WebM a MP3',
       subtitle: 'Saca la pista de audio de cualquier video, en tu navegador. Nada se sube.',
       intro:
         'Convierte videos MP4 en audio MP3 sin instalar nada ni subir gigabytes a un servidor. Tu navegador lee el archivo desde el disco, decodifica la pista de audio en local y la guarda como MP3. Un video de 500 MB se convierte en segundos porque solo se procesa la pista de audio.',
-      usesHeading: 'Vídeos que se convierten por el sonido',
+      usesHeading: 'Casos comunes de conversión de MP4 a MP3',
       uses: [
-        'Guarda una clase, un concierto o una entrevista como audio que se oye con la pantalla apagada.',
-        'No hace falta subir un vídeo enorme. La pista se decodifica en este dispositivo.',
-        'Convierte la pista entera y recórtala después si solo necesitas un tramo.',
+        'Guardar clases: convierte vídeos de clases o conciertos en audio para escuchar sin pantalla.',
+        'Fuente de entrevistas: saca la pista de los archivos de cámara para transcribir o editar.',
+        'Extraer música: convierte grabaciones de conciertos a MP3 para el coche.',
+        'Grabaciones de pantalla: quédate solo con la narración — una décima del tamaño.',
+        'Archivo: convierte clips antiguos de cámara a MP3 por lotes.',
+        'Fuente de pódcast: convierte la pista completa y luego corta fragmentos en el [editor de audio](/audio-trimmer).',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'Solo la pista, nunca la imagen',
+          text: 'El navegador decodifica el audio y escribe el MP3 directamente — la pista de vídeo se ignora: 4K y 240p se convierten a la misma velocidad.',
+        },
+        {
+          icon: 'warning-triangle',
+          title: 'Límites claros',
+          text: 'Se convierten MP4 con audio AAC, Opus en WebM y la mayoría de MOV. Las pistas AC3/DTS no se pueden decodificar y se rechazan con un mensaje claro.',
+        },
       ],
       howTo: [
-        {
-          name: 'Suelta tu video',
-          text: 'Arrastra un MP4 a la página o haz clic para elegirlo. Los archivos WebM y MOV con pistas de audio estándar funcionan igual. Puedes soltar varios archivos. Comparten el ajuste que eliges después. Uno se descarga solo. Dos o más vuelven en un ZIP.',
-        },
-        {
-          name: 'Elige un bitrate',
-          text: '320 kbps para videos musicales, 192 kbps para escuchar todos los días, 128 kbps para entrevistas y clases.',
-        },
-        {
-          name: 'Convierte y descarga',
-          text: 'Haz clic en Convertir a MP3. La pista de audio se decodifica en tu navegador y el MP3 se descarga de inmediato.',
-        },
+        { name: 'Suelta tu vídeo', text: 'Arrastra un MP4 al marco discontinuo o explora. WebM con Opus y la mayoría de MOV funcionan igual. Varios archivos comparten los ajustes siguientes.' },
+        { name: 'Elige la tasa', text: '64–320 kbps: 320 para vídeos musicales, 192 para el día a día, 128 para entrevistas y clases.' },
+        { name: 'Pulsa «{export}»', text: 'El botón principal de la barra de exportación. La pista de audio se decodifica localmente — la imagen no se toca: 4K y 240p van a la misma velocidad.' },
+        { name: 'Llévate los archivos', text: 'Un archivo se descarga solo; dos o más vuelven en un ZIP con nombres -converted.' },
       ],
       faqs: [
         { q: '¿Puedo convertir más de un video?', a: 'Sí. Varios archivos comparten el ajuste de esta página. Se convierten uno tras otro en este dispositivo, y cada archivo se libera antes de empezar el siguiente. Uno se descarga solo. Dos o más vuelven en un ZIP. Un teléfono se queda sin memoria antes, así que un archivo muy largo va de uno en uno ahí.' },

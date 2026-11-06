@@ -1348,7 +1348,7 @@ export const pt: Catalog = {
       shortName: 'Cortar MP3',
       title: 'Cortar MP3 — cortar música MP3 online, manter ou excluir',
       description:
-        'Corte música MP3 online: mantenha o refrão ou exclua a introdução. O WAV é idêntico bit a bit, o MP3 codifica uma vez até 320 kbps. Arquivos acima de 300 MB são rejeitados.',
+        'Corte música MP3 online: mantenha o refrão ou exclua a introdução. WAV sem perdas extras, MP3 até 320 kbps. Acima de 300 MB é rejeitado.',
       h1: 'Cortar MP3 — corte um MP3 online, grátis',
       heroAlt: 'Cortar MP3 online grátis',
       subtitle: 'Corte músicas e arquivos MP3 online — fique com o trecho que você quer e apague o resto.',
@@ -2550,33 +2550,40 @@ export const pt: Catalog = {
       cardLine: 'Salve a trilha de um vídeo, gravação de tela ou arquivo de câmera como MP3.',
       name: 'Converter vídeo em MP3',
       shortName: 'MP4 para MP3',
-      title: 'Converter vídeo em MP3 online grátis — MP4 para MP3',
+      title: 'MP4 para MP3 — converter MP4, MOV e WebM em MP3 online',
       description:
-        'Converta vídeo MP4 para MP3 no navegador — a trilha é extraída no aparelho e nunca enviada. Grátis, rápido, sem cadastro, funciona no celular.',
+        'Extraia a faixa de áudio de vídeos MP4, MOV ou WebM como MP3, decodificado localmente no navegador. 64–320 kbps, lote em um ZIP. Faixas AC3/DTS não podem ser decodificadas.',
       h1: 'Converter vídeo em MP3 — Converter um vídeo em MP3',
       heroAlt: 'Converter a faixa de um MP4, MOV ou WebM em MP3',
       subtitle: 'Tire a trilha sonora de qualquer vídeo — direto no navegador, nada enviado.',
       intro:
         'Transforme vídeos MP4 em áudio MP3 sem instalar nada e sem enviar gigabytes para um servidor. O navegador lê o arquivo do disco, decodifica a trilha no aparelho e salva como MP3 — um vídeo de 500 MB converte em segundos porque só a faixa de áudio é processada.',
-      usesHeading: 'Vídeos que se convertem pelo som',
+      usesHeading: 'Casos comuns de conversão de MP4 para MP3',
       uses: [
-        'Salve uma aula, um show ou uma entrevista como áudio que toca com a tela apagada.',
-        'Não precisa enviar um vídeo enorme. A trilha é decodificada neste aparelho.',
-        'Converta a faixa inteira e corte depois, se você só precisa de um trecho.',
+        'Salvar aulas: transforme vídeos de aulas ou shows em áudio para ouvir sem a tela.',
+        'Fonte de entrevistas: extraia a faixa dos arquivos de câmera para transcrição ou edição.',
+        'Extrair música: converta gravações de shows em MP3 para o carro.',
+        'Gravações de tela: mantenha só a narração de uma aula gravada — um décimo do tamanho.',
+        'Arquivo: converta clipes antigos de câmera em MP3 em lote.',
+        'Fonte de podcast: converta a faixa completa e corte trechos no [editor de áudio](/audio-trimmer).',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'Só a faixa, nunca a imagem',
+          text: 'O navegador decodifica o áudio e escreve o MP3 diretamente — a faixa de vídeo é ignorada: 4K e 240p convertem na mesma velocidade.',
+        },
+        {
+          icon: 'warning-triangle',
+          title: 'Limites declarados',
+          text: 'MP4 com áudio AAC, Opus em WebM e a maioria dos MOV convertem. Faixas AC3/DTS não podem ser decodificadas e são rejeitadas com mensagem clara.',
+        },
       ],
       howTo: [
-        {
-          name: 'Solte o vídeo',
-          text: 'Arraste um MP4 para a página ou clique para procurar. Arquivos WebM e MOV com trilhas de áudio padrão funcionam do mesmo jeito. Dá para soltar vários arquivos. Eles usam o ajuste que você escolhe em seguida. Um baixa sozinho. Dois ou mais voltam num ZIP.',
-        },
-        {
-          name: 'Escolha o bitrate',
-          text: '320 kbps para clipes, 192 kbps para ouvir no dia a dia, 128 kbps para entrevistas e aulas.',
-        },
-        {
-          name: 'Converta e baixe',
-          text: 'Clique em Converter para MP3. A trilha de áudio é decodificada no navegador e o MP3 baixa na hora.',
-        },
+        { name: 'Solte o vídeo', text: 'Arraste um MP4 até o quadro tracejado ou clique para procurar. WebM com Opus e a maioria dos MOV funcionam igual. Vários arquivos compartilham os ajustes seguintes.' },
+        { name: 'Escolha a taxa', text: '64–320 kbps: 320 para clipes musicais, 192 para o dia a dia, 128 para entrevistas e aulas.' },
+        { name: 'Clique “{export}”', text: 'O botão principal da barra de exportação. A faixa de áudio decodifica localmente — a imagem não é tocada: 4K e 240p convertem na mesma velocidade.' },
+        { name: 'Leve os arquivos', text: 'Um arquivo baixa sozinho; dois ou mais voltam como um ZIP com nomes -converted.' },
       ],
       faqs: [
         { q: 'Posso converter mais de um vídeo?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },

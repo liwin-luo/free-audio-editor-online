@@ -1251,9 +1251,9 @@ export const fr: Catalog = {
       cardLine: 'Coupez un morceau sur le refrain, le drop ou n’importe quel extrait, sans réencodage.',
       name: 'Couper un MP3',
       shortName: 'Couper un MP3',
-      title: 'Couper MP3 — couper de la musique en ligne, garder ou supprimer',
+      title: 'Couper MP3 — musique en ligne, garder ou supprimer',
       description:
-        'Coupe la musique MP3 en ligne : garde le refrain ou supprime l’intro. L’export WAV est identique au bit près, le MP3 encode une seule fois jusqu’à 320 kbps. Les fichiers de plus de 300 Mo sont refusés.',
+        'Couper la musique MP3 en ligne : garder le refrain ou supprimer l’intro. WAV identique au bit près, MP3 jusqu’à 320 kbps. Plus de 300 Mo refusé.',
       h1: 'Couper un MP3 — couper un MP3 en ligne, gratuitement',
       heroAlt: 'Couper un MP3 en ligne gratuitement',
       subtitle: 'Coupez chansons et fichiers MP3 en ligne : gardez le passage voulu, supprimez le reste.',
@@ -2455,33 +2455,40 @@ export const fr: Catalog = {
       cardLine: 'Enregistrez la bande-son d’un clip, d’une capture d’écran ou d’une vidéo caméra en MP3.',
       name: 'Convertir MP4 en MP3',
       shortName: 'MP4 vers MP3',
-      title: 'Convertir MP4 en MP3 — extraire l’audio d’une vidéo',
+      title: 'MP4 en MP3 — convertir MP4, MOV et WebM en MP3 en ligne',
       description:
-        'Convertissez MP4 en MP3 dans votre navigateur. La bande-son est extraite en local, jamais téléversée. Gratuit, rapide, sans inscription.',
+        'Extrait la piste audio des vidéos MP4, MOV ou WebM en MP3, décodée localement dans votre navigateur. 64–320 kbps, lot en un ZIP. Les pistes AC3/DTS ne peuvent pas être décodées.',
       h1: 'Convertir MP4 en MP3 — Convertir une vidéo en MP3',
       heroAlt: 'Convertir la piste d’un MP4, d’un MOV ou d’un WebM en MP3',
       subtitle: 'Sortez la bande-son de n’importe quelle vidéo — dans votre navigateur, sans téléversement.',
       intro:
         'Transformez des vidéos MP4 en audio MP3 sans rien installer ni téléverser des gigaoctets vers un serveur. Votre navigateur lit le fichier depuis votre disque, décode la bande-son en local et l’enregistre en MP3 — une vidéo de 500 MB se convertit en quelques secondes puisque seule la piste audio est traitée.',
-      usesHeading: 'Des vidéos qu’on convertit pour le son',
+      usesHeading: 'Cas courants de conversion MP4 en MP3',
       uses: [
-        'Gardez un cours, un concert ou une interview en audio, à écouter écran éteint.',
-        'Évitez de téléverser une vidéo énorme. La bande-son est décodée sur cet appareil.',
-        'Convertissez la piste entière, puis rognez-la si un seul passage vous intéresse.',
+        'Sauvegarder les cours : convertir vidéos de cours ou concerts en audio à écouter sans l’écran.',
+        'Source d’entretiens : extraire la piste des fichiers caméra pour transcription ou montage.',
+        'Extraire la musique : convertir des enregistrements de concerts en MP3 pour la voiture.',
+        'Captures d’écran : ne garder que la narration d’un cours — un dixième du poids.',
+        'Archivage : convertir de vieux clips caméra en MP3 par lot.',
+        'Source de podcast : convertir la piste complète, puis couper les segments dans [l’éditeur audio](/audio-trimmer).',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'La piste seule, jamais l’image',
+          text: 'Le navigateur décode l’audio et écrit le MP3 directement — la piste vidéo est ignorée : 4K et 240p vont à la même vitesse.',
+        },
+        {
+          icon: 'warning-triangle',
+          title: 'Des limites dites clairement',
+          text: 'Les MP4 avec audio AAC, l’Opus en WebM et la plupart des MOV passent. Les pistes AC3/DTS ne peuvent pas être décodées et sont refusées avec un message clair.',
+        },
       ],
       howTo: [
-        {
-          name: 'Déposez votre vidéo',
-          text: 'Glissez un MP4 sur la page ou cliquez pour parcourir. Les fichiers WebM et MOV avec pistes audio standards fonctionnent de la même façon. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.',
-        },
-        {
-          name: 'Choisissez un débit',
-          text: '320 kbps pour les clips musicaux, 192 kbps pour l’écoute quotidienne, 128 kbps pour interviews et cours.',
-        },
-        {
-          name: 'Convertissez et téléchargez',
-          text: 'Cliquez sur Convertir en MP3. La piste audio est décodée dans votre navigateur et le MP3 se télécharge aussitôt.',
-        },
+        { name: 'Dépose ta vidéo', text: 'Dépose un MP4 dans le cadre pointillé ou clique pour parcourir. Le WebM avec Opus et la plupart des MOV fonctionnent pareil. Plusieurs fichiers partagent les réglages suivants.' },
+        { name: 'Choisis le débit', text: '64–320 kbps : 320 pour les clips musicaux, 192 pour l’écoute courante, 128 pour entretiens et cours.' },
+        { name: 'Clique «{export}»', text: 'Le bouton principal de la barre d’export. La piste audio se décode localement — l’image n’est pas touchée : 4K et 240p vont à la même vitesse.' },
+        { name: 'Récupère les fichiers', text: 'Un fichier part seul ; deux ou plus reviennent en un ZIP aux noms -converted.' },
       ],
       faqs: [
         { q: 'Puis-je convertir plus d’une vidéo ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },

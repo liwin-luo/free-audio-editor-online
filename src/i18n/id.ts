@@ -2551,33 +2551,40 @@ export const id: Catalog = {
       cardLine: 'Simpan trek suara klip video, rekaman layar, atau file kamera sebagai MP3.',
       name: 'Ubah Video Menjadi MP3',
       shortName: 'MP4 ke MP3',
-      title: 'Ubah Video Menjadi MP3 Online Gratis — MP4 ke MP3',
+      title: 'MP4 ke MP3 — konversi video MP4, MOV, dan WebM ke MP3 online',
       description:
-        'Konversi video MP4 ke MP3 di browser — soundtrack diekstrak secara lokal, tidak pernah diunggah. Gratis, cepat, tanpa mendaftar, dan berjalan di ponsel.',
+        'Ekstrak trek audio dari video MP4, MOV, atau WebM menjadi MP3, didekode lokal di browser Anda. 64–320 kbps, batch sebagai satu ZIP. Trek AC3/DTS tidak dapat didekode.',
       h1: 'Ubah Video Menjadi MP3',
       heroAlt: 'Ubah trek audio MP4, MOV, atau WebM menjadi MP3',
       subtitle: 'Ambil soundtrack dari video apa pun — langsung di browser, tidak ada yang diunggah.',
       intro:
         'Ubah video MP4 menjadi audio MP3 tanpa menginstal apa pun dan tanpa mengunggah ukuran gigabyte ke server. Browser membaca file dari disk, mendekode soundtrack secara lokal, lalu menyimpannya sebagai MP3 — video 500 MB selesai dalam hitungan detik karena yang diproses hanya trek audionya.',
-      usesHeading: 'Video yang dikonversi demi suaranya',
+      usesHeading: 'Kasus umum konversi MP4 ke MP3',
       uses: [
-        'Simpan kuliah, konser, atau wawancara sebagai audio yang bisa diputar dengan layar mati.',
-        'Tidak perlu mengunggah video yang besar. Soundtrack didekode di perangkat ini.',
-        'Konversi seluruh trek, lalu potong jika Anda hanya butuh satu bagian.',
+        'Simpan kuliah: ubah video kuliah atau konser menjadi audio untuk didengar tanpa layar.',
+        'Sumber wawancara: ambil trek dari file kamera untuk transkripsi atau penyuntingan.',
+        'Ekstrak musik: konversi rekaman konser menjadi MP3 untuk mobil.',
+        'Rekaman layar: simpan hanya narasi dari rekaman kursus — sepersepuluh ukurannya.',
+        'Arsip: konversi klip kamera lama menjadi MP3 secara batch.',
+        'Sumber podcast: konversi seluruh trek dulu, lalu potong bagiannya di [audio trimmer](/audio-trimmer).',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'Hanya treknya, gambar tak tersentuh',
+          text: 'Browser mendekode audio dan menulis MP3 langsung — trek video diabaikan: 4K dan 240p berkonversi dengan kecepatan yang sama.',
+        },
+        {
+          icon: 'warning-triangle',
+          title: 'Batas dijelaskan langsung',
+          text: 'MP4 dengan audio AAC, Opus dalam WebM, dan kebanyakan MOV bisa dikonversi. Trek AC3/DTS tidak dapat didekode dan ditolak dengan pesan yang jelas.',
+        },
       ],
       howTo: [
-        {
-          name: 'Jatuhkan video',
-          text: 'Seret MP4 ke halaman, atau klik untuk memilih. File WebM dan MOV dengan trek audio standar diproses dengan cara yang sama. Beberapa file boleh sekaligus. Mereka memakai pengaturan yang Anda pilih berikutnya. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP.',
-        },
-        {
-          name: 'Pilih bitrate',
-          text: '320 kbps untuk video musik, 192 kbps untuk didengar sehari-hari, 128 kbps untuk wawancara dan kuliah.',
-        },
-        {
-          name: 'Konversi dan unduh',
-          text: 'Klik Konversi ke MP3. Trek audio didekode di browser Anda, dan MP3 langsung terunduh.',
-        },
+        { name: 'Letakkan video', text: 'Geser MP4 ke bingkai putus-putus, atau klik untuk menelusuri. WebM dengan Opus dan kebanyakan MOV sama. Beberapa file berbagi pengaturan berikut.' },
+        { name: 'Pilih bitrate', text: '64–320 kbps: 320 untuk video musik, 192 untuk pendengaran harian, 128 untuk wawancara dan kuliah.' },
+        { name: 'Klik “{export}”', text: 'Tombol utama di bilah ekspor. Trek audio didekode secara lokal — gambar tidak disentuh: 4K dan 240p berkonversi sama cepat.' },
+        { name: 'Bawa filenya', text: 'Satu file unduh sendiri; dua atau lebih jadi satu ZIP bernama -converted.' },
       ],
       faqs: [
         { q: 'Bisakah saya mengubah lebih dari satu video?', a: 'Bisa. Beberapa file memakai pengaturan di halaman ini. Mereka dikonversi satu per satu di perangkat ini, dan setiap file dilepas sebelum yang berikutnya mulai. Satu file unduh sendiri. Dua atau lebih kembali sebagai satu ZIP. Ponsel kehabisan memori lebih dulu, jadi file yang sangat panjang di ponsel tetap satu per satu.' },

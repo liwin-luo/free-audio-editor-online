@@ -1348,9 +1348,9 @@ export const de: Catalog = {
       cardLine: 'Schneide einen Song auf den Refrain, den Drop oder jeden Clip — ohne Re-Encoding.',
       name: 'MP3 schneiden',
       shortName: 'MP3 schneiden',
-      title: 'MP3 schneiden — MP3-Musik online schneiden, behalten oder löschen',
+      title: 'MP3 schneiden — behalten oder löschen, ohne Upload',
       description:
-        'MP3-Musik online schneiden: Refrain behalten oder Intro löschen, dann speichern. WAV ist bitidentisch, MP3 wird einmal mit bis zu 320 kbps kodiert. Dateien über 300 MB werden abgelehnt.',
+        'MP3-Musik online schneiden: Refrain behalten oder Intro löschen. WAV bitidentisch, MP3 einmal kodiert, bis 320 kbps. Über 300 MB abgelehnt.',
       h1: 'MP3 schneiden — einen MP3 online kostenlos schneiden',
       heroAlt: 'MP3 kostenlos online schneiden',
       subtitle: 'Songs und MP3-Dateien online schneiden — behalte den Teil, den du willst, und lösche den Rest.',
@@ -2514,33 +2514,40 @@ export const de: Catalog = {
       cardLine: 'Sichere die Tonspur von Videoclips, Bildschirmaufnahmen oder Kameradateien als MP3.',
       name: 'MP4 in MP3 umwandeln',
       shortName: 'MP4 in MP3',
-      title: 'MP4 in MP3 umwandeln – kostenlos, ohne Upload',
+      title: 'MP4 zu MP3 — MP4, MOV und WebM online zu MP3 wandeln',
       description:
-        'Wandle MP4 im Browser in MP3 um. Die Tonspur wird auf deinem Gerät extrahiert, das Video wird nie hochgeladen. Kostenlos, ohne Anmeldung.',
+        'Tonauszüge aus MP4-, MOV- oder WebM-Videos als MP3 extrahieren — lokal im Browser dekodiert. 64–320 kbps, Stapel als ein ZIP. AC3/DTS-Spuren können nicht dekodiert werden.',
       h1: 'MP4 in MP3 umwandeln – kostenlos online',
       heroAlt: 'Eine MP4-, MOV- oder WebM-Tonspur in MP3 umwandeln',
       subtitle: 'Hol die Tonspur aus jedem Video — direkt im Browser, nichts wird hochgeladen.',
       intro:
         'Mach aus MP4-Videos MP3-Audio, ohne etwas zu installieren oder Gigabytes auf einen Server zu laden. Dein Browser liest die Datei von der Festplatte, dekodiert die Tonspur lokal und speichert sie als MP3 — ein 500-MB-Video ist in Sekunden umgewandelt, weil nur die Audiospur verarbeitet wird.',
-      usesHeading: 'Videos, die man wegen des Tons konvertiert',
+      usesHeading: 'Häufige Anlässe für MP4-zu-MP3',
       uses: [
-        'Speichere Vorlesung, Konzert oder Interview als Audio, das bei ausgeschaltetem Bildschirm läuft.',
-        'Ein riesiges Video musst du nicht hochladen. Der Ton wird auf diesem Gerät dekodiert.',
-        'Konvertiere die ganze Spur, und schneide danach, wenn du nur einen Abschnitt brauchst.',
+        'Vorträge sichern: Vorlesungs- oder Konzertvideos in Audio umwandeln, das ohne Bild genügt.',
+        'Interview-Quelle: die Spur aus Kameradateien für Transkript oder Bearbeitung ziehen.',
+        'Musik extrahieren: Konzertmitschnitte fürs Autoradio in MP3 wandeln.',
+        'Bildschirmaufnahmen: aus Kursaufzeichnungen nur den Vortrag behalten — ein Zehntel der Größe.',
+        'Archiv: alte Kameraclips im Stapel zu MP3 wandeln.',
+        'Podcast-Quelle: erst die ganze Spur wandeln, dann Segmente im [Audio-Trimmer](/audio-trimmer) schneiden.',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'Nur die Spur, nie das Bild',
+          text: 'Der Browser dekodiert den Ton und schreibt MP3 direkt — die Videospur wird ignoriert: 4K und 240p wandeln gleich schnell.',
+        },
+        {
+          icon: 'warning-triangle',
+          title: 'Grenzen, klar benannt',
+          text: 'MP4 mit AAC, Opus in WebM und die meisten MOV-Dateien funktionieren. AC3/DTS-Spuren lassen sich nicht dekodieren und werden mit klarer Meldung abgelehnt.',
+        },
       ],
       howTo: [
-        {
-          name: 'Video ablegen',
-          text: 'Ziehe eine MP4 hierher oder klicke zum Auswählen. WebM- und MOV-Dateien mit üblichen Audiospuren funktionieren genauso. Mehrere Dateien teilen sich die Einstellung, die du als Nächstes wählst. Eine Datei kommt allein, zwei oder mehr als ein ZIP.',
-        },
-        {
-          name: 'Bitrate wählen',
-          text: '320 kbps für Musikvideos, 192 kbps für alltägliches Hören, 128 kbps für Interviews und Vorlesungen.',
-        },
-        {
-          name: 'Umwandeln und herunterladen',
-          text: 'Klicke auf In MP3 umwandeln. Die Audiospur wird in deinem Browser dekodiert, und die MP3 lädt sofort herunter.',
-        },
+        { name: 'Video ablegen', text: 'MP4 in den gestrichelten Rahmen ziehen oder durchsuchen. WebM mit Opus und die meisten MOV-Dateien genauso. Mehrere Dateien teilen die nächsten Einstellungen.' },
+        { name: 'Bitrate wählen', text: '64–320 kbps: 320 für Musikvideos, 192 für den Alltag, 128 für Interviews und Vorträge.' },
+        { name: '«{export}» klicken', text: 'Der Hauptknopf in der Exportleiste. Die Tonspur wird lokal dekodiert — das Bild bleibt unberührt: 4K und 240p wandeln gleich schnell.' },
+        { name: 'Dateien mitnehmen', text: 'Eine Datei lädt allein; zwei oder mehr kommen als ein ZIP mit -converted-Namen zurück.' },
       ],
       faqs: [
         { q: 'Kann ich mehr als ein Video umwandeln?', a: 'Ja. Mehrere Dateien teilen sich die Einstellung auf dieser Seite. Die Dateien laufen nacheinander auf diesem Gerät, und jede Datei wird freigegeben, bevor die nächste beginnt. Eine Datei kommt allein, zwei oder mehr als ein ZIP. Ein Handy hat früher keinen Speicher mehr, also eine sehr lange Datei dort einzeln lassen.' },

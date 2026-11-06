@@ -2029,9 +2029,9 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP4 to MP3',
     icon: 'film',
     category: 'convert',
-    title: 'MP4 to MP3 — Convert Video to MP3 Online Free',
+    title: 'MP4 to MP3 — Convert MP4, MOV & WebM to MP3 Online',
     description:
-      'Convert MP4 to MP3 in your browser. The soundtrack is extracted on your device and never uploaded. Batch several files and download one ZIP. Free, no signup.',
+      'Extract the audio track from MP4, MOV or WebM video as MP3, decoded locally in your browser. 64–320 kbps, batch files as one ZIP. AC3/DTS tracks cannot be decoded.',
     h1: 'MP4 to MP3 — Convert a Video to MP3, Online Free',
     hero: {
       src: '/mp4-to-mp3.svg',
@@ -2062,24 +2062,43 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Pull the soundtrack out of any video — right in your browser, nothing uploaded.',
     intro:
       'Turn MP4 videos into MP3 audio without installing anything. The browser reads the file from your disk and decodes the soundtrack. Nothing is uploaded. Several files convert one after another and come back as one ZIP. A file over 300 MB is rejected. The picture is not encoded.',
-    usesHeading: 'Videos people convert for the sound',
+    usesHeading: 'Common uses for converting MP4 to MP3',
     uses: [
-      'Save a lecture, concert, or interview as audio you can play with the screen off.',
-      'Skip uploading a huge video. The soundtrack is decoded on this device.',
-      'Convert the whole track, then trim it if you only need a section.',
+      'Lecture saves: turn lecture or concert videos into audio you can hear with the screen off.',
+      'Interview source: pull the track from camera files for transcription or editing.',
+      'Music extraction: convert concert recordings to MP3 for the car.',
+      'Screen recordings: keep only the narration from a course recording — a tenth of the size.',
+      'Archive conversion: batch old camera clips into MP3 for storage.',
+      'Podcast source: convert the full track first, then cut segments in the [audio trimmer](/audio-trimmer).',
+    ],
+    why: [
+      {
+        icon: 'film',
+        title: 'Only the track, never the picture',
+        text: 'The browser decodes the audio and writes MP3 directly — the video track is ignored, so 4K and 240p convert at the same speed.',
+      },
+      {
+        icon: 'warning-triangle',
+        title: 'Format limits, stated plainly',
+        text: 'MP4 with AAC audio, Opus-in-WebM and most MOV files convert. AC3/DTS tracks cannot be decoded and are rejected with a clear message.',
+      },
     ],
     howTo: [
       {
         name: 'Drop your video',
-        text: 'Drag an MP4 onto the page or click to browse. WebM and MOV files with standard audio tracks work the same way. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
+        text: 'Drop an MP4 into the dashed frame or browse. WebM with Opus and most MOV files work the same. Several files share the settings you pick next.',
       },
       {
         name: 'Pick a bitrate',
-        text: '320 kbps for music videos, 192 kbps for everyday listening, 128 kbps for interviews and lectures.',
+        text: '64–320 kbps: 320 for music videos, 192 for everyday listening, 128 for interviews and lectures.',
       },
       {
-        name: 'Convert and download',
-        text: 'Click Convert to MP3. The audio track is decoded in your browser and the MP3 downloads straight away.',
+        name: 'Click Convert to MP3',
+        text: 'The primary button on the export bar. The audio track decodes locally — the picture is untouched, so 4K and 240p convert at the same speed.',
+      },
+      {
+        name: 'Take the files',
+        text: 'One file downloads alone; two or more come back as one ZIP with -converted names.',
       },
     ],
     faqs: [
