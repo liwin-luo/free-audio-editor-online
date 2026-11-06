@@ -108,13 +108,13 @@ const selectable = !config.converter && !config.silence && !config.noise && !con
   data-audio-editor
   data-config={JSON.stringify(config)}
   data-i18n={JSON.stringify(t)}
-  class="overflow-clip rounded-(--radius-tool) border border-line bg-surface"
+  class="overflow-clip rounded-(--radius-tool) border border-transparent"
 >
   <!-- Empty state: drop well, format chips, privacy line. Hidden once a file is loaded. -->
   <div data-empty>
   <DropPromise config={config} locale={locale}>
     <DropWell icon="upload-simple" hint={config.dropHint} />
-    <div class="relative z-10 mt-3 pb-1">
+    <div class="relative z-10 mt-1 pb-0.5">
       <LocalBadge text={t.dropLocal} />
     </div>
   </DropPromise>

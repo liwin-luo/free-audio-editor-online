@@ -19,17 +19,25 @@
   --color-ink: #18181b;
   --color-ink2: #52525b;
   --color-ink3: #71717a;
-  --color-accent: #0f766e;
-  --color-accent-strong: #115e59;
-  --color-accent-soft: rgba(13, 148, 136, 0.12);
+  --color-accent: #4f46e5;
+  --color-accent-strong: #4338ca;
+  --color-accent-soft: rgba(99, 102, 241, 0.12);
   /* Text/icon colour on top of an accent surface — flips in dark mode. */
   --color-on-accent: #ffffff;
   --color-success: #047857;
   --color-warning: #b45309;
   --color-danger: #be123c;
 
-  --radius-card: 0.75rem;
-  --radius-tool: 1rem;
+  /* BoardUI iridescent accent: a three-stop gradient shared by the primary
+     button, the editor board edge and focus glows. Dark mode lifts the same
+     stops to pastels so --color-on-accent stays dark there. */
+  --iri-a: #6366f1;
+  --iri-b: #8b5cf6;
+  --iri-c: #22d3ee;
+  --bg-iri: linear-gradient(100deg, var(--iri-a), var(--iri-b) 46%, var(--iri-c));
+
+  --radius-card: 1rem;
+  --radius-tool: 1.25rem;
   --shadow-card: 0 8px 24px -8px rgba(9, 9, 11, 0.08);
   --shadow-pop: 0 8px 24px -8px rgba(9, 9, 11, 0.15);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -45,13 +53,18 @@
   --color-ink: #fafafa;
   --color-ink2: #a1a1aa;
   --color-ink3: #a1a1aa;
-  --color-accent: #2dd4bf;
-  --color-accent-strong: #5eead4;
-  --color-accent-soft: rgba(45, 212, 191, 0.15);
+  --color-accent: #818cf8;
+  --color-accent-strong: #a5b4fc;
+  --color-accent-soft: rgba(129, 140, 248, 0.16);
   --color-on-accent: #09090b;
   --color-success: #34d399;
   --color-warning: #fbbf24;
   --color-danger: #fb7185;
+
+  --iri-a: #818cf8;
+  --iri-b: #a78bfa;
+  --iri-c: #67e8f9;
+  --bg-iri: linear-gradient(100deg, var(--iri-a), var(--iri-b) 46%, var(--iri-c));
 
   /* Dark surfaces need a deeper shadow — the light one disappears on near-black. */
   --shadow-card: 0 8px 24px -8px rgba(0, 0, 0, 0.55);
@@ -104,6 +117,23 @@
 }
 
 @layer components {
+  /* BoardUI composer board: the editor island wears a subtle iridescent edge.
+     The gradient rides the border-box; the padding-box fill keeps the surface
+     opaque. Markup ships `border-transparent` and no bg utility. */
+  [data-audio-editor] {
+    border-color: transparent;
+    background:
+      linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+      linear-gradient(
+          120deg,
+          color-mix(in srgb, var(--iri-a) 42%, var(--color-line)),
+          var(--color-line) 30%,
+          var(--color-line) 70%,
+          color-mix(in srgb, var(--iri-c) 42%, var(--color-line))
+        )
+        border-box;
+  }
+
   /* Pill chip for in-editor switchers (soundboard presets and layouts).
      Selected state uses aria-pressed, per the switcher rule in the UI spec. */
   .chip {
@@ -243,7 +273,7 @@
     gap: 0.5rem;
     height: 2.5rem;
     padding-inline: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 9999px;
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1;
@@ -251,6 +281,7 @@
     border: 1px solid transparent;
     transition:
       background-color 150ms var(--ease-out-expo),
+      background-position 300ms var(--ease-out-expo),
       border-color 150ms var(--ease-out-expo),
       color 150ms var(--ease-out-expo),
       transform 100ms var(--ease-out-expo);
@@ -266,12 +297,16 @@
   }
 
   .btn-primary {
-    background-color: var(--color-accent);
+    background-image: var(--bg-iri);
+    background-size: 160% 100%;
+    background-color: transparent;
     color: var(--color-on-accent);
+    box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--iri-b) 55%, transparent);
   }
 
   .btn-primary:hover:not(:disabled) {
-    background-color: var(--color-accent-strong);
+    background-position: 90% 0;
+    box-shadow: 0 8px 24px -6px color-mix(in srgb, var(--iri-b) 70%, transparent);
   }
 
   .btn-secondary {

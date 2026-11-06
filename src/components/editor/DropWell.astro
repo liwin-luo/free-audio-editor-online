@@ -18,7 +18,7 @@ const { icon, hint } = Astro.props;
   tabindex="0"
   role="button"
   aria-label={hint}
-  class="group relative flex w-full flex-col items-center overflow-hidden rounded-2xl px-6 py-12"
+  class="group relative flex w-full flex-col items-center overflow-hidden rounded-2xl px-6 py-5 md:py-7"
 >
   <div
     class="pointer-events-none absolute inset-y-0 left-10 flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
@@ -37,9 +37,9 @@ const { icon, hint } = Astro.props;
     ))}
   </div>
   <span
-    class="relative z-10 mx-auto grid size-14 place-items-center rounded-2xl bg-accent-soft text-accent ring-4 ring-accent/10 transition-transform duration-200 group-hover:scale-105"
+    class="relative z-10 mx-auto grid size-12 place-items-center rounded-xl bg-accent-soft text-accent ring-4 ring-accent/10 transition-transform duration-200 group-hover:scale-105"
   >
-    <Icon name={icon} size={24} />
+    <Icon name={icon} size={22} />
   </span>
-  <p class="relative z-10 mt-4 text-lg font-semibold">{hint}</p>
+  <p class="relative z-10 mt-2.5 text-base font-semibold">{hint}</p>
 </div>
