@@ -372,3 +372,15 @@
 - **纪律**：写步骤前先 grep zh.ts 核对控件 label；zh 禁"您"（样张的"您的音频"不能搬）；不用 emoji（站点用 Icon 集）；title/description/h1/subtitle/intro/cardLine 不动（SEO 头部资产）。
 - 验证：astro check 0 错误、check:i18n OK、smoke ALL PASS、/zh/silence-remover 浏览器全查（H2 顺序/4 卡/6 场景加粗/4 步/无"您"）。
 - **下一页：noise-remover**（顺序清单在风格线文档 §六），逐页推进；zh 全部验收后进翻译阶段，翻译完一个 slug 移除一个 PENDING。
+
+## BoardUI 全站换肤 + 投放区压紧（2026-11-07，用户拍板）
+
+用户看过 BoardUI 风格 demo（f7bf801 之前的对话内演示，silence-remover zh 文案 + BoardUI 视觉语言）后拍板"全部改成 BoardUI"，并指出旧投放区"框太大、移动端不适合"。**发现：站点本就有完整暗色主题（[data-theme=dark] token 覆盖 + 头部切换 + 无闪脚本），暗色零新建成本。**
+
+- **Token 换血（global.css，全站自动生效）**：accent 青绿→靛紫（light #4f46e5 / dark #818cf8，soft/strong 同步）；新增虹彩三色 token（--iri-a/b/c + --bg-iri 渐变，dark 抬成粉彩以保 on-accent 深色文字对比）；圆角 card 12→16px、tool 16→20px。
+- **组件类**：`.btn` 药丸化（9999px）；`.btn-primary` 虹彩渐变填充 + 色晕阴影 + hover 渐变位移；编辑器岛 `[data-audio-editor]` 虹彩渐变描边（padding-box/border-box 双背景技法，markup 去掉 bg-surface/border-line）。
+- **玻璃药丸导航**：Header 改悬浮胶囊（sticky top-3、rounded-full、bg-surface/80 + blur、shadow-card），工具下拉的 fixed top-[4.25rem] 恰好等于新头部高度（12+56=68px）零改动；theme-color meta 换 #4f46e5。
+- **投放区压紧（回答"框太大"）**：DropPromise min-h 220/280→150/190、py 40/48→24/32；DropWell py-12→py-5/7、图标 56→48px、标题 text-lg→base；徽标包裹 mt-3→mt-1（9 个文件）。**375px 实测：井高 352px（原 ~450+），整个编辑器卡 370px，投放区完全落入首屏。**
+- **hero SVG 机械换色**：46 个文件的 #0f766e/#ccfbf1/#0d9488 → #4f46e5/#e0e7ff（其余工具彩色 SVG 不动）。
+- 验证：astro check 0 错误、smoke ALL PASS；浏览器验收桌面亮/暗（silence-remover 空态+工作区）、375px 亮色（尺寸实测）、joiner（独立岛）一致性。
+- **遗留**：①独立岛的渐变描边未加（各自轮次）②OG 图（public/ 内青绿 og 图）未重生成 ③工作区 KPI stat tile 化（demo 里的样式）需要 i18n 新键，归入各工具交互轮次④guides/blog 页未逐一巡检（token 层改动自动生效，低风险）。
