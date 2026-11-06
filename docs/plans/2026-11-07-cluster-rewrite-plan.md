@@ -175,14 +175,14 @@ audacity audio recording (202k)、record chrome audio (153k)、audacity audio re
 | 页 | 簇词落地 | TDK | H2 维度 | 正文证明 | 门禁 | 验收 |
 |---|---|---|---|---|---|---|
 | noise-remover | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ 用户已确认 zh，en+9 语种已随批翻译（fa35be6） |
-| mp3-cutter | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| mp4-to-mp3 | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| audio-trimmer | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| ringtone-maker | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| audio-joiner | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| wav-to-mp3 | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| voice-recorder | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
-| split-mp3 | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| mp3-cutter | ✓ zh | ☐ | ☐ | ☐ | ☐ | ☐ |
+| mp4-to-mp3 | ✓ zh | ☐ | ☐ | ☐ | ☐ | ☐ |
+| audio-trimmer | ✓ zh | ☐ | ☐ | ☐ | ☐ | ☐ |
+| ringtone-maker | ✓ zh | ☐ | ☐ | ☐ | ☐ | ☐ |
+| audio-joiner | ✓ zh | ☐ | ☐ | ☐ | ☐ | ☐ |
+| wav-to-mp3 | ✓ zh | ☐ | ☐ | ☐ | ☐ | ☐ |
+| voice-recorder | ✓ zh | ☐ | ☐ | ☐ | ☐ | ☐ |
+| split-mp3 | ✓ zh | ☐ | ☐ | ☐ | ☐ | ☐ |
 
 （audio-trimmer 的 trimmer 重做轮已完成大部分内容工作——该页只需 trim mp3 词根补齐，工作量最小，可作流程试运行第一页。）
 
@@ -225,3 +225,17 @@ audacity audio recording (202k)、record chrome audio (153k)、audacity audio re
 8. **description 三段式顺序**：机制数字 → 限制/兼容 → 承诺；红海词 online/free 只作词根不当卖点。
 9. **语种禁词/预算**由 i18n-audit 硬校验：de 无 Sie/Ihnen、es 无 usted、ru 无 Вы/Вас、ko 无 합니다、zh 无 您。
 10. **zh.ts 与 tools.ts 成对核对**——单查 en 侧会漏 zh（11-05 事故教训）。
+
+### 八页 zh 全套完成（2026-11-07，等用户检查；检查通过后另起全量翻译批次）
+- 用户中途裁定调整流程：**先做完所有工具页的中文内容，用户统一检查后再做全量翻译**（推翻逐页"zh 确认→翻译"节奏）。
+- 已完成 zh 全套（title/h1/description/usesHeading/uses×6/why×2/howTo×4，TDK-01 数字同页核对，蚕食防护逐页查重）：
+  - **mp3-cutter**（3 簇）：title 补「在线剪切歌曲」（9.7M 主词的 online+cut music 词根）；FAQ 补 300 MB；步骤点名「保留选区」「删除选区」「剪切并下载」。
+  - **mp4-to-mp3**（2 簇 3243 万）：title/description/section 标题补 MPEG 词根；desc 带 64–320 kbps 区间+AC3/DTS 边界；FAQ 补 300 MB。
+  - **audio-trimmer**：title 补「在线裁剪 MP3，0.01 秒精度」（trim mp3 词根）；步骤重写为找点四步（循环试听/双出口点名）。
+  - **ringtone-maker**：title `铃声裁剪与制作 — 从歌曲剪出 iPhone 铃声，40 秒`（cutter+maker 双词根+40 s 规格）；why 卡「40 秒自动封顶」+「M4R 与 MP3 双出口」。
+  - **audio-joiner**（3 簇）：title 补「拼接/音频文件」（merger 意图）；desc 带交叉淡化 0–5 s+320 kbps；步骤拆出交叉淡化独立步。
+  - **wav-to-mp3**：title `64–320 kbps 五档任选，批量打包 ZIP`（TDK-08 区间，五档=实际档位数）；新增标签边界内链 tag-editor。
+  - **voice-recorder**：title 补「用麦克风录成 MP3，免费裁剪」；description 带 HTTPS-free 事实（权限手动允许/未导出即消失，均页内有据）。
+  - **split-mp3**：title `MP3 分段工具 — 在线把 MP3 分割成 2–16 段，打包 ZIP`（splitter/分割 词根 + TDK-08 区间）。
+- 门禁：astro check 0、check:i18n OK（zh budget 全过）、smoke ALL PASS、八页 200 + 程序化验收（title/h1/4 卡 why/6 场景卡/无"您"全过）。
+- PENDING_I18N 现有 9 个 slug（含 audio-trimmer/silence-remover 既有项）。**用户检查通过后：按 §六 启动全量翻译（en+9 语种），逐 slug 翻完清 PENDING。**
