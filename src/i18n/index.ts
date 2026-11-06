@@ -14,7 +14,7 @@ export const catalogs: Partial<Record<Locale, Catalog>> = {};
  * locale. That slug's translation MUST empty its entry — the parity gate then
  * enforces full coverage again. Keep it empty on main outside such interims.
  */
-export const PENDING_I18N = new Set<string>(['audio-trimmer', 'silence-remover']);
+export const PENDING_I18N = new Set<string>(['audio-trimmer', 'silence-remover', 'noise-remover']);
 
 export function getShell(locale: Locale): Shell {
   if (locale === 'en') return en;

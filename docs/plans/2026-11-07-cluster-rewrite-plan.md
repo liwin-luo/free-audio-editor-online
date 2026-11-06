@@ -53,6 +53,23 @@
 
 audacity audio recording (202k)、record chrome audio (153k)、audacity audio recorder (119k)、noise reduction in premiere pro (35k)、adobe audition noise removal (26k)、davinci resolve noise reduction (16k)、audacity how to get rid of background noise (7k)、denoise final cut pro (3k)、audacity batch convert (2k)。其中 Audacity 系列（4 簇 33 万/月）可聚合成一篇"Audacity 降噪/录音替代"长文 + 工具页内链。
 
+### 3.5 词根归属与蚕食防护（用户裁定：不得相互蚕食；每页执行前必查）
+
+原则：**一个主词根全站只有一个承接页**。执行动作：改写前 `grep` 全站 title/h1/description 查该词根的现有持有者；改写后复核全站没有第二页新持有同一词根。
+
+| 词根 | 归属页 | 边界规则（互链不互吞） |
+|---|---|---|
+| cut / crop / online mp3 cutter | mp3-cutter | audio-trimmer 不写 cut/crop 词根 |
+| trim / trimmer / 0.01 s 精度找点 | audio-trimmer | mp3-cutter 不写 trim 词根；两页 FAQ 互链分工 |
+| mp4 / mpeg → mp3 | mp4-to-mp3 | extract-audio 拥有"任意视频抽任意音频格式"；两页 FAQ 互链 |
+| wav → mp3（该方向） | wav-to-mp3 | 反向词归 mp3-to-wav；簇内反向词在词表分桶时剔给对页 |
+| 背景噪音 / 降噪 / denoise / voice cleaner | noise-remover | silence-remover 拥有"静音段/死气"；两页 FAQ 已互链（先降噪再剪空白） |
+| join / merge / merger / crossfade | audio-joiner | multi-track 拥有"同时混音"；FAQ 互链 |
+| ringtone cutter / maker / M4R / 40 s | ringtone-maker | mp3-cutter 不接铃声意图 |
+| splitter / 等分 N 段 / ZIP | split-mp3 | trimmer/cutter 不写"分成多个文件" |
+| record / 录音 / 麦克风 | voice-recorder | — |
+| 泛转换 hub（未来） | /mp3-converter/（待拍板） | hub 只做泛意图导航与分发内链，title 不得含 wav to mp3 等具体格式词根 |
+
 ## 四、九页现状 TDK 实测与差距判断
 
 （title 实测字符数；H2 词根覆盖=该页 title/H1/sections 是否含簇主词或近义词）
@@ -72,12 +89,13 @@ audacity audio recording (202k)、record chrome audio (153k)、audacity audio re
 ## 五、逐页重写规格（执行主体；每页一节，做完勾一个）
 
 > 通用约束（每页适用，不再重复）：
-> - **改的字段**：`title` / `h1` / `description` / `sections`（含 headings）/ `uses` / `faqs` / `howToIntro`。**不改**：slug、URL、`cardLine`、dropHint、exportLabel、页面结构模板。
-> - **语言纪律**：EN + zh 同批改写；其余 9 语种在该页 PENDING_I18N 期间暂持旧文案，翻译批次统一补齐（对 TDK-12 的本土化折中——用户已拍板的 zh-first 流程）。
-> - **TDK-01 同页核对**：新 title/description 里每个数字（kbps/秒/MB/Hz）必须能在改写后的同页正文找到原句。
-> - **字符预算**：title ≤60（en）；description 138–155（TDK-10 三段式：机制数字→限制/兼容→承诺）。zh 按 i18n-audit 现有 budget 硬校验。
+> - **语言顺序（用户裁定 2026-11-07）：先写中文全套，用户确认后走翻译流程**。每页交付物 = zh 的 title/h1/description/usesHeading/uses/howTo/sections/faqs/why 全套；确认后翻译 en + 其余 9 语种（EN 侧按 §五 各页的词根目标落地），翻译完成后从 PENDING_I18N 移除该页。§五 的 EN title/H1 候选句 = 翻译阶段的词根目标，不先行。
+> - **改的字段**：`title` / `h1` / `description` / `sections`（含 headings）/ `uses` / `faqs` / `howToIntro` / `why`。**不改**：slug、URL、`cardLine`、dropHint、exportLabel、subtitle、intro、页面结构模板。
+> - **TDK-01 同页核对**：新 title/description 里每个数字（kbps/秒/MB/Hz/dB）必须能在改写后的同页正文找到原句。
+> - **字符预算**：title ≤60（en，zh 按 i18n-audit 的 han 字 budget）；description 138–155（TDK-10 三段式：机制数字→限制/兼容→承诺）。
 > - **文案风格**：同步满足 `2026-11-06-zh-copy-style.md`（zh 的 uses 场景卡、why 卡、步骤点名控件）。
-> - **门禁**：astro check 0 错误、check:i18n OK、/en 与 /zh 双页浏览器抽查、tracker 记日志。
+> - **蚕食防护**：每页执行前过一遍 §3.5 词根归属表；改写前后各做一次全站词根查重。
+> - **门禁**：astro check 0 错误、check:i18n OK、/zh 页浏览器抽查、tracker 记日志。
 
 ### ☐ 5.1 noise-remover —— P1（9 簇 204 万/月 + playbook 点名 + 蓝海空白度 +53.8）
 - **Title 候选**：`Noise Remover — RNNoise Removes Background Noise Locally`（56）
