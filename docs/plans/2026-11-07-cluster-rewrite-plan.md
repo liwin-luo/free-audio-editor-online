@@ -174,7 +174,7 @@ audacity audio recording (202k)、record chrome audio (153k)、audacity audio re
 
 | 页 | 簇词落地 | TDK | H2 维度 | 正文证明 | 门禁 | 验收 |
 |---|---|---|---|---|---|---|
-| noise-remover | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
+| noise-remover | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ 用户已确认 zh，en+9 语种已随批翻译（fa35be6） |
 | mp3-cutter | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
 | mp4-to-mp3 | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
 | audio-trimmer | ☐ | ☐ | ☐ | ☐ | ☐ | ☐ |
@@ -194,3 +194,10 @@ audacity audio recording (202k)、record chrome audio (153k)、audacity audio re
 - **蚕食防护**：§3.5 表已入方案；9 簇近义意图全部归本页，未侵占 silence-remover/trimmer 词根。
 - 门禁：astro check 0、check:i18n OK、smoke ALL PASS、/zh/noise-remover 渲染验收全项通过。PENDING_I18N += noise-remover。
 - **等确认后**：翻译 en + 9 语种（EN 侧词根目标：Noise Remover — RNNoise Removes Background Noise Locally / background noise / denoise / voice cleaner），然后清 PENDING。
+
+### noise-remover 翻译流程完成（2026-11-07，fa35be6）
+- 竞品对比（用户要求）：28 站档案内**无独立背景噪音工具页**——kapwing 仅编辑器页一行 "one click" 卖点（无引擎无数字）、notevibes/editor.audio 仅菜单项、audacity 系仅博客；唯一具名引擎竞品是 audioeditor.org（C3 站群）的 AI Noise Reducer 用 **DeepFilterNet3**，与我们 RNNoise 不撞车且该站 canonical/hreflang 卫生差。对比通过。
+- EN 按 §5.1 词根目标落地（title 56 字符/description 150 三段式/h1/uses×6/why×2/howTo×4/两个 section 标题带词根）；9 语种（es/de/fr/pt/ru/ja/ko/id/ar）同批翻译全部字段 + 两个 section 标题 + FAQ 补 300 MB 句（TDK-01/12：en+zh+9 全量同批，无半翻译）。
+- 机制变更：`assertCatalogs` 的 uses 检查放宽为 ≥3（簇重写把场景卡扩到 6）；**noise-remover 移出 PENDING_I18N**——parity 门禁已恢复对该页强制（uses 6/6、howTo 4/4、faqs 7/7 全语种对齐）。
+- 教训（skill 素材）：批量翻译脚本按"第 1/2 个 heading"替换时发生了**槽位偏移**（替换了第 2/3 个，第 1 个残留旧文案、第 3 个被覆盖）——用 git HEAD 原文恢复第 3 标题后按槽位 0/1/2 重设。批量脚本替换"第 N 个出现"必须先断言总数再用 0 基索引。
+- 验证：astro check 0、check:i18n OK（含 ja/ko/de/es 的 budget 与禁词表）、smoke ALL PASS、ja/de/ar 三语种页面 H2 链与 why/场景卡渲染抽查通过。
