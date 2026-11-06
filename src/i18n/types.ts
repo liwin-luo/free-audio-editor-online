@@ -17,7 +17,12 @@ export interface ToolCopy {
   cardLine?: string;
   intro: string;
   usesHeading: string;
-  uses: [string, string, string];
+  /** Scene lines in the 「场景名：具体收益」 pattern. Three or more; locales
+   *  may run more than English while a rewrite is pending (PENDING_I18N). */
+  uses: string[];
+  /** Tool-specific why-us cards shown ahead of the generic privacy/precision
+   *  pair. Locales opt in during the zh-first copy rewrite. */
+  why?: { icon: string; title: string; text: string }[];
   howTo: { name: string; text: string }[];
   faqs: { q: string; a: string }[];
   /** Present only on locales that carry the long page. Same shape as English. */

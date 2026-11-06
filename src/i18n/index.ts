@@ -7,14 +7,14 @@ import { TRANSLATED_LOCALES, type Locale } from './locales';
 export const catalogs: Partial<Record<Locale, Catalog>> = {};
 
 /**
- * Slugs allowed to render their pre-rewrite locale copy before the new EN
- * copy is translated. Interim scaffold: audio-trimmer's 2026-11-05 content
- * rewrite (sections + faqs) landed in en and zh only; the 9 remaining locale
- * catalogs still carry the previous shape. That translation task MUST empty
- * this set — the parity gate then enforces full coverage again. Keep it
- * empty on main outside such an interim.
+ * Slugs whose copy is being rewritten ahead of the locale catalogs. Two
+ * interims share this set: audio-trimmer's 2026-11-05 content rewrite landed
+ * in en and zh only, and the 2026-11-06 zh-first copy line (scene uses, four
+ * why-us cards, control-naming steps) lands per slug in zh before any other
+ * locale. That slug's translation MUST empty its entry — the parity gate then
+ * enforces full coverage again. Keep it empty on main outside such interims.
  */
-export const PENDING_I18N = new Set<string>(['audio-trimmer']);
+export const PENDING_I18N = new Set<string>(['audio-trimmer', 'silence-remover']);
 
 export function getShell(locale: Locale): Shell {
   if (locale === 'en') return en;
@@ -52,6 +52,7 @@ export function localizeTool(slug: string, locale: Locale): ToolDef | undefined 
     intro: copy.intro,
     usesHeading: copy.usesHeading,
     uses: copy.uses,
+    ...(copy.why ? { why: copy.why } : {}),
     howTo: copy.howTo,
     faqs: copy.faqs,
     sections: copy.sections,

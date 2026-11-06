@@ -45,6 +45,11 @@ const pageUrl = new URL(localePath(locale, `/${tool.slug}`), SITE.url).href;
 const lang = localeMeta(locale).hreflang;
 const guides = guidesForTool(tool.slug, locale);
 const guideMinutes = GUIDE_INDEX[locale].minutes;
+/** Use-case lines lead with a scene name before a colon; bold that lead. */
+const splitUse = (item: string): { name: string; colon: string; rest: string } | null => {
+  const m = item.match(/^([^：:]{2,12})([：:])\s*/);
+  return m ? { name: m[1]!, colon: m[2]!, rest: item.slice(m[0].length) } : null;
+};
 const jsonLd = [
   webAppSchema(tool.name, tool.description, {
     url: pageUrl,
@@ -204,7 +209,18 @@ const jsonLd = [
       <h2 id="why-us-heading" class="text-[28px] font-semibold tracking-tight">
         {fill(ui.whyUs, { name: tool.name })}
       </h2>
-      <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <div class:list={['mt-6 grid gap-4', tool.why?.length ? 'md:grid-cols-2' : 'md:grid-cols-3']}>
+        {
+          (tool.why ?? []).map((card) => (
+            <div class="rounded-2xl border border-line bg-surface p-6">
+              <p class="flex items-center gap-2 text-sm font-semibold">
+                <Icon name={card.icon} size={16} class="text-accent" />
+                {card.title}
+              </p>
+              <p class="mt-2 text-[15px] leading-relaxed text-ink2">{card.text}</p>
+            </div>
+          ))
+        }
         <div class="rounded-2xl border border-line bg-surface p-6">
           <p class="flex items-start gap-3 text-[15px] leading-relaxed text-ink2">
             <Icon name="lock-simple" size={18} class="mt-0.5 shrink-0 text-accent" />
@@ -217,32 +233,48 @@ const jsonLd = [
             <CopyText text={ui.whyPrecision} locale={locale} />
           </p>
         </div>
-        <div class="rounded-2xl border border-line bg-surface p-6">
-          <p class="flex items-start gap-3 text-[15px] leading-relaxed text-ink2">
-            <Icon name="cursor-click" size={18} class="mt-0.5 shrink-0 text-accent" />
-            <CopyText text={ui.whyMobile} locale={locale} />
-          </p>
-        </div>
+        {
+          !tool.why?.length && (
+            <div class="rounded-2xl border border-line bg-surface p-6">
+              <p class="flex items-start gap-3 text-[15px] leading-relaxed text-ink2">
+                <Icon name="cursor-click" size={18} class="mt-0.5 shrink-0 text-accent" />
+                <CopyText text={ui.whyMobile} locale={locale} />
+              </p>
+            </div>
+          )
+        }
       </div>
     </div>
   </section>
-
-
 
     <section class="pt-14">
       <p class="max-w-[65ch] text-[17px] leading-relaxed text-ink2"><CopyText text={tool.intro} locale={locale} /></p>
       <div class="mt-8 max-w-[65ch]">
         <h2 class="text-[28px] font-semibold tracking-tight">{tool.usesHeading}</h2>
-        <ul class="mt-3 space-y-2.5 text-[15px] leading-relaxed text-ink2">
-          {
-            tool.uses.map((item) => (
-              <li class="flex gap-3">
-                <span class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
-                <span><CopyText text={item} locale={locale} /></span>
-              </li>
-            ))
-          }
-        </ul>
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        {
+          tool.uses.map((item) => {
+            const scene = splitUse(item);
+            return (
+              <div class="rounded-2xl border border-line bg-surface p-5">
+                <p class="flex items-start gap-3 text-[15px] leading-relaxed text-ink2">
+                  <span class="mt-[0.55rem] size-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                  <span>
+                    {scene ? (
+                      <>
+                        <strong class="font-semibold text-ink">{scene.name}{scene.colon}</strong>
+                        <CopyText text={scene.rest} locale={locale} />
+                      </>
+                    ) : (
+                      <CopyText text={item} locale={locale} />
+                    )}
+                  </span>
+                </p>
+              </div>
+            );
+          })
+        }
+      </div>
       </div>
     </section>
 

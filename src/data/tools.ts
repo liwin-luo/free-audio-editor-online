@@ -150,9 +150,13 @@ export interface ToolDef {
   cardLine?: string;
   /** Intro paragraph block (1–2 sentences, keyword-rich but honest) */
   intro: string;
-  /** H2 plus three concrete jobs. Sits under the intro, not a second how-to. */
+  /** H2 plus the concrete jobs. English ships three; locales may run more
+   *  while a rewrite is pending (PENDING_I18N). */
   usesHeading: string;
-  uses: [string, string, string];
+  uses: string[];
+  /** Tool-specific why-us cards rendered ahead of the generic pair. Empty on
+   *  English until the zh-first copy line lands its translation pass. */
+  why?: { icon: string; title: string; text: string }[];
   howTo: HowToStep[];
   faqs: FaqItem[];
   /** Long-form blocks for the few pages aimed at head terms. Locales opt in. */
