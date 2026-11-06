@@ -362,3 +362,13 @@
 **验证**：astro check 0 错误、smoke ALL PASS、check:pages ALL PASS、check:i18n OK、hero/analytics PASS。浏览器真跑：bass-booster（quickControls 类）拖选→胶囊/降暗/结果行/精确输入全联动、格式下拉选 128→内核值+触发器+结果行三联动；wav-to-mp3（converter 类）无选择交互但刻度尺/下拉/结果行齐全；mp3-editor 旧流程保留+新元素齐全；375px 导出条吸底（bottom=812）、全屏铺满 375×812、page-lock 生效、退出恢复。joiner 新门面截图比对一致。
 
 **遗留**：①9 语言 trimmer 内容翻译（check:i18n 的工作清单，落地后清空 PENDING_I18N）②各岛导出条仍是原生 select + 各自的 workspace 风格——属 tracker #4–#10 各自轮次 ③其余 56 工具 howTo 截图重拍 ④product-facts.md M4A 补记。
+
+## zh-first 文案风格线启动（2026-11-06，用户给样张定风格）
+
+用户给出竞品样张（如何使用/为什么我们/使用场景/FAQ/相关工具）裁定文案风格："风格排版文案线制定计划，然后一个个改，先只做中文版本，所有做完再翻译"。规范+清单+进度落在 **`docs/plans/2026-11-06-zh-copy-style.md`**（唯一风格源）。
+
+- **模板/类型支撑已落地**（`26f1f68`）：`uses` 放宽为 `string[]`（en 保持 3 条不动）、新增 `why?: {icon,title,text}[]`（工具特色卡）；ToolPage 的 why-us 区块 = 有 why 卡时 2 特色卡+隐私+精度四张双列（无则维持原三卡）、uses 改双列卡片网格并自动加粗「场景名：」前缀（`splitUse` 兼容全/半角冒号）。en 页零回归（3 卡、无加粗、H2 不变）。
+- **样板页 silence-remover zh 完成并入库**：usesHeading 关键词式"去静音的常见使用场景"；uses ×6 场景卡（播客/语音备忘/讲座录音/采访整理/视频旁白/发布前清理）；howTo ×4 步（拖入音频→设「阈值」「最短静音」→点「去掉静音」→拿走文件，控件名与界面一字不差、带范围和默认值）；why ×2（按电平下刀/多文件一次过）；FAQ 保持 7 条不动。slug 进 PENDING_I18N。
+- **纪律**：写步骤前先 grep zh.ts 核对控件 label；zh 禁"您"（样张的"您的音频"不能搬）；不用 emoji（站点用 Icon 集）；title/description/h1/subtitle/intro/cardLine 不动（SEO 头部资产）。
+- 验证：astro check 0 错误、check:i18n OK、smoke ALL PASS、/zh/silence-remover 浏览器全查（H2 顺序/4 卡/6 场景加粗/4 步/无"您"）。
+- **下一页：noise-remover**（顺序清单在风格线文档 §六），逐页推进；zh 全部验收后进翻译阶段，翻译完一个 slug 移除一个 PENDING。
