@@ -51,9 +51,6 @@ export interface EditorText {
   hintSelect: string;
   hintTrim: string;
   changeFile: string;
-  statStart: string;
-  statSpan: string;
-  statEnd: string;
   selectAll: string;
   playBtn: string;
   chMono: string;
@@ -158,6 +155,17 @@ export interface EditorText {
   cutMode: string;
   keep: string;
   deleteSel: string;
+  saveSelected: string;
+  saveWithoutSelection: string;
+  fineTune: string;
+  boundaryStart: string;
+  boundaryEnd: string;
+  loop: string;
+  /** Placeholders: {time} {size} */
+  outputLine: string;
+  errorDecodeTitle: string;
+  /** Guidance line under the decode-error card */
+  errorDecodeHow: string;
   precise: string;
   startSec: string;
   endSec: string;
@@ -448,6 +456,12 @@ export interface UiText {
   allTools: string;
   browseToolkit: string;
   home: string;
+  whyUs: string;
+  /** Placeholder: {name} */
+  whyPrivacy: string;
+  whyPrecision: string;
+  whyMobile: string;
+  fullscreen: string;
   howTo: string;
   ogAlt: string;
   schemaOs: string;
@@ -461,6 +475,7 @@ export interface UiText {
     'mp3-64': string;
     wav: string;
     m4r: string;
+    m4a: string;
   };
   categories: {
     cut: string;

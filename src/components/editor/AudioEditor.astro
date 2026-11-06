@@ -49,7 +49,53 @@ const jobChrome = Boolean(
     config.converter ||
     (config.quickControls?.length ?? 0) > 0,
 );
+const dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
 ---
+
+<style is:global>
+  /* The custom boundary stepper replaces the native number spinner. */
+  .fae-nospin::-webkit-outer-spin-button,
+  .fae-nospin::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .fae-nospin {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  .fae-noscroll {
+    scrollbar-width: none;
+  }
+  .fae-noscroll::-webkit-scrollbar {
+    display: none;
+  }
+  /* Immersive full-screen editing (mobile-first): the editor becomes the page. */
+  .fae-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    border-radius: 0;
+    border: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .fae-fullscreen [data-workspace] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  .fae-fullscreen [data-workspace] > [data-export-bar] {
+    order: 90;
+    margin-top: auto;
+  }
+  .fae-fullscreen [data-stage] {
+    height: 38vh;
+    min-height: 200px;
+  }
+  .fae-fullscreen [data-ruler] {
+    margin-bottom: 2px;
+  }
+</style>
 
 <div
   data-audio-editor
@@ -60,14 +106,40 @@ const jobChrome = Boolean(
   <!-- Empty state: drop well, format chips, privacy line. Hidden once a file is loaded. -->
   <div data-empty>
   <DropPromise config={config} locale={locale}>
-    <div data-open tabindex="0" role="button" aria-label={config.dropHint}>
-      <span class="mx-auto grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
-        <Icon name="upload-simple" size={20} />
+    <div
+      data-open
+      tabindex="0"
+      role="button"
+      aria-label={config.dropHint}
+      class="group relative flex w-full flex-col items-center overflow-hidden rounded-2xl px-6 py-12"
+    >
+      <div
+        class="pointer-events-none absolute inset-y-0 left-10 flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
+        aria-hidden="true"
+      >
+        {[10, 22, 36, 52, 36, 22, 10].map((h) => (
+          <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
+        ))}
+      </div>
+      <div
+        class="pointer-events-none absolute inset-y-0 right-10 flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
+        aria-hidden="true"
+      >
+        {[10, 22, 36, 52, 36, 22, 10].map((h) => (
+          <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
+        ))}
+      </div>
+      <span
+        class="relative z-10 mx-auto grid size-14 place-items-center rounded-2xl bg-accent-soft text-accent ring-4 ring-accent/10 transition-transform duration-200 group-hover:scale-105"
+      >
+        <Icon name="upload-simple" size={24} />
       </span>
-      <p class="mt-3 text-base font-semibold">{config.dropHint}</p>
+      <p class="relative z-10 mt-4 text-lg font-semibold">{config.dropHint}</p>
+    </div>
+    <div class="relative z-10 mt-3 pb-1">
+      <LocalBadge text={t.dropLocal} />
     </div>
   </DropPromise>
-  <LocalBadge text={t.dropLocal} />
   </div>
   <input type="file" class="hidden" accept={config.accept ?? 'audio/*,video/mp4,.m4a,.opus'} data-file-input {...(config.multiple || config.batch ? { multiple: true } : {})} />
 
@@ -85,14 +157,17 @@ const jobChrome = Boolean(
         </div>
       </div>
       <div class="flex shrink-0 flex-wrap items-center justify-end gap-2">
+        <button type="button" class="btn btn-secondary size-9 p-0 md:hidden" data-fullscreen aria-label={ui.fullscreen} title={ui.fullscreen} disabled>
+          <Icon name="maximize" size={16} />
+        </button>
         <button type="button" class="btn btn-secondary h-9 px-3 text-sm" data-reset>
           {t.changeFile}
         </button>
-        <button type="button" class="btn btn-secondary h-9 px-2.5 text-sm" data-zoom-out>
-          {t.zoomOut}
+        <button type="button" class="btn btn-secondary size-9 p-0" data-zoom-out aria-label={t.zoomOut} title={t.zoomOut}>
+          <Icon name="zoom-out" size={16} />
         </button>
-        <button type="button" class="btn btn-secondary h-9 px-2.5 text-sm" data-zoom-in>
-          {t.zoomIn}
+        <button type="button" class="btn btn-secondary size-9 p-0" data-zoom-in aria-label={t.zoomIn} title={t.zoomIn}>
+          <Icon name="zoom-in" size={16} />
         </button>
       </div>
     </div>
@@ -105,44 +180,66 @@ const jobChrome = Boolean(
     }
 
     <!-- Waveform stage -->
-    <div data-stage class="relative h-[200px] touch-pan-y overflow-x-auto overflow-y-hidden md:h-[220px]" aria-label={t.waveform}>
-      <div data-stage-content class="relative h-full select-none">
+    <div
+      data-stage
+      class:list={[
+        'relative h-[200px] touch-pan-y overflow-x-auto overflow-y-hidden md:h-[220px]',
+        config.trimLayout && 'fae-noscroll rounded-xl',
+      ]}
+      aria-label={t.waveform}
+    >
+      <div data-stage-content class="relative h-full select-none cursor-crosshair">
         <canvas data-wave class="absolute inset-0 h-full w-full text-ink3" aria-hidden="true"></canvas>
+        {
+          config.trimLayout && (
+            <>
+              <div data-dim-l class="pointer-events-none absolute inset-y-0 left-0 hidden w-0 bg-ink/15" aria-hidden="true"></div>
+              <div data-dim-r class="pointer-events-none absolute inset-y-0 right-0 hidden w-0 bg-ink/15" aria-hidden="true"></div>
+              <div
+                data-fade-in-vis
+                class="pointer-events-none absolute inset-y-0 left-0 hidden w-0 bg-accent/30"
+                style="clip-path: polygon(0 100%, 100% 0, 100% 100%);"
+                aria-hidden="true"
+              ></div>
+              <div
+                data-fade-out-vis
+                class="pointer-events-none absolute inset-y-0 right-0 hidden w-0 bg-accent/30"
+                style="clip-path: polygon(0 0, 100% 100%, 0 100%);"
+                aria-hidden="true"
+              ></div>
+            </>
+          )
+        }
         <div
           data-selection
           class="pointer-events-none absolute inset-y-0 left-0 hidden border-x-2 border-accent bg-accent-soft"
         >
-          <span data-handle-start class="pointer-events-auto absolute inset-y-0 left-0 w-4 -translate-x-1/2 cursor-ew-resize pointer-coarse:w-11" aria-hidden="true">
+          <span data-handle-start class="pointer-events-auto absolute inset-y-0 left-0 w-6 -translate-x-1/2 cursor-ew-resize pointer-coarse:w-11" aria-hidden="true">
             {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
           </span>
-          <span data-handle-end class="pointer-events-auto absolute inset-y-0 right-0 w-4 translate-x-1/2 cursor-ew-resize pointer-coarse:w-11" aria-hidden="true">
+          <span data-handle-end class="pointer-events-auto absolute inset-y-0 right-0 w-6 translate-x-1/2 cursor-ew-resize pointer-coarse:w-11" aria-hidden="true">
             {config.trimLayout && <span class="absolute top-1/2 left-1/2 h-7 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"></span>}
           </span>
         </div>
         <div data-playhead class="pointer-events-none absolute inset-y-0 w-0.5 bg-ink opacity-0" aria-hidden="true">
           <span class="absolute -top-0 -left-[5px] size-0 border-x-[6px] border-t-[8px] border-x-transparent border-t-ink"></span>
         </div>
+        {config.trimLayout && (
+          <>
+            <span
+              data-sel-time-start
+              class="pointer-events-none absolute bottom-1 z-10 hidden -translate-x-1/2 rounded bg-accent px-1.5 py-0.5 font-mono text-[10px] leading-none text-on-accent"
+              aria-hidden="true"
+            ></span>
+            <span
+              data-sel-time-end
+              class="pointer-events-none absolute bottom-1 z-10 hidden -translate-x-1/2 rounded bg-accent px-1.5 py-0.5 font-mono text-[10px] leading-none text-on-accent"
+              aria-hidden="true"
+            ></span>
+          </>
+        )}
       </div>
     </div>
-
-    {
-      config.trimLayout && (
-        <div class="grid grid-cols-3 border-y border-line">
-          <div class="px-3 py-3 text-center">
-            <span class="block text-xs text-ink3">{t.statStart}</span>
-            <strong data-span-start class="mt-1 block font-mono text-lg font-semibold tabular-nums text-accent">00:00.00</strong>
-          </div>
-          <div class="border-x border-line px-3 py-3 text-center">
-            <span class="block text-xs text-ink3">{t.statSpan}</span>
-            <strong data-span-len class="mt-1 block font-mono text-xl font-semibold tabular-nums text-accent">00:00.00</strong>
-          </div>
-          <div class="px-3 py-3 text-center">
-            <span class="block text-xs text-ink3">{t.statEnd}</span>
-            <strong data-span-end class="mt-1 block font-mono text-lg font-semibold tabular-nums text-accent">00:00.00</strong>
-          </div>
-        </div>
-      )
-    }
 
     {
       config.trimFades && (
@@ -181,6 +278,18 @@ const jobChrome = Boolean(
         {config.voice ? t.hintVoice : config.noise ? t.hintNoise : config.silence ? t.hintSilence : config.converter ? t.hintConvert : t.hintSelect}
       </p>
     </div>
+
+    {
+      config.trimLayout && (
+        <div
+          data-ruler
+          class="relative mx-1 mb-1 h-7 cursor-grab select-none overflow-hidden rounded-lg border border-line bg-surface2/40 active:cursor-grabbing"
+          aria-hidden="true"
+        >
+          <div data-ruler-content class="absolute inset-y-0 left-0 will-change-transform"></div>
+        </div>
+      )
+    }
 
     <!-- Quick controls: headline features surfaced per tool -->
     {
@@ -645,11 +754,81 @@ const jobChrome = Boolean(
         <div class="grid gap-3 px-4 pt-3 sm:grid-cols-2 md:px-5">
           <label class="block text-xs text-ink2">
             {t.startSec}
-            <input type="number" data-precise-start class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums" min="0" step="0.01" />
+            <div class="relative mt-1.5">
+              <input
+                type="number"
+                data-precise-start
+                class:list={['h-10 w-full rounded-lg border border-line-strong bg-bg pl-2.5 pr-[82px] font-mono text-sm tabular-nums', config.trimLayout && 'fae-nospin']}
+                min="0"
+                step="0.01"
+              />
+              {config.trimLayout && (
+                <div class="absolute inset-y-0 right-0 flex items-stretch overflow-hidden rounded-r-lg" data-steppers="start">
+                  {['0.01', '0.1', '1'].map((step) => (
+                    <div class="flex w-[26px] flex-col items-center border-l border-line text-ink2">
+                      <button
+                        type="button"
+                        class="flex h-[15px] w-full items-center justify-center text-[9px] leading-none hover:bg-accent-soft hover:text-accent"
+                        data-nudge={`start,+${step}`}
+                        aria-label={`${t.boundaryStart} +${step}`}
+                      >
+                        ▲
+                      </button>
+                      <span class="pointer-events-none flex h-[10px] w-full items-center justify-center font-mono text-[8px] leading-none text-ink3">
+                        {step}
+                      </span>
+                      <button
+                        type="button"
+                        class="flex h-[15px] w-full items-center justify-center text-[9px] leading-none hover:bg-accent-soft hover:text-accent"
+                        data-nudge={`start,-${step}`}
+                        aria-label={`${t.boundaryStart} −${step}`}
+                      >
+                        ▼
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </label>
           <label class="block text-xs text-ink2">
             {t.endSec}
-            <input type="number" data-precise-end class="mt-1.5 h-10 w-full rounded-lg border border-line-strong bg-bg px-2.5 font-mono text-sm tabular-nums" min="0" step="0.01" />
+            <div class="relative mt-1.5">
+              <input
+                type="number"
+                data-precise-end
+                class:list={['h-10 w-full rounded-lg border border-line-strong bg-bg pl-2.5 pr-[82px] font-mono text-sm tabular-nums', config.trimLayout && 'fae-nospin']}
+                min="0"
+                step="0.01"
+              />
+              {config.trimLayout && (
+                <div class="absolute inset-y-0 right-0 flex items-stretch overflow-hidden rounded-r-lg" data-steppers="end">
+                  {['0.01', '0.1', '1'].map((step) => (
+                    <div class="flex w-[26px] flex-col items-center border-l border-line text-ink2">
+                      <button
+                        type="button"
+                        class="flex h-[15px] w-full items-center justify-center text-[9px] leading-none hover:bg-accent-soft hover:text-accent"
+                        data-nudge={`end,+${step}`}
+                        aria-label={`${t.boundaryEnd} +${step}`}
+                      >
+                        ▲
+                      </button>
+                      <span class="pointer-events-none flex h-[10px] w-full items-center justify-center font-mono text-[8px] leading-none text-ink3">
+                        {step}
+                      </span>
+                      <button
+                        type="button"
+                        class="flex h-[15px] w-full items-center justify-center text-[9px] leading-none hover:bg-accent-soft hover:text-accent"
+                        data-nudge={`end,-${step}`}
+                        aria-label={`${t.boundaryEnd} −${step}`}
+                      >
+                        ▼
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </label>
         </div>
       )
@@ -658,7 +837,7 @@ const jobChrome = Boolean(
     {
       !config.converter && !config.silence && !config.noise && !config.voice && !config.quickControls?.includes('tempo') && (
         <div class="flex flex-wrap items-center gap-3 px-4 py-3 md:px-5" data-modes-row>
-          {!config.loop && !config.split && (
+          {!config.loop && !config.split && !config.trimLayout && (
             <div class="inline-flex rounded-lg border border-line-strong p-0.5" role="group" aria-label={t.cutMode}>
               <button type="button" class="rounded-md px-3 py-1.5 text-sm font-medium" data-mode="keep" aria-pressed="true">
                 {t.keep}
@@ -669,9 +848,35 @@ const jobChrome = Boolean(
             </div>
           )}
           {config.trimLayout && (
-            <button type="button" class="btn btn-ghost h-9 px-3" data-select-all hidden>
-              {t.selectAll}
-            </button>
+            <>
+              <button type="button" class="btn btn-secondary h-9 px-3" data-select-all>
+                {t.selectAll}
+              </button>
+              {config.fadeSwitch && (
+                <>
+                  <button
+                    type="button"
+                    class="btn btn-secondary h-9 px-2.5 text-xs ms-auto"
+                    data-fade-in-btn
+                    aria-pressed="false"
+                    title={`${t.fadeIn} · 2s`}
+                    disabled
+                  >
+                    {t.fadeIn} · 2s
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary h-9 px-2.5 text-xs"
+                    data-fade-out-btn
+                    aria-pressed="false"
+                    title={`${t.fadeOut} · 2s`}
+                    disabled
+                  >
+                    {t.fadeOut} · 2s
+                  </button>
+                </>
+              )}
+            </>
           )}
         </div>
       )
@@ -683,8 +888,12 @@ const jobChrome = Boolean(
       class:list={[
         'export-bar',
         config.quickControls?.includes('tempo') ? 'flex-nowrap' : 'flex-wrap',
+        config.trimLayout && 'max-md:sticky max-md:bottom-0 max-md:z-20 max-md:bg-surface [&>*]:whitespace-nowrap',
       ]}
     >
+      {dualExits && (
+        <div data-result-line class="hidden w-full rounded-lg bg-accent-soft px-3 py-1.5 font-mono text-xs tabular-nums text-accent" aria-live="polite"></div>
+      )}
       {
         jobChrome && (
           <button type="button" class="btn btn-primary" data-play aria-label={t.play} disabled>
@@ -693,24 +902,100 @@ const jobChrome = Boolean(
           </button>
         )
       }
-      <label class="flex items-center gap-2 text-sm text-ink2">
-        {t.format}
-        <select data-format class="h-10 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" disabled>
-          {formats.map((f) => (
-            <option value={f.id} selected={f.id === config.defaultFormat}>
-              {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
-            </option>
-          ))}
-        </select>
-      </label>
-      <button type="button" class="btn btn-primary btn-lg ms-auto" data-export disabled>
-        <span data-export-icon class="inline-flex" aria-hidden="true">
-          <Icon name="download-simple" size={18} />
-        </span>
-        <span class="btn-spinner" data-export-spinner hidden aria-hidden="true"></span>
-        <span data-export-label>{config.exportLabel ?? t.export}</span>
-      </button>
+      {dualExits && (
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-loop
+          aria-pressed="false"
+          aria-label={t.loop}
+          title={t.loop}
+          disabled
+        >
+          <Icon name="repeat" size={16} />
+        </button>
+      )}
+      {dualExits ? (
+        <div class="relative" data-format-dropdown>
+          <button
+            type="button"
+            class="flex h-10 items-center gap-2 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink"
+            data-format-btn
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            disabled
+          >
+            <span class="text-ink2">{t.format}</span>
+            <span data-format-btn-label class="tabular-nums">—</span>
+            <Icon name="caret-down" size={14} />
+          </button>
+          <div
+            data-format-popup
+            class="absolute bottom-full left-0 z-30 mb-1 hidden min-w-[230px] rounded-lg border border-line-strong bg-surface py-1 shadow-xl"
+            role="listbox"
+            aria-label={t.format}
+          ></div>
+          <select data-format class="sr-only" tabindex="-1" disabled>
+            {formats.map((f) => (
+              <option value={f.id} selected={f.id === config.defaultFormat}>
+                {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : (
+        <label class="flex items-center gap-2 text-sm text-ink2">
+          {t.format}
+          <select data-format class="h-10 rounded-lg border border-line-strong bg-bg px-2.5 text-sm text-ink" disabled>
+            {formats.map((f) => (
+              <option value={f.id} selected={f.id === config.defaultFormat}>
+                {ui.formats[f.id as keyof typeof ui.formats] ?? f.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+      {dualExits ? (
+        <>
+          {!config.ringtone && (
+            <button type="button" class="btn btn-secondary" data-exit-del disabled>
+              <span data-exit-del-label>{t.saveWithoutSelection}</span>
+            </button>
+          )}
+          <button type="button" class="btn btn-primary btn-lg ms-auto" data-export disabled>
+            <span data-export-icon class="inline-flex" aria-hidden="true">
+              <Icon name="download-simple" size={18} />
+            </span>
+            <span class="btn-spinner" data-export-spinner hidden aria-hidden="true"></span>
+            <span data-export-label>{t.saveSelected}</span>
+          </button>
+        </>
+      ) : (
+        <button type="button" class="btn btn-primary btn-lg ms-auto" data-export disabled>
+          <span data-export-icon class="inline-flex" aria-hidden="true">
+            <Icon name="download-simple" size={18} />
+          </span>
+          <span class="btn-spinner" data-export-spinner hidden aria-hidden="true"></span>
+          <span data-export-label>{config.exportLabel ?? t.export}</span>
+        </button>
+      )}
     </div>
+
+    {config.trimLayout && (
+      <>
+        <div data-error-card class="hidden border-b border-line px-5 py-6 text-center">
+          <span class="mx-auto mb-3 grid size-10 place-items-center rounded-full border border-line text-ink2">
+            <Icon name="warning-triangle" size={18} />
+          </span>
+          <h3 class="text-sm font-semibold">{t.errorDecodeTitle}</h3>
+          <p class="mx-auto mt-1 max-w-sm text-xs text-ink2">{t.decodeFail}</p>
+          <p class="mx-auto mt-1 max-w-sm text-xs text-ink3">{t.errorDecodeHow}</p>
+          <button type="button" class="btn btn-primary mt-4" data-error-change>
+            {t.changeFile}
+          </button>
+        </div>
+      </>
+    )}
   </div>
 
   <p data-status class="sr-only" role="status" aria-live="polite"></p>

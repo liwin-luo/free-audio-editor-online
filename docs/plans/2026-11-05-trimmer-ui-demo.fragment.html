@@ -1,0 +1,453 @@
+<div id="trim-redesign-demo">
+<style>
+#trim-redesign-demo { --trd-chrome-fg: var(--foreground); --trd-chrome-muted: var(--muted-foreground); --trd-chrome-line: var(--border); font-size: var(--font-size-base); }
+#trim-redesign-demo * { box-sizing: border-box; }
+.trd-chrome { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 12px; color: var(--trd-chrome-muted); }
+.trd-chrome .note { font-size: 12px; }
+.trd-frames { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start; justify-content: center; padding: 18px; border-radius: 14px; }
+.trd-device { margin: 0; }
+.trd-device-label { font-size: 12px; color: var(--trd-chrome-muted); margin-bottom: 6px; text-align: center; }
+.trd-desktop-window { width: 940px; max-width: 100%; border: 1px solid var(--trd-chrome-line); border-radius: 12px; overflow: hidden; background: light-dark(#ffffff, #292524); }
+.trd-browserbar { display: flex; align-items: center; gap: 8px; padding: 7px 12px; background: light-dark(#f5f5f4, #1c1917); border-bottom: 1px solid var(--trd-chrome-line); }
+.trd-browserbar .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--trd-chrome-line); }
+.trd-browserbar .urlbar { flex: 1; text-align: center; font-size: 11px; color: var(--trd-chrome-muted); background: light-dark(#e7e5e4, #33322e); border-radius: 20px; padding: 3px 10px; }
+.trd-desktop-scroll { height: 620px; overflow-y: auto; }
+.trd-phone-window { width: 375px; border: 8px solid #292524; border-radius: 34px; overflow: hidden; background: light-dark(#ffffff, #292524); position: relative; }
+.trd-phone-scroll { height: 640px; overflow-y: auto; }
+
+/* ===== product replica tokens (FreeAudioEditor) ===== */
+.fae { color: light-dark(#1c1917, #e7e5e4); background: light-dark(#fafaf9, #1c1917); font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.45; padding: 10px 12px 20px; }
+.fae-sitebar { display: flex; align-items: center; gap: 8px; padding: 8px 4px; border-bottom: 1px solid light-dark(#e7e5e4, #44403c); margin-bottom: 12px; }
+.fae-logo { width: 26px; height: 26px; border-radius: 8px; background: light-dark(#0f766e, #14b8a6); color: #fff; display: grid; place-items: center; }
+.fae-logo svg { width: 14px; height: 14px; }
+.fae-sitename { font-weight: 600; font-size: 13px; }
+.fae-crumb { font-size: 11px; color: light-dark(#a8a29e, #a8a29e); margin-bottom: 8px; }
+.fae-h1 { font-size: 19px; font-weight: 700; margin: 0 0 4px; }
+.fae-sub { font-size: 12.5px; color: light-dark(#57534e, #d6d3d1); margin: 0 0 12px; }
+.fae-editor { border: 1px solid light-dark(#e7e5e4, #44403c); border-radius: 14px; background: light-dark(#ffffff, #292524); overflow: hidden; position: relative; }
+.fae-filebar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid light-dark(#e7e5e4, #44403c); }
+.fae-filemeta { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1 1 180px; }
+.fae-ficon { width: 30px; height: 30px; border-radius: 8px; background: light-dark(rgba(15,118,110,.09), rgba(45,212,191,.12)); color: light-dark(#0f766e, #2dd4bf); display: grid; place-items: center; flex: none; }
+.fae-ficon svg { width: 15px; height: 15px; }
+.fae-fname { font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fae-fmeta { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 10.5px; color: light-dark(#a8a29e, #a8a29e); }
+.fae-trust { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; color: light-dark(#0f766e, #2dd4bf); background: light-dark(rgba(15,118,110,.08), rgba(45,212,191,.1)); border-radius: 20px; padding: 3px 9px; white-space: nowrap; }
+.fae-trust svg { width: 11px; height: 11px; }
+.fae-filebtns { display: flex; gap: 6px; }
+.fae-hint { font-size: 11px; color: light-dark(#a8a29e, #a8a29e); padding: 6px 10px 4px; }
+.fae-stage { position: relative; height: 132px; margin: 2px 6px 0; touch-action: none; cursor: crosshair; border-radius: 8px; overflow: hidden; background: light-dark(#fafaf9, #292524); }
+.fae-stage svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.fae-dim { position: absolute; top: 0; bottom: 0; background: light-dark(rgba(28,25,23,.16), rgba(0,0,0,.35)); pointer-events: none; }
+.fae-selrect { position: absolute; top: 0; bottom: 0; pointer-events: none; background: light-dark(rgba(15,118,110,.10), rgba(45,212,191,.10)); border-left: 1px solid light-dark(#0f766e, #2dd4bf); border-right: 1px solid light-dark(#0f766e, #2dd4bf); }
+.fae-handle { position: absolute; top: -4px; bottom: -4px; width: 44px; margin-left: -22px; cursor: ew-resize; touch-action: none; }
+.fae-handle .grip { position: absolute; top: 0; bottom: 0; left: 50%; width: 5px; margin-left: -2.5px; border-radius: 3px; background: light-dark(#0f766e, #2dd4bf); box-shadow: 0 0 0 1px rgba(255,255,255,.55); }
+.fae-handle.active .grip { box-shadow: 0 0 0 2px light-dark(#0f766e, #2dd4bf), 0 0 0 5px light-dark(rgba(15,118,110,.18), rgba(45,212,191,.2)); }
+.fae-playhead { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: light-dark(#dc2626, #f87171); display: none; pointer-events: none; }
+.fae-overview { position: relative; height: 16px; margin: 0 6px; border-radius: 4px; overflow: hidden; cursor: pointer; background: light-dark(#f5f5f4, #33322e); }
+.fae-overview svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fae-ovwin { position: absolute; top: 0; bottom: 0; border: 1px solid light-dark(#0f766e, #2dd4bf); background: light-dark(rgba(15,118,110,.12), rgba(45,212,191,.12)); pointer-events: none; }
+.fae-findloop { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 7px 10px; }
+.fae-findlabel { font-size: 11px; color: light-dark(#a8a29e, #a8a29e); }
+.fae-boundchip { font-size: 10.5px; padding: 2px 9px; border-radius: 20px; border: 1px solid light-dark(#e7e5e4, #44403c); color: light-dark(#a8a29e, #a8a29e); }
+.fae-boundchip.on { color: #fff; background: light-dark(#0f766e, #0d9488); border-color: transparent; }
+.fae-nudges { display: flex; gap: 4px; margin-left: auto; }
+.fae-nudges button { font-family: ui-monospace, Menlo, monospace; font-size: 11px; padding: 3px 8px; border-radius: 7px; border: 1px solid light-dark(#e7e5e4, #44403c); background: light-dark(#ffffff, #292524); color: inherit; cursor: pointer; }
+.fae-nudges button:hover { border-color: light-dark(#0f766e, #2dd4bf); }
+.fae-fades { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 2px 10px 8px; }
+.fae-fade { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: light-dark(#57534e, #d6d3d1); }
+.fae-fade input[type="range"] { width: 96px; accent-color: light-dark(#0f766e, #2dd4bf); }
+.fae-fade b { font-family: ui-monospace, Menlo, monospace; font-size: 11px; min-width: 24px; }
+.fae-fadehint { font-size: 10.5px; color: light-dark(#a8a29e, #a8a29e); margin-left: auto; }
+.fae-resultline { flex-basis: 100%; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: light-dark(#0f766e, #2dd4bf); background: light-dark(rgba(15,118,110,.08), rgba(45,212,191,.1)); padding: 5px 10px; border-radius: 8px; }
+.fae-readouts { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid light-dark(#e7e5e4, #44403c); }
+.fae-readout { text-align: center; padding: 7px 4px 9px; border-right: 1px solid light-dark(#e7e5e4, #44403c); }
+.fae-readout:last-child { border-right: none; }
+.fae-readout span { display: block; font-size: 10.5px; color: light-dark(#a8a29e, #a8a29e); }
+.fae-readout b { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 600; font-size: 15px; color: light-dark(#0f766e, #2dd4bf); }
+.fae-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 4px 10px 10px; }
+.fae-inputs label { font-size: 11px; color: light-dark(#57534e, #d6d3d1); display: grid; gap: 4px; }
+.fae-inputs input { width: 100%; height: 36px; padding: 0 10px; border: 1px solid light-dark(#d6d3d1, #44403c); border-radius: 9px; background: light-dark(#ffffff, #1c1917); color: inherit; font-family: ui-monospace, Menlo, monospace; font-size: 13px; }
+.fae-inputs input:focus { outline: 2px solid light-dark(#0f766e, #2dd4bf); outline-offset: -1px; }
+.fae-exportbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px; border-top: 1px solid light-dark(#e7e5e4, #44403c); background: light-dark(#ffffff, #292524); }
+.fae[data-mobile="false"] .fae-exportbar { flex-wrap: nowrap; }
+.fae[data-mobile="false"] .fae-btn, .fae[data-mobile="false"] .fae-select { white-space: nowrap; }
+.fae-btn { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 14px; border-radius: 10px; border: 1px solid transparent; font-size: 13px; font-weight: 500; cursor: pointer; background: light-dark(#f5f5f4, #33322e); color: inherit; }
+.fae-btn svg { width: 14px; height: 14px; }
+.fae-btn-primary { background: light-dark(#0f766e, #0d9488); color: #fff; }
+.fae-btn-primary:hover { filter: brightness(1.07); }
+.fae-btn-outline { background: transparent; border-color: light-dark(#0f766e, #2dd4bf); color: light-dark(#0f766e, #2dd4bf); }
+.fae-btn-outline:hover { background: light-dark(rgba(15,118,110,.07), rgba(45,212,191,.1)); }
+.fae-btn-ghost { background: transparent; border-color: light-dark(#d6d3d1, #44403c); height: 32px; padding: 0 10px; font-size: 12px; }
+.fae-btn:disabled { opacity: .45; cursor: default; }
+.fae-btn:disabled:hover { filter: none; }
+.fae-format { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: light-dark(#57534e, #d6d3d1); }
+.fae-select { height: 36px; padding: 0 8px; border-radius: 9px; border: 1px solid light-dark(#d6d3d1, #44403c); background: light-dark(#ffffff, #1c1917); color: inherit; font-size: 12.5px; }
+.fae-exits { display: flex; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+.fae-trustline { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; padding: 9px 10px; border-top: 1px solid light-dark(#e7e5e4, #44403c); font-size: 11px; color: light-dark(#57534e, #d6d3d1); }
+.fae-sheet { position: absolute; inset: 0; background: light-dark(rgba(28,25,23,.35), rgba(0,0,0,.5)); display: grid; place-items: center; padding: 14px; z-index: 30; }
+.fae-sheet[hidden] { display: none; }
+.fae-sheetcard { width: 100%; max-width: 380px; background: light-dark(#ffffff, #292524); border-radius: 16px; padding: 16px; box-shadow: 0 18px 50px rgba(0,0,0,.25); }
+.fae-sheetcard .ok { width: 34px; height: 34px; border-radius: 50%; background: light-dark(rgba(15,118,110,.12), rgba(45,212,191,.14)); color: light-dark(#0f766e, #2dd4bf); display: grid; place-items: center; margin-bottom: 8px; }
+.fae-sheetcard h3 { margin: 0 0 2px; font-size: 15px; }
+.fae-sheetmeta { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: light-dark(#a8a29e, #a8a29e); margin-bottom: 12px; }
+.fae-rename { display: grid; gap: 4px; font-size: 11px; color: light-dark(#57534e, #d6d3d1); margin-bottom: 12px; }
+.fae-rename input { height: 34px; padding: 0 10px; border: 1px solid light-dark(#d6d3d1, #44403c); border-radius: 9px; background: light-dark(#ffffff, #1c1917); color: inherit; font-size: 13px; }
+.fae-sheetbtns { display: flex; gap: 8px; margin-bottom: 12px; }
+.fae-sheetbtns .fae-btn { flex: 1; justify-content: center; }
+.fae-continue { display: flex; flex-wrap: wrap; gap: 6px; }
+.fae-chipbtn { font-size: 11px; padding: 5px 10px; border-radius: 20px; border: 1px solid light-dark(#d6d3d1, #44403c); background: transparent; color: inherit; cursor: pointer; }
+.fae-chipbtn:hover { border-color: light-dark(#0f766e, #2dd4bf); color: light-dark(#0f766e, #2dd4bf); }
+.fae-back { margin-top: 12px; font-size: 11.5px; color: light-dark(#a8a29e, #a8a29e); background: none; border: none; cursor: pointer; text-decoration: underline; padding: 0; }
+.fae-errorcard { padding: 26px 18px; text-align: center; }
+.fae-errorcard .warn { width: 36px; height: 36px; border-radius: 50%; background: light-dark(rgba(220,38,38,.1), rgba(248,113,113,.14)); color: light-dark(#dc2626, #f87171); display: grid; place-items: center; margin: 0 auto 10px; }
+.fae-errorcard h3 { margin: 0 0 4px; font-size: 15px; }
+.fae-errorcard p { font-size: 12.5px; color: light-dark(#57534e, #d6d3d1); margin: 4px 0 14px; }
+.fae-toast { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); background: light-dark(#1c1917, #f5f5f4); color: light-dark(#fafaf9, #1c1917); font-size: 12px; padding: 7px 14px; border-radius: 20px; opacity: 0; transition: opacity .25s; pointer-events: none; z-index: 40; }
+.fae-toast.show { opacity: 1; }
+.fae[data-mobile="true"] .fae-h1 { font-size: 17px; }
+.fae[data-mobile="true"] .fae-exportbar { position: sticky; bottom: 0; z-index: 10; box-shadow: 0 -6px 18px rgba(0,0,0,.08); }
+.fae[data-mobile="true"] .fae-exits { width: 100%; margin-left: 0; }
+.fae[data-mobile="true"] .fae-exits .fae-btn { flex: 1; font-size: 12px; padding: 0 8px; }
+@media (max-width: 900px) { .trd-frames { padding: 10px; } }
+</style>
+
+<div class="trd-chrome">
+  <span class="note">Interactive redesign demo — drag handles, type times, use both exits, open the completion sheet. Starts at 5.00–15.00 (as if you just dragged).</span>
+  <button class="btn btn-sm" id="trd-error-toggle" type="button">Preview error state</button>
+</div>
+
+<div class="trd-frames viz-dotted-background">
+  <section class="trd-device">
+    <div class="trd-device-label">Desktop · 1440 viewport</div>
+    <div class="trd-desktop-window">
+      <div class="trd-browserbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="urlbar">freeaudioeditor.online/audio-trimmer</span></div>
+      <div class="trd-desktop-scroll fae" data-mobile="false">
+        <div class="fae-sitebar"><span class="fae-logo"><i data-lucide="audio-waveform"></i></span><span class="fae-sitename">Free Audio Editor</span></div>
+        <div class="fae-crumb">Home / Tools / Cut &amp; Trim / Audio Trimmer</div>
+        <div class="fae-h1">Audio Trimmer — Trim a Recording, Online Free</div>
+        <p class="fae-sub">Trim audio online — free, right in your browser. Nothing is uploaded.</p>
+        <div class="fae-editor" data-inst="desktop"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trd-device">
+    <div class="trd-device-label">Mobile · 375 viewport</div>
+    <div class="trd-phone-window">
+      <div class="trd-phone-scroll fae" data-mobile="true">
+        <div class="fae-sitebar"><span class="fae-logo"><i data-lucide="audio-waveform"></i></span><span class="fae-sitename">Free Audio Editor</span></div>
+        <div class="fae-crumb">Home / Tools / Cut &amp; Trim / Audio Trimmer</div>
+        <div class="fae-h1">Audio Trimmer — Trim a Recording, Online Free</div>
+        <p class="fae-sub">Trim audio online — free, right in your browser. Nothing is uploaded.</p>
+        <div class="fae-editor" data-inst="mobile"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var D = 23.54;
+  var NAME = 'speech-long.wav';
+  var fmt = function (t) { var m = Math.floor(t / 60), s = t - m * 60; return ('0' + m).slice(-2) + ':' + (s < 10 ? '0' : '') + s.toFixed(2); };
+
+  // deterministic waveform bars (20/s)
+  var bars = (function () { var out = [], seed = 7, i; for (i = 0; i < Math.round(D * 20); i++) { seed = (seed * 16807) % 2147483647; var r = (seed % 1000) / 1000; var env = Math.sin((i / (D * 20)) * Math.PI * 7) * .3 + .55; out.push(Math.max(.06, Math.min(1, env * (0.35 + r * 0.85)))); } return out; })();
+
+  function toast(root, msg) {
+    var el = root.querySelector('.fae-toast');
+    el.textContent = msg; el.classList.add('show');
+    clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('show'); }, 1600);
+  }
+
+  function mountEditor(container, mobile) {
+    container.innerHTML =
+      '<div class="fae-workspace">' +
+        '<div class="fae-filebar">' +
+          '<div class="fae-filemeta"><span class="fae-ficon"><i data-lucide="audio-waveform"></i></span>' +
+            '<div><div class="fae-fname">' + NAME + '</div><div class="fae-fmeta">00:23.54 · Mono · 48 kHz · 1018 KB</div></div></div>' +
+          '<span class="fae-trust"><i data-lucide="shield-check"></i>Processed locally</span>' +
+          '<div class="fae-filebtns">' +
+            '<button type="button" class="fae-btn fae-btn-ghost" data-act="change">Change file</button>' +
+            '<button type="button" class="fae-btn fae-btn-ghost" data-act="zoomout" aria-label="Zoom out"><i data-lucide="zoom-out"></i></button>' +
+            '<button type="button" class="fae-btn fae-btn-ghost" data-act="zoomin" aria-label="Zoom in"><i data-lucide="zoom-in"></i></button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="fae-hint">Drag the handles to set the range. Play listens to that span only.</div>' +
+        '<div class="fae-stage">' +
+          '<svg class="fae-wave" aria-hidden="true"></svg>' +
+          '<div class="fae-dim fae-dim-l"></div><div class="fae-dim fae-dim-r"></div>' +
+          '<div class="fae-selrect"></div>' +
+          '<div class="fae-handle" data-b="start"><span class="grip"></span></div>' +
+          '<div class="fae-handle" data-b="end"><span class="grip"></span></div>' +
+          '<div class="fae-playhead"></div>' +
+        '</div>' +
+        '<div class="fae-overview"><svg class="fae-ovsvg" aria-hidden="true"></svg><div class="fae-ovwin"></div></div>' +
+        '<div class="fae-findloop">' +
+          '<span class="fae-findlabel">Fine-tune</span>' +
+          '<button type="button" class="fae-boundchip on" data-chip="start">Start</button>' +
+          '<button type="button" class="fae-boundchip" data-chip="end">End</button>' +
+          '<button type="button" class="fae-btn fae-btn-ghost" data-act="audition" aria-label="Play from cut"><i data-lucide="play"></i> Play from cut</button>' +
+          '<div class="fae-nudges">' +
+            '<button type="button" data-n="-0.1">−0.1</button><button type="button" data-n="-0.01">−0.01</button>' +
+            '<button type="button" data-n="0.01">+0.01</button><button type="button" data-n="0.1">+0.1</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="fae-fades">' +
+          '<span class="fae-findlabel">Fades</span>' +
+          '<label class="fae-fade">In<input type="range" min="0" max="5" step="0.5" value="0" data-fade="in"><b data-fadeval="in">0s</b></label>' +
+          '<label class="fae-fade">Out<input type="range" min="0" max="5" step="0.5" value="0" data-fade="out"><b data-fadeval="out">0s</b></label>' +
+          '<span class="fae-fadehint">applied to the kept span</span>' +
+        '</div>' +
+        '<div class="fae-readouts">' +
+          '<div class="fae-readout"><span>Start</span><b data-r="start">00:05.00</b></div>' +
+          '<div class="fae-readout"><span>This span</span><b data-r="span">00:10.00</b></div>' +
+          '<div class="fae-readout"><span>End</span><b data-r="end">00:15.00</b></div>' +
+        '</div>' +
+        '<div class="fae-inputs">' +
+          '<label>Start (s)<input type="number" step="0.01" inputmode="decimal" data-in="start" value="5.00"></label>' +
+          '<label>End (s)<input type="number" step="0.01" inputmode="decimal" data-in="end" value="15.00"></label>' +
+        '</div>' +
+        '<div class="fae-exportbar">' +
+          '<div class="fae-resultline" data-resultline>Output 00:10.00 · ≈240 KB</div>' +
+          '<button type="button" class="fae-btn fae-btn-primary" data-act="play"><i data-lucide="play"></i>Play</button>' +
+          '<label class="fae-format">Format<select class="fae-select" data-fmt>' +
+            '<option value="wav">WAV · lossless · ≈960 KB</option>' +
+            '<option value="mp3-320">MP3 · 320 kbps · ≈400 KB</option>' +
+            '<option value="mp3-192" selected>MP3 · 192 kbps · ≈240 KB</option>' +
+            '<option value="mp3-128">MP3 · 128 kbps · ≈160 KB</option>' +
+            '<option value="mp3-96">MP3 · 96 kbps · ≈120 KB</option>' +
+            '<option value="mp3-64">MP3 · 64 kbps · ≈80 KB</option>' +
+          '</select></label>' +
+          '<div class="fae-exits">' +
+            '<button type="button" class="fae-btn fae-btn-outline" data-act="exit-del">Save without selection · 00:13.54</button>' +
+            '<button type="button" class="fae-btn fae-btn-primary" data-act="exit-keep">Save selected · 00:10.00</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="fae-trustline"><span>✓ Free, no signup</span><span>No watermarks</span><span>Offline after load</span></div>' +
+      '</div>' +
+      '<div class="fae-sheet" hidden><div class="fae-sheetcard">' +
+        '<div class="ok"><i data-lucide="check"></i></div>' +
+        '<h3>Your file is ready</h3>' +
+        '<div class="fae-sheetmeta" data-sheetmeta></div>' +
+        '<label class="fae-rename">File name<input type="text" data-rename></label>' +
+        '<div class="fae-sheetbtns">' +
+          '<button type="button" class="fae-btn fae-btn-primary" data-act="download"><i data-lucide="download"></i>Download</button>' +
+          '<button type="button" class="fae-btn fae-btn-outline" data-act="share"><i data-lucide="share-2"></i>Share</button>' +
+        '</div>' +
+        '<div class="fae-continue">' +
+          '<button type="button" class="fae-chipbtn" data-act="again">Trim another span</button>' +
+          '<button type="button" class="fae-chipbtn" data-act="fade">Fade the ends →</button>' +
+          '<button type="button" class="fae-chipbtn" data-act="vol">Boost volume →</button>' +
+          '<button type="button" class="fae-chipbtn" data-act="conv">Convert format →</button>' +
+        '</div>' +
+        '<button type="button" class="fae-back" data-act="back">← Back to the editor</button>' +
+      '</div></div>' +
+      '<div class="fae-errorcard" hidden>' +
+        '<div class="warn"><i data-lucide="triangle-alert"></i></div>' +
+        '<h3>This file can’t be decoded</h3>' +
+        '<p>Your browser doesn’t support this codec.<br>Try an MP3, WAV or M4A file — or convert it first.</p>' +
+        '<button type="button" class="fae-btn fae-btn-primary" data-act="choose">Choose another file</button>' +
+      '</div>' +
+      '<div class="fae-toast"></div>';
+
+    var q = function (s) { return container.querySelector(s); };
+    var st = { sel: { s: 5, e: 15 }, pps: 0, win: { a: 0, b: D }, active: 'end', dur: D, fadeIn: 0, fadeOut: 0 };
+    var RATES = { wav: 96, 'mp3-320': 40, 'mp3-192': 24, 'mp3-128': 16, 'mp3-96': 12, 'mp3-64': 8 };
+    var BASES = { wav: 'WAV · lossless', 'mp3-320': 'MP3 · 320 kbps', 'mp3-192': 'MP3 · 192 kbps', 'mp3-128': 'MP3 · 128 kbps', 'mp3-96': 'MP3 · 96 kbps', 'mp3-64': 'MP3 · 64 kbps' };
+    var stage = q('.fae-stage'), wave = q('.fae-wave'), selrect = q('.fae-selrect');
+    var dimL = q('.fae-dim-l'), dimR = q('.fae-dim-r'), playhead = q('.fae-playhead');
+    var handles = { start: q('[data-b="start"]'), end: q('[data-b="end"]') };
+    var chips = { start: q('[data-chip="start"]'), end: q('[data-chip="end"]') };
+    var sheet = q('.fae-sheet');
+
+    function stageW() { return stage.clientWidth || 400; }
+    function sec2px(t) { return (t - st.win.a) * st.pps; }
+    function px2sec(x) { return st.win.a + x / st.pps; }
+
+    function drawWave() {
+      var W = stageW(), H = stage.clientHeight || 130;
+      var a = st.win.a, b = st.win.b, i0 = Math.max(0, Math.floor(a * 20)), i1 = Math.min(bars.length, Math.ceil(b * 20));
+      var bw = Math.max(1.5, W / (i1 - i0) * 0.62), gap = W / (i1 - i0);
+      var mid = H / 2, html = '';
+      for (var i = i0; i < i1; i++) {
+        var t = i / 20, x = sec2px(t);
+        if (x < -4 || x > W + 4) continue;
+        var inSel = t >= st.sel.s && t <= st.sel.e;
+        var h = bars[i] * (H * 0.46);
+        html += '<rect x="' + (x + (gap - bw) / 2).toFixed(1) + '" y="' + (mid - h).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + (h * 2).toFixed(1) + '" rx="1" style="fill:' + (inSel ? 'light-dark(#0f766e,#2dd4bf)' : 'light-dark(#78716c,#78716c)') + ';opacity:' + (inSel ? .95 : .5) + '"/>';
+      }
+      wave.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      wave.innerHTML = html;
+    }
+
+    function layout() {
+      var W = stageW();
+      var x1 = sec2px(st.sel.s), x2 = sec2px(st.sel.e);
+      selrect.style.left = x1 + 'px'; selrect.style.width = Math.max(0, x2 - x1) + 'px';
+      dimL.style.left = '0'; dimL.style.width = Math.max(0, x1) + 'px';
+      dimR.style.left = x2 + 'px'; dimR.style.width = Math.max(0, W - x2) + 'px';
+      handles.start.style.left = x1 + 'px'; handles.end.style.left = x2 + 'px';
+      // overview
+      var ov = q('.fae-ovsvg'), OW = ov.clientWidth || 300, OH = 16, html2 = '';
+      var obw = OW / bars.length;
+      for (var i = 0; i < bars.length; i += 2) {
+        var h = bars[i] * (OH * 0.8);
+        html2 += '<rect x="' + (i * obw).toFixed(1) + '" y="' + ((OH - h) / 2).toFixed(1) + '" width="' + Math.max(1, obw * 0.6).toFixed(1) + '" height="' + h.toFixed(1) + '" style="fill:light-dark(#78716c,#78716c);opacity:.5"/>';
+      }
+      ov.setAttribute('viewBox', '0 0 ' + OW + ' ' + OH); ov.innerHTML = html2;
+      var ow = q('.fae-ovwin');
+      ow.style.left = (st.win.a / D * OW) + 'px'; ow.style.width = ((st.win.b - st.win.a) / D * OW) + 'px';
+    }
+
+    function sync() {
+      var span = st.sel.e - st.sel.s, rest = D - span;
+      q('[data-r="start"]').textContent = fmt(st.sel.s);
+      q('[data-r="span"]').textContent = fmt(span);
+      q('[data-r="end"]').textContent = fmt(st.sel.e);
+      q('[data-in="start"]').value = st.sel.s.toFixed(2);
+      q('[data-in="end"]').value = st.sel.e.toFixed(2);
+      var keepBtn = q('[data-act="exit-keep"]'), delBtn = q('[data-act="exit-del"]');
+      keepBtn.textContent = 'Save selected · ' + fmt(span);
+      delBtn.textContent = 'Save without selection · ' + fmt(rest);
+      keepBtn.disabled = span < 0.05;
+      delBtn.disabled = rest < 0.05;
+      chips.start.classList.toggle('on', st.active === 'start');
+      chips.end.classList.toggle('on', st.active === 'end');
+      handles.start.classList.toggle('active', st.active === 'start');
+      handles.end.classList.toggle('active', st.active === 'end');
+      // 结果预告行 + 格式选项内嵌体积（按保留段时长估算）
+      var fmtSel = q('[data-fmt]');
+      var kb = Math.round(span * (RATES[fmtSel.value] || 24));
+      var fadeTxt = (st.fadeIn > 0 || st.fadeOut > 0) ? ' · fades ' + st.fadeIn + 's/' + st.fadeOut + 's' : '';
+      q('[data-resultline]').textContent = 'Output ' + fmt(span) + ' · ≈' + (kb >= 1024 ? (kb / 1024).toFixed(1) + ' MB' : kb + ' KB') + fadeTxt;
+      Array.prototype.forEach.call(fmtSel.options, function (o) {
+        var kbO = Math.round(span * (RATES[o.value] || 24));
+        o.textContent = BASES[o.value] + ' · ≈' + (kbO >= 1024 ? (kbO / 1024).toFixed(1) + ' MB' : kbO + ' KB');
+      });
+    }
+
+    function render() { drawWave(); layout(); sync(); }
+
+    function fit() {
+      st.pps = stageW() / D; st.win = { a: 0, b: D };
+    }
+    function recenter() {
+      var W = stageW(), mid = (st.sel.s + st.sel.e) / 2, half = W / st.pps / 2;
+      st.win.a = Math.max(0, Math.min(D - half * 2, mid - half)); st.win.b = st.win.a + half * 2;
+      if (st.win.b > D) { st.win.b = D; st.win.a = Math.max(0, D - half * 2); }
+    }
+    function zoom(f) {
+      var W = stageW(); if (st.win.b - st.win.a <= W / 600) f = 1;
+      var mid = (st.sel.s + st.sel.e) / 2, spanSec = (st.win.b - st.win.a) / f;
+      st.pps = W / spanSec; recenter(); render();
+    }
+
+    // interactions
+    var drag = null;
+    function xOf(e) { var r = stage.getBoundingClientRect(); return Math.max(0, Math.min(r.width, e.clientX - r.left)); }
+    stage.addEventListener('pointerdown', function (e) {
+      var h = e.target.closest('.fae-handle');
+      var x = xOf(e), t = px2sec(x);
+      if (h) { drag = { kind: h.getAttribute('data-b') }; st.active = drag.kind; }
+      else { drag = { kind: 'new', anchor: Math.max(0, Math.min(D, t)) }; st.sel.s = drag.anchor; st.sel.e = drag.anchor; st.active = 'end'; }
+      stage.setPointerCapture(e.pointerId); sync();
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var t = Math.max(0, Math.min(D, px2sec(xOf(e))));
+      if (drag.kind === 'start') st.sel.s = Math.min(t, st.sel.e - 0.05);
+      else if (drag.kind === 'end') st.sel.e = Math.max(t, st.sel.s + 0.05);
+      else { st.sel.s = Math.max(0, Math.min(drag.anchor, t)); st.sel.e = Math.min(D, Math.max(drag.anchor, t)); if (st.sel.e - st.sel.s < 0.05) st.sel.e = Math.min(D, st.sel.s + 0.05); }
+      render();
+    });
+    stage.addEventListener('pointerup', function () { drag = null; render(); });
+
+    handles.start.addEventListener('pointerdown', function () { st.active = 'start'; sync(); });
+    handles.end.addEventListener('pointerdown', function () { st.active = 'end'; sync(); });
+    chips.start.addEventListener('click', function () { st.active = 'start'; sync(); });
+    chips.end.addEventListener('click', function () { st.active = 'end'; sync(); });
+
+    container.querySelectorAll('[data-n]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var d = parseFloat(b.getAttribute('data-n')), t = st.sel[st.active] + d;
+        st.sel[st.active] = Math.max(0, Math.min(D, t));
+        if (st.sel.e - st.sel.s < 0.05) st.sel[st.active] = st.active === 'start' ? st.sel.e - 0.05 : st.sel.s + 0.05;
+        render();
+      });
+    });
+    q('[data-chip="start"]').addEventListener('click', function () { st.active = 'start'; });
+    q('[data-fade="in"]').addEventListener('input', function () { st.fadeIn = parseFloat(this.value); q('[data-fadeval="in"]').textContent = this.value + 's'; sync(); });
+    q('[data-fade="out"]').addEventListener('input', function () { st.fadeOut = parseFloat(this.value); q('[data-fadeval="out"]').textContent = this.value + 's'; sync(); });
+    q('[data-in="start"]').addEventListener('change', function () { st.sel.s = Math.max(0, Math.min(parseFloat(this.value) || 0, st.sel.e - 0.05)); render(); });
+    q('[data-in="end"]').addEventListener('change', function () { st.sel.e = Math.max(parseFloat(this.value) || 0, st.sel.s + 0.05); st.sel.e = Math.min(D, st.sel.e); render(); });
+    q('[data-act="zoomin"]').addEventListener('click', function () { zoom(1.5); });
+    q('[data-act="zoomout"]').addEventListener('click', function () { if (st.win.b - st.win.a < D) { zoom(1 / 1.5); } else { render(); } });
+    q('.fae-overview').addEventListener('click', function (e) {
+      var r = this.getBoundingClientRect(), frac = (e.clientX - r.left) / r.width, half = (st.win.b - st.win.a) / 2;
+      st.win.a = Math.max(0, Math.min(D - half * 2, frac * D - half)); st.win.b = st.win.a + half * 2; render();
+    });
+    q('[data-act="play"]').addEventListener('click', function () { animatePlay(st.sel.s, st.sel.e, 'Playing selection…'); });
+    q('[data-act="audition"]').addEventListener('click', function () {
+      var b = st.sel[st.active]; animatePlay(Math.max(0, b - 2), Math.min(D, b + 0.5), 'Playing around the ' + st.active + ' cut…');
+    });
+    var phT = null;
+    function animatePlay(a, b, msg) {
+      cancelAnimationFrame(phT); var t0 = performance.now(), len = (b - a) * 1000;
+      playhead.style.display = 'block'; toast(container, msg);
+      (function step(now) {
+        var f = (now - t0) / len;
+        if (f >= 1) { playhead.style.display = 'none'; return; }
+        playhead.style.left = sec2px(a + (b - a) * f) + 'px';
+        phT = requestAnimationFrame(step);
+      })(t0);
+    }
+
+    function openSheet(kind) {
+      var span = st.sel.e - st.sel.s, out = kind === 'keep' ? span : D - span;
+      var fmtSel = q('[data-fmt]');
+      var isWav = fmtSel.value === 'wav';
+      var kb = Math.round(out * (RATES[fmtSel.value] || 24));
+      var fadeTxt = (st.fadeIn > 0 || st.fadeOut > 0) ? ' · fades ' + st.fadeIn + 's/' + st.fadeOut + 's' : '';
+      q('[data-rename]').value = (NAME.replace(/\.[^.]+$/, '')) + (kind === 'keep' ? '-clip' : '-trimmed');
+      q('[data-sheetmeta]').textContent = fmt(out) + ' · ' + (kb >= 1024 ? (kb / 1024).toFixed(1) + ' MB' : kb + ' KB') + ' · ' + (isWav ? 'WAV, no quality loss' : BASES[fmtSel.value].replace('MP3 · ', 'MP3 ')) + fadeTxt;
+      sheet.hidden = false;
+    }
+    q('[data-act="exit-keep"]').addEventListener('click', function () { openSheet('keep'); });
+    q('[data-act="exit-del"]').addEventListener('click', function () { openSheet('del'); });
+    q('[data-act="back"]').addEventListener('click', function () { sheet.hidden = true; });
+    q('[data-act="again"]').addEventListener('click', function () { sheet.hidden = true; st.sel = { s: D / 2 - 2.5, e: D / 2 + 2.5 }; fit(); render(); toast(container, 'Same file stays loaded — drag the next span'); });
+    q('[data-act="download"]').addEventListener('click', function () { toast(container, 'Download would start here'); });
+    q('[data-act="share"]').addEventListener('click', function () { toast(container, 'Web Share sheet opens here (mobile)'); });
+    ['fade', 'vol', 'conv'].forEach(function (k) { q('[data-act="' + k + '"]').addEventListener('click', function () { sheet.hidden = true; toast(container, 'Opens the related tool with this file'); }); });
+    q('[data-act="change"]').addEventListener('click', function () { toast(container, 'File picker would open'); });
+    q('[data-act="choose"]').addEventListener('click', function () { q('.fae-errorcard').hidden = true; q('.fae-workspace').hidden = false; });
+
+    // init
+    var styles = getComputedStyle(document.getElementById('trim-redesign-demo'));
+    wave.parentElement.style.setProperty('--fae-a', styles.getPropertyValue('--fae-accent').trim() || '#0f766e');
+    wave.parentElement.style.setProperty('--fae-g', styles.getPropertyValue('--fae-ink3').trim() || '#a8a29e');
+    fit(); render();
+    var ro = new ResizeObserver(function () { if (!st._zoomed) { fit(); } render(); });
+    st._zoomed = false;
+    q('[data-act="zoomin"]').addEventListener('click', function () { st._zoomed = true; });
+    window.addEventListener('resize', function () { if (!st._zoomed) fit(); });
+  }
+
+  var roots = document.querySelectorAll('#trim-redesign-demo .fae-editor');
+  roots.forEach(function (r) { mountEditor(r, r.getAttribute('data-inst') === 'mobile'); });
+
+  var errBtn = document.getElementById('trd-error-toggle'), errOn = false;
+  errBtn.addEventListener('click', function () {
+    errOn = !errOn;
+    document.querySelectorAll('#trim-redesign-demo .fae-editor').forEach(function (r) {
+      r.querySelector('.fae-errorcard').hidden = !errOn;
+      r.querySelector('.fae-workspace').hidden = errOn;
+    });
+    errBtn.textContent = errOn ? 'Back to editor state' : 'Preview error state';
+  });
+
+  if (window.lucide) lucide.createIcons({ attrs: { width: 16, height: 16 } });
+})();
+</script>
+</div>

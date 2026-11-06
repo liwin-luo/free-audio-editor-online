@@ -71,6 +71,8 @@ export interface EditorConfig {
   trimLayout?: boolean;
   /** Edge-fade sliders inside the trim layout (uses the shared fade pipeline). */
   trimFades?: boolean;
+  /** Simple version: one switch applies a fixed 2 s fade in and out. */
+  fadeSwitch?: boolean;
   /** Volume percents shown as buttons next to the gain slider. */
   gainPresets?: number[];
   /** Speed multiples shown as buttons next to the speed slider. */
@@ -184,20 +186,20 @@ export const TOOLS: ToolDef[] = [
       {
         src: '/screenshots/audio-trimmer-1.webp',
         alt: 'Audio Trimmer dropzone: drop a file or browse, nothing uploaded',
-        width: 1464,
-        height: 606
+        width: 976,
+        height: 462
       },
       {
         src: '/screenshots/audio-trimmer-2.webp',
         alt: 'Audio Trimmer workspace with the file loaded',
-        width: 1464,
-        height: 885
+        width: 976,
+        height: 586
       },
       {
         src: '/screenshots/audio-trimmer-3.webp',
         alt: 'Audio Trimmer after export: the status line names the downloaded file',
-        width: 1464,
-        height: 885
+        width: 976,
+        height: 586
       },
     ],
     subtitle: 'Trim audio online — free, right in your browser. Nothing is uploaded.',
@@ -234,7 +236,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Which formats can I trim?',
-        a: 'Whatever this browser can already decode. The save menu is MP3 at 64, 96, 128, 192, or 320 kbps, or 16-bit WAV. MP3 encodes the first two channels only.',
+        a: 'Whatever this browser can already decode. The save menu is MP3 at 64, 96, 128, 192, or 320 kbps, M4A (AAC) when this browser supports it, or 16-bit WAV. MP3 encodes the first two channels only.',
       },
       {
         q: 'Will trimming reduce the audio quality?',
@@ -251,13 +253,36 @@ export const TOOLS: ToolDef[] = [
       {
         q: 'Can I trim a local file from Claude or Cursor?',
         a: 'This page trims in the browser with the Web Audio API. Nothing is installed. /mcp runs on your computer and calls ffmpeg. Pass a start and an end in seconds. WAV is the decoded samples. MP3 is encoded once. The chat app still sees the path and the arguments.',
+      },
+      {
+        q: 'How precise can the cut be?',
+        a: 'The arrow controls move each boundary in 0.01 s, 0.1 s, and 1 s steps, and both times can be typed by hand. The ruler under the waveform follows the zoom, so the cut lands where you want it.',
+      },
+      {
+        q: 'Can I trim in full screen on my phone?',
+        a: 'Yes. The expand icon in the toolbar opens the editor over the whole screen, so the waveform gets the entire display. Tap it again or press Escape to go back.',
+      },
+      {
+        q: 'What format should I save for WhatsApp or email?',
+        a: 'MP3 at 128 or 192 kbps stays small and plays everywhere. WhatsApp accepts documents up to 2 GB, and Gmail caps messages at 25 MB, so a trimmed cut fits with room to spare.',
+      },
+      {
+        q: 'Why does the exported file name have a suffix?',
+        a: 'Each export adds a short tag like -edited so versions are easy to tell apart. Rename the file after downloading; the audio does not change.',
       }],
     sections: [
       {
         heading: 'Mark the part you want to keep',
         paragraphs: [
-          'Drag across the waveform. The start and end update as you drag, and you can type both times when a finger or a mouse is not exact enough. Press play to hear only that span before you save.',
+          'Drag across the waveform to mark the span. The ruler under the track shows the scale, and a small pill on each boundary shows its exact time. Press play to hear only that span before you save.',
           'Export WAV if you will trim again or edit further. Export MP3 when the clip is finished. A trim to WAV keeps the samples you selected. A trim to MP3 encodes once, at the bitrate you pick.',
+        ],
+      },
+      {
+        heading: 'Nudge the cut to the hundredth of a second',
+        paragraphs: [
+          'The arrow groups next to each time field move a boundary by 0.1 s, 0.01 s, or 1 s per click. Both times can also be typed by hand.',
+          'Loop playback runs the span over and over. Every adjustment starts the span from the top, so a change is heard the moment it is made.',
         ],
       },
       {
@@ -274,7 +299,7 @@ export const TOOLS: ToolDef[] = [
       {
         heading: 'What the trim does to the sound',
         paragraphs: [
-          'The file is decoded, the span is taken, and the export is written again. WAV is 16-bit PCM of that span. MP3 encodes it once. The default bitrate on this page is 192 kbps.',
+          'The file is decoded, the span is taken, and the export is written again. WAV is 16-bit PCM of that span. MP3 encodes it once, at the bitrate you pick. M4A saves an AAC copy for Apple apps when this browser can encode AAC.',
           'This page does not change loudness. A quieter file, from 10% to 400%, is [increase volume](/increase-volume).',
         ],
       },
@@ -289,10 +314,29 @@ export const TOOLS: ToolDef[] = [
           'A video: the soundtrack is what gets trimmed. The picture is not saved.',
         ],
       },
+      {
+        heading: 'Pick an output that fits where the clip is going',
+        paragraphs: [
+          'Different destinations care about different things. A chat app wants a small file, an email has a size cap, and another edit wants no extra loss.',
+        ],
+        table: {
+          headers: ['Going to', 'Pick', 'Why it fits'],
+          rows: [
+            ['A chat app like WhatsApp', 'MP3 at 128 or 192 kbps', 'Small file, plays everywhere. Documents up to 2 GB are accepted, so a trimmed cut fits easily.'],
+            ['An email', 'MP3 at 128 kbps', 'A 12-minute cut stays near 12 MB, under the 25 MB Gmail message cap.'],
+            ['Apple apps (GarageBand, iMovie)', 'M4A with AAC', 'Drops into Apple apps without another conversion.'],
+            ['Another edit on this site', 'WAV, lossless', 'No second lossy step. Fades and volume stack without MP3 artifacts.'],
+            ['Social video (TikTok, Reels)', 'WAV, lossless', 'The platform re-encodes anyway, so hand over the cleanest file.'],
+          ],
+        },
+        outro: ['Caps change as apps update. Checked against the help pages of each app in November 2026.'],
+      },
     ],
     related: ['mp3-cutter', 'ringtone-maker', 'fade-audio'],
     editor: {
       defaultFormat: 'mp3-192',
+      formats: ['wav', 'm4a', 'mp3-320', 'mp3-192', 'mp3-128', 'mp3-96', 'mp3-64'],
+      fadeSwitch: true,
       showAdjust: false,
       trimLayout: true,
       exportLabel: 'Trim and download',

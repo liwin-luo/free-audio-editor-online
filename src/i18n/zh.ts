@@ -12,6 +12,7 @@ export const zh: Catalog = {
     footerBlurb:
       '免费的在线音频工具，全部在你的浏览器里运行。文件不会上传。音频编辑从一开始就不把文件交出去。',
     share: '分享',
+    fullscreen: '全屏',
     shareOn: '分享到 {name}',
     copyLink: '复制链接',
     copied: '已复制',
@@ -41,6 +42,10 @@ export const zh: Catalog = {
     browseToolkit: '查看全部工具',
     home: '首页',
     howTo: '{name}怎么用',
+    whyUs: '为什么选择{name}',
+    whyPrivacy: '隐私即设计——音频永不离开此标签页。无上传、无账号、无水印。',
+    whyPrecision: '精确到 0.01 秒——微调边界、跟随刻度，保留的区间听得清清楚楚。',
+    whyMobile: '为手机而生——随时随地剪，无需安装任何东西。',
     ogAlt: 'Free Audio Editor：在线编辑音频，什么都不会上传',
     schemaOs: '不限（只要浏览器）',
     schemaBrowser: '需要支持 Web Audio 的现代浏览器',
@@ -59,6 +64,7 @@ export const zh: Catalog = {
     'mp3-64': 'MP3 · 64 kbps',
       wav: 'WAV · 无损',
       m4r: 'M4R · iPhone 铃声',
+      m4a: 'M4A · AAC',
     },
     categories: {
       cut: '裁剪与剪切',
@@ -88,9 +94,6 @@ export const zh: Catalog = {
     hintSelect: '在波形上拖动来选择 · 空格键播放',
     hintTrim: '拖两端改范围，播放只听这一段',
     changeFile: '换一个文件',
-    statStart: '起点',
-    statSpan: '这一段',
-    statEnd: '终点',
     selectAll: '选中全部',
     playBtn: '播放',
     chMono: '单声道',
@@ -181,6 +184,15 @@ export const zh: Catalog = {
     cutMode: '剪切模式',
     keep: '保留选区',
     deleteSel: '删除选区',
+    saveSelected: '保存选中段 · {time}',
+    saveWithoutSelection: '去掉选中段并保存 · {time}',
+    fineTune: '微调',
+    boundaryStart: '开始',
+    boundaryEnd: '结束',
+    loop: '循环',
+    outputLine: '输出 {time} · ≈{size}',
+    errorDecodeTitle: '无法解码此文件',
+    errorDecodeHow: '请改用 MP3、WAV 或 M4A 文件，或先转换格式，再拖到这里。',
     precise: '精确时间',
     startSec: '开始（秒）',
     endSec: '结束（秒）',
@@ -1291,8 +1303,15 @@ export const zh: Catalog = {
         {
           heading: '标出你要留下的那一段',
           paragraphs: [
-            '在波形上拖过去。起点和终点会跟着拖动实时更新；手指或鼠标不够准的时候，直接输入两个时间。保存前先按播放，只听这一段。',
+            '在波形上拖动标出区间。声轨下方的刻度尺显示比例，两条边界线上各有一个时间标签。保存前先按播放，只听这一段。',
             '之后还要再裁或继续编辑，就导出 WAV。片段已经定稿，就导出 MP3。裁成 WAV 会保留你选中的采样；裁成 MP3 会按你选的比特率编码一次。',
+          ],
+        },
+        {
+          heading: '把切点微调到百分之一秒',
+          paragraphs: [
+            '箭头组把边界一次移动 0.1 秒、0.01 秒或 1 秒，两个时间也可以直接手输。',
+            '打开循环，选中的区间会反复播放；每一次调整都会从头重播这一段，改完马上就能听出差别。',
           ],
         },
         {
@@ -1309,7 +1328,7 @@ export const zh: Catalog = {
         {
           heading: '裁剪会对声音做什么',
           paragraphs: [
-            '文件先解码，取出这一段，再重新写出去。WAV 是这一段的 16 位 PCM。MP3 编码一次，这一页默认 192 kbps。',
+            '文件先解码，取出这一段，再重新写出去。WAV 是这一段的 16 位 PCM。MP3 按所选比特率编码一次。M4A 会存一份 AAC 副本，可直接用于 Apple 应用（需浏览器支持 AAC 编码）。',
             '这一页不改音量。要把偏小的文件放大到 10% 到 400%，用 [提高音量](/increase-volume)。',
           ],
         },
@@ -1324,7 +1343,24 @@ export const zh: Catalog = {
             '视频文件：裁的是音轨，画面不会保存。',
           ],
         },
-      ],
+
+        {
+          heading: '按用途选择输出格式',
+          paragraphs: [
+            '不同的去处看重不同的东西：聊天软件要文件小，邮件有大小上限，下一步编辑不希望二次损耗。',
+          ],
+          table: {
+            headers: ['去处', '建议格式', '原因'],
+            rows: [
+              ['聊天应用（如 WhatsApp）', 'MP3 · 128 或 192 kbps', '文件小，处处能播。以文档方式发送上限 2 GB，裁好的片段轻松放下。'],
+              ['电子邮件', 'MP3 · 128 kbps', '12 分钟的片段约 12 MB，低于 Gmail 25 MB 的邮件上限。'],
+              ['Apple 应用（库乐队、iMovie）', 'M4A · AAC', '无需二次转换，直接进入 Apple 应用。'],
+              ['本站继续编辑', 'WAV · 无损', '没有第二次有损编码，淡入淡出和音量调整不会叠加 MP3 损耗。'],
+              ['社交视频（TikTok、Reels）', 'WAV · 无损', '平台本身会重新编码，交出最干净的源文件即可。'],
+            ],
+          },
+          outro: ['各项上限会随应用版本变化。以上数字于 2026 年 11 月对照各应用官方帮助页核对。'],
+        },      ],
     },
     'mp3-cutter': {
       cardLine: '把歌切到副歌、高潮或任意片段，不重新编码。',
@@ -1383,7 +1419,23 @@ export const zh: Catalog = {
           q: '手机上能用吗？',
           a: '能。用手指在波形上拖选。当前的 Chrome、Edge、Firefox 和 Safari，iPhone 和 Android 都能解常见格式。文件很长会更占内存，超过大约一小时时电脑更稳。',
         },
+                {
+          q: '裁剪可以精确到多少？',
+          a: '箭头组按 0.01 秒、0.1 秒和 1 秒移动边界，两个时间也都可以手动输入。波形下方的刻度尺会跟随缩放，切点想落在哪就在哪。',
+        },
         {
+          q: '手机上可以全屏剪辑吗？',
+          a: '可以。工具栏的扩展图标会让编辑器铺满整个屏幕，波形占满整块显示。再点一次或按 Esc 返回。',
+        },
+        {
+          q: '发给微信或邮件该用什么格式？',
+          a: '128 或 192 kbps 的 MP3 又小又通用。微信以文档方式发送上限 2 GB，Gmail 邮件上限 25 MB，按 128 kbps 裁出的 10 分钟片段绰绰有余。',
+        },
+        {
+          q: '导出的文件名为什么带后缀？',
+          a: '每次导出会加一个短标记（如 -edited）方便区分版本。下载后可以自行重命名，音频内容不会改变。',
+        },
+{
         q: '可以把 YouTube 上的歌切下来吗？',
         a: '不能。这个页面只处理你从这台设备选的文件，不接受链接。把流媒体平台的音频切存下来通常违反它们的服务条款，请只使用你拥有或获授权的歌曲。',
         },

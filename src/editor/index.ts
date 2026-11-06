@@ -82,6 +82,29 @@ interface Elements {
   format: HTMLSelectElement;
   exportBtn: HTMLButtonElement;
   batchList: HTMLElement;
+  /** Dual-exit pages (trim layout). Absent elsewhere. */
+  dimL: HTMLDivElement | null;
+  dimR: HTMLDivElement | null;
+  resultLine: HTMLElement | null;
+  exitDel: HTMLButtonElement | null;
+  exitDelLabel: HTMLElement | null;
+  loopBtn: HTMLButtonElement | null;
+  fadeInBtn: HTMLButtonElement | null;
+  fadeOutBtn: HTMLButtonElement | null;
+  fullscreenBtn: HTMLButtonElement | null;
+  fadeVisIn: HTMLElement | null;
+  fadeVisOut: HTMLElement | null;
+  ruler: HTMLElement | null;
+  rulerContent: HTMLElement | null;
+  selTimeStart: HTMLElement | null;
+  selTimeEnd: HTMLElement | null;
+  formatDropdown: HTMLElement | null;
+  formatBtn: HTMLButtonElement | null;
+  formatBtnLabel: HTMLElement | null;
+  formatPopup: HTMLElement | null;
+  exportLabel: HTMLElement | null;
+  errorCard: HTMLElement | null;
+  errorChange: HTMLButtonElement | null;
 }
 
 function requireEl<T extends Element>(root: ParentNode, selector: string): T {
@@ -135,6 +158,8 @@ export class Editor {
   private noiseStrength = 0.75;
   private voiceCrushBits = 0;
   private drag: { kind: 'new' | 'start' | 'end'; x0: number; anchor: number; sel: { start: number; end: number } } | null = null;
+  private loopSel = false;
+  private dualExits = false;
 
   constructor(root: HTMLElement, config: EditorConfig) {
     this.config = config;
@@ -167,19 +192,44 @@ export class Editor {
       format: requireEl<HTMLSelectElement>(root, '[data-format]'),
       exportBtn: requireEl<HTMLButtonElement>(root, '[data-export]'),
       batchList: requireEl(root, '[data-batch-list]'),
+      dimL: root.querySelector<HTMLDivElement>('[data-dim-l]'),
+      dimR: root.querySelector<HTMLDivElement>('[data-dim-r]'),
+      resultLine: root.querySelector<HTMLElement>('[data-result-line]'),
+      exitDel: root.querySelector<HTMLButtonElement>('[data-exit-del]'),
+      exitDelLabel: root.querySelector<HTMLElement>('[data-exit-del-label]'),
+      loopBtn: root.querySelector<HTMLButtonElement>('[data-loop]'),
+      fadeInBtn: root.querySelector<HTMLButtonElement>('[data-fade-in-btn]'),
+      fadeOutBtn: root.querySelector<HTMLButtonElement>('[data-fade-out-btn]'),
+      fadeVisIn: root.querySelector<HTMLElement>('[data-fade-in-vis]'),
+      fadeVisOut: root.querySelector<HTMLElement>('[data-fade-out-vis]'),
+      fullscreenBtn: root.querySelector<HTMLButtonElement>('[data-fullscreen]'),
+      ruler: root.querySelector<HTMLElement>('[data-ruler]'),
+      rulerContent: root.querySelector<HTMLElement>('[data-ruler-content]'),
+      selTimeStart: root.querySelector<HTMLElement>('[data-sel-time-start]'),
+      selTimeEnd: root.querySelector<HTMLElement>('[data-sel-time-end]'),
+      formatDropdown: root.querySelector<HTMLElement>('[data-format-dropdown]'),
+      formatBtn: root.querySelector<HTMLButtonElement>('[data-format-btn]'),
+      formatBtnLabel: root.querySelector<HTMLElement>('[data-format-btn-label]'),
+      formatPopup: root.querySelector<HTMLElement>('[data-format-popup]'),
+      exportLabel: root.querySelector<HTMLElement>('[data-export-label]'),
+      errorCard: root.querySelector<HTMLElement>('[data-error-card]'),
+      errorChange: root.querySelector<HTMLButtonElement>('[data-error-change]'),
     };
+    this.dualExits = Boolean(config.trimLayout && !config.loop && !config.split);
 
     if (config.defaultFormat) this.els.format.value = config.defaultFormat;
     // The M4R option only renders on pages that opt in; remove it when the
     // browser cannot encode AAC so export never dead-ends.
-    if (config.formats?.includes('m4r')) {
+    if (config.formats?.includes('m4r') || config.formats?.includes('m4a')) {
       void loadEncoders()
         .then((enc) => enc.isM4rSupported())
         .then((ok) => {
           if (!ok) {
             this.els.format.querySelector<HTMLOptionElement>('option[value="m4r"]')?.remove();
+            this.els.format.querySelector<HTMLOptionElement>('option[value="m4a"]')?.remove();
             this.els.root.querySelector('[data-delivery="m4r"]')?.remove();
-            if (this.els.format.value === 'm4r') this.els.format.value = 'mp3-192';
+            if (this.els.format.value === 'm4r' || this.els.format.value === 'm4a') this.els.format.value = 'mp3-192';
+            this.syncFormatDropdown();
           }
         });
     }
@@ -312,9 +362,28 @@ export class Editor {
       if (file) this.takeFiles([file]);
     });
 
+    els.stage.addEventListener('scroll', () => this.syncRulerScroll());
+    if (els.ruler) {
+      let panDrag: { x0: number; s0: number } | null = null;
+      els.ruler.addEventListener('pointerdown', (e) => {
+        panDrag = { x0: e.clientX, s0: els.stage.scrollLeft };
+        els.ruler!.setPointerCapture(e.pointerId);
+      });
+      els.ruler.addEventListener('pointermove', (e) => {
+        if (!panDrag) return;
+        els.stage.scrollLeft = Math.max(0, panDrag.s0 - (e.clientX - panDrag.x0));
+      });
+      els.ruler.addEventListener('pointerup', () => (panDrag = null));
+      els.ruler.addEventListener('pointercancel', () => (panDrag = null));
+    }
     els.zoomIn.addEventListener('click', () => this.setZoom(this.pps * 1.5));
     els.zoomOut.addEventListener('click', () => this.setZoom(this.pps / 1.5));
-    els.reset.addEventListener('click', () => this.reset());
+    // Change file goes straight to the picker — the loaded file is replaced
+    // on decode and stays untouched if the picker is cancelled.
+    els.reset.addEventListener('click', () => {
+      if (this.playing) this.stopPlayback();
+      this.els.fileInput.click();
+    });
 
     // Waveform interactions (mouse + touch)
     els.stageContent.addEventListener('pointerdown', (e) => this.onPointerDown(e));
@@ -606,7 +675,37 @@ export class Editor {
       this.updatePreciseInputs();
     });
 
-    els.exportBtn.addEventListener('click', () => void this.doExport());
+    els.exportBtn.addEventListener('click', () => void this.doExport(this.dualExits ? 'keep' : undefined));
+    els.exitDel?.addEventListener('click', () => void this.doExport('delete'));
+    els.loopBtn?.addEventListener('click', () => {
+      this.loopSel = !this.loopSel;
+      els.loopBtn?.setAttribute('aria-pressed', String(this.loopSel));
+      els.loopBtn?.classList.toggle('bg-accent', this.loopSel);
+      els.loopBtn?.classList.toggle('text-on-accent', this.loopSel);
+      if (this.playing && this.loopSel) this.restartLoopIfPlaying();
+    });
+    els.fadeInBtn?.addEventListener('click', () => this.commit({ fadeIn: this.state.fadeIn > 0 ? 0 : 2 }));
+    els.fadeOutBtn?.addEventListener('click', () => this.commit({ fadeOut: this.state.fadeOut > 0 ? 0 : 2 }));
+    els.fullscreenBtn?.addEventListener('click', () => this.toggleImmersive());
+    els.root.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.els.root.classList.contains('fae-fullscreen')) this.toggleImmersive();
+    });
+    els.root.querySelectorAll<HTMLButtonElement>('[data-nudge]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const [boundary, delta] = (btn.dataset.nudge ?? '').split(',');
+        this.applyNudge(boundary === 'start' ? 'start' : 'end', parseFloat(delta ?? '0'));
+      });
+    });
+    els.format.addEventListener('change', () => this.updateResultLine());
+    els.formatBtn?.addEventListener('click', () => this.toggleFormatDropdown());
+    document.addEventListener('click', (e) => {
+      if (!this.els.formatPopup || this.els.formatPopup.classList.contains('hidden')) return;
+      if (!(e.target as Element)?.closest('[data-format-dropdown]')) this.closeFormatDropdown();
+    });
+    els.root.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') this.closeFormatDropdown();
+    });
+    els.errorChange?.addEventListener('click', () => this.els.fileInput.click());
 
     els.root.addEventListener('pointerdown', () => (activeEditor = this));
     // Keyboard users reach the editor by tabbing, which never fires pointerdown.
@@ -712,11 +811,18 @@ export class Editor {
       this.els.play.disabled = false;
       this.els.exportBtn.disabled = false;
       this.els.format.disabled = false;
+      if (this.els.loopBtn) this.els.loopBtn.disabled = false;
+      if (this.els.fullscreenBtn) this.els.fullscreenBtn.disabled = false;
+      if (this.els.fadeInBtn) this.els.fadeInBtn.disabled = false;
+      if (this.els.fadeOutBtn) this.els.fadeOutBtn.disabled = false;
+      if (this.els.formatBtn) this.els.formatBtn.disabled = false;
 
       await this.refit(true);
       this.applyState(this.state, false);
       this.updateTimecode();
       this.setStatus(this.text.ready);
+      this.els.errorCard?.classList.add('hidden');
+      this.syncFormatDropdown();
       if (this.config.silence) await this.measureSilence();
       if (this.config.loop) await this.updateLoopStatus();
       if (this.config.split) this.updateSplitStatus();
@@ -729,6 +835,7 @@ export class Editor {
       }
     } catch {
       this.setStatus('');
+      this.els.errorCard?.classList.remove('hidden');
       showToast(this.toastRoot(), 'error', this.text.decodeFail);
       trackEvent('file_decode_failed', { tool: toolSlugFromPath(), size: sizeBucket(file.size) });
     } finally {
@@ -769,8 +876,55 @@ export class Editor {
     this.canvasWidth = Math.min(Math.round(this.duration * this.pps), MAX_CANVAS_WIDTH);
     this.els.stageContent.style.width = `${this.canvasWidth}px`;
     this.peaks = computePeaks(this.buffer, this.canvasWidth);
+    this.renderRuler();
     this.draw();
     this.updateSelectionOverlay();
+    this.syncRulerScroll();
+  }
+
+  /** Time ruler under the waveform: adaptive ticks, doubles as a pan strip. */
+  private renderRuler(): void {
+    if (!this.els.ruler || !this.els.rulerContent) return;
+    const W = this.canvasWidth;
+    this.els.rulerContent.style.width = `${W}px`;
+    const H = this.els.ruler.clientHeight || 28;
+    const candidates = [0.1, 0.2, 0.5, 1, 2, 5, 10, 15, 30, 60, 120, 300, 600, 1800];
+    let interval = candidates[candidates.length - 1];
+    for (const c of candidates) {
+      if (c * this.pps >= 60) {
+        interval = c;
+        break;
+      }
+    }
+    const label = (t: number): string => {
+      if (interval < 1) return `${Math.round(t * 10) / 10}s`;
+      const m = Math.floor(t / 60);
+      const s = Math.round(t - m * 60);
+      return m > 0 ? `${m}:${s < 10 ? '0' : ''}${s}` : `${s}s`;
+    };
+    const html: string[] = [];
+    const minor = interval / 10;
+    for (let t = 0; t <= this.duration + 0.0001; t += minor) {
+      const x = Math.round(t * this.pps);
+      const isMajor = Math.abs(t / interval - Math.round(t / interval)) < 0.001;
+      if (isMajor) {
+        html.push(`<span class="absolute bottom-0 h-2.5 w-px bg-line-strong" style="left:${x}px"></span>`);
+        html.push(`<span class="absolute top-0.5 -translate-x-1/2 whitespace-nowrap px-1 font-mono text-[10px] leading-none text-ink3" style="left:${x}px">${label(t)}</span>`);
+      } else {
+        html.push(`<span class="absolute bottom-0 h-1 w-px bg-line" style="left:${x}px"></span>`);
+      }
+    }
+    // 有刻度内容的容器宽度 = 波形内容宽度，随 stage 滚动平移
+    this.els.rulerContent.style.width = `${W}px`;
+    this.els.rulerContent.style.height = `${H}px`;
+    this.els.rulerContent.innerHTML = html.join('');
+    void H;
+  }
+
+  private syncRulerScroll(): void {
+    if (this.els.rulerContent) {
+      this.els.rulerContent.style.transform = `translateX(${-this.els.stage.scrollLeft}px)`;
+    }
   }
 
   private setZoom(pps: number): void {
@@ -1023,6 +1177,7 @@ export class Editor {
     this.updateSelectionOverlay();
     this.updatePreciseInputs();
     this.updateExportState();
+    this.restartLoopIfPlaying();
     const range = `${formatTime(this.state.sel.start, true)} – ${formatTime(this.state.sel.end, true)}`;
     this.setStatus(fill(this.state.mode === 'keep' ? this.text.kept : this.text.markedDelete, { range }));
   }
@@ -1041,13 +1196,17 @@ export class Editor {
     this.updateSelectionOverlay();
     this.updatePreciseInputs();
     this.updateExportState();
+    this.restartLoopIfPlaying();
   }
 
   private updateSelectionOverlay(): void {
     const sel = this.state.sel;
     if (!sel) {
       this.els.selection.classList.add('hidden');
-      this.updateSpanReadout();
+      if (this.els.dimL) this.els.dimL.hidden = true;
+      if (this.els.dimR) this.els.dimR.hidden = true;
+      this.els.selTimeStart?.classList.add('hidden');
+      this.els.selTimeEnd?.classList.add('hidden');
       this.draw();
       return;
     }
@@ -1055,29 +1214,44 @@ export class Editor {
     // Position with a transform so dragging the selection does not re-layout.
     this.els.selection.style.transform = `translateX(${sel.start * this.pps}px)`;
     this.els.selection.style.width = `${(sel.end - sel.start) * this.pps}px`;
-    this.updateSpanReadout();
-    this.draw();
-  }
-
-  private updateSpanReadout(): void {
-    if (!this.config.trimLayout) return;
-    const startEl = this.els.root.querySelector('[data-span-start]');
-    const lenEl = this.els.root.querySelector('[data-span-len]');
-    const endEl = this.els.root.querySelector('[data-span-end]');
-    const all = this.els.root.querySelector<HTMLButtonElement>('[data-select-all]');
-    const sel = this.state.sel;
-    if (!startEl || !lenEl || !endEl) return;
-    if (!sel) {
-      startEl.textContent = '—';
-      lenEl.textContent = '—';
-      endEl.textContent = '—';
-      if (all) all.hidden = false;
-      return;
+    if (this.els.dimL && this.els.dimR) {
+      const w1 = Math.max(0, Math.min(sel.start * this.pps, this.canvasWidth));
+      const x2 = Math.max(0, Math.min(sel.end * this.pps, this.canvasWidth));
+      this.els.dimL.hidden = w1 <= 0;
+      this.els.dimL.style.width = `${w1}px`;
+      this.els.dimR.hidden = x2 >= this.canvasWidth;
+      this.els.dimR.style.left = `${x2}px`;
+      this.els.dimR.style.width = `${Math.max(0, this.canvasWidth - x2)}px`;
     }
-    startEl.textContent = formatTime(sel.start, true);
-    endEl.textContent = formatTime(sel.end, true);
-    lenEl.textContent = formatTime(Math.max(0, sel.end - sel.start), true);
-    if (all) all.hidden = sel.start < 0.05 && this.duration - sel.end < 0.05;
+    if (this.els.selTimeStart && this.els.selTimeEnd) {
+      this.els.selTimeStart.classList.remove('hidden');
+      this.els.selTimeEnd.classList.remove('hidden');
+      // Keep pills fully inside the stage when a boundary sits at an edge.
+      this.els.selTimeStart.style.left = `${Math.max(24, sel.start * this.pps)}px`;
+      this.els.selTimeEnd.style.left = `${Math.min(sel.end * this.pps, this.canvasWidth - 24)}px`;
+      this.els.selTimeStart.textContent = formatTime(sel.start, true);
+      this.els.selTimeEnd.textContent = formatTime(sel.end, true);
+    }
+    if (this.els.fadeVisIn && this.els.fadeVisOut) {
+      // Fade wedges ride on the selection edges — visible only when enabled.
+      if (sel && this.state.fadeIn > 0) {
+        const w = Math.max(0, Math.min(this.state.fadeIn, sel.end - sel.start) * this.pps);
+        this.els.fadeVisIn.classList.remove('hidden');
+        this.els.fadeVisIn.style.left = `${sel.start * this.pps}px`;
+        this.els.fadeVisIn.style.width = `${w}px`;
+      } else {
+        this.els.fadeVisIn.classList.add('hidden');
+      }
+      if (sel && this.state.fadeOut > 0) {
+        const w = Math.max(0, Math.min(this.state.fadeOut, sel.end - sel.start) * this.pps);
+        this.els.fadeVisOut.classList.remove('hidden');
+        this.els.fadeVisOut.style.left = `${Math.max(0, sel.end * this.pps - w)}px`;
+        this.els.fadeVisOut.style.width = `${w}px`;
+      } else {
+        this.els.fadeVisOut.classList.add('hidden');
+      }
+    }
+    this.draw();
   }
 
   private channelLabel(channels: number): string {
@@ -1158,6 +1332,93 @@ export class Editor {
   private updateExportState(): void {
     // Selection is optional — with none, the whole file is rendered
     this.els.exportBtn.disabled = !this.buffer || this.busy;
+    if (this.dualExits) {
+      const sel = this.state.sel;
+      const span = sel ? sel.end - sel.start : this.duration;
+      const rest = this.duration - span;
+      if (this.els.exportLabel) {
+        this.els.exportLabel.textContent = fill(this.text.saveSelected, { time: formatTime(span, true) });
+      }
+      if (this.els.exitDel && this.els.exitDelLabel) {
+        this.els.exitDelLabel.textContent = fill(this.text.saveWithoutSelection, { time: formatTime(rest, true) });
+        this.els.exitDel.disabled = !this.buffer || this.busy || rest < 0.05;
+      }
+      this.updateResultLine();
+    }
+  }
+
+  private toggleFormatDropdown(): void {
+    if (!this.els.formatPopup || this.els.formatBtn?.disabled) return;
+    const open = this.els.formatPopup.classList.contains('hidden');
+    this.els.formatPopup.classList.toggle('hidden', !open);
+    this.els.formatBtn?.setAttribute('aria-expanded', String(open));
+    if (open) this.syncFormatDropdown();
+  }
+
+  private closeFormatDropdown(): void {
+    if (!this.els.formatPopup) return;
+    this.els.formatPopup.classList.add('hidden');
+    this.els.formatBtn?.setAttribute('aria-expanded', 'false');
+  }
+
+  /** Rebuild the custom dropdown rows from the (m4r-filtered) native options. */
+  private syncFormatDropdown(): void {
+    const popup = this.els.formatPopup;
+    const btnLabel = this.els.formatBtnLabel;
+    if (!popup || !btnLabel) return;
+    const selectedText = this.els.format.selectedOptions[0]?.textContent ?? '';
+    btnLabel.textContent = selectedText;
+    popup.innerHTML = '';
+    Array.from(this.els.format.options).forEach((opt) => {
+      const row = document.createElement('button');
+      row.type = 'button';
+      row.setAttribute('role', 'option');
+      row.setAttribute('aria-selected', String(opt.selected));
+      const selected = opt.selected;
+      row.className = selected
+        ? 'flex w-full items-center gap-2 px-3 py-2 text-sm font-medium text-accent'
+        : 'flex w-full items-center gap-2 px-3 py-2 text-sm text-ink hover:bg-accent-soft';
+      row.innerHTML =
+        `<span class="w-4 shrink-0">${selected ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m9 12 2 2 4-4"/></svg>' : ''}</span>` +
+        `<span>${opt.textContent}</span>`;
+      row.addEventListener('click', () => {
+        this.els.format.value = opt.value;
+        this.els.format.dispatchEvent(new Event('change'));
+        this.closeFormatDropdown();
+        this.syncFormatDropdown();
+      });
+      popup.appendChild(row);
+    });
+  }
+
+  /** Immersive mobile editing: the editor card becomes the whole viewport. */
+  private toggleImmersive(): void {
+    if (!this.dualExits) return;
+    const on = this.els.root.classList.toggle('fae-fullscreen');
+    this.els.fullscreenBtn?.setAttribute('aria-pressed', String(on));
+    document.documentElement.classList.toggle('fae-page-lock', on);
+    if (on) this.els.root.scrollTo({ top: 0 });
+    this.refit(true);
+  }
+
+  /** Per-second KB used for the size estimate; MP3 CBR and WAV PCM are exact. */
+  private updateResultLine(): void {
+    if (!this.els.resultLine || !this.buffer) {
+      this.els.resultLine?.classList.add('hidden');
+      return;
+    }
+    const sel = this.state.sel;
+    const span = sel ? sel.end - sel.start : this.duration;
+    const fmtId = this.els.format.value;
+    const rates: Record<string, number> = { 'mp3-320': 40, 'mp3-192': 24, 'mp3-128': 16, 'mp3-96': 12, 'mp3-64': 8, wav: 96, m4r: 16, m4a: 24 };
+    const kb = Math.round(span * (rates[fmtId] ?? 24));
+    const size = kb >= 1024 ? `${(kb / 1024).toFixed(1)} MB` : `${kb} KB`;
+    const fades =
+      this.state.fadeIn > 0 || this.state.fadeOut > 0
+        ? ` · ${this.text.fadeIn} ${this.state.fadeIn}s / ${this.text.fadeOut} ${this.state.fadeOut}s`
+        : '';
+    this.els.resultLine.classList.remove('hidden');
+    this.els.resultLine.textContent = fill(this.text.outputLine, { time: formatTime(span, true), size }) + fades;
   }
 
   /** Spinner plus label while export runs. `label` omitted keeps the current text. */
@@ -1183,6 +1444,7 @@ export class Editor {
   private commit(patch: Partial<EditState>): void {
     this.pushHistory();
     this.applyState({ ...this.state, ...patch }, true);
+    this.restartLoopIfPlaying();
   }
 
   private pushHistory(): void {
@@ -1337,6 +1599,14 @@ export class Editor {
     this.paintSpeedPresets(state.speed);
     this.paintPitchPresets(state.pitch);
     this.paintGainPresets(Math.round(state.gain * 100));
+    const paintFade = (btn: HTMLButtonElement | null, on: boolean) => {
+      if (!btn) return;
+      btn.setAttribute('aria-pressed', String(on));
+      btn.classList.toggle('bg-accent', on);
+      btn.classList.toggle('text-on-accent', on);
+    };
+    paintFade(this.els.fadeInBtn, state.fadeIn > 0);
+    paintFade(this.els.fadeOutBtn, state.fadeOut > 0);
     this.updateSelectionOverlay();
     this.updatePreciseInputs();
     this.updateExportState();
@@ -1462,13 +1732,32 @@ export class Editor {
       to = playBuffer.duration;
     }
 
-    const src = this.audioCtx.createBufferSource();
+    this.startSpan(playBuffer, from, to, rate, headFrom, this.loopSel && !!this.state.sel);
+  }
+
+  /** One playback span. Loop restarts re-enter here from onended. */
+  private startSpan(
+    playBuffer: AudioBuffer,
+    from: number,
+    to: number,
+    rate: number,
+    headFrom: number,
+    allowLoop: boolean,
+  ): void {
+    const src = this.audioCtx!.createBufferSource();
     src.buffer = playBuffer;
-    src.connect(this.audioCtx.destination);
+    src.connect(this.audioCtx!.destination);
     src.playbackRate.value = rate;
     const endAt = headFrom + (to - from) * rate;
     src.onended = () => {
-      if (this.playSource === src) this.stopPlayback(endAt);
+      if (this.playSource !== src) return;
+      if (allowLoop && this.loopSel) {
+        // Loop: start over from the top of the span so edits re-queue cleanly.
+        this.playheadTime = headFrom;
+        this.startSpan(playBuffer, from, to, rate, headFrom, true);
+        return;
+      }
+      this.stopPlayback(endAt);
     };
     // offset/duration are buffer-time units — playbackRate must not scale them
     src.start(0, from, Math.max(0.001, to - from));
@@ -1477,10 +1766,9 @@ export class Editor {
     this.playRate = rate;
     this.playOffset = headFrom;
     this.playEnd = endAt;
-    this.playStartedAt = this.audioCtx.currentTime;
-
+    this.playStartedAt = this.audioCtx!.currentTime;
     this.setPlayFace(true);
-
+    cancelAnimationFrame(this.raf);
     const tick = () => {
       if (!this.playing || !this.audioCtx) return;
       this.playheadTime = this.playOffset + (this.audioCtx.currentTime - this.playStartedAt) * this.playRate;
@@ -1489,8 +1777,31 @@ export class Editor {
       this.updateTimecode();
       this.raf = requestAnimationFrame(tick);
     };
-    cancelAnimationFrame(this.raf);
     this.raf = requestAnimationFrame(tick);
+  }
+
+  /** While looping, any parameter change restarts playback from the span top. */
+  private restartLoopIfPlaying(): void {
+    if (!this.playing || !this.loopSel) return;
+    this.stopPlayback();
+    if (this.state.sel) this.playheadTime = this.state.sel.start;
+    void this.togglePlay();
+  }
+
+  /** Nudge one boundary directly; keeps a minimum span and re-caps ringtones. */
+  private applyNudge(boundary: 'start' | 'end', delta: number): void {
+    if (!this.buffer || !this.state.sel) return;
+    this.pushHistory();
+    if (boundary === 'start') {
+      this.state.sel.start = Math.max(0, Math.min(this.state.sel.start + delta, this.state.sel.end - 0.05));
+    } else {
+      this.state.sel.end = Math.min(this.duration, Math.max(this.state.sel.end + delta, this.state.sel.start + 0.05));
+    }
+    this.enforceRingtoneCap();
+    this.updateSelectionOverlay();
+    this.updatePreciseInputs();
+    this.updateExportState();
+    this.restartLoopIfPlaying();
   }
 
   private stopPlayback(playheadTo?: number): void {
@@ -1616,8 +1927,12 @@ export class Editor {
     trackEvent('download_completed', { tool: toolSlugFromPath(), ext: filename.split('.').pop() ?? '' });
   }
 
-  private async doExport(): Promise<void> {
+  private async doExport(mode?: 'keep' | 'delete'): Promise<void> {
     if (!this.buffer || this.busy) return;
+    if (mode && this.state.mode !== mode) {
+      this.state.mode = mode;
+      this.pitchPreview = null;
+    }
     this.enforceRingtoneCap();
     this.updateSelectionOverlay();
     this.updatePreciseInputs();
@@ -1660,16 +1975,8 @@ export class Editor {
 
       const suffix = this.config.converter ? 'converted' : this.config.ringtone ? 'ringtone' : 'edited';
       const filename = `${this.fileName}-${suffix}.${fmt.ext}`;
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
-      trackEvent('download_completed', { tool: toolSlugFromPath(), ext: fmt.ext });
-
+      this.downloadBlob(blob, filename);
+      this.downloadBlob(blob, filename);
       this.setStatus(fill(this.text.exported, { file: filename }));
       showToast(this.toastRoot(), 'success', fill(this.text.saved, { file: filename }));
     } catch (err) {
@@ -1683,6 +1990,19 @@ export class Editor {
       this.updateExportState();
     }
   }
+
+  private downloadBlob(blob: Blob, filename: string): void {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    trackEvent('download_completed', { tool: toolSlugFromPath(), ext: filename.split('.').pop() ?? '' });
+  }
+
 
   // ---------- Keyboard ----------
 

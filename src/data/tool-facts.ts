@@ -36,7 +36,7 @@ export const TOOL_FACTS: Record<string, ToolFacts> = {
     },
     specs: [
       { label: 'Input', value: 'A file this browser can decode. The picker is not limited to one format.' },
-      { label: 'Output', value: 'MP3 at 64, 96, 128, 192 or 320 kbps, first two channels only, or 16-bit WAV' },
+      { label: 'Output', value: 'MP3 at 64, 96, 128, 192 or 320 kbps, M4A (AAC) when this browser supports it, or 16-bit WAV. MP3 and M4A encode the first two channels only' },
       { label: 'Selection', value: 'One region per export; drag the handles or type the start and end times' },
       { label: 'Length', value: 'Over 300 MB is rejected. Over one hour still opens, with a memory warning. That warning is not a length cap.' },
       { label: 'Tags', value: 'Not copied — title, artist and cover art are left behind on MP3 export' },

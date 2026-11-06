@@ -117,7 +117,7 @@ try {
   await page.keyboard.press('Space'); // stop
   await new Promise((r) => setTimeout(r, 200));
 
-  // 6. Export as WAV
+  // 6. Export as WAV — dual-exit flow downloads directly.
   await page.select('[data-format]', 'wav');
   const client = await page.createCDPSession();
   await client.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: DOWNLOAD_DIR });

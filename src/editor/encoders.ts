@@ -103,6 +103,7 @@ export const EXPORT_FORMATS: ExportFormat[] = [
   { id: 'mp3-64', label: 'MP3 · 64 kbps', ext: 'mp3', kind: 'mp3', kbps: 64 },
   { id: 'wav', label: 'WAV · lossless', ext: 'wav', kind: 'wav' },
   { id: 'm4r', label: 'M4R · iPhone ringtone', ext: 'm4r', kind: 'm4r', kbps: 192 },
+  { id: 'm4a', label: 'M4A · AAC', ext: 'm4a', kind: 'm4r', kbps: 192 },
 ];
 
 export function getFormat(id: string): ExportFormat {

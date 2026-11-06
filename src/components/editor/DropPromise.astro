@@ -37,20 +37,20 @@ const promise = promiseParts(config, {
 >
   <slot />
   <p class="mt-1.5 text-sm text-ink3">{promise}</p>
+  {
+    chips.length > 0 && (
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-2" role="group" aria-label={t.format}>
+        {chips.map((chip) => (
+          <button
+            type="button"
+            data-delivery={chip.id}
+            aria-pressed={chip.id === selected ? 'true' : 'false'}
+            class="cursor-pointer rounded-full border border-line-strong bg-bg px-3 py-1 text-xs font-medium text-ink2 aria-pressed:border-accent aria-pressed:bg-accent-soft aria-pressed:text-accent pointer-coarse:min-h-11"
+          >
+            {chip.label}
+          </button>
+        ))}
+      </div>
+    )
+  }
 </div>
-{
-  chips.length > 0 && (
-    <div class="mt-4 flex flex-wrap items-center justify-center gap-2" role="group" aria-label={t.format}>
-      {chips.map((chip) => (
-        <button
-          type="button"
-          data-delivery={chip.id}
-          aria-pressed={chip.id === selected ? 'true' : 'false'}
-          class="cursor-pointer rounded-full border border-line-strong bg-bg px-3 py-1 text-xs font-medium text-ink2 aria-pressed:border-accent aria-pressed:bg-accent-soft aria-pressed:text-accent pointer-coarse:min-h-11"
-        >
-          {chip.label}
-        </button>
-      ))}
-    </div>
-  )
-}
