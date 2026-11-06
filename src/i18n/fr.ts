@@ -4333,22 +4333,42 @@ export const fr: Catalog = {
       cardLine: 'Baissez le bruit de fond constant d’un enregistrement vocal, dans le navigateur.',
       name: 'Supprimer le bruit de fond',
       shortName: 'Débruiter',
-      title: 'Supprimer le bruit de fond — nettoyez un audio en ligne',
-      description: 'Réduisez le bruit de fond constant autour de la voix dans votre navigateur. RNNoise tourne sur votre appareil, un modèle de 150 Ko charge une fois.',
-      h1: 'Supprimer le bruit de fond — enlever le souffle d’un enregistrement',
+      title: 'Supprimer le bruit de fond — RNNoise en local, gratuit',
+      description: 'RNNoise enlève sifflement, bourdonnement et ventilateur : environ 20 dB de moins, dans le navigateur. Plus de 300 Mo refusé. Export MP3 ou WAV gratuit.',
+      h1: 'Supprimer le bruit de fond — éditeur audio en ligne gratuit',
       heroAlt: 'Le bruit de fond constant sous un enregistrement vocal descend',
       howToIntro: 'Un fichier bruyant, un curseur d’intensité',
       subtitle: 'Souffle, ronflement et bruit de ventilateur constants baissent de 20 dB ou plus autour de la voix. La timeline ne bouge pas.',
       intro: 'Cette page fait passer RNNoise sur l’enregistrement que vous déposez, une porte de bruit entraînée sur la parole. Le bruit constant comme le souffle, le ronflement ou un ventilateur baisse de 20 dB ou plus autour de la voix, et les mots gardent leur niveau. La porte est un modèle de 150 Ko qui tourne dans votre navigateur, l’audio ne quitte jamais votre appareil.',
-      usesHeading: 'D’où vient vraiment le bruit de fond',
-      uses: ['Sauver un mémo vocal enregistré près d’un ventilateur ou d’une climatisation.', 'Nettoyer une prise de podcast ou d’interview avant publication, sans logiciel de bureau.', 'Baisser le souffle sous un enregistrement de cours, puis ajuster la sonie.'],
+      usesHeading: 'Cas courants de suppression du bruit de fond',
+      uses: [
+        'Mémos vocaux : baisser le bourdonnement du ventilateur et de la clim, garder la voix propre.',
+        'Podcasts : nettoyer le fond sonore avant publication, sans éditeur desktop.',
+        'Cours : réduire le sifflement constant de la salle, puis ajuster la sonorité.',
+        'Entretiens : nettoyer la voix — retirer la rumeur constante de la rue et de la pièce.',
+        'Voix off : si le doublage capte la clim, enlever le bruit avant le calage.',
+        'Réunions : baisser le bourdonnement électrique et le ventilateur pour un retour moins agressif.',
+      ],
+      why: [
+        {
+          icon: 'audio-waveform',
+          title: 'RNNoise tourne en local',
+          text: 'Un modèle de 150 KB s’exécute dans le navigateur : le bruit constant descend d’environ 20 dB et la voix bouge de moins de 1 dB. Aucun envoi.',
+        },
+        {
+          icon: 'warning-triangle',
+          title: 'Limites honnêtes',
+          text: 'Cela marche sur le bruit constant — sifflement, bourdonnement, ventilateur. Les voix de fond et la musique non ; la page ne prétend pas le contraire.',
+        },
+      ],
       howTo: [
-        { name: 'Déposez votre audio', text: 'N’importe quel fichier MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil. Le curseur d’intensité démarre à 75 pour cent.' },
-        { name: 'Réglez l’intensité', text: '100 pour cent est la suppression maximale. Descendez vers 50 quand le résultat sonne fermé et que vous préférez garder un peu d’ambiance. Le modèle se récupère au premier export, pas à l’ouverture de la page.' },
-        { name: 'Exportez', text: 'L’export fait passer tout le fichier dans la porte par trames de 10 millisecondes, et la ligne d’état affiche la progression. Le MP3 part au débit choisi, le WAV garde exactement les échantillons traités.' },
+        { name: 'Dépose ton audio', text: 'Dépose un MP3, WAV, M4A, OGG ou FLAC dans le cadre pointillé, ou clique pour parcourir. Le fichier se décode sur ton appareil, sans envoi. La «Intensité» démarre à 75 %.' },
+        { name: 'Règle la «{strength}»', text: '100 % = suppression maximale, environ −30 dB. Si le résultat est sourd et tu veux un peu de salle, descends vers 50 % (environ −6 dB). Le modèle RNNoise de 150 KB se charge au premier export.' },
+        { name: 'Clique «{export}»', text: 'Le bouton principal de la barre d’export. Tout le fichier passe la porte en trames de 10 millisecondes ; la ligne d’état affiche la progression. Un «Lecture» sur l’original si tu doutes.' },
+        { name: 'Récupère le fichier', text: 'Le MP3 s’exporte au débit choisi, le WAV garde les échantillons traités ; le nom porte le suffixe -edited.' },
       ],
       faqs: [
-        { q: 'Mon audio est-il envoyé quelque part ?', a: 'Non. Le décodage et la porte de bruit ont lieu dans votre navigateur. Au premier export, la page récupère le modèle RNNoise, un fichier WebAssembly de 150 Ko, depuis ce site. Il reste ensuite en cache et la page marche hors ligne.' },
+        { q: 'Mon audio est-il envoyé quelque part ?', a: 'Non. Le décodage et la porte de bruit ont lieu dans votre navigateur. Au premier export, la page récupère le modèle RNNoise, un fichier WebAssembly de 150 Ko, depuis ce site. Il reste ensuite en cache et la page marche hors ligne. Les fichiers de plus de 300 Mo sont refusés.' },
         { q: 'Que devient le fichier ?', a: 'L’audio passe par la porte à 48 kHz par trames de 10 millisecondes. Un fichier 44,1 kHz est rééchantillonné à l’entrée puis au retour. Dans notre mix de test, un plancher de bruit à −31 dBFS est ressorti à −61 dBFS et la voix a bougé de moins de 1 dB. L’export MP3 réencode une fois au débit choisi.' },
         { q: 'Qu’est-ce que ça n’enlève pas ?', a: 'Le bruit qui ressemble à la voix. Une autre personne qui parle, une télévision au fond ou une foule restent, parce que ça occupe les mêmes bandes de fréquences que l’orateur. Pour cela il faut de la réparation spectrale dans un DAW de bureau. Le bruit constant comme le souffle, le ronflement et les ventilateurs, voilà le sujet de cette page.' },
         { q: ' Quelle différence avec le retireur de silences ?', a: 'Le [retireur de silences](/silence-remover) coupe les passages silencieux hors de la timeline. Cette page ne déplace aucun échantillon et baisse le bruit constant sous la voix. Utilisez les deux dans cet ordre : d’abord le bruit, ensuite les blancs.' },
@@ -4363,7 +4383,7 @@ export const fr: Catalog = {
       ],
       sections: [
         {
-          heading: 'La porte sous la voix',
+          heading: 'Comment RNNoise supprime le bruit de fond',
           paragraphs: [
             'RNNoise suit le plancher de bruit de l’enregistrement et calcule un gain pour chaque bande de fréquences environ cent fois par seconde. Les bandes qui portent la voix restent ouvertes. Les bandes qui portent un bruit stable se ferment.',
             'Les nombres de cette page viennent d’une mesure reproductible, pas d’une promesse marketing. Notre mix de test associe un ton proche d’une voix à un bruit blanc à −31 dBFS. Après la porte à 100 pour cent, le plancher est à −61 dBFS, la bande de voix a bougé de moins de 1 dB, et un clic à pleine échelle est tombé sur l’échantillon exact de son départ.',
@@ -4394,7 +4414,7 @@ export const fr: Catalog = {
           },
         },
         {
-          heading: 'La voix, pas la musique',
+          heading: 'Nettoyage de voix, pas de débruitage de musique',
           paragraphs: [
             'La porte est entraînée sur la parole, donc elle traite tout ce qui ressemble à une voix comme ce qu’il faut garder. C’est un atout pour les enregistrements parlés et une limite partout ailleurs :',
           ],

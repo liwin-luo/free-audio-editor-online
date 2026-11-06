@@ -4226,22 +4226,42 @@ export const id: Catalog = {
       cardLine: 'Turunkan noise latar yang menetap pada rekaman suara, langsung di peramban.',
       name: 'Hilangkan noise latar',
       shortName: 'Hapus noise',
-      title: 'Hilangkan noise audio — bersihkan suara latar secara online',
-      description: 'Kurangi noise latar yang menetap di sekitar suara di peramban Anda. RNNoise berjalan di perangkat Anda, model 150 KB dimuat sekali. Gratis, MP3 atau WAV.',
-      h1: 'Hilangkan noise audio — bersihkan desis dari rekaman',
+      title: 'Hapus noise latar belakang — RNNoise lokal, gratis',
+      description: 'RNNoise menghapus hiss, hum, dan noise kipas dari rekaman: turun sekitar 20 dB, lokal di browser. File di atas 300 MB ditolak. Ekspor MP3/WAV gratis.',
+      h1: 'Hapus noise latar belakang — audio denoiser online gratis',
       heroAlt: 'Noise latar yang menetap di bawah rekaman suara diturunkan',
       howToIntro: 'Satu berkas berisik, satu penggeser kekuatan',
       subtitle: 'Desis, dengung, dan bising kipas yang menetap turun 20 dB atau lebih di sekitar suara. Garis waktu tidak bergeser.',
       intro: 'Halaman ini menjalankan RNNoise, gerbang noise yang dilatih dengan suara manusia, pada rekaman yang Anda jatuhkan. Noise menetap seperti desis, dengung, atau kipas turun 20 dB atau lebih di sekitar suara, dan kata-kata tetap pada levelnya. Gerbang ini model 150 KB yang berjalan di peramban Anda, jadi audio tidak pernah keluar dari perangkat.',
-      usesHeading: 'Dari mana noise latar berasal',
-      uses: ['Selamatkan memo suara yang direkam di dekat kipas atau AC.', 'Bersihkan rekaman podcast atau wawancara sebelum terbit, tanpa aplikasi desktop.', 'Turunkan desis pada rekaman kuliah, lalu samakan kenyaringannya.'],
+      usesHeading: 'Kasus umum penghapusan noise latar belakang',
+      uses: [
+        'Memo suara: tekan hum kipas dan AC, sisakan suara yang bersih.',
+        'Podcast: bersihkan noise floor sebelum publikasi, tanpa editor desktop.',
+        'Rekaman kuliah: redam desis konstan ruangan, lalu samakan loudness.',
+        'Wawancara: bersihkan suara — hilangkan hum jalan dan ruangan yang konstan.',
+        'Voice-over: jika rekaman bawaan AC, hapus noise dulu sebelum sinkron.',
+        'Rekaman rapat: kecilkan dengung listrik dan kipas agar playback tidak menusuk.',
+      ],
+      why: [
+        {
+          icon: 'audio-waveform',
+          title: 'RNNoise berjalan lokal',
+          text: 'Model 150 KB dieksekusi di browser: noise konstan turun sekitar 20 dB dan suara hanya bergeser kurang dari 1 dB. Audio tidak diunggah.',
+        },
+        {
+          icon: 'warning-triangle',
+          title: 'Batas yang jujur',
+          text: 'Efektif untuk noise konstan — desis, hum, kipas. Suara latar dan musik tidak bisa dihapus; halaman ini tidak mengaku sebaliknya.',
+        },
+      ],
       howTo: [
-        { name: 'Jatuhkan audio', text: 'Berkas MP3, WAV, M4A, OGG, atau FLAC apa pun. Didekode di perangkat Anda. Penggeser kekuatan mulai di 75 persen.' },
-        { name: 'Atur kekuatan', text: '100 persen adalah peredaman maksimum. Turunkan ke arah 50 saat hasilnya terdengar tertutup dan Anda ingin menyisakan sedikit ruang. Model diambil pada ekspor pertama, bukan saat halaman dibuka.' },
-        { name: 'Ekspor', text: 'Ekspor menjalankan seluruh berkas melalui gerbang dalam bingkai 10 milidetik, dan baris status menampilkan kemajuan. MP3 diekspor pada bitrate pilihan Anda, WAV menyimpan sampel hasil proses apa adanya.' },
+        { name: 'Letakkan audio', text: 'Geser MP3, WAV, M4A, OGG, atau FLAC ke bingkai putus-putus, atau klik untuk menelusuri. File didekode di perangkat, tanpa unggah. “Kekuatan” mulai di 75%.' },
+        { name: 'Atur “{strength}”', text: '100% adalah supresi maksimum, turun sekitar 30 dB. Kalau hasilnya tercekik dan ingin sedikit ambien, turun ke 50% (sekitar 6 dB). Model RNNoise 150 KB dimuat saat ekspor pertama.' },
+        { name: 'Klik “{export}”', text: 'Tombol utama di bilah ekspor. Seluruh file melewati gerbang dalam bingkai 10 milidetik; baris status menunjukkan progres. Ragu? “Putar” dulu pada file asli.' },
+        { name: 'Bawa filenya', text: 'MP3 diekspor pada bitrate pilihanmu, WAV menyimpan sampel yang sudah diproses; nama file otomatis bersufiks -edited.' },
       ],
       faqs: [
-        { q: 'Apakah audio saya diunggah?', a: 'Tidak. Dekode dan peredaman terjadi di peramban Anda. Pada ekspor pertama, halaman mengambil model RNNoise, berkas WebAssembly 150 KB, dari situs ini. Setelah itu model tersimpan di cache dan halaman berfungsi luring.' },
+        { q: 'Apakah audio saya diunggah?', a: 'Tidak. Dekode dan peredaman terjadi di peramban Anda. Pada ekspor pertama, halaman mengambil model RNNoise, berkas WebAssembly 150 KB, dari situs ini. Setelah itu model tersimpan di cache dan halaman berfungsi luring. File di atas 300 MB ditolak.' },
         { q: 'Apa yang terjadi pada berkas?', a: 'Audio melewati gerbang pada 48 kHz dalam bingkai 10 milidetik. Berkas 44,1 kHz diresampel saat masuk dan saat keluar. Dalam uji campuran kami, lantai noise −31 dBFS menjadi −61 dBFS dan level suara bergerak kurang dari 1 dB. Ekspor MP3 mengodekan ulang sekali pada bitrate pilihan Anda.' },
         { q: 'Apa yang tidak dihapus?', a: 'Noise yang terdengar seperti suara. Orang lain berbicara, TV di latar, atau keramaian tetap ada karena berada di pita frekuensi yang sama dengan pembicara. Itu butuh perbaikan spektral di DAW desktop. Noise menetap seperti desis, dengung, dan kipas adalah sasaran halaman ini.' },
         { q: 'Apa bedanya dengan penghapus senyap?', a: '[Penghapus senyap](/silence-remover) memotong bagian sunyi dari garis waktu. Halaman ini tidak memindahkan satu sampel pun dan hanya menurunkan noise menetap di bawah suara. Gunakan keduanya dengan urutan itu: pertama noise, lalu keheningan.' },
@@ -4256,7 +4276,7 @@ export const id: Catalog = {
       ],
       sections: [
         {
-          heading: 'Gerbang di bawah suara',
+          heading: 'Cara RNNoise menghapus noise latar belakang',
           paragraphs: [
             'RNNoise melacak dasar noise rekaman dan menghitung gain untuk setiap pita frekuensi sekitar seratus kali per detik. Pita yang membawa suara tetap terbuka. Pita yang membawa noise tetap menutup.',
             'Angka di halaman ini berasal dari pengukuran yang bisa diulang, bukan klaim pemasaran. Mix uji kami memasangkan nada mirip suara dengan white noise pada −31 dBFS. Setelah gerbang pada kekuatan 100 persen, dasarnya berada di −61 dBFS, pita suara bergerak kurang dari 1 dB, dan klik skala penuh mendarat tepat pada sampel tempat ia mulai.',
@@ -4287,7 +4307,7 @@ export const id: Catalog = {
           },
         },
         {
-          heading: 'Suara, bukan musik',
+          heading: 'Pembersih suara, bukan untuk musik',
           paragraphs: [
             'Gerbang dilatih pada ucapan, jadi apa pun yang berbentuk ucapan dianggap yang harus dipertahankan. Itu keunggulan untuk rekaman obrolan dan batasan di tempat lain:',
           ],

@@ -4225,22 +4225,42 @@ export const pt: Catalog = {
       cardLine: 'Abaixe o ruído de fundo constante de uma gravação de voz, no navegador.',
       name: 'Remover ruído de fundo',
       shortName: 'Tirar ruído',
-      title: 'Remover ruído do áudio — elimine o ruído de fundo online',
-      description: 'Reduza o ruído de fundo constante ao redor da voz no navegador. O RNNoise roda no dispositivo e um modelo de 150 KB carrega uma vez. Grátis, MP3 ou WAV.',
-      h1: 'Remover ruído do áudio — tire o chiado do fundo da gravação',
+      title: 'Remover ruído de fundo — RNNoise local, grátis',
+      description: 'RNNoise tira chiado, zumbido e ventilador das gravações: cerca de 20 dB a menos, no navegador. Acima de 300 MB é rejeitado. Exporte MP3 ou WAV grátis.',
+      h1: 'Remover ruído de fundo — editor de áudio online grátis',
       heroAlt: 'O ruído de fundo constante sob uma gravação de voz diminui',
       howToIntro: 'Um arquivo com ruído, um controle de intensidade',
       subtitle: 'Chiado, zumbido e ruído de ventilador constantes caem 20 dB ou mais ao redor da voz. A linha do tempo não se move.',
       intro: 'Esta página passa o RNNoise pela gravação que você soltar, um gate de ruído treinado com voz. Ruído constante como chiado, zumbido ou ventilador cai 20 dB ou mais ao redor da voz, e as palavras mantêm o nível. O gate é um modelo de 150 KB que roda no seu navegador, então o áudio nunca sai do seu dispositivo.',
-      usesHeading: 'De onde vem, de verdade, o ruído de fundo',
-      uses: ['Resgatar um áudio de voz gravado perto de um ventilador ou ar-condicionado.', 'Limpar uma takes de podcast ou entrevista antes de publicar, sem editor de desktop.', 'Abaixar o chiado de uma aula gravada e depois igualar a sonoridade.'],
+      usesHeading: 'Casos comuns de remoção de ruído de fundo',
+      uses: [
+        'Memos de voz: abaixa o zumbido de ventilador e ar-condicionado e deixa a voz limpa.',
+        'Podcasts: limpa o ruído de fundo antes de publicar, sem editor de desktop.',
+        'Aulas: reduz o chiado constante da sala e ajusta a sonoridade depois.',
+        'Entrevistas: limpa a voz — tira o zumbido constante da rua e do ambiente.',
+        'Voz off: se a locução pegou ar-condicionado, remove o ruído antes de sincronizar.',
+        'Reuniões: abaixa o zumbido elétrico e do ventilador para a reprodução ficar menos agressiva.',
+      ],
+      why: [
+        {
+          icon: 'audio-waveform',
+          title: 'O RNNoise roda local',
+          text: 'Um modelo de 150 KB executa no navegador: o ruído constante cai cerca de 20 dB e a voz se move menos de 1 dB. O áudio não sai do dispositivo.',
+        },
+        {
+          icon: 'warning-triangle',
+          title: 'Limites honestos',
+          text: 'Funciona em ruído constante — chiado, zumbido, ventilador. Vozes ao fundo e música não saem; a página não finge o contrário.',
+        },
+      ],
       howTo: [
-        { name: 'Solte o áudio', text: 'Qualquer arquivo MP3, WAV, M4A, OGG ou FLAC. Ele é decodificado no seu dispositivo. O controle de intensidade começa em 75 por cento.' },
-        { name: 'Ajuste a intensidade', text: '100 por cento é a supressão máxima. Baixe rumo a 50 quando o resultado soar abafado e você preferir manter um pouco da sala. O modelo é buscado na primeira exportação, não na abertura da página.' },
-        { name: 'Exportar', text: 'A exportação passa o arquivo inteiro pelo gate em quadros de 10 milissegundos, e a linha de status mostra o progresso. O MP3 é exportado na taxa escolhida e o WAV mantém exatamente as amostras processadas.' },
+        { name: 'Solte o áudio', text: 'Arraste um MP3, WAV, M4A, OGG ou FLAC até o quadro tracejado, ou clique para procurar. O arquivo decodifica no seu dispositivo, sem upload. O “Intensidade” começa em 75 %.' },
+        { name: 'Ajuste o “{strength}”', text: '100 % é a supressão máxima, cerca de 30 dB. Se o resultado soar abafado e você quiser um pouco da sala, vá para 50 % (cerca de 6 dB). O modelo RNNoise de 150 KB carrega no primeiro export.' },
+        { name: 'Clique em “{export}”', text: 'O botão principal da barra de exportação. O arquivo inteiro passa pela porta em quadros de 10 milissegundos; a linha de status mostra o progresso. Dúvida? “Reproduzir” no original antes.' },
+        { name: 'Leve o arquivo', text: 'O MP3 exporta na taxa escolhida, o WAV mantém as amostras processadas; o nome leva o sufixo -edited.' },
       ],
       faqs: [
-        { q: 'O meu áudio é enviado para algum servidor?', a: 'Não. A decodificação e o gate acontecem no seu navegador. Na primeira exportação o modelo RNNoise, um arquivo WebAssembly de 150 KB, é buscado deste site. Depois ele fica em cache e a página funciona offline.' },
+        { q: 'O meu áudio é enviado para algum servidor?', a: 'Não. A decodificação e o gate acontecem no seu navegador. Na primeira exportação o modelo RNNoise, um arquivo WebAssembly de 150 KB, é buscado deste site. Depois ele fica em cache e a página funciona offline. Arquivos acima de 300 MB são rejeitados.' },
         { q: 'O que acontece com o arquivo?', a: 'O áudio passa pelo gate a 48 kHz em quadros de 10 milissegundos. Um arquivo de 44,1 kHz é reamostrado na entrada e na saída. No nosso mix de teste, um piso de ruído a −31 dBFS saiu a −61 dBFS e a voz se moveu menos de 1 dB. A exportação em MP3 recodifica uma vez na taxa escolhida.' },
         { q: 'O que ele não remove?', a: 'Ruído que parece voz. Outra pessoa falando, uma TV ao fundo ou uma multidão ficam, porque ocupam as mesmas bandas de frequência que o locutor. Para isso é preciso reparo espectral num DAW de desktop. Ruído constante como chiado, zumbido e ventiladores é o que esta página trata.' },
         { q: 'Qual a diferença para o removedor de silêncio?', a: 'O [removedor de silêncio](/silence-remover) corta os trechos silenciosos da linha do tempo. Esta página não move nenhuma amostra e abaixa o ruído constante sob a voz. Use os dois nessa ordem: primeiro o ruído, depois o silêncio.' },
@@ -4255,7 +4275,7 @@ export const pt: Catalog = {
       ],
       sections: [
         {
-          heading: 'O gate sob a voz',
+          heading: 'Como o RNNoise remove o ruído de fundo',
           paragraphs: [
             'O RNNoise acompanha o piso de ruído da gravação e calcula um ganho para cada banda de frequência cerca de cem vezes por segundo. As bandas que carregam voz ficam abertas. As bandas que carregam ruído constante fecham.',
             'Os números desta página vêm de uma medição repetível, não de uma promessa de marketing. Nossa mixagem de teste junta um tom parecido com voz e ruído branco a −31 dBFS. Depois do gate a 100 por cento de força, o piso fica em −61 dBFS, a banda da voz se moveu menos de 1 dB, e um clique na escala cheia chegou na amostra exata em que começou.',
@@ -4286,7 +4306,7 @@ export const pt: Catalog = {
           },
         },
         {
-          heading: 'Voz, não música',
+          heading: 'Limpeza de voz, não redução de música',
           paragraphs: [
             'O gate é treinado em fala, então trata tudo com forma de fala como o que deve manter. Isso é uma vantagem em gravações faladas e um limite em todo o resto:',
           ],

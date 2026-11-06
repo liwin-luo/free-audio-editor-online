@@ -14,7 +14,7 @@ export const catalogs: Partial<Record<Locale, Catalog>> = {};
  * locale. That slug's translation MUST empty its entry — the parity gate then
  * enforces full coverage again. Keep it empty on main outside such interims.
  */
-export const PENDING_I18N = new Set<string>(['audio-trimmer', 'silence-remover', 'noise-remover']);
+export const PENDING_I18N = new Set<string>(['audio-trimmer', 'silence-remover']);
 
 export function getShell(locale: Locale): Shell {
   if (locale === 'en') return en;
@@ -95,7 +95,9 @@ export function assertCatalogs(): void {
       if (PENDING_I18N.has(tool.slug)) continue; // interim: copy lands with the i18n task
       const copy = cat.tools[tool.slug];
       if (!copy) throw new Error(`${locale}: missing ${tool.slug}`);
-      if (tool.uses.length !== 3) throw new Error(`${tool.slug}: uses must be 3`);
+      // The cluster rewrite (2026-11-07) grew use-case cards from 3 to 6 on
+      // rewritten pages; 3 is the floor, not the exact shape.
+      if (tool.uses.length < 3) throw new Error(`${tool.slug}: uses must be 3+`);
       if (!copy.usesHeading.trim()) throw new Error(`${locale}/${tool.slug}: empty usesHeading`);
       if (copy.uses.length !== tool.uses.length) {
         throw new Error(`${locale}/${tool.slug}: uses ${copy.uses.length} != ${tool.uses.length}`);

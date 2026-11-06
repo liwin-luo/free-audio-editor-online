@@ -3269,10 +3269,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Denoise',
     icon: 'voice',
     category: 'edit',
-    title: 'Noise Remover — Strip Background Hiss from Voice Online',
+    title: 'Noise Remover — RNNoise Removes Background Noise Locally',
     description:
-      'Reduce steady background noise around speech in your browser. RNNoise runs on your device, one 150 KB model loads once. Free, MP3 or WAV.',
-    h1: 'Noise Remover — Cut Background Hiss from a Recording',
+      'RNNoise strips hiss, hum and fan noise from voice recordings in your browser, down about 20 dB. Files over 300 MB are rejected. Free MP3 or WAV export.',
+    h1: 'Noise Remover — Remove Background Noise from Any Recording',
     hero: {
       src: '/noise-remover.svg',
       alt: 'Steady background noise under a voice recording, turned down',
@@ -3303,30 +3303,49 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Steady hiss, hum and fan noise drop by 20 dB or more around speech. The timeline never moves.',
     intro:
       'This page runs RNNoise, a noise gate trained on speech, over the recording you drop. Steady noise like hiss, hum, or a fan drops by 20 dB or more around the voice, and the words keep their level. The gate is a 150 KB model that runs in your browser, so the audio never leaves your device.',
-    usesHeading: 'Where background noise actually comes from',
+    usesHeading: 'Common uses for background noise removal',
     uses: [
-      'Rescue a voice memo recorded next to a fan or an air conditioner.',
-      'Clean a podcast or interview take before you publish, without a desktop editor.',
-      'Quiet the hiss under a lecture recording, then match the loudness afterwards.',
+      'Voice memos: pull the fan and air-conditioner hum down under the voice.',
+      'Podcasts: clean the noise floor before publishing, without a desktop editor.',
+      'Lectures: tame the constant hiss of a classroom, then match the loudness afterwards.',
+      'Interviews: voice-clean the take — steady traffic and room hum come out.',
+      'Video voice-overs: if the booth captured air conditioning, denoise before syncing.',
+      'Meeting recordings: turn the steady electrical hum and fan noise down.',
+    ],
+    why: [
+      {
+        icon: 'audio-waveform',
+        title: 'RNNoise runs locally',
+        text: 'A 150 KB model executes in your browser, cutting steady noise about 20 dB while the voice level moves less than 1 dB. Audio never uploads.',
+      },
+      {
+        icon: 'warning-triangle',
+        title: 'Honest limits',
+        text: 'Steady noise — hiss, hum, fans — is what works. Background voices and music do not come out. This page does not pretend otherwise.',
+      },
     ],
     howTo: [
       {
         name: 'Drop your audio',
-        text: 'Any MP3, WAV, M4A, OGG or FLAC file. It is decoded on your device. The strength slider starts at 75 percent.',
+        text: 'Drop an MP3, WAV, M4A, OGG or FLAC into the dashed frame, or browse. The file decodes on your device, nothing uploads. Strength starts at 75 percent.',
       },
       {
         name: 'Set the strength',
-        text: '100 percent is maximum suppression. Lower it toward 50 when the result sounds closed-in and you would rather keep some room tone. The model fetches on the first export, not when the page opens.',
+        text: '100 percent is maximum suppression, about 30 dB down. If the result sounds muffled and you want some room tone back, move toward 50 percent (about 6 dB). The 150 KB RNNoise model loads on the first export, not when the page opens.',
       },
       {
-        name: 'Export',
-        text: 'Export runs the whole file through the gate in 10 millisecond frames, and the status line shows progress. MP3 exports at the bitrate you pick. WAV keeps the processed samples exactly.',
+        name: 'Click Remove background noise',
+        text: 'The primary button on the export bar. The whole file passes the gate in 10 millisecond frames, and the status line shows progress. Play the original first if unsure.',
+      },
+      {
+        name: 'Take the file',
+        text: 'MP3 exports at the bitrate you picked, WAV keeps the processed samples exactly, and the name carries an -edited suffix.',
       },
     ],
     faqs: [
       {
         q: 'Is my audio uploaded?',
-        a: 'No. The file is decoded and gated in your browser. The first export fetches the RNNoise model, a 150 KB WebAssembly file, from this site. After that it stays cached and the page works offline.',
+        a: 'No. The file is decoded and gated in your browser. The first export fetches the RNNoise model, a 150 KB WebAssembly file, from this site. After that it stays cached and the page works offline. A file over 300 MB is rejected.',
       },
       {
         q: 'What happens to the file?',
@@ -3355,7 +3374,7 @@ export const TOOLS: ToolDef[] = [
     ],
     sections: [
       {
-        heading: 'The gate under the voice',
+        heading: 'How RNNoise removes background noise',
         paragraphs: [
           'RNNoise tracks the noise floor of the recording and computes a gain for every frequency band about a hundred times a second. Bands that carry voice stay open. Bands that carry steady noise close.',
           'The numbers on this page come from a repeatable measurement, not a marketing claim. Our test mix pairs a voice-like tone with white noise at −31 dBFS. After the gate at 100 percent strength the floor sits at −61 dBFS, the voice band moved less than 1 dB, and a full-scale click landed on the exact sample it started on.',
@@ -3370,7 +3389,7 @@ export const TOOLS: ToolDef[] = [
         },
       },
       {
-        heading: 'Voice, not music',
+        heading: 'Voice cleaning, not music denoising',
         paragraphs: [
           'The gate is trained on speech, so it treats anything speech-shaped as the thing to keep. That is a feature for talking recordings and a limit everywhere else:',
         ],
