@@ -384,3 +384,12 @@
 - **hero SVG 机械换色**：46 个文件的 #0f766e/#ccfbf1/#0d9488 → #4f46e5/#e0e7ff（其余工具彩色 SVG 不动）。
 - 验证：astro check 0 错误、smoke ALL PASS；浏览器验收桌面亮/暗（silence-remover 空态+工作区）、375px 亮色（尺寸实测）、joiner（独立岛）一致性。
 - **遗留**：①独立岛的渐变描边未加（各自轮次）②OG 图（public/ 内青绿 og 图）未重生成 ③工作区 KPI stat tile 化（demo 里的样式）需要 i18n 新键，归入各工具交互轮次④guides/blog 页未逐一巡检（token 层改动自动生效，低风险）。
+
+## 原生 select 全部统一（2026-11-07，用户指出暗色下的 OS 下拉突兀）
+
+用户截图独立岛的原生格式下拉（OS 渲染灰板）："这种下拉也要全部都统一"。盘点：7 个岛 17 个原生 select（joiner/loudness/mixer/metronome 的格式与拍号、transcribe 语言/模型、visualizer 6 个、music-visualizer 3 个）。
+
+- **`src/editor/custom-select.ts`（新共享模块）**：`upgradeSelects(root)` 把任意原生 select 原地升级成站点风格自定义下拉（触发器 + listbox + 真实 select 转 sr-only 保留内核逻辑，与内核 format 下拉同构）。设计要点：**行每次打开时从活 options 重建**——运行时换选项的页（visualizer 依赖联动）零额外接线；`closest('.export-bar')` 决定向上/向下弹开；select 含 w-full 则全宽向下；MutationObserver 镜像 disabled 与 options 变化（loudness 分析后才启用的场景）；change 事件照常派发，岛的监听零改动。
+- **接线**：7 个岛 init 循环各加一行 `upgradeSelects(root)`（loudness 在类构造前、metronome 在 new 前调用）。**.astro 标记零改动**——SSR/无 JS 时原生 select 仍可用（渐进增强同构）。
+- 验证：astro check 0 错误、smoke ALL PASS；暗色浏览器验收 joiner（格式下拉向上弹、选中行 accent+勾、Merge & export 虹彩渐变）与 transcribe（语言下拉向下弹、全宽）。
+- AudioEditor 内核的同款实现未重构合并（行为一致，避免无谓扰动）；后续轮次可顺手归一。
