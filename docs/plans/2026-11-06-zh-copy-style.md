@@ -70,25 +70,25 @@ R15 的模板级重排已经把页面结构做成和样张一致的五段：**�
 样板 ✓ → 声音簇 → 剪辑簇 → 变速调簇 → 转换簇 → 响度簇 → EQ 簇 → 效果簇 → 分析/其他。
 
 - [x] 1. silence-remover（样板，2026-11-06）
-- [ ] 2. noise-remover
-- [ ] 3. voice-recorder
-- [ ] 4. audio-to-text
-- [ ] 5. audio-trimmer（zh 上轮已重写，对齐新格式：uses 场景化 + why 卡 + 步骤点名控件）
-- [ ] 6. mp3-cutter
-- [ ] 7. mp3-editor
-- [ ] 8. ringtone-maker
-- [ ] 9. audio-joiner
-- [ ] 10. multi-track-audio-editor
-- [ ] 11. split-mp3
-- [ ] 12. fade-audio
-- [ ] 13. change-audio-speed / tempo-changer
-- [ ] 14. pitch-changer / voice-changer
-- [ ] 15–24. 转换簇：wav-to-mp3、mp3-to-wav、m4a-to-mp3、flac-to-mp3、ogg-to-mp3、opus-to-mp3、mp4-to-mp3、extract-audio、bitrate-converter、compress-audio
-- [ ] 25–29. 响度簇：normalize-audio、increase-volume、volume-booster、loudness-meter、compressor
-- [ ] 30–34. EQ 簇：equalizer、bass-booster、treble-booster、high-pass-filter、low-pass-filter
-- [ ] 35–46. 效果簇：echo、add-reverb、slowed-reverb、audio-distorter、bitcrusher、auto-panner、stereo-to-mono、reverse-audio、432-hz-converter、3d-audio、audio-looper、soundboard
-- [ ] 47–52. 分析/工具：key-bpm-finder、metronome、tap-tempo、music-visualizer、waveform-generator、spectrogram-generator
-- [ ] 53–57. image-to-audio、mp3-tag-editor、audio-to-midi、noise-remover 复验、全站终检
+- [x] 2. noise-remover
+- （zh 完成 2026-11-07，翻译待批次）[ ] 3. voice-recorder
+- [x] 4. audio-to-text
+- （zh 完成 2026-11-07，翻译待批次）[ ] 5. audio-trimmer（zh 上轮已重写，对齐新格式：uses 场景化 + why 卡 + 步骤点名控件）
+- [x] 6. mp3-cutter
+- （zh 完成 2026-11-07，翻译待批次）[ ] 7. mp3-editor
+- [x] 8. ringtone-maker
+- （zh 完成 2026-11-07，翻译待批次）[ ] 9. audio-joiner
+- [x] 10. multi-track-audio-editor
+- （zh 完成 2026-11-07，翻译待批次）[ ] 11. split-mp3
+- [x] 12. fade-audio
+- （zh 完成 2026-11-07，翻译待批次）[ ] 13. change-audio-speed / tempo-changer
+- [x] 14. pitch-changer / voice-changer
+- （zh 完成 2026-11-07，翻译待批次）[ ] 15–24. 转换簇：wav-to-mp3、mp3-to-wav、m4a-to-mp3、flac-to-mp3、ogg-to-mp3、opus-to-mp3、mp4-to-mp3、extract-audio、bitrate-converter、compress-audio
+- [x] 25–29. （zh 完成 2026-11-07，翻译待批次）响度簇：normalize-audio、increase-volume、volume-booster、loudness-meter、compressor
+- [x] 30–34. （zh 完成 2026-11-07，翻译待批次）EQ 簇：equalizer、bass-booster、treble-booster、high-pass-filter、low-pass-filter
+- [x] 35–46. （zh 完成 2026-11-07，翻译待批次）效果簇：echo、add-reverb、slowed-reverb、audio-distorter、bitcrusher、auto-panner、stereo-to-mono、reverse-audio、432-hz-converter、3d-audio、audio-looper、soundboard
+- [x] 47–52. （zh 完成 2026-11-07，翻译待批次）分析/工具：key-bpm-finder、metronome、tap-tempo、music-visualizer、waveform-generator、spectrogram-generator
+- [x] 53–57. image-to-audio（zh 完成 2026-11-07，翻译待批次）、mp3-tag-editor、audio-to-midi、noise-remover 复验、全站终检
 
 ## 七、每页 DoD
 
@@ -101,3 +101,6 @@ R15 的模板级重排已经把页面结构做成和样张一致的五段：**�
 ## 八、翻译阶段（zh 全部验收后启动）
 
 以 zh 为源：en（场景 uses 扩量 + why 卡 + 步骤对齐）→ 其余 9 语言照 §8 翻译流程。每完成一个 slug 从 `PENDING_I18N` 移除；全清后门禁恢复全量 parity。样张排版语言（场景卡网格、4 卡 why-us）随数据自动生效，无需再动模板。
+
+
+> **2026-11-07 更新**：本清单与《2026-11-07-cluster-rewrite-plan.md》（关键词簇×TDK 方案）**合并执行完毕**——全部 57 个工具页的 zh 全套（title/h1/description/usesHeading/uses 场景卡/why 卡/howTo/FAQ 增补）已落地，EN + 其余 9 语种待用户检查 zh 后的全量翻译批次（noise-remover 一页已提前完成全语种闭环）。PENDING_I18N = 全部 57 slug，翻译逐 slug 清账。
