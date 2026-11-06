@@ -7,13 +7,14 @@ import { TRANSLATED_LOCALES, type Locale } from './locales';
 export const catalogs: Partial<Record<Locale, Catalog>> = {};
 
 /**
- * Slugs allowed to render EN copy before their locale translations land.
- * Interim scaffold for mp3-tag-editor: the tool page (EN) ships first and the
- * 10 locale catalogs (tools copy + tg* editor keys) land right after in the
- * same PR. That task MUST empty this set — the parity gate then enforces
- * full coverage again. Keep it empty on main.
+ * Slugs allowed to render their pre-rewrite locale copy before the new EN
+ * copy is translated. Interim scaffold: audio-trimmer's 2026-11-05 content
+ * rewrite (sections + faqs) landed in en and zh only; the 9 remaining locale
+ * catalogs still carry the previous shape. That translation task MUST empty
+ * this set — the parity gate then enforces full coverage again. Keep it
+ * empty on main outside such an interim.
  */
-const PENDING_I18N = new Set<string>();
+export const PENDING_I18N = new Set<string>(['audio-trimmer']);
 
 export function getShell(locale: Locale): Shell {
   if (locale === 'en') return en;

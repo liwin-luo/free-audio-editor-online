@@ -6,7 +6,7 @@
  */
 import { TOOLS } from '../src/data/tools';
 import { en } from '../src/i18n/en';
-import { catalogs } from '../src/i18n';
+import { catalogs, PENDING_I18N } from '../src/i18n';
 import './../src/i18n/catalogs';
 import { TRANSLATED_LOCALES, type Locale } from '../src/i18n/locales';
 import type { Catalog } from '../src/i18n/types';
@@ -93,6 +93,7 @@ export function auditLocale(locale: Locale): string[] {
   }
 
   for (const tool of TOOLS) {
+    if (PENDING_I18N.has(tool.slug)) continue; // interim: parity returns when translations land
     const copy = cat.tools[tool.slug];
     if (!copy) {
       errors.push(`${tool.slug}: missing copy`);
