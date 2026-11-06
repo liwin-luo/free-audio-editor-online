@@ -1348,33 +1348,40 @@ export const de: Catalog = {
       cardLine: 'Schneide einen Song auf den Refrain, den Drop oder jeden Clip — ohne Re-Encoding.',
       name: 'MP3 schneiden',
       shortName: 'MP3 schneiden',
-      title: 'MP3 schneiden – Abschnitt behalten oder löschen',
+      title: 'MP3 schneiden — MP3-Musik online schneiden, behalten oder löschen',
       description:
-        'Den Refrain behalten oder das Intro löschen, dann speichern. WAV verliert nichts zusätzlich. MP3 wird einmal kodiert, bis 320 kbps.',
-      h1: 'MP3 schneiden – kostenlos online',
+        'MP3-Musik online schneiden: Refrain behalten oder Intro löschen, dann speichern. WAV ist bitidentisch, MP3 wird einmal mit bis zu 320 kbps kodiert. Dateien über 300 MB werden abgelehnt.',
+      h1: 'MP3 schneiden — einen MP3 online kostenlos schneiden',
       heroAlt: 'MP3 kostenlos online schneiden',
       subtitle: 'Songs und MP3-Dateien online schneiden — behalte den Teil, den du willst, und lösche den Rest.',
       intro:
         'Kürze einen Song auf den Refrain, entferne ein langes Intro oder schneide einen Höhepunkt heraus — direkt im Browser. Wähle, ob der markierte Teil bleiben oder gelöscht werden soll, höre das Ergebnis an und speichere in Sekunden eine frische MP3.',
-      usesHeading: 'Schnitte, die Leute in einer MP3 machen',
+      usesHeading: 'Häufige Anlässe zum MP3-Schneiden',
       uses: [
-        'Entferne Intro, Werbedurchsage oder eine lange Stille aus Song oder Folge.',
-        'Behalte einen Abschnitt und wirf den Rest weg, statt ihn mit einem Fade zu überdecken.',
-        'Schneide den Clip zuerst, wenn der nächste Schritt ein Klingelton ist.',
+        'Refrains schneiden: den Hook aus einem Song herauslösen und als eigene Datei speichern.',
+        'Intros entfernen: lange Intros und gesprochene Werbung vom Anfang abschneiden.',
+        'Klingelton-Vorbereitung: den Teil ausschneiden und im [Klingelton-Ersteller](/ringtone-maker) zum 40-Sekunden-M4R machen.',
+        'Musik bearbeiten: Übungsausschnitte schneiden oder eine Passage entfernen.',
+        'Sendungen aufräumen: die Werbefloskel am Anfang entfernen, die Episode bleibt.',
+        'Samples bauen: aus einem langen MP3 ein kleines WAV-Sample schneiden.',
+      ],
+      why: [
+        {
+          icon: 'scissors',
+          title: 'Zwei Ausgänge statt eines Modus',
+          text: 'Nach dem Markieren liegen zwei Knöpfe nebeneinander: «{keep}» behält den Teil, «{delete}» entfernt ihn — jeder Knopf zeigt die Exportlänge live.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Dein Original bleibt, wie es ist',
+          text: 'Geschnitten wird im Speicher, nichts wird hochgeladen. WAV ist bitidentisch, MP3 wird einmal mit bis zu 320 kbps kodiert.',
+        },
       ],
       howTo: [
-        {
-          name: 'MP3 hinzufügen',
-          text: 'Ziehe deine MP3 hierher oder klicke, um eine Datei zu wählen. Die meisten anderen Audio- und Videoformate funktionieren ebenfalls.',
-        },
-        {
-          name: 'Den Schnitt markieren',
-          text: 'Ziehe über die Wellenform, um einen Abschnitt zu markieren. Wechsle zwischen „Auswahl behalten“ und „Auswahl löschen“, je nachdem, welchen Teil du willst.',
-        },
-        {
-          name: 'Schneiden und herunterladen',
-          text: 'Höre die Vorschau an und exportiere den Schnitt als MP3 oder verlustfreies WAV. Der Download startet automatisch.',
-        },
+        { name: 'MP3 hinzufügen', text: 'MP3 in den gestrichelten Rahmen ziehen oder durchsuchen. Die meisten anderen Audio- und Videoformate werden ebenfalls dekodiert — auf deinem Gerät.' },
+        { name: 'Den Teil markieren', text: 'Auf der Wellenform eine Auswahl ziehen oder Zeiten genau eingeben. «Auswahl behalten» behält den Teil, «Auswahl löschen» entfernt ihn — jederzeit umschaltbar.' },
+        { name: '«{export}» klicken', text: 'Der Hauptknopf in der Exportleiste. WAV ist bitidentisch, MP3 wird einmal mit bis zu 320 kbps kodiert. Zum Probehören erst «Wiedergeben» drücken.' },
+        { name: 'Datei mitnehmen', text: 'Der Download startet von selbst, der Name trägt den -edited-Zusatz. Dateien über 300 MB werden abgelehnt.' },
       ],
       faqs: [
         {

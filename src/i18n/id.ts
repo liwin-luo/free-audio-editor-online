@@ -1347,33 +1347,40 @@ export const id: Catalog = {
       cardLine: 'Potong lagu sampai reff, drop, atau klip apa pun tanpa menyandikan ulang.',
       name: 'Potong MP3',
       shortName: 'Potong MP3',
-      title: 'Potong MP3 — simpan atau hapus satu bagian',
+      title: 'Potong MP3 — potong musik MP3 online, simpan atau hapus',
       description:
-        'Simpan reff atau hapus intro, lalu unduh. WAV tidak menambah kehilangan. MP3 dikode sekali, sampai 320 kbps.',
-      h1: 'Potong MP3 online gratis',
+        'Potong musik MP3 online: simpan refrainnya atau hapus intro-nya. WAV identik per bit, MP3 dikodekan sekali hingga 320 kbps. File di atas 300 MB ditolak.',
+      h1: 'Potong MP3 — potong MP3 online gratis',
       heroAlt: 'Potong MP3 online gratis',
       subtitle: 'Potong lagu dan file MP3 online — simpan bagian yang diinginkan, hapus sisanya.',
       intro:
         'Potong lagu sampai tersisa reff-nya, buang intro yang panjang, atau pisahkan bagian yang ingin ditonjolkan — langsung di browser. Pilih apakah bagian yang ditandai dipertahankan atau dihapus, dengarkan hasilnya, lalu simpan MP3 baru dalam hitungan detik.',
-      usesHeading: 'Potongan yang biasa dibuat di MP3',
+      usesHeading: 'Kasus umum pemotongan MP3',
       uses: [
-        'Hapus intro, iklan, atau sunyi yang panjang dari lagu atau episode.',
-        'Simpan satu bagian dan buang sisanya, jangan hanya menutupinya dengan fade.',
-        'Potong klipnya dulu jika langkah berikutnya adalah nada dering.',
+        'Potong refrain: ambil hook dari lagu dan simpan sebagai file tersendiri.',
+        'Hapus intro: potong intro panjang dan bacaan iklan di bagian awal.',
+        'Persiapan ringtone: potong bagian yang diinginkan, lalu jadikan M4R 40 detik di [pembuat ringtone](/ringtone-maker).',
+        'Edit musik: potong cuplikan latihan atau buang bagian yang tidak diinginkan.',
+        'Bersihkan episode: hapus bacaan iklan di awal, sisakan episode-nya.',
+        'Buat sample: potong WAV kecil dari MP3 yang panjang.',
+      ],
+      why: [
+        {
+          icon: 'scissors',
+          title: 'Dua pintu, bukan mode',
+          text: 'Setelah menandai bagian, dua tombol berdampingan: “{keep}” menyimpannya, “{delete}” menghapusnya — masing-masing menampilkan durasi hasil secara langsung.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'File asli tetap aman',
+          text: 'Pemotongan terjadi di memori, tidak ada unggahan. WAV identik per bit dan MP3 dikodekan sekali hingga 320 kbps.',
+        },
       ],
       howTo: [
-        {
-          name: 'Tambahkan MP3 Anda',
-          text: 'Jatuhkan MP3 ke halaman, atau klik untuk memilih file. Sebagian besar format audio dan video lain juga bisa.',
-        },
-        {
-          name: 'Tandai bagian yang dipotong',
-          text: 'Seret di gelombang audio untuk menandai suatu bagian. Beralih antara Pertahankan pilihan dan Hapus pilihan, sesuai bagian yang Anda inginkan.',
-        },
-        {
-          name: 'Potong dan unduh',
-          text: 'Dengarkan pratinjaunya, lalu ekspor hasil potongan sebagai MP3 atau WAV lossless. Pengunduhan dimulai otomatis.',
-        },
+        { name: 'Tambahkan MP3', text: 'Geser MP3 ke bingkai putus-putus, atau klik untuk menelusuri. Sebagian besar format audio dan video lain juga didekode di perangkat Anda.' },
+        { name: 'Tandai bagian potongan', text: 'Tarik seleksi pada gelombang, atau ketik waktunya persis. “Pertahankan pilihan” menyimpan bagian itu, “Hapus pilihan” menghapusnya — bisa diganti kapan saja.' },
+        { name: 'Klik “{export}”', text: 'Tombol utama di bilah ekspor. WAV identik per bit dan MP3 dikodekan sekali hingga 320 kbps. Tekan “Putar” untuk mendengar dulu.' },
+        { name: 'Bawa filenya', text: 'Unduhan mulai otomatis dan nama filnya bersufiks -edited. File di atas 300 MB ditolak.' },
       ],
       faqs: [
         {

@@ -1251,33 +1251,40 @@ export const fr: Catalog = {
       cardLine: 'Coupez un morceau sur le refrain, le drop ou n’importe quel extrait, sans réencodage.',
       name: 'Couper un MP3',
       shortName: 'Couper un MP3',
-      title: 'Couper un MP3 — garder ou supprimer un passage',
+      title: 'Couper MP3 — couper de la musique en ligne, garder ou supprimer',
       description:
-        'Gardez le refrain ou supprimez l’intro, puis enregistrez. Le WAV n’ajoute aucune perte. Le MP3 est encodé une fois, jusqu’à 320 kbps.',
-      h1: 'Couper un MP3 en ligne gratuitement',
+        'Coupe la musique MP3 en ligne : garde le refrain ou supprime l’intro. L’export WAV est identique au bit près, le MP3 encode une seule fois jusqu’à 320 kbps. Les fichiers de plus de 300 Mo sont refusés.',
+      h1: 'Couper un MP3 — couper un MP3 en ligne, gratuitement',
       heroAlt: 'Couper un MP3 en ligne gratuitement',
       subtitle: 'Coupez chansons et fichiers MP3 en ligne : gardez le passage voulu, supprimez le reste.',
       intro:
         'Réduisez une chanson à son refrain, supprimez une longue intro ou isolez un moment fort — directement dans votre navigateur. Choisissez de garder la partie sélectionnée ou de la supprimer, écoutez le résultat et enregistrez un nouveau MP3 en quelques secondes.',
-      usesHeading: 'Les coupes qu’on fait dans un MP3',
+      usesHeading: 'Cas courants de découpe MP3',
       uses: [
-        'Retirez une intro, une publicité ou un long silence d’une chanson ou d’un épisode.',
-        'Gardez un passage et écartez le reste, au lieu de le masquer par un fondu.',
-        'Coupez d’abord le clip si l’étape suivante est une sonnerie.',
+        'Couper les refrains : sortir le hook d’une chanson et l’enregistrer comme fichier à part.',
+        'Retirer les intros : couper les intros longues et les mentions publicitaires du début.',
+        'Préparer une sonnerie : couper le bon passage, puis en faire un M4R de 40 secondes dans le [créateur de sonneries](/ringtone-maker).',
+        'Montage musical : recarder un extrait d’entraînement ou retirer un passage inutile.',
+        'Nettoyer une émission : retirer la lecture pub du début et garder l’épisode.',
+        'Faire des samples : découper un petit sample WAV depuis un long MP3.',
+      ],
+      why: [
+        {
+          icon: 'scissors',
+          title: 'Deux sorties, pas de mode',
+          text: 'Après avoir marqué le passage, deux boutons côte à côte : «{keep}» le garde, «{delete}» le retire — chaque bouton affiche la durée exportée en direct.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Ton original ne bouge pas',
+          text: 'La découpe se fait en mémoire, rien n’est envoyé. Le WAV est identique au bit près et le MP3 n’encode qu’une fois, jusqu’à 320 kbps.',
+        },
       ],
       howTo: [
-        {
-          name: 'Ajoutez votre MP3',
-          text: 'Déposez votre MP3 sur la page ou cliquez pour choisir un fichier. La plupart des autres formats audio et vidéo fonctionnent aussi.',
-        },
-        {
-          name: 'Marquez le passage à couper',
-          text: 'Glissez sur la forme d’onde pour marquer une section. Basculez entre Garder la sélection et Supprimer la sélection selon la partie voulue.',
-        },
-        {
-          name: 'Coupez et téléchargez',
-          text: 'Écoutez l’aperçu, puis exportez la coupe en MP3 ou en WAV sans perte. Le téléchargement démarre automatiquement.',
-        },
+        { name: 'Ajoute ton MP3', text: 'Dépose un MP3 dans le cadre pointillé ou clique pour parcourir. La plupart des autres formats audio et vidéo se décodent aussi, sur ton appareil.' },
+        { name: 'Marque le passage', text: 'Trace une sélection sur la forme d’onde ou tape les temps exacts. «Garder la sélection» garde le passage, «Supprimer la sélection» le retire — bascule quand tu veux.' },
+        { name: 'Clique «{export}»', text: 'Le bouton principal de la barre d’export. Le WAV est identique au bit près et le MP3 encode une fois jusqu’à 320 kbps. «Lecture» pour écouter avant.' },
+        { name: 'Récupère le fichier', text: 'Le téléchargement part tout seul et le nom porte le suffixe -edited. Les fichiers de plus de 300 Mo sont refusés.' },
       ],
       faqs: [
         {

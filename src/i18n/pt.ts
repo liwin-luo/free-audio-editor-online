@@ -1346,33 +1346,40 @@ export const pt: Catalog = {
       cardLine: 'Corte uma música até o refrão, o drop ou qualquer trecho sem recodificar.',
       name: 'Cortar MP3',
       shortName: 'Cortar MP3',
-      title: 'Cortar MP3 — manter ou apagar um trecho',
+      title: 'Cortar MP3 — cortar música MP3 online, manter ou excluir',
       description:
-        'Fique com o refrão ou apague a intro e salve. O WAV não perde mais nada. O MP3 é codificado uma vez, até 320 kbps.',
-      h1: 'Cortar MP3 online grátis',
+        'Corte música MP3 online: mantenha o refrão ou exclua a introdução. O WAV é idêntico bit a bit, o MP3 codifica uma vez até 320 kbps. Arquivos acima de 300 MB são rejeitados.',
+      h1: 'Cortar MP3 — corte um MP3 online, grátis',
       heroAlt: 'Cortar MP3 online grátis',
       subtitle: 'Corte músicas e arquivos MP3 online — fique com o trecho que você quer e apague o resto.',
       intro:
         'Encurte uma música até o refrão, tire uma intro longa ou separe um destaque — direto no navegador. Escolha manter o trecho selecionado ou apagá-lo, ouça o resultado e salve um MP3 novo em segundos.',
-      usesHeading: 'Cortes que as pessoas fazem num MP3',
+      usesHeading: 'Casos comuns de corte de MP3',
       uses: [
-        'Tire uma intro, um anúncio ou um silêncio longo de uma música ou episódio.',
-        'Fique com um trecho e descarte o resto, em vez de cobrir com um fade.',
-        'Corte o clipe primeiro se o próximo passo for um toque.',
+        'Cortar refrões: tire o hook da música e salve como arquivo próprio.',
+        'Remover intros: corte introduções longas e vinhetas de anúncio do começo.',
+        'Preparar toque: corte o trecho e vire um M4R de 40 segundos no [criador de toque](/ringtone-maker).',
+        'Editar música: recorte trechos de treino ou remova uma passagem indesejada.',
+        'Limpar programas: remova a leitura de anúncio do começo e mantenha o episódio.',
+        'Fazer samples: corte um pequeno WAV de um MP3 longo.',
+      ],
+      why: [
+        {
+          icon: 'scissors',
+          title: 'Duas saídas, sem modo',
+          text: 'Depois de marcar o trecho, dois botões ficam lado a lado: “{keep}” mantém e “{delete}” remove — cada botão mostra a duração do export ao vivo.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Seu original fica intacto',
+          text: 'O corte acontece na memória e nada é enviado. O WAV é idêntico bit a bit e o MP3 codifica uma vez, até 320 kbps.',
+        },
       ],
       howTo: [
-        {
-          name: 'Adicione o MP3',
-          text: 'Solte o MP3 na página ou clique para escolher um arquivo. A maioria dos outros formatos de áudio e vídeo também funciona.',
-        },
-        {
-          name: 'Marque o trecho a cortar',
-          text: 'Arraste pela forma de onda para marcar uma parte. Alterne entre Manter seleção e Apagar seleção, conforme o que você quer.',
-        },
-        {
-          name: 'Corte e baixe',
-          text: 'Ouça a prévia e exporte o corte em MP3 ou WAV sem perdas. O download começa sozinho.',
-        },
+        { name: 'Adicione seu MP3', text: 'Arraste um MP3 até o quadro tracejado ou clique para procurar. A maioria dos outros formatos de áudio e vídeo também decodifica, no seu dispositivo.' },
+        { name: 'Marque o trecho', text: 'Desenhe uma seleção na forma de onda ou digite os tempos exatos. “Manter seleção” mantém o trecho e “Apagar seleção” o remove — troque quando quiser.' },
+        { name: 'Clique “{export}”', text: 'O botão principal da barra de exportação. O WAV é idêntico bit a bit e o MP3 codifica uma vez até 320 kbps. Aperte “Reproduzir” para ouvir antes.' },
+        { name: 'Leve o arquivo', text: 'O download começa sozinho e o nome leva o sufixo -edited. Arquivos acima de 300 MB são rejeitados.' },
       ],
       faqs: [
         {

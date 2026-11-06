@@ -1347,33 +1347,40 @@ export const es: Catalog = {
       cardLine: 'Corta una canción hasta el estribillo, el drop o cualquier fragmento sin recodificar.',
       name: 'Cortar MP3',
       shortName: 'Cortar MP3',
-      title: 'Cortar MP3 — conservar o borrar un tramo',
+      title: 'Cortar MP3 online — conserva o elimina el fragmento',
       description:
-        'Quédate con el estribillo o borra la intro y guarda. El WAV no pierde más calidad. El MP3 se codifica una vez, hasta 320 kbps.',
-      h1: 'Cortar MP3 online gratis',
+        'Corta música MP3 online: conserva el estribillo o elimina la intro. El WAV es idéntico bit a bit, el MP3 se codifica una sola vez hasta 320 kbps. Se rechazan archivos de más de 300 MB.',
+      h1: 'Cortar MP3 — corta un MP3 online, gratis',
       heroAlt: 'Cortar MP3 online gratis',
       subtitle: 'Corta canciones y archivos MP3 en línea: quédate con la parte que quieres y borra el resto.',
       intro:
         'Corta una canción hasta dejar el coro, quita una intro larga o separa un momento destacado, en tu navegador. Elige conservar el tramo seleccionado o eliminarlo, escucha el resultado y guarda un MP3 nuevo en segundos.',
-      usesHeading: 'Cortes que la gente hace en un MP3',
+      usesHeading: 'Casos comunes para cortar MP3',
       uses: [
-        'Quita una intro, una cuña o un silencio largo de una canción o un episodio.',
-        'Quédate con un tramo y descarta el resto, en lugar de taparlo con un fundido.',
-        'Corta el clip primero si el siguiente paso es un tono de llamada.',
+        'Cortar estribillos: saca el gancho de una canción y guárdalo como archivo propio.',
+        'Quitar intros: elimina intros largas y locuciones de anuncios del principio.',
+        'Preparar tonos: corta el fragmento y conviértelo en un M4R de 40 segundos en el [creador de tonos](/ringtone-maker).',
+        'Editar música: recorta fragmentos de práctica o elimina un pasaje que sobra.',
+        'Limpiar programas: quita la locución del principio y quédate con el episodio.',
+        'Crear samples: corta un WAV pequeño de un MP3 largo.',
+      ],
+      why: [
+        {
+          icon: 'scissors',
+          title: 'Dos salidas, sin modos',
+          text: 'Tras marcar el fragmento hay dos botones juntos: «{keep}» lo guarda y «{delete}» lo elimina — cada botón muestra la duración resultante en vivo.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Tu original no se toca',
+          text: 'El corte ocurre en memoria y nada se sube. El WAV es idéntico bit a bit y el MP3 se codifica una sola vez, hasta 320 kbps.',
+        },
       ],
       howTo: [
-        {
-          name: 'Agrega tu MP3',
-          text: 'Suelta tu MP3 en la página o haz clic para elegir un archivo. Casi todos los demás formatos de audio y video también funcionan.',
-        },
-        {
-          name: 'Marca el tramo que vas a cortar',
-          text: 'Arrastra sobre la forma de onda para marcar un tramo. Cambia entre Conservar selección y Eliminar selección según la parte que quieras.',
-        },
-        {
-          name: 'Corta y descarga',
-          text: 'Escucha la vista previa y luego exporta el corte como MP3 o WAV sin pérdida. La descarga empieza sola.',
-        },
+        { name: 'Añade tu MP3', text: 'Arrastra un MP3 al marco discontinuo o haz clic para explorar. La mayoría de otros formatos de audio y vídeo también se decodifican, en tu dispositivo.' },
+        { name: 'Marca el fragmento', text: 'Dibuja una selección en la onda o escribe los tiempos exactos. «Conservar selección» guarda el fragmento y «Eliminar selección» lo elimina — cambia cuando quieras.' },
+        { name: 'Pulsa «{export}»', text: 'El botón principal de la barra de exportación. El WAV es idéntico bit a bit y el MP3 se codifica una vez hasta 320 kbps. Pulsa «Reproducir» para escucharlo antes.' },
+        { name: 'Llévate el archivo', text: 'La descarga arranca sola y el nombre lleva el sufijo -edited. Se rechazan archivos de más de 300 MB.' },
       ],
       faqs: [
         {

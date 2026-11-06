@@ -93,6 +93,10 @@ export interface EditorConfig {
   voice?: boolean;
   /** Tap-tempo island. No file. Tap the beat, read the BPM. */
   tapTempo?: boolean;
+  /** Tool icon injected by ToolPage; the drop well mirrors it as decoration. */
+  toolIcon?: string;
+  /** The tool's hero art (same SVG as the H1 badge), injected by ToolPage. */
+  toolImage?: string;
   /** Repeat the kept selection, or the whole file, on export. */
   loop?: boolean;
   /** Cut the kept selection, or the whole file, into equal parts and zip them. */
@@ -354,9 +358,9 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP3 Cutter',
     icon: 'scissors',
     category: 'cut',
-    title: 'MP3 Cutter — Keep or Delete a Section, No Upload',
+    title: 'MP3 Cutter — Cut MP3 Music Online, Keep or Delete',
     description:
-      'Keep the chorus or delete the intro, then save. WAV adds no extra loss. MP3 encodes once, up to 320 kbps.',
+      'Cut MP3 music online: keep the chorus or delete the intro. WAV is bit-identical, MP3 encodes once at up to 320 kbps. Files over 300 MB are rejected.',
     h1: 'MP3 Cutter — Cut an MP3 Online, Free',
     hero: {
       src: '/mp3-cutter.svg',
@@ -387,24 +391,43 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Cut songs and MP3 files online — keep the part you want, delete the rest.',
     intro:
       'Cut a song down to the chorus, remove a long intro, or split out a highlight — right in your browser. Choose to keep the selected part or delete it, preview the result, and then export. MP3 encodes the cut once.',
-    usesHeading: 'Cuts people make in an MP3',
+    usesHeading: 'Common uses for cutting MP3',
     uses: [
-      'Remove an intro, an ad read, or a long silence from a song or episode.',
-      'Keep one section and discard the rest. A fade on the edges is [fade audio](/fade-audio).',
-      'A clip capped at 40 seconds, downloaded as a ringtone, is the [ringtone maker](/ringtone-maker).',
+      'Chorus cuts: lift the hook out of a song and save it as its own file.',
+      'Intro removal: cut long intros and spoken-ad bumps off the front.',
+      'Ringtone prep: cut the part you want, then make it a 40-second M4R in the [ringtone maker](/ringtone-maker).',
+      'Music editing: trim practice excerpts or drop an unwanted passage.',
+      'Show cleanup: remove the ad read at the top and keep the episode.',
+      'Sample making: slice a small WAV sample out of a long MP3.',
+    ],
+    why: [
+      {
+        icon: 'scissors',
+        title: 'Two exits, not a mode',
+        text: 'After you mark the part, two buttons sit side by side: Keep selection saves it, Delete selection removes it — and each button shows the export length live.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Your original stays put',
+        text: 'Cutting happens in memory and nothing uploads. WAV export is bit-identical and MP3 re-encodes once, at up to 320 kbps.',
+      },
     ],
     howTo: [
       {
         name: 'Add your MP3',
-        text: 'Drop a file, or click to browse. The picker is not limited to MP3. It opens only if this browser can decode it.',
+        text: 'Drop an MP3 into the dashed frame or browse. Most other audio and video formats decode too, right on your device.',
       },
       {
         name: 'Mark the part to cut',
-        text: 'Drag across the waveform to mark a section. Switch between Keep selection and Delete selection depending on which part you want.',
+        text: 'Drag a selection on the waveform, or type exact times. Keep selection saves the part, Delete selection removes it — switch any time.',
       },
       {
-        name: 'Cut and download',
-        text: 'Listen to the preview, then export the cut as MP3 or lossless WAV. The download starts automatically.',
+        name: 'Click Cut and download',
+        text: 'The primary button on the export bar. WAV is bit-identical and MP3 encodes once at up to 320 kbps. Press Play to audition first.',
+      },
+      {
+        name: 'Take the file',
+        text: 'The download starts by itself and the name carries an -edited suffix. Files over 300 MB are rejected.',
       },
     ],
     faqs: [
@@ -426,7 +449,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Where do my files go?',
-        a: 'Nowhere. The file is read from your disk by your browser and cut in memory. No upload, no cloud copy, no retention.',
+        a: 'Nowhere. The file is read from your disk by your browser and cut in memory. No upload, no cloud copy, no retention. A file over 300 MB is rejected.',
       },
       {
         q: 'Does it work on my phone?',
