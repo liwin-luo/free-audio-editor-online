@@ -2515,7 +2515,7 @@ export const es: Catalog = {
       shortName: 'MP4 a MP3',
       title: 'MP4 a MP3 — convierte vídeo MP4, MOV y WebM a MP3 online',
       description:
-        'Extrae la pista de audio de vídeo MP4, MOV o WebM como MP3, decodificada localmente en tu navegador. 64–320 kbps, lotes como un ZIP. Las pistas AC3/DTS no se pueden decodificar.',
+        'Extrae la pista de audio de vídeo MP4, MOV o WebM como MP3, en tu navegador. 64–320 kbps, lote en un ZIP. AC3/DTS no se puede decodificar.',
       h1: 'Convertir MP4 a MP3 online gratis, sin subir — Convertir MP4 a MP3 online, gratis',
       heroAlt: 'Convertir la pista de un MP4, MOV o WebM a MP3',
       subtitle: 'Saca la pista de audio de cualquier video, en tu navegador. Nada se sube.',

@@ -2553,7 +2553,7 @@ export const id: Catalog = {
       shortName: 'MP4 ke MP3',
       title: 'MP4 ke MP3 — konversi video MP4, MOV, dan WebM ke MP3 online',
       description:
-        'Ekstrak trek audio dari video MP4, MOV, atau WebM menjadi MP3, didekode lokal di browser Anda. 64–320 kbps, batch sebagai satu ZIP. Trek AC3/DTS tidak dapat didekode.',
+        'Ekstrak trek audio dari MP4, MOV, atau WebM menjadi MP3, di browser Anda. 64–320 kbps, batch sebagai satu ZIP. Trek AC3/DTS tidak dapat didekode.',
       h1: 'Ubah Video Menjadi MP3',
       heroAlt: 'Ubah trek audio MP4, MOV, atau WebM menjadi MP3',
       subtitle: 'Ambil soundtrack dari video apa pun — langsung di browser, tidak ada yang diunggah.',

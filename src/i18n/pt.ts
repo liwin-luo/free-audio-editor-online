@@ -2552,7 +2552,7 @@ export const pt: Catalog = {
       shortName: 'MP4 para MP3',
       title: 'MP4 para MP3 — converter MP4, MOV e WebM em MP3 online',
       description:
-        'Extraia a faixa de áudio de vídeos MP4, MOV ou WebM como MP3, decodificado localmente no navegador. 64–320 kbps, lote em um ZIP. Faixas AC3/DTS não podem ser decodificadas.',
+        'Extraia a faixa de áudio de MP4, MOV ou WebM como MP3, no navegador. 64–320 kbps, lote em um ZIP. AC3/DTS não pode ser decodificado.',
       h1: 'Converter vídeo em MP3 — Converter um vídeo em MP3',
       heroAlt: 'Converter a faixa de um MP4, MOV ou WebM em MP3',
       subtitle: 'Tire a trilha sonora de qualquer vídeo — direto no navegador, nada enviado.',

@@ -2031,7 +2031,7 @@ export const TOOLS: ToolDef[] = [
     category: 'convert',
     title: 'MP4 to MP3 — Convert MP4, MOV & WebM to MP3 Online',
     description:
-      'Extract the audio track from MP4, MOV or WebM video as MP3, decoded locally in your browser. 64–320 kbps, batch files as one ZIP. AC3/DTS tracks cannot be decoded.',
+      'Extract MP3 audio from MP4, MOV or WebM video in your browser — 64–320 kbps, batch as one ZIP, nothing uploads. AC3/DTS tracks cannot be decoded.',
     h1: 'MP4 to MP3 — Convert a Video to MP3, Online Free',
     hero: {
       src: '/mp4-to-mp3.svg',

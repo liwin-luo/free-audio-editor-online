@@ -2516,7 +2516,7 @@ export const de: Catalog = {
       shortName: 'MP4 in MP3',
       title: 'MP4 zu MP3 — MP4, MOV und WebM online zu MP3 wandeln',
       description:
-        'Tonauszüge aus MP4-, MOV- oder WebM-Videos als MP3 extrahieren — lokal im Browser dekodiert. 64–320 kbps, Stapel als ein ZIP. AC3/DTS-Spuren können nicht dekodiert werden.',
+        'Tonauszüge aus MP4-, MOV- oder WebM-Videos als MP3 — lokal im Browser. 64–320 kbps, Stapel als ein ZIP. AC3/DTS nicht dekodierbar.',
       h1: 'MP4 in MP3 umwandeln – kostenlos online',
       heroAlt: 'Eine MP4-, MOV- oder WebM-Tonspur in MP3 umwandeln',
       subtitle: 'Hol die Tonspur aus jedem Video — direkt im Browser, nichts wird hochgeladen.',
