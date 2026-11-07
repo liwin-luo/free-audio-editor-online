@@ -3550,9 +3550,24 @@ export const TOOLS: ToolDef[] = [
       'This finds stretches quieter than the threshold and longer than the minimum gap, then cuts them. The default threshold is −40 dBFS, which suits speech and voice memos. Each cut keeps 0.08 seconds at both edges so a word is not clipped. A pause shorter than the gap stays. Quiet music and fading tails sit under −40 dBFS and will be cut too — draw the part you want on the audio trimmer instead. If the whole file is under the threshold, the export is the original file. Processing stays in your browser.',
     usesHeading: 'Where the dead air actually is',
     uses: [
-      'Tighten a voice memo or a podcast take that has long pauses between sentences.',
-      'Strip the silence from a lecture without trimming each gap by hand.',
-      'Clean a recording before you export, and leave the short breaths in place.',
+      'Podcasts: tighten the long pauses between sentences and export a cut that needs no hand-trimming.',
+      'Voice memos: strip the long run-up before the words, and the memo is only speech.',
+      'Lecture recordings: remove every long silence by level in one pass, without hand-picking the waveform.',
+      'Interview write-ups: delete the blank between question and answer, and transcribe against clean audio.',
+      'Video narration: when the pause misses the picture, gather the blank before fitting the timeline.',
+      'Cleanup before release: crush the dead air at the tail and leave breaths and short gaps where they are.',
+    ],
+    why: [
+      {
+        icon: 'waveform',
+        title: 'Cuts by level, leaves the breaths alone',
+        text: 'Only what is quieter than the threshold and longer than the minimum pause gets cut. The default −40 dBFS and 0.35 seconds takes the dragged-out dead air, and every cut keeps a 0.08-second pad on both sides, in a join you cannot hear.',
+      },
+      {
+        icon: 'layers',
+        title: 'A whole batch in one pass',
+        text: 'Drag the whole stack of recordings in; they share the threshold and gap, measured and cut one by one. One file downloads alone, two or more pack into a ZIP.',
+      },
     ],
     howTo: [
       {

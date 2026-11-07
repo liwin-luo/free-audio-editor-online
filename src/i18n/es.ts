@@ -4603,8 +4603,27 @@ export const es: Catalog = {
       heroAlt: 'Cortar las pausas largas de una grabación de voz',
       subtitle: "Quita el aire muerto. Las pausas más cortas que el hueco que marcas se quedan.",
       intro: "Encuentra tramos más bajos que el umbral y más largos que la pausa mínima, y los corta. El umbral por defecto es −40 dBFS, útil para voz y notas de voz. Cada corte deja 0,08 segundos en los dos bordes para no comerse el principio o el final de una palabra. Una pausa más corta que el hueco se queda. La música baja y las colas que se apagan también están bajo −40 dBFS y se cortan. Si quieres elegir a mano, usa el recortador de audio. Si todo el archivo está bajo el umbral, la exportación es el archivo original. El proceso se queda en tu navegador.",
-      usesHeading: "Dónde está de verdad el aire muerto",
-      uses: ["Aprieta una nota de voz o una toma de pódcast con pausas largas entre frases.", "Quita el silencio de una clase sin recortar cada hueco a mano.", "Limpia una grabación antes de exportar y deja las respiraciones cortas."],
+      usesHeading: 'Dónde está de verdad el aire muerto',
+      uses: [
+        'Pódcast: estrecha las pausas largas entre frases y exporta una versión que no necesita tijera a mano.',
+        'Notas de voz: recorta la parada antes de hablar, y el memo se queda solo con lo dicho.',
+        'Grabaciones de clase: quita de golpe todos los silencios largos por nivel, sin marcar la onda a mano.',
+        'Organizar entrevistas: borra el blanco entre pregunta y respuesta y escribe sobre audio limpio.',
+        'Locuciones de vídeo: cuando la pausa no cuadra con la imagen, recoge el blanco antes de ajustar la línea de tiempo.',
+        'Limpieza antes de publicar: aplasta el aire muerto del final y deja las respiraciones donde están.',
+      ],
+      why: [
+        {
+          icon: 'waveform',
+          title: 'Corta por nivel, no toca las respiraciones',
+          text: 'Solo corta lo más silencioso que el umbral y más largo que la pausa mínima. Por defecto −40 dBFS y 0,35 segundos: se lleva el aire arrastrado y deja 0,08 segundos de protección en cada corte, con una unión que no se oye.',
+        },
+        {
+          icon: 'layers',
+          title: 'Un lote entero de una vez',
+          text: 'Arrastra toda la tanda de grabaciones; comparten umbral y pausa, se miden y se cortan una a una. Un archivo descarga solo; dos o más vuelven en un ZIP.',
+        },
+      ],
       howTo: [
         { name: "Suelta el audio", text: "Cualquier MP3, WAV, M4A, OGG o FLAC. Se decodifica en tu dispositivo. Varios archivos comparten el umbral y el hueco que eliges después. Cada uno se corta por su cuenta. Uno se descarga solo. Dos o más vuelven en un ZIP." },
         { name: "Marca el umbral y el hueco", text: "El umbral es qué tan bajo debe estar, de −60 a −20 dBFS. La pausa mínima es cuánto debe durar para quitarse, de 0,1 a 2 segundos. La línea de estado dice cuántos segundos se irán, más o menos." },

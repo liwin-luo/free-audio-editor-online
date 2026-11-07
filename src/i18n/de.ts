@@ -4570,8 +4570,27 @@ export const de: Catalog = {
       heroAlt: 'Die langen Pausen aus einer Sprachaufnahme schneiden',
       subtitle: "Weg mit der toten Luft. Pausen, die kürzer sind als dein Abstand, bleiben.",
       intro: "Es findet Stellen, die leiser als die Schwelle und länger als die Mindestpause sind, und schneidet sie. Die Schwelle steht anfangs auf −40 dBFS, passend für Sprache und Sprachnachrichten. Jeder Schnitt lässt an beiden Enden 0,08 Sekunden stehen, damit ein Wort nicht abgeschnitten wird. Eine kürzere Pause bleibt. Leise Musik und ausklingende Enden liegen ebenfalls unter −40 dBFS und werden mitgeschnitten. Wenn du von Hand wählen willst, nimm den Audio-Trimmer. Liegt die ganze Datei unter der Schwelle, ist der Export die Originaldatei. Die Verarbeitung bleibt in deinem Browser.",
-      usesHeading: "Wo die tote Luft wirklich sitzt",
-      uses: ["Zieh eine Sprachnachricht oder eine Podcast-Aufnahme zusammen, in der zwischen den Sätzen lange Pausen sind.", "Nimm die Stille aus einem Vortrag, ohne jede Lücke von Hand zu schneiden.", "Räum eine Aufnahme vor dem Export auf und lass die kurzen Atemzüge stehen."],
+      usesHeading: 'Wo die tote Luft wirklich sitzt',
+      uses: [
+        'Podcast: die langen Pausen zwischen Sätzen straffen und eine Fassung exportieren, die kein handschneiden braucht.',
+        'Sprachmemos: den langen Anlauf vor den ersten Worten kürzen, und das Memo bleibt nur Rede.',
+        'Vorlesungsaufnahmen: alle langen Stillen auf einen Schlag nach Pegel entfernen, ohne jede Stelle von Hand zu ziehen.',
+        'Interviews aufbereiten: das Weiß zwischen Frage und Antwort raus, und der Text entsteht an sauberem Audio.',
+        'Videocommentary: passt die Pause nicht zum Bild, erst das Weiß sammeln, dann die Zeitleiste anlegen.',
+        'Putz vor dem Veröffentlichen: die tote Luft am Ende plattdrücken, Atem und kurze Pausen bleiben, wo sie sind.',
+      ],
+      why: [
+        {
+          icon: 'waveform',
+          title: 'Schneidet nach Pegel, rührt die Atemzüge nicht',
+          text: 'Nur was leiser als der Schwellenwert und länger als die Mindestpause ist, wird geschnitten. Standard −40 dBFS plus 0,35 Sekunden: weg ist die geschleppte tote Luft; jeder Schnitt bekommt 0,08 Sekunden Schutzpolster, die Fuge ist nicht zu hören.',
+        },
+        {
+          icon: 'layers',
+          title: 'Ein ganzer Stapel auf einmal',
+          text: 'Die ganze Reihe Aufnahmen hineinziehen; sie teilen Schwellenwert und Pause, werden einzeln gemessen und geschnitten. Eine Datei lädt allein, zwei oder mehr kommen als ZIP.',
+        },
+      ],
       howTo: [
         { name: "Audio ablegen", text: "Beliebiges MP3, WAV, M4A, OGG oder FLAC. Es wird auf deinem Gerät dekodiert. Mehrere Dateien teilen sich Schwelle und Lücke, die du als Nächstes setzt. Jede Datei wird für sich geschnitten. Eine Datei kommt allein, zwei oder mehr als ein ZIP." },
         { name: "Schwelle und Pause setzen", text: "Die Schwelle ist, wie leise eine Stelle sein muss, von −60 bis −20 dBFS. Die Mindestpause ist, wie lange sie dauern muss, bevor sie weg ist, von 0,1 bis 2 Sekunden. Die Statuszeile sagt ungefähr, wie viele Sekunden wegfallen." },

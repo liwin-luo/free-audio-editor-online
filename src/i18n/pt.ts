@@ -4715,8 +4715,27 @@ export const pt: Catalog = {
       heroAlt: 'Cortar as pausas longas de uma gravação de voz',
       subtitle: "Tira o ar morto. Pausas mais curtas que o intervalo que você marca ficam.",
       intro: "Ele acha trechos mais baixos que o limiar e mais longos que a pausa mínima, e corta. O limiar padrão é −40 dBFS, adequado para fala e recados de voz. Cada corte deixa 0,08 segundo nas duas pontas para não comer o começo ou o fim de uma palavra. Uma pausa mais curta que o intervalo fica. Música baixa e caudas que somem também ficam abaixo de −40 dBFS e são cortadas. Para escolher à mão, use o aparador de áudio. Se o arquivo inteiro está abaixo do limiar, a exportação é o arquivo original. O processo fica no seu navegador.",
-      usesHeading: "Onde o ar morto realmente está",
-      uses: ["Encurte um recado de voz ou uma tomada de podcast com pausas longas entre frases.", "Tire o silêncio de uma aula sem aparar cada intervalo à mão.", "Limpe uma gravação antes de exportar e deixe as respirações curtas."],
+      usesHeading: 'Onde o ar morto realmente está',
+      uses: [
+        'Podcast: aperte as pausas longas entre frases e exporte uma versão que não precisa de tesoura manual.',
+        'Memos de voz: corte a demora antes de falar, e o memo fica só com o que foi dito.',
+        'Gravações de aula: tire todos os silêncios longos de uma vez por nível, sem marcar a onda à mão.',
+        'Organizar entrevistas: apague o branco entre pergunta e resposta e escreva sobre áudio limpo.',
+        'Narração de vídeo: quando a pausa não casa com a imagem, junte o branco antes de acertar a linha do tempo.',
+        'Limpeza antes de publicar: esmague o ar morto do fim e deixe as respirações onde estão.',
+      ],
+      why: [
+        {
+          icon: 'waveform',
+          title: 'Corta por nível, não toca nas respirações',
+          text: 'Só corta o mais silencioso que o limiar e mais longo que a pausa mínima. Padrão −40 dBFS e 0,35 segundo: vai embora o ar morto arrastado; cada corte guarda 0,08 segundo de proteção nas duas bordas, numa emenda que não se ouve.',
+        },
+        {
+          icon: 'layers',
+          title: 'Um lote inteiro de uma vez',
+          text: 'Arraste a leva inteira de gravações; elas compartilham limiar e pausa, medindo e cortando uma a uma. Um arquivo baixa sozinho; dois ou mais voltam num ZIP.',
+        },
+      ],
       howTo: [
         { name: "Solte o áudio", text: "Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação acontece no seu aparelho. Vários arquivos compartilham o limiar e o intervalo que você escolhe em seguida. Cada um é cortado por si. Um baixa sozinho. Dois ou mais voltam num ZIP." },
         { name: "Marque o limiar e o intervalo", text: "O limiar é o quanto baixo precisa estar, de −60 a −20 dBFS. A pausa mínima é quanto tempo precisa durar para sair, de 0,1 a 2 segundos. A linha de estado mostra cerca de quantos segundos vão embora." },
