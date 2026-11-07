@@ -1983,11 +1983,26 @@ export const es: Catalog = {
       subtitle: 'Convierte archivos FLAC a MP3 en segundos, en tu navegador y sin subir nada.',
       intro:
         'El FLAC suena perfecto y ocupa medio disco duro en demostrarlo. Pasa tu biblioteca sin pérdida a MP3 compactos que funcionan en el estéreo del coche, altavoces Bluetooth y equipos antiguos: suelta los archivos, elige un bitrate y la conversión ocurre en tu propio dispositivo. Una canción FLAC de 25 MB se convierte en un MP3 de 12 MB a 320 kbps en un par de segundos.',
-      usesHeading: 'FLAC que merecen convertirse',
+      usesHeading: 'Usos habituales de FLAC a MP3',
       uses: [
-        'Hacer que tu biblioteca sin pérdida suene en el coche y en equipos viejos.',
-        'Reducir un álbum antes de un viaje sin Wi-Fi o de compartir una carpeta.',
-        'Convertir primero y recortar después las canciones que de verdad repites.',
+        'Reproducción en el coche: haz que la biblioteca sin pérdidas suene en el autorradio y equipos antiguos.',
+        'Adelgaza antes de viajar: reduce el álbum en el móvil antes de un trayecto largo sin Wi-Fi.',
+        'Carpetas compartidas: convierte el álbum a una copia menor antes de compartir el directorio.',
+        'Archivo en dos copias: el FLAC se queda como archivo, el MP3 para escuchar a diario.',
+        'Compatibilidad de descargas: pasa álbumes sin pérdidas comprados a MP3 que suenen en cualquier sitio.',
+        'Orden por lotes: suelta un álbum entero de una vez; cada pista se convierte y se empaqueta en ZIP.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Transcodificado desde la fuente sin pérdidas',
+          text: 'El FLAC se decodifica a las muestras originales y el MP3 se codifica una sola vez al bitrate elegido: se comprime exactamente una vez.',
+        },
+        {
+          icon: 'layers',
+          title: 'Álbumes completos por lotes',
+          text: 'Suelta un álbum entero de una vez; las pistas se convierten en orden y se empaquetan en un ZIP, conservando la secuencia.',
+        },
       ],
       howTo: [
         {

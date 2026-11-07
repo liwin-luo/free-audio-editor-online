@@ -1982,11 +1982,26 @@ export const pt: Catalog = {
       subtitle: 'Converta arquivos FLAC em MP3 em segundos — direto no navegador, sem enviar nada.',
       intro:
         'O FLAC soa perfeito e gasta meio disco duro para provar isso. Transforme sua biblioteca sem perdas em MP3s compactos que tocam no som do carro, caixas Bluetooth e aparelhos mais antigos — solte os arquivos, escolha o bitrate e a conversão acontece no seu próprio aparelho. Uma faixa FLAC de 25 MB vira um MP3 de 12 MB a 320 kbps em poucos segundos.',
-      usesHeading: 'FLAC que valem a conversão',
+      usesHeading: 'Usos comuns de FLAC para MP3',
       uses: [
-        'Fazer a biblioteca sem perdas tocar no som do carro e em aparelhos antigos.',
-        'Encolher um álbum antes de uma viagem sem Wi-Fi ou de compartilhar uma pasta.',
-        'Converter primeiro e recortar depois as músicas que você realmente repete.',
+        'Tocar no carro: faça a biblioteca sem perdas funcionar no som do carro e em aparelhos antigos.',
+        'Afinar antes de viajar: reduza o álbum no celular antes de um trajeto longo sem Wi-Fi.',
+        'Pastas compartilhadas: converta o álbum para uma cópia menor antes de compartilhar a pasta.',
+        'Arquivo em duas cópias: o FLAC fica de arquivo, o MP3 para ouvir no dia a dia.',
+        'Compatibilidade de downloads: transforme álbuns sem perdas comprados em MP3 que tocam em qualquer lugar.',
+        'Organizar em lote: solte um álbum inteiro de uma vez; cada faixa converte e vai para o ZIP.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Transcodificado da fonte sem perdas',
+          text: 'O FLAC é decodificado de volta às amostras originais e o MP3 é codificado uma vez, no bitrate escolhido — comprimido exatamente uma vez.',
+        },
+        {
+          icon: 'layers',
+          title: 'Álbuns inteiros em lote',
+          text: 'Solte um álbum inteiro de uma vez; as faixas convertem em ordem e vão para um ZIP, mantendo a sequência.',
+        },
       ],
       howTo: [
         {

@@ -1284,11 +1284,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Decode a FLAC and encode an MP3 in this browser. Nothing is uploaded.',
     intro:
       'This browser decodes the FLAC and encodes an MP3. The menu is 320, 192, or 128 kbps. This page starts at 320. WAV, 96, and 64 are not in this menu. Tags are not copied.',
-    usesHeading: 'FLAC files worth converting',
+    usesHeading: 'Common uses for FLAC to MP3',
     uses: [
-      'Make an MP3 at 320, 192, or 128 kbps.',
-      'Keep the FLAC if you still need the lossless file.',
-      'Trim after converting, on the [audio trimmer](/audio-trimmer).',
+      'Car playback: make the lossless library playable on a car stereo and older gear.',
+      'Slim down before a trip: shrink the album onto the phone before a long offline ride.',
+      'Shared folders: convert the whole album to a smaller copy before sharing a directory.',
+      'Archive in two copies: keep the FLAC as the archive, listen to the MP3 day to day.',
+      'Download compatibility: turn purchased lossless albums into MP3s that play anywhere.',
+      'Batch tidy-up: drop a whole album at once; each track converts and packs into a ZIP.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'Transcoded from the lossless source',
+        text: 'The FLAC is decoded back to the original samples, then the MP3 is encoded once at the bitrate you pick — compressed exactly once.',
+      },
+      {
+        icon: 'layers',
+        title: 'Whole albums in a batch',
+        text: 'Drop an entire album at once; the tracks convert in order and pack into a ZIP, sequence kept.',
+      },
     ],
     howTo: [
       {
