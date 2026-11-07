@@ -2441,11 +2441,26 @@ export const pt: Catalog = {
       subtitle: 'Toque qualquer música ou gravação de trás para frente — um clique, direto no navegador.',
       intro:
         'Vire qualquer faixa para tocar do fim ao começo: procure mensagens escondidas em músicas, monte efeitos de prato ao contrário para um mix, ou só ouça como sua voz fica invertida. O arquivo inteiro é revertido no aparelho e só é gravado quando você exporta.',
-      usesHeading: 'Motivos para inverter um arquivo',
+      usesHeading: 'Usos comuns de inverter áudio',
       uses: [
-        'Ouça uma mix ou uma frase escondida de trás para a frente.',
-        'Monte um swell invertido a partir de um ataque de prato ou de uma voz.',
-        'Inverta só a seleção e deixe o resto do arquivo quieto.',
+        'Crescente reverso: crie uma transição de sucção com um prato ou um ataque vocal.',
+        'Mensagens escondidas: meta uma frase gravada ao contrário, ouvida como easter egg.',
+        'Autochecagem da mixagem: ouça ao contrário; os problemas aparecem bem mais.',
+        'Material para samples: bateria e voz invertidas são clássicos da música eletrônica.',
+        'Trilha para vídeo: reproduza a cena ao contrário e case com o som invertido.',
+        'Exercícios de estudo: treine frases de idioma ou instrumento em sentido inverso.',
+      ],
+      why: [
+        {
+          icon: 'reverse',
+          title: 'Inversão de um clique',
+          text: 'Inverta o arquivo inteiro ou uma seleção num clique: a ordem das amostras vira por completo e a duração fica igual.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'A inversão termina no seu navegador; o áudio nunca é enviado.',
+        },
       ],
       howTo: [
         {

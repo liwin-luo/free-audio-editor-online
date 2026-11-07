@@ -2424,11 +2424,26 @@ export const es: Catalog = {
       subtitle: 'Reproduce cualquier canción o grabación al revés: un clic, en tu navegador.',
       intro:
         'Voltea cualquier tema para que suene del final al inicio: busca mensajes ocultos en canciones, arma efectos de platillo al revés para una mezcla, o simplemente escucha cómo suena tu voz invertida. El archivo completo se invierte en tu dispositivo y solo se escribe cuando exportas.',
-      usesHeading: 'Razones para dar la vuelta a un archivo',
+      usesHeading: 'Usos habituales de invertir audio',
       uses: [
-        'Escucha una mezcla o una frase escondida al revés.',
-        'Arma un swell invertido a partir de un golpe de platillo o de una voz.',
-        'Invierte solo la selección y deja el resto del archivo quieto.',
+        'Avalancha inversa: crea una transición de succión con un golpe de plato o un ataque vocal.',
+        'Mensajes ocultos: esconde una frase grabada al revés, que se oye como huevo de pascua.',
+        'Autodiagnosis de la mezcla: escúchala invertida; los problemas saltan mucho más.',
+        'Material para samples: batería y voz invertidas son básicos de la música electrónica.',
+        'Música para vídeo: reproduce el metraje al revés y cámbialo con sonido invertido.',
+        'Ejercicios de estudio: practica frases de idioma o instrumento en sentido inverso.',
+      ],
+      why: [
+        {
+          icon: 'reverse',
+          title: 'Inversión de un clic',
+          text: 'Invierte el archivo entero o una selección de un clic: el orden de las muestras se voltea por completo y la duración no cambia.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Procesado en local',
+          text: 'La inversión termina en tu navegador; el audio nunca se sube.',
+        },
       ],
       howTo: [
         {

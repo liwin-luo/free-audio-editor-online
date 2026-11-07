@@ -2350,11 +2350,26 @@ export const de: Catalog = {
       subtitle: 'Spiele jeden Song oder jede Aufnahme rückwärts ab — ein Klick, direkt im Browser.',
       intro:
         'Dreh einen Titel um, sodass er vom Ende zum Anfang spielt: such nach versteckten Botschaften in Songs, bau rückwärts anschwellende Becken für einen Mix, oder hör einfach, wie deine Stimme rückwärts klingt. Die ganze Datei wird auf deinem Gerät umgekehrt und erst beim Export geschrieben.',
-      usesHeading: 'Gründe, eine Datei umzudrehen',
+      usesHeading: 'Häufige Einsätze für rückwärts laufendes Audio',
       uses: [
-        'Hör einen Mix oder einen vergrabenen Satz rückwärts.',
-        'Bau ein Reverse-Swell aus einem Beckenanschlag oder einer Stimme.',
-        'Kehr nur die Auswahl um und lass den Rest der Datei in Ruhe.',
+        'Reverse-Riser: aus einem Beckenschlag oder einem Vokaleinsatz einen Sog-Übergang bauen.',
+        'Versteckte Botschaften: rückwärts gesprochenen Satz einnähen, vorwärts als Easter Egg zu hören.',
+        'Mix-Selbstcheck: den Mix rückwärts hören; Probleme fallen viel deutlicher auf.',
+        'Sample-Material: rückwärts laufende Drums und Vocals sind Standard in der elektronischen Musik.',
+        'Videoscore: Rückwärtsaufnahme abspielen und mit rückwärts laufendem Sound matchen.',
+        'Übungen: Sprach- oder Instrumentenphrasen rückwärts üben.',
+      ],
+      why: [
+        {
+          icon: 'reverse',
+          title: 'Ein Klick zum Umdrehen',
+          text: 'Die ganze Datei oder eine Auswahl per Klick umdrehen: Die Sample-Reihenfolge kehrt sich komplett um, die Länge bleibt gleich.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Das Umdrehen schließt im Browser ab; das Audio wird nie hochgeladen.',
+        },
       ],
       howTo: [
         {

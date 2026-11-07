@@ -1856,11 +1856,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Play any song or recording backwards — one click, right in your browser.',
     intro:
       'Flip any track so it plays from the end to the start: hunt for hidden messages in songs, build backwards-cymbal effects for a mix, or just hear what your voice sounds like in reverse. The whole file is reversed on your device and only written out when you export.',
-    usesHeading: 'Reasons to flip a file',
+    usesHeading: 'Common uses for audio reversal',
     uses: [
-      'Hear a mix or a buried phrase by playing it backwards.',
-      'Build a reverse swell from a cymbal hit or a vocal.',
-      'Reverse only the selection and leave the rest of the file alone.',
+      'Reverse riser: build a suck-in transition from a cymbal hit or a vocal onset.',
+      'Hidden messages: tuck in a line recorded backwards, heard forwards as an Easter egg.',
+      'Mix self-check: listen to the mix backwards; problems stand out much more.',
+      'Sample material: reversed drums and vocals are staples of electronic music.',
+      'Video scoring: play footage backwards and match it with reversed sound.',
+      'Study drills: practise language or instrument phrases in reverse.',
+    ],
+    why: [
+      {
+        icon: 'reverse',
+        title: 'One-click flip',
+        text: 'Reverse the whole file or a selection in one click: the sample order fully flips and the length stays the same.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The reversal finishes in your browser; the audio is never uploaded.',
+      },
     ],
     howTo: [
       {
