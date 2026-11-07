@@ -1735,99 +1735,119 @@ export const de: Catalog = {
       ],
     },
     'audio-joiner': {
-      cardLine: 'Füge Sprachmemos, Songs oder Podcast-Folgen zu einer durchgehenden Datei zusammen.',
-      name: 'MP3 zusammenfügen',
-      shortName: 'MP3 zusammenfügen',
-      title: 'MP3 zusammenfügen – der Reihe nach, mit Überblendung',
+      cardLine: 'Sprachmemos, Songs oder Podcast-Episoden zu einer durchgehenden Datei zusammenfügen.',
+      name: 'Audio zusammenfügen',
+      shortName: 'Zusammenfügen',
+      title: 'Audio-Zusammenfüger — MP3 online verbinden, mit Crossfade',
       description:
-        'Songs, Kapitel oder Sprachnotizen der Reihe nach in eine Datei legen. Die Überblendung auf null ist ein harter Schnitt. Nichts wird hochgeladen.',
-      h1: 'MP3 zusammenfügen – eine Datei nach der anderen',
-      heroAlt: 'Songs und Sprachnotizen nacheinander aneinanderfügen',
-      subtitle: 'Füge Songs und Audiodateien zu einem Titel zusammen — in beliebiger Reihenfolge, in Sekunden.',
+        'Songs, Kapitel oder Sprachmemos zu einer Datei verbinden; Crossfade 0-5 s. WAV verlustfrei, MP3 bis 320 kbps. Alles lokal im Browser, ohne Upload.',
+      h1: 'Audio-Zusammenfüger — mehrere Audiodateien zu einer verbinden',
+      heroAlt: 'Songs und Sprachmemos der Reihe nach verbinden',
+      subtitle: 'Songs und Audiodateien zu einem Track verbinden, Reihenfolge frei, in Sekunden.',
       intro:
-        'Kombiniere mehrere Songs, Podcast-Folgen oder Sprachaufnahmen zu einer einzigen Datei. Nimm so viele Titel, wie du willst, sortiere sie um und blende auf Wunsch Anfang und Ende. Das Zusammenfügen passiert auf deinem Gerät — auch große Sammlungen sind sofort fertig und bleiben privat.',
-      usesHeading: 'Spuren, die sich zu verbinden lohnen',
+        'Mehrere Songs, Podcast-Episoden oder Aufnahmen in einer Datei zusammenbringen. So viele Tracks hinzufügen, wie du willst, sie umordnen und Anfang und Ende optional ausblenden. Das Zusammenfügen passiert auf deinem Gerät — auch lange Listen verbinden sich sofort und bleiben privat.',
+      usesHeading: 'Häufige Einsätze für den Audio-Zusammenfüger',
       uses: [
-        'Setze eine Sprachnotiz vor einen Song, in der Reihenfolge, die du willst.',
-        'Füge Kapitelaufnahmen zu einer Datei, für einen Player ohne Playlists.',
-        'Crossfade an den Stößen, damit aufeinanderfolgende Clips nicht knallen.',
+        'Podcast-Sammlung: Episodenaufnahmen der Reihe nach zu einer Datei verbinden,Publishing wird einfacher.',
+        'Musik-Medley: Songs aneinanderhängen, mit Crossfade an den Nähten, damit nichts knallt.',
+        'Hörbuch verbinden: Kapiteldateien zu einer für Player ohne Playlists.',
+        'Interviews verbinden: Aufnahmefassungen zu einer Datei für Transkript und Ordnung.',
+        'Sprachmemos: verstreute Memos mit einem Musikstück verbinden, Reihenfolge bleibt deine.',
+        'Demo-Audio: mehrere Hinweistöne zu einer Datei verbinden und in einem Rutsch importieren.',
+      ],
+      why: [
+        {
+          icon: 'layers',
+          title: 'Gemischte Formate fügen sich',
+          text: 'MP3, WAV und M4A dürfen in einer Liste stehen: Dateien werden erst dekodiert und auf eine Abtastrate gebracht, dann verbunden. Dutzende Tracks gehen — die Obergrenze ist dein Gerätespeicher.',
+        },
+        {
+          icon: 'waveform',
+          title: 'Nähte ohne Knacksen',
+          text: 'Ein Crossfade von 0-5 Sekunden überlappt das Ende eines Tracks mit dem Anfang des nächsten; bei null gibt es eine nahtlose harte Fuge ohne Lücke.',
+        },
       ],
       howTo: [
         {
-          name: 'Titel hinzufügen',
-          text: 'Ziehe zwei oder mehr Audiodateien hierher oder klicke, um mehrere auf einmal zu wählen. Gemischte Formate sind kein Problem — sie werden automatisch angeglichen.',
+          name: 'Tracks hinzufügen',
+          text: 'Zieh zwei oder mehr Audiodateien in den gestrichelten Rahmen, oder wähle mehrere mit einem Klick. MP3, WAV und M4A durcheinander ist okay — die Abtastrate wird automatisch angeglichen.',
         },
         {
           name: 'Reihenfolge festlegen',
-          text: 'Sortiere die Titel mit den Pfeilen um oder entferne einen, wenn du es dir anders überlegst. Die Gesamtdauer aktualisiert sich dabei.',
+          text: 'Mit den Pfeiltasten jeden Track platzieren; die Vorschaudauer aktualisiert sich live. Track entfernen, wenn du es dir anders überlegst.',
         },
         {
-          name: 'Zusammenfügen und speichern',
-          text: 'Füge optionale Blenden hinzu, klicke auf Zusammenfügen & exportieren und lade die Datei als MP3 oder WAV herunter.',
+          name: 'Crossfade einstellen',
+          text: 'Der Regler läuft 0-5 Sekunden: höhere Werte überlappen Nachbarn weich, null ist eine nahtlose harte Fuge. Anfang und Ende lassen sich zusätzlich ausblenden.',
+        },
+        {
+          name: 'Zusammenfügen und Datei mitnehmen',
+          text: 'Auf Export klicken und als MP3 (bis 320 kbps) oder verlustfreies WAV herunterladen. Kein festes Tracklimit — die Obergrenze ist der Speicher deines Geräts.',
         },
       ],
       faqs: [
         {
           q: 'Kann ich verschiedene Audioformate zusammenfügen?',
-          a: 'Ja. Die Dateien werden zuerst dekodiert und auf eine gemeinsame Abtastrate gebracht, deshalb kannst du eine MP3 mit einer WAV und einer M4A in einem Durchgang verbinden. Das Ausgabeformat wählst du selbst.',
+          a: 'Ja. Dateien werden zuerst dekodiert und auf eine gemeinsame Abtastrate gebracht, darum lassen sich MP3, WAV und M4A in einem Durchgang verbinden. Das Ausgabeformat wählst du.',
         },
         {
           q: 'Wie viele Dateien kann ich verbinden?',
-          a: 'Es gibt kein festes Limit — Dutzende Titel funktionieren problemlos. Die praktische Obergrenze ist der Speicher deines Geräts, weil alles lokal verarbeitet wird.',
+          a: 'Es gibt kein festes Limit — Dutzende Tracks funktionieren. Die praktische Obergrenze ist der Speicher deines Geräts, denn alles wird lokal verarbeitet.',
         },
         {
-          q: 'Kann ich die Reihenfolge der Songs ändern?',
-          a: 'Ja. Nutze die Pfeile nach oben und unten neben jedem Titel, um die Reihenfolge vor dem Zusammenfügen zu ändern. Die Vorschaudauer aktualisiert sich sofort.',
+          q: 'Kann ich die Reihenfolge ändern?',
+          a: 'Ja. Neben jedem Track sitzen Auf- und Abwärtpfeile, um vor dem Verbinden die Ordnung zu setzen. Die Vorschaudauer aktualisiert sich sofort.',
         },
         {
-          q: 'Überblenden die Titel ineinander?',
-          a: 'Ja. Stelle den Überblendungsregler so ein, dass das Ende jedes Titels mit dem Anfang des nächsten überlappt — beim Zusammenfügen entsteht eine weiche Blende zwischen den Nachbarn. Stell ihn auf null für einen harten Schnitt ohne Lücke.',
+          q: 'Überblenden die Tracks ineinander?',
+          a: 'Ja. Setze den Crossfade-Regler höher, damit das Ende jedes Tracks mit dem Anfang des nächsten überlappt — beim Verbinden blenden die Nachbarn weich ineinander. Bei null wird hart geschnitten: beide Teile gehen nahtlos und lückenlos ineinander.',
         },
         {
-          q: 'Ist die Qualität der zusammengefügten Datei gut?',
-          a: 'Zusammenfügen nach WAV ist verlustfrei — das Audio wird nicht erneut komprimiert. Der MP3-Export kodiert einmal neu mit bis zu 320 kbps, was für fast alle Hörer transparent ist.',
+          q: 'Ist die Qualität der verbundenen Datei gut?',
+          a: 'Das verbundene WAV ist verlustfrei, das Audio wird nicht erneut komprimiert. Der MP3-Export codiert einmal neu, mit bis zu 320 kbps — einen Unterschied hört fast niemand.',
         },
         {
-          q: 'Geht das auf dem Handy?',
-          a: 'Ja. Dateien hinzufügen, dann mit Nach oben und Nach unten sortieren. Die Knöpfe gehen mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Mehrere lange Dateien brauchen mehr Speicher, deshalb ist der Rechner bei einem langen Stapel ruhiger.',
+          q: 'Funktioniert es auf dem Handy?',
+          a: 'Ja. Dateien hinzufügen, dann mit den Hoch-/Runter-Tasten ordnen. Beide Tasten gehen mit dem Finger. Die aktuellen Chrome-, Edge-, Firefox- und Safari-Versionen dekodieren gängige Formate auf iPhone wie Android. Mehrere lange Dateien brauchen mehr Speicher; bei sehr langen Stapeln ist der Computer stabiler.',
         },
-      {
-        q: 'Kann ich lokale Dateien aus Claude oder Cursor aneinanderhängen?',
-        a: 'Diese Seite fügt im Browser zusammen. Der Crossfade-Regler geht von 0 bis 5 Sekunden, in Schritten von 0.5. /mcp hängt 2 bis 20 lokale Dateien mit ffmpeg aneinander, Crossfade 0 bis 5 Sekunden, und schreibt 44100 Hz Stereo. Eine Wellenform zeigt es nicht. Die Chat-App sieht die Pfade trotzdem.',
-      }],
+        {
+          q: 'Kann ich lokale Dateien aus Claude oder Cursor verbinden?',
+          a: 'Diese Seite verbindet im Browser. Der Crossfade-Regler läuft von 0 bis 5 Sekunden, in Schritten von 0,5. /mcp verbindet 2 bis 20 lokale Dateien mit ffmpeg, mit einem Crossfade von 0 bis 5 Sekunden, und schreibt 44100-Hz-Stereo. Eine Wellenform zeigt es nicht. Die Chat-App sieht die Pfade weiterhin.',
+        },
+      ],
+      dropHint: 'Zwei oder mehr Audiodateien hineinziehen oder durchklicken',
+      screenshotsAlt: [
+        'Audio-Zusammenfüger Dropzone: Datei ziehen oder durchsuchen, nichts wird hochgeladen',
+        'Audio-Zusammenfüger Arbeitsbereich mit geladener Datei',
+        'Audio-Zusammenfüger nach dem Export: die Statuszeile nennt die heruntergeladene Datei',
+      ],
       sections: [
         {
-          heading: 'Zusammenfügen heißt Datei hinter Datei',
+          heading: 'Verbinden heißt: eine Datei nach der anderen',
           paragraphs: [
-            'Der Audio-Joiner legt ganze Dateien hintereinander: Song, dann Sprachnotiz, dann das nächste Kapitel. Du kannst die Liste umsortieren und einen Überblendung setzen, damit das Ende einer Datei den Anfang der nächsten überlappt.',
-            'Stell die Überblendung auf null für einen harten Schnitt ohne Lücke. Gemischte Formate werden dekodiert und in einen Export geschrieben. Das ist kein Mixer: die Spuren spielen nicht gleichzeitig.',
+            'Der Verbinder reiht ganze Dateien in einer Reihe auf: ein Song, dann ein Sprachmemo, dann das nächste Kapitel. Die Liste lässt sich umordnen, ein Crossfade überlappt das Ende des einen mit dem Anfang des nächsten.',
+            'Beim Crossfade auf null wird hart geschnitten, ohne Lücke. Gemischte Formate werden erst dekodiert, dann in einen Export geschrieben. Das ist kein Mischpult: mehrere Tracks spielen nie gleichzeitig.',
           ],
         },
         {
-          heading: 'Wofür diese Seite da ist',
+          heading: 'Arbeiten, die dieser Seite passen',
           paragraphs: [
-            'Nimm sie, wenn das Ergebnis eine einzelne Datei sein soll, die ein Player ohne Playlist öffnet:',
+            'Benutze sie, wenn das Ergebnis eine einzelne Datei sein soll, die ein Player direkt öffnet:',
           ],
           bullets: [
-            'Eine Sprachnotiz vor einem Song, in der Reihenfolge, die du willst.',
-            'Kapitelaufnahmen zusammen, für einen Player ohne Playlists.',
-            'Clips direkt nacheinander, mit kurzer Überblendung, damit die Übergänge nicht knacken.',
+            'Ein Sprachmemo vor einem Song, in der Reihenfolge deiner Wahl.',
+            'Kapitelaufnahmen verbunden für einen Player ohne Playlists.',
+            'Ein paar Clips aneinander mit kurzem Crossfade, damit die Nähte nicht knallen.',
           ],
         },
         {
-          heading: 'Wenn du Ebenen brauchst',
+          heading: 'Wann du Ebenen brauchst',
           paragraphs: [
-            'Sprache über Musik, Pegel und Pan pro Clip, Stumm und Solo: das ist der Mehrspur-Audioeditor, bis zu acht Spuren. Der Joiner senkt die Musik nicht unter die Sprache.',
-            'Es gibt keine feste Dateizahl. Die Grenze ist der Speicher des Geräts, weil der Merge im Browser bleibt. Nichts wird hochgeladen.',
+            'Stimmen über Musik, Lautstärke und Pan pro Clip, Mute und Solo: das ist der Mehrspur-Editor mit bis zu acht Spuren. Der Verbinder kann Musik nicht unter Sprache absenken.',
+            'Keine feste Obergrenze bei der Dateizahl. Die Grenze ist der Gerätespeicher, denn das Verbinden schließt im Browser ab. Nichts wird hochgeladen.',
           ],
         },
       ],
-      screenshotsAlt: [
-        'MP3 zusammenfügen: Ablagefläche, nichts wird hochgeladen',
-        'MP3 zusammenfügen: Arbeitsbereich mit geladener Datei',
-        'MP3 zusammenfügen: nach dem Export nennt die Statuszeile die heruntergeladene Datei',
-      ],
-      dropHint: 'Zwei oder mehr Audiodateien ablegen oder klicken zum Auswählen',
     },
     'wav-to-mp3': {
       cardLine: 'Schwere WAV-Aufnahmen mit gewählter Bitrate zu teilbaren MP3s verkleinern.',

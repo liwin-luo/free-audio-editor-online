@@ -15,7 +15,6 @@ export const catalogs: Partial<Record<Locale, Catalog>> = {};
  * enforces full coverage again. Keep it empty on main outside such interims.
  */
 export const PENDING_I18N = new Set<string>([
-  'audio-joiner',
   'multi-track-audio-editor',
   'wav-to-mp3',
   'flac-to-mp3',

@@ -820,10 +820,10 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Audio Joiner',
     icon: 'layers',
     category: 'join',
-    title: 'Audio Joiner — Merge Songs in Order, with Crossfade',
+    title: 'Audio Joiner — Merge MP3 Audio Files Online, with Crossfade',
     description:
-      'Put songs, chapters, or voice memos in order and export one file. Set a crossfade, or zero for a hard join. Nothing is uploaded.',
-    h1: 'Audio Joiner — Put Songs One After Another',
+      'Join songs, chapters or memos into one file. Crossfade 0-5 s; mixed formats are matched to one sample rate. WAV lossless, MP3 up to 320 kbps. All local.',
+    h1: 'Audio Joiner — Put Several Audio Files into One',
     hero: {
       src: '/audio-joiner.svg',
       alt: 'Put songs and voice notes one after another',
@@ -850,33 +850,52 @@ export const TOOLS: ToolDef[] = [
         height: 702
       },
     ],
-    subtitle: 'Put files in order and export one track. Nothing is uploaded.',
+    subtitle: 'Merge songs and audio files into one, in any order, in seconds.',
     intro:
-      'Combine multiple songs, podcast episodes or voice recordings into a single file. Add as many tracks as you like, reorder them, and optionally fade the beginning and end. Merging happens on your device — even large libraries join instantly and stay private.',
-    usesHeading: 'Tracks worth joining',
+      'Combine several songs, podcast episodes or recordings into one file. Add as many tracks as you like, reorder them, and fade the beginning and end if you want. The merge happens on your device, so even a long list joins right away and stays private.',
+    usesHeading: 'Common uses for the audio joiner',
     uses: [
-      'Put a voice memo in front of a song, in the order you choose.',
-      'Combine chapter recordings into one file for a player without playlists.',
-      'Crossfade the joins so back-to-back clips do not pop.',
+      'Podcast compilations: join episode recordings in order into one file, so publishing is easier.',
+      'Song megamixes: butt songs together, with a crossfade at the seams so nothing pops.',
+      'Audiobook merging: combine chapter files into one for a player without playlists.',
+      'Interview stitching: join interview takes into one file for transcribing and organising.',
+      'Voice memos: join scattered memos with a piece of music, in the order you choose.',
+      'Demo audio: join several prompts into one file and import it to a device in one go.',
+    ],
+    why: [
+      {
+        icon: 'layers',
+        title: 'Mixed formats join fine',
+        text: 'MP3, WAV and M4A can sit in one list: files are decoded and matched to one sample rate before joining. Dozens of tracks work — the ceiling is your device memory.',
+      },
+      {
+        icon: 'waveform',
+        title: 'Seams without pops',
+        text: 'A crossfade of 0-5 seconds overlaps the end of one track with the start of the next; at zero it is a seamless hard join with no gap in between.',
+      },
     ],
     howTo: [
       {
         name: 'Add your tracks',
-        text: 'Drop two or more audio files onto the page, or click to select several at once. Mixed formats are fine — they are matched automatically.',
+        text: 'Drop two or more audio files into the dashed frame, or click once to select several. Mixing MP3, WAV and M4A is fine — sample rates are matched automatically.',
       },
       {
         name: 'Set the order',
-        text: 'Reorder tracks with the arrow buttons or remove any track you change your mind about. The total duration updates as you go.',
+        text: 'Use the up and down arrows to place each track, with the preview duration updating live. Remove any track you change your mind about.',
       },
       {
-        name: 'Merge and save',
-        text: 'Add optional fades, click Export, and download the merged file as MP3 or WAV.',
+        name: 'Set the crossfade',
+        text: 'The slider runs 0-5 seconds: higher values overlap neighbouring tracks smoothly, zero is a seamless hard join. You can also fade the beginning and end.',
+      },
+      {
+        name: 'Merge and take the file',
+        text: 'Click export to download as MP3 (up to 320 kbps) or lossless WAV. There is no fixed track limit — the ceiling is your device memory.',
       },
     ],
     faqs: [
       {
         q: 'Can I merge different audio formats together?',
-        a: 'Yes. Files are decoded and matched to a common sample rate first, so you can join an MP3 with a WAV and an M4A in one pass. The output format is your choice.',
+        a: 'Yes. Files are decoded first and matched to one sample rate, so you can join MP3, WAV and M4A in one pass. The output format is your choice.',
       },
       {
         q: 'How many files can I join?',
@@ -884,48 +903,49 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Can I change the order of the songs?',
-        a: 'Yes. Use the up and down arrows next to each track to reorder the sequence before merging. The preview duration updates instantly.',
+        a: 'Yes. Each track has up and down arrows beside it, used to set the order before merging. The preview duration updates right away.',
       },
       {
         q: 'Do the tracks crossfade into each other?',
-        a: 'Yes. Set the crossfade slider to overlap the end of each track with the start of the next — the merge applies a smooth fade between neighbours. Set it to zero for a hard, gapless cut between tracks.',
+        a: 'Yes. Raise the crossfade slider so the end of each track overlaps the start of the next; the merge fades smoothly between neighbours. Set it to zero for a hard cut: the two sections join seamlessly with no gap.',
       },
       {
         q: 'Is the merged file quality good?',
-        a: 'Joining to WAV writes 16-bit PCM of the decoded samples. MP3 encodes that result once, at the bitrate you pick. Tags are not copied.',
+        a: 'The merged WAV is lossless — the audio is not compressed again. Exporting MP3 re-encodes once, at up to 320 kbps, which almost nobody can hear a difference from.',
       },
       {
         q: 'Does it work on my phone?',
-        a: 'Add files, then move them up or down. Those buttons work with a finger. There is no file-count cap. The ceiling is the memory in this tab.',
+        a: 'Yes. Add the files, then reorder with the move-up and move-down buttons. Both buttons work with a finger. Current Chrome, Edge, Firefox and Safari decode common formats on iPhone and Android alike. Several long files take more memory; a computer is steadier for very long stacks.',
       },
       {
         q: 'Can I join local files from Claude or Cursor?',
         a: 'This page merges in the browser. The crossfade slider runs from 0 to 5 seconds, in steps of 0.5. /mcp joins 2 to 20 local files with ffmpeg, with a crossfade from 0 to 5 seconds, and writes 44100 Hz stereo. It does not show a waveform. The chat app still sees the paths.',
-      }],
+      },
+    ],
     sections: [
       {
-        heading: 'Join means one file after another',
+        heading: 'Joining means one file after another',
         paragraphs: [
-          'The joiner places whole files in a row: song, then voice memo, then the next chapter. You can reorder the list and set a crossfade so the end of one overlaps the start of the next.',
-          'Set the crossfade to zero for a hard cut with no gap. Mixed formats are decoded and written into one export. This is not a mixer: tracks do not play at the same time.',
+          'The joiner lines whole files up in a row: a song, then a voice memo, then the next chapter. The list can be reordered, and a crossfade can overlap the end of one with the start of the next.',
+          'With the crossfade at zero it is a hard cut with no gap. Mixed formats are decoded first, then written into one export. This is not a mixer: several tracks never play at once.',
         ],
       },
       {
         heading: 'Jobs this page fits',
         paragraphs: [
-          'Use it when the result should be a single file a player can open without a playlist:',
+          'Use it when the result should be one file a player opens directly, no playlist needed:',
         ],
         bullets: [
           'A voice memo in front of a song, in the order you choose.',
-          'Chapter recordings combined for a player that has no playlist.',
-          'Back-to-back clips with a short crossfade so the joins do not pop.',
+          'Chapter recordings joined for a player without playlists.',
+          'A few clips end to end with a short crossfade, so the seams do not pop.',
         ],
       },
       {
         heading: 'When you need layers instead',
         paragraphs: [
-          'Voice over music, a level and a pan per clip, mute and solo: that is the multi-track editor, up to eight tracks. The joiner cannot duck music under speech.',
-          'There is no fixed file count. The ceiling is the memory of the device, because the merge stays in the browser. Nothing is uploaded.',
+          'Voices over music, a level and a pan per clip, mute and solo: that is the multi-track editor, up to eight tracks. The joiner cannot duck music under speech.',
+          'There is no fixed cap on file count. The ceiling is device memory, because the merge finishes in the browser. Nothing is uploaded.',
         ],
       },
     ],

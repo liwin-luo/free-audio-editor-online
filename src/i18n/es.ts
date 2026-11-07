@@ -1734,99 +1734,119 @@ export const es: Catalog = {
       ],
     },
     'audio-joiner': {
-      cardLine: 'Une notas de voz, canciones o episodios de pódcast en un solo archivo continuo.',
-      name: 'Unir canciones',
-      shortName: 'Unir canciones',
-      title: 'Unir canciones — en orden, con fundido',
+      cardLine: 'Une notas de voz, canciones o episodios de pódcast en un archivo continuo.',
+      name: 'Unir audio',
+      shortName: 'Unir audio',
+      title: 'Unir audio — combina MP3 online, con fundido cruzado',
       description:
-        'Pon canciones, capítulos o notas de voz en orden y exporta un archivo. El fundido cruzado en cero es un corte seco. No se sube nada.',
-      h1: 'Unir canciones — una detrás de otra',
-      heroAlt: 'Encadenar canciones y notas de voz una tras otra',
-      subtitle: 'Une canciones y archivos de audio en una sola pista, en el orden que quieras, en segundos.',
+        'Une canciones, capítulos o notas de voz en un archivo, con fundido cruzado de 0-5 s. WAV sin pérdidas, MP3 hasta 320 kbps. Todo local, sin subir nada.',
+      h1: 'Unir audio — combina varios archivos de audio en uno',
+      heroAlt: 'Une canciones y notas de voz, una tras otra',
+      subtitle: 'Combina canciones y archivos de audio en una sola pista, en el orden que quieras, en segundos.',
       intro:
-        'Combina varias canciones, episodios de podcast o grabaciones de voz en un solo archivo. Agrega todas las pistas que quieras, cambia el orden y, si quieres, funde el inicio y el final. La unión ocurre en tu dispositivo: hasta las colecciones grandes se unen al instante y se quedan privadas.',
-      usesHeading: 'Pistas que vale la pena unir',
+        'Combina varias canciones, episodios de pódcast o grabaciones en un solo archivo. Añade tantas pistas como quieras, reordénalas y, si quieres, añade fundidos al principio y al final. La unión ocurre en tu dispositivo: aunque la lista sea larga, se une al instante y sigue siendo privada.',
+      usesHeading: 'Usos habituales para unir audio',
       uses: [
-        'Pon una nota de voz delante de una canción, en el orden que elijas.',
-        'Junta grabaciones por capítulos en un archivo, para un reproductor sin listas.',
-        'Haz un crossfade en las uniones para que los clips seguidos no den un golpe.',
+        'Recopilación de pódcast: une las grabaciones de los episodios en orden en un archivo; publicar es más fácil.',
+        'Megamezcla: pega canciones una tras otra, con fundido cruzado en las uniones para que nada salte.',
+        'Unir audiolibro: combina archivos por capítulos en uno, para reproductores sin listas.',
+        'Encadenar entrevistas: une las tomas en un archivo para transcribir y organizar mejor.',
+        'Notas de voz: une memos sueltas con un fragmento de música, en el orden que elijas.',
+        'Audio de demo: une varios avisos en un archivo y lo importa a un dispositivo de una vez.',
+      ],
+      why: [
+        {
+          icon: 'layers',
+          title: 'Los formatos mezclados se unen sin problema',
+          text: 'MP3, WAV y M4A pueden convivir en la lista: los archivos se decodifican y se ajustan a una misma frecuencia antes de unirse. Funcionan decenas de pistas; el techo es la memoria de tu dispositivo.',
+        },
+        {
+          icon: 'waveform',
+          title: 'Uniones sin chasquidos',
+          text: 'Un fundido cruzado de 0-5 s superpone el final de una pista con el comienzo de la siguiente; en cero queda un empalme duro y sin hueco.',
+        },
       ],
       howTo: [
         {
-          name: 'Agrega tus pistas',
-          text: 'Suelta dos o más archivos de audio en la página, o haz clic para elegir varios a la vez. Da igual si los formatos están mezclados: se igualan solos.',
+          name: 'Añade tus pistas',
+          text: 'Arrastra dos o más archivos de audio al marco punteado, o haz clic para seleccionar varios a la vez. Mezclar MP3, WAV y M4A no importa: las frecuencias se ajustan solas.',
         },
         {
-          name: 'Define el orden',
-          text: 'Cambia el orden con los botones de flecha, o quita cualquier pista si cambias de idea. La duración total se actualiza sobre la marcha.',
+          name: 'Ordena la lista',
+          text: 'Coloca cada pista con las flechas arriba/abajo; la duración de la vista previa se actualiza al momento. Quita la pista si cambias de idea.',
         },
         {
-          name: 'Une y guarda',
-          text: 'Agrega fundidos si quieres, haz clic en Exportar y descarga el archivo unido como MP3 o WAV.',
+          name: 'Ajusta el fundido cruzado',
+          text: 'El control va de 0 a 5 segundos: los valores altos superponen suavemente las pistas vecinas, el cero es un empalme duro sin hueco. También puedes fundir el principio y el final.',
+        },
+        {
+          name: 'Une y llévate el archivo',
+          text: 'Pulsa exportar y descarga en MP3 (hasta 320 kbps) o WAV sin pérdidas. No hay límite fijo de pistas: el techo es la memoria de tu dispositivo.',
         },
       ],
       faqs: [
         {
           q: '¿Puedo unir formatos de audio distintos?',
-          a: 'Sí. Primero los archivos se decodifican y se igualan a una misma frecuencia de muestreo, así que puedes unir un MP3 con un WAV y un M4A de una sola vez. El formato de salida lo eliges tú.',
+          a: 'Sí. Los archivos se decodifican primero y se ajustan a una misma frecuencia, así que puedes unir MP3, WAV y M4A en una pasada. El formato de salida lo eliges tú.',
         },
         {
           q: '¿Cuántos archivos puedo unir?',
-          a: 'No hay un límite fijo: decenas de pistas funcionan bien. El tope real es la memoria de tu dispositivo, porque todo se procesa en local.',
+          a: 'No hay límite fijo: decenas de pistas funcionan bien. El techo práctico es la memoria de tu dispositivo, porque todo se procesa en local.',
         },
         {
           q: '¿Puedo cambiar el orden de las canciones?',
-          a: 'Sí. Usa las flechas de arriba y de abajo junto a cada pista para reordenar la secuencia antes de unir. La duración de la vista previa se actualiza al instante.',
+          a: 'Sí. Cada pista tiene flechas arriba/abajo para ordenar antes de unir. La duración de la vista previa se actualiza al instante.',
         },
         {
-          q: '¿Las pistas se cruzan con un crossfade?',
-          a: 'Sí. Mueve el control de crossfade para solapar el final de cada pista con el inicio de la siguiente: al unir se aplica un fundido suave entre pistas vecinas. Déjalo en cero para un corte seco, sin pausa, entre pistas.',
+          q: '¿Las pistas se funden entre sí?',
+          a: 'Sí. Sube el fundido cruzado para que el final de cada pista se superponga con el comienzo de la siguiente: la unión aplica un fundido suave entre vecinas. En cero queda un corte duro: las dos partes se unen sin hueco.',
         },
         {
           q: '¿La calidad del archivo unido es buena?',
-          a: 'Unir a WAV no tiene pérdida: el audio no se vuelve a comprimir. La exportación a MP3 recodifica una vez, hasta 320 kbps, y a ese nivel casi nadie nota la diferencia.',
+          a: 'El WAV unido es sin pérdidas: el audio no se vuelve a comprimir. El MP3 se recodifica una sola vez, hasta 320 kbps, diferencia que casi nadie percibe.',
         },
         {
-          q: '¿Funciona en el teléfono?',
-          a: 'Sí. Añades archivos y los subes o bajas con los botones. Se pulsan con el dedo. Chrome, Edge, Firefox y Safari actuales decodifican los formatos habituales en iPhone y Android. Varios archivos largos usan más memoria, así que con una pila larga el ordenador va más estable.',
+          q: '¿Funciona en el móvil?',
+          a: 'Sí. Añade los archivos y ordénalos con los botones subir/bajar; ambos se pulsan con el dedo. Chrome, Edge, Firefox y Safari actuales decodifican los formatos habituales en iPhone y Android por igual. Varios archivos largos piden más memoria; para pilas muy largas, el ordenador es más estable.',
         },
-      {
-        q: '¿Puedo unir archivos locales desde Claude o Cursor?',
-        a: 'Esta página une en el navegador. El control de crossfade va de 0 a 5 segundos, en pasos de 0.5. /mcp une de 2 a 20 archivos locales con ffmpeg, con un crossfade de 0 a 5 segundos, y escribe estéreo a 44100 Hz. No muestra una forma de onda. La app de chat igual ve las rutas.',
-      }],
+        {
+          q: '¿Puedo unir archivos locales desde Claude o Cursor?',
+          a: 'Esta página une en el navegador. El control de fundido cruzado va de 0 a 5 segundos, en pasos de 0,5. /mcp une de 2 a 20 archivos locales con ffmpeg, con fundido de 0 a 5 segundos, y escribe estéreo a 44100 Hz. No muestra forma de onda. La app de chat sigue viendo las rutas.',
+        },
+      ],
+      dropHint: 'Arrastra dos o más archivos de audio o haz clic para explorar',
+      screenshotsAlt: [
+        'Zona de arrastre de unir audio: suelta un archivo o explora, nada se sube',
+        'Área de trabajo de unir audio con el archivo cargado',
+        'Unir audio tras exportar: la barra de estado nombra el archivo descargado',
+      ],
       sections: [
         {
-          heading: 'Unir es un archivo detrás de otro',
+          heading: 'Unir es poner un archivo tras otro',
           paragraphs: [
-            'Unir canciones pone archivos enteros en fila: canción, nota de voz, siguiente capítulo. Puedes reordenar la lista y poner un fundido cruzado para que el final de uno se solape con el inicio del siguiente.',
-            'Pon el fundido cruzado a cero para un corte seco, sin hueco. Los formatos mezclados se decodifican y salen en una sola exportación. No es una mesa de mezclas: las pistas no suenan a la vez.',
+            'La página de unión alinea archivos enteros en fila: una canción, luego una nota de voz, luego el siguiente capítulo. La lista se puede reordenar y un fundido cruzado superpone el final de uno con el comienzo del siguiente.',
+            'Con el fundido cruzado en cero queda un corte duro, sin hueco. Los formatos mezclados se decodifican primero y se escriben en una sola exportación. No es una mesa de mezclas: varias pistas nunca suenan a la vez.',
           ],
         },
         {
-          heading: 'Para qué sirve esta página',
+          heading: 'Trabajos que encajan en esta página',
           paragraphs: [
-            'Úsala cuando el resultado deba ser un solo archivo que un reproductor abre sin lista de reproducción:',
+            'Úsala cuando el resultado deba ser un único archivo que un reproductor abra directamente:',
           ],
           bullets: [
             'Una nota de voz delante de una canción, en el orden que elijas.',
-            'Grabaciones por capítulos, juntas, para un reproductor sin listas.',
-            'Clips seguidos con un fundido cruzado corto para que los empalmes no hagan un clic.',
+            'Grabaciones por capítulos unidas para un reproductor sin listas.',
+            'Algunos clips seguidos con un fundido cruzado corto, para que las uniones no salten.',
           ],
         },
         {
           heading: 'Cuando necesitas capas',
           paragraphs: [
-            'Voz sobre música, nivel y panorama por clip, silencio y solo: eso es el editor multipista, hasta ocho pistas. Unir canciones no baja la música bajo la voz.',
-            'No hay un número fijo de archivos. El límite es la memoria del dispositivo, porque la unión se queda en el navegador. No se sube nada.',
+            'Voces sobre música, nivel y paneo por clip, silencio y solo: eso es el editor multipista, hasta ocho pistas. La unión no puede bajar la música bajo la voz.',
+            'No hay límite fijo de archivos. El techo es la memoria del dispositivo, porque la unión termina en el navegador. No se sube nada.',
           ],
         },
       ],
-      screenshotsAlt: [
-        'Unir canciones: zona para soltar archivos, nada se sube a un servidor',
-        'Unir canciones: área de trabajo con el archivo cargado',
-        'Unir canciones: tras exportar, la línea de estado muestra el nombre del archivo descargado',
-      ],
-      dropHint: 'Suelta dos o más archivos de audio, o haz clic para elegirlos',
     },
     'wav-to-mp3': {
       cardLine: 'Reduce grabaciones WAV pesadas a MP3 compartibles con el bitrate que elijas.',
