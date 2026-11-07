@@ -3368,11 +3368,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'One slider. The start value is 40%. 0% leaves the file as you dropped it.',
     intro:
       'This page runs each sample through a tanh curve. At the 40% start, a sample of 0.25 becomes about 0.69. At 100% that same sample is pushed to about 1. Drive at 0 skips the curve, so the file stays as decoded. Processing stays in your browser.',
-    usesHeading: 'When the clip is the point',
+    usesHeading: 'Common uses for audio distortion',
     uses: [
-      'Put a short overdrive on a clean guitar or synth so it sits forward.',
-      'Rough up one voice line for a trailer, a game hit, or a podcast sting.',
-      'Start a lo-fi tone here, then dull the new highs on the low-pass filter.',
+      'Guitar overdrive: a little grit on a clean guitar so it steps forward.',
+      'Voice roughening: a voice line for a trailer, a game hit, or a podcast intro.',
+      'Drum reshaping: clip a drum loop until it hits harder and heavier.',
+      'Horror textures: extreme intensity twisting a voice or an ambience bed.',
+      'Synth grit: add grit to a synth line that is too clean.',
+      'Retro telephone: pair it with a high-pass for an old phone or intercom sound.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'One slider from light to heavy',
+        text: 'Intensity runs continuously from soft clipping to hard clipping — every point in between is a new tone.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The distortion is computed in your browser; the audio is never uploaded.',
+      },
     ],
     howTo: [
       {

@@ -4495,14 +4495,26 @@ export const pt: Catalog = {
       howToIntro: 'Um arquivo com ruído, um controle de intensidade',
       subtitle: 'Chiado, zumbido e ruído de ventilador constantes caem 20 dB ou mais ao redor da voz. A linha do tempo não se move.',
       intro: 'Esta página passa o RNNoise pela gravação que você soltar, um gate de ruído treinado com voz. Ruído constante como chiado, zumbido ou ventilador cai 20 dB ou mais ao redor da voz, e as palavras mantêm o nível. O gate é um modelo de 150 KB que roda no seu navegador, então o áudio nunca sai do seu dispositivo.',
-      usesHeading: 'Usos comuns do eco de áudio',
+      usesHeading: 'Usos comuns da distorção de áudio',
       uses: [
-        'Pontuação de podcast: um slap curto para sublinhar uma frase — daqueles que dão para contar.',
-        'Material de jogo: dê a um bipe de interface um atraso espacial, com algumas repetições morrendo.',
-        'Enfeite vocal: algumas repetições desvanecendo no final de uma voz.',
-        'Terror ao longe: um eco muito espaçado, e o clima vira na hora.',
-        'Enfeites de instrumento: eco num único golpe de violão ou bateria, abrindo o espaço.',
-        'Design de transição: um eco distante entre duas seções para levar o corte.',
+        'Overdrive de violão: um pouco de gritos numa guitarra limpa para ela se adiantar.',
+        'Voz áspera: uma linha para trailer, golpe de jogo ou abertura de podcast.',
+        'Remodelar bateria: recorte um loop de bateria até bater mais forte e pesado.',
+        'Texturas de terror: intensidade extrema torcendo uma voz ou um leito ambiente.',
+        'Gritos no synth: dê mais aspereza a uma linha de sintetizador limpa demais.',
+        'Telefone retrô: empare com um passa-alta para som de telefone velho ou interfone.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Um controle de leve a pesado',
+          text: 'A intensidade corre contínua do clipping suave ao clipping duro — cada ponto no meio é um timbre novo.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'A distorção é calculada no seu navegador; o áudio nunca é enviado.',
+        },
       ],
       why: [
         {

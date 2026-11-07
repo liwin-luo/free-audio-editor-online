@@ -4350,14 +4350,26 @@ export const de: Catalog = {
       howToIntro: 'Eine rauschende Datei, ein Stärkeregler',
       subtitle: 'Ständiges Zischen, Brummen und Lüfterrauschen fallen um 20 dB oder mehr, wo Sprache ist. Die Zeitleiste bleibt, wo sie ist.',
       intro: 'Diese Seite legt RNNoise über deine Aufnahme, ein Rauschengate, das auf Sprache trainiert ist. Ständiges Rauschen wie Zischen, Brummen oder ein Lüfter fällt um 20 dB oder mehr, und die Worte behalten ihre Lautstärke. Das Gate ist ein 150-KB-Modell und läuft in deinem Browser, deine Audiodatei verlässt das Gerät nicht.',
-      usesHeading: 'Häufige Einsätze für Echo',
+      usesHeading: 'Häufige Einsätze für Audiodistortion',
       uses: [
-        'Podcast-Interpunktion: ein kurzer Slap unterstreicht einen Satz — die Sorte, die man mitzählen kann.',
-        'Spielesounds: einem UI-Blip ein räumliches Delay geben, ein paar Wiederholungen, die verklingen.',
-        'Gesangsschmuck: ein paar ausklingende Wiederholungen am Ende einer Stimme.',
-        'Grusel am Horizont: ein sehr weit auseinander liegendes Echo, und die Stimmung kippt.',
-        'Instrumentenakzente: ein Echo auf einem einzelnen Gitarren- oder Drumschlag, das den Raum öffnet.',
-        'Übergangsdesign: ein fernes Echo zwischen zwei Sektionen trägt den Schnitt.',
+        'Gitarren-Overdrive: etwas Gritter auf eine saubere Gitarre, damit sie nach vorn tritt.',
+        'Stimme aufrauen: eine Stimmlinie für einen Trailer, einen Game-Hit oder einen Podcast-Intro.',
+        'Drums umformen: einen Drumloop clippen, bis er härter und schwerer zuschlägt.',
+        'Horror-Texturen: extreme Intensität, die eine Stimme oder ein Ambience-Bett verbiegt.',
+        'Synth-Grit: einer zu sauberen Synthlinie Grit geben.',
+        'Retro-Telefon: mit einem Highpass zum alten Telefon- oder Sprechstellen-Sound paaren.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Ein Regler von leicht bis schwer',
+          text: 'Die Intensität läuft kontinuierlich vom weichen Clipping zum harten Clipping — jeder Punkt dazwischen ist ein neuer Ton.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Die Distortion wird im Browser berechnet; das Audio wird nie hochgeladen.',
+        },
       ],
       why: [
         {

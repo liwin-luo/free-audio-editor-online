@@ -4383,14 +4383,26 @@ export const es: Catalog = {
       howToIntro: 'Un archivo con ruido, un deslizador de intensidad',
       subtitle: 'El siseo, zumbido y ruido de ventilador constante baja 20 dB o más alrededor de la voz. La línea de tiempo no se mueve.',
       intro: 'Esta página pasa RNNoise por la grabación que sueltes, una compuerta de ruido entrenada con voz. El ruido constante como el siseo, el zumbido o un ventilador baja 20 dB o más alrededor de la voz, y las palabras conservan su nivel. La compuerta es un modelo de 150 KB que corre en tu navegador, así que el audio nunca sale de tu dispositivo.',
-      usesHeading: 'Usos habituales del eco de audio',
+      usesHeading: 'Usos habituales de la distorsión de audio',
       uses: [
-        'Puntuación de pódcast: un slap corto para subrayar una frase, de los que se pueden contar.',
-        'Material de juegos: da a un pitido de interfaz un retraso espacial, con unas cuantas repeticiones apagándose.',
-        'Adorno vocal: unas repeticiones desvanecidas en la cola de una voz.',
-        'Terror al horizonte: un eco muy espaciado y el ambiente cambia en el acto.',
-        'Adornos de instrumento: eco en un golpe de guitarra o batería, abriendo el espacio.',
-        'Diseño de transiciones: un eco lejano entre dos secciones para llevar el corte.',
+        'Overdrive de guitarra: un poco de grano en una guitarra limpia para que se adelante.',
+        'Voz rugosa: una línea para un tráiler, un golpe de juego o la intro de un pódcast.',
+        'Remodelar baterías: recorta un loop de batería hasta que pegue más fuerte y duro.',
+        'Texturas de terror: intensidad extrema retorciendo una voz o un lecho ambiental.',
+        'Grano de sinte: añade grano a una línea de sintetizador demasiado limpia.',
+        'Teléfono retro: combínalo con un paso alto para sonido de teléfono viejo o intercomunicador.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Un control de suave a fuerte',
+          text: 'La intensidad corre en continuo desde recorte suave hasta recorte duro: cada punto intermedio es un timbre nuevo.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Procesado en local',
+          text: 'La distorsión se calcula en tu navegador; el audio nunca se sube.',
+        },
       ],
       why: [
         {
