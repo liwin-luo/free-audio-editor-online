@@ -2636,11 +2636,26 @@ export const es: Catalog = {
       subtitle: 'Sube grabaciones bajas hasta 4×, con un limitador para que nada sature.',
       intro:
         'Arregla grabaciones que quedaron demasiado bajas: notas de voz del teléfono, clases grabadas desde la última fila, pistas de video extraídas a bajo volumen. Sube el volumen hasta 4× (12 dB) y un limitador integrado frena los picos, así el resultado suena más fuerte sin volverse distorsión.',
-      usesHeading: 'Grabaciones que necesitan un empujón',
+      usesHeading: 'Usos habituales de subir el volumen',
       uses: [
-        'Sube una nota de voz grabada demasiado lejos del micrófono.',
-        'Refuerza una clase grabada desde el fondo y deja que el limitador sujete los picos.',
-        'Haz un MP3 bajo lo bastante fuerte para ir bajo un vídeo, sin recortar todo el archivo.',
+        'Notas de voz del móvil: voz grabada demasiado lejos del micrófono, subida hasta oírse claro; la [guía de la nota de voz baja](/guides/why-is-my-voice-memo-so-quiet) recorre los pasos en iPhone.',
+        'Clases desde la última fila: grabadas desde el fondo, con el limitador sujetando los picos al subir.',
+        'Cama para vídeo: un MP3 callado lo bastante alto para quedar bajo el vídeo, sin recortar.',
+        'Rescate de entrevistas: una pista grabada demasiado baja, subida hasta entender cada palabra.',
+        'Copias de respaldo de reuniones: una grabación de reserva subida de volumen es mejor que no tener nada.',
+        'Auriculares de techo bajo: en dispositivos con volumen máximo bajo, sube el archivo de origen.',
+      ],
+      why: [
+        {
+          icon: 'volume',
+          title: 'El limitador sujeta los picos',
+          text: 'El control llega al 400 % (unos +12 dB). Un aumento moderado de 150-250 % suele quedar limpio; pasado el 300 % los picos empiezan a bombear: júzgalo de oído.',
+        },
+        {
+          icon: 'scissors',
+          title: 'Alto, pero limpio',
+          text: 'Si empieza a sonar apretado, retrocede un 10-20 %: alto y limpio mejor que alto al máximo.',
+        },
       ],
       howTo: [
         {

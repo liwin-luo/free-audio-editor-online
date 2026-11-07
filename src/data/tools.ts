@@ -2127,11 +2127,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Gain from 10% to 400%. Above 100% a limiter is applied.',
     intro:
       'Fix recordings that are too quiet: phone voice memos, lectures recorded from the back row, video soundtracks ripped at low level. Push the volume up to 4× (12 dB) and a built-in limiter catches the peaks, so the result gets louder without turning into distortion.',
-    usesHeading: 'Recordings that need a lift',
+    usesHeading: 'Common uses for boosting volume',
     uses: [
-      'Raise a phone voice memo that was recorded too far from the mic — the [quiet Voice Memo guide](/guides/why-is-my-voice-memo-so-quiet) walks through the iPhone steps.',
-      'Boost a lecture from the back of the room and let the limiter hold the peaks.',
-      'Make a quiet MP3 loud enough to sit under video without clipping the whole file.',
+      'Phone voice memos: speech recorded too far from the mic, raised until it is clear — the [quiet Voice Memo guide](/guides/why-is-my-voice-memo-so-quiet) walks the iPhone steps.',
+      'Lectures from the back row: recorded from the back of the room, with the limiter catching the peaks on the way up.',
+      'Video beds: a quiet MP3 loud enough to sit under video, without clipping.',
+      'Interview rescue: an interview track recorded too low, raised until every word is clear.',
+      'Meeting backups: a spare recording turned up beats having nothing at all.',
+      'Quiet-sensitive headphones: on devices with a low volume ceiling, raise the source file instead.',
+    ],
+    why: [
+      {
+        icon: 'volume',
+        title: 'The limiter catches the peaks',
+        text: 'The slider tops out at 400% (about +12 dB). A moderate 150-250% usually stays clean; past 300% the peaks start to pump — judge it by ear.',
+      },
+      {
+        icon: 'scissors',
+        title: 'Loud, but clean',
+        text: 'If it starts to sound cramped, back off 10-20% — loud and clean beats loud at maximum.',
+      },
     ],
     howTo: [
       {

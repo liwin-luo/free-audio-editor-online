@@ -2607,11 +2607,26 @@ export const de: Catalog = {
       subtitle: 'Verstärke leise Aufnahmen bis auf das 4-Fache — mit Limiter, damit nichts übersteuert.',
       intro:
         'Mach Aufnahmen lauter, die zu leise sind: Sprachnotizen vom Handy, Vorlesungen aus der letzten Reihe, Videotonspuren mit niedrigem Pegel. Schieb die Lautstärke bis auf das 4-Fache (+12 dB), und ein eingebauter Limiter fängt die Peaks ab, damit es lauter wird, ohne in Verzerrung zu kippen.',
-      usesHeading: 'Aufnahmen, die einen Schub brauchen',
+      usesHeading: 'Häufige Einsätze zum Anheben der Lautstärke',
       uses: [
-        'Heb eine Sprachnotiz an, die zu weit vom Mikrofon aufgenommen wurde.',
-        'Verstärke eine Vorlesung aus der hinteren Reihe und lass den Limiter die Spitzen halten.',
-        'Mach eine leise MP3 laut genug für unter einem Video, ohne die ganze Datei zu übersteuern.',
+        'Smartphone-Sprachmemos: zu weit vom Mikrofon aufgenommen, so weit angehoben, bis es klar ist — die [Anleitung zum leisen Voice-Memo](/guides/why-is-my-voice-memo-so-quiet) führt durch die iPhone-Schritte.',
+        'Vorlesungen aus der hintersten Reihe: hinten im Raum aufgenommen, mit dem Limiter, der beim Anheben die Spitzen hält.',
+        'Betten für Video: ein leises MP3 laut genug unter dem Video, ohne Clipping.',
+        'Interview-Rettung: eine zu leise aufgenommene Interviewspur, angehoben bis jedes Wort klar ist.',
+        'Besprechungs-Backups: ein angehobenes Ersatz Recording ist besser als gar keines.',
+        'Kopfhörer mit niedrigem Limit: bei Geräten mit niedriger Höchstlautstärke hebe lieber die Quelldatei an.',
+      ],
+      why: [
+        {
+          icon: 'volume',
+          title: 'Der Limiter hält die Spitzen',
+          text: 'Der Regler endet bei 400 % (rund +12 dB). Moderate 150-250 % bleiben meist sauber; über 300 % fangen die Spitzen an zu pumpen — das Ohr entscheidet.',
+        },
+        {
+          icon: 'scissors',
+          title: 'Laut, aber sauber',
+          text: 'Klingt es gequetscht, gehe 10-20 % zurück — laut und sauber schlägt laut auf Maximum.',
+        },
       ],
       howTo: [
         {

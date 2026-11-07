@@ -2653,11 +2653,26 @@ export const pt: Catalog = {
       subtitle: 'Aumente gravações baixas em até 4× — com limiter, para nada clipar.',
       intro:
         'Corrija gravações baixas demais: recados de voz do celular, aulas gravadas do fundo da sala, trilhas de vídeo extraídas em volume baixo. Suba o volume até 4× (+12 dB) e um limiter embutido segura os picos, então o resultado fica mais alto sem virar distorção.',
-      usesHeading: 'Gravações que precisam de um empurrão',
+      usesHeading: 'Usos comuns de aumentar o volume',
       uses: [
-        'Aumente um recado de voz gravado longe demais do microfone.',
-        'Reforce uma aula gravada do fundo da sala e deixe o limitador segurar os picos.',
-        'Deixe um MP3 baixo alto o bastante para ficar sob um vídeo, sem clipar o arquivo inteiro.',
+        'Memos de voz do celular: voz gravada longe demais do microfone, erguida até ficar clara — o [guia do memo de voz baixo](/guides/why-is-my-voice-memo-so-quiet) mostra os passos no iPhone.',
+        'Aulas da última fila: gravadas do fundo da sala, com o limitador segurando os picos na subida.',
+        'Cama para vídeo: um MP3 quieto alto o bastante para ficar sob o vídeo, sem clipping.',
+        'Resgate de entrevistas: uma faixa gravada baixa demais, erguida até cada palavra ficar clara.',
+        'Backups de reunião: uma gravação reserva com volume alto é melhor que nada.',
+        'Fones com teto baixo: em aparelhos de volume máximo baixo, erga o arquivo de origem.',
+      ],
+      why: [
+        {
+          icon: 'volume',
+          title: 'O limitador segura os picos',
+          text: 'O controle vai até 400% (cerca de +12 dB). Um aumento moderado de 150-250% costuma ficar limpo; acima de 300% os picos começam a bombear — julgue de ouvido.',
+        },
+        {
+          icon: 'scissors',
+          title: 'Alto, mas limpo',
+          text: 'Se começar a soar apertado, volte 10-20% — alto e limpo ganha de alto no máximo.',
+        },
       ],
       howTo: [
         {
