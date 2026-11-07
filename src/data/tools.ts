@@ -5989,11 +5989,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Edit ID3v2.3 on an MP3. The audio frames are copied, not decoded.',
     intro:
       'This page reads an MP3 and writes ID3v2.3: title, artist, album, album artist, year, genre, track number, disc number, composer, comment, and a JPG or PNG cover. The audio frames are copied, not decoded. The file stays in this tab.',
-    usesHeading: 'Tags people actually need to fix',
+    usesHeading: 'Common uses for the MP3 tag editor',
     uses: [
-      'Clean up downloads that show "Unknown Artist" or no cover in your music player.',
-      'Give a podcast episode or demo track a proper title, cover and credits before publishing.',
-      'Strip leftover device and location metadata from a recording before you share it.',
+      'Fix the tags: clear "Unknown Artist" and the missing cover so the player finally shows them.',
+      'Publish in shape: give a podcast episode or a demo a proper title, cover and credits.',
+      'Privacy cleanup: strip leftover device and location metadata before sharing a recording.',
+      'Album uniformity: change the cover and genre fields of a whole album in one pass.',
+      'Podcast numbering: episode titles with number and show name, so the podcast app sorts right.',
+      'Lossless by design: only the tag bytes change; the audio is copied byte for byte untouched.',
+    ],
+    why: [
+      {
+        icon: 'tags',
+        title: 'Read and written on your own machine',
+        text: 'The existing tags and cover load on your device and the rewritten file saves from the browser; there is no upload step anywhere.',
+      },
+      {
+        icon: 'layers',
+        title: 'A whole album in a batch',
+        text: 'Several MP3s share artist, album, year, genre and cover; title and track number stay per track. Two or more come back as a ZIP.',
+      },
     ],
     howTo: [
       {

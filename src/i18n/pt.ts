@@ -4213,11 +4213,26 @@ export const pt: Catalog = {
       subtitle: 'Corrija o título, o artista, o álbum e a capa de um MP3 em menos de um minuto — no navegador, sem enviar nada.',
       intro:
         'Um MP3 carrega duas coisas: a música e a ficha de informações que os players mostram ao lado — título, artista, álbum, ano e capa. Quando essa ficha está errada ou falta, tudo, do celular ao som do carro, cai em Artista desconhecido ou Track 01. Solte um arquivo aqui, corrija os campos e salve: o áudio é copiado byte a byte, intacto, e nunca sai do seu aparelho.',
-      usesHeading: 'As tags que realmente precisam de correção',
+      usesHeading: 'Usos comuns do editor de tags MP3',
       uses: [
-        'Arrumar downloads que aparecem como "Artista desconhecido" ou sem capa no seu player de música.',
-        'Dar a um episódio de podcast ou a uma demo um título, uma capa e créditos decentes antes de publicar.',
-        'Tirar metadados de dispositivo e localização que ficaram numa gravação antes de compartilhar.',
+        'Consertar tags: resolve o «Artista desconhecido» e a capa sumida para o tocador mostrar certo.',
+        'Publicação em forma: dê título, capa e créditos certos a um episódio ou demo.',
+        'Limpeza de privacidade: apague restos de dados de aparelho e local antes de compartilhar.',
+        'Álbum uniforme: mude em bloco a capa e o gênero de um álbum inteiro.',
+        'Numerar o podcast: título do episódio com número e nome do programa, e o app ordena certo.',
+        'Sem perdas: só os bytes de tag mudam; o áudio é copiado byte a byte intacto.',
+      ],
+      why: [
+        {
+          icon: 'tags',
+          title: 'Lê e escreve no próprio aparelho',
+          text: 'As tags e a capa atuais são lidas no seu dispositivo e o arquivo reescrito é salvo do navegador; não existe passo de envio em lugar nenhum.',
+        },
+        {
+          icon: 'layers',
+          title: 'Um álbum inteiro em lote',
+          text: 'Vários MP3s compartilham artista, álbum, ano, gênero e capa; título e número ficam em cada faixa. Dois ou mais voltam num ZIP.',
+        },
       ],
       howTo: [
         { name: 'Solte seu MP3', text: 'Arraste o arquivo ou clique para escolher. As tags e a capa atuais são lidas no seu aparelho e aparecem no formulário. Vários MP3 podem compartilhar artista, álbum, ano, gênero e capa. Título e número da faixa ficam em cada arquivo. Dois ou mais baixam num ZIP.' },

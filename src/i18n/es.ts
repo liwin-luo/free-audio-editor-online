@@ -4147,11 +4147,26 @@ export const es: Catalog = {
       subtitle: 'Arregla el título, el artista, el álbum y la portada de un MP3 en menos de un minuto, en tu navegador y sin subir nada.',
       intro:
         'Un MP3 lleva dos cosas dentro: la música y la ficha de información que muestran los reproductores junto a ella: título, artista, álbum, año y portada. Cuando esa ficha está mal o falta, todo, desde el móvil hasta el autoestéreo, se queda en Artista desconocido o Track 01. Suelta aquí un archivo, corrige los campos y guarda: el audio se copia byte a byte, intacto, y nunca sale de tu dispositivo.',
-      usesHeading: 'Las etiquetas que de verdad hay que arreglar',
+      usesHeading: 'Usos habituales del editor de etiquetas MP3',
       uses: [
-        'Arreglar descargas que aparecen como "Artista desconocido" o sin portada en tu reproductor de música.',
-        'Darle a un episodio de podcast o a una maqueta un título, una portada y unos créditos decentes antes de publicar.',
-        'Eliminar los metadatos de dispositivo y ubicación que quedan en una grabación antes de compartirla.',
+        'Arreglar etiquetas: resuelve el «Artista desconocido» y la portada que falta para que el reproductor muestre bien.',
+        'Publicación en forma: ponle título, portada y créditos correctos a un episodio o una maqueta.',
+        'Limpieza de privacidad: borra los restos de dispositivo y ubicación antes de compartir una grabación.',
+        'Álbum uniforme: cambia en bloque la portada y el género de todo un álbum.',
+        'Numerar el pódcast: título con número de episodio y nombre del programa, y la app de pódcast ordena bien.',
+        'Sin pérdidas: solo cambian los bytes de etiqueta; el audio se copia byte a byte intacto.',
+      ],
+      why: [
+        {
+          icon: 'tags',
+          title: 'Se lee y se escribe en el propio equipo',
+          text: 'Las etiquetas y la portada actuales se leen en tu dispositivo y el archivo reescrito se guarda desde el navegador; no hay paso de subida en ningún momento.',
+        },
+        {
+          icon: 'layers',
+          title: 'Un álbum entero por lote',
+          text: 'Varios MP3 comparten artista, álbum, año, género y portada; el título y el número quedan en cada pista. Dos o más vuelven en un ZIP.',
+        },
       ],
       howTo: [
         { name: 'Suelta tu MP3', text: 'Arrastra el archivo o haz clic para buscarlo. Las etiquetas y la portada actuales se leen en tu dispositivo y se muestran en el formulario. Varios MP3 pueden compartir artista, álbum, año, género y portada. El título y el número de pista quedan en cada archivo. Dos o más se descargan en un ZIP.' },

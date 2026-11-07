@@ -4114,11 +4114,26 @@ export const de: Catalog = {
       subtitle: 'Titel, Künstler, Album und Cover einer MP3 in unter einer Minute richten — direkt im Browser, nichts wird hochgeladen.',
       intro:
         'Eine MP3 trägt zwei Dinge in sich: die Musik und die Info-Karte, die Player daneben anzeigen — Titel, Künstler, Album, Jahr, Cover. Stimmt diese Karte nicht oder fehlt sie, fällt alles vom Handy bis zum Autoradio auf „Unbekannter Künstler“ oder Track 01 zurück. Datei hier ablegen, Felder ausbessern, speichern: Die Audiodaten werden Byte für Byte unverändert kopiert und verlassen dein Gerät nie.',
-      usesHeading: 'Tags, die wirklich mal repariert werden müssen',
+      usesHeading: 'Häufige Einsätze für den MP3-Tag-Editor',
       uses: [
-        'Downloads aufräumen, die im Musik-Player als „Unbekannter Künstler“ oder ohne Cover auftauchen.',
-        'Podcast-Folgen oder Demotracks vor dem Veröffentlichen mit richtigem Titel, Cover und Credits versehen.',
-        'Vor dem Teilen einer Aufnahme die übrig gebliebenen Geräte- und Standort-Metadaten entfernen.',
+        'Tags reparieren: «Unbekannter Künstler» und fehlender Cover behoben, damit der Player richtig zeigt.',
+        'Veröffentlichung in Form: einer Podcast-Episode oder einem Demo-Track Titel, Cover und Credits verpassen.',
+        'Privatsphäre putzen: zurückgebliebene Geräte- und Ortsdaten vor dem Teilen löschen.',
+        'Album gleichziehen: Cover und Genre-Felder eines ganzen Albums im Block ändern.',
+        'Podcast nummerieren: Episodentitel mit Nummer und Sendungsname, und die Podcast-App sortiert richtig.',
+        'Verlustfrei: nur die Tag-Bytes ändern sich; die Audiodaten werden byteweise unangetastet kopiert.',
+      ],
+      why: [
+        {
+          icon: 'tags',
+          title: 'Wird am eigenen Gerät gelesen und geschrieben',
+          text: 'Die bestehenden Tags und das Cover liest dein Gerät, die umgeschriebene Datei speichert der Browser — ein Upload-Schritt existiert nirgends.',
+        },
+        {
+          icon: 'layers',
+          title: 'Ein ganzes Album im Stapel',
+          text: 'Mehrere MP3s teilen sich Künstler, Album, Jahr, Genre und Cover; Titel und Tracknummer bleiben pro Track. Zwei oder mehr kommen als ZIP.',
+        },
       ],
       howTo: [
         { name: 'MP3 reinziehen', text: 'Datei hierher ziehen oder zum Durchsuchen klicken. Die aktuellen Tags und das Cover werden auf deinem Gerät gelesen und im Formular angezeigt. Mehrere MP3s können Künstler, Album, Jahr, Genre und Cover teilen. Titel und Tracknummer bleiben bei jeder Datei. Zwei oder mehr kommen als ZIP.' },
