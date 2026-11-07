@@ -5014,11 +5014,26 @@ export const de: Catalog = {
       heroAlt: 'Eine Stereodatei zu einem Kanal mitteln',
       subtitle: 'Ein Kanal: der Durchschnitt jedes Kanals in der Datei.',
       intro: 'Diese Seite schreibt einen Kanal. Jedes Sample ist der Durchschnitt der Kanäle in der Datei, also treffen sich links und rechts in der Mitte. Eine Datei mit schon einem Kanal wird kopiert. Dekodierung und Mittelwert bleiben in deinem Browser.',
-      usesHeading: 'Wenn du einen Kanal brauchst',
+      usesHeading: 'Häufige Einsätze für Stereo zu Mono',
       uses: [
-        'Eine Sprachnotiz, die aus einem Lautsprecher gleich klingen soll.',
-        'Eine Datei, die ein Mono-Player oder eine App abgelehnt hat.',
-        'Ein Mix, dessen links und rechts zusammenliegen sollen, nicht als breites Bild.',
+        'Ein-Lautsprecher-Passung: wenn Ein-Lautsprecher-Geräte die Seiten ungleich wiedergeben, nach Mono falten.',
+        'Abgelehnte Uploads: ein Player oder Formular, das nur Mono nimmt — konvertiere eine Kopie dafür.',
+        'Stimme angleichen: zweikanalige Sprache, deren Seiten nicht übereinstimmen, zu einer gemittelt.',
+        'Transkriptions-Vorbereitung: Transkribierer laufen auf Mono ruhiger.',
+        'Videospuren: den Audioanteil eines Mono-Videoprojekts standardisieren.',
+        'Stapel-Faltung: einen ganzen Stapel Stereo-Dateien in einem Durchgang nach Mono.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Sample für Sample gemittelt',
+          text: 'Links und rechts werden Sample für Sample gemittelt — von keiner Seite fällt etwas weg; beide Seiten bleiben in der Datei.',
+        },
+        {
+          icon: 'layers',
+          title: 'Stapelkonvertierung',
+          text: 'Dateien teilen sich die Einstellungen, werden der Reihe nach umgewandelt und in ein ZIP gepackt.',
+        },
       ],
       howTo: [
         { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Die Datei wird auf deinem Gerät dekodiert.' },

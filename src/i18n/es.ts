@@ -5047,11 +5047,26 @@ export const es: Catalog = {
       heroAlt: 'Promediar un estéreo en un canal',
       subtitle: 'Un canal: el promedio de cada canal del archivo.',
       intro: 'Esta página escribe un canal. Cada muestra es el promedio de los canales del archivo, así que izquierda y derecha se juntan en el centro. Un archivo que ya es un canal se copia. La decodificación y el promedio se quedan en tu navegador.',
-      usesHeading: 'Cuando el archivo que necesitas tiene un canal',
+      usesHeading: 'Usos habituales de estéreo a mono',
       uses: [
-        'Una nota de voz que debe sonar igual en un solo altavoz.',
-        'Un archivo que un reproductor o una app solo mono rechazó.',
-        'Una mezcla cuya izquierda y derecha deben ir juntas, no como una imagen ancha.',
+        'Ajuste a un solo altavoz: cuando los aparatos de un altavoz reproducen los lados desigual, pliega a mono.',
+        'Subidas rechazadas: un reproductor o formulario que solo acepta mono; convierte una copia para él.',
+        'Alinear la voz: voz en dos canales cuyos lados no coinciden, promediada en una sola.',
+        'Preparar la transcripción: los transcriptores van más finos en mono.',
+        'Pistas de vídeo: estandariza el audio de un proyecto de vídeo en mono.',
+        'Plegado por lotes: pasa toda una pila de estéreo a mono de una pasada.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Promediado muestra a muestra',
+          text: 'Izquierda y derecha se promedian una muestra cada vez: no se pierde nada de ninguno de los dos lados; ambos quedan en el archivo.',
+        },
+        {
+          icon: 'layers',
+          title: 'Conversión por lotes',
+          text: 'Los archivos comparten ajustes, se convierten en orden y se empaquetan en un ZIP.',
+        },
       ],
       howTo: [
         { name: 'Suelta tu audio', text: 'Cualquier MP3, WAV, M4A, OGG o FLAC. Se decodifica en tu dispositivo.' },

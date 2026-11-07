@@ -5183,11 +5183,26 @@ export const pt: Catalog = {
       heroAlt: 'Tirar a média de um estéreo em um canal',
       subtitle: 'Um canal: a média de cada canal do arquivo.',
       intro: 'Esta página escreve um canal. Cada amostra é a média dos canais do arquivo, então esquerda e direita se encontram no centro. Um arquivo que já é um canal é copiado. A decodificação e a média ficam no seu navegador.',
-      usesHeading: 'Quando o arquivo que você precisa tem um canal',
+      usesHeading: 'Usos comuns de estéreo para mono',
       uses: [
-        'Um recado de voz que deve soar igual em um alto-falante.',
-        'Um arquivo que um player ou um app só mono recusou.',
-        'Uma mixagem cuja esquerda e direita devem ficar juntas, não como uma imagem larga.',
+        'Ajuste a um alto-falante: quando aparelhos de um alto-falante tocam os lados de forma desigual, dobre para mono.',
+        'Envios recusados: um tocador ou formulário que só aceita mono — converta uma cópia para ele.',
+        'Alinhar a voz: fala em dois canais cujos lados não coincidem, média em um só.',
+        'Preparar a transcrição: transcritores ficam mais estáveis em mono.',
+        'Trilhas de vídeo: padronize o áudio de um projeto de vídeo em mono.',
+        'Dobra em lote: transforme uma pilha inteira de estéreo em mono de uma vez.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Média amostra por amostra',
+          text: 'Esquerda e direita são somadas na média uma amostra por vez — nada se perde de nenhum dos lados; os dois ficam no arquivo.',
+        },
+        {
+          icon: 'layers',
+          title: 'Conversão em lote',
+          text: 'Os arquivos compartilham ajustes, convertem em ordem e vão para um ZIP.',
+        },
       ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. É decodificado no seu dispositivo.' },

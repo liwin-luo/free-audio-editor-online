@@ -6680,11 +6680,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'One channel: the average of every channel in the file.',
     intro:
       'This page writes one channel. Each sample is the average of the channels in the file, so left and right meet in the middle. A file that is already one channel is copied. Decoding and the average stay in your browser.',
-    usesHeading: 'When one channel is the file you need',
+    usesHeading: 'Common uses for stereo to mono',
     uses: [
-      'A voice memo that should sound the same from one speaker.',
-      'A file a mono-only player or app refused.',
-      'A mix whose left and right should sit together, not as a wide image.',
+      'Single-speaker fit: when one-speaker devices play the sides unevenly, fold to mono.',
+      'Rejected uploads: a player or form that only takes mono — convert a copy for it.',
+      'Voice alignment: two-channel speech where the sides disagree, averaged into one.',
+      'Transcription prep: transcribers run steadier on mono.',
+      'Video tracks: standardise the audio for a mono video project.',
+      'Batch folding: turn a whole stack of stereo files mono in one pass.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'Averaged sample by sample',
+        text: 'Left and right are averaged one sample at a time — nothing is dropped from either side; both sides stay in the file.',
+      },
+      {
+        icon: 'layers',
+        title: 'Batch conversion',
+        text: 'Files share the settings, converting in order and packing into a ZIP.',
+      },
     ],
     howTo: [
       {
