@@ -5300,11 +5300,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Move the pitch up or down by semitones — the length of the file stays the same.',
     intro:
       'Drop a song or a voice recording and drag the pitch slider. The key changes and the timing stays put. Unlike the speed changer, this does not make the file shorter or longer. The shift runs on your device.',
-    usesHeading: 'Pitch moves, the timeline does not',
+    usesHeading: 'Common uses for changing pitch',
     uses: [
-      'Shift a song into an easier key for singing along. The file stays the same length.',
-      'Move a voice a few semitones for a character, without speeding the line up.',
-      'The faster-and-higher effect is the speed changer. This page does not shorten the audio.',
+      'Move into a singable key: bring the song to the key that fits you, length untouched.',
+      'Character voices: move a voice a few semitones for character, at the same pace.',
+      'Fit the sample: pull a sample onto the key of the project.',
+      'Choir layers: stack the same line at different semitones into harmonies.',
+      'Fit the instrument: transpose for instruments without a pitch lever.',
+      'Compare live: step up and down in semitones until the best key shows itself.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Free from −12 to +12 semitones',
+        text: 'In 1-semitone steps: the length does not move a hair, only the pitch. The further the shift, the more the texture shows — small moves sound most natural.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The pitch change previews in your browser; the audio is never uploaded.',
+      },
     ],
     howTo: [
       {

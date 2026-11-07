@@ -3586,11 +3586,26 @@ export const de: Catalog = {
       heroAlt: 'Die Tonhöhe einer MP3 verschieben, während das Tempo gleich bleibt',
       subtitle: 'Tonhöhe in Halbtönen nach oben oder unten. Die Länge der Datei bleibt gleich.',
       intro: 'Leg einen Song oder eine Aufnahme ab und zieh den Tonhöhen-Regler. Die Tonart ändert sich, der Takt bleibt liegen. Das ist nicht der Geschwindigkeitsregler: die Datei wird hier weder kürzer noch länger. Die Verschiebung läuft auf deinem Gerät.',
-      usesHeading: 'Die Tonhöhe bewegt sich, die Zeit nicht',
+      usesHeading: 'Häufige Einsätze für Tonhöhenwechsel',
       uses: [
-        'Schieb einen Song in eine bequemere Tonart zum Mitsingen. Die Datei bleibt gleich lang.',
-        'Verschieb eine Stimme um ein paar Halbtöne für eine Figur, ohne die Zeile zu beschleunigen.',
-        'Der schneller-und-höher-Effekt ist der Geschwindigkeitswechsler. Diese Seite kürzt das Audio nicht.',
+        'In eine singbare Tonart: das Lied in die Passtonart schieben, ohne dass die Länge sich rührt.',
+        'Charakterstimmen: eine Stimme um einige Halbtöne versetzen für Figur, im selben Tempo.',
+        'Samples anpassen: das Sample auf die Tonart des Projekts holen.',
+        'Chor-Schichten: denselben Satz um verschiedene Halbtöne, Harmonien gestapelt.',
+        'Instrumente anpassen: transponieren für Instrumente ohne Tonhöhenhebel.',
+        'Live vergleichen: in Halbtönen rauf und runter, bis die passende Tonart steht.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: '−12 bis +12 Halbtöne frei',
+          text: 'In 1-Halbton-Schritten: die Dauer bewegt sich keinen Hauch, nur die Tonhöhe. Je weiter die Verschiebung, desto hörbarer die Textur — kleine Wege klingen am natürlichsten.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Die Tonhöhenänderung wird im Browser vorgehört; das Audio wird nie hochgeladen.',
+        },
       ],
       howTo: [
         { name: 'Datei ablegen', text: 'Füg eine MP3-, WAV-, M4A- oder andere Audiodatei hinzu. Die Datei bleibt auf deinem Gerät.' },

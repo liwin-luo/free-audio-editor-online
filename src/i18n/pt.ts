@@ -3685,11 +3685,26 @@ export const pt: Catalog = {
       heroAlt: 'Mover o tom de um MP3 enquanto a velocidade fica igual',
       subtitle: 'Suba ou desça o tom em semitons. A duração do arquivo continua a mesma.',
       intro: 'Solte uma música ou uma gravação e arraste o controle de tom. O tom muda e o tempo fica no lugar. Não é o alterador de velocidade: aqui o arquivo não encolhe nem estica. A mudança roda no seu aparelho.',
-      usesHeading: 'O tom se move, o tempo não',
+      usesHeading: 'Usos comuns de mudar o tom',
       uses: [
-        'Passe uma música para um tom mais fácil de cantar junto. O arquivo continua do mesmo tamanho.',
-        'Mova uma voz alguns semitons para um personagem, sem acelerar a fala.',
-        'O efeito de mais rápido e mais agudo é o trocador de velocidade. Esta página não encurta o áudio.',
+        'Mudar para um tom cantável: leve a música para o tom que combina com você, sem mudar a duração.',
+        'Vozes de personagem: mova a voz alguns semitons para dar caráter, no mesmo ritmo.',
+        'Encaixar o sample: leve o sample ao tom do projeto.',
+        'Camadas de coro: a mesma frase em semitons diferentes, empilhando harmonias.',
+        'Adaptar instrumentos: transponha para instrumentos sem alavanca de tom.',
+        'Comparar ao vivo: suba e desça por semitons até achar o tom que cai melhor.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'De −12 a +12 semitons',
+          text: 'Em passos de 1 semitom: a duração não se mexe um fio, só o tom. Quanto mais desloca, mais o acabamento aparece — mudanças pequenas soam mais naturais.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'A mudança de tom tem prévia no seu navegador; o áudio nunca é enviado.',
+        },
       ],
       howTo: [
         { name: 'Solte o arquivo', text: 'Adicione um MP3, WAV, M4A ou outro áudio. Ele fica no seu aparelho.' },

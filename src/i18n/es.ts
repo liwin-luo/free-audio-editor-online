@@ -3615,11 +3615,26 @@ export const es: Catalog = {
       heroAlt: 'Mover el tono de un MP3 mientras la velocidad sigue igual',
       subtitle: 'Sube o baja el tono por semitonos. La duración del archivo no cambia.',
       intro: 'Suelta una canción o una grabación y mueve el control de tono. Cambia la tonalidad y el tiempo se queda donde está. No es el cambiador de velocidad: aquí el archivo no se acorta ni se alarga. El cambio se hace en tu dispositivo.',
-      usesHeading: 'El tono se mueve, el tiempo no',
+      usesHeading: 'Usos habituales de cambiar el tono',
       uses: [
-        'Pasa una canción a una tonalidad más cómoda para cantar. El archivo dura lo mismo.',
-        'Mueve una voz unos semitonos para un personaje, sin acelerar la frase.',
-        'El efecto de más rápido y más agudo es el cambiador de velocidad. Esta página no acorta el audio.',
+        'Cambiar a una tonalidad cantable: lleva la canción a la llave que te va, sin cambiar su duración.',
+        'Voces de personaje: mueve la voz unos semitonos para dar carácter, con el ritmo intacto.',
+        'Encajar el sample: lleva el sample a la tonalidad del proyecto.',
+        'Capas de coro: la misma frase a varios semitonos, apilando armonías.',
+        'Adaptar instrumentos: transpone para instrumentos sin palanca de tono.',
+        'Comparar en vivo: sube y baja por semitonos hasta encontrar la llave que mejor queda.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'De −12 a +12 semitonos',
+          text: 'En pasos de 1 semitono: la duración no se mueve ni un pelo, solo el tono. Cuanto más desplazas, más se nota el acabado — los cambios pequeños suenan más naturales.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Procesado en local',
+          text: 'El cambio de tono se previsualiza en tu navegador; el audio nunca se sube.',
+        },
       ],
       howTo: [
         { name: 'Suelta tu archivo', text: 'Agrega un MP3, WAV, M4A u otro audio. Se queda en tu dispositivo.' },
