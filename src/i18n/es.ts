@@ -3563,11 +3563,26 @@ export const es: Catalog = {
       heroAlt: 'Convertir una nota de voz de iPhone o un archivo AAC a MP3',
       subtitle: 'Pasa archivos M4A y AAC a MP3, en tu navegador y sin subir nada.',
       intro: 'Las notas de voz y las grabaciones AAC suelen ser M4A. Suelta el archivo, elige un bitrate y tu navegador lo decodifica y guarda un MP3. El audio no va a ningún servidor.',
-      usesHeading: 'M4A que la gente convierte',
+      usesHeading: 'Usos habituales de M4A a MP3',
       uses: [
-        'Pasa una nota de voz del iPhone o una descarga AAC a un MP3 que abren más reproductores.',
-        '128 kbps para voz y 320 kbps para música.',
-        'El M4A se queda en este dispositivo. No se sube nada para terminar la conversión.',
+        'Notas del iPhone: convierte los M4A de Notas de Voz en MP3 que suenen en cualquier sitio.',
+        'Descargas AAC: pasa el audio AAC al MP3 que aceptan los aparatos viejos.',
+        'Una sola biblioteca: convierte temas de iTunes a MP3 y el coche y los reproductores antiguos se los comen todos.',
+        'Transcripción de voz: 128 kbps para voz y a la [transcripción](/audio-to-text).',
+        'Adjuntos de correo: mételos dentro del tope de 25 MB.',
+        'Paso previo al tono: convierte a MP3 y corta los 40 segundos en el [creador de tonos](/ringtone-maker).',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'AAC decodificado de serie',
+          text: 'El navegador decodifica la pista AAC de forma nativa, sin formatos intermedios, y escribe exactamente el escalón de MP3 que pediste.',
+        },
+        {
+          icon: 'layers',
+          title: 'ZIP por lotes',
+          text: 'Varios M4A se convierten de una pasada y se empaquetan en un ZIP al terminar.',
+        },
       ],
       howTo: [
         { name: 'Suelta tu M4A', text: 'Arrastra un .m4a o .aac a la página, o haz clic para elegirlo. Un MP4 de video va en la página de MP4 a MP3. Puedes soltar varios archivos. Comparten el ajuste que eliges después. Uno se descarga solo. Dos o más vuelven en un ZIP.' },

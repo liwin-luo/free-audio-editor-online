@@ -3534,11 +3534,26 @@ export const de: Catalog = {
       heroAlt: 'Eine iPhone-Sprachnotiz oder eine AAC-Datei in MP3 umwandeln',
       subtitle: 'Mach aus M4A- und AAC-Dateien MP3 — im Browser, nichts wird hochgeladen.',
       intro: 'Sprachmemos und AAC-Aufnahmen sind oft M4A. Leg die Datei ab, wähl eine Bitrate, und dein Browser dekodiert sie und speichert ein MP3. Das Audio geht an keinen Server.',
-      usesHeading: 'M4A-Dateien, die Leute konvertieren',
+      usesHeading: 'Häufige Einsätze für M4A zu MP3',
       uses: [
-        'Mach aus einer iPhone-Sprachnotiz oder einem AAC-Download eine MP3, die mehr Player öffnen.',
-        '128 kbps für Sprache, 320 kbps für Musik.',
-        'Die M4A bleibt auf diesem Gerät. Für die Konvertierung wird nichts hochgeladen.',
+        'iPhone-Memos: die M4A der Sprachmemo-App in MP3s umwandeln, die überall abspielen.',
+        'AAC-Downloads: AAC-Audio in die MP3 umwandeln, die ältere Geräte akzeptieren.',
+        'Eine Bibliothek: iTunes-Tracks zu MP3, damit Auto und alte Player alle mitnehmen.',
+        'Sprachtranskription: 128 kbps für Sprache, dann an die [Transkription](/audio-to-text).',
+        'E-Mail-Anhänge: unter das 25-MB-Mail-Limit quetschen.',
+        'Klingelton-Vorstufe: erst zu MP3, dann die 40 Sekunden im [Klingelton-Ersteller](/ringtone-maker) schneiden.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'AAC direkt dekodiert',
+          text: 'Der Browser dekodiert die AAC-Spur nativ, ohne Zwischenformat, und schreibt genau die MP3-Stufe, die du verlangst.',
+        },
+        {
+          icon: 'layers',
+          title: 'Stapel-ZIP',
+          text: 'Mehrere M4A wandeln in einem Durchgang und packen sich am Ende in ein ZIP.',
+        },
       ],
       howTo: [
         { name: 'M4A ablegen', text: 'Zieh eine .m4a- oder .aac-Datei auf die Seite oder klick zum Auswählen. Ein Video-MP4 gehört auf die Seite MP4 in MP3. Mehrere Dateien teilen sich die Einstellung, die du als Nächstes wählst. Eine Datei kommt allein, zwei oder mehr als ein ZIP.' },

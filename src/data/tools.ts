@@ -5411,11 +5411,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Turn M4A and AAC files into MP3 — in your browser, nothing uploaded.',
     intro:
       'Voice memos and AAC recordings are often M4A. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
-    usesHeading: 'M4A files people convert',
+    usesHeading: 'Common uses for M4A to MP3',
     uses: [
-      'Turn an iPhone voice memo or an AAC download into an MP3 more players accept.',
-      'Use 128 kbps for speech and 320 kbps for music.',
-      'The M4A stays on this device. Nothing is uploaded to finish the conversion.',
+      'iPhone memos: turn Voice Memos M4A into MP3s that play anywhere.',
+      'AAC downloads: convert AAC audio into the MP3 older devices accept.',
+      'One library: convert iTunes tracks to MP3 so the car and old players take them all.',
+      'Speech transcription: speech at 128 kbps, then hand it to [transcription](/audio-to-text).',
+      'Email attachments: squeeze inside a 25 MB mail cap.',
+      'Ringtone prep: convert to MP3 first, then cut the 40 seconds in the [ringtone maker](/ringtone-maker).',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'AAC decoded natively',
+        text: 'The browser decodes the AAC track natively, with no intermediate format, and writes exactly the MP3 tier you asked for.',
+      },
+      {
+        icon: 'layers',
+        title: 'Batch ZIP',
+        text: 'Several M4A files convert in one pass, packing into a ZIP when they finish.',
+      },
     ],
     howTo: [
       {

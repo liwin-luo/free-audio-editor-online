@@ -3633,11 +3633,26 @@ export const pt: Catalog = {
       heroAlt: 'Converter um recado de voz do iPhone ou um arquivo AAC em MP3',
       subtitle: 'Transforme arquivos M4A e AAC em MP3, no navegador, sem enviar nada.',
       intro: 'Recados de voz e gravações AAC costumam ser M4A. Solte o arquivo, escolha um bitrate e o navegador decodifica e salva um MP3. O áudio não vai para um servidor.',
-      usesHeading: 'M4A que as pessoas convertem',
+      usesHeading: 'Usos comuns de M4A para MP3',
       uses: [
-        'Passe um recado de voz do iPhone ou um download AAC para um MP3 que mais players abrem.',
-        '128 kbps para fala e 320 kbps para música.',
-        'O M4A fica neste aparelho. Nada é enviado para terminar a conversão.',
+        'Memos do iPhone: transforme os M4A de Memos de Voz em MP3 que tocam em qualquer lugar.',
+        'Downloads AAC: converta o áudio AAC no MP3 que aparelhos antigos aceitam.',
+        'Biblioteca única: converta faixas do iTunes para MP3 e o carro e tocadores velhos aceitam todos.',
+        'Transcrição de voz: 128 kbps para voz e mande para a [transcrição](/audio-to-text).',
+        'Anexos de e-mail: esprema dentro do teto de 25 MB.',
+        'Preparação de toque: converta para MP3 e corte os 40 segundos no [criador de toque](/ringtone-maker).',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'AAC decodificado nativamente',
+          text: 'O navegador decodifica a trilha AAC nativamente, sem formato intermediário, e escreve exatamente o degrau de MP3 que você pediu.',
+        },
+        {
+          icon: 'layers',
+          title: 'ZIP em lote',
+          text: 'Vários M4A convertem numa passada e vão para um ZIP quando terminam.',
+        },
       ],
       howTo: [
         { name: 'Solte o M4A', text: 'Arraste um .m4a ou .aac para a página, ou clique para procurar. Um MP4 de vídeo fica na página de MP4 para MP3. Dá para soltar vários arquivos. Eles usam o ajuste que você escolhe em seguida. Um baixa sozinho. Dois ou mais voltam num ZIP.' },
