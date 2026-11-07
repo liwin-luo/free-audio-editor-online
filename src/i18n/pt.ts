@@ -2545,11 +2545,26 @@ export const pt: Catalog = {
       subtitle: 'Acelere ou desacelere qualquer áudio de 0,5× a 2× — direto no navegador.',
       intro:
         'Transforme uma aula de 40 minutos em 20 minutos rápidos, desacelere um solo de guitarra até a metade para praticar, ou encaixe uma faixa num vídeo mais curto. Arraste o controle de velocidade, ouça a mudança na hora e exporte — o áudio é reamostrado no aparelho e nunca enviado.',
-      usesHeading: 'Velocidades que combinam com a tarefa',
+      usesHeading: 'Usos comuns de mudar a velocidade do áudio',
       uses: [
-        'Desacelere a fala ou um solo até a metade quando você precisa de cada sílaba ou nota.',
-        'Passe um podcast ou uma aula em 1,25× a 1,5× quando 1× é lento demais para terminar.',
-        'O tom sobe e desce com o tempo. Para mudar o tom e manter a duração, use o trocador de tom.',
+        'Consumir conteúdo longo: podcasts e aulas a 1,25x-1,5x economizam metade do tempo.',
+        'Devagar para o detalhe: voz ou solo a meia velocidade, nota por nota.',
+        'Provar o encaixe: adianta rápido para confirmar o conteúdo, depois fixa a velocidade para ouvir com calma.',
+        'Moldar samples: toque um sample mais rápido ou mais devagar até achar o feel.',
+        'Aprendizado de idiomas: desacelere a faixa e acompanhe a leitura.',
+        'Vozes de personagem: acelerada soa cartunesca, lenta soa grave.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Contínuo de 0,5x a 2x',
+          text: 'O controle varre a velocidade sem degraus, e o tom se move junto — para manter a afinação, use o [mudador de tempo](/tempo-changer).',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'A mudança de velocidade termina no seu navegador; o áudio nunca é enviado.',
+        },
       ],
       howTo: [
         {

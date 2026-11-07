@@ -2499,11 +2499,26 @@ export const de: Catalog = {
       subtitle: 'Mach jedes Audio von 0,5× bis 2× schneller oder langsamer — direkt im Browser.',
       intro:
         'Mach aus einer 40-Minuten-Vorlesung 20 schnelle Minuten, verlangsame ein Gitarrensolo auf halbe Geschwindigkeit zum Üben oder pass einen Titel in einen kürzeren Videoslot ein. Ziehe den Geschwindigkeitsregler, hör die Änderung sofort und exportiere — das Audio wird auf deinem Gerät neu berechnet und nie hochgeladen.',
-      usesHeading: 'Geschwindigkeiten, die zur Aufgabe passen',
+      usesHeading: 'Häufige Einsätze für Tempoänderung',
       uses: [
-        'Verlangsame Sprache oder ein Solo auf halbe Geschwindigkeit, wenn du jede Silbe oder Note brauchst.',
-        'Überfliege Podcast oder Vorlesung mit 1,25× bis 1,5×, wenn 1× zu langsam zum Durchhören ist.',
-        'Die Tonhöhe geht mit dem Tempo. Tonhöhe ändern und die Länge behalten: dafür ist der Pitch-Wechsler.',
+        'Lange Inhalte durchkommen: Podcasts und Vorlesungen mit 1,25x-1,5x sparen die halbe Zeit.',
+        'Langsam fürs Detail: Sprache oder ein Solo auf halbe Geschwindigkeit, jede Note deutlich.',
+        'Passung prüfen: erst schnell vorspulen, um den Inhalt zu checken, dann die Geschwindigkeit fürs genaue Hören setzen.',
+        'Samples formen: ein Sample schneller oder langsamer spielen, bis das Gefühl stimmt.',
+        'Sprachlernen: eine fremdsprachige Spur verlangsamen und mitsprechen.',
+        'Charakterstimmen: schneller klingt es cartoonhaft, langsamer tief.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Stufenlos von 0,5x bis 2x',
+          text: 'Der Regler fährt die Geschwindigkeit stufenlos, und die Tonhöhe wandert mit — die Stimmung halten? Nimm den [Tempo-Wandler](/tempo-changer).',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Die Tempoänderung schließt im Browser ab; das Audio wird nie hochgeladen.',
+        },
       ],
       howTo: [
         {

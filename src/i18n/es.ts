@@ -2528,11 +2528,26 @@ export const es: Catalog = {
       subtitle: 'Acelera o ralentiza cualquier audio de 0.5× a 2×, en tu navegador.',
       intro:
         'Convierte una clase de 40 minutos en 20 minutos rápidos, baja un solo de guitarra a la mitad de velocidad para practicarlo, o mete un tema en un hueco de video más corto. Arrastra el control de velocidad, escucha el cambio al instante y exporta. El audio se remuestrea en tu dispositivo y nunca se sube.',
-      usesHeading: 'Velocidades que encajan con el trabajo',
+      usesHeading: 'Usos habituales de cambiar la velocidad',
       uses: [
-        'Baja una voz o un solo a la mitad cuando necesitas cada sílaba o cada nota.',
-        'Pasa un pódcast o una clase a 1.25×–1.5× cuando 1× es demasiado lento para terminarlo.',
-        'El tono sube y baja con el tempo. Para mover el tono y conservar la duración, usa el cambiador de tono.',
+        'Come largo el contenido: pódcast y clases a 1,25x-1,5x ahorran la mitad del tiempo.',
+        'Baja la velocidad para el detalle: voz o solo a media velocidad, nota por nota.',
+        'Prueba el encaje: adelanta rápido para confirmar el contenido y luego fija la velocidad para oír con calma.',
+        'Moldea samples: pasa un sample más rápido o más lento hasta encontrar el feel.',
+        'Aprendizaje de idiomas: baja la pista y lee a la vez.',
+        'Voces de personaje: acelerada suena a caricatura, ralentizada suena grave.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Continua de 0,5x a 2x',
+          text: 'El control barre la velocidad sin escalones y el tono se mueve con ella: para conservar la afinación, usa el [cambiador de tempo](/tempo-changer).',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Procesado en local',
+          text: 'El cambio de velocidad termina en tu navegador; el audio nunca se sube.',
+        },
       ],
       howTo: [
         {

@@ -1989,11 +1989,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Speed up or slow down any audio from 0.5× to 2× — right in your browser.',
     intro:
       'Turn a 40-minute lecture into 20 fast minutes, slow a guitar solo down to half speed for practice, or fit a track into a shorter video slot. Drag the speed slider, hear the change instantly, and export — the audio is resampled on your device and never uploaded.',
-    usesHeading: 'Speeds that match the job',
+    usesHeading: 'Common uses for audio speed change',
     uses: [
-      'Slow speech or a solo to half speed when you need each syllable or note.',
-      'Skim a podcast or lecture at 1.25× to 1.5× when 1× is too slow to finish.',
-      'Pitch rises and falls with the tempo. To move pitch and keep the length, use the [pitch changer](/pitch-changer).',
+      'Get through long audio: podcasts and lectures at 1.25x-1.5x save half the time.',
+      'Slow down for detail: drop speech or a solo to half speed and hear every note.',
+      'Audition the fit: skim ahead fast to confirm the content, then set a speed for a careful listen.',
+      'Shape samples: play a sample faster or slower to find the feel.',
+      'Language learning: slow a foreign-language track down and read along.',
+      'Character voices: sped up reads cartoonish, slowed down reads deep.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Continuous from 0.5x to 2x',
+        text: 'The slider sweeps the speed continuously, and pitch moves with it — to keep the tuning, use the [tempo changer](/tempo-changer).',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The speed change finishes in your browser; the audio is never uploaded.',
+      },
     ],
     howTo: [
       {
