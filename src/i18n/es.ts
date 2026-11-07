@@ -586,11 +586,26 @@ export const es: Catalog = {
       subtitle: 'Convierte grabaciones en texto en más de 90 idiomas y con marcas de tiempo — todo en tu navegador.',
       intro:
         'Suelta una grabación y saca sus palabras: notas de voz, entrevistas, clases, pódcast — en unos 90 idiomas, detectados automáticamente cuando no sabes cuál es. Un modelo de IA Whisper se ejecuta dentro de tu navegador, en tu propio dispositivo, así que el audio nunca se sube, y la transcripción sale como texto editable o como un archivo SRT con marcas de tiempo.',
-      usesHeading: 'Transcripciones que de verdad hacen falta',
+      usesHeading: 'Usos habituales de audio a texto',
       uses: [
-        'Convertir una clase, una reunión o una entrevista en notas que puedes buscar y citar.',
-        'Subtitular un vídeo o un episodio de pódcast exportando un SRT con marcas de tiempo.',
-        'Sacar las palabras de una nota de voz sin enviar la grabación a ningún sitio.',
+        'Apuntes de clase: la clase se vuelve texto que puedes buscar y citar.',
+        'Actas de reunión: un clic convierte la grabación en palabras; tú das forma a las conclusiones.',
+        'Subtítulos de vídeo: exporta un SRT con marcas de tiempo y úsalo como subtítulos tal cual.',
+        'Redactar entrevistas: convierte la charla en transcripción antes de escribir el artículo.',
+        'Notas de pódcast: transcribe el episodio completo y saca las mejores frases.',
+        'Versiones de texto accesibles: dale al audio un gemelo de texto que llegue a más lectores.',
+      ],
+      why: [
+        {
+          icon: 'voice',
+          title: 'Whisper funciona en local',
+          text: 'El modelo Whisper se ejecuta en tu navegador: el audio nunca se sube, con treinta idiomas entre los que elegir.',
+        },
+        {
+          icon: 'file',
+          title: 'TXT y SRT, dos salidas',
+          text: 'TXT sin formato para apuntes; el SRT con marcas de tiempo entra directo como subtítulos.',
+        },
       ],
       howTo: [
         {

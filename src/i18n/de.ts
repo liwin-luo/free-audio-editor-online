@@ -587,11 +587,26 @@ export const de: Catalog = {
       subtitle: 'Aufnahmen in über 90 Sprachen in Text umwandeln, mit Zeitstempeln — direkt im Browser.',
       intro:
         'Eine Aufnahme hier ablegen und die Wörter herausholen: Sprachmemos, Interviews, Vorlesungen, Podcasts — in rund 90 Sprachen, automatisch erkannt, wenn du nicht sicher bist, welche es ist. Ein Whisper-KI-Modell läuft in deinem Browser-Tab auf deinem eigenen Gerät, die Audiodatei wird nie hochgeladen, und die Transkription entsteht als bearbeitbarer Text oder als SRT-Datei mit Zeitstempeln.',
-      usesHeading: 'Transkripte, die wirklich gebraucht werden',
+      usesHeading: 'Häufige Einsätze für Audio zu Text',
       uses: [
-        'Eine Vorlesung, ein Meeting oder ein Interview in durchsuchbare, zitierfähige Notizen verwandeln.',
-        'Ein Video oder eine Podcast-Folge untertiteln, indem man ein SRT mit Zeitstempeln exportiert.',
-        'Die Wörter aus einem Sprachmemo holen, ohne die Aufnahme irgendwohin zu schicken.',
+        'Kursnotizen: aus der Vorlesung wird Text, den du durchsuchen und zitieren kannst.',
+        'Besprechungsprotokoll: ein Klick macht Worte aus der Aufnahme; du formst die Kernpunkte.',
+        'Videountertitel: exportiere ein SRT mit Zeitstempeln und nutze es direkt als Untertitel.',
+        'Interviewtexte: das Gespräch wird zum Transkript, bevor du den Artikel schreibst.',
+        'Podcast-Shownotes: die ganze Episode transkribieren und die besten Zeilen herausziehen.',
+        'Barrierefreie Textfassungen: dem Audio einen Textzwilling geben, der mehr Leserinnen erreicht.',
+      ],
+      why: [
+        {
+          icon: 'voice',
+          title: 'Whisper läuft lokal',
+          text: 'Das Whisper-Modell läuft in deinem Browser: das Audio wird nie hochgeladen, mit dreißig Sprachen zur Wahl.',
+        },
+        {
+          icon: 'file',
+          title: 'TXT und SRT, zwei Ausgänge',
+          text: 'Nacktes TXT für Notizen; das SRT mit Zeitstempeln fällt direkt als Untertitel ein.',
+        },
       ],
       howTo: [
         {

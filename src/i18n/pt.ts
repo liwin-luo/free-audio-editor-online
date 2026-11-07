@@ -585,11 +585,26 @@ export const pt: Catalog = {
       subtitle: 'Transforme gravações em texto em mais de 90 idiomas, com marcas de tempo — direto no seu navegador.',
       intro:
         'Solte uma gravação e tire as palavras dela: áudios de voz, entrevistas, aulas, podcasts — em cerca de 90 idiomas, detectados automaticamente quando você não sabe qual é. Um modelo de IA Whisper roda dentro do seu navegador, no seu próprio aparelho, então o áudio nunca é enviado, e a transcrição sai como texto editável ou como arquivo SRT com marcas de tempo.',
-      usesHeading: 'Transcrições que realmente fazem falta',
+      usesHeading: 'Usos comuns de áudio para texto',
       uses: [
-        'Transformar uma aula, reunião ou entrevista em anotações que você pode buscar e citar.',
-        'Legendas de um vídeo ou episódio de podcast exportando um SRT com marcas de tempo.',
-        'Tirar as palavras de um áudio de voz sem mandar a gravação para lugar nenhum.',
+        'Notas de aula: a aula vira texto que você pode buscar e citar.',
+        'Atas de reunião: um clique transforma a gravação em palavras; você molda os pontos.',
+        'Legendas de vídeo: exporte um SRT com marcas de tempo e use direto como legenda.',
+        'Redigir entrevistas: transforme a conversa em transcrição antes de escrever a matéria.',
+        'Mostrar notas do podcast: transcreva o episódio inteiro e levante as melhores falas.',
+        'Versões de texto acessíveis: dê ao áudio um gêmeo de texto que alcança mais leitores.',
+      ],
+      why: [
+        {
+          icon: 'voice',
+          title: 'Whisper roda localmente',
+          text: 'O modelo Whisper roda no seu navegador: o áudio nunca é enviado, com trinta idiomas para escolher.',
+        },
+        {
+          icon: 'file',
+          title: 'TXT e SRT, duas saídas',
+          text: 'TXT puro para notas; o SRT com marcas de tempo entra direto como legenda.',
+        },
       ],
       howTo: [
         {

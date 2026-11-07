@@ -2702,11 +2702,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'A file becomes TXT or SRT. About 10 minutes. Thirty language codes.',
     intro:
       'Drop a file. Pick one of the thirty language codes, or leave detection on. Pick Tiny or Base. The model downloads once from this page, then the file is transcribed in this tab. One file stops at about 10 minutes. One transcript stays in the box. Two or more come back as a ZIP of TXT and SRT. This page does not score how close the words are.',
-    usesHeading: 'Transcripts people actually need',
+    usesHeading: 'Common uses for audio to text',
     uses: [
-      'Turn a lecture, meeting or interview into notes you can search and quote.',
-      'Caption a video or podcast episode by exporting an SRT with timestamps.',
-      'Pull the words out of a voice memo without sending the recording anywhere.',
+      'Course notes: a lecture becomes text you can search and quote.',
+      'Meeting minutes: one click turns the recording into words, then you shape the takeaways.',
+      'Video subtitles: export an SRT with timestamps and use it as captions directly.',
+      'Interview write-ups: turn the conversation into a transcript before writing the piece.',
+      'Podcast show notes: transcribe the full episode and lift the best lines.',
+      'Accessible text versions: give audio content a text twin that reaches more readers.',
+    ],
+    why: [
+      {
+        icon: 'voice',
+        title: 'Whisper runs locally',
+        text: 'The Whisper model runs in your browser: the audio never uploads, with thirty languages to choose from.',
+      },
+      {
+        icon: 'file',
+        title: 'TXT and SRT, both exits',
+        text: 'Plain TXT for notes; SRT with timestamps drops straight in as subtitles.',
+      },
     ],
     howTo: [
       {
