@@ -4694,14 +4694,26 @@ export const es: Catalog = {
       heroAlt: 'Un clic de metrónomo de 40 a 240 BPM',
       subtitle: 'Escucha el clic, o guarda 4, 8 o 16 compases. No se mezcla con una canción.',
       intro: 'El tempo va de 40 a 240 BPM. Elige 2/4, 3/4, 4/4 o 6/8. El primer pulso de cada compás es más fuerte. Pulsa reproducir y el clic sigue hasta que paras. La exportación escribe 4, 8 o 16 compases en WAV o MP3. 6/8 son seis clics en el compás, a ese BPM, no dos. Esta página no recibe un archivo y no pone el clic debajo de una canción. Esa mezcla es el editor multipista. No se sube nada.',
-      usesHeading: 'Usos habituales del paneo automático',
+      usesHeading: 'Usos habituales del audio 3D',
       uses: [
-        'Colchones que vagan: un colchón deriva despacio de un lado al otro.',
-        'Voces más anchas: una voz mono gana un movimiento estable izquierda-derecha.',
-        'Movimiento de sinte: da a una línea estática sensación de groove.',
-        'Efectos de ambiente: el sonido ambiental barre despacio sin robar atención.',
-        'Patrones de batería: los hats o la percusión se reparten izquierda-derecha solos.',
-        'Audio de juegos: el movimiento izquierda-derecha de un objeto que pasa.',
+        'Voces atmosféricas: una voz gira en torno a la cabeza — material para meditar y relajarse.',
+        'Camas en movimiento: un colchón estático gana una órbita y al instante tiene espacio.',
+        'Ambientes de juego: el sonido ambiental gira despacio, y con auriculares llega la presencia.',
+        'Ganchos de vídeo corto: una frase da la vuelta entera como gancho de atención.',
+        'Ruido blanco a medida: ruido blanco en órbita como material para dormir.',
+        'Intros de pódcast: la frase de apertura orbita y le da al programa su sello sonoro.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Un interruptor lo hace todo',
+          text: 'La órbita va a un ritmo fijo de unos 10 segundos por vuelta, con una reverb corta detrás: ni una pila de parámetros que ajustar.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'La velocidad y el tono se quedan',
+          text: 'Solo se mueve la posición: velocidad y tono intactos, así las frases y el ritmo siguen cayendo exacto.',
+        },
       ],
       why: [
         {

@@ -4661,14 +4661,26 @@ export const de: Catalog = {
       heroAlt: 'Ein Metronom-Klick von 40 bis 240 BPM',
       subtitle: 'Hör den Klick, oder speichere 4, 8 oder 16 Takte. Er mischt sich nicht in ein Lied.',
       intro: 'Das Tempo geht von 40 bis 240 BPM. Wähle 2/4, 3/4, 4/4 oder 6/8. Die erste Zählzeit jedes Taktes ist lauter. Drück Start, der Klick läuft, bis du stoppst. Der Export schreibt 4, 8 oder 16 Takte als WAV oder MP3. 6/8 sind sechs Klicks im Takt, bei diesem BPM, nicht zwei. Diese Seite nimmt keine Datei und legt den Klick nicht unter ein Lied. Diese Mischung ist der Mehrspur-Editor. Nichts wird hochgeladen.',
-      usesHeading: 'Häufige Einsätze für automatisches Panning',
+      usesHeading: 'Häufige Einsätze für 3D-Audio',
       uses: [
-        'Wandernde Pads: ein Pad-Ton driftet langsam von einer Seite zur anderen.',
-        'Breitere Vocals: eine Mono-Stimme bekommt eine stete Links-rechts-Bewegung.',
-        'Synth-Bewegung: einer statischen Synthlinie ein Gefühl von Groove geben.',
-        'Ambiente-Effekte: Umgebungssound streicht langsam, ohne Aufmerksamkeit zu fordern.',
-        'Drum-Patterns: Hi-Hats oder Perkussion verteilen sich automatisch links-rechts.',
-        'Spiele-Audio: die Links-rechts-Bewegung eines Objekts, das vorbeistreicht.',
+        'Atmosphärische Stimmen: eine Stimme kreist um den Kopf — Material für Meditation und Entspannung.',
+        'Bewegte Betten: ein statisches Pad bekommt eine Orbit und hat sofort Raum.',
+        'Spielumgebungen: das Ambiente kreist langsam, mit Kopfhörern kommt Präsenz auf.',
+        'Kurzvideo-Haken: ein Satz dreht eine volle Runde als Aufmerksamkeits-Haken.',
+        'Weiße Rauschen nach Maß: weißes Rauschen im Orbit als Einschlafmaterial.',
+        'Podcast-Intros: der Eröffnungssatz umkreist — das Sound-Logo der Sendung.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Ein Schalter erledigt alles',
+          text: 'Der Orbit läuft mit fester Rate, etwa 10 Sekunden pro Runde, mit einem kurzen Reverb dahinter — kein Parameterberg zu stellen.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Tempo und Tonhöhe bleiben',
+          text: 'Nur die Position bewegt sich: Tempo und Tonhöhe unberührt, Zeilen und Rhythmus treffen weiterhin exakt.',
+        },
       ],
       why: [
         {

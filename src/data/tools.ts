@@ -6127,11 +6127,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Depth, rate, and the room are already set. You only flip the switch.',
     intro:
       'The circle is fixed. Depth is 100%. The rate is 0.1 Hz, so one trip around takes about 10 seconds. The direct sound moves. A reverb send at 25% adds the same short room used on the slowed + reverb page. Speed and pitch stay as they are. The switch off leaves the file as you dropped it. Processing stays in your browser.',
-    usesHeading: 'What the circle is for',
+    usesHeading: 'Common uses for 3D audio',
     uses: [
-      'Put a vocal or a pad on a slow circle without picking a rate.',
-      'Add a short room behind that movement.',
-      'Keep the original speed and the original pitch.',
+      'Atmospheric voices: a voice circles the head — material for meditation and relaxation.',
+      'Moving beds: a static pad gains an orbit and instantly has space.',
+      'Game environments: ambience circles slowly, and headphones bring presence.',
+      'Short-video hooks: one phrase makes a full circle as an attention hook.',
+      'Custom white noise: white noise circles as sleep material.',
+      'Podcast intros: the opening line orbits, giving the show its own sonic stamp.',
+    ],
+    why: [
+      {
+        icon: 'repeat',
+        title: 'One switch does it all',
+        text: 'The orbit runs at a fixed rate of about 10 seconds per circle, with a short reverb behind — no pile of parameters to set.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Speed and pitch stay put',
+        text: 'Only the position moves: speed and pitch are untouched, so lines and rhythm still land exactly.',
+      },
     ],
     howTo: [
       {

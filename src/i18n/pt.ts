@@ -4828,14 +4828,26 @@ export const pt: Catalog = {
       heroAlt: 'Um clique de metrônomo de 40 a 240 BPM',
       subtitle: 'Ouça o clique, ou salve 4, 8 ou 16 compassos. Ele não entra numa música.',
       intro: 'O tempo vai de 40 a 240 BPM. Escolha 2/4, 3/4, 4/4 ou 6/8. O primeiro tempo de cada compasso é mais forte. Toque e o clique segue até você parar. A exportação grava 4, 8 ou 16 compassos em WAV ou MP3. 6/8 são seis cliques no compasso, nesse BPM, não dois. Esta página não recebe arquivo e não coloca o clique debaixo de uma música. Essa mistura é o editor multitrilha. Nada é enviado.',
-      usesHeading: 'Usos comuns do pan automático',
+      usesHeading: 'Usos comuns do áudio 3D',
       uses: [
-        'Pads que vagam: um pad deriva devagar de um lado ao outro.',
-        'Vozes mais largas: uma voz mono ganha um movimento estável esquerda-direita.',
-        'Movimento no synth: dê a uma linha estática sensação de groove.',
-        'Efeitos de ambiente: o som ambiente varre devagar sem chamar atenção.',
-        'Padrões de bateria: chimbal ou percussão se espalham esquerda-direita sozinhos.',
-        'Áudio de jogo: o movimento esquerda-direita de um objeto passando.',
+        'Vozes atmosféricas: uma voz circula em torno da cabeça — material para meditar e relaxar.',
+        'Camas em movimento: um pad estático ganha uma órbita e na hora tem espaço.',
+        'Ambientes de jogo: o som ambiente circula devagar, e o fone traz presença.',
+        'Ganchos de vídeo curto: uma frase dá a volta completa como gancho de atenção.',
+        'Ruído branco sob medida: ruído branco em órbita como material para dormir.',
+        'Intros de podcast: a frase de abertura orbita e dá ao programa seu selo sonoro.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Um interruptor faz tudo',
+          text: 'A órbita roda a uma taxa fixa de cerca de 10 segundos por volta, com um reverb curto atrás — sem pilha de parâmetros para ajustar.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Velocidade e tom ficam',
+          text: 'Só a posição se move: velocidade e tom intactos, então falas e ritmo continuam caindo exato.',
+        },
       ],
       why: [
         {
