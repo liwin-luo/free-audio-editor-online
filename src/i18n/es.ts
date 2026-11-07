@@ -1242,11 +1242,26 @@ export const es: Catalog = {
       subtitle: 'Bordes suaves en segundos: fija ambos fundidos al décimo, escucha y exporta. Nada sale de tu dispositivo.',
       intro:
         'Un fundido de entrada hace que una pista empiece desde el silencio; uno de salida la cierra con suavidad. Ahí está la diferencia entre un corte brusco y un final redondo. Carga un archivo, fija cada duración al décimo de segundo y escucha antes de exportar. Todo ocurre en tu navegador: el archivo nunca se sube.',
-      usesHeading: 'Cuándo un fundido es la solución',
+      usesHeading: 'Usos habituales de fundido de audio',
       uses: [
-        'Cerrar con limpieza un mixtape, una sesión de DJ o una compilación en vez de cortarla a mitad de nota.',
-        'Suavizar la entrada de un podcast o una nota de voz para que la primera palabra no sobresalte.',
-        'Quitar el clic de la costura a un loop o sample para que se repita sin chirridos.',
+        'Cierre de recopilación: el final de un megamix o una recopilación se desvanece limpio.',
+        'Entrada de pódcast: fundido de apertura para que la primera frase no sobresalte.',
+        'Música de vídeo: la pista se apaga con la imagen, sin robar la escena.',
+        'Los dos extremos del tono: un fundido corto en cada lado, y el bucle suena natural.',
+        'Grabaciones en directo: el bullicio de entrada y salida pasa por un fundido.',
+        'Audio de charlas: la tos y el ruido de los extremos, tapados con un fundido.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Cada extremo por separado',
+          text: 'Fundido de entrada y salida de 0 a 5 segundos, en pasos de 0,1: si solo quieres salida, solo tocas la salida.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Procesado en local',
+          text: 'El fundido termina en tu navegador; el audio nunca se sube.',
+        },
       ],
       howTo: [
         {

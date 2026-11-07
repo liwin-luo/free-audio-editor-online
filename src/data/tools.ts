@@ -5160,11 +5160,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Fade in and fade out, each from 0 to 5 seconds. Nothing is uploaded.',
     intro:
       'A fade in eases a track in from silence; a fade out eases it back out — the difference between an abrupt cut and an ending that sounds finished. Load a file here, set each fade length to a tenth of a second, and listen before you export. Everything runs in your browser: the file is never uploaded.',
-    usesHeading: 'When a fade is the fix',
+    usesHeading: 'Common uses for audio fades',
     uses: [
-      'End a mixtape, DJ set or compilation track cleanly instead of cutting it mid-note.',
-      'Ease a podcast or voice memo in so the first word does not startle the listener.',
-      'Soften a loop or sample so it repeats without a click at the seam.',
+      'Compilation endings: a megamix or compilation track fades out instead of stopping dead.',
+      'Podcast openings: ease the start in so the first word does not startle the listener.',
+      'Video scoring: the music fades out with the picture, without stealing the scene.',
+      'Both ends of a ringtone: a short fade at each end makes the loop sound natural.',
+      'Live recordings: the crowd noise at the start and end passes through a fade.',
+      'Talk audio: coughs and clatter at the edges, covered by a fade.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Each end set separately',
+        text: 'Fade in and fade out each run 0-5 seconds in 0.1-second steps — want only an outro? Touch only the outro.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The fade finishes in your browser; the audio is never uploaded.',
+      },
     ],
     howTo: [
       {

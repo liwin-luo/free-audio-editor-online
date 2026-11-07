@@ -1243,11 +1243,26 @@ export const de: Catalog = {
       subtitle: 'In Sekunden saubere Kanten: beide Fade-Längen auf 0,1 s genau, erst hören, dann exportieren — nichts verlässt dein Gerät.',
       intro:
         'Ein Fade-in lässt einen Track aus der Stille beginnen, ein Fade-out beendet ihn mit Ausklang statt mit einem harten Schnitt. Datei hier laden, beide Längen auf ein Zehntel genau setzen, vor dem Export reinhören. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
-      usesHeading: 'Wann ein Fade die Lösung ist',
+      usesHeading: 'Häufige Einsätze für Audio-Fades',
       uses: [
-        'Mixtape-, DJ-Set- oder Kompilations-Enden sauber ausklingen lassen statt mitten in der Note zu schneiden.',
-        'Podcasts und Sprachmemos weich anfangen lassen, damit das erste Wort nicht erschreckt.',
-        'Loops und Samples an den Nähten entschärfen, damit die Wiederholung ohne Klicken läuft.',
+        'Sammelwerk-Abschluss: das Ende eines Medleys oder Samplers klingt sauber aus.',
+        'Podcast-Anlauf: ein Fade-in, damit das erste Wort niemanden erschreckt.',
+        'Videomusik: die Spur klingt mit dem Bild aus, ohne die Szene zu stehlen.',
+        'Beide Enden des Tons: ein kurzer Fade an jedem Ende, und der Loop rundet natürlich.',
+        'Liveaufnahmen: das Gedränge am Anfang und Ende gleitet per Fade hinweg.',
+        'Vortragsaudio: Husten und Geräusch an den Enden, mit einem Fade zugedeckt.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Beide Enden einzeln',
+          text: 'Ein- und Ausblendung je 0 bis 5 Sekunden in 0,1er-Schritten — nur ausblenden? Nur der Ausblendungsregler wird berührt.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Der Fade schließt im Browser ab; das Audio wird nie hochgeladen.',
+        },
       ],
       howTo: [
         {

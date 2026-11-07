@@ -1241,11 +1241,26 @@ export const pt: Catalog = {
       subtitle: 'Bordas suaves em segundos: ajuste os dois fades em décimos de segundo, ouça e exporte. Nada sai do seu aparelho.',
       intro:
         'O fade de entrada faz a música nascer do silêncio; o de saída a encerra com suavidade — é a diferença entre um corte seco e um final redondo. Carregue um arquivo, ajuste cada duração em décimos de segundo e ouça antes de exportar. Tudo roda no seu navegador: o arquivo nunca é enviado.',
-      usesHeading: 'Quando o fade resolve',
+      usesHeading: 'Usos comuns de fade de áudio',
       uses: [
-        'Fechar um mixtape, um set de DJ ou uma compilação com elegância, em vez de cortar no meio da nota.',
-        'Suavizar o começo de um podcast ou áudio de voz para a primeira frase não assustar.',
-        'Tirar o estalo da emenda de um loop ou sample para repetir sem ruído.',
+        'Fecho de coletânea: o fim de um medley ou coletânea desvanece limpo.',
+        'Entrada de podcast: fade-in para a primeira frase não assustar o ouvinte.',
+        'Música de vídeo: a trilha desvanece junto com a imagem, sem roubar a cena.',
+        'As duas pontas do toque: um fade curto em cada lado, e o loop fica natural.',
+        'Gravações ao vivo: o burburinho de abertura e fechamento passa por fade.',
+        'Áudio de palestras: tosse e barulho das pontas, cobertos com fade.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Cada ponta separada',
+          text: 'Fades de entrada e saída de 0 a 5 segundos, em passos de 0,1 — só quer saída? Só mexe na saída.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'O fade termina no seu navegador; o áudio nunca é enviado.',
+        },
       ],
       howTo: [
         {
