@@ -5121,8 +5121,27 @@ export const de: Catalog = {
       heroAlt: 'Prüfen, ob eine Datei zum Lautheitsziel eines Podcasts oder eines Streams passt',
       subtitle: "Die integrierte Lautheit der Datei, die du ablegst — nicht die Lautheit des Raums.",
       intro: "Leg eine Datei ab und lies ihre integrierte Lautheit in LUFS, plus den Sample-Peak. Dann gleichst du ein Lieferziel an: Podcast −16, Streaming −14 oder Broadcast −23. Die Verstärkung ist eine Zahl für die ganze Datei. Würde sie die lauteste Probe über −1 dBFS schieben, bleibt sie davor stehen, und die Seite sagt dir die LUFS, die du wirklich erreichst. Das ist kein Raum-Schallpegelmesser und keine Peak-Normalisierung. −16, −14 und −23 sind übliche Lieferziele, keine gesetzliche Grenze. Die Verarbeitung bleibt in deinem Browser.",
-      usesHeading: "Wofür die Zahl da ist",
-      uses: ["Sieh vor dem Verschicken, ob eine Sprachnachricht oder ein Mix nah an einem Podcast-Ziel liegt.", "Heb eine leise Datei Richtung −16 oder −14, ohne den Sample-Peak über −1 dBFS zu lassen.", "Lies Stereo als Stereo. Die beiden Kanäle werden vor der Messung nicht zusammengemischt."],
+      usesHeading: 'Häufige Einsätze für das LUFS-Loudness-Meter',
+      uses: [
+        'Podcast ausrichten: wie weit die Sprachnotiz oder der Mix vom Podcast-Ziel −16 entfernt ist.',
+        'Streaming ausrichten: die Musik vor der Veröffentlichung auf −14 LUFS bringen, ohne dass der Peak über −1 dBFS steigt.',
+        'Broadcast-Ablieferung: Radioprogramme richten sich nach −23 LUFS aus.',
+        'Peak-Check: ob das lauteste Sample −1 dBFS übersteigt, zeigt ein Blick.',
+        'Mix-Checkup: wenn laut und leise zu weit auseinanderliegen, erst den LUFS lesen und dann über Kompression entscheiden.',
+        'Plattformvergleich: dieselbe Datei vor dem Ausrichten je einmal pro Plattform messen.',
+      ],
+      why: [
+        {
+          icon: 'waveform',
+          title: 'Integrierte Loudness mit K-Wichtung',
+          text: 'Misst die integrierte LUFS nach ITU-R BS.1770 — wie laut der ganze Abschnitt ist, ist eine Eigenschaft der Datei; kein Raum-Schallpegelmesser und keine Peak-Normalisierung.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Die Verstärkung hält am Peak',
+          text: 'Würde beim Anpeilen des Ziels das lauteste Sample −1 dBFS übersteigen, hält die Verstärkung an und nennt ehrlich die erreichte LUFS, statt die Zahl zu erzwingen.',
+        },
+      ],
       howTo: [
         { name: "Audio ablegen", text: "Beliebiges MP3, WAV, M4A, OGG oder FLAC. Es wird auf deinem Gerät dekodiert und gemessen." },
         { name: "Den Messer lesen", text: "Integriert ist die K-bewertete Lautheit der Datei, in LUFS. Sample-Peak ist die größte Probe, in dBFS. Eine stumme Datei hat keine Lautheit zum Angleichen." },

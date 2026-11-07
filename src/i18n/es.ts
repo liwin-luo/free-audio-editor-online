@@ -5154,8 +5154,27 @@ export const es: Catalog = {
       heroAlt: 'Ver si un archivo coincide con el nivel de un pódcast o de un streaming',
       subtitle: "Los LUFS integrados del archivo que sueltas, no lo fuerte que está la habitación.",
       intro: "Suelta un archivo y lee su sonoridad integrada en LUFS, más el pico de muestra. Luego iguala un objetivo de entrega: pódcast −16, streaming −14 o emisión −23. La ganancia es un solo número para todo el archivo. Si esa ganancia empujaría la muestra más fuerte por encima de −1 dBFS, se detiene ahí y la página te dice los LUFS que de verdad alcanzas. No es un sonómetro de la habitación, ni una normalización por pico. −16, −14 y −23 son objetivos habituales de entrega, no un límite legal. El proceso se queda en tu navegador.",
-      usesHeading: "Para qué sirve el número",
-      uses: ["Ver si una nota de voz o una mezcla está cerca de un objetivo de pódcast antes de enviarla.", "Subir un archivo bajo hacia −16 o −14 sin dejar que el pico de muestra pase de −1 dBFS.", "Leer un estéreo como estéreo. Los dos canales no se mezclan antes de la medida."],
+      usesHeading: 'Usos habituales del medidor de sonoridad LUFS',
+      uses: [
+        'Alinear el pódcast: cuánto falta a la nota de voz o la mezcla para el objetivo de −16 del pódcast.',
+        'Alinear el streaming: llevar la música a −14 LUFS antes de publicar, sin que el pico pase de −1 dBFS.',
+        'Entrega de radiodifusión: los programas de radio se alinean a −23 LUFS.',
+        'Comprobar el pico: si la muestra más alta cruza −1 dBFS, se ve de un vistazo.',
+        'Chequeo de la mezcla: si lo fuerte y lo suave quedan lejos, primero lee el LUFS y decide si comprimir.',
+        'Comparar plataformas: mide el mismo archivo una vez por plataforma antes de alinearlas todas.',
+      ],
+      why: [
+        {
+          icon: 'waveform',
+          title: 'Sonoridad integrada con peso K',
+          text: 'Mide el LUFS integrado según ITU-R BS.1770: cuánto suena todo el tramo es una propiedad del archivo; no es un sonómetro de sala ni una normalización de picos.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'La ganancia se detiene en el pico',
+          text: 'Si al alinear al objetivo la muestra más alta cruzaría −1 dBFS, la ganancia se frena y se dice con honestidad el LUFS alcanzado, sin forzar la cifra.',
+        },
+      ],
       howTo: [
         { name: "Suelta el audio", text: "Cualquier MP3, WAV, M4A, OGG o FLAC. Se decodifica y se mide en tu dispositivo." },
         { name: "Lee el medidor", text: "Integrada es la sonoridad del archivo con ponderación K, en LUFS. El pico de muestra es la muestra más grande, en dBFS. Un archivo en silencio no tiene sonoridad que igualar." },

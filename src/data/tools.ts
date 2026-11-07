@@ -3820,11 +3820,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Integrated LUFS of the file you drop — not the loudness of the room.',
     intro:
       'Drop a file and read its integrated loudness in LUFS, plus the sample peak. Then match one delivery target: podcast −16, streaming −14, or broadcast −23. The gain is one number for the whole file. If that gain would push the loudest sample past −1 dBFS, it stops there and the page tells you the LUFS you actually reached. This is not a room sound-level meter, and it is not peak normalize. −16, −14, and −23 are common delivery targets, not a legal limit. Processing stays in your browser.',
-    usesHeading: 'What the number is for',
+    usesHeading: 'Common uses for the LUFS loudness meter',
     uses: [
-      'See whether a voice memo or a mix is near a podcast target before you send it.',
-      'Lift a quiet file toward −16 or −14 without letting the sample peak pass −1 dBFS.',
-      'Check a stereo file as stereo. The two channels are not mixed down before the reading.',
+      'Podcast alignment: how far a voice memo or a mix sits from the −16 podcast target.',
+      'Streaming alignment: bring music to −14 LUFS before release, without letting the peak pass −1 dBFS.',
+      'Broadcast delivery: broadcast programmes align to −23 LUFS.',
+      'Peak check: whether the loudest sample crosses −1 dBFS shows at a glance.',
+      'Mix checkup: when loud and quiet sit too far apart, read the LUFS first, then decide on compression.',
+      'Platform comparison: measure the same file once per platform before aligning them all.',
+    ],
+    why: [
+      {
+        icon: 'waveform',
+        title: 'K-weighted integrated loudness',
+        text: 'Measures integrated LUFS per ITU-R BS.1770 — how loud the whole span sounds is a property of the file; not a room sound-level meter and not peak normalisation.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Gain stops at the peak',
+        text: 'If aligning to the target would push the loudest sample past −1 dBFS, the gain stops there and reports the LUFS actually reached, instead of forcing the number.',
+      },
     ],
     howTo: [
       {

@@ -5288,8 +5288,27 @@ export const pt: Catalog = {
       heroAlt: 'Ver se um arquivo bate com a meta de loudness de um podcast ou de um streaming',
       subtitle: "O LUFS integrado do arquivo que você solta, não o volume da sala.",
       intro: "Solte um arquivo e leia a loudness integrada em LUFS, mais o pico de amostra. Depois iguale uma meta de entrega: podcast −16, streaming −14 ou broadcast −23. O ganho é um só número para o arquivo inteiro. Se esse ganho empurrasse a amostra mais alta além de −1 dBFS, ele para ali e a página diz o LUFS que você de fato alcança. Não é um medidor de sala, nem normalização de pico. −16, −14 e −23 são metas comuns de entrega, não um limite legal. O processo fica no seu navegador.",
-      usesHeading: "Para que serve o número",
-      uses: ["Ver se um recado de voz ou um mix está perto de uma meta de podcast antes de enviar.", "Subir um arquivo baixo em direção a −16 ou −14 sem deixar o pico de amostra passar de −1 dBFS.", "Ler um estéreo como estéreo. Os dois canais não são somados antes da medida."],
+      usesHeading: 'Usos comuns do medidor de sonoridade LUFS',
+      uses: [
+        'Alinhar o podcast: quanto falta do memo de voz ou da mixagem para a meta de −16 do podcast.',
+        'Alinhar o streaming: levar a música a −14 LUFS antes de publicar, sem deixar o pico passar de −1 dBFS.',
+        'Entrega para rádio: programas de rádio se alinham a −23 LUFS.',
+        'Conferir o pico: se a maior amostra cruza −1 dBFS, vê-se num relance.',
+        'Checkup da mixagem: se o alto e o baixo ficam longe demais, primeiro leia o LUFS e decida se comprime.',
+        'Comparar plataformas: meça o mesmo arquivo uma vez por plataforma antes de alinhar todas.',
+      ],
+      why: [
+        {
+          icon: 'waveform',
+          title: 'Sonoridade integrada com peso K',
+          text: 'Mede o LUFS integrado segundo ITU-R BS.1770 — quão alto o trecho inteiro soa é uma propriedade do arquivo; não é decibelímetro de sala nem normalização de picos.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'O ganho para no pico',
+          text: 'Se ao mirar o objetivo a maior amostra cruzaria −1 dBFS, o ganho freia e reporta com honestidade o LUFS alcançado, sem forçar o número.',
+        },
+      ],
       howTo: [
         { name: "Solte o áudio", text: "Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação e a medida acontecem no seu aparelho." },
         { name: "Leia o medidor", text: "Integrada é a loudness do arquivo com ponderação K, em LUFS. O pico de amostra é a maior amostra, em dBFS. Um arquivo em silêncio não tem loudness para igualar." },
