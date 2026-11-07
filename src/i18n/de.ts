@@ -2848,11 +2848,26 @@ export const de: Catalog = {
       subtitle: 'Speichere die Tonspur jedes Videos als MP3 oder WAV — lokal, in Sekunden.',
       intro:
         'Trenn den Ton vom Bild: hol Interviews aus Videoanrufen, speichere einen Konzertfilm als Album oder nutze eine Tonspur in deinem eigenen Schnitt. Die Audiospur wird auf deinem Gerät dekodiert und lässt sich verlustfrei als WAV oder kompakt als MP3 speichern.',
-      usesHeading: 'Tonspuren, die sich zu ziehen lohnen',
+      usesHeading: 'Häufige Einsätze für Audio aus Video extrahieren',
       uses: [
-        'Hol den Ton aus einer Bildschirmaufnahme oder einem Handyvideo.',
-        'Behalte WAV, wenn du weiter editierst, oder MP3, wenn du fertig bist.',
-        'Gib eine lange Datei an den Trimmer, wenn nur eine Minute davon zählt.',
+        'Bildschirmaufnahmen: nur die Vorlesungsstimme aus einer Aufnahme behalten, und die Datei wird zehnmal kleiner.',
+        'Handyvideos: den beim Dreh mitaufgenommenen Originalton als Material herausziehen.',
+        'Interview-Backups: Video-Interviews zu Audio extrahieren und an die [Transkription](/audio-to-text) weitergeben.',
+        'Livemusik: die Live-Audio aus einem Konzertmitschnitt für die Sammlung herausheben.',
+        'Verlustfreie Basis: WAV zum Schneiden behalten, das fertige Stück später zu MP3 komprimieren.',
+        'Podcast-Material: zwei Kameras lieferten Video — die Spur in den Schneideablauf ziehen.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Zwei Ausgänge: MP3 und WAV',
+          text: 'MP3 zum Verschicken; WAV, wenn als Nächstes schneiden oder Rauschentfernung kommt und alle Samples bleiben sollen.',
+        },
+        {
+          icon: 'film',
+          title: 'Nur die Tonspur wird dekodiert',
+          text: 'Das Videobild wird komplett ignoriert, nur die Tonspur dekodiert — darum gehen auch große Dateien schnell.',
+        },
       ],
       howTo: [
         {

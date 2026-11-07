@@ -2877,11 +2877,26 @@ export const es: Catalog = {
       subtitle: 'Guarda la pista de audio de cualquier video como MP3 o WAV, en local y en segundos.',
       intro:
         'Separa el sonido de la imagen: saca entrevistas de videollamadas, guarda un concierto filmado como un álbum, o reutiliza una pista en tu propia edición. La pista de audio se decodifica en tu dispositivo y puedes guardarla sin pérdida como WAV, o de forma compacta como MP3.',
-      usesHeading: 'Pistas que vale la pena sacar',
+      usesHeading: 'Usos habituales de extraer audio de vídeo',
       uses: [
-        'Saca el audio de una grabación de pantalla o de un vídeo del teléfono.',
-        'Quédate con WAV si vas a seguir editando, o con MP3 si ya terminaste.',
-        'Pasa un archivo largo al recortador cuando solo importa un minuto.',
+        'Grabaciones de pantalla: deja solo la voz de la clase en una captura, y el archivo adelgaza diez veces.',
+        'Vídeos del móvil: saca el sonido ambiente capturado con el plano como material.',
+        'Respaldo de entrevistas: extrae entrevistas en vídeo a audio y pásalas a la [transcripción](/audio-to-text).',
+        'Música en directo: levanta el audio en vivo de un concierto grabado para la colección.',
+        'Base sin pérdidas: conserva WAV para editar y comprime a MP3 el resultado final.',
+        'Material de pódcast: dos cámaras grabaron vídeo; extrae la pista al flujo de edición.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Dos salidas: MP3 y WAV',
+          text: 'Elige MP3 para enviarlo; elige WAV para conservar todas las muestras si lo siguiente es editar o quitar ruido.',
+        },
+        {
+          icon: 'film',
+          title: 'Solo se decodifica la pista de audio',
+          text: 'La imagen del vídeo se ignora por completo y solo decodifica la pista de audio, así que hasta los archivos grandes van rápido.',
+        },
       ],
       howTo: [
         {

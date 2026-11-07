@@ -2924,11 +2924,26 @@ export const pt: Catalog = {
       subtitle: 'Salve a trilha sonora de qualquer vídeo em MP3 ou WAV — no aparelho, em segundos.',
       intro:
         'Separe o som da imagem: tire entrevistas de videochamadas, salve um filme de show como álbum ou reaproveite uma trilha na sua própria edição. A faixa de áudio é decodificada no aparelho e pode ser salva sem perdas em WAV ou de forma compacta em MP3.',
-      usesHeading: 'Trilhas que vale a pena extrair',
+      usesHeading: 'Usos comuns de extrair áudio de vídeo',
       uses: [
-        'Tire o áudio de uma gravação de tela ou de um vídeo do celular.',
-        'Fique com WAV se ainda vai editar, ou com MP3 se já terminou.',
-        'Passe um arquivo longo para o cortador quando só um minuto importa.',
+        'Gravações de tela: deixe só a voz da aula numa captura de tela, e o arquivo emagrece dez vezes.',
+        'Vídeos do celular: tire o som ambiente capturado com a cena como material.',
+        'Backup de entrevistas: extraia entrevistas em vídeo para áudio e mande para a [transcrição](/audio-to-text).',
+        'Música ao vivo: levante o áudio ao vivo de um show gravado para a coleção.',
+        'Base sem perdas: guarde WAV para editar e comprima o resultado final em MP3.',
+        'Material de podcast: duas câmeras gravaram vídeo — extraia a trilha para o fluxo de edição.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Duas saídas: MP3 e WAV',
+          text: 'Escolha MP3 para enviar; escolha WAV para manter todas as amostras quando o próximo passo é editar ou tirar ruído.',
+        },
+        {
+          icon: 'film',
+          title: 'Só a trilha de áudio é decodificada',
+          text: 'A imagem do vídeo é ignorada por completo e só a trilha de áudio decodifica, então até arquivos grandes vão rápido.',
+        },
       ],
       howTo: [
         {

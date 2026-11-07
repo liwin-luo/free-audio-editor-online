@@ -2444,11 +2444,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Save the soundtrack as MP3 or 16-bit WAV. Nothing is uploaded.',
     intro:
       'Separate the sound from the pictures: pull interviews out of video calls, save a concert film as an album, or reuse a soundtrack in your own edit. The audio track is decoded on your device and can be saved as 16-bit WAV of the decoded samples, or as MP3.',
-    usesHeading: 'Soundtracks worth pulling out',
+    usesHeading: 'Common uses for extracting audio from video',
     uses: [
-      'Grab the audio from a screen recording or a phone video.',
-      'Keep WAV if you will edit again, or MP3 if you are done.',
-      'Hand a long file to the trimmer when only a minute of it matters.',
+      'Screen recordings: keep only the lecture voice from a screen capture, and the file shrinks tenfold.',
+      'Phone videos: pull the live sound captured with the shot out as material.',
+      'Interview backups: extract video interviews to audio and hand them to [transcription](/audio-to-text).',
+      'Live music: lift live audio out of a concert recording for the collection.',
+      'Lossless base: keep WAV for editing, compress the final piece to MP3 later.',
+      'Podcast material: two cameras rolled video — extract the track into the editing flow.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'Two exits: MP3 and WAV',
+        text: 'Pick MP3 to send it out; pick WAV to keep every sample when the next stop is editing or noise removal.',
+      },
+      {
+        icon: 'film',
+        title: 'Only the audio track is decoded',
+        text: 'The video picture is ignored completely and just the audio track decodes, so even big files go fast.',
+      },
     ],
     howTo: [
       {
