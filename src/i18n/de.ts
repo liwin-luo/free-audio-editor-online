@@ -4098,8 +4098,27 @@ export const de: Catalog = {
       heroAlt: 'Einer Aufnahme Delay und Wiederholungen hinzufügen',
       subtitle: 'Getrennte Wiederholungen in dem Abstand, den du einstellst — vom kurzen Schlag bis 0,8 s.',
       intro: 'Ein Echo ist eine Kopie, die nach einer Lücke zurückkommt, die du zählen kannst. Das Delay geht von wenigen Hundertstelsekunden bis 0,8 Sekunden, die Wiederholungen bestimmen, wie viel von jeder Kopie wieder hineingeht. Der nasse Anteil liegt fest bei 45 %. Delay null lässt die Datei unverändert. Die Verarbeitung bleibt im Browser.',
-      usesHeading: 'Echos, die Leute wirklich wollen',
-      uses: ['Einen kurzen Schlag auf eine Stimme legen, damit sie Raum hat, ohne zu zerfließen.', 'Einen Gitarren- oder Schlagzeugschlag im Takt zurückkommen lassen.', 'Einen Satz einmal klar zurückhören, statt einer Hallwolke.'],
+      usesHeading: 'Häufige Einsätze für Echo',
+      uses: [
+        'Podcast-Interpunktion: ein kurzer Slap unterstreicht einen Satz — die Sorte, die man mitzählen kann.',
+        'Spielesounds: einem UI-Blip ein räumliches Delay geben, ein paar Wiederholungen, die verklingen.',
+        'Gesangsschmuck: ein paar ausklingende Wiederholungen am Ende einer Stimme.',
+        'Grusel am Horizont: ein sehr weit auseinander liegendes Echo, und die Stimmung kippt.',
+        'Instrumentenakzente: ein Echo auf einem einzelnen Gitarren- oder Drumschlag, das den Raum öffnet.',
+        'Übergangsdesign: ein fernes Echo zwischen zwei Sektionen trägt den Schnitt.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Ein Delay, das du mitzählen kannst',
+          text: 'Frei einstellbar von 0,01 bis 0,8 Sekunden: kurz liest sich als Slap, lang als ein Ruf im leeren Raum. Der Wiederholungspegel entscheidet, wie viel von jeder Kopie überlebt.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Wet sitzt bei 45 %',
+          text: 'Das trockene Signal bleibt unangetastet, das Echo mischt sich mit 45 % ein — nichts am Original bewegt sich, nur die Kopie kommt zurück.',
+        },
+      ],
       howTo: [
         { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Dekodierung bleibt auf deinem Gerät.' },
         { name: 'Delay und Wiederholungen', text: 'Delay ist die Lücke vor der ersten Kopie, bis 0,8 s. Wiederholungen sind die Rückkopplung, gedeckelt bei 55 %, damit nichts hochschaukelt.' },
@@ -4159,8 +4178,27 @@ export const de: Catalog = {
       howToIntro: 'Der Wet-Regler an einer echten Datei',
       subtitle: 'Ein Wet-Regler von knochentrocken bis zu einer kleinen Halle. Du hörst das Ergebnis, bevor du exportierst.',
       intro: 'Reverb ist der Klang, den ein Raum hinzufügt, nachdem die Quelle verstummt ist: Reflexionen, die sich stapeln und abklingen. Diese Seite legt einen synthetisierten Raum über die Datei, die du ablegst, mit einem Wet-Regler von trocken bis verschwemmt. Du hörst das Reverb direkt auf der Wellenform, bevor du exportierst, und die Verarbeitung bleibt in deinem Browser.',
-      usesHeading: 'Was ein Raum repariert',
-      uses: ['Setz eine trockene Sprachnotiz oder einen Gesangstake in einen Raum, damit sie nicht mehr aufgeklebt klingt.', 'Gib einem Spiel- oder Videosoundeffekt Tiefe, bevor er in den Schnitt geht.', 'Mach eine harte, nah abgenommene Aufnahme weicher, ohne ihren Pegel anzufassen.'],
+      usesHeading: 'Häufige Einsätze für Reverb',
+      uses: [
+        'Stimme am Platz: ein Sprachmemo oder ein Off-Text sitzt in einem Raum, statt aufgeklebt zu klingen.',
+        'Spielsounds: einem Blip Tiefe geben, bevor er in den Schnitt geht.',
+        'Trockene Stimme in den Raum: ein A-capella-Stück gewinnt das Gefühl, im Raum aufgenommen zu sein.',
+        'Podcast-Übergänge: ein Satz mit Reverb markiert den Abschnittswechsel.',
+        'Instrumenten-Atmosphäre: eine trockene Gitarre bekommt einen Hauch Raum und klingt nicht mehr mager.',
+        'Stimmungswäsche: viel Wet und langer Raum bilden einen leeren oder unheimlichen Ort.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Ein Wet-Regler',
+          text: '0-100 % entscheidet, wie viel Raum: wenig Wet ist ein Schlafzimmer, viel Wet ein Auditorium. Vor dem Export hineinhören.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal gerendert',
+          text: 'Das Reverb rechnet dein Browser, das Audio wird nie hochgeladen; Export als MP3 oder WAV.',
+        },
+      ],
       howTo: [
         { name: 'Audio ablegen', text: 'Beliebiges MP3, WAV, M4A, OGG oder FLAC. Dekodiert wird auf deinem Gerät. Der Wet-Regler startet bei null, das ist die trockene Datei.' },
         { name: 'Wet-Pegel einstellen', text: 'Der Regler mischt den Raum ins trockene Signal, 0 bis 100 Prozent. Bei etwa 25 Prozent hört eine Stimme auf, nah abgenommen zu klingen. Der Play-Button spielt das gemischte Ergebnis vor.' },
@@ -4224,8 +4262,27 @@ export const de: Catalog = {
       heroAlt: 'Die Spitzen einer sauberen Aufnahme abflachen',
       subtitle: 'Ein Regler. Der Startwert ist 40 %. Bei 0 % bleibt die Datei, wie du sie abgelegt hast.',
       intro: 'Diese Seite schickt jedes Sample durch eine tanh-Kurve. Beim Start, 40 %, wird ein Sample von 0,25 zu etwa 0,69. Bei 100 % wird dasselbe Sample auf etwa 1 gedrückt. Stärke 0 überspringt die Kurve, die Datei bleibt wie dekodiert. Die Verarbeitung bleibt im Browser.',
-      usesHeading: 'Wenn der Clip der Zweck ist',
-      uses: ['Leg einen kurzen Overdrive auf eine saubere Gitarre oder einen Synth, damit sie nach vorn kommt.', 'Mach eine Gesangszeile rau für einen Trailer, einen Game-Hit oder einen Podcast-Sting.', 'Fang den Lo-Fi-Korn hier an und dämpfe die neuen Höhen im Tiefpass.'],
+      usesHeading: 'Häufige Einsätze für Audiodistortion',
+      uses: [
+        'Gitarren-Overdrive: etwas Grit auf eine saubere Gitarre, damit sie nach vorn tritt.',
+        'Stimme aufrauen: eine Stimmlinie für einen Trailer, einen Game-Hit oder eine Podcast-Intro.',
+        'Drums umformen: einen Drumloop clippen, bis er härter und schwerer zuschlägt.',
+        'Horror-Texturen: extreme Intensität, die eine Stimme oder ein Ambience-Bett verbiegt.',
+        'Synth-Grit: einer zu sauberen Synthlinie Grit geben.',
+        'Retro-Telefon: mit einem Highpass zum alten Telefon- oder Sprechstellen-Sound paaren.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Ein Regler von leicht bis schwer',
+          text: 'Die Intensität läuft kontinuierlich vom weichen Clipping zum harten Clipping — jeder Punkt dazwischen ist ein neuer Ton.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Die Distortion wird im Browser berechnet; das Audio wird nie hochgeladen.',
+        },
+      ],
       howTo: [
         { name: 'Audio ablegen', text: 'Beliebiges MP3, WAV, M4A, OGG oder FLAC. Dekodiert wird auf deinem Gerät.' },
         { name: 'Stärke einstellen', text: '0 % ist sauber. 40 % ist der Start. 100 % ist der härteste Clip, den diese Seite macht.' },
@@ -4410,50 +4467,14 @@ export const de: Catalog = {
       howToIntro: 'Eine rauschende Datei, ein Stärkeregler',
       subtitle: 'Ständiges Zischen, Brummen und Lüfterrauschen fallen um 20 dB oder mehr, wo Sprache ist. Die Zeitleiste bleibt, wo sie ist.',
       intro: 'Diese Seite legt RNNoise über deine Aufnahme, ein Rauschengate, das auf Sprache trainiert ist. Ständiges Rauschen wie Zischen, Brummen oder ein Lüfter fällt um 20 dB oder mehr, und die Worte behalten ihre Lautstärke. Das Gate ist ein 150-KB-Modell und läuft in deinem Browser, deine Audiodatei verlässt das Gerät nicht.',
-      usesHeading: 'Häufige Einsätze für Reverb',
+      usesHeading: 'Häufige Einsätze zum Entfernen von Hintergrundgeräuschen',
       uses: [
-        'Stimme am Platz: ein Sprachmemo oder ein Off-Text sitzt in einem Raum, statt aufgeklebt zu klingen.',
-        'Spielsounds: einem Blip Tiefe geben, bevor er in den Schnitt geht.',
-        'Trockene Stimme in den Raum: ein A-capella-Stück gewinnt das Gefühl, im Raum aufgenommen zu sein.',
-        'Podcast-Übergänge: ein Satz mit Reverb markiert den Abschnittswechsel.',
-        'Instrumenten-Atmosphäre: eine trockene Gitarre bekommt einen Hauch Raum und klingt nicht mehr mager.',
-        'Stimmungswäsche: viel Wet und langer Raum bilden einen leeren oder unheimlichen Ort.',
-      ],
-      why: [
-        {
-          icon: 'sliders',
-          title: 'Ein Wet-Regler',
-          text: '0-100 % entscheidet, wie viel Raum: wenig Wet ist ein Schlafzimmer, viel Wet ein Auditorium. Vor dem Export hineinhören.',
-        },
-        {
-          icon: 'lock-simple',
-          title: 'Lokal gerendert',
-          text: 'Das Reverb rechnet dein Browser, das Audio wird nie hochgeladen; Export als MP3 oder WAV.',
-        },
-      ],
-      why: [
-        {
-          icon: 'sliders',
-          title: 'Ein Regler von leicht bis schwer',
-          text: 'Die Intensität läuft kontinuierlich vom weichen Clipping zum harten Clipping — jeder Punkt dazwischen ist ein neuer Ton.',
-        },
-        {
-          icon: 'lock-simple',
-          title: 'Lokal verarbeitet',
-          text: 'Die Distortion wird im Browser berechnet; das Audio wird nie hochgeladen.',
-        },
-      ],
-      why: [
-        {
-          icon: 'repeat',
-          title: 'Ein Delay, das du mitzählen kannst',
-          text: 'Frei einstellbar von 0,01 bis 0,8 Sekunden: kurz liest sich als Slap, lang als ein Ruf im leeren Raum. Der Wiederholungspegel entscheidet, wie viel von jeder Kopie überlebt.',
-        },
-        {
-          icon: 'sliders',
-          title: 'Wet sitzt bei 45 %',
-          text: 'Das trockene Signal bleibt unangetastet, das Echo mischt sich mit 45 % ein — nichts am Original bewegt sich, nur die Kopie kommt zurück.',
-        },
+        'Sprachmemos: Brummen von Ventilator und Klimaanlage unter die Stimme drücken.',
+        'Podcasts: den Grundrausch vor dem Veröffentlichen säubern, ohne Desktop-Editor.',
+        'Vorlesungen: das konstante Zischen drücken, dann die Lautstärke anpassen.',
+        'Interviews: die Stimme reinigen — ständiges Straßen- und Raumbrummen heraus.',
+        'Video-Offs: hat der Sprecher unter Klimaanlage gesprochen, erst entrauschen, dann syncen.',
+        'Besprechungen: ständiges Netzbrummen und Lüftergeräusch leiser stellen.',
       ],
       why: [
         {
@@ -4535,8 +4556,27 @@ export const de: Catalog = {
       heroAlt: 'Einen Clip wiederholen und jede Naht überblenden',
       subtitle: 'Loop die Auswahl oder die ganze Datei und lade eine längere Datei herunter.',
       intro: 'Die Zahl geht von 2 bis 16, Standard ist 4. Jede Naht ist ein linearer Crossfade, 0,01 Sekunden, bis du ihn auf höchstens 0,1 Sekunden ziehst. Zieh eine Auswahl, dann loopt nur der Teil. Ohne Auswahl wiederholt sich die ganze Datei. Der Export stoppt bei 10 Minuten. Tonhöhe und Tempo bleiben. Die Verarbeitung bleibt im Browser.',
-      usesHeading: 'Wofür die Wiederholungen da sind',
-      uses: ['Mach aus einem Takt einen Übungsloop zum Exportieren.', 'Zieh einen kurzen Sprachschnipsel auf die Länge einer Szene.', 'Wiederhole ein Sample mit kurzem Crossfade, damit die Naht nicht knackst.'],
+      usesHeading: 'Häufige Einsätze für Audio-Looping',
+      uses: [
+        'Übungsloops: ein Takt 2-16-mal wiederholt, als Übungsmaterial exportiert.',
+        'Vokalbetten: einen kurzen Sprachhinweis über eine längere Szene strecken.',
+        'Ambience-Verlängerung: Umgebungssound auf die Länge loopen, die du brauchst.',
+        'Rhythmus-Schichtung: einen Drumloop zu einer längeren Groove-Sektion stapeln.',
+        'Meditationsmaterial: einen Klangschalen-Ton oder Ambient zu einer ganzen Sitzung loopen.',
+        'Live-Backup: aus einem kurzen Loop ein langes Asset bauen und auf der Bühne spielen.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Eine Fuge, die nie knallt',
+          text: 'Ein 0,01-Sekunden-Crossfade an der Naht: die Wiederholung nach oben knallt oder klickt nie.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Wiederholungen und Auswahl frei',
+          text: 'Eine beliebige Zahl von 2 bis 16 Wiederholungen wählen; die Auswahl loopen, wenn eine gezogen ist, sonst die ganze Datei.',
+        },
+      ],
       howTo: [
         { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Datei wird auf deinem Gerät dekodiert.' },
         { name: 'Zahl und Naht setzen', text: 'Wiederholungen gehen von 2 bis 16. Die Naht ist der Crossfade, von 0 bis 0,1 Sekunden. Zieh auf der Wellenform, wenn nur ein Teil wiederholt werden soll. Die Statuszeile zeigt die Exportlänge.' },
@@ -4592,8 +4632,27 @@ export const de: Catalog = {
       heroAlt: 'Eine Aufnahme von links nach rechts schwenken',
       subtitle: 'Setz Tiefe und Frequenz. Der Schwenk folgt nicht dem Beat.',
       intro: 'Die Tiefe geht von 0 bis 100 %, Start ist 70 %. Die Frequenz geht von 0,05 Hz bis 2 Hz, Start ist 0,2 Hz. Die Position ist die Tiefe mal ein Sinus dieser Frequenz. Bei 0,2 Hz dauert eine volle Links-rechts-Runde 5 Sekunden. Die Bewegung folgt nicht dem Schlagzeug. Tiefe 0 lässt die Datei, wie sie ist. Die Verarbeitung bleibt im Browser.',
-      usesHeading: 'Wofür der Schwenk da ist',
-      uses: ['Schieb ein Pad oder eine Stimme langsam von einem Lautsprecher zum anderen.', 'Gib einer Mono-Aufnahme eine gleichmäßige Links-rechts-Bewegung.', 'Wähl die Frequenz in Hertz, statt den Drums hinterherzulaufen.'],
+      usesHeading: 'Häufige Einsätze für automatisches Panning',
+      uses: [
+        'Wandernde Pads: ein Pad-Ton driftet langsam von einer Seite zur anderen.',
+        'Breitere Vocals: eine Mono-Stimme bekommt eine stete Links-rechts-Bewegung.',
+        'Synth-Bewegung: einer statischen Synthlinie ein Gefühl von Groove geben.',
+        'Ambiente-Effekte: Umgebungssound streicht langsam, ohne Aufmerksamkeit zu fordern.',
+        'Drum-Patterns: Hi-Hats oder Perkussion verteilen sich automatisch links-rechts.',
+        'Spiele-Audio: die Links-rechts-Bewegung eines Objekts, das vorbeistreicht.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Rate und Tiefe getrennt',
+          text: 'Die Rate (0,05-2 Hz) entscheidet das Tempo, die Tiefe (0-100 %) die Weite — langsam bei tiefer Tiefe liest sich als Ambiente, schnell und flach als Groove.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Das Panning wird im Browser berechnet; das Audio wird nie hochgeladen.',
+        },
+      ],
       howTo: [
         { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Datei wird auf deinem Gerät dekodiert.' },
         { name: 'Tiefe und Frequenz setzen', text: 'Die Tiefe ist, wie weit der Ton wandert, von 0 bis 100 %. Die Frequenz ist die Zahl der Schwenks pro Sekunde, von 0,05 bis 2. Zieh auf der Wellenform, wenn nur ein Teil wandern soll.' },
@@ -4649,8 +4708,27 @@ export const de: Catalog = {
       heroAlt: 'Ein langsamer Kreis zwischen den Lautsprechern, plus ein kurzer Raum',
       subtitle: 'Tiefe, Frequenz und Raum sind schon gesetzt. Du legst nur den Schalter um.',
       intro: 'Der Kreis ist fest. Die Tiefe ist 100 %. Die Frequenz ist 0,1 Hz, eine Runde dauert etwa 10 Sekunden. Es bewegt sich der Direktschall. Ein Hall-Send von 25 % nutzt denselben kurzen Raum wie Slowed + Reverb. Tempo und Tonhöhe bleiben. Schalter aus lässt die Datei, wie du sie abgelegt hast. Die Verarbeitung bleibt im Browser.',
-      usesHeading: 'Wofür der Kreis da ist',
-      uses: ['Leg eine Stimme oder ein Pad auf einen langsamen Kreis, ohne eine Frequenz zu wählen.', 'Setz einen kurzen Raum hinter diese Bewegung.', 'Lass das originale Tempo und die originale Tonhöhe.'],
+      usesHeading: 'Häufige Einsätze für 3D-Audio',
+      uses: [
+        'Atmosphärische Stimmen: eine Stimme kreist um den Kopf — Material für Meditation und Entspannung.',
+        'Bewegte Betten: ein statisches Pad bekommt eine Orbit und hat sofort Raum.',
+        'Spielumgebungen: das Ambiente kreist langsam, mit Kopfhörern kommt Präsenz auf.',
+        'Kurzvideo-Haken: ein Satz dreht eine volle Runde als Aufmerksamkeits-Haken.',
+        'Weißes Rauschen nach Maß: weißes Rauschen im Orbit als Einschlafmaterial.',
+        'Podcast-Intros: der Eröffnungssatz umkreist — das Sound-Logo der Sendung.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Ein Schalter erledigt alles',
+          text: 'Der Orbit läuft mit fester Rate, etwa 10 Sekunden pro Runde, mit einem kurzen Reverb dahinter — kein Parameterberg zu stellen.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Tempo und Tonhöhe bleiben',
+          text: 'Nur die Position bewegt sich: Tempo und Tonhöhe unberührt, Zeilen und Rhythmus treffen weiterhin exakt.',
+        },
+      ],
       howTo: [
         { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Datei wird auf deinem Gerät dekodiert.' },
         { name: 'Kreis anlassen', text: 'Der Schalter startet an. Aus, und der Export entspricht der Datei, die du abgelegt hast. Es gibt keinen zweiten Regler für Tiefe, Frequenz oder Raum.' },
@@ -4706,50 +4784,11 @@ export const de: Catalog = {
       heroAlt: 'Ein Metronom-Klick von 40 bis 240 BPM',
       subtitle: 'Hör den Klick, oder speichere 4, 8 oder 16 Takte. Er mischt sich nicht in ein Lied.',
       intro: 'Das Tempo geht von 40 bis 240 BPM. Wähle 2/4, 3/4, 4/4 oder 6/8. Die erste Zählzeit jedes Taktes ist lauter. Drück Start, der Klick läuft, bis du stoppst. Der Export schreibt 4, 8 oder 16 Takte als WAV oder MP3. 6/8 sind sechs Klicks im Takt, bei diesem BPM, nicht zwei. Diese Seite nimmt keine Datei und legt den Klick nicht unter ein Lied. Diese Mischung ist der Mehrspur-Editor. Nichts wird hochgeladen.',
-      usesHeading: 'Häufige Einsätze für Audio-Looping',
+      usesHeading: 'Was du damit machen kannst',
       uses: [
-        'Übungsloops: ein Takt 2-16-mal wiederholt, als Übungsmaterial exportiert.',
-        'Vokalbetten: einen kurzen Sprachhinweis über eine längere Szene strecken.',
-        'Ambience-Verlängerung: Umgebungssound auf die Länge loopen, die du brauchst.',
-        'Rhythmus-Schichtung: einen Drumloop zu einer längeren Groove-Sektion stapeln.',
-        'Meditationsmaterial: einen Klangschalen-Ton oder Ambient zu einer ganzen Sitzung loopen.',
-        'Live-Backup: aus einem kurzen Loop ein langes Asset bauen und auf der Bühne spielen.',
-      ],
-      why: [
-        {
-          icon: 'repeat',
-          title: 'Eine Fuge, die nie knallt',
-          text: 'Ein 0,01-Sekunden-Crossfade an der Naht: die Wiederholung nach oben knallt oder klickt nie.',
-        },
-        {
-          icon: 'sliders',
-          title: 'Wiederholungen und Auswahl frei',
-          text: 'Eine beliebige Zahl von 2 bis 16 Wiederholungen wählen; loope die Auswahl, wenn eine gezogen ist, sonst die ganze Datei.',
-        },
-      ],
-      why: [
-        {
-          icon: 'repeat',
-          title: 'Ein Schalter erledigt alles',
-          text: 'Der Orbit läuft mit fester Rate, etwa 10 Sekunden pro Runde, mit einem kurzen Reverb dahinter — kein Parameterberg zu stellen.',
-        },
-        {
-          icon: 'lock-simple',
-          title: 'Tempo und Tonhöhe bleiben',
-          text: 'Nur die Position bewegt sich: Tempo und Tonhöhe unberührt, Zeilen und Rhythmus treffen weiterhin exakt.',
-        },
-      ],
-      why: [
-        {
-          icon: 'sliders',
-          title: 'Rate und Tiefe getrennt',
-          text: 'Die Rate (0,05-2 Hz) entscheidet das Tempo, die Tiefe (0-100 %) die Weite — langsam bei tiefer Tiefe liest sich als Ambiente, schnell und flach als Groove.',
-        },
-        {
-          icon: 'lock-simple',
-          title: 'Lokal verarbeitet',
-          text: 'Das Panning wird im Browser berechnet; das Audio wird nie hochgeladen.',
-        },
+        'Ein Tempo üben, bevor du im Sprachrekorder aufnimmst.',
+        '4, 8 oder 16 Takte desselben Klicks exportieren.',
+        '6/8 als sechs Klicks hören, der erste ist lauter.',
       ],
       howTo: [
         { name: 'BPM und Taktart setzen', text: 'BPM geht von 40 bis 240. Wähle 2/4, 3/4, 4/4 oder 6/8. Die Seite startet bei 100 BPM und 4/4.' },

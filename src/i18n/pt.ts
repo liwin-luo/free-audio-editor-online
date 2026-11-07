@@ -4197,8 +4197,27 @@ export const pt: Catalog = {
       heroAlt: 'Adicionar um atraso e repetições a uma gravação',
       subtitle: 'Repetições separadas, no atraso que você escolher: de um tapa curto a 0,8 s.',
       intro: 'Eco é uma cópia que volta depois de um intervalo que dá para contar. O atraso vai de alguns centésimos até 0,8 segundos, e as repetições decidem quanto de cada cópia volta a entrar. A mistura molhada fica em 45%. Com atraso zero o arquivo não muda. O processo fica no navegador.',
-      usesHeading: 'Ecos que as pessoas querem',
-      uses: ['Dar um tapa curto num vocal para ele ocupar espaço sem virar mingau.', 'Fazer um hit de guitarra ou de bateria voltar no tempo.', 'Ouvir uma frase voltar uma vez, clara, em vez de uma nuvem de reverb.'],
+      usesHeading: 'Usos comuns do eco de áudio',
+      uses: [
+        'Pontuação de podcast: um slap curto para sublinhar uma frase — daqueles que dão para contar.',
+        'Material de jogo: dê a um bipe de interface um atraso espacial, com algumas repetições morrendo.',
+        'Enfeite vocal: algumas repetições desvanecendo no final de uma voz.',
+        'Terror ao longe: um eco muito espaçado, e o clima vira na hora.',
+        'Enfeites de instrumento: eco num único golpe de violão ou bateria, abrindo o espaço.',
+        'Design de transição: um eco distante entre duas seções para levar o corte.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Um atraso que dá para contar',
+          text: 'Ajuste livre de 0,01 a 0,8 segundos: curto soa a slap, longo a um grito numa sala vazia. O nível de repetição decide quanto de cada cópia sobrevive.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Wet fixado em 45%',
+          text: 'O sinal seco fica intacto e o eco entra a 45% — nada no original se move, só a cópia que volta.',
+        },
+      ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação fica no seu aparelho.' },
         { name: 'Ajuste atraso e repetições', text: 'O atraso é o intervalo antes da primeira cópia, até 0,8 s. As repetições são o retorno, com teto de 55% para não disparar.' },
@@ -4258,8 +4277,27 @@ export const pt: Catalog = {
       howToIntro: 'O controle de intensidade num arquivo real',
       subtitle: 'Um controle de wet, do totalmente seco a uma pequena sala. Você ouve o resultado antes de exportar.',
       intro: 'Reverb é o som que a sala deixa depois que a fonte para: reflexões que se acumulam e decaem. Esta página roda uma sala sintetizada sobre o arquivo que você solta, com um controle de wet do seco ao encharcado. Você ouve o reverb na forma de onda antes de exportar, e o processamento fica no seu navegador.',
-      usesHeading: 'O que uma sala resolve',
-      uses: ['Coloque uma nota de voz seca ou um take vocal num espaço, para ele parar de parecer colado.', 'Dê profundidade a um efeito de jogo ou vídeo antes de entrar na edição.', 'Suavize uma gravação dura de microfone muito próximo sem mexer no nível.'],
+      usesHeading: 'Usos comuns de adicionar reverb',
+      uses: [
+        'Voz no lugar dela: um memo de voz ou uma dublagem fica dentro de um espaço, sem soar colado.',
+        'Sons de jogo: dê profundidade a um bipe antes de entrar na edição.',
+        'Voz seca numa sala: uma voz seca ou a capella ganha a sensação de ter sido gravada numa sala.',
+        'Transições de podcast: uma frase com reverb marca a quebra de seção.',
+        'Atmosfera de instrumento: um violão seco ganha um toque de sala e para de soar oco.',
+        'Manto de ambiente: muito wet e sala longa fazem um espaço vazio ou inquietante.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Um só controle de wet',
+          text: '0-100% decide quanto de sala: pouco wet é um quarto, muito é um auditório. Ouça antes de exportar.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Renderizado localmente',
+          text: 'O reverb é calculado no seu navegador e o áudio nunca é enviado; exporte MP3 ou WAV.',
+        },
+      ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho. O controle de wet começa em zero, que é o arquivo seco.' },
         { name: 'Ajuste o wet', text: 'O controle mistura a sala no sinal seco, de 0 a 100%. Por volta de 25% a voz para de parecer colada no microfone. O botão de reprodução toca o resultado misturado.' },
@@ -4343,8 +4381,27 @@ export const pt: Catalog = {
       heroAlt: 'Achatar os picos de uma gravação limpa',
       subtitle: 'Um controle. O valor inicial é 40%. Em 0% o arquivo fica como você soltou.',
       intro: 'Esta página passa cada amostra por uma curva tanh. No início, 40%, uma amostra de 0,25 vira cerca de 0,69. Em 100% a mesma amostra vai para cerca de 1. Intensidade 0 pula a curva, então o arquivo fica como foi decodificado. O processamento fica no navegador.',
-      usesHeading: 'Quando o clipping é o objetivo',
-      uses: ['Ponha um overdrive curto numa guitarra ou num synth limpo para ele ficar na frente.', 'Deixe uma frase de voz áspera para um trailer, um hit de jogo ou uma vinheta.', 'Comece o grão lo-fi aqui e corte os agudos novos no filtro passa-baixa.'],
+      usesHeading: 'Usos comuns da distorção de áudio',
+      uses: [
+        'Overdrive de violão: um pouco de gritos numa guitarra limpa para ela se adiantar.',
+        'Voz áspera: uma linha para trailer, golpe de jogo ou abertura de podcast.',
+        'Remodelar bateria: recorte um loop de bateria até bater mais forte e pesado.',
+        'Texturas de terror: intensidade extrema torcendo uma voz ou um leito ambiente.',
+        'Aspereza no synth: dê mais aspereza a uma linha de sintetizador limpa demais.',
+        'Telefone retrô: empare com um passa-alta para som de telefone velho ou interfone.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Um controle de leve a pesado',
+          text: 'A intensidade corre contínua do clipping suave ao clipping duro — cada ponto no meio é um timbre novo.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'A distorção é calculada no seu navegador; o áudio nunca é enviado.',
+        },
+      ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho.' },
         { name: 'Ajuste a intensidade', text: '0% é limpo. 40% é o início. 100% é o clipping mais duro que esta página faz.' },
@@ -4555,50 +4612,14 @@ export const pt: Catalog = {
       howToIntro: 'Um arquivo com ruído, um controle de intensidade',
       subtitle: 'Chiado, zumbido e ruído de ventilador constantes caem 20 dB ou mais ao redor da voz. A linha do tempo não se move.',
       intro: 'Esta página passa o RNNoise pela gravação que você soltar, um gate de ruído treinado com voz. Ruído constante como chiado, zumbido ou ventilador cai 20 dB ou mais ao redor da voz, e as palavras mantêm o nível. O gate é um modelo de 150 KB que roda no seu navegador, então o áudio nunca sai do seu dispositivo.',
-      usesHeading: 'Usos comuns de adicionar reverb',
+      usesHeading: 'Casos comuns de remoção de ruído de fundo',
       uses: [
-        'Voz no lugar dela: um memo de voz ou uma dublagem fica dentro de um espaço, sem soar colado.',
-        'Sons de jogo: dê profundidade a um bipe antes de entrar na edição.',
-        'Voz seca numa sala: uma voz seca ou a capella ganha a sensação de ter sido gravada numa sala.',
-        'Transições de podcast: uma frase com reverb marca a quebra de seção.',
-        'Atmosfera de instrumento: um violão seco ganha um toque de sala e para de soar oco.',
-        'Manto de ambiente: muito wet e sala longa fazem um espaço vazio ou inquietante.',
-      ],
-      why: [
-        {
-          icon: 'sliders',
-          title: 'Um só controle de wet',
-          text: '0-100% decide quanto de sala: pouco wet é um quarto, muito é um auditório. Ouça antes de exportar.',
-        },
-        {
-          icon: 'lock-simple',
-          title: 'Renderizado localmente',
-          text: 'O reverb é calculado no seu navegador e o áudio nunca é enviado; exporte MP3 ou WAV.',
-        },
-      ],
-      why: [
-        {
-          icon: 'sliders',
-          title: 'Um controle de leve a pesado',
-          text: 'A intensidade corre contínua do clipping suave ao clipping duro — cada ponto no meio é um timbre novo.',
-        },
-        {
-          icon: 'lock-simple',
-          title: 'Processado localmente',
-          text: 'A distorção é calculada no seu navegador; o áudio nunca é enviado.',
-        },
-      ],
-      why: [
-        {
-          icon: 'repeat',
-          title: 'Um atraso que dá para contar',
-          text: 'Ajuste livre de 0,01 a 0,8 segundos: curto soa a slap, longo a um grito numa sala vazia. O nível de repetição decide quanto de cada cópia sobrevive.',
-        },
-        {
-          icon: 'sliders',
-          title: 'Wet fixado em 45%',
-          text: 'O sinal seco fica intacto e o eco entra a 45% — nada no original se move, só a cópia que volta.',
-        },
+        'Memos de voz: abaixa o zumbido de ventilador e ar-condicionado e deixa a voz limpa.',
+        'Podcasts: limpa o ruído de fundo antes de publicar, sem editor de desktop.',
+        'Aulas: reduz o chiado constante da sala e ajusta a sonoridade depois.',
+        'Entrevistas: limpa a voz — tira o zumbido constante da rua e do ambiente.',
+        'Voz off: se a locução pegou ar-condicionado, remove o ruído antes de sincronizar.',
+        'Reuniões: abaixa o zumbido elétrico e do ventilador para a reprodução ficar menos agressiva.',
       ],
       why: [
         {
@@ -4696,8 +4717,27 @@ export const pt: Catalog = {
       heroAlt: 'Repetir um clipe e cruzar cada emenda',
       subtitle: 'Faça um loop da seleção ou do arquivo inteiro e baixe um arquivo mais longo.',
       intro: 'As repetições vão de 2 a 16. O padrão é 4. Cada emenda é um crossfade linear, 0,01 segundo até você mover, no máximo 0,1 segundo. Arraste uma seleção para repetir só essa parte. Sem seleção, o arquivo inteiro se repete. A exportação para aos 10 minutos. Tom e velocidade ficam iguais. O processo fica no navegador.',
-      usesHeading: 'Para que servem as repetições',
-      uses: ['Transforme um compasso num loop de estudo e exporte.', 'Estique uma fala curta até cobrir uma cena mais longa.', 'Repita um sample com um crossfade curto para a emenda não estalar.'],
+      usesHeading: 'Usos comuns do loop de áudio',
+      uses: [
+        'Loops de prática: um compasso repetido 2-16 vezes, exportado como material de estudo.',
+        'Camas vocais: estique uma linha de voz curta por uma cena mais longa.',
+        'Extensão de ambiente: repita o som ambiente até a duração que precisar.',
+        'Camadas rítmicas: empilhe um loop de bateria numa seção de groove mais longa.',
+        'Material de meditação: repita um sino ou ambiente numa sessão completa.',
+        'Backup ao vivo: construa um material longo de um loop curto e toque no palco.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Uma emenda que nunca estala',
+          text: 'Um crossfade de 0,01 segundo na emenda: a volta ao início nunca estala nem estoura.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Repetições e seleção livres',
+          text: 'Escolha qualquer número de 2 a 16 repetições; repita a seleção se houver uma marcada, ou o arquivo inteiro se não.',
+        },
+      ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho.' },
         { name: 'Ajuste repetições e emenda', text: 'As repetições vão de 2 a 16. A emenda é o crossfade de cada junção, de 0 a 0,1 segundo. Arraste a forma de onda se só uma parte deve repetir. A linha de status mostra a duração.' },
@@ -4755,8 +4795,27 @@ export const pt: Catalog = {
       heroAlt: 'Varrer uma gravação da esquerda para a direita',
       subtitle: 'Você define a profundidade e a taxa. A varredura não segue a batida.',
       intro: 'A profundidade vai de 0 a 100%. O valor inicial é 70%. A taxa vai de 0,05 Hz a 2 Hz. O valor inicial é 0,2 Hz. A posição é a profundidade vezes um seno dessa taxa, então 0,2 Hz leva 5 segundos para ir e voltar. Não segue a bateria. Com profundidade 0 o arquivo fica como está. O processo fica no navegador.',
-      usesHeading: 'Para que serve a varredura',
-      uses: ['Mova um pad ou um vocal devagar de um alto-falante ao outro.', 'Dê a uma tomada mono um movimento constante da esquerda para a direita.', 'Escolha a taxa em hertz, em vez de perseguir a bateria.'],
+      usesHeading: 'Usos comuns do pan automático',
+      uses: [
+        'Pads que vagam: um pad deriva devagar de um lado ao outro.',
+        'Vozes mais largas: uma voz mono ganha um movimento estável esquerda-direita.',
+        'Movimento no synth: dê a uma linha estática sensação de groove.',
+        'Efeitos de ambiente: o som ambiente varre devagar sem chamar atenção.',
+        'Padrões de bateria: chimbal ou percussão se espalham esquerda-direita sozinhos.',
+        'Áudio de jogo: o movimento esquerda-direita de um objeto passando.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Velocidade e profundidade separadas',
+          text: 'A velocidade (0,05-2 Hz) decide o quão rápido; a profundidade (0-100%), o quão largo — lento e profundo soa a ambiente, rápido e raso a groove.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'O pan é calculado no seu navegador; o áudio nunca é enviado.',
+        },
+      ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho.' },
         { name: 'Ajuste profundidade e taxa', text: 'A profundidade é o quanto o som viaja, de 0 a 100%. A taxa é quantas varreduras por segundo, de 0,05 a 2. Arraste a onda se só uma parte deve se mover.' },
@@ -4814,8 +4873,27 @@ export const pt: Catalog = {
       heroAlt: 'Um círculo lento entre os alto-falantes, mais uma sala curta',
       subtitle: 'A profundidade, a taxa e a sala já estão definidas. Você só muda o interruptor.',
       intro: 'O círculo é fixo. A profundidade é 100%. A taxa é 0,1 Hz, então uma volta leva cerca de 10 segundos. Quem se move é o som direto. Um envio de reverb a 25% usa a mesma sala curta do Slowed + Reverb. A velocidade e o tom ficam. Com o interruptor desligado, a exportação é o arquivo que você soltou. O processo fica no navegador.',
-      usesHeading: 'Para que serve o círculo',
-      uses: ['Coloque um vocal ou um pad num círculo lento sem escolher a taxa.', 'Acrescente uma sala curta atrás desse movimento.', 'Mantenha a velocidade original e o tom original.'],
+      usesHeading: 'Usos comuns do áudio 3D',
+      uses: [
+        'Vozes atmosféricas: uma voz circula em torno da cabeça — material para meditar e relaxar.',
+        'Camas em movimento: um pad estático ganha uma órbita e na hora tem espaço.',
+        'Ambientes de jogo: o som ambiente circula devagar, e o fone traz presença.',
+        'Ganchos de vídeo curto: uma frase dá a volta completa como gancho de atenção.',
+        'Ruído branco sob medida: ruído branco em órbita como material para dormir.',
+        'Intros de podcast: a frase de abertura orbita e dá ao programa seu selo sonoro.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Um interruptor faz tudo',
+          text: 'A órbita roda a uma taxa fixa de cerca de 10 segundos por volta, com um reverb curto atrás — sem pilha de parâmetros para ajustar.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Velocidade e tom ficam',
+          text: 'Só a posição se move: velocidade e tom intactos, então falas e ritmo continuam caindo exato.',
+        },
+      ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho.' },
         { name: 'Deixe o círculo ligado', text: 'O interruptor começa ligado. Desligue e a exportação corresponde ao arquivo que você soltou. Não há um segundo controle para profundidade, taxa ou sala.' },
@@ -4873,50 +4951,11 @@ export const pt: Catalog = {
       heroAlt: 'Um clique de metrônomo de 40 a 240 BPM',
       subtitle: 'Ouça o clique, ou salve 4, 8 ou 16 compassos. Ele não entra numa música.',
       intro: 'O tempo vai de 40 a 240 BPM. Escolha 2/4, 3/4, 4/4 ou 6/8. O primeiro tempo de cada compasso é mais forte. Toque e o clique segue até você parar. A exportação grava 4, 8 ou 16 compassos em WAV ou MP3. 6/8 são seis cliques no compasso, nesse BPM, não dois. Esta página não recebe arquivo e não coloca o clique debaixo de uma música. Essa mistura é o editor multitrilha. Nada é enviado.',
-      usesHeading: 'Usos comuns do loop de áudio',
+      usesHeading: 'O que você pode fazer',
       uses: [
-        'Loops de prática: um compasso repetido 2-16 vezes, exportado como material de estudo.',
-        'Camas vocais: estique uma linha de voz curta por uma cena mais longa.',
-        'Extensão de ambiente: repita o som ambiente até a duração que precisar.',
-        'Camadas rítmicas: empilhe um loop de bateria numa seção de groove mais longa.',
-        'Material de meditação: repita um sino ou ambiente numa sessão completa.',
-        'Backup ao vivo: construa um material longo de um loop curto e toque no palco.',
-      ],
-      why: [
-        {
-          icon: 'repeat',
-          title: 'Uma emenda que nunca estala',
-          text: 'Um crossfade de 0,01 segundo na emenda: a volta ao início nunca estala nem estoura.',
-        },
-        {
-          icon: 'sliders',
-          title: 'Repetições e seleção livres',
-          text: 'Escolha qualquer número de 2 a 16 repetições; repita a seleção se houver uma marcada, ou o arquivo inteiro se não.',
-        },
-      ],
-      why: [
-        {
-          icon: 'repeat',
-          title: 'Um interruptor faz tudo',
-          text: 'A órbita roda a uma taxa fixa de cerca de 10 segundos por volta, com um reverb curto atrás — sem pilha de parâmetros para ajustar.',
-        },
-        {
-          icon: 'lock-simple',
-          title: 'Velocidade e tom ficam',
-          text: 'Só a posição se move: velocidade e tom intactos, então falas e ritmo continuam caindo exato.',
-        },
-      ],
-      why: [
-        {
-          icon: 'sliders',
-          title: 'Velocidade e profundidade separadas',
-          text: 'A velocidade (0,05-2 Hz) decide o quão rápido; a profundidade (0-100%), o quão largo — lento e profundo soa a ambiente, rápido e raso a groove.',
-        },
-        {
-          icon: 'lock-simple',
-          title: 'Processado localmente',
-          text: 'O pan é calculado no seu navegador; o áudio nunca é enviado.',
-        },
+        'Ensaiar um tempo antes de gravar no gravador de voz.',
+        'Exportar 4, 8 ou 16 compassos do mesmo clique.',
+        'Ouvir 6/8 como seis cliques, com o primeiro mais forte.',
       ],
       howTo: [
         { name: 'Defina BPM e compasso', text: 'O BPM vai de 40 a 240. Escolha 2/4, 3/4, 4/4 ou 6/8. A página começa em 100 BPM e 4/4.' },
