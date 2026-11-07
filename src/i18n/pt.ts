@@ -5150,11 +5150,26 @@ export const pt: Catalog = {
       heroAlt: 'Um clique de metrônomo de 40 a 240 BPM',
       subtitle: 'Ouça o clique, ou salve 4, 8 ou 16 compassos. Ele não entra numa música.',
       intro: 'O tempo vai de 40 a 240 BPM. Escolha 2/4, 3/4, 4/4 ou 6/8. O primeiro tempo de cada compasso é mais forte. Toque e o clique segue até você parar. A exportação grava 4, 8 ou 16 compassos em WAV ou MP3. 6/8 são seis cliques no compasso, nesse BPM, não dois. Esta página não recebe arquivo e não coloca o clique debaixo de uma música. Essa mistura é o editor multitrilha. Nada é enviado.',
-      usesHeading: 'O que você pode fazer',
+      usesHeading: 'Usos comuns do metrônomo',
       uses: [
-        'Ensaiar um tempo antes de gravar no gravador de voz.',
-        'Exportar 4, 8 ou 16 compassos do mesmo clique.',
-        'Ouvir 6/8 como seis cliques, com o primeiro mais forte.',
+        'Antes de gravar: pratique no BPM alvo até firmar, depois grave.',
+        'Exportar guia: exporte o clique de 4, 8 ou 16 compassos e ponha sob o projeto do DAW.',
+        'Praticar instrumento: toque no pulso, do lento ao rápido.',
+        'Treinar ritmo: troque o compasso e pratique padrões diferentes.',
+        'Ensaio de dança: marque o compasso no BPM da música e ensaie os passos.',
+        'Ritmo de corrida: ajuste o BPM da passada e ritme a corrida.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: '40-240 BPM com compasso',
+          text: 'Tempo e compasso ajustáveis: da velocidade de estudo até a de palco, sem parar.',
+        },
+        {
+          icon: 'volume',
+          title: 'Guia exportável',
+          text: 'Exporte o clique como áudio de 4, 8 ou 16 compassos, de referência sob o projeto.',
+        },
       ],
       howTo: [
         { name: 'Defina BPM e compasso', text: 'O BPM vai de 40 a 240. Escolha 2/4, 3/4, 4/4 ou 6/8. A página começa em 100 BPM e 4/4.' },
@@ -5213,8 +5228,27 @@ export const pt: Catalog = {
       howToIntro: 'Toque, e a leitura se estabiliza',
       subtitle: 'Bata em qualquer tecla ou botão no ritmo. O número se firma em umas quatro batidas.',
       intro: 'Toque a música em qualquer lugar, bata nesta página a cada batida e leia o tempo em BPM. O número usa uma média aparada dos seus intervalos, então uma batida adiantada ou perdida não o arrasta; 2,5 segundos sem bater começam uma contagem nova. Não há arquivo para abrir e nada é enviado; as batidas nunca saem desta página.',
-      usesHeading: 'Para que serve um BPM batido',
-      uses: ['Ajustar um loop de estudo ou um metrônomo ao tempo de uma música que você está aprendendo.', 'Ver se duas faixas se encaixam antes de tentar uma transição.', 'Ler o tempo de uma melodia na sua cabeça mais rápido do que descrevê-la para uma ferramenta.'],
+      usesHeading: 'Usos comuns de marcar o BPM',
+      uses: [
+        'Ritmo de estudo: ponha o [metrônomo](/metronome) na velocidade da música que está aprendendo.',
+        'Pré-checagem do mashup: veja se os BPMs de duas faixas se encaixam.',
+        'Medir ao vivo: o tempo do arranjo atual no ensaio da banda.',
+        'Música de corrida: meça sua passada e escolha músicas com o BPM que casa.',
+        'Ensinar dança: bata os pontos de ritmo da coreografia para o grupo.',
+        'Música de vídeo: meça quantos BPM o ritmo da edição pede.',
+      ],
+      why: [
+        {
+          icon: 'clock-counter-clockwise',
+          title: 'Firma em quatro batidas',
+          text: 'Por volta de quatro batidas a leitura assenta: toma a média aparada dos intervalos, e uma batida errada não a arrasta.',
+        },
+        {
+          icon: 'check',
+          title: 'Sem arquivos',
+          text: 'Só contam os milissegundos entre toques — sem arquivos, sem envio; mede até por caixa de som ao vivo.',
+        },
+      ],
       howTo: [
         { name: 'Toque a música', text: 'De onde você quiser. A página não precisa do arquivo de áudio, então o alto-falante do celular do lado do computador funciona bem.' },
         { name: 'Bata no ritmo', text: 'Bata no botão, ou mantenha o foco na página e aperte a barra de espaço a cada batida. O número se firma após umas quatro batidas e vai afinando enquanto você continua.' },
@@ -5261,11 +5295,26 @@ export const pt: Catalog = {
       heroAlt: 'Ler o BPM e o tom de um arquivo de áudio',
       subtitle: 'Dois números. Nenhum botão que mova o tom.',
       intro: 'Solte um arquivo. A página lê BPM de 60 a 180, e um tom: uma nota mais maior ou menor. O BPM é o vão mais forte entre os ataques. Um vão fora dessa faixa é dividido ou dobrado até cair dentro. O tom é o perfil maior ou menor fixo que melhor combina com as classes de altura. O silêncio mostra «Não dá para ler», não 0 BPM e não C maior. Só os primeiros 60 segundos entram. Um arquivo com menos de 2 segundos não tem BPM. Esta página não muda o arquivo. Mover o tom é o alterador de tom. Nada é enviado.',
-      usesHeading: 'O que você pode ler',
+      usesHeading: 'Usos comuns de detectar tom e BPM',
       uses: [
-        'O tempo de um loop antes de mudar a velocidade.',
-        'O tom de uma tomada antes de movê-la no alterador de tom.',
-        'Um resultado sem leitura num arquivo em silêncio, em vez de 0 BPM ou C maior.',
+        'Bater o mashup: leia primeiro o BPM e decida se muda o tempo.',
+        'Referência para transportar: leia o tom e leve ao alvo no [mudador de tom](/pitch-changer).',
+        'Prática acompanhada: escala no tom lido, metrônomo no BPM lido.',
+        'Organizar samples: etiquete sua biblioteca de samples com tom e velocidade.',
+        'Preparar o cover: confirme o tom original e decida quantos semitons subir.',
+        'Planejar o remix: antes de remixar, saiba o tempo e o tom do material.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'A leitura já dá a conclusão',
+          text: 'BPM e tom numa única passada: mudar tempo, transportar ou pôr o metrônomo têm base, sem chute.',
+        },
+        {
+          icon: 'check',
+          title: 'O arquivo fica como está',
+          text: 'Só lê, não toca no áudio: no fim da detecção nenhuma amostra se moveu, e não precisa exportar.',
+        },
       ],
       howTo: [
         { name: 'Solte um arquivo', text: 'Áudio, ou um vídeo com trilha. O navegador decodifica. Nada é enviado.' },
@@ -5477,8 +5526,27 @@ export const pt: Catalog = {
       heroAlt: 'Cortar uma gravação em arquivos iguais',
       subtitle: 'Partes iguais, de 2 a 16, juntas num zip.',
       intro: 'Este divisor de áudio corta um arquivo em partes iguais. A conta vai de 2 a 16 e começa em 2, ou seja, em duas partes. Cada parte tem o mesmo tamanho, com no máximo uma amostra de diferença. Arraste uma seleção para dividir só esse trecho. Sem seleção, o arquivo inteiro é dividido. As partes baixam num zip. A decodificação e os cortes ficam no seu navegador.',
-      usesHeading: 'Para que servem as partes',
-      uses: ['Divida um MP3 em vários arquivos quando um só é longo demais para enviar.', 'Quebre um áudio de voz em pedaços iguais e mande um de cada vez.', 'Divida um arquivo de áudio em partes sem procurar silêncio.'],
+      usesHeading: 'Usos comuns de dividir MP3',
+      uses: [
+        'Dividir o grandalhão: um MP3 grande demais para enviar, cortado em pedaços que passam.',
+        'Memos em doses: divida um memo longo em partes iguais e digira uma a uma.',
+        'Adaptar ao app: se o aplicativo recusa arquivo grande, corte na metade e ele vai.',
+        'Prática em trechos: divida a aula de idioma ou o treino em partes iguais e pratique uma a uma.',
+        'Arquivo em fatias: corte gravações longas em fatias fixas para achar depois.',
+        'Material candidato: reparta em vários candidatos, escolha o melhor e corte fino no cortador.',
+      ],
+      why: [
+        {
+          icon: 'scissors',
+          title: 'Corta na amostra, igual até o fio',
+          text: 'Os pedaços saem iguais, com no máximo uma amostra de diferença; sem sobreposição nem vão. Com seleção, corta só o trecho; sem, o arquivo inteiro.',
+        },
+        {
+          icon: 'layers',
+          title: 'Uma exportação, empacotada em ZIP',
+          text: 'De 2 a 16 partes à escolha, numeradas em ordem e embrulhadas num ZIP. MP3 até 320 kbps, WAV guarda as amostras originais.',
+        },
+      ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. Ele é decodificado no seu aparelho.' },
         { name: 'Defina o número', text: 'As partes vão de 2 a 16. A linha de status diz quantos arquivos saem e quanto dura cada um, mais ou menos. Arraste a forma de onda se só um trecho deve ser dividido.' },

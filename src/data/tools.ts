@@ -6528,11 +6528,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Hear the click, or save 4, 8, or 16 bars. It does not mix into a song.',
     intro:
       'Set a tempo from 40 to 240 BPM. Pick 2/4, 3/4, 4/4, or 6/8. The first beat of each bar is louder. Press play and the click runs until you stop it. Export writes 4, 8, or 16 bars as WAV or MP3. 6/8 is six clicks in the bar at that BPM, not two. This page does not take a file and does not lay the click under a song. That mix is the multi-track editor. Nothing is uploaded.',
-    usesHeading: 'What you can do with it',
+    usesHeading: 'Common uses for the metronome',
     uses: [
-      'Practice a tempo before you record on the voice recorder.',
-      'Export 4, 8, or 16 bars of the same click.',
-      'Hear 6/8 as six clicks, with the first one louder.',
+      'Before recording: practise at the target BPM until it holds, then roll.',
+      'Export a guide track: print the click over 4, 8 or 16 bars and lay it under the DAW project.',
+      'Instrument practice: play against the pulse, from slow to fast.',
+      'Rhythm training: switch the time signature and drill different patterns.',
+      'Dance rehearsal: set the beat to the song BPM and run the steps.',
+      'Running cadence: set the BPM of your stride and pace the run.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: '40-240 BPM plus time signature',
+        text: 'Both tempo and meter adjust freely: from practice speed straight through to stage speed.',
+      },
+      {
+        icon: 'volume',
+        title: 'A guide track you can export',
+        text: 'Print the click as 4, 8 or 16 bars of audio and lay it under the project as the beat reference.',
+      },
     ],
     howTo: [
       {
@@ -6640,11 +6655,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Tap any key or button on the beat. The number settles in about four taps.',
     intro:
       'Play the song anywhere, tap this page on every beat, and read the tempo in BPM. The readout takes a trimmed mean of your tapping intervals, so one early or missed tap does not drag it, and 2.5 seconds without a tap starts a fresh count. There is no file to open and nothing to upload; the taps never leave this page.',
-    usesHeading: 'What a tapped BPM is for',
+    usesHeading: 'Common uses for tapping the BPM',
     uses: [
-      'Set a practice loop or a metronome to the tempo of a song you are learning.',
-      'Check whether two tracks will sit together before you try a blend.',
-      'Read the tempo of a melody in your head faster than describing it to a tool.',
+      'Practice pace: set the [metronome](/metronome) to the speed of the song you are learning.',
+      'Mashup pre-check: see whether two tracks BPM-match each other.',
+      'Measure on the spot: the tempo of the current arrangement at band rehearsal.',
+      'Running music: measure your stride and pick songs whose BPM matches.',
+      'Teaching dance: tap the rhythm points of the choreography for the class.',
+      'Video scoring: measure how many BPM the edit rhythm calls for.',
+    ],
+    why: [
+      {
+        icon: 'clock-counter-clockwise',
+        title: 'Settled in four taps',
+        text: 'After about four taps the reading stands: it takes the trimmed mean of the intervals, and one sloppy tap does not drag it.',
+      },
+      {
+        icon: 'check',
+        title: 'No files needed',
+        text: 'All that counts is the milliseconds between taps — no files, no upload; it works over a speaker live.',
+      },
     ],
     howTo: [
       {
@@ -6747,11 +6777,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Two numbers. No button that moves the pitch.',
     intro:
       'Drop a file. The page reads BPM from 60 to 180, and a key: a pitch plus major or minor. Each key also shows its Camelot code, the notation DJs use for harmonic mixing. BPM is the strongest gap between onsets. A gap outside that range is halved or doubled until it lands inside. The key is the major or minor profile with the highest weight among the twelve. Silence shows “Can’t read”, not 0 BPM and not C major. Only the first 60 seconds are read. A file shorter than 2 seconds has no BPM. This page does not change the file. Moving the pitch is the pitch changer. Nothing is uploaded.',
-    usesHeading: 'What you can read',
+    usesHeading: 'Common uses for key and BPM detection',
     uses: [
-      'The tempo of a loop before you change its speed.',
-      'The key of a take before you move it on the pitch changer.',
-      'An unread result on a silent file, instead of 0 BPM or C major.',
+      'Beat-match the mashup: read the BPM first, then decide whether the tempo needs moving.',
+      'Transposition reference: read the key, then carry it to the target in the [pitch changer](/pitch-changer).',
+      'Accompanied practice: scales in the key it reads, a metronome at the BPM it reads.',
+      'Sample housekeeping: label your sample library with key and tempo.',
+      'Cover preparation: confirm the original key and decide how many semitones up.',
+      'Production planning: know the tempo and key of the source before the remix.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'The reading is the conclusion',
+        text: 'BPM and key in one pass: changing tempo, transposing or setting the metronome all have a basis instead of a hunch.',
+      },
+      {
+        icon: 'check',
+        title: 'The file stays as it is',
+        text: 'It reads and never touches the audio: when detection finishes, not one sample has moved, and there is nothing to export.',
+      },
     ],
     howTo: [
       {
@@ -6864,11 +6909,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Equal parts, from 2 to 16, saved together in one zip.',
     intro:
       'This audio splitter cuts one file into equal parts. The count runs from 2 to 16, and it starts at 2, which is a split into two parts. Each part is the same length, give or take one sample. Drag a selection to split only that span. With no selection, the whole file is split. The parts download as one zip. Decoding and the cuts stay in your browser.',
-    usesHeading: 'What the parts are for',
+    usesHeading: 'Common uses for splitting an MP3',
     uses: [
-      'Split an MP3 into multiple files when one file is too long to send.',
-      'Break a voice memo into equal pieces you can share one at a time.',
-      'Split an audio file into parts without hunting for silence.',
+      'Split the giant: an MP3 too large to send, cut into pieces that pass.',
+      'Memos in doses: divide a long memo into equal parts and digest one at a time.',
+      'Fit the app: when an app refuses big files, halve the file and it goes through.',
+      'Practice sections: cut a language course or instrument drill into equal parts and drill one by one.',
+      'Archive slices: slice long recordings at fixed lengths so they can be found again.',
+      'Candidate material: deal out several candidates, pick the best, then trim it fine in the trimmer.',
+    ],
+    why: [
+      {
+        icon: 'scissors',
+        title: 'Cut on samples, equal to the hair',
+        text: 'The parts come out equal to within one sample; no overlap and no gaps. With a selection drawn, only that span cuts; without one, the whole file does.',
+      },
+      {
+        icon: 'layers',
+        title: 'One export, packed as ZIP',
+        text: 'Choose 2 to 16 parts, numbered in order and wrapped into one ZIP. MP3 up to 320 kbps, WAV keeps the original samples.',
+      },
     ],
     howTo: [
       {

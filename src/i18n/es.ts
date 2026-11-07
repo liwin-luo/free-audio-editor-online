@@ -5016,11 +5016,26 @@ export const es: Catalog = {
       heroAlt: 'Un clic de metrónomo de 40 a 240 BPM',
       subtitle: 'Escucha el clic, o guarda 4, 8 o 16 compases. No se mezcla con una canción.',
       intro: 'El tempo va de 40 a 240 BPM. Elige 2/4, 3/4, 4/4 o 6/8. El primer pulso de cada compás es más fuerte. Pulsa reproducir y el clic sigue hasta que paras. La exportación escribe 4, 8 o 16 compases en WAV o MP3. 6/8 son seis clics en el compás, a ese BPM, no dos. Esta página no recibe un archivo y no pone el clic debajo de una canción. Esa mezcla es el editor multipista. No se sube nada.',
-      usesHeading: 'Qué puedes hacer',
+      usesHeading: 'Usos habituales del metrónomo',
       uses: [
-        'Ensayar un tempo antes de grabar en la grabadora de voz.',
-        'Exportar 4, 8 o 16 compases del mismo clic.',
-        'Oír el 6/8 como seis clics, con el primero más fuerte.',
+        'Antes de grabar: practica al BPM objetivo hasta asentarlo, y luego graba.',
+        'Exportar una guía: saca el clic de 4, 8 o 16 compases y ponlo bajo el proyecto del DAW.',
+        'Practicar instrumento: toca con el pulso, de lento a rápido.',
+        'Entrenar ritmo: cambia el compás y practica distintos patrones.',
+        'Ensayo de baile: marca el compás al BPM de la canción y ensaya los pasos.',
+        'Ritmo de carrera: pon el BPM de tu zancada y ajusta el trote.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: '40-240 BPM con compás',
+          text: 'El tempo y el compás se ajustan solos: desde velocidad de estudio hasta velocidad de escenario.',
+        },
+        {
+          icon: 'volume',
+          title: 'Guía exportable',
+          text: 'Exporta el clic como audio de 4, 8 o 16 compases, de referencia bajo el proyecto.',
+        },
       ],
       howTo: [
         { name: 'Pon BPM y compás', text: 'El BPM va de 40 a 240. Elige 2/4, 3/4, 4/4 o 6/8. La página empieza en 100 BPM y 4/4.' },
@@ -5079,8 +5094,27 @@ export const es: Catalog = {
       howToIntro: 'Toca, y la lectura se asienta',
       subtitle: 'Toca cualquier tecla o botón a tiempo. La cifra se asienta en unos cuatro toques.',
       intro: 'Pon la canción donde sea, toca esta página en cada pulso y lee el tempo en BPM. La lectura toma una media recortada de tus intervalos, así que un toque adelantado u omitido no la arrastra, y 2,5 segundos sin tocar empiezan una cuenta nueva. No hay archivo que abrir ni nada que subir; los toques nunca salen de esta página.',
-      usesHeading: 'Para qué sirve un BPM a golpe de dedo',
-      uses: ['Pon un bucle de práctica o el metrónomo al tempo de una canción que estás aprendiendo.', 'Comprueba si dos pistas van a encajar antes de intentar una mezcla.', 'Lee el tempo de una melodía que tienes en la cabeza más rápido de lo que tardarías en describírsela a una herramienta.'],
+      usesHeading: 'Usos habituales de marcar el BPM',
+      uses: [
+        'Ritmo de estudio: pon el [metrónomo](/metronome) a la velocidad de la canción que estás aprendiendo.',
+        'Prechequeo del mashup: mira si los BPM de dos temas cuadran entre sí.',
+        'Medir en directo: el tempo del arreglo actual en el ensayo de la banda.',
+        'Música para correr: mide tu zancada y elige canciones con el BPM que casa.',
+        'Enseñar baile: marca los puntos de ritmo de la coreografía al grupo.',
+        'Música de vídeo: mide cuántos BPM pide el ritmo del montaje.',
+      ],
+      why: [
+        {
+          icon: 'clock-counter-clockwise',
+          title: 'Se asienta en cuatro golpes',
+          text: 'A las cuatro pulsaciones más o menos la lectura se firma: toma la media recortada de los intervalos, y un golpe fallado no la arrastra.',
+        },
+        {
+          icon: 'check',
+          title: 'Sin archivos',
+          text: 'Lo único que cuenta son los milisegundos entre toques: sin archivos, sin subidas; se mide incluso con altavoz en directo.',
+        },
+      ],
       howTo: [
         { name: 'Pon la canción', text: 'Donde te apetezca. Esta página no necesita el archivo de audio, así que el altavoz de un móvil junto al portátil funciona de sobra.' },
         { name: 'Toca el ritmo', text: 'Toca el botón, o mantén el foco en la página y pulsa la barra espaciadora en cada pulso. La lectura se afirma tras unos cuatro toques y sigue afinándose mientras sigas tocando.' },
@@ -5127,11 +5161,26 @@ export const es: Catalog = {
       heroAlt: 'Leer el BPM y la tonalidad de un archivo de audio',
       subtitle: 'Dos números. Ningún botón que mueva el tono.',
       intro: 'Suelta un archivo. La página lee un BPM de 60 a 180, y una tonalidad: una nota más mayor o menor. El BPM es el hueco más fuerte entre los ataques. Un hueco fuera de ese rango se parte o se dobla hasta caer dentro. La tonalidad es el perfil mayor o menor fijo que mejor encaja con las clases de altura. El silencio muestra «No se puede leer», no 0 BPM y no do mayor. Solo entran los primeros 60 segundos. Un archivo de menos de 2 segundos no tiene BPM. Esta página no cambia el archivo. Mover el tono es el cambiador de tono. No se sube nada.',
-      usesHeading: 'Qué puedes leer',
+      usesHeading: 'Usos habituales de detectar tonalidad y BPM',
       uses: [
-        'El tempo de un bucle antes de cambiar su velocidad.',
-        'La tonalidad de una toma antes de moverla en el cambiador de tono.',
-        'Un resultado sin lectura en un archivo en silencio, en vez de 0 BPM o do mayor.',
+        'Empatar el mashup: lee primero el BPM y decide si hace falta cambiar el tempo.',
+        'Referencia para transportar: lee la tonalidad y llévala al objetivo en el [cambiador de tono](/pitch-changer).',
+        'Práctica acompañada: escala en la tonalidad leída, metrónomo al BPM leído.',
+        'Ordenar samples: etiqueta tu biblioteca de samples con tonalidad y velocidad.',
+        'Preparar el cover: confirma la tonalidad original y decide cuántos semitonos subir.',
+        'Planear el remix: antes de remixar, sabes el tempo y la tonalidad de la fuente.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'La lectura da la conclusión',
+          text: 'BPM y tonalidad de una sola pasada: cambiar tempo, transportar o poner el metrónomo tienen base, sin adivinar a bulto.',
+        },
+        {
+          icon: 'check',
+          title: 'El archivo queda como está',
+          text: 'Solo lee, no toca el audio: al terminar, ni un sample se ha movido, y no hace falta exportar.',
+        },
       ],
       howTo: [
         { name: 'Suelta un archivo', text: 'Audio, o un vídeo con pista de sonido. El navegador lo decodifica. No se sube nada.' },
@@ -5343,8 +5392,27 @@ export const es: Catalog = {
       heroAlt: 'Cortar una grabación en archivos iguales',
       subtitle: 'Partes iguales, de 2 a 16, juntas en un zip.',
       intro: 'Este divisor de audio corta un archivo en partes iguales. El número va de 2 a 16 y empieza en 2, o sea en dos partes. Cada parte dura lo mismo, con una muestra de diferencia como máximo. Arrastra una selección para dividir solo ese tramo. Sin selección, se divide el archivo entero. Las partes se descargan en un zip. La decodificación y los cortes se quedan en tu navegador.',
-      usesHeading: 'Para qué sirven las partes',
-      uses: ['Divide un MP3 en varios archivos cuando uno solo es demasiado largo para enviarlo.', 'Parte una nota de voz en trozos iguales y compártelos de uno en uno.', 'Divide un archivo de audio en partes sin buscar silencios.'],
+      usesHeading: 'Usos habituales de partir MP3',
+      uses: [
+        'Partir lo larguísimo: un MP3 demasiado grande para enviarlo, cortado en trozos que sí pasan.',
+        'Memos por tandas: divide un memo largo en partes iguales y digiérelas una a una.',
+        'Adaptarse a la app: si la aplicación rechaza archivos grandes, córtalo por la mitad y se va.',
+        'Práctica por tramos: parte la clase de idioma o el ensayo en trozos iguales y practica uno a uno.',
+        'Archivo por rebanadas: corta grabaciones largas en lonchas fijas para encontrarlas luego.',
+        'Material candidato: reparte en varios candidatos, elige el mejor y córtalo fino en el recortador.',
+      ],
+      why: [
+        {
+          icon: 'scissors',
+          title: 'Corta en muestras, iguales al pelo',
+          text: 'Los trozos salen iguales salvo una muestra como mucho; sin solapes ni huecos. Con selección, corta solo ese tramo; sin ella, el archivo entero.',
+        },
+        {
+          icon: 'layers',
+          title: 'Una exportación, empaquetada en ZIP',
+          text: 'De 2 a 16 partes a elegir, numeradas en orden y envueltas en un ZIP. MP3 hasta 320 kbps, WAV conserva las muestras originales.',
+        },
+      ],
       howTo: [
         { name: 'Suelta el audio', text: 'Cualquier MP3, WAV, M4A, OGG o FLAC. Se decodifica en tu dispositivo.' },
         { name: 'Elige el número', text: 'Las partes van de 2 a 16. La línea de estado dice cuántos archivos salen y cuánto dura cada uno, más o menos. Arrastra la onda si solo quieres dividir un tramo.' },

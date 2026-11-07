@@ -4983,11 +4983,26 @@ export const de: Catalog = {
       heroAlt: 'Ein Metronom-Klick von 40 bis 240 BPM',
       subtitle: 'Hör den Klick, oder speichere 4, 8 oder 16 Takte. Er mischt sich nicht in ein Lied.',
       intro: 'Das Tempo geht von 40 bis 240 BPM. Wähle 2/4, 3/4, 4/4 oder 6/8. Die erste Zählzeit jedes Taktes ist lauter. Drück Start, der Klick läuft, bis du stoppst. Der Export schreibt 4, 8 oder 16 Takte als WAV oder MP3. 6/8 sind sechs Klicks im Takt, bei diesem BPM, nicht zwei. Diese Seite nimmt keine Datei und legt den Klick nicht unter ein Lied. Diese Mischung ist der Mehrspur-Editor. Nichts wird hochgeladen.',
-      usesHeading: 'Was du damit machen kannst',
+      usesHeading: 'Häufige Einsätze für das Metronom',
       uses: [
-        'Ein Tempo üben, bevor du im Sprachrekorder aufnimmst.',
-        '4, 8 oder 16 Takte desselben Klicks exportieren.',
-        '6/8 als sechs Klicks hören, der erste ist lauter.',
+        'Vor der Aufnahme: erst im Ziel-BPM stabil üben, dann aufnehmen.',
+        'Guide-Spur exportieren: den Klick über 4, 8 oder 16 Takte exportieren und unters DAW-Projekt legen.',
+        'Instrument üben: mit dem Puls spielen, von langsam nach schnell.',
+        'Rhythmus trainieren: die Taktart wechseln und verschiedene Patterns üben.',
+        'Choreo probe: aufs BPM des Songs stellen und die Schritte proben.',
+        'Lauftakt: das BPM der Schrittfrequenz einstellen und den Lauf rhythmieren.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: '40-240 BPM mit Taktart',
+          text: 'Tempo und Taktart sind frei: von Übungs-Tempo bis Bühnen-Tempo durchziehen.',
+        },
+        {
+          icon: 'volume',
+          title: 'Guide-Spur exportierbar',
+          text: 'Den Klick als Audio über 4, 8 oder 16 Takte exportieren, als Taktreferenz im Projekt.',
+        },
       ],
       howTo: [
         { name: 'BPM und Taktart setzen', text: 'BPM geht von 40 bis 240. Wähle 2/4, 3/4, 4/4 oder 6/8. Die Seite startet bei 100 BPM und 4/4.' },
@@ -5046,8 +5061,27 @@ export const de: Catalog = {
       howToIntro: 'Tippen, und die Anzeige wird ruhig',
       subtitle: 'Tippe auf den Beat, mit irgendeiner Taste oder dem Button. Die Zahl stabilisiert sich in etwa vier Taps.',
       intro: 'Spiel den Song irgendwo, tippe diese Seite auf jedem Beat, und lies das Tempo in BPM. Die Anzeige nimmt einen getrimmten Mittelwert deiner Tap-Abstände, deshalb zieht ein früher oder verpasster Tap sie nicht runter, und 2,5 Sekunden ohne Tap starten eine frische Zählung. Es gibt keine Datei zu öffnen und nichts wird hochgeladen; die Taps verlassen diese Seite nie.',
-      usesHeading: 'Wofür ein getipptes BPM gut ist',
-      uses: ['Stell eine Übelschleife oder ein Metronom auf das Tempo eines Songs, den du lernst.', 'Prüf, ob zwei Tracks zusammenpassen, bevor du einen Blend versuchst.', 'Lies das Tempo einer Melodie in deinem Kopf schneller, als es einem Tool zu beschreiben.'],
+      usesHeading: 'Häufige Einsätze fürs BPM-Klopfen',
+      uses: [
+        'Übungstempo: das [Metronom](/metronome) auf die Geschwindigkeit des gelernten Songs stellen.',
+        'Mashup-Vorcheck: ob die BPM zweier Tracks zueinander passen.',
+        'Live messen: das Tempo des aktuellen Arrangements in der Bandprobe.',
+        'Laufmusik: die eigene Schrittfrequenz messen und Songs mit passendem BPM wählen.',
+        'Tanzunterricht: die Rhythmuspunkte der Choreo für die Gruppe anklopfen.',
+        'Videomusik: messen, wie viele BPM der Schnittrhythmus braucht.',
+      ],
+      why: [
+        {
+          icon: 'clock-counter-clockwise',
+          title: 'Vier Schläge, und es steht',
+          text: 'Nach rund vier Klicks steht die Anzeige: sie nimmt den beschnittenen Mittelwert der Abstände, ein verhauener Schlag reißt sie nicht mit.',
+        },
+        {
+          icon: 'check',
+          title: 'Ohne Dateien',
+          text: 'Gezählt werden nur die Millisekunden zwischen den Klicks — keine Dateien, kein Upload; läuft auch über Boxen live.',
+        },
+      ],
       howTo: [
         { name: 'Song abspielen', text: 'Wo du willst. Diese Seite braucht die Audiodatei nicht, der Handy-Lautsprecher neben dem Laptop reicht locker.' },
         { name: 'Den Beat tippen', text: 'Tippe auf den Button, oder halte den Fokus auf der Seite und drück auf jedem Beat die Leertaste. Die Anzeige festigt sich nach etwa vier Taps und verfeinert sich weiter, solange du weiter tippst.' },
@@ -5094,11 +5128,26 @@ export const de: Catalog = {
       heroAlt: 'BPM und Tonart einer Audiodatei lesen',
       subtitle: 'Zwei Zahlen. Kein Knopf, der die Tonhöhe verschiebt.',
       intro: 'Leg eine Datei ab. Die Seite liest BPM von 60 bis 180, und eine Tonart: ein Ton plus Dur oder Moll. BPM ist der stärkste Abstand zwischen Einsätzen. Ein Abstand außerhalb dieses Bereichs wird halbiert oder verdoppelt, bis er innen liegt. Die Tonart ist das feste Dur- oder Mollprofil, das am besten zu den Tonklassen passt. Stille zeigt «Nicht lesbar», nicht 0 BPM und nicht C-Dur. Nur die ersten 60 Sekunden werden gelesen. Eine Datei unter 2 Sekunden hat kein BPM. Diese Seite ändert die Datei nicht. Die Tonhöhe verschieben ist der Pitch-Changer. Nichts wird hochgeladen.',
-      usesHeading: 'Was du lesen kannst',
+      usesHeading: 'Häufige Einsätze für Tonart- und BPM-Erkennung',
       uses: [
-        'Das Tempo einer Schleife, bevor du die Geschwindigkeit änderst.',
-        'Die Tonart einer Aufnahme, bevor du sie im Pitch-Changer verschiebst.',
-        'Ein unlesbares Ergebnis bei einer stillen Datei, statt 0 BPM oder C-Dur.',
+        'Mashup angleichen: erst den BPM lesen, dann entscheiden, ob das Tempo angepasst wird.',
+        'Transposition-Referenz: erst die Tonart lesen, dann im [Tonhöhen-Wandler](/pitch-changer) ins Ziel holen.',
+        'Begleitet üben: Skala in der gelesenen Tonart, Metronom auf den gelesenen BPM.',
+        'Samples ordnen: die Sample-Bibliothek mit Tonart und Tempo beschriften.',
+        'Cover vorbereiten: die Original-Tonart bestätigen und entscheiden, wie viele Halbtöne rauf.',
+        'Remix planen: vor dem Remix Tempo und Tonart des Materials kennen.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Die Anzeige liefert die Entscheidung',
+          text: 'BPM und Tonart in einem Durchgang: Tempo ändern, transponieren oder Metronom stellen haben eine Basis statt Bauchgefühl.',
+        },
+        {
+          icon: 'check',
+          title: 'Die Datei bleibt, wie sie ist',
+          text: 'Es wird nur gelesen, nie ins Audio gegriffen: nach der Erkennung ist kein Sample gerührt, und ein Export ist unnötig.',
+        },
       ],
       howTo: [
         { name: 'Datei ablegen', text: 'Audio, oder ein Video mit Tonspur. Der Browser dekodiert. Nichts wird hochgeladen.' },
@@ -5310,8 +5359,27 @@ export const de: Catalog = {
       heroAlt: 'Eine Aufnahme in gleiche Dateien schneiden',
       subtitle: 'Gleiche Teile, von 2 bis 16, zusammen in einem Zip.',
       intro: 'Dieser Audio-Splitter schneidet eine Datei in gleiche Teile. Die Zahl läuft von 2 bis 16 und startet bei 2, also in zwei Teilen. Jedes Teil ist gleich lang, höchstens ein Sample Unterschied. Zieh eine Auswahl, um nur diesen Abschnitt zu teilen. Ohne Auswahl wird die ganze Datei geteilt. Die Teile kommen als ein Zip. Dekodierung und Schnitte bleiben in deinem Browser.',
-      usesHeading: 'Wofür die Teile da sind',
-      uses: ['Teile ein MP3 in mehrere Dateien, wenn eine Datei zu lang zum Senden ist.', 'Zerlege eine Sprachnotiz in gleiche Stücke, die du einzeln schicken kannst.', 'Teile eine Audiodatei in Teile, ohne nach Stille zu suchen.'],
+      usesHeading: 'Häufige Einsätze fürs MP3-Teilen',
+      uses: [
+        'Riesiges teilen: ein MP3, zu groß zum Senden, in Häppchen zerlegt, die durchgehen.',
+        'Memos in Rationen: ein langes Memo in gleiche Teile und einer nach dem anderen.',
+        'An die App angepasst: nimmt die Anwendung große Dateien nicht, halbiere sie und sie geht raus.',
+        'Übung in Abschnitten: den Sprachkurs oder Instrumenttest in gleiche Häppchen und einzeln üben.',
+        'Archiv in Scheiben: lange Aufnahmen in feste Längen geschnitten, später auffindbar.',
+        'Kandidatenmaterial: in mehrere Anwärter teilen, den besten nehmen und im Trimmer fein schneiden.',
+      ],
+      why: [
+        {
+          icon: 'scissors',
+          title: 'Schnitt auf Samples, gleich bis aufs Haar',
+          text: 'Die Teile sind gleich lang, höchstens ein Sample Unterschied; ohne Überlappung, ohne Lücke. Mit Auswahl wird nur der Abschnitt geschnitten, ohne den die ganze Datei.',
+        },
+        {
+          icon: 'layers',
+          title: 'Ein Export, als ZIP gepackt',
+          text: '2 bis 16 Teile nach Wahl, der Reihe nach nummeriert und als ZIP heruntergeladen. MP3 bis 320 kbps, WAV behält die Originalsamples.',
+        },
+      ],
       howTo: [
         { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Die Datei wird auf deinem Gerät dekodiert.' },
         { name: 'Zahl festlegen', text: 'Teile laufen von 2 bis 16. Die Statuszeile sagt, wie viele Dateien du bekommst und wie lang jede ungefähr ist. Zieh die Wellenform, wenn nur ein Abschnitt geteilt werden soll.' },
