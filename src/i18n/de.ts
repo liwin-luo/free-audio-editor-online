@@ -4634,11 +4634,26 @@ export const de: Catalog = {
       heroAlt: 'Ein Metronom-Klick von 40 bis 240 BPM',
       subtitle: 'Hör den Klick, oder speichere 4, 8 oder 16 Takte. Er mischt sich nicht in ein Lied.',
       intro: 'Das Tempo geht von 40 bis 240 BPM. Wähle 2/4, 3/4, 4/4 oder 6/8. Die erste Zählzeit jedes Taktes ist lauter. Drück Start, der Klick läuft, bis du stoppst. Der Export schreibt 4, 8 oder 16 Takte als WAV oder MP3. 6/8 sind sechs Klicks im Takt, bei diesem BPM, nicht zwei. Diese Seite nimmt keine Datei und legt den Klick nicht unter ein Lied. Diese Mischung ist der Mehrspur-Editor. Nichts wird hochgeladen.',
-      usesHeading: 'Was du damit machen kannst',
+      usesHeading: 'Häufige Einsätze für automatisches Panning',
       uses: [
-        'Ein Tempo üben, bevor du im Sprachrekorder aufnimmst.',
-        '4, 8 oder 16 Takte desselben Klicks exportieren.',
-        '6/8 als sechs Klicks hören, der erste ist lauter.',
+        'Wandernde Pads: ein Pad-Ton driftet langsam von einer Seite zur anderen.',
+        'Breitere Vocals: eine Mono-Stimme bekommt eine stete Links-rechts-Bewegung.',
+        'Synth-Bewegung: einer statischen Synthlinie ein Gefühl von Groove geben.',
+        'Ambiente-Effekte: Umgebungssound streicht langsam, ohne Aufmerksamkeit zu fordern.',
+        'Drum-Patterns: Hi-Hats oder Perkussion verteilen sich automatisch links-rechts.',
+        'Spiele-Audio: die Links-rechts-Bewegung eines Objekts, das vorbeistreicht.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Rate und Tiefe getrennt',
+          text: 'Die Rate (0,05-2 Hz) entscheidet das Tempo, die Tiefe (0-100 %) die Weite — langsam bei tiefer Tiefe liest sich als Ambiente, schnell und flach als Groove.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Das Panning wird im Browser berechnet; das Audio wird nie hochgeladen.',
+        },
       ],
       howTo: [
         { name: 'BPM und Taktart setzen', text: 'BPM geht von 40 bis 240. Wähle 2/4, 3/4, 4/4 oder 6/8. Die Seite startet bei 100 BPM und 4/4.' },

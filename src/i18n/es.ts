@@ -4667,11 +4667,26 @@ export const es: Catalog = {
       heroAlt: 'Un clic de metrónomo de 40 a 240 BPM',
       subtitle: 'Escucha el clic, o guarda 4, 8 o 16 compases. No se mezcla con una canción.',
       intro: 'El tempo va de 40 a 240 BPM. Elige 2/4, 3/4, 4/4 o 6/8. El primer pulso de cada compás es más fuerte. Pulsa reproducir y el clic sigue hasta que paras. La exportación escribe 4, 8 o 16 compases en WAV o MP3. 6/8 son seis clics en el compás, a ese BPM, no dos. Esta página no recibe un archivo y no pone el clic debajo de una canción. Esa mezcla es el editor multipista. No se sube nada.',
-      usesHeading: 'Qué puedes hacer',
+      usesHeading: 'Usos habituales del paneo automático',
       uses: [
-        'Ensayar un tempo antes de grabar en la grabadora de voz.',
-        'Exportar 4, 8 o 16 compases del mismo clic.',
-        'Oír el 6/8 como seis clics, con el primero más fuerte.',
+        'Colchones que vagan: un colchón deriva despacio de un lado al otro.',
+        'Voces más anchas: una voz mono gana un movimiento estable izquierda-derecha.',
+        'Movimiento de sinte: da a una línea estática sensación de groove.',
+        'Efectos de ambiente: el sonido ambiental barre despacio sin robar atención.',
+        'Patrones de batería: los hats o la percusión se reparten izquierda-derecha solos.',
+        'Audio de juegos: el movimiento izquierda-derecha de un objeto que pasa.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Velocidad y profundidad por separado',
+          text: 'La velocidad (0,05-2 Hz) decide qué tan rápido; la profundidad (0-100 %), qué tan ancho — lento y profundo suena a ambiente, rápido y superficial a groove.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Procesado en local',
+          text: 'El paneo se calcula en tu navegador; el audio nunca se sube.',
+        },
       ],
       howTo: [
         { name: 'Pon BPM y compás', text: 'El BPM va de 40 a 240. Elige 2/4, 3/4, 4/4 o 6/8. La página empieza en 100 BPM y 4/4.' },

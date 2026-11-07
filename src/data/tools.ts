@@ -5981,11 +5981,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Set the depth and the rate. The sweep does not follow the beat.',
     intro:
       'Depth runs from 0 to 100%. The start value is 70%. Rate runs from 0.05 Hz to 2 Hz. The start value is 0.2 Hz. Position is depth times a sine of that rate, so 0.2 Hz takes 5 seconds to go left and right and back. It does not follow the drums. Depth at 0 leaves the file as it is. Processing stays in your browser.',
-    usesHeading: 'What the sweep is for',
+    usesHeading: 'Common uses for auto-panning',
     uses: [
-      'Move a pad or a vocal slowly from one speaker to the other.',
-      'Give a mono take a steady left-right motion.',
-      'Pick the rate in hertz, instead of chasing the drums.',
+      'Wandering pads: a pad timbre drifts slowly from one side to the other.',
+      'Wider vocals: a mono voice gains a steady left-right motion.',
+      'Synth movement: give a static synth line a sense of groove.',
+      'Ambience effects: environmental sound sweeps slowly without grabbing attention.',
+      'Drum patterns: hi-hats or percussion spread left-right automatically.',
+      'Game audio: the left-right motion of an object sweeping past.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Rate and depth set apart',
+        text: 'Rate 0.05-2 Hz decides how fast, depth 0-100% decides how wide — slow with deep depth reads as ambience, fast and shallow as groove.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The panning is computed in your browser; the audio is never uploaded.',
+      },
     ],
     howTo: [
       {

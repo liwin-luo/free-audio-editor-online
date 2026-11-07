@@ -4801,11 +4801,26 @@ export const pt: Catalog = {
       heroAlt: 'Um clique de metrônomo de 40 a 240 BPM',
       subtitle: 'Ouça o clique, ou salve 4, 8 ou 16 compassos. Ele não entra numa música.',
       intro: 'O tempo vai de 40 a 240 BPM. Escolha 2/4, 3/4, 4/4 ou 6/8. O primeiro tempo de cada compasso é mais forte. Toque e o clique segue até você parar. A exportação grava 4, 8 ou 16 compassos em WAV ou MP3. 6/8 são seis cliques no compasso, nesse BPM, não dois. Esta página não recebe arquivo e não coloca o clique debaixo de uma música. Essa mistura é o editor multitrilha. Nada é enviado.',
-      usesHeading: 'O que você pode fazer',
+      usesHeading: 'Usos comuns do pan automático',
       uses: [
-        'Ensaiar um tempo antes de gravar no gravador de voz.',
-        'Exportar 4, 8 ou 16 compassos do mesmo clique.',
-        'Ouvir 6/8 como seis cliques, com o primeiro mais forte.',
+        'Pads que vagam: um pad deriva devagar de um lado ao outro.',
+        'Vozes mais largas: uma voz mono ganha um movimento estável esquerda-direita.',
+        'Movimento no synth: dê a uma linha estática sensação de groove.',
+        'Efeitos de ambiente: o som ambiente varre devagar sem chamar atenção.',
+        'Padrões de bateria: chimbal ou percussão se espalham esquerda-direita sozinhos.',
+        'Áudio de jogo: o movimento esquerda-direita de um objeto passando.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Velocidade e profundidade separadas',
+          text: 'A velocidade (0,05-2 Hz) decide o quão rápido; a profundidade (0-100%), o quão largo — lento e profundo soa a ambiente, rápido e raso a groove.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'O pan é calculado no seu navegador; o áudio nunca é enviado.',
+        },
       ],
       howTo: [
         { name: 'Defina BPM e compasso', text: 'O BPM vai de 40 a 240. Escolha 2/4, 3/4, 4/4 ou 6/8. A página começa em 100 BPM e 4/4.' },
