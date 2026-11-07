@@ -2092,11 +2092,26 @@ export const es: Catalog = {
       subtitle: 'Decodifica MP3 a audio PCM limpio en segundos, en tu navegador y sin subir nada.',
       intro:
         'Convertir MP3 a WAV no recupera lo que la compresión eliminó — no hay herramienta que pueda. Lo que te da es el audio decodificado como PCM limpio de 16 bits, sin más pérdidas: la entrada correcta para editores de audio, samplers y todo lo que pide WAV, y el punto de partida más seguro si el archivo va a editarse. La decodificación ocurre en tu dispositivo, normalmente en un segundo.',
-      usesHeading: 'Razones para pasar a WAV',
+      usesHeading: 'Usos habituales de MP3 a WAV',
       uses: [
-        'Darle a un MP3 a un editor, DAW o app que solo acepta WAV.',
-        'Cortar la pérdida de generación: edita en WAV y vuelve a comprimir a MP3 solo al final.',
-        'Guardar una copia decodificada junto al original antes de seguir editando.',
+        'Encaje de software: entrega el MP3 a un editor, DAW o plataforma que solo acepta WAV.',
+        'Evita la pérdida de generación: edita sobre el WAV y comprime a MP3 una sola vez al final.',
+        'Reparación de audio: decodifica a una base sin pérdidas antes de [quitar ruido](/noise-remover) o [ecualizar](/equalizer); una capa de pérdida menos.',
+        'Preparar la transcripción: algunos transcriptores prefieren WAV; decodifica primero y luego entrégalo.',
+        'Material para samplers: pasa un MP3 a WAV para un sampler o una caja de ritmos.',
+        'Copia de archivo: guarda una versión sin comprimir para el máster y la revisión de calidad.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Decodificado, no recompreso',
+          text: 'El WAV conserva todas las muestras decodificadas; este paso no pierde nada, así que editar y reparar ocurre sobre una base sin pérdidas.',
+        },
+        {
+          icon: 'layers',
+          title: 'Lotes empaquetados',
+          text: 'Suelta varios MP3 a la vez; cada uno se decodifica en orden y se empaqueta en un único ZIP.',
+        },
       ],
       howTo: [
         {

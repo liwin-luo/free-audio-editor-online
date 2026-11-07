@@ -2091,11 +2091,26 @@ export const pt: Catalog = {
       subtitle: 'Decodifique MP3 em áudio PCM limpo em segundos — direto no navegador, sem enviar nada.',
       intro:
         'Converter MP3 para WAV não devolve o que a compressão removeu — nenhum app faz isso. O que ele entrega é o áudio decodificado como PCM limpio de 16 bits, sem novas perdas: a entrada certa para editores de áudio, samplers e qualquer coisa que peça WAV, e o ponto de partida mais seguro se o arquivo ainda vai ser editado. A decodificação acontece no seu aparelho, normalmente num segundo.',
-      usesHeading: 'Motivos para ir para o WAV',
+      usesHeading: 'Usos comuns de MP3 para WAV',
       uses: [
-        'Entregar um MP3 a um editor, DAW ou app que só aceita WAV.',
-        'Cortar a perda de geração: edite em WAV e comprima de volta para MP3 só no final.',
-        'Arquivar uma cópia decodificada junto do original antes de novas edições.',
+        'Encaixe de software: entregue o MP3 a um editor, DAW ou plataforma que só aceita WAV.',
+        'Evite perda de geração: edite no WAV e comprima de volta para MP3 uma vez, no fim.',
+        'Reparo de áudio: decodifique para uma base sem perdas antes de [remover ruído](/noise-remover) ou [equalizar](/equalizer) — uma camada a menos de perda.',
+        'Preparar a transcrição: alguns transcritores preferem WAV; decodifique primeiro e entregue.',
+        'Material para samplers: passe um MP3 para WAV num sampler ou caixa de ritmos.',
+        'Cópia de arquivo: guarde uma versão sem compressão para a masterização e revisão de qualidade.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Decodificado, não recomprimido',
+          text: 'O WAV guarda todas as amostras decodificadas; esta etapa não perde nada, então editar e reparar acontece sobre uma base sem perdas.',
+        },
+        {
+          icon: 'layers',
+          title: 'Lotes empacotados',
+          text: 'Solte vários MP3 de uma vez; cada um decodifica em ordem e vai para um único ZIP.',
+        },
       ],
       howTo: [
         {

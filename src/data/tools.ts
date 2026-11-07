@@ -1423,11 +1423,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Decode an MP3 to 16-bit WAV in this browser. Nothing is uploaded.',
     intro:
       'This page writes 16-bit PCM of the decoded samples. It cannot restore samples the MP3 already dropped. The menu is WAV only.',
-    usesHeading: 'Reasons to decode to WAV',
+    usesHeading: 'Common uses for MP3 to WAV',
     uses: [
-      'Hand an MP3 to an editor, DAW or app that only accepts WAV.',
-      'Stop generation loss: edit in WAV, compress back to MP3 once at the end.',
-      'Archive a decoded copy alongside the original before further edits.',
+      'Software fit: hand an MP3 to an editor, DAW or submission platform that only takes WAV.',
+      'Avoid generation loss: edit on the WAV, compress back to MP3 once at the end.',
+      'Audio repair: decode to a lossless base before [noise removal](/noise-remover) or [EQ](/equalizer) — one less layer of loss.',
+      'Transcription prep: some transcribers prefer WAV; decode first, then hand it over.',
+      'Sampling material: decode an MP3 to WAV for a sampler or drum machine.',
+      'Archival copy: keep an uncompressed version for mastering and quality review.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'Decoded, not recompressed',
+        text: 'The WAV keeps every decoded sample; this step loses nothing, so edits and repairs happen on a lossless base.',
+      },
+      {
+        icon: 'layers',
+        title: 'Batch packed',
+        text: 'Drop several MP3s at once; each decodes in turn and packs into one ZIP download.',
+      },
     ],
     howTo: [
       {
