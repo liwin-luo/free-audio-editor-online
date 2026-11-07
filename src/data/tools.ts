@@ -7043,11 +7043,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Bits from 1 to 16, and a hold of 1 to 32 samples.',
     intro:
       'This bitcrusher online reduces how many levels each sample can take, then holds that level for a run of samples. Stereo stays stereo: each channel is crushed on its own. Drag a selection to crush only that span. Decoding and the crush stay in your browser.',
-    usesHeading: 'What the steps are for',
+    usesHeading: 'Common uses for the bitcrusher',
     uses: [
-      'A vocal that should sound like an old game console.',
-      'A drum loop where the steps should stay audible.',
-      'One phrase in a file, with the rest left alone.',
+      'Old-console vocals: drop a voice in bits until it reads like an 8-bit machine.',
+      'Drum-loop grain: a loop where the stairsteps stay audible in the groove.',
+      'Retro electronics: quantize a synth line for that vintage-electronic flavor.',
+      'Game UI sound design: low-precision processing for interface blips.',
+      'Sci-fi texture: extreme bit depth turns a voice or ambience machine-like.',
+      'Lo-fi wash: light quantization adds grain across a whole track.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Two knobs set the tone',
+        text: 'Bit depth (1-16) sets the size of the stairsteps; hold (up to 32 samples) sets the grain density — that is exactly where the old-console sound comes from.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The quantization finishes in your browser, and the WAV keeps the crushed samples.',
+      },
     ],
     howTo: [
       {

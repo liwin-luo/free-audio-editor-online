@@ -5060,11 +5060,26 @@ export const de: Catalog = {
       heroAlt: 'Eine glatte Welle in Stufen verwandeln',
       subtitle: 'Bits von 1 bis 16, und ein Halten von 1 bis 32 Samples.',
       intro: 'Dieser Bitcrusher online verringert, wie viele Stufen jedes Sample annehmen kann, und hält diese Stufe dann über einige Samples. Stereo bleibt Stereo: jeder Kanal wird für sich zerstuft. Zieh eine Auswahl, um nur diese Spanne zu zerstufen. Dekodierung und die Stufen bleiben in deinem Browser.',
-      usesHeading: 'Wofür die Stufen da sind',
+      usesHeading: 'Häufige Einsätze für den Bitcrusher',
       uses: [
-        'Eine Stimme, die wie eine alte Konsole klingen soll.',
-        'Ein Drum-Loop, bei dem die Stufen hörbar bleiben sollen.',
-        'Ein Satz in der Datei, der Rest bleibt.',
+        'Konsolen-Stimmen von damals: eine Stimme in Bits sinken lassen, bis sie wie eine 8-Bit-Maschine liest.',
+        'Drumloop-Körnung: ein Loop, dessen Stufen im Groove hörbar bleiben.',
+        'Retro-Elektronik: eine Synthlinie quantisieren für den Vintage-Elektronik-Geschmack.',
+        'Game-UI-Sounddesign: Präzision runter für Interface-Blips.',
+        'Sci-Fi-Textur: extreme Bittiefe macht eine Stimme oder ein Ambiente maschinenhaft.',
+        'Lo-fi-Wäsche: leichte Quantisierung legt Körnung über die ganze Spur.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Zwei Regler stellen den Ton',
+          text: 'Die Bittiefe (1-16) setzt die Stufengröße, Hold (bis zu 32 Samples) die Korndichte — genau so entsteht der alte Konsolen-Sound.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Die Quantisierung schließt im Browser ab, und das WAV behält die zerquetschten Samples.',
+        },
       ],
       howTo: [
         { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Die Datei wird auf deinem Gerät dekodiert.' },

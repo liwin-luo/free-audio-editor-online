@@ -5093,11 +5093,26 @@ export const es: Catalog = {
       heroAlt: 'Volver una onda lisa en escalones',
       subtitle: 'Bits de 1 a 16, y una retención de 1 a 32 muestras.',
       intro: 'Este bitcrusher online reduce cuántos niveles puede tomar cada muestra y luego retiene ese nivel durante unas muestras. El estéreo sigue en estéreo: cada canal se tritura por su cuenta. Arrastra una selección para triturar solo ese tramo. La decodificación y el triturado se quedan en tu navegador.',
-      usesHeading: 'Para qué sirven los escalones',
+      usesHeading: 'Usos habituales del bitcrusher',
       uses: [
-        'Una voz que debe sonar a una consola vieja.',
-        'Un loop de batería en el que los escalones deben oírse.',
-        'Una frase del archivo, y el resto igual.',
+        'Voces de consola vieja: baja una voz en bits hasta que suene a máquina de 8 bits.',
+        'Grano en loops de batería: un loop donde los escalones siguen siendo audibles en el groove.',
+        'Electrónica retro: cuantiza una línea de sinte con ese sabor vintage.',
+        'Diseño sonoro de juegos: procesado de baja precisión para pitidos de interfaz.',
+        'Textura de ciencia ficción: profundidad extrema vuelve mecánica una voz o un ambiente.',
+        'Capa lo-fi: una cuantización ligera añade grano a toda la pista.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Dos mandos fijan el timbre',
+          text: 'La profundidad de bits (1-16) fija el tamaño de los escalones; el hold (hasta 32 muestras), la densidad del grano: así nace el sonido de consola vieja.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Procesado en local',
+          text: 'La cuantización termina en tu navegador y el WAV conserva las muestras aplastadas.',
+        },
       ],
       howTo: [
         { name: 'Suelta tu audio', text: 'Cualquier MP3, WAV, M4A, OGG o FLAC. Se decodifica en tu dispositivo.' },

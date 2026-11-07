@@ -5231,11 +5231,26 @@ export const pt: Catalog = {
       heroAlt: 'Transformar uma onda lisa em degraus',
       subtitle: 'Bits de 1 a 16, e uma espera de 1 a 32 amostras.',
       intro: 'Este bitcrusher online reduz quantos níveis cada amostra pode tomar e depois segura esse nível por algumas amostras. O estéreo continua estéreo: cada canal é esmagado sozinho. Arraste uma seleção para esmagar só esse trecho. A decodificação e o esmagamento ficam no seu navegador.',
-      usesHeading: 'Para que servem os degraus',
+      usesHeading: 'Usos comuns do bitcrusher',
       uses: [
-        'Uma voz que deve soar como um console antigo.',
-        'Um loop de bateria em que os degraus devem continuar audíveis.',
-        'Uma frase do arquivo, e o resto igual.',
+        'Vozes de console antigo: derrube uma voz em bits até soar como uma máquina de 8 bits.',
+        'Grão em loops de bateria: um loop onde os degraus continuam audíveis no groove.',
+        'Eletrônica retrô: quantize uma linha de synth com esse sabor vintage.',
+        'Design sonoro de jogos: baixa precisão para bipes de interface.',
+        'Textura de ficção científica: profundidade extrema deixa voz ou ambiente mecânicos.',
+        'Camada lo-fi: quantização leve acrescenta grão à faixa inteira.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Dois botões definem o timbre',
+          text: 'A profundidade de bits (1-16) define o tamanho dos degraus; o hold (até 32 amostras), a densidade do grão — é daí que nasce o som de console antigo.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'A quantização termina no seu navegador e o WAV guarda as amostras esmagadas.',
+        },
       ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. É decodificado no seu dispositivo.' },
