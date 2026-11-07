@@ -4350,14 +4350,26 @@ export const de: Catalog = {
       howToIntro: 'Eine rauschende Datei, ein Stärkeregler',
       subtitle: 'Ständiges Zischen, Brummen und Lüfterrauschen fallen um 20 dB oder mehr, wo Sprache ist. Die Zeitleiste bleibt, wo sie ist.',
       intro: 'Diese Seite legt RNNoise über deine Aufnahme, ein Rauschengate, das auf Sprache trainiert ist. Ständiges Rauschen wie Zischen, Brummen oder ein Lüfter fällt um 20 dB oder mehr, und die Worte behalten ihre Lautstärke. Das Gate ist ein 150-KB-Modell und läuft in deinem Browser, deine Audiodatei verlässt das Gerät nicht.',
-      usesHeading: 'Häufige Einsätze für Audiodistortion',
+      usesHeading: 'Häufige Einsätze für Reverb',
       uses: [
-        'Gitarren-Overdrive: etwas Gritter auf eine saubere Gitarre, damit sie nach vorn tritt.',
-        'Stimme aufrauen: eine Stimmlinie für einen Trailer, einen Game-Hit oder einen Podcast-Intro.',
-        'Drums umformen: einen Drumloop clippen, bis er härter und schwerer zuschlägt.',
-        'Horror-Texturen: extreme Intensität, die eine Stimme oder ein Ambience-Bett verbiegt.',
-        'Synth-Grit: einer zu sauberen Synthlinie Grit geben.',
-        'Retro-Telefon: mit einem Highpass zum alten Telefon- oder Sprechstellen-Sound paaren.',
+        'Stimme am Platz: ein Sprachmemo oder ein Off-Text sitzt in einem Raum, statt aufgeklebt zu klingen.',
+        'Spielsounds: einem Blip Tiefe geben, bevor er in den Schnitt geht.',
+        'Trockene Stimme in den Raum: ein A-capella-Stück gewinnt das Gefühl, im Raum aufgenommen zu sein.',
+        'Podcast-Übergänge: ein Satz mit Reverb markiert den Abschnittswechsel.',
+        'Instrumenten-Atmosphäre: eine trockene Gitarre bekommt einen Hauch Raum und klingt nicht mehr mager.',
+        'Stimmungswäsche: viel Wet und langer Raum bilden einen leeren oder unheimlichen Ort.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Ein Wet-Regler',
+          text: '0-100 % entscheidet, wie viel Raum: wenig Wet ist ein Schlafzimmer, viel Wet ein Auditorium. Vor dem Export hineinhören.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal gerendert',
+          text: 'Das Reverb rechnet dein Browser, das Audio wird nie hochgeladen; Export als MP3 oder WAV.',
+        },
       ],
       why: [
         {

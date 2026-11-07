@@ -4383,14 +4383,26 @@ export const es: Catalog = {
       howToIntro: 'Un archivo con ruido, un deslizador de intensidad',
       subtitle: 'El siseo, zumbido y ruido de ventilador constante baja 20 dB o más alrededor de la voz. La línea de tiempo no se mueve.',
       intro: 'Esta página pasa RNNoise por la grabación que sueltes, una compuerta de ruido entrenada con voz. El ruido constante como el siseo, el zumbido o un ventilador baja 20 dB o más alrededor de la voz, y las palabras conservan su nivel. La compuerta es un modelo de 150 KB que corre en tu navegador, así que el audio nunca sale de tu dispositivo.',
-      usesHeading: 'Usos habituales de la distorsión de audio',
+      usesHeading: 'Usos habituales de añadir reverberación',
       uses: [
-        'Overdrive de guitarra: un poco de grano en una guitarra limpia para que se adelante.',
-        'Voz rugosa: una línea para un tráiler, un golpe de juego o la intro de un pódcast.',
-        'Remodelar baterías: recorta un loop de batería hasta que pegue más fuerte y duro.',
-        'Texturas de terror: intensidad extrema retorciendo una voz o un lecho ambiental.',
-        'Grano de sinte: añade grano a una línea de sintetizador demasiado limpia.',
-        'Teléfono retro: combínalo con un paso alto para sonido de teléfono viejo o intercomunicador.',
+        'Voz en su sitio: una nota de voz o un doblaje queda dentro de un espacio, sin sonar a pegatina.',
+        'Sonidos de juego: da profundidad a un pitido antes de meterlo en el montaje.',
+        'Voz seca a sala: una voz seca o a capellla gana la sensación de haberse grabado en una sala.',
+        'Transiciones de pódcast: una frase con reverb marca el corte de sección.',
+        'Atmósfera de instrumentos: una guitarra seca gana un toque de sala y deja de sonar hueca.',
+        'Manto de ambiente: mucha capa y sala larga hacen un espacio vacío o inquietante.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Un solo control de capa',
+          text: 'El 0-100 % decide cuánta sala: poca capa es un dormitorio, mucha es un auditorio. Escúchalo antes de exportar.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Renderizado en local',
+          text: 'La reverb se calcula en tu navegador y el audio nunca se sube; exporta MP3 o WAV.',
+        },
       ],
       why: [
         {

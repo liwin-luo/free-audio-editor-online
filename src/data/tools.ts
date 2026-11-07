@@ -6813,11 +6813,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'One wet slider from bone dry to a small hall. You hear the result before you export.',
     intro:
       'Reverb is the sound a room adds after the source stops: reflections piling up and decaying. This page runs a synthesized room over the file you drop, with one wet slider from dry to washed. You hear the reverb on the waveform before you export, and the processing stays in your browser.',
-    usesHeading: 'What a room fixes',
+    usesHeading: 'Common uses for adding reverb',
     uses: [
-      'Put a dry voice memo or vocal take into a space so it stops sounding pasted on.',
-      'Add depth to a game or video sound effect before you drop it into the edit.',
-      'Soften a harsh close-miked recording without touching its level.',
+      'Voice in its place: a voice memo or dub sits inside a space instead of sounding pasted on.',
+      'Game sound effects: give a blip some depth before it enters the edit.',
+      'Dry vocal into a room: a cappella or dry voice gains the feel of being recorded in a room.',
+      'Podcast transitions: one line with reverb marks the section break.',
+      'Instrument atmosphere: a dry guitar gains a touch of room and stops sounding thin.',
+      'Mood wash: a big wet, long room makes an empty or unsettling space.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'One wet slider',
+        text: '0-100% decides how much room: small wet is a bedroom, big wet is an auditorium. Audition it before export.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Rendered locally',
+        text: 'The reverb is computed in your browser and the audio never uploads; export MP3 or WAV.',
+      },
     ],
     howTo: [
       {

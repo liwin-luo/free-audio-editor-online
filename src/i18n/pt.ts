@@ -4495,14 +4495,26 @@ export const pt: Catalog = {
       howToIntro: 'Um arquivo com ruído, um controle de intensidade',
       subtitle: 'Chiado, zumbido e ruído de ventilador constantes caem 20 dB ou mais ao redor da voz. A linha do tempo não se move.',
       intro: 'Esta página passa o RNNoise pela gravação que você soltar, um gate de ruído treinado com voz. Ruído constante como chiado, zumbido ou ventilador cai 20 dB ou mais ao redor da voz, e as palavras mantêm o nível. O gate é um modelo de 150 KB que roda no seu navegador, então o áudio nunca sai do seu dispositivo.',
-      usesHeading: 'Usos comuns da distorção de áudio',
+      usesHeading: 'Usos comuns de adicionar reverb',
       uses: [
-        'Overdrive de violão: um pouco de gritos numa guitarra limpa para ela se adiantar.',
-        'Voz áspera: uma linha para trailer, golpe de jogo ou abertura de podcast.',
-        'Remodelar bateria: recorte um loop de bateria até bater mais forte e pesado.',
-        'Texturas de terror: intensidade extrema torcendo uma voz ou um leito ambiente.',
-        'Gritos no synth: dê mais aspereza a uma linha de sintetizador limpa demais.',
-        'Telefone retrô: empare com um passa-alta para som de telefone velho ou interfone.',
+        'Voz no lugar dela: um memo de voz ou uma dublagem fica dentro de um espaço, sem soar colado.',
+        'Sons de jogo: dê profundidade a um bipe antes de entrar na edição.',
+        'Voz seca numa sala: uma voz seca ou a capella ganha a sensação de ter sido gravada numa sala.',
+        'Transições de podcast: uma frase com reverb marca a quebra de seção.',
+        'Atmosfera de instrumento: um violão seco ganha um toque de sala e para de soar oco.',
+        'Manto de ambiente: muito wet e sala longa fazem um espaço vazio ou inquietante.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Um só controle de wet',
+          text: '0-100% decide quanto de sala: pouco wet é um quarto, muito é um auditório. Ouça antes de exportar.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Renderizado localmente',
+          text: 'O reverb é calculado no seu navegador e o áudio nunca é enviado; exporte MP3 ou WAV.',
+        },
       ],
       why: [
         {
