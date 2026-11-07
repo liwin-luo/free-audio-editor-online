@@ -4708,11 +4708,26 @@ export const es: Catalog = {
       heroAlt: 'Ajustar el nivel y el panorama de una voz sobre un beat',
       subtitle: 'Apila hasta 8 archivos, equilibra cada uno y exporta una sola mezcla.',
       intro: 'Pon una voz sobre un beat, o una locución sobre música, y escúchalas juntas. Cada archivo es una pista: nivel, panorama, silencio, solo y el momento en que entra. La suma ocurre en tu navegador. Nada se sube. Al cerrar la pestaña, la sesión desaparece.',
-      usesHeading: 'Mezclas para esta página',
+      usesHeading: 'Usos habituales de la mezcla multipista',
       uses: [
-        'Mete una nota de voz bajo una música y deslízala para que empiece después de la intro.',
-        'Equilibra stems que ya tienes —voz, batería, guitarra— y exporta un archivo.',
-        'Escucha una pista en solo y vuelve a sumar las demás, sin instalar un DAW.',
+        'Voz sobre música: desliza una nota de voz bajo una música de fondo para que empiece tras la intro.',
+        'Mezcla demo: combina voz, batería y guitarra en un archivo.',
+        'Pódcast a dos voces: graba en pistas separadas, equilibra cada una y combina.',
+        'Capas de efectos: coloca varios efectos en puntos distintos de la línea de tiempo.',
+        'Desplazar audio: arrastra una pista para cambiar cuándo entra, alineada con la imagen.',
+        'Pista de acompañamiento: añade un acompañamiento a tu propia interpretación.',
+      ],
+      why: [
+        {
+          icon: 'layers',
+          title: 'Una línea de 8 pistas',
+          text: 'Hasta 8 pistas, cada una colocada libremente arrastrando y con su propio equilibrio: oye todas las capas de la mezcla en un archivo.',
+        },
+        {
+          icon: 'volume',
+          title: 'Una sola exportación mezclada',
+          text: 'Todas las pistas se mezclan en una única exportación: MP3 o WAV.',
+        },
       ],
       howTo: [
         { name: 'Añade los archivos', text: 'Suelta dos o más audios, o haz clic para elegirlos. Cada archivo es una pista. Esta página se detiene en 8.' },

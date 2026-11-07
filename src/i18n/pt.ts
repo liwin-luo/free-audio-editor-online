@@ -4842,11 +4842,26 @@ export const pt: Catalog = {
       heroAlt: 'Ajustar o nível e o pan de um vocal sobre um beat',
       subtitle: 'Empilhe até 8 arquivos, equilibre cada um e exporte uma única mix.',
       intro: 'Coloque um vocal sobre um beat, ou uma narração sobre música, e ouça os dois juntos. Cada arquivo é uma faixa: nível, pan, mudo, solo e o instante em que entra. A soma acontece no navegador. Nada é enviado. Fechar a aba encerra a sessão.',
-      usesHeading: 'Mixagens para esta página',
+      usesHeading: 'Usos comuns da mixagem multipista',
       uses: [
-        'Ponha um recado de voz sob uma música e deslize para a voz começar depois da intro.',
-        'Equilibre stems que você já tem — vocal, bateria, violão — e exporte um arquivo.',
-        'Ouça uma faixa em solo e traga as outras de volta, sem instalar um DAW.',
+        'Voz sobre música: deslize um recado de voz sob uma música de fundo para começar depois da intro.',
+        'Mixagem demo: junte voz, bateria e violão em um arquivo.',
+        'Podcast a duas vozes: grave em faixas separadas, equilibre cada uma e junte.',
+        'Camadas de efeitos: coloque vários efeitos em pontos diferentes da linha do tempo.',
+        'Deslocar áudio: arraste uma faixa para mudar quando ela entra, alinhada à imagem.',
+        'Pista de acompanhamento: adicione um acompanhamento à sua própria performance.',
+      ],
+      why: [
+        {
+          icon: 'layers',
+          title: 'Linha do tempo de 8 faixas',
+          text: 'Até 8 faixas, cada uma posicionada livremente arrastando e com o próprio balanço — ouça todas as camadas da mixagem em um arquivo.',
+        },
+        {
+          icon: 'volume',
+          title: 'Uma única exportação mixada',
+          text: 'Todas as faixas são mixadas em uma única exportação: MP3 ou WAV.',
+        },
       ],
       howTo: [
         { name: 'Adicione os arquivos', text: 'Solte dois ou mais áudios, ou clique para escolher. Cada arquivo vira uma faixa. Esta página para em 8.' },

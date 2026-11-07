@@ -997,11 +997,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Stack up to 8 files, balance each one, and export a single mix.',
     intro:
       'Put a vocal on a beat, or a voiceover on music, and hear them together. Each file is its own track: level, pan, mute, solo, and where it starts. The mix is summed in your browser. Nothing is uploaded, and closing the tab ends the session.',
-    usesHeading: 'Mixes this page is for',
+    usesHeading: 'Common uses for multi-track mixing',
     uses: [
-      'Lay a voice memo under a music bed and slide it so the voice starts after the intro.',
-      'Balance a few stems you already have — a vocal, drums, a guitar — and export one file.',
-      'Solo one part to check it, then bring the others back, without installing a DAW.',
+      'Voice over music: slide a voice memo under a music bed so it starts after the intro.',
+      'Rough demo mix: blend voice, drums and guitar into one file.',
+      'Podcast in two voices: record on separate tracks, balance each, then merge.',
+      'Layered sound effects: place several effects at different points on the timeline.',
+      'Shifting audio: drag a track to change when it enters, aligned to the picture.',
+      'Play-along backing: add one backing track to your own performance.',
+    ],
+    why: [
+      {
+        icon: 'layers',
+        title: 'An 8-track timeline',
+        text: 'Up to 8 tracks, each freely placed by dragging, each with its own balance — hear every layer of the mix in one file.',
+      },
+      {
+        icon: 'volume',
+        title: 'One mixed export',
+        text: 'All tracks are mixed down into a single export: MP3 or WAV.',
+      },
     ],
     howTo: [
       {
