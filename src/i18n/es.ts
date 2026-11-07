@@ -2202,11 +2202,26 @@ export const es: Catalog = {
       subtitle: 'Baja el bitrate y el archivo sigue sonando — reduce el audio hasta un 90% en tu navegador.',
       intro:
         'Los archivos de audio pesan por su bitrate, y la forma honesta de reducirlos es recodificarlos a un bitrate más bajo: un MP3 de 320 kbps pasa a 128 kbps con un 40% de su tamaño, y un WAV pesado se convierte en MP3 a la décima parte. Elige el tamaño objetivo, escucha la vista previa y exporta — la codificación ocurre en tu dispositivo, así que hasta las grabaciones largas terminan en segundos.',
-      usesHeading: 'Archivos que merecen encoger',
+      usesHeading: 'Usos habituales de comprimir audio',
       uses: [
-        'Meter una clase o una nota de voz bajo el límite de tamaño de un correo o chat.',
-        'Pasar una exportación en WAV a MP3 pequeños para un enlace de revisión rápida.',
-        'Bajar una biblioteca de 320 kbps a 128 kbps para un móvil que escucha con datos.',
+        'WeChat/QQ: el archivo pasa del límite y no se envía; comprímelo hasta el tope y se va.',
+        'Adjuntos de correo: mete una grabación de clase dentro del límite de 25 MB.',
+        'Formularios de subida: los formularios de inscripción o envío tienen tope de tamaño; comprime hasta que pase.',
+        'Adelgazar locuciones: comprime una reunión larga en un archivo pequeño para archivar.',
+        'Espacio del dispositivo: el móvil está lleno; reduce el audio grande antes de guardarlo.',
+        'Compatibilidad con aparatos antiguos: los reproductores viejos no tragan archivos grandes; comprimidos, suenan sin trabas.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Calcula el bitrate desde un tamaño objetivo',
+          text: 'Fija un tamaño objetivo, por ejemplo 10 MB; el compresor deduce el bitrate según la duración y llega a él de una vez.',
+        },
+        {
+          icon: 'layers',
+          title: 'Compresión por lotes',
+          text: 'Los archivos comparten un mismo tamaño objetivo, se comprimen uno tras otro y se empaquetan en un ZIP.',
+        },
       ],
       howTo: [
         {

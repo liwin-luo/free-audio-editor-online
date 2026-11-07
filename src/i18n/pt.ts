@@ -2201,11 +2201,26 @@ export const pt: Catalog = {
       subtitle: 'Abaixe o bitrate e o arquivo continua tocando — reduza o áudio em até 90% no navegador.',
       intro:
         'Arquivos de áudio pesam por causa do bitrate, e o jeito honesto de encolher um deles é recodificá-lo num bitrate menor: um MP3 de 320 kbps vira 128 kbps com cerca de 40% do tamanho, e um WAV pesado vira MP3 num décimo do tamanho. Escolha o alvo, ouça a prévia e exporte — a codificação acontece no seu aparelho, então até gravações longas terminam em segundos.',
-      usesHeading: 'Arquivos que valem um aperto',
+      usesHeading: 'Usos comuns de comprimir áudio',
       uses: [
-        'Colocar uma aula ou um áudio de voz dentro do limite de e-mail ou app de mensagem.',
-        'Transformar uma exportação em WAV em MP3s pequenos para um link de revisão rápida.',
-        'Baixar uma biblioteca de 320 kbps para 128 kbps num celular que ouve música com dados móveis.',
+        'WeChat/QQ: o arquivo passou do limite e não envia; comprima até o teto e ele vai.',
+        'Anexos de e-mail: esprema uma gravação de aula dentro do limite de 25 MB.',
+        'Formulários de upload: formulários de inscrição ou envio têm limite de tamanho; comprima até passar.',
+        'Afinar gravações de voz: comprima uma reunião longa num arquivo pequeno para guardar.',
+        'Espaço do aparelho: o celular está cheio; reduza o áudio grande antes de guardar.',
+        'Compatibilidade com aparelhos antigos: tocadores velhos engasgam com arquivos grandes; comprimidos, tocam lisos.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Deduz o bitrate a partir de um tamanho-alvo',
+          text: 'Defina um tamanho-alvo, digamos 10 MB; o compressor calcula o bitrate pela duração e chega lá de uma vez.',
+        },
+        {
+          icon: 'layers',
+          title: 'Compressão em lote',
+          text: 'Os arquivos compartilham um mesmo tamanho-alvo, comprimem um após o outro e vão para um ZIP.',
+        },
       ],
       howTo: [
         {

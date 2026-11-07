@@ -1563,11 +1563,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Re-encode at a lower MP3 bitrate. This page starts at 128 kbps.',
     intro:
       'This page re-encodes at a lower MP3 bitrate. The menu is 320, 192, 128, 96, or 64 kbps, and it starts at 128. There is no WAV in the menu. An MP3 encoded again loses detail again. This is not the [level compressor](/compressor).',
-    usesHeading: 'Files worth shrinking',
+    usesHeading: 'Common uses for audio compression',
     uses: [
-      'Fit a lecture or voice memo under an email or chat-app size cap.',
-      'Turn a WAV export into small MP3s for a quick review link.',
-      'Take a 320 kbps library down to 128 kbps for a phone on mobile data.',
+      'WeChat/QQ: the file is over the cap and refuses to send — compress to the limit and it goes.',
+      'Email attachments: squeeze a lecture recording inside a 25 MB mailbox cap.',
+      'Upload forms: entry and submission forms have a size cap — compress until it passes.',
+      'Voice slim-down: compress a long meeting recording into a small file for storage.',
+      'Device space: the phone is full — shrink big audio files before keeping them.',
+      'Old-device compatibility: older players choke on big files; compressed ones play smoothly.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'Backs out the bitrate from a target size',
+        text: 'Set a target size, say 10 MB; the compressor works out the bitrate from the duration and lands on it in one step.',
+      },
+      {
+        icon: 'layers',
+        title: 'Batch compression',
+        text: 'Files share one target size, compressing one after another and packing into a ZIP.',
+      },
     ],
     howTo: [
       {
