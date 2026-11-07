@@ -4058,11 +4058,26 @@ export const pt: Catalog = {
       subtitle: 'Um compressor de banda larga que segura os saltos de nível. O pico do arquivo continua onde estava.',
       intro:
         'Um recado de voz que grita uma frase e sussurra a seguinte precisa de compressão, não de um botão de volume. Esta página aplica um compressor de banda larga: o que está alto desce, o que está baixo sobe, e a exportação é escalada para o pico bater com o do arquivo original. Tudo acontece no navegador. O arquivo não é enviado.',
-      usesHeading: 'O que um compressor termina',
+      usesHeading: 'Usos comuns da compressão de nível',
       uses: [
-        'Igualar um recado gravado ora perto, ora longe do telefone.',
-        'Segurar um convidado de podcast bem mais alto do que quem apresenta.',
-        'Assentar um vocal na frente quando o refrão salta do verso.',
+        'Memos de voz: emparelhe alguém que se aproxima e se afasta do celular ao falar.',
+        'Equilíbrio de entrevistas: um convidado muito mais alto que o anfitrião — esmague os picos.',
+        'Voz na frente: quando o refrão salta fora da estrofe, o vocal segue sentado estável na frente.',
+        'Gravações de reunião: achate uma gravação em que a fala oscila entre fraca e forte.',
+        'Gravações de aula: o palestrante passeia e o nível anda; comprima até assentar.',
+        'Domar a dinâmica antes de publicar: estreite a faixa antes de alinhar sonoridade e o pouso fica mais firme.',
+      ],
+      why: [
+        {
+          icon: 'volume',
+          title: 'Cuida da dinâmica, não do tamanho',
+          text: 'Compressão de banda larga: limiar de -18 a -36 dB, razões até 8:1. Partes altas descem e as baixas sobem em relação; na exportação o pico volta ao pico da origem.',
+        },
+        {
+          icon: 'file',
+          title: 'Não é compressão de arquivo',
+          text: 'Esta página muda os vaivéns do volume, não o peso do arquivo. Para um MP3 menor, [comprimir áudio](/compress-audio); para alinhar LUFS, o [medidor de sonoridade](/loudness-meter).',
+        },
       ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação fica no seu aparelho.' },

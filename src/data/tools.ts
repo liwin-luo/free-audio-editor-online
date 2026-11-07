@@ -3094,11 +3094,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'A broadband compressor that tames jumps in level — the peak of the file stays where it was.',
     intro:
       'A voice memo that shouts one sentence and whispers the next needs compression, not a volume knob. This page runs a single broadband compressor: loud moments get turned down, quiet moments come up, then the export is scaled so the peak matches the file you started with. It all happens in your browser. The file is never uploaded.',
-    usesHeading: 'Jobs a compressor finishes',
+    usesHeading: 'Common uses for level compression',
     uses: [
-      'Even out a voice memo where the speaker leans toward and away from the phone.',
-      'Tame a podcast guest who is much louder than the host, without raising the noise floor by hand.',
-      'Sit a vocal in front of a track when the chorus jumps out of the verse.',
+      'Voice memos: even out a speaker who leans toward and away from the phone.',
+      'Interview balance: a guest much louder than the host — press the peaks down.',
+      'A vocal up front: when the chorus leaps out of the verse, keep the vocal sitting steadily in front.',
+      'Meeting recordings: flatten a recording where the talk swings between faint and heavy.',
+      'Course recordings: a lecturer who wanders makes the level drift — compress it into shape.',
+      'Tame dynamics before release: narrow the range before loudness alignment, and the landing sits steadier.',
+    ],
+    why: [
+      {
+        icon: 'volume',
+        title: 'It manages dynamics, not size',
+        text: 'Broadband compression: threshold -18 to -36 dB, ratios up to 8:1. Loud parts press down and quiet parts rise in relation; on export the peak returns to the source peak.',
+      },
+      {
+        icon: 'file',
+        title: 'It is not file compression',
+        text: 'This page changes volume swings, not file size. For a smaller MP3 go to [audio compression](/compress-audio); for LUFS alignment go to the [loudness meter](/loudness-meter).',
+      },
     ],
     howTo: [
       {

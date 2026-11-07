@@ -3992,11 +3992,26 @@ export const es: Catalog = {
       subtitle: 'Un compresor de banda ancha que recorta los saltos de nivel. El pico del archivo se queda donde estaba.',
       intro:
         'Una nota de voz que grita una frase y susurra la siguiente necesita compresión, no una perilla de volumen. Esta página aplica un compresor de banda ancha: lo fuerte baja, lo flojo sube, y la exportación se escala para que el pico coincida con el del archivo original. Todo ocurre en el navegador. El archivo no se sube.',
-      usesHeading: 'Trabajos que un compresor termina',
+      usesHeading: 'Usos habituales de la compresión de nivel',
       uses: [
-        'Igualar una nota de voz grabada cerca y lejos del teléfono.',
-        'Bajar a un invitado de pódcast mucho más fuerte que quien conduce.',
-        'Sentar una voz delante cuando el estribillo salta por encima del verso.',
+        'Notas de voz: empareja a alguien que se acerca y se aleja del teléfono al hablar.',
+        'Equilibrio de entrevistas: un invitado mucho más fuerte que el anfitrión; aplasta los picos.',
+        'Voz al frente: cuando el estribillo salta sobre la estrofa, que la voz siga sentada delante.',
+        'Grabaciones de reuniones: aplana una grabación donde el habla va de tenue a contundente.',
+        'Grabaciones de clase: el ponente pasea y el nivel se mueve; comprímelo hasta dejarlo fijo.',
+        'Recoger dinámica antes de publicar: estrecha el rango antes de alinear sonoridad y el asiento queda más firme.',
+      ],
+      why: [
+        {
+          icon: 'volume',
+          title: 'Gestiona la dinámica, no el tamaño',
+          text: 'Compresión de banda ancha: umbral de -18 a -36 dB, proporciones hasta 8:1. Lo fuerte baja y lo tenue sube en proporción; al exportar, el pico vuelve al pico del origen.',
+        },
+        {
+          icon: 'file',
+          title: 'No es compresión de archivo',
+          text: 'Esta página cambia los vaivenes del volumen, no el peso del archivo. Para un MP3 menor, [comprimir audio](/compress-audio); para alinear LUFS, el [medidor de sonoridad](/loudness-meter).',
+        },
       ],
       howTo: [
         { name: 'Suelta el audio', text: 'Cualquier MP3, WAV, M4A, OGG o FLAC. La decodificación se queda en tu dispositivo.' },

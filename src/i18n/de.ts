@@ -3959,11 +3959,26 @@ export const de: Catalog = {
       subtitle: 'Ein Breitband-Kompressor, der Pegelsprünge bändigt. Der Peak der Datei bleibt, wo er war.',
       intro:
         'Eine Sprachnotiz, die einen Satz schreit und den nächsten flüstert, braucht Kompression, keinen Lautstärkeregler. Diese Seite fährt einen einzelnen Breitband-Kompressor: Lautes wird leiser, Leises kommt hoch, danach wird der Export so skaliert, dass der Peak zum Ausgangspeak passt. Alles im Browser. Die Datei wird nicht hochgeladen.',
-      usesHeading: 'Was ein Kompressor erledigt',
+      usesHeading: 'Häufige Einsätze für Pegelkompression',
       uses: [
-        'Eine Sprachnotiz glätten, bei der jemand nah ans Handy geht und wieder weg.',
-        'Einen Podcast-Gast dämpfen, der viel lauter ist als die Moderation.',
-        'Eine Stimme vor die Spur setzen, wenn der Refrain aus der Strophe springt.',
+        'Sprachmemos: ein Ausgleich für Sprecher, die zum Telefon hin und davon weg reden.',
+        'Interview-Balance: ein Gast, viel lauter als der Gastgeber — die Spitzen runterdrücken.',
+        'Vokal nach vorn: wenn der Refrain aus der Strophe herausspringt, bleibt der Gesang stabil vorne sitzen.',
+        'Besprechungsaufnahmen: eine Aufnahme glätten, in der das Sprechen zwischen leise und heftig pendelt.',
+        'Kursaufnahmen: ein Dozent, der herumläuft, lässt den Pegel driften — komprimieren, bis er steht.',
+        'Dynamik vor dem Release bändigen: erst den Bereich verengen, dann sitzt die Loudness-Ausrichtung fester.',
+      ],
+      why: [
+        {
+          icon: 'volume',
+          title: 'Diese Seite regelt Dynamik, nicht Größe',
+          text: 'Breitbandkompression: Schwellenwert -18 bis -36 dB, Ratios bis 8:1. Laute Teile werden gedrückt, leise steigen relativ; beim Export kehrt der Peak zum Ausgangspeak zurück.',
+        },
+        {
+          icon: 'file',
+          title: 'Das ist keine Dateikompression',
+          text: 'Diese Seite verändert Lautstärkeschwankungen, nicht die Dateigröße. Für eine kleinere MP3 führt [Audio komprimieren](/compress-audio), für LUFS-Abgleich das [Loudness-Meter](/loudness-meter).',
+        },
       ],
       howTo: [
         { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Die Dekodierung bleibt auf deinem Gerät.' },
