@@ -5366,11 +5366,26 @@ export const pt: Catalog = {
       heroAlt: 'Baixar um arquivo em cerca de 0.32 semitons',
       subtitle: 'O arquivo inteiro desce cerca de 0.32 semitons. A duração fica.',
       intro: 'Este conversor desloca o arquivo inteiro em 12 vezes o log2 de 432 sobre 440, cerca de 0.32 semitons para baixo. Um tom de 440 Hz se aproxima de 432 Hz. A duração não muda, e as notas não são afinadas uma a uma. A decodificação e o deslocamento ficam no seu navegador.',
-      usesHeading: 'Quando o arquivo inteiro deve ficar mais perto de 432 Hz',
+      usesHeading: 'Usos comuns do conversor para 432 Hz',
       uses: [
-        'Uma faixa afinada perto de 440 Hz que você quer mais perto de 432 Hz.',
-        'Um loop cuja duração tem de ficar igual para continuar alinhado.',
-        'Um arquivo que você vai pôr ao lado de outras faixas já movidas para 432 Hz.',
+        'Preferência de afinação: mova uma faixa afinada em 440 Hz para o 432 Hz que você prefere.',
+        'Loops que precisam continuar encaixando: só o tom desloca e a duração fica, então o loop segue alinhado.',
+        'Álbuns inteiros: mova várias faixas para 432 Hz de uma vez.',
+        'Escuta A/B: guarde uma cópia em 440 e outra em 432 e compare você mesmo.',
+        'Áudio de meditação: unifique material de meditação ou relaxamento em 432 Hz.',
+        'Backups de instrumento: guarde o original e exporte a versão 432 separada.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Só o tom, a duração intacta',
+          text: 'Deslocado com precisão por 12·log₂(432/440) — cerca de 0,32 semitons: duração, velocidade e ritmo não mudam nada.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'O deslocamento termina no seu navegador; o áudio nunca é enviado.',
+        },
       ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. É decodificado no seu dispositivo.' },

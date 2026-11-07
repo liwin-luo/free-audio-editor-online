@@ -7234,11 +7234,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'The whole file moves down by about 0.32 semitones. The length stays.',
     intro:
       'This converter shifts the whole file by 12 times log2 of 432 over 440, which is about 0.32 semitones down. A 440 Hz tone moves toward 432 Hz. The length does not change, and notes are not tuned one by one. Decoding and the shift stay in your browser.',
-    usesHeading: 'When the whole file should sit nearer 432 Hz',
+    usesHeading: 'Common uses for the 432 Hz converter',
     uses: [
-      'A track tuned around 440 Hz that you want nearer 432 Hz.',
-      'A loop whose length has to stay the same so it still lines up.',
-      'A file you will place next to other tracks already moved toward 432 Hz.',
+      'Tuning preference: move a 440 Hz track to the 432 Hz you prefer.',
+      'Loops that must stay in sync: only the pitch shifts and the length stays, so the loop still lines up.',
+      'Whole albums: move several tracks to 432 Hz at once.',
+      'A/B listening: keep one copy at 440 and one at 432 and compare for yourself.',
+      'Meditation audio: unify meditation or relaxation material at 432 Hz.',
+      'Instrument backups: keep the original and export the 432 version separately.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'Pitch only, length untouched',
+        text: 'Shifted precisely by 12·log₂(432/440) — about 0.32 semitones: length, speed and rhythm are completely unchanged.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The shift finishes in your browser; the audio is never uploaded.',
+      },
     ],
     howTo: [
       {

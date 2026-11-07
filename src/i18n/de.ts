@@ -5193,11 +5193,26 @@ export const de: Catalog = {
       heroAlt: 'Eine Datei um etwa 0,32 Halbtöne senken',
       subtitle: 'Die ganze Datei geht um etwa 0,32 Halbtöne runter. Die Länge bleibt.',
       intro: 'Dieser Konverter verschiebt die ganze Datei um das 12-fache von log2 aus 432 durch 440, etwa 0,32 Halbtöne nach unten. Ein 440-Hz-Ton rückt Richtung 432 Hz. Die Länge ändert sich nicht, und Noten werden nicht einzeln gestimmt. Dekodierung und die Verschiebung bleiben in deinem Browser.',
-      usesHeading: 'Wenn die ganze Datei näher an 432 Hz soll',
+      usesHeading: 'Häufige Einsätze für den 432-Hz-Wandler',
       uses: [
-        'Ein Track um 440 Hz, den du näher an 432 Hz willst.',
-        'Eine Schleife, deren Länge gleich bleiben muss, damit sie noch passt.',
-        'Eine Datei, die du neben andere Tracks legst, die schon Richtung 432 Hz verschoben sind.',
+        'Stimmungspräferenz: einen auf 440 Hz gestimmten Track zu deinem bevorzugten 432 Hz schieben.',
+        'Loops, die im Takt bleiben müssen: nur die Tonhöhe wandert, die Länge bleibt — der Loop passt weiter.',
+        'Ganze Alben: mehrere Tracks auf einen Schlag nach 432 Hz schieben.',
+        'A/B-Vergleich: eine Kopie bei 440 behalten, eine bei 432, und selbst vergleichen.',
+        'Meditationsaudio: Meditations- oder Entspannungsmaterial einheitlich auf 432 Hz.',
+        'Instrumenten-Backups: das Original behalten und die 432-Version separat exportieren.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Nur die Tonhöhe, die Länge bleibt',
+          text: 'Präzise verschoben um 12·log₂(432/440) — rund 0,32 Halbtöne: Länge, Tempo und Rhythmus bleiben komplett unverändert.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Die Verschiebung schließt im Browser ab; das Audio wird nie hochgeladen.',
+        },
       ],
       howTo: [
         { name: 'Audio ablegen', text: 'Jede MP3-, WAV-, M4A-, OGG- oder FLAC-Datei. Die Datei wird auf deinem Gerät dekodiert.' },
