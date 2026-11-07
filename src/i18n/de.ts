@@ -1861,11 +1861,26 @@ export const de: Catalog = {
       subtitle: 'Wandle WAV-Dateien in Sekunden in MP3 um — direkt im Browser, nichts wird hochgeladen.',
       intro:
         'Mach aus schweren WAV-Aufnahmen kompakte MP3s, ohne etwas zu installieren oder dein Audio an einen Server zu schicken. Lege die Datei ab, wähle eine Bitrate — 320 kbps für Musik, 128 kbps für Sprache — und die Umwandlung läuft auf deinem eigenen Gerät, meist in ein paar Sekunden.',
-      usesHeading: 'WAV-Dateien, die sich zu konvertieren lohnen',
+      usesHeading: 'Häufige Einsätze für WAV zu MP3',
       uses: [
-        'Schrumpf eine Studio- oder Field-Aufnahme, bis sie klein genug zum Senden ist.',
-        'Mach aus einem verlustfreien Export eine 192- oder 320-kbps-MP3 fürs Alltagshören.',
-        'Erst konvertieren, dann schneiden. Eine WAV ist zu groß, um sie zweimal herumzuschieben.',
+        'Aufnahmen verschlanken: Studio- oder Rekordieraufnahmen so weit schrumpfen, bis sie sich senden lassen.',
+        'Alltagshören: eine verlustfreie Exportdatei in 192 oder 320 kbps umwandeln — unterwegs völlig ausreichend.',
+        'E-Mail-Anhänge: 128 kbps passt eine Vorlesungsaufnahme in das 25-MB-Mail-Limit.',
+        'Stapelarchiv: einen ganzen Ordner von WAVs in einem Durchgang umwandeln, als ZIP gepackt.',
+        'Erst umwandeln, dann schneiden: erst die MP3 bauen, den Ausschnitt im Audio-Trimmer schneiden.',
+        'Sprachmemos: Sprache braucht ohnehin ein niedriges Bitrate — klein genug, um sie sofort zu verschicken.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Das Bitrate bestimmt die Größe',
+          text: 'Eine MP3 ist etwa ein Zehntel der WAV: 50 MB werden bei 192 kbps zu 4-5 MB. Sechs Stufen von 64 bis 320 kbps, jede mit Live-Größenschätzung in der Exportleiste.',
+        },
+        {
+          icon: 'layers',
+          title: 'Stapelkonvertierung in einem Durchgang',
+          text: 'Mehrere WAVs auf einmal hineinziehen; sie teilen eine Einstellung und werden nacheinander umgewandelt. Eine Datei lädt allein herunter, zwei oder mehr kommen als ZIP zurück.',
+        },
       ],
       howTo: [
         {
@@ -1969,11 +1984,26 @@ export const de: Catalog = {
       subtitle: 'FLAC-Dateien in Sekunden zu MP3 umwandeln — direkt im Browser, ohne Upload.',
       intro:
         'FLAC klingt perfekt und belegt halbe Festplatten als Beweis. Mach aus deiner verlustfreien Bibliothek kompakte MP3s, die im Autoradio, auf Bluetooth-Boxen und älteren Geräten laufen — Dateien ablegen, Bitrate wählen, und die Umwandlung läuft auf deinem eigenen Gerät. Ein 25-MB-FLAC-Track wird bei 320 kbps in ein paar Sekunden zum 12-MB-MP3.',
-      usesHeading: 'FLAC-Dateien, die eine Umwandlung wert sind',
+      usesHeading: 'Häufige Einsätze für FLAC zu MP3',
       uses: [
-        'Damit die verlustfreie Bibliothek im Auto und auf alten Geräten läuft.',
-        'Ein Album verkleinern, bevor es auf eine Reise ohne WLAN oder in einen geteilten Ordner geht.',
-        'Erst umwandeln, dann die Songs kürzen, die du wirklich öfter hörst.',
+        'Autoplayback: die verlustfreie Bibliothek auf dem Autoradio und älteren Geräten abspielbar machen.',
+        'Vor der Reise verschlanken: das Album aufs Handy verkleinern, bevor die lange Fahrt ohne Wi-Fi kommt.',
+        'Gemeinsame Ordner: das Album in eine kleinere Kopie umwandeln, bevor das Verzeichnis geteilt wird.',
+        'Archiv in zweifacher Ausführung: das FLAC bleibt das Archiv, die MP3 hört sich der Alltag an.',
+        'Download-Kompatibilität: gekaufte verlustfreie Alben in überall abspielbare MP3s umwandeln.',
+        'Stapel-Putzaktion: ein ganzes Album auf einmal hineinziehen; jede Track konvertiert und wandert ins ZIP.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Vom verlustfreien Ausgangsmaterial transkodiert',
+          text: 'Das FLAC wird auf die ursprünglichen Samples dekodiert, dann wird die MP3 genau einmal mit dem gewählten Bitrate kodiert — genau eine Kompression.',
+        },
+        {
+          icon: 'layers',
+          title: 'Ganze Alben im Stapel',
+          text: 'Ein ganzes Album auf einmal hineinziehen; die Tracks wandeln sich der Reihe nach und packen sich in ein ZIP, Reihenfolge bleibt.',
+        },
       ],
       howTo: [
         {
@@ -2158,11 +2188,26 @@ export const de: Catalog = {
       subtitle: 'Bitrate senken, Datei bleibt abspielbar — Audio im Browser um bis zu 90% verkleinern.',
       intro:
         'Audiodateien sind wegen ihrer Bitrate groß, und der ehrliche Weg, sie kleiner zu machen, ist eine Neukodierung mit niedrigerer Bitrate: ein 320-kbps-MP3 wird bei 128 kbps auf rund 40 % der Größe geschrumpft, eine schwere WAV wird als MP3 zum Zehntel. Ziel wählen, Vorschau anhören, exportieren — die Kodierung läuft auf deinem Gerät, selbst lange Aufnahmen sind in Sekunden fertig.',
-      usesHeading: 'Dateien, die kleiner dürfen',
+      usesHeading: 'Häufige Einsätze für Audiokompression',
       uses: [
-        'Eine Vorlesung oder Sprachnotiz unter die Größenbeschränkung von Mail oder Chat-App drücken.',
-        'Aus einem WAV-Export kleine MP3s für einen schnellen Review-Link machen.',
-        'Eine 320-kbps-Bibliothek für ein Handy mit mobilen Daten auf 128 kbps bringen.',
+        'WeChat/QQ: Die Datei liegt über dem Limit und will nicht raus — bis zum Limit komprimieren, dann geht sie.',
+        'E-Mail-Anhänge: eine Vorlesungsaufnahme in das 25-MB-Postfachlimit quetschen.',
+        'Upload-Formulare: Bewerbungs- und Einreicheformulare haben ein Größenlimit — komprimieren, bis es durchgeht.',
+        'Sprache verschlanken: eine lange Besprechungsaufnahme in eine kleine Archivdatei komprimieren.',
+        'Gerätespeicher: das Handy ist voll — große Audiodateien verkleinern, bevor sie bleiben.',
+        'Ältere Geräte: alte Player verschlucken sich an großen Dateien; komprimiert laufen sie flüssig.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Rechnet das Bitrate aus der Zielgröße zurück',
+          text: 'Eine Zielgröße festlegen, etwa 10 MB; der Kompressor leitet das Bitrate aus der Dauer ab und trifft sie in einem Schritt.',
+        },
+        {
+          icon: 'layers',
+          title: 'Stapelkompression',
+          text: 'Die Dateien teilen sich eine Zielgröße, werden nacheinander komprimiert und in ein ZIP gepackt.',
+        },
       ],
       howTo: [
         {
@@ -4720,11 +4765,26 @@ export const de: Catalog = {
       heroAlt: 'Pegel und Pan einer Stimme über einem Beat einstellen',
       subtitle: 'Bis zu 8 Dateien übereinander, jede einzeln ausbalancieren, einen Mix exportieren.',
       intro: 'Leg eine Stimme auf einen Beat oder einen Kommentar auf Musik und hör beides zusammen. Jede Datei ist eine Spur: Pegel, Pan, Stumm, Solo und der Einsatz. Die Summe entsteht in deinem Browser. Nichts wird hochgeladen. Schließt du den Tab, ist die Session weg.',
-      usesHeading: 'Mixe für diese Seite',
+      usesHeading: 'Häufige Einsätze für Multi-Track-Mixing',
       uses: [
-        'Leg eine Sprachnotiz unter ein Musikbett und schieb sie so, dass die Stimme nach dem Intro kommt.',
-        'Balanciere Stems, die du schon hast — Gesang, Drums, Gitarre — und exportiere eine Datei.',
-        'Hör eine Spur solo und hol die anderen zurück, ohne eine DAW zu installieren.',
+        'Stimme über Musik: ein Sprachmemo unter ein Musikbett schieben, damit es nach dem Intro einsetzt.',
+        'Roher Demo-Mix: Stimme, Drums und Gitarre in einer Datei zusammenmischen.',
+        'Podcast mit zwei Stimmen: auf getrennten Spuren aufnehmen, jede ausbalancieren, dann vereinen.',
+        'Geschichtete Effekte: mehrere Soundeffekte an verschiedenen Punkten der Zeitleiste platzieren.',
+        'Audio verschieben: eine Spur ziehen, um den Einsatz zu verlegen, bildsynchron.',
+        'Playback zur eigenen Performance: eine Begleitspur zur eigenen Aufnahme legen.',
+      ],
+      why: [
+        {
+          icon: 'layers',
+          title: 'Eine Zeitleiste mit 8 Spuren',
+          text: 'Bis zu 8 Spuren, jede frei per Ziehen platziert, jede mit eigenem Balance-Regler — jede Ebene des Mix in einer Datei hören.',
+        },
+        {
+          icon: 'volume',
+          title: 'Ein gemischter Export',
+          text: 'Alle Spuren werden zu einem einzigen Export abgemischt: MP3 oder WAV.',
+        },
       ],
       howTo: [
         { name: 'Dateien hinzufügen', text: 'Leg zwei oder mehr Audiodateien ab, oder klick zum Auswählen. Jede Datei wird eine Spur. Diese Seite hört bei 8 auf.' },
