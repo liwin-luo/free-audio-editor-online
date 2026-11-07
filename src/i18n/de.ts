@@ -3522,11 +3522,26 @@ export const de: Catalog = {
       heroAlt: 'Die Länge einer Datei ändern, die Tonhöhe bleibt',
       subtitle: '0,75× bis 1,25×, in Schritten von 0,01. Die Tonart bleibt.',
       intro: 'Leg eine Datei ab und zieh die Geschwindigkeit. Die Datei wird kürzer oder länger, und die Tonhöhe geht zurück an ihren Platz. Der Regler stoppt bei 0,75× und 1,25×. 1× lässt die Samples in Ruhe und streckt nicht. Dichte Harmonien können dünn klingen. Das ist die Grenze dieses Shifters. Nichts wird hochgeladen.',
-      usesHeading: 'Neue Länge, gleiche Tonart',
+      usesHeading: 'Häufige Einsätze für Tempo ändern',
       uses: [
-        'Einen Song in einen etwas kürzeren oder längeren Slot legen, ohne die Tonart zu verschieben.',
-        'Eine Sprachnotiz etwas strecken. Die Stimme bleibt auf derselben Tonhöhe.',
-        '1× exportiert die Datei ohne die Streckung.',
+        'Ins Bild passen: die Musik länger oder kürzer als die Einstellung — die Dauer ändert sich, die Tonart nicht.',
+        'Mashup angleichen: zwei Songs mit unterschiedlichem Tempo, erst auf dasselbe ziehen, dann mischen.',
+        'Langsam üben: einen schnellen Song fürs Instrument verlangsamen, ohne dass die Stimmung kippt.',
+        'Stimme feinziehen: ein Memo ein wenig dehnen — die Stimme bleibt dieselbe Stimme.',
+        'Ans Set anpassen: einen neuen Song auf dasselbe BPM wie dein Set ziehen.',
+        'Sample anpassen: die Länge des Samples auf die Beats bringen, die das Projekt braucht.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Länge ohne neue Tonlage',
+          text: 'Der Tempo-Algorithmus hält die Tonart: schneller wird nicht spitz, langsamer wird nicht tief — zwischen 0,75× und 1,25× klingt es am natürlichsten.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Die Tempoänderung rechnet im Browser; das Audio wird nie hochgeladen.',
+        },
       ],
       howTo: [
         { name: 'Datei ablegen', text: 'MP3, WAV, M4A oder anderes Audio hinzufügen. Die Datei bleibt auf deinem Gerät.' },

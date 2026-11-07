@@ -3619,11 +3619,26 @@ export const pt: Catalog = {
       heroAlt: 'Mudar quanto um arquivo dura enquanto o tom fica',
       subtitle: 'De 0,75× a 1,25×, em passos de 0,01. O tom fica no lugar.',
       intro: 'Solte um arquivo e arraste a velocidade. O arquivo fica mais curto ou mais longo, e o tom volta para onde estava. O controle para em 0,75× e em 1,25×. 1× deixa as amostras quietas e não estica. Harmonia densa pode soar fina. Esse é o limite deste deslocamento. Nada é enviado.',
-      usesHeading: 'Uma duração nova, o mesmo tom',
+      usesHeading: 'Usos comuns de mudar o tempo',
       uses: [
-        'Encaixe uma música num espaço um pouco mais curto ou mais longo sem mover o tom.',
-        'Estique um pouco um recado de voz. A voz fica no mesmo tom.',
-        '1× exporta o arquivo sem o esticamento.',
+        'Encaixar na imagem: a música dura mais ou menos que o plano; mude a duração sem tocar o tom.',
+        'Bater o mashup: duas músicas em tempos diferentes, primeiro iguale e depois misture.',
+        'Praticar devagar: uma música rápida em velocidade menor para tocar junto, sem a afinação subir ou descer.',
+        'Ajuste fino da voz: estire um memo um pouquinho e a voz continua a mesma voz.',
+        'Adaptar ao set: leve uma música nova ao mesmo BPM do seu set.',
+        'Adaptar o sample: mude a duração do sample para os beats que o projeto pede.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Duração sem tom novo',
+          text: 'O algoritmo de tempo preserva a tonalidade: mais rápido não fica agudo, mais lento não afunda — entre 0,75× e 1,25× é onde soa mais natural.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado localmente',
+          text: 'A mudança de tempo é calculada no seu navegador; o áudio nunca é enviado.',
+        },
       ],
       howTo: [
         { name: 'Solte o arquivo', text: 'Adicione um MP3, WAV, M4A ou outro áudio. Ele fica no seu aparelho.' },

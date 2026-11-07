@@ -5442,11 +5442,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: '0.75× to 1.25×, in steps of 0.01. The key stays put.',
     intro:
       'Drop a file and drag the speed. The file gets shorter or longer, and the pitch is shifted back to where it was. The slider stops at 0.75× and 1.25×. 1× leaves the samples alone and does not run the stretch. Dense harmony can sound thin. That is the limit of this shifter. Nothing is uploaded.',
-    usesHeading: 'A new length, the same key',
+    usesHeading: 'Common uses for changing tempo',
     uses: [
-      'Fit a song into a slightly shorter or longer slot without moving the key.',
-      'Stretch a voice memo a little. The voice stays at the same pitch.',
-      '1× exports the file without the stretch.',
+      'Fit the picture: the music runs longer or shorter than the shot — change the duration without moving the key.',
+      'Beat-match a mashup: two songs at different tempos, pulled to one speed before the blend.',
+      'Practice slower: take a fast song down for instrument practice, with the pitch neither rising nor sinking.',
+      'Fine-tune a voice: stretch a memo a little, and the voice is still the same voice.',
+      'Fit the set: pull a new song onto the same BPM as the rest of your set.',
+      'Fit the sample: change the sample length to the beat count the project needs.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Length with no new key',
+        text: 'The tempo algorithm holds the tuning: faster never turns sharp, slower never sinks — 0.75x to 1.25x is where it sounds most natural.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The tempo change computes in your browser; the audio is never uploaded.',
+      },
     ],
     howTo: [
       {

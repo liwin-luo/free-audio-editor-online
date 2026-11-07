@@ -3551,11 +3551,26 @@ export const es: Catalog = {
       heroAlt: 'Cambiar cuánto dura un archivo mientras el tono se queda',
       subtitle: 'De 0.75× a 1.25×, en pasos de 0.01. La tonalidad se queda.',
       intro: 'Suelta un archivo y arrastra la velocidad. El archivo se acorta o se alarga, y el tono vuelve a su sitio. El control se detiene en 0.75× y en 1.25×. 1× deja las muestras quietas y no estira. La armonía densa puede sonar fina. Ese es el límite de este desplazamiento. No se sube nada.',
-      usesHeading: 'Una duración nueva, la misma tonalidad',
+      usesHeading: 'Usos habituales de cambiar el tempo',
       uses: [
-        'Mete una canción en un hueco un poco más corto o más largo sin mover la tonalidad.',
-        'Estira un poco una nota de voz. La voz se queda en el mismo tono.',
-        '1× exporta el archivo sin el estiramiento.',
+        'Encajar en la imagen: la música dura más o menos que el plano; cambia la duración sin tocar el tono.',
+        'Empatar el mashup: dos canciones a distinto tempo, primero llévalas al mismo y luego mézclalas.',
+        'Practicar despacio: una canción rápida a media velocidad para tocar encima, sin que la afinación suba ni baje.',
+        'Ajustar la voz: estira un memo un pelín y la voz sigue siendo la misma voz.',
+        'Adaptar a la pista: lleva una canción nueva al mismo BPM que tu set.',
+        'Adaptar el sample: cambia la longitud del sample a los beats que pide el proyecto.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Duración sin tono nuevo',
+          text: 'El algoritmo de tempo conserva la tonalidad: más rápido no afina, más lento no se hunde — entre 0,75× y 1,25× es donde suena más natural.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Procesado en local',
+          text: 'El cambio de tempo se calcula en tu navegador; el audio nunca se sube.',
+        },
       ],
       howTo: [
         { name: 'Suelta el archivo', text: 'Añade un MP3, WAV, M4A u otro audio. Se queda en tu dispositivo.' },
