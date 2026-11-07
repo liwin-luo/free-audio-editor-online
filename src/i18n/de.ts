@@ -1648,7 +1648,7 @@ export const de: Catalog = {
       cardLine: 'Schnelle Schnitte in einem Tab: schneiden, faden, rückwärts, Tempo und Normalisieren.',
       name: 'MP3-Editor',
       shortName: 'MP3-Editor',
-      title: 'MP3-Editor – Schneiden, Blenden, Tempo',
+      title: 'MP3-Editor – Schnelle Korrekturen im Tab',
       description:
         'In einem Tab schneiden, blenden und das Tempo ändern. Die Originaldatei bleibt. Das Tempo zieht die Tonhöhe mit.',
       h1: 'MP3-Editor – Schneiden, blenden und Tempo ändern',
@@ -5315,7 +5315,7 @@ export const de: Catalog = {
       cardLine: 'Tippe den Takt und lies das BPM von allem, ohne Datei.',
       name: 'Tap Tempo',
       shortName: 'Tap Tempo',
-      title: 'Tap Tempo — BPM eines Songs durch Tippen finden',
+      title: 'Tap Tempo — BPM durch Tippen finden',
       description: 'Tippe einen Song mit und lies sein BPM. Ein verirrter Tap bewegt die Zahl nicht, nach etwa vier Taps beruhigt sie sich. Gratis, nichts wird hochgeladen.',
       h1: 'Tap Tempo — das BPM eines Songs durch Tippen finden',
       heroAlt: 'Ein getippter Beat als Ripples um einen Punkt',

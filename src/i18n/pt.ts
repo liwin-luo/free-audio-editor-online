@@ -1646,7 +1646,7 @@ export const pt: Catalog = {
       cardLine: 'Edições rápidas numa aba: cortar, fade, reverter, acelerar e normalizar.',
       name: 'Editor de MP3',
       shortName: 'Editor de MP3',
-      title: 'Editor de MP3 — cortar, fade e mudar a velocidade',
+      title: 'Editor de MP3 — ajustes rápidos numa só aba',
       description:
         'Corte, aplique fade e mude a velocidade numa aba. O arquivo original fica intacto, e a velocidade leva o tom junto.',
       h1: 'Editor de MP3 — cortar, fade e mudar a velocidade',
@@ -5451,7 +5451,7 @@ export const pt: Catalog = {
       cardLine: 'Bata no ritmo e leia o BPM de qualquer coisa, sem arquivo.',
       name: 'Tap tempo',
       shortName: 'Tap tempo',
-      title: 'Tap tempo — descubra o BPM de uma música batendo',
+      title: 'Tap tempo — descubra o BPM batendo',
       description: 'Bata junto com a música e leia o BPM. Uma batida fora de lugar não mexe no número, e ele se firma após umas quatro batidas. Grátis, nada é enviado.',
       h1: 'Tap tempo — descubra o BPM de uma música batendo no ritmo',
       heroAlt: 'Um ritmo batido como ondas ao redor de um ponto',

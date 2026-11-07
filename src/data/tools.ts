@@ -531,7 +531,7 @@ export const TOOLS: ToolDef[] = [
     shortName: 'MP3 Editor',
     icon: 'waveform',
     category: 'edit',
-    title: 'MP3 Editor — Cut, Fade, and Change Speed Online',
+    title: 'MP3 Editor — Quick Fixes in One Tab',
     description:
       'Cut, fade, and change speed in one tab. The original file stays untouched, and speed moves the pitch with it.',
     h1: 'MP3 Editor — Cut, Fade, and Change Speed',
@@ -6793,7 +6793,7 @@ export const TOOLS: ToolDef[] = [
     shortName: 'Tap tempo',
     icon: 'clock-counter-clockwise',
     category: 'record',
-    title: 'Tap Tempo — Find a Song BPM by Tapping',
+    title: 'Tap Tempo — BPM by Tapping',
     description:
       'Tap along with a song and read its BPM. One stray tap does not move the number, and it settles after about four taps. Free, nothing uploaded.',
     h1: 'Tap Tempo — Find the BPM of a Song by Tapping',

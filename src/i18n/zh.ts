@@ -1586,7 +1586,7 @@ export const zh: Catalog = {
       cardLine: '一个标签页搞定快速剪辑：剪切、淡入淡出、倒放、变速、标准化。',
       name: 'MP3 编辑器',
       shortName: 'MP3 编辑器',
-      title: 'MP3 编辑器 — 剪切、淡化、变速',
+      title: 'MP3 编辑器 — 小修改一次搞定',
       description:
         '在一个页面里剪切、淡化、变速。原文件不动，导出时才写成新文件。变速会连音高一起变。',
       h1: 'MP3 编辑器 — 剪切、淡化和变速',
@@ -5082,7 +5082,7 @@ export const zh: Catalog = {
       cardLine: '跟着节奏点，读出任何东西的 BPM，不用文件。',
       name: '打点测速',
       shortName: '打点测速',
-      title: '打点测 BPM — 跟着音乐点出速度',
+      title: '打点测 BPM — 跟着节奏点出速度',
       description: '跟着歌曲点击，读出 BPM。点偏一下不会带偏读数，大约四下后稳定。免费，什么都不上传。',
       h1: '打点测 BPM — 点出歌的速度',
       heroAlt: '节拍化成绕着一个点的涟漪',

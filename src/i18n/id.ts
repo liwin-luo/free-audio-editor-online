@@ -1647,7 +1647,7 @@ export const id: Catalog = {
       cardLine: 'Sunting cepat dalam satu tab: potong, fade, balik, ubah tempo, dan normalisasi.',
       name: 'Editor MP3',
       shortName: 'Editor MP3',
-      title: 'Editor MP3 — potong, fade, ubah kecepatan',
+      title: 'Editor MP3 — perbaikan cepat dalam satu tab',
       description:
         'Potong, fade, dan ubah kecepatan dalam satu tab. File asli tidak berubah, dan kecepatan menggeser nada bersamanya.',
       h1: 'Editor MP3 — potong, fade, ubah kecepatan',
@@ -5453,7 +5453,7 @@ export const id: Catalog = {
       cardLine: 'Ketuk iramanya dan baca BPM apa pun, tanpa berkas.',
       name: 'Tap tempo',
       shortName: 'Tap tempo',
-      title: 'Tap tempo — ketuk untuk mengetahui BPM sebuah lagu',
+      title: 'Tap tempo — ketuk untuk mengetahui BPM',
       description: 'Ketuk mengikuti lagu dan baca BPM-nya. Satu ketukan melenceng tidak menggeser angkanya; stabil setelah sekitar empat ketukan. Gratis, tanpa unggah.',
       h1: 'Tap tempo — ketahui BPM sebuah lagu dengan mengetuk',
       heroAlt: 'Irama yang diketuk menjadi riak di sekitar satu titik',

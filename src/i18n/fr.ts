@@ -1531,7 +1531,7 @@ export const fr: Catalog = {
       cardLine: 'Des retouches rapides en un seul onglet : couper, fondre, inverser, accélérer, normaliser.',
       name: 'Éditeur MP3',
       shortName: 'Éditeur MP3',
-      title: 'Éditeur MP3 — couper, fondre et changer la vitesse',
+      title: 'Éditeur MP3 — retouches rapides en un onglet',
       description:
         'Coupez, ajoutez un fondu et changez la vitesse dans un seul onglet. Le fichier d’origine reste intact, et la vitesse entraîne la hauteur.',
       h1: 'Éditeur MP3 — couper, fondre et changer la vitesse',
@@ -5560,7 +5560,7 @@ export const fr: Catalog = {
       cardLine: 'Tapez le temps et lisez le BPM de tout, sans fichier.',
       name: 'Tap tempo',
       shortName: 'Tap tempo',
-      title: 'Tap tempo — trouvez le BPM d’une chanson en tapant',
+      title: 'Tap tempo — trouvez le BPM en tapant',
       description: 'Tapez en suivant une chanson et lisez son BPM. Une tape égarée ne déplace pas le chiffre ; il se fixe en quatre tapes. Gratuit, rien n’est téléversé.',
       h1: 'Tap tempo — trouver le BPM d’une chanson en tapant le temps',
       heroAlt: 'Un temps tapé comme des ondulations autour d’un point',
