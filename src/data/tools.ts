@@ -1132,11 +1132,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Convert a WAV to MP3 in this browser. Nothing is uploaded.',
     intro:
       'This browser decodes the file and encodes an MP3. The menu is 64, 96, 128, 192, or 320 kbps. This page starts at 320. MP3 encodes the decoded samples once, and only the first two channels. Tags are not copied.',
-    usesHeading: 'WAV files worth converting',
+    usesHeading: 'Common uses for WAV to MP3',
     uses: [
-      'Shrink a studio or field recording until it is small enough to send.',
-      'Turn a lossless export into a 192 or 320 kbps MP3 for everyday listening.',
-      'Convert first, then trim. A WAV is too large to drag around twice.',
+      'Recording slim-down: shrink a studio or recorder file until it is small enough to send.',
+      'Everyday listening: turn a lossless export into 192 or 320 kbps — plenty for the road.',
+      'Email attachments: 128 kbps fits a class recording inside a 25 MB mail limit.',
+      'Batch archiving: convert a whole folder of WAVs in one pass, packed as a ZIP.',
+      'Convert, then trim: make the MP3 first, then cut the span in the audio trimmer.',
+      'Voice memos: speech needs a low bitrate anyway, so the file is small enough to fire off.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'The bitrate sets the size',
+        text: 'An MP3 is about a tenth of the WAV: a 50 MB WAV becomes 4-5 MB at 192 kbps. Six steps from 64 to 320 kbps, each showing a live size estimate in the export bar.',
+      },
+      {
+        icon: 'layers',
+        title: 'Batch convert in one pass',
+        text: 'Drop several WAVs at once; they share one set of settings and convert one after another. A single file downloads alone, and two or more come back as a ZIP.',
+      },
     ],
     howTo: [
       {

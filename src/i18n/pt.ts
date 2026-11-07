@@ -1859,11 +1859,26 @@ export const pt: Catalog = {
       subtitle: 'Converta arquivos WAV para MP3 em segundos — direto no navegador, nada enviado.',
       intro:
         'Transforme gravações WAV pesadas em MP3 compactos sem instalar nada e sem mandar o áudio para um servidor. Solte o arquivo, escolha o bitrate — 320 kbps para música, 128 kbps para voz — e a conversão acontece no seu aparelho, em geral em alguns segundos.',
-      usesHeading: 'WAV que vale a pena converter',
+      usesHeading: 'Usos comuns de WAV para MP3',
       uses: [
-        'Encolha uma gravação de estúdio ou de campo até dar para enviar.',
-        'Passe uma exportação sem perda para um MP3 de 192 ou 320 kbps, para ouvir no dia a dia.',
-        'Converta primeiro e corte depois. Um WAV é grande demais para arrastar duas vezes.',
+        'Afinar gravações: reduz um arquivo de estúdio ou gravador até dar para enviar.',
+        'Escuta do dia a dia: converte uma exportação sem perdas para 192 ou 320 kbps, de sobra na estrada.',
+        'Anexos de e-mail: 128 kbps cabe uma aula dentro do limite de 25 MB.',
+        'Arquivo em lote: converte uma pasta inteira de WAVs de uma vez, empacotada em ZIP.',
+        'Converta e corte: gere o MP3 primeiro e corte o trecho no cortador de áudio.',
+        'Memos de voz: voz precisa de pouco bitrate; o arquivo fica pequeno o bastante para enviar.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'O bitrate manda no tamanho',
+          text: 'Um MP3 pesa cerca de um décimo do WAV: 50 MB viram 4-5 MB a 192 kbps. Seis passos de 64 a 320 kbps, cada um com estimativa de tamanho ao vivo na barra de exportação.',
+        },
+        {
+          icon: 'layers',
+          title: 'Conversão em lote de uma vez',
+          text: 'Solte vários WAVs juntos; eles compartilham os mesmos ajustes e convertem um após o outro. Um arquivo sozinho baixa direto; dois ou mais voltam num ZIP.',
+        },
       ],
       howTo: [
         {

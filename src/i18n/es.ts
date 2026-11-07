@@ -1860,11 +1860,26 @@ export const es: Catalog = {
       subtitle: 'Convierte archivos WAV a MP3 en segundos, en tu navegador. Nada se sube.',
       intro:
         'Pasa grabaciones WAV pesadas a MP3 compactos sin instalar nada ni enviar tu audio a un servidor. Suelta el archivo, elige un bitrate — 320 kbps para música, 128 kbps para voz — y la conversión ocurre en tu propio dispositivo, casi siempre en un par de segundos.',
-      usesHeading: 'WAV que vale la pena convertir',
+      usesHeading: 'Usos habituales de WAV a MP3',
       uses: [
-        'Reduce una grabación de estudio o de campo hasta que se pueda enviar.',
-        'Pasa una exportación sin pérdida a un MP3 de 192 o 320 kbps para escuchar a diario.',
-        'Convierte primero y recorta después. Un WAV es demasiado grande para arrastrarlo dos veces.',
+        'Adelgazar grabaciones: reduce un archivo de estudio o de grabadora hasta que se pueda enviar.',
+        'Escucha diaria: convierte una exportación sin pérdidas a 192 o 320 kbps, de sobra para la calle.',
+        'Adjuntos de correo: 128 kbps mete una grabación de clase dentro del límite de 25 MB.',
+        'Archivo por lotes: convierte una carpeta entera de WAV de una pasada, empaquetada en ZIP.',
+        'Convierte y recorta: genera el MP3 primero y corta el fragmento en el recortador de audio.',
+        'Notas de voz: la voz necesita poco bitrate; el archivo queda pequeño para enviarlo al momento.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'El bitrate manda en el tamaño',
+          text: 'Un MP3 pesa cerca de un décimo del WAV: 50 MB se quedan en 4-5 MB a 192 kbps. Seis pasos de 64 a 320 kbps, cada uno con estimación de tamaño en vivo en la barra de exportación.',
+        },
+        {
+          icon: 'layers',
+          title: 'Conversión por lotes de una vez',
+          text: 'Suelta varios WAV juntos; comparten los mismos ajustes y se convierten uno tras otro. Un solo archivo se descarga solo; dos o más vuelven en un ZIP.',
+        },
       ],
       howTo: [
         {
