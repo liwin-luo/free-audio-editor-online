@@ -7451,11 +7451,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'A .mid file in the browser. Up to 3 minutes of one instrument.',
     intro:
       'Drop a file. This page writes a MIDI file from the model at /models/basic-pitch/model.json. The model downloads once from this site. One file stops at about 3 minutes. Drums, noise, and a full mix often return: No notes. A failed read says: Could not read notes. Trim a longer file on the [audio trimmer](/audio-trimmer) first.',
-    usesHeading: 'Notes you can edit next',
+    usesHeading: 'Common uses for audio to MIDI',
     uses: [
-      'Open a hummed melody in a DAW and move the notes instead of re-recording them.',
-      'Turn a solo piano take into notes, then change one pitch on the pitch changer if the key is wrong.',
-      'Read the note count before download, and skip the file when the count is nonsense.',
+      'Hum to score: turn a hummed melody into MIDI and move the notes in a DAW instead of re-recording.',
+      'Piano notation: a solo piano take becomes notes without hand-entering the score.',
+      'Swap the sound: MIDI plays any instrument — turn the piano into strings.',
+      'Practice checks: convert your own playing into notes and compare against the sheet.',
+      'Arranging start: a single-track demo becomes MIDI, and the arrangement grows from there.',
+      'Melody archive: park an inspiration melody in MIDI in your library of ideas.',
+    ],
+    why: [
+      {
+        icon: 'note',
+        title: 'Notes you can edit',
+        text: 'What comes out is MIDI notes, not audio: pitch and duration land in the DAW ready to change.',
+      },
+      {
+        icon: 'file',
+        title: 'One instrument works best',
+        text: 'A single melody or a single instrument gives the cleanest result; a full mix is not its dish — the page says so honestly.',
+      },
     ],
     howTo: [
       {

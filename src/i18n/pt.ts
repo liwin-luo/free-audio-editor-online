@@ -5582,11 +5582,26 @@ export const pt: Catalog = {
       heroAlt: 'Transformar uma melodia ou um piano solo em notas MIDI',
       subtitle: 'Um arquivo .mid no navegador. Até 3 minutos de um instrumento.',
       intro: 'Solte uma melodia, uma voz cantada ou um piano solo. Esta página escreve um MIDI que abre no GarageBand, no Ableton ou no Logic: altura, início, duração e velocity de cada nota. O Basic Pitch da Spotify roda nesta aba. O áudio não é enviado. O modelo tem menos de 1 MB e baixa uma vez deste site. Uma mix completa, bateria ou acordes densos saem errados. Acima de 3 minutos, corte antes.',
-      usesHeading: 'Notas para editar depois',
+      usesHeading: 'Usos comuns de áudio para MIDI',
       uses: [
-        'Abra uma melodia cantarolada num DAW e mova as notas, sem regravar.',
-        'Transforme um piano solo em notas. Se o tom estiver errado, mude o áudio original no alterador de tom.',
-        'Leia a contagem antes de baixar e pule o arquivo quando o número não fizer sentido.',
+        'Tararear para partitura: transforme a melodia tarareada em MIDI e mova as notas no DAW sem regravar.',
+        'Notação de piano: uma toma de piano solo vira notas sem digitar a partitura à mão.',
+        'Trocar o som: o MIDI toca em qualquer instrumento — do piano para as cordas.',
+        'Conferir o exercício: converta a própria execução em notas e compare com a partitura.',
+        'Começo de arranjo: um demo de uma faixa vira MIDI e o arranjo cresce daí.',
+        'Arquivo de melodias: guarde a melodia da inspiração em MIDI na sua biblioteca.',
+      ],
+      why: [
+        {
+          icon: 'note',
+          title: 'Notas que você pode editar',
+          text: 'O que sai são notas MIDI, não áudio: tom e duração chegam ao DAW prontos para mudar.',
+        },
+        {
+          icon: 'file',
+          title: 'Um instrumento funciona melhor',
+          text: 'Uma melodia única ou um instrumento único dá o resultado mais limpo; uma mixagem inteira não é o prato dele — a página diz isso com honestidade.',
+        },
       ],
       howTo: [
         { name: 'Solte um instrumento', text: 'Adicione MP3, WAV, M4A ou um vídeo com trilha. O navegador decodifica. Nada é enviado. Acima de 3 minutos fica bloqueado até você cortar.' },

@@ -5407,11 +5407,26 @@ export const de: Catalog = {
       heroAlt: 'Eine Melodie oder ein Solo-Klavier in MIDI-Noten verwandeln',
       subtitle: 'Eine .mid-Datei im Browser. Höchstens 3 Minuten von einem Instrument.',
       intro: 'Leg eine Melodie, eine gesungene Zeile oder ein Solo-Klavier ab. Diese Seite schreibt eine MIDI-Datei, die du in GarageBand, Ableton oder Logic öffnest: Tonhöhe, Start, Länge und Velocity jeder Note. Spotifys Basic Pitch läuft in diesem Tab. Die Audiodatei wird nicht hochgeladen. Das Modell ist unter 1 MB und kommt einmal von dieser Seite. Ein voller Mix, Drums oder dichte Akkorde kommen falsch heraus. Länger als 3 Minuten muss zuerst geschnitten werden.',
-      usesHeading: 'Noten, die du danach ändern kannst',
+      usesHeading: 'Häufige Einsätze für Audio zu MIDI',
       uses: [
-        'Öffne eine gesummte Melodie in einer DAW und verschiebe die Noten, ohne neu aufzunehmen.',
-        'Mach aus einem Solo-Klavier Noten. Sitzt die Tonart nicht, verschiebst du das Original im Tonhöhen-Wechsler.',
-        'Lies die Notenzahl vor dem Download und lass die Datei liegen, wenn die Zahl Unsinn ist.',
+        'Summen zur Partitur: eine gesummte Melodie wird MIDI, und die Noten wandern ins DAW statt neu aufgenommen zu werden.',
+        'Klavier-Notation: eine Klavier-Einzelaufnahme wird zu Noten, ohne die Partitur einzutippen.',
+        'Klang tauschen: MIDI spielt jedes Instrument — aus dem Klavier werden Streicher.',
+        'Übungskontrolle: das eigene Spiel in Noten umwandeln und mit dem Blatt vergleichen.',
+        'Arrangement-Start: ein Ein-Spur-Demo wird MIDI, und das Arrangement wächst von dort.',
+        'Melodie-Archiv: die Eingebungs-Melodie als MIDI in die Ideenbibel legen.',
+      ],
+      why: [
+        {
+          icon: 'note',
+          title: 'Notizen, die du bearbeiten kannst',
+          text: 'Herauskommen MIDI-Noten, kein Audio: Tonhöhe und Dauer landen bearbeitbar im DAW.',
+        },
+        {
+          icon: 'file',
+          title: 'Ein Instrument funktioniert am besten',
+          text: 'Eine einzelne Melodie oder ein einzelnes Instrument liefert das sauberste Ergebnis; ein ganzer Mix ist nicht ihr Ding — die Seite sagt es ehrlich.',
+        },
       ],
       howTo: [
         { name: 'Ein Instrument ablegen', text: 'MP3, WAV, M4A oder ein Video mit Tonspur. Der Browser dekodiert. Nichts wird hochgeladen. Länger als 3 Minuten bleibt gesperrt, bis du schneidest.' },

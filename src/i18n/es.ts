@@ -5440,11 +5440,26 @@ export const es: Catalog = {
       heroAlt: 'Convertir una melodía o un piano solo en notas MIDI',
       subtitle: 'Un archivo .mid en el navegador. Hasta 3 minutos de un instrumento.',
       intro: 'Suelta una melodía, una voz cantada o un piano solo. Esta página escribe un MIDI que se abre en GarageBand, Ableton o Logic: altura, inicio, duración y velocity de cada nota. Basic Pitch de Spotify corre en esta pestaña. El audio no se sube. El modelo pesa menos de 1 MB y se descarga una vez desde este sitio. Una mezcla completa, la batería o acordes densos salen mal. Más de 3 minutos hay que recortarlo antes.',
-      usesHeading: 'Notas para editar después',
+      usesHeading: 'Usos habituales de audio a MIDI',
       uses: [
-        'Abre una melodía tarareada en un DAW y mueve las notas, sin volver a grabar.',
-        'Convierte un piano solo en notas. Si el tono no encaja, mueve el audio original en el cambiador de tono.',
-        'Lee el recuento antes de descargar y salta el archivo cuando el número no tiene sentido.',
+        'Tararear a partitura: convierte la melodía tarareada en MIDI y mueve las notas en el DAW sin regrabar.',
+        'Transcribir piano: una toma de piano solo se vuelve notas sin teclear la partitura a mano.',
+        'Cambiar el sonido: el MIDI suena con cualquier instrumento; del piano a las cuerdas.',
+        'Comprobar el ejercicio: convierte tu propia interpretación en notas y compárala con la partitura.',
+        'Arranque de arreglo: un demo de una pista se vuelve MIDI y el arreglo crece desde ahí.',
+        'Archivo de melodías: guarda la melodía de la inspiración en MIDI en tu biblioteca.',
+      ],
+      why: [
+        {
+          icon: 'note',
+          title: 'Notas que puedes editar',
+          text: 'Lo que sale son notas MIDI, no audio: el tono y la duración llegan al DAW listos para cambiar.',
+        },
+        {
+          icon: 'file',
+          title: 'Un solo instrumento funciona mejor',
+          text: 'Una sola melodía o un solo instrumento da el resultado más limpio; una mezcla entera no es su plato — la página lo dice con honestidad.',
+        },
       ],
       howTo: [
         { name: 'Suelta un instrumento', text: 'Añade un MP3, WAV, M4A o un vídeo con pista de audio. El navegador lo decodifica. Nada se sube. Más de 3 minutos queda bloqueado hasta que lo cortes.' },
