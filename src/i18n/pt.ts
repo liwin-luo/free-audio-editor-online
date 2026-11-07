@@ -723,6 +723,11 @@ export const pt: Catalog = {
           name: 'Ouça e exporte',
           text: 'Ouça em volume normal — grave demais esconde vozes. Exporte em MP3 ou WAV sem perda.',
         },
+        {
+          name: 'Receba os arquivos',
+          text: 'Vários arquivos usam as mesmas configurações e são exportados juntos em um ZIP.',
+        },
+
       ],
       faqs: [
         {
@@ -843,6 +848,11 @@ export const pt: Catalog = {
           name: 'Ouça e exporte',
           text: 'Fique de olho na aspereza nas sibilantes (sons s, t) — exporte em MP3 ou WAV sem perda.',
         },
+        {
+          name: 'Pegue seus arquivos',
+          text: 'Vários arquivos compartilham o mesmo ajuste e são exportados juntos em um ZIP.',
+        },
+
       ],
       faqs: [
         {
@@ -951,6 +961,11 @@ export const pt: Catalog = {
           name: 'Compare e exporte',
           text: 'Volte uma banda a 0 dB para comparar com o original e exporte em MP3 ou WAV sem perda.',
         },
+        {
+          name: 'Exportar',
+          text: 'Clique em "Aplicar EQ" para baixar, em MP3 ou WAV sem perdas.',
+        },
+
       ],
       faqs: [
         {
@@ -1059,6 +1074,10 @@ export const pt: Catalog = {
           name: 'Ouça e exporte',
           text: 'Confira se as vozes seguem naturais e exporte em MP3 ou WAV sem perda.',
         },
+        {
+          name: 'Ouça e exporte',
+          text: 'Confira se os agudos soam limpos na prévia e exporte em MP3 ou WAV sem perdas.',
+        },
       ],
       faqs: [
         {
@@ -1116,7 +1135,8 @@ export const pt: Catalog = {
             'O filtro passa-alta remove ronco e reforço de graves abaixo do corte. Esta página remove chiado e aspereza acima do corte. Usar os dois deixa uma banda no meio.',
             'Alguns decibéis de agudos, em vez de remover o topo de vez, são o realce de agudos ou o equalizador. Esses shelves não fazem uma varredura de corte rígida.',
           ],
-        },
+        }
+        ,
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Aplicar passa-baixa',
@@ -1166,6 +1186,10 @@ export const pt: Catalog = {
         {
           name: 'Ouça e exporte',
           text: 'Confira se a voz não ficou fina e exporte em MP3 ou WAV sem perda.',
+        },
+        {
+          name: 'Ouça e exporte',
+          text: 'Confira se os graves estão limpos e os vocais intactos na prévia e exporte em MP3 ou WAV sem perdas.',
         },
       ],
       faqs: [
@@ -1224,7 +1248,8 @@ export const pt: Catalog = {
             'O realce de graves adiciona nível abaixo de 150 Hz. Esta página remove nível abaixo de um corte que você varre. Eles resolvem problemas opostos.',
             'O equalizador pode cortar alguns decibéis em 150 Hz e deixar o resto do grave. Use ele quando o arquivo está um pouco lamacento e você ainda quer o peso. Use esta página quando o ronco deve sumir.',
           ],
-        },
+        }
+        ,
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Aplicar passa-alta',
@@ -1274,6 +1299,10 @@ export const pt: Catalog = {
         {
           name: 'Ouça e exporte',
           text: 'Toque o começo e o fim para ouvir os fades e exporte em MP3 ou WAV sem perda.',
+        },
+        {
+          name: 'Ouça e exporte',
+          text: 'Confira na prévia e exporte em MP3 ou WAV sem perdas.',
         },
       ],
       faqs: [
@@ -1335,7 +1364,8 @@ export const pt: Catalog = {
             'Misturar o fim de uma faixa no começo de outra é o [juntador de áudio](/audio-joiner). Esta página faz fade em um único arquivo.',
             'O [amplificador de volume](/volume-booster) levanta o arquivo inteiro em uma quantidade constante, de 10% a 400%. Um fade é baixo nas bordas e cheio no meio. A exportação é MP3, começando em 320 kbps, ou WAV de 16 bits. O arquivo que você soltou não é modificado.',
           ],
-        },
+        }
+        ,
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Aplicar fade e baixar',
@@ -1998,6 +2028,11 @@ export const pt: Catalog = {
           name: 'Converta e baixe',
           text: 'Clique em Converter para MP3. O codificador roda no navegador e o MP3 baixa direto no aparelho.',
         },
+        {
+          name: 'Pegue seus arquivos',
+          text: 'Um único arquivo é baixado sozinho; dois ou mais vão em um ZIP. Tags e capa do WAV não são levadas — você pode adicioná-las depois com o [editor de tags](/mp3-tag-editor).',
+        },
+
       ],
       faqs: [
         { q: 'Posso converter mais de um WAV?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -2121,6 +2156,11 @@ export const pt: Catalog = {
           name: 'Converta e baixe',
           text: 'Clique em Converter para MP3. O codificador roda no seu navegador e o MP3 baixa direto no aparelho.',
         },
+        {
+          name: 'Clique em «Converter para MP3»',
+          text: 'Cada faixa é decodificada e codificada localmente em uma passada, com o progresso exibido na linha de status.',
+        },
+
       ],
       faqs: [
         { q: 'Posso converter mais de um FLAC?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -2230,6 +2270,11 @@ export const pt: Catalog = {
           name: 'Converta e baixe',
           text: 'Clique em Converter para WAV. O áudio decodificado é gravado localmente e o download começa na hora.',
         },
+        {
+          name: 'Clique em «Converter para WAV»',
+          text: 'O codificador roda no seu navegador — a conversão costuma levar um ou dois segundos.',
+        },
+
       ],
       faqs: [
         { q: 'Posso converter mais de um MP3 para WAV?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -2340,6 +2385,11 @@ export const pt: Catalog = {
           name: 'Ouça e exporte',
           text: 'Ouça a prévia comprimida e salve. Confira se as vozes e os pratos continuam limpos no bitrate escolhido.',
         },
+        {
+          name: 'Exportar',
+          text: 'Gostou? Exporte e baixe; vários arquivos usam as mesmas configurações e vêm agrupados em um ZIP.',
+        },
+
       ],
       faqs: [
         { q: 'Posso diminuir mais de um arquivo?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -2471,6 +2521,11 @@ export const pt: Catalog = {
         { name: 'Adicione o arquivo', text: 'Solte qualquer áudio que este navegador consiga decodificar. A conversão fica na aba. Dá para soltar vários arquivos. Eles usam o ajuste que você escolhe em seguida. Um baixa sozinho. Dois ou mais voltam num ZIP.' },
         { name: 'Escolha o bitrate', text: 'Abra o menu de formato. Ele começa em 192 kbps. As outras taxas são 320, 128, 96 e 64.' },
         { name: 'Exporte o MP3', text: 'O arquivo é codificado na taxa que você escolheu. Tags e capa não são copiados.' },
+        {
+          name: 'Receba os arquivos',
+          text: 'Arquivos individuais são baixados diretamente; vários arquivos são agrupados em um ZIP.',
+        },
+
       ],
       faqs: [
         { q: 'Posso mudar o bitrate de mais de um arquivo?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -2580,6 +2635,11 @@ export const pt: Catalog = {
           name: 'Salve o resultado',
           text: 'Exporte o áudio revertido como MP3 ou WAV sem perdas. O download começa sozinho.',
         },
+        {
+          name: 'Pegue seu arquivo',
+          text: 'O nome do arquivo recebe o sufixo -edited.',
+        },
+
       ],
       faqs: [
         {
@@ -2684,6 +2744,11 @@ export const pt: Catalog = {
           name: 'Ouça e exporte',
           text: 'Reproduza o resultado para conferir o ritmo e salve em MP3 ou WAV. Um arquivo de 10 minutos em 2× exporta em cerca de um segundo.',
         },
+        {
+          name: 'Receba os arquivos',
+          text: 'O nome do arquivo recebe o sufixo -edited.',
+        },
+
       ],
       faqs: [
         {
@@ -2792,6 +2857,10 @@ export const pt: Catalog = {
           name: 'Exporte o arquivo mais alto',
           text: 'Salve em MP3 ou WAV. Se ainda soar forçado, volte 10–20% — alto e limpo vale mais do que o máximo possível.',
         },
+        {
+          name: 'Exporte o arquivo mais alto',
+          text: 'Salve em MP3 ou WAV. Se soar apertado, volte 10–20% — volume limpo vale mais que no máximo.',
+        },
       ],
       faqs: [
         {
@@ -2850,7 +2919,8 @@ export const pt: Catalog = {
             'Você recebe um novo arquivo. O MP3 que você soltou fica onde estava. Empurrar um arquivo que já é alto bate quase todo no limitador e pode soar chapado.',
             'Se o MP3 está baixo porque é um silêncio longo com uma frase curta, corte primeiro, depois aumente o que sobrou.',
           ],
-        },
+        }
+        ,
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Aumentar e baixar',
@@ -3063,6 +3133,11 @@ export const pt: Catalog = {
           name: 'Extraia e salve',
           text: 'Clique em Extrair áudio. A trilha é decodificada no aparelho e o download começa na hora.',
         },
+        {
+          name: 'Receba os arquivos',
+          text: 'Arquivos individuais são baixados diretamente; vários arquivos são agrupados em um ZIP.',
+        },
+
       ],
       faqs: [
         { q: 'Posso tirar o áudio de mais de um vídeo?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -3180,6 +3255,11 @@ export const pt: Catalog = {
           name: 'Exporte a gravação',
           text: 'Salve em MP3 ou WAV. As gravações existem só nesta aba até você exportar — fechar sem exportar descarta tudo.',
         },
+        {
+          name: 'Não esqueça de exportar',
+          text: 'A gravação existe só na memória desta aba. Se fechar a página sem exportar, ela some — exporte primeiro e depois feche.',
+        },
+
       ],
       faqs: [
         {
@@ -3283,6 +3363,11 @@ export const pt: Catalog = {
           name: 'Exporte o arquivo mais alto',
           text: 'Salve em MP3 ou WAV. Se os picos soarem achatados, volte o aumento em 10–20% e exporte de novo.',
         },
+        {
+          name: 'Ajuste e exporte',
+          text: 'Se soar saturado, reduza um pouco o ganho; teste alguns níveis antes de exportar.',
+        },
+
       ],
       faqs: [
         {
@@ -3405,6 +3490,10 @@ export const pt: Catalog = {
           name: 'Exporte',
           text: 'Salve em MP3 ou WAV. O WAV evita uma passagem extra de codificação com perdas se você pretende continuar editando o arquivo.',
         },
+        {
+          name: 'Exporte',
+          text: 'Salve em MP3 ou WAV. Se for continuar editando, escolha WAV sem perdas para evitar uma segunda codificação com perdas.',
+        },
       ],
       faqs: [
         { q: 'Posso normalizar mais de um arquivo?', a: 'Sim. Com Normalizar ligado, cada arquivo da fila usa isso. Cada um é medido por si e sobe até o próprio pico, um depois do outro neste aparelho. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -3466,7 +3555,8 @@ export const pt: Catalog = {
             'Se um clique ou uma respiração já está perto da escala cheia, normalizar quase não faz nada, porque esse pico define o ganho. O compressor de nível é o que aproxima altos e baixos e depois iguala o pico.',
             'Deixar um arquivo mais alto por um fator que você escolhe, inclusive acima de 100 por cento com limitador, é o amplificador de volume. Normalizar não oferece esse multiplicador.',
           ],
-        },
+        }
+        ,
       ],
       dropHint: 'Solte arquivos de áudio ou clique para procurar',
       exportLabel: 'Normalizar e baixar',
@@ -3518,6 +3608,11 @@ export const pt: Catalog = {
           name: 'Exporte a edição',
           text: 'Salve em MP3 320 kbps para postar, ou em WAV se for editar depois em outro app.',
         },
+        {
+          name: 'Exportar',
+          text: 'Clique em Desacelerar e baixar; o nome do arquivo recebe o sufixo -edited.',
+        },
+
       ],
       faqs: [
         {
@@ -3644,6 +3739,11 @@ export const pt: Catalog = {
         { name: 'Solte o arquivo', text: 'Adicione um MP3, WAV, M4A ou outro áudio. Ele fica no seu aparelho.' },
         { name: 'Defina o tempo', text: 'Arraste de 0,75× a 1,25×. Cada passo é 0,01. 1,00× é o arquivo que você soltou.' },
         { name: 'Ouça e exporte', text: 'Reproduza para ouvir a nova duração no tom original e salve em MP3 ou WAV.' },
+        {
+          name: 'Pegue seu arquivo',
+          text: 'O nome do arquivo recebe o sufixo -edited.',
+        },
+
       ],
       faqs: [
         { q: 'O arquivo é enviado?', a: 'Não. O navegador estica o arquivo na memória. Depois que a página carrega, você pode ficar offline e ainda exportar um arquivo que soltar.' },
@@ -3725,6 +3825,10 @@ export const pt: Catalog = {
         { name: 'Solte o arquivo', text: 'Adicione um MP3, WAV, M4A ou outro áudio. Ele fica no seu aparelho.' },
         { name: 'Defina o tom', text: 'Arraste de −12 a +12 semitons. +12 é uma oitava acima, −12 uma oitava abaixo. 0 deixa o arquivo como está.' },
         { name: 'Ouça e exporte', text: 'Reproduza para ouvir o novo tom na duração original e salve em MP3 ou WAV.' },
+        {
+          name: 'Ouça e exporte',
+          text: 'Confira na prévia e exporte em MP3 ou WAV sem perdas.',
+        },
       ],
       faqs: [
         { q: 'A duração do arquivo muda?', a: 'Não. O controle de tom muda a tonalidade e deixa a duração quieta. Para deixar o arquivo mais rápido ou mais lento — o que também muda o tom — use o alterador de velocidade.' },
@@ -3768,7 +3872,8 @@ export const pt: Catalog = {
             'O controle de velocidade vai de 0,5× a 2× e move o tom com o tempo, como um disco. 2× fica cerca de uma oitava acima e metade da duração. Esta página não faz isso.',
             'Slowed + reverb também afunda o tom ao desacelerar o arquivo, e adiciona uma cauda. Se você quer o som nightcore ou slowed, é aquela página. Se quer a mesma duração e um novo tom, fique aqui.',
           ],
-        },
+        }
+        ,
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Mudar o tom e baixar',
@@ -3808,6 +3913,11 @@ export const pt: Catalog = {
         { name: 'Solte o M4A', text: 'Arraste um .m4a ou .aac para a página, ou clique para procurar. Um MP4 de vídeo fica na página de MP4 para MP3. Dá para soltar vários arquivos. Eles usam o ajuste que você escolhe em seguida. Um baixa sozinho. Dois ou mais voltam num ZIP.' },
         { name: 'Escolha o bitrate', text: '320 kbps para música, 192 kbps para o dia a dia, 128 kbps para recados de voz.' },
         { name: 'Converta e baixe', text: 'Clique em Converter para MP3. A decodificação e a codificação acontecem no seu aparelho, e o arquivo baixa em seguida.' },
+        {
+          name: 'Clique em «Converter para MP3»',
+          text: 'Decodificado e recodificado localmente em uma passada — a conversão costuma levar só alguns segundos.',
+        },
+
       ],
       faqs: [
         { q: 'Posso converter mais de um M4A?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -3887,6 +3997,11 @@ export const pt: Catalog = {
         { name: 'Solte o OGG', text: 'Arraste um .ogg ou .oga para a página, ou clique para procurar. Dá para soltar vários arquivos. Eles usam o ajuste que você escolhe em seguida. Um baixa sozinho. Dois ou mais voltam num ZIP.' },
         { name: 'Escolha o bitrate', text: '320 kbps para música, 192 kbps para o dia a dia, 128 kbps para voz.' },
         { name: 'Converta e baixe', text: 'Clique em Converter para MP3. A decodificação e a codificação acontecem no seu aparelho, e o arquivo baixa em seguida.' },
+        {
+          name: 'Clique em «Converter para MP3»',
+          text: 'A decodificação e recodificação acontece localmente em uma passada — pronto em segundos.',
+        },
+
       ],
       faqs: [
         { q: 'Posso converter mais de um OGG?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -3941,16 +4056,37 @@ export const pt: Catalog = {
       heroAlt: 'Converter um recado de voz do WhatsApp ou do Telegram em MP3',
       subtitle: 'Transforme áudio Opus em MP3, no navegador, sem enviar nada.',
       intro: 'Recados de voz e alguns downloads são Opus: um arquivo .opus, ou Opus dentro de OGG ou WebM. Solte o arquivo, escolha um bitrate e o navegador decodifica e salva um MP3. O áudio não vai para um servidor.',
-      usesHeading: 'Opus que as pessoas convertem',
+      usesHeading: 'Usos comuns de Opus para MP3',
       uses: [
-        'Passe uma mensagem de voz ou uma exportação Opus para MP3, num player que não abre Opus.',
-        'Fala fica bem em 128 kbps. Você muda o formato que as pessoas conseguem tocar, não a duração.',
-        'Converta aqui e corte se a mensagem tiver um silêncio longo numa das pontas.',
+        'Voz do WhatsApp: transforme mensagens de voz .opus em MP3 que toca em qualquer lugar.',
+        'Gravações de reuniões: converta gravações do Discord e outros apps para um formato universal e guarde.',
+        'Voz de jogos: converta para MP3 o Opus exportado por apps de voz para preservar.',
+        'Material de podcast: converta as faixas Opus que convidados remotos enviam antes de mixar.',
+        'Antes de transcrever: converta para MP3 antes de entregar à [transcrição](/audio-to-text); fica mais confiável.',
+        'Conversão em lote: converta um pacote de mensagens de voz de uma vez e receba tudo em ZIP.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Lê .opus direto',
+          text: 'Aceita .opus puro e também Opus dentro de OGG/WebM — em nenhum dos casos você precisa renomear antes de converter.',
+        },
+        {
+          icon: 'layers',
+          title: 'ZIP em lote',
+          text: 'Arraste dezenas de mensagens de voz de uma vez; cada uma é convertida e tudo vem empacotado em um ZIP.',
+        },
       ],
       howTo: [
         { name: 'Solte o Opus', text: 'Arraste um .opus para a página, ou clique para procurar. OGG e WebM com Opus funcionam do mesmo jeito. Dá para soltar vários arquivos. Eles usam o ajuste que você escolhe em seguida. Um baixa sozinho. Dois ou mais voltam num ZIP.' },
         { name: 'Escolha o bitrate', text: '128 kbps basta para um recado de voz. Se o Opus for música, use 192 ou 320 kbps.' },
         { name: 'Converta e baixe', text: 'Clique em Converter para MP3. A decodificação e a codificação acontecem no seu aparelho, e o arquivo baixa em seguida.' },
+        {
+          name: 'Pegue seu arquivo',
+          text: 'Um arquivo baixa direto; vários vêm empacotados em um ZIP.',
+        }
+
+        ,
       ],
       faqs: [
         { q: 'Posso converter mais de um arquivo Opus?', a: 'Sim. Vários arquivos usam o ajuste desta página. Convertem um depois do outro neste aparelho, e cada arquivo é liberado antes do próximo começar. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -4353,6 +4489,10 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação fica no seu aparelho.' },
         { name: 'Ajuste a quantidade', text: 'Arraste Comprimir. 30–50% basta para a maioria das falas. 100% esmaga: limiar −36 dB, razão 8:1.' },
         { name: 'Ouça e exporte', text: 'Reproduza o resultado e exporte MP3 ou WAV. O pico volta ao original, logo abaixo da escala cheia.' },
+        {
+          name: 'Funciona no celular',
+          text: 'Os controles e a exportação são touch; alguns minutos de voz exportam em um ou dois segundos num celular recente.',
+        },
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. O compressor é um processador de dinâmica da Web Audio dentro da aba. Depois que a página carrega, você pode ficar offline e ainda exportar.' },
@@ -4432,6 +4572,11 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação fica no seu aparelho.' },
         { name: 'Ajuste atraso e repetições', text: 'O atraso é o intervalo antes da primeira cópia, até 0,8 s. As repetições são o retorno, com teto de 55% para não disparar.' },
         { name: 'Ouça e exporte', text: 'Reproduza e exporte MP3 ou WAV. O arquivo cresce com a cauda das repetições, até 4 segundos.' },
+        {
+          name: 'Salve seu arquivo',
+          text: 'Exporte em MP3 ou WAV; o nome do arquivo recebe o sufixo -edited.',
+        },
+
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. O eco é um atraso da Web Audio dentro da aba. Depois que a página carrega, você pode ficar offline e ainda exportar.' },
@@ -4512,6 +4657,11 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho. O controle de wet começa em zero, que é o arquivo seco.' },
         { name: 'Ajuste o wet', text: 'O controle mistura a sala no sinal seco, de 0 a 100%. Por volta de 25% a voz para de parecer colada no microfone. O botão de reprodução toca o resultado misturado.' },
         { name: 'Exportar', text: 'A exportação acrescenta o decaimento depois da última amostra, cerca de 2,2 segundos de cauda. O MP3 sai no bitrate que você escolher, e o WAV mantém as amostras processadas exatamente.' },
+        {
+          name: 'Pegue seu arquivo',
+          text: 'MP3 ou WAV, com o sufixo -edited no nome do arquivo.',
+        },
+
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. O arquivo é decodificado e o reverb é renderizado no seu navegador com a Web Audio API. Depois que a página carrega, decodificar e exportar WAV não precisam de rede.' },
@@ -4616,6 +4766,10 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho.' },
         { name: 'Ajuste a intensidade', text: '0% é limpo. 40% é o início. 100% é o clipping mais duro que esta página faz.' },
         { name: 'Ouça e exporte', text: 'Reproduza e exporte MP3 ou WAV. A duração não muda.' },
+{
+          name: 'Leve o arquivo',
+          text: 'O nome do arquivo leva o sufixo -edited.',
+        },
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. O clipping é um waveshaper da Web Audio dentro da aba. Depois que a página carrega, você pode ficar offline e ainda exportar. WAV sai na hora. MP3 sai depois que o encoder carregou uma vez.' },
@@ -4656,6 +4810,7 @@ export const pt: Catalog = {
             'Esta curva não reduz a profundidade de bits nem corta os agudos. O nó faz oversampling de 2×, o que só reduz o aliasing dos novos harmônicos. Um tom lo-fi opaco é esta página, depois o filtro passa-baixa.',
           ],
         },
+
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para escolher',
       exportLabel: 'Distorcer e baixar',
@@ -4671,12 +4826,37 @@ export const pt: Catalog = {
       howToIntro: 'As cinco predefinições numa gravação real',
       subtitle: 'Toque em Agudo, Grave, Robô, Rádio ou Fantasma e ouça antes de exportar.',
       intro: 'Esta página aplica cinco presets fixos de voz a uma gravação. Agudo sobe o tom quatro semitons, Grave abaixa quatro, Robô achata com um bitcrusher, Rádio aperta o som por um passa-banda como um intercomunicador, e Fantasma espalha com reverb. Toque em um preset e a prévia toca o seu arquivo por ele. Tudo roda no navegador, então a gravação nunca sai do seu aparelho.',
-      usesHeading: 'O que as pessoas fazem com ele',
-      uses: ['Dê a um personagem outra voz em um trecho de audiolivro ou em um mod de jogo.', 'Disfarce a voz de origem em uma demo ou gravação de tela antes de compartilhar.', 'Ouça uma leitura mais grave ou mais brilhante de uma abertura de podcast sem regravar.'],
+      usesHeading: 'Usos comuns do mudador de voz',
+      uses: [
+        'Dublagem de personagens: dê outra voz a um personagem de audiolivro ou mod de jogo.',
+        'Compartilhar com privacidade: esconda sua voz de origem antes de uma demonstração ou gravação de tela.',
+        'Conteúdo divertido: efeitos de robô ou fantasma para dar clima ao vídeo.',
+        'Comparar de ouvido: teste os cinco predefinidos um por um e escolha o que soa melhor.',
+        'Variantes de material: crie várias versões da mesma gravação para escolher.',
+        'Presente surpresa: mude a voz de uma gravação de um amigo como brincadeira.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Cinco predefinidos = cinco cadeias de processamento',
+          text: 'Agudo, grave, robô, rádio, fantasma: cada predefinido esconde um conjunto diferente de filtros e transformações, não cinco volumes da mesma voz.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processamento local',
+          text: 'A mudança de voz acontece no seu navegador; o áudio não é enviado a servidor algum.',
+        },
+      ],
       howTo: [
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC com voz nele. A decodificação é no seu aparelho. Nenhum preset fica ativo até você tocar em um.' },
         { name: 'Toque em um preset', text: 'Agudo, Grave, Robô, Rádio ou Fantasma. A prévia toca pelo preset na hora, e tocar em outro substitui em vez de empilhar. Toque de novo no ativo para voltar ao som seco.' },
         { name: 'Exportar', text: 'A exportação grava o preset no arquivo. O MP3 sai no bitrate que você escolher, e o WAV mantém as amostras processadas exatamente. A duração nunca muda.' },
+        {
+          name: 'Pegue seu arquivo',
+          text: 'O nome do arquivo recebe o sufixo -edited.',
+        }
+
+        ,
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. Decodificação, mudança de tom, filtros e o bitcrusher rodam no seu navegador com a Web Audio API. Depois que a página carrega, a prévia e a exportação em WAV funcionam sem rede.' },
@@ -4785,6 +4965,11 @@ export const pt: Catalog = {
         { name: "Solte o áudio", text: "Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação acontece no seu aparelho. Vários arquivos compartilham o limiar e o intervalo que você escolhe em seguida. Cada um é cortado por si. Um baixa sozinho. Dois ou mais voltam num ZIP." },
         { name: "Marque o limiar e o intervalo", text: "O limiar é o quanto baixo precisa estar, de −60 a −20 dBFS. A pausa mínima é quanto tempo precisa durar para sair, de 0,1 a 2 segundos. A linha de estado mostra cerca de quantos segundos vão embora." },
         { name: "Exporte", text: "Você pode ouvir o original e depois exportar MP3 ou WAV. O arquivo junta as partes com som e deixa 0,08 segundo em cada corte." },
+        {
+          name: 'Pegue seus arquivos',
+          text: 'Um único arquivo é baixado sozinho; dois ou mais vão em um ZIP. Escolha MP3 (pequeno, fácil de compartilhar) ou WAV (sem perdas, bom para editar depois); os nomes recebem automaticamente o sufixo -edited para diferenciá-los.',
+        },
+
       ],
       faqs: [
         { q: 'Posso tirar o silêncio de mais de um arquivo?', a: 'Sim. Vários arquivos compartilham o limiar e o intervalo mínimo desta página. Cada um é medido e cortado por si, um depois do outro neste aparelho. Um baixa sozinho. Dois ou mais voltam num ZIP. Um celular fica sem memória antes, então um arquivo muito longo vai um de cada vez nele.' },
@@ -4971,6 +5156,10 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho.' },
         { name: 'Ajuste repetições e emenda', text: 'As repetições vão de 2 a 16. A emenda é o crossfade de cada junção, de 0 a 0,1 segundo. Arraste a forma de onda se só uma parte deve repetir. A linha de status mostra a duração.' },
         { name: 'Exporte', text: 'Ouça o original para conferir a seleção e exporte MP3 ou WAV. O download é o clipe escrito um após o outro.' },
+{
+          name: 'Leve o arquivo',
+          text: 'O nome do arquivo leva o sufixo -edited.',
+        },
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. As repetições são copiadas no seu navegador. Depois que a página carrega, a exportação funciona offline.' },
@@ -5010,6 +5199,7 @@ export const pt: Catalog = {
             'Esta página não grava em cima de si mesma. Se o resultado passar de 10 minutos, a exportação para. Encurte a seleção ou diminua as repetições.',
           ],
         },
+
       ],
       dropHint: 'Solte um arquivo de áudio ou clique para procurar',
       exportLabel: 'Repetir e baixar',
@@ -5049,6 +5239,11 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho.' },
         { name: 'Ajuste profundidade e taxa', text: 'A profundidade é o quanto o som viaja, de 0 a 100%. A taxa é quantas varreduras por segundo, de 0,05 a 2. Arraste a onda se só uma parte deve se mover.' },
         { name: 'Exporte', text: 'Ouça para conferir a seleção e exporte MP3 ou WAV. O WAV são essas amostras. O MP3 codifica a varredura uma vez.' },
+        {
+          name: 'Receba os arquivos',
+          text: 'O nome do arquivo recebe o sufixo -edited.',
+        },
+
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. A varredura é um panner estéreo no seu navegador. Depois que a página carrega, você pode ficar offline e a exportação continua.' },
@@ -5127,6 +5322,11 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. A decodificação é no seu aparelho.' },
         { name: 'Deixe o círculo ligado', text: 'O interruptor começa ligado. Desligue e a exportação corresponde ao arquivo que você soltou. Não há um segundo controle para profundidade, taxa ou sala.' },
         { name: 'Exporte', text: 'Ouça e exporte MP3 ou WAV. O WAV são as amostras do círculo mais a cauda. O MP3 codifica isso uma vez.' },
+        {
+          name: 'Pegue seu arquivo',
+          text: 'O nome recebe o sufixo -edited. Ouça com fones para sentir o efeito.',
+        },
+
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. O círculo e a sala são renderizados no seu navegador. Depois que a página carrega, você pode ficar offline e a exportação continua.' },
@@ -5581,6 +5781,11 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. Ele é decodificado no seu aparelho.' },
         { name: 'Defina o número', text: 'As partes vão de 2 a 16. A linha de status diz quantos arquivos saem e quanto dura cada um, mais ou menos. Arraste a forma de onda se só um trecho deve ser dividido.' },
         { name: 'Baixe o zip', text: 'Exporte MP3 ou WAV. O download é um zip com o nome do arquivo, e dentro ficam a parte 1, a parte 2 e o resto.' },
+        {
+          name: 'Descompacte e pronto',
+          text: 'Dentro do pacote há arquivos independentes: Parte 1, Parte 2 etc. O MP3 é codificado uma vez no bitrate escolhido; o WAV mantém as amostras originais.',
+        },
+
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. O arquivo é decodificado no seu navegador, cortado lá e empacotado num zip lá. Depois que a página carregou, você pode ficar offline e a exportação continua. WAV não pede outro download. O MP3 codifica offline depois que o codificador carregou uma vez.' },
@@ -5659,6 +5864,11 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. É decodificado no seu dispositivo.' },
         { name: 'Exporte a média', text: 'Não há controle de largura. A exportação escreve um canal. Toque antes se quiser ouvir a média.' },
         { name: 'Abra o arquivo', text: 'Um player que mostra o número de canais deve dizer um. O WAV são essas amostras na média. O MP3 as codifica uma vez, até 320 kbps.' },
+        {
+          name: 'Processamento em lote',
+          text: 'Vários arquivos são processados um a um e empacotados em um ZIP.',
+        },
+
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. O arquivo é decodificado no seu navegador e a média é feita lá. Depois que a página carregou, você pode ficar offline e a exportação continua. WAV não pede outro download. O MP3 codifica offline depois que o codificador carregou uma vez.' },
@@ -5737,6 +5947,11 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. É decodificado no seu dispositivo.' },
         { name: 'Ajuste bits e espera', text: 'Os bits vão de 1 a 16 e começam em 8. A espera vai de 1 a 32 e começa em 2. Toque para ouvir. Arraste a forma de onda se só um trecho deve ser esmagado.' },
         { name: 'Exporte', text: 'O WAV guarda as amostras em degrau. O MP3 as codifica uma vez, até 320 kbps, e pode suavizar os degraus.' },
+        {
+          name: 'Receba os arquivos',
+          text: 'O nome do arquivo recebe o sufixo -edited.',
+        },
+
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. O arquivo é decodificado no seu navegador e esmagado lá. Depois que a página carregou, você pode ficar offline e a exportação continua. WAV não pede outro download. O MP3 codifica offline depois que o codificador carregou uma vez.' },
@@ -5815,6 +6030,11 @@ export const pt: Catalog = {
         { name: 'Solte o áudio', text: 'Qualquer MP3, WAV, M4A, OGG ou FLAC. É decodificado no seu dispositivo.' },
         { name: 'Ouça o deslocamento', text: 'A prévia é o arquivo deslocado. Nesta página não há controle de semitom, porque um semitom arredondado seria zero e o arquivo não se moveria.' },
         { name: 'Exporte', text: 'A duração coincide com o arquivo que você soltou. O WAV são as amostras deslocadas. O MP3 as codifica uma vez, até 320 kbps.' },
+        {
+          name: 'Pegue seu arquivo',
+          text: 'O nome do arquivo recebe o sufixo -edited.',
+        },
+
       ],
       faqs: [
         { q: 'Meu áudio é enviado?', a: 'Não. O arquivo é decodificado no seu navegador e deslocado lá. Depois que a página carregou, você pode ficar offline e a exportação continua. WAV não pede outro download. O MP3 codifica offline depois que o codificador carregou uma vez.' },

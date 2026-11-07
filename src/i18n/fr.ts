@@ -586,11 +586,26 @@ export const fr: Catalog = {
       subtitle: 'Transformez un enregistrement en texte dans plus de 90 langues, avec horodatage — directement dans votre navigateur.',
       intro:
         'Déposez un enregistrement et récupérez les mots : mémos vocaux, interviews, cours, podcasts — dans une quatre-vingt-dixaine de langues, détectées automatiquement quand vous ne savez pas laquelle c’est. Un modèle d’IA Whisper tourne dans votre onglet, sur votre propre appareil : l’audio n’est jamais envoyé, et la transcription sort en texte modifiable ou en fichier SRT avec horodatage.',
-      usesHeading: 'Les transcriptions dont on a vraiment besoin',
+      usesHeading: 'Les usages les plus courants de la transcription audio en texte',
       uses: [
-        'Transformer un cours, une réunion ou une interview en notes cherchables et citables.',
-        'Sous-titrer une vidéo ou un épisode de podcast en exportant un SRT horodaté.',
-        'Sortir les mots d’un mémo vocal sans envoyer l’enregistrement nulle part.',
+        'Notes de cours : transformez les conférences en texte consultable et citable.',
+        'Compte rendu de réunion : convertissez l’enregistrement en texte en un clic, puis rangez les points clés.',
+        'Sous-titres vidéo : exportez un SRT avec horodatage, prêt à servir de sous-titres.',
+        'Mise au propre d’entretiens : transcrivez l’interview, puis écrivez votre article.',
+        'Show notes de podcast : extrayez le texte intégral et piochez les perles pour vos notes.',
+        'Version texte accessible : accompagnez vos contenus audio d’un texte pour toucher plus de lecteurs.',
+      ],
+      why: [
+        {
+          icon: 'voice',
+          title: 'Transcription Whisper en local',
+          text: 'Le modèle Whisper tourne dans votre navigateur : l’audio n’est pas envoyé, une trentaine de langues au choix.',
+        },
+        {
+          icon: 'file',
+          title: 'TXT et SRT, les deux formats',
+          text: 'Le TXT brut pour les notes, le SRT horodaté comme sous-titres tout prêts.',
+        },
       ],
       howTo: [
         {
@@ -675,11 +690,26 @@ export const fr: Catalog = {
       subtitle: 'Un vrai shelf : jusqu’à +15 dB sous 150 Hz, écoutez puis exportez. Rien ne quitte votre appareil.',
       intro:
         'Des basses faibles, c’est la raison la plus courante pour laquelle un enregistrement sonne petit. Le boost des basses applique un vrai shelf — jusqu’à +15 dB sous 150 Hz, le geste du mastering — pas un artifice qui monte tout. Chargez un fichier, montez le curseur jusqu’à ce que les basses s’asseyent, exportez. Tout se passe dans votre navigateur : le fichier n’est jamais téléversé.',
-      usesHeading: 'Quand booster les basses',
+      usesHeading: 'Les cas d’usage courants du booster de basses',
       uses: [
-        'Donner du corps à des mémos vocaux et interviews filmés au téléphone qui sonnent fins.',
-        'Faire ressortir batterie et basse d’un morceau tout en médiums.',
-        'Ajouter du poids à un jingle de podcast sans toucher aux voix.',
+        'Voix maigres : mémos et interviews filmés au téléphone qui sonnent fins — donne-leur du corps.',
+        'Écoute au casque : un casque qui ne descend pas bas ? Pousse d’abord la basse du morceau.',
+        'Musique de vidéo : la nappe manque de basse — épaissis-la avant de la monter dans le montage.',
+        'Échauffement dance : donne plus d’impact au kick de l’électronique.',
+        'Restauration d’archives : les vieux enregistrements ont perdu leur bas — en rends un peu.',
+        'Uniformiser en lot : même réglage de basse pour plusieurs fichiers, exportés ensemble.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Pousse librement de 0 à +15 dB',
+          text: 'Le curseur des basses se règle sur toute sa course : autour de +8 dB le corps s’entend nettement ; au-delà, ça devient boueux — juge à l’oreille.',
+        },
+        {
+          icon: 'layers',
+          title: 'Le même réglage pour tous',
+          text: 'Plusieurs fichiers partagent le même réglage de basse, traités un par un et exportés en ZIP.',
+        },
       ],
       howTo: [
         {
@@ -694,6 +724,11 @@ export const fr: Catalog = {
           name: 'Écoutez et exportez',
           text: 'Écoutez à volume normal — trop de basses masquent les voix. Exportez en MP3 ou WAV sans perte.',
         },
+        {
+          name: 'Récupère tes fichiers',
+          text: 'Plusieurs fichiers partagent les mêmes réglages et sont exportés ensemble en un ZIP.',
+        },
+
       ],
       faqs: [
         {
@@ -780,11 +815,26 @@ export const fr: Catalog = {
       subtitle: 'Un vrai shelf d’aigus : jusqu’à +15 dB au-dessus de 3 kHz, écoutez puis exportez. Rien ne quitte votre appareil.',
       intro:
         'Un enregistrement sourd et terne manque presque toujours d’une seule chose : de l’énergie au-dessus de 3 kHz. Le boost des aigus applique un vrai shelf d’aigus — jusqu’à +15 dB au-dessus de 3 kHz, le geste du mastering pour ouvrir un morceau — pas un artifice qui monte tout. Chargez un fichier, montez le curseur jusqu’à ce que le détail revienne, exportez. Tout se passe dans votre navigateur : le fichier n’est jamais téléversé.',
-      usesHeading: 'Quand booster les aigus',
+      usesHeading: 'Les cas d’usage courants du booster d’aigus',
       uses: [
-        'Ouvrir un enregistrement terne qui sonne comme enregistré sous une couverture.',
-        'Rendre aux voix consonnes et souffle pour que la parole reste intelligible.',
-        'Ajouter de l’éclat aux cymbales et aux instruments acoustiques d’un mix qui sonne plat.',
+        'Sauver un enregistrement terne : une vidéo qui sonne comme sous une couverture — ouvre les aigus.',
+        'Redonner de l’éclat aux vieux morceaux : les vieilles enregistrements perdent leurs aigus, ravive l’air.',
+        'Intel : clarifier la parole : les appels manquent d’aigus ; une fois boostés, l’articulation est plus nette.',
+        'L’autre moitié du casque : si les aigus sont devenus ternes après un boost des basses, rééquilibre en face.',
+        'Écoute des détails : pour bien entendre cymbales et respirations, pousse un peu les aigus.',
+        'Éclaircir en lot : applique le même réglage d’aigus à plusieurs fichiers et exporte-les ensemble.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Pousse librement de 0 à +15 dB',
+          text: 'Le curseur des aigus se règle sur toute sa course : trop poussé, les sifflantes deviennent rugueuses — avance par petits pas en écoutant.',
+        },
+        {
+          icon: 'layers',
+          title: 'Le même réglage pour tous',
+          text: 'Plusieurs fichiers partagent le même réglage d’aigus, sont traités un par un et exportés en ZIP.',
+        },
       ],
       howTo: [
         {
@@ -799,6 +849,11 @@ export const fr: Catalog = {
           name: 'Écoutez et exportez',
           text: 'Surveillez la dureté des sifflantes (s, t) — exportez en MP3 ou WAV sans perte.',
         },
+        {
+          name: 'Récupère tes fichiers',
+          text: 'Plusieurs fichiers partagent le même réglage et sont exportés ensemble en ZIP.',
+        },
+
       ],
       faqs: [
         {
@@ -873,11 +928,26 @@ export const fr: Catalog = {
       subtitle: 'Dix bandes à ±15 dB, préréglages en un clic — toujours un égaliseur honnête.',
       intro:
         'Trois boutons couvrent l’essentiel du travail d’un EQ : les graves sous 150 Hz, les médiums autour de 1 kHz où vivent les voix, et les aigus au-dessus de 3 kHz. Cet égaliseur utilise de vraies bandes de filtre — shelf grave, pic, shelf d’aigus — à ±15 dB chacune, pour apprivoiser le ronron, faire redescendre la boue ou ajouter de l’air. Chargez un fichier, façonnez le son, exportez. Tout se passe dans votre navigateur : le fichier n’est jamais téléversé.',
-      usesHeading: 'Ce que font les trois bandes',
+      usesHeading: 'Les cas d’usage courants de l’égaliseur audio',
       uses: [
-        'Couper la boue : −3 à −6 dB dans les médiums assainit les voix enregistrées en foule.',
-        'Apprivoiser le ronron : descendez la bande basse sur un enregistrement fait près d’un mur.',
-        'Ajouter de la présence : montez les aigus pour l’air, les graves pour le poids — les deux si le mix le demande.',
+        'Démixer : descendre les médiums de −3 à −6 dB et les voix entassées respirent aussitôt.',
+        'Dévoiler : pousser la bande 8k–16k et l’enregistrement étouffé retrouve son éclat.',
+        'Débomber : resserrer un peu la bande 60–125 Hz et le mix lourd dans le bas devient propre.',
+        'Éclaircir la voix : un léger coup de pouce sur 2k–4k rend l’articulation plus nette.',
+        'Préréglages : rock / pop / hip-hop / classique / voix, un clic pour démarrer.',
+        'Équilibrer les deux canaux : un réglage par canal, exportés séparément.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Dix bandes, chacune son rôle',
+          text: 'Dix bandes peaking à 31, 62, 125, 250, 500, 1k, 2k, 4k, 8k et 16k, chacune ±15 dB — on corrige par bande, pas un vague grave/aigu.',
+        },
+        {
+          icon: 'check',
+          title: 'Un préréglage pour démarrer',
+          text: 'Six préréglages : plat / rock / pop / hip-hop / classique / voix. On s’approche d’abord, on peaufine ensuite.',
+        },
       ],
       howTo: [
         {
@@ -892,6 +962,11 @@ export const fr: Catalog = {
           name: 'Comparez et exportez',
           text: 'Remettez une bande à 0 dB pour comparer avec l’original, puis exportez en MP3 ou WAV sans perte.',
         },
+        {
+          name: 'Exporter',
+          text: 'Clique sur « Appliquer l\'EQ » pour télécharger, en MP3 ou WAV sans perte.',
+        },
+
       ],
       faqs: [
         {
@@ -966,11 +1041,26 @@ export const fr: Catalog = {
       subtitle: 'Balayez la coupure de 20 kHz jusqu’à 300 Hz et ne gardez que les fréquences voulues.',
       intro:
         'Un filtre passe-bas garde le grave et atténue tout ce qui dépasse la coupure — la façon honnête de supprimer souffle, sifflantes aiguës, crissements et tranchant numérique. Contrairement à un réducteur de bruit, il ne devine jamais ce qui est du bruit : tout ce qui est au-dessus de votre coupure s’en va, tout simplement. Chargez un fichier, descendez la coupure jusqu’à ce que la gêne disparaisse, exportez. Tout se passe dans votre navigateur : le fichier n’est jamais téléversé.',
-      usesHeading: 'Quand passer en passe-bas',
+      usesHeading: 'Les cas d’usage courants du filtre passe-bas',
       uses: [
-        'Retirer le souffle constant et le sifflement de climatisation d’une prise de voix.',
-        'Adoucir des cymbales dures ou des sifflantes dans un mix brut.',
-        'Reculer un sample derrière un autre en éteignant son haut du spectre.',
+        'Supprimer le sifflement : le souffle continu et le ronronnement de clim dans les voix, coupés d’un coup.',
+        'Numériser de vieilles cassettes : rabaisser le grésillement des hautes fréquences de la bande.',
+        'Adoucir une nappe : la musique de fond trop brillante vole la vedette aux voix — coupe les aigus agressifs.',
+        'Effet vieux téléphone : pour le son étroit d’un vieux talkie, resserre les aigus.',
+        'Préparer la réduction de bruit : un bruit d’aigus purement tonal se règle d’abord au passe-bas.',
+        'Adoucir en lot : plusieurs fichiers au même cutoff, exportés ensemble.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Fréquence de coupure réglable',
+          text: 'Réglage libre de 300 Hz à 20 kHz : le sifflement se concentre dans les aigus — arrête-toi là où les consonnes commencent à s’assombrir.',
+        },
+        {
+          icon: 'layers',
+          title: 'Même coupure pour tous',
+          text: 'Plusieurs fichiers partagent la même fréquence de coupure, traités un par un et exportés en ZIP.',
+        },
       ],
       howTo: [
         {
@@ -985,6 +1075,11 @@ export const fr: Catalog = {
           name: 'Écoutez et exportez',
           text: 'Vérifiez que les voix restent naturelles, puis exportez en MP3 ou WAV sans perte.',
         },
+        {
+          name: 'Écoute et exporte',
+          text: 'Vérifie que les aigus sonnent propre à l\'écoute, puis exporte en MP3 ou WAV sans perte.',
+        },
+
       ],
       faqs: [
         {
@@ -1059,11 +1154,26 @@ export const fr: Catalog = {
       subtitle: 'Balayez la coupure de 20 Hz jusqu’à 5 kHz et retirez tout ce qui est en dessous.',
       intro:
         'Rumble, trafic, bruits de manipulation, coups sur le bureau — le grave indésirable est cuit dans la plupart des enregistrements réels. Un filtre passe-haut garde tout ce qui est au-dessus de votre coupure et atténue tout ce qui est en dessous : la réparation honnête qui ne devine jamais. Chargez un fichier, montez la coupure jusqu’à ce que le rumble disparaisse et que la voix reste pleine, exportez. Tout se passe dans votre navigateur : le fichier n’est jamais téléversé.',
-      usesHeading: 'Quand passer en passe-haut',
+      usesHeading: 'Les cas d’usage courants du filtre passe-haut',
       uses: [
-        'Nettoyer rumble de rue et coups de bureau des prises podcast et voix.',
-        'Retirer le vent et les bruits de manipulation qui ont survécu à une prise dehors.',
-        'Resserrer un mix en débarrassant la boue de sub de chaque piste non basse.',
+        'Nettoyer la voix : débarrasser podcasts et prises de voix du grondement de la rue et des coups sur la table.',
+        'Vidéo au téléphone : le bougé basse fréquence de la caméra tenue à la main, coupé d’un coup.',
+        'Préparer la compression : bas propre, le compresseur ne se déclenche plus sur le grondement.',
+        'Conférences : rabaisser le bourdonnement basse fréquence de la clim et de la foule.',
+        'Démixer la musique : quand le mix devient trouble, coupe le sous-grave inutile.',
+        'Nettoyer en lot : plusieurs fichiers au même cutoff, exportés ensemble.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Fréquence de coupure réglable',
+          text: 'Réglage libre de 20 Hz à 5 kHz : pour la voix, 80–120 Hz suffit généralement ; couper plus haut enlève le buste de la voix.',
+        },
+        {
+          icon: 'layers',
+          title: 'Même coupure pour tous',
+          text: 'Plusieurs fichiers partagent la même fréquence de coupure, traités un par un et exportés en ZIP.',
+        },
       ],
       howTo: [
         {
@@ -1078,6 +1188,11 @@ export const fr: Catalog = {
           name: 'Écoutez et exportez',
           text: 'Vérifiez que la voix ne sonne pas fine, puis exportez en MP3 ou WAV sans perte.',
         },
+        {
+          name: 'Écoute et exporte',
+          text: 'Vérifie que les basses sont propres et les voix intactes à l\'écoute, puis exporte en MP3 ou WAV sans perte.',
+        },
+
       ],
       faqs: [
         {
@@ -1764,11 +1879,26 @@ export const fr: Catalog = {
       subtitle: 'Convertissez vos fichiers WAV en MP3 en quelques secondes — dans votre navigateur, sans téléversement.',
       intro:
         'Passez de lourds enregistrements WAV à des MP3 compacts sans rien installer ni envoyer votre audio à un serveur. Déposez le fichier, choisissez un débit — 320 kbps pour la musique, 128 kbps pour la voix — et la conversion se déroule sur votre propre appareil, en général en quelques secondes.',
-      usesHeading: 'Des fichiers WAV qui méritent la conversion',
+      usesHeading: 'Les usages les plus courants de la conversion WAV vers MP3',
       uses: [
-        'Réduisez une prise de studio ou de terrain jusqu’à ce qu’elle soit envoyable.',
-        'Transformez un export sans perte en MP3 192 ou 320 kbps pour l’écoute de tous les jours.',
-        'Convertissez d’abord, rognez ensuite. Un WAV est trop lourd pour être trimballé deux fois.',
+        'Alléger un enregistrement : réduis un gros fichier de studio ou de dictaphone à une taille envoyable.',
+        'Écoute au quotidien : convertis un export sans perte en 192/320 kbps — largement assez pour la route.',
+        'Pièce jointe : à 128 kbps, l\'enregistrement d\'un cours tient dans la limite des 25 MB d\'un e-mail.',
+        'Archivage par lots : convertis tout un dossier de WAV d\'un coup, empaqueté en ZIP.',
+        'Convertir puis couper : convertis d\'abord en MP3, puis découpe le passage voulu dans l\'[éditeur audio](/audio-trimmer).',
+        'Mémos vocaux : la voix se contente d\'un débit bas — un fichier si léger qu\'il s\'envoie à la volée.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Le débit décide du poids',
+          text: 'Un MP3 pèse environ un dixième d\'un WAV : 50 MB en WAV donnent 4–5 MB à 192 kbps. Six paliers au choix de 64 à 320 kbps, chacun affichant la taille estimée en direct dans la barre d\'export.',
+        },
+        {
+          icon: 'layers',
+          title: 'Conversion par lots',
+          text: 'Dépose plusieurs WAV d\'un coup : ils partagent les mêmes réglages et se convertissent l\'un après l\'autre. Un fichier se télécharge directement, deux ou plus sont empaquetés en ZIP automatiquement.',
+        },
       ],
       howTo: [
         {
@@ -1783,6 +1913,11 @@ export const fr: Catalog = {
           name: 'Convertissez et téléchargez',
           text: 'Cliquez sur Convertir en MP3. L’encodeur tourne dans votre navigateur et le MP3 se télécharge directement sur votre appareil.',
         },
+        {
+          name: 'Récupère tes fichiers',
+          text: 'Un seul fichier se télécharge directement ; deux ou plus sont regroupés dans un ZIP. Les tags et la pochette du WAV ne sont pas conservés — tu peux les ajouter ensuite avec l\'[éditeur de tags](/mp3-tag-editor).',
+        },
+
       ],
       faqs: [
         { q: 'Puis-je convertir plus d’un WAV ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -1872,11 +2007,26 @@ export const fr: Catalog = {
       subtitle: 'Convertissez vos fichiers FLAC en MP3 en quelques secondes — dans votre navigateur, sans téléversement.',
       intro:
         'Le FLAC sonne parfaitement et il occupe la moitié d’un disque dur pour le prouver. Transformez votre bibliothèque sans perte en MP3 compacts qui passent sur l’autoradio, les enceintes Bluetooth et le matériel plus ancien — déposez les fichiers, choisissez le débit, et la conversion tourne sur votre propre appareil. Un morceau FLAC de 25 Mo devient un MP3 de 12 Mo à 320 kbps en quelques secondes.',
-      usesHeading: 'Des FLAC qui méritent la conversion',
+      usesHeading: 'Les usages les plus courants de la conversion FLAC vers MP3',
       uses: [
-        'Faire passer une bibliothèque sans perte sur l’autoradio et le vieux matériel.',
-        'Alléger un album avant un long trajet sans Wi-Fi ou un dossier partagé.',
-        'Convertir d’abord, puis couper les morceaux que vous réécoutez vraiment.',
+        'Lecture en voiture : rends ta bibliothèque sans perte lisible sur l\'autoradio et les vieilles chaînes.',
+        'Alléger avant un départ : pas de Wi-Fi sur la longue route — réduis l\'album avant de le ranger sur ton téléphone.',
+        'Dossier partagé : réduis l\'album entier avant de le déposer dans un partage.',
+        'Double archivage : le FLAC reste en archive, le MP3 pour l\'écoute de tous les jours.',
+        'Compatibilité des téléchargements : convertis un album sans perte acheté en ligne en MP3 qui passe partout.',
+        'Rangement par lots : glisse l\'album entier d\'un coup, conversion piste par piste et empaquetage ZIP.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Transcodage depuis une source sans perte',
+          text: 'Le FLAC est d\'abord décodé en échantillons bruts, puis encodé une seule fois en MP3 au débit choisi — une seule compression, pas plus.',
+        },
+        {
+          icon: 'layers',
+          title: 'Albums entiers par lots',
+          text: 'Dépose l\'album entier d\'un coup : conversion piste par piste puis ZIP, l\'ordre est conservé.',
+        },
       ],
       howTo: [
         {
@@ -1891,6 +2041,11 @@ export const fr: Catalog = {
           name: 'Convertissez et téléchargez',
           text: 'Cliquez sur Convertir en MP3. L’encodeur tourne dans votre navigateur et le MP3 se télécharge directement sur votre appareil.',
         },
+        {
+          name: 'Clique sur « Convertir en MP3 »',
+          text: 'Chaque piste est décodée et encodée localement en une passe, avec la progression affichée dans la barre d\'état.',
+        },
+
       ],
       faqs: [
         { q: 'Puis-je convertir plus d’un FLAC ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -1966,11 +2121,26 @@ export const fr: Catalog = {
       subtitle: 'Décodez le MP3 en audio PCM propre en quelques secondes — dans votre navigateur, sans téléversement.',
       intro:
         'Convertir du MP3 en WAV ne rend pas ce que la compression a enlevé — aucun outil ne le peut. Vous obtenez l’audio décodé en PCM 16 bits propre, sans nouvelle perte : la bonne entrée pour les éditeurs audio, les samplers et tout ce qui exige du WAV, et le point de départ le plus sûr si le fichier doit être retravaillé. Le décodage se fait sur votre appareil, en une seconde en général.',
-      usesHeading: 'Les raisons de passer au WAV',
+      usesHeading: 'Les usages les plus courants de la conversion MP3 vers WAV',
       uses: [
-        'Donner un MP3 à un éditeur, une DAW ou une appli qui n’accepte que le WAV.',
-        'Arrêter la perte de génération : montez en WAV et ne recompressez en MP3 qu’à la toute fin.',
-        'Archiver une copie décodée à côté de l’original avant de nouvelles retouches.',
+        'Compatibilité logicielle : livre tes MP3 à des éditeurs, DAW ou plateformes de dépôt qui n\'acceptent que le WAV.',
+        'Éviter les pertes en cascade : monte sur WAV, et ne compresse en MP3 qu\'à la toute fin.',
+        'Restauration audio : décode en base sans perte avant de passer par la [réduction de bruit](/noise-remover) ou l\'[égaliseur](/equalizer) — une couche de perte de moins.',
+        'Préparation à la transcription : certains outils de transcription préfèrent le WAV — décode avant de leur donner.',
+        'Matériel à sampler : décode tes MP3 en WAV pour un sampler ou une boîte à rythmes.',
+        'Copie d\'archive : garde une version non compressée pour la revue qualité avant publication.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Décoder, pas recompresser',
+          text: 'Le WAV conserve tous les échantillons décodés : cette étape ne perd aucune information, et le montage comme la retouche se font sur une base sans perte.',
+        },
+        {
+          icon: 'layers',
+          title: 'Empaquetage par lots',
+          text: 'Dépose plusieurs MP3 d\'un coup : ils sont décodés l\'un après l\'autre et empaquetés en un seul ZIP à télécharger.',
+        },
       ],
       howTo: [
         {
@@ -1985,6 +2155,11 @@ export const fr: Catalog = {
           name: 'Convertissez et téléchargez',
           text: 'Cliquez sur Convertir en WAV. L’audio décodé est écrit localement et le téléchargement démarre aussitôt.',
         },
+        {
+          name: 'Clique sur « Convertir en WAV »',
+          text: 'L\'encodeur tourne dans ton navigateur — la conversion prend généralement une à deux secondes.',
+        },
+
       ],
       faqs: [
         { q: 'Puis-je convertir plus d’un MP3 en WAV ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -2061,11 +2236,26 @@ export const fr: Catalog = {
       subtitle: 'Baissez le débit, le fichier reste lisible — allégez l’audio jusqu’à 90 % dans votre navigateur.',
       intro:
         'Un fichier audio pèse par son débit, et la façon honnête de l’alléger est de le réencoder à un débit plus bas : un MP3 à 320 kbps passe à 128 kbps pour environ 40 % de sa taille, et un gros WAV devient un MP3 dix fois plus léger. Choisissez la cible, écoutez l’aperçu, exportez — l’encodage tourne sur votre appareil, même les longs enregistrements se terminent en quelques secondes.',
-      usesHeading: 'Des fichiers à alléger',
+      usesHeading: 'Les usages les plus courants de la compression audio',
       uses: [
-        'Faire tenir un cours ou un mémo vocal sous la limite de taille d’un mail ou d’une messagerie.',
-        'Transformer un export WAV en petits MP3 pour un lien de relecture rapide.',
-        'Faire passer une bibliothèque 320 kbps à 128 kbps pour un téléphone en données mobiles.',
+        'Messageries : le fichier dépasse la limite et refuse de partir — comprime jusqu\'à la limite acceptée.',
+        'Pièce jointe : fais tenir l\'enregistrement d\'une conférence dans la limite des 25 MB d\'une boîte mail.',
+        'Formulaires en ligne : le formulaire d\'inscription ou de dépôt impose une taille maximale — comprime jusqu\'à la norme.',
+        'Alléger la voix : réduis un long enregistrement de réunion en petit fichier d\'archive.',
+        'Espace sur l\'appareil : le téléphone sature — réduis les gros fichiers audio avant de les garder.',
+        'Vieux appareils : les anciens lecteurs n\'avalent pas les gros fichiers — une fois comprimés, la lecture passe sans accroc.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Débit calculé à rebours depuis la taille visée',
+          text: 'Fixe une taille cible, par exemple 10 MB : le compresseur calcule le débit utilisable d\'après la durée et atteint la cible en une seule passe.',
+        },
+        {
+          icon: 'layers',
+          title: 'Compression par lots',
+          text: 'Plusieurs fichiers partagent la même taille cible, comprimés l\'un après l\'autre puis empaquetés en ZIP.',
+        },
       ],
       howTo: [
         {
@@ -2080,6 +2270,11 @@ export const fr: Catalog = {
           name: 'Écoutez et exportez',
           text: 'Écoutez l’aperçu compressé puis enregistrez. Vérifiez que les voix et les cymbales restent propres au débit choisi.',
         },
+        {
+          name: 'Exporter',
+          text: 'Ça te plaît ? Exporte et télécharge ; plusieurs fichiers partagent les réglages et sont regroupés en un ZIP.',
+        },
+
       ],
       faqs: [
         { q: 'Puis-je réduire plus d’un fichier ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -2186,16 +2381,36 @@ export const fr: Catalog = {
       subtitle: 'Réglez un MP3 à 64, 96, 128, 192 ou 320 kbps. Un chiffre plus haut ne restitue pas le détail.',
       intro:
         'Choisissez le débit MP3 et réencodez le fichier dans cet onglet. Le menu s’ouvre à 192 kbps. Une minute de stéréo pèse environ 2,4 Mo à 320 kbps, 1,4 Mo à 192, 1 Mo à 128, 0,7 Mo à 96 et 0,5 Mo à 64. Monter le chiffre sur un fichier déjà avec perte ne restitue pas le détail manquant. Le décodage et l’encodage restent dans le navigateur.',
-      usesHeading: 'À quoi sert cette page',
+      usesHeading: 'Les usages les plus courants de la conversion de débit MP3',
       uses: [
-        'Répondez à une commande qui demande 192 ou 128 kbps, puis exportez ce fichier.',
-        'Passez un WAV en MP3 à 320 kbps, le débit le plus proche sur cette page.',
-        'Descendez de 320 kbps à 128 kbps, environ 40 % de la taille.',
+        'Conforme au dépôt : la plateforme exige 192 ou 128 kbps — livre aux specs.',
+        'Uniformiser par lots : un tas de MP3 à débits mélangés — convertis-les tous au même palier.',
+        'Alléger la parole : du contenu parlé peut descendre à 96 ou 64 kbps, le poids est à nouveau divisé par deux.',
+        'Réparer une compatibilité : certains appareils n\'acceptent que 128 kbps — convertis-leur une version.',
+        'Attention à la hausse : passer d\'un bas débit à un palier haut n\'améliore pas le son — l\'upgrade ne sert qu\'à la compatibilité.',
+        'Écoute d\'essai : sors d\'abord un aperçu en 96 kbps, et ne produis le haut débit qu\'une fois validé.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Un seul réencodage',
+          text: 'Même de MP3 vers MP3, il faut décoder puis réencoder — cette page ne compresse que cette unique fois, sans transcodages répétés ensuite.',
+        },
+        {
+          icon: 'layers',
+          title: 'Débit unifié par lots',
+          text: 'Une série entière de fichiers partage le même palier, convertis fichier par fichier puis empaquetés en ZIP.',
+        },
       ],
       howTo: [
         { name: 'Ajoutez le fichier', text: 'Déposez un audio que ce navigateur sait décoder. La conversion reste dans l’onglet. Plusieurs fichiers partagent le réglage que vous choisissez ensuite. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP.' },
         { name: 'Choisissez le débit', text: 'Ouvrez le menu de format. Il commence à 192 kbps. Les autres débits sont 320, 128, 96 et 64.' },
         { name: 'Exportez le MP3', text: 'Le fichier est encodé au débit que vous avez choisi. Les tags et la pochette ne sont pas copiés.' },
+        {
+          name: 'Récupère tes fichiers',
+          text: 'Un fichier se télécharge directement ; plusieurs fichiers sont regroupés en un ZIP.',
+        },
+
       ],
       faqs: [
         { q: 'Puis-je changer le débit de plus d’un fichier ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -2271,11 +2486,26 @@ export const fr: Catalog = {
       subtitle: 'Écoutez n’importe quelle chanson ou enregistrement à l’envers — un clic, dans votre navigateur.',
       intro:
         'Retournez n’importe quelle piste pour qu’elle se joue de la fin vers le début : traquez les messages cachés dans les chansons, construisez des cymbales inversées pour un mix, ou écoutez simplement votre voix à l’envers. Le fichier entier est inversé sur votre appareil et n’est écrit qu’au moment de l’export.',
-      usesHeading: 'Pourquoi retourner un fichier',
+      usesHeading: 'Les usages les plus courants de la lecture à l\'envers',
       uses: [
-        'Découvrez un mix ou une phrase cachée en l’écoutant à l’envers.',
-        'Construisez un swell inversé à partir d’un coup de cymbale ou d’une voix.',
-        'Inversez seulement la sélection et laissez le reste du fichier intact.',
+        'Montée inversée : transforme un coup de cymbale ou une attaque de voix en transition aspirée.',
+        'Message caché : enregistre une phrase à l\'envers et glisse-la dans le morceau, à découvrir en l\'écoutant à l\'endroit.',
+        'Autocontrôle du mix : écoute ton mix à l\'envers — les problèmes sautent beaucoup plus aux oreilles.',
+        'Matériel à sampler : les batteries et les voix à l\'envers sont des classiques de la musique électronique.',
+        'Musique de vidéo : fais jouer l\'image à l\'envers avec le son à l\'envers, l\'effet est calé.',
+        'Apprentissage comparé : travaille des phrases de langue ou d\'instrument à l\'envers.',
+      ],
+      why: [
+        {
+          icon: 'reverse',
+          title: 'Inversion en un clic',
+          text: 'Fichier entier ou sélection, un clic pour inverser : l\'ordre des échantillons est totalement retourné, la longueur ne change pas.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'L\'inversion se fait entièrement dans ton navigateur, l\'audio n\'est jamais téléversé.',
+        },
       ],
       howTo: [
         {
@@ -2290,6 +2520,11 @@ export const fr: Catalog = {
           name: 'Enregistrez le résultat',
           text: 'Exportez l’audio inversé en MP3 ou en WAV sans perte. Le téléchargement démarre automatiquement.',
         },
+        {
+          name: 'Récupère ton fichier',
+          text: 'Le nom du fichier reçoit le suffixe -edited.',
+        },
+
       ],
       faqs: [
         {
@@ -2360,11 +2595,26 @@ export const fr: Catalog = {
       subtitle: 'Accélérez ou ralentissez n’importe quel audio de 0,5× à 2× — dans votre navigateur.',
       intro:
         'Transformez un cours de 40 minutes en 20 minutes express, ralentissez un solo de guitare à mi-vitesse pour le travailler, ou faites tenir un morceau dans un espace vidéo plus court. Glissez le curseur de vitesse, entendez le changement aussitôt, exportez — l’audio est rééchantillonné sur votre appareil et jamais téléversé.',
-      usesHeading: 'Des vitesses qui collent au travail',
+      usesHeading: 'Les usages les plus courants du changement de vitesse audio',
       uses: [
-        'Ralentissez une voix ou un solo à mi-vitesse quand chaque syllabe ou chaque note compte.',
-        'Parcourez un podcast ou un cours à 1,25×–1,5× quand 1× est trop lent pour finir.',
-        'La hauteur tonale monte et descend avec le tempo. Pour déplacer la hauteur en gardant la durée, utilisez le changeur de hauteur tonale.',
+        'Écouter vite du long : podcasts et conférences à 1.25×–1.5×, la moitié du temps gagnée.',
+        'Écouter lentement le détail : parole ou solo à mi-vitesse, chaque note devient claire.',
+        'Repérage avant écoute : avance vite pour confirmer le contenu, puis fixe la vitesse pour écouter en détail.',
+        'Samples à vitesse variable : accélère et ralentis un échantillon pour trouver le bon feeling.',
+        'Apprentissage des langues : ralentis un audio en langue étrangère et répète en même temps.',
+        'Voix d\'effet : accéléré, ça fait dessin animé ; ralenti, ça fait voix grave.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Réglage continu de 0.5× à 2×',
+          text: 'Le curseur change la vitesse en continu, et la hauteur suit la vitesse — pour la préserver, passe par le [changeur de tempo](/tempo-changer).',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'Le changement de vitesse se fait dans ton navigateur, l\'audio n\'est jamais téléversé.',
+        },
       ],
       howTo: [
         {
@@ -2379,6 +2629,11 @@ export const fr: Catalog = {
           name: 'Écoutez et exportez',
           text: 'Lisez le résultat pour vérifier le rythme, puis enregistrez en MP3 ou WAV. Un fichier de 10 minutes à 2× s’exporte en environ une seconde.',
         },
+        {
+          name: 'Récupère tes fichiers',
+          text: 'Le nom du fichier reçoit le suffixe -edited.',
+        },
+
       ],
       faqs: [
         {
@@ -2453,11 +2708,26 @@ export const fr: Catalog = {
       subtitle: 'Amplifiez les enregistrements trop faibles jusqu’à 4× — avec un limiteur, pour éviter toute saturation.',
       intro:
         'Réparez les enregistrements restés trop faibles : mémos vocaux du téléphone, cours enregistrés depuis le dernier rang, bandes-son de vidéos extraites à bas niveau. Poussez le volume jusqu’à 4× (12 dB) et un limiteur intégré retient les crêtes : le résultat gagne en puissance sans virer à la distorsion.',
-      usesHeading: 'Des enregistrements qui ont besoin d’un coup de pouce',
+      usesHeading: 'Les usages les plus courants de l\'augmentation du volume',
       uses: [
-        'Relevez un mémo vocal enregistré trop loin du micro.',
-        'Renforcez un cours capté depuis le fond de la salle et laissez le limiteur retenir les crêtes.',
-        'Rendez un MP3 faible assez puissant pour passer sous une vidéo, sans saturer tout le fichier.',
+        'Mémos de téléphone : une voix enregistrée trop loin du micro — remonte-la pour qu\'elle soit audible.',
+        'Cours depuis le fond : un cours enregistré au fond de la salle — laisse le limiteur attraper les pics avant de monter.',
+        'Musique sous vidéo : un MP3 trop discret mais assez fort sans écrêtage — glisse-le sous la vidéo.',
+        'Sauvetage d\'interview : la piste d\'interview est trop basse — monte-la jusqu\'à entendre chaque mot.',
+        'Sauvegarde de réunion : un enregistrement de secours au volume relevé vaut bien mieux que rien.',
+        'Casques peu sensibles : sur les appareils au volume limité, monte d\'abord le fichier source.',
+      ],
+      why: [
+        {
+          icon: 'volume',
+          title: 'Le limiteur attrape les pics',
+          text: 'Le curseur monte jusqu\'à 400 % (environ +12 dB). Un gain modéré de 150–250 % reste généralement propre ; au-delà de 300 %, les pics commencent à pomper — juge à l\'oreille.',
+        },
+        {
+          icon: 'scissors',
+          title: 'Monter proprement',
+          text: 'Si ça sonne serré, recule de 10–20 % — un son fort mais propre vaut mieux qu\'un volume poussé au maximum.',
+        },
       ],
       howTo: [
         {
@@ -2472,6 +2742,11 @@ export const fr: Catalog = {
           name: 'Exportez le fichier plus fort',
           text: 'Enregistrez en MP3 ou WAV. Si le résultat sonne encore forcé, redescendez de 10 à 20 % : un volume propre vaut mieux que le volume maximal.',
         },
+        {
+          name: 'Exporte le fichier plus fort',
+          text: 'Enregistre en MP3 ou WAV. Si ça sonne comprimé, recule de 10–20 % — un volume propre vaut mieux que le maximum.',
+        },
+
       ],
       faqs: [
         {
@@ -2709,11 +2984,26 @@ export const fr: Catalog = {
       subtitle: 'Enregistrez la bande-son de n’importe quelle vidéo en MP3 ou WAV — en local, en quelques secondes.',
       intro:
         'Séparez le son de l’image : sortez les interviews des visioconférences, gardez un concert filmé comme un album, ou réutilisez une bande-son dans votre propre montage. La piste audio est décodée sur votre appareil ; vous pouvez la conserver sans perte en WAV ou de façon compacte en MP3.',
-      usesHeading: 'Des bandes-son qui méritent d’être extraites',
+      usesHeading: 'Les usages les plus courants de l\'extraction audio d\'une vidéo',
       uses: [
-        'Récupérez l’audio d’une capture d’écran ou d’une vidéo de téléphone.',
-        'Gardez le WAV si vous comptez remonter le son, le MP3 si vous avez terminé.',
-        'Confiez un long fichier au rogneur quand une seule minute compte.',
+        'Capture d\'écran : garde seulement la voix d\'un cours filmé — un fichier dix fois plus léger.',
+        'Vidéo de téléphone : récupère le son d\'ambiance de la prise pour en faire du matériel.',
+        'Sauvegarde d\'interview : extrais l\'audio d\'une interview vidéo et confie-la à la [transcription](/audio-to-text).',
+        'Concert : transforme la vidéo d\'un live en audio de live à collectionner.',
+        'Base sans perte : garde le WAV pour le montage, et ne compresse en MP3 qu\'une fois le final fait.',
+        'Matériel de podcast : deux caméras ont filmé — extrais la piste audio pour la chaîne de montage.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Deux sorties : MP3 et WAV',
+          text: 'Pour l\'envoi, choisis MP3 ; pour continuer à monter ou débruiter, choisis WAV et garde tous les échantillons.',
+        },
+        {
+          icon: 'film',
+          title: 'Seule la piste audio est décodée',
+          text: 'L\'image est totalement ignorée, seule la piste audio est décodée — voilà pourquoi même les gros fichiers vont vite.',
+        },
       ],
       howTo: [
         {
@@ -2728,6 +3018,11 @@ export const fr: Catalog = {
           name: 'Extrayez et enregistrez',
           text: 'Cliquez sur Extraire l’audio. La bande-son est décodée en local et se télécharge immédiatement.',
         },
+        {
+          name: 'Récupère tes fichiers',
+          text: 'Un fichier se télécharge directement ; plusieurs fichiers sont regroupés en un ZIP.',
+        },
+
       ],
       faqs: [
         { q: 'Puis-je extraire l’audio de plus d’une vidéo ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -2811,11 +3106,26 @@ export const fr: Catalog = {
       subtitle: 'Enregistrez votre micro, rognez la prise, sauvegardez en MP3 — rien ne quitte votre appareil.',
       intro:
         'Un enregistreur avec un studio de rognage intégré : capturez mémos vocaux, interviews, prises de travail ou notes de réunion, puis coupez les blancs et exportez un fichier propre. L’enregistrement comme le montage se déroulent dans votre navigateur — l’audio n’est jamais envoyé nulle part, de quoi travailler sereinement même sur des conversations confidentielles.',
-      usesHeading: 'Des prises qu’on a intérêt à enregistrer ici',
+      usesHeading: 'Les usages les plus courants de l’enregistreur en ligne',
       uses: [
-        'Enregistrez un mémo vocal, un exercice de langue ou une narration brute, sans installer d’application.',
-        'Rognez le début et la fin avant l’export, pour que la prise ne contienne que les mots.',
-        'Sauvegardez en MP3 pour l’envoyer, ou en WAV si vous comptez retravailler la prise.',
+        'Mémo vocal : dites-le pendant que c’est frais, puis coupez le début et la fin avant de sauvegarder.',
+        'Entraînement à la langue : enregistrez votre prononciation et comparez-la à l’original pour vous corriger.',
+        'Brouillon d’interview : enregistrez d’abord l’entretien en face à face, mettez en forme et transcrivez ensuite.',
+        'Compte rendu de réunion : notez vite les conclusions à la voix, complétez les points clés par écrit après.',
+        'Narration d’essai : enregistrez un brouillon de voix off pour une démo ou un cours, réécoutez et corrigez en boucle.',
+        'Idée musicale : fredonnez une mélodie et sauvegardez-la avant qu’elle ne s’échappe.',
+      ],
+      why: [
+        {
+          icon: 'mic',
+          title: 'On coupe dès la fin de la prise',
+          text: 'L’enregistrement se charge directement dans l’éditeur ci-dessous : coupez le début et la fin, marquez une sélection, exportez en MP3 ou WAV, sans ouvrir un second outil.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'L’enregistrement ne quitte pas l’onglet',
+          text: 'Les données du micro restent dans la mémoire de l’onglet, rien n’est transmis. Fermez sans exporter et l’enregistrement disparaît — les conversations confidentielles restent tranquilles.',
+        },
       ],
       howTo: [
         {
@@ -2830,6 +3140,11 @@ export const fr: Catalog = {
           name: 'Exportez la prise',
           text: 'Sauvegardez en MP3 ou WAV. Les enregistrements n’existent que dans cet onglet jusqu’à l’export : si vous fermez sans exporter, ils sont perdus.',
         },
+        {
+          name: 'N\'oublie pas d\'exporter',
+          text: 'L\'enregistrement n\'existe que dans la mémoire de cet onglet. Fermer la page sans exporter et il disparaît — exporte d\'abord, puis ferme.',
+        },
+
       ],
       faqs: [
         {
@@ -2899,11 +3214,26 @@ export const fr: Catalog = {
       subtitle: 'Amplifiez morceaux faibles et bandes-son vidéo jusqu’à 4× — puissant, sans saturation.',
       intro:
         'Pour tout ce qui se joue trop bas : vidéos de téléphone discrètes, prises acoustiques douces, podcasts masterisés à voix de murmure. Chargez un fichier, poussez le volume jusqu’à 4× et laissez le limiteur intégré retenir les crêtes pour que les passages forts restent propres. Ça marche aussi bien sur l’audio que sur la vidéo — seule la bande-son est traitée.',
-      usesHeading: 'Des fichiers faibles pour lesquels cette page existe',
+      usesHeading: 'Les usages les plus courants de l’augmentation du volume',
       uses: [
-        'Relevez une bande-son vidéo sortie plus faible que l’image.',
-        'Amplifiez une musique exportée ou rippée à un niveau trop bas.',
-        'Restez entre 150 % et 250 % pour gagner en puissance sans que le limiteur ne pompe.',
+        'Piste vidéo : relevez le son d’une vidéo enregistrée dont l’audio se fait écraser par l’image.',
+        'Musique trop douce : ramenez à un volume normal les vieux titres ou fichiers téléchargés au niveau bas.',
+        'Vidéo de téléphone : quand le vent du dehors couvre la voix, remontez la voix.',
+        'Relecture de réunion : les réunions en ligne enregistrées trop bas, montez-les jusqu’à être audibles.',
+        'Enregistrement de démo : augmentez la voix off d’une capture d’écran de formation, sans réenregistrer.',
+        'Pré-écoute d’un montage : montez la piste d’un brouillon vidéo pour valider d’abord le contenu.',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'Vidéos traitées directement',
+          text: 'Les fichiers vidéo avec image passent aussi : seule la piste audio est traitée, l’image ne bouge pas, et l’export reste dans le même conteneur vidéo.',
+        },
+        {
+          icon: 'volume',
+          title: 'Le gain se règle comme vous voulez',
+          text: 'Le curseur se règle librement, écoutez au fil des ajustements ; c’est votre oreille qui décide de l’amplitude, pas un pourcentage deviné.',
+        },
       ],
       howTo: [
         {
@@ -2918,6 +3248,11 @@ export const fr: Catalog = {
           name: 'Exportez le fichier plus fort',
           text: 'Enregistrez en MP3 ou WAV. Si les crêtes sonnent écrasées, revenez de 10 à 20 % en arrière et réexportez.',
         },
+        {
+          name: 'Ajustez puis exportez',
+          text: 'Si le son sature, réduisez un peu le gain ; essaie plusieurs niveaux avant d\'exporter.',
+        },
+
       ],
       faqs: [
         {
@@ -3006,11 +3341,26 @@ export const fr: Catalog = {
       subtitle: 'Un clic pour ramener les fichiers faibles à un niveau homogène et sain — analyse sur votre appareil.',
       intro:
         'Normaliser analyse votre fichier pour trouver sa crête la plus forte, puis élève tout le fichier exactement de ce qu’il faut pour amener cette crête juste sous la saturation. Résultat : un fichier qui exploite toute la plage de volume dont il dispose, sans calcul à l’œil. C’est la bonne réparation quand un enregistrement est uniformément trop faible — mémos vocaux, prises de terrain, exports d’autres applications sortis à −18 dB.',
-      usesHeading: 'Quand un seul niveau doit convenir',
+      usesHeading: 'Les usages les plus courants de la normalisation audio',
       uses: [
-        'Ramenez un fichier faible à niveau pour que sa crête la plus forte atteigne un niveau normal.',
-        'Homogénéisez des clips destinés à être fusionnés, pour qu’un chapitre ne sonne pas deux fois moins fort que le suivant.',
-        'Préférez ceci à une amplification à l’aveugle quand vous ne savez pas jusqu’où pousser.',
+        'Mise à niveau par lot : relevez toute une série d’enregistrements à un volume uniforme et sain.',
+        'Alignement avant montage : normalisez les prises qui vont se suivre, pour qu’aucun chapitre ne sonne moitié moins fort que ses voisins.',
+        'Sauvetage des prises trop douces : un mémo ou un enregistrement terrain globalement trop bas, remonté en un clic.',
+        'Au lieu de doubler à l’aveugle : quand vous ne savez pas jusqu’où pousser le curseur, servez-vous du gain calculé.',
+        'Correction après export : ramenez à la normale les fichiers qu’une autre application a laissés vers −18 ديسيبل.',
+        'Contrôle avant publication : pics au maximum, dynamique intacte ; confiez ensuite la compression à la [compression de niveau](/compressor).',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Un gain calculé',
+          text: 'La normalisation scanne le pic le plus fort et remonte tout le fichier pour que le pic se place juste sous la pleine échelle (environ −0.2 ديسيبل). Les parties douces et fortes se déplacent ensemble, la dynamique reste intacte.',
+        },
+        {
+          icon: 'layers',
+          title: 'Mesure fichier par fichier en lot',
+          text: 'Plusieurs fichiers partagent le bouton de normalisation, chacun remonté selon son propre pic ; un fichier se télécharge seul, au-delà de deux ils partent en ZIP.',
+        },
       ],
       howTo: [
         {
@@ -3024,6 +3374,10 @@ export const fr: Catalog = {
         {
           name: 'Exportez',
           text: 'Enregistrez en MP3 ou WAV. Le WAV évite une passe de compression avec perte supplémentaire si vous comptez continuer à monter le fichier.',
+        },
+        {
+          name: 'Exporte',
+          text: 'Enregistre en MP3 ou WAV. Si tu comptes continuer à éditer, choisis le WAV sans perte pour éviter un deuxième encodage destructif.',
         },
       ],
       faqs: [
@@ -3086,7 +3440,8 @@ export const fr: Catalog = {
             'Si un clic ou une respiration est déjà près du maximum, la normalisation ne fait presque rien, car cette crête fixe le gain. Le compresseur de niveau rapproche le fort et le faible, puis aligne la crête.',
             'Rendre un fichier plus fort d’un facteur que vous choisissez, y compris au-delà de 100 % avec un limiteur, c’est amplifier le volume. La normalisation n’offre pas ce multiplicateur.',
           ],
-        },
+        }
+        ,
       ],
       dropHint: 'Déposez des fichiers audio ou cliquez pour les parcourir',
       exportLabel: 'Normaliser et télécharger',
@@ -3104,11 +3459,26 @@ export const fr: Catalog = {
       subtitle: 'Le son de fin de nuit : ralentissez un morceau à ~85 %, ajoutez de l’espace, exportez — sans application, sans téléversement.',
       intro:
         'Le traitement slowed + reverb ramène une piste à environ 80–90 % de sa vitesse, si bien que la hauteur tonale s’enfonce avec elle, puis ajoute une traîne d’écho douce qui donne l’impression que tout joue deux pièces plus loin. Chargez une chanson, placez la vitesse vers 85 %, montez la réverbe jusqu’à ce que ça sonne juste, exportez — tout le montage se déroule sur votre appareil, donc même des morceaux complets passent en quelques secondes. Poussez plutôt la vitesse au-delà de 100 % et vous obtenez du nightcore.',
-      usesHeading: 'Le son slowed et reverb',
+      usesHeading: 'Les usages les plus courants du slowed + reverb',
       uses: [
-        'Ramenez une piste à environ 85 % et ajoutez de l’espace. C’est le mix nocturne habituel.',
-        'Partez d’une chanson sèche. L’effet, c’est le ralentissement et la réverbe ensemble.',
-        'Rognez le passage voulu avant l’export, pour que la nappe ne devienne pas l’album entier.',
+        'Version nuit : ralentissez le morceau vers 85 %, ajoutez de l’espace, l’ambiance change aussitôt.',
+        'Réécoute au ralenti : faites une version lente d’un titre que vous aimez, pour une autre écoute.',
+        'BGM de clips courts : le slowed + reverb est une ambiance classique des vidéos courtes.',
+        'Expérimentation vocale : ralentissez une voix et ajoutez de la réverbe pour de la matière d’ambiance.',
+        'Réglage en deux gestes : fixez d’abord le ralentissement, ensuite la dose de réverbe.',
+        'Recette en un clic : les réglages par défaut sont déjà la combinaison classique du slowed + reverb.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Vitesse et humidité séparées',
+          text: 'Ralentissez d’abord à la vitesse voulue, ajoutez ensuite l’espace ; les deux molettes sont indépendantes, les réglages fins ne se marchent pas dessus.',
+        },
+        {
+          icon: 'note',
+          title: 'On part de la recette classique',
+          text: 'Par défaut, c’est déjà la combinaison classique du slowed + reverb : ralenti plus espace, prêt à exporter.',
+        },
       ],
       howTo: [
         {
@@ -3123,6 +3493,11 @@ export const fr: Catalog = {
           name: 'Exportez le montage',
           text: 'Enregistrez en MP3 320 kbps pour publier, ou en WAV si vous comptez retravailler le morceau dans une autre application.',
         },
+        {
+          name: 'Exporter',
+          text: 'Clique sur Ralentir et télécharger ; le nom du fichier reçoit le suffixe -edited.',
+        },
+
       ],
       faqs: [
         {
@@ -3226,11 +3601,26 @@ export const fr: Catalog = {
       subtitle: 'Des bords doux en quelques secondes : réglez les deux fondus au dixième de seconde, écoutez et exportez. Rien ne quitte votre appareil.',
       intro:
         'Un fondu d’entrée fait démarrer une piste depuis le silence ; un fondu de sortie la referme en douceur. C’est toute la différence entre une coupure brutale et une fin aboutie. Chargez un fichier, réglez chaque durée au dixième de seconde et écoutez avant d’exporter. Tout se passe dans votre navigateur : le fichier n’est jamais téléversé.',
-      usesHeading: 'Quand un fondu est la bonne solution',
+      usesHeading: 'Les cas d’usage courants du fondu audio',
       uses: [
-        'Terminez proprement un mixtape, un set de DJ ou une compilation au lieu de la couper en pleine note.',
-        'Adoucissez l’entrée d’un podcast ou d’un mémo vocal pour que le premier mot ne surprenne pas l’auditeur.',
-        'Supprimez le clic de la couture d’une boucle ou d’un sample pour qu’il se répète sans grésiller.',
+        'Finir un medley : la fin d’un medley ou d’une compilation s’estompe et se termine proprement.',
+        'Lancement de podcast : une ouverture progressive, la première phrase ne fait pas sursauter l’auditeur.',
+        'Musique de vidéo : le morceau s’estompe avec l’image sans voler la scène.',
+        'Les deux bouts d’une sonnerie : un court fondu à chaque bout et la boucle devient naturelle.',
+        'Enregistrements live : le brouhaha d’ouverture et de clôture passe en fondu.',
+        'Conférences : la toux et les bruits du début et de la fin se masquent en fondu.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Les deux bouts se règlent séparément',
+          text: 'Fondu d’entrée et de sortie de 0 à 5 secondes chacun, par pas de 0,1 s — tu ne veux qu’une sortie ? Ne règle que la sortie.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'Le fondu se fait dans le navigateur, l’audio n’est pas envoyé.',
+        },
       ],
       howTo: [
         {
@@ -3245,6 +3635,11 @@ export const fr: Catalog = {
           name: 'Écoutez et exportez',
           text: 'Lisez le début et la fin pour entendre les fondus, puis exportez en MP3 ou en WAV sans perte.',
         },
+        {
+          name: 'Écoute et exporte',
+          text: 'Vérifie à l\'écoute, puis exporte en MP3 ou WAV sans perte.',
+        },
+
       ],
       faqs: [
         {
@@ -3320,16 +3715,36 @@ export const fr: Catalog = {
       heroAlt: 'Changer la durée d’un fichier pendant que la hauteur reste',
       subtitle: 'De 0,75× à 1,25×, par pas de 0,01. La tonalité reste.',
       intro: 'Déposez un fichier et tirez la vitesse. Le fichier devient plus court ou plus long, et la hauteur revient à sa place. Le curseur s’arrête à 0,75× et à 1,25×. 1× laisse les échantillons et ne lance pas l’étirement. Une harmonie dense peut sonner mince. C’est la limite de ce décalage. Rien n’est envoyé.',
-      usesHeading: 'Une durée nouvelle, la même tonalité',
+      usesHeading: 'Les cas d’usage courants du changement de tempo',
       uses: [
-        'Placez un morceau dans un créneau un peu plus court ou plus long sans déplacer la tonalité.',
-        'Étirez un peu un mémo vocal. La voix reste à la même hauteur.',
-        '1× exporte le fichier sans l’étirement.',
+        'Caler sur l’image : la musique est plus longue ou plus courte que la vidéo, changez la durée sans bouger la tonalité.',
+        'Mashup calé : deux morceaux à des tempi différents, alignez-les d’abord sur la même vitesse avant de mixer.',
+        'Travail au ralenti : ralentissez un morceau rapide pour travailler votre instrument, la hauteur ne bouge pas.',
+        'Ajustement vocal : étirez un peu un mémo vocal, la voix reste la même.',
+        'Adapter à la dance : amenez le nouveau morceau au même BPM que votre set.',
+        'Adapter un sample : ajustez la longueur du sample au nombre de temps demandé par le projet.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Une durée, la hauteur intacte',
+          text: 'L’algorithme de préservation de hauteur change la vitesse seule : plus rapide ne devient pas aigu, plus lent ne devient pas grave ; le résultat est le plus naturel entre 0.75× et 1.25×.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'Le calcul se fait dans ton navigateur, aucun audio n’est envoyé.',
+        },
       ],
       howTo: [
         { name: 'Déposez le fichier', text: 'Ajoutez un MP3, un WAV, un M4A ou un autre audio. Il reste sur votre appareil.' },
         { name: 'Réglez le tempo', text: 'Tirez de 0,75× à 1,25×. Chaque pas vaut 0,01. 1,00× est le fichier déposé.' },
         { name: 'Écoutez et exportez', text: 'Lancez la lecture pour entendre la nouvelle durée à la hauteur d’origine, puis enregistrez en MP3 ou WAV.' },
+        {
+          name: 'Récupère ton fichier',
+          text: 'Le nom du fichier reçoit le suffixe -edited.',
+        },
+
       ],
       faqs: [
         { q: 'Le fichier est-il envoyé ?', a: 'Non. Le navigateur étire le fichier en mémoire. Une fois la page chargée, vous pouvez couper le réseau et exporter quand même un fichier déposé.' },
@@ -3388,11 +3803,26 @@ export const fr: Catalog = {
       subtitle: 'Montez ou descendez la hauteur tonale par demi-tons — la durée du fichier ne change pas.',
       intro:
         'Déposez une chanson ou un enregistrement vocal et glissez le curseur de hauteur tonale. La tonalité change et le tempo reste en place. Ce n’est pas le changeur de vitesse : ici le fichier ne se raccourcit ni ne s’allonge. Le décalage se calcule sur votre appareil.',
-      usesHeading: 'La hauteur bouge, la ligne de temps non',
+      usesHeading: 'Les cas d’usage courants du changement de tonalité',
       uses: [
-        'Transposez une chanson vers une tonalité plus confortable pour chanter. Le fichier garde la même durée.',
-        'Décalez une voix de quelques demi-tons pour un personnage, sans accélérer la phrase.',
-        'L’effet « plus rapide et plus aigu » revient au changeur de vitesse. Cette page ne raccourcit pas l’audio.',
+        'Transposer pour chanter juste : mets le morceau dans ta tonalité, la longueur reste la même.',
+        'Voix de personnage : décale la voix de quelques demi-tons pour un effet personnage, sans toucher au débit.',
+        'Accorder un sample : transpose l’échantillon dans la tonalité du projet.',
+        'Couches de chœur : la même phrase décalée de plusieurs demi-tons, superposée en harmonies.',
+        'Adapter aux instruments : transpose pour les instruments sans capo ni transposition.',
+        'Comparer en démo : monte et descends demi-ton par demi-ton jusqu’à trouver la bonne tonalité.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: '±12 demi-tons, librement',
+          text: 'Par pas de 1 demi-ton : la durée ne change pas, seule la hauteur bouge. Plus tu décales, plus la texture se marque — les petits décalages restent les plus naturels.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'La transposition se prévisualise en direct dans le navigateur, l’audio n’est pas envoyé.',
+        },
       ],
       howTo: [
         {
@@ -3407,6 +3837,11 @@ export const fr: Catalog = {
           name: 'Écoutez et exportez',
           text: 'Lancez la lecture pour entendre la nouvelle tonalité à durée d’origine, puis enregistrez en MP3 ou WAV.',
         },
+        {
+          name: 'Écoute et exporte',
+          text: 'Vérifie à l\'écoute, puis exporte en MP3 ou WAV sans perte.',
+        },
+
       ],
       faqs: [
         {
@@ -3485,11 +3920,26 @@ export const fr: Catalog = {
       subtitle: 'Passez vos fichiers M4A et AAC en MP3 — dans votre navigateur, sans téléversement.',
       intro:
         'Les mémos vocaux et les enregistrements AAC sont souvent en M4A. Déposez le fichier, choisissez un débit, et votre navigateur le décode puis enregistre un MP3. L’audio ne va vers aucun serveur.',
-      usesHeading: 'Les fichiers M4A qu’on convertit',
+      usesHeading: 'Les cas d’usage courants de M4A vers MP3',
       uses: [
-        'Passez un mémo vocal d’iPhone ou un téléchargement AAC en MP3, accepté par davantage de lecteurs.',
-        '128 kbps pour la voix, 320 kbps pour la musique.',
-        'Le M4A reste sur cet appareil. Rien n’est téléversé pour terminer la conversion.',
+        'Mémos d’iPhone : convertissez les mémos vocaux M4A en MP3 lisibles partout.',
+        'Téléchargements AAC : convertissez l’audio AAC en MP3 que les vieux appareils acceptent.',
+        'Bibliothèque unifiée : convertissez vos titres iTunes en MP3, pour l’autoradio et les vieux lecteurs.',
+        'Transcription : prenez 128 kbps pour la parole, puis passez le fichier à la [transcription](/audio-to-text).',
+        'Pièce jointe : comprimez sous la limite de 25 Mo des e-mails.',
+        'Avant la sonnerie : convertissez d’abord en MP3, puis coupez vos 40 secondes dans le [créateur de sonnerie](/ringtone-maker).',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Décodage AAC direct',
+          text: 'Le navigateur décode nativement les pistes AAC, sans format intermédiaire : vous obtenez directement le réglage MP3 voulu.',
+        },
+        {
+          icon: 'layers',
+          title: 'ZIP par lot',
+          text: 'Plusieurs M4A convertis en une fois, puis empaquetés en ZIP.',
+        },
       ],
       howTo: [
         {
@@ -3504,6 +3954,11 @@ export const fr: Catalog = {
           name: 'Convertissez et téléchargez',
           text: 'Cliquez sur Convertir en MP3. Le fichier est décodé et encodé sur votre appareil, puis téléchargé.',
         },
+        {
+          name: 'Clique sur « Convertir en MP3 »',
+          text: 'Décodage et réencodage locaux en une passe — la conversion prend généralement quelques secondes.',
+        },
+
       ],
       faqs: [
         { q: 'Puis-je convertir plus d’un M4A ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -3575,11 +4030,26 @@ export const fr: Catalog = {
       subtitle: 'Passez l’audio OGG en MP3 — dans votre navigateur, sans téléversement.',
       intro:
         'OGG est un conteneur : le plus souvent Vorbis, parfois Opus. Déposez le fichier, choisissez un débit, et votre navigateur le décode puis enregistre un MP3. L’audio ne va vers aucun serveur.',
-      usesHeading: 'Les fichiers OGG qu’on convertit',
+      usesHeading: 'Les cas d’usage courants d’OGG vers MP3',
       uses: [
-        'Ouvrez un rip de jeu, un téléchargement ou un enregistrement de navigateur arrivé en OGG.',
-        'Enregistrez un MP3 pour le téléphone, la voiture ou un éditeur qui refuse l’OGG.',
-        'Laissez la voix à 128 kbps et la musique plus haut. Réessayer est local et gratuit.',
+        'Assets de jeu : convertissez les OGG extraits d’un jeu en MP3 que votre logiciel de montage accepte.',
+        'Enregistrements du navigateur : transformez les OGG des applis d’enregistrement web en format universel.',
+        'Enregistrements Linux : le système enregistre par défaut en OGG, convertissez en MP3 pour l’envoyer.',
+        'Compatibilité auto : l’autoradio ancien refuse l’OGG, convertissez en MP3 et il passe direct.',
+        'Messages vocaux : certains applis sortent de l’OGG/Opus, convertissez en MP3 pour archiver.',
+        'Rangement par lot : plusieurs OGG convertis en une fois, empaquetés en ZIP.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Vorbis comme Opus',
+          text: 'Les deux encodages internes de l’OGG sont décodables ; le .opus brut des vocaux WhatsApp a sa [page dédiée](/opus-to-mp3).',
+        },
+        {
+          icon: 'layers',
+          title: 'ZIP par lot',
+          text: 'Plusieurs OGG partagent les mêmes réglages, convertis un par un puis empaquetés en ZIP.',
+        },
       ],
       howTo: [
         {
@@ -3594,6 +4064,11 @@ export const fr: Catalog = {
           name: 'Convertissez et téléchargez',
           text: 'Cliquez sur Convertir en MP3. Décodage et encodage se font sur votre appareil, puis le MP3 se télécharge.',
         },
+        {
+          name: 'Clique sur « Convertir en MP3 »',
+          text: 'Le décodage et le réencodage se font localement en une passe — prêt en quelques secondes.',
+        },
+
       ],
       faqs: [
         { q: 'Puis-je convertir plus d’un OGG ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -3665,11 +4140,26 @@ export const fr: Catalog = {
       subtitle: 'Passez l’audio Opus en MP3 — dans votre navigateur, sans téléversement.',
       intro:
         'Les messages vocaux et certains téléchargements sont en Opus : un fichier .opus, ou de l’Opus dans un OGG ou un WebM. Déposez le fichier, choisissez un débit, et votre navigateur le décode puis enregistre un MP3. L’audio ne va vers aucun serveur.',
-      usesHeading: 'Les fichiers Opus qu’on convertit',
+      usesHeading: 'Les cas d’usage courants d’Opus vers MP3',
       uses: [
-        'Passez un message vocal ou un export Opus en MP3, pour un lecteur qui n’ouvre pas l’Opus.',
-        'La parole passe très bien à 128 kbps. Vous changez le format que tout le monde peut lire, pas la durée.',
-        'Convertissez ici, puis rogez si le message commence ou finit par un long silence.',
+        'Vocaux WhatsApp : convertissez les messages .opus en MP3 lisibles partout.',
+        'Enregistrements de réunion : archivez les enregistrements de Discord et d’autres applis en format universel.',
+        'Voix de jeu : gardez les pistes Opus exportées par les applis vocales en les convertissant en MP3.',
+        'Matériel de podcast : convertissez les pistes Opus envoyées par les invités à distance avant le mixage.',
+        'Avant la transcription : passer d’abord en MP3 rend la [transcription](/audio-to-text) plus fiable.',
+        'Conversion par lot : un paquet de vocaux converti en une fois, empaqueté en ZIP.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Lecture .opus directe',
+          text: 'Le .opus brut comme l’Opus dans des conteneurs OGG/WebM passent — aucune propagation à faire avant la conversion.',
+        },
+        {
+          icon: 'layers',
+          title: 'ZIP par lot',
+          text: 'Des dizaines de vocaux déposés d’un coup, convertis un par un puis empaquetés en ZIP.',
+        },
       ],
       howTo: [
         {
@@ -3684,6 +4174,12 @@ export const fr: Catalog = {
           name: 'Convertissez et téléchargez',
           text: 'Cliquez sur Convertir en MP3. Décodage et encodage se font sur votre appareil, puis le MP3 se télécharge.',
         },
+        {
+          name: 'Récupère ton fichier',
+          text: 'Un seul fichier se télécharge directement ; plusieurs arrivent dans un ZIP.',
+        }
+
+        ,
       ],
       faqs: [
         { q: 'Puis-je convertir plus d’un fichier Opus ?', a: 'Oui. Plusieurs fichiers partagent le réglage de cette page. Ils se convertissent l’un après l’autre sur cet appareil, et chaque fichier est libéré avant le suivant. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -3753,11 +4249,26 @@ export const fr: Catalog = {
       heroAlt: 'Enregistrer la forme d’onde d’une chanson en PNG',
       subtitle: 'Une image de la forme d’onde — couleurs, taille et PNG transparent, dessinés sur votre appareil.',
       intro: 'Déposez un morceau, une note vocale ou un podcast et obtenez une image de forme d’onde pour une couverture, un fond de vidéo ou un post. Barres ou forme pleine, couleurs, puis un PNG au format vidéo, carré ou bannière. Le navigateur dessine l’image à partir du fichier ouvert — rien n’est envoyé.',
-      usesHeading: 'À quoi sert l’image',
+      usesHeading: 'Les cas d’usage courants du générateur de forme d’onde',
       uses: [
-        'Une couverture de podcast ou de morceau avec une forme d’onde, pas un carré vide.',
-        'Un PNG transparent à poser sur une vidéo ou une miniature.',
-        'Une bannière large pour un en-tête de site ou un carton de fin.',
+        'Pochette de podcast : un carré avec la vague de l’épisode, fini le carré vide.',
+        'Incrustation vidéo : exporte un PNG transparent à superposer à l’image.',
+        'Annonce réseaux sociaux : la vague du prochain épisode en image.',
+        'Fond de scène : affiche la vague du morceau en cours sur le grand écran.',
+        'Design de merch : le motif vague sur tee-shirts et affiches.',
+        'Comparer la loudness : deux versions côte à côte pour comparer la distribution.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'Export PNG transparent',
+          text: 'Exporte la vague sur fond transparent pour la superposer à une vidéo, une miniature ou une affiche.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Apparence réglable',
+          text: 'Couleur, largeur des barres et autres paramètres d’apparence se règlent pour coller à ton style.',
+        },
       ],
       howTo: [
         { name: 'Déposez l’audio', text: 'MP3, WAV, M4A, OGG ou FLAC. Le décodage reste sur votre appareil.' },
@@ -3817,11 +4328,26 @@ export const fr: Catalog = {
       heroAlt: 'Télécharger en PNG l’image des fréquences d’une chanson',
       subtitle: 'Voyez les fréquences d’un morceau ou d’un enregistrement, puis téléchargez l’image. Le calcul reste sur votre appareil.',
       intro: 'Un spectrogramme montre quelles fréquences sont là au fil du temps : voix, graves, et tout ce qui a été dessiné dans le son. Déposez un fichier, choisissez un axe log ou linéaire, téléchargez le PNG. La FFT tourne dans le navigateur — rien n’est envoyé.',
-      usesHeading: 'Ce que les gens y cherchent',
+      usesHeading: 'Les cas d’usage courants du générateur de spectrogramme',
       uses: [
-        'Voir où sont les graves, la voix et le souffle avant d’égaliser.',
-        'Retrouver une image ou un mot caché dans les fréquences.',
-        'Exporter une image fixe d’un morceau pour un post, un cours ou une note.',
+        'Reconnaissance avant l’égalisation : voir où se répartissent basses, voix et sifflantes.',
+        'Œuf de Pâques spectral : certains cachent des images ou du texte dans le spectre — un coup d’œil suffit.',
+        'Diagnostic avant débruitage : voir si le bruit est un souffle large bande ou un bourdonnement étroit, puis choisir l’outil.',
+        'Inspecter les vieilles cassettes : voir quelle partie de la réponse en fréquence manque.',
+        'Démonstration pédagogique : montrer aux élèves la répartition fréquentielle de différents instruments.',
+        'Comparer deux versions : spectres côte à côte pour repérer les sources.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'Les fréquences d’un coup d’œil',
+          text: 'Temps en abscisse, fréquences en ordonnée, la luminosité pour l’énergie — tout le contenu de l’audio sur une seule image.',
+        },
+        {
+          icon: 'download-simple',
+          title: 'Téléchargement PNG',
+          text: 'Une fois l’affichage réglé, exporte le PNG et glisse-le directement dans un document ou des diapositives.',
+        },
       ],
       howTo: [
         { name: 'Déposez l’audio', text: 'MP3, WAV, M4A, OGG ou FLAC. Le décodage reste sur votre appareil.' },
@@ -3881,11 +4407,26 @@ export const fr: Catalog = {
       heroAlt: 'Retransformer une image de spectrogramme en WAV',
       subtitle: 'Peignez une image ou une ligne de texte dans un WAV. Le spectrogramme la montre.',
       intro: 'Tapez une courte ligne ou déposez une image. Cette page écrit cette forme dans les fréquences d’un WAV, le même tour qu’une image cachée dans un morceau. Ce n’est ni une chanson ni de la parole. Ouvrez le WAV dans le générateur de spectrogramme. Rien n’est envoyé.',
-      usesHeading: 'Ce que les gens en font',
+      usesHeading: 'Les cas d’usage courants de l’image en audio',
       uses: [
-        'Cacher un nom ou une ligne là où un spectrogramme peut la lire.',
-        'Transformer un logo simple ou un dessin en une courte peinture sonore.',
-        'Fabriquer un fichier à ouvrir directement dans le générateur de spectrogramme.',
+        'Cacher du texte dans le spectre : glisse un nom ou une phrase dans le spectrogramme, lisible avec le générateur de spectrogramme.',
+        'Du gribouillage au son : transforme un logo simple ou un croquis en petite peinture de tons.',
+        'Démonstration pédagogique : montrer aux élèves que l’image, c’est du son.',
+        'Création artistique : convertir une œuvre visuelle en paysage sonore correspondant.',
+        'Fabriquer des œufs de Pâques : un clin d’œil audible et visible pour une vidéo ou une chanson.',
+        'Alphabétisation de l’oreille : entraîner l’oreille à distinguer les couleurs sonores des différentes formes.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'L’image est le spectre',
+          text: 'Ouvre l’audio généré avec le générateur de spectrogramme et tu verras ce que tu as dessiné ou tapé.',
+        },
+        {
+          icon: 'download-simple',
+          title: 'Téléchargement WAV direct',
+          text: 'Le résultat est un WAV standard que n’importe quel lecteur peut jouer.',
+        },
       ],
       howTo: [
         { name: 'Texte ou image', text: 'Jusqu’à 32 caractères, ou un PNG, JPG, WebP. L’aperçu est l’image qui sera écrite. Les pixels clairs sont des fréquences plus fortes.' },
@@ -3946,11 +4487,26 @@ export const fr: Catalog = {
       subtitle: 'Corrigez le titre, l’artiste, l’album et la pochette d’un MP3 en moins d’une minute — dans votre navigateur, sans aucun téléversement.',
       intro:
         'Un MP3 contient deux choses : la musique, et la fiche d’informations que les lecteurs affichent à côté — titre, artiste, album, année, pochette. Quand cette fiche est fausse ou absente, tout, du téléphone à l’autoradio, retombe sur « Artiste inconnu » ou Track 01. Déposez un fichier ici, corrigez les champs et enregistrez : l’audio est copié octet par octet, intact, et ne quitte jamais votre appareil.',
-      usesHeading: 'Les tags qu’on doit vraiment réparer',
+      usesHeading: 'Les cas d’usage courants de l’éditeur de tags MP3',
       uses: [
-        'Nettoyer les téléchargements qui affichent « Artiste inconnu » ou sans pochette dans votre lecteur de musique.',
-        'Donner à un épisode de podcast ou à une maquette un vrai titre, une pochette et des crédits avant publication.',
-        'Supprimer les métadonnées d’appareil et de localisation restées dans un enregistrement avant de le partager.',
+        'Réparer les tags : corrigez « artiste inconnu » et les couvertures manquantes dans la musique téléchargée, pour un affichage normal dans le lecteur.',
+        'Publier proprement : remplissez titre, couverture et crédits aux normes pour un épisode de podcast ou une maquette.',
+        'Nettoyage vie privée : avant de partager un enregistrement, effacez les traces d’appareil et de localisation.',
+        'Uniformiser un album : changez la couverture et le champ genre de tout l’album d’un coup.',
+        'Numérotation de podcast : ajoutez le numéro d’épisode et le nom de l’émission au titre pour un tri correct dans les applis podcast.',
+        'Audio intact : seuls les octets des tags sont réécrits, les données audio restent identiques octet par octet.',
+      ],
+      why: [
+        {
+          icon: 'tags',
+          title: 'Lu et écrit sur ton appareil',
+          text: 'Les tags et la couverture actuels sont lus sur ton appareil et le fichier réécrit s’enregistre depuis le navigateur — aucune étape d’envoi nulle part.',
+        },
+        {
+          icon: 'layers',
+          title: 'Un album entier d’un coup',
+          text: 'Plusieurs MP3 partagent artiste, album, année, genre et couverture ; titre et numéro restent par piste. Deux fichiers ou plus reviennent en ZIP.',
+        },
       ],
       howTo: [
         { name: 'Déposez votre MP3', text: 'Déposez le fichier ou cliquez pour parcourir. Les tags et la pochette actuels sont lus sur votre appareil et affichés dans le formulaire. Plusieurs MP3 peuvent partager l’artiste, l’album, l’année, le genre et la pochette. Le titre et le numéro de piste restent sur chaque fichier. Deux ou plus se téléchargent en ZIP.' },
@@ -4016,16 +4572,36 @@ export const fr: Catalog = {
       subtitle: 'Un compresseur large bande qui calme les sauts de niveau. La crête du fichier reste où elle était.',
       intro:
         'Une note vocale qui crie une phrase et chuchote la suivante a besoin d’une compression, pas d’un bouton de volume. Cette page applique un seul compresseur large bande : le fort descend, le faible monte, puis l’export est mis à l’échelle pour que la crête retrouve celle du fichier d’origine. Tout se passe dans le navigateur. Le fichier n’est pas envoyé.',
-      usesHeading: 'Ce qu’un compresseur termine',
+      usesHeading: 'Les usages les plus courants de la compression de niveau',
       uses: [
-        'Égaliser une note vocale enregistrée tantôt près, tantôt loin du téléphone.',
-        'Contenir un invité de podcast bien plus fort que la personne qui anime.',
-        'Placer une voix devant quand le refrain saute au-dessus du couplet.',
+        'Mémo vocal : égalisez un volume qui danse selon la distance au téléphone.',
+        'Équilibre d’entretien : l’invité parle bien plus fort que l’animateur, tenez les pics.',
+        'Voix bien en avant : quand le refrain déborde sur les couplets, assoyez la voix devant, stable.',
+        'Compte rendu de réunion : aplatissez une réunion où l’on passe du chuchotement à l’éclat de voix.',
+        'Enregistrement de cours : le volume flotte quand le formateur se déplace, ramenez-le à l’unisson.',
+        'Resserrement avant publication : resserrez d’abord la dynamique, l’alignement de loudness se pose plus sûrement.',
+      ],
+      why: [
+        {
+          icon: 'volume',
+          title: 'La dynamique, pas la taille',
+          text: 'Compression large bande : seuil de −18 à −36 ديسيبل, ratio jusqu’à 8:1. Le fort est comprimé, le doux remonté en relatif ; à l’export, les pics reviennent au niveau des pics du fichier source.',
+        },
+        {
+          icon: 'file',
+          title: 'Ce n’est pas une compression de fichier',
+          text: 'Cette page agit sur les variations de volume, pas sur la taille du fichier. Pour un MP3 plus léger, voyez la [compression audio](/compress-audio) ; pour un alignement LUFS, voyez le [sonomètre](/loudness-meter).',
+        },
       ],
       howTo: [
         { name: 'Déposez l’audio', text: 'MP3, WAV, M4A, OGG ou FLAC. Le décodage reste sur votre appareil.' },
         { name: 'Réglez la quantité', text: 'Faites glisser Compresseur. 30–50 % suffisent pour la plupart des voix. 100 % écrase : seuil −36 dB, ratio 8:1.' },
         { name: 'Écoutez et exportez', text: 'Écoutez le résultat, puis exportez en MP3 ou WAV. La crête revient à la crête d’origine, juste sous le plein niveau.' },
+        {
+          name: 'Ça marche sur mobile',
+          text: 'Les curseurs et l\'export sont tactiles ; quelques minutes de voix s\'exportent en une à deux secondes sur un téléphone récent.',
+        },
+
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. Le compresseur est un processeur de dynamique Web Audio dans l’onglet. Une fois la page chargée, vous pouvez couper le réseau et continuer d’exporter.' },
@@ -4080,12 +4656,36 @@ export const fr: Catalog = {
       heroAlt: 'Ajouter un délai et des répétitions à un enregistrement',
       subtitle: 'Des copies séparées, au délai que vous choisissez — d’une claque courte à 0,8 s.',
       intro: 'Un écho est une copie qui revient après un trou que l’on peut compter. Le délai va de quelques centièmes de seconde à 0,8 seconde, et les répétitions décident de ce que chaque copie renvoie. Le mélange humide est fixé à 45 %. Délai à zéro : le fichier ne change pas. Le traitement reste dans le navigateur.',
-      usesHeading: 'Les échos que l’on veut vraiment',
-      uses: ['Poser une claque courte sur une voix pour qu’elle prenne place sans devenir de la bouillie.', 'Faire revenir un coup de guitare ou de batterie sur le temps.', 'Entendre une phrase revenir une fois, nettement, au lieu d’un nuage de réverbe.'],
+      usesHeading: 'Les usages les plus courants de l’effet d’écho',
+      uses: [
+        'Effet podcast : un écho court pour souligner une phrase, du genre qu’on peut compter.',
+        'Assets de jeu : ajoutez un délai spatial à un jingle, quelques répétitions décroissantes.',
+        'Ornement vocal : quelques répétitions qui s’affaiblissent au bout d’une voix.',
+        'Ambiance horrifique : un écho très espacé, et l’atmosphère change aussitôt.',
+        'Touche d’instrument : un écho sur une note de guitare ou un coup de tambour, pour poser l’espace.',
+        'Design de transition : une seule réverbération lointaine entre deux passages.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Un délai qu’on peut compter',
+          text: 'De 0.01 à 0.8 secondes au choix : court comme une claque, long comme un cri dans une pièce vide. L’intensité des répétitions décide de ce qu’il reste de chaque écho.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Le wet fixé à 45 %',
+          text: 'Le son sec reste tel quel, l’écho se mélange à 45 % — le contenu du fichier d’origine ne bouge pas d’un poil, seul ce double s’ajoute.',
+        },
+      ],
       howTo: [
         { name: 'Déposez l’audio', text: 'MP3, WAV, M4A, OGG ou FLAC. Le décodage reste sur votre appareil.' },
         { name: 'Délai et répétitions', text: 'Le délai est le trou avant la première copie, jusqu’à 0,8 s. Les répétitions sont le retour, plafonné à 55 % pour que ça ne s’emballe pas.' },
         { name: 'Écoutez et exportez', text: 'Écoutez, puis exportez en MP3 ou WAV. Le fichier s’allonge de la queue des répétitions, jusqu’à 4 secondes.' },
+        {
+          name: 'Enregistre ton fichier',
+          text: 'Exporte en MP3 ou WAV ; le nom du fichier reçoit le suffixe -edited.',
+        },
+
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. L’écho est un délai Web Audio dans l’onglet. Une fois la page chargée, vous pouvez couper le réseau et continuer d’exporter.' },
@@ -4141,12 +4741,36 @@ export const fr: Catalog = {
       howToIntro: 'Le curseur d’intensité sur un vrai fichier',
       subtitle: 'Un seul curseur wet, du tout sec à une petite salle. Vous entendez le résultat avant d’exporter.',
       intro: 'La réverbe, c’est le son qu’une pièce ajoute après la source : des réflexions qui s’empilent puis s’éteignent. Cette page fait passer le fichier déposé dans une pièce synthétisée, avec un seul curseur wet du sec au trempé. Vous entendez la réverbe sur la forme d’onde avant d’exporter, et le traitement reste dans votre navigateur.',
-      usesHeading: 'Ce qu’une pièce répare',
-      uses: ['Placez un mémo vocal ou une prise de voix sèche dans un espace, pour qu’il cesse de sonner collé.', 'Ajoutez de la profondeur à un effet de jeu ou de vidéo avant le montage.', 'Adoucissez une prise trop proche et agressive sans toucher à son niveau.'],
+      usesHeading: 'Les usages courants de l’ajout de réverbe',
+      uses: [
+        'Asseoir la voix : donner un espace à un mémo vocal ou à une narration, pour qu’elle cesse de sonner collée.',
+        'Effets de jeu : ajouter de la profondeur à un son d’alerte avant le montage.',
+        'Espace sur du sec : donner une pièce à du chant nu ou à une prise sèche, comme si elle y avait été enregistrée.',
+        'Transitions de podcast : une phrase sous réverbe pour marquer une section.',
+        'Ambiance d’instrument : un peu de pièce sur une guitare sèche, et elle cesse d’être maigre.',
+        'Rendre une atmosphère : beaucoup de wet et une longue pièce pour du vide ou de l’angoisse.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Un seul curseur de wet',
+          text: 'De 0 à 100 % pour doser la pièce : peu de wet comme une chambre, beaucoup comme un auditorium. Écoute possible avant l’export.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Rendu local',
+          text: 'La réverbe se calcule dans votre navigateur, l’audio ne part nulle part ; export MP3 ou WAV.',
+        },
+      ],
       howTo: [
         { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Le décodage se fait sur votre appareil. Le curseur wet part de zéro, c’est-à-dire le fichier sec.' },
         { name: 'Réglez le wet', text: 'Le curseur fond la pièce dans le signal sec, de 0 à 100 %. Vers 25 %, une voix cesse de sonner micro collé. Le bouton lecture fait écouter le résultat mélangé.' },
         { name: 'Exportez', text: 'L’export ajoute la décroissance après votre dernier échantillon, environ 2,2 s de queue. Le MP3 part au débit choisi, le WAV garde exactement les échantillons traités.' },
+        {
+          name: 'Récupère ton fichier',
+          text: 'MP3 ou WAV, avec le suffixe -edited dans le nom du fichier.',
+        },
+
       ],
       faqs: [
         { q: 'Mon audio est-il téléversé ?', a: 'Non. Le fichier est décodé et la réverbe est rendue dans votre navigateur avec l’API Web Audio. Une fois la page chargée, décoder et exporter en WAV ne demandent pas de réseau.' },
@@ -4226,12 +4850,35 @@ export const fr: Catalog = {
       heroAlt: 'Aplatir les crêtes d’un enregistrement net',
       subtitle: 'Un curseur. La valeur de départ est 40 %. À 0 %, le fichier reste tel que vous l’avez déposé.',
       intro: 'Cette page passe chaque échantillon dans une courbe tanh. Au départ, 40 %, un échantillon de 0,25 devient environ 0,69. À 100 %, le même échantillon est poussé vers environ 1. Intensité 0 saute la courbe : le fichier reste tel qu’il a été décodé. Le traitement reste dans le navigateur.',
-      usesHeading: 'Quand l’écrêtage est le but',
-      uses: ['Posez un court overdrive sur une guitare ou un synthé net pour qu’il avance.', 'Rendez une phrase de voix rugueuse pour une bande-annonce, un hit de jeu ou un jingle.', 'Commencez le grain lo-fi ici, puis éteignez les aigus neufs avec le filtre passe-bas.'],
+      usesHeading: 'Les usages les plus courants de la distorsion audio',
+      uses: [
+        'Overdrive de guitare : ajoutez un peu de rugosité à une guitare propre pour la pousser devant.',
+        'Voix grésillante : la voix d’une bande-annonce, d’un hit de jeu ou d’un générique de podcast.',
+        'Batterie retravaillée : du clipping sur une boucle de batterie, plus percutante et plus dure.',
+        'Effets d’horreur : à intensité extrême, tordez une voix ou un bruit d’ambiance.',
+        'Du grit pour le synthé : ajoutez du grit à une ligne de synthé propre.',
+        'Téléphone vintage : combiné à un filtre passe-haut pour un effet vieux téléphone ou talkie.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Un seul curseur, du léger au lourd',
+          text: 'L’intensité se règle en continu, du léger clipping au clipping dur — chaque cran entre les deux est une nouvelle couleur sonore.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'La distorsion se calcule en local dans le navigateur, l’audio n’est pas envoyé.',
+        },
+      ],
       howTo: [
         { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Le décodage se fait sur votre appareil.' },
         { name: 'Réglez l’intensité', text: '0 % est net. 40 % est le départ. 100 % est l’écrêtage le plus dur que cette page produit.' },
         { name: 'Écoutez et exportez', text: 'Écoutez, puis exportez en MP3 ou WAV. La durée ne change pas.' },
+{
+          name: 'Récupère le fichier',
+          text: 'Le nom du fichier porte le suffixe -edited.',
+        },
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. L’écrêtage est un waveshaper Web Audio dans l’onglet. Une fois la page chargée, vous pouvez couper le réseau et continuer d’exporter. Le WAV part tout de suite. Le MP3 part après que l’encodeur a été chargé une fois.' },
@@ -4272,6 +4919,7 @@ export const fr: Catalog = {
             'Cette courbe ne baisse pas la profondeur de bits et ne coupe pas les aigus. Le nœud suréchantillonne 2×, ce qui réduit seulement le repliement des nouvelles harmoniques. Un ton lo-fi terne, c’est cette page, puis le filtre passe-bas.',
           ],
         },
+
       ],
       dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
       exportLabel: 'Distorcer et télécharger',
@@ -4287,12 +4935,37 @@ export const fr: Catalog = {
       howToIntro: 'Les cinq préréglages sur un vrai enregistrement',
       subtitle: 'Touchez Aigu, Grave, Robot, Radio ou Fantôme et écoutez avant d’exporter.',
       intro: 'Cette page applique cinq préréglages de voix fixes à un enregistrement. Aigu monte la hauteur de quatre demi-tons, Grave descend de quatre, Robot l’aplatit dans un bit crusher, Radio l’enferme dans un passe-bande comme un interphone, et Fantôme l’étoile avec de la réverbe. Touchez un préréglage : l’aperçu joue aussitôt votre fichier à travers lui. Tout tourne dans votre navigateur, l’enregistrement ne quitte jamais votre appareil.',
-      usesHeading: 'Ce que les gens en font',
-      uses: ['Donnez à un personnage une autre voix dans un extrait de livre audio ou un mod de jeu.', 'Masquez la voix d’origine d’une démo ou d’une capture d’écran avant de la partager.', 'Écoutez une intro de podcast plus grave ou plus claire sans la réenregistrer.'],
+      usesHeading: 'Les usages courants du changeur de voix',
+      uses: [
+        'Doublage de personnages : donner une autre voix à un personnage d’extrait audio ou de mod de jeu.',
+        'Partage privé : cacher la voix d’origine sous une couche avant une démo ou une capture d’écran.',
+        'Effets pour contenu : voix robot ou fantôme pour le spectacle.',
+        'Comparer à l’écoute : essayer les cinq préréglages l’un après l’autre, garder le meilleur.',
+        'Variantes de matière : plusieurs versions d’un même enregistrement au choix.',
+        'Cadeau surprise : changer la voix d’un enregistrement d’ami comme clin d’œil.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Cinq préréglages, cinq chaînes de traitement',
+          text: 'Aigu, grave, robot, radio, fantôme — derrière chaque préréglage se trouve un ensemble différent de filtres et de transformations, pas cinq volumes du même son.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'La transformation se fait dans le navigateur, l’audio ne part nulle part.',
+        },
+      ],
       howTo: [
         { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC qui contient une voix. Le décodage se fait sur votre appareil. Aucun préréglage n’est actif tant que vous n’en touchez pas un.' },
         { name: 'Touchez un préréglage', text: 'Aigu, Grave, Robot, Radio ou Fantôme. L’aperçu joue aussitôt à travers le préréglage, et en toucher un autre le remplace au lieu d’empiler. Retouchez le préréglage actif pour revenir au son sec.' },
         { name: 'Exportez', text: 'L’export écrit le préréglage dans le fichier. Le MP3 part au débit choisi, le WAV garde exactement les échantillons traités. La durée ne change jamais.' },
+        {
+          name: 'Récupère ton fichier',
+          text: 'Le nom du fichier reçoit le suffixe -edited.',
+        }
+
+        ,
       ],
       faqs: [
         { q: 'Mon audio est-il téléversé ?', a: 'Non. Décodage, décalage de hauteur, filtres et bit crusher tournent dans votre navigateur avec l’API Web Audio. Une fois la page chargée, l’aperçu et l’export WAV fonctionnent sans réseau.' },
@@ -4376,12 +5049,36 @@ export const fr: Catalog = {
       heroAlt: 'Couper les longues pauses d’un enregistrement vocal',
       subtitle: "Enlevez l’air mort. Les pauses plus courtes que l’écart que vous fixez restent.",
       intro: "L’outil trouve les passages plus bas que le seuil et plus longs que le trou minimum, puis les coupe. Le seuil de départ est −40 dBFS, adapté à la voix et aux mémos. Chaque coupe laisse 0,08 seconde aux deux bords pour ne pas manger le début ou la fin d’un mot. Une pause plus courte que l’écart reste. Une musique basse et une queue qui s’éteint sont aussi sous −40 dBFS et partent avec. Pour choisir à la main, utilisez le découpeur audio. Si tout le fichier est sous le seuil, l’export est le fichier d’origine. Le traitement reste dans votre navigateur.",
-      usesHeading: "Là où l’air mort se trouve vraiment",
-      uses: ["Resserrez un mémo vocal ou une prise de podcast dont les phrases sont séparées par de longues pauses.", "Enlevez le silence d’un cours sans découper chaque trou à la main.", "Nettoyez un enregistrement avant l’export et laissez les respirations courtes."],
+      usesHeading: 'Les usages les plus courants de la suppression des silences',
+      uses: [
+        'Podcast : resserrez les longues pauses entre les phrases, exportez une version finie sans découper chaque trou à la main.',
+        'Mémo vocal : coupez le long blanc avant les premiers mots, il ne reste que la parole.',
+        'Enregistrement de cours : enlevez tous les longs silences d’un coup selon le niveau, sans sélection à la main sur la forme d’onde.',
+        'Mise au propre d’entretien : supprimez les blancs entre question et réponse ; transcription et rédaction s’appuient sur un audio propre.',
+        'Voix off vidéo : quand les pauses du commentaire désaccordent l’image, resserrez les blancs avant de caler la timeline.',
+        'Nettoyage avant publication : écrasez l’air mort en fin d’enregistrement ; respirations et courtes prises d’air restent en place.',
+      ],
+      why: [
+        {
+          icon: 'waveform',
+          title: 'Coupe selon le niveau, épargne les respirations',
+          text: 'On ne coupe que ce qui est plus silencieux que le « seuil » et plus long que le « silence minimal ». Par défaut −40 ديسيبل نسبي للسعة الكاملة et 0.35 seconde : c’est l’air traînant qui part ; chaque coupe garde 0.08 seconde de marge de chaque côté, et la couture ne s’entend pas.',
+        },
+        {
+          icon: 'layers',
+          title: 'Les fichiers multiples en une fois',
+          text: 'Glissez toute une pile de recordings d’un coup, ils partagent le même seuil et le même intervalle, mesurés et coupés un à un. Un fichier se télécharge seul, au-delà de deux ils partent automatiquement en un ZIP.',
+        },
+      ],
       howTo: [
         { name: "Déposez l’audio", text: "N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil. Plusieurs fichiers partagent le seuil et l’intervalle que vous réglez ensuite. Chacun est coupé pour lui-même. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP." },
         { name: "Réglez le seuil et le trou", text: "Le seuil est le niveau en dessous duquel un passage compte, de −60 à −20 dBFS. Le trou minimum est la durée qu’il doit avoir pour partir, de 0,1 à 2 secondes. La ligne d’état indique à peu près combien de secondes partent." },
         { name: "Exportez", text: "Écoutez l’original, puis exportez en MP3 ou WAV. Le fichier recolle les parties sonores et garde 0,08 seconde de chaque côté d’une coupe." },
+        {
+          name: 'Récupère tes fichiers',
+          text: 'Un seul fichier se télécharge directement ; deux ou plus sont regroupés dans un ZIP. Choisis MP3 (léger, facile à partager) ou WAV (sans perte, idéal pour retoucher) ; les noms reçoivent automatiquement le suffixe -edited pour les distinguer.',
+        },
+
       ],
       faqs: [
         { q: 'Puis-je couper le silence de plus d’un fichier ?', a: 'Oui. Plusieurs fichiers partagent le seuil et l’intervalle minimum de cette page. Chacun est mesuré et coupé pour lui-même, l’un après l’autre sur cet appareil. Un fichier se télécharge seul. Deux ou plus reviennent dans un ZIP. Un téléphone manque de mémoire plus tôt, donc un fichier très long y passe un par un.' },
@@ -4543,12 +5240,35 @@ export const fr: Catalog = {
       heroAlt: 'Répéter un clip et fondre chaque jointure',
       subtitle: 'Bouclez la sélection ou le fichier entier, puis téléchargez un fichier plus long.',
       intro: 'Le nombre va de 2 à 16. La valeur de départ est 4. Chaque jointure est un fondu linéaire, 0,01 seconde tant que vous ne le bougez pas, jusqu’à 0,1 seconde. Faites glisser une sélection pour ne répéter que cette partie. Sans sélection, le fichier entier se répète. L’export s’arrête à 10 minutes. La hauteur et la vitesse restent. Le traitement reste dans le navigateur.',
-      usesHeading: 'À quoi servent les répétitions',
-      uses: ['Faites d’une mesure une boucle d’exercice à exporter.', 'Allongez une phrase courte pour couvrir une scène plus longue.', 'Répétez un sample avec un fondu court pour que la jointure ne claque pas.'],
+      usesHeading: 'Les cas d’usage courants de la boucle audio',
+      uses: [
+        'Boucle de travail : répétez une mesure 2 à 16 fois et exportez-la comme matériel d’exercice.',
+        'Nappe vocale : étirez une courte phrase chantée pour remplir une scène plus longue.',
+        'Allonger une ambiance : bouclez un son d’ambiance jusqu’à la longueur voulue.',
+        'Couches rythmiques : empilez des boucles de batterie pour un groove plus long.',
+        'Matériel de méditation : bouclez un bol tibétain ou un son d’ambiance en une séance entière.',
+        'Secours en direct : préparez une courte boucle en matériel long, prête à jouer sur scène.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Le point de boucle ne claque pas',
+          text: 'Fondu enchaîné de 0,01 seconde à la couture : le retour au début ne produit aucune claque.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Répétitions et sélection libres',
+          text: 'Répétez de 2 à 16 fois au choix ; avec une sélection c’est elle qui boucle, sinon c’est tout le morceau.',
+        },
+      ],
       howTo: [
         { name: 'Déposez l’audio', text: 'MP3, WAV, M4A, OGG ou FLAC. Le fichier est décodé sur votre appareil.' },
         { name: 'Réglez le nombre et la jointure', text: 'Les répétitions vont de 2 à 16. La jointure est le fondu de chaque couture, de 0 à 0,1 seconde. Glissez sur la forme d’onde si seule une partie doit se répéter. La ligne d’état indique la durée.' },
         { name: 'Exportez', text: 'Écoutez l’original pour vérifier la sélection, puis exportez en MP3 ou WAV. Le fichier est le clip écrit à la suite.' },
+{
+          name: 'Récupère le fichier',
+          text: 'Le nom du fichier porte le suffixe -edited.',
+        },
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. Les répétitions sont copiées dans votre navigateur. Une fois la page chargée, l’export fonctionne hors ligne.' },
@@ -4588,6 +5308,7 @@ export const fr: Catalog = {
             'Cette page n’enregistre pas par-dessus elle-même. Si le résultat dépasserait 10 minutes, l’export s’arrête. Raccourcissez la sélection ou baissez les répétitions.',
           ],
         },
+
       ],
       dropHint: 'Déposez un fichier audio, ou cliquez pour parcourir',
       exportLabel: 'Boucler et télécharger',
@@ -4602,12 +5323,36 @@ export const fr: Catalog = {
       heroAlt: 'Balayer un enregistrement de gauche à droite',
       subtitle: 'Vous fixez la profondeur et la fréquence. Le balayage ne suit pas le temps.',
       intro: 'La profondeur va de 0 à 100 %. La valeur de départ est 70 %. La fréquence va de 0,05 Hz à 2 Hz. La valeur de départ est 0,2 Hz. La position est la profondeur fois un sinus de cette fréquence, donc 0,2 Hz met 5 secondes pour l’aller-retour. Cela ne suit pas la batterie. À profondeur 0, le fichier reste tel quel. Le traitement reste dans le navigateur.',
-      usesHeading: 'À quoi sert le balayage',
-      uses: ['Déplacez un pad ou une voix lentement d’une enceinte à l’autre.', 'Donnez à une prise mono un mouvement régulier gauche-droite.', 'Choisissez la fréquence en hertz, au lieu de courir après la batterie.'],
+      usesHeading: 'Les cas d’usage courants de l’auto pan',
+      uses: [
+        'Nappe voyageuse : laissez la nappe passer lentement d’un côté à l’autre.',
+        'Élargir une voix : ajoutez un balancement gauche-droite stable à une voix mono.',
+        'Groove de synthé : donnez du mouvement à des lignes de synthé statiques.',
+        'Effets d’ambiance : balayez lentement l’environnement sonore sans attirer l’attention.',
+        'Jeux de batterie : répartissez automatiquement les hi-hats ou les percussions gauche-droite.',
+        'Audio de jeu : la sensation de déplacement quand un objet passe.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Vitesse et profondeur séparées',
+          text: 'La vitesse (0.05–2 Hz) règle le rythme du mouvement, la profondeur (0–100 %) son ampleur — lent et large pour l’ambiance, rapide et discret pour le groove.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'Le panoramique se calcule dans ton navigateur, aucun audio n’est envoyé.',
+        },
+      ],
       howTo: [
         { name: 'Déposez l’audio', text: 'MP3, WAV, M4A, OGG ou FLAC. Le fichier est décodé sur votre appareil.' },
         { name: 'Réglez profondeur et fréquence', text: 'La profondeur est la distance parcourue, de 0 à 100 %. La fréquence est le nombre de balayages par seconde, de 0,05 à 2. Faites glisser l’onde si seule une partie doit bouger.' },
         { name: 'Exportez', text: 'Écoutez pour vérifier la sélection, puis exportez en MP3 ou WAV. Le WAV, ce sont ces échantillons. Le MP3 encode le balayage une fois.' },
+        {
+          name: 'Récupère tes fichiers',
+          text: 'Le nom du fichier reçoit le suffixe -edited.',
+        },
+
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. Le balayage est un panoramique stéréo dans votre navigateur. Une fois la page chargée, vous pouvez couper le réseau et l’export continue.' },
@@ -4661,12 +5406,36 @@ export const fr: Catalog = {
       heroAlt: 'Un cercle lent entre les enceintes, plus une pièce courte',
       subtitle: 'La profondeur, la fréquence et la pièce sont déjà fixées. Vous ne faites que basculer l’interrupteur.',
       intro: 'Le cercle est fixe. La profondeur est de 100 %. La fréquence est de 0,1 Hz, donc un tour prend environ 10 secondes. C’est le son direct qui bouge. Un envoi de réverbe à 25 % utilise la même pièce courte que Slowed + reverb. La vitesse et la hauteur restent. Interrupteur éteint, l’export est le fichier déposé. Le traitement reste dans le navigateur.',
-      usesHeading: 'À quoi sert le cercle',
-      uses: ['Mettez une voix ou un pad sur un cercle lent sans choisir la fréquence.', 'Ajoutez une pièce courte derrière ce mouvement.', 'Gardez la vitesse d’origine et la hauteur d’origine.'],
+      usesHeading: 'Les cas d’usage courants de l’audio 3D',
+      uses: [
+        'Voix en orbite : une voix qui tourne autour de la tête, matériel parfait pour méditation et relaxation.',
+        'Mouvement de nappe : ajoutez une rotation à une nappe statique, l’espace apparaît aussitôt.',
+        'Ambiance de jeu : un son d’environnement qui tourne lentement, très immersif au casque.',
+        'Effet pour vidéo courte : une phrase qui fait un tour complet, un bon accroche-regard.',
+        'Bruit blanc personnalisé : du bruit blanc qui tourne, matériel pour s’endormir.',
+        'Intro de podcast : faites tourner la phrase d’intro, c’est la signature sonore de l’émission.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Un interrupteur, tout est prêt',
+          text: 'La rotation est fixée à environ 10 secondes par tour, avec une courte réverbération en plus — pas une pile de réglages à choisir.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Vitesse et hauteur intactes',
+          text: 'Seule la position bouge : vitesse et hauteur restent en place, les paroles et le rythme tombent toujours juste.',
+        },
+      ],
       howTo: [
         { name: 'Déposez l’audio', text: 'MP3, WAV, M4A, OGG ou FLAC. Le fichier est décodé sur votre appareil.' },
         { name: 'Laissez le cercle allumé', text: 'L’interrupteur démarre allumé. Éteignez-le et l’export correspond au fichier déposé. Il n’y a pas de second curseur pour la profondeur, la fréquence ou la pièce.' },
         { name: 'Exportez', text: 'Écoutez, puis exportez en MP3 ou WAV. Le WAV, ce sont les échantillons du cercle plus la queue. Le MP3 encode cela une fois.' },
+        {
+          name: 'Récupère ton fichier',
+          text: 'Le nom reçoit le suffixe -edited. Écoute au casque pour bien sentir l\'effet.',
+        },
+
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. Le cercle et la pièce sont rendus dans votre navigateur. Une fois la page chargée, vous pouvez couper le réseau et l’export continue.' },
@@ -4720,11 +5489,26 @@ export const fr: Catalog = {
       heroAlt: 'Un clic de métronome de 40 à 240 BPM',
       subtitle: 'Écoutez le clic, ou enregistrez 4, 8 ou 16 mesures. Il ne se mélange pas à un morceau.',
       intro: 'Le tempo va de 40 à 240 BPM. Choisissez 2/4, 3/4, 4/4 ou 6/8. Le premier temps de chaque mesure est plus fort. Lancez la lecture, le clic continue jusqu’à l’arrêt. L’export écrit 4, 8 ou 16 mesures en WAV ou MP3. Le 6/8, c’est six clics dans la mesure, à ce BPM, pas deux. Cette page ne prend pas de fichier et ne place pas le clic sous un morceau. Ce mélange est l’éditeur multipiste. Rien n’est envoyé.',
-      usesHeading: 'Ce que vous pouvez faire',
+      usesHeading: 'Les cas d’usage courants du métronome',
       uses: [
-        'Répéter un tempo avant d’enregistrer avec l’enregistreur vocal.',
-        'Exporter 4, 8 ou 16 mesures du même clic.',
-        'Entendre le 6/8 comme six clics, le premier plus fort.',
+        'Avant d’enregistrer : travaille la stabilité au BPM visé avant de lancer la prise.',
+        'Exporter une piste de référence : exporte les clics sur 4, 8 ou 16 mesures à poser dans ton DAW.',
+        'Travail d’instrument : joue en suivant les clics, du tempo lent au tempo maîtrisé.',
+        'Entraînement rythmique : change de mesure pour travailler différents motifs.',
+        'Répétition de danse : cale les comptes sur le BPM de la musique pour la chorégraphie.',
+        'Cadence de course : règle le BPM sur ta fréquence de pas pour rythmer la foulée.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: '40–240 BPM + mesures',
+          text: 'Vitesse et mesure se règlent toutes les deux : de la vitesse de travail jusqu’à la vitesse de scène.',
+        },
+        {
+          icon: 'volume',
+          title: 'Piste de référence exportable',
+          text: 'Exporte les clics en audio sur 4, 8 ou 16 mesures, à poser dans le projet comme repère de tempo.',
+        },
       ],
       howTo: [
         { name: 'Réglez le BPM et la mesure', text: 'Le BPM va de 40 à 240. Choisissez 2/4, 3/4, 4/4 ou 6/8. La page commence à 100 BPM et 4/4.' },
@@ -4783,8 +5567,27 @@ export const fr: Catalog = {
       howToIntro: 'Tapez, et la lecture se pose',
       subtitle: 'Touchez n’importe quelle touche ou bouton en rythme. Le chiffre se fixe en quatre tapes environ.',
       intro: 'Jouez la chanson où vous voulez, tapez cette page à chaque temps et lisez le tempo en BPM. Le chiffre prend une moyenne tronquée de vos intervalles : une tape en avance ou manquée ne l’entraîne pas, et 2,5 s sans tape repartent de zéro. Aucun fichier à ouvrir, rien à téléverser ; les tapes ne quittent jamais cette page.',
-      usesHeading: 'À quoi sert un BPM tapé',
-      uses: ['Régler une boucle de travail ou un métronome sur le tempo d’une chanson que vous apprenez.', 'Vérifier si deux morceaux s’assemblent avant de tenter un enchaînement.', 'Lire le tempo d’une mélodie dans votre tête plus vite que de le décrire à un outil.'],
+      usesHeading: 'Les cas d’usage courants du tap tempo',
+      uses: [
+        'Régler sa vitesse de travail : mets le [métronome](/metronome) sur le tempo du morceau que tu apprends.',
+        'Contrôle avant mashup : vérifie si le BPM de deux morceaux tombe ensemble.',
+        'Mesure en répétition : mesure le tempo de l’arrangement actuel pendant la répète du groupe.',
+        'Musique de course : mesure ta fréquence de pas et choisis des morceaux au BPM qui colle.',
+        'Enseignement de la danse : tape les points rythmiques de la choré pour les élèves.',
+        'Musique de vidéo : mesure combien de BPM demande ton rythme de montage.',
+      ],
+      why: [
+        {
+          icon: 'clock-counter-clockwise',
+          title: 'Stable après quatre taps',
+          text: 'Après environ quatre taps la lecture se pose : une moyenne tronquée des intervalles, un tap raté ne la déraille pas.',
+        },
+        {
+          icon: 'check',
+          title: 'Sans fichier',
+          text: 'On ne compte que les millisecondes entre les taps — pas de fichier, rien n’est envoyé, et ça marche même avec une enceinte sur scène.',
+        },
+      ],
       howTo: [
         { name: 'Jouez la chanson', text: 'Où vous voulez. Cette page n’a pas besoin du fichier audio : un haut-parleur de téléphone à côté d’un ordinateur fait très bien l’affaire.' },
         { name: 'Tapez le temps', text: 'Tapez le bouton, ou gardez le focus sur la page et appuyez sur la barre d’espace à chaque temps. Le chiffre se raffermît après quatre tapes environ et continue de s’affiner tant que vous tapez.' },
@@ -4831,11 +5634,26 @@ export const fr: Catalog = {
       heroAlt: 'Lire le BPM et la tonalité d’un fichier audio',
       subtitle: 'Deux nombres. Aucun bouton qui déplace la hauteur.',
       intro: 'Déposez un fichier. La page lit un BPM de 60 à 180, et une tonalité : une note plus majeur ou mineur. Le BPM est l’écart le plus fort entre les attaques. Un écart hors de cette plage est divisé ou doublé jusqu’à tomber dedans. La tonalité est le profil majeur ou mineur fixe qui correspond le mieux aux classes de hauteur. Le silence affiche « Illisible », pas 0 BPM et pas do majeur. Seules les 60 premières secondes sont lues. Un fichier de moins de 2 secondes n’a pas de BPM. Cette page ne change pas le fichier. Déplacer la hauteur, c’est le changeur de hauteur. Rien n’est envoyé.',
-      usesHeading: 'Ce que vous pouvez lire',
+      usesHeading: 'Les usages courants de la détection de tonalité et de BPM',
       uses: [
-        'Le tempo d’une boucle avant d’en changer la vitesse.',
-        'La tonalité d’une prise avant de la déplacer dans le changeur de hauteur.',
-        'Un résultat illisible sur un fichier silencieux, au lieu de 0 BPM ou do majeur.',
+        'Accorder un mix : lisez d’abord le BPM, puis décidez s’il faut ajuster la vitesse.',
+        'Référence de transposition : lisez la tonalité, puis allez dans le [changeur de hauteur](/pitch-changer) pour atteindre la tonalité visée.',
+        'Pratique : travaillez vos gammes dans la tonalité détectée et réglez le métronome sur le BPM.',
+        'Classement de samples : étiquetez votre bibliothèque avec la tonalité et le tempo.',
+        'Préparation d’une reprise : confirmez la tonalité d’origine et décidez du nombre de demi-tons à monter.',
+        'Planification : connaissez le tempo et la tonalité du matériau source avant un remix.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Une lecture qui conclut',
+          text: 'BPM et tonalité en une seule passe : vous avez une base pour changer la vitesse, transposer ou régler le métronome, sans deviner à l’oreille.',
+        },
+        {
+          icon: 'check',
+          title: 'Le fichier reste intact',
+          text: 'Lecture seule, sans modification : pas un seul échantillon n’est touché, et aucun export n’est nécessaire.',
+        },
       ],
       howTo: [
         { name: 'Déposez un fichier', text: 'De l’audio, ou une vidéo avec une piste son. Le navigateur décode. Rien n’est envoyé.' },
@@ -4892,8 +5710,27 @@ export const fr: Catalog = {
       heroAlt: 'Voir si un fichier correspond au niveau d’un podcast ou d’un flux',
       subtitle: "Les LUFS intégrés du fichier que vous déposez, pas le niveau de la pièce.",
       intro: "Déposez un fichier et lisez sa loudness intégrée en LUFS, plus la crête d’échantillon. Puis alignez une cible de livraison : podcast −16, streaming −14 ou diffusion −23. Le gain est un seul nombre pour tout le fichier. S’il poussait l’échantillon le plus fort au-delà de −1 dBFS, il s’arrête là et la page indique les LUFS réellement atteints. Ce n’est pas un sonomètre de pièce, ni une normalisation par crête. −16, −14 et −23 sont des cibles de livraison courantes, pas une limite légale. Le traitement reste dans votre navigateur.",
-      usesHeading: "À quoi sert le chiffre",
-      uses: ["Voir si un mémo vocal ou un mix est proche d’une cible podcast avant de l’envoyer.", "Remonter un fichier bas vers −16 ou −14 sans laisser la crête d’échantillon passer −1 dBFS.", "Lire une stéréo en stéréo. Les deux canaux ne sont pas mélangés avant la mesure."],
+      usesHeading: 'Les usages les plus courants du sonomètre LUFS',
+      uses: [
+        'Alignement podcast : voyez à quelle distance de la cible podcast −16 se trouve un mémo ou un mix.',
+        'Alignement streaming : alignez à −14 LUFS avant de sortir la musique, sans laisser les pics dépasser −1 ديسيبل نسبي للسعة الكاملة.',
+        'Livraison broadcast : les émissions de radio s’alignent sur −23 LUFS.',
+        'Contrôle des pics : les samples dépassent-ils −1 ديسيبل نسبي للسعة الكاملة ? Un coup d’œil suffit.',
+        'Bilan de mix : quand l’écart fort/doux est trop grand, lisez d’abord les LUFS avant de décider de compresser.',
+        'Comparaison multiplateformes : mesurez le même fichier pour chaque plateforme avant de l’aligner.',
+      ],
+      why: [
+        {
+          icon: 'waveform',
+          title: 'Une sonie intégrale, pondérée K',
+          text: 'Les LUFS intégraux sont mesurés selon ITU-R BS.1770 — la loudness de l’ensemble de la durée est une propriété du fichier ; ce n’est ni un sonomètre de pièce, ni une normalisation par pics.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Le gain s’arrête au pic',
+          text: 'Si, en visant la cible, l’échantillon le plus fort devait franchir −1 ديسيبل نسبي للسعة الكاملة, le gain s’arrête automatiquement et annonce honnêtement les LUFS réellement atteints, sans forcer la cible.',
+        },
+      ],
       howTo: [
         { name: "Déposez l’audio", text: "N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé et mesuré sur votre appareil." },
         { name: "Lisez la mesure", text: "Intégrée est la loudness du fichier après pondération K, en LUFS. La crête d’échantillon est le plus grand échantillon, en dBFS. Un fichier silencieux n’a pas de loudness à aligner." },
@@ -4950,11 +5787,26 @@ export const fr: Catalog = {
       heroAlt: 'Régler le niveau et le panoramique d’une voix sur un beat',
       subtitle: 'Empilez jusqu’à 8 fichiers, équilibrez chacun, exportez un seul mix.',
       intro: 'Posez une voix sur un beat, ou un commentaire sur une musique, et écoutez-les ensemble. Chaque fichier est une piste : niveau, pan, muet, solo, et l’instant où elle entre. La somme se fait dans votre navigateur. Rien n’est envoyé. Fermer l’onglet termine la session.',
-      usesHeading: 'Mix pour cette page',
+      usesHeading: 'Les usages les plus courants du mixage multipiste',
       uses: [
-        'Glissez une note vocale sous une musique pour que la voix commence après l’intro.',
-        'Équilibrez des stems que vous avez déjà — voix, batterie, guitare — et exportez un fichier.',
-        'Écoutez une piste en solo, puis ramenez les autres, sans installer un DAW.',
+        'Voix sur musique : pose un mémo vocal sous une musique d\'ambiance et décale-le pour que la voix entre après l\'intro.',
+        'Démo en brut : mixe grossièrement voix, batterie et guitare — trois pistes en un seul fichier.',
+        'Podcast à deux : enregistrez chaque personne sur une piste séparée, réglez la balance de chacune puis fusionnez.',
+        'Superposition d\'effets : place plusieurs effets sonores à différents endroits de la timeline.',
+        'Décalage audio : fais glisser une piste pour changer son moment d\'entrée et l\'aligner précisément sur l\'image.',
+        'Solo avec accompagnement : ajoute une piste d\'accompagnement sous ta propre interprétation.',
+      ],
+      why: [
+        {
+          icon: 'layers',
+          title: '8 pistes sur la timeline',
+          text: 'Jusqu\'à 8 pistes à déplacer librement, chacune avec son propre réglage de balance — tous les niveaux du mix s\'entendent dans un seul fichier.',
+        },
+        {
+          icon: 'volume',
+          title: 'Export du mix',
+          text: 'Toutes les pistes sont fusionnées en un seul fichier à l\'export : MP3 ou WAV.',
+        },
       ],
       howTo: [
         { name: 'Ajoutez les fichiers', text: 'Déposez deux fichiers audio ou plus, ou cliquez pour les choisir. Chaque fichier devient une piste. Cette page s’arrête à 8.' },
@@ -5013,12 +5865,36 @@ export const fr: Catalog = {
       heroAlt: 'Couper un enregistrement en fichiers égaux',
       subtitle: 'Parties égales, de 2 à 16, dans un seul zip.',
       intro: 'Ce diviseur audio coupe un fichier en parties égales. Le nombre va de 2 à 16 et commence à 2, donc en deux parties. Chaque partie a la même durée, à un échantillon près. Faites glisser une sélection pour ne diviser que ce passage. Sans sélection, le fichier entier est divisé. Les parties se téléchargent dans un zip. Le décodage et les coupes restent dans votre navigateur.',
-      usesHeading: 'À quoi servent les parties',
-      uses: ['Divisez un MP3 en plusieurs fichiers quand un seul est trop long à envoyer.', 'Découpez un mémo vocal en morceaux égaux que vous envoyez un par un.', 'Divisez un fichier audio en parties sans chercher le silence.'],
+      usesHeading: 'Les usages courants du découpage MP3',
+      uses: [
+        'Découper un fichier trop long : un MP3 trop lourd à envoyer, coupé en morceaux séparés.',
+        'Mémos vocaux par lots : coupez un long mémo en parts égales, à digérer une par une.',
+        'Adapter aux messageries : l’application refuse les gros fichiers ; coupé en deux, il passe.',
+        'Segmenter la pratique : découpez une leçon de langue ou un exercice d’instrument en petits passages égaux.',
+        'Archiver en tranches : découpe d’un long enregistrement à durée fixe, facile à retrouver.',
+        'Extraire des candidats : partagez en plusieurs segments égaux, gardez le meilleur puis rogez-le.',
+      ],
+      why: [
+        {
+          icon: 'scissors',
+          title: 'Coupe à l’échantillon, longueurs exactes',
+          text: 'Toutes les parts sont égales à un échantillon près ; aucun chevauchement, aucun trou. Avec une sélection, seul ce passage est coupé ; sans sélection, tout le fichier.',
+        },
+        {
+          icon: 'layers',
+          title: 'Un seul export, empaqueté en ZIP',
+          text: 'De 2 à 16 parts au choix, numérotées dans l’ordre et réunies en un ZIP. MP3 jusqu’à 320 kbps, le WAV garde les échantillons d’origine.',
+        },
+      ],
       howTo: [
         { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil.' },
         { name: 'Choisissez le nombre', text: 'Les morceaux vont de 2 à 16. La ligne d’état indique combien de fichiers vous obtenez et à peu près combien dure chacun. Faites glisser la forme d’onde si seule une partie du fichier doit être coupée.' },
         { name: 'Téléchargez le zip', text: 'Exportez en MP3 ou WAV. Le téléchargement est un zip au nom du fichier, avec le morceau 1, le morceau 2 et le reste dedans.' },
+        {
+          name: 'Décompresse et récupère',
+          text: 'L\'archive contient des fichiers indépendants : Partie 1, Partie 2, etc. Le MP3 est encodé une seule fois au débit choisi ; le WAV conserve les échantillons d\'origine.',
+        },
+
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. Le fichier est décodé dans votre navigateur, coupé là, et rangé dans un zip là. Une fois la page chargée, vous pouvez passer hors ligne et l’export continue. Le WAV ne demande pas d’autre téléchargement. L’encodage MP3 marche hors ligne après que l’encodeur a été chargé une fois.' },
@@ -5072,16 +5948,36 @@ export const fr: Catalog = {
       heroAlt: 'Ramener un stéréo à un canal par moyenne',
       subtitle: 'Un canal : la moyenne de chaque canal du fichier.',
       intro: 'Cette page écrit un canal. Chaque échantillon est la moyenne des canaux du fichier, donc gauche et droite se rejoignent au centre. Un fichier déjà en un canal est copié. Le décodage et la moyenne restent dans votre navigateur.',
-      usesHeading: 'Quand il vous faut un seul canal',
+      usesHeading: 'Les usages courants de la conversion stéréo vers mono',
       uses: [
-        'Une note vocale qui doit sonner pareil sur un seul haut-parleur.',
-        'Un fichier refusé par un lecteur ou une appli qui n’accepte que le mono.',
-        'Un mix dont la gauche et la droite doivent se superposer, pas s’écarter.',
+        'Compatibilité mono-appareil : quand un appareil à un seul haut-parleur rend les côtés différents, fusionnez en mono.',
+        'Refus d’application : pour les lecteurs ou formulaires qui n’acceptent que le mono, convertissez une version pour eux.',
+        'Aligner la voix : quand les deux canaux d’une prise ne coïncident pas tout à fait, faites-en la moyenne.',
+        'Prétraitement de transcription : les outils de transcription préfèrent le mono.',
+        'Piste vidéo : normaliser l’audio d’un projet vidéo en mono.',
+        'Conversion par lot : plusieurs fichiers stéréo convertis en mono d’un seul coup.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Moyenne échantillon par échantillon',
+          text: 'Chaque échantillon est la moyenne des canaux — pas un seul côté pris au hasard : l’information des deux côtés est conservée.',
+        },
+        {
+          icon: 'layers',
+          title: 'Conversion par lot',
+          text: 'Plusieurs fichiers partagent les mêmes réglages, convertis l’un après l’autre puis empaquetés en ZIP.',
+        },
       ],
       howTo: [
         { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil.' },
         { name: 'Exportez la moyenne', text: 'Il n’y a pas de réglage de largeur. L’export écrit un canal. Écoutez d’abord si vous voulez entendre la moyenne.' },
         { name: 'Ouvrez le fichier', text: 'Un lecteur qui affiche le nombre de canaux devrait dire un. Le WAV, ce sont ces échantillons moyennés. Le MP3 les encode une fois, jusqu’à 320 kbps.' },
+        {
+          name: 'Traitement par lot',
+          text: 'Plusieurs fichiers sont traités un par un et regroupés dans un ZIP.',
+        },
+
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. Le fichier est décodé dans votre navigateur et moyenné là. Une fois la page chargée, vous pouvez passer hors ligne et l’export continue. Le WAV ne demande pas d’autre téléchargement. L’encodage MP3 marche hors ligne après que l’encodeur a été chargé une fois.' },
@@ -5135,16 +6031,36 @@ export const fr: Catalog = {
       heroAlt: 'Transformer une onde lisse en marches',
       subtitle: 'Bits de 1 à 16, et une tenue de 1 à 32 échantillons.',
       intro: 'Ce bitcrusher en ligne réduit le nombre de niveaux que chaque échantillon peut prendre, puis tient ce niveau sur une suite d’échantillons. La stéréo reste stéréo : chaque canal est écrasé seul. Faites glisser une sélection pour n’écraser que ce passage. Le décodage et l’écrasement restent dans votre navigateur.',
-      usesHeading: 'À quoi servent les marches',
+      usesHeading: 'Les usages courants du Bitcrusher',
       uses: [
-        'Une voix qui doit sonner comme une vieille console.',
-        'Une boucle de batterie dont les marches doivent rester audibles.',
-        'Une phrase du fichier, le reste inchangé.',
+        'Voix de vieille console : abaissez une voix en profondeur de bits, elle sonne comme une machine 8 bits.',
+        'Grain sur boucle de batterie : une boucle où les marches s’entendent.',
+        'Électronique rétro : quantifier des lignes de synthé, goût d’électronique vintage.',
+        'Sound design : traiter en basse précision les effets d’interface d’un jeu.',
+        'Ambiance SF : des bits extrêmes pour un caractère machinique sur une voix ou une nappe.',
+        'Texture lo-fi : une quantification légère donne du grain à tout le morceau.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Deux boutons définissent le timbre',
+          text: 'La profondeur de bits (1–16) fixe la taille des marches, le hold (jusqu’à 32 échantillons) fixe la densité du grain — c’est ainsi que naît le son des vieilles consoles.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'La quantification se fait dans le navigateur, le WAV garde les échantillons écrasés.',
+        },
       ],
       howTo: [
         { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil.' },
         { name: 'Réglez bits et tenue', text: 'Les bits vont de 1 à 16 et commencent à 8. La tenue va de 1 à 32 et commence à 2. Écoutez pour l’entendre. Faites glisser la forme d’onde si seul un passage doit être écrasé.' },
         { name: 'Exportez', text: 'Le WAV garde les échantillons en marches. Le MP3 les encode une fois, jusqu’à 320 kbps, et peut adoucir les marches.' },
+        {
+          name: 'Récupère tes fichiers',
+          text: 'Le nom du fichier reçoit le suffixe -edited.',
+        },
+
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. Le fichier est décodé dans votre navigateur et écrasé là. Une fois la page chargée, vous pouvez passer hors ligne et l’export continue. Le WAV ne demande pas d’autre téléchargement. L’encodage MP3 marche hors ligne après que l’encodeur a été chargé une fois.' },
@@ -5198,16 +6114,36 @@ export const fr: Catalog = {
       heroAlt: 'Baisser un fichier d’environ 0,32 demi-ton',
       subtitle: 'Le fichier entier descend d’environ 0,32 demi-ton. La durée reste.',
       intro: 'Ce convertisseur décale le fichier entier de 12 fois le log2 de 432 sur 440, environ 0,32 demi-ton vers le bas. Un son à 440 Hz se rapproche de 432 Hz. La durée ne change pas, et les notes ne sont pas accordées une par une. Le décodage et le décalage restent dans votre navigateur.',
-      usesHeading: 'Quand le fichier entier doit se rapprocher de 432 Hz',
+      usesHeading: 'Les usages courants de la conversion à 432 Hz',
       uses: [
-        'Une piste accordée autour de 440 Hz que vous voulez plus près de 432 Hz.',
-        'Une boucle dont la durée doit rester la même pour continuer à s’aligner.',
-        'Un fichier que vous poserez à côté d’autres pistes déjà décalées vers 432 Hz.',
+        'Préférence d’accord : déplacez un morceau de 440 Hz vers le 432 Hz que vous préférez.',
+        'Boucles au tempo : quand la longueur de la boucle doit rester intacte, seule la transposition préserve la durée.',
+        'Album entier : déplacer uniformément plusieurs titres vers 432 Hz.',
+        'Écoute comparative : gardez une version en 440 et une en 432, comparez vous-même.',
+        'Audio de méditation : unifier les supports de méditation ou de détente sur 432 Hz.',
+        'Sauvegarde de l’instrument : l’original reste, la version 432 s’exporte à part.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Seule la hauteur change, pas la durée',
+          text: 'Transposition exacte d’environ 0,32 demi-ton selon 12·log₂(432/440) : longueur, vitesse et rythme restent strictement identiques.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traitement local',
+          text: 'La transposition se fait dans le navigateur, l’audio ne part nulle part.',
+        },
       ],
       howTo: [
         { name: 'Déposez l’audio', text: 'N’importe quel MP3, WAV, M4A, OGG ou FLAC. Il est décodé sur votre appareil.' },
         { name: 'Écoutez le décalage', text: 'L’aperçu est le fichier décalé. Cette page n’a pas de curseur de demi-ton, parce qu’un demi-ton arrondi vaudrait zéro et le fichier ne bougerait pas.' },
         { name: 'Exportez', text: 'La durée correspond au fichier que vous avez déposé. Le WAV, ce sont les échantillons décalés. Le MP3 les encode une fois, jusqu’à 320 kbps.' },
+        {
+          name: 'Récupère ton fichier',
+          text: 'Le nom du fichier reçoit le suffixe -edited.',
+        },
+
       ],
       faqs: [
         { q: 'Mon audio est-il envoyé ?', a: 'Non. Le fichier est décodé dans votre navigateur et décalé là. Une fois la page chargée, vous pouvez passer hors ligne et l’export continue. Le WAV ne demande pas d’autre téléchargement. L’encodage MP3 marche hors ligne après que l’encodeur a été chargé une fois.' },
@@ -5261,11 +6197,26 @@ export const fr: Catalog = {
       heroAlt: 'Transformer une mélodie ou un piano solo en notes MIDI',
       subtitle: 'Un fichier .mid dans le navigateur. 3 minutes maximum, un instrument.',
       intro: 'Déposez une mélodie, une ligne chantée ou un piano solo. Cette page écrit un MIDI que vous ouvrez dans GarageBand, Ableton ou Logic : hauteur, début, durée et vélocité de chaque note. Basic Pitch de Spotify tourne dans cet onglet. L’audio n’est pas téléversé. Le modèle fait moins de 1 MB et se télécharge une fois depuis ce site. Un mix complet, la batterie ou des accords denses sortent faux. Au-delà de 3 minutes, il faut d’abord couper.',
-      usesHeading: 'Des notes à corriger ensuite',
+      usesHeading: 'Les usages courants de la conversion audio vers MIDI',
       uses: [
-        'Ouvrez une mélodie fredonnée dans un DAW et déplacez les notes, sans réenregistrer.',
-        'Transformez un piano solo en notes. Si la tonalité ne va pas, déplacez l’audio d’origine dans le changeur de hauteur.',
-        'Lisez le nombre de notes avant le téléchargement, et laissez le fichier si le chiffre n’a pas de sens.',
+        'Chanter pour noter : transformez une mélodie fredonnée en MIDI, corrigez les notes dans votre DAW sans réenregistrer.',
+        'Noter au piano : un piano solo devient des notes, sans tout saisir à la main.',
+        'Changer le timbre : le MIDI accepte n’importe quelle banque de sons, le piano devient cordes.',
+        'Vérifier en jouant : convertissez votre propre interprétation en notes pour la contrôler.',
+        'Démarrer un arrangement : une démo mono-piste en MIDI, puis développez l’arrangement.',
+        'Archiver une mélodie : l’idée de mélodie part en MIDI dans votre bibliothèque.',
+      ],
+      why: [
+        {
+          icon: 'note',
+          title: 'Des notes modifiables',
+          text: 'Vous obtenez des notes MIDI, pas de l’audio : hauteur et durée s’éditent librement dans le DAW.',
+        },
+        {
+          icon: 'file',
+          title: 'Un seul instrument, précision maximale',
+          text: 'Une mélodie seule ou un instrument solo donne le meilleur résultat ; un mix complet n’est pas son affaire — la page le dit honnêtement.',
+        },
       ],
       howTo: [
         { name: 'Déposez un instrument', text: 'Ajoutez un MP3, WAV, M4A ou une vidéo avec une piste son. Le navigateur décode. Rien n’est téléversé. Au-delà de 3 minutes, ça reste bloqué tant que vous n’avez pas coupé.' },
@@ -5319,11 +6270,26 @@ export const fr: Catalog = {
       h1: "Soundboard, avec onze sons déjà sur le plateau",
       subtitle: "Touchez une case ou appuyez sur sa touche. Plusieurs sons jouent ensemble. Une demi-seconde à cinq secondes, c’est la durée utile.",
       intro: "Enregistrez un clip au micro ou importez un fichier audio, recadrez la partie qui compte, et elle devient une case du plateau. Touchez les cases ou appuyez sur les touches chiffres et lettres pour déclencher des sons en direct — plusieurs à la fois, c’est justement tout l’intérêt d’un soundboard. Onze sons intégrés, synthétisés sur la page, rendent le plateau utilisable avant même que vous ajoutiez quoi que ce soit. Les préréglages chargent un set de départ pour le streaming, le podcast ou la classe. Rien n’est envoyé : décodage, recadrage et lecture se passent dans cet onglet, et le plateau voyage dans un fichier JSON que vous exportez et importez vous-même.",
-      usesHeading: "Ce que vous pouvez en faire",
+      usesHeading: 'Les usages courants de la table sonore',
       uses: [
-        "Déclencher en direct des sons de mème, des stingers et des applaudissements sur votre stream, plusieurs à la fois.",
-        "Garder des buzzers de quiz et des sons de bonne réponse pour la classe — de grandes cases faciles à viser au tactile.",
-        "Couper un fichier long en les cinq boutons dont vous vous servez vraiment, chacun avec son raccourci.",
+        'Animation en direct : déclencher sur le vif mèmes, jingles et applaudissements, plusieurs sons superposés.',
+        'Interactivité en classe : buzzer et son de bonne réponse, grands pavés faciles à toucher.',
+        'Répétition de théâtre : les effets du spectacle déclenchés d’une touche, en direct.',
+        'Mener une partie de table : une table sonore pour jeux de société et fêtes.',
+        'Post-production vidéo : tous les effets courants réunis sur une seule table, à un clic.',
+        'Improvisation : vos propres sons synthétisés comme matière de spectacle.',
+      ],
+      why: [
+        {
+          icon: 'play',
+          title: 'Onze sons synthétisés pour démarrer',
+          text: 'Onze sons intégrés sont déjà là : glissez-les dans les cases et jouez, sans chercher de matériel d’abord.',
+        },
+        {
+          icon: 'file',
+          title: 'La table se sauvegarde',
+          text: 'Chaque case se coupe et se règle, et la table entière se garde en fichier pour réemploi à tout moment.',
+        },
       ],
       howTo: [
         { name: "Partir d’un préréglage ou d’un son", text: "Le plateau s’ouvre avec onze sons synthétisés. Un préréglage au-dessus de la grille échange le plateau contre un set de départ streaming, podcast ou classe. Ajouter un audio et Enregistrer apportent les vôtres." },
@@ -5379,11 +6345,26 @@ export const fr: Catalog = {
       h1: 'Visualiseur musical — transformez une chanson en vidéo de spectre',
       subtitle: 'Lancez une chanson, regardez le spectre bouger et enregistrez-le en vidéo — dessiné et capturé sur votre appareil.',
       intro: 'Cette page transforme une chanson en ce genre de vidéo de fond qu’utilisent YouTube, Shorts et Reels : le spectre de la musique, animé en temps réel et enregistré directement depuis le canevas. Déposez un fichier audio, choisissez le look et le format, appuyez sur enregistrer, et quand la chanson se termine la vidéo arrive dans vos téléchargements. Tout tourne dans le navigateur — l’audio est décodé localement et jamais envoyé.',
-      usesHeading: 'Ce que les gens en font',
+      usesHeading: 'Les usages courants de la visualisation musicale',
       uses: [
-        'Donner à un morceau une vidéo pour YouTube, Shorts ou TikTok sans ouvrir un éditeur.',
-        'Publier une chanson avec un spectre en mouvement, plutôt qu’une seule pochette figée.',
-        'Enregistrer un fond pour un extrait de podcast, une démo ou un écran d’attente de stream.',
+        'Sortir un titre avec vidéo : accompagner une sortie de chanson d’un spectre animé, sans ouvrir un logiciel de montage.',
+        'Vertical pour réseaux : du 9:16 pour Shorts et TikTok, du carré pour le fil.',
+        'Extraits de podcast : une image de fond pour les clips et les démos.',
+        'Ouverture de stream : enregistrer un fond spectral pour le début.',
+        'Fond de scène : un spectre en temps réel sur le grand écran.',
+        'Rendu sans filigrane : jusqu’à 1080p, sans filigrane — la vidéo est votre fichier.',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'Quatre styles, quatre looks',
+          text: 'Barres spectrales, barres en miroir, anneau, oscilloscope — quatre styles, avec thème et deux couleurs modifiables ensuite.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Enregistrement local, sans filigrane',
+          text: 'Le navigateur filme directement le canevas et le son : pas de rendu serveur, pas de filigrane, et la vidéo atterrit dans les téléchargements dès la fin du morceau.',
+        },
       ],
       howTo: [
         { name: 'Déposez une chanson', text: 'Déposez un fichier audio dans le cadre ou cliquez pour le parcourir. MP3, WAV, M4A, OGG, FLAC — tout ce que le navigateur sait décoder.' },

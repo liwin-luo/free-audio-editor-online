@@ -93,10 +93,6 @@ export interface EditorConfig {
   voice?: boolean;
   /** Tap-tempo island. No file. Tap the beat, read the BPM. */
   tapTempo?: boolean;
-  /** Tool icon injected by ToolPage; the drop well mirrors it as decoration. */
-  toolIcon?: string;
-  /** The tool's hero art (same SVG as the H1 badge), injected by ToolPage. */
-  toolImage?: string;
   /** Repeat the kept selection, or the whole file, on export. */
   loop?: boolean;
   /** Cut the kept selection, or the whole file, into equal parts and zip them. */
@@ -1166,6 +1162,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Convert and download',
         text: 'Click Convert to MP3. The encoder runs in your browser and the MP3 downloads straight to your device.',
       },
+        {
+        name: 'Grab your files',
+        text: 'A single file downloads on its own; two or more are packed into a ZIP. WAV tags and cover art don\'t carry over — you can add them later with the [tag editor](/mp3-tag-editor).',
+      },
     ],
     faqs: [
       { q: 'Can I convert more than one WAV?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A file over 300 MB is rejected. A file over one hour still opens, with a memory warning.' },
@@ -1318,6 +1318,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Convert and download',
         text: 'Click Convert to MP3. The encoder runs in your browser and the MP3 downloads straight to your device.',
       },
+        {
+        name: 'Click "Convert to MP3"',
+        text: 'Each track is decoded and encoded locally in one pass, with progress shown in the status line.',
+      },
     ],
     faqs: [
       { q: 'Can I convert more than one FLAC?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A file over 300 MB is rejected. A file over one hour still opens, with a memory warning.' },
@@ -1456,6 +1460,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Convert and download',
         text: 'Click Convert to WAV. The decoded audio is written locally and downloads immediately.',
+      },
+        {
+        name: 'Click "Convert to WAV"',
+        text: 'The encoder runs in your browser — conversion usually takes a second or two.',
       },
     ],
     faqs: [
@@ -1596,6 +1604,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Listen and export',
         text: 'Preview the compressed result, then save it. Check that voices and cymbals still sound clean at the bitrate you chose.',
+      },
+        {
+        name: 'Export',
+        text: 'Happy with it? Export and download; multiple files share the settings and come bundled as a ZIP.',
       },
     ],
     faqs: [
@@ -1751,6 +1763,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Export the MP3',
         text: 'The file is encoded at the rate you picked. Tags and artwork are not copied across.',
       },
+        {
+        name: 'Get your files',
+        text: 'Single files download directly; multiple files come bundled as a ZIP.',
+      },
     ],
     faqs: [
       { q: 'Can I change the bitrate of more than one file?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A file over 300 MB is rejected. A file over one hour still opens, with a memory warning.' },
@@ -1890,6 +1906,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Save the result',
         text: 'Export the reversed audio as MP3 or lossless WAV. The download starts automatically.',
       },
+        {
+        name: 'Grab your file',
+        text: 'The filename gets an -edited suffix.',
+      },
     ],
     faqs: [
       {
@@ -2022,6 +2042,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Preview and export',
         text: 'Play the result to check the pace, then save it as MP3 or WAV.',
+      },
+        {
+        name: 'Get your files',
+        text: 'The filename gets an -edited suffix.',
       },
     ],
     faqs: [
@@ -2160,6 +2184,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Export the louder file',
         text: 'Save as MP3 or WAV. If it still sounds strained, back off 10–20% — clean loudness beats maximum loudness.',
+      },
+      {
+        name: 'Export the louder file',
+        text: 'Save as MP3 or WAV. If it sounds tight, back off 10–20% — clean loudness beats maxed-out.',
       },
     ],
     faqs: [
@@ -2478,6 +2506,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Extract and save',
         text: 'Click Extract Audio. The soundtrack is decoded locally and downloads immediately.',
       },
+        {
+        name: 'Get your files',
+        text: 'Single files download directly; multiple files come bundled as a ZIP.',
+      },
     ],
     faqs: [
       { q: 'Can I pull the audio out of more than one video?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A file over 300 MB is rejected. A file over one hour still opens, with a memory warning.' },
@@ -2623,6 +2655,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Export the take',
         text: 'Save as MP3 or WAV. Recordings exist only in this tab until you export them — closing without exporting discards them.',
+      },
+        {
+        name: 'Don\'t forget to export',
+        text: 'The recording lives only in this tab\'s memory. Close the page without exporting and it\'s gone — export first, then close.',
       },
     ],
     faqs: [
@@ -2874,6 +2910,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Export the louder file',
         text: 'Save as MP3 or WAV. If peaks sound squashed, step the boost back 10–20% and re-export.',
       },
+        {
+        name: 'Fine-tune, then export',
+        text: 'If it sounds strained, dial the gain back a bit; try a few levels before exporting.',
+      },
     ],
     faqs: [
       {
@@ -3031,6 +3071,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Export',
         text: 'Save as MP3 or WAV. WAV avoids an extra lossy encoding pass if you plan to keep editing the file.',
       },
+      {
+        name: 'Export',
+        text: 'Save as MP3 or WAV. If you\'ll keep editing, pick lossless WAV to avoid a second lossy encode.',
+      },
     ],
     faqs: [
       { q: 'Can I normalize more than one file?', a: 'Yes. Turn Normalize on and every file in the queue uses it. Each file is measured on its own and raised to its own peak, one after another on this device. One file downloads by itself. Two or more come back as a ZIP. A file over 300 MB is rejected. A file over one hour still opens, with a memory warning.' },
@@ -3173,6 +3217,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Preview and export',
         text: 'Play the result, then export MP3 or WAV. The peak is put back to the original peak, capped at just under full scale.',
       },
+        {
+        name: 'Works on mobile too',
+        text: 'Sliders and export are touch-friendly; a few minutes of voice exports in a second or two on a recent phone.',
+      },
     ],
     faqs: [
       {
@@ -3309,6 +3357,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Preview and export',
         text: 'Play it, then export MP3 or WAV. The file grows by the tail of the repeats, up to 4 seconds.',
+      },
+        {
+        name: 'Save your file',
+        text: 'Export as MP3 or WAV; the filename gets an -edited suffix.',
       },
     ],
     faqs: [
@@ -3447,6 +3499,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Preview and export',
         text: 'Play it, then export MP3 or WAV. The length stays the same.',
       },
+      {
+        name: 'Take the file',
+        text: 'The file name carries the -edited suffix.',
+      },
     ],
     faqs: [
       {
@@ -3581,6 +3637,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Export',
         text: 'Play the original to check it, then export MP3 or WAV. The file is the loud parts joined together, with 0.08 seconds kept at each cut.',
+      },
+        {
+        name: 'Grab your files',
+        text: 'A single file downloads on its own; two or more are packed into a ZIP. Choose MP3 (small, easy to share) or WAV (lossless, good for further editing); filenames automatically get an -edited suffix to tell them apart.',
       },
     ],
     faqs: [
@@ -4006,6 +4066,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Export the edit',
         text: 'Save as MP3 320 kbps for posting, or WAV if you will edit it further in another app.',
       },
+      {
+        name: 'Export',
+        text: 'Hit Slowed and download; the filename gets an -edited suffix.',
+      },
     ],
     faqs: [
       {
@@ -4152,6 +4216,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Preview and export',
         text: 'Listen for harshness on sibilants (s, t sounds) — export as MP3 or lossless WAV.',
       },
+        {
+        name: 'Grab your files',
+        text: 'Multiple files share the same setting and export together as a ZIP.',
+      },
     ],
     faqs: [
       {
@@ -4288,6 +4356,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'A/B and export',
         text: 'Reset a band to 0 dB to compare with the original, then export as MP3 or lossless WAV.',
+      },
+        {
+        name: 'Export',
+        text: 'Click "Apply EQ" to download, as MP3 or lossless WAV.',
       },
     ],
     faqs: [
@@ -4426,6 +4498,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Preview and export',
         text: 'Check that voices still sound natural, then export as MP3 or lossless WAV.',
       },
+      {
+        name: 'Preview and export',
+        text: 'Listen to confirm the highs sound clean, then export MP3 or lossless WAV.',
+      },
     ],
     faqs: [
       {
@@ -4562,6 +4638,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Preview and export',
         text: 'Check the voice does not sound thin, then export as MP3 or lossless WAV.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Listen to confirm the lows are clean and vocals intact, then export MP3 or lossless WAV.',
       },
     ],
     faqs: [
@@ -5105,6 +5185,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Preview and export',
         text: 'Listen at normal volume — heavy bass can hide vocals. Export as MP3 or lossless WAV.',
       },
+        {
+        name: 'Get your files',
+        text: 'Multiple files share the same settings and export together as a bundled ZIP.',
+      },
     ],
     faqs: [
       {
@@ -5254,6 +5338,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Preview and export',
         text: 'Play the start and end to hear the fades, then export as MP3 or lossless WAV.',
       },
+      {
+        name: 'Preview and export',
+        text: 'Preview to confirm, then export MP3 or lossless WAV.',
+      },
     ],
     faqs: [
       {
@@ -5393,6 +5481,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Preview and export',
         text: 'Play to hear the new key at the original length, then save as MP3 or WAV.',
+      },
+      {
+        name: 'Preview and export',
+        text: 'Preview to confirm, then export MP3 or lossless WAV.',
       },
     ],
     faqs: [
@@ -5536,6 +5628,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Preview and export',
         text: 'Play to hear the new length at the original pitch, then save as MP3 or WAV.',
       },
+        {
+        name: 'Grab your file',
+        text: 'The filename gets an -edited suffix.',
+      },
     ],
     faqs: [
       {
@@ -5669,6 +5765,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Convert and download',
         text: 'Click Convert to MP3. The file is decoded and encoded on your device, then downloaded.',
+      },
+        {
+        name: 'Click "Convert to MP3"',
+        text: 'Decoded and re-encoded locally in one pass — conversion usually takes just a few seconds.',
       },
     ],
     faqs: [
@@ -5805,6 +5905,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Convert and download',
         text: 'Click Convert to MP3. Decoding and encoding happen on your device, then the MP3 downloads.',
       },
+        {
+        name: 'Click "Convert to MP3"',
+        text: 'Decoding and re-encoding happen locally in one pass — done in seconds.',
+      },
     ],
     faqs: [
       { q: 'Can I convert more than one OGG?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A file over 300 MB is rejected. A file over one hour still opens, with a memory warning.' },
@@ -5906,25 +6010,45 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Turn Opus audio into MP3 — in your browser, nothing uploaded.',
     intro:
       'Voice notes and some downloads are Opus: a .opus file, or Opus inside OGG or WebM. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
-    usesHeading: 'Opus files people convert',
+    usesHeading: 'Common uses for Opus to MP3',
     uses: [
-      'Turn a WhatsApp voice note or an Opus export into an MP3 any player can open.',
-      'Speech is fine at 128 kbps. You are changing the format people can play, not the length.',
-      'Convert here, then trim if the message has a long silence at either end.',
+      'WhatsApp voices: turn .opus voice notes into MP3s that play anywhere.',
+      'Meeting recordings: Discord and other app recordings, converted for the archive.',
+      'Game chat: keep the Opus a voice app exported as a lasting MP3.',
+      'Podcast material: remote guests send Opus tracks — convert before the mix.',
+      'Transcription prep: convert to MP3 first, and [transcription](/audio-to-text) runs steadier.',
+      'Batch conversion: a bundle of voice messages at once, packed into a ZIP.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'Reads bare .opus',
+        text: 'Supports bare .opus and the Opus inside OGG/WebM containers — neither source needs renaming first.',
+      },
+      {
+        icon: 'layers',
+        title: 'Batch ZIP',
+        text: 'Drop dozens of voice messages at once; each converts and the batch packs into a ZIP.',
+      },
     ],
     howTo: [
       {
-        name: 'Drop your Opus file',
-        text: 'Drag a .opus file onto the page, or click to browse. OGG and WebM files that contain Opus work the same way. Several files share the setting you pick next. One file downloads alone. Two or more come back as one ZIP.',
+        name: 'Drop your Opus',
+        text: 'Drag a .opus file, or an OGG/WebM containing Opus, into the dashed frame. Several at once is fine.',
       },
       {
         name: 'Pick a bitrate',
-        text: '128 kbps is enough for voice notes. Use 192 or 320 kbps when the Opus file is music.',
+        text: '128 kbps is plenty for speech; what changes is compatibility, not the length.',
       },
       {
-        name: 'Convert and download',
-        text: 'Click Convert to MP3. Decoding and encoding happen on your device, then the MP3 downloads.',
+        name: 'Click Convert to MP3',
+        text: 'Local decode and one re-encode, a few seconds per file.',
       },
+      {
+        name: 'Take the files',
+        text: 'One file downloads alone; several pack into a ZIP.',
+      },
+  
     ],
     faqs: [
       { q: 'Can I convert more than one Opus file?', a: 'Yes. Several files share the setting on this page. They run one after another on this device, and each file is released before the next starts. One file downloads by itself. Two or more come back as a ZIP. A file over 300 MB is rejected. A file over one hour still opens, with a memory warning.' },
@@ -6197,6 +6321,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Export',
         text: 'Play the original to check the selection, then export MP3 or WAV. The download is the clip written back to back.',
       },
+      {
+        name: 'Take the file',
+        text: 'The file name carries the -edited suffix.',
+      },
     ],
     faqs: [
       {
@@ -6330,6 +6458,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Export',
         text: 'Play to check the selection, then export MP3 or WAV. WAV is the panned samples. MP3 encodes the sweep once.',
       },
+        {
+        name: 'Get your files',
+        text: 'The filename gets an -edited suffix.',
+      },
     ],
     faqs: [
       {
@@ -6460,6 +6592,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Export',
         text: 'Play to check it, then export MP3 or WAV. WAV is the circled samples plus the tail. MP3 encodes that once.',
+      },
+        {
+        name: 'Grab your file',
+        text: 'The filename gets an -edited suffix. Listen on headphones for the full effect.',
       },
     ],
     faqs: [
@@ -6973,6 +7109,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Download the zip',
         text: 'Export MP3 or WAV. The download is one zip named after the file, with part 1, part 2, and the rest inside.',
       },
+        {
+        name: 'Unzip and done',
+        text: 'Inside the archive are standalone files: Part 1, Part 2, and so on. MP3 is encoded once at the chosen bitrate; WAV keeps the original samples.',
+      },
     ],
     faqs: [
       {
@@ -7103,6 +7243,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Open the file',
         text: 'A player that shows channel count should say one. WAV is those averaged samples. MP3 encodes them once, up to 320 kbps.',
+      },
+        {
+        name: 'Batch processing',
+        text: 'Multiple files are processed one by one and packed into a ZIP.',
       },
     ],
     faqs: [
@@ -7237,6 +7381,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Export',
         text: 'The export adds the decay after your last sample, about 2.2 seconds of tail. MP3 exports at the bitrate you pick, WAV keeps the processed samples exactly.',
       },
+        {
+        name: 'Grab your file',
+        text: 'MP3 or WAV, with an -edited suffix in the filename.',
+      },
     ],
     faqs: [
       {
@@ -7348,25 +7496,45 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Tap High, Deep, Robot, Radio or Ghost and hear it before you export.',
     intro:
       'This page applies five fixed voice presets to a recording. High lifts the pitch four semitones, Deep drops it four, Robot flattens it through a bit crusher, Radio squeezes it through a band-pass the way an intercom does, and Ghost spreads it with reverb. Tap a preset and the preview plays your file through it. Everything runs in your browser, so the recording never leaves your device.',
-    usesHeading: 'What people do with it',
+    usesHeading: 'Common uses for the voice changer',
     uses: [
-      'Give a character a different voice in an audiobook clip or a game mod.',
-      'Mask a source voice in a demo or a screen recording before you share it.',
-      'Hear a deeper or brighter read of a podcast intro without re-recording it.',
+      'Character voices: give an audiobook excerpt or a game mod character a different voice.',
+      'Share with privacy: hide the source voice under a layer before demos and screen recordings.',
+      'Content gags: robot or ghost effects for the show.',
+      'Audition the five: try each preset in turn and keep the one that fits.',
+      'Take variants: several versions of the same recording to choose from.',
+      'Surprise gifts: a friend recording with a different voice as an Easter egg.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Five presets, five chains',
+        text: 'High, low, robot, radio, ghost — behind each preset sits a different set of filters and mangling, not five volumes of one sound.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'The voice change finishes in your browser; the audio is never uploaded.',
+      },
     ],
     howTo: [
       {
         name: 'Drop your audio',
-        text: 'Any MP3, WAV, M4A, OGG or FLAC file with a voice in it. It is decoded on your device. No preset is active until you tap one.',
+        text: 'Drag a recording or audio file into the dashed frame. It decodes on your device.',
       },
       {
         name: 'Tap a preset',
-        text: 'High, Deep, Robot, Radio or Ghost. The preview plays through the preset right away, and tapping another preset swaps it instead of stacking. Tap the active one again to go back to dry.',
+        text: 'High, Low, Robot, Radio or Ghost — it applies at once, and you can switch back and forth.',
       },
       {
         name: 'Export',
-        text: 'Export writes the preset into the file. MP3 exports at the bitrate you pick, WAV keeps the processed samples exactly. The length never changes.',
+        text: 'Happy with it? Tap the voice-change export and save MP3 or WAV.',
       },
+      {
+        name: 'Take the file',
+        text: 'The file name carries the -edited suffix.',
+      },
+  
     ],
     faqs: [
       {
@@ -7512,6 +7680,10 @@ export const TOOLS: ToolDef[] = [
         name: 'Export',
         text: 'WAV keeps the stepped samples. MP3 encodes them once, up to 320 kbps, and can soften the steps.',
       },
+        {
+        name: 'Get your files',
+        text: 'The filename gets an -edited suffix.',
+      },
     ],
     faqs: [
       {
@@ -7642,6 +7814,10 @@ export const TOOLS: ToolDef[] = [
       {
         name: 'Export',
         text: 'The length matches the file you dropped. WAV is the shifted samples. MP3 encodes them once, up to 320 kbps.',
+      },
+        {
+        name: 'Grab your file',
+        text: 'The filename gets an -edited suffix.',
       },
     ],
     faqs: [
