@@ -1520,30 +1520,45 @@ export const id: Catalog = {
       subtitle: 'Potong, fade, putar balik, dan percepat audio — semua dalam satu tab browser.',
       intro:
         'Editor audio yang ringkas untuk pekerjaan cepat: potong bagian, beri fade in dan fade out, naikkan atau turunkan volume, percepat atau perlambat trek, dan putar balik. Setiap suntingan diterapkan di perangkat Anda saat diekspor — file asli di disk selalu tetap utuh.',
-      usesHeading: 'Edit yang tetap di satu tab',
+      usesHeading: 'Kegunaan umum editor MP3',
       uses: [
-        'Potong file, lalu fade tepi yang baru supaya potongannya tidak klik.',
-        'Percepat atau balik satu bagian tanpa mengekspor antar alat.',
-        'Naikkan MP3 yang pelan di proses yang sama, dengan volume atau normalisasi.',
+        'Potong dan fade: potong satu bagian, lalu fade tepi yang baru supaya potongannya tidak klik.',
+        'Kecepatan per bagian: percepat atau balik satu bagian tanpa ekspor antar alat.',
+        'Ratakan level: bawa rekaman yang naik-turun kembali ke satu level.',
+        'Efek terbalik: putar satu bagian mundur sebagai kejutan tersembunyi.',
+        'Beberapa suntingan sekaligus: potong, fade, kecepatan, dan volume dalam satu tab.',
+        'Perbaikan cepat: perubahan kecil yang tidak perlu sesi DAW.',
+      ],
+      why: [
+        {
+          icon: 'file',
+          title: 'Beberapa suntingan, satu tab',
+          text: 'Potong, fade, kecepatan, balik, dan volume dikerjakan di halaman yang sama, tanpa ekspor antar alat.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Diproses di perangkat',
+          text: 'Semua suntingan berjalan di browser Anda. Tidak ada yang diunggah.',
+        },
       ],
       howTo: [
         {
           name: 'Buka file Anda',
-          text: 'Jatuhkan MP3, WAV, M4A, atau file audio lain ke editor. File langsung didekode di perangkat Anda.',
+          text: 'Jatuhkan file atau klik untuk memilih. File hanya terbuka jika browser ini bisa mendekodenya. Dekode terjadi di tab ini.',
         },
         {
           name: 'Sunting',
-          text: 'Pilih rentang untuk dipertahankan atau dihapus, lalu buka Sesuaikan untuk menambah fade, mengubah volume, mengatur kecepatan dari 0.5× hingga 2×, atau memutar balik trek.',
+          text: 'Pilih rentang untuk dipertahankan atau dihapus, lalu buka Sesuaikan. Fade tiap ujung 0 sampai 5 detik, volume 10% sampai 200%, kecepatan 0.50× sampai 2.00×, atau putar balik. Nada mengikuti kecepatan.',
         },
         {
           name: 'Ekspor hasilnya',
-          text: 'Simpan suntingan sebagai MP3 hingga 320 kbps, atau sebagai WAV lossless. Suntingan di-render di browser Anda sebelum diunduh.',
+          text: 'Simpan sebagai MP3 di 64, 96, 128, 192, atau 320 kbps, atau WAV 16-bit. Halaman ini mulai dari 320 kbps. MP3 mengodekan dua kanal pertama.',
         },
       ],
       faqs: [
         {
           q: 'Apa yang bisa dilakukan editor MP3 ini?',
-          a: 'Alat ini mencakup suntingan cepat yang paling sering dibutuhkan: memangkas dan memotong, fade in dan fade out, pengaturan volume, perubahan kecepatan dari 0.5× hingga 2×, serta putar balik. Untuk rekaman multi-trek atau produksi yang berat, perangkat seperti Audacity tetap lebih tepat — yang ini untuk suntingan cepat, privat, di dalam browser.',
+          a: 'Pertahankan atau hapus satu seleksi. Fade tiap ujung 0 sampai 5 detik. Volume dari 10% sampai 200%. Kecepatan dari 0.50× sampai 2.00×, dan nada mengikutinya. Reverb dari 0% sampai 100%. Putar balik satu sakelar. Normalisasi puncak menaikkan gain ke 0.98, dibatasi 4×, dan menimpa penggeser volume. File di atas 300 MB ditolak. Beberapa file sekaligus, sampai 8, adalah [editor multi-trek](/multi-track-audio-editor).',
         },
         {
           q: 'Apakah suntingan merusak file asli?',
@@ -1551,19 +1566,19 @@ export const id: Catalog = {
         },
         {
           q: 'Bagaimana perubahan kecepatan memengaruhi nada?',
-          a: 'Kecepatan dan nada bergerak bersama, seperti piringan yang diputar lebih cepat atau lebih lambat: pada 2× audio berbunyi sekitar satu oktaf lebih tinggi, pada 0.5× sekitar satu oktaf lebih rendah. Gunakan langkah kecil untuk perubahan yang halus. Jika tempo perlu diubah tanpa mengubah nada asli, ekspor dulu, lalu jalankan file itu di alat time-stretch khusus.',
+          a: 'Di halaman ini, 2× berbunyi sekitar satu oktaf lebih tinggi dan 0.5× sekitar satu oktaf lebih rendah. [Pengubah tempo](/tempo-changer) menjaga nada, dari 0.75× sampai 1.25×. [Pengubah nada](/pitch-changer) mengubah nada dan menjaga durasi.',
         },
         {
           q: 'Bisakah sebuah perubahan dibatalkan?',
-          a: 'Ya. Tekan Ctrl+Z (Cmd+Z di Mac) untuk mundur melalui suntingan terbaru, atau klik Mulai dari awal untuk memuat kembali keadaan file asli.',
+          a: 'Ya. Tekan Ctrl+Z (Cmd+Z di Mac) untuk mundur melalui suntingan terbaru, atau klik Ganti file untuk memuat kembali keadaan file asli.',
         },
         {
           q: 'Apakah aman untuk rekaman yang bersifat rahasia?',
-          a: 'Ya. Audio didekode dan di-render secara lokal dengan Web Audio API — tidak pernah dikirim lewat jaringan, sehingga cocok untuk wawancara dan materi rahasia lainnya.',
+          a: 'File didekode di tab ini. Setelah skrip halaman dimuat, dekode dan ekspor WAV tidak butuh jaringan. Ekspor MP3 butuh encoder yang sudah dimuat sekali. Menutup tab membuang suntingan ini.',
         },
         {
           q: 'Apakah bisa di ponsel?',
-          a: 'Bisa. Anda menggeser gelombang dengan jari. Chrome, Edge, Firefox, dan Safari saat ini mendekode format yang umum di iPhone dan Android. File yang panjang memakai lebih banyak memori, jadi di atas kira-kira satu jam komputer lebih stabil.',
+          a: 'Gelombang menerima geseran jari. File di atas 300 MB ditolak. File di atas satu jam tetap terbuka, dengan peringatan memori.',
         },
       ],
       screenshotsAlt: [
@@ -1594,7 +1609,7 @@ export const id: Catalog = {
           heading: 'Ekspor dan urungkan',
           paragraphs: [
             'Ekspor menulis MP3 baru. WAV di menu adalah PCM 16-bit dari sampel yang sudah diedit.',
-            'Ctrl+Z (Cmd+Z di Mac) mundur melalui suntingan terakhir. Atur ulang memuat ulang berkas yang Anda letakkan. Menutup tab menghapus sesi, karena tidak ada yang disimpan di server.',
+            'Ctrl+Z (Cmd+Z di Mac) mundur melalui suntingan terakhir. Ganti file memuat ulang berkas yang Anda letakkan. Menutup tab menghapus sesi, karena tidak ada yang disimpan di server.',
           ],
         },
       ],

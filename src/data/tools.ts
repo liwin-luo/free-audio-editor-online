@@ -568,11 +568,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Cut, fade, reverse and speed up audio — all in one browser tab.',
     intro:
       'A compact audio editor for quick jobs: cut sections out, apply fade in and fade out, boost or lower volume, speed tracks up or down, and reverse playback. Every edit is applied on your device when you export — the original file always stays untouched on your disk.',
-    usesHeading: 'Edits that stay in one tab',
+    usesHeading: 'Common uses for the MP3 editor',
     uses: [
-      'Trim a file, then fade the new edges so the cut does not click.',
-      'Speed or reverse a section without exporting between tools.',
-      'Raise a quiet MP3 in the same pass, with volume or normalize.',
+      'Trim and fade: cut a section, then fade the new edges so the cut does not click.',
+      'Section speed: speed up or reverse one part without exporting between tools.',
+      'Even out levels: bring a recording that swings loud and quiet back to one level.',
+      'Reverse effects: flip one section backwards as a hidden surprise.',
+      'Several edits at once: cut, fade, speed and volume in one tab.',
+      'Quick turnarounds: small fixes that do not deserve a full DAW session.',
+    ],
+    why: [
+      {
+        icon: 'file',
+        title: 'Several edits, one tab',
+        text: 'Trim, fade, speed, reverse and volume all happen on the same page, with no export between tools.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Processed locally',
+        text: 'Every edit runs in your browser. Nothing is uploaded.',
+      },
     ],
     howTo: [
       {
@@ -603,7 +618,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'Can I undo a change?',
-        a: 'Yes. Press Ctrl+Z (Cmd+Z on Mac) to step back through your recent edits, or click Reset to reload the original file state.',
+        a: 'Yes. Press Ctrl+Z (Cmd+Z on Mac) to step back through your recent edits, or click Change file to reload the original file state.',
       },
       {
         q: 'Is it safe for confidential recordings?',
@@ -637,7 +652,7 @@ export const TOOLS: ToolDef[] = [
         heading: 'Export and undo',
         paragraphs: [
           'Export writes a new MP3. WAV in the menu is 16-bit PCM of the edited samples.',
-          'Ctrl+Z (Cmd+Z on Mac) steps back through recent edits. Reset reloads the file you dropped. Closing the tab drops the session, because nothing is stored on a server.',
+          'Ctrl+Z (Cmd+Z on Mac) steps back through recent edits. Change file reloads the file you dropped. Closing the tab drops the session, because nothing is stored on a server.',
         ],
       },
     ],

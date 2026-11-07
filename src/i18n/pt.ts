@@ -1519,30 +1519,45 @@ export const pt: Catalog = {
       subtitle: 'Corte, fade, reverta e acelere o áudio — tudo numa aba do navegador.',
       intro:
         'Um editor de áudio compacto para trabalhos rápidos: recorte trechos, aplique fade de entrada e de saída, aumente ou baixe o volume, acelere ou desacelere faixas e reproduza ao contrário. Cada edição é aplicada no seu aparelho na hora de exportar — o arquivo original permanece intacto no disco.',
-      usesHeading: 'Edições que ficam numa aba',
+      usesHeading: 'Usos comuns do editor de MP3',
       uses: [
-        'Corte o arquivo e faça fade nas bordas novas, para o corte não estalar.',
-        'Acelere ou inverta um trecho sem exportar entre ferramentas.',
-        'Aumente um MP3 baixo na mesma passagem, com volume ou normalização.',
+        'Cortar e fade: corte um trecho e faça fade nas bordas novas para o corte não estalar.',
+        'Velocidade por trecho: acelere ou inverta uma parte sem exportar entre ferramentas.',
+        'Nivelar o volume: traga de volta a um nível uma gravação que oscila entre alto e baixo.',
+        'Efeitos reversos: toque um trecho ao contrário como surpresa escondida.',
+        'Várias edições de uma vez: corte, fade, velocidade e volume numa aba.',
+        'Ajustes rápidos: mudanças pequenas que não valem uma sessão de DAW.',
+      ],
+      why: [
+        {
+          icon: 'file',
+          title: 'Várias edições, uma aba',
+          text: 'Corte, fade, velocidade, reverso e volume acontecem na mesma página, sem exportar entre ferramentas.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Processado no aparelho',
+          text: 'Todas as edições rodam no seu navegador. Nada é enviado.',
+        },
       ],
       howTo: [
         {
           name: 'Abra o arquivo',
-          text: 'Solte um MP3, WAV, M4A ou outro arquivo de áudio no editor. Ele decodifica na hora, no seu aparelho.',
+          text: 'Solte um arquivo ou clique para procurar. Ele só abre se este navegador conseguir decodificar. A decodificação acontece nesta aba.',
         },
         {
           name: 'Edite',
-          text: 'Selecione um trecho para manter ou apagar e abra Ajustar para adicionar fades, mudar o volume, alterar a velocidade de 0,5× a 2× ou reverter a faixa.',
+          text: 'Selecione um trecho para manter ou apagar e abra Ajustar. Faça fade de 0 a 5 segundos em cada ponta, ponha o volume de 10% a 200%, a velocidade de 0,50× a 2,00×, ou inverta. O tom acompanha a velocidade.',
         },
         {
           name: 'Exporte o resultado',
-          text: 'Salve a edição como MP3 em até 320 kbps, ou como WAV sem perdas. As edições são renderizadas offline no navegador antes do download.',
+          text: 'Salve como MP3 em 64, 96, 128, 192 ou 320 kbps, ou como WAV de 16 bits. Esta página começa em 320 kbps. O MP3 codifica os dois primeiros canais.',
         },
       ],
       faqs: [
         {
           q: 'O que este editor de MP3 faz?',
-          a: 'Ele cobre as edições rápidas mais comuns: recortar e cortar, fade de entrada e de saída, ajuste de volume, mudança de velocidade de 0,5× a 2× e reversão. Para gravação multipista ou produção pesada, um DAW como o Audacity ainda é a melhor ferramenta — este aqui é para edições rápidas, privadas e no navegador.',
+          a: 'Manter ou apagar uma seleção. Fade de 0 a 5 segundos em cada ponta. O volume vai de 10% a 200%. A velocidade vai de 0,50× a 2,00×, e o tom acompanha. A reverberação vai de 0% a 100%. Reverter é um interruptor. A normalização de pico aplica um ganho até 0,98, limitado a 4×, e prevalece sobre o controle de volume. Um arquivo com mais de 300 MB é rejeitado. Vários arquivos de uma vez, até 8, é o [editor multipista](/multi-track-audio-editor).',
         },
         {
           q: 'Minhas edições destroem o original?',
@@ -1550,19 +1565,19 @@ export const pt: Catalog = {
         },
         {
           q: 'Como a mudança de velocidade afeta o tom?',
-          a: 'Velocidade e tom andam juntos, como um disco tocado mais rápido ou mais devagar: em 2× o áudio sobe cerca de uma oitava, em 0,5× desce cerca de uma oitava. Use passos pequenos para mudanças sutis. Se você precisa mudar o tempo e manter o tom original, exporte primeiro e passe o arquivo por uma ferramenta dedicada de time-stretch.',
+          a: 'Nesta página, 2× soa cerca de uma oitava acima e 0,5× cerca de uma oitava abaixo. O [alterador de tempo](/tempo-changer) mantém o tom, de 0,75× a 1,25×. O [alterador de tom](/pitch-changer) muda o tom e mantém a duração.',
         },
         {
           q: 'Dá para desfazer uma alteração?',
-          a: 'Sim. Aperte Ctrl+Z (Cmd+Z no Mac) para voltar pelas edições recentes, ou clique em Começar de novo para recarregar o estado original do arquivo.',
+          a: 'Sim. Aperte Ctrl+Z (Cmd+Z no Mac) para voltar pelas edições recentes, ou clique em Trocar arquivo para recarregar o estado original do arquivo.',
         },
         {
           q: 'É seguro para gravações confidenciais?',
-          a: 'Sim. O áudio é decodificado e renderizado no aparelho com a Web Audio API — nunca é transmitido pela rede, o que serve para entrevistas e outros materiais confidenciais.',
+          a: 'O arquivo é decodificado nesta aba. Depois que os scripts da página carregam, decodificar e exportar WAV não precisa de rede. Exportar MP3 precisa que o codificador tenha carregado uma vez. Fechar a aba descarta esta edição.',
         },
         {
           q: 'Funciona no celular?',
-          a: 'Sim. Você arrasta a forma de onda com o dedo. Chrome, Edge, Firefox e Safari atuais decodificam os formatos comuns no iPhone e no Android. Um arquivo longo usa mais memória, então a partir de cerca de uma hora o computador fica mais estável.',
+          a: 'A forma de onda aceita arrastar com o dedo. Um arquivo com mais de 300 MB é rejeitado. Um arquivo com mais de uma hora abre mesmo assim, com um aviso de memória.',
         },
       ],
       screenshotsAlt: [
@@ -1574,14 +1589,14 @@ export const pt: Catalog = {
         {
           heading: 'O que este editor realmente muda',
           paragraphs: [
-            'Esta página é o editor de MP3 geral: corte um trecho, faça fade nas pontas, mude o volume ou a velocidade, ou reverta o arquivo, e exporte um novo MP3. O arquivo que você soltou nunca é sobrescrito.',
-            'A velocidade aqui acompanha o tom com o tempo. Uma voz mais aguda ou mais grave com a mesma duração é o [alterador de tom](/pitch-changer). Um arquivo menor, sem esta edição, é [comprimir áudio](/compress-audio).',
+            'Esta página é o editor de MP3 geral: corte um trecho, faça fade nas pontas, mude o volume ou a velocidade, ou inverta o arquivo, e exporte um novo MP3. O arquivo que você soltou nunca é sobrescrito.',
+            'A velocidade aqui leva o tom junto com o tempo. Uma voz mais aguda ou mais grave com a mesma duração é o [alterador de tom](/pitch-changer). Um arquivo menor, sem esta edição, é [comprimir áudio](/compress-audio).',
           ],
         },
         {
           heading: 'Quando abrir uma página específica',
           paragraphs: [
-            'O editor é o começo certo quando o trabalho é uma mistura de cortes pequenos e mudanças de nível. Trabalhos únicos têm um caminho mais curto:',
+            'O editor é o começo certo quando o trabalho mistura cortes pequenos e mudanças de nível. Trabalhos únicos têm um caminho mais curto:',
           ],
           bullets: [
             'Uma música, manter um refrão: o [cortador de MP3](/mp3-cutter) é o mesmo editor de manter ou apagar.',
@@ -1592,8 +1607,8 @@ export const pt: Catalog = {
         {
           heading: 'Exportar e desfazer',
           paragraphs: [
-            'Exportar grava um novo MP3. WAV no menu é PCM de 16 bits das amostras editadas.',
-            'Ctrl+Z (Cmd+Z no Mac) volta pelas edições recentes. Redefinir recarrega o arquivo que você soltou. Fechar a aba descarta a sessão, porque nada é armazenado em um servidor.',
+            'Exportar grava um novo MP3. O WAV do menu é PCM de 16 bits das amostras editadas.',
+            'Ctrl+Z (Cmd+Z no Mac) volta pelas edições recentes. Trocar arquivo recarrega o arquivo que você soltou. Fechar a aba descarta a sessão, porque nada é armazenado em um servidor.',
           ],
         },
       ],

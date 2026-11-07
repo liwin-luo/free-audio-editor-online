@@ -1520,30 +1520,45 @@ export const es: Catalog = {
       subtitle: 'Corta, funde, invierte y acelera audio, todo en una pestaña del navegador.',
       intro:
         'Un editor de audio compacto para trabajos rápidos: corta tramos, aplica fundido de entrada y de salida, sube o baja el volumen, acelera o ralentiza los temas y reproduce al revés. Cada edición se aplica en tu dispositivo al exportar. El archivo original se queda intacto en tu disco.',
-      usesHeading: 'Ediciones que se quedan en una pestaña',
+      usesHeading: 'Usos habituales del editor de MP3',
       uses: [
-        'Recorta el archivo y funde los bordes nuevos para que el corte no haga clic.',
-        'Acelera o invierte un tramo sin exportar entre herramientas.',
-        'Sube un MP3 bajo en la misma pasada, con volumen o normalización.',
+        'Cortar y fundir: recorta un tramo y funde los bordes nuevos para que el corte no haga clic.',
+        'Velocidad por tramos: acelera o invierte una parte sin exportar entre herramientas.',
+        'Nivelar el volumen: devuelve a un nivel parejo una grabación que sube y baja.',
+        'Efectos al revés: invierte un tramo como sorpresa escondida.',
+        'Varias ediciones a la vez: corta, funde, velocidad y volumen en una pestaña.',
+        'Arreglos rápidos: cambios pequeños que no merecen abrir un DAW.',
+      ],
+      why: [
+        {
+          icon: 'file',
+          title: 'Varias ediciones, una pestaña',
+          text: 'Recortar, fundir, velocidad, invertir y volumen ocurren en la misma página, sin exportar entre herramientas.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Procesado en local',
+          text: 'Todas las ediciones corren en tu navegador. No se sube nada.',
+        },
       ],
       howTo: [
         {
           name: 'Abre tu archivo',
-          text: 'Suelta un MP3, WAV, M4A u otro archivo de audio en el editor. Se decodifica al instante en tu dispositivo.',
+          text: 'Suelta un archivo o haz clic para elegirlo. Solo se abre si este navegador puede decodificarlo. La decodificación ocurre en esta pestaña.',
         },
         {
           name: 'Edita',
-          text: 'Selecciona un tramo para conservarlo o eliminarlo y luego abre Ajustar para agregar fundidos, cambiar el volumen, mover la velocidad de 0.5× a 2× o invertir el tema.',
+          text: 'Selecciona un tramo para conservarlo o eliminarlo y abre Ajustar. Funde cada extremo de 0 a 5 segundos, pon el volumen de 10% a 200%, la velocidad de 0.50× a 2.00×, o invierte. El tono sigue a la velocidad.',
         },
         {
           name: 'Exporta el resultado',
-          text: 'Guarda tu edición como MP3 de hasta 320 kbps, o como WAV sin pérdida. Las ediciones se renderizan en tu navegador, más rápido que en tiempo real, antes de la descarga.',
+          text: 'Guarda como MP3 a 64, 96, 128, 192 o 320 kbps, o como WAV de 16 bits. Esta página empieza en 320 kbps. El MP3 codifica los dos primeros canales.',
         },
       ],
       faqs: [
         {
           q: '¿Qué puede hacer este editor de MP3?',
-          a: 'Cubre las ediciones rápidas más comunes: recortar y cortar, fundido de entrada y de salida, ajuste de volumen, cambio de velocidad de 0.5× a 2× e invertir. Para grabación multipista o una producción grande, un DAW como Audacity sigue siendo mejor herramienta. Esta es para ediciones rápidas, privadas y en el navegador.',
+          a: 'Conservar o eliminar una selección. Fundir cada extremo de 0 a 5 segundos. El volumen va de 10% a 200%. La velocidad va de 0.50× a 2.00× y el tono la sigue. La reverberación va de 0% a 100%. Invertir es un interruptor. La normalización de picos aplica una ganancia hasta 0.98, con un tope de 4×, y se impone al control de volumen. Un archivo de más de 300 MB se rechaza. Varios archivos a la vez, hasta 8, es el [editor multipista](/multi-track-audio-editor).',
         },
         {
           q: '¿Mis ediciones destruyen el original?',
@@ -1551,45 +1566,45 @@ export const es: Catalog = {
         },
         {
           q: '¿El cambio de velocidad mueve el tono?',
-          a: 'Sí. La velocidad y el tono se mueven juntos, como un disco que gira más rápido o más lento: a 2× el audio suena cerca de una octava más agudo; a 0.5×, cerca de una octava más grave. Usa pasos pequeños para cambios sutiles. Si necesitas cambiar el tempo y conservar el tono original, exporta primero y pasa el archivo por una herramienta de time-stretch.',
+          a: 'En esta página, 2× suena cerca de una octava más agudo y 0.5× cerca de una octava más grave. El [cambiador de tempo](/tempo-changer) conserva el tono, de 0.75× a 1.25×. El [cambiador de tono](/pitch-changer) cambia el tono y conserva la duración.',
         },
         {
           q: '¿Puedo deshacer un cambio?',
-          a: 'Sí. Pulsa Ctrl+Z (Cmd+Z en Mac) para retroceder por tus ediciones recientes, o haz clic en Empezar de nuevo para volver a cargar el estado original del archivo.',
+          a: 'Sí. Pulsa Ctrl+Z (Cmd+Z en Mac) para retroceder por tus ediciones recientes, o haz clic en Cambiar archivo para recargar el estado original del archivo.',
         },
         {
           q: '¿Sirve para grabaciones confidenciales?',
-          a: 'Sí. El audio se decodifica y se renderiza en local con la Web Audio API. Nunca se transmite por la red, así que sirve para entrevistas y otro material confidencial.',
+          a: 'El archivo se decodifica en esta pestaña. Cuando los scripts de la página han cargado, decodificar y exportar WAV no necesita red. Exportar MP3 necesita que el codificador haya cargado una vez. Cerrar la pestaña descarta esta edición.',
         },
         {
           q: '¿Funciona en el teléfono?',
-          a: 'Sí. Arrastras la forma de onda con el dedo. Chrome, Edge, Firefox y Safari actuales decodifican los formatos habituales en iPhone y Android. Un archivo largo usa más memoria, así que a partir de una hora el ordenador va más estable.',
+          a: 'La forma de onda acepta arrastre táctil. Un archivo de más de 300 MB se rechaza. Un archivo de más de una hora se abre igual, con un aviso de memoria.',
         },
       ],
       sections: [
         {
           heading: 'Qué cambia de verdad este editor',
           paragraphs: [
-            'Esta página es el editor de MP3 general: recortas un tramo, fundes los extremos, cambias el volumen o la velocidad, o inviertes el archivo, y exportas un MP3 nuevo. El archivo que soltaste no se sobrescribe.',
-            'Aquí la velocidad mueve el tono junto con el tempo. Si solo quieres una voz más aguda o más grave con la misma duración, usa el cambiador de tono. Si solo quieres un archivo más pequeño, usa el compresor de audio.',
+            'Esta página es el editor de MP3 general: recorta un tramo, funde los extremos, cambia el volumen o la velocidad, o invierte el archivo, y exporta un MP3 nuevo. El archivo que soltaste nunca se sobrescribe.',
+            'Aquí la velocidad mueve el tono junto con el tempo. Una voz más aguda o más grave con la misma duración es el [cambiador de tono](/pitch-changer). Un archivo más pequeño, sin esta edición, es [comprimir audio](/compress-audio).',
           ],
         },
         {
           heading: 'Cuándo abrir una página más concreta',
           paragraphs: [
-            'El editor conviene cuando el trabajo mezcla cortes y cambios de nivel. Un solo trabajo tiene un camino más corto:',
+            'El editor conviene cuando el trabajo mezcla cortes pequeños y cambios de nivel. Un solo trabajo tiene un camino más corto:',
           ],
           bullets: [
-            'Una canción y quieres quedarte con un estribillo: el cortador de MP3 está escrito para eso.',
-            'Un podcast o una nota de voz, recortar los extremos: Recortar audio.',
-            'Solo título, artista o carátula: el editor de etiquetas MP3 copia el audio byte a byte.',
+            'Una canción, quedarte con un estribillo: el [cortador de MP3](/mp3-cutter) es el mismo editor de conservar o eliminar.',
+            'Un podcast o una nota de voz: el [recortador de audio](/audio-trimmer) es ese mismo editor.',
+            'Solo título, artista o carátula: el [editor de etiquetas MP3](/mp3-tag-editor) copia los bytes de audio y solo cambia las etiquetas.',
           ],
         },
         {
           heading: 'Exportar y deshacer',
           paragraphs: [
-            'Exportar escribe un MP3 nuevo. WAV también está en el menú de formato si quieres una copia sin pérdida para otro programa.',
-            'Ctrl+Z (Cmd+Z en Mac) deshace los últimos cambios. Restablecer vuelve a cargar el archivo que soltaste. Cerrar la pestaña borra la sesión, porque nada se guarda en un servidor.',
+            'Exportar escribe un MP3 nuevo. El WAV del menú es PCM de 16 bits de las muestras editadas.',
+            'Ctrl+Z (Cmd+Z en Mac) retrocede por las ediciones recientes. Cambiar archivo recarga el archivo que soltaste. Cerrar la pestaña descarta la sesión, porque nada se guarda en un servidor.',
           ],
         },
       ],

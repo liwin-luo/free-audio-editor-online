@@ -1521,30 +1521,45 @@ export const de: Catalog = {
       subtitle: 'Schneiden, blenden, rückwärts abspielen und die Geschwindigkeit ändern — alles in einem Browser-Tab.',
       intro:
         'Ein kompakter Audio-Editor für kurze Bearbeitungen: Abschnitte herausschneiden, ein- und ausblenden, lauter oder leiser machen, die Geschwindigkeit hoch- oder runtersetzen und rückwärts abspielen. Jede Bearbeitung wird beim Export auf deinem Gerät angewendet — die Originaldatei auf der Festplatte bleibt unangetastet.',
-      usesHeading: 'Edits, die in einem Tab bleiben',
+      usesHeading: 'Typische Einsätze für den MP3-Editor',
       uses: [
-        'Schneide die Datei und blende die neuen Kanten ein, damit der Schnitt nicht klickt.',
-        'Beschleunige oder kehre einen Abschnitt um, ohne zwischen Tools zu exportieren.',
-        'Heb eine leise MP3 im selben Durchgang an, mit Lautstärke oder Normalisieren.',
+        'Schneiden und Blenden: einen Abschnitt schneiden und die neuen Kanten blenden, damit der Schnitt nicht klickt.',
+        'Tempo pro Abschnitt: einen Teil beschleunigen oder umkehren, ohne zwischen Tools zu exportieren.',
+        'Pegel angleichen: eine Aufnahme, die laut und leise schwankt, auf einen Pegel bringen.',
+        'Rückwärts-Effekte: einen Abschnitt als versteckte Überraschung rückwärts laufen lassen.',
+        'Mehrere Edits auf einmal: Schnitt, Blenden, Tempo und Lautstärke in einem Tab.',
+        'Schnelle Korrekturen: kleine Änderungen, für die sich keine DAW-Sitzung lohnt.',
+      ],
+      why: [
+        {
+          icon: 'file',
+          title: 'Mehrere Edits, ein Tab',
+          text: 'Schneiden, Blenden, Tempo, Rückwärts und Lautstärke passieren auf derselben Seite, ohne Export zwischen Tools.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokal verarbeitet',
+          text: 'Alle Bearbeitungen laufen in deinem Browser. Nichts wird hochgeladen.',
+        },
       ],
       howTo: [
         {
           name: 'Datei öffnen',
-          text: 'Lege eine MP3, WAV, M4A oder eine andere Audiodatei auf den Editor. Die Datei wird sofort auf deinem Gerät dekodiert.',
+          text: 'Lege eine Datei ab oder klicke zum Auswählen. Die Datei öffnet sich nur, wenn dieser Browser sie dekodieren kann. Dekodiert wird in diesem Tab.',
         },
         {
           name: 'Bearbeiten',
-          text: 'Wähle einen Bereich zum Behalten oder Löschen und öffne dann Anpassen, um Blenden hinzuzufügen, die Lautstärke zu ändern, die Geschwindigkeit von 0,5× bis 2× zu stellen oder den Titel rückwärts abzuspielen.',
+          text: 'Wähle einen Bereich zum Behalten oder Löschen und öffne Anpassen. Blende jedes Ende von 0 bis 5 Sekunden, stelle die Lautstärke von 10% bis 200%, die Geschwindigkeit von 0,50× bis 2,00×, oder kehre um. Die Tonhöhe folgt der Geschwindigkeit.',
         },
         {
           name: 'Ergebnis exportieren',
-          text: 'Speichere deine Bearbeitung als MP3 mit bis zu 320 kbps oder als verlustfreies WAV. Die Bearbeitung wird offline in deinem Browser gerendert, bevor der Download startet.',
+          text: 'Speichere als MP3 mit 64, 96, 128, 192 oder 320 kbps, oder als 16-Bit-WAV. Diese Seite startet bei 320 kbps. MP3 kodiert die ersten zwei Kanäle.',
         },
       ],
       faqs: [
         {
           q: 'Was kann dieser MP3-Editor?',
-          a: 'Er deckt die häufigsten schnellen Bearbeitungen ab: Kürzen und Schneiden, Ein- und Ausblenden, Lautstärke, Geschwindigkeit von 0,5× bis 2× und Rückwärts. Für Mehrspuraufnahmen oder aufwendige Produktion ist eine DAW wie Audacity immer noch das bessere Werkzeug — dieses hier ist für schnelle, private Bearbeitungen im Browser.',
+          a: 'Eine Auswahl behalten oder löschen. Jedes Ende von 0 bis 5 Sekunden blenden. Die Lautstärke läuft von 10% bis 200%. Die Geschwindigkeit läuft von 0,50× bis 2,00×, und die Tonhöhe folgt. Der Hall läuft von 0% bis 100%. Rückwärts ist ein Schalter. Die Spitzenwert-Normalisierung ist eine Verstärkung auf 0,98, gedeckelt bei 4×, und sie übersteuert den Lautstärkeregler. Eine Datei über 300 MB wird abgelehnt. Mehrere Dateien gleichzeitig, bis zu 8, ist der [Mehrspur-Editor](/multi-track-audio-editor).',
         },
         {
           q: 'Sind meine Bearbeitungen destruktiv?',
@@ -1552,45 +1567,45 @@ export const de: Catalog = {
         },
         {
           q: 'Wie wirkt sich die Geschwindigkeitsänderung auf die Tonhöhe aus?',
-          a: 'Geschwindigkeit und Tonhöhe bewegen sich zusammen, wie eine Schallplatte, die schneller oder langsamer läuft: bei 2× spielt das Audio etwa eine Oktave höher, bei 0,5× etwa eine Oktave tiefer. Nimm kleine Schritte für feine Änderungen. Wenn du die Geschwindigkeit ändern und die ursprüngliche Tonhöhe behalten willst, exportiere zuerst und lass die Datei durch ein spezielles Time-Stretch-Tool laufen.',
+          a: 'Auf dieser Seite klingt 2× etwa eine Oktave höher und 0,5× etwa eine Oktave tiefer. Der [Tempo-Änderer](/tempo-changer) behält die Tonhöhe, von 0,75× bis 1,25×. Der [Tonhöhen-Änderer](/pitch-changer) ändert die Tonhöhe und behält die Länge.',
         },
         {
           q: 'Kann ich eine Änderung rückgängig machen?',
-          a: 'Ja. Drücke Ctrl+Z (Cmd+Z auf dem Mac), um durch deine letzten Bearbeitungen zurückzugehen, oder klicke auf Von vorn, um den ursprünglichen Dateizustand neu zu laden.',
+          a: 'Ja. Drücke Strg+Z (Cmd+Z auf dem Mac), um durch deine letzten Bearbeitungen zurückzugehen, oder klicke auf Andere Datei, um den ursprünglichen Dateizustand neu zu laden.',
         },
         {
           q: 'Ist es sicher für vertrauliche Aufnahmen?',
-          a: 'Ja. Audio wird lokal mit der Web Audio API dekodiert und gerendert — es wird nie über das Netzwerk übertragen. Damit eignet es sich für Interviews und anderes vertrauliches Material.',
+          a: 'Die Datei wird in diesem Tab dekodiert. Sobald die Skripte der Seite geladen sind, brauchen Dekodieren und WAV-Export kein Netz. Der MP3-Export braucht den Encoder einmal geladen. Den Tab zu schließen verwirft diese Bearbeitung.',
         },
         {
           q: 'Geht das auf dem Handy?',
-          a: 'Ja. Die Wellenform ziehst du mit dem Finger. Aktuelles Chrome, Edge, Firefox und Safari dekodieren auf iPhone und Android die üblichen Formate. Eine lange Datei braucht mehr Speicher, deshalb ist der Rechner ab etwa einer Stunde ruhiger.',
+          a: 'Die Wellenform nimmt Touch-Ziehen an. Eine Datei über 300 MB wird abgelehnt. Eine Datei über eine Stunde öffnet sich trotzdem, mit einer Warnung zum Arbeitsspeicher.',
         },
       ],
       sections: [
         {
           heading: 'Was dieser Editor wirklich ändert',
           paragraphs: [
-            'Diese Seite ist der allgemeine MP3-Editor: einen Abschnitt schneiden, die Enden ein- und ausblenden, Lautstärke oder Tempo ändern oder die Datei umkehren, und dann eine neue MP3 exportieren. Die Datei, die du abgelegt hast, wird nicht überschrieben.',
-            'Tempo verschiebt hier die Tonhöhe mit. Wenn du nur eine höhere oder tiefere Stimme bei gleicher Länge willst, nimm den Tonhöhen-Regler. Wenn die Datei nur kleiner werden soll, nimm den Audio-Kompressor.',
+            'Diese Seite ist der allgemeine MP3-Editor: einen Abschnitt schneiden, die Enden blenden, Lautstärke oder Tempo ändern oder die Datei umkehren, und dann eine neue MP3 exportieren. Die abgelegte Datei wird nie überschrieben.',
+            'Das Tempo verschiebt hier die Tonhöhe mit. Eine höhere oder tiefere Stimme bei gleicher Länge ist der [Tonhöhen-Änderer](/pitch-changer). Eine kleinere Datei, ohne diese Bearbeitung, ist [Audio komprimieren](/compress-audio).',
           ],
         },
         {
           heading: 'Wann eine speziellere Seite besser ist',
           paragraphs: [
-            'Der Editor passt, wenn der Auftrag Schnitte und Pegeländerungen mischt. Für eine einzelne Aufgabe gibt es einen kürzeren Weg:',
+            'Der Editor ist der richtige Start, wenn der Auftrag kleine Schnitte und Pegeländerungen mischt. Einzelne Aufgaben haben einen kürzeren Weg:',
           ],
           bullets: [
-            'Ein Song, ein Refrain soll bleiben: MP3 schneiden ist dafür geschrieben.',
-            'Podcast oder Sprachnotiz, die Enden kürzen: Audio schneiden.',
-            'Nur Titel, Künstler oder Cover: der MP3-Tag-Editor kopiert die Audiodaten unverändert.',
+            'Ein Song, ein Refrain soll bleiben: der [MP3-Cutter](/mp3-cutter) ist derselbe Behalten-oder-Löschen-Editor.',
+            'Ein Podcast oder eine Sprachnotiz: der [Audio-Trimmer](/audio-trimmer) ist derselbe Editor.',
+            'Nur Titel, Künstler oder Cover: der [MP3-Tag-Editor](/mp3-tag-editor) kopiert die Audio-Bytes und ändert nur die Tags.',
           ],
         },
         {
           heading: 'Export und Rückgängig',
           paragraphs: [
-            'Der Export schreibt eine neue MP3. WAV steht ebenfalls im Formatmenü, wenn du eine verlustfreie Kopie für ein anderes Programm brauchst.',
-            'Strg+Z (Cmd+Z am Mac) geht die letzten Änderungen zurück. Zurücksetzen lädt die abgelegte Datei neu. Die Sitzung endet mit dem Tab, weil nichts auf einem Server liegt.',
+            'Der Export schreibt eine neue MP3. WAV im Menü ist 16-Bit-PCM der bearbeiteten Samples.',
+            'Strg+Z (Cmd+Z am Mac) geht durch die letzten Bearbeitungen zurück. Andere Datei lädt die abgelegte Datei neu. Den Tab zu schließen beendet die Sitzung, denn nichts liegt auf einem Server.',
           ],
         },
       ],

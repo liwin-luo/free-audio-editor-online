@@ -1424,50 +1424,65 @@ export const fr: Catalog = {
       subtitle: 'Coupez, appliquez des fondus, inversez et accélérez l’audio — tout dans un seul onglet.',
       intro:
         'Un éditeur audio compact pour les travaux rapides : coupez des passages, appliquez fondu d’entrée et fondu de sortie, montez ou baissez le volume, accélérez ou ralentissez les morceaux, lisez à l’envers. Chaque modification est appliquée sur votre appareil à l’export — le fichier d’origine reste intact sur votre disque.',
-      usesHeading: 'Des retouches qui tiennent dans un onglet',
+      usesHeading: 'Usages courants de l’éditeur MP3',
       uses: [
-        'Rognez un fichier puis adoucissez les nouvelles extrémités au fondu, pour que la coupe ne fasse pas de clic.',
-        'Accélérez ou inversez un passage sans exporter entre deux outils.',
-        'Redressez un MP3 trop faible dans la même passe, avec le volume ou la normalisation.',
+        'Couper et fondre : coupez un passage puis adoucissez les nouvelles extrémités pour que la coupe ne claque pas.',
+        'Vitesse par passage : accélérez ou inversez une partie sans exporter entre deux outils.',
+        'Niveaux homogènes : ramenez à un niveau stable un enregistrement qui monte et descend.',
+        'Effets inversés : passez un extrait à l’envers comme surprise cachée.',
+        'Plusieurs retouches d’un coup : coupe, fondus, vitesse et volume dans un onglet.',
+        'Retouches express : les petites corrections qui ne méritent pas une session de DAW.',
+      ],
+      why: [
+        {
+          icon: 'file',
+          title: 'Plusieurs retouches, un onglet',
+          text: 'Coupe, fondus, vitesse, inversion et volume se font sur la même page, sans export entre les outils.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Traité en local',
+          text: 'Toutes les modifications tournent dans votre navigateur. Rien n’est téléversé.',
+        },
       ],
       howTo: [
         {
           name: 'Ouvrez votre fichier',
-          text: 'Déposez un MP3, WAV, M4A ou autre fichier audio dans l’éditeur. Il est décodé instantanément sur votre appareil.',
+          text: 'Déposez un fichier ou cliquez pour le parcourir. Il ne s’ouvre que si ce navigateur sait le décoder. Le décodage se fait dans cet onglet.',
         },
         {
           name: 'Modifiez',
-          text: 'Sélectionnez une plage à garder ou supprimer, puis ouvrez Ajuster pour ajouter des fondus, changer le volume, faire varier la vitesse de 0,5× à 2× ou inverser le morceau.',
+          text: 'Sélectionnez une plage à garder ou supprimer, puis ouvrez Ajuster. Faites un fondu de 0 à 5 secondes à chaque extrémité, réglez le volume de 10% à 200%, la vitesse de 0,50× à 2,00×, ou inversez. La hauteur suit la vitesse.',
         },
         {
           name: 'Exportez le résultat',
-          text: 'Enregistrez votre montage en MP3 jusqu’à 320 kbps, ou en WAV sans perte. Les modifications sont rendues hors ligne dans votre navigateur avant le téléchargement.',
+          text: 'Enregistrez en MP3 à 64, 96, 128, 192 ou 320 kbps, ou en WAV 16 bits. Cette page démarre à 320 kbps. Le MP3 encode les deux premiers canaux.',
         },
       ],
       faqs: [
         {
-          q: 'Que sait faire cet éditeur MP3 ?',
-          a: 'Il couvre les retouches rapides les plus courantes : rognage et coupe, fondu d’entrée et de sortie, réglage du volume, changement de vitesse de 0,5× à 2× et lecture à l’envers. Pour du multipiste ou de la grosse production, un DAW comme Audacity reste l’outil adapté — celui-ci vise les retouches rapides, privées et dans le navigateur.',
+          q: 'Que sait faire cet éditeur MP3 ?',
+          a: 'Garder ou supprimer une sélection. Un fondu de 0 à 5 secondes à chaque extrémité. Le volume va de 10% à 200%. La vitesse va de 0,50× à 2,00×, et la hauteur suit. La réverbe va de 0% à 100%. L’inversion est un interrupteur. La normalisation de crête applique un gain jusqu’à 0,98, plafonné à 4×, et prend le pas sur le curseur de volume. Un fichier de plus de 300 MB est refusé. Plusieurs fichiers à la fois, jusqu’à 8, c’est l’[éditeur multipiste](/multi-track-audio-editor).',
         },
         {
-          q: 'Mes modifications détruisent-elles l’original ?',
-          a: 'Non. Votre fichier d’origine reste exactement tel quel sur le disque. Toutes les modifications sont conservées comme réglages dans l’éditeur et ne sont rendues dans un nouveau fichier qu’au moment de l’export.',
+          q: 'Mes modifications détruisent-elles l’original ?',
+          a: 'Non. Votre fichier d’origine reste exactement tel quel sur le disque. Toutes les modifications sont conservées comme réglages dans l’éditeur et ne sont rendues dans un nouveau fichier qu’à l’export.',
         },
         {
-          q: 'Quel effet la vitesse a-t-elle sur la hauteur tonale ?',
-          a: 'La vitesse et la hauteur tonale avancent ensemble, comme un disque lu plus vite ou plus lentement : à 2× l’audio joue environ une octave plus haut, à 0,5× environ une octave plus bas. Procédez par petits paliers pour des changements subtils. Si vous devez changer le tempo en conservant la hauteur d’origine, exportez d’abord puis passez le fichier dans un outil de time-stretch dédié.',
+          q: 'Quel effet la vitesse a-t-elle sur la hauteur tonale ?',
+          a: 'Sur cette page, 2× joue environ une octave plus haut et 0,5× environ une octave plus bas. Le [changeur de tempo](/tempo-changer) garde la hauteur, de 0,75× à 1,25×. Le [changeur de hauteur tonale](/pitch-changer) change la hauteur et garde la durée.',
         },
         {
-          q: 'Puis-je annuler une modification ?',
-          a: 'Oui. Appuyez sur Ctrl+Z (Cmd+Z sur Mac) pour revenir en arrière dans vos dernières modifications, ou cliquez sur Recommencer pour recharger l’état d’origine du fichier.',
+          q: 'Puis-je annuler une modification ?',
+          a: 'Oui. Appuyez sur Ctrl+Z (Cmd+Z sur Mac) pour revenir en arrière dans vos dernières modifications, ou cliquez sur Changer de fichier pour recharger l’état d’origine du fichier.',
         },
         {
-          q: 'Est-ce sûr pour des enregistrements confidentiels ?',
-          a: 'Oui. L’audio est décodé et rendu en local avec la Web Audio API — il n’est jamais transmis sur le réseau, ce qui convient aux interviews et à tout autre matériel confidentiel.',
+          q: 'Est-ce sûr pour des enregistrements confidentiels ?',
+          a: 'Le fichier est décodé dans cet onglet. Une fois les scripts de la page chargés, le décodage et l’export WAV n’ont pas besoin du réseau. L’export MP3 demande que l’encodeur ait chargé une fois. Fermer l’onglet abandonne cette modification.',
         },
         {
-          q: 'Ça marche sur un téléphone ?',
-          a: 'Oui. Vous faites glisser la forme d\'onde au doigt. Chrome, Edge, Firefox et Safari actuels décodent les formats courants sur iPhone et Android. Un fichier long prend plus de mémoire, donc au-delà d\'environ une heure l\'ordinateur est plus stable.',
+          q: 'Ça marche sur un téléphone ?',
+          a: 'La forme d’onde accepte le glissement tactile. Un fichier de plus de 300 MB est refusé. Un fichier de plus d’une heure s’ouvre quand même, avec un avertissement de mémoire.',
         },
       ],
       screenshotsAlt: [
@@ -1479,26 +1494,26 @@ export const fr: Catalog = {
         {
           heading: 'Ce que cet éditeur change vraiment',
           paragraphs: [
-            'Cette page est l’éditeur MP3 général : coupez un passage, ajoutez un fondu aux extrémités, changez le volume ou la vitesse, ou inversez le fichier, puis exportez un nouveau MP3. Le fichier déposé n’est jamais écrasé.',
+            'Cette page est l’éditeur MP3 général : coupez un passage, faites un fondu aux extrémités, changez le volume ou la vitesse, ou inversez le fichier, puis exportez un nouveau MP3. Le fichier déposé n’est jamais écrasé.',
             'Ici, la vitesse déplace la hauteur tonale avec le tempo. Une voix plus aiguë ou plus grave à la même durée, c’est le [changeur de hauteur tonale](/pitch-changer). Un fichier plus léger, sans cette modification, c’est [compresser l’audio](/compress-audio).',
           ],
         },
         {
           heading: 'Quand ouvrir plutôt une page spécialisée',
           paragraphs: [
-            'L’éditeur est le bon point de départ quand le travail mêle plusieurs petites coupes et changements de niveau. Une tâche unique a un chemin plus court :',
+            'L’éditeur est le bon point de départ quand le travail mêle petites coupes et changements de niveau. Une tâche unique a un chemin plus court :',
           ],
           bullets: [
-            'Une chanson, garder un refrain : la page [couper un MP3](/mp3-cutter) est le même éditeur garder-ou-supprimer.',
-            'Un podcast ou une note vocale : la page [couper l’audio](/audio-trimmer) est ce même éditeur.',
-            'Le titre, l’artiste ou la pochette seulement : l’[éditeur de tags MP3](/mp3-tag-editor) copie les octets audio et ne change que les tags.',
+            'Une chanson, garder un refrain : la page [couper un MP3](/mp3-cutter) est le même éditeur garder-ou-supprimer.',
+            'Un podcast ou une note vocale : la page [rogner l’audio](/audio-trimmer) est ce même éditeur.',
+            'Le titre, l’artiste ou la pochette seulement : l’[éditeur de tags MP3](/mp3-tag-editor) copie les octets audio et ne change que les tags.',
           ],
         },
         {
           heading: 'Exporter et annuler',
           paragraphs: [
             'L’export écrit un nouveau MP3. Le WAV du menu est du PCM 16 bits des échantillons modifiés.',
-            'Ctrl+Z (Cmd+Z sur Mac) revient sur les dernières modifications. Réinitialiser recharge le fichier déposé. Fermer l’onglet abandonne la session, car rien n’est stocké sur un serveur.',
+            'Ctrl+Z (Cmd+Z sur Mac) revient sur les dernières modifications. Changer de fichier recharge le fichier déposé. Fermer l’onglet abandonne la session, car rien n’est stocké sur un serveur.',
           ],
         },
       ],
