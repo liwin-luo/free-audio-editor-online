@@ -4495,14 +4495,26 @@ export const pt: Catalog = {
       howToIntro: 'Um arquivo com ruído, um controle de intensidade',
       subtitle: 'Chiado, zumbido e ruído de ventilador constantes caem 20 dB ou mais ao redor da voz. A linha do tempo não se move.',
       intro: 'Esta página passa o RNNoise pela gravação que você soltar, um gate de ruído treinado com voz. Ruído constante como chiado, zumbido ou ventilador cai 20 dB ou mais ao redor da voz, e as palavras mantêm o nível. O gate é um modelo de 150 KB que roda no seu navegador, então o áudio nunca sai do seu dispositivo.',
-      usesHeading: 'Casos comuns de remoção de ruído de fundo',
+      usesHeading: 'Usos comuns do eco de áudio',
       uses: [
-        'Memos de voz: abaixa o zumbido de ventilador e ar-condicionado e deixa a voz limpa.',
-        'Podcasts: limpa o ruído de fundo antes de publicar, sem editor de desktop.',
-        'Aulas: reduz o chiado constante da sala e ajusta a sonoridade depois.',
-        'Entrevistas: limpa a voz — tira o zumbido constante da rua e do ambiente.',
-        'Voz off: se a locução pegou ar-condicionado, remove o ruído antes de sincronizar.',
-        'Reuniões: abaixa o zumbido elétrico e do ventilador para a reprodução ficar menos agressiva.',
+        'Pontuação de podcast: um slap curto para sublinhar uma frase — daqueles que dão para contar.',
+        'Material de jogo: dê a um bipe de interface um atraso espacial, com algumas repetições morrendo.',
+        'Enfeite vocal: algumas repetições desvanecendo no final de uma voz.',
+        'Terror ao longe: um eco muito espaçado, e o clima vira na hora.',
+        'Enfeites de instrumento: eco num único golpe de violão ou bateria, abrindo o espaço.',
+        'Design de transição: um eco distante entre duas seções para levar o corte.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Um atraso que dá para contar',
+          text: 'Ajuste livre de 0,01 a 0,8 segundos: curto soa a slap, longo a um grito numa sala vazia. O nível de repetição decide quanto de cada cópia sobrevive.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Wet fixado em 45%',
+          text: 'O sinal seco fica intacto e o eco entra a 45% — nada no original se move, só a cópia que volta.',
+        },
       ],
       why: [
         {

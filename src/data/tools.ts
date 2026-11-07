@@ -3231,11 +3231,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Discrete repeats at a delay you set — from a short slap to a long repeat.',
     intro:
       'Echo is a copy of the sound that comes back after a gap you can count. Set the delay from a few hundredths of a second up to 0.8 seconds, and how strongly each repeat feeds the next. The wet signal is mixed at 45%. Delay at zero leaves the file untouched. Processing stays in your browser.',
-    usesHeading: 'Echoes people actually want',
+    usesHeading: 'Common uses for audio echo',
     uses: [
-      'Put a short slap on a vocal so it sits in a room without turning to mush.',
-      'Stretch a guitar hit or a drum into repeats that land on the beat.',
-      'Hear a line come back once, clearly, instead of a cloud of reverb.',
+      'Podcast punctuation: one short slap to underline a line — the kind you can count.',
+      'Game assets: give a UI blip a spatial delay, a few repeats dying away.',
+      'Vocal decoration: a few fading repeats on the tail of a voice.',
+      'Horizon dread: one echo spaced far apart, and the mood turns on the spot.',
+      'Instrument accents: an echo on a single guitar or drum hit, spreading the room.',
+      'Transition design: one distant echo between two sections to carry the cut.',
+    ],
+    why: [
+      {
+        icon: 'repeat',
+        title: 'A delay you can count',
+        text: 'Freely set from 0.01 to 0.8 seconds: short reads as a slap, long as a shout in an empty room. The repeat level sets how much of each copy survives.',
+      },
+      {
+        icon: 'sliders',
+        title: 'Wet fixed at 45%',
+        text: 'The dry signal stays untouched and the echo blends in at 45% — nothing in the original moves, only the copy that comes back.',
+      },
     ],
     howTo: [
       {

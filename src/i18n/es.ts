@@ -4383,14 +4383,26 @@ export const es: Catalog = {
       howToIntro: 'Un archivo con ruido, un deslizador de intensidad',
       subtitle: 'El siseo, zumbido y ruido de ventilador constante baja 20 dB o más alrededor de la voz. La línea de tiempo no se mueve.',
       intro: 'Esta página pasa RNNoise por la grabación que sueltes, una compuerta de ruido entrenada con voz. El ruido constante como el siseo, el zumbido o un ventilador baja 20 dB o más alrededor de la voz, y las palabras conservan su nivel. La compuerta es un modelo de 150 KB que corre en tu navegador, así que el audio nunca sale de tu dispositivo.',
-      usesHeading: 'Casos comunes de eliminación de ruido de fondo',
+      usesHeading: 'Usos habituales del eco de audio',
       uses: [
-        'Notas de voz: baja el zumbido del ventilador y del aire y quédate con la voz limpia.',
-        'Pódcast: limpia el ruido de fondo antes de publicar, sin editor de escritorio.',
-        'Clases: quita el siseo constante del aula y ajusta la sonoridad después.',
-        'Entrevistas: limpia la voz y elimina el zumbido constante de la calle y de la sala.',
-        'Voz en off: si el doblaje tiene aire acondicionado, quita el ruido antes de sincronizar.',
-        'Grabaciones de reuniones: baja el zumbido eléctrico y del ventilador para que se escuche mejor.',
+        'Puntuación de pódcast: un slap corto para subrayar una frase, de los que se pueden contar.',
+        'Material de juegos: da a un pitido de interfaz un retraso espacial, con unas cuantas repeticiones apagándose.',
+        'Adorno vocal: unas repeticiones desvanecidas en la cola de una voz.',
+        'Terror al horizonte: un eco muy espaciado y el ambiente cambia en el acto.',
+        'Adornos de instrumento: eco en un golpe de guitarra o batería, abriendo el espacio.',
+        'Diseño de transiciones: un eco lejano entre dos secciones para llevar el corte.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Un retraso que puedes contar',
+          text: 'Ajuste libre de 0,01 a 0,8 segundos: corto suena a slap, largo a un grito en una habitación vacía. El nivel de repetición decide cuánto sobrevive cada copia.',
+        },
+        {
+          icon: 'sliders',
+          title: 'La señal wet queda al 45 %',
+          text: 'La señal seca se conserva intacta y el eco se mezcla al 45 %: nada del original se mueve, solo vuelve la copia.',
+        },
       ],
       why: [
         {

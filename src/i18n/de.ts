@@ -4350,14 +4350,26 @@ export const de: Catalog = {
       howToIntro: 'Eine rauschende Datei, ein Stärkeregler',
       subtitle: 'Ständiges Zischen, Brummen und Lüfterrauschen fallen um 20 dB oder mehr, wo Sprache ist. Die Zeitleiste bleibt, wo sie ist.',
       intro: 'Diese Seite legt RNNoise über deine Aufnahme, ein Rauschengate, das auf Sprache trainiert ist. Ständiges Rauschen wie Zischen, Brummen oder ein Lüfter fällt um 20 dB oder mehr, und die Worte behalten ihre Lautstärke. Das Gate ist ein 150-KB-Modell und läuft in deinem Browser, deine Audiodatei verlässt das Gerät nicht.',
-      usesHeading: 'Häufige Einsätze zum Entfernen von Hintergrundgeräuschen',
+      usesHeading: 'Häufige Einsätze für Echo',
       uses: [
-        'Sprachmemos: Brummen von Ventilator und Klimaanlage unter die Stimme drücken.',
-        'Podcasts: den Grundrausch vor dem Veröffentlichen säubern, ohne Desktop-Editor.',
-        'Vorlesungen: das konstante Zischen drücken, dann die Lautstärke anpassen.',
-        'Interviews: die Stimme reinigen — ständiges Straßen- und Raumbrummen heraus.',
-        'Video-Offs: hat der Sprecher unter Klimaanlage gesprochen, erst entrauschen, dann syncen.',
-        'Besprechungen: ständiges Netzbrummen und Lüftergeräusch leiser stellen.',
+        'Podcast-Interpunktion: ein kurzer Slap unterstreicht einen Satz — die Sorte, die man mitzählen kann.',
+        'Spielesounds: einem UI-Blip ein räumliches Delay geben, ein paar Wiederholungen, die verklingen.',
+        'Gesangsschmuck: ein paar ausklingende Wiederholungen am Ende einer Stimme.',
+        'Grusel am Horizont: ein sehr weit auseinander liegendes Echo, und die Stimmung kippt.',
+        'Instrumentenakzente: ein Echo auf einem einzelnen Gitarren- oder Drumschlag, das den Raum öffnet.',
+        'Übergangsdesign: ein fernes Echo zwischen zwei Sektionen trägt den Schnitt.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Ein Delay, das du mitzählen kannst',
+          text: 'Frei einstellbar von 0,01 bis 0,8 Sekunden: kurz liest sich als Slap, lang als ein Ruf im leeren Raum. Der Wiederholungspegel entscheidet, wie viel von jeder Kopie überlebt.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Wet sitzt bei 45 %',
+          text: 'Das trockene Signal bleibt unangetastet, das Echo mischt sich mit 45 % ein — nichts am Original bewegt sich, nur die Kopie kommt zurück.',
+        },
       ],
       why: [
         {
