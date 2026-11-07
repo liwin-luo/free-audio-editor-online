@@ -2326,11 +2326,26 @@ export const es: Catalog = {
       subtitle: 'Pon un MP3 a 64, 96, 128, 192 o 320 kbps. Un número más alto no devuelve el detalle.',
       intro:
         'Elige el bitrate del MP3 y recodifica el archivo en esta pestaña. El menú abre en 192 kbps. Un minuto de estéreo pesa unos 2,4 MB a 320 kbps, 1,4 MB a 192, 1 MB a 128, 0,7 MB a 96 y 0,5 MB a 64. Aumentar el número en un archivo que ya tiene pérdida no devuelve el detalle que falta. La decodificación y la codificación se quedan en el navegador.',
-      usesHeading: 'Para qué sirve esta página',
+      usesHeading: 'Usos habituales de la conversión de bitrate',
       uses: [
-        'Cumple un encargo que pide 192 o 128 kbps y exporta ese archivo.',
-        'Pasa un WAV a MP3 a 320 kbps, la tasa más cercana de esta página.',
-        'Baja de 320 kbps a 128 kbps, cerca del 40 % del tamaño.',
+        'Especificaciones de entrega: la plataforma pide 192 o 128 kbps; entrega según lo pedido.',
+        'Normalización por lotes: una pila de MP3 con bitrates mezclados, unificada en un solo ajuste.',
+        'Adelgazar la voz: la voz baja a 96 o 64 kbps, volviendo a partir el tamaño a la mitad.',
+        'Arreglo de compatibilidad: algunos equipos solo aceptan 128 kbps; convierte una copia para ellos.',
+        'Subir de nivel con cuidado: subir un bitrate bajo no sonará mejor; sube solo por compatibilidad.',
+        'Escucha de borrador: saca primero un borrador a 96 kbps, confirma y exporta a bitrate alto.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Una sola recodificación',
+          text: 'De MP3 a MP3 también se decodifica y recodifica: esta página comprime exactamente una vez, sin transcodificar una y otra vez después.',
+        },
+        {
+          icon: 'layers',
+          title: 'Lotes en un solo bitrate',
+          text: 'Todo el lote comparte un ajuste, convirtiendo en orden y empaquetando en un ZIP.',
+        },
       ],
       howTo: [
         { name: 'Añade el archivo', text: 'Suelta cualquier audio que este navegador pueda decodificar. La conversión se queda en la pestaña. Puedes soltar varios archivos. Comparten el ajuste que eliges después. Uno se descarga solo. Dos o más vuelven en un ZIP.' },

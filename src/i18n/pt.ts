@@ -2341,11 +2341,26 @@ export const pt: Catalog = {
       subtitle: 'Ponha um MP3 em 64, 96, 128, 192 ou 320 kbps. Um número maior não devolve o detalhe.',
       intro:
         'Escolha o bitrate do MP3 e recodifique o arquivo nesta aba. O menu abre em 192 kbps. Um minuto de estéreo pesa cerca de 2,4 MB a 320 kbps, 1,4 MB a 192, 1 MB a 128, 0,7 MB a 96 e 0,5 MB a 64. Aumentar o número num arquivo que já tem perda não devolve o detalhe que falta. A decodificação e a codificação ficam no navegador.',
-      usesHeading: 'Para que serve esta página',
+      usesHeading: 'Usos comuns da conversão de bitrate de MP3',
       uses: [
-        'Cumpra um pedido que pede 192 ou 128 kbps e exporte esse arquivo.',
-        'Passe um WAV para MP3 a 320 kbps, a taxa mais próxima desta página.',
-        'Desça de 320 kbps para 128 kbps, cerca de 40% do tamanho.',
+        'Especificações de entrega: a plataforma pede 192 ou 128 kbps; entregue conforme o pedido.',
+        'Normalização em lote: uma pilha de MP3s com bitrates misturados, unificada num só ajuste.',
+        'Afinar a voz: a voz desce para 96 ou 64 kbps, cortando o tamanho pela metade de novo.',
+        'Correção de compatibilidade: alguns aparelhos só aceitam 128 kbps — converta uma cópia para eles.',
+        'Subir com cuidado: subir um bitrate baixo não vai soar melhor; suba só por compatibilidade.',
+        'Escuta de rascunho: gere primeiro um rascunho a 96 kbps, confirme, depois exporte em bitrate alto.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Uma recodificação, só essa',
+          text: 'De MP3 para MP3 ainda decodifica e recodifica — esta página comprime exatamente uma vez, sem transcodificações repetidas depois.',
+        },
+        {
+          icon: 'layers',
+          title: 'Lote num só bitrate',
+          text: 'O lote inteiro compartilha um ajuste, convertendo em ordem e empacotando num ZIP.',
+        },
       ],
       howTo: [
         { name: 'Adicione o arquivo', text: 'Solte qualquer áudio que este navegador consiga decodificar. A conversão fica na aba. Dá para soltar vários arquivos. Eles usam o ajuste que você escolhe em seguida. Um baixa sozinho. Dois ou mais voltam num ZIP.' },

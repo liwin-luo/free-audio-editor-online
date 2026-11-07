@@ -1717,11 +1717,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Set an MP3 to 64, 96, 128, 192, or 320 kbps. A higher number does not restore detail.',
     intro:
       'Pick one of 64, 96, 128, 192, or 320 kbps. This page starts at 192. A higher number does not restore detail the file already lost.',
-    usesHeading: 'Jobs this page is for',
+    usesHeading: 'Common uses for MP3 bitrate conversion',
     uses: [
-      'Match a brief that asks for 192 or 128 kbps and export that file.',
-      'Turn a WAV into an MP3 at 320 kbps, the top rate on this page.',
-      'Re-encode a 320 kbps file at 128 kbps. The higher number does not come back.',
+      'Submission specs: a platform asks for 192 or 128 kbps — deliver to spec.',
+      'Batch normalising: a pile of MP3s at mixed bitrates, unified onto one setting.',
+      'Voice slim-down: speech drops to 96 or 64 kbps, cutting the size in half again.',
+      'Compatibility fix: some devices only accept 128 kbps — convert a copy for them.',
+      'Upscale with care: raising a low bitrate to a higher one will not sound better; upscale only for compatibility.',
+      'Draft listening: render a 96 kbps draft first, confirm, then export at a high bitrate.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'One re-encode, no more',
+        text: 'MP3 to MP3 still decodes and re-encodes — this page compresses exactly once, with no repeated transcoding after that.',
+      },
+      {
+        icon: 'layers',
+        title: 'Batch onto one bitrate',
+        text: 'A whole batch shares one setting, converting in order and packing into a ZIP.',
+      },
     ],
     howTo: [
       {
