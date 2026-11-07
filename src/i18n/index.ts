@@ -35,7 +35,6 @@ export const PENDING_I18N = new Set<string>([
   'echo',
   'audio-distorter',
   'silence-remover',
-  'noise-remover',
   'loudness-meter',
   'slowed-reverb',
   'treble-booster',
