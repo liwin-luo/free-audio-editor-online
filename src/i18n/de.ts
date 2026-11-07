@@ -691,11 +691,26 @@ export const de: Catalog = {
       subtitle: 'Ein echter Low-Shelf: bis zu +15 dB unter 150 Hz, erst hören, dann exportieren — nichts verlässt dein Gerät.',
       intro:
         'Dünner Bass ist der häufigste Grund, warum eine Aufnahme klein klingt. Der Bass-Booster setzt einen echten Low-Shelf ein — bis zu +15 dB unter 150 Hz, derselbe Move wie beim Mastering — kein Trick, der einfach alles lauter macht. Datei laden, Regler aufziehen, bis der Bass sitzt, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
-      usesHeading: 'Wann Bass-Boost hilft',
+      usesHeading: 'Häufige Einsätze für Bass-Boost',
       uses: [
-        'Handy-aufgenommenen Sprachmemos und Interviews Körper geben, damit sie nicht mehr dünn klingen.',
-        'Drums und Bässe in einem Track nach vorn holen, der nur aus Mitten besteht.',
-        'Einem Podcast-Jingle Gewicht geben, ohne die Stimmen anzutasten.',
+        'Dünne Stimme: Handy-Memos und Interviews, die nach Pappe klingen, mit etwas Körper.',
+        'In-Ear-Hören: reicht der Tiefton nicht, heb zuerst den Bass des Songs.',
+        'Videomusik: das Bett mit dem schwachen Tiefton, verdichtet bevor es in den Schnitt geht.',
+        'Tanzfläche vorheizen: dem Kick der Elektronik mehr Wumms geben.',
+        'Alte Aufnahmen auffrischen: der mit den Jahren gesunkene Tiefton, zum Teil zurückgeholt.',
+        'Stapel gleichziehen: mehrere Dateien mit demselben Boost, zusammen exportiert.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Von 0 bis +15 dB, frei',
+          text: 'Der Bassregler läuft über die ganze Strecke: bei rund 8 dB wird der Körper hörbar; darüber matscht es — das Ohr entscheidet.',
+        },
+        {
+          icon: 'layers',
+          title: 'Ein Stapel, eine Stufe',
+          text: 'Die Dateien teilen sich den Boost, werden der Reihe nach verarbeitet und wandern ins ZIP.',
+        },
       ],
       howTo: [
         {
@@ -796,11 +811,26 @@ export const de: Catalog = {
       subtitle: 'Ein echter High-Shelf: bis zu +15 dB über 3 kHz, erst hören, dann exportieren — nichts verlässt dein Gerät.',
       intro:
         'Muffiges, mattes Audio fehlt meist eins: Energie über 3 kHz. Der Höhen-Booster setzt einen echten High-Shelf ein — bis zu +15 dB über 3 kHz, derselbe Move wie beim Mastering, um einen Track zu öffnen — kein Trick, der einfach alles anhebt. Datei laden, Regler aufziehen, bis das Detail zurück ist, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
-      usesHeading: 'Wann Höhen-Boost hilft',
+      usesHeading: 'Häufige Einsätze für Höhen-Boost',
       uses: [
-        'Einer matt klingenden Aufnahme Luft verschaffen — als wäre sie unter einer Decke aufgenommen.',
-        'Konsonanten und Atem in Stimmen zurückholen, damit Sprache verständlich bleibt.',
-        'Becken und Akustikinstrumenten in einer flachen Mischung Glanz geben.',
+        'Muffiges retten: ein Video, das wie unter einer Decke klingt, mit offenen Höhen.',
+        'Alte Songs aufhellen: Aufnahmen mit gesunkenem Höhenanteil, Luft zurückgeholt.',
+        'Klare Sprache: Telefonmitschnitte ohne Höhen, danach sitzt jede Silbe besser.',
+        'Die andere Hälfte des Kopfhörers: nach dem Bass-Boost symmetrisch aufhellen.',
+        'Details hören: Becken und Atem hörbar machen — ein wenig Höhe drüber.',
+        'Stapel aufhellen: mehrere Dateien mit demselben Schub, zusammen exportiert.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Von 0 bis +15 dB, frei',
+          text: 'Der Höhenregler läuft über die ganze Strecke: zu weit, und die Sibilanten werden rau — kleine Schritte, Ohr dran.',
+        },
+        {
+          icon: 'layers',
+          title: 'Ein Stapel, eine Stufe',
+          text: 'Die Dateien teilen sich den Schub, werden der Reihe nach verarbeitet und wandern ins ZIP.',
+        },
       ],
       howTo: [
         {
@@ -889,11 +919,26 @@ export const de: Catalog = {
       subtitle: 'Zehn Bänder mit je ±15 dB, Presets per Klick — immer noch der ehrliche EQ.',
       intro:
         'Drei Knöpfe decken das meiste ab, wofür es einen EQ gibt: Bässe unter 150 Hz, Mitten um 1 kHz, wo die Stimmen wohnen, und Höhen über 3 kHz. Dieser Equalizer nutzt echte Filterbänder — Low Shelf, Peaking, High Shelf — mit je ±15 dB, um Grollen zu entschärfen, Matsch herauszunehmen oder Luft zu geben. Datei laden, Klang formen, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
-      usesHeading: 'Was die drei Bänder tun',
+      usesHeading: 'Häufige Einsätze für den Equalizer',
       uses: [
-        'Matsch schneiden: −3 bis −6 dB in den Mitten räumen überfüllte Sprachaufnahmen auf.',
-        'Grollen zähmen: das untere Band herunterziehen bei Aufnahmen nah an einer Wand.',
-        'Präsenz geben: Höhen für Luft, Bässe für Gewicht — beides zugleich, wenn der Mix es verlangt.',
+        'Brühen weg: die Mitten um −3 bis −6 dB senken, und die verklumpte Stimme atmet sofort.',
+        'Muff weg: das 8k-16k-Band anheben, und die zugedeckte Aufnahme kommt hell zurück.',
+        'Wumms weg: die 60-125 Hz ein wenig zurücknehmen, und der basslastige Mix wird sauber.',
+        'Stimme aufhellen: 2k-4k fein anheben, und jede Silbe sitzt klarer.',
+        'Stil-Presets: Rock, Pop, Hip-Hop, Klassik oder Stimme — mit einem Klick starten.',
+        'Kanäle ausbalancieren: links und rechts je ein Satz und getrennt exportieren.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Zehn Bänder, jedes mit Revier',
+          text: 'Zehn Peaking-Bänder — 31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, 16k — mit je ±15 dB: Korrektur nach Band statt pauschalem Bass und Höhen.',
+        },
+        {
+          icon: 'check',
+          title: 'Presets zum Starten',
+          text: 'Sechs Presets — flach, Rock, Pop, Hip-Hop, Klassik, Stimme — zum Annähern und Feinjustieren.',
+        },
       ],
       howTo: [
         {
@@ -982,11 +1027,26 @@ export const de: Catalog = {
       subtitle: 'Die Grenzfrequenz von 20 kHz bis 300 Hz durchziehen und nur die Frequenzen behalten, die du willst.',
       intro:
         'Ein Tiefpass behält das Tiefe und rollt alles über der Grenzfrequenz ab — der ehrliche Weg, Zischen, scharfe Sibilanten, Quietschen und die harte digitale Kante zu entfernen. Anders als ein Rauschentferner rät er nie, was Rauschen ist: Alles über deiner Grenzfrequenz geht einfach. Datei laden, die Grenzfrequenz nach unten ziehen, bis die Störung verschwindet, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
-      usesHeading: 'Wann Tiefpass hilft',
+      usesHeading: 'Häufige Einsätze für den Tiefpass',
       uses: [
-        'Konstantes Zischen und Klimaanlagen-Pfeifen aus Sprachaufnahmen entfernen.',
-        'Scharfe, spritzige Becken oder Sibilanz in einem rohen Mix mildern.',
-        'Ein Sample hinter ein anderes setzen, indem man sein oberes Ende abdunkelt.',
+        'Zischen weg: das ständige Zischen und das Brummen der Klima in einem Schnitt raus.',
+        'Kassetten digitalisieren: das Zischen der alten Kassette nach unten gedrückt.',
+        'Bett weich machen: Hintergrundmusik, zu hell für die Stimme, mit geschnittenen Spitzen.',
+        'Telefon-Sound: die Enge der alten Sprechstelle, mit geschlossenem Höhenende.',
+        'Der Rauschentfernung den Weg ebnen: tonale Hochfrequenzstörungen zuerst mit dem Tiefpass sammeln.',
+        'Stapel weich machen: mehrere Dateien mit demselben Schnitt, zusammen exportiert.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Cutoff nach Maß',
+          text: 'Frei von 300 Hz bis 20 kHz: das Zischen wohnt in den hohen Bändern; kürze, bis die S dunkler werden, und halte dort.',
+        },
+        {
+          icon: 'layers',
+          title: 'Ein Cutoff für den Stapel',
+          text: 'Die Dateien teilen sich den Cutoff, werden der Reihe nach verarbeitet und wandern ins ZIP.',
+        },
       ],
       howTo: [
         {
@@ -1075,11 +1135,26 @@ export const de: Catalog = {
       subtitle: 'Die Grenzfrequenz von 20 Hz bis 5 kHz hochziehen und alles darunter entfernen.',
       intro:
         'Rumble, Verkehr, Handling-Geräusche, Schläge auf den Tisch — ungewolltes Tiefe steckt in den meisten echten Aufnahmen. Ein Hochpass behält alles über deiner Grenzfrequenz und rollt alles darunter ab: die ehrliche Reparatur, die nie rät. Datei laden, die Grenzfrequenz nach oben ziehen, bis das Rumble verschwunden ist und die Stimme voll bleibt, exportieren. Alles läuft in deinem Browser: Die Datei wird nie hochgeladen.',
-      usesHeading: 'Wann Hochpass hilft',
+      usesHeading: 'Häufige Einsätze für den Hochpass',
       uses: [
-        'Verkehrsrumble und Tischschläge aus Podcast- und Sprachaufnahmen entfernen.',
-        'Wind und Handling-Geräusche loswerden, die eine windige Außenaufnahme überlebt haben.',
-        'Einen Mix straffen, indem man den Sub-Bass-Matsch aus jedem Nicht-Bass-Track zieht.',
+        'Stimme säubern: Straßenrollen und Tischklopfen aus Podcasts und Sprachaufnahmen raus.',
+        'Handyvideos: das tiefe Wackeln der Hand, mit einem Schnitt entfernt.',
+        'Der Kompression den Weg ebnen: mit sauberem Tiefton löst der Kompressor nicht mehr auf das Rollen aus.',
+        'Vorträge: das Brummen von Klimaanlage und Menge im Saal niedergedrückt.',
+        'Mixe entbrühen: die nutzlosen Ultrasubbässe raus, wenn der Mix brüht.',
+        'Stapel säubern: mehrere Dateien mit demselben Cutoff, zusammen exportiert.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Cutoff nach Maß',
+          text: 'Frei von 20 Hz bis 5 kHz: Stimme kommt meist schon ab 80-120 Hz aus; höher schneiden nimmt der Stimme den Brustkorb.',
+        },
+        {
+          icon: 'layers',
+          title: 'Ein Cutoff für den Stapel',
+          text: 'Die Dateien teilen sich den Cutoff, werden der Reihe nach verarbeitet und wandern ins ZIP.',
+        },
       ],
       howTo: [
         {

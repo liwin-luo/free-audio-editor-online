@@ -690,11 +690,26 @@ export const es: Catalog = {
       subtitle: 'Un shelf de verdad: hasta +15 dB por debajo de 150 Hz, escucha y exporta. Nada sale de tu dispositivo.',
       intro:
         'Los graves débiles son la razón más común por la que una grabación suena pequeña. El realce de graves aplica un shelf auténtico — hasta +15 dB por debajo de 150 Hz, el mismo movimiento que haría un ingeniero de mastering — no un truco que sube todo. Carga un archivo, sube el control hasta que los graves asienten y exporta. Todo ocurre en tu navegador: el archivo nunca se sube.',
-      usesHeading: 'Cuándo realzar los graves',
+      usesHeading: 'Usos habituales de realzar graves',
       uses: [
-        'Dar cuerpo a notas de voz y entrevistas grabadas con el móvil para que dejen de sonar finas.',
-        'Traer la batería y el bajo al frente en un tema que es todo medios.',
-        'Dar peso a la sintonía de un podcast sin tocar las voces.',
+        'Voz delgada: memos y entrevistas de móvil que suenan a cartón, con un poco de cuerpo.',
+        'Auriculares cortos: si el subgrave no llega, empuja primero el grave de la canción.',
+        'Música de vídeo: el colchón con el bajo flojo, engrosado antes de entrar al corte.',
+        'Calentar la pista: el kick de la electrónica con más impacto.',
+        'Restaurar grabaciones viejas: el grave que decreció con los años, recuperado en parte.',
+        'Igualar por lotes: varios archivos con el mismo realce, exportados juntos.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'De 0 a +15 dB a tu antojo',
+          text: 'El control de graves va de punta a punta: hacia 8 dB el cuerpo se nota; pasado, empasta — oído manda.',
+        },
+        {
+          icon: 'layers',
+          title: 'Mismo lote, misma curva',
+          text: 'Los archivos comparten el realce, se procesan en orden y van en un ZIP.',
+        },
       ],
       howTo: [
         {
@@ -795,11 +810,26 @@ export const es: Catalog = {
       subtitle: 'Un shelf de agudos real: hasta +15 dB por encima de 3 kHz, escucha y exporta. Nada sale de tu dispositivo.',
       intro:
         'El audio apagado y sordo suele echar una cosa en falta: energía por encima de 3 kHz. El realce de agudos aplica un shelf de agudos auténtico — hasta +15 dB por encima de 3 kHz, el mismo movimiento que hace un ingeniero de mastering para abrir un tema — no un truco que sube todo. Carga un archivo, sube el control hasta que vuelva el detalle y exporta. Todo ocurre en tu navegador: el archivo nunca se sube.',
-      usesHeading: 'Cuándo realzar los agudos',
+      usesHeading: 'Usos habituales de realzar agudos',
       uses: [
-        'Abrir una grabación apagada que suena como grabada debajo de una manta.',
-        'Devolver consonantes y aire a las voces para que el habla siga siendo inteligible.',
-        'Añadir brillo a platillos e instrumentos acústicos en una mezcla que suena plana.',
+        'Rescatar lo apagado: un vídeo que suena con manta, con las frecuencias altas abiertas.',
+        'Brighten canciones viejas: grabaciones de años con el agudo caído, aire recuperado.',
+        'Voz nítida: llamadas a las que falta el agudo, con las palabras más claras.',
+        'La otra mitad del auricular: tras engrosar el grave, simetriza con brillo.',
+        'Escucha de detalle: para oír platos y respiraciones, empuja un poco el agudo.',
+        'Brillo por lotes: varios archivos con el mismo empuje, exportados juntos.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'De 0 a +15 dB a tu antojo',
+          text: 'El control de agudos va de punta a punta: pasado, los seses se ponen ásperos — sube a pasitos, con el oído puesto.',
+        },
+        {
+          icon: 'layers',
+          title: 'Mismo lote, misma curva',
+          text: 'Los archivos comparten el empuje, se procesan en orden y van en un ZIP.',
+        },
       ],
       howTo: [
         {
@@ -888,11 +918,26 @@ export const es: Catalog = {
       subtitle: 'Diez bandas con ±15 dB, presets a un clic — un EQ honesto, como siempre.',
       intro:
         'Tres controles cubren casi todo lo que un EQ debe hacer: graves por debajo de 150 Hz, medios en torno a 1 kHz donde viven las voces y agudos por encima de 3 kHz. Este ecualizador usa bandas de filtro reales — shelf de graves, pico y shelf de agudos — con ±15 dB cada una, para afinar retumbos, bajar el barro o añadir aire. Carga un archivo, moldea el sonido y exporta. Todo ocurre en tu navegador: el archivo nunca se sube.',
-      usesHeading: 'Qué hace cada banda',
+      usesHeading: 'Usos habituales del ecualizador',
       uses: [
-        'Cortar el barro: −3 a −6 dB en los medios limpia grabaciones de voz cargadas.',
-        'Domar el retumbo: baja la banda de graves en grabaciones hechas junto a una pared.',
-        'Añadir presencia: sube agudos para aire, graves para cuerpo — los dos a la vez si la mezcla lo pide.',
+        'Quitar el empasto: baja los medios −3 a −6 dB y la voz amontonada respira al instante.',
+        'Quitar el apagado: empuja la banda de 8k-16k y la grabación entapada recupera el brillo.',
+        'Quitar el boom: recoge un poco los 60-125 Hz y la mezcla que golpea se queda limpia.',
+        'Aclarar la voz: un empujón fino en 2k-4k y cada palabra se entiende mejor.',
+        'Presets de estilo: rock, pop, hip-hop, clásica o voz para arrancar de un toque.',
+        'Emparejar canales: un ajuste por lado y exporta cada uno por separado.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Diez bandas, cada una con su terreno',
+          text: 'Diez bandas peaking —31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, 16k— con ±15 dB cada una: se corrige por bandas, no con un «bajo y agudo» genérico.',
+        },
+        {
+          icon: 'check',
+          title: 'Presets para arrancar',
+          text: 'Seis presets —plano, rock, pop, hip-hop, clásica, voz— para acercarte y luego afinar.',
+        },
       ],
       howTo: [
         {
@@ -981,11 +1026,26 @@ export const es: Catalog = {
       subtitle: 'Baja el corte desde 20 kHz hasta 300 Hz y conserva solo las frecuencias que quieres.',
       intro:
         'Un filtro paso bajo conserva los graves y atenúa todo lo que queda por encima del corte — la forma honesta de quitar siseo, sibilancia afilada, chirridos y el borde duro de lo digital. A diferencia de un removedor de ruido, nunca adivina qué es ruido: todo lo que queda por encima de tu corte simplemente desaparece. Carga un archivo, baja el corte hasta que la molestia desaparezca y exporta. Todo ocurre en tu navegador: el archivo nunca se sube.',
-      usesHeading: 'Cuándo usar un paso bajo',
+      usesHeading: 'Usos habituales del paso bajo',
       uses: [
-        'Quitar el siseo constante y el zumbido del aire acondicionado de grabaciones de voz.',
-        'Suavizar platillos ásperos o sibilancia en una mezcla sin pulir.',
-        'Dejar un sample detrás de otro apagando su parte alta.',
+        'Quitar siseo: el siseo constante y el zumbido del aire salen de un corte.',
+        'Pasar cintas: el siseo del casete viejo, empujado hacia abajo.',
+        'Suavizar el colchón: la música de fondo muy brillante que pisa la voz, con los agudos cortados.',
+        'Sonido de teléfono: el estrechez del portero antiguo, cerrando el agudo.',
+        'Preparar la limpieza: el ruido tonal del agudo se recoge primero con un paso bajo.',
+        'Suavizar por lotes: varios archivos con el mismo corte, exportados juntos.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Corte a tu medida',
+          text: 'De 300 Hz a 20 kHz libre: el siseo vive en las bandas altas; corta hasta que las eses se oscurecen y para ahí.',
+        },
+        {
+          icon: 'layers',
+          title: 'Mismo corte por lotes',
+          text: 'Los archivos comparten el corte, se procesan en orden y van en un ZIP.',
+        },
       ],
       howTo: [
         {
@@ -1074,11 +1134,26 @@ export const es: Catalog = {
       subtitle: 'Sube el corte desde 20 Hz hasta 5 kHz y elimina todo lo que queda por debajo.',
       intro:
         'Rumble, tráfico, ruido de manejo, golpes en la mesa — los graves no deseados vienen de serie en la mayoría de grabaciones reales. Un filtro paso alto conserva todo lo que queda por encima de tu corte y atenúa lo que hay debajo: el arreglo honesto que nunca adivina. Carga un archivo, sube el corte hasta que el rumble desaparezca y la voz siga con cuerpo, y exporta. Todo ocurre en tu navegador: el archivo nunca se sube.',
-      usesHeading: 'Cuándo usar un paso alto',
+      usesHeading: 'Usos habituales del paso alto',
       uses: [
-        'Limpiar el rumble del tráfico y los golpes de mesa de podcasts y grabaciones de voz.',
-        'Quitar el viento y el ruido de manejo que sobrevivieron a una toma al aire libre.',
-        'Apretar una mezcla despejando el barro de subgraves de cada pista que no sea el bajo.',
+        'Limpiar la voz: quita el retumbe de la calle y los golpes en la mesa de pódcast y locuciones.',
+        'Vídeos del móvil: el temblor grave del pulso, cortado de un golpe.',
+        'Preparar la compresión: con el grave limpio, el compresor deja de dispararse por el retumbe.',
+        'Grabaciones de charlas: el zumbido del aire acondicionado y del público, apretado.',
+        'Desempastar mezclas: los ultrabajos inútiles fuera cuando la mezcla empasta.',
+        'Limpieza por lotes: varios archivos con el mismo corte, exportados juntos.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Corte a tu medida',
+          text: 'De 20 Hz a 5 kHz libre: la voz suele bastar desde 80-120 Hz; cortar más alto quita el pecho de la voz.',
+        },
+        {
+          icon: 'layers',
+          title: 'Mismo corte por lotes',
+          text: 'Los archivos comparten el corte, se procesan en orden y van en un ZIP.',
+        },
       ],
       howTo: [
         {

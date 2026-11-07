@@ -4088,11 +4088,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'A real high-shelf EQ: up to +15 dB above 3 kHz, preview and export — nothing leaves your device.',
     intro:
       'This page is a high-shelf at 3 kHz, from 0 to +15 dB, in steps of 1. It cannot cut. At 0 the filter is not inserted. A guitar pedal is a different device, and this page does not drive an amp. A file over 300 MB is rejected.',
-    usesHeading: 'When to boost the treble',
+    usesHeading: 'Common uses for treble boost',
     uses: [
-      'Make a muffled video or voice recording clearer and crisper.',
-      'Bring consonants and breath back into voices so speech stays intelligible.',
-      'Add sparkle to cymbals and acoustic instruments in a flat-sounding mix.',
+      'Rescue the muffled: a video that sounds under a blanket, with the highs opened.',
+      'Brighten old songs: recordings whose highs sank over the years, air restored.',
+      'Clearer speech: call recordings missing their highs, with words landing sharper.',
+      'The other half of the headphones: after thickening the bass, match it with brightness.',
+      'Detail listening: to hear cymbals and breaths, nudge the highs up a touch.',
+      'Batch brightening: several files with the same lift, exported together.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Free from 0 to +15 dB',
+        text: 'The treble slider sweeps the whole range: too far and the sibilants turn scratchy — small steps, ears on.',
+      },
+      {
+        icon: 'layers',
+        title: 'One batch, one setting',
+        text: 'Files share the lift, processing in order and packing into a ZIP.',
+      },
     ],
     howTo: [
       {
@@ -4210,11 +4225,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Ten bands, ±15 dB each, genre presets one tap away — still an honest EQ.',
     intro:
       'Ten peaking bands from 31 Hz to 16 kHz, each −15 to +15 dB, an octave apart. A band left at 0 dB is bypassed. A boost also applies the limiter: threshold −2 dB, knee 3, ratio 20, attack 0.002 seconds, release 0.15 seconds.',
-    usesHeading: 'What the three bands do',
+    usesHeading: 'Common uses for the equalizer',
     uses: [
-      'Cut mud: −3 to −6 dB in the mids cleans up crowded voice recordings.',
-      'Tame boom: pull the low band down on recordings made near a wall.',
-      'Add presence: lift highs for air, lows for weight — both at once if the mix needs it.',
+      'De-mud: pull the mids down 3 to 6 dB and a crowded voice opens up at once.',
+      'De-muffle: push the 8k-16k band and a blanket-muted recording gets its brightness back.',
+      'De-boom: trim the 60-125 Hz a little and a bass-heavy mix cleans up.',
+      'Brighten speech: a small lift at 2k-4k and every word lands clearer.',
+      'Style presets: rock, pop, hip-hop, classical or voice presets to start from.',
+      'Balance the sides: one curve per channel, exported separately.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Ten bands, each with a job',
+        text: 'Ten peaking bands — 31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, 16k Hz, each ±15 dB — fixes by band instead of a generic bass-and-treble.',
+      },
+      {
+        icon: 'check',
+        title: 'Presets to start from',
+        text: 'Six presets — flat, rock, pop, hip-hop, classical, voice — get you close before fine-tuning.',
+      },
     ],
     howTo: [
       {
@@ -4332,11 +4362,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Sweep the cutoff from 20 kHz down to 300 Hz and keep only the frequencies you want.',
     intro:
       'A low-pass filter keeps the low end and rolls off everything above the cutoff — the honest way to remove hiss, sharp sibilance, squeaks and harsh digital edge. Unlike a noise remover, it never guesses what is noise: everything above your cutoff simply goes. Drop a file, sweep the cutoff down until the annoyance disappears, export. Everything runs in your browser: the file is never uploaded.',
-    usesHeading: 'When to low-pass audio',
+    usesHeading: 'Common uses for the low-pass filter',
     uses: [
-      'Remove constant hiss and air conditioning whine from voice recordings.',
-      'Soften harsh, spitty cymbals or sibilance in a rough mix.',
-      'Make audio sound muffled on purpose — behind a wall, phone-voice, lo-fi or meme.',
+      'Hiss removal: steady hiss and air-conditioner hum leave with one cut.',
+      'Tape transfers: the bright sizzle of an old cassette, pressed back down.',
+      'Softening beds: background music too bright against the voice, with the harsh highs cut.',
+      'Telephone effects: the narrow feel of an old intercom, with the top end closed.',
+      'Prep for noise removal: tonal high-frequency noise gets collected first with a low-pass.',
+      'Batch softening: several files at one cutoff, exported together.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'A cutoff you set',
+        text: 'Free from 300 Hz to 20 kHz: hiss lives in the high bands; cut until the esses darken and stop there.',
+      },
+      {
+        icon: 'layers',
+        title: 'One cutoff for the batch',
+        text: 'Files share the cutoff, processing in order and packing into a ZIP.',
+      },
     ],
     howTo: [
       {
@@ -4454,11 +4499,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Sweep the cutoff from 20 Hz up to 5 kHz and strip everything below it.',
     intro:
       'Rumble, traffic, handling noise, desk thumps — unwanted low end is baked into most real-world recordings. A high-pass filter keeps everything above your cutoff and rolls off everything below: the honest fix that never guesses. Drop a file, sweep the cutoff up until the rumble disappears and the voice stays full, export. Everything runs in your browser: the file is never uploaded.',
-    usesHeading: 'When to high-pass audio',
+    usesHeading: 'Common uses for the high-pass filter',
     uses: [
-      'Clean traffic rumble and desk thumps out of podcast and voice recordings.',
-      'Remove wind and handling noise that survived a windy outdoor take.',
-      'Tighten a mix by clearing sub-bass mud out of every non-bass track.',
+      'Clean voices: remove street rumble and desk knocks from podcasts and voice takes.',
+      'Phone video: the low wobble of a shaking hand, gone with one cut.',
+      'Prep for compression: with the low end clean, the compressor stops triggering on rumble.',
+      'Talk recordings: hall air-conditioning and crowd hum pressed back down.',
+      'De-muddying mixes: cut the useless sub-bass when a mix turns to mud.',
+      'Batch cleaning: several files at one cutoff, exported together.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'A cutoff you set',
+        text: 'Free from 20 Hz to 5 kHz: voices usually fine from 80-120 Hz; cutting higher thins the chest out of the voice.',
+      },
+      {
+        icon: 'layers',
+        title: 'One cutoff for the batch',
+        text: 'Files share the cutoff, processing in order and packing into a ZIP.',
+      },
     ],
     howTo: [
       {
@@ -4951,11 +5011,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'A real low-shelf EQ: up to +15 dB below 150 Hz, preview and export — nothing leaves your device.',
     intro:
       'This page is a low shelf at 150 Hz, from 0 to +15 dB. It cannot cut. It only raises lows that are already in the file. At 0 the filter is not inserted.',
-    usesHeading: 'When to boost the bass',
+    usesHeading: 'Common uses for bass boost',
     uses: [
-      'Give phone-recorded voice memos and interviews some body so they stop sounding thin.',
-      'Bring drums and basslines forward in a track that is all midrange.',
-      'Add weight to a podcast intro or jingle without touching the voices.',
+      'Thin voices: phone memos and interviews that sound like cardboard, given a little body.',
+      'Bass-shy earbuds: when the low end never arrives, push the song first.',
+      'Video beds: background music with a weak low end, thickened before the edit.',
+      'Warming a track: the electronic kick with more punch behind it.',
+      'Old-recording touch-ups: low end that decayed over the years, partly restored.',
+      'Batch matching: several files with the same lift, exported together.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Free from 0 to +15 dB',
+        text: 'The bass slider sweeps the whole range: around 8 dB the body is obvious; past that it muds — judge by ear.',
+      },
+      {
+        icon: 'layers',
+        title: 'One batch, one setting',
+        text: 'Files share the boost, processing in order and packing into a ZIP.',
+      },
     ],
     howTo: [
       {
