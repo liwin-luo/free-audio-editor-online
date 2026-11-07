@@ -3349,11 +3349,26 @@ export const pt: Catalog = {
       subtitle: 'O som da madrugada: desacelere a faixa para ~85%, dê espaço e exporte — sem app, sem envio.',
       intro:
         'O slowed + reverb é aquele som de madrugada, lento e com eco: a faixa cai para cerca de 80–90% da velocidade, o tom desce junto, e uma cauda suave faz tudo soar como se tocasse dois cômodos mais longe. Carregue a música, arraste a velocidade para uns 85%, suba o reverb até ficar no ponto e exporte — a edição inteira acontece no seu aparelho, então até faixas completas ficam prontas em segundos. Suba a velocidade acima de 100% e o resultado é nightcore.',
-      usesHeading: 'O som de slowed e reverb',
+      usesHeading: 'Cenários típicos do slowed + reverb',
       uses: [
-        'Baixe uma faixa para cerca de 85% e acrescente espaço. É a mistura noturna de sempre.',
-        'Comece com uma música seca. O efeito é a desaceleração e o reverb juntos.',
-        'Corte o trecho que você quer antes de exportar, para o wash não ser o álbum inteiro.',
+        'Versões noturnas: leve a música a uns 85% e acrescente espaço — o clima vira na hora.',
+        'Reescuta lenta: faça um corte lento de uma música que ama, outro jeito de ouvi-la.',
+        'Música de vídeos curtos: slowed + reverb é a atmosfera clássica do vídeo curto.',
+        'Experimentos vocais: desacelere uma voz com reverb para material de textura.',
+        'Dois botões separados: primeiro o quanto desacelera, depois o quanto de sala.',
+        'Receita de um toque: os padrões são a combinação clássica do slowed + reverb.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Velocidade e wet, separados',
+          text: 'Desacelere primeiro à velocidade que quiser, depois acrescente o espaço; os dois botões moram separados para o ajuste fino não brigar consigo.',
+        },
+        {
+          icon: 'note',
+          title: 'A receita clássica de fábrica',
+          text: 'Os padrões são slowed + reverb como o gênero espera: desaceleração mais espaço, pronto na exportação.',
+        },
       ],
       howTo: [
         {

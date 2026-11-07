@@ -3272,11 +3272,26 @@ export const de: Catalog = {
       subtitle: 'Der Sound für nachts: Titel auf etwa 85 % verlangsamen, Raum dazugeben, exportieren — keine App, kein Upload.',
       intro:
         'Slowed + Reverb nimmt einen Titel auf etwa 80–90 % Geschwindigkeit herunter, die Tonhöhe sinkt mit, und ein weicher Hallschweif lässt alles klingen, als liefe es zwei Räume weiter. Lade einen Song, zieh die Geschwindigkeit auf etwa 85 %, dreh den Hall hoch, bis es sitzt, und exportiere — die ganze Bearbeitung passiert auf deinem Gerät, deshalb sind auch Songs in voller Länge in Sekunden fertig. Schiebst du die Geschwindigkeit stattdessen über 100 %, kommt nightcore dabei heraus.',
-      usesHeading: 'Der Slowed-and-Reverb-Klang',
+      usesHeading: 'Typische Szenarien für slowed + reverb',
       uses: [
-        'Senk einen Track auf etwa 85% und gib ihm Raum. Das ist der übliche späte Mix.',
-        'Starte mit einem trockenen Song. Der Effekt ist Verlangsamung und Hall zusammen.',
-        'Schneide vor dem Export auf den Abschnitt, damit der Hall nicht das ganze Album füllt.',
+        'Nachtversionen: den Song auf etwa 85 % nehmen und Raum dazu — die Stimmung kippt sofort.',
+        'Langsam noch einmal hören: von einem geliebten Song einen Slowcut bauen, ein anderes Hören.',
+        'Kurzvideo-Betten: slowed + reverb ist die bekannte Kurzvideo-Atmosphäre.',
+        'Stimm-Experimente: eine Stimme mit Reverb verlangsamen, als Texturmaterial.',
+        'Zwei Regler, getrennt: erst wie langsam, dann wie viel Raum.',
+        'Rezept auf einen Klick: die Voreinstellungen sind die klassische slowed + reverb-Kombination.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Tempo und Wet, getrennt',
+          text: 'Erst auf das Wunschtempo bringen, dann den Raum dazusetzen; die beiden Regler wohnen getrennt, damit das Feinjustieren sich nicht selbst behindert.',
+        },
+        {
+          icon: 'note',
+          title: 'Das klassische Rezept ab Werk',
+          text: 'Die Voreinstellungen sind slowed + reverb genau, wie das Genre es erwartet: Slowdown plus Raum, exportfertig.',
+        },
       ],
       howTo: [
         {

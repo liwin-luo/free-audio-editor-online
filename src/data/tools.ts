@@ -3897,11 +3897,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Speed from 0.50 to 2.00, pitch follows, plus a 2.2 second room.',
     intro:
       'Speed runs from 0.50 to 2.00 in steps of 0.05, and the pitch follows. Reverb uses a 2.2 second impulse. Wet at 0 adds no room. Above 1.00 the file gets faster and the pitch rises with it. A speed change that keeps the pitch is the [tempo changer](/tempo-changer).',
-    usesHeading: 'The slowed and reverb sound',
+    usesHeading: 'Common scenarios for slowed + reverb',
     uses: [
-      'Set speed below 1.00. The pitch follows. The range is 0.50 to 2.00.',
-      'Start from a dry song. The effect is the slowdown and the reverb together.',
-      'Trim to the section you want before export, so the wash is not the whole album.',
+      'Night versions: take a song to about 85% and add space — the mood turns at once.',
+      'Slow re-listens: make a slowed cut of a song you love, a different way to hear it.',
+      'Short-video beds: slowed + reverb is the familiar short-video atmosphere.',
+      'Vocal experiments: slow a voice down with reverb for texture material.',
+      'Two dials, separate: first set how slow, then how much room.',
+      'One-tap recipe: the defaults are the classic slowed + reverb combination.',
+    ],
+    why: [
+      {
+        icon: 'sliders',
+        title: 'Speed and wet, set apart',
+        text: 'Slow it to the speed you want first, then add the space; the two knobs stay separate so the fine-tuning never fights itself.',
+      },
+      {
+        icon: 'note',
+        title: 'The classic recipe as a start',
+        text: 'The defaults are slowed + reverb exactly as the genre expects: slowdown plus space, ready on export.',
+      },
     ],
     howTo: [
       {

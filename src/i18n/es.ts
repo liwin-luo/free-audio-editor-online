@@ -3301,11 +3301,26 @@ export const es: Catalog = {
       subtitle: 'El sonido de noche: baja un tema a ~85%, agrégale espacio y exporta. Sin app y sin subir nada.',
       intro:
         'El tratamiento slowed + reverb baja un tema a cerca del 80–90% de velocidad para que el tono baje con ella, y luego agrega una cola de eco suave que hace que todo suene como si estuviera dos habitaciones más allá. Carga una canción, arrastra la velocidad a cerca del 85%, sube el reverb hasta que se sienta bien y exporta. Toda la edición ocurre en tu dispositivo, así que hasta los temas completos se procesan en segundos. Si en cambio subes la velocidad por encima del 100%, obtienes nightcore.',
-      usesHeading: 'El sonido de slowed y reverb',
+      usesHeading: 'Escenarios típicos del slowed + reverb',
       uses: [
-        'Baja una pista a un 85% y añade espacio. Esa es la mezcla nocturna de siempre.',
-        'Empieza con una canción seca. El efecto es la ralentización y la reverb juntas.',
-        'Recorta el tramo que quieres antes de exportar, para que el wash no sea el disco entero.',
+        'Versiones nocturnas: baja la canción a un 85 % y añade espacio; el clima cambia al instante.',
+        'Reescucha lenta: haz un corte a cámara lenta de una canción que ames, otra forma de oírla.',
+        'Música de vídeos cortos: el slowed + reverb es la atmósfera clásica del vídeo corto.',
+        'Experimentos vocales: baja una voz con reverb para material de textura.',
+        'Dos mandos por separado: primero cuánto se frena, luego cuánta sala.',
+        'Receta de un toque: los valores por defecto son la combinación clásica del slowed + reverb.',
+      ],
+      why: [
+        {
+          icon: 'sliders',
+          title: 'Velocidad y capa, por separado',
+          text: 'Frena primero a la velocidad que quieras y luego añade el espacio; los dos mandos viven aparte para que el ajuste fino no se pele.',
+        },
+        {
+          icon: 'note',
+          title: 'La receta clásica de serie',
+          text: 'Los valores por defecto son el slowed + reverb tal como el género lo espera: freno más sala, listo al exportar.',
+        },
       ],
       howTo: [
         {
