@@ -3159,11 +3159,26 @@ export const de: Catalog = {
       subtitle: 'Ein Klick, und leise Dateien liegen auf einem einheitlichen, gesunden Pegel — ausgewertet auf deinem Gerät.',
       intro:
         'Normalisieren sucht den lautesten Peak in deiner Datei und hebt dann die gesamte Datei um genau den Betrag an, der diesen Peak knapp unter die Übersteuerung bringt. Ergebnis: Die Datei nutzt den Lautstärkebereich, den sie hat, ohne dass du den Wert schätzen musst. Das ist die richtige Korrektur, wenn eine Aufnahme durchgehend zu leise ist — Sprachnotizen, Feldaufnahmen, Exporte aus anderen Apps, die bei −18 dB herausgekommen sind.',
-      usesHeading: 'Wenn ein Pegel passen soll',
+      usesHeading: 'Häufige Einsätze für Audio-Normalisierung',
       uses: [
-        'Heb eine leise Datei an, bis die lauteste Spitze ein normales Niveau trifft.',
-        'Gleiche Clips an, die du verbinden willst, damit ein Kapitel nicht halb so laut ist wie das nächste.',
-        'Nimm das statt eines blinden Boosts, wenn du nicht weißt, wie weit du schieben sollst.',
+        'Stapel-Alignment: einen ganzen Stapel Aufnahmen auf ein gesundes, einheitliches Niveau heben.',
+        'Vor dem Verbinden angleichen: Clips normalisieren, die gleich zusammengefügt werden, damit kein Kapitel halb so laut wie das nächste spielt.',
+        'Stille Aufnahmen retten: Sprachmemos oder Fieldrecordings, die insgesamt zu klein rauskamen, mit einem Klick angehoben.',
+        'Statt die Verstärkung zu raten: wenn du nicht weißt, wie weit der Regler wandern soll, nimm die berechnete Verstärkung.',
+        'Korrektur nach dem Export: eine Datei, die eine andere App bei rund -18 dB exportiert hat, zurück auf Normal bringen.',
+        'Check vor dem Veröffentlichen: der Spitzenwert füllt die Skala, die Dynamik bleibt unberührt; weiteres Zusammendrücken ist Sache des [Kompressors](/compressor).',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Eine berechnete Verstärkung',
+          text: 'Die Normalisierung sucht den lautesten Spitzenwert und hebt die ganze Datei, bis dieser knapp unter der vollen Skala liegt (rund -0,2 dB). Leise und laute Teile wandern mit — die Dynamik behält ihre Form.',
+        },
+        {
+          icon: 'layers',
+          title: 'Im Stapel einzeln gemessen',
+          text: 'Mehrere Dateien teilen sich den Normalisieren-Knopf; jede steigt nach ihrem eigenen Spitzenwert. Eine Datei lädt allein herunter, zwei oder mehr kommen als ZIP.',
+        },
       ],
       howTo: [
         {

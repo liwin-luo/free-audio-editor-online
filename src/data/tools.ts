@@ -2952,11 +2952,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Peak normalize to 0.98. The gain stops at 4×. Nothing is uploaded.',
     intro:
       'Normalizing scans your file to find its loudest peak, then raises the entire file by exactly the amount needed to bring that peak just below clipping. The result: a file that uses the full volume range it was given, with no manual guesswork. It is the right fix when a recording is consistently too quiet — voice memos, field recordings, exports from other apps that came out at −18 dB.',
-    usesHeading: 'When one level should fit',
+    usesHeading: 'Common uses for audio normalization',
     uses: [
-      'Bring a quiet file up so its loudest peak hits a normal level.',
-      'Even out clips you will join, so one chapter is not half as loud as the next.',
-      'Use this when you want the peak at 0.98 rather than picking a gain.',
+      'Batch alignment: lift a whole stack of recordings to one healthy, uniform level.',
+      'Align before joining: normalize clips that are about to be joined, so no chapter plays at half the loudness of its neighbour.',
+      'Rescue quiet recordings: voice memos or field recordings that came out small overall, raised in one click.',
+      'Instead of guessing the gain: when you do not know how far to push the slider, use the computed gain.',
+      'Post-export fix: pull a file that another app exported at around -18 dB back to normal.',
+      'Pre-release checkup: the peak fills the scale while the dynamics stay untouched; further squeezing belongs to the [compressor](/compressor).',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'A computed gain',
+        text: 'Normalization scans the loudest peak and lifts the whole file until that peak sits just below full scale (about -0.2 dB). Quiet and loud parts move together, so the dynamics keep their shape.',
+      },
+      {
+        icon: 'layers',
+        title: 'Measured one by one in a batch',
+        text: 'Several files share the normalize button; each rises by its own peak. A single file downloads alone, two or more pack into a ZIP.',
+      },
     ],
     howTo: [
       {

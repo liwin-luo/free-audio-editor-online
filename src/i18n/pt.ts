@@ -3236,11 +3236,26 @@ export const pt: Catalog = {
       subtitle: 'Um clique para levar arquivos baixos a um nível consistente e saudável — analisado no seu aparelho.',
       intro:
         'Normalizar varre o arquivo para achar o pico mais alto e sobe o arquivo inteiro exatamente o quanto falta para esse pico ficar logo abaixo do clipping. O resultado: um arquivo que usa toda a faixa de volume que recebeu, sem chute manual. É o ajuste certo quando a gravação está baixa o tempo todo — recados de voz, gravações de campo, exportações de outros apps que saíram em −18 dB.',
-      usesHeading: 'Quando um nível precisa caber',
+      usesHeading: 'Usos comuns de normalizar áudio',
       uses: [
-        'Suba um arquivo baixo até o pico mais forte chegar a um nível normal.',
-        'Iguale clipes que você vai juntar, para um capítulo não ficar com metade do volume do próximo.',
-        'Use isto em vez de um boost no escuro, quando você não sabe até onde empurrar.',
+        'Alinhamento em lote: erga uma pilha inteira de gravações a um nível único, saudável e uniforme.',
+        'Igualar antes de emendar: normalize os clipes que vão se juntar, para que nenhum capítulo soe com metade da sonoridade do vizinho.',
+        'Resgatar gravações baixas: memos de voz ou gravações de campo que saíram pequenas, erguidas num clique.',
+        'Em vez de adivinhar o ganho: quando não se sabe até onde empurrar o controle, use o ganho calculado.',
+        'Correção após exportar: traga de volta ao normal um arquivo que outro app exportou a uns -18 dB.',
+        'Checkup antes de publicar: o pico enche a escala e a dinâmica fica intacta; comprimir mais é trabalho do [compressor](/compressor).',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Um ganho calculado',
+          text: 'A normalização varre o pico mais alto e ergue o arquivo inteiro até que ele se assente logo abaixo da escala cheia (cerca de -0,2 dB). Partes baixas e altas se movem juntas: a dinâmica mantém a forma.',
+        },
+        {
+          icon: 'layers',
+          title: 'Medidos um a um no lote',
+          text: 'Vários arquivos compartilham o botão de normalizar; cada um sobe pelo próprio pico. Um arquivo baixa sozinho, dois ou mais vão num ZIP.',
+        },
       ],
       howTo: [
         {

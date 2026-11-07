@@ -3188,11 +3188,26 @@ export const es: Catalog = {
       subtitle: 'Un clic para llevar los archivos bajos a un nivel parejo y sano. El análisis ocurre en tu dispositivo.',
       intro:
         'Normalizar revisa tu archivo, encuentra su pico más fuerte y sube todo el archivo justo lo necesario para llevar ese pico un poco por debajo de la saturación. El resultado es un archivo que usa todo el rango de volumen que tenía, sin calcularlo a ojo. Es el arreglo correcto cuando una grabación está baja de forma pareja: notas de voz, grabaciones de campo, exportaciones de otras apps que salieron a −18 dB.',
-      usesHeading: 'Cuando un nivel tiene que encajar',
+      usesHeading: 'Usos habituales de normalizar audio',
       uses: [
-        'Sube un archivo bajo hasta que su pico más fuerte llegue a un nivel normal.',
-        'Iguala clips que vas a unir, para que un capítulo no suene a la mitad del siguiente.',
-        'Usa esto en lugar de un boost a ciegas cuando no sabes hasta dónde empujar.',
+        'Alinear por lotes: eleva toda una pila de grabaciones a un nivel único, sano y uniforme.',
+        'Igualar antes de unir: normaliza los clips que vas a unir, para que ningún capítulo suene a media sonoridad del siguiente.',
+        'Rescatar grabaciones calladas: memos de voz o grabaciones de campo salidas pequeñas, elevadas de un clic.',
+        'En lugar de adivinar la ganancia: cuando no sabes hasta dónde empujar el control, usa la ganancia calculada.',
+        'Corrección tras exportar: devuelve a la normalidad un archivo que otra app exportó a unos -18 dB.',
+        'Chequeo antes de publicar: el pico llena la escala y la dinámica queda intacta; comprimir más es cosa del [compresor](/compressor).',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Una ganancia calculada',
+          text: 'La normalización escanea el pico más alto y eleva el archivo hasta que ese pico quede justo bajo la escala completa (unos -0,2 dB). Lo callado y lo alto se mueven juntos: la dinámica conserva su forma.',
+        },
+        {
+          icon: 'layers',
+          title: 'Medidos uno a uno en el lote',
+          text: 'Varios archivos comparten el botón de normalizar; cada uno sube según su propio pico. Un solo archivo se descarga solo, dos o más van en un ZIP.',
+        },
       ],
       howTo: [
         {
