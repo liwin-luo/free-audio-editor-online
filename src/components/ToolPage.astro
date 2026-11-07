@@ -108,17 +108,17 @@ const jsonLd = [
       {tool.editor.paint ? (
         <SpecPaintEditor config={tool.editor} locale={locale} />
       ) : tool.editor.visualizer === 'live' ? (
-        <MusicVisualizerEditor config={tool.editor} locale={locale} />
+        <MusicVisualizerEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       ) : tool.editor.visualizer ? (
-        <VisualizerEditor config={tool.editor} locale={locale} />
+        <VisualizerEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       ) : tool.editor.transcribe ? (
-        <TranscribeEditor config={tool.editor} locale={locale} />
+        <TranscribeEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       ) : tool.editor.midi ? (
-        <MidiEditor config={tool.editor} locale={locale} />
+        <MidiEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       ) : tool.editor.tagEditor ? (
-        <TagEditor config={tool.editor} locale={locale} />
+        <TagEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       ) : tool.editor.keyBpm ? (
-        <KeyBpmEditor config={tool.editor} locale={locale} />
+        <KeyBpmEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       ) : tool.editor.metronome ? (
         <MetronomeEditor config={tool.editor} locale={locale} />
       ) : tool.editor.tapTempo ? (
@@ -126,13 +126,13 @@ const jsonLd = [
       ) : tool.editor.soundboard ? (
         <SoundboardEditor config={tool.editor} locale={locale} />
       ) : tool.editor.loudness ? (
-        <LoudnessEditor config={tool.editor} locale={locale} />
+        <LoudnessEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       ) : tool.editor.mixer ? (
-        <MixerEditor config={tool.editor} locale={locale} />
+        <MixerEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       ) : tool.editor.multiple ? (
-        <JoinerEditor config={tool.editor} locale={locale} />
+        <JoinerEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       ) : (
-        <AudioEditor config={tool.editor} locale={locale} />
+        <AudioEditor config={{ ...tool.editor, toolIcon: tool.icon, toolImage: tool.hero?.src }} locale={locale} />
       )}
     </section>
 

@@ -38,7 +38,10 @@ const shotFor = (i: number): Shot | undefined => shots?.[i];
         </p>
       )
     }
-    <ol class="mt-8 grid gap-6 md:grid-cols-3">
+    <ol
+      class="mt-8 grid gap-6 md:grid-cols-3 lg:grid-cols-[repeat(var(--howto-cols,3),minmax(0,1fr))]"
+      style={`--howto-cols: ${steps.length}`}
+    >
       {
         steps.map((step, i) => {
           const shot = shotFor(i);

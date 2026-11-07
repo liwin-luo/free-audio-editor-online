@@ -393,3 +393,40 @@
 - **接线**：7 个岛 init 循环各加一行 `upgradeSelects(root)`（loudness 在类构造前、metronome 在 new 前调用）。**.astro 标记零改动**——SSR/无 JS 时原生 select 仍可用（渐进增强同构）。
 - 验证：astro check 0 错误、smoke ALL PASS；暗色浏览器验收 joiner（格式下拉向上弹、选中行 accent+勾、Merge & export 虹彩渐变）与 transcribe（语言下拉向下弹、全宽）。
 - AudioEditor 内核的同款实现未重构合并（行为一致，避免无谓扰动）；后续轮次可顺手归一。
+
+## 页脚工具列表收敛（2026-11-07，用户反馈"全部展示不好看"）
+
+用户截图页脚：分类列把工具全量铺开（convert 11 / edit 15 / effects 17 条），列高严重不齐、footer 过长。用户从三方案（限 5 条+更多 / 全链接双列 / 桌面也默认折叠）中选定「限 5 条 + 更多」。
+
+- **Footer.astro**：每分类最多列 5 条，超出收进一条「浏览全部 N 个工具」链到分组页 `/tools/{cat}`；复用现有 `home.allToolsCta` 键（×11 语言在案），**零新增 i18n 键**。分组标题链接原本就指向分组页，机制（`<details>` + 移动端折叠脚本）不动。
+- **SEO 规则同步**（`docs/seo.md` 抓取节）：原文「导航和页脚输出全部工具」改为「导航输出全部工具；页脚每分类最多 5 条 + 分组页链接」，可爬入口由 Header 下拉、分组页、`/tools` 承担（分组页服务端渲染该组全部链接，内链 SEO 无实质损失）。
+- **顺带修复**：`custom-select.ts:95` 的 astro check 类型错误（root 为 `ParentNode`，keydown 回调参数需 cast `KeyboardEvent`）——上轮统一 select 时引入且已提交，门禁当时漏检。
+- 验证：astro check 0 错误（239 文件）、`astro build` 878 页通过；产物抽查 EN（dist/index.html）与 zh（dist/zh.html）：每类 ≤5 条，更多链接计数正确（转换 11 / 编辑 15 / 创意 17 / 录音 7），cut(4)/join(3) 不足 5 条不显示更多链接。
+- 改动未提交，待用户验收。
+
+## 投放区间距对称 + HowTo 桌面单排（2026-11-07，用户两张截图反馈）
+
+- **虚线井与外卡上下间距不对称**：浏览器实测 `/zh/compressor` 上 17px / 下 1px——DropPromise 井 `mx-4 mt-4` 有上边距无下边距，而 AudioEditor 与各独立岛的卡片根节点 padding 为 0，虚线底部直接贴住实线。修复：井改 `mb-4 md:mt-5 md:mb-5`（四边统一 base 16 / md 20），KeyBpm 自有井同步。修复后实测 21/21（md 视口）。
+- **HowTo 四步换行**：`md:grid-cols-3` 写死，4 步页在桌面折成 3+1。改 `lg:grid-cols-[repeat(var(--howto-cols,3),minmax(0,1fr))]` + 内联 `--howto-cols: steps.length`——桌面列数随步数（3 步页维持 3 列、4 步页一排 4 列），sm/md/移动端行为不变。实测 compressor 页 4 卡 1 行、375px 单列 4 行；Tailwind v4 任意值正常生成。
+- **验证环境说明**：主仓 `astro build` 当时被并行会话的 zh 重写批次过渡态卡住（zh uses 已改 6 条、en 未同步，`assertCatalogs` 过渡红，与本轮改动无关），故验证走 /tmp 副本（zh.ts 回 HEAD + 本轮组件改动）构建 878 页通过 + 浏览器实测上述数值；astro check 在主仓 0 错误。主仓构建待并行批次落盘后自然恢复。
+- 改动未提交，待用户验收。
+
+## Header 下拉被投放区盖住（2026-11-07，用户截图反馈"有时候这两个重叠了"）
+
+用户在暗色 audio-trimmer 页打开「工具」下拉，投放区的图标/标题/本地处理徽标画在面板之上。根因是**层叠平局**：`header` 是 `sticky z-10`（自带层叠上下文，内部面板 z-30 只在 header 上下文内比较），而页面内容里 DropWell 提示行、本地处理徽标包装层等是 `relative z-10` 且 DOM 靠后——根层级同为 10 时后来者胜，页面元素盖住整个 header。滚动时同样的平局也会让 z-10 内容滑过玻璃导航条本身。
+
+- **修复**：`Header.astro` 的 header `z-10` → `z-40`。取值依据全站 z 清单：页面内容最高 z-30（编辑器格式弹层）、Cookie 条 z-40（与 header 无空间交集）、toast z-50、skip-link 与编辑器全屏 z-60（仍盖住 header，语义正确）。
+- 排查插曲：第一次浏览器验证吃到旧构建的缓存 HTML（header 仍 z-10），差点误判修复无效——换新标签 + 带查询串绕开缓存后确认。并行会话的 zh 批次恰在此期间全部提交（d86f7c2），主仓构建恢复绿，无需再走副本验证。
+- 验证：`astro build` 878 页通过、astro check 0 错误；暗色主题 audio-trimmer 页实测 header computed z=40，下拉面板完整盖住投放区（截图确认），无其他层被遮蔽回归。
+- 改动未提交，待用户验收。
+
+## 投放区装饰随工具图 + 淡化成水印（2026-11-07，用户两轮反馈："图案和上面那个一样"→"太抢眼，淡化成背景或删除"）
+
+用户要求投放区两侧装饰不要全站一条通用波形柱，改为各页面自己的图案（即 H1 旁的徽标），随后反馈实心块太抢眼，要求淡化成背景。
+
+- **通路**：`EditorConfig` 加 `toolIcon`（Icon 集名）+ `toolImage`（hero SVG 路径，即 H1 徽标同款）；ToolPage 向 10 个 DropWell 消费岛注入（SpecPaint/Metronome/TapTempo/Soundboard 不走 DropWell，不涉及），岛透传给 DropWell；接口层追加可选字段，57 条工具数据零改动。
+- **关键纠偏**：第一版注入 Icon 集 `tool.icon`（split-mp3=scissors），与 H1 徽标字形对不上——H1 用的是每工具独立 hero SVG（淡紫圆角块+描边图形），不是 Icon 字体。定稿优先 `toolImage`，`toolIcon` 仅作无 hero 工具的回退，最后才是通用波形柱。
+- **淡化定稿**：亮色 opacity-20（悬停 45%）、暗色 opacity-[0.07]（悬停 15%）。暗色单独调低的原因：浅色底块在暗底上 13% 仍折算 ~18% 灰度、感知偏亮，实测 7% 才读作背景纹理。装饰 375px 以下隐藏——顺带修掉旧波形柱与提示文字的轻微重叠（375px 实测 img 右缘 163px 压住文字左缘 92px）。
+- 备选与取舍：删除装饰最干净但丢掉刚建立的页面识别度；低透明度实心块会糊成色斑（SVG 是描边图形所以 20% 仍可读轮廓）——选淡化。若用户仍嫌存在感强，删除是 DropWell 一处改动。
+- 验证：astro check 0 错误、build 878 页通过；亮/暗/375px 三态与 split-mp3/compressor 两页互异截图实测；主仓构建期间两次被并行 zh 批次过渡态卡红（mp3-editor/flac-to-mp3 uses 6≠3），绿后直接验证。
+- 改动未提交，待用户验收。

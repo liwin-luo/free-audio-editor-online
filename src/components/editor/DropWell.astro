@@ -9,8 +9,12 @@ import Icon from '../Icon.astro';
 interface Props {
   icon: string;
   hint: string;
+  /** The page tool's own icon; replaces the generic bars so each page reads distinct. */
+  toolIcon?: string;
+  /** The tool's hero art (matches the H1 badge); preferred over toolIcon. */
+  toolImage?: string;
 }
-const { icon, hint } = Astro.props;
+const { icon, hint, toolIcon, toolImage } = Astro.props;
 ---
 
 <div
@@ -20,22 +24,54 @@ const { icon, hint } = Astro.props;
   aria-label={hint}
   class="group relative flex w-full flex-col items-center overflow-hidden rounded-2xl px-6 py-5 md:py-7"
 >
-  <div
-    class="pointer-events-none absolute inset-y-0 left-10 flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
-    aria-hidden="true"
-  >
-    {[10, 22, 36, 52, 36, 22, 10].map((h) => (
-      <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
-    ))}
-  </div>
-  <div
-    class="pointer-events-none absolute inset-y-0 right-10 flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
-    aria-hidden="true"
-  >
-    {[10, 22, 36, 52, 36, 22, 10].map((h) => (
-      <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
-    ))}
-  </div>
+  {
+    toolImage ? (
+      ['left-10', 'right-10'].map((side) => (
+        <span
+          class={`pointer-events-none absolute inset-y-0 ${side} hidden md:flex items-center`}
+          aria-hidden="true"
+        >
+          <img
+            src={toolImage}
+            alt=""
+            width={64}
+            height={64}
+            loading="lazy"
+            decoding="async"
+            class="size-16 opacity-20 transition-opacity duration-200 group-hover:opacity-45 dark:opacity-[0.07] dark:group-hover:opacity-[0.15]"
+          />
+        </span>
+      ))
+    ) : toolIcon ? (
+      ['left-10', 'right-10'].map((side) => (
+        <span
+          class={`pointer-events-none absolute inset-y-0 ${side} hidden md:flex items-center opacity-60 transition-opacity duration-200 group-hover:opacity-100`}
+          aria-hidden="true"
+        >
+          <Icon name={toolIcon} size={64} class="text-accent/25" />
+        </span>
+      ))
+    ) : (
+      <>
+        <div
+          class="pointer-events-none absolute inset-y-0 left-10 hidden md:flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
+          aria-hidden="true"
+        >
+          {[10, 22, 36, 52, 36, 22, 10].map((h) => (
+            <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
+          ))}
+        </div>
+        <div
+          class="pointer-events-none absolute inset-y-0 right-10 hidden md:flex items-center gap-1.5 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
+          aria-hidden="true"
+        >
+          {[10, 22, 36, 52, 36, 22, 10].map((h) => (
+            <span class="w-1.5 rounded-full bg-accent/20" style={`height:${h}px`} />
+          ))}
+        </div>
+      </>
+    )
+  }
   <span
     class="relative z-10 mx-auto grid size-12 place-items-center rounded-xl bg-accent-soft text-accent ring-4 ring-accent/10 transition-transform duration-200 group-hover:scale-105"
   >

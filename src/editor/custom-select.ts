@@ -92,7 +92,7 @@ export function upgradeSelects(root: ParentNode): void {
       if (!(e.target as Element)?.closest('[data-custom-select]')) close();
     });
     root.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') close();
+      if ((e as KeyboardEvent).key === 'Escape') close();
     });
     // Option lists swap at runtime on some pages (e.g. dependent selects) and
     // Loudness enables its select after analysis — mirror both into the chrome.

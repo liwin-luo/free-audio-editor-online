@@ -28,7 +28,7 @@ const { editor: t } = getShell(locale);
 >
   <div data-empty>
   <DropPromise config={config} locale={locale}>
-    <DropWell icon="voice" hint={config.dropHint} />
+    <DropWell icon="voice" hint={config.dropHint} toolIcon={config.toolIcon} toolImage={config.toolImage} />
     <div class="relative z-10 mt-1 pb-0.5">
       <LocalBadge text={t.dropLocal} />
     </div>

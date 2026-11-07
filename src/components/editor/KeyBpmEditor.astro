@@ -24,9 +24,9 @@ const { editor: t } = getShell(locale);
   <div data-empty>
   <div
     data-dropzone
-    class="mx-4 mt-4 flex min-h-[220px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-line px-6 py-10 text-center md:mx-5 md:min-h-[280px] md:py-12"
+    class="mx-4 mt-4 mb-4 flex min-h-[220px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-line px-6 py-10 text-center md:mx-5 md:mt-5 md:mb-5 md:min-h-[280px] md:py-12"
   >
-    <DropWell icon="upload-simple" hint={config.dropHint} />
+    <DropWell icon="upload-simple" hint={config.dropHint} toolIcon={config.toolIcon} toolImage={config.toolImage} />
   </div>
   <LocalBadge text={t.dropLocal} />
   </div>
