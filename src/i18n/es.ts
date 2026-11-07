@@ -3939,11 +3939,26 @@ export const es: Catalog = {
       heroAlt: 'Guardar la forma de onda de una canción como PNG',
       subtitle: 'Una imagen de la forma de onda: colores, tamaño y PNG transparente, dibujados en tu dispositivo.',
       intro: 'Suelta una canción, una nota de voz o un pódcast y obtén una imagen de forma de onda para una portada, un fondo de vídeo o una publicación. Barras o relleno, colores, y un PNG en tamaño de vídeo, cuadrado o banner. El navegador dibuja la imagen a partir del archivo que abriste: no se sube nada.',
-      usesHeading: 'Para qué sirve la imagen',
+      usesHeading: 'Usos habituales del generador de ondas',
       uses: [
-        'Una portada de pódcast o de canción con forma de onda, en vez de un cuadrado vacío.',
-        'Un PNG transparente para ponerlo sobre un vídeo o una miniatura.',
-        'Un banner ancho para la cabecera de un sitio o el cierre de un vídeo.',
+        'Portada de pódcast: un cuadrado con onda para el episodio, en vez de un cuadrado vacío.',
+        'Capa de vídeo: exporta un PNG transparente y ponlo sobre la imagen.',
+        'Avance en redes: la onda del próximo episodio como adelanto.',
+        'Fondo de escenario: la onda del tema actual en la pantalla grande.',
+        'Diseño de merch: el patrón de onda para camisetas y pósters.',
+        'Comparar sonoridad: las ondas de dos versiones, lado a lado, para ver su forma.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'PNG con transparencia',
+          text: 'Exporta la onda como PNG transparente para ponerla sobre vídeo, miniaturas o pósters.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Aspecto ajustable',
+          text: 'Color, ancho de barra y demás parámetros se adaptan a tu propio estilo.',
+        },
       ],
       howTo: [
         { name: 'Suelta el audio', text: 'MP3, WAV, M4A, OGG o FLAC. La decodificación se queda en tu dispositivo.' },
@@ -4003,11 +4018,26 @@ export const es: Catalog = {
       heroAlt: 'Descargar en PNG la imagen de frecuencias de una canción',
       subtitle: 'Mira qué frecuencias hay en una canción o una grabación y descarga la imagen. El cálculo queda en tu dispositivo.',
       intro: 'Un espectrograma muestra qué frecuencias hay a lo largo del tiempo: voz, graves y cualquier dibujo metido en el sonido. Suelta un archivo, elige eje log o lineal y descarga el PNG. La FFT corre en el navegador: nada se sube.',
-      usesHeading: 'Qué busca la gente aquí',
+      usesHeading: 'Usos habituales del generador de espectrogramas',
       uses: [
-        'Ver dónde están los graves, la voz y el hiss antes de ecualizar.',
-        'Encontrar una imagen o una palabra escondida en las frecuencias.',
-        'Exportar un fotograma de una canción para un post, una clase o una nota.',
+        'Reconocer antes de ecualizar: dónde viven el bajo, la voz y el siseo, en qué banda cada uno.',
+        'Huevos de pascua espectrales: hay quien esconde dibujos o palabras en el espectro; aquí se ven.',
+        'Diagnóstico de ruido: si el ruido es siseo de banda ancha o zumbido estrecho, y elegir herramienta.',
+        'Revisión de cintas viejas: qué banda del espectro falta.',
+        'Demostraciones en clase: la distribución de frecuencias de distintos instrumentos.',
+        'Comparar versiones: dos espectros lado a lado para ver de dónde viene cada archivo.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'La frecuencia de un vistazo',
+          text: 'Eje horizontal tiempo, vertical frecuencia, brillo energía: todo el contenido del audio en una imagen.',
+        },
+        {
+          icon: 'download-simple',
+          title: 'Descarga en PNG',
+          text: 'Ajusta los parámetros de vista y exporta el PNG directo a documentos o diapositivas.',
+        },
       ],
       howTo: [
         { name: 'Suelta el audio', text: 'MP3, WAV, M4A, OGG o FLAC. La decodificación se queda en tu dispositivo.' },
@@ -5767,11 +5797,26 @@ export const es: Catalog = {
       h1: "Soundboard, con once sonidos ya en el tablero",
       subtitle: "Toca un cuadrado o pulsa su tecla. Varios sonidos suenan a la vez. De medio segundo a cinco segundos es la duración útil.",
       intro: "Un soundboard es una cuadrícula de clips cortos que disparas en el momento: un rimshot bajo un chiste, un zumbador en clase, aplausos en un stream. Graba una frase o sube un archivo, recorta el golpe, y eso se vuelve un cuadrado. No se sube nada. La página decodifica y reproduce en esta pestaña, y el tablero sale solo como un JSON que exportas tú.",
-      usesHeading: "Qué puedes hacer con él",
+      usesHeading: 'Usos habituales de la mesa de sonido',
       uses: [
-        "Disparar un rimshot, un air horn o aplausos en un stream en directo mientras el sonido anterior sigue sonando.",
-        "Dejar un ding de acierto y un zumbador de error para clase, en cuadrados grandes para el pulgar.",
-        "Marcar un pódcast o una presentación con un sting que grabaste, sin abrir un mezclador de escritorio.",
+        'Directos con chispa: memes, stingers y aplausos en vivo, varios sonidos apilados.',
+        'Aula participativa: buzzer y sonido de acierto; los cuadros grandes van bien en pantalla táctil.',
+        'Ensayo de teatro: efectos de escena disparados en directo con una tecla.',
+        'Dirigir el rol: la mesa de sonido de los juegos de mesa y las fiestas.',
+        'Postproducción de vídeo: los efectos habituales reunidos en una mesa, al punto.',
+        'Improvisación: tus propios sonidos sintetizados convertidos en material de actuación.',
+      ],
+      why: [
+        {
+          icon: 'play',
+          title: 'Once sintetizados para empezar',
+          text: 'Trae once sonidos sintetizados de serie: suéltalos en las casillas y funcionan, sin buscar material primero.',
+        },
+        {
+          icon: 'file',
+          title: 'La mesa se guarda',
+          text: 'Cada casilla se recorta y se afina, y la mesa entera se guarda como archivo para reutilizar cuando quieras.',
+        },
       ],
       howTo: [
         { name: "Empieza con un preajuste o un sonido", text: "El tablero abre con once sonidos sintetizados. Un preajuste sobre la cuadrícula cambia el tablero por un set inicial de streaming, pódcast o clase. Subir audio y Grabar añaden los tuyos." },
@@ -5804,11 +5849,26 @@ export const es: Catalog = {
       h1: "Visualizador de música — convierte una canción en un video de espectro",
       subtitle: "Reproduce una canción, mira moverse el espectro y grábalo como video: dibujado y capturado en tu dispositivo.",
       intro: "Esta página convierte una canción en el tipo de video que YouTube, Shorts y Reels usan de fondo: el espectro de la música, animado en tiempo real y grabado directamente del lienzo. Suelta un archivo de audio, elige el look y el tamaño, pulsa grabar, y cuando termina la canción el video cae en tus descargas. Todo funciona en el navegador: el audio se decodifica localmente y nunca se sube.",
-      usesHeading: "Para lo que la gente lo usa",
+      usesHeading: 'Usos habituales de la visualización de música',
       uses: [
-        "Darle a una canción un video para YouTube, Shorts o TikTok sin abrir un editor.",
-        "Publicar una canción con un espectro en movimiento, no solo con una portada estática.",
-        "Grabar un fondo para un clip de pódcast, una demo o la pantalla de inicio de un stream.",
+        'Estrenar con vídeo: un espectro en movimiento para el lanzamiento, sin abrir editor de vídeo.',
+        'Vertical para redes: 9:16 para Shorts y TikTok, cuadrado para el feed.',
+        'Cortes de pódcast: clips y demos con una imagen de fondo.',
+        'Apertura de directos: graba un fondo de espectro para el arranque.',
+        'Fondo de escenario: espectro en vivo en la pantalla grande.',
+        'Entrega sin marca: hasta 1080p y sin marca de agua; el vídeo es tu archivo.',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'Cuatro estilos, cuatro aspectos',
+          text: 'Barras de espectro, barras en espejo, anillo y osciloscopio; el tema y los dos colores siguen ajustándose.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Grabación local sin marca',
+          text: 'El navegador graba lienzo y sonido directamente: sin renderizado en servidor, sin marca de agua, y el vídeo cae en descargas al terminar la canción.',
+        },
       ],
       howTo: [
         { name: "Suelta una canción", text: "Suelta un archivo de audio en el recuadro o haz clic para buscar. MP3, WAV, M4A, OGG, FLAC: todo lo que el navegador pueda decodificar." },

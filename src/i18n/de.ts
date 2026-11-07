@@ -3906,11 +3906,26 @@ export const de: Catalog = {
       heroAlt: 'Die Wellenform eines Songs als PNG speichern',
       subtitle: 'Ein Wellenbild deiner Audiodatei — Farben, Größe und transparentes PNG, gezeichnet auf deinem Gerät.',
       intro: 'Leg einen Song, eine Sprachnotiz oder einen Podcast ab und hol dir ein Wellenbild für Cover, Videohintergrund oder Social Post. Balken oder Fläche, Farben, dann PNG in Video-, Quadrat- oder Bannergröße. Der Browser zeichnet das Bild aus der Datei, die du geöffnet hast — nichts wird hochgeladen.',
-      usesHeading: 'Wofür das Bild taugt',
+      usesHeading: 'Häufige Einsätze für den Wellenform-Generator',
       uses: [
-        'Ein Podcast- oder Songcover mit Wellenform statt einem leeren Quadrat.',
-        'Ein transparentes PNG zum Legen über Video oder ein Vorschaubild.',
-        'Ein breites Banner für den Seitenkopf oder eine Video-Endkarte.',
+        'Podcast-Cover: ein Quadrat mit Welle für die Episode, statt eines leeren Quadrats.',
+        'Video-Overlay: ein transparentes PNG exportieren und über das Bild legen.',
+        'Social-Teaser: die Welle der nächsten Folge als Vorschau.',
+        'Bühnenhintergrund: die Welle des aktuellen Stücks auf der großen Leinwand.',
+        'Merch-Design: das Wellenmuster für T-Shirts und Poster.',
+        'Lautstärkevergleich: die Wellen zweier Versionen nebeneinander, Form vergleichen.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'PNG mit Transparenz',
+          text: 'Die Welle als transparentes PNG exportieren, direkt über Video, Thumbnails oder Poster legen.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Aussehen einstellbar',
+          text: 'Farbe, Balkenbreite und weitere Parameter stellen sich auf deinen Stil ein.',
+        },
       ],
       howTo: [
         { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Das Dekodieren bleibt auf deinem Gerät.' },
@@ -3970,11 +3985,26 @@ export const de: Catalog = {
       heroAlt: 'Ein Frequenzbild eines Songs als PNG herunterladen',
       subtitle: 'Sieh, welche Frequenzen in einem Song oder einer Aufnahme stecken, und lade das Bild. Gerechnet wird auf deinem Gerät.',
       intro: 'Ein Spektrogramm zeigt, welche Frequenzen mit der Zeit da sind: Sprache, Bass und alles, was jemand in den Klang gezeichnet hat. Datei ablegen, log oder linear wählen, PNG laden. Die FFT läuft im Browser, nichts wird hochgeladen.',
-      usesHeading: 'Wonach Leute hier schauen',
+      usesHeading: 'Häufige Einsätze für den Spektrogramm-Generator',
       uses: [
-        'Vor dem EQ sehen, wo Bass, Stimme und Rauschen sitzen.',
-        'Ein Bild oder ein Wort finden, das in den Frequenzen steckt.',
-        'Ein Standbild eines Songs für einen Post, eine Stunde oder eine Notiz exportieren.',
+        'Aufklärung vor dem EQ: wo Bass, Stimme und Zischen wohnen, in welchem Band jeweils.',
+        'Spektrum-Easter-Eggs: manche verstecken Bilder oder Worte im Spektrum — hier sieht man sie.',
+        'Rauschdiagnose: ob das Rauschen breitbandiges Zischen oder schmalbandiges Brummen ist, und das Werkzeug danach wählen.',
+        'Alte Bänder prüfen: welches Band des Spektrums fehlt.',
+        'Unterrichtsdemos: die Frequenzverteilung verschiedener Instrumente zeigen.',
+        'Versionen vergleichen: zwei Spektren nebeneinander, Herkunft erkennen.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'Frequenz auf einen Blick',
+          text: 'Waagerecht die Zeit, senkrecht die Frequenz, Helligkeit die Energie: der ganze Inhalt des Audios in einem Bild.',
+        },
+        {
+          icon: 'download-simple',
+          title: 'PNG-Download',
+          text: 'Die Anzeigeparameter einstellen und das PNG direkt in Dokumente oder Folien exportieren.',
+        },
       ],
       howTo: [
         { name: 'Audio ablegen', text: 'MP3, WAV, M4A, OGG oder FLAC. Das Dekodieren bleibt auf deinem Gerät.' },
@@ -5734,11 +5764,26 @@ export const de: Catalog = {
       h1: "Soundboard erstellen, mit elf Sounds schon drauf",
       subtitle: "Tippe ein Quadrat oder drück seine Taste. Mehrere Sounds laufen gleichzeitig. Eine halbe bis fünf Sekunden ist die brauchbare Länge.",
       intro: "Nimm einen Clip vom Mikrofon auf oder lade eine Audiodatei hoch, schneide die Stelle zurecht, die zählt — und sie wird zu einem Knopf auf dem Board. Tippe auf die Knöpfe oder drücke die Zahlen- und Buchstasten, um Sounds live auszulösen — mehrere gleichzeitig, denn genau darum geht es bei einem Soundboard. Elf eingebaute Sounds, auf der Seite synthetisiert, machen das Board nutzbar, bevor du etwas ergänzt. Vorlagen laden ein Starter-Set für Streaming, Podcast oder Unterricht. Nichts wird hochgeladen: Dekodieren, Schneiden und Abspielen laufen in diesem Tab, und das Board reist als JSON-Datei, die du selbst exportierst und importierst.",
-      usesHeading: "Was du damit machen kannst",
+      usesHeading: 'Häufige Einsätze fürs Soundboard',
       uses: [
-        "Meme-Sounds, Stinger und Applaus im Stream live auslösen — mehrere gleichzeitig.",
-        "Quiz-Buzzer und Treffer-Sounds für den Unterricht bereithalten — große Quadrate, gut zu treffen am Touchscreen.",
-        "Eine lange Datei in die fünf Knöpfe schneiden, die du wirklich brauchst, jeder mit seinem eigenen Tastenkürzel.",
+        'Stream mit Würze: Meme-Sounds, Stinger und Applaus live, mehrere Sounds gestapelt.',
+        'Klasse mitmachen: Buzzer und Treffer-Sound; die großen Quadrate gehen auch am Touchscreen gut.',
+        'Theaterprobe: Bühneneffekte live auf einen Knopf.',
+        'Runden leiten: das Soundboard für Pen-&-Paper und Partys.',
+        'Videopost: die üblichen Effekte auf einem Brett versammelt, auf Klick griffbereit.',
+        'Improvisation: eigene synthetisierte Sounds als Auftrittsmaterial.',
+      ],
+      why: [
+        {
+          icon: 'play',
+          title: 'Elf Synthsounds zum Start',
+          text: 'Elf eingebaute Synthsounds an Bord: in die Felder ziehen und los geht es, ohne vorher Material zu suchen.',
+        },
+        {
+          icon: 'file',
+          title: 'Das Brett lässt sich speichern',
+          text: 'Jedes Feld lässt sich schneiden und stimmen, und das ganze Brett wird als Datei gespeichert, jederzeit wieder bereit.',
+        },
       ],
       howTo: [
         { name: "Mit einer Vorlage oder einem Sound starten", text: "Das Board öffnet mit elf synthetisierten Sounds. Eine Vorlage über dem Raster tauscht das Board gegen ein Starter-Set für Streaming, Podcast oder Unterricht. Audio hochladen und Aufnahme ergänzen deine eigenen." },
@@ -5771,11 +5816,26 @@ export const de: Catalog = {
       h1: "Musik-Visualisierer — mach aus einem Song ein Spektrum-Video",
       subtitle: "Spiel einen Song ab, sieh das Spektrum sich bewegen und nimm es als Video auf — gezeichnet und aufgezeichnet auf deinem Gerät.",
       intro: "Diese Seite macht aus einem Song die Art Video, die YouTube, Shorts und Reels als Hintergrund nutzen: das Spektrum der Musik, in Echtzeit gezeichnet und direkt von der Leinwand aufgezeichnet. Zieh eine Audiodatei herein, wähle Look und Bildgröße, drücke auf Aufnehmen, und wenn der Song endet, landet das Video in deinen Downloads. Alles läuft im Browser — die Audiodatei wird lokal dekodiert und nie hochgeladen.",
-      usesHeading: "Was Leute damit machen",
+      usesHeading: 'Häufige Einsätze für die Musik-Visualisierung',
       uses: [
-        "Einem Track ein Video für YouTube, Shorts oder TikTok geben, ohne einen Editor zu öffnen.",
-        "Einen Song mit bewegtem Spektrum posten, statt nur mit einem statischen Cover.",
-        "Einen Hintergrund für einen Podcast-Clip, eine Demo oder einen Stream-Startbildschirm aufzeichnen.",
+        'Release mit Video: ein bewegtes Spektrum für die Veröffentlichung, ohne Videoschnitt-Programm.',
+        'Hochkant fürs Netz: 9:16 für Shorts und TikTok, Quadrat für den Feed.',
+        'Podcast-Schnipsel: Clips und Demos mit einem Hintergrundbild.',
+        'Stream-Intro: eine Spektrum-Kulisse für den Anfang aufnehmen.',
+        'Bühnenhintergrund: das Live-Spektrum auf der großen Leinwand.',
+        'Abgabe ohne Branding: bis 1080p, ohne Wasserzeichen; das Video ist deine Datei.',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'Vier Stile, vier Anblicke',
+          text: 'Spektrum-Balken, gespiegelte Balken, Ring und Oszilloskop; Thema und zwei Farben stellen sich weiter ein.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Lokale Aufnahme ohne Branding',
+          text: 'Der Browser nimmt Canvas und Ton direkt auf: kein Server-Rendering, kein Wasserzeichen, und das Video fällt in die Downloads, wenn der Song endet.',
+        },
       ],
       howTo: [
         { name: "Song reinziehen", text: "Zieh eine Audiodatei auf das Feld oder klick zum Auswählen. MP3, WAV, M4A, OGG, FLAC — alles, was der Browser dekodieren kann." },

@@ -4666,11 +4666,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'A waveform picture of your audio — colors, size and a transparent PNG, drawn on your device.',
     intro:
       'This page downloads a PNG of the amplitude. It does not change the audio, and the PNG does not play back as a song. A video of the same file is the [music visualizer](/music-visualizer). Preset sizes export at 2×. A custom side runs from 100 to 8000. Over about 2 million pixels, the export is at 1×.',
-    usesHeading: 'What people make with it',
+    usesHeading: 'Common uses for the waveform generator',
     uses: [
-      'A podcast or song cover with a waveform instead of a blank square.',
-      'A transparent PNG to lay over video or a thumbnail.',
-      'A wide banner for a site header or a video end card.',
+      'Podcast covers: a square with the waveform for the episode, instead of an empty square.',
+      'Video overlays: export a transparent PNG and lay it over the picture.',
+      'Social teasers: the waveform of the next episode as the teaser card.',
+      'Stage backdrops: the waveform of the current track on the big screen.',
+      'Merch design: the waveform pattern for t-shirts and posters.',
+      'Loudness comparison: the waveforms of two versions side by side, shapes compared.',
+    ],
+    why: [
+      {
+        icon: 'image',
+        title: 'Transparent PNG export',
+        text: 'Export the waveform as a transparent PNG that drops straight onto video, thumbnails or posters.',
+      },
+      {
+        icon: 'sliders',
+        title: 'The look adjusts',
+        text: 'Colour, bar width and the rest of the appearance tune to your own style.',
+      },
     ],
     howTo: [
       {
@@ -4786,11 +4801,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'See the frequencies in a song or a recording, then download the picture — drawn on your device.',
     intro:
       'This page downloads a PNG of the file. Preview uses at most 480 columns. Export uses at most 3000. The PNG does not play back as a song. Drawing a picture into a WAV is [image to audio](/image-to-audio).',
-    usesHeading: 'What people look for in it',
+    usesHeading: 'Common uses for the spectrogram generator',
     uses: [
-      'Check where the bass, voice and hiss sit before you EQ a track.',
-      'Find a picture or a word someone hid in the frequencies.',
-      'Export a still of a song for a post, a lesson or a lab note.',
+      'Reconnaissance before EQ: where the bass, the voice and the hiss live, in which band each.',
+      'Spectral Easter eggs: some hide pictures or words in the spectrum — this is how you see them.',
+      'Noise diagnosis: whether the noise is broadband hiss or narrowband hum, and pick the tool.',
+      'Old tape inspection: which band of the spectrum has gone missing.',
+      'Teaching demos: show a class the frequency spread of different instruments.',
+      'Version comparison: two spectra side by side, and the origin of each file shows.',
+    ],
+    why: [
+      {
+        icon: 'image',
+        title: 'The frequency at a glance',
+        text: 'Horizontal time, vertical frequency, brightness for energy: the whole content of the audio in one picture.',
+      },
+      {
+        icon: 'download-simple',
+        title: 'PNG download',
+        text: 'Tune the display parameters and export the PNG straight into a document or a slide.',
+      },
     ],
     howTo: [
       {
@@ -7799,11 +7829,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Tap a square or press its key. Several sounds play at once. Files longer than 60 seconds are skipped.',
     intro:
       'A soundboard is a grid of short clips you fire on cue: a rimshot under a joke, a buzzer in class, applause on a stream. Record a line or upload a file, trim it to the hit, and it becomes one square. Nothing is uploaded. The page decodes and plays in this tab, and the board leaves only as a JSON file you export.',
-    usesHeading: 'What you can do with it',
+    usesHeading: 'Common uses for the soundboard',
     uses: [
-      'Fire a rimshot, an air horn, or applause on a live stream while the previous sound is still playing.',
-      'Keep a correct-answer ding and a wrong-answer buzzer for a class, on squares large enough to hit on a phone.',
-      'Punch a podcast or a presentation with a sting you recorded, without opening a desktop mixer.',
+      'Livestream spice: meme sounds, stingers and applause in the moment, several sounds stacked.',
+      'Class participation: a buzzer and a correct-answer sound; the big squares press well on touch.',
+      'Theatre rehearsal: scene effects fired live on one key.',
+      'Table master: the soundboard for tabletop games and parties.',
+      'Video post: the usual effects gathered onto one board, ready on click.',
+      'Improvisation: your own synthesised sounds arranged into performance material.',
+    ],
+    why: [
+      {
+        icon: 'play',
+        title: 'Eleven synth sounds to start',
+        text: 'Eleven built-in synth sounds ship with it: drag them into the pads and they work, with no material hunt first.',
+      },
+      {
+        icon: 'file',
+        title: 'The board saves',
+        text: 'Each pad trims and tunes, and the whole board saves as a file, ready to reuse any time.',
+      },
     ],
     howTo: [
       {
@@ -7901,11 +7946,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Play a song, watch the spectrum move, and record it as a video — drawn and captured on your device.',
     intro:
       'This page draws 64 bands and records a video for the length of the song. The side runs from 200 to 2160. Presets include 16:9 and 9:16. The browser picks WebM or MP4. If the canvas cannot be recorded, the button stands down, playback still works, and the page says to use a screen recorder. A failed recording says: Recording failed. Try a smaller video size.',
-    usesHeading: 'What people make with it',
+    usesHeading: 'Common uses for the music visualizer',
     uses: [
-      'Record a video that lasts as long as the song. The browser picks WebM or MP4.',
-      'Post a song with a moving spectrum so a static cover does not carry the whole post.',
-      'Record a backdrop for a podcast clip, a demo reel, or a livestream starting screen.',
+      'Release with a video: a moving spectrum for the drop, no video editor opened.',
+      'Vertical for social: 9:16 for Shorts and TikTok, square for the feed.',
+      'Podcast clips: cuts and demos with a backdrop picture.',
+      'Stream intros: record a spectrum backdrop for the opening.',
+      'Stage backdrops: the live spectrum on the big screen.',
+      'Finished without a watermark: up to 1080p, no watermark, and the video is your file.',
+    ],
+    why: [
+      {
+        icon: 'film',
+        title: 'Four styles, four looks',
+        text: 'Spectrum bars, mirrored bars, a ring and an oscilloscope; the theme colours and the two colours keep adjusting after.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'Recorded locally, no watermark',
+        text: 'The browser records the canvas and the sound directly: no server rendering, no watermark, and the video lands in downloads when the song ends.',
+      },
     ],
     howTo: [
       {
