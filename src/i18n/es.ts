@@ -1242,7 +1242,7 @@ export const es: Catalog = {
       shortName: 'Recortar audio',
       title: 'Recortar audio — recorta MP3 online con precisión de 0,01 s',
       description:
-        'Recorta MP3, pódcast o notas de voz: selección en la onda, pasos de 0,01 s, guarda en MP3 (128–320 kbps) o WAV sin pérdida. Todo local, sin subir.',
+        'Recorta MP3, pódcast o notas de voz: selección en la onda, ajustes de 0,01 s, escucha en bucle y guarda en MP3 o WAV sin pérdidas. Todo local, sin subir.',
       h1: 'Recortar audio online, gratis',
       heroAlt: 'Recortar un MP3 o un pódcast y dejar solo la parte que necesitas',
       subtitle: 'Recorta audio en línea, gratis, en tu navegador. Nada se sube.',

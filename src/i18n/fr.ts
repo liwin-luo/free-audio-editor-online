@@ -1144,9 +1144,9 @@ export const fr: Catalog = {
       cardLine: 'Déplacez les poignées pour garder exactement le passage voulu — podcasts, mémos vocaux, toute piste.',
       name: 'Couper l’audio',
       shortName: 'Rogneur',
-      title: 'Rogneur audio — rogner MP3 en ligne au centième de seconde',
+      title: 'Éditeur audio — recadrer un MP3 en ligne, précision 0,01 s',
       description:
-        'Rognez MP3, podcasts ou mémos vocaux : sélection sur l’onde, pas de 0,01 s, boucle, export MP3 (128–320 kbps) ou WAV sans perte. Tout en local.',
+        'Recadrer MP3, podcasts ou mémos vocaux : sélection sur la forme d’onde, écoute en boucle, export MP3 (128–320 kbps) ou WAV sans pertes. Tout en local.',
       h1: 'Couper l’audio — Couper des fichiers audio',
       heroAlt: 'Couper un MP3 ou un podcast pour n’en garder que le passage voulu',
       subtitle: 'Rognez l’audio en ligne, gratuitement, dans votre navigateur. Rien n’est téléversé.',

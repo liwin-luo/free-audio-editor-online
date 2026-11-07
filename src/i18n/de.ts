@@ -1243,7 +1243,7 @@ export const de: Catalog = {
       shortName: 'Audio schneiden',
       title: 'Audio-Trimmer — MP3 online schneiden mit 0,01 s Genauigkeit',
       description:
-        'MP3s, Podcasts oder Sprachmemos schneiden: Wellenform, 0,01-s-Schritte, Schleife, MP3 (128–320 kbps) oder WAV verlustfrei. Alles lokal, kein Upload.',
+        'MP3s, Podcasts oder Sprachmemos schneiden: Wellenform-Auswahl, 0,01-s-Schritte, Hör-Schleife, speichern als MP3 oder verlustfreies WAV. Alles lokal.',
       h1: 'Audio schneiden – einen Abschnitt behalten',
       heroAlt: 'Eine MP3 oder einen Podcast auf die passende Stelle schneiden',
       subtitle: 'Audio online schneiden — kostenlos, direkt im Browser. Nichts wird hochgeladen.',

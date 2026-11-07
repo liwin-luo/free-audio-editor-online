@@ -1241,7 +1241,7 @@ export const pt: Catalog = {
       shortName: 'Cortar áudio',
       title: 'Editor de áudio — apare MP3 online com precisão de 0,01 s',
       description:
-        'Apare MP3s, podcasts ou memos de voz: seleção na onda, passos de 0,01 s, loop, salve em MP3 (128–320 kbps) ou WAV sem perdas. Tudo local.',
+        'Apare MP3s, podcasts ou memos de voz: seleção na onda, ajustes de 0,01 s, audição em loop e salve em MP3 ou WAV sem perdas. Tudo local, nada enviado.',
       h1: 'Cortar áudio — Cortar arquivos de áudio',
       heroAlt: 'Cortar um MP3 ou podcast até ficar só o trecho que você precisa',
       subtitle: 'Recorte áudio online — grátis, direto no navegador. Nada é enviado.',

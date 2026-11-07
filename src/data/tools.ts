@@ -182,7 +182,7 @@ export const TOOLS: ToolDef[] = [
     category: 'cut',
     title: 'Audio Trimmer — Trim MP3 Online with 0.01 s Precision',
     description:
-      'Trim MP3s, podcasts or voice memos: waveform selection, 0.01 s nudges, loop audition, then save as MP3 (128–320 kbps) or lossless WAV. All local, nothing uploads.',
+      'Trim MP3s, podcasts or voice memos: waveform selection, 0.01 s nudges, loop audition, then save as MP3 or lossless WAV. All local, nothing uploads.',
     h1: 'Audio Trimmer — Trim a Recording, Online Free',
     hero: {
       src: '/audio-trimmer.svg',

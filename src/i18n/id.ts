@@ -1242,7 +1242,7 @@ export const id: Catalog = {
       shortName: 'Potong Audio',
       title: 'Audio trimmer — potong MP3 online dengan presisi 0,01 s',
       description:
-        'Potong MP3, podcast, atau memo suara: seleksi gelombang, nudge 0,01 s, audisi loop, simpan MP3 (128–320 kbps) atau WAV lossless. Semua lokal, tanpa unggah.',
+        'Potong MP3, podcast, atau memo suara: seleksi gelombang, nudge 0,01 s, audisi loop, simpan sebagai MP3 atau WAV lossless. Semua lokal, tanpa unggah.',
       h1: 'Potong audio online gratis — Pangkas file audio',
       heroAlt: 'Potong MP3 atau podcast sampai tersisa bagian yang Anda butuhkan',
       subtitle: 'Pangkas audio online — gratis, langsung di browser. Tidak ada yang diunggah.',
