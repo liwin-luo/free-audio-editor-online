@@ -3947,11 +3947,26 @@ export const es: Catalog = {
       heroAlt: 'Volver a convertir una imagen de espectrograma en un WAV',
       subtitle: 'Pinta una imagen o una línea de texto en un WAV. El espectrograma la vuelve a mostrar.',
       intro: 'Escribe una línea corta o suelta una imagen. Esta página escribe esa forma en las frecuencias de un WAV, el mismo truco que una imagen escondida en una canción. No es una canción ni es voz. Abre el WAV en el generador de espectrogramas. Nada se sube.',
-      usesHeading: 'Para qué lo usa la gente',
+      usesHeading: 'Usos habituales de imagen a audio',
       uses: [
-        'Esconder un nombre o una línea donde un espectrograma pueda leerla.',
-        'Convertir un logo simple o un dibujo en una pintura de tonos corta.',
-        'Hacer un archivo que se abre directo en el generador de espectrogramas.',
+        'Mensajes en el espectro: esconde un nombre o una frase que solo el [generador de espectrogramas](/spectrogram-generator) revela.',
+        'Garabatos en sonido: convierte un logo o un dibujo simple en un cuadro de tonos breve.',
+        'Demostraciones en clase: enséñales alumnado que la imagen es el sonido.',
+        'Piezas de arte: pasa una obra visual a su paisaje sonoro correspondiente.',
+        'Huevos de pascua: construye un doble juego audible y visible para un vídeo o una canción.',
+        'Alfabetización del oído: entrena el oído para distinguir cómo cambia el timbre con cada forma.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'La imagen es el espectro',
+          text: 'Abre el audio generado en el [generador de espectrogramas](/spectrogram-generator) y verás exactamente lo que dibujaste o escribiste.',
+        },
+        {
+          icon: 'download-simple',
+          title: 'WAV se descarga directo',
+          text: 'Lo que obtienes es un WAV estándar que cualquier reproductor puede sonar.',
+        },
       ],
       howTo: [
         { name: 'Escribe o suelta', text: 'Hasta 32 caracteres, o un PNG, JPG o WebP. La vista previa es la imagen que se escribirá. Los píxeles claros son frecuencias más fuertes.' },

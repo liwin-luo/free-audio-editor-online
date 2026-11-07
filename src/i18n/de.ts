@@ -3914,11 +3914,26 @@ export const de: Catalog = {
       heroAlt: 'Ein Spektrogramm-Bild wieder in eine WAV-Datei zurückverwandeln',
       subtitle: 'Ein Bild oder eine Zeile Text in die Frequenzen einer WAV malen. Das Spektrogramm zeigt sie wieder.',
       intro: 'Tippe eine kurze Zeile oder lege ein Bild ab. Diese Seite schreibt die Form in die Frequenzen einer WAV — derselbe Trick wie ein Bild in einem Song. Es ist kein Song und keine Sprache. Öffne die WAV im Spektrogramm-Generator. Nichts wird hochgeladen.',
-      usesHeading: 'Was Leute damit machen',
+      usesHeading: 'Häufige Einsätze für Bild zu Audio',
       uses: [
-        'Einen Namen oder eine Zeile dort verstecken, wo ein Spektrogramm sie liest.',
-        'Ein einfaches Logo oder eine Zeichnung in ein kurzes Tonbild verwandeln.',
-        'Eine Datei bauen, die direkt in den Spektrogramm-Generator wandert.',
+        'Spektrum-Botschaften: einen Namen oder einen Satz im Spektrum verstecken, lesbar im [Spektrogramm-Generator](/spectrogram-generator).',
+        'Kritzeleien in Klang: aus einem einfachen Logo oder Gekritzel ein kurzes Tonbild machen.',
+        'Unterrichtsdemos: zeigen, dass das Bild der Klang ist.',
+        'Kunstwerke: ein visuelles Werk in seine passende Klanglandschaft übersetzen.',
+        'Easter Eggs: ein hörbares und sichtbares Wortspiel für ein Video oder einen Song bauen.',
+        'Ohren-Lesen: das Ohr trainieren, wie unterschiedliche Formen den Klang verändern.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'Das Bild ist das Spektrum',
+          text: 'Öffne das erzeugte Audio im [Spektrogramm-Generator](/spectrogram-generator) und du siehst genau, was du gezeichnet oder getippt hast.',
+        },
+        {
+          icon: 'download-simple',
+          title: 'WAV lädt direkt herunter',
+          text: 'Du bekommst ein Standard-WAV, das jeder Player abspielt.',
+        },
       ],
       howTo: [
         { name: 'Tippen oder ablegen', text: 'Bis zu 32 Zeichen, oder PNG, JPG, WebP. Die Vorschau ist das Bild, das geschrieben wird. Helle Pixel sind lautere Frequenzen.' },

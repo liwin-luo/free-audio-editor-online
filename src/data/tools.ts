@@ -4816,11 +4816,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Paint a picture or a line of text into a WAV. A spectrogram shows it back.',
     intro:
       'Type up to 32 characters, or drop a PNG, JPG, or WebP. The picture is scaled to at most 360 by 140. The file is a 44.1 kHz, 16-bit, mono WAV, not an MP3. Open it on the [spectrogram generator](/spectrogram-generator) to see the shape.',
-    usesHeading: 'What people make with it',
+    usesHeading: 'Common uses for image to audio',
     uses: [
-      'Hide a spectrogram message — a name or one line only a spectrogram shows.',
-      'Turn a simple logo or drawing into spectrogram art.',
-      'Make a file you can drop straight into the spectrogram generator.',
+      'Spectrogram messages: hide a name or a line in the spectrum, readable in the [spectrogram generator](/spectrogram-generator).',
+      'Doodles into sound: turn a simple logo or scribble into a short tone painting.',
+      'Teaching demos: show students that the image is the sound.',
+      'Art pieces: turn a visual work into its matching soundscape.',
+      'Easter eggs: build an audio-visual pun for a video or a song.',
+      'Ear literacy: train the ear to hear how different shapes change the timbre.',
+    ],
+    why: [
+      {
+        icon: 'image',
+        title: 'The image is the spectrum',
+        text: 'Open the generated audio in the [spectrogram generator](/spectrogram-generator) and you see exactly what you drew or typed.',
+      },
+      {
+        icon: 'download-simple',
+        title: 'WAV downloads directly',
+        text: 'What you get is a standard WAV that any player will play.',
+      },
     ],
     howTo: [
       {

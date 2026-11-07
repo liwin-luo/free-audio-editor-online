@@ -4013,11 +4013,26 @@ export const pt: Catalog = {
       heroAlt: 'Transformar uma imagem de espectrograma de volta em um WAV',
       subtitle: 'Pinte uma imagem ou uma linha de texto num WAV. O espectrograma mostra de volta.',
       intro: 'Digite uma linha curta ou solte uma imagem. Esta página escreve essa forma nas frequências de um WAV, o mesmo truque de uma imagem escondida numa música. Não é uma música nem é fala. Abra o WAV no gerador de espectrograma. Nada é enviado.',
-      usesHeading: 'O que as pessoas fazem',
+      usesHeading: 'Usos comuns de imagem para áudio',
       uses: [
-        'Esconder um nome ou uma linha onde um espectrograma consegue ler.',
-        'Transformar um logo simples ou um desenho numa pintura curta de tons.',
-        'Fazer um arquivo para abrir direto no gerador de espectrograma.',
+        'Mensagens no espectro: esconda um nome ou uma frase que só o [gerador de espectrograma](/spectrogram-generator) revela.',
+        'Rabiscos em som: transforme um logo ou desenho simples num pequeno quadro de tons.',
+        'Demonstrações em aula: mostre ao pessoal que a imagem é o som.',
+        'Peças de arte: leve uma obra visual ao seu panorama sonoro correspondente.',
+        'Ovos de páscoa: construa um trocadilho audível e visível para um vídeo ou música.',
+        'Alfabetização do ouvido: treine o ouvido para distinguir como cada forma muda o timbre.',
+      ],
+      why: [
+        {
+          icon: 'image',
+          title: 'A imagem é o espectro',
+          text: 'Abra o áudio gerado no [gerador de espectrograma](/spectrogram-generator) e verá exatamente o que desenhou ou digitou.',
+        },
+        {
+          icon: 'download-simple',
+          title: 'WAV baixa direto',
+          text: 'O que você recebe é um WAV padrão que qualquer tocador toca.',
+        },
       ],
       howTo: [
         { name: 'Digite ou solte', text: 'Até 32 caracteres, ou PNG, JPG, WebP. A prévia é a imagem que será gravada. Pixels claros são frequências mais altas.' },
