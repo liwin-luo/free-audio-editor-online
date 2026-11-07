@@ -665,22 +665,22 @@ export const TOOLS: ToolDef[] = [
   },
   {
     slug: 'ringtone-maker',
-    cardLine: 'Save up to 40 seconds of a song. The page downloads the file and does not set it on the phone.',
+    cardLine: 'Turn the catchiest 30 seconds of a song into an iPhone or Android ringtone.',
     name: 'Ringtone Maker',
     shortName: 'Ringtone Maker',
     icon: 'bell',
     category: 'cut',
-    title: 'Ringtone Maker — Make Ringtones from Songs (iPhone M4R)',
+    title: 'Ringtone Maker — Cut an iPhone Ringtone from a Song',
     description:
-      'Save up to 40 seconds as M4R, MP3, or WAV. M4R is in the menu only when this browser can encode AAC. Nothing is uploaded.',
-    h1: 'Ringtone Maker — Make an iPhone Ringtone from a Song, Online Free',
+      'Cut a ringtone from any song: the selection caps at 40 seconds, fades optional. Export M4R for iPhone (needs AAC support) or MP3 for other phones. Free.',
+    h1: 'Ringtone Maker — Turn Any Song into an iPhone Ringtone',
     hero: {
       src: '/ringtone-maker.svg',
-      alt: 'Save up to 40 seconds of a song as an M4R or MP3',
+      alt: 'Cut up to 40 seconds and save it as M4R or MP3',
       width: 32,
       height: 32,
     },
-    howToIntro: 'A song going in, a ringtone coming out',
+    howToIntro: 'A song in, a ringtone out',
     screenshots: [
       {
         src: '/screenshots/ringtone-maker-1.webp',
@@ -701,56 +701,75 @@ export const TOOLS: ToolDef[] = [
         height: 1019
       },
     ],
-    subtitle: 'Save up to 40 seconds of a song as a file you can download.',
+    subtitle: 'Pick the best moment of any song and save it as a ringtone in under a minute.',
     intro:
-      'Drag a span of a song. A drag longer than 40 seconds is shortened to 40, and the page says: Selection capped at 40 seconds — the classic ringtone length. Fade each end from 0 to 5 seconds. The page downloads the file. It does not install it on the phone.',
-    usesHeading: 'Ringtones worth setting',
+      'Pick the hook, the chorus or the intro of a song you like and make it your ringtone. The maker keeps the selection within the classic 40-second ringtone length, adds a fade if you want one, and exports for your phone: M4R for iPhone, MP3 for everything else.',
+    usesHeading: 'Common uses for the ringtone maker',
     uses: [
-      'Drag a span. Longer than 40 seconds is shortened to 40.',
-      'Fade each end from 0 to 5 seconds, or leave both at 0.',
-      'Download M4R only when this browser can encode AAC. Otherwise download MP3 or WAV.',
+      'iPhone ringtones: cut the hook, export M4R, sync it in Finder and you are done.',
+      'Android ringtones: cut a section, export MP3, pick it right in Settings.',
+      'Chorus ringtones: make the catchiest bars of the chorus your opening.',
+      'Intro ringtones: hear a melody you love before you answer the call.',
+      'Fade-out endings: soften the loop so it never cuts off mid-note.',
+      'Crisp short tones: stay under 20 seconds; the 40-second cap applies automatically.',
+    ],
+    why: [
+      {
+        icon: 'bell',
+        title: 'Capped at 40 seconds automatically',
+        text: 'Drag past 40 seconds and the selection shrinks back with a notice — the classic ringtone length, so you never have to guess what your phone accepts.',
+      },
+      {
+        icon: 'convert',
+        title: 'Two exits: M4R and MP3',
+        text: 'Pick M4R for iPhone (listed only when this browser can encode AAC, hidden otherwise) or MP3 192 kbps for Android and every other phone — ready to use right out of the export.',
+      },
     ],
     howTo: [
       {
         name: 'Add a song',
-        text: 'Drop an MP3, M4A, WAV or other audio file onto the page. It never leaves your device.',
+        text: 'Drop an MP3, M4A, WAV or other audio file into the dashed frame, or click to browse. It never leaves your device.',
       },
       {
-        name: 'Pick your moment',
-        text: 'Drag across the waveform. A drag longer than 40 seconds is shortened to 40.',
+        name: 'Cut the section',
+        text: 'Drag the selection across the waveform, up to 40 seconds — drag past it and the cap applies automatically with a notice. This is the classic ringtone length.',
       },
       {
-        name: 'Export and transfer',
-        text: 'Fade each end from 0 to 5 seconds, in steps of 0.1, or leave both at 0. The menu starts at MP3 192 kbps. M4R is listed only when this browser can encode AAC.',
+        name: 'Add a fade, tap Make ringtone',
+        text: 'Fade each end from 0 to 5 seconds. Choose M4R for iPhone, or MP3 192 kbps for Android and other phones.',
+      },
+      {
+        name: 'Move it to your phone',
+        text: 'iPhone: sync through Finder (iTunes on Windows). Android: pick the MP3 under Settings > Sound > Phone ringtone.',
       },
     ],
     faqs: [
       {
         q: 'How long should a ringtone be?',
-        a: 'A drag longer than 40 seconds is shortened to 40. The page then says: Selection capped at 40 seconds — the classic ringtone length.',
+        a: 'Most phones ring for 20 to 40 seconds before voicemail picks up, and shorter tones feel crisper. The maker caps the selection at 40 seconds, the classic ringtone length.',
       },
       {
         q: 'How do I use the ringtone on iPhone?',
-        a: 'M4R is AAC-LC, at most two channels, at 192 kbps. It appears in the menu only when this browser can encode AAC. This page only downloads the file.',
+        a: 'Pick M4R in the format menu before exporting. Chrome, Edge and Safari 17 or later encode it right on your device; sync the downloaded file to the iPhone through Finder (iTunes on Windows). Browsers without AAC encoding, like Firefox, fall back to MP3 — convert it in GarageBand: import the file, then share it as a ringtone.',
       },
       {
         q: 'How do I set it on Android?',
-        a: 'This page can download an MP3. It does not set the tone on the phone.',
+        a: 'Copy the exported MP3 to the phone, open Settings > Sound > Phone ringtone and pick the file, or set it as a ringtone straight from a file app. No conversion needed.',
       },
       {
         q: 'Will the ringtone loop badly?',
-        a: 'Fade in and fade out each run from 0 to 5 seconds. Repeating the clip 2 to 16 times, up to 10 minutes, is the [audio looper](/audio-looper).',
+        a: 'Set a short fade-out on the page. The loop back to the start then sounds natural instead of cutting off mid-note. To repeat the clip 2 to 16 times into one longer file, use the [audio looper](/audio-looper). This page stays within 40 seconds.',
       },
       {
         q: 'Is there a watermark or limit?',
-        a: 'No watermark, no signup, no daily cap. The ringtone is rendered on your own device and downloaded straight from the browser.',
+        a: 'No watermark, no signup, no daily cap. The ringtone renders on your own device and downloads straight from the browser.',
       },
     ],
     sections: [
       {
         heading: 'How a song becomes a ringtone',
         paragraphs: [
-          'A drag longer than 40 seconds is shortened to 40. The page then says: Selection capped at 40 seconds — the classic ringtone length.',
+          'Drag longer than 40 seconds and the selection shrinks to 40. The page then says: Selection capped at 40 seconds — the classic ringtone length.',
           'Fade each end from 0 to 5 seconds, in steps of 0.1. At 0, that end is unchanged.',
         ],
       },
@@ -777,8 +796,8 @@ export const TOOLS: ToolDef[] = [
       {
         heading: 'What this page does not do',
         paragraphs: [
-          'It does not upload the song, and it does not install the tone on the phone. You download a file.',
-          'A full song, without the 40-second cap, is the [MP3 cutter](/mp3-cutter).',
+          'It does not upload the song, and it does not install the tone on the phone. You get a file.',
+          'For a whole song without the 40-second cap, use the [MP3 cutter](/mp3-cutter).',
         ],
       },
     ],
