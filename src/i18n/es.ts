@@ -3644,11 +3644,26 @@ export const es: Catalog = {
       subtitle: 'Pasa audio OGG a MP3, en tu navegador y sin subir nada.',
       intro:
         'OGG es un contenedor: casi siempre Vorbis, a veces Opus. Suelta el archivo, elige un bitrate y tu navegador lo decodifica y guarda un MP3. El audio no va a ningún servidor.',
-      usesHeading: 'OGG que la gente convierte',
+      usesHeading: 'Usos habituales de OGG a MP3',
       uses: [
-        'Abre un rip de un juego, una descarga o una grabación del navegador que llegó en OGG.',
-        'Guarda un MP3 para el teléfono, el coche o un editor que no acepta OGG.',
-        'Deja la voz en 128 kbps y la música más alta. Reintentar es local y gratis.',
+        'Material de juegos: pasa el OGG sacado de un juego a MP3 que el editor acepte.',
+        'Grabaciones del navegador: convierte el OGG que suelta una grabadora web a un formato universal.',
+        'Grabaciones de Linux: los grabadores del sistema salen en OGG; convierte a MP3 para compartir.',
+        'Compatibilidad de coche: la radio vieja no traga OGG; convierte a MP3 y dale al play.',
+        'Mensajes de voz: algunas apps graban OGG/Opus; convierte a MP3 para el archivo.',
+        'Orden por lotes: convierte varios OGG de una vez, empaquetados en ZIP.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Decodifica Vorbis y Opus',
+          text: 'Ambos códecs internos del OGG se decodifican aquí; los .opus pelados como los de WhatsApp tienen su propia [página](/opus-to-mp3).',
+        },
+        {
+          icon: 'layers',
+          title: 'ZIP por lotes',
+          text: 'Los OGG comparten un mismo grupo de ajustes, se convierten en orden y se empaquetan en un ZIP.',
+        },
       ],
       howTo: [
         { name: 'Suelta tu OGG', text: 'Arrastra un .ogg o .oga a la página, o haz clic para elegirlo. Puedes soltar varios archivos. Comparten el ajuste que eliges después. Uno se descarga solo. Dos o más vuelven en un ZIP.' },

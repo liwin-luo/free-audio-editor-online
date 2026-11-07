@@ -3712,11 +3712,26 @@ export const pt: Catalog = {
       heroAlt: 'Converter o Vorbis ou o Opus de um OGG em MP3',
       subtitle: 'Transforme áudio OGG em MP3, no navegador, sem enviar nada.',
       intro: 'OGG é um contêiner: em geral Vorbis, às vezes Opus. Solte o arquivo, escolha um bitrate e o navegador decodifica e salva um MP3. O áudio não vai para um servidor.',
-      usesHeading: 'OGG que as pessoas convertem',
+      usesHeading: 'Usos comuns de OGG para MP3',
       uses: [
-        'Abra um rip de jogo, um download ou uma gravação do navegador que chegou em OGG.',
-        'Salve um MP3 para o celular, o carro ou um editor que não aceita OGG.',
-        'Deixe a fala em 128 kbps e a música mais alta. Tentar de novo é local e grátis.',
+        'Material de jogo: transforme o OGG tirado de um jogo em MP3 que o editor aceite.',
+        'Gravações do navegador: converta o OGG que um gravador web entrega num formato universal.',
+        'Gravações no Linux: os gravadores do sistema saem em OGG; converta para MP3 e compartilhe.',
+        'Compatibilidade no carro: o som velho recusa OGG; converta para MP3 e dê play.',
+        'Mensagens de voz: alguns apps gravam OGG/Opus — converta para MP3 e arquive.',
+        'Organizar em lote: converta vários OGGs de uma vez, empacotados num ZIP.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Vorbis e Opus decodificam',
+          text: 'Os dois codecs internos do OGG decodificam aqui; .opus pelado como o do WhatsApp tem uma [página própria](/opus-to-mp3).',
+        },
+        {
+          icon: 'layers',
+          title: 'ZIP em lote',
+          text: 'Os OGGs compartilham um conjunto de ajustes, convertem em ordem e vão para um ZIP.',
+        },
       ],
       howTo: [
         { name: 'Solte o OGG', text: 'Arraste um .ogg ou .oga para a página, ou clique para procurar. Dá para soltar vários arquivos. Eles usam o ajuste que você escolhe em seguida. Um baixa sozinho. Dois ou mais voltam num ZIP.' },

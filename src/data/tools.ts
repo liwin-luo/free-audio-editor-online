@@ -5546,11 +5546,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Turn OGG audio into MP3 — in your browser, nothing uploaded.',
     intro:
       'OGG is a container, usually Vorbis, sometimes Opus. Drop the file, pick a bitrate, and your browser decodes it and saves an MP3. The audio never goes to a server.',
-    usesHeading: 'OGG files people convert',
+    usesHeading: 'Common uses for OGG to MP3',
     uses: [
-      'Open a game rip, a download, or a browser recording that arrived as OGG.',
-      'Save an MP3 for a phone, a car, or an editor that does not take OGG.',
-      'Leave speech at 128 kbps and music higher. Retrying is local and free.',
+      'Game assets: turn OGG audio pulled out of a game into MP3s the editor accepts.',
+      'Browser recordings: convert the OGG a web recorder hands out into a universal format.',
+      'Linux recordings: system recorders default to OGG — convert to MP3 to share.',
+      'Car compatibility: an old head unit refuses OGG; convert to MP3 and press play.',
+      'Voice messages: some apps record OGG/Opus — convert to MP3 for the archive.',
+      'Batch tidy-up: convert several OGGs at once, packed into a ZIP.',
+    ],
+    why: [
+      {
+        icon: 'convert',
+        title: 'Vorbis and Opus both decode',
+        text: 'Both OGG inner codecs decode here; bare .opus voice notes like WhatsApp's have their own [page](/opus-to-mp3).',
+      },
+      {
+        icon: 'layers',
+        title: 'Batch ZIP',
+        text: 'OGG files share one set of settings, converting in order and packing into a ZIP.',
+      },
     ],
     howTo: [
       {

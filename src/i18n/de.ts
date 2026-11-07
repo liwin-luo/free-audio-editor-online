@@ -3613,11 +3613,26 @@ export const de: Catalog = {
       heroAlt: 'Vorbis oder Opus in einer OGG-Datei in MP3 umwandeln',
       subtitle: 'Mach aus OGG-Audio eine MP3 — im Browser, nichts wird hochgeladen.',
       intro: 'OGG ist ein Container, meist mit Vorbis, manchmal mit Opus. Leg die Datei ab, wähl eine Bitrate, und dein Browser dekodiert sie und speichert eine MP3. Die Audiodatei geht an keinen Server.',
-      usesHeading: 'OGG-Dateien, die Leute konvertieren',
+      usesHeading: 'Häufige Einsätze für OGG zu MP3',
       uses: [
-        'Öffne einen Game-Rip, einen Download oder eine Browseraufnahme, die als OGG kam.',
-        'Speichere eine MP3 fürs Handy, ins Auto oder in einen Editor, der kein OGG nimmt.',
-        'Sprache bei 128 kbps, Musik höher. Nochmal versuchen ist lokal und kostenlos.',
+        'Spielsounds: OGG-Audio aus einem Spiel in MP3s umwandeln, die der Editor nimmt.',
+        'Browser-Aufnahmen: das OGG, das ein Webrekorder ausspuckt, in ein universelles Format bringen.',
+        'Linux-Aufnahmen: Systemrekorder schreiben OGG — zu MP3 zum Weitergeben.',
+        'Auto-Kompatibilität: das alte Autoradio verweigert OGG; zu MP3 und abspielen.',
+        'Sprachnachrichten: manche Apps zeichnen OGG/Opus auf — fürs Archiv zu MP3.',
+        'Stapel-Putzaktion: mehrere OGGs auf einmal umwandeln, als ZIP gepackt.',
+      ],
+      why: [
+        {
+          icon: 'convert',
+          title: 'Vorbis und Opus werden beide dekodiert',
+          text: 'Beide OGG-Innencodecs dekodieren hier; nackte .opus-Sprachnachrichten wie bei WhatsApp haben eine eigene [Seite](/opus-to-mp3).',
+        },
+        {
+          icon: 'layers',
+          title: 'Stapel-ZIP',
+          text: 'OGG-Dateien teilen sich eine Einstellung, werden der Reihe nach umgewandelt und in ein ZIP gepackt.',
+        },
       ],
       howTo: [
         { name: 'OGG ablegen', text: 'Zieh eine .ogg- oder .oga-Datei auf die Seite oder klick zum Auswählen. Mehrere Dateien teilen sich die Einstellung, die du als Nächstes wählst. Eine Datei kommt allein, zwei oder mehr als ein ZIP.' },
