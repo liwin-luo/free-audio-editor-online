@@ -3037,11 +3037,26 @@ export const de: Catalog = {
       subtitle: 'Verstärke leise Titel und Videotonspuren bis auf das 4-Fache — sauber, ohne Übersteuern.',
       intro:
         'Für alles, was zu leise spielt: leise Handyvideos, zurückhaltende Akustikaufnahmen, Podcasts, die auf Flüsterlautstärke gemastert sind. Lade eine Datei, schieb die Lautstärke bis auf das 4-Fache und lass den eingebauten Limiter die Peaks zurückhalten, damit die lauten Stellen sauber bleiben. Das gilt für Audio- und Videodateien gleichermaßen — verarbeitet wird nur die Tonspur.',
-      usesHeading: 'Leise Dateien, für die diese Seite da ist',
+      usesHeading: 'Häufige Einsätze zum Verstärken leiser Dateien',
       uses: [
-        'Heb eine Videotonspur an, die leiser herausgekommen ist als das Bild.',
-        'Verstärke Musik, die beim Export oder Rippen zu leise war.',
-        'Bleib bei etwa 150% bis 250%, wenn es lauter werden soll, ohne dass der Limiter pumpt.',
+        'Video-Tonspuren: Aufnahmen, die leiser klingen als das Bild, angehoben, damit sie mithalten.',
+        'Leise Musik: alte Rips oder Downloads mit niedrigem Pegel, auf normale Lautstärke gebracht.',
+        'Handy-Videos: Außenaufnahmen, in denen der Wind die Stimme zudeckt, mit gehobener Stimme.',
+        'Meeting-Wiedergaben: flau aufgenommene Online-Meetings, angehoben bis alles klar ist.',
+        'Demo-Sprechtexte: der Sprechertext einer Schulungsbildschirmaufnahme, angehoben statt neu aufgenommen.',
+        'Rohschnell-Vorschau: der Ton eines Videodrafts angehoben, damit der Inhalt zuerst geprüft werden kann.',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'Video geht direkt durch',
+          text: 'Auch Videodateien mit Bild bekommen mehr Lautstärke: Nur die Tonspur wird verarbeitet, das Bild bleibt unangetastet, und der Export bleibt im selben Container.',
+        },
+        {
+          icon: 'volume',
+          title: 'Die Verstärkung setzt du selbst',
+          text: 'Der Regler läuft frei, während du mithörst; setze das Maß nach Gehör statt einen Prozentsatz zu raten.',
+        },
       ],
       howTo: [
         {

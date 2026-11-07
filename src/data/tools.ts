@@ -2795,11 +2795,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Gain from 10% to 400% on a file that may include video. Above 100% a limiter is applied.',
     intro:
       'For everything that plays too quietly: quiet phone videos, gentle acoustic recordings, podcasts mastered at whisper level. Load a file, push the volume up to 4×, and let the built-in limiter hold the peaks back so the loud parts stay clean. Works on audio and video files alike — only the soundtrack is processed.',
-    usesHeading: 'Quiet files this page is for',
+    usesHeading: 'Common uses for boosting quiet files',
     uses: [
-      'Lift a video soundtrack that came out quieter than the picture.',
-      'Boost music that was exported or ripped at a low level.',
-      'Stay near 150% to 250% when you want louder without the limiter pumping.',
+      'Video soundtracks: recordings that sound quieter than the picture, lifted to match.',
+      'Quiet music: old rips or downloads at a low level, brought up to normal loudness.',
+      'Phone footage: outdoor clips where wind buries the voice, with the voice raised.',
+      'Meeting replays: online meeting recordings that came out faint, raised until they are clear.',
+      'Demo narrations: narration on a training screen recording, boosted instead of re-recorded.',
+      'Rough-cut previews: the audio of a video draft turned up, so the content can be checked first.',
+    ],
+    why: [
+      {
+        icon: 'film',
+        title: 'Video goes straight through',
+        text: 'Video files with a picture get their volume raised too: only the audio track is processed, the picture is untouched, and the export stays in the same container.',
+      },
+      {
+        icon: 'volume',
+        title: 'The boost is yours to set',
+        text: 'The slider moves freely while you listen along; set the amount by ear instead of guessing a percentage.',
+      },
     ],
     howTo: [
       {

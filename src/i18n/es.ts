@@ -3066,11 +3066,26 @@ export const es: Catalog = {
       subtitle: 'Sube temas bajos y pistas de video hasta 4×: más fuerte, sin saturar.',
       intro:
         'Para todo lo que suena demasiado bajo: videos del teléfono, grabaciones acústicas suaves, podcasts masterizados casi en un susurro. Carga un archivo, sube el volumen hasta 4× y deja que el limitador integrado frene los picos para que las partes fuertes sigan limpias. Funciona igual con audio y con video: solo se procesa la pista de sonido.',
-      usesHeading: 'Archivos bajos para los que está esta página',
+      usesHeading: 'Usos habituales de subir archivos callados',
       uses: [
-        'Sube una pista de vídeo que salió más baja que la imagen.',
-        'Refuerza música exportada o ripeada a un nivel bajo.',
-        'Quédate cerca del 150% al 250% si quieres más volumen sin que el limitador bombee.',
+        'Pistas de vídeo: grabaciones que suenan más flojas que la imagen, elevadas para empatarla.',
+        'Música callada: ripeos o descargas con nivel bajo, llevadas a una sonoridad normal.',
+        'Vídeos del móvil: tomas exteriores donde el viento tapa la voz, con la voz levantada.',
+        'Repeticiones de reuniones: grabaciones de reuniones online que salieron tenues, subidas hasta entenderse.',
+        'Narraciones de demo: la voz de una grabación de pantalla de formación, elevada en vez de regrabada.',
+        'Previas del montaje: el audio de un borrador de vídeo subido, para revisar el contenido antes.',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'El vídeo pasa directo',
+          text: 'Los archivos de vídeo con imagen también suben de volumen: solo se procesa la pista de audio, la imagen no se toca y la exportación queda en el mismo contenedor.',
+        },
+        {
+          icon: 'volume',
+          title: 'El aumento lo eliges tú',
+          text: 'El control se mueve libre mientras escuchas; fija la cantidad de oído en vez de adivinar un porcentaje.',
+        },
       ],
       howTo: [
         {

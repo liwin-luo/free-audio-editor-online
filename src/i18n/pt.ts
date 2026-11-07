@@ -3114,11 +3114,26 @@ export const pt: Catalog = {
       subtitle: 'Aumente faixas baixas e trilhas de vídeo em até 4× — limpo, sem clipar.',
       intro:
         'Para tudo que toca baixo demais: vídeos de celular baixos, gravações acústicas suaves, podcasts masterizados no volume de um sussurro. Carregue um arquivo, suba o volume até 4× e deixe o limiter embutido segurar os picos para as partes altas continuarem limpas. Funciona com arquivos de áudio e de vídeo — só a trilha sonora é processada.',
-      usesHeading: 'Arquivos baixos para os quais esta página serve',
+      usesHeading: 'Usos comuns de reforçar arquivos baixos',
       uses: [
-        'Aumente uma trilha de vídeo que saiu mais baixa que a imagem.',
-        'Reforce música exportada ou ripada num nível baixo.',
-        'Fique perto de 150% a 250% se quiser mais alto sem o limitador bombeando.',
+        'Trilhas de vídeo: gravações que soam mais baixas que a imagem, erguidas para acompanhar.',
+        'Música baixa: rippagens ou downloads com nível baixo, trazidas a uma sonoridade normal.',
+        'Vídeos do celular: tomadas externas onde o vento cobre a voz, com a voz erguida.',
+        'Repetições de reunião: gravações de reuniões online que saíram fracas, erguidas até ficarem claras.',
+        'Narrações de demo: a voz de uma gravação de tela de treinamento, erguida em vez de regravada.',
+        'Prévias do rascunho: o áudio de um rascunho de vídeo no talo, para conferir o conteúdo antes.',
+      ],
+      why: [
+        {
+          icon: 'film',
+          title: 'O vídeo passa direto',
+          text: 'Arquivos de vídeo com imagem também ganham volume: só a trilha de áudio é processada, a imagem fica intacta e a exportação segue no mesmo contêiner.',
+        },
+        {
+          icon: 'volume',
+          title: 'O reforço é você que define',
+          text: 'O controle anda livre enquanto você escuta; fixe a medida de ouvido em vez de adivinhar uma porcentagem.',
+        },
       ],
       howTo: [
         {
