@@ -2964,11 +2964,26 @@ export const de: Catalog = {
       subtitle: 'Nimm dein Mikrofon auf, kürze die Aufnahme und speichere sie als MP3 — nichts verlässt dein Gerät.',
       intro:
         'Ein Rekorder mit Schneideplatz: nimm Sprachnotizen, Interviews, Übungsaufnahmen oder Besprechungsnotizen auf, schneide die Stille weg und exportiere eine saubere Datei. Aufnahme und Bearbeitung passieren beide in deinem Browser — das Audio wird nie irgendwohin geschickt, deshalb ist das auch bei vertraulichen Gesprächen entspannt.',
-      usesHeading: 'Takes, die sich hier aufzunehmen lohnen',
+      usesHeading: 'Häufige Einsätze für den Sprachrekorder',
       uses: [
-        'Nimm Sprachnotiz, Sprachübung oder eine grobe Erzählung auf, ohne eine App zu installieren.',
-        'Schneide Anfang und Ende vor dem Export, damit der Take nur die Worte enthält.',
-        'Speichere MP3 zum Senden, oder WAV, wenn du den Take noch editierst.',
+        'Sprachmemos: sag es, solange es frisch ist, und schneide die Enden vor dem Speichern.',
+        'Sprachübungen: nimm deine Aussprache auf und vergleiche sie mit dem Original.',
+        'Interview-Entwürfe: das Gespräch von Angesicht zu Angesicht aufnehmen, später in Ruhe transkribieren.',
+        'Besprechungsnotizen: die Ergebnisse schnell festhalten, die Details schriftlich nachlegen.',
+        'Sprechproben: den Entwurf für eine Demo oder einen Kurs aufnehmen und hören, bis er sitzt.',
+        'Musikeinfälle: die Melodie summen, bevor sie entwischt.',
+      ],
+      why: [
+        {
+          icon: 'mic',
+          title: 'Direkt nach der Aufnahme schneiden',
+          text: 'Die Aufnahme lädt direkt in den Editor darunter: Enden schneiden, Auswahl markieren, als MP3 oder WAV exportieren — kein zweites Werkzeug.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'Die Aufnahme bleibt im Tab',
+          text: 'Mikrofondaten bleiben im Tab-Speicher, nichts wird übertragen. Schließen ohne Export, und die Aufnahme ist weg — vertrauliche Gespräche inklusive.',
+        },
       ],
       howTo: [
         {

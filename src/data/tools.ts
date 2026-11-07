@@ -2590,11 +2590,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Record your microphone, trim the take, save it as MP3 — nothing leaves your device.',
     intro:
       'A recorder with a trimming studio attached: capture voice memos, interviews, practice takes or meeting notes, then cut the dead air and export a clean file. Recording and editing both happen in your browser — the audio is never sent anywhere, which makes this comfortable even for confidential conversations.',
-    usesHeading: 'Takes worth recording here',
+    usesHeading: 'Common uses for the voice recorder',
     uses: [
-      'Record a voice memo, a language drill, or a rough narration without installing an app.',
-      'Trim the start and the tail before export, so the take is only the words.',
-      'Save MP3 to send it, or WAV if you will edit the take again.',
+      'Voice memos: say it while it is fresh, then trim the ends before saving.',
+      'Language drills: record your own pronunciation and compare it with the original.',
+      'Interview drafts: record the face-to-face interview now, transcribe and tidy later.',
+      'Meeting notes: capture the conclusions fast, fill in the details in writing.',
+      'Narration practice: record a demo or course narration draft and listen until it fits.',
+      'Music ideas: hum the melody before it escapes.',
+    ],
+    why: [
+      {
+        icon: 'mic',
+        title: 'Trim it the moment it is recorded',
+        text: 'The take loads straight into the editor below: cut the ends, mark a selection, export MP3 or WAV — no second tool.',
+      },
+      {
+        icon: 'lock-simple',
+        title: 'The recording never leaves the tab',
+        text: 'Microphone data stays in the tab memory and nothing is transmitted. Close without exporting and the take is gone — confidential conversations included.',
+      },
     ],
     howTo: [
       {
@@ -5559,7 +5574,7 @@ export const TOOLS: ToolDef[] = [
       {
         icon: 'convert',
         title: 'Vorbis and Opus both decode',
-        text: 'Both OGG inner codecs decode here; bare .opus voice notes like WhatsApp's have their own [page](/opus-to-mp3).',
+        text: 'Both OGG inner codecs decode here; bare .opus voice notes like the WhatsApp kind have their own [page](/opus-to-mp3).',
       },
       {
         icon: 'layers',

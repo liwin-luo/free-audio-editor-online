@@ -2993,11 +2993,26 @@ export const es: Catalog = {
       subtitle: 'Graba el micrófono, recorta la toma y guárdala como MP3. Nada sale de tu dispositivo.',
       intro:
         'Una grabadora con el recorte incluido: captura notas de voz, entrevistas, tomas de práctica o apuntes de una reunión, luego corta los silencios y exporta un archivo limpio. Grabar y editar ocurren en tu navegador. El audio nunca se envía a ningún lado, así que sirve incluso para conversaciones confidenciales.',
-      usesHeading: 'Tomas que vale la pena grabar aquí',
+      usesHeading: 'Usos habituales del grabador de voz',
       uses: [
-        'Graba una nota de voz, un ejercicio de idioma o una narración en bruto, sin instalar una app.',
-        'Recorta el principio y el final antes de exportar, para que la toma sea solo las palabras.',
-        'Guarda MP3 para enviarla, o WAV si vas a editar la toma otra vez.',
+        'Notas de voz: dilo mientras está fresco y recorta los extremos antes de guardar.',
+        'Ejercicios de idioma: graba tu pronunciación y compárala con la original.',
+        'Borradores de entrevista: graba la entrevista cara a cara y transcríbela con calma después.',
+        'Notas de reunión: capta las conclusiones rápido y completa los detalles por escrito.',
+        'Ensayo de narración: graba el borrador de una demo o curso y escúchalo hasta que encaje.',
+        'Ideas musicales: tararea la melodía antes de que se escape.',
+      ],
+      why: [
+        {
+          icon: 'mic',
+          title: 'Recortar en cuanto se graba',
+          text: 'La toma carga directo en el editor de abajo: corta los extremos, marca una selección y exporta MP3 o WAV, sin abrir otra herramienta.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'La grabación no sale de la pestaña',
+          text: 'Los datos del micrófono se quedan en la memoria de la pestaña y no se transmite nada. Cierra sin exportar y la toma desaparece, conversaciones confidenciales incluidas.',
+        },
       ],
       howTo: [
         {

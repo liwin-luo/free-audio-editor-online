@@ -3041,11 +3041,26 @@ export const pt: Catalog = {
       subtitle: 'Grave o microfone, recorte a gravação e salve em MP3 — nada sai do aparelho.',
       intro:
         'Um gravador com estúdio de recorte junto: capture recados de voz, entrevistas, ensaios ou notas de reunião, corte o silêncio e exporte um arquivo limpo. Gravar e editar acontecem no navegador — o áudio nunca é enviado para lugar nenhum, o que deixa confortável até para conversas confidenciais.',
-      usesHeading: 'Takes que vale a pena gravar aqui',
+      usesHeading: 'Usos comuns do gravador de voz',
       uses: [
-        'Grave um recado, um exercício de idioma ou uma narração bruta, sem instalar um app.',
-        'Corte o começo e o fim antes de exportar, para o take ser só as palavras.',
-        'Salve MP3 para enviar, ou WAV se ainda vai editar o take.',
+        'Memos de voz: fale enquanto está fresco e corte as pontas antes de salvar.',
+        'Exercícios de idioma: grave sua pronúncia e compare com o original.',
+        'Rascunhos de entrevista: grave a entrevista cara a cara e transcreva com calma depois.',
+        'Notas de reunião: capture as conclusões rápido e complete os detalhes por escrito.',
+        'Ensaio de narração: grave o rascunho de uma demo ou aula e ouça até encaixar.',
+        'Ideias musicais: tararele a melodia antes que ela escape.',
+      ],
+      why: [
+        {
+          icon: 'mic',
+          title: 'Cortar assim que grava',
+          text: 'A gravação carrega direto no editor abaixo: corte as pontas, marque uma seleção, exporte MP3 ou WAV — sem abrir outra ferramenta.',
+        },
+        {
+          icon: 'lock-simple',
+          title: 'A gravação não sai da aba',
+          text: 'Os dados do microfone ficam na memória da aba e nada é transmitido. Feche sem exportar e a gravação some — conversas confidenciais incluídas.',
+        },
       ],
       howTo: [
         {
