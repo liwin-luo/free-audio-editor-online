@@ -4661,14 +4661,26 @@ export const de: Catalog = {
       heroAlt: 'Ein Metronom-Klick von 40 bis 240 BPM',
       subtitle: 'Hör den Klick, oder speichere 4, 8 oder 16 Takte. Er mischt sich nicht in ein Lied.',
       intro: 'Das Tempo geht von 40 bis 240 BPM. Wähle 2/4, 3/4, 4/4 oder 6/8. Die erste Zählzeit jedes Taktes ist lauter. Drück Start, der Klick läuft, bis du stoppst. Der Export schreibt 4, 8 oder 16 Takte als WAV oder MP3. 6/8 sind sechs Klicks im Takt, bei diesem BPM, nicht zwei. Diese Seite nimmt keine Datei und legt den Klick nicht unter ein Lied. Diese Mischung ist der Mehrspur-Editor. Nichts wird hochgeladen.',
-      usesHeading: 'Häufige Einsätze für 3D-Audio',
+      usesHeading: 'Häufige Einsätze für Audio-Looping',
       uses: [
-        'Atmosphärische Stimmen: eine Stimme kreist um den Kopf — Material für Meditation und Entspannung.',
-        'Bewegte Betten: ein statisches Pad bekommt eine Orbit und hat sofort Raum.',
-        'Spielumgebungen: das Ambiente kreist langsam, mit Kopfhörern kommt Präsenz auf.',
-        'Kurzvideo-Haken: ein Satz dreht eine volle Runde als Aufmerksamkeits-Haken.',
-        'Weiße Rauschen nach Maß: weißes Rauschen im Orbit als Einschlafmaterial.',
-        'Podcast-Intros: der Eröffnungssatz umkreist — das Sound-Logo der Sendung.',
+        'Übungsloops: ein Takt 2-16-mal wiederholt, als Übungsmaterial exportiert.',
+        'Vokalbetten: einen kurzen Sprachhinweis über eine längere Szene strecken.',
+        'Ambience-Verlängerung: Umgebungssound auf die Länge loopen, die du brauchst.',
+        'Rhythmus-Schichtung: einen Drumloop zu einer längeren Groove-Sektion stapeln.',
+        'Meditationsmaterial: einen Klangschalen-Ton oder Ambient zu einer ganzen Sitzung loopen.',
+        'Live-Backup: aus einem kurzen Loop ein langes Asset bauen und auf der Bühne spielen.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Eine Fuge, die nie knallt',
+          text: 'Ein 0,01-Sekunden-Crossfade an der Naht: die Wiederholung nach oben knallt oder klickt nie.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Wiederholungen und Auswahl frei',
+          text: 'Eine beliebige Zahl von 2 bis 16 Wiederholungen wählen; loope die Auswahl, wenn eine gezogen ist, sonst die ganze Datei.',
+        },
       ],
       why: [
         {

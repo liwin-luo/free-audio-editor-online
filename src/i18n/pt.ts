@@ -4828,14 +4828,26 @@ export const pt: Catalog = {
       heroAlt: 'Um clique de metrônomo de 40 a 240 BPM',
       subtitle: 'Ouça o clique, ou salve 4, 8 ou 16 compassos. Ele não entra numa música.',
       intro: 'O tempo vai de 40 a 240 BPM. Escolha 2/4, 3/4, 4/4 ou 6/8. O primeiro tempo de cada compasso é mais forte. Toque e o clique segue até você parar. A exportação grava 4, 8 ou 16 compassos em WAV ou MP3. 6/8 são seis cliques no compasso, nesse BPM, não dois. Esta página não recebe arquivo e não coloca o clique debaixo de uma música. Essa mistura é o editor multitrilha. Nada é enviado.',
-      usesHeading: 'Usos comuns do áudio 3D',
+      usesHeading: 'Usos comuns do loop de áudio',
       uses: [
-        'Vozes atmosféricas: uma voz circula em torno da cabeça — material para meditar e relaxar.',
-        'Camas em movimento: um pad estático ganha uma órbita e na hora tem espaço.',
-        'Ambientes de jogo: o som ambiente circula devagar, e o fone traz presença.',
-        'Ganchos de vídeo curto: uma frase dá a volta completa como gancho de atenção.',
-        'Ruído branco sob medida: ruído branco em órbita como material para dormir.',
-        'Intros de podcast: a frase de abertura orbita e dá ao programa seu selo sonoro.',
+        'Loops de prática: um compasso repetido 2-16 vezes, exportado como material de estudo.',
+        'Camas vocais: estique uma linha de voz curta por uma cena mais longa.',
+        'Extensão de ambiente: repita o som ambiente até a duração que precisar.',
+        'Camadas rítmicas: empilhe um loop de bateria numa seção de groove mais longa.',
+        'Material de meditação: repita um sino ou ambiente numa sessão completa.',
+        'Backup ao vivo: construa um material longo de um loop curto e toque no palco.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Uma emenda que nunca estala',
+          text: 'Um crossfade de 0,01 segundo na emenda: a volta ao início nunca estala nem estoura.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Repetições e seleção livres',
+          text: 'Escolha qualquer número de 2 a 16 repetições; repita a seleção se houver uma marcada, ou o arquivo inteiro se não.',
+        },
       ],
       why: [
         {

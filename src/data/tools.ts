@@ -5878,11 +5878,26 @@ export const TOOLS: ToolDef[] = [
     subtitle: 'Loop the selection, or the whole file, and download one longer file.',
     intro:
       'Set how many times the clip plays, from 2 to 16. The default is 4. Each join uses a linear crossfade, 0.01 seconds unless you move it, up to 0.1 seconds. Drag a selection to loop only that part. With no selection, the whole file repeats. The export stops at 10 minutes. Pitch and speed stay as they are. Processing stays in your browser.',
-    usesHeading: 'What the repeats are for',
+    usesHeading: 'Common uses for audio looping',
     uses: [
-      'Turn a one-bar riff into a practice loop you can export.',
-      'Stretch a short voice cue so it lasts through a longer scene.',
-      'Repeat a sample with a short crossfade so the join does not click.',
+      'Practice loops: one bar repeated 2-16 times, exported as practice material.',
+      'Vocal beds: stretch a short voice line through a longer scene.',
+      'Ambience extension: loop environmental sound to the length you need.',
+      'Rhythm layering: stack a drum loop into a longer groove section.',
+      'Meditation material: loop a bowl tone or ambience into a full sit.',
+      'Live backup: build a long asset from a short loop and play it on stage.',
+    ],
+    why: [
+      {
+        icon: 'repeat',
+        title: 'A join that never pops',
+        text: 'A 0.01-second crossfade at the seam: the repeat back to the top never snaps or clicks.',
+      },
+      {
+        icon: 'sliders',
+        title: 'Repeats and selection, free',
+        text: 'Pick any repeat count from 2 to 16; loop the selection if one is drawn, or the whole file if not.',
+      },
     ],
     howTo: [
       {

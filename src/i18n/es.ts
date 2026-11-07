@@ -4694,14 +4694,26 @@ export const es: Catalog = {
       heroAlt: 'Un clic de metrónomo de 40 a 240 BPM',
       subtitle: 'Escucha el clic, o guarda 4, 8 o 16 compases. No se mezcla con una canción.',
       intro: 'El tempo va de 40 a 240 BPM. Elige 2/4, 3/4, 4/4 o 6/8. El primer pulso de cada compás es más fuerte. Pulsa reproducir y el clic sigue hasta que paras. La exportación escribe 4, 8 o 16 compases en WAV o MP3. 6/8 son seis clics en el compás, a ese BPM, no dos. Esta página no recibe un archivo y no pone el clic debajo de una canción. Esa mezcla es el editor multipista. No se sube nada.',
-      usesHeading: 'Usos habituales del audio 3D',
+      usesHeading: 'Usos habituales del looper de audio',
       uses: [
-        'Voces atmosféricas: una voz gira en torno a la cabeza — material para meditar y relajarse.',
-        'Camas en movimiento: un colchón estático gana una órbita y al instante tiene espacio.',
-        'Ambientes de juego: el sonido ambiental gira despacio, y con auriculares llega la presencia.',
-        'Ganchos de vídeo corto: una frase da la vuelta entera como gancho de atención.',
-        'Ruido blanco a medida: ruido blanco en órbita como material para dormir.',
-        'Intros de pódcast: la frase de apertura orbita y le da al programa su sello sonoro.',
+        'Loops de práctica: un compás repetido 2-16 veces, exportado como material de estudio.',
+        'Camas vocales: estira una línea de voz corta a lo largo de una escena más larga.',
+        'Extensión de ambiente: repite el sonido ambiental hasta la longitud que necesites.',
+        'Capas rítmicas: apila un loop de batería en una sección de groove más larga.',
+        'Material de meditación: repite un cuenco o una ambientación en una sesión completa.',
+        'Respaldo en directo: construye un material largo desde un loop corto y pásalo en el escenario.',
+      ],
+      why: [
+        {
+          icon: 'repeat',
+          title: 'Una unión que nunca truena',
+          text: 'Un fundido cruzado de 0,01 segundos en la costura: la vuelta al inicio nunca chasquea ni estalla.',
+        },
+        {
+          icon: 'sliders',
+          title: 'Repeticiones y selección libres',
+          text: 'Elige cualquier número de repeticiones de 2 a 16; repite la selección si hay una marcada, o el archivo entero si no.',
+        },
       ],
       why: [
         {
