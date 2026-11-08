@@ -113,7 +113,7 @@ const selectable = !config.converter && !config.silence && !config.noise && !con
   <!-- Empty state: drop well, format chips, privacy line. Hidden once a file is loaded. -->
   <div data-empty>
   <DropPromise config={config} locale={locale}>
-    <DropWell icon="upload-simple" hint={config.dropHint} toolIcon={config.toolIcon} toolImage={config.toolImage} />
+    <DropWell icon="upload-simple" hint={config.dropHint} />
     <div class="relative z-10 mt-1 pb-0.5">
       <LocalBadge text={t.dropLocal} />
     </div>
