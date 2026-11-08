@@ -11,3 +11,6 @@ media/
 docs/*.pdf
 src-tauri/target/
 public/free-audio-editor-mcp.zip
+
+# ZCode agent session files
+.zcode/
