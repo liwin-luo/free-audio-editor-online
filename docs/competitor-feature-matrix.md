@@ -2,6 +2,8 @@
 
 日期:2026-10-28 · 用途:逐项核对我们的功能与页面 SEO · 抓取方式:首页 + /tools/ 目录页实测
 
+> **注（2026-11-08）**:本表部分行已过期——降噪(§D#30)、变声(§G#57)当时标 ❌,现在已有 noise-remover、voice-changer 页;"我们 53 工具页"口径现为 47 工具页 + 6 hub(sitemap 实测)。SERP 级竞品格局见 [seo/2026-11-08-full-check.md](seo/2026-11-08-full-check.md),本表只保留功能对照用途,刷新待冻结期后。
+
 站点规模:audioeditor.org 58 工具 · snipsound 57 工具(目录页) · soundtools.io 38 工具 · 我们 53 工具页(注册表)
 
 图例:✅ 有页面 · 🟡 引擎/相邻页可覆盖但无独立页 · ❌ 缺失 · ✓/– 表示竞品有无(AE=audioeditor.org, SS=snipsound, ST=soundtools)
