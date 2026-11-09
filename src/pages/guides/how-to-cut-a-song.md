@@ -49,8 +49,8 @@ Drag across the waveform to mark a section. Then pick one of two modes:
 
 ![Keep selection keeps only the highlighted part; Delete selection removes it](/guides-media/how-to-cut-a-song/04-keep-vs-delete.webp)
 
-If dragging feels imprecise, open **Precise times** and type the start and end
-seconds directly. The timecode under the waveform shows your position to a
+If dragging feels imprecise, type the start and end seconds into **Start (s)**
+and **End (s)**. The timecode under the waveform shows your position to a
 hundredth of a second while you drag.
 
 ![A selection drawn on the waveform, with the Keep selection mode active](/guides-media/how-to-cut-a-song/02-selection.webp)
@@ -74,8 +74,9 @@ obvious and invisible. Then click **Export**:
 **Cut on the beat.** An ending on a downbeat sounds deliberate. An ending between
 beats sounds like a mistake. Zoom in with the + button and watch where the hits land.
 
-**Fade the edge.** A 0.2–0.5 second fade-out in the Adjust drawer hides an abrupt
-ending. This is also exactly how to make the cut loop cleanly as a
+**Fade the edge.** A 0.2–0.5 second fade-out on the Fade out slider hides an abrupt
+ending. For an ending that fades over seconds, see [how to fade out a song](/guides/how-to-fade-out-a-song).
+This is also exactly how to make the cut loop cleanly as a
 [ringtone](/ringtone-maker).
 
 ## Cutting on a phone

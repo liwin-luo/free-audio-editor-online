@@ -75,7 +75,8 @@ Three edges, three checks, in the order a listener meets them:
 
 1. **The first sample.** Fade-in, 0.1 seconds.
 2. **The last sample.** Fade-out, 0.2 to 0.5 seconds; tails ring longer than
-   people expect.
+   people expect. A musical fade-out of several seconds is a different job:
+   [how to fade out a song](/guides/how-to-fade-out-a-song).
 3. **The join.** Where a deleted section used to be, a crossfade in the
    [audio joiner](/audio-joiner) beats a fade on each side.
 

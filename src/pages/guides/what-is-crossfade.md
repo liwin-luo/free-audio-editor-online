@@ -24,7 +24,8 @@ Crossfade is two ordinary fades applied at once. The outgoing track fades out
 across the overlap, the incoming track fades in across the same span, and the
 levels cross in the middle, which is where the name comes from. That is also
 the exact difference from a plain fade: a fade rides one edge of one file to
-or from silence; a crossfade rides two files into each other. The
+or from silence. [Fading out a single song](/guides/how-to-fade-out-a-song) is
+the one-file version. A crossfade rides two files into each other. The
 [fade tool](/fade-audio) shapes the start and end of a single clip, and no
 fade between two separate files can ever join them.
 

@@ -1302,11 +1302,6 @@ export const de: Catalog = {
           name: 'Hören und exportieren',
           text: 'Anfang und Ende anspielen, dann als MP3 oder verlustfreies WAV exportieren.',
         },
-        {
-          name: 'Anhören und exportieren',
-          text: 'Kurz anhören und dann als MP3 oder verlustfreies WAV exportieren.',
-        },
-
       ],
       faqs: [
         {

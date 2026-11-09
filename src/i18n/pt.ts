@@ -1300,10 +1300,6 @@ export const pt: Catalog = {
           name: 'Ouça e exporte',
           text: 'Toque o começo e o fim para ouvir os fades e exporte em MP3 ou WAV sem perda.',
         },
-        {
-          name: 'Ouça e exporte',
-          text: 'Confira na prévia e exporte em MP3 ou WAV sem perdas.',
-        },
       ],
       faqs: [
         {

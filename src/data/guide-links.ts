@@ -48,6 +48,7 @@ const TASK_CLUSTERS: { id: Exclude<GuideClusterId, 'more'>; paths: string[] }[] 
     paths: [
       '/guides/how-to-trim-audio',
       '/guides/audio-clicks-at-the-start',
+      '/guides/how-to-fade-out-a-song',
       '/guides/trim-opentracks-bgm',
       '/guides/remove-silence-from-podcast',
       '/guides/how-to-cut-a-song',

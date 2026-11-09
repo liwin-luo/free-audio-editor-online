@@ -3635,11 +3635,6 @@ export const fr: Catalog = {
           name: 'Écoutez et exportez',
           text: 'Lisez le début et la fin pour entendre les fondus, puis exportez en MP3 ou en WAV sans perte.',
         },
-        {
-          name: 'Écoute et exporte',
-          text: 'Vérifie à l\'écoute, puis exporte en MP3 ou WAV sans perte.',
-        },
-
       ],
       faqs: [
         {

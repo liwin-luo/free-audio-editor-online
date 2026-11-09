@@ -5338,10 +5338,6 @@ export const TOOLS: ToolDef[] = [
         name: 'Preview and export',
         text: 'Play the start and end to hear the fades, then export as MP3 or lossless WAV.',
       },
-      {
-        name: 'Preview and export',
-        text: 'Preview to confirm, then export MP3 or lossless WAV.',
-      },
     ],
     faqs: [
       {
@@ -5362,7 +5358,7 @@ export const TOOLS: ToolDef[] = [
       },
       {
         q: 'How long should a fade out be?',
-        a: 'For songs, 1–3 seconds usually sounds natural; live recordings can take 4–5. For loops and ringtones, keep it 0.2–0.5 seconds so the track keeps its attack. There is no single right answer — preview and trust your ears.',
+        a: 'For songs, 1–3 seconds usually sounds natural; live recordings can take 4–5. For loops and ringtones, keep it 0.2–0.5 seconds so the track keeps its attack. There is no single right answer — preview and trust your ears. [how to fade out a song](/guides/how-to-fade-out-a-song) covers ending early and fades past 5 seconds.',
       },
       {
         q: 'Does it work on a phone?',
