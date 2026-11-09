@@ -85,7 +85,9 @@ which takes a file rather than a live microphone.
 It also does not fix a quiet take. A recording made too far from the mic stays
 quiet after export. Raise it with [normalize](/normalize-audio) if the whole
 file is low, or the [level compressor](/compressor) if some words are loud and
-others are not.
+others are not. An iPhone Voice Memo is a file this recorder did not make.
+[Make a quiet Voice Memo louder](/guides/why-is-my-voice-memo-so-quiet) after
+you save that memo to Files.
 
 If the destination is a podcast, check the level with the
 [loudness meter](/loudness-meter) after editing. A recorder captures a take; it

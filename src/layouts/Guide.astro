@@ -6,6 +6,7 @@
 import '../i18n/catalogs';
 import Base from './Base.astro';
 import Icon from '../components/Icon.astro';
+import { guideToolCta, relatedTasks } from '../data/guide-links';
 import { SITE } from '../data/site';
 import { faqSchema, organizationRef } from '../lib/jsonld';
 import { getShell, localizeTool } from '../i18n';
@@ -61,6 +62,7 @@ const copy = {
     by: 'By',
     updatedLabel: 'Updated',
     sourcesLabel: 'Sources',
+    related: 'Related tasks',
   },
   es: {
     ready: '¿Listo para probarlo?',
@@ -72,6 +74,7 @@ const copy = {
     by: 'Por',
     updatedLabel: 'Actualizado',
     sourcesLabel: 'Fuentes',
+    related: 'Tareas relacionadas',
   },
   pt: {
     ready: 'Pronto para testar?',
@@ -83,6 +86,7 @@ const copy = {
     by: 'Por',
     updatedLabel: 'Atualizado',
     sourcesLabel: 'Fontes',
+    related: 'Tarefas relacionadas',
   },
   id: {
     ready: 'Siap mencoba?',
@@ -94,6 +98,7 @@ const copy = {
     by: 'Oleh',
     updatedLabel: 'Diperbarui',
     sourcesLabel: 'Sumber',
+    related: 'Tugas terkait',
   },
   de: {
     ready: 'Bereit, es auszuprobieren?',
@@ -105,6 +110,7 @@ const copy = {
     by: 'Von',
     updatedLabel: 'Aktualisiert',
     sourcesLabel: 'Quellen',
+    related: 'Passende Aufgaben',
   },
   ja: {
     ready: '試しますか？',
@@ -116,6 +122,7 @@ const copy = {
     by: '作成',
     updatedLabel: '更新',
     sourcesLabel: '出典',
+    related: '関連する作業',
   },
   ko: {
     ready: '써 볼까요?',
@@ -127,6 +134,7 @@ const copy = {
     by: '작성',
     updatedLabel: '업데이트',
     sourcesLabel: '출처',
+    related: '관련 작업',
   },
   zh: {
     ready: '要试一下吗？',
@@ -138,6 +146,7 @@ const copy = {
     by: '作者',
     updatedLabel: '更新于',
     sourcesLabel: '来源',
+    related: '相关任务',
   },
   fr: {
     ready: 'Prêt à l’essayer ?',
@@ -149,6 +158,7 @@ const copy = {
     by: 'Par',
     updatedLabel: 'Mis à jour',
     sourcesLabel: 'Sources',
+    related: 'Tâches proches',
   },
   ru: {
     ready: 'Готовы попробовать?',
@@ -160,6 +170,7 @@ const copy = {
     by: 'Автор',
     updatedLabel: 'Обновлено',
     sourcesLabel: 'Источники',
+    related: 'Близкие задачи',
   },
   ar: {
     ready: 'مستعد لتجربته؟',
@@ -171,8 +182,12 @@ const copy = {
     by: 'بقلم',
     updatedLabel: 'حُدّث',
     sourcesLabel: 'المصادر',
+    related: 'مهام قريبة',
   },
 }[locale];
+
+const taskCta = guideToolCta(path, locale);
+const related = relatedTasks(path, locale);
 
 const jsonLd = [
   {
@@ -360,16 +375,43 @@ const jsonLd = [
       }
 
       {
+        related.length > 0 && (
+          <section class="mt-10 max-w-[65ch]" aria-labelledby="related-tasks-heading" data-related-tasks>
+            <h2 id="related-tasks-heading" class="text-lg font-semibold text-ink">{copy.related}</h2>
+            <div class="mt-4 grid gap-4">
+              {related.map((task) => (
+                <a
+                  href={task.href}
+                  class="group block rounded-xl border border-line bg-surface p-5 transition-colors hover:border-accent"
+                >
+                  <h3 class="font-medium leading-snug group-hover:text-accent">{task.label}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-ink2">{task.description}</p>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
         tool && (
-          <aside class="mt-12 flex max-w-[65ch] flex-col items-start gap-4 rounded-xl border border-line bg-surface p-6 sm:flex-row sm:items-center sm:justify-between">
+          <aside
+            class:list={[
+              'mt-12 flex max-w-[65ch] flex-col items-start gap-4 rounded-xl border border-line bg-surface p-6',
+              !taskCta && 'sm:flex-row sm:items-center sm:justify-between',
+            ]}
+          >
             <div>
               <p class="font-medium">{copy.ready}</p>
               <p class="mt-1 text-sm text-ink2">
                 {tool.name}{locale === 'zh' || locale === 'ja' ? '。' : '. '}{copy.blurb}
               </p>
             </div>
-            <a href={localePath(locale, `/${tool.slug}`)} class="btn btn-primary shrink-0">
-              {copy.open} {tool.shortName}
+            <a
+              href={localePath(locale, `/${tool.slug}`)}
+              class:list={['btn btn-primary', taskCta ? 'btn-task' : 'shrink-0']}
+            >
+              {taskCta ?? `${copy.open} ${tool.shortName}`}
               <Icon name="convert" size={16} />
             </a>
           </aside>

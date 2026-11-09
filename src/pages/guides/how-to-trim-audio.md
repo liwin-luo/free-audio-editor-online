@@ -100,3 +100,10 @@ If the next step is a song edit rather than a recording edit, switch to the
 [MP3 cutter](/mp3-cutter) and follow
 [how to cut a song](/guides/how-to-cut-a-song). The wider map is
 [how to edit an MP3 file](/guides/how-to-edit-an-mp3).
+
+A tick on the first sample after the cut is not fixed by trimming again.
+[Remove clicks after trimming audio](/guides/audio-clicks-at-the-start) is the
+0.1 to 0.3 second fade already described there. A free OpenTracks background
+track is the same trim, plus a loop when the video is longer than the cue.
+[Trim OpenTracks background music](/guides/trim-opentracks-bgm) covers that
+download and the cut.

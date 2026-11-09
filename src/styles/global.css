@@ -291,6 +291,16 @@
     transform: scale(0.98);
   }
 
+  .btn.btn-task {
+    height: auto;
+    min-height: 2.5rem;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+    padding-block: 0.5rem;
+  }
+
   .btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;

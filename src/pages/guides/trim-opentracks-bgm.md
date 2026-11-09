@@ -36,7 +36,7 @@ Drag the region you want to keep. Press play and listen to the selection. If the
 
 **Delete selection** exports everything except the highlight. Use it to remove a gap in the middle. The join is a hard cut. If that click is obvious, export the two sides separately and join them in the [audio joiner](/audio-joiner) with a short crossfade.
 
-A fade of 0.1–0.3 seconds in **Adjust** keeps the start and the end from clicking. The fade applies to the export, not to a deleted gap.
+A fade of 0.1–0.3 seconds in **Adjust** keeps the start and the end from clicking. The fade applies to the export, not to a deleted gap. [Remove clicks after trimming audio](/guides/audio-clicks-at-the-start) is that edge. A click in the middle of the take is a different fault, and this fade does not reach it.
 
 ![Keep or delete the selection, then export MP3 or WAV. The download starts in the browser.](/guides-media/trim-opentracks-bgm/02-trimmerExport.webp)
 

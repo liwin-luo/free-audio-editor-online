@@ -154,6 +154,8 @@ That is uneven dynamics, and one gain for the whole file cannot fix it — pushi
 enough to lift the buried words would clip the loud ones. The
 [level compressor](/compressor) pulls the loud parts down and the quiet parts
 up, so a single gentler boost can then carry the whole memo.
+[Normalization versus compression for speech](/guides/normalize-vs-compress-audio)
+is the choice between one gain and that narrower range.
 
 ### Quiet but already peaking
 
@@ -166,6 +168,12 @@ allows, capped at 4×, and compression handles the rest.
 Boost first, then cut the part you keep with the
 [audio trimmer](/audio-trimmer) — one pass at the new level instead of two
 lossy exports over the same file.
+
+### Several memos that should be one file
+
+A boost does not join clips.
+[Join Voice Memos into one file](/guides/merge-songs-one-track), then raise the
+combined file once. The joiner accepts the M4A the phone saved.
 
 ## How the next memo records louder
 
