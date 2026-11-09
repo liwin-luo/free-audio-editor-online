@@ -180,6 +180,14 @@ export const GUIDES: GuideCard[] = [
   },
   {
     locale: 'en',
+    href: '/guides/how-to-fade-out-a-song',
+    title: 'How to Fade Out a Song: End Early, Fade 1 to 5 Seconds',
+    description:
+      'Choose where the song should stop, fade the last 1 to 5 seconds, and export MP3 or WAV in your browser. For fades past 5 seconds, use Audacity or ffmpeg.',
+    minutes: 5,
+  },
+  {
+    locale: 'en',
     href: '/guides/make-iphone-ringtone',
     title: 'How to Make a Ringtone on iPhone (Free, No Computer Needed)',
     description:
@@ -977,6 +985,7 @@ const GUIDE_TOOL: Record<string, string> = {
   '/guides/gain-vs-volume': 'increase-volume',
   '/guides/garageband-alternative': 'mp3-editor',
   '/guides/how-to-cut-a-song': 'mp3-cutter',
+  '/guides/how-to-fade-out-a-song': 'fade-audio',
   '/guides/how-to-edit-a-wav-file': 'mp3-editor',
   '/guides/how-to-edit-an-mp3': 'mp3-editor',
   '/guides/how-to-edit-mp3-tags': 'mp3-tag-editor',

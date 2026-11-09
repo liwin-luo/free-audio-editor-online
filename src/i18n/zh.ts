@@ -1222,7 +1222,6 @@ export const zh: Catalog = {
         { name: '拖入音频', text: '音频拖进虚线框，或点击浏览。设备内解码。' },
         { name: '设定淡入淡出时长', text: '两个滑杆分别控制淡入和淡出，各 0–5 秒，步进 0.1 秒。' },
         { name: '试听并导出', text: '试听确认，导出 MP3 或无损 WAV。' },
-        { name: '拿走文件', text: '文件名带 -edited 后缀。' },
       ],
       faqs: [
         {

@@ -1301,11 +1301,6 @@ export const id: Catalog = {
           name: 'Dengar dan ekspor',
           text: 'Putar bagian awal dan akhir untuk mendengar fadenya, lalu ekspor sebagai MP3 atau WAV lossless.',
         },
-        {
-          name: 'Pratinjau dan ekspor',
-          text: 'Pratinjau untuk memastikan, lalu ekspor sebagai MP3 atau WAV lossless.',
-        },
-
       ],
       faqs: [
         {

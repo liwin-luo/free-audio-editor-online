@@ -1301,11 +1301,6 @@ export const es: Catalog = {
           name: 'Escucha y exporta',
           text: 'Reproduce el inicio y el final para oír los fundidos y exporta en MP3 o WAV sin pérdida.',
         },
-        {
-          name: 'Preescucha y exporta',
-          text: 'Escucha la vista previa y exporta en MP3 o WAV sin pérdidas.',
-        },
-
       ],
       faqs: [
         {
