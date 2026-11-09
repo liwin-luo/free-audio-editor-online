@@ -18,6 +18,11 @@ old speaker, or a form that only accepts MP3 will not open it. The
 tab, so a voice memo does not need to leave the phone. Most websites do the same
 job by uploading the file first.
 
+If the computer plays the stick and the car does not,
+[fix audio that a car USB stereo won't play](/guides/car-stereo-wont-play)
+before converting the whole collection. A missing codec and a stick the head
+unit cannot see are different faults.
+
 ## What is inside the file
 
 M4A is a container. Open one and you usually find AAC. Voice Memos and most AAC

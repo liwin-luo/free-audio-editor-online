@@ -68,7 +68,10 @@ rescued at playback. Fixing the file remains the version you control.
 **Mixing up a playback problem with a file problem.** If a file is quiet on
 your phone and quiet on a laptop and quiet in the car, it is a gain problem:
 fix the file. If it is quiet only because your speaker is turned down, it is
-volume, and no edit is needed.
+volume, and no edit is needed. A saved iPhone Voice Memo that is quiet on
+every device is the file-level case.
+[Make a quiet Voice Memo louder](/guides/why-is-my-voice-memo-so-quiet) changes
+the exported file, not the speaker.
 
 **Baking in what should stay adjustable.** Gain added on export cannot be
 undone without re-exporting from the source. Keep the original, decide the

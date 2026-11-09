@@ -949,6 +949,11 @@ function guideKey(path: string): string {
   return GUIDE_ALIAS[path] ?? path;
 }
 
+/** Locale-free canonical guide path, including the Spanish slug aliases. */
+export function canonicalGuidePath(href: string, locale: Locale): string {
+  return guideKey(unprefixedGuide(href, locale));
+}
+
 /** Guides that support a specific tool, by normalized guide path. */
 const GUIDE_TOOL: Record<string, string> = {
   '/guides/123apps-alternative': 'mp3-editor',
@@ -1005,11 +1010,29 @@ const GUIDE_TOOL: Record<string, string> = {
   '/guides/why-is-my-voice-memo-so-quiet': 'increase-volume',
 };
 
-/** Guides in the current language that support this tool. */
+/**
+ * Extra tool pages that list a guide. The primary tool stays in GUIDE_TOOL.
+ * Cards render only when the article exists in that locale.
+ * audio-trimmer: a click at the cut is what a trim leaves behind.
+ * bitrate-converter: the car guide's usual file is MP3 at 192 kbps.
+ * compressor: pauses and uneven speech are the two neighboring jobs.
+ * audio-looper: the OpenTracks guide repeats a trimmed bed on this page.
+ */
+const GUIDE_ALSO: Record<string, readonly string[]> = {
+  'audio-trimmer': ['/guides/audio-clicks-at-the-start'],
+  'bitrate-converter': ['/guides/car-stereo-wont-play'],
+  compressor: ['/guides/remove-silence-from-podcast', '/guides/normalize-vs-compress-audio'],
+  'audio-looper': ['/guides/trim-opentracks-bgm'],
+};
+
+/** Guides in the current language that support this tool. Primary matches stay first. */
 export function guidesForTool(tool: string, locale: Locale): GuideCard[] {
-  return GUIDES.filter(
-    (g) => g.locale === locale && GUIDE_TOOL[guideKey(unprefixedGuide(g.href, g.locale))] === tool,
-  );
+  const inLocale = GUIDES.filter((g) => g.locale === locale);
+  const keyOf = (g: GuideCard) => guideKey(unprefixedGuide(g.href, g.locale));
+  const primary = inLocale.filter((g) => GUIDE_TOOL[keyOf(g)] === tool);
+  const extraKeys = new Set(GUIDE_ALSO[tool] ?? []);
+  const extra = inLocale.filter((g) => extraKeys.has(keyOf(g)) && GUIDE_TOOL[keyOf(g)] !== tool);
+  return [...primary, ...extra];
 }
 
 /** Articles that exist in more than one language, derived from GUIDES so the two can't drift. */

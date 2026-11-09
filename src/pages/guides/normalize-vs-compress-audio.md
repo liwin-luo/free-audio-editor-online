@@ -24,6 +24,10 @@ listen to. The [normalizer](/normalize-audio) and the
 Both pages run in the browser and neither uploads the file. The decision is
 about what you want the dynamics to do.
 
+Long pauses are a different job.
+[Remove long pauses from a recording](/guides/remove-silence-from-podcast)
+deletes gaps longer than the minimum you set and keeps breaths that are shorter.
+
 ## The one-sentence difference
 
 **Normalize:** find the loudest sample, raise the whole file until that sample

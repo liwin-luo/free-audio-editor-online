@@ -26,6 +26,11 @@ Convert the refusing tracks to **MP3 at 192 kbps** and try them again. MP3 is
 the one codec every car stereo from the last fifteen years reads. One track is
 enough for a test before you convert the whole stick.
 
+On Windows, iTunes is not required.
+[Convert M4A to MP3 on Windows](/guides/convert-m4a-to-mp3) uses VLC, Audacity,
+ffmpeg, or the browser page. The browser path installs nothing. The Mac Music
+app steps stay in that same guide.
+
 ![The M4A to MP3 converter. Drop the refusing file, pick MP3 192 kbps.](/guides-media/car-stereo-wont-play/01-m4aDropzone.webp)
 
 ## The causes, in order

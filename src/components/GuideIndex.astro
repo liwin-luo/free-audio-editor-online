@@ -1,4 +1,5 @@
 ---
+import { guideSections } from '../data/guide-links';
 import { GUIDE_INDEX, guidesFor } from '../data/guides';
 import { SITE } from '../data/site';
 import { getShell } from '../i18n';
@@ -13,6 +14,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const guides = guidesFor(locale);
+const sections = guideSections(locale);
 const copy = GUIDE_INDEX[locale];
 const { ui } = getShell(locale);
 const indexUrl = new URL(localePath(locale, '/guides'), SITE.url).href;
@@ -29,7 +31,7 @@ const jsonLd = [
         {
           '@context': 'https://schema.org',
           '@type': 'ItemList',
-          itemListElement: guides.map((g, i) => ({
+          itemListElement: sections.flatMap((section) => section.guides).map((g, i) => ({
             '@type': 'ListItem',
             position: i + 1,
             name: g.title,
@@ -66,21 +68,34 @@ const jsonLd = [
       guides.length === 0 ? (
         <p class="mt-10 text-ink2">{copy.empty}</p>
       ) : (
-        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {guides.map((g) => (
-            <a
-              href={g.href}
-              class="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent"
-            >
-              <h2 class="font-medium leading-snug group-hover:text-accent">{g.title}</h2>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-ink2">{g.description}</p>
-              <p class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
-                {g.minutes} {copy.minutes}
-                <Icon name="convert" size={15} class="transition-transform group-hover:translate-x-0.5" />
-              </p>
-            </a>
-          ))}
-        </div>
+        sections.map((section) => (
+          <section
+            class="mt-12"
+            id={`guide-cluster-${section.id}`}
+            data-guide-cluster={section.id}
+            aria-labelledby={`guide-cluster-${section.id}-heading`}
+          >
+            <h2 id={`guide-cluster-${section.id}-heading`} class="text-xl font-semibold tracking-tight">
+              {section.heading}
+            </h2>
+            {section.lede && <p class="mt-2 max-w-[60ch] text-sm leading-relaxed text-ink2">{section.lede}</p>}
+            <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {section.guides.map((g) => (
+                <a
+                  href={g.href}
+                  class="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent"
+                >
+                  <h3 class="font-medium leading-snug group-hover:text-accent">{g.title}</h3>
+                  <p class="mt-2 flex-1 text-sm leading-relaxed text-ink2">{g.description}</p>
+                  <p class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent">
+                    {g.minutes} {copy.minutes}
+                    <Icon name="convert" size={15} class="transition-transform group-hover:translate-x-0.5" />
+                  </p>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))
       )
     }
   </section>
