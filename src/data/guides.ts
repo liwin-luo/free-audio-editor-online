@@ -403,6 +403,14 @@ export const GUIDES: GuideCard[] = [
     minutes: 5,
   },
   {
+    locale: 'en',
+    href: '/guides/how-to-edit-audio-online',
+    title: 'How to Edit Audio Online: Trim, Cut, Fade, Louder, Export',
+    description:
+      'The five edits that cover most jobs, walked through with real screenshots: keep a part, cut a middle chunk, fade the ends, fix loudness, pick the export. Nothing uploaded.',
+    minutes: 6,
+  },
+  {
     locale: 'zh',
     href: '/zh/guides/convert-audio-to-midi',
     title: '音频转 MIDI - 单乐器，最长 3 分钟',
