@@ -103,4 +103,8 @@
 
 ## 发布记录
 
-（发布后回填：commit、线上验证时间、生效 URL。）
+- 提交 `fc334fa`（2026-11-14，rebase 到并行会话的 bb0f5ad 之上后推送），Vercel 自动部署。
+- 约 60 秒后线上生效：https://freeaudioeditor.online/guides/how-to-edit-audio-online HTTP 200。
+- 线上核验：canonical 正确；4 张截图 200（image/webp）；抽查 6 个工具页内链目标全部 200；FAQPage JSON-LD 与可见 FAQ 同源（构建产物已核）。
+- 基线：本地 commit `81f881a`（rebase 前原始提交，回滚参考）。
+- 待人工：GSC → URL Inspection → Request indexing（本 URL）；2–4 周后 GSC 看 impressions/queries。
